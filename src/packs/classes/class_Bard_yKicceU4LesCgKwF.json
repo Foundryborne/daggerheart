@@ -1,0 +1,104 @@
+{
+  "name": "Bard",
+  "type": "class",
+  "_id": "yKicceU4LesCgKwF",
+  "img": "systems/daggerheart/assets/icons/classes/bard.png",
+  "system": {
+    "domains": [
+      "grace",
+      "codex"
+    ],
+    "classItems": [],
+    "damageThresholds": {
+      "minor": 0,
+      "major": 0,
+      "severe": 0
+    },
+    "evasion": 10,
+    "features": [
+      {
+        "name": "Make a Scene",
+        "img": "icons/svg/item-bag.svg",
+        "uuid": "Compendium.daggerheart.class-features.Item.Ddk0PAgwM4VLRbyY"
+      },
+      {
+        "img": "icons/svg/item-bag.svg",
+        "name": "Rally",
+        "uuid": "Compendium.daggerheart.class-features.Item.8uORDWrXtNFzA00U"
+      }
+    ],
+    "subclasses": [
+      {
+        "name": "Troubadour",
+        "img": "icons/svg/item-bag.svg",
+        "uuid": "Compendium.daggerheart.subclasses.Item.T1iBO8i0xRF5c8Q2"
+      },
+      {
+        "img": "icons/svg/item-bag.svg",
+        "name": "Wordsmith",
+        "uuid": "Compendium.daggerheart.subclasses.Item.FXT65YDVWFy85EI0"
+      }
+    ],
+    "inventory": {
+      "take": [],
+      "choiceA": [],
+      "choiceB": [],
+      "extra": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 0,
+        "strength": 0,
+        "finesse": 0,
+        "instinct": 0,
+        "presence": 0,
+        "knowledge": 0
+      },
+      "suggestedPrimaryWeapon": null,
+      "suggestedSecondaryWeapon": null,
+      "suggestedArmor": null,
+      "characterDescription": {
+        "clothes": "",
+        "eyes": "",
+        "body": "",
+        "color": "",
+        "attitude": ""
+      },
+      "backgroundQuestions": [
+        "",
+        "",
+        ""
+      ],
+      "connections": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "multiclass": null,
+    "description": ""
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747946810798,
+    "modifiedTime": 1747991996135,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+  },
+  "_key": "!items!yKicceU4LesCgKwF"
+}

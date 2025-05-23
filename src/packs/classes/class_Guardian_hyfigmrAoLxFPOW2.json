@@ -1,7 +1,8 @@
 {
-  "name": "Test Class",
+  "name": "Guardian",
   "type": "class",
-  "img": "icons/svg/item-bag.svg",
+  "_id": "hyfigmrAoLxFPOW2",
+  "img": "systems/daggerheart/assets/icons/classes/guardian.png",
   "system": {
     "domains": [],
     "classItems": [],
@@ -48,23 +49,22 @@
   },
   "effects": [],
   "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0,
-    "HeB5VwikUgL2Hxck": 3
+    "NqO2eQGMjrvUO6v9": 3
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.342",
+    "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1747924765406,
-    "modifiedTime": 1747924765406,
-    "lastModifiedBy": "HeB5VwikUgL2Hxck"
+    "createdTime": 1747946853583,
+    "modifiedTime": 1747946858579,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
   },
-  "_id": "h9wTtM4iczXHqvf8",
-  "sort": 0,
-  "_key": "!items!h9wTtM4iczXHqvf8"
+  "_key": "!items!hyfigmrAoLxFPOW2"
 }
