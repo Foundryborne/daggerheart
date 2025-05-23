@@ -11,6 +11,11 @@
     <section class="sheet-body">
         {{formField systemFields.baseScore value=source.system.baseScore label=(localize "DAGGERHEART.Sheets.Armor.BaseScore") }}
         {{formField systemFields.feature value=source.system.feature label=(localize "DAGGERHEART.Sheets.Armor.Feature") localize=true blank=""}}
+        <div class="armor-thresholds">
+            <h2>{{localize "DAGGERHEART.Sheets.Armor.BaseThresholds.Base"}}</h2>
+            {{ formField systemFields.baseThresholds.fields.major value=source.system.baseThresholds.major label=(localize "DAGGERHEART.Sheets.Armor.BaseThresholds.Major") }}/
+            {{ formField systemFields.baseThresholds.fields.severe value=source.system.baseThresholds.severe label=(localize "DAGGERHEART.Sheets.Armor.BaseThresholds.Severe") }}
+        </div>
         <div class="feature-description">
             <h2>{{localize "DAGGERHEART.Sheets.Armor.Description"}}</h2>
             {{formInput systemFields.description value=source.system.description enriched=source.system.description localize=true toggled=true}}
