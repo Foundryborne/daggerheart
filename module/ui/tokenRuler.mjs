@@ -1,4 +1,4 @@
-export default class DhpRuler extends foundry.canvas.interaction.Ruler {
+export default class DhpTokenRuler extends foundry.canvas.placeables.tokens.TokenRuler {
     _getWaypointLabelContext(waypoint, state) {
         const context = super._getWaypointLabelContext(waypoint, state);
         if (!context) return;

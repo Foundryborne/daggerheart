@@ -204,7 +204,7 @@ export const registerDHPSettings = () => {
         config: false,
         type: Object,
         default: {
-            enabled: false,
+            enabled: true,
             melee: 5,
             veryClose: 15,
             close: 30,

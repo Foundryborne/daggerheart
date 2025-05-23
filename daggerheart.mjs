@@ -9,6 +9,7 @@ import { registerDHPSettings } from './module/applications/settings.mjs';
 import DhpChatLog from './module/ui/chatLog.mjs';
 import DhpPlayers from './module/ui/players.mjs';
 import DhpRuler from './module/ui/ruler.mjs';
+import DhpTokenRuler from './module/ui/tokenRuler.mjs';
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -83,6 +84,7 @@ Hooks.once('init', () => {
     CONFIG.ui.combat = DhpCombatTracker;
     CONFIG.ui.chat = DhpChatLog;
     CONFIG.ui.players = DhpPlayers;
+    CONFIG.Token.rulerClass = DhpTokenRuler;
 
     game.socket.on(`system.${SYSTEM.id}`, handleSocketEvent);
 
