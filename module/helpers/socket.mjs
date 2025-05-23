@@ -1,4 +1,4 @@
-export function handleSocketEvent({action=null, data={}}={}) {
+export function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
         case socketEvent.GMUpdate:
             Hooks.callAll(socketEvent.GMUpdate, data.action, data.uuid, data.update);
@@ -8,13 +8,13 @@ export function handleSocketEvent({action=null, data={}}={}) {
             break;
     }
 }
-  
+
 export const socketEvent = {
-    GMUpdate: "DhpGMUpdate",
-    DhpFearUpdate: "DhpFearUpdate", 
+    GMUpdate: 'DhpGMUpdate',
+    DhpFearUpdate: 'DhpFearUpdate'
 };
 
 export const GMUpdateEvent = {
-    UpdateDocument: "DhpGMUpdateDocument",
-    UpdateFear: "DhpUpdateFear"
+    UpdateDocument: 'DhpGMUpdateDocument',
+    UpdateFear: 'DhpUpdateFear'
 };

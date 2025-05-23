@@ -1,26 +1,26 @@
 class DhpAutomationSettings extends FormApplication {
-    constructor(object={}, options={}){
+    constructor(object = {}, options = {}) {
         super(object, options);
     }
 
     static get defaultOptions() {
         const defaults = super.defaultOptions;
         const overrides = {
-          height: 'auto',
-          width: 400,
-          id: 'daggerheart-automation-settings',
-          template: 'systems/daggerheart/templates/views/automation-settings.hbs',
-          closeOnSubmit: true,
-          submitOnChange: false,
-          classes: ["daggerheart", "views", "settings"],
+            height: 'auto',
+            width: 400,
+            id: 'daggerheart-automation-settings',
+            template: 'systems/daggerheart/templates/views/automation-settings.hbs',
+            closeOnSubmit: true,
+            submitOnChange: false,
+            classes: ['daggerheart', 'views', 'settings']
         };
-        
+
         const mergedOptions = foundry.utils.mergeObject(defaults, overrides);
-        
+
         return mergedOptions;
     }
-      
-    async getData(){
+
+    async getData() {
         const context = super.getData();
         context.settings = SYSTEM.SETTINGS.gameSettings.Automation;
         context.hope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
@@ -36,35 +36,35 @@ class DhpAutomationSettings extends FormApplication {
     async _updateObject(_, formData) {
         const data = foundry.utils.expandObject(formData);
         const updateSettingsKeys = Object.keys(data);
-        for(var i = 0; i < updateSettingsKeys.length; i++){
+        for (var i = 0; i < updateSettingsKeys.length; i++) {
             await game.settings.set(SYSTEM.id, updateSettingsKeys[i], data[updateSettingsKeys[i]]);
         }
     }
 }
 
 class DhpHomebrewSettings extends FormApplication {
-    constructor(object={}, options={}){
+    constructor(object = {}, options = {}) {
         super(object, options);
     }
 
     static get defaultOptions() {
         const defaults = super.defaultOptions;
         const overrides = {
-          height: 'auto',
-          width: 400,
-          id: 'daggerheart-homebrew-settings',
-          template: 'systems/daggerheart/templates/views/homebrew-settings.hbs',
-          closeOnSubmit: true,
-          submitOnChange: false,
-          classes: ["daggerheart", "views", "settings"],
+            height: 'auto',
+            width: 400,
+            id: 'daggerheart-homebrew-settings',
+            template: 'systems/daggerheart/templates/views/homebrew-settings.hbs',
+            closeOnSubmit: true,
+            submitOnChange: false,
+            classes: ['daggerheart', 'views', 'settings']
         };
-        
+
         const mergedOptions = foundry.utils.mergeObject(defaults, overrides);
-        
+
         return mergedOptions;
     }
-      
-    async getData(){
+
+    async getData() {
         const context = super.getData();
         context.settings = SYSTEM.SETTINGS.gameSettings.General;
         context.abilityArray = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray);
@@ -79,14 +79,14 @@ class DhpHomebrewSettings extends FormApplication {
     async _updateObject(_, formData) {
         const data = foundry.utils.expandObject(formData);
         const updateSettingsKeys = Object.keys(data);
-        for(var i = 0; i < updateSettingsKeys.length; i++){
+        for (var i = 0; i < updateSettingsKeys.length; i++) {
             await game.settings.set(SYSTEM.id, updateSettingsKeys[i], data[updateSettingsKeys[i]]);
         }
     }
 }
 
 class DhpRangeSettings extends FormApplication {
-    constructor(object={}, options={}){
+    constructor(object = {}, options = {}) {
         super(object, options);
 
         this.range = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.RangeMeasurement);
@@ -95,25 +95,33 @@ class DhpRangeSettings extends FormApplication {
     static get defaultOptions() {
         const defaults = super.defaultOptions;
         const overrides = {
-          height: 'auto',
-          width: 400,
-          id: 'daggerheart-range-settings',
-          template: 'systems/daggerheart/templates/views/range-settings.hbs',
-          closeOnSubmit: false,
-          submitOnChange: true,
-          classes: ["daggerheart", "views", "settings"],
+            height: 'auto',
+            width: 400,
+            id: 'daggerheart-range-settings',
+            template: 'systems/daggerheart/templates/views/range-settings.hbs',
+            closeOnSubmit: false,
+            submitOnChange: true,
+            classes: ['daggerheart', 'views', 'settings']
         };
-        
+
         const mergedOptions = foundry.utils.mergeObject(defaults, overrides);
-        
+
         return mergedOptions;
     }
-      
-    async getData(){
+
+    async getData() {
         const context = super.getData();
         context.settings = SYSTEM.SETTINGS.gameSettings.General;
         context.range = this.range;
-        context.disabled = context.range.enabled && [context.range.melee, context.range.veryClose, context.range.close, context.range.far, context.range.veryFar].some(x => x === null || x === false);
+        context.disabled =
+            context.range.enabled &&
+            [
+                context.range.melee,
+                context.range.veryClose,
+                context.range.close,
+                context.range.far,
+                context.range.veryFar
+            ].some(x => x === null || x === false);
 
         return context;
     }
@@ -121,9 +129,9 @@ class DhpRangeSettings extends FormApplication {
     activateListeners(html) {
         super.activateListeners(html);
 
-        html.find(".range-reset").click(this.reset.bind(this));
-        html.find(".save").click(this.save.bind(this));
-        html.find(".close").click(this.close.bind(this));
+        html.find('.range-reset').click(this.reset.bind(this));
+        html.find('.save').click(this.save.bind(this));
+        html.find('.close').click(this.close.bind(this));
     }
 
     async _updateObject(_, formData) {
@@ -132,7 +140,7 @@ class DhpRangeSettings extends FormApplication {
         this.render(true);
     }
 
-    reset(){
+    reset() {
         this.range = {
             enabled: false,
             melee: 5,
@@ -144,7 +152,7 @@ class DhpRangeSettings extends FormApplication {
         this.render(true);
     }
 
-    async save(){
+    async save() {
         await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.RangeMeasurement, this.range);
         this.close();
     }
@@ -154,44 +162,44 @@ export const registerDHPSettings = () => {
     // const debouncedReload = foundry.utils.debounce(() => window.location.reload(), 100);
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray, {
-        name: game.i18n.localize("DAGGERHEART.Settings.General.AbilityArray.Name"),
-        hint: game.i18n.localize("DAGGERHEART.Settings.General.AbilityArray.Hint"),
+        name: game.i18n.localize('DAGGERHEART.Settings.General.AbilityArray.Name'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.General.AbilityArray.Hint'),
         scope: 'world',
         config: false,
         type: String,
-        default: '[2,1,1,0,0,-1]',
+        default: '[2,1,1,0,0,-1]'
     });
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear, {
-        name: game.i18n.localize("DAGGERHEART.Settings.Resources.Fear.Name"),
-        hint: game.i18n.localize("DAGGERHEART.Settings.Resources.Fear.Hint"),
+        name: game.i18n.localize('DAGGERHEART.Settings.Resources.Fear.Name'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Resources.Fear.Hint'),
         scope: 'world',
         config: false,
         type: Number,
-        default: 0,
+        default: 0
     });
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope, {
-        name: game.i18n.localize("DAGGERHEART.Settings.Automation.Hope.Name"),
-        hint: game.i18n.localize("DAGGERHEART.Settings.Automation.Hope.Hint"),
+        name: game.i18n.localize('DAGGERHEART.Settings.Automation.Hope.Name'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Automation.Hope.Hint'),
         scope: 'world',
         config: false,
         type: Boolean,
-        default: false,
+        default: false
     });
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.ActionPoints, {
-        name: game.i18n.localize("DAGGERHEART.Settings.Automation.ActionPoints.Name"),
-        hint: game.i18n.localize("DAGGERHEART.Settings.Automation.ActionPoints.Hint"),
+        name: game.i18n.localize('DAGGERHEART.Settings.Automation.ActionPoints.Name'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Automation.ActionPoints.Hint'),
         scope: 'world',
         config: false,
         type: Boolean,
-        default: true,
+        default: true
     });
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.RangeMeasurement, {
-        name: game.i18n.localize("DAGGERHEART.Settings.General.RangeMeasurement.Name"),
-        hint: game.i18n.localize("DAGGERHEART.Settings.General.RangeMeasurement.Hint"),
+        name: game.i18n.localize('DAGGERHEART.Settings.General.RangeMeasurement.Name'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.General.RangeMeasurement.Hint'),
         scope: 'world',
         config: false,
         type: Object,
@@ -202,35 +210,34 @@ export const registerDHPSettings = () => {
             close: 30,
             far: 60,
             veryFar: 120
-        },
+        }
     });
 
     game.settings.registerMenu(SYSTEM.id, SYSTEM.SETTINGS.menu.Automation.Name, {
-        name: game.i18n.localize("DAGGERHEART.Settings.Menu.Automation.Name"),
-        label: game.i18n.localize("DAGGERHEART.Settings.Menu.Automation.Label"),
-        hint: game.i18n.localize("DAGGERHEART.Settings.Menu.Automation.Hint"),
+        name: game.i18n.localize('DAGGERHEART.Settings.Menu.Automation.Name'),
+        label: game.i18n.localize('DAGGERHEART.Settings.Menu.Automation.Label'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.Automation.Hint'),
         icon: SYSTEM.SETTINGS.menu.Automation.Icon,
         type: DhpAutomationSettings,
         restricted: true
-      });
+    });
     game.settings.registerMenu(SYSTEM.id, SYSTEM.SETTINGS.menu.Homebrew.Name, {
-        name: game.i18n.localize("DAGGERHEART.Settings.Menu.Homebrew.Name"),
-        label: game.i18n.localize("DAGGERHEART.Settings.Menu.Homebrew.Label"),
-        hint: game.i18n.localize("DAGGERHEART.Settings.Menu.Homebrew.Hint"),
+        name: game.i18n.localize('DAGGERHEART.Settings.Menu.Homebrew.Name'),
+        label: game.i18n.localize('DAGGERHEART.Settings.Menu.Homebrew.Label'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.Homebrew.Hint'),
         icon: SYSTEM.SETTINGS.menu.Homebrew.Icon,
         type: DhpHomebrewSettings,
         restricted: true
     });
     game.settings.registerMenu(SYSTEM.id, SYSTEM.SETTINGS.menu.Range.Name, {
-        name: game.i18n.localize("DAGGERHEART.Settings.Menu.Range.Name"),
-        label: game.i18n.localize("DAGGERHEART.Settings.Menu.Range.Label"),
-        hint: game.i18n.localize("DAGGERHEART.Settings.Menu.Range.Hint"),
+        name: game.i18n.localize('DAGGERHEART.Settings.Menu.Range.Name'),
+        label: game.i18n.localize('DAGGERHEART.Settings.Menu.Range.Label'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.Range.Hint'),
         icon: SYSTEM.SETTINGS.menu.Range.Icon,
         type: DhpRangeSettings,
         restricted: true
     });
-}
-
+};
 
 // const {HandlebarsApplicationMixin, ApplicationV2} = foundry.applications.api;
 
@@ -246,7 +253,7 @@ export const registerDHPSettings = () => {
 //     }
 
 //     get title(){
-//         return game.i18n.localize("DAGGERHEART.Application.Settings.Title"); 
+//         return game.i18n.localize("DAGGERHEART.Application.Settings.Title");
 //     }
 
 //     static DEFAULT_OPTIONS = {
@@ -258,7 +265,7 @@ export const registerDHPSettings = () => {
 //         },
 //         form: { handler: this.updateData }
 //     };
-      
+
 //     static PARTS = {
 //         application: {
 //             id: "settings",

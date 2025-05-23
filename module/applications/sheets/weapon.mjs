@@ -20,7 +20,6 @@
 //         return context;
 //     }
 
-
 //     async _handleAction(action, event, button) {
 //         switch(action){
 //         }
@@ -30,25 +29,25 @@
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
-export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {    
+export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: "daggerheart-weapon",
-        classes: ["daggerheart", "sheet", "weapon"],
+        id: 'daggerheart-weapon',
+        classes: ['daggerheart', 'sheet', 'weapon'],
         position: { width: 400 },
         form: {
             handler: this.updateForm,
             submitOnChange: true,
-            closeOnSubmit: false,
-        },
+            closeOnSubmit: false
+        }
     };
-      
+
     static PARTS = {
         form: {
-            id: "feature",
-            template: "systems/daggerheart/templates/sheets/weapon.hbs"
+            id: 'feature',
+            template: 'systems/daggerheart/templates/sheets/weapon.hbs'
         }
-    }
+    };
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
@@ -59,7 +58,7 @@ export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     static async updateForm(event, _, formData) {
-        await this.document.update(formData.object)
+        await this.document.update(formData.object);
         this.render();
     }
 }

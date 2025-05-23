@@ -26,22 +26,22 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 export default class MiscellaneousSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: "daggerheart-miscellaneous",
-        classes: ["daggerheart", "sheet", "miscellaneous"],
+        id: 'daggerheart-miscellaneous',
+        classes: ['daggerheart', 'sheet', 'miscellaneous'],
         position: { width: 400 },
         form: {
             handler: this.updateForm,
             submitOnChange: true,
-            closeOnSubmit: false,
-        },
+            closeOnSubmit: false
+        }
     };
 
     static PARTS = {
         form: {
-            id: "feature",
-            template: "systems/daggerheart/templates/sheets/miscellaneous.hbs"
+            id: 'feature',
+            template: 'systems/daggerheart/templates/sheets/miscellaneous.hbs'
         }
-    }
+    };
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
@@ -51,7 +51,7 @@ export default class MiscellaneousSheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     static async updateForm(event, _, formData) {
-        await this.document.update(formData.object)
+        await this.document.update(formData.object);
         this.render();
     }
 }

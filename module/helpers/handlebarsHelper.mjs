@@ -1,7 +1,7 @@
-import { getWidthOfText } from "./utils.mjs";
+import { getWidthOfText } from './utils.mjs';
 
 export default class RegisterHandlebarsHelpers {
-    static registerHelpers(){
+    static registerHelpers() {
         Handlebars.registerHelper({
             looseEq: this.looseEq,
             times: this.times,
@@ -11,60 +11,62 @@ export default class RegisterHandlebarsHelpers {
             objectSelector: this.objectSelector,
             includes: this.includes,
             simpleEditor: this.simpleEditor,
-            debug: this.debug,
+            debug: this.debug
         });
-    };
+    }
 
-    static looseEq(a, b){
+    static looseEq(a, b) {
         return a == b;
     }
 
-    static times(nr, block){
+    static times(nr, block) {
         var accum = '';
-        for(var i = 0; i < nr; ++i)
-            accum += block.fn(i);
+        for (var i = 0; i < nr; ++i) accum += block.fn(i);
         return accum;
     }
 
-    static join(...options){
-        return options.slice(0, options.length-1);
+    static join(...options) {
+        return options.slice(0, options.length - 1);
     }
 
-    static add(a, b){
+    static add(a, b) {
         const aNum = Number.parseInt(a);
         const bNum = Number.parseInt(b);
         return (Number.isNaN(aNum) ? 0 : aNum) + (Number.isNaN(bNum) ? 0 : bNum);
     }
 
-    static subtract(a, b){
+    static subtract(a, b) {
         const aNum = Number.parseInt(a);
         const bNum = Number.parseInt(b);
         return (Number.isNaN(aNum) ? 0 : aNum) - (Number.isNaN(bNum) ? 0 : bNum);
     }
 
-    static objectSelector(options){
+    static objectSelector(options) {
         let { title, values, titleFontSize, ids, style } = options.hash;
 
         const titleLength = getWidthOfText(title, titleFontSize, true, true);
         const margins = 12;
 
         const buttons = options.fn();
-        const nrButtons = Math.max($(buttons).length-1, 1);
+        const nrButtons = Math.max($(buttons).length - 1, 1);
         const iconWidth = 26;
 
-        const texts = values.reduce((acc, x, index) => {
-            if(x){
-                acc.push(`<span class="object-select-item" data-action="viewObject" data-value="${ids[index]}">${x}</span>`);
-            }
+        const texts = values
+            .reduce((acc, x, index) => {
+                if (x) {
+                    acc.push(
+                        `<span class="object-select-item" data-action="viewObject" data-value="${ids[index]}">${x}</span>`
+                    );
+                }
 
-            return acc;  
-        }, []).join(' ');
+                return acc;
+            }, [])
+            .join(' ');
 
-        const html =
-        `<div ${style ? 'style="'+style+'"' : ''}">
+        const html = `<div ${style ? 'style="' + style + '"' : ''}">
             <div class="object-select-display iconbar">
                 <span class="object-select-title">${title}</span>
-                <div class="object-select-text" style="padding-left: ${titleLength+margins}px; padding-right: ${nrButtons*iconWidth}px;">
+                <div class="object-select-text" style="padding-left: ${titleLength + margins}px; padding-right: ${nrButtons * iconWidth}px;">
                     ${texts}
                 </div>
                 ${buttons}
@@ -76,25 +78,31 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static rangePicker(options) {
-        let {name, value, min, max, step} = options.hash;
-        name = name || "range";
-        value = value ?? "";
-        if ( Number.isNaN(value) ) value = "";
-        const html =
-        `<input type="range" name="${name}" value="${value}" min="${min}" max="${max}" step="${step}"/>
+        let { name, value, min, max, step } = options.hash;
+        name = name || 'range';
+        value = value ?? '';
+        if (Number.isNaN(value)) value = '';
+        const html = `<input type="range" name="${name}" value="${value}" min="${min}" max="${max}" step="${step}"/>
          <span class="range-value">${value}</span>`;
         return new Handlebars.SafeString(html);
     }
-    
-    static includes(list, item){
+
+    static includes(list, item) {
         return list.includes(item);
     }
 
     static simpleEditor(content, options) {
-        const { target, editable=true, button, engine="tinymce", collaborate=false, class: cssClass } = options.hash;
-        const config = {name: target, value: content, button, collaborate, editable, engine};
+        const {
+            target,
+            editable = true,
+            button,
+            engine = 'tinymce',
+            collaborate = false,
+            class: cssClass
+        } = options.hash;
+        const config = { name: target, value: content, button, collaborate, editable, engine };
         const element = foundry.applications.fields.createEditorInput(config);
-        if ( cssClass ) element.querySelector(".editor-content").classList.add(cssClass);
+        if (cssClass) element.querySelector('.editor-content').classList.add(cssClass);
         return new Handlebars.SafeString(element.outerHTML);
     }
 

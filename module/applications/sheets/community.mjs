@@ -24,13 +24,12 @@
 //         return context;
 //     }
 
-
 //     async _handleAction(action, event, button) {
 //         switch(action){
 //             case 'editAbility':
 //                 this.editAbility(button);
 //                 break;
-//             case 'deleteAbility': 
+//             case 'deleteAbility':
 //                 this.deleteAbility(event);
 //                 break;
 //         }
@@ -59,30 +58,30 @@
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
-export default class CommunitySheet extends DaggerheartSheet(ItemSheetV2) {    
+export default class CommunitySheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: "daggerheart-community",
-        classes: ["daggerheart", "sheet", "heritage"],
+        id: 'daggerheart-community',
+        classes: ['daggerheart', 'sheet', 'heritage'],
         position: { width: 600 },
         actions: {
             editAbility: this.editAbility,
-            deleteAbility: this.deleteAbility,
+            deleteAbility: this.deleteAbility
         },
         form: {
             handler: this.updateForm,
             submitOnChange: true,
-            closeOnSubmit: false,
+            closeOnSubmit: false
         },
-        dragDrop: [{ dragSelector: null, dropSelector: null }],
+        dragDrop: [{ dragSelector: null, dropSelector: null }]
     };
-      
+
     static PARTS = {
         form: {
-            id: "feature",
-            template: "systems/daggerheart/templates/sheets/community.hbs"
+            id: 'feature',
+            template: 'systems/daggerheart/templates/sheets/community.hbs'
         }
-    }
+    };
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
@@ -92,26 +91,33 @@ export default class CommunitySheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     static async updateForm(event, _, formData) {
-        await this.document.update(formData.object)
+        await this.document.update(formData.object);
         this.render();
     }
 
-    static async editAbility(_, button){
+    static async editAbility(_, button) {
         const feature = await fromUuid(button.dataset.ability);
         feature.sheet.render(true);
     }
 
-    static async deleteAbility(event, button){
+    static async deleteAbility(event, button) {
         event.preventDefault();
         event.stopPropagation();
-        await this.item.update({ "system.abilities": this.item.system.abilities.filter(x => x.uuid !== button.dataset.ability) })
+        await this.item.update({
+            'system.abilities': this.item.system.abilities.filter(x => x.uuid !== button.dataset.ability)
+        });
     }
 
     async _onDrop(event) {
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
-        if(item.type === 'feature' && item.system.type === SYSTEM.ITEM.featureTypes.community.id) {
-            await this.document.update({ "system.abilities": [...this.document.system.abilities, { img: item.img, name: item.name, uuid: item.uuid }] });
+        if (item.type === 'feature' && item.system.type === SYSTEM.ITEM.featureTypes.community.id) {
+            await this.document.update({
+                'system.abilities': [
+                    ...this.document.system.abilities,
+                    { img: item.img, name: item.name, uuid: item.uuid }
+                ]
+            });
         }
     }
 }

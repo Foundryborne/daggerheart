@@ -1,76 +1,81 @@
 export default class NpcRollSelectionDialog extends FormApplication {
-  constructor(experiences, resolve, isNpc){
-      super({}, {});
+    constructor(experiences, resolve, isNpc) {
+        super({}, {});
 
-      this.experiences = experiences;
-      this.resolve = resolve;
-      this.selectedExperiences = [];
-      this.data = {
-        nrDice: 1,
-        advantage: null,
-      };
-  }
+        this.experiences = experiences;
+        this.resolve = resolve;
+        this.selectedExperiences = [];
+        this.data = {
+            nrDice: 1,
+            advantage: null
+        };
+    }
 
-  get title (){
-    return 'Roll Options';
-  }
+    get title() {
+        return 'Roll Options';
+    }
 
-  static get defaultOptions() {
-      const defaults = super.defaultOptions;
-      const overrides = {
-        height: 'auto',
-        width: 400,
-        id: 'roll-selection',
-        template: 'systems/daggerheart/templates/views/npcRollSelection.hbs',
-        closeOnSubmit: false,
-        submitOnChange: true,
-        classes: ["daggerheart", "views", "npc-roll-selection"],
-      };
-      
-      const mergedOptions = foundry.utils.mergeObject(defaults, overrides);
-      
-      return mergedOptions;
-  }
-    
-  async getData(){
-      const context = super.getData();
-      context.nrDice = this.data.nrDice;
-      context.advantage = this.data.advantage;
-      context.experiences = this.experiences.map(x => ({ ...x, selected: this.selectedExperiences.find(selected => selected.id === x.id) }));
+    static get defaultOptions() {
+        const defaults = super.defaultOptions;
+        const overrides = {
+            height: 'auto',
+            width: 400,
+            id: 'roll-selection',
+            template: 'systems/daggerheart/templates/views/npcRollSelection.hbs',
+            closeOnSubmit: false,
+            submitOnChange: true,
+            classes: ['daggerheart', 'views', 'npc-roll-selection']
+        };
 
-      return context;
-  }
+        const mergedOptions = foundry.utils.mergeObject(defaults, overrides);
 
-  activateListeners(html) {
-      super.activateListeners(html);
+        return mergedOptions;
+    }
 
-      html.find('.increase').click(_ => this.updateNrDice(1));
-      html.find('.decrease').click(_ => this.updateNrDice(-1));
-      html.find('.advantage').click(_ => this.updateIsAdvantage(true));
-      html.find('.disadvantage').click(_ => this.updateIsAdvantage(false));
-      html.find('.roll-button').click(this.finish.bind(this));
-      html.find('.roll-dialog-chip').click(this.selectExperience.bind(this));
-  }
+    async getData() {
+        const context = super.getData();
+        context.nrDice = this.data.nrDice;
+        context.advantage = this.data.advantage;
+        context.experiences = this.experiences.map(x => ({
+            ...x,
+            selected: this.selectedExperiences.find(selected => selected.id === x.id)
+        }));
 
-  updateNrDice(value){
-    this.data.nrDice += value;
-    this.render();
-  }
+        return context;
+    }
 
-  updateIsAdvantage(advantage) {
-    this.data.advantage = this.data.advantage === advantage ? null : advantage;
-    this.render();
-  }
+    activateListeners(html) {
+        super.activateListeners(html);
 
-  selectExperience(event){
-    const experience = this.experiences[event.currentTarget.dataset.key];
-    this.selectedExperiences = this.selectedExperiences.find(x => x.name === experience.name) ? this.selectedExperiences.filter(x => x.name !== experience.name) : [...this.selectedExperiences, experience];
+        html.find('.increase').click(_ => this.updateNrDice(1));
+        html.find('.decrease').click(_ => this.updateNrDice(-1));
+        html.find('.advantage').click(_ => this.updateIsAdvantage(true));
+        html.find('.disadvantage').click(_ => this.updateIsAdvantage(false));
+        html.find('.roll-button').click(this.finish.bind(this));
+        html.find('.roll-dialog-chip').click(this.selectExperience.bind(this));
+    }
 
-    this.render();
-  }
+    updateNrDice(value) {
+        this.data.nrDice += value;
+        this.render();
+    }
 
-  finish(){
-    this.resolve({ ...this.data, experiences: this.selectedExperiences });
-    this.close();
-  }
+    updateIsAdvantage(advantage) {
+        this.data.advantage = this.data.advantage === advantage ? null : advantage;
+        this.render();
+    }
+
+    selectExperience(event) {
+        const experience = this.experiences[event.currentTarget.dataset.key];
+        this.selectedExperiences = this.selectedExperiences.find(x => x.name === experience.name)
+            ? this.selectedExperiences.filter(x => x.name !== experience.name)
+            : [...this.selectedExperiences, experience];
+
+        this.render();
+    }
+
+    finish() {
+        this.resolve({ ...this.data, experiences: this.selectedExperiences });
+        this.close();
+    }
 }

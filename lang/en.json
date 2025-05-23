@@ -102,7 +102,7 @@
             "Fear": "Fear",
             "CriticalSuccess": "Critical Success",
             "Advantage": "Advantage",
-            "Disadvantage": "Disadvantage", 
+            "Disadvantage": "Disadvantage",
             "OK": "OK",
             "Cancel": "Cancel",
             "Or": "Or",
@@ -472,7 +472,7 @@
             },
             "Timeslowing": {
                 "Name": "Timeslowing",
-                "Description": "On any incoming attacks, roll 1d4 and add its value to your Evasion score." 
+                "Description": "On any incoming attacks, roll 1d4 and add its value to your Evasion score."
             },
             "Truthseeking": {
                 "Name": "Truthseeking",
@@ -819,7 +819,7 @@
                     "Bags": "Bags",
                     "Chests": "Chests"
                 },
-                "Health":{
+                "Health": {
                     "Title": "HIT POINTS & STRESS",
                     "Minor": "Minor",
                     "Major": "Major",

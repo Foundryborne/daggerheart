@@ -1,33 +1,45 @@
 {
-	"Actor": {
-		"types": ["pc", "npc", "adversary", "environment"],
-		"pc": {},
-		"npc": {},
-		"adversary": {},
-		"environment": {}
-	},
-	"Item": {
-		"types": ["ancestry", "community", "class", "subclass", "feature", "domainCard", "miscellaneous", "consumable", "weapon", "armor", "test"],
-		"ancestry": {},
-		"community": {},
-		"class": {},
-		"subclass": {},
-		"feature": {},
-		"domainCard": {},
-		"miscellaneous": {},
-		"consumable": {},
-		"weapon": {},
-		"armor": {},
-		"test": {}
-	},
-	"Combat": {
-		"types": ["combat"],
-		"combat": {}
-	},
-	"ChatMessage": {
-		"types": ["dualityRoll", "adversaryRoll", "abilityUse"],
-		"dualityRoll": {},
-		"adversaryRoll": {},
-		"abilityUse": {}
-	}
+    "Actor": {
+        "types": ["pc", "npc", "adversary", "environment"],
+        "pc": {},
+        "npc": {},
+        "adversary": {},
+        "environment": {}
+    },
+    "Item": {
+        "types": [
+            "ancestry",
+            "community",
+            "class",
+            "subclass",
+            "feature",
+            "domainCard",
+            "miscellaneous",
+            "consumable",
+            "weapon",
+            "armor",
+            "test"
+        ],
+        "ancestry": {},
+        "community": {},
+        "class": {},
+        "subclass": {},
+        "feature": {},
+        "domainCard": {},
+        "miscellaneous": {},
+        "consumable": {},
+        "weapon": {},
+        "armor": {},
+        "test": {}
+    },
+    "Combat": {
+        "types": ["combat"],
+        "combat": {}
+    },
+    "ChatMessage": {
+        "types": ["dualityRoll", "adversaryRoll", "abilityUse"],
+        "dualityRoll": {},
+        "adversaryRoll": {},
+        "abilityUse": {}
+    }
 }

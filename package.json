@@ -6,11 +6,10 @@
     "rollup": "^4.40.0"
   },
   "scripts": {
-    "start": "concurrently \"rollup -c --watch\" \"node ../../../../FoundryDev/resources/app/main.js --dataPath=../../../  --noupnp\"  \"gulp\"",
+    "start": "concurrently \"rollup -c --watch\" \"node ../../../../FoundryDev/main.js --dataPath=../../../  --noupnp\"  \"gulp\"",
     "start-test": "node ./resources/app/main.js --dataPath=./ && rollup -c --watch && gulp",
     "pushLDBtoYML": "node ./tools/pushLDBtoYML.mjs",
-    "pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs",
-    "prepare": "husky"
+    "pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs"
   },
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^1.0.2",

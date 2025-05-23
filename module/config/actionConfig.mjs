@@ -1,17 +1,17 @@
 export const actionTypes = {
     damage: {
-        id: "damage",
-        name: "DAGGERHEART.Effects.Types.Health.Name"
-    },
-}
+        id: 'damage',
+        name: 'DAGGERHEART.Effects.Types.Health.Name'
+    }
+};
 
 export const targetTypes = {
     self: {
         id: 'self',
-        label: 'Self',
+        label: 'Self'
     },
     other: {
         id: 'other',
-        label: 'Other',
-    },
-}
+        label: 'Other'
+    }
+};

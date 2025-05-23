@@ -51,7 +51,7 @@
 //         const feature = event.currentTarget.dataset.feature;
 //         const newAbilities = this.item.system[`${feature}Feature`].abilities.filter(x => x.uuid !== event.currentTarget.dataset.ability);
 //         const path = `system.${feature}Feature.abilities`;
-        
+
 //         await this.item.update({ [path]: newAbilities });
 //     }
 
@@ -79,46 +79,74 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: "daggerheart-subclass",
-        classes: ["daggerheart", "sheet", "subclass"],
+        id: 'daggerheart-subclass',
+        classes: ['daggerheart', 'sheet', 'subclass'],
         position: { width: 600 },
         actions: {
             editAbility: this.editAbility,
-            deleteFeatureAbility: this.deleteFeatureAbility,
+            deleteFeatureAbility: this.deleteFeatureAbility
         },
         form: {
             handler: this.updateForm,
             submitOnChange: true,
-            closeOnSubmit: false,
+            closeOnSubmit: false
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.foundation-tab' },
             { dragSelector: null, dropSelector: '.specialization-tab' },
             { dragSelector: null, dropSelector: '.mastery-tab' }
-        ],
+        ]
     };
 
     _getTabs() {
         const tabs = {
-            general: { active: true, cssClass: '', group: 'primary', id: 'general', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.Subclass.Tabs.General') },
-            foundation: { active: false, cssClass: '', group: 'primary', id: 'foundation', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.Subclass.Tabs.Foundation') },
-            specialization: { active: false, cssClass: '', group: 'primary', id: 'specialization', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.Subclass.Tabs.Specialization') },
-            mastery: { active: false, cssClass: '', group: 'primary', id: 'mastery', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.Subclass.Tabs.Mastery') },
-        }
-        for ( const v of Object.values(tabs) ) {
+            general: {
+                active: true,
+                cssClass: '',
+                group: 'primary',
+                id: 'general',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.Subclass.Tabs.General')
+            },
+            foundation: {
+                active: false,
+                cssClass: '',
+                group: 'primary',
+                id: 'foundation',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.Subclass.Tabs.Foundation')
+            },
+            specialization: {
+                active: false,
+                cssClass: '',
+                group: 'primary',
+                id: 'specialization',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.Subclass.Tabs.Specialization')
+            },
+            mastery: {
+                active: false,
+                cssClass: '',
+                group: 'primary',
+                id: 'mastery',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.Subclass.Tabs.Mastery')
+            }
+        };
+        for (const v of Object.values(tabs)) {
             v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
-            v.cssClass = v.active ? "active" : "";
+            v.cssClass = v.active ? 'active' : '';
         }
 
         return tabs;
     }
-      
+
     static PARTS = {
         form: {
-            id: "feature",
-            template: "systems/daggerheart/templates/sheets/subclass.hbs"
+            id: 'feature',
+            template: 'systems/daggerheart/templates/sheets/subclass.hbs'
         }
-    }
+    };
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
@@ -130,38 +158,50 @@ export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     static async updateForm(event, _, formData) {
-        await this.document.update(formData.object)
+        await this.document.update(formData.object);
         this.render();
     }
 
-    static async editAbility(_, button){
+    static async editAbility(_, button) {
         const feature = await fromUuid(button.dataset.ability);
         feature.sheet.render(true);
     }
 
-    static async deleteFeatureAbility(event, button){
+    static async deleteFeatureAbility(event, button) {
         event.preventDefault();
         event.stopPropagation();
 
         const feature = button.dataset.feature;
-        const newAbilities = this.document.system[`${feature}Feature`].abilities.filter(x => x.uuid !== button.dataset.ability);
+        const newAbilities = this.document.system[`${feature}Feature`].abilities.filter(
+            x => x.uuid !== button.dataset.ability
+        );
         const path = `system.${feature}Feature.abilities`;
-        
+
         await this.document.update({ [path]: newAbilities });
     }
 
     async _onDrop(event) {
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
-        if(item.type === 'feature' && item.system.type === SYSTEM.ITEM.featureTypes.subclass.id) {
-            if(event.currentTarget.classList.contains('foundation-tab')){
-                await this.document.update({ "system.foundationFeature.abilities": [...this.document.system.foundationFeature.abilities, item.system] });
-            }
-            else if(event.currentTarget.classList.contains('specialization-tab')){
-                await this.document.update({ "system.specializationFeature.abilities": [...this.document.system.specializationFeature.abilities, data.system] });
-            }
-            else if(event.currentTarget.classList.contains('mastery-tab')){
-                await this.document.update({ "system.masteryFeature.abilities": [...this.document.system.masteryFeature.abilities, data.system] });
+        if (item.type === 'feature' && item.system.type === SYSTEM.ITEM.featureTypes.subclass.id) {
+            if (event.currentTarget.classList.contains('foundation-tab')) {
+                await this.document.update({
+                    'system.foundationFeature.abilities': [
+                        ...this.document.system.foundationFeature.abilities,
+                        item.system
+                    ]
+                });
+            } else if (event.currentTarget.classList.contains('specialization-tab')) {
+                await this.document.update({
+                    'system.specializationFeature.abilities': [
+                        ...this.document.system.specializationFeature.abilities,
+                        data.system
+                    ]
+                });
+            } else if (event.currentTarget.classList.contains('mastery-tab')) {
+                await this.document.update({
+                    'system.masteryFeature.abilities': [...this.document.system.masteryFeature.abilities, data.system]
+                });
             }
         }
     }

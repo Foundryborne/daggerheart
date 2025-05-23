@@ -1,53 +1,52 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-
-    constructor(rollString, bonusDamage, hope, resolve){
+    constructor(rollString, bonusDamage, hope, resolve) {
         super({});
-  
+
         this.data = {
             rollString,
             bonusDamage: bonusDamage.reduce((acc, x) => {
-                if(x.appliesOn === SYSTEM.EFFECTS.applyLocations.damageRoll.id){
-                    acc.push(({
+                if (x.appliesOn === SYSTEM.EFFECTS.applyLocations.damageRoll.id) {
+                    acc.push({
                         ...x,
                         hopeUses: 0
-                    }));
+                    });
                 }
 
                 return acc;
             }, []),
-            hope,
-        }
+            hope
+        };
         this.resolve = resolve;
     }
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ["daggerheart", "views", "damage-selection"],
+        classes: ['daggerheart', 'views', 'damage-selection'],
         position: {
-          width: 400,
-          height: "auto"
+            width: 400,
+            height: 'auto'
         },
         actions: {
             decreaseHopeUse: this.decreaseHopeUse,
             increaseHopeUse: this.increaseHopeUse,
-            rollDamage: this.rollDamage,
+            rollDamage: this.rollDamage
         },
         form: {
             handler: this.updateSelection,
             submitOnChange: true,
-            closeOnSubmit: false,
+            closeOnSubmit: false
         }
     };
-    
+
     /** @override */
     static PARTS = {
         damageSelection: {
-            id: "damageSelection",
-            template: "systems/daggerheart/templates/views/damageSelection.hbs"
+            id: 'damageSelection',
+            template: 'systems/daggerheart/templates/views/damageSelection.hbs'
         }
-    }
+    };
 
     /* -------------------------------------------- */
 
@@ -60,19 +59,19 @@ export default class DamageSelectionDialog extends HandlebarsApplicationMixin(Ap
         return {
             rollString: this.getRollString(),
             bonusDamage: this.data.bonusDamage,
-            hope: this.data.hope+1,
-            hopeUsed: this.getHopeUsed(),
-        }
+            hope: this.data.hope + 1,
+            hopeUsed: this.getHopeUsed()
+        };
     }
 
-    static updateSelection(event, _, formData){
+    static updateSelection(event, _, formData) {
         const { bonusDamage, ...rest } = foundry.utils.expandObject(formData.object);
-       
-        for(var index in bonusDamage){
+
+        for (var index in bonusDamage) {
             this.data.bonusDamage[index].initiallySelected = bonusDamage[index].initiallySelected;
-            if(bonusDamage[index].hopeUses){
+            if (bonusDamage[index].hopeUses) {
                 const value = Number.parseInt(bonusDamage[index].hopeUses);
-                if(!Number.isNaN(value)) this.data.bonusDamage[index].hopeUses = value;
+                if (!Number.isNaN(value)) this.data.bonusDamage[index].hopeUses = value;
             }
         }
 
@@ -80,40 +79,46 @@ export default class DamageSelectionDialog extends HandlebarsApplicationMixin(Ap
         this.render(true);
     }
 
-    getRollString(){
-        return this.data.rollString.concat(this.data.bonusDamage.reduce((acc, x) => {
-            if(x.initiallySelected){
-                const nr = 1+x.hopeUses;
-                const baseDamage = x.value;
-                return acc.concat(` + ${nr}${baseDamage}`);
-            }
+    getRollString() {
+        return this.data.rollString.concat(
+            this.data.bonusDamage.reduce((acc, x) => {
+                if (x.initiallySelected) {
+                    const nr = 1 + x.hopeUses;
+                    const baseDamage = x.value;
+                    return acc.concat(` + ${nr}${baseDamage}`);
+                }
 
-            return acc;
-        }, ""));
+                return acc;
+            }, '')
+        );
     }
 
-    getHopeUsed(){
-        return this.data.bonusDamage.reduce((acc, x) => acc+x.hopeUses, 0);
+    getHopeUsed() {
+        return this.data.bonusDamage.reduce((acc, x) => acc + x.hopeUses, 0);
     }
 
-    static decreaseHopeUse(_, button){
+    static decreaseHopeUse(_, button) {
         const index = Number.parseInt(button.dataset.index);
-        if(this.data.bonusDamage[index].hopeUses - 1 >= 0) {
+        if (this.data.bonusDamage[index].hopeUses - 1 >= 0) {
             this.data.bonusDamage[index].hopeUses -= 1;
             this.render(true);
         }
     }
 
-    static increaseHopeUse(_, button){
+    static increaseHopeUse(_, button) {
         const index = Number.parseInt(button.dataset.index);
-        if(this.data.bonusDamage[index].hopeUses <= this.data.hope+1) {
+        if (this.data.bonusDamage[index].hopeUses <= this.data.hope + 1) {
             this.data.bonusDamage[index].hopeUses += 1;
             this.render(true);
         }
     }
 
-    static rollDamage(){
-        this.resolve({ rollString: this.getRollString(), bonusDamage: this.data.bonusDamage, hopeUsed: this.getHopeUsed() });
+    static rollDamage() {
+        this.resolve({
+            rollString: this.getRollString(),
+            bonusDamage: this.data.bonusDamage,
+            hopeUsed: this.getHopeUsed()
+        });
         this.close();
     }
 }
@@ -121,7 +126,7 @@ export default class DamageSelectionDialog extends HandlebarsApplicationMixin(Ap
 // export default class DamageSelectionDialog extends FormApplication {
 //     constructor(rollString, bonusDamage, resolve){
 //         super({}, {});
-  
+
 //         this.data = {
 //             rollString,
 //             bonusDamage: bonusDamage.map(x => ({
@@ -131,11 +136,11 @@ export default class DamageSelectionDialog extends HandlebarsApplicationMixin(Ap
 //         }
 //         this.resolve = resolve;
 //     }
-  
+
 //     get title (){
 //       return 'Damage Options';
 //     }
-  
+
 //     static get defaultOptions() {
 //         const defaults = super.defaultOptions;
 //         const overrides = {
@@ -146,33 +151,33 @@ export default class DamageSelectionDialog extends HandlebarsApplicationMixin(Ap
 //           closeOnSubmit: false,
 //           classes: ["daggerheart", "views", "damage-selection"],
 //         };
-        
+
 //         const mergedOptions = foundry.utils.mergeObject(defaults, overrides);
-        
+
 //         return mergedOptions;
 //     }
-      
+
 //     async getData(){
 //         const context = super.getData();
 //         context.rollString = this.data.rollString;
 //         context.bonusDamage = this.data.bonusDamage;
-  
+
 //         return context;
 //     }
-  
+
 //     activateListeners(html) {
 //         super.activateListeners(html);
-  
+
 //         html.find('.roll-button').click(this.finish.bind(this));
 //         html.find('.').change();
 //     }
-  
+
 //     // async _updateObject(_, formData) {
 //     //     const data = foundry.utils.expandObject(formData);
 //     //     this.data = foundry.utils.mergeObject(this.data, data);
 //     //     this.render(true);
 //     // }
-    
+
 //     finish(){
 //       this.resolve(this.data);
 //       this.close();

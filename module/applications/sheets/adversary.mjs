@@ -1,4 +1,3 @@
-
 // import DhpApplicationMixin from '../daggerheart-sheet.mjs';
 
 // export class Teest extends DhpApplicationMixin(ActorSheet) {
@@ -33,10 +32,10 @@
 //             type: game.i18n.localize(SYSTEM.ACTOR.adversaryTypes[this.object.system.type].name),
 //             attack: {
 //                 name: this.object.system.attack.name,
-//                 attackModifier: this.object.system.attackModifier, 
+//                 attackModifier: this.object.system.attackModifier,
 //                 range: this.object.system.attack.range ? game.i18n.localize(SYSTEM.GENERAL.range[this.object.system.attack.range].name) : null,
 //                 damage: {
-//                     value: this.object.system.attack.damage.value, 
+//                     value: this.object.system.attack.damage.value,
 //                     type: this.object.system.attack.damage.type,
 //                     typeName: this.object.system.attack.damage.type ? game.i18n.localize(SYSTEM.GENERAL.damageTypes[this.object.system.attack.damage.type].abbreviation).toLowerCase() : null,
 //                 },
@@ -68,7 +67,7 @@
 //             case 'addMotive':
 //                 await this.addMotive();
 //                 break;
-//             case 'removeMotive': 
+//             case 'removeMotive':
 //                 await this.removeMotive(button);
 //                 break;
 //             case 'reactionRoll':
@@ -138,7 +137,7 @@
 //             content: "systems/daggerheart/templates/chat/adversary-roll.hbs",
 //             rolls: [roll]
 //         });
-    
+
 //         cls.create(msg.toObject());
 //     }
 
@@ -169,7 +168,7 @@
 //             content: "systems/daggerheart/templates/chat/adversary-attack-roll.hbs",
 //             rolls: [roll]
 //         });
-    
+
 //         cls.create(msg.toObject());
 //     }
 
@@ -198,16 +197,16 @@ import DaggerheartSheet from './daggerheart-sheet.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
-    constructor(options={}){
+    constructor(options = {}) {
         super(options);
 
         this.editMode = false;
     }
-    
+
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: "daggerheart-adversary",
-        classes: ["daggerheart", "sheet", "adversary"],
+        id: 'daggerheart-adversary',
+        classes: ['daggerheart', 'sheet', 'adversary'],
         position: { width: 600 },
         actions: {
             viewMove: this.viewMove,
@@ -221,21 +220,21 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             addExperience: this.addExperience,
             removeExperience: this.removeExperience,
             toggleHP: this.toggleHP,
-            toggleStress: this.toggleStress,
+            toggleStress: this.toggleStress
         },
         form: {
             handler: this.updateForm,
             submitOnChange: true,
-            closeOnSubmit: false,
-        },
+            closeOnSubmit: false
+        }
     };
-      
+
     static PARTS = {
         form: {
-            id: "feature",
-            template: "systems/daggerheart/templates/sheets/adversary.hbs"
+            id: 'feature',
+            template: 'systems/daggerheart/templates/sheets/adversary.hbs'
         }
-    }
+    };
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
@@ -251,93 +250,119 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             type: game.i18n.localize(SYSTEM.ACTOR.adversaryTypes[this.document.system.type].name),
             attack: {
                 name: this.document.system.attack.name,
-                attackModifier: this.document.system.attackModifier, 
-                range: this.document.system.attack.range ? game.i18n.localize(SYSTEM.GENERAL.range[this.document.system.attack.range].name) : null,
+                attackModifier: this.document.system.attackModifier,
+                range: this.document.system.attack.range
+                    ? game.i18n.localize(SYSTEM.GENERAL.range[this.document.system.attack.range].name)
+                    : null,
                 damage: {
-                    value: this.document.system.attack.damage.value, 
+                    value: this.document.system.attack.damage.value,
                     type: this.document.system.attack.damage.type,
-                    typeName: this.document.system.attack.damage.type ? game.i18n.localize(SYSTEM.GENERAL.damageTypes[this.document.system.attack.damage.type].abbreviation).toLowerCase() : null,
-                },
+                    typeName: this.document.system.attack.damage.type
+                        ? game.i18n
+                              .localize(
+                                  SYSTEM.GENERAL.damageTypes[this.document.system.attack.damage.type].abbreviation
+                              )
+                              .toLowerCase()
+                        : null
+                }
             },
             damageThresholds: this.document.system.damageThresholds,
             difficulty: this.document.system.difficulty,
-            hp: { ...this.document.system.resources.health, lastRowIndex: Math.floor(this.document.system.resources.health.max/5)*5 },
-            stress: { ...this.document.system.resources.stress, lastRowIndex: Math.floor(this.document.system.resources.stress.max/5)*5  },
-            moves: this.document.system.moves,
+            hp: {
+                ...this.document.system.resources.health,
+                lastRowIndex: Math.floor(this.document.system.resources.health.max / 5) * 5
+            },
+            stress: {
+                ...this.document.system.resources.stress,
+                lastRowIndex: Math.floor(this.document.system.resources.stress.max / 5) * 5
+            },
+            moves: this.document.system.moves
         };
 
         return context;
     }
 
     static async updateForm(event, _, formData) {
-        await this.document.update(formData.object)
+        await this.document.update(formData.object);
         this.render();
     }
 
-    static async viewMove(_, button){
+    static async viewMove(_, button) {
         const move = await fromUuid(button.dataset.move);
         move.sheet.render(true);
     }
 
-    static async addMove(){
-        const result = await this.document.createEmbeddedDocuments("Item", [{
-            name: game.i18n.localize('DAGGERHEART.Sheets.Adversary.NewMove'),
-            type: 'feature',
-        }]);
+    static async addMove() {
+        const result = await this.document.createEmbeddedDocuments('Item', [
+            {
+                name: game.i18n.localize('DAGGERHEART.Sheets.Adversary.NewMove'),
+                type: 'feature'
+            }
+        ]);
 
         await result[0].sheet.render(true);
     }
 
-    static async removeMove(_, button){
+    static async removeMove(_, button) {
         await this.document.items.find(x => x.uuid === button.dataset.move).delete();
     }
 
-    static toggleEditMode(){
+    static toggleEditMode() {
         this.editMode = !this.editMode;
         this.render();
     }
 
-    static async addMotive(){
-        await this.document.update({ "system.motivesAndTactics": [...this.document.system.motivesAndTactics, ''] });
+    static async addMotive() {
+        await this.document.update({ 'system.motivesAndTactics': [...this.document.system.motivesAndTactics, ''] });
     }
 
-    static async removeMotive(button){
-        await this.document.update({ "system.motivesAndTactics": this.document.system.motivesAndTactics.filter((_, index) => index !== Number.parseInt(button.dataset.motive) )});
+    static async removeMotive(button) {
+        await this.document.update({
+            'system.motivesAndTactics': this.document.system.motivesAndTactics.filter(
+                (_, index) => index !== Number.parseInt(button.dataset.motive)
+            )
+        });
     }
 
-    static async reactionRoll(event){
-        const { roll, diceResults, modifiers } = await this.actor.diceRoll({ title: `${this.actor.name} - Reaction Roll`, value: 0 }, event.shiftKey);
+    static async reactionRoll(event) {
+        const { roll, diceResults, modifiers } = await this.actor.diceRoll(
+            { title: `${this.actor.name} - Reaction Roll`, value: 0 },
+            event.shiftKey
+        );
 
-        const cls = getDocumentClass("ChatMessage");
+        const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             type: 'adversaryRoll',
             system: {
                 roll: roll._formula,
                 total: roll._total,
                 modifiers: modifiers,
-                diceResults: diceResults,
+                diceResults: diceResults
             },
-            content: "systems/daggerheart/templates/chat/adversary-roll.hbs",
+            content: 'systems/daggerheart/templates/chat/adversary-roll.hbs',
             rolls: [roll]
         });
-    
+
         cls.create(msg.toObject());
     }
 
-    static async attackRoll(event, button){
+    static async attackRoll(event, button) {
         const modifier = Number.parseInt(button.dataset.value);
 
-        const { roll, diceResults, modifiers } = await this.actor.diceRoll({ title: `${this.actor.name} - Attack Roll`, value: modifier }, event.shiftKey);
+        const { roll, diceResults, modifiers } = await this.actor.diceRoll(
+            { title: `${this.actor.name} - Attack Roll`, value: modifier },
+            event.shiftKey
+        );
 
         const targets = Array.from(game.user.targets).map(x => ({
             id: x.id,
             name: x.actor.name,
             img: x.actor.img,
             difficulty: x.actor.system.difficulty,
-            evasion: x.actor.system.evasion,
+            evasion: x.actor.system.evasion
         }));
 
-        const cls = getDocumentClass("ChatMessage");
+        const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             type: 'adversaryRoll',
             system: {
@@ -346,32 +371,38 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
                 modifiers: modifiers,
                 diceResults: diceResults,
                 targets: targets,
-                damage: { value: button.dataset.damage, type: button.dataset.damageType },
+                damage: { value: button.dataset.damage, type: button.dataset.damageType }
             },
-            content: "systems/daggerheart/templates/chat/adversary-attack-roll.hbs",
+            content: 'systems/daggerheart/templates/chat/adversary-attack-roll.hbs',
             rolls: [roll]
         });
-    
+
         cls.create(msg.toObject());
     }
 
-    static async addExperience(){
-        await this.document.update({ "system.experiences": [...this.document.system.experiences, { name: 'Experience', value: 1 }] });
+    static async addExperience() {
+        await this.document.update({
+            'system.experiences': [...this.document.system.experiences, { name: 'Experience', value: 1 }]
+        });
     }
 
-    static async removeExperience(_, button){
-        await this.document.update({ "system.experiences": this.document.system.experiences.filter((_, index) => index !== Number.parseInt(button.dataset.experience) )});
+    static async removeExperience(_, button) {
+        await this.document.update({
+            'system.experiences': this.document.system.experiences.filter(
+                (_, index) => index !== Number.parseInt(button.dataset.experience)
+            )
+        });
     }
 
-    static async toggleHP(_, button){
+    static async toggleHP(_, button) {
         const index = Number.parseInt(button.dataset.index);
-        const newHP = index < this.document.system.resources.health.value ? index : index+1;
-        await this.document.update({ "system.resources.health.value": newHP });
+        const newHP = index < this.document.system.resources.health.value ? index : index + 1;
+        await this.document.update({ 'system.resources.health.value': newHP });
     }
 
-    static async toggleStress(_, button){
+    static async toggleStress(_, button) {
         const index = Number.parseInt(button.dataset.index);
-        const newStress = index < this.document.system.resources.stress.value ? index : index+1;
-        await this.document.update({ "system.resources.stress.value": newStress });
+        const newStress = index < this.document.system.resources.stress.value ? index : index + 1;
+        await this.document.update({ 'system.resources.stress.value': newStress });
     }
 }

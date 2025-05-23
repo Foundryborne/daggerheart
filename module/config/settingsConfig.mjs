@@ -1,28 +1,28 @@
 export const menu = {
     Automation: {
-        Name: "GameSettingsAutomation",
-        Icon: "fa-solid fa-robot",
+        Name: 'GameSettingsAutomation',
+        Icon: 'fa-solid fa-robot'
     },
     Homebrew: {
-        Name: "GameSettingsHomebrew",
-        Icon: "fa-solid fa-flask-vial",
+        Name: 'GameSettingsHomebrew',
+        Icon: 'fa-solid fa-flask-vial'
     },
     Range: {
-        Name: "GameSettingsRange",
-        Icon: "fa-solid fa-ruler",
-    },
+        Name: 'GameSettingsRange',
+        Icon: 'fa-solid fa-ruler'
+    }
 };
 
 export const gameSettings = {
     Automation: {
-        Hope: "AutomationHope",
-        ActionPoints: "AutomationActionPoints",
+        Hope: 'AutomationHope',
+        ActionPoints: 'AutomationActionPoints'
     },
     Resources: {
-        Fear: "ResourcesFear"
+        Fear: 'ResourcesFear'
     },
     General: {
-        AbilityArray: "AbilityArray",
-        RangeMeasurement: "RangeMeasurement",
+        AbilityArray: 'AbilityArray',
+        RangeMeasurement: 'RangeMeasurement'
     }
-}
+};

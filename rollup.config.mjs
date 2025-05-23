@@ -7,14 +7,14 @@ export default {
     output: {
         file: 'build/daggerheart.js',
         format: 'cjs',
-        sourcemap: true,
+        sourcemap: true
     },
     plugins: [
         postcss({
             config: {
                 path: './postcss.config.js'
             },
-            use: {               
+            use: {
                 less: { javascriptEnabled: true }
             },
             extensions: ['.less'],
@@ -22,8 +22,8 @@ export default {
         }),
         commonjs({
             include: /node_modules/,
-            requireReturnsDefault: 'auto',
+            requireReturnsDefault: 'auto'
         }),
         resolve()
-    ],
-}
+    ]
+};

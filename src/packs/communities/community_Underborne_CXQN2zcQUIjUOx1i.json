@@ -1,36 +1,36 @@
 {
-  "name": "Underborne",
-  "type": "community",
-  "_id": "CXQN2zcQUIjUOx1i",
-  "img": "systems/daggerheart/assets/icons/communities/underborne.png",
-  "system": {
-    "description": "<p>Being part of an underborne community means you’re from a subterranean society. Many underborne live right beneath the cities and villages of other collectives, while some live much deeper. These communities range from small family groups in burrows to massive metropolises in caverns of stone. In many locales, underborne are recognized for their incredible boldness and skill that enable great feats of architecture and engineering. Underborne are regularly hired for their bravery, as even the least daring among them has likely encountered formidable belowground beasts, and learning to dispatch such creatures is common practice amongst these societies.</p><p>Because of the dangers of their environment, many underborne communities develop unique nonverbal languages that prove equally useful on the surface.</p><p><em>Underborne are often composed, elusive, indomitable, innovative, resourceful, and unpretentious.</em></p>",
-    "abilities": [
-      {
-        "img": "icons/svg/item-bag.svg",
-        "name": "Low-Light Living",
-        "uuid": "Compendium.world.community-features.Item.p12Le1M3DPWXa0vh"
-      }
-    ]
-  },
-  "effects": [],
-  "folder": null,
-  "sort": 0,
-  "ownership": {
-    "default": 0,
-    "NqO2eQGMjrvUO6v9": 3
-  },
-  "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.344",
-    "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
-    "createdTime": 1747940403160,
-    "modifiedTime": 1747991158174,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
-  },
-  "_key": "!items!CXQN2zcQUIjUOx1i"
+    "name": "Underborne",
+    "type": "community",
+    "_id": "CXQN2zcQUIjUOx1i",
+    "img": "systems/daggerheart/assets/icons/communities/underborne.png",
+    "system": {
+        "description": "<p>Being part of an underborne community means you’re from a subterranean society. Many underborne live right beneath the cities and villages of other collectives, while some live much deeper. These communities range from small family groups in burrows to massive metropolises in caverns of stone. In many locales, underborne are recognized for their incredible boldness and skill that enable great feats of architecture and engineering. Underborne are regularly hired for their bravery, as even the least daring among them has likely encountered formidable belowground beasts, and learning to dispatch such creatures is common practice amongst these societies.</p><p>Because of the dangers of their environment, many underborne communities develop unique nonverbal languages that prove equally useful on the surface.</p><p><em>Underborne are often composed, elusive, indomitable, innovative, resourceful, and unpretentious.</em></p>",
+        "abilities": [
+            {
+                "img": "icons/svg/item-bag.svg",
+                "name": "Low-Light Living",
+                "uuid": "Compendium.world.community-features.Item.p12Le1M3DPWXa0vh"
+            }
+        ]
+    },
+    "effects": [],
+    "folder": null,
+    "sort": 0,
+    "ownership": {
+        "default": 0,
+        "NqO2eQGMjrvUO6v9": 3
+    },
+    "flags": {},
+    "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1747940403160,
+        "modifiedTime": 1747991158174,
+        "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    },
+    "_key": "!items!CXQN2zcQUIjUOx1i"
 }

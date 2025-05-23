@@ -7,7 +7,7 @@ import DaggerheartSheet from './daggerheart-sheet.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
-    constructor(options={}){
+    constructor(options = {}) {
         super(options);
 
         this.editAttributes = false;
@@ -18,18 +18,18 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         this.dropItemBlock = false;
         this.multiclassFeatureSetSelected = false;
     }
-    
+
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: "daggerheart-pc",
-        classes: ["daggerheart", "sheet", "pc"],
+        id: 'daggerheart-pc',
+        classes: ['daggerheart', 'sheet', 'pc'],
         position: { width: 810, height: 1080 },
         actions: {
             toggleEditAttributes: this.toggleEditAttributes,
             attributeRoll: this.rollAttribute,
             toggleMarks: this.toggleMarks,
             toggleAttributeMark: this.toggleAttributeMark,
-            toggleHP: this.toggleHP, 
+            toggleHP: this.toggleHP,
             toggleStress: this.toggleStress,
             toggleHope: this.toggleHope,
             toggleGold: this.toggleGold,
@@ -62,7 +62,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             useAbility: this.useAbility,
             useAdvancementCard: this.useAdvancementCard,
             useAdvancementAbility: this.useAdvancementAbility,
-            selectFeatureSet: this.selectFeatureSet,
+            selectFeatureSet: this.selectFeatureSet
         },
         window: {
             //frame: boolean;
@@ -78,43 +78,92 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         form: {
             handler: this.updateForm,
             submitOnChange: true,
-            closeOnSubmit: false,
+            closeOnSubmit: false
         },
         dragDrop: [
-            {dragSelector: null, dropSelector: ".weapon-section" },
-            {dragSelector: null, dropSelector: ".armor-section"},
-            {dragSelector: null, dropSelector: ".inventory-weapon-section-first"},
-            {dragSelector: null, dropSelector: ".inventory-weapon-section-second"},
-            {dragSelector: ".item-list .item", dropSelector: null},
-        ],
+            { dragSelector: null, dropSelector: '.weapon-section' },
+            { dragSelector: null, dropSelector: '.armor-section' },
+            { dragSelector: null, dropSelector: '.inventory-weapon-section-first' },
+            { dragSelector: null, dropSelector: '.inventory-weapon-section-second' },
+            { dragSelector: '.item-list .item', dropSelector: null }
+        ]
     };
-      
+
     static PARTS = {
         form: {
-            id: "pc",
-            template: "systems/daggerheart/templates/sheets/pc/pc.hbs"
+            id: 'pc',
+            template: 'systems/daggerheart/templates/sheets/pc/pc.hbs'
         }
-    }
-    
+    };
+
     _getTabs() {
-        const setActive = (tabs) => {
-            for ( const v of Object.values(tabs) ) {
+        const setActive = tabs => {
+            for (const v of Object.values(tabs)) {
                 v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
-                v.cssClass = v.active ? "active" : "";
+                v.cssClass = v.active ? 'active' : '';
             }
-        }
+        };
 
         const primaryTabs = {
-            features: { active: true, cssClass: '', group: 'primary', id: 'features', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Features') },
-            loadout: { active: false, cssClass: '', group: 'primary', id: 'loadout', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Loadout') },
-            inventory: { active: false, cssClass: '', group: 'primary', id: 'inventory', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Inventory') },
-            story: { active: false, cssClass: '', group: 'primary', id: 'story', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Story') },
-        }
+            features: {
+                active: true,
+                cssClass: '',
+                group: 'primary',
+                id: 'features',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Features')
+            },
+            loadout: {
+                active: false,
+                cssClass: '',
+                group: 'primary',
+                id: 'loadout',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Loadout')
+            },
+            inventory: {
+                active: false,
+                cssClass: '',
+                group: 'primary',
+                id: 'inventory',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Inventory')
+            },
+            story: {
+                active: false,
+                cssClass: '',
+                group: 'primary',
+                id: 'story',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Story')
+            }
+        };
         const secondaryTabs = {
-            foundation: { active: true, cssClass: '', group: 'secondary', id: 'foundation', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Foundation') },
-            loadout: { active: false, cssClass: '', group: 'secondary', id: 'loadout', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Loadout') },
-            vault: { active: false, cssClass: '', group: 'secondary', id: 'vault', icon: null, label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Vault') },
-        }
+            foundation: {
+                active: true,
+                cssClass: '',
+                group: 'secondary',
+                id: 'foundation',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Foundation')
+            },
+            loadout: {
+                active: false,
+                cssClass: '',
+                group: 'secondary',
+                id: 'loadout',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Loadout')
+            },
+            vault: {
+                active: false,
+                cssClass: '',
+                group: 'secondary',
+                id: 'vault',
+                icon: null,
+                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Vault')
+            }
+        };
 
         setActive(primaryTabs);
         setActive(secondaryTabs);
@@ -124,20 +173,20 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-        $(htmlElement).find(".attribute-value").on("change", this.attributeChange.bind(this));
-        $(htmlElement).find(".tab-selector").on("click", this.tabSwitch.bind(this));
-        $(htmlElement).find(".level-title.levelup").on("click", this.openLevelUp.bind(this));
-        $(htmlElement).find(".feature-input").on("change", this.onFeatureInputBlur.bind(this));
-        $(htmlElement).find(".experience-description").on("change", this.experienceDescriptionChange.bind(this));
-        $(htmlElement).find(".experience-value").on("change", this.experienceValueChange.bind(this));
-        $(htmlElement).find("[data-item]").on("change", this.itemUpdate.bind(this));
+        $(htmlElement).find('.attribute-value').on('change', this.attributeChange.bind(this));
+        $(htmlElement).find('.tab-selector').on('click', this.tabSwitch.bind(this));
+        $(htmlElement).find('.level-title.levelup').on('click', this.openLevelUp.bind(this));
+        $(htmlElement).find('.feature-input').on('change', this.onFeatureInputBlur.bind(this));
+        $(htmlElement).find('.experience-description').on('change', this.experienceDescriptionChange.bind(this));
+        $(htmlElement).find('.experience-value').on('change', this.experienceValueChange.bind(this));
+        $(htmlElement).find('[data-item]').on('change', this.itemUpdate.bind(this));
     }
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
         context.tabs = this._getTabs();
-       
+
         context.config = SYSTEM;
         context.editAttributes = this.editAttributes;
         context.onVaultTab = this.onVaultTab;
@@ -146,9 +195,11 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         context.multiclassFeatureSetSelected = this.multiclassFeatureSetSelected;
 
         const selectedAttributes = Object.values(this.document.system.attributes).map(x => x.data.base);
-        context.abilityScoreArray = JSON.parse(await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray)).reduce((acc, x) => {
+        context.abilityScoreArray = JSON.parse(
+            await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray)
+        ).reduce((acc, x) => {
             const selectedIndex = selectedAttributes.indexOf(x);
-            if(selectedIndex !== -1){
+            if (selectedIndex !== -1) {
                 selectedAttributes.splice(selectedIndex, 1);
             } else {
                 acc.push({ name: x, value: x });
@@ -156,26 +207,38 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
             return acc;
         }, []);
-        if(!context.abilityScoreArray.includes(0)) context.abilityScoreArray.push({ name: 0, value: 0 });
+        if (!context.abilityScoreArray.includes(0)) context.abilityScoreArray.push({ name: 0, value: 0 });
         context.abilityScoresFinished = context.abilityScoreArray.every(x => x.value === 0);
 
-        context.domains = this.document.system.class ? {
-            first: this.document.system.class.system.domains[0] ? SYSTEM.DOMAIN.domains[this.document.system.class.system.domains[0]].src : null,
-            second: this.document.system.class.system.domains[1] ? SYSTEM.DOMAIN.domains[this.document.system.class.system.domains[1]].src : null,
-        } : {  };
+        context.domains = this.document.system.class
+            ? {
+                  first: this.document.system.class.system.domains[0]
+                      ? SYSTEM.DOMAIN.domains[this.document.system.class.system.domains[0]].src
+                      : null,
+                  second: this.document.system.class.system.domains[1]
+                      ? SYSTEM.DOMAIN.domains[this.document.system.class.system.domains[1]].src
+                      : null
+              }
+            : {};
 
         context.attributes = Object.keys(this.document.system.attributes).reduce((acc, key) => {
             acc[key] = {
                 ...this.document.system.attributes[key],
                 name: game.i18n.localize(SYSTEM.ACTOR.abilities[key].name),
-                verbs: SYSTEM.ACTOR.abilities[key].verbs.map(x => game.i18n.localize(x)),
+                verbs: SYSTEM.ACTOR.abilities[key].verbs.map(x => game.i18n.localize(x))
             };
 
             return acc;
         }, {});
 
-        const ancestry = await this.mapFeatureType(this.document.system.ancestry ? [this.document.system.ancestry] : [], SYSTEM.GENERAL.objectTypes);
-        const community = await this.mapFeatureType(this.document.system.community ? [this.document.system.community] : [], SYSTEM.GENERAL.objectTypes);
+        const ancestry = await this.mapFeatureType(
+            this.document.system.ancestry ? [this.document.system.ancestry] : [],
+            SYSTEM.GENERAL.objectTypes
+        );
+        const community = await this.mapFeatureType(
+            this.document.system.community ? [this.document.system.community] : [],
+            SYSTEM.GENERAL.objectTypes
+        );
         const foundation = {
             ancestry: ancestry[0],
             community: community[0],
@@ -192,66 +255,94 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             loadout: {
                 top: loadout.slice(0, Math.min(2, nrLoadoutCards)),
                 bottom: nrLoadoutCards > 2 ? loadout.slice(2, Math.min(5, nrLoadoutCards)) : [],
-                nrTotal: nrLoadoutCards,
+                nrTotal: nrLoadoutCards
             },
-            vault: vault.map(x => ({ ...x, uuid: x.uuid, sendToLoadoutDisabled: this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout }))
+            vault: vault.map(x => ({
+                ...x,
+                uuid: x.uuid,
+                sendToLoadoutDisabled:
+                    this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout
+            }))
         };
 
         context.inventory = {
             consumable: {
                 titles: {
-                    name: game.i18n.localize("DAGGERHEART.Sheets.PC.InventoryTab.ConsumableTitle"),
-                    quantity: game.i18n.localize("DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle"),
+                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.ConsumableTitle'),
+                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
                 },
-                items: this.document.items.filter(x => x.type === 'consumable'),
+                items: this.document.items.filter(x => x.type === 'consumable')
             },
             miscellaneous: {
                 titles: {
-                    name: game.i18n.localize("DAGGERHEART.Sheets.PC.InventoryTab.MiscellaneousTitle"),
-                    quantity: game.i18n.localize("DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle"),
+                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.MiscellaneousTitle'),
+                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
                 },
-                items: this.document.items.filter(x => x.type === 'miscellaneous'),
-            },
-        }
+                items: this.document.items.filter(x => x.type === 'miscellaneous')
+            }
+        };
 
-        if(context.inventory.length === 0){
+        if (context.inventory.length === 0) {
             context.inventory = Array(1).fill(Array(5).fill([]));
         }
 
-        context.classFeatures = (this.multiclassFeatureSetSelected ? this.document.system.multiclassFeatures : this.document.system.classFeatures).map(x => {
-            if(x.system.featureType.type !== 'dice'){
+        context.classFeatures = (
+            this.multiclassFeatureSetSelected
+                ? this.document.system.multiclassFeatures
+                : this.document.system.classFeatures
+        ).map(x => {
+            if (x.system.featureType.type !== 'dice') {
                 return x;
             }
-
-            return { ...x, uuid: x.uuid, system: { ...x.system, featureType: { ...x.system.featureType, data: { ...x.system.featureType.data, property: this.document.system.subclass ? SYSTEM.ACTOR.featureProperties[x.system.featureType.data.property].path(this.document) : 0 }}}};
-        });
-
-        return context;
-    }
-
-    static async updateForm(event, _, formData) {
-        await this.document.update(formData.object)
-        this.render();
-    }
-
-    async mapFeatureType(data, configType){
-        return await Promise.all(data.map(async x => {
-            const abilities = x.system.abilities ? await Promise.all(x.system.abilities.map(async x => await fromUuid(x.uuid))) : [];
 
             return {
                 ...x,
                 uuid: x.uuid,
                 system: {
                     ...x.system,
-                    abilities: abilities,
-                    type: game.i18n.localize(configType[x.system.type??x.type].label)
+                    featureType: {
+                        ...x.system.featureType,
+                        data: {
+                            ...x.system.featureType.data,
+                            property: this.document.system.subclass
+                                ? SYSTEM.ACTOR.featureProperties[x.system.featureType.data.property].path(this.document)
+                                : 0
+                        }
+                    }
                 }
-            }
-        }));
+            };
+        });
+
+        return context;
+    }
+
+    static async updateForm(event, _, formData) {
+        await this.document.update(formData.object);
+        this.render();
+    }
+
+    async mapFeatureType(data, configType) {
+        return await Promise.all(
+            data.map(async x => {
+                const abilities = x.system.abilities
+                    ? await Promise.all(x.system.abilities.map(async x => await fromUuid(x.uuid)))
+                    : [];
+
+                return {
+                    ...x,
+                    uuid: x.uuid,
+                    system: {
+                        ...x.system,
+                        abilities: abilities,
+                        type: game.i18n.localize(configType[x.system.type ?? x.type].label)
+                    }
+                };
+            })
+        );
     }
 
     mapAdvancementFeatures(actor, config) {
-        if(!actor.system.subclass) return { foundation: null, advancements: [] };
+        if (!actor.system.subclass) return { foundation: null, advancements: [] };
 
         const { subclass, multiclassSubclass } = actor.system.subclassFeatures;
 
@@ -259,7 +350,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             type: 'foundation',
             multiclass: false,
             img: actor.system.subclass.img,
-            subtitle: game.i18n.localize("DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle"),
+            subtitle: game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle'),
             domains: actor.system.class.system.domains.map(x => config.DOMAIN.domains[x].src),
             className: actor.system.class.name,
             subclassUuid: actor.system.subclass.uuid,
@@ -267,74 +358,135 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             spellcast: config.ACTOR.abilities[actor.system.subclass.system.spellcastingTrait]?.name ?? null,
             description: actor.system.subclass.system.foundationFeature.description,
             abilities: subclass.foundation,
-            abilityKey: 'foundationFeature',
+            abilityKey: 'foundationFeature'
         };
 
-        const firstKey = actor.system.subclass.system.specializationFeature.unlocked && actor.system.subclass.system.specializationFeature.tier === 2 ? 'sub' :
-        actor.system.multiclass?.system?.multiclassTier === 2 ? 'multi' : null;
+        const firstKey =
+            actor.system.subclass.system.specializationFeature.unlocked &&
+            actor.system.subclass.system.specializationFeature.tier === 2
+                ? 'sub'
+                : actor.system.multiclass?.system?.multiclassTier === 2
+                  ? 'multi'
+                  : null;
         const firstType = firstKey === 'sub' ? 'specialization' : 'foundation';
-        const firstBase = firstKey === 'sub' ? actor.system.subclass : firstKey === 'multi' ? actor.system.multiclassSubclass : null;
-        const first = !firstBase ? null : {
-            type: firstType,
-            multiclass: firstKey === 'multi',
-            img: firstBase.img,
-            subtitle: firstKey === 'sub' ? game.i18n.localize("DAGGERHEART.Sheets.PC.DomainCard.SpecializationTitle") : game.i18n.localize("DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle"),
-            domains: firstKey === 'sub' ? actor.system.class.system.domains.map(x => config.DOMAIN.domains[x].src) : actor.system.multiclass.system.domains.map(x => config.DOMAIN.domains[x].src),
-            className: firstKey === 'sub' ? actor.system.class.name : actor.system.multiclass.name,
-            subclassUuid: firstBase.uuid,
-            subclassName: firstBase.name,
-            spellcast: firstKey === 'sub' ? null : config.ACTOR.abilities[firstBase.system.spellcastingTrait]?.name ?? null,
-            description: firstKey === 'sub' ? firstBase.system.specializationFeature.description : firstBase.system.foundationFeature.description,
-            abilities: firstKey === 'sub' ? subclass.specialization : multiclassSubclass.foundation,
-            abilityKey: firstKey === 'sub' ? 'specializationFeature' : 'foundationFeature',
-        };
+        const firstBase =
+            firstKey === 'sub' ? actor.system.subclass : firstKey === 'multi' ? actor.system.multiclassSubclass : null;
+        const first = !firstBase
+            ? null
+            : {
+                  type: firstType,
+                  multiclass: firstKey === 'multi',
+                  img: firstBase.img,
+                  subtitle:
+                      firstKey === 'sub'
+                          ? game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.SpecializationTitle')
+                          : game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle'),
+                  domains:
+                      firstKey === 'sub'
+                          ? actor.system.class.system.domains.map(x => config.DOMAIN.domains[x].src)
+                          : actor.system.multiclass.system.domains.map(x => config.DOMAIN.domains[x].src),
+                  className: firstKey === 'sub' ? actor.system.class.name : actor.system.multiclass.name,
+                  subclassUuid: firstBase.uuid,
+                  subclassName: firstBase.name,
+                  spellcast:
+                      firstKey === 'sub'
+                          ? null
+                          : (config.ACTOR.abilities[firstBase.system.spellcastingTrait]?.name ?? null),
+                  description:
+                      firstKey === 'sub'
+                          ? firstBase.system.specializationFeature.description
+                          : firstBase.system.foundationFeature.description,
+                  abilities: firstKey === 'sub' ? subclass.specialization : multiclassSubclass.foundation,
+                  abilityKey: firstKey === 'sub' ? 'specializationFeature' : 'foundationFeature'
+              };
 
-        const secondKey = (actor.system.subclass.system.specializationFeature.unlocked && actor.system.subclass.system.specializationFeature.tier === 3) || (actor.system.subclass.system.masteryFeature.unlocked && actor.system.subclass.system.masteryFeature.tier === 3) ? 'sub' :
-        (actor.system.multiclass?.system?.multiclassTier === 3) || (actor.system.multiclassSubclass?.system?.specializationFeature?.unlocked) ? 'multi' : null;
-        const secondBase = secondKey === 'sub' ? actor.system.subclass : secondKey === 'multi' ? actor.system.multiclassSubclass : null;
+        const secondKey =
+            (actor.system.subclass.system.specializationFeature.unlocked &&
+                actor.system.subclass.system.specializationFeature.tier === 3) ||
+            (actor.system.subclass.system.masteryFeature.unlocked &&
+                actor.system.subclass.system.masteryFeature.tier === 3)
+                ? 'sub'
+                : actor.system.multiclass?.system?.multiclassTier === 3 ||
+                    actor.system.multiclassSubclass?.system?.specializationFeature?.unlocked
+                  ? 'multi'
+                  : null;
+        const secondBase =
+            secondKey === 'sub'
+                ? actor.system.subclass
+                : secondKey === 'multi'
+                  ? actor.system.multiclassSubclass
+                  : null;
         const secondAbilities = secondKey === 'sub' ? subclass : multiclassSubclass;
-        const secondType = secondBase ? secondBase.system.masteryFeature.unlocked ? 'mastery' : secondBase.system.specializationFeature.unlocked ? 'specialization' : 'foundation' : null;
-        const second = !secondBase ? null : {
-            type: secondType,
-            multiclass: secondKey === 'multi',
-            img: secondBase.img,
-            subtitle: secondBase.system.masteryFeature.unlocked ? game.i18n.localize("DAGGERHEART.Sheets.PC.DomainCard.MasteryTitle") :
-                secondBase.system.specializationFeature.unlocked ? game.i18n.localize("DAGGERHEART.Sheets.PC.DomainCard.SpecializationTitle") : game.i18n.localize("DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle"),
-            domains: secondKey === 'sub' ? actor.system.class.system.domains.map(x => config.DOMAIN.domains[x].src) : actor.system.multiclass.system.domains.map(x => config.DOMAIN.domains[x].src),
-            className: secondKey === 'sub' ? actor.system.class.name : actor.system.multiclass.name,
-            subclassUuid: secondBase.uuid,
-            subclassName: secondBase.name,
-            spellcast: secondKey === 'sub' || secondBase.system.specializationFeature.unlocked ? null : config.ACTOR.abilities[firstBase.system.spellcastingTrait]?.name ?? null,
-            description:
-                secondBase.system.masteryFeature.unlocked ? secondBase.system.masteryFeature.description :
-                secondBase.system.specializationFeature.unlocked ? secondBase.system.specializationFeature.description : firstBase.system.foundationFeature.description,
-            abilities:
-                secondBase.system.masteryFeature.unlocked ? secondAbilities.mastery :
-                secondBase.system.specializationFeature.unlocked ? secondAbilities.specialization : secondAbilities.foundation,
-            abilityKey: secondBase.system.masteryFeature.unlocked ? 'masteryFeature' : secondBase.system.specializationFeature.unlocked ? 'specializationFeature' : 'foundationFeature',
-        };
+        const secondType = secondBase
+            ? secondBase.system.masteryFeature.unlocked
+                ? 'mastery'
+                : secondBase.system.specializationFeature.unlocked
+                  ? 'specialization'
+                  : 'foundation'
+            : null;
+        const second = !secondBase
+            ? null
+            : {
+                  type: secondType,
+                  multiclass: secondKey === 'multi',
+                  img: secondBase.img,
+                  subtitle: secondBase.system.masteryFeature.unlocked
+                      ? game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.MasteryTitle')
+                      : secondBase.system.specializationFeature.unlocked
+                        ? game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.SpecializationTitle')
+                        : game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle'),
+                  domains:
+                      secondKey === 'sub'
+                          ? actor.system.class.system.domains.map(x => config.DOMAIN.domains[x].src)
+                          : actor.system.multiclass.system.domains.map(x => config.DOMAIN.domains[x].src),
+                  className: secondKey === 'sub' ? actor.system.class.name : actor.system.multiclass.name,
+                  subclassUuid: secondBase.uuid,
+                  subclassName: secondBase.name,
+                  spellcast:
+                      secondKey === 'sub' || secondBase.system.specializationFeature.unlocked
+                          ? null
+                          : (config.ACTOR.abilities[firstBase.system.spellcastingTrait]?.name ?? null),
+                  description: secondBase.system.masteryFeature.unlocked
+                      ? secondBase.system.masteryFeature.description
+                      : secondBase.system.specializationFeature.unlocked
+                        ? secondBase.system.specializationFeature.description
+                        : firstBase.system.foundationFeature.description,
+                  abilities: secondBase.system.masteryFeature.unlocked
+                      ? secondAbilities.mastery
+                      : secondBase.system.specializationFeature.unlocked
+                        ? secondAbilities.specialization
+                        : secondAbilities.foundation,
+                  abilityKey: secondBase.system.masteryFeature.unlocked
+                      ? 'masteryFeature'
+                      : secondBase.system.specializationFeature.unlocked
+                        ? 'specializationFeature'
+                        : 'foundationFeature'
+              };
 
         return {
             foundation: foundation,
             first: first,
-            second: second,
-        }
+            second: second
+        };
     }
 
-    async attributeChange(event){
+    async attributeChange(event) {
         const path = `system.attributes.${event.currentTarget.dataset.attribute}.data.base`;
         await this.document.update({ [path]: event.currentTarget.value });
     }
 
-    static toggleEditAttributes(){
+    static toggleEditAttributes() {
         this.editAttributes = !this.editAttributes;
         this.render();
     }
 
     static async rollAttribute(event, target) {
-        const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll({ title: 'Attribute Bonus', value: event.target.dataset.value }, event.shiftKey);
+        const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll(
+            { title: 'Attribute Bonus', value: event.target.dataset.value },
+            event.shiftKey
+        );
 
-        const cls = getDocumentClass("ChatMessage");
+        const cls = getDocumentClass('ChatMessage');
         const msgData = {
             type: 'dualityRoll',
             system: {
@@ -343,70 +495,76 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                 hope: hope,
                 fear: fear,
                 advantage: advantage,
-                disadvantage: disadvantage,
+                disadvantage: disadvantage
             },
             user: game.user.id,
-            content: "systems/daggerheart/templates/chat/duality-roll.hbs",
+            content: 'systems/daggerheart/templates/chat/duality-roll.hbs',
             rolls: [roll]
         };
 
         await cls.create(msgData);
     }
 
-    static async toggleMarks(_, button){
+    static async toggleMarks(_, button) {
         const markValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.armor.system.marks.value >= markValue ? markValue-1 : markValue;
+        const newValue = this.document.system.armor.system.marks.value >= markValue ? markValue - 1 : markValue;
         await this.document.system.armor.update({ 'system.marks.value': newValue });
     }
 
-    static async toggleAttributeMark(_, button){
+    static async toggleAttributeMark(_, button) {
         const attribute = this.document.system.attributes[button.dataset.attribute];
-        const newMark = this.document.system.availableAttributeMarks.filter(x => x > Math.max.apply(null, this.document.system.attributes[button.dataset.attribute].levelMarks)).sort((a, b) => a > b ? 1 : -1)[0];
+        const newMark = this.document.system.availableAttributeMarks
+            .filter(x => x > Math.max.apply(null, this.document.system.attributes[button.dataset.attribute].levelMarks))
+            .sort((a, b) => (a > b ? 1 : -1))[0];
 
-        if(attribute.levelMark || !newMark) return;
-
+        if (attribute.levelMark || !newMark) return;
 
         const path = `system.attributes.${button.dataset.attribute}.levelMarks`;
         await this.document.update({ [path]: [...attribute.levelMarks, newMark] });
     }
 
-    static async toggleHP(_, button){
+    static async toggleHP(_, button) {
         const healthValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.resources.health.value >= healthValue ? healthValue-1 : healthValue;
+        const newValue = this.document.system.resources.health.value >= healthValue ? healthValue - 1 : healthValue;
         await this.document.update({ 'system.resources.health.value': newValue });
     }
 
-    static async toggleStress(_, button){
+    static async toggleStress(_, button) {
         const healthValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.resources.stress.value >= healthValue ? healthValue-1 : healthValue;
+        const newValue = this.document.system.resources.stress.value >= healthValue ? healthValue - 1 : healthValue;
         await this.document.update({ 'system.resources.stress.value': newValue });
     }
 
-    static async toggleHope(_, button){
+    static async toggleHope(_, button) {
         const hopeValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.resources.hope.value >= hopeValue ? hopeValue-1 : hopeValue;
+        const newValue = this.document.system.resources.hope.value >= hopeValue ? hopeValue - 1 : hopeValue;
         await this.document.update({ 'system.resources.hope.value': newValue });
     }
 
-    static async toggleGold(_, button){
+    static async toggleGold(_, button) {
         const goldValue = Number.parseInt(button.dataset.value);
         const goldType = button.dataset.type;
-        const newValue = this.document.system.gold[goldType] >= goldValue ? goldValue-1 : goldValue;
+        const newValue = this.document.system.gold[goldType] >= goldValue ? goldValue - 1 : goldValue;
 
         const update = `system.gold.${goldType}`;
         await this.document.update({ [update]: newValue });
     }
 
-    static async attackRoll(_, event){
+    static async attackRoll(_, event) {
         const weapon = await fromUuid(event.currentTarget.dataset.weapon);
         const damage = {
-                value: `${this.document.system.proficiency.value}${weapon.system.damage.value}`,
-                type: weapon.system.damage.type,
-                bonusDamage: this.document.system.bonuses.damage
+            value: `${this.document.system.proficiency.value}${weapon.system.damage.value}`,
+            type: weapon.system.damage.type,
+            bonusDamage: this.document.system.bonuses.damage
         };
         const modifier = this.document.system.attributes[weapon.system.trait].data.value;
 
-        const { roll, hope, fear, advantage, disadvantage, modifiers, bonusDamageString } = await this.document.dualityRoll({ title: 'Attribute Modifier', value: modifier }, event.shiftKey, damage.bonusDamage);
+        const { roll, hope, fear, advantage, disadvantage, modifiers, bonusDamageString } =
+            await this.document.dualityRoll(
+                { title: 'Attribute Modifier', value: modifier },
+                event.shiftKey,
+                damage.bonusDamage
+            );
 
         damage.value = damage.value.concat(bonusDamageString);
 
@@ -415,10 +573,10 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             name: x.actor.name,
             img: x.actor.img,
             difficulty: x.actor.system.difficulty,
-            evasion: x.actor.system.evasion,
+            evasion: x.actor.system.evasion
         }));
 
-        const cls = getDocumentClass("ChatMessage");
+        const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             type: 'dualityRoll',
             system: {
@@ -429,89 +587,90 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                 advantage: advantage,
                 disadvantage: disadvantage,
                 damage: damage,
-                targets: targets,
+                targets: targets
             },
-            content: "systems/daggerheart/templates/chat/attack-roll.hbs",
+            content: 'systems/daggerheart/templates/chat/attack-roll.hbs',
             rolls: [roll]
         });
 
         await cls.create(msg.toObject());
     }
 
-    tabSwitch(event){
+    tabSwitch(event) {
         const tab = event.currentTarget.dataset.tab;
-        if(tab !== 'loadout'){
+        if (tab !== 'loadout') {
             this.onVaultTab = false;
         }
 
         this.render();
     }
 
-    openLevelUp(){
+    openLevelUp() {
         new DhpLevelup(this.document).render(true);
     }
 
-    static domainCardsTab(toVault){
+    static domainCardsTab(toVault) {
         this.onVaultTab = toVault;
         this.render();
     }
 
-    static  async moveDomainCard(button, toVault){
-        if(!toVault && this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout){
+    static async moveDomainCard(button, toVault) {
+        if (!toVault && this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout) {
             return;
         }
 
         const card = this.document.items.find(x => x.uuid === button.dataset.domain);
-        await card.update({ "system.inVault": toVault });
+        await card.update({ 'system.inVault': toVault });
     }
 
-    static async useDomainCard(_, button){
+    static async useDomainCard(_, button) {
         const card = this.document.items.find(x => x.uuid === button.dataset.key);
 
-        const cls = getDocumentClass("ChatMessage");
+        const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             type: 'abilityUse',
             user: game.user.id,
-            content: "systems/daggerheart/templates/chat/ability-use.hbs",
+            content: 'systems/daggerheart/templates/chat/ability-use.hbs',
             system: {
-                title: `${game.i18n.localize("DAGGERHEART.Chat.DomainCard.Title")} - ${capitalize(button.dataset.domain)}`,
+                title: `${game.i18n.localize('DAGGERHEART.Chat.DomainCard.Title')} - ${capitalize(button.dataset.domain)}`,
                 img: card.img,
                 name: card.name,
                 description: card.system.effect,
-                actions: card.system.actions,
-            },
+                actions: card.system.actions
+            }
         });
 
         cls.create(msg.toObject());
     }
 
-    static async selectClass(){
+    static async selectClass() {
         (await game.packs.get('daggerheart.playtest-classes'))?.render(true);
     }
 
-    static async selectSubclass(){
+    static async selectSubclass() {
         (await game.packs.get('daggerheart.playtest-subclasses'))?.render(true);
     }
 
-    static async selectAncestry(){
+    static async selectAncestry() {
         const dialogClosed = new Promise((resolve, _) => {
             new AncestrySelectionDialog(resolve).render(true);
-          });
+        });
         const result = await dialogClosed;
 
         // await this.emulateItemDrop({ type: 'item', data: result });
-        for(var ancestry of this.document.items.filter(x => x => x.type === 'ancestry')){
+        for (var ancestry of this.document.items.filter(x => x => x.type === 'ancestry')) {
             await ancestry.delete();
         }
 
         const createdItems = [];
-        for(var feature of this.document.items.filter(x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.ancestry.id)){
+        for (var feature of this.document.items.filter(
+            x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.ancestry.id
+        )) {
             await feature.delete();
         }
 
         // createdItems.push(...result.data.system.abilities);
         createdItems.push(result.data);
-        
 
         await this.document.createEmbeddedDocuments('Item', createdItems);
 
@@ -519,86 +678,97 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         // (await game.packs.get('daggerheart.playtest-ancestries'))?.render(true);
     }
 
-    static async selectCommunity(){
-        (await game.packs.get('daggerheart.playtest-communities'))?.render(true);;
+    static async selectCommunity() {
+        (await game.packs.get('daggerheart.playtest-communities'))?.render(true);
     }
 
-    static async viewObject(button){
+    static async viewObject(button) {
         const object = await fromUuid(button.dataset.value);
-        if(!object) return;
+        if (!object) return;
 
         const tab = button.dataset.tab;
-        if(tab) object.sheet._tabs[0].active = tab;
+        if (tab) object.sheet._tabs[0].active = tab;
 
-        if(object.sheet.editMode) object.sheet.editMode = false;
+        if (object.sheet.editMode) object.sheet.editMode = false;
 
         object.sheet.render(true);
     }
 
-    static async takeShortRest(){
+    static async takeShortRest() {
         await new DhpDowntime(this.document, true).render(true);
         await this.minimize();
     }
 
-    static async takeLongRest(){
+    static async takeLongRest() {
         await new DhpDowntime(this.document, false).render(true);
         await this.minimize();
     }
 
-    static async removeActiveItem(_, event){
+    static async removeActiveItem(_, event) {
         event.stopPropagation();
         const item = await fromUuid(event.currentTarget.dataset.item);
         await item.delete();
     }
 
-    static async removeInventoryWeapon(_, event){
+    static async removeInventoryWeapon(_, event) {
         event.stopPropagation();
         const item = await fromUuid(event.currentTarget.dataset.item);
         await item.delete();
     }
 
-    static async addMiscItem(){
-        const result = await this.document.createEmbeddedDocuments("Item", [{
-            name: game.i18n.localize('DAGGERHEART.Sheets.PC.NewItem'),
-            type: 'miscellaneous'
-        }]);
+    static async addMiscItem() {
+        const result = await this.document.createEmbeddedDocuments('Item', [
+            {
+                name: game.i18n.localize('DAGGERHEART.Sheets.PC.NewItem'),
+                type: 'miscellaneous'
+            }
+        ]);
 
         await result[0].sheet.render(true);
     }
 
-    static async addScar(){
-        if(this.document.system.story.scars.length === 5) return;
+    static async addScar() {
+        if (this.document.system.story.scars.length === 5) return;
 
-        await this.document.update({ "system.story.scars": [...this.document.system.story.scars, { name: game.i18n.localize("DAGGERHEART.Sheets.PC.NewScar"), description: '' }] });
+        await this.document.update({
+            'system.story.scars': [
+                ...this.document.system.story.scars,
+                { name: game.i18n.localize('DAGGERHEART.Sheets.PC.NewScar'), description: '' }
+            ]
+        });
     }
 
-    static async selectScar(_, button){
+    static async selectScar(_, button) {
         this.selectedScar = Number.parseInt(button.dataset.value);
         this.render();
     }
 
     static async deleteScar(event, button) {
         event.stopPropagation();
-        await this.document.update({ "system.story.scars": this.document.system.story.scars.filter((_, index) => index !== Number.parseInt(button.currentTarget.dataset.scar) ) })
+        await this.document.update({
+            'system.story.scars': this.document.system.story.scars.filter(
+                (_, index) => index !== Number.parseInt(button.currentTarget.dataset.scar)
+            )
+        });
     }
 
     static async makeDeathMove() {
-        if(this.document.system.resources.health.value === this.document.system.resources.health.max){
+        if (this.document.system.resources.health.value === this.document.system.resources.health.max) {
             await new DhpDeathMove(this.document).render(true);
             await this.minimize();
         }
     }
 
-    static async toggleFeatureDice(_, button){
+    static async toggleFeatureDice(_, button) {
         const index = Number.parseInt(button.dataset.index);
         const feature = this.document.system.classFeatures.find(x => x.uuid === button.dataset.feature);
         const path = `system.featureType.data.numbers.${index}`;
-        if(feature.system.featureType.data.numbers[index]?.used) return;
+        if (feature.system.featureType.data.numbers[index]?.used) return;
 
-        if(Object.keys(feature.system.featureType.data.numbers).length <= index) {
+        if (Object.keys(feature.system.featureType.data.numbers).length <= index) {
             const roll = new Roll(feature.system.featureType.data.value);
             const rollData = await roll.evaluate();
-            const cls = getDocumentClass("ChatMessage");
+            const cls = getDocumentClass('ChatMessage');
             const msg = new cls({
                 user: game.user.id,
                 rolls: [roll]
@@ -609,45 +779,49 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             await feature.update({ [path]: { value: Number.parseInt(rollData.total), used: false } });
         } else {
             await Dialog.confirm({
-                title: game.i18n.localize("Confirm feature use"),
+                title: game.i18n.localize('Confirm feature use'),
                 content: `Are you sure you want to use ${feature.name}?`,
                 yes: async () => {
                     await feature.update({ [path]: { used: true } });
 
-                    const cls = getDocumentClass("ChatMessage");
+                    const cls = getDocumentClass('ChatMessage');
                     const msg = new cls({
                         user: game.user.id,
-                        content: await renderTemplate("systems/daggerheart/templates/chat/ability-use.hbs", {
-                            title: game.i18n.localize("DAGGERHEART.Chat.FeatureTitle"),
-                            card: { name: `${feature.name} - Roll Of ${feature.system.featureType.data.numbers[index].value}`, img: feature.img },
-                        }),
+                        content: await renderTemplate('systems/daggerheart/templates/chat/ability-use.hbs', {
+                            title: game.i18n.localize('DAGGERHEART.Chat.FeatureTitle'),
+                            card: {
+                                name: `${feature.name} - Roll Of ${feature.system.featureType.data.numbers[index].value}`,
+                                img: feature.img
+                            }
+                        })
                     });
 
                     cls.create(msg.toObject());
                 },
-                no: () => { return; },
+                no: () => {
+                    return;
+                },
                 defaultYes: false
             });
-
         }
     }
 
-    async onFeatureInputBlur(event){
+    async onFeatureInputBlur(event) {
         const feature = this.document.system.classFeatures.find(x => x.uuid === event.currentTarget.dataset.feature);
         const value = Number.parseInt(event.currentTarget.value);
-        if(!Number.isNaN(value)) await feature?.update({ "system.featureType.data.value": value });
+        if (!Number.isNaN(value)) await feature?.update({ 'system.featureType.data.value': value });
     }
 
-    async experienceDescriptionChange(event){
+    async experienceDescriptionChange(event) {
         const newExperiences = [...this.document.system.experiences];
         newExperiences[event.currentTarget.dataset.index].description = event.currentTarget.value;
-        await this.document.update({ "system.experiences": newExperiences });
+        await this.document.update({ 'system.experiences': newExperiences });
     }
 
-    async experienceValueChange(event){
+    async experienceValueChange(event) {
         const newExperiences = [...this.document.system.experiences];
         newExperiences[event.currentTarget.dataset.index].value = event.currentTarget.value;
-        await this.document.update({ "system.experiences": newExperiences });
+        await this.document.update({ 'system.experiences': newExperiences });
     }
 
     static setStoryEditor(_, button) {
@@ -655,37 +829,37 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    async itemUpdate(event){
+    async itemUpdate(event) {
         const name = event.currentTarget.dataset.item;
         const item = await fromUuid($(event.currentTarget).closest('[data-item-id]')[0].dataset.itemId);
         await item.update({ [name]: event.currentTarget.value });
     }
 
-    static async deleteItem(_, button){
+    static async deleteItem(_, button) {
         const item = await fromUuid($(button).closest('[data-item-id]')[0].dataset.itemId);
         await item.delete();
     }
 
-    static async setItemQuantity(button, value){
+    static async setItemQuantity(button, value) {
         const item = await fromUuid($(button).closest('[data-item-id]')[0].dataset.itemId);
-        await item.update({ "system.quantity": Math.max(item.system.quantity + value, 1) });
+        await item.update({ 'system.quantity': Math.max(item.system.quantity + value, 1) });
     }
 
     static async useFeature(_, button) {
         const item = await fromUuid(button.dataset.id);
 
-        const cls = getDocumentClass("ChatMessage");
+        const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             type: 'abilityUse',
             user: game.user.id,
-            content: "systems/daggerheart/templates/chat/ability-use.hbs",
+            content: 'systems/daggerheart/templates/chat/ability-use.hbs',
             system: {
-                title: game.i18n.localize("DAGGERHEART.Chat.FeatureTitle"),
+                title: game.i18n.localize('DAGGERHEART.Chat.FeatureTitle'),
                 img: item.img,
                 name: item.name,
                 description: item.system.description,
-                actions: item.system.actions,
-            },
+                actions: item.system.actions
+            }
         });
 
         cls.create(msg.toObject());
@@ -693,147 +867,165 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static async useAbility(_, button) {
         const item = await fromUuid(button.dataset.feature);
-        const type = button.dataset.type
+        const type = button.dataset.type;
 
-        const cls = getDocumentClass("ChatMessage");
+        const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             type: 'abilityUse',
             user: game.user.id,
             system: {
-                title: type === 'ancestry' ? game.i18n.localize("DAGGERHEART.Chat.FoundationCard.AncestryTitle") :
-                    type === 'community' ? game.i18n.localize("DAGGERHEART.Chat.FoundationCard.CommunityTitle") :
-                    game.i18n.localize("DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle"),
+                title:
+                    type === 'ancestry'
+                        ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.AncestryTitle')
+                        : type === 'community'
+                          ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.CommunityTitle')
+                          : game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
                 img: item.img,
                 name: item.name,
                 description: item.system.description,
-                actions: [],
+                actions: []
             },
-            content: "systems/daggerheart/templates/chat/ability-use.hbs",
+            content: 'systems/daggerheart/templates/chat/ability-use.hbs'
         });
 
         cls.create(msg.toObject());
     }
 
-    static async useAdvancementCard(_, button){
-        const item = button.dataset.multiclass === 'true' ? this.document.system.multiclassSubclass : this.document.system.subclass;
+    static async useAdvancementCard(_, button) {
+        const item =
+            button.dataset.multiclass === 'true'
+                ? this.document.system.multiclassSubclass
+                : this.document.system.subclass;
         const ability = item.system[`${button.dataset.key}Feature`];
         const title = `${item.name} - ${game.i18n.localize(`DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`)}`;
 
-
-        const cls = getDocumentClass("ChatMessage");
+        const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             user: game.user.id,
-            content: await renderTemplate("systems/daggerheart/templates/chat/ability-use.hbs", {
-                title: game.i18n.localize("DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle"),
-                card: { name: title, img: item.img, description: ability.description },
-            }),
+            content: await renderTemplate('systems/daggerheart/templates/chat/ability-use.hbs', {
+                title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+                card: { name: title, img: item.img, description: ability.description }
+            })
         });
 
         cls.create(msg.toObject());
     }
 
-    static async useAdvancementAbility(_, button){
+    static async useAdvancementAbility(_, button) {
         // const item = await fromUuid(button.dataset.id);
         const item = this.document.items.find(x => x.uuid === button.dataset.id);
 
-        const cls = getDocumentClass("ChatMessage");
+        const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             user: game.user.id,
-            content: await renderTemplate("systems/daggerheart/templates/chat/ability-use.hbs", {
-                title: game.i18n.localize("DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle"),
-                card: { name: item.name, img: item.img, description: item.system.description },
-            }),
+            content: await renderTemplate('systems/daggerheart/templates/chat/ability-use.hbs', {
+                title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+                card: { name: item.name, img: item.img, description: item.system.description }
+            })
         });
 
         cls.create(msg.toObject());
     }
 
-    static async selectFeatureSet(_, button){
+    static async selectFeatureSet(_, button) {
         const multiclass = button.dataset.multiclass === 'true';
         this.multiclassFeatureSetSelected = multiclass;
         this.render();
     }
 
-    static async close(options){
+    static async close(options) {
         this.onVaultTab = false;
         super.close(options);
     }
 
-    async _onDragStart(_, event){
-        if(event.currentTarget.classList.contains('inventory-item')){
-            if(!['weapon', 'armor'].includes(event.currentTarget.dataset.type)){
+    async _onDragStart(_, event) {
+        if (event.currentTarget.classList.contains('inventory-item')) {
+            if (!['weapon', 'armor'].includes(event.currentTarget.dataset.type)) {
                 return;
             }
 
             const targets = {
-                'weapon': ['weapon-section', 'inventory-weapon-section'],
-                'armor': ['armor-section', 'inventory-armor-section'],
+                weapon: ['weapon-section', 'inventory-weapon-section'],
+                armor: ['armor-section', 'inventory-armor-section']
             };
 
-            event.dataTransfer.setData("text/plain", JSON.stringify({ uuid: event.currentTarget.dataset.item, internal: true, targets: targets[event.currentTarget.dataset.type] }));
+            event.dataTransfer.setData(
+                'text/plain',
+                JSON.stringify({
+                    uuid: event.currentTarget.dataset.item,
+                    internal: true,
+                    targets: targets[event.currentTarget.dataset.type]
+                })
+            );
         }
 
         super._onDragStart(event);
     }
 
-    async _onDrop(event){
+    async _onDrop(event) {
         const itemData = event.dataTransfer?.getData('text/plain');
         const item = itemData ? JSON.parse(itemData) : null;
-        if (item?.internal){
+        if (item?.internal) {
             let target = null;
             event.currentTarget.classList.forEach(x => {
-                if(item.targets.some(target => target === x)){
+                if (item.targets.some(target => target === x)) {
                     target = x;
                 }
             });
-            if(target){
+            if (target) {
                 const itemObject = await fromUuid(item.uuid);
-                switch(target){
+                switch (target) {
                     case 'weapon-section':
-                        if(itemObject.system.secondary && this.document.system.activeWeapons.burden === 'twoHanded'){
-                            ui.notifications.info(game.i18n.localize("DAGGERHEART.Notification.Info.SecondaryEquipWhileTwohanded"));
+                        if (itemObject.system.secondary && this.document.system.activeWeapons.burden === 'twoHanded') {
+                            ui.notifications.info(
+                                game.i18n.localize('DAGGERHEART.Notification.Info.SecondaryEquipWhileTwohanded')
+                            );
                             return;
-                        }
-                        else if(itemObject.system.burden === 'twoHanded' && this.document.system.activeWeapons.secondary){
-                            ui.notifications.info(game.i18n.localize("DAGGERHEART.Notification.Info.TwohandedEquipWhileSecondary"));
+                        } else if (
+                            itemObject.system.burden === 'twoHanded' &&
+                            this.document.system.activeWeapons.secondary
+                        ) {
+                            ui.notifications.info(
+                                game.i18n.localize('DAGGERHEART.Notification.Info.TwohandedEquipWhileSecondary')
+                            );
                             return;
                         }
 
-                        const existingWeapon = this.document.items.find(x => x.system.active && x.system.secondary === itemObject.system.secondary);
-                        await existingWeapon?.update({ "system.active": false });
-                        await itemObject.update({ "system.active": true });
+                        const existingWeapon = this.document.items.find(
+                            x => x.system.active && x.system.secondary === itemObject.system.secondary
+                        );
+                        await existingWeapon?.update({ 'system.active': false });
+                        await itemObject.update({ 'system.active': true });
                         break;
                     case 'armor-section':
                         const existingArmor = this.document.items.find(x => x.type === 'armor' && x.system.active);
-                        await existingArmor?.update({ "system.active": false });
-                        await itemObject.update({ "system.active": true });
+                        await existingArmor?.update({ 'system.active': false });
+                        await itemObject.update({ 'system.active': true });
                         break;
                     case 'inventory-weapon-section':
                         const existingInventoryWeapon = this.document.items.find(x => x.system.inventoryWeapon);
-                        await existingInventoryWeapon?.update({ "system.inventoryWeapon": false });
-                        await itemObject.update({ "system.inventoryWeapon": true });
+                        await existingInventoryWeapon?.update({ 'system.inventoryWeapon': false });
+                        await itemObject.update({ 'system.inventoryWeapon': true });
                         break;
                     case 'inventory-armor-section':
                         const existingInventoryArmor = this.document.items.find(x => x.system.inventoryArmor);
-                        await existingInventoryArmor?.update({ "system.inventoryArmor": false });
-                        await itemObject.update({ "system.inventoryArmor": true });
+                        await existingInventoryArmor?.update({ 'system.inventoryArmor': false });
+                        await itemObject.update({ 'system.inventoryArmor': true });
                         break;
                 }
             }
-        }
-        else {
+        } else {
             super._onDrop(event);
             this._onDropItem(event, TextEditor.getDragEventData(event));
         }
     }
 
-    async _onDropItem(event, data){
-        if(this.dropItemBlock){
+    async _onDropItem(event, data) {
+        if (this.dropItemBlock) {
             return;
-        }
-        else {
+        } else {
             this.dropItemBlock = true;
-            setTimeout(() => this.dropItemBlock = false, 500);
+            setTimeout(() => (this.dropItemBlock = false), 500);
         }
 
         const element = event.currentTarget;
@@ -842,65 +1034,70 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
         const createdItems = [];
 
-        if(item.type === 'domainCard'){
-            if(!this.document.system.class)
-            {
-                ui.notifications.error(game.i18n.localize("DAGGERHEART.Notification.Error.NoClassSelected"));
+        if (item.type === 'domainCard') {
+            if (!this.document.system.class) {
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.NoClassSelected'));
                 return;
             }
 
-            if(!this.document.system.domains.find(x => x === item.system.domain)){
-                ui.notifications.error(game.i18n.localize("DAGGERHEART.Notification.Error.LacksDomain"));
+            if (!this.document.system.domains.find(x => x === item.system.domain)) {
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.LacksDomain'));
                 return;
             }
 
-            if(this.document.system.domainCards.total.length === this.document.system.domainData.maxCards){
-                ui.notifications.error(game.i18n.localize("DAGGERHEART.Notification.Error.MaxLoadoutReached"));
+            if (this.document.system.domainCards.total.length === this.document.system.domainData.maxCards) {
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.MaxLoadoutReached'));
                 return;
             }
 
-            if(this.document.system.domainCards.total.find(x => x.name === item.name)){
-                ui.notifications.error(game.i18n.localize("DAGGERHEART.Notification.Error.DuplicateDomainCard"));
+            if (this.document.system.domainCards.total.find(x => x.name === item.name)) {
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.DuplicateDomainCard'));
                 return;
             }
 
-            if(this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout){
+            if (this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout) {
                 itemData.system.inVault = true;
             }
 
-            if ( this.document.uuid === item.parent?.uuid ) return this._onSortItem(event, itemData);
+            if (this.document.uuid === item.parent?.uuid) return this._onSortItem(event, itemData);
             const createdItem = await this._onDropItemCreate(itemData);
 
             return createdItem;
-        }
-        else {
-            if(!item.system.multiclass && ['class', 'subclass', 'ancestry', 'community'].includes(item.type)){
+        } else {
+            if (!item.system.multiclass && ['class', 'subclass', 'ancestry', 'community'].includes(item.type)) {
                 const existing = this.document.items.find(x => x.type === item.type);
                 await existing?.delete();
             }
 
-            if(item.type === 'subclass'){
-                if(!item.system.multiclass){
-                    if(!this.document.system.class){
-                        ui.notifications.info(game.i18n.localize("DAGGERHEART.Notification.Info.SelectClassBeforeSubclass"));
+            if (item.type === 'subclass') {
+                if (!item.system.multiclass) {
+                    if (!this.document.system.class) {
+                        ui.notifications.info(
+                            game.i18n.localize('DAGGERHEART.Notification.Info.SelectClassBeforeSubclass')
+                        );
                         return;
-                    }
-                    else if(!this.document.system.class.system.subclasses.some(x => x.uuid === item.uuid)){
-                        ui.notifications.info(game.i18n.localize("DAGGERHEART.Notification.Info.SubclassNotOfClass"));
+                    } else if (!this.document.system.class.system.subclasses.some(x => x.uuid === item.uuid)) {
+                        ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.SubclassNotOfClass'));
                         return;
                     }
 
-                    for(var feature of this.document.items.filter(x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.subclass.id)){
+                    for (var feature of this.document.items.filter(
+                        x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.subclass.id
+                    )) {
                         await feature.delete();
                     }
                 }
 
-                const features = [itemData.system.foundationFeature, itemData.system.specializationFeature, itemData.system.masteryFeature];
-                for(var i = 0; i < features.length; i++){
+                const features = [
+                    itemData.system.foundationFeature,
+                    itemData.system.specializationFeature,
+                    itemData.system.masteryFeature
+                ];
+                for (var i = 0; i < features.length; i++) {
                     const feature = features[i];
-                    for(var ability of feature.abilities){
+                    for (var ability of feature.abilities) {
                         const data = (await fromUuid(ability.uuid)).toObject();
-                        if(i > 0 ) data.system.disabled = true;
+                        if (i > 0) data.system.disabled = true;
                         data.uuid = itemData.uuid;
 
                         const abilityData = await this._onDropItemCreate(data);
@@ -909,87 +1106,98 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                         createdItems.push(abilityData);
                     }
                 }
-            }
-            else if(item.type === 'class'){
-                if(!item.system.multiclass){
-                    for(var feature of this.document.items.filter(x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.class.id)){
+            } else if (item.type === 'class') {
+                if (!item.system.multiclass) {
+                    for (var feature of this.document.items.filter(
+                        x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.class.id
+                    )) {
                         await feature.delete();
                     }
                 }
 
-                for(var feature of item.system.features){
+                for (var feature of item.system.features) {
                     const data = (await fromUuid(feature.uuid)).toObject();
                     const itemData = await this._onDropItemCreate(data);
                     createdItems.push(itemData);
                 }
-            }
-            else if(item.type === 'ancestry'){
-                for(var feature of this.document.items.filter(x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.ancestry.id)){
+            } else if (item.type === 'ancestry') {
+                for (var feature of this.document.items.filter(
+                    x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.ancestry.id
+                )) {
                     await feature.delete();
                 }
 
-                for(var feature of item.system.abilities){
+                for (var feature of item.system.abilities) {
                     const data = (await fromUuid(feature.uuid)).toObject();
                     const itemData = await this._onDropItemCreate(data);
                     createdItems.push(itemData);
                 }
-            }
-            else if(item.type === 'community'){
-                for(var feature of this.document.items.filter(x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.community.id)){
+            } else if (item.type === 'community') {
+                for (var feature of this.document.items.filter(
+                    x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.community.id
+                )) {
                     await feature.delete();
                 }
 
-                for(var feature of item.system.abilities){
+                for (var feature of item.system.abilities) {
                     const data = (await fromUuid(feature.uuid)).toObject();
                     const itemData = await this._onDropItemCreate(data);
                     createdItems.push(itemData);
                 }
             }
 
-            if ( this.document.uuid === item.parent?.uuid ) return this._onSortItem(event, item);
+            if (this.document.uuid === item.parent?.uuid) return this._onSortItem(event, item);
 
-            if(item.type === 'weapon'){
-                if(!element) return;
+            if (item.type === 'weapon') {
+                if (!element) return;
 
-                if(element.classList.contains('weapon-section')){
-                    if(item.system.secondary && this.document.system.activeWeapons.burden === 'twoHanded'){
-                        ui.notifications.info(game.i18n.localize("DAGGERHEART.Notification.Info.SecondaryEquipWhileTwohanded"));
+                if (element.classList.contains('weapon-section')) {
+                    if (item.system.secondary && this.document.system.activeWeapons.burden === 'twoHanded') {
+                        ui.notifications.info(
+                            game.i18n.localize('DAGGERHEART.Notification.Info.SecondaryEquipWhileTwohanded')
+                        );
+                        return;
+                    } else if (item.system.burden === 'twoHanded' && this.document.system.activeWeapons.secondary) {
+                        ui.notifications.info(
+                            game.i18n.localize('DAGGERHEART.Notification.Info.TwohandedEquipWhileSecondary')
+                        );
                         return;
                     }
-                    else if(item.system.burden === 'twoHanded' && this.document.system.activeWeapons.secondary){
-                        ui.notifications.info(game.i18n.localize("DAGGERHEART.Notification.Info.TwohandedEquipWhileSecondary"));
-                        return;
-                    }
 
-                    const existing = this.document.system.activeWeapons.primary && !item.system.secondary ? await fromUuid(this.document.system.activeWeapons.primary.uuid) :
-                        this.document.system.activeWeapons.secondary && item.system.secondary ? await fromUuid(this.document.system.activeWeapons.secondary.uuid) : null;
+                    const existing =
+                        this.document.system.activeWeapons.primary && !item.system.secondary
+                            ? await fromUuid(this.document.system.activeWeapons.primary.uuid)
+                            : this.document.system.activeWeapons.secondary && item.system.secondary
+                              ? await fromUuid(this.document.system.activeWeapons.secondary.uuid)
+                              : null;
                     await existing?.delete();
                     itemData.system.active = true;
-                }
-                else if(element.classList.contains('inventory-weapon-section-first')){
-                    const existing = this.document.system.inventoryWeapons.first ? await fromUuid(this.document.system.inventoryWeapons.first.uuid) : null;
+                } else if (element.classList.contains('inventory-weapon-section-first')) {
+                    const existing = this.document.system.inventoryWeapons.first
+                        ? await fromUuid(this.document.system.inventoryWeapons.first.uuid)
+                        : null;
                     await existing?.delete();
 
                     itemData.system.inventoryWeapon = 1;
-                }
-                else if(element.classList.contains('inventory-weapon-section-second')){
-                    const existing = this.document.system.inventoryWeapons.second ? await fromUuid(this.document.system.inventoryWeapons.second.uuid) : null;
+                } else if (element.classList.contains('inventory-weapon-section-second')) {
+                    const existing = this.document.system.inventoryWeapons.second
+                        ? await fromUuid(this.document.system.inventoryWeapons.second.uuid)
+                        : null;
                     await existing?.delete();
 
                     itemData.system.inventoryWeapon = 2;
-                }
-                else return [];
+                } else return [];
             }
 
-            if(item.type === 'armor'){
-                if(!element) return;
+            if (item.type === 'armor') {
+                if (!element) return;
 
-                if(element.classList.contains('armor-section')){
-                    const existing = this.document.system.armor ? await fromUuid(this.document.system.armor.uuid) : null;
+                if (element.classList.contains('armor-section')) {
+                    const existing = this.document.system.armor
+                        ? await fromUuid(this.document.system.armor.uuid)
+                        : null;
                     await existing?.delete();
-                }
-
-                else return;
+                } else return;
             }
 
             const createdItem = await this._onDropItemCreate(itemData);
@@ -1001,11 +1209,11 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
     async _onDropItemCreate(itemData, event) {
         itemData = itemData instanceof Array ? itemData : [itemData];
-        return this.document.createEmbeddedDocuments("Item", itemData);
+        return this.document.createEmbeddedDocuments('Item', itemData);
     }
 
     async emulateItemDrop(data) {
-        const event = new DragEvent("drop", { altKey: game.keyboard.isModifierActive("Alt") });
+        const event = new DragEvent('drop', { altKey: game.keyboard.isModifierActive('Alt') });
         return this._onDropItem(event, data);
     }
 }
@@ -1400,7 +1608,6 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
 //         if(attribute.levelMark || !newMark) return;
 
-
 //         const path = `system.attributes.${button.dataset.attribute}.levelMarks`;
 //         await this.actor.update({ [path]: [...attribute.levelMarks, newMark] });
 //     }
@@ -1546,7 +1753,6 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
 //         // createdItems.push(...result.data.system.abilities);
 //         createdItems.push(result.data);
-        
 
 //         await this.actor.createEmbeddedDocuments('Item', createdItems);
 
@@ -1753,7 +1959,6 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 //         const item = button.dataset.multiclass === 'true' ? this.actor.system.multiclassSubclass : this.actor.system.subclass;
 //         const ability = item.system[`${button.dataset.key}Feature`];
 //         const title = `${item.name} - ${game.i18n.localize(`DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`)}`;
-
 
 //         const cls = getDocumentClass("ChatMessage");
 //         const msg = new cls({

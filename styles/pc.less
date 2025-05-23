@@ -4,7 +4,7 @@
     div[data-application-part] {
         display: flex;
         flex-direction: column;
-    
+
         .pc-sheet-header {
             display: flex;
             gap: @halfMargin;
@@ -118,7 +118,7 @@
                     }
                 }
 
-                .level-container{
+                .level-container {
                     position: relative;
                     bottom: 4px;
                     flex: none;
@@ -147,7 +147,8 @@
                             font-weight: bold;
                             font-size: 20px;
                             text-align: center;
-                            &:not(:hover), &:not(:focus) {
+                            &:not(:hover),
+                            &:not(:focus) {
                                 border: none;
                             }
                         }
@@ -177,7 +178,7 @@
                         font-size: 12px;
 
                         &.levelup {
-                            color:gold;
+                            color: gold;
                             filter: drop-shadow(0px 0px 3px orange);
                             font-weight: bold;
                             cursor: pointer;
@@ -258,7 +259,7 @@
                     align-items: center;
                     flex-basis: 33.33%;
                     // flex: 1;
-                    
+
                     .attribute-banner {
                         position: relative;
                         top: 8px;
@@ -315,7 +316,8 @@
                             }
                         }
 
-                        & i.selected, &:hover i.selected {
+                        & i.selected,
+                        &:hover i.selected {
                             color: green;
                             opacity: 1;
                         }
@@ -397,7 +399,7 @@
                         position: relative;
                         padding: @fullPadding;
                         max-width: 100px;
-                        
+
                         img {
                             border: none;
                             max-width: 80px;
@@ -411,7 +413,8 @@
                             font-weight: bold;
                             font-size: 30px;
                             text-align: center;
-                            &:not(:hover), &:not(:focus) {
+                            &:not(:hover),
+                            &:not(:focus) {
                                 border: none;
                             }
                         }
@@ -463,7 +466,7 @@
                     position: relative;
                 }
             }
-            
+
             .weapon-section {
                 padding-top: 8px;
             }
@@ -473,7 +476,7 @@
                 display: flex;
                 align-items: center;
                 align-self: center;
-                
+
                 .threshold-box {
                     position: relative;
                     width: 30px;
@@ -507,7 +510,7 @@
             .death-save {
                 position: absolute;
                 right: -22px;
-                
+
                 &:hover:not(.disabled) {
                     filter: drop-shadow(0 0 3px @mainShadow);
                     cursor: pointer;
@@ -606,14 +609,14 @@
 
                 .disabled-experience {
                     border: @thinBorder solid @borderTertiary;
-                    background: rgba(0, 0, 0, 0.20);
+                    background: rgba(0, 0, 0, 0.2);
                 }
             }
             .gold-section {
                 width: calc(100% - 8px);
                 display: flex;
                 justify-content: space-between;
-                
+
                 fieldset.gold-fieldset {
                     padding-right: 0;
                     padding-left: 0;
@@ -644,7 +647,8 @@
                         gap: @tinyMargin;
                     }
 
-                    .gold-row, .gold-column {
+                    .gold-row,
+                    .gold-column {
                         img {
                             min-width: 14px;
                             min-height: 14px;
@@ -654,7 +658,8 @@
 
                             &:hover {
                                 cursor: pointer;
-                                filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(21deg) brightness(17%) contrast(103%) drop-shadow(0 0 3px @mainShadow);
+                                filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(21deg) brightness(17%)
+                                    contrast(103%) drop-shadow(0 0 3px @mainShadow);
                             }
                         }
 
@@ -663,7 +668,8 @@
                             filter: drop-shadow(0 0 3px @mainShadow);
                         }
 
-                        img:not(.owned), i:not(.owned) {
+                        img:not(.owned),
+                        i:not(.owned) {
                             opacity: 0.4;
                         }
                     }
@@ -696,7 +702,7 @@
                     justify-content: space-between;
                     padding: @fullPadding;
                     margin-bottom: 0;
-            
+
                     .feature-img {
                         max-width: 42px;
                     }
@@ -728,8 +734,8 @@
                         background: rgba(0, 0, 0, 0.05);
                         display: flex;
                         justify-content: center;
-                        
-                        &:hover:not(.disabled):not(.used){
+
+                        &:hover:not(.disabled):not(.used) {
                             cursor: pointer;
                             filter: drop-shadow(0 0 3px @mainShadow);
                         }
@@ -752,7 +758,7 @@
 
                         &.used::after {
                             position: absolute;
-                            content: "/";
+                            content: '/';
                             color: @borderTertiary;
                             font-weight: 700;
                             font-size: 1.7em;
@@ -816,7 +822,7 @@
                             color: black;
                         }
 
-                        &:not(:last-of-type){
+                        &:not(:last-of-type) {
                             margin-right: @tinyMargin;
                         }
                     }
@@ -912,7 +918,7 @@
                         background: rgb(122, 121, 113);
                         border-color: black;
                         margin: 0;
-                        
+
                         &:hover {
                             background: red;
                         }
@@ -925,7 +931,8 @@
                 }
             }
 
-            .inventory-armor-section, .inventory-weapon-section {
+            .inventory-armor-section,
+            .inventory-weapon-section {
                 width: 100%;
                 margin-bottom: @fullMargin;
                 text-transform: uppercase;
@@ -941,14 +948,14 @@
                 display: flex;
                 align-items: center;
                 margin-bottom: @halfMargin;
-                
+
                 .page-selector {
                     margin-left: 4px;
                     display: flex;
                     align-items: center;
 
                     i {
-                        &:hover:not(.disabled){
+                        &:hover:not(.disabled) {
                             cursor: pointer;
                             filter: drop-shadow(0px 0px 3px red);
                         }
@@ -1040,8 +1047,8 @@
             .inventory-items {
                 width: 100%;
                 flex: 1;
-                display: flex; 
-                flex-direction: column; 
+                display: flex;
+                flex-direction: column;
                 justify-content: space-between;
             }
 
@@ -1078,7 +1085,7 @@
                             .top-card-row {
                                 flex: 1;
                                 display: flex;
-                                justify-content: space-around;  
+                                justify-content: space-around;
                             }
 
                             .domain-card.outlined {
@@ -1099,7 +1106,7 @@
                         flex-wrap: wrap;
                         overflow-y: auto;
                         height: 100%;
-                        
+
                         .vault-card {
                             flex: 0;
                             flex-basis: calc(33.33% - 16px);
@@ -1108,7 +1115,7 @@
                             min-height: calc(50% - 16px);
                         }
                     }
-                
+
                     .domain-card-menu {
                         flex: 0;
                         width: 120px;
@@ -1120,7 +1127,7 @@
                         button {
                             margin-bottom: @tinyMargin;
                         }
-                    } 
+                    }
                 }
             }
 
@@ -1213,14 +1220,14 @@
                     bottom: -9px;
                     z-index: 1;
 
-                    .abilities-card-type-text{
+                    .abilities-card-type-text {
                         padding: 0px 4px;
                         border: 1px solid black;
                         border-radius: 6px;
                         background: gold;
                     }
                 }
-                
+
                 .abilities-card-title {
                     flex: 0;
                     display: flex;
@@ -1260,7 +1267,7 @@
 
                 .abilities-card-effect {
                     cursor: pointer;
-                    
+
                     &:hover {
                         background: rgb(47 79 79 / 25%);
                     }
@@ -1284,14 +1291,14 @@
                         &:hover {
                             background: rgb(47 79 79 / 25%);
                         }
-                    
+
                         > * {
                             margin: 0;
-                        } 
+                        }
                     }
                 }
 
-                &:hover .abilities-card-menu{
+                &:hover .abilities-card-menu {
                     height: 40px;
                     left: 0px;
                 }
@@ -1328,7 +1335,7 @@
                 }
 
                 .heritage-card {
-                    flex-basis: 33.33%;  
+                    flex-basis: 33.33%;
                     margin: @fullMargin;
                     display: flex;
                     align-items: center;
@@ -1389,7 +1396,7 @@
                 overflow: auto;
 
                 .inventory-item-list {
-                    list-style-type:none;
+                    list-style-type: none;
                     padding: 0 @largePadding;
                     margin-top: 0;
 

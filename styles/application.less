@@ -1,12 +1,15 @@
-form.daggerheart.views.downtime { // Shouldn't be needed, but DEFAULT_OPTIONS doesn't accept Height: 'auto'
+form.daggerheart.views.downtime {
+    // Shouldn't be needed, but DEFAULT_OPTIONS doesn't accept Height: 'auto'
     height: auto !important;
 }
 
-div.daggerheart.views.death-move { // Shouldn't be needed, but DEFAULT_OPTIONS doesn't accept Height: 'auto'
+div.daggerheart.views.death-move {
+    // Shouldn't be needed, but DEFAULT_OPTIONS doesn't accept Height: 'auto'
     height: auto !important;
 }
 
-div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS doesn't accept Height: 'auto'
+div.daggerheart.views.multiclass {
+    // Shouldn't be needed, but DEFAULT_OPTIONS doesn't accept Height: 'auto'
     height: auto !important;
 }
 
@@ -19,7 +22,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
             justify-content: center;
             font-size: 32px;
             margin-bottom: 4px;
-            
+
             .level-title {
                 text-decoration: underline;
             }
@@ -27,7 +30,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
             .level-display {
                 display: flex;
                 align-items: center;
-                
+
                 i {
                     margin: 0 @halfMargin;
                 }
@@ -97,7 +100,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                                 position: relative;
                                 display: flex;
                                 align-items: center;
-                                
+
                                 input {
                                     &:disabled:checked::before {
                                         opacity: 0.4;
@@ -126,7 +129,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                         padding: 8px 0;
                     }
                 }
-            }        
+            }
         }
     }
 
@@ -153,7 +156,8 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                     margin-right: 8px;
                     cursor: pointer;
 
-                    &:hover, &.selected {
+                    &:hover,
+                    &.selected {
                         filter: drop-shadow(0 0 6px gold);
                     }
                 }
@@ -173,7 +177,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
             }
         }
     }
-    
+
     &.downtime {
         .activity-text-area {
             resize: none;
@@ -199,22 +203,23 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
         }
 
         .roll-dialog-container {
-            .disadvantage, .advantage {
+            .disadvantage,
+            .advantage {
                 border: 2px solid @secondaryAccent;
                 border-radius: 6px;
                 display: flex;
                 align-items: center;
                 padding: 4px;
                 margin-bottom: 6px;
-        
+
                 &.selected {
                     filter: drop-shadow(0px 0px 3px @mainShadow);
                 }
-                
+
                 input {
                     border: 0;
                 }
-        
+
                 button {
                     flex: 0;
                     border-radius: 50%;
@@ -225,11 +230,11 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                     justify-content: center;
                     margin: 2px 0 2px 4px;
                     padding: 12px;
-        
+
                     i {
                         margin: 0;
                     }
-                } 
+                }
             }
 
             .roll-dialog-experience-container {
@@ -237,7 +242,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                 align-items: center;
                 flex-wrap: wrap;
                 gap: @halfMargin;
-    
+
                 .roll-dialog-chip {
                     border: @thinBorder solid black;
                     border-radius: 6px;
@@ -252,11 +257,11 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                     background: grey;
                     overflow: hidden;
                     font-weight: bold;
-                    
+
                     &.hover {
                         filter: drop-shadow(0 0 3px @mainShadow);
                     }
-    
+
                     span {
                         overflow: hidden;
                         white-space: nowrap;
@@ -272,7 +277,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                     }
                 }
             }
-            
+
             .hope-container {
                 display: flex;
                 gap: @fullMargin;
@@ -297,7 +302,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                     align-items: center;
                     flex: 1;
 
-                    .dice-inner-container{
+                    .dice-inner-container {
                         position: relative;
                         display: flex;
                         align-items: center;
@@ -305,13 +310,13 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                         i {
                             font-size: 18px;
                         }
-    
+
                         img {
                             border: 0;
                             position: relative;
                             left: 1px;
                         }
-    
+
                         .dice-number {
                             position: absolute;
                             top: calc(50% - 14px);
@@ -330,7 +335,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                 gap: @halfMargin;
                 flex: 2;
                 height: 100%;
-    
+
                 .roll-dialog-chip {
                     border: @thinBorder solid black;
                     border-radius: 6px;
@@ -342,11 +347,11 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                     padding: @fullPadding;
                     background: grey;
                     overflow: hidden;
-                    
+
                     &.hover {
                         filter: drop-shadow(0 0 3px @mainShadow);
                     }
-    
+
                     span {
                         overflow: hidden;
                         white-space: nowrap;
@@ -370,38 +375,40 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
             }
 
             .multiclass-class-choices {
-                display: flex; 
-                width: 100%; 
-                height: 100%; 
+                display: flex;
+                width: 100%;
+                height: 100%;
                 flex-wrap: wrap;
             }
 
             .multiclass-spaced-choices {
-                display: flex; 
+                display: flex;
                 justify-content: space-around;
-                width: 100%; 
-                height: 100%; 
+                width: 100%;
+                height: 100%;
             }
 
             .multiclass-class-choice {
-                display: flex; 
+                display: flex;
                 align-items: center;
                 flex-basis: 33.33%;
-                font-weight: bold; 
+                font-weight: bold;
                 font-size: 24px;
                 cursor: pointer;
 
-                &.selected:not(.disabled), &:hover:not(.disabled) {
+                &.selected:not(.disabled),
+                &:hover:not(.disabled) {
                     filter: drop-shadow(0 0 3px gold);
                 }
 
-                &.inactive, &.disabled {
+                &.inactive,
+                &.disabled {
                     cursor: initial;
                     opacity: 0.4;
                 }
 
                 img {
-                    width: 80px; 
+                    width: 80px;
                     height: 80px;
                     margin-right: @largeMargin;
                 }
@@ -460,27 +467,27 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                 width: 100%;
                 display: flex;
                 flex-wrap: wrap;
-                
+
                 .ancestry-inner-container {
                     flex-basis: 25%;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-            
+
                     .image-container {
                         img {
                             width: 120px;
                             border: 4px solid black;
                             border-radius: 50%;
-            
+
                             &.selected {
                                 border-color: @secondaryShadow;
                             }
-                            
-                            &:hover:not(.selected)  {
+
+                            &:hover:not(.selected) {
                                 filter: drop-shadow(0 0 3px @secondaryShadow);
                             }
-    
+
                             &.disabled {
                                 opacity: 0.3;
                             }
@@ -556,7 +563,7 @@ div.daggerheart.views.multiclass { // Shouldn't be needed, but DEFAULT_OPTIONS d
                         }
                     }
                 }
-            } 
+            }
         }
     }
 }

@@ -1,10 +1,9 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-
-    constructor(resolve){
+    constructor(resolve) {
         super({});
-  
+
         this.resolve = resolve;
         this.data = {
             ancestries: [],
@@ -13,17 +12,17 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
                 name: '',
                 img: null,
                 customImg: 'icons/svg/mystery-man.svg',
-                description: '',
-            },
+                description: ''
+            }
         };
     }
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ["daggerheart", "views", "ancestry-selection"],
+        classes: ['daggerheart', 'views', 'ancestry-selection'],
         position: {
-          width: 800,
-          height: "auto"
+            width: 800,
+            height: 'auto'
         },
         actions: {
             selectAncestry: this.selectAncestry,
@@ -31,21 +30,21 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
             viewItem: this.viewItem,
             selectImage: this.selectImage,
             editImage: this._onEditImage,
-            saveAncestry: this.saveAncestry,
+            saveAncestry: this.saveAncestry
         },
         form: {
             submitOnChange: true,
-            closeOnSubmit: false,
+            closeOnSubmit: false
         }
     };
-    
+
     /** @override */
     static PARTS = {
         damageSelection: {
-            id: "ancestrySelection",
-            template: "systems/daggerheart/templates/views/ancestrySelection.hbs"
+            id: 'ancestrySelection',
+            template: 'systems/daggerheart/templates/views/ancestrySelection.hbs'
         }
-    }
+    };
 
     /* -------------------------------------------- */
 
@@ -57,10 +56,10 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        const ancestryNameInput = $(htmlElement).find(".ancestry-name");
-        if(ancestryNameInput.length > 0){
-            ancestryNameInput.on("change", this.setName.bind(this));
-            $(htmlElement).find(".ancestry-description").on("change", this.setDescription.bind(this));
+        const ancestryNameInput = $(htmlElement).find('.ancestry-name');
+        if (ancestryNameInput.length > 0) {
+            ancestryNameInput.on('change', this.setName.bind(this));
+            $(htmlElement).find('.ancestry-description').on('change', this.setDescription.bind(this));
         }
         // $(htmlElement).find(".ancestry-image").on("change", this.selectImage.bind(this));
     }
@@ -68,19 +67,26 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
     async _prepareContext(_options) {
         const systemAncestries = Array.from((await game.packs.get('daggerheart.playtest-ancestries')).index).map(x => ({
             ...x,
-            selected: this.data.ancestries.some(selected => selected.uuid === x.uuid),
+            selected: this.data.ancestries.some(selected => selected.uuid === x.uuid)
         }));
 
         const customAncestries = game.items.reduce((acc, x) => {
-            if(x.type === 'ancestry'){
-                acc.push({ ...x, uuid: x.uuid, selected: this.data.ancestries.some(selected => selected.uuid === x.uuid) });
+            if (x.type === 'ancestry') {
+                acc.push({
+                    ...x,
+                    uuid: x.uuid,
+                    selected: this.data.ancestries.some(selected => selected.uuid === x.uuid)
+                });
             }
 
             return acc;
         }, []);
 
-        const ancestryFeatures = this.data.ancestries.flatMap(x => 
-            x.system.abilities.map(x => ({ ...x, selected: this.data.features.some(selected => selected.uuid === x.uuid) }))
+        const ancestryFeatures = this.data.ancestries.flatMap(x =>
+            x.system.abilities.map(x => ({
+                ...x,
+                selected: this.data.features.some(selected => selected.uuid === x.uuid)
+            }))
         );
 
         return {
@@ -89,13 +95,13 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
             ancestryFeatures,
             selectedAncestries: this.data.ancestries,
             selectedFeatures: this.data.features,
-            ancestryInfo: this.data.ancestryInfo,
+            ancestryInfo: this.data.ancestryInfo
         };
     }
 
     static async selectAncestry(_, button) {
         const newAncestries = [...this.data.ancestries];
-        if(!newAncestries.findSplice(x => x.uuid === button.dataset.uuid) && this.data.ancestries.length < 2){
+        if (!newAncestries.findSplice(x => x.uuid === button.dataset.uuid) && this.data.ancestries.length < 2) {
             const ancestry = await fromUuid(button.dataset.uuid);
             newAncestries.push(ancestry);
         }
@@ -108,7 +114,7 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
 
     static async selectFeature(_, button) {
         const newFeatures = [...this.data.features];
-        if(!newFeatures.findSplice(x => x.uuid === button.dataset.uuid) && this.data.features.length < 2){
+        if (!newFeatures.findSplice(x => x.uuid === button.dataset.uuid) && this.data.features.length < 2) {
             const feature = await fromUuid(button.dataset.uuid);
             newFeatures.push(feature);
         }
@@ -125,7 +131,7 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
         this.data.ancestryInfo.name = event.currentTarget.value;
         this.render(true);
     }
-    
+
     setDescription(event) {
         this.data.ancestryInfo.description = event.currentTarget.value;
         this.render(true);
@@ -139,7 +145,7 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
     static _onEditImage() {
         const fp = new FilePicker({
             current: this.data.ancestryInfo.img,
-            type: "image",
+            type: 'image',
             redirectToRoot: ['icons/svg/mystery-man.svg'],
             callback: async path => this._updateImage.bind(this)(path),
             top: this.position.top + 40,
@@ -148,17 +154,32 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
         return fp.browse();
     }
 
-    _updateImage(path){
-      this.data.ancestryInfo.customImg = path;
-      this.data.ancestryInfo.img = path;
-      this.render(true);
+    _updateImage(path) {
+        this.data.ancestryInfo.customImg = path;
+        this.data.ancestryInfo.img = path;
+        this.render(true);
     }
 
     static async saveAncestry(_, button) {
-        if(this.data.ancestries.length === 2){
+        if (this.data.ancestries.length === 2) {
             const { name, img, description } = this.data.ancestryInfo;
 
-            this.resolve({ data: { name: name, img: img, type: "ancestry", system: { description: description, abilities: this.data.features.map(x => ({ name: x.name, img: x.img, uuid: x.uuid, subclassLevel: '' })) }}});
+            this.resolve({
+                data: {
+                    name: name,
+                    img: img,
+                    type: 'ancestry',
+                    system: {
+                        description: description,
+                        abilities: this.data.features.map(x => ({
+                            name: x.name,
+                            img: x.img,
+                            uuid: x.uuid,
+                            subclassLevel: ''
+                        }))
+                    }
+                }
+            });
         } else {
             this.resolve({ data: this.data.ancestries[0].toObject() });
         }
@@ -170,7 +191,7 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
 // export default class DamageSelectionDialog extends FormApplication {
 //     constructor(rollString, bonusDamage, resolve){
 //         super({}, {});
-  
+
 //         this.data = {
 //             rollString,
 //             bonusDamage: bonusDamage.map(x => ({
@@ -180,11 +201,11 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
 //         }
 //         this.resolve = resolve;
 //     }
-  
+
 //     get title (){
 //       return 'Damage Options';
 //     }
-  
+
 //     static get defaultOptions() {
 //         const defaults = super.defaultOptions;
 //         const overrides = {
@@ -195,33 +216,33 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
 //           closeOnSubmit: false,
 //           classes: ["daggerheart", "views", "damage-selection"],
 //         };
-        
+
 //         const mergedOptions = foundry.utils.mergeObject(defaults, overrides);
-        
+
 //         return mergedOptions;
 //     }
-      
+
 //     async getData(){
 //         const context = super.getData();
 //         context.rollString = this.data.rollString;
 //         context.bonusDamage = this.data.bonusDamage;
-  
+
 //         return context;
 //     }
-  
+
 //     activateListeners(html) {
 //         super.activateListeners(html);
-  
+
 //         html.find('.roll-button').click(this.finish.bind(this));
 //         html.find('.').change();
 //     }
-  
+
 //     // async _updateObject(_, formData) {
 //     //     const data = foundry.utils.expandObject(formData);
 //     //     this.data = foundry.utils.mergeObject(this.data, data);
 //     //     this.render(true);
 //     // }
-    
+
 //     finish(){
 //       this.resolve(this.data);
 //       this.close();

@@ -1,14 +1,14 @@
-@import "./variables/variables.less";
-@import "./class.less";
-@import "./pc.less";
-@import "./ui.less";
-@import "./chat.less";
-@import "./item.less";
-@import "./application.less";
-@import "./sheets//sheets.less";
-@import "./components.less";
-@import "./dialog.less";
-@import "../node_modules/@yaireo/tagify/dist/tagify.css";
+@import './variables/variables.less';
+@import './class.less';
+@import './pc.less';
+@import './ui.less';
+@import './chat.less';
+@import './item.less';
+@import './application.less';
+@import './sheets//sheets.less';
+@import './components.less';
+@import './dialog.less';
+@import '../node_modules/@yaireo/tagify/dist/tagify.css';
 
 #logo {
     content: url(../assets/DaggerheartLogo.webp);
@@ -52,7 +52,7 @@
     }
 
     /****/
-    img[data-edit="img"] {
+    img[data-edit='img'] {
         min-width: 64px;
         min-height: 64px;
     }
@@ -84,8 +84,7 @@
             opacity: 0.6;
         }
 
-
-        &:hover:not(.disabled){
+        &:hover:not(.disabled) {
             cursor: pointer;
             filter: drop-shadow(0 0 3px @mainShadow);
 
@@ -118,11 +117,11 @@
 
         .fear-control {
             font-size: 10px;
-            
+
             &.disabled {
                 opacity: 0.4;
             }
-            
+
             &:hover:not(.disabled) {
                 cursor: pointer;
                 filter: drop-shadow(0 0 3px @mainShadow);
