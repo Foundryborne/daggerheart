@@ -1,75 +1,7 @@
 export const armorFeatures = {
-    light: {
-        label: 'DAGGERHEART.ArmorFeature.Light.Name',
-        description: 'DAGGERHEART.ArmorFeature.Light.Description'
-    },
-    heavy: {
-        label: 'DAGGERHEART.ArmorFeature.Heavy.Name',
-        description: 'DAGGERHEART.ArmorFeature.Heavy.Description'
-    },
-    veryHeavy: {
-        label: 'DAGGERHEART.ArmorFeature.VeryHeavy.Name',
-        description: 'DAGGERHEART.ArmorFeature.VeryHeavy.Description'
-    },
-    reinforced: {
-        label: 'DAGGERHEART.ArmorFeature.Reinforced.Name',
-        description: 'DAGGERHEART.ArmorFeature.Reinforced.Description'
-    },
-    sturdy: {
-        label: 'DAGGERHEART.ArmorFeature.Sturdy.Name',
-        description: 'DAGGERHEART.ArmorFeature.Sturdy.Description'
-    },
-    warded: {
-        label: 'DAGGERHEART.ArmorFeature.Warded.Name',
-        description: 'DAGGERHEART.ArmorFeature.Warded.Description'
-    },
-    resistant: {
-        label: 'DAGGERHEART.ArmorFeature.Resistant.Name',
-        description: 'DAGGERHEART.ArmorFeature.Resistant.Description'
-    },
-    quiet: {
-        label: 'DAGGERHEART.ArmorFeature.Quiet.Name',
-        description: 'DAGGERHEART.ArmorFeature.Quiet.Description'
-    },
-    hopeful: {
-        label: 'DAGGERHEART.ArmorFeature.Hopeful.Name',
-        description: 'DAGGERHEART.ArmorFeature.Hopeful.Description'
-    },
-    impenetrable: {
-        label: 'DAGGERHEART.ArmorFeature.Impenetrable.Name',
-        description: 'DAGGERHEART.ArmorFeature.Impenetrable.Description'
-    },
-    painful: {
-        label: 'DAGGERHEART.ArmorFeature.Painful.Name',
-        description: 'DAGGERHEART.ArmorFeature.Painful.Description'
-    },
-    gilded: {
-        label: 'DAGGERHEART.ArmorFeature.Gilded.Name',
-        description: 'DAGGERHEART.ArmorFeature.Gilded.Description'
-    },
-    physical: {
-        label: 'DAGGERHEART.ArmorFeature.Physical.Name',
-        description: 'DAGGERHEART.ArmorFeature.Physical.Description'
-    },
-    magic: {
-        label: 'DAGGERHEART.ArmorFeature.Magic.Name',
-        description: 'DAGGERHEART.ArmorFeature.Magic.Description'
-    },
-    sharp: {
-        label: 'DAGGERHEART.ArmorFeature.Sharp.Name',
-        description: 'DAGGERHEART.ArmorFeature.Sharp.Description'
-    },
     burning: {
         label: 'DAGGERHEART.ArmorFeature.Burning.Name',
         description: 'DAGGERHEART.ArmorFeature.Burning.Description'
-    },
-    timeslowing: {
-        label: 'DAGGERHEART.ArmorFeature.Timeslowing.Name',
-        description: 'DAGGERHEART.ArmorFeature.Timeslowing.Description'
-    },
-    truthseeking: {
-        label: 'DAGGERHEART.ArmorFeature.Truthseeking.Name',
-        description: 'DAGGERHEART.ArmorFeature.Truthseeking.Description'
     },
     channeling: {
         label: 'DAGGERHEART.ArmorFeature.Channeling.Name',
@@ -79,215 +11,274 @@ export const armorFeatures = {
         label: 'DAGGERHEART.ArmorFeature.Difficult.Name',
         description: 'DAGGERHEART.ArmorFeature.Difficult.Description'
     },
-    variable: {
-        label: 'DAGGERHEART.ArmorFeature.Variable.Name',
-        description: 'DAGGERHEART.ArmorFeature.Variable.Description'
+    flexible: {
+        label: 'DAGGERHEART.ArmorFeature.Flexible.Name',
+        description: 'DAGGERHEART.ArmorFeature.Flexible.Description'
+    },
+    fortified: {
+        label: 'DAGGERHEART.ArmorFeature.Fortified.Name',
+        description: 'DAGGERHEART.ArmorFeature.Fortified.Description'
+    },
+    gilded: {
+        label: 'DAGGERHEART.ArmorFeature.Gilded.Name',
+        description: 'DAGGERHEART.ArmorFeature.Gilded.Description'
+    },
+    heavy: {
+        label: 'DAGGERHEART.ArmorFeature.Heavy.Name',
+        description: 'DAGGERHEART.ArmorFeature.Heavy.Description'
+    },
+    hopeful: {
+        label: 'DAGGERHEART.ArmorFeature.Hopeful.Name',
+        description: 'DAGGERHEART.ArmorFeature.Hopeful.Description'
+    },
+    impenetrable: {
+        label: 'DAGGERHEART.ArmorFeature.Impenetrable.Name',
+        description: 'DAGGERHEART.ArmorFeature.Impenetrable.Description'
+    },
+    magic: {
+        label: 'DAGGERHEART.ArmorFeature.Magic.Name',
+        description: 'DAGGERHEART.ArmorFeature.Magic.Description'
+    },
+    painful: {
+        label: 'DAGGERHEART.ArmorFeature.Painful.Name',
+        description: 'DAGGERHEART.ArmorFeature.Painful.Description'
+    },
+    physical: {
+        label: 'DAGGERHEART.ArmorFeature.Physical.Name',
+        description: 'DAGGERHEART.ArmorFeature.Physical.Description'
+    },
+    quiet: {
+        label: 'DAGGERHEART.ArmorFeature.Quiet.Name',
+        description: 'DAGGERHEART.ArmorFeature.Quiet.Description'
+    },
+    reinforced: {
+        label: 'DAGGERHEART.ArmorFeature.Reinforced.Name',
+        description: 'DAGGERHEART.ArmorFeature.Reinforced.Description'
+    },
+    resilient: {
+        label: 'DAGGERHEART.ArmorFeature.Resilient.Name',
+        description: 'DAGGERHEART.ArmorFeature.Resilient.Description'
+    },
+    sharp: {
+        label: 'DAGGERHEART.ArmorFeature.Sharp.Name',
+        description: 'DAGGERHEART.ArmorFeature.Sharp.Description'
+    },
+    shifting: {
+        label: 'DAGGERHEART.ArmorFeature.Shifting.Name',
+        description: 'DAGGERHEART.ArmorFeature.Shifting.Description'
+    },
+    timeslowing: {
+        label: 'DAGGERHEART.ArmorFeature.Timeslowing.Name',
+        description: 'DAGGERHEART.ArmorFeature.Timeslowing.Description'
+    },
+    truthseeking: {
+        label: 'DAGGERHEART.ArmorFeature.Truthseeking.Name',
+        description: 'DAGGERHEART.ArmorFeature.Truthseeking.Description'
+    },
+    veryheavy: {
+        label: 'DAGGERHEART.ArmorFeature.VeryHeavy.Name',
+        description: 'DAGGERHEART.ArmorFeature.VeryHeavy.Description'
+    },
+    warded: {
+        label: 'DAGGERHEART.ArmorFeature.Warded.Name',
+        description: 'DAGGERHEART.ArmorFeature.Warded.Description'
     }
 };
 
 export const weaponFeatures = {
-    light: {
-        label: 'DAGGERHEART.WeaponFeature.Light.Name',
-        description: 'DAGGERHEART.WeaponFeature.Light.Description'
-    },
-    heavy: {
-        label: 'DAGGERHEART.WeaponFeature.Heavy.Name',
-        description: 'DAGGERHEART.WeaponFeature.Heavy.Description'
-    },
-    massive: {
-        label: 'DAGGERHEART.WeaponFeature.Massive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Massive.Description'
-    },
-    reliable: {
-        label: 'DAGGERHEART.WeaponFeature.Reliable.Name',
-        description: 'DAGGERHEART.WeaponFeature.Reliable.Description'
-    },
-    quick: {
-        label: 'DAGGERHEART.WeaponFeature.Quick.Name',
-        description: 'DAGGERHEART.WeaponFeature.Quick.Description'
-    },
-    cumbersome: {
-        label: 'DAGGERHEART.WeaponFeature.Cumbersome.Name',
-        description: 'DAGGERHEART.WeaponFeature.Cumbersome.Description'
-    },
-    versatile: {
-        label: 'DAGGERHEART.WeaponFeature.Versatile.Name',
-        description: 'DAGGERHEART.WeaponFeature.Versatile.Description',
+    barrier: {
+        label: 'DAGGERHEART.ArmorFeature.Barrier.Name',
+        description: 'DAGGERHEART.ArmorFeature.Barrier.Description',
         override: {
-            damage: ''
+            armorBonus: 1
         }
     },
-    powerful: {
-        label: 'DAGGERHEART.WeaponFeature.Powerful.Name',
-        description: 'DAGGERHEART.WeaponFeature.Powerful.Description'
-    },
-    scary: {
-        label: 'DAGGERHEART.WeaponFeature.Scary.Name',
-        description: 'DAGGERHEART.WeaponFeature.Scary.Description'
-    },
-    brutal: {
-        label: 'DAGGERHEART.WeaponFeature.Brutal.Name',
-        description: 'DAGGERHEART.WeaponFeature.Brutal.Description'
-    },
-    reloading: {
-        label: 'DAGGERHEART.WeaponFeature.Reloading.Name',
-        description: 'DAGGERHEART.WeaponFeature.Reloading.Description'
-    },
-    eruptive: {
-        label: 'DAGGERHEART.WeaponFeature.Eruptive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Eruptive.Description'
-    },
-    persuasive: {
-        label: 'DAGGERHEART.WeaponFeature.Persuasive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Persuasive.Description'
-    },
-    pompous: {
-        label: 'DAGGERHEART.WeaponFeature.Pompous.Name',
-        description: 'DAGGERHEART.WeaponFeature.Pompous.Description'
-    },
-    invigorating: {
-        label: 'DAGGERHEART.WeaponFeature.Invigorating.Name',
-        description: 'DAGGERHEART.WeaponFeature.Invigorating.Description'
-    },
-    dense: {
-        label: 'DAGGERHEART.WeaponFeature.Dense.Name',
-        description: 'DAGGERHEART.WeaponFeature.Dense.Description'
-    },
-    soulswift: {
-        label: 'DAGGERHEART.WeaponFeature.Soulswift.Name',
-        description: 'DAGGERHEART.WeaponFeature.Soulswift.Description'
-    },
-    protective: {
-        label: 'DAGGERHEART.WeaponFeature.Protective.Name',
-        description: 'DAGGERHEART.WeaponFeature.Protective.Description'
-    },
-    devastating: {
-        label: 'DAGGERHEART.WeaponFeature.Devastating.Name',
-        description: 'DAGGERHEART.WeaponFeature.Devastating.Description'
-    },
-    retractable: {
-        label: 'DAGGERHEART.WeaponFeature.Retractable.Name',
-        description: 'DAGGERHEART.WeaponFeature.Retractable.Description'
-    },
-    burn: {
-        label: 'DAGGERHEART.WeaponFeature.Burn.Name',
-        description: 'DAGGERHEART.WeaponFeature.Burn.Description'
-    },
-    painful: {
-        label: 'DAGGERHEART.WeaponFeature.Painful.Name',
-        description: 'DAGGERHEART.WeaponFeature.Painful.Description'
-    },
-    otherwordly: {
-        label: 'DAGGERHEART.WeaponFeature.Otherwordly.Name',
-        description: 'DAGGERHEART.WeaponFeature.Otherwordly.Description'
-    },
-    lucky: {
-        label: 'DAGGERHEART.WeaponFeature.Lucky.Name',
-        description: 'DAGGERHEART.WeaponFeature.Lucky.Description'
-    },
-    selfCorrecting: {
-        label: 'DAGGERHEART.WeaponFeature.SelfCorrecting.Name',
-        description: 'DAGGERHEART.WeaponFeature.SelfCorrecting.Description'
-    },
-    healing: {
-        label: 'DAGGERHEART.WeaponFeature.Healing.Name',
-        description: 'DAGGERHEART.WeaponFeature.Healing.Description'
-    },
-    timebender: {
-        label: 'DAGGERHEART.WeaponFeature.Timebender.Name',
-        description: 'DAGGERHEART.WeaponFeature.Timebender.Description'
-    },
-    enchanted: {
-        label: 'DAGGERHEART.WeaponFeature.Enchanted.Name',
-        description: 'DAGGERHEART.WeaponFeature.Enchanted.Description'
-    },
-    serrated: {
-        label: 'DAGGERHEART.WeaponFeature.Serrated.Name',
-        description: 'DAGGERHEART.WeaponFeature.Serrated.Description'
-    },
-    grappling: {
-        label: 'DAGGERHEART.WeaponFeature.Grappling.Name',
-        description: 'DAGGERHEART.WeaponFeature.Grappling.Description'
-    },
-    long: {
-        label: 'DAGGERHEART.WeaponFeature.Long.Name',
-        description: 'DAGGERHEART.WeaponFeature.Long.Description'
-    },
-    destructive: {
-        label: 'DAGGERHEART.WeaponFeature.Destructive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Destructive.Description'
-    },
-    concussive: {
-        label: 'DAGGERHEART.WeaponFeature.Concussive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Concussive.Description'
+    bonded: {
+        label: 'DAGGERHEART.ArmorFeature.Bonded.Name',
+        description: 'DAGGERHEART.ArmorFeature.Bonded.Description'
     },
     bouncing: {
-        label: 'DAGGERHEART.WeaponFeature.Bouncing.Name',
-        description: 'DAGGERHEART.WeaponFeature.Bouncing.Description'
+        label: 'DAGGERHEART.ArmorFeature.Bouncing.Name',
+        description: 'DAGGERHEART.ArmorFeature.Bouncing.Description'
     },
-    penetrating: {
-        label: 'DAGGERHEART.WeaponFeature.Penetrating.Name',
-        description: 'DAGGERHEART.WeaponFeature.Penetrating.Description'
+    brave: {
+        label: 'DAGGERHEART.ArmorFeature.Brave.Name',
+        description: 'DAGGERHEART.ArmorFeature.Brave.Description'
     },
-    lifestealing: {
-        label: 'DAGGERHEART.WeaponFeature.Lifestealing.Name',
-        description: 'DAGGERHEART.WeaponFeature.Lifestealing.Description'
+    brutal: {
+        label: 'DAGGERHEART.ArmorFeature.Brutal.Name',
+        description: 'DAGGERHEART.ArmorFeature.Brutal.Description'
     },
-    greedy: {
-        label: 'DAGGERHEART.WeaponFeature.Greedy.Name',
-        description: 'DAGGERHEART.WeaponFeature.Greedy.Description'
+    charged: {
+        label: 'DAGGERHEART.ArmorFeature.Charged.Name',
+        description: 'DAGGERHEART.ArmorFeature.Charged.Description'
     },
-    bonded: {
-        label: 'DAGGERHEART.WeaponFeature.Bonded.Name',
-        description: 'DAGGERHEART.WeaponFeature.Bonded.Description'
+    concussive: {
+        label: 'DAGGERHEART.ArmorFeature.Concussive.Name',
+        description: 'DAGGERHEART.ArmorFeature.Concussive.Description'
     },
-    barrier: {
-        label: 'DAGGERHEART.WeaponFeature.Barrier.Name',
-        description: 'DAGGERHEART.WeaponFeature.Barrier.Description'
+    cumbersome: {
+        label: 'DAGGERHEART.ArmorFeature.Cumbersome.Name',
+        description: 'DAGGERHEART.ArmorFeature.Cumbersome.Description'
     },
-    paired: {
-        label: 'DAGGERHEART.WeaponFeature.Paired.Name',
-        description: 'DAGGERHEART.WeaponFeature.Paired.Description'
-    },
-    whipcrack: {
-        label: 'DAGGERHEART.WeaponFeature.Whipcrack.Name',
-        description: 'DAGGERHEART.WeaponFeature.Whipcrack.Description'
-    },
-    hook: {
-        label: 'DAGGERHEART.WeaponFeature.Hook.Name',
-        description: 'DAGGERHEART.WeaponFeature.Hook.Description'
-    },
-    doubleDuty: {
-        label: 'DAGGERHEART.WeaponFeature.DoubleDuty.Name',
-        description: 'DAGGERHEART.WeaponFeature.DoubleDuty.Description'
-    },
-    parry: {
-        label: 'DAGGERHEART.WeaponFeature.Parry.Name',
-        description: 'DAGGERHEART.WeaponFeature.Parry.Description'
-    },
-    retrieve: {
-        label: 'DAGGERHEART.WeaponFeature.Retrieve.Name',
-        description: 'DAGGERHEART.WeaponFeature.Retrieve.Description'
+    deadly: {
+        label: 'DAGGERHEART.ArmorFeature.Deadly.Name',
+        description: 'DAGGERHEART.ArmorFeature.Deadly.Description'
     },
     deflecting: {
-        label: 'DAGGERHEART.WeaponFeature.Deflecting.Name',
-        description: 'DAGGERHEART.WeaponFeature.Deflecting.Description'
+        label: 'DAGGERHEART.ArmorFeature.Deflecting.Name',
+        description: 'DAGGERHEART.ArmorFeature.Deflecting.Description'
     },
-    chargedAttack: {
-        label: 'DAGGERHEART.WeaponFeature.ChargedAttack.Name',
-        description: 'DAGGERHEART.WeaponFeature.ChargedAttack.Description'
+    destructive: {
+        label: 'DAGGERHEART.ArmorFeature.Destructive.Name',
+        description: 'DAGGERHEART.ArmorFeature.Destructive.Description'
+    },
+    devastating: {
+        label: 'DAGGERHEART.ArmorFeature.Devastating.Name',
+        description: 'DAGGERHEART.ArmorFeature.Devastating.Description'
+    },
+    doubleduty: {
+        label: 'DAGGERHEART.ArmorFeature.DoubleDuty.Name',
+        description: 'DAGGERHEART.ArmorFeature.DoubleDuty.Description'
+    },
+    doubledup: {
+        label: 'DAGGERHEART.ArmorFeature.DoubledUp.Name',
+        description: 'DAGGERHEART.ArmorFeature.DoubledUp.Description'
+    },
+    dueling: {
+        label: 'DAGGERHEART.ArmorFeature.Dueling.Name',
+        description: 'DAGGERHEART.ArmorFeature.Dueling.Description'
+    },
+    eruptive: {
+        label: 'DAGGERHEART.ArmorFeature.Eruptive.Name',
+        description: 'DAGGERHEART.ArmorFeature.Eruptive.Description'
+    },
+    grappling: {
+        label: 'DAGGERHEART.ArmorFeature.Grappling.Name',
+        description: 'DAGGERHEART.ArmorFeature.Grappling.Description'
+    },
+    greedy: {
+        label: 'DAGGERHEART.ArmorFeature.Greedy.Name',
+        description: 'DAGGERHEART.ArmorFeature.Greedy.Description'
+    },
+    heavy: {
+        label: 'DAGGERHEART.ArmorFeature.Heavy.Name',
+        description: 'DAGGERHEART.ArmorFeature.Heavy.Description'
+    },
+    hooked: {
+        label: 'DAGGERHEART.ArmorFeature.Hooked.Name',
+        description: 'DAGGERHEART.ArmorFeature.Hooked.Description'
+    },
+    hot: {
+        label: 'DAGGERHEART.ArmorFeature.Hot.Name',
+        description: 'DAGGERHEART.ArmorFeature.Hot.Description'
+    },
+    invigorating: {
+        label: 'DAGGERHEART.ArmorFeature.Invigorating.Name',
+        description: 'DAGGERHEART.ArmorFeature.Invigorating.Description'
+    },
+    lifestealing: {
+        label: 'DAGGERHEART.ArmorFeature.Lifestealing.Name',
+        description: 'DAGGERHEART.ArmorFeature.Lifestealing.Description'
+    },
+    lockedon: {
+        label: 'DAGGERHEART.ArmorFeature.LockedOn.Name',
+        description: 'DAGGERHEART.ArmorFeature.LockedOn.Description'
+    },
+    long: {
+        label: 'DAGGERHEART.ArmorFeature.Long.Name',
+        description: 'DAGGERHEART.ArmorFeature.Long.Description'
+    },
+    massive: {
+        label: 'DAGGERHEART.ArmorFeature.Massive.Name',
+        description: 'DAGGERHEART.ArmorFeature.Massive.Description'
+    },
+    painful: {
+        label: 'DAGGERHEART.ArmorFeature.Painful.Name',
+        description: 'DAGGERHEART.ArmorFeature.Painful.Description'
+    },
+    paired: {
+        label: 'DAGGERHEART.ArmorFeature.Paired.Name',
+        description: 'DAGGERHEART.ArmorFeature.Paired.Description',
+        override: {
+            bonusDamage: 1
+        }
+    },
+    parry: {
+        label: 'DAGGERHEART.ArmorFeature.Parry.Name',
+        description: 'DAGGERHEART.ArmorFeature.Parry.Description'
+    },
+    persuasive: {
+        label: 'DAGGERHEART.ArmorFeature.Persuasive.Name',
+        description: 'DAGGERHEART.ArmorFeature.Persuasive.Description'
+    },
+    pompous: {
+        label: 'DAGGERHEART.ArmorFeature.Pompous.Name',
+        description: 'DAGGERHEART.ArmorFeature.Pompous.Description'
+    },
+    powerful: {
+        label: 'DAGGERHEART.ArmorFeature.Powerful.Name',
+        description: 'DAGGERHEART.ArmorFeature.Powerful.Description'
+    },
+    protective: {
+        label: 'DAGGERHEART.ArmorFeature.Protective.Name',
+        description: 'DAGGERHEART.ArmorFeature.Protective.Description',
+        override: {
+            armorBonus: 1
+        }
+    },
+    quick: {
+        label: 'DAGGERHEART.ArmorFeature.Quick.Name',
+        description: 'DAGGERHEART.ArmorFeature.Quick.Description'
+    },
+    reliable: {
+        label: 'DAGGERHEART.ArmorFeature.Reliable.Name',
+        description: 'DAGGERHEART.ArmorFeature.Reliable.Description'
+    },
+    reloading: {
+        label: 'DAGGERHEART.ArmorFeature.Reloading.Name',
+        description: 'DAGGERHEART.ArmorFeature.Reloading.Description'
+    },
+    retractable: {
+        label: 'DAGGERHEART.ArmorFeature.Retractable.Name',
+        description: 'DAGGERHEART.ArmorFeature.Retractable.Description'
+    },
+    returning: {
+        label: 'DAGGERHEART.ArmorFeature.Returning.Name',
+        description: 'DAGGERHEART.ArmorFeature.Returning.Description'
+    },
+    scary: {
+        label: 'DAGGERHEART.ArmorFeature.Scary.Name',
+        description: 'DAGGERHEART.ArmorFeature.Scary.Description'
+    },
+    serrated: {
+        label: 'DAGGERHEART.ArmorFeature.Serrated.Name',
+        description: 'DAGGERHEART.ArmorFeature.Serrated.Description'
+    },
+    sharpwing: {
+        label: 'DAGGERHEART.ArmorFeature.Sharpwing.Name',
+        description: 'DAGGERHEART.ArmorFeature.Sharpwing.Description'
     },
     sheltering: {
-        label: 'DAGGERHEART.WeaponFeature.Sheltering.Name',
-        description: 'DAGGERHEART.WeaponFeature.Sheltering.Description'
+        label: 'DAGGERHEART.ArmorFeature.Sheltering.Name',
+        description: 'DAGGERHEART.ArmorFeature.Sheltering.Description'
     },
-    doubledUp: {
-        label: 'DAGGERHEART.WeaponFeature.DoubledUp.Name',
-        description: 'DAGGERHEART.WeaponFeature.DoubledUp.Description'
+    startling: {
+        label: 'DAGGERHEART.ArmorFeature.Startling.Name',
+        description: 'DAGGERHEART.ArmorFeature.Startling.Description'
     },
-    lockedOn: {
-        label: 'DAGGERHEART.WeaponFeature.LockedOn.Name',
-        description: 'DAGGERHEART.WeaponFeature.LockedOn.Description'
+    timebending: {
+        label: 'DAGGERHEART.ArmorFeature.Timebending.Name',
+        description: 'DAGGERHEART.ArmorFeature.Timebending.Description'
+    },
+    versatile: {
+        label: 'DAGGERHEART.ArmorFeature.Versatile.Name',
+        description: 'DAGGERHEART.ArmorFeature.Versatile.Description',
+        versatile: {
+            characterTrait: '',
+            range: '',
+            damage: ''
+        }
     }
 };
 

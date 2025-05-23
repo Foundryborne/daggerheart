@@ -670,7 +670,7 @@
             },
             "Versatile": {
                 "Name": "Versatile",
-                "Description": "This weapon can also be used with these statistics—{charactherTrait}, {range}, {damage}."
+                "Description": "This weapon can also be used with these statistics—{characterTrait}, {range}, {damage}."
             }
         },
         "Feature": {
