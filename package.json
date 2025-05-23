@@ -6,8 +6,8 @@
         "rollup": "^4.40.0"
     },
     "scripts": {
-        "start": "concurrently \"rollup -c --watch\" \"node C:/FoundryDev/resources/app/main.js --dataPath=C:/FoundryDevFiles  --noupnp\"  \"gulp\"",
-        "start-test": "node C:/FoundryDev/resources/app/main.js --dataPath=C:/FoundryDevFiles && rollup -c --watch && gulp",
+        "start": "concurrently \"rollup -c --watch\" \"node ../../../../FoundryDev/main.js --dataPath=../../../  --noupnp\"  \"gulp\"",
+        "start-test": "node ./resources/app/main.js --dataPath=./ && rollup -c --watch && gulp",
         "pushLDBtoYML": "node ./tools/pushLDBtoYML.mjs",
         "pullYMLtoLDB": "node ./tools/pullYMLtoLDB.mjs"
     },

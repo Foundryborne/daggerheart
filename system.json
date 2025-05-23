@@ -10,7 +10,25 @@
   },
   "authors": [
     {
+      "name": "Darrington Press LLC"
+    },
+    {
       "name": "HarryFurAlle"
+    },
+    {
+      "name": "CPTN_Cosmo"
+    },
+    {
+      "name": "Ikraik"
+    },
+    {
+      "name": "IrkTheImp"
+    },
+    {
+      "name": "jacobwojoski"
+    },
+    {
+      "name": "Mysteryusy"
     }
   ],
   "scripts": ["build/daggerheart.js"],
@@ -144,11 +162,10 @@
       "private": false,
       "flags": {}
     },
-    {
-      "name": "weapons-tier0",
-      "label": "Tier 0",
+      "name": "community-features",
+      "label": "Community Features",
       "system": "daggerheart",
-      "path": "packs/items/weapons/tier0.db",
+      "path": "packs/community-features.db",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -181,127 +198,64 @@
       "flags": {}
     },
     {
-      "name": "armors-tier0",
-      "label": "Tier 0",
+      "name": "weapons-tier4",
+      "label": "Tier 4",
       "system": "daggerheart",
-      "path": "packs/items/armors/tier0.db",
+      "path": "packs/items/weapons/tier4.db",
       "type": "Item",
       "private": false,
       "flags": {}
     },
     {
-      "name": "armors-tier1",
+      "name": "armor-tier1",
       "label": "Tier 1",
       "system": "daggerheart",
-      "path": "packs/items/armors/tier1.db",
+      "path": "packs/items/armor/tier1.db",
       "type": "Item",
       "private": false,
       "flags": {}
     },
     {
-      "name": "armors-tier2",
+      "name": "armor-tier2",
       "label": "Tier 2",
       "system": "daggerheart",
-      "path": "packs/items/armors/tier2.db",
+      "path": "packs/items/armor/tier2.db",
       "type": "Item",
       "private": false,
       "flags": {}
     },
     {
-      "name": "armors-tier3",
+      "name": "armor-tier3",
       "label": "Tier 3",
       "system": "daggerheart",
-      "path": "packs/items/armors/tier3.db",
+      "path": "packs/items/armor/tier3.db",
       "type": "Item",
       "private": false,
       "flags": {}
     },
     {
-      "name": "consumables-tier0",
-      "label": "Tier 0",
+      "name": "armor-tier4",
+      "label": "Tier 4",
       "system": "daggerheart",
-      "path": "packs/items/consumablesarmors/tier0.db",
+      "path": "packs/items/armor/tier4.db",
       "type": "Item",
       "private": false,
       "flags": {}
     },
     {
-      "name": "consumables-tier1",
-      "label": "Tier 1",
+      "name": "consumables",
+      "label": "Consumables",
       "system": "daggerheart",
-      "path": "packs/items/consumables/tier1.db",
+      "path": "packs/items/consumables.db",
       "type": "Item",
       "private": false,
       "flags": {}
     },
     {
-      "name": "consumables-tier2",
-      "label": "Tier 2",
+      "name": "general-items",
+      "label": "General Items",
       "system": "daggerheart",
-      "path": "packs/items/consumables/tier2.db",
-      "type": "Item",
-      "private": false,
-      "flags": {}
-    },
-    {
-      "name": "consumables-tier3",
-      "label": "Tier 3",
-      "system": "daggerheart",
-      "path": "packs/items/consumables/tier3.db",
-      "type": "Item",
-      "private": false,
-      "flags": {}
-    },
-    {
-      "name": "miscellaneous-general",
-      "label": "General",
-      "system": "daggerheart",
-      "path": "packs/items/miscellaneous/general.db",
-      "type": "Item",
-      "private": false,
-      "flags": {}
-    },
-    {
-      "name": "miscellaneous-tier0",
-      "label": "Tier 0",
-      "system": "daggerheart",
-      "path": "packs/items/miscellaneous/tier0.db",
-      "type": "Item",
-      "private": false,
-      "flags": {}
-    },
-    {
-      "name": "miscellaneous-tier1",
-      "label": "Tier 1",
-      "system": "daggerheart",
-      "path": "packs/items/miscellaneous/tier1.db",
-      "type": "Item",
-      "private": false,
-      "flags": {}
-    },
-    {
-      "name": "miscellaneous-tier2",
-      "label": "Tier 2",
-      "system": "daggerheart",
-      "path": "packs/items/miscellaneous/tier2.db",
-      "type": "Item",
-      "private": false,
-      "flags": {}
-    },
-    {
-      "name": "miscellaneous-tier3",
-      "label": "Tier 3",
-      "system": "daggerheart",
-      "path": "packs/items/miscellaneous/tier3.db",
-      "type": "Item",
-      "private": false,
-      "flags": {}
-    },
-    {
-      "name": "adversaries-tier0",
-      "label": "Tier 0",
-      "system": "daggerheart",
-      "path": "packs/adversaries/tier0.db",
+      "path": "packs/items/general.db",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -334,10 +288,10 @@
       "flags": {}
     },
     {
-      "name": "environments-tier0",
-      "label": "Tier 0",
+      "name": "adversaries-tier4",
+      "label": "Tier 4",
       "system": "daggerheart",
-      "path": "packs/environments/tier0.db",
+      "path": "packs/adversaries/tier4.db",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -365,6 +319,15 @@
       "label": "Tier 3",
       "system": "daggerheart",
       "path": "packs/environments/tier3.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "environments-tier4",
+      "label": "Tier 4",
+      "system": "daggerheart",
+      "path": "packs/environments/tier4.db",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -400,25 +363,25 @@
               "name": "Weapons",
               "sorting": "m",
               "color": "#000000",
-              "packs": ["weapons-tier0", "weapons-tier1", "weapons-tier2", "weapons-tier3"]
+              "packs": ["weapons-tier1", "weapons-tier2", "weapons-tier3", "weapons-tier4"]
             },
             {
               "name": "Armors",
               "sorting": "m",
               "color": "#000000",
-              "packs": ["armors-tier0", "armors-tier1", "armors-tier2", "armors-tier3"]
+              "packs": ["armors-tier1", "armors-tier2", "armors-tier3", "armors-tier4"]
             },
             {
               "name": "Consumables",
               "sorting": "m",
               "color": "#000000",
-              "packs": ["consumables-tier0", "consumables-tier1", "consumables-tier2", "consumables-tier3"]
+              "packs": ["consumables"]
             },
             {
-              "name": "Miscellaneous",
+              "name": "General",
               "sorting": "m",
               "color": "#000000",
-              "packs": ["miscellaneous-general", "miscellaneous-tier0", "miscellaneous-tier1", "miscellaneous-tier2", "miscellaneous-tier3"]
+              "packs": ["general-items"]
             }
           ]
         },
@@ -426,13 +389,13 @@
           "name": "Adversaries",
           "sorting": "m",
           "color": "#000000",
-          "packs": ["adversaries-tier0", "adversaries-tier1", "adversaries-tier2", "adversaries-tier3"]
+          "packs": ["adversaries-tier1", "adversaries-tier2", "adversaries-tier3", "adversaries-tier4"]
         },
         {
           "name": "Environments",
           "sorting": "m",
           "color": "#000000",
-          "packs": ["environments-tier0", "environments-tier1", "environments-tier2", "environments-tier3"]
+          "packs": ["environments-tier1", "environments-tier2", "environments-tier3", "environments-tier4"]
         }
       ]
     }

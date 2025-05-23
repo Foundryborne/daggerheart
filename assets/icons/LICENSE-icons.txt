@@ -1,0 +1,348 @@
+Asset Store Terms and EULA
+
+1. Background
+1.1
+
+The Unity Asset Store (“Unity Asset Store”) is owned and operated by Unity Technologies SF ("Unity"). Your use of the Unity Asset Store is governed by a legal agreement between you and Unity consisting of these Asset Store Terms of Service ("Terms") which you accept by checking the box indicating your acceptance of these Terms and/or registering as a user of the Unity Asset Store with a Unity ID or otherwise and the Controller-Controller Data Protection Addendum for Unity Asset Store found here.
+1.2
+
+In addition any Asset that you license from the Unity Asset Store that has been developed by Unity or that has been made available by third-parties ("Providers") that are not affiliated with Unity, will be subject to Unity's standard Unity Asset Store End User License Agreement ("EULA"), which is Appendix 1 to these Terms and which you accept as an integrated part of these Terms by checking the box indicating your acceptance of these Terms and/or registering as a user of the Unity Asset Store with a Unity ID or otherwise. Certain Assets may be governed by a Provider end user license agreement.
+1.3
+
+You may use Unity Asset Store to browse, locate, and download Assets (defined as (i) software designed in order to facilitate the development of electronic applications and digital media; and (ii) content (for example – without limitation – computer graphics, including 3D computer graphics, sounds and music), tutorials and other digital materials created in order to become incorporated and embedded components of electronic applications and digital media). Some of these Assets may be offered by Unity while others may be made available by Providers. You agree that Unity is not responsible for any Asset on the Unity Asset Store that originates from a source other than Unity. Additionally, some Assets may be made available to you at no charge while other Assets may be purchased for a fee. You agree that you are solely responsible for all fees associated with purchases you make on the Unity Asset Store.
+1.4
+
+In order to use Unity Asset Store you must be 18 years of age or older. On using the service you warrant that you have legal capacity to enter into the agreement.
+2. Unity's provision of the Unity Asset Store
+2.1
+
+You agree that Unity may stop (permanently or temporarily) providing the Unity Asset Store (or any features within the Unity Asset Store) to you or to users generally at Unity’s sole discretion, without prior notice to you.
+2.2
+
+Unity may make available to you various payment processing methods to facilitate the purchase of Assets from the Unity Asset Store. You agree to abide by any relevant terms of service or other legal agreement, whether with Unity or a third party, that governs your use of a given payment processing method. You agree that Unity reserves the right to add or remove payment processing methods at its sole discretion and without notice to you.
+2.3
+
+From time to time, Unity may discover an Asset on the Unity Asset Store that violates the Asset Store Provider Agreement between a Provider and Unity or other legal agreements, laws, regulations or policies. You agree that in such an instance Unity retains the right at its sole discretion to demand that such Asset is removed from any computer or other equipment under your control and you agree to promptly comply with such demand.
+3. Your Use of the Unity Asset Store
+3.1
+
+In order to access certain services in the Unity Asset Store, you may be required to provide information about yourself such as your name, address, and billing details. You agree that any such information you provide to Unity will always be accurate, correct and up to date.
+3.2
+
+You agree to use the Unity Asset Store only for purposes that are permitted by (a) the Terms and Asset Store Guidelines and (b) any applicable law, regulation or generally accepted practices or guidelines in the relevant jurisdictions. You agree to comply with all local laws and regulations regarding the download, installation and/or use of the Assets.
+3.3
+
+You agree not to access (or attempt to access) the Unity Asset Store by any means other than through the interface that is provided by Unity, unless you have been specifically allowed to do so in a separate agreement with Unity. You specifically agree not to access (or attempt to access) the Unity Asset Store through any automated means (including use of scripts, crawlers or similar technologies from time to time).
+3.4
+
+You agree that you will not engage in any activity that interferes with or disrupts the Unity Asset Store (or the servers, payment systems or networks which are connected to the Unity Asset Store). You agree that you will not use any of the Assets found on the Unity Asset Store in a way that interferes or disrupts any servers, payment systems, networks, or websites operated by Unity or any third party.
+3.5
+
+Unless you have been specifically permitted to do so in a separate agreement with Unity and except as permitted under the Unity-EULA, you agree that you will not use, reproduce, duplicate, publicly display, publicly perform, copy, modify, adapt, translate, prepare derivative works of, distribute, transfer, license, sublicense, rent, lease, lend, sell, trade, resell, or otherwise commercialize or monetize any Asset that you have licensed from the Unity Asset Store for any purpose.
+
+3.6
+
+You agree that you are solely responsible for (and that Unity has no responsibility to you or to any third party for) your use of the Unity Asset Store or any Assets, any breach of your obligations under the Terms, and for the consequences (including loss or damage of any kind which Unity may suffer) of any such breach.
+3.7
+
+You agree to comply with any and all applicable tax laws, including the reporting and payment of any taxes arising in connection with your use of the Unity Asset Store or the purchase of Assets through the Unity Asset Store, and that the reporting and payment of any such applicable taxes are your responsibility.
+3.8
+
+You agree that Unity and/or third parties own all right, title and interest in and to the Unity Asset Store and the Assets available through the Unity Asset Store, including without limitation all applicable Intellectual Property Rights in the Unity Asset Store and Assets. "Intellectual Property Rights" means any and all intellectual property rights wherever in the world and whenever arising (and including any application), including patent laws, copyright, trade secrets, know-how, confidential information, business names and domain names, computer programs, trademark laws, service marks, trade names, utility models, design rights, semi-conductor topography rights, database rights, goodwill or rights to sue for passing off, and any and all other proprietary rights worldwide. You agree that you will not, and will not allow any third party to,
+
+(i) decompile, reverse engineer, disassemble or otherwise attempt to derive source code from the Unity Asset Store or the Assets, unless otherwise permitted,
+
+(ii) take any action to circumvent or defeat the security or content usage rules provided, deployed or enforced by any functionality (including without limitation digital rights management or forward-lock functionality) in the Unity Asset Store or Assets,
+
+(iii) use the Unity Asset Store or Assets to access, copy, transfer, transcode or retransmit content in violation of any law or third party rights, or
+
+(iv) remove, obscure, or alter Unity's or any third party's copyright notices, trademarks, or other proprietary rights notices affixed to or contained within the Unity Asset Store or Assets.
+3.9
+
+While Unity does not undertake any legal obligation to monitor, pre-screen, review, flag, filter, modify, refuse or remove any or all Assets or their content from the Unity Asset Store, Unity reserves the right to do so, and if Unity is notified by Provider or otherwise becomes aware and determines in its sole discretion that an Asset or any portion thereof (a) violates the intellectual property rights or any other rights of any third party; (b) violates any applicable law or is subject to an injunction; (c) is pornographic, obscene or otherwise violates Unity's hosting policies or other terms of service as may be updated by Unity from time to time in its sole discretion; (d) is being distributed by Provider improperly; (e) may create liability for Unity; (f) is deemed by Unity to have a virus or is deemed to be malware, spyware or have an adverse impact on Unity; (g) violates the terms of this Agreement; or (h) the display of the Asset is impacting the integrity of Unity servers (i.e., Unity's end users are unable to access such content or otherwise experience difficulty), Unity may demand that Provider fixes the Asset. In addition, Unity shall itself be entitled to edit and make changes in the Asset. Finally, Unity shall be entitled to remove the Asset from the Unity Asset Store immediately, or reclassify the Asset at its sole discretion. Unity reserves the right to suspend and/or bar any Provider from the Unity Asset Store at its sole discretion. Irrespective of the above, you agree that by using the Unity Asset Store you may be exposed to Assets that you may find offensive, indecent or objectionable and that you use the Unity Asset Store at your own risk.
+3.10
+
+You agree that Section 5 ("GENERAL PROHIBITIONS") of the [Sites and Communities Additional Terms](https://unity.com/legal/terms-of-service/site-and-communities) apply to any User Content (as defined in those Additional Terms) on the Unity Asset Store. You further agree that Unity's [Privacy Policy](https://unity.com/legal/privacy-policy) applies to your use of the Unity Asset Store.
+4. Unity Services and Third Party Assets and Services
+4.1
+
+Some components of Assets (whether developed by Unity or third parties) may also be governed by third-party software licenses. In the event of a conflict between this EULA and any such licenses, the third-party software licenses shall prevail with respect only to those components.
+5. Automatic Updates
+5.1
+
+Assets originating from Unity and Providers may communicate with Unity servers or Providers' servers as the case may be from time to time to check for available updates to the Asset Store and the Assets, such as bug fixes, patches, enhanced functions, missing plug-ins and new versions (collectively, "Updates"). By installing these Assets, you agree to such automatically requested and received Updates. The Asset Store may make connections to remote servers to provide Unity with anonymous usage statistics collected by service providers that Unity uses to improve the Asset Store. The Asset Store may also have features that confirm your compliance with the terms of this Agreement.
+6. Indemnifications
+6.1
+
+To the maximum extent permitted by law, you agree to defend, indemnify and hold harmless Unity, its affiliates and their respective directors, officers, employees and agents from and against any and all claims, actions, suits or proceedings, as well as any and all losses, liabilities, damages, costs and expenses (including reasonable attorneys fees) arising out of or accruing from your use of the Unity Asset Store, including your licensing, downloading, installation, or use of any Assets, or your violation of these Terms.
+7.Termination
+7.1
+
+These Terms will continue to apply until terminated by either you or Unity as set out below.
+7.2
+
+If you want to terminate these Terms, you may do so by ceasing your use of the Unity Asset Store and any Assets downloaded from the Unity Asset Store.
+7.3
+
+Unity may at any time, terminate these Terms with you if (a) you have breached any provision of these Terms; or (b) Unity is required to do so by law; or (c) Unity decides to no longer provide the Unity Asset Store.
+7.4
+
+When these Terms come to an end, all of the legal rights, obligations and liabilities that you and Unity have benefited from, been subject to (or which have accrued over time whilst these Terms have been in force) or which are expressed to continue indefinitely, shall be unaffected by this cessation, and the provisions of Section 12.7 shall continue to apply to such rights, obligations and liabilities indefinitely.
+8. Disclaimer of Warranties
+8.1
+
+YOU EXPRESSLY UNDERSTAND AND AGREE THAT YOUR USE OF THE ASSET STORE AND ANY ASSETS DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF THE UNITY ASSET STORE IS AT YOUR SOLE RISK AND THAT THE UNITY ASSET STORE IS PROVIDED “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTY OF ANY KIND, TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW. IN PARTICULAR, UNITY, ITS SUBSIDIARIES, HOLDING COMPANIES AND AFFILIATES, AND ITS LICENSORS DO NOT REPRESENT OR WARRANT TO YOU THAT:
+
+(A) YOUR USE OF THE ASSETS WILL MEET YOUR REQUIREMENTS,
+
+(B) YOUR USE OF THE ASSETS WILL BE UNINTERRUPTED, TIMELY, SECURE OR FREE FROM ERROR,
+
+(C) ANY INFORMATION OBTAINED BY YOU AS A RESULT OF YOUR USE OF THE ASSETS WILL BE ACCURATE OR RELIABLE, AND
+
+(D) THAT DEFECTS IN THE OPERATION OR FUNCTIONALITY OF ANY SOFTWARE PROVIDED TO YOU AS PART OF THE ASSETS WILL BE CORRECTED.
+8.2
+
+YOUR USE OF THE UNITY ASSET STORE AND ANY ASSETS DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF THE UNITY ASSET STORE IS AT YOUR OWN DISCRETION AND RISK AND YOU ARE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER SYSTEM, OR OTHER DEVICE, OR LOSS OF DATA THAT RESULTS FROM SUCH USE.
+8.3
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, UNITY FURTHER EXPRESSLY DISCLAIMS ALL WARRANTIES TERMS OR CONDITIONS OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO ANY IMPLIED WARRANTIES TERMS AND CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT, WITH RESPECT TO ANY ASSETS DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE UNITY ASSET STORE AS WELL AS THE UNITY ASSET STORE ITSELF.
+8.4
+
+NONE OF THE ASSETS ARE INTENDED FOR USE IN THE OPERATION OF NUCLEAR FACILITIES, LIFE SUPPORT SYSTEMS, EMERGENCY COMMUNICATIONS, AIRCRAFT NAVIGATION OR COMMUNICATION SYSTEMS, AIR TRAFFIC CONTROL SYSTEMS, OR ANY OTHER SUCH ACTIVITIES IN WHICH CASE THE FAILURE OF THE ASSETS COULD LEAD TO DEATH, PERSONAL INJURY, OR SEVERE PHYSICAL OR ENVIRONMENTAL DAMAGE.
+9. Limitation of Liability
+9.1
+
+UNITY AND ITS SUBSIDIARIES, HOLDING COMPANIES AND OTHER AFFILIATES TOTAL LIABILITY TO YOU FROM ALL CAUSES OF ACTION AND UNDER ALL THEORIES OF LIABILITY UNDER THESE TERMS WILL BE LIMITED TO THE AMOUNTS PAID TO UNITY BY YOU IN THE PAST SIX MONTHS FOR THE ASSETS RELATING TO THE DISPUTE. IN NO EVENT WILL UNITY OR ITS SUBSIDIARIES, HOLDING COMPANIES AND OTHER AFFILIATES SHALL BE LIABLE TO YOU FOR ANY SPECIAL, INCIDENTAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES (INCLUDING LOSS OF DATA, BUSINESS, PROFITS OR ABILITY TO EXECUTE) OR FOR THE COST OF PROCURING SUBSTITUTE PRODUCTS ARISING OUT OF OR IN CONNECTION WITH THESE TERMS OR YOUR USE OF THE ASSET STORE OR ANY ASSETS LICENSED, DOWNLOADED OR OTHERWISE OBTAINED FROM THE UNITY ASSET STORE, WHETHER SUCH LIABILITY ARISES FROM ANY CLAIM BASED UPON CONTRACT, WARRANTY, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, AND WHETHER OR NOT UNITY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH LOSS OR DAMAGE. THE FOREGOING LIMITATIONS WILL SURVIVE AND APPLY EVEN IF ANY LIMITED REMEDY SPECIFIED IN THIS AGREEMENT IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.
+9.2
+
+YOU EXPRESSLY UNDERSTAND AND AGREE THAT UNITY, ITS SUBSIDIARIES, HOLDING COMPANIES AND AFFILIATES, AND ITS LICENSORS SHALL NOT BE LIABLE TO YOU FOR ANY LOSS OR DAMAGE WHICH MAY BE INCURRED BY YOU, INCLUDING BUT NOT LIMITED TO LOSS OR DAMAGE AS A RESULT OF (A) ANY RELIANCE PLACED BY YOU ON THE COMPLETENESS, ACCURACY OR EXISTENCE OF ANY ADVERTISING, OR AS A RESULT OF ANY RELATIONSHIP OR TRANSACTION BETWEEN YOU AND ANY, DEVELOPER, ADVERTISER OR SPONSOR WHOSE ADVERTISING APPEARS IN THE ASSETS OR ON THE UNITY ASSET STORE; (B) ANY CHANGES WHICH UNITY MAY MAKE TO THE ASSETS OR ON THE UNITY ASSET STORE, OR FOR ANY PERMANENT OR TEMPORARY CESSATION IN THE PROVISION OF THE UNITY ASSET STORE OR THE ASSETS (OR ANY FEATURES WITHIN THE ASSETS); (C) THE DELETION OF, CORRUPTION OF, OR FAILURE TO STORE, ANY CONTENT AND OTHER COMMUNICATIONS DATA MAINTAINED OR TRANSMITTED BY OR THROUGH YOUR USE OF THE UNITY ASSET STORE OR THE ASSETS; OR (D) YOUR FAILURE TO PROVIDE UNITY WITH ACCURATE ACCOUNT INFORMATION;
+9.3
+
+NOTHING IN THE TERMS EXCLUDES THE LIABILITY FOR UNITY, ITS SUBSIDIARIES OR AFFILIATES FOR (A) DEATH AND PERSONAL INJURY CAUSED BY NEGLIGENCE; (B) FRAUDULENT MISREPRESENTATION; OR (C) ANY OTHER LIABILITY WHICH CANNOT BE LIMITED BY APPLICABLE LAW.
+10. Change of Terms
+10.1
+
+Unity may add or make changes to the Terms from time to time. When these changes are made, Unity will make a new copy of the Terms available at the Unity Asset Store.
+10.2
+
+You understand and agree that if you use the Unity Asset Store and the Assets after the date on which the Terms have changed Unity will treat your use as acceptance of the updated Terms.
+
+11. “Support the Creator” Program and Program Funds
+
+Unity may, in its discretion, give you the option to contribute funds (“Program Funds”) directly to the licensor of an Asset (hereinafter, referred to as the “Program”).
+
+11.1
+
+Your Program Funds, less any applicable taxes or banking fees, will be distributed to the Licensor who is a party to the EULA for the Asset in question, whether that is Unity or a third-party Provider, unless the Provider has not provided Unity with adequate information to disburse the Program Funds.
+
+11.2
+
+Where the Provider has not provided Unity with a valid payment method, Unity will contribute the Program Funds to a charitable organization of its choice. The terms “charitable,” “donation” and “contribution” are informational only and not intended as tax or legal conclusions. For clarity, Program Funds are taxable, whether or not contributed to a charitable organization under this Section 11.2.
+
+11.3
+
+Program funds are non-refundable for any reason.
+
+12. General Legal Terms
+12.1
+
+These Terms constitutes the whole legal agreement between you and Unity regarding your use of the Unity Asset Store and the Assets, and completely replace any prior agreements between you and Unity in relation to the Unity Asset Store and the Assets. Each party confirms that, in entering into the Terms it has not relied upon any representations or statements not expressly incorporated herein. Notwithstanding anything else in the Terms, neither party limits or excludes liability for fraudulent misrepresentation.
+12.2
+
+You agree that if Unity does not exercise or enforce any legal right or remedy which is contained in these Terms (or which Unity has the benefit of under any applicable law), this will not be taken to be a formal waiver of Unity’s rights and that those rights or remedies will still be available to Unity.
+12.3
+
+If any court of law, having the jurisdiction to decide on this matter, rules that any provision of these Terms is invalid, then that provision will be removed from the Terms without affecting the rest of the Terms. The remaining provisions of these Terms will continue to be valid and enforceable.
+12.4
+
+You acknowledge and agree that each member of the group of companies with which Unity is affiliated shall be third party beneficiaries to these Terms and that such other companies shall be entitled to directly enforce, and rely upon, any provision of these Terms that confers a benefit on (or rights in favour of) them. Other than this, no other person or company shall be third party beneficiaries to these Terms. (whether pursuant to the contract, law or otherwise).
+12.5
+
+The rights granted in the Terms may not be assigned or transferred by you without the prior written approval of Unity. Nor shall you be permitted to delegate your responsibilities or obligations under these Terms without the prior written approval of Unity.
+12.6
+
+The rights granted in the Terms may be assigned or transferred by Unity without your prior written approval. In addition Unity shall be permitted to delegate its responsibilities or obligations under these Terms without your written approval.
+12.7
+
+These Terms, and your relationship with Unity under these Terms, shall be governed by the laws of Denmark without regard to its conflict of laws provisions. Any dispute arising out of or in connection with these Terms, including any disputes regarding the existence, validity or termination thereof, shall be settled by simplified arbitration arranged by The Danish Institute of Arbitration in accordance with the rules of simplified arbitration procedure adopted by The Danish Institute of Arbitration and in force at the time when such proceedings are commenced. Notwithstanding this, you agree that Unity shall still be allowed to apply for injunctive remedies (or an equivalent type of urgent legal relief) in any jurisdiction.
+
+#Appendix 1
+
+Asset Store End User License Agreement
+1. Parties to the Agreement/The Subject Matter of the Agreement
+1.1
+
+This Unity Asset Store End User License Agreement (“EULA”) is a non-exclusive, legally binding end user license agreement between any individual or a single entity (“END-USER”) that acquires a license to an Asset from the Unity Asset Store and either (a) Unity Technologies SF ("Unity"); or, as the case may be (b) any third party (“Provider”) that offers and distributes its Assets via the Unity Asset Store. Consequently, this EULA shall apply regardless of whether a purchased Asset is produced by Unity or by a Provider (each, a "Licensor"). This EULA is therefore a non-exclusive, legally binding end user license agreement as the case may be between either (i) Unity and END-USER (in which case the term "Licensor" shall refer to Unity), or (ii) Provider and END-USER (in which case the term "Licensor" shall refer to Provider).
+1.2
+
+By installing, copying, accessing, downloading or otherwise using the Assets, END-USER agrees to be bound the provisions of this EULA. All definitions of the Terms shall also apply in this EULA unless the context clearly provides for a different understanding.
+1.3
+
+The subject matter of this EULA is the licensing to END-USER of any Assets from Licensor via the Unity Asset Store. The Assets are licensed, not sold.
+1.4
+
+END USER hereby acknowledges that in the event it acquires a license to an ASSET which in the Unity Asset Store is marked as an Asset which is distributed by Provider (as opposed to Unity), then Provider shall be considered as the Licensor of, such Asset and; consequently, only Provider (as opposed to Unity) shall be responsible for any liability whatsoever under any EULA or any breach by Provider, including (without limitation) liability for infringement of any intellectual property rights, irrespective of the fact that Unity facilitates payment.
+2. END-USER's Rights and Obligations
+2.1
+
+END-USER may use the licensed Assets only for their intended purpose.
+2.2
+
+2.2.1 Non-Restricted Assets. The following concerns only Assets that are not Restricted Assets: Subject to the restrictions set forth in this EULA, Licensor hereby grants to the END-USER a non-exclusive, non-transferable, worldwide, and perpetual license to the Asset solely:
+
+(a) to incorporate the Asset, together with substantial, original content not obtained through the Unity Asset Store, into an electronic application or digital media that has a purpose, features, and functions beyond the display, performance, distribution, or use of Assets (“Licensed Product”) as an embedded component of that Licensed Product, such that the Asset does not comprise a substantial portion of the Licensed Product;
+
+(b) to reproduce, publicly display, publicly perform, transmit, and distribute the Asset as incorporated and embedded in that Licensed Product;
+
+(c) to incorporate the Asset into physical advertising materials and reproduce, publicly display, publicly perform, transmit and distribute the Asset as incorporated into those materials solely for marketing purposes with respect to the Licensed Product;
+
+(d) monetize the Asset within and for use within a Licensed Product, including via in-app purchases; and
+
+(e) except as set forth in 2.2.1.1 below, modify the Assets in connection with (a), (b), (c), and (d).
+
+2.2.1.1 Limitations on License. Without limiting the foregoing, END-USER may not, and has no right to,
+
+(a) share the costs related to purchasing an Asset and then let any third party that has contributed to such purchase use such Asset (forum pooling),
+
+(b) enable a customer or user of a Licensed Product to sell, transfer, distribute, lease, or lend the Assets for commercial gain or commercialize Assets within a Licensed Product,
+
+(c) without express authorization, monetize an Asset in a Licensed Product where the Licensed Product’s primary purpose is to create user-generated content,
+
+(d) use, reproduce, duplicate, publicly display, publicly perform, copy, modify, adapt, translate, prepare derivative works of, distribute, transfer, license, sublicense, rent, lease, lend, sell, trade, resell, or otherwise commercialize or monetize any Asset except as expressly permitted in this EULA.
+
+(e) if the Asset is a software development kit (“SDK”), modify the SDK except as instructed or authorized by Provider in writing (including instruction or authorization in Asset documentation) or include the SDK within END-USER’s Licensed Product at runtime.
+
+(f) without express authorization, use Assets in any digital representation of value, ownership, or contractual rights.
+
+2.2.2 Restricted Assets. The following concerns only Restricted Assets: Restricted Assets have license terms different from other Assets. Those license terms are found in the materials accompanying Restricted Assets ("Restricted Asset Terms"). For clarity, to the extent Restricted Asset Terms are different from this EULA, the Restricted Asset Terms will control; otherwise, this EULA will continue to apply. No other use is licensed or permitted and END-USER may otherwise not use, reproduce, publicly display, publicly perform, transmit, distribute, sublicense, rent, lease or lend Restricted Assets. Without limitation of the foregoing it is emphasized that END-USER shall not be entitled to share the costs related to purchasing a Restricted Asset and then let any third party that has contributed to such purchase use such Restricted Asset (forum pooling).
+2.3
+
+2.3.1 EXCEPT FOR EXTENSION ASSETS, END-USER is granted a license to install and use Assets on an unlimited number of computers provided that these computers belong to END-USER. If END USER chooses a “multi-entity” tier for an Asset, this license grant will extend to any Affiliate of END USER, where “Affiliate” means, with respect to END USER, any entity that directly or indirectly Controls, is Controlled by, or is under common Control with END USER, where “Control,” “Controlled by,” and “under common Control with” mean possession, directly or indirectly, through one or more intermediaries, of the power to direct or cause the direction of management or policies of a person, whether through ownership of equity, voting, or other interests; “Affiliate” will also include any Contractor of END USER, provided that such Contractor’s use is limited to work on the project for which Contractor is hired by END USER.
+
+2.3.2 END-USER is granted a single seat license to install and use any Asset categorized in the Asset Store as an "Editor Extension" “Scripting”, or “Services” (collectively, “Extension Asset”) only on a maximum of 2 computers. For the avoidance of doubt, Extension Assets are licensed on a per seat basis and may not be shared or used concurrently on more than 2 different computers. As an exception, build farm servers and virtual machine instances used only for running, testing, or building projects with Extension Assets do not require separate seat license(s) or constitute use on more than 2 different computers.
+2.4
+
+An END-USER may use an Asset under SECTIONS 2.2 and 2.3, and may have a third party, including any “work-made-for-hire” contractor or “freelancer” (“Contractor”), work on that Asset on its behalf. However, except for any “multi-entity” Assets under Section 2.3.1, any Contractor working on a project for an END-USER must have license(s) to its own to the Asset, and, conversely, to use an Asset under SECTIONS 2.2 and 2.3, a person must have its own license to the Asset, regardless of whether a Contractor working on a project for that person had its own license to that Asset. For example, a person who is a Contractor must have a seat license for an Extension Asset, and the person who is hirer of the Contractor must have a seat license for that Extension Asset.
+2.5
+
+Services SDKs: If END-USER downloads and integrates Services SDKs, END-USER may be required to accept a Licensor end user agreement and/or additional Licensor terms and conditions to use such services.
+2.6
+
+END-USER shall pay for the license to the Assets in accordance with the payment process provided in the Asset Store or otherwise indicated by the Asset Store. END USER shall provide customary billing and tax information such as name, billing address, credit card information and VAT number (for EU residents). END USER agrees to pay for all purchases hereby authorizes the collection of such amounts including applicable taxes by charging the credit card provided, either directly by Unity or indirectly, via a third party online payment processor; alternatively, payment may be made where available by redemption of valid credit(s) (credit(s)s are non-transferable) issued by the Asset Store or a third party payment processor. For clarity, your payment to Unity for an Asset will satisfy your payment obligation with regard thereto, regardless of whether or not the Asset is published by Unity or a third party and regardless of whether the payment is made directly or through a third party online payment processor. VAT numbers cannot be added or changed after the purchase is completed. If you are directed to a third party payment processor, you may be subject to terms and conditions governing use of that third party’s service and that third party’s Privacy Policy. Please review such third party’s terms and conditions and privacy policy before using the services.
+2.7
+
+Some components of Assets (whether developed by Unity or third parties) may also be governed by applicable open source software licenses. In the event of a conflict between the applicable EULA and any such open source licenses, the open source software licenses shall prevail with respect to those components.
+2.8
+
+You agree that no modification or use of those Assets shall (a) infringe, misappropriate, or violate a third party’s patent, copyright, trademark, trade secret, moral rights, or other intellectual property rights, or rights of publicity or privacy; (b) violate, or encourage any conduct that would violate, any applicable law or regulation or would give rise to liability of any kind; (c) be fraudulent, false, misleading, or deceptive; (d) be defamatory, obscene, pornographic, vulgar, or offensive; (e) promote discrimination, bigotry, racism, hatred, harassment, or harm against any individual or group; (f) promote violence or actions that are threatening to any other person; or (g) promote illegal or harmful activities or substances.
+2.9
+
+2.9.1 All sales are final, and there shall be no refunds except as expressly provided in this EULA or as required by law.
+
+2.9.2 Assets will be made immediately available for download upon an END-USER’s acceptance of an order, and therefore END-USER’s right of withdrawal is forfeited upon acceptance.
+
+2.9.3 Automatic refunds are available when all of the below criteria are met:
+
+    The asset is licensed under a single or multi-entity license.
+    The request is submitted within 14 days from the order purchase date.
+    The product has not been downloaded.
+    Purchased by PayPal or credit card.
+    The asset is not part of an upgrade path.
+
+2.9.4 Additionally, within fourteen (14) days of purchase refunds can be requested and may be made at Unity’s sole discretion. Circumstances where refunds may be granted include, but are not limited, to the following:
+
+    The asset is not as advertised. An asset not being as advertised includes but is not limited to the following: - Features or components offered in the asset description on the Asset Store are missing;
+    - A feature of the asset is not working as advertised on the Asset Store by the Publisher and the end user has attempted to consult the Publisher regarding it
+    The END-USER has completed a duplicate purchase, along with proof of the initial purchase.
+    The asset is not compatible with the most recent LTS Unity version, and no information was provided in the asset description to indicate this.
+    The asset is removed from the Unity Asset Store within thirty (30) days of purchase.
+
+2.9.5 Any refund in accordance with 2.9.4 are subject to a manual review by Unity to assess whether a refund is possible.
+
+2.9.6 Permitted refunds for any license purchased by redemption of valid credit(s) will be credited back to that credit account.
+2.10
+
+In this EULA, “Restricted Asset” means any Asset licensed hereunder that is designated (on prior written approval from Unity) as a “Restricted Asset” in any materials accompanying the Asset.
+3. Licensor’s Rights and Obligations
+
+Licensor shall render support services to END-USER only in the event a special agreement to this effect has been entered into.
+4. Termination
+4.1
+
+Without prejudice to any other rights, Licensor may terminate this EULA if END-USER fails to comply with the terms and conditions of this EULA and the Terms.
+4.2
+
+END-USER may terminate END-USER’s license at any time.
+4.3
+
+In the event that Unity at its discretion or as a result of a decision made by any competent court or authority makes a refund to END-USER of the fees paid for any Asset, then this EULA shall terminate for such Asset.
+4.4
+
+In the event of termination of this EULA, all license rights granted herein terminate and END-USER shall immediately destroy any and all copies of the Assets contained on any type of media under the control of END-USER and confirm such destruction in writing to LICENSOR.
+5. Duplication Rights/Back Up Copy
+5.1
+
+END-USER may not make copies of the Assets, except incidental transient or temporary copies or otherwise to the extent that such activity is expressly permitted under mandatory statutory applicable law. In addition, Licensor acknowledges that copies of the Assets may be made when the Assets have been integrated as components of electronic applications and digital media as permitted hereunder.
+5.2
+
+After installation of one copy of the Asset pursuant to this EULA, END USER may keep the original copy of the Asset solely for back-up or archival purposes.
+6. Reverse Engineering, Decompilation, and Disassembly
+
+END USER may modify Assets. END USER shall not reverse engineer, decompile, or disassemble Services SDKs, except and only to the extent that such activity is expressly permitted under mandatory statutory applicable law.
+7. Trademarks
+
+This EULA does not grant END-USER any rights in connection with any trademarks or service marks of Licensor, Provider or Licensor's other suppliers.
+8. Upgrades and Support
+8.1
+
+Assets identified as upgrades replace and/or supplement the licensed Assets.
+8.2
+
+Licensor may at its own discretion from time to time provide upgrades of the Assets to END USER without requesting further payment. Irrespective hereof END-USER is only entitled to licenses to upgrades if END-USER has entered into an Upgrade Agreement with Licensor. END-USER may use the upgraded Assets only in accordance with the terms of this EULA.
+8.3
+
+END-USER is only entitled to support if END-USER has entered into a Support Agreement with Licensor.
+9. Intellectual Property
+9.1
+
+The Assets are protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties.
+9.2
+
+All title and intellectual property rights in and to the Assets (including but not limited to any software, images, photographs, animations, graphics, 3D graphics, video, audio, music, text, tutorials, and “applets” incorporated into the Assets), the accompanying printed materials, and any copies of the Assets are owned by Licensor. All rights not expressly granted are reserved by Licensor. For greater certainty and without limitation of the foregoing, use of Assets, whether modified as permitted hereunder or unmodified, is limited to use as expressly provided in this EULA.
+10. Disclaimer of Warranties
+10.1
+
+END-USER UNDERSTANDS AND ACCEPTS THAT PRIOR TO PLACING ANY ASSET ON THE UNITY ASSET STORE, UNITY DOES NOT UNDERTAKE ANY LEGAL OBLIGATION TO MONITOR, PRE-SCREEN, REVIEW, FLAG, FILTER, MODIFY, REFUSE OR REMOVE ANY ASSET OR THEIR CONTENT FROM THE UNITY ASSET STORE. CONSEQUENTLY, END-USER EXPRESSLY UNDERSTANDS AND AGREES THAT ITS USE OF THE ASSETS IS AT END-USER'S SOLE RISK AND THAT THE ASSETS ARE PROVIDED “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTY OF ANY KIND, TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW. IN PARTICULAR, LICENSOR, ITS SUBSIDIARIES, HOLDING COMPANIES AND AFFILIATES, AND ITS LICENSORS DO NOT REPRESENT OR WARRANT TO END-USER THAT: (A) END-USER'S USE OF THE ASSETS WILL MEET END-USER'S REQUIREMENTS, (B) END-USER'S USE OF THE ASSETS WILL BE UNINTERRUPTED, TIMELY, SECURE OR FREE FROM ERROR, (C) ANY INFORMATION OBTAINED BY END-USER AS A RESULT OF END-USER'S USE OF THE ASSETS WILL BE ACCURATE OR RELIABLE, AND (D) THAT DEFECTS IN THE OPERATION OR FUNCTIONALITY OF ANY SOFTWARE PROVIDED TO END-USER AS PART OF THE ASSETS WILL BE CORRECTED.
+10.2
+
+END-USER'S USE OF ANY ASSETS IS AT END-USER'S OWN DISCRETION AND RISK AND END-USER IS SOLELY RESPONSIBLE FOR ANY DAMAGE TO END-USER'S COMPUTER SYSTEM, OR OTHER DEVICE, OR LOSS OF DATA THAT RESULTS FROM SUCH USE.
+10.3
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, LICENSOR FURTHER EXPRESSLY DISCLAIMS ALL WARRANTIES TERMS OR CONDITIONS OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO ANY IMPLIED WARRANTIES TERMS AND CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT, WITH RESPECT TO ANY ASSETS.
+10.4
+
+NONE OF THE ASSETS IS INTENDED FOR USE IN THE OPERATION OF NUCLEAR FACILITIES, LIFE SUPPORT SYSTEMS, EMERGENCY COMMUNICATIONS, AIRCRAFT NAVIGATION OR COMMUNICATION SYSTEMS, AIR TRAFFIC CONTROL SYSTEMS, OR ANY OTHER SUCH ACTIVITIES IN WHICH CASE THE FAILURE OF THE ASSETS COULD LEAD TO DEATH, PERSONAL INJURY, OR SEVERE PHYSICAL OR ENVIRONMENTAL DAMAGE.
+11. Limitation of Liability; Limited Defense/Indemnity
+11.1
+
+SUBJECT TO THIS SECTION 11, LICENSOR AND ITS SUBSIDIARIES, HOLDING COMPANIES AND OTHER AFFILIATES TOTAL LIABILITY TO END-USER FROM ALL CAUSES OF ACTION AND UNDEaR ALL THEORIES OF LIABILITY UNDER THESE TERMS, INCLUDING WITHOUT LIMITATION ANY LIABILITY FOR DIRECT OR INDIRECT DAMAGES, LOSSES, OR INJURIES AND ANY LIABILITY UNDER SECTION 11.3.2.3, WILL BE LIMITED TO THE AMOUNTS PAID TO LICENSOR BY END-USER IN THE PAST SIX MONTHS FOR THE LICENSE TO THE ASSETS RELATING TO THE DISPUTE; SUBJECT TO THIS SECTION 11, IN NO EVENT WILL LICENSOR OR ITS SUBSIDIARIES, HOLDING COMPANIES AND OTHER AFFILIATES BE LIABLE TO END-USER FOR ANY SPECIAL, INCIDENTAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES (INCLUDING LOSS OF DATA, BUSINESS, PROFITS OR ABILITY TO EXECUTE) OR FOR THE COST OF PROCURING SUBSTITUTE PRODUCTS ARISING OUT OF OR IN CONNECTION WITH THESE TERMS OR YOUR USE OF THE ASSET STORE OR ANY ASSETS LICENSED, DOWNLOADED OR OTHERWISE OBTAINED FROM THE UNITY ASSET STORE, WHETHER SUCH LIABILITY ARISES FROM ANY CLAIM BASED UPON CONTRACT, INDEMNITY, WARRANTY, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, AND WHETHER OR NOT LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH LOSS OR DAMAGE. THE FOREGOING LIMITATIONS WILL SURVIVE AND APPLY EVEN IF ANY LIMITED REMEDY SPECIFIED IN THIS AGREEMENT IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.
+11.2
+
+SUBJECT TO THIS SECTION 11, END-USER EXPRESSLY UNDERSTAND AND AGREE THAT LICENSOR, ITS SUBSIDIARIES, HOLDING COMPANIES AND AFFILIATES, AND ITS LICENSORS SHALL NOT BE LIABLE TO END-USER FOR ANY LOSS OR DAMAGE WHICH MAY BE INCURRED BY END-USER, INCLUDING BUT NOT LIMITED TO LOSS OR DAMAGE AS A RESULT OF (A) ANY RELIANCE PLACED BY END-USER ON THE COMPLETENESS, ACCURACY OR EXISTENCE OF ANY ADVERTISING, OR AS A RESULT OF ANY RELATIONSHIP OR TRANSACTION BETWEEN END-USER AND LICENSOR OR ANY, DEVELOPER, ADVERTISER OR SPONSOR WHOSE ADVERTISING APPEARS IN THE ASSETS OR ON THE UNITY ASSET STORE; (B) ANY CHANGES WHICH LICENSOR MAY MAKE TO THE ASSETS OR ON THE UNITY ASSET STORE, OR FOR ANY PERMANENT OR TEMPORARY CESSATION IN THE PROVISION OF THE UNITY ASSET STORE OR THE ASSETS (OR ANY FEATURES WITHIN THE ASSETS); (C) THE DELETION OF, CORRUPTION OF, OR FAILURE TO STORE, ANY CONTENT AND OTHER COMMUNICATIONS DATA MAINTAINED OR TRANSMITTED BY OR THROUGH END-USER'S USE OF THE ASSETS; OR (D) END-USER'S FAILURE TO PROVIDE UNITY WITH ACCURATE ACCOUNT INFORMATION;
+11.3
+
+11.3.1 Nothing in this EULA excludes the liability for Licensor, its subsidiaries or affiliates for (a) death and personal injury caused by negligence; (b) fraudulent misrepresentation; or (c) any other liability which cannot be limited by applicable law.
+
+11.3.2 In respect of Assets whose license is offered for any obligatory fee, charge, or price (“Paid Assets”), Licensor agrees to the limited obligation of defense and indemnity of this Section 11.3.2.
+
+11.3.2.1 Subject to Sections 11.3.2.2 and 11.3.2.3, Licensor will defend END-USER from claims arising out of or in connection with any claim that a Paid Asset infringes any third-party rights of copyright or of trademark, provided that this will not apply to the extent any such claim is predicated on (a) any changes or modifications of the Paid Asset by anyone other than the Licensor; (b) any changes or modifications of the Paid Asset by Licensor at the request of END-USER; (c) any combination or incorporation of the Paid Asset with any other software, media, or thing; or (d) any breach or failure to meet the obligations of this EULA by END-USER.
+
+11.3.2.2 In order to claim an obligation of defense under the preceding Section 11.3.2.1, END-USER must (a) inform the Licensor in writing of the existence of the claim within 10 days of it coming to END-USER’s attention; and (b) give the Licensor sole right to control the defense or settlement of the claim, provided that END-USER will have the right to approve of any proposed settlement in which there is any admission of any kind by END-USER, such approval not to be unreasonably withheld, conditioned, or delayed. END-USER will, at its expense, provide Licensor with reasonable co-operation in Licensor’s defense of the claim. Notwithstanding the foregoing, END-USER may, at its expense, participate in the defense of the claim with separate counsel of its own choosing.
+
+11.3.2.3 Where a claim under Section 11.3.2.1 has been either defended by Licensor or may have been defended by Licensor and ends in a final judgment/order of a court of competent jurisdiction from which no appeal is possible or in a final, binding settlement, Licensor will pay the monetary award of damages against END-USER under that final judgment/order or the monies to be paid by END-USER pursuant to the final, binding settlement; provided, however, that the obligation to pay shall (a) only be to the extent commensurate with the infringement which Licensor is obligated to defend against under Section 11.3.2.1; and (b) be nonetheless limited by and subject to the limitation of liability provided in Section 11.1.
+12. Export Restrictions
+
+Assets available on the Unity Asset Store may be subject to laws, administrative regulations and executive orders of those authorities responsible according to any applicable laws relating to the control of imports and exports of the Assets (“Export Laws”). You agree to comply with all applicable Export Laws and you shall not export or re-export directly or indirectly (including via remote access) any part of the Assets to any country to which a license is required under the Export Laws without first obtaining a license.
+13. Venue and Applicable Law
+
+This EULA and END-USER's relationship with Licensor under this EULA, shall be governed by the laws of Denmark without regard to its conflict of laws provisions. Any dispute arising out of or in connection with this Agreement, including any disputes regarding the existence, validity or termination thereof, shall be settled by simplified arbitration arranged by The Danish Institute of Arbitration in accordance with the rules of simplified arbitration procedure adopted by The Danish Institute of Arbitration and in force at the time when such proceedings are commenced. Notwithstanding this, Provider agrees that Licensor shall still be allowed to apply for injunctive remedies (or an equivalent type of urgent legal relief) in any jurisdiction.
