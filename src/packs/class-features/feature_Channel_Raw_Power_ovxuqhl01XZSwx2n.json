@@ -1,7 +1,7 @@
 {
-  "name": "Make a Scene",
+  "name": "Channel Raw Power",
   "type": "feature",
-  "_id": "Ddk0PAgwM4VLRbyY",
+  "_id": "ovxuqhl01XZSwx2n",
   "img": "icons/svg/item-bag.svg",
   "system": {
     "actionType": "action",
@@ -13,10 +13,12 @@
         "numbers": {}
       }
     },
-    "refreshData": null,
+    "refreshData": {
+      "type": "longRest"
+    },
     "multiclass": null,
     "disabled": false,
-    "description": "<p>Spend 3 Hope to temporarily Distract a target within Close range, giving them a -2 penalty to their Difficulty.</p>",
+    "description": "<p>Once per long rest, you can place a domain card from your loadout into your vault and choose to either:</p><p>• Gain Hope equal to the level of the card.</p><p>• Enhance a spell that deals damage, gaining a bonus to your damage roll equal to twice the level of the card.</p>",
     "effects": {},
     "actions": [],
     "type": "class"
@@ -26,7 +28,7 @@
   "sort": 0,
   "ownership": {
     "default": 0,
-    "NqO2eQGMjrvUO6v9": 3
+    "ei8OkswTzyDp4IGC": 3
   },
   "flags": {},
   "_stats": {
@@ -36,9 +38,9 @@
     "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1747991384366,
-    "modifiedTime": 1747991421484,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "createdTime": 1748033854379,
+    "modifiedTime": 1748033877334,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
   },
-  "_key": "!items!Ddk0PAgwM4VLRbyY"
+  "_key": "!items!ovxuqhl01XZSwx2n"
 }

@@ -1,0 +1,44 @@
+{
+  "name": "Combo Strikes",
+  "type": "feature",
+  "_id": "RNC8NT8F6x73gRZi",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "actionType": "action",
+    "featureType": {
+      "type": "normal",
+      "data": {
+        "property": "spellcastingTrait",
+        "max": 1,
+        "numbers": {}
+      }
+    },
+    "refreshData": null,
+    "multiclass": null,
+    "disabled": false,
+    "description": "<p>After making a damage roll with a Melee weapon but before dealing that damage to the target, mark a Stress to start a combo strike.</p><p>When you do, roll a Combo Die and note its value. Then, roll another Combo Die. If the value of the second die is equal to or greater than your first Combo Die, continue rolling additional dice until the latest Combo Die’s value is less than the roll that preceeded it. Total all rolled Combo Dice and add the value to your weapon’s damage.</p><p>Your Combo Die starts as a d4. When you level up, once per tier you may use one of your advancement options to increase your Combo Die instead.</p>",
+    "effects": {},
+    "actions": [],
+    "type": "class"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748031102847,
+    "modifiedTime": 1748031132259,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!RNC8NT8F6x73gRZi"
+}

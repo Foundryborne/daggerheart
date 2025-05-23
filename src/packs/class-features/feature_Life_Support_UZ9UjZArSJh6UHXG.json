@@ -1,32 +1,32 @@
 {
-  "name": "Dedicated",
+  "name": "Life Support",
   "type": "feature",
+  "_id": "UZ9UjZArSJh6UHXG",
   "img": "icons/svg/item-bag.svg",
   "system": {
     "actionType": "action",
     "featureType": {
-      "type": "input",
+      "type": "normal",
       "data": {
         "property": "spellcastingTrait",
         "max": 1,
-        "numbers": {},
-        "value": "d20"
+        "numbers": {}
       }
     },
     "refreshData": null,
     "multiclass": null,
     "disabled": false,
-    "description": "<p>Record three sayings or values your upbringing instilled in you. Once per rest, when you describe how you’re embodying one of these principles through your current action, you can roll a d20 as your Hope Die.</p>",
+    "description": "<p>Spend 3 Hope to clear a Hit Point on an ally within Close range.</p>",
     "effects": {},
     "actions": [],
-    "type": "community"
+    "type": "class"
   },
   "effects": [],
   "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0,
-    "NqO2eQGMjrvUO6v9": 3,
-    "JKaKJsbixtjbUa07": 3
+    "ei8OkswTzyDp4IGC": 3
   },
   "flags": {},
   "_stats": {
@@ -36,11 +36,9 @@
     "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1748008847578,
-    "modifiedTime": 1748008847578,
-    "lastModifiedBy": "JKaKJsbixtjbUa07"
+    "createdTime": 1748033044907,
+    "modifiedTime": 1748033065659,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
   },
-  "_id": "ZiBpJxtDSsh6wY3h",
-  "sort": 0,
-  "_key": "!items!ZiBpJxtDSsh6wY3h"
+  "_key": "!items!UZ9UjZArSJh6UHXG"
 }

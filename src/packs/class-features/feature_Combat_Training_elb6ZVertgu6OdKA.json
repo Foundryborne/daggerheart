@@ -1,6 +1,7 @@
 {
-  "name": "Scoundrel",
+  "name": "Combat Training",
   "type": "feature",
+  "_id": "elb6ZVertgu6OdKA",
   "img": "icons/svg/item-bag.svg",
   "system": {
     "actionType": "passive",
@@ -15,17 +16,17 @@
     "refreshData": null,
     "multiclass": null,
     "disabled": false,
-    "description": "<p>You have advantage on rolls to negotiate with criminals, detect lies, or find a safe place to hide.</p>",
+    "description": "<p>You ignore burden when equipping weapons. When you deal physical damage, you gain a bonus to your damage roll equal to your level.</p>",
     "effects": {},
     "actions": [],
-    "type": "community"
+    "type": "class"
   },
   "effects": [],
   "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0,
-    "NqO2eQGMjrvUO6v9": 3,
-    "JKaKJsbixtjbUa07": 3
+    "ei8OkswTzyDp4IGC": 3
   },
   "flags": {},
   "_stats": {
@@ -35,11 +36,9 @@
     "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1748008855001,
-    "modifiedTime": 1748008855001,
-    "lastModifiedBy": "JKaKJsbixtjbUa07"
+    "createdTime": 1748034225886,
+    "modifiedTime": 1748034251807,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
   },
-  "_id": "5BUCiSPswsiB0RDW",
-  "sort": 0,
-  "_key": "!items!5BUCiSPswsiB0RDW"
+  "_key": "!items!elb6ZVertgu6OdKA"
 }

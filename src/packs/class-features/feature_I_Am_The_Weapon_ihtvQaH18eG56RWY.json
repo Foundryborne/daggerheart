@@ -1,6 +1,7 @@
 {
-  "name": "Scoundrel",
+  "name": "I Am The Weapon",
   "type": "feature",
+  "_id": "ihtvQaH18eG56RWY",
   "img": "icons/svg/item-bag.svg",
   "system": {
     "actionType": "passive",
@@ -15,17 +16,17 @@
     "refreshData": null,
     "multiclass": null,
     "disabled": false,
-    "description": "<p>You have advantage on rolls to negotiate with criminals, detect lies, or find a safe place to hide.</p>",
+    "description": "<p>While you don’t have any equipped weapons, your evasion has a +1 bonus. Your unarmed strikes are considered a Melee weapon, use the trait of your choice, and deal d10+your tier phy damage.</p>",
     "effects": {},
     "actions": [],
-    "type": "community"
+    "type": "class"
   },
   "effects": [],
   "folder": null,
+  "sort": 0,
   "ownership": {
     "default": 0,
-    "NqO2eQGMjrvUO6v9": 3,
-    "JKaKJsbixtjbUa07": 3
+    "ei8OkswTzyDp4IGC": 3
   },
   "flags": {},
   "_stats": {
@@ -35,11 +36,9 @@
     "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1748008855001,
-    "modifiedTime": 1748008855001,
-    "lastModifiedBy": "JKaKJsbixtjbUa07"
+    "createdTime": 1748031035883,
+    "modifiedTime": 1748031085182,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
   },
-  "_id": "5BUCiSPswsiB0RDW",
-  "sort": 0,
-  "_key": "!items!5BUCiSPswsiB0RDW"
+  "_key": "!items!ihtvQaH18eG56RWY"
 }

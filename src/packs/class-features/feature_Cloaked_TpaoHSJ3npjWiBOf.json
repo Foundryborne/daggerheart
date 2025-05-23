@@ -1,7 +1,7 @@
 {
-  "name": "Make a Scene",
+  "name": "Cloaked",
   "type": "feature",
-  "_id": "Ddk0PAgwM4VLRbyY",
+  "_id": "TpaoHSJ3npjWiBOf",
   "img": "icons/svg/item-bag.svg",
   "system": {
     "actionType": "action",
@@ -16,7 +16,7 @@
     "refreshData": null,
     "multiclass": null,
     "disabled": false,
-    "description": "<p>Spend 3 Hope to temporarily Distract a target within Close range, giving them a -2 penalty to their Difficulty.</p>",
+    "description": "<p>Any time you would be Hidden, you are instead Cloaked. In addition to the benefits of the Hidden condition, while Cloaked you remain unseen if you are stationary when an adversary moves to where they would normally see you. After you make an attack or end a move within line of sight of an adversary, you are no longer Cloaked.</p>",
     "effects": {},
     "actions": [],
     "type": "class"
@@ -26,7 +26,7 @@
   "sort": 0,
   "ownership": {
     "default": 0,
-    "NqO2eQGMjrvUO6v9": 3
+    "ei8OkswTzyDp4IGC": 3
   },
   "flags": {},
   "_stats": {
@@ -36,9 +36,9 @@
     "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1747991384366,
-    "modifiedTime": 1747991421484,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "createdTime": 1748032226905,
+    "modifiedTime": 1748032258303,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
   },
-  "_key": "!items!Ddk0PAgwM4VLRbyY"
+  "_key": "!items!TpaoHSJ3npjWiBOf"
 }

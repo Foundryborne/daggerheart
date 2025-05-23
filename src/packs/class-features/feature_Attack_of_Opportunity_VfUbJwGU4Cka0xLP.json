@@ -1,7 +1,7 @@
 {
-  "name": "Make a Scene",
+  "name": "Attack of Opportunity",
   "type": "feature",
-  "_id": "Ddk0PAgwM4VLRbyY",
+  "_id": "VfUbJwGU4Cka0xLP",
   "img": "icons/svg/item-bag.svg",
   "system": {
     "actionType": "action",
@@ -16,7 +16,7 @@
     "refreshData": null,
     "multiclass": null,
     "disabled": false,
-    "description": "<p>Spend 3 Hope to temporarily Distract a target within Close range, giving them a -2 penalty to their Difficulty.</p>",
+    "description": "<p>When an adversary within Melee range attempts to leave that range, make a reaction roll using a trait of your choice against their Difficulty. Choose one effect on a success, or two if you critically succeed:</p><p>• They can’t move from where they are.</p><p>• You deal damage to them equal to your primary weapon’s damage.</p><p>• You move with them.</p>",
     "effects": {},
     "actions": [],
     "type": "class"
@@ -26,7 +26,7 @@
   "sort": 0,
   "ownership": {
     "default": 0,
-    "NqO2eQGMjrvUO6v9": 3
+    "ei8OkswTzyDp4IGC": 3
   },
   "flags": {},
   "_stats": {
@@ -36,9 +36,9 @@
     "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1747991384366,
-    "modifiedTime": 1747991421484,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "createdTime": 1748034185325,
+    "modifiedTime": 1748034212853,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
   },
-  "_key": "!items!Ddk0PAgwM4VLRbyY"
+  "_key": "!items!VfUbJwGU4Cka0xLP"
 }
