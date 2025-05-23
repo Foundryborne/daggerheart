@@ -21,6 +21,10 @@ export default class DhpLevelup extends HandlebarsApplicationMixin(ApplicationV2
         id: "daggerheart-levelup",
         classes: ["daggerheart", "views", "levelup"],
         position: { width: 1200, height: 'auto' },
+        window: {
+            resizable: true,
+        },
+
         actions: {
             toggleBox: this.toggleBox,
             advanceLevel: this.advanceLevel,

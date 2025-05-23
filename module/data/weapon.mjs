@@ -12,7 +12,7 @@ export default class DhpWeapon extends foundry.abstract.TypeDataModel {
             type: new fields.StringField({ choices: SYSTEM.GENERAL.damageTypes, integer: false }),
         }),
         burden: new fields.StringField({ choices: SYSTEM.GENERAL.burden, integer: false }),
-        feature: new fields.StringField({ choices: SYSTEM.ITEM.weaponFeatures, integer: false }),
+        feature: new fields.StringField({ choices: SYSTEM.ITEM.weaponFeatures, integer: false, blank:true }),
         quantity: new fields.NumberField({ initial: 1, integer: true }),
         description: new fields.HTMLField({}),
       }

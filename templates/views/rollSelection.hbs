@@ -19,7 +19,7 @@
                 <label>Advantage</label>
                 <div class="form-fields">
                     <select name="advantage" {{#if this.disadvantage}}disabled{{/if}}>
-                        {{selectOptions this.diceOptions selected=this.advantage nameAttr="value" labelAttr="name" localize=true blank=""}}
+                        {{selectOptions this.diceOptions selected=this.advantage valueAttr="value" labelAttr="name" localize=true blank=""}}
                     </select>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <label>Disadvantage</label>
                 <div class="form-fields">
                     <select name="disadvantage" {{#if this.advantage}}disabled{{/if}}>
-                        {{selectOptions this.diceOptions selected=this.disadvantage nameAttr="value" labelAttr="name" localize=true blank=""}}
+                        {{selectOptions this.diceOptions selected=this.disadvantage valueAttr="value" labelAttr="name" localize=true blank=""}}
                     </select>
                 </div>
             </div> --}}
@@ -36,7 +36,7 @@
                     <label>Hope</label>
                     <div class="form-fields">
                         <select name="hope">
-                            {{selectOptions this.diceOptions selected=this.hope nameAttr="value" labelAttr="name" localize=true}}
+                            {{selectOptions this.diceOptions selected=this.hope valueAttr="value" labelAttr="name" localize=true}}
                         </select>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <label>Fear</label>
                     <div class="form-fields">
                         <select name="fear">
-                            {{selectOptions this.diceOptions selected=this.fear nameAttr="value" labelAttr="name" localize=true}}
+                            {{selectOptions this.diceOptions selected=this.fear valueAttr="value" labelAttr="name" localize=true}}
                         </select>
                     </div>
                 </div>

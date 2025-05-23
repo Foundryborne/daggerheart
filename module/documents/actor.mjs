@@ -87,9 +87,10 @@ export default class DhpActor extends Actor {
 
     async dualityRoll(modifier, shiftKey, bonusDamage=[]){
       let hopeDice = 'd12', fearDice = 'd12', advantageDice = null, disadvantageDice = null, bonusDamageString = "";
+      
       const modifiers = [
         {  
-          value: Number.parseInt(modifier.value),
+          value: modifier.value ? Number.parseInt(modifier.value) : 0,
           label: modifier.value >= 0 ? `+${modifier.value}` : `-${modifier.value}`,
           title: modifier.title,
         }
@@ -104,11 +105,11 @@ export default class DhpActor extends Actor {
         bonusDamageString = result.bonusDamage;
 
         const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
+
         if(automateHope && result.hopeUsed){
           await this.update({ "system.resources.hope.value": this.system.resources.hope.value - result.hopeUsed });
         }
       }
-
       const roll = new Roll(`1${hopeDice} + 1${fearDice}${advantageDice ? ` + 1${advantageDice}` : disadvantageDice ? ` - 1${disadvantageDice}` : ''} ${modifiers.map(x => `+ ${x.value}`).join(' ')}`);
       let rollResult = await roll.evaluate();
       rollResult.dice[0].options.appearance = {

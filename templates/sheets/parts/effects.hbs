@@ -55,12 +55,12 @@
             {{#if (eq effect.valueType ../config.valueTypes.select.id)}}
                 <div class="flexrow">
                     <select name="system.effects.{{key}}.valueData.fromValue" value="{{effect.valueData.fromValue}}">
-                        {{selectOptions effect.options selected=effect.valueData.fromValue labelAttr="name" nameAttr="value" localize=true blank="" }} 
+                        {{selectOptions effect.options selected=effect.valueData.fromValue labelAttr="name" valueAttr="value" localize=true blank="" }} 
                     </select>
                 </div>
                 <div class="flexrow">
                     <select name="system.effects.{{key}}.valueData.value" value="{{effect.valueData.value}}">
-                        {{selectOptions effect.options selected=effect.valueData.value labelAttr="name" nameAttr="value" localize=true blank="" }} 
+                        {{selectOptions effect.options selected=effect.valueData.value labelAttr="name" valueAttr="value" localize=true blank="" }} 
                     </select>
                 </div>
             {{/if}}
