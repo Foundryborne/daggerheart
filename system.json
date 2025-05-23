@@ -162,6 +162,7 @@
       "private": false,
       "flags": {}
     },
+    {
       "name": "community-features",
       "label": "Community Features",
       "system": "daggerheart",
