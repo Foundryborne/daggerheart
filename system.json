@@ -345,7 +345,7 @@
           "name": "Character Options",
           "sorting": "m",
           "color": "#000000",
-          "packs": ["classes", "class-features", "subclasses", "ancestries", "communities"],
+          "packs": ["classes", "class-features", "subclasses", "ancestries", "communities", "community-features"],
           "folders": [
             {
               "name": "Domains",
@@ -367,10 +367,10 @@
               "packs": ["weapons-tier1", "weapons-tier2", "weapons-tier3", "weapons-tier4"]
             },
             {
-              "name": "Armors",
+              "name": "Armor",
               "sorting": "m",
               "color": "#000000",
-              "packs": ["armors-tier1", "armors-tier2", "armors-tier3", "armors-tier4"]
+              "packs": ["armor-tier1", "armor-tier2", "armor-tier3", "armor-tier4"]
             },
             {
               "name": "Consumables",
