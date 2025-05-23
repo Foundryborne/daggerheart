@@ -910,7 +910,12 @@
             "Armor": {
                 "BaseScore": "Base Score",
                 "Feature": "Feature",
-                "Description": "Description"
+                "Description": "Description",
+                "BaseThresholds": {
+                    "Base": "Base Thresholds",
+                    "Major": "Major Threshold",
+                    "Severe": "Severe Threshold"
+                }
             },
             "Class": {
                 "Tabs": {

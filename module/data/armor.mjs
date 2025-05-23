@@ -1,40 +1,49 @@
 export default class DhpArmor extends foundry.abstract.TypeDataModel {
-    static defineSchema() {
-      const fields = foundry.data.fields;
-      return {
-        baseScore: new fields.NumberField({ initial: 1, integer: true }),
-        feature: new fields.StringField({ choices: SYSTEM.ITEM.armorFeatures, integer: false, blank:true}),
-        marks: new fields.SchemaField({
-          max: new fields.NumberField({ initial: 6, integer: true }),
-          value: new fields.NumberField({ initial: 0, integer: true }),
-        }),
-        description: new fields.HTMLField({}),
-      }
-    }
+  static defineSchema() {
+    const fields = foundry.data.fields;
+    return {
+      baseScore: new fields.NumberField({ initial: 1, integer: true }),
+      feature: new fields.StringField({
+        choices: SYSTEM.ITEM.armorFeatures,
+        integer: false,
+        blank: true,
+      }),
+      marks: new fields.SchemaField({
+        max: new fields.NumberField({ initial: 6, integer: true }),
+        value: new fields.NumberField({ initial: 0, integer: true }),
+      }),
+      baseThresholds: new fields.SchemaField({
+        major: new fields.NumberField({ initial: 0, integer: true }),
+        severe: new fields.NumberField({ initial: 0, integer: true }),
+      }),
+      description: new fields.HTMLField({}),
+    };
+  }
 
-    get featureInfo() {
-      return this.feature ? CONFIG.daggerheart.ITEM.armorFeatures[this.feature] : null;
-    }
+  get featureInfo() {
+    return this.feature
+      ? CONFIG.daggerheart.ITEM.armorFeatures[this.feature]
+      : null;
+  }
 
-    prepareDerivedData(){
-      if(this.parent.parent){
-        this.applyLevels();
-      }
+  prepareDerivedData() {
+    if (this.parent.parent) {
+      this.applyLevels();
     }
+  }
 
-    // Currently bugged as it double triggers. Should get fixed in an updated foundry version.
-    applyLevels(){  
-      // let armorBonus = 0;
-      // for(var level in this.parent.parent.system.levelData.levelups){
-      //   var levelData = this.parent.parent.system.levelData.levelups[level];
-      //   for(var tier in levelData){
-      //     var tierData = levelData[tier];
-      //     if(tierData){
-      //       armorBonus += Object.keys(tierData.armorOrEvasionSlot).filter(x => tierData.armorOrEvasionSlot[x] === 'armor').length;
-      //     }
-      //   }
-      // }
-
-      // this.marks.max += armorBonus;
-    }
+  // Currently bugged as it double triggers. Should get fixed in an updated foundry version.
+  applyLevels() {
+    // let armorBonus = 0;
+    // for(var level in this.parent.parent.system.levelData.levelups){
+    //   var levelData = this.parent.parent.system.levelData.levelups[level];
+    //   for(var tier in levelData){
+    //     var tierData = levelData[tier];
+    //     if(tierData){
+    //       armorBonus += Object.keys(tierData.armorOrEvasionSlot).filter(x => tierData.armorOrEvasionSlot[x] === 'armor').length;
+    //     }
+    //   }
+    // }
+    // this.marks.max += armorBonus;
+  }
 }
