@@ -1,0 +1,40 @@
+{
+  "name": "Chainmail Armor",
+  "type": "armor",
+  "img": "systems/daggerheart/assets/icons/armor/tier_1/chainmail_armor.png",
+  "system": {
+    "baseScore": 4,
+    "marks": {
+      "max": 6,
+      "value": 0
+    },
+    "description": "",
+    "feature": "heavy",
+    "baseThresholds": {
+      "major": 7,
+      "severe": 15
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748008741139,
+    "modifiedTime": 1748028173861,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_id": "s7PUmApOFX0YryDG",
+  "sort": 100000,
+  "_key": "!items!s7PUmApOFX0YryDG"
+}

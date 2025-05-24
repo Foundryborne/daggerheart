@@ -29,11 +29,14 @@
     }
 
     &.roll {
+        .dice-flavor {
+            text-align: center;
+            font-weight: bold;
+        }
         .dice-tooltip {
-            .dice-rolls {
+            .dice-rolls.duality {
                 display: flex;
                 align-items: center;
-                justify-content: space-around;
 
                 .dice-hope-container {
                     display: flex;
@@ -57,12 +60,18 @@
                         -webkit-text-stroke-color: @hope;
                         -webkit-text-stroke-width: 1.5px;
                         font-weight: 400;
+                        &:not(.discarded) {
+                            filter: none;
+                        }
                     }
                     &.fear {
                         color: white;
                         -webkit-text-stroke-color: @fear;
                         -webkit-text-stroke-width: 1.5px;
                         font-weight: 400;
+                        &:not(.discarded) {
+                            filter: none;
+                        }
                     }
                     &.disadvantage {
                         color: white;
@@ -92,6 +101,11 @@
                     font-weight: bold;
                     font-size: 16px;
                 }
+            }
+
+            .attack-roll-advantage-container {
+                text-align: end;
+                font-weight: bold;
             }
         }
 
@@ -159,8 +173,20 @@
             }
         }
 
-        .roll-damage-button {
-            margin-top: 5px;
+        .dice-actions {
+            display: flex;
+            gap: 4px;
+
+            button {
+                flex: 1;
+            }
+        }
+
+        .dice-result {
+            .roll-damage-button,
+            .damage-button {
+                margin-top: 5px;
+            }
         }
     }
 

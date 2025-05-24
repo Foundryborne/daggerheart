@@ -1,0 +1,41 @@
+{
+  "name": "Midas Scythe",
+  "type": "weapon",
+  "_id": "cpK9iWwesVYUFyXO",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_4/magical/midas_scythe.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d10+9",
+      "type": "magical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "knowledge",
+    "feature": "greedy",
+    "range": "melee",
+    "burden": "twoHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748037954420,
+    "modifiedTime": 1748037972671,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!cpK9iWwesVYUFyXO"
+}

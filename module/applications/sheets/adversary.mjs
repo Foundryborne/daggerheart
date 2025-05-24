@@ -349,7 +349,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
     static async attackRoll(event, button) {
         const modifier = Number.parseInt(button.dataset.value);
 
-        const { roll, diceResults, modifiers } = await this.actor.diceRoll(
+        const { roll, dice, advantageState, modifiers } = await this.actor.diceRoll(
             { title: `${this.actor.name} - Attack Roll`, value: modifier },
             event.shiftKey
         );
@@ -365,11 +365,15 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             type: 'adversaryRoll',
+            sound: CONFIG.sounds.dice,
             system: {
+                title: button.dataset.name,
+                origin: this.document.id,
                 roll: roll._formula,
+                advantageState,
                 total: roll._total,
                 modifiers: modifiers,
-                diceResults: diceResults,
+                dice: dice,
                 targets: targets,
                 damage: { value: button.dataset.damage, type: button.dataset.damageType }
             },
@@ -381,16 +385,15 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async addExperience() {
+        const experienceId = foundry.utils.randomID();
         await this.document.update({
-            'system.experiences': [...this.document.system.experiences, { name: 'Experience', value: 1 }]
+            [`system.experiences.${experienceId}`]: { id: experienceId, name: 'Experience', value: 1 }
         });
     }
 
     static async removeExperience(_, button) {
         await this.document.update({
-            'system.experiences': this.document.system.experiences.filter(
-                (_, index) => index !== Number.parseInt(button.dataset.experience)
-            )
+            [`system.experiences.-=${button.dataset.experience}`]: null
         });
     }
 

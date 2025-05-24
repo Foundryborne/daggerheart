@@ -1,35 +1,64 @@
-<div class="dice-roll daggerheart chat roll">
+<div class="dice-roll daggerheart chat roll" data-action="expandRoll">
+    <div class="dice-flavor">{{localize "DAGGERHEART.Chat.AttackRoll.Title" attack=this.title}}</div>
     <div class="dice-result">
         <div class="dice-formula">{{roll}}</div>
-        <div class="dice-tooltip {{#if advantage.value}}expanded{{/if}}">
-            <ol class="dice-rolls">
-                <div class="dice-hope-container">
-                    <li id="hope" class="roll die {{hope.dice}} hope {{#if (or (eq advantageSelected 2) (and disadvantage.value (gt hope.value disadvantage.value)))}}unused{{/if}} {{#if (and advantage.value (eq advantageSelected 0))}}advantage{{/if}}">{{hope.value}}</li>
+
+        <div class="dice-tooltip">
+            <div class="wrapper">
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                            <span class="part-formula">
+                                <span>1{{hope.dice}}</span>
+                                |
+                                <span>1{{fear.dice}}</span>
+                            </span>
+                            <span class="part-total">{{this.highestRoll}}</span>
+                        </header>
+                        <div class="flexrow">
+                            <ol class="dice-rolls duality">
+                                <li class="roll die {{hope.dice}} {{#if hope.discarded}}discarded{{/if}} hope min" title="{{localize "DAGGERHEART.General.Hope"}}">{{hope.value}}</li>
+                                <li class="roll die {{fear.dice}} {{#if fear.discarded}}discarded{{/if}} fear min" title="{{localize "DAGGERHEART.General.Fear"}}">{{fear.value}}</li>
+                            </ol>
+                        </div>  
+                    </div>
                     {{#if advantage.value}}
-                        <li class="roll die {{advantage.dice}} hope {{#if (eq advantageSelected 1)}}unused{{/if}} {{#if (eq advantageSelected 0)}}advantage{{/if}}">{{ advantage.value}}</li>
+                        <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">
+                                    <span>1{{advantage.dice}}</span>
+                                </span>
+                                <span class="part-total">{{advantage.value}}</span>
+                            </header>
+                            <div class="flexrow">
+                                <ol class="dice-rolls">
+                                    <li class="roll die {{advantage.dice}} hope min">{{advantage.value}}</li>
+                                </ol>
+                            </div>  
+                        </div>
                     {{/if}}
                     {{#if disadvantage.value}}
-                        <li class="roll die {{disadvantage.dice}} disadvantage {{#if (gte disadvantage.value hope.value)}}unused{{/if}}">{{disadvantage.value}}</li>
+                        <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">
+                                    <span>1{{disadvantage.dice}}</span>
+                                </span>
+                                <span class="part-total">{{disadvantage.value}}</span>
+                            </header>
+                            <div class="flexrow">
+                                <ol class="dice-rolls">
+                                    <li class="roll die {{disadvantage.dice}} hope min">{{disadvantage.value}}</li>
+                                </ol>
+                            </div>  
+                        </div>
                     {{/if}}
-                </div>
-                <li class="roll die {{fear.dice}} fear">{{fear.value}}</li>
-                <div class="modifiers-container">
-                    {{#each modifiers}}
-                        <li class="modifier-value" data-value="{{this.value}}" title="{{this.title}}">{{this.label}}</li>
-                    {{/each}}
-                </div>
-            </ol>
+                </section>
+            </div>
         </div>
         <div class="dice-total">
             <div class="dice-total-label">{{totalLabel}}</div>
             <div class="dice-total-value">
-                {{#if total.alternate}}
-                    {{#with dualityDiceStates}}
-                        <span class="{{this.hope}}">{{../total.normal}}</span> - <span class="{{this.alternate}}">{{../total.alternate}}</span>
-                    {{/with}}
-                {{else}}
-                    {{total.normal}}
-                {{/if}}
+                {{this.total}}
             </div>
         </div>
         {{#if (gt targets.length 0)}}
@@ -44,6 +73,8 @@
                 {{/each}}
             </div>
         {{/if}}
-        <button class="roll-damage-button" data-value="{{this.total.normal}}" data-damage="{{this.damage.value}}" data-damage-type="{{this.damage.type}}" {{#if this.damage.disabled}}disabled{{/if}}><span>Roll Damage</span></button>  
+        <div class="flexrow">
+            <button class="roll-damage-button" data-value="{{this.total}}" data-damage="{{this.damage.value}}" data-damage-type="{{this.damage.type}}" {{#if this.damage.disabled}}disabled{{/if}}><span>Roll Damage</span></button>  
+        </div>
     </div>
 </div>

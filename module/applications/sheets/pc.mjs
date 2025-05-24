@@ -4,8 +4,10 @@ import DhpDowntime from '../downtime.mjs';
 import DhpLevelup from '../levelup.mjs';
 import AncestrySelectionDialog from '../ancestrySelectionDialog.mjs';
 import DaggerheartSheet from './daggerheart-sheet.mjs';
+import { abilities } from '../../config/actorConfig.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
+const { TextEditor } = foundry.applications.ux;
 export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     constructor(options = {}) {
         super(options);
@@ -480,9 +482,9 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    static async rollAttribute(event, target) {
+    static async rollAttribute(event, button) {
         const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll(
-            { title: 'Attribute Bonus', value: event.target.dataset.value },
+            { title: 'Attribute Bonus', value: button.dataset.value },
             event.shiftKey
         );
 
@@ -490,6 +492,10 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const msgData = {
             type: 'dualityRoll',
             system: {
+                title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
+                    ability: game.i18n.localize(abilities[button.dataset.attribute].label)
+                }),
+                origin: this.document.id,
                 roll: roll._formula,
                 modifiers: modifiers,
                 hope: hope,
@@ -550,8 +556,8 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         await this.document.update({ [update]: newValue });
     }
 
-    static async attackRoll(_, event) {
-        const weapon = await fromUuid(event.currentTarget.dataset.weapon);
+    static async attackRoll(event, button) {
+        const weapon = await fromUuid(button.dataset.weapon);
         const damage = {
             value: `${this.document.system.proficiency.value}${weapon.system.damage.value}`,
             type: weapon.system.damage.type,
@@ -579,7 +585,10 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             type: 'dualityRoll',
+            sound: CONFIG.sounds.dice,
             system: {
+                title: weapon.name,
+                origin: this.document.id,
                 roll: roll._formula,
                 modifiers: modifiers,
                 hope: hope,

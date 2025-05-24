@@ -1,0 +1,42 @@
+{
+  "name": "Improved Rapier",
+  "type": "weapon",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_2/physical/improved_rapier.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d8+3",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "presence",
+    "range": "melee",
+    "burden": "oneHanded",
+    "feature": "quick"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748009515586,
+    "modifiedTime": 1748009543035,
+    "lastModifiedBy": "JKaKJsbixtjbUa07"
+  },
+  "_id": "llBQI4DjfJAadtE8",
+  "sort": 2300000,
+  "_key": "!items!llBQI4DjfJAadtE8"
+}

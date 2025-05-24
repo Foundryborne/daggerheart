@@ -7,7 +7,7 @@
     {{#each this.attributes as |attribute key|}}
         <div class="attribute">
             <div class="attribute-banner">
-                <img class="attribute-roll" data-action="attributeRoll" data-value="{{attribute.data.value}}" src="icons/svg/d12-grey.svg" />
+                <img class="attribute-roll" data-action="attributeRoll" data-attribute="{{key}}" data-value="{{attribute.data.value}}" src="icons/svg/d12-grey.svg" />
                 <div class="attribute-text">{{key}}</div>
             </div>
             <div class="attribute-mark {{#if (and (not attribute.levelMark) (and (not (includes attribute.levelMarks ../document.system.levelData.currentLevel)) (gt ../document.system.availableAttributeMarks.length 0)))}}selectable{{/if}}" data-action="toggleAttributeMark" data-attribute="{{key}}">

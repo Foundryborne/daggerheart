@@ -1,0 +1,41 @@
+{
+  "name": "Battleaxe",
+  "type": "weapon",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_1/physical/battleaxe.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d10+3",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "strength",
+    "range": "melee",
+    "burden": "twoHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748009469760,
+    "modifiedTime": 1748009469760,
+    "lastModifiedBy": "JKaKJsbixtjbUa07"
+  },
+  "_id": "27Kmwjycfn1De9ig",
+  "sort": 0,
+  "_key": "!items!27Kmwjycfn1De9ig"
+}

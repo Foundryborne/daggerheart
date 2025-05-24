@@ -1,0 +1,41 @@
+{
+  "name": "Mage Orb",
+  "type": "weapon",
+  "_id": "TUEydRo4XV3B7Lls",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_3/magical/mage_orb.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d6+7",
+      "type": "magical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "knowledge",
+    "range": "far",
+    "burden": "oneHanded",
+    "feature": "powerful"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747989683025,
+    "modifiedTime": 1747989719601,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+  },
+  "_key": "!items!TUEydRo4XV3B7Lls"
+}

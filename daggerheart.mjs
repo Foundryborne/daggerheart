@@ -81,6 +81,7 @@ Hooks.once('init', () => {
     CONFIG.ChatMessage.dataModels = {
         dualityRoll: models.DhpDualityRoll,
         adversaryRoll: models.DhpAdversaryRoll,
+        damageRoll: models.DhpDamageRoll,
         abilityUse: models.DhpAbilityUse
     };
     CONFIG.ChatMessage.documentClass = applications.DhpChatMessage;

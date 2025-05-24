@@ -1,5 +1,3 @@
-import { MappingField } from './fields.mjs';
-
 export default class DhpAdversary extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -35,20 +33,20 @@ export default class DhpAdversary extends foundry.abstract.TypeDataModel {
             }),
             difficulty: new fields.NumberField({ initial: 1, integer: true }),
             damageThresholds: new fields.SchemaField({
-                minor: new fields.NumberField({ initial: 0, integer: true }),
                 major: new fields.NumberField({ initial: 0, integer: true }),
                 severe: new fields.NumberField({ initial: 0, integer: true })
             }),
-            experiences: new fields.ArrayField(
+            experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
-                    name: new fields.StringField({}),
+                    id: new fields.StringField({ required: true }),
+                    name: new fields.StringField(),
                     value: new fields.NumberField({ integer: true, nullable: true, initial: null })
                 })
             )
         };
     }
 
-    get moves() {
+    get features() {
         return this.parent.items.filter(x => x.type === 'feature');
     }
 }

@@ -1,11 +1,10 @@
 import DaggerheartAction from '../action.mjs';
-import { MappingField } from '../fields.mjs';
 
 export default class DhpEffects extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            effects: new MappingField(
+            effects: new fields.TypedObjectField(
                 new fields.SchemaField({
                     type: new fields.StringField({ choices: Object.keys(SYSTEM.EFFECTS.effectTypes) }),
                     valueType: new fields.StringField({ choices: Object.keys(SYSTEM.EFFECTS.valueTypes) }),
@@ -23,7 +22,7 @@ export default class DhpEffects extends foundry.abstract.TypeDataModel {
                         { choices: Object.keys(SYSTEM.EFFECTS.applyLocations) },
                         { nullable: true, initial: null }
                     ),
-                    applyLocationChoices: new MappingField(new fields.StringField({}), {
+                    applyLocationChoices: new fields.TypedObjectField(new fields.StringField({}), {
                         nullable: true,
                         initial: null
                     }),

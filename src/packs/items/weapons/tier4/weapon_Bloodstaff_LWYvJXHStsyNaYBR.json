@@ -1,0 +1,41 @@
+{
+  "name": "Bloodstaff",
+  "type": "weapon",
+  "_id": "LWYvJXHStsyNaYBR",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_4/magical/bloodstaff.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d20+7",
+      "type": "magical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "instinct",
+    "feature": "painful",
+    "range": "far",
+    "burden": "twoHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748038067989,
+    "modifiedTime": 1748038098782,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!LWYvJXHStsyNaYBR"
+}

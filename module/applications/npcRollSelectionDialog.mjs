@@ -1,81 +1,79 @@
-export default class NpcRollSelectionDialog extends FormApplication {
-    constructor(experiences, resolve, isNpc) {
-        super({}, {});
+const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
+
+export default class NpcRollSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
+    constructor(experiences, resolve, reject) {
+        super({});
 
         this.experiences = experiences;
         this.resolve = resolve;
+        this.reject = reject;
         this.selectedExperiences = [];
         this.data = {
-            nrDice: 1,
             advantage: null
         };
     }
 
     get title() {
-        return 'Roll Options';
+        return game.i18n.localize('DAGGERHEART.Application.Settings.Title');
     }
 
-    static get defaultOptions() {
-        const defaults = super.defaultOptions;
-        const overrides = {
-            height: 'auto',
-            width: 400,
-            id: 'roll-selection',
-            template: 'systems/daggerheart/templates/views/npcRollSelection.hbs',
-            closeOnSubmit: false,
-            submitOnChange: true,
-            classes: ['daggerheart', 'views', 'npc-roll-selection']
-        };
+    static DEFAULT_OPTIONS = {
+        tag: 'form',
+        id: 'roll-selection',
+        classes: ['daggerheart', 'views', 'npc-roll-selection'],
+        position: { width: '500', height: 'auto' },
+        actions: {
+            updateIsAdvantage: this.updateIsAdvantage,
+            selectExperience: this.selectExperience
+        },
+        form: { handler: this.updateData, submitOnChange: false }
+    };
 
-        const mergedOptions = foundry.utils.mergeObject(defaults, overrides);
+    static PARTS = {
+        main: {
+            id: 'main',
+            template: 'systems/daggerheart/templates/views/npcRollSelection.hbs'
+        }
+    };
 
-        return mergedOptions;
-    }
-
-    async getData() {
-        const context = super.getData();
-        context.nrDice = this.data.nrDice;
+    async _prepareContext(_options) {
+        const context = await super._prepareContext(_options);
         context.advantage = this.data.advantage;
-        context.experiences = this.experiences.map(x => ({
+        context.experiences = Object.values(this.experiences).map(x => ({
             ...x,
-            selected: this.selectedExperiences.find(selected => selected.id === x.id)
+            selected: this.selectedExperiences.find(selected => selected.id === x.id),
+            value: `${x.value >= 0 ? '+' : '-'}${x.value}`
         }));
 
         return context;
     }
 
-    activateListeners(html) {
-        super.activateListeners(html);
-
-        html.find('.increase').click(_ => this.updateNrDice(1));
-        html.find('.decrease').click(_ => this.updateNrDice(-1));
-        html.find('.advantage').click(_ => this.updateIsAdvantage(true));
-        html.find('.disadvantage').click(_ => this.updateIsAdvantage(false));
-        html.find('.roll-button').click(this.finish.bind(this));
-        html.find('.roll-dialog-chip').click(this.selectExperience.bind(this));
-    }
-
-    updateNrDice(value) {
-        this.data.nrDice += value;
-        this.render();
-    }
-
-    updateIsAdvantage(advantage) {
+    static updateIsAdvantage(_, button) {
+        const advantage = Boolean(button.dataset.advantage);
         this.data.advantage = this.data.advantage === advantage ? null : advantage;
         this.render();
     }
 
-    selectExperience(event) {
-        const experience = this.experiences[event.currentTarget.dataset.key];
-        this.selectedExperiences = this.selectedExperiences.find(x => x.name === experience.name)
-            ? this.selectedExperiences.filter(x => x.name !== experience.name)
+    static selectExperience(_, button) {
+        const experience = Object.values(this.experiences).find(experience => experience.id === button.id);
+        this.selectedExperiences = this.selectedExperiences.find(x => x.id === experience.id)
+            ? this.selectedExperiences.filter(x => x.id !== experience.id)
             : [...this.selectedExperiences, experience];
 
         this.render();
     }
 
-    finish() {
+    static async updateData() {
         this.resolve({ ...this.data, experiences: this.selectedExperiences });
-        this.close();
+        this.close({ updateClose: true });
+    }
+
+    async close(options = {}) {
+        const { updateClose, ...baseOptions } = options;
+        if (!updateClose) {
+            this.reject();
+        }
+
+        await super.close(baseOptions);
     }
 }

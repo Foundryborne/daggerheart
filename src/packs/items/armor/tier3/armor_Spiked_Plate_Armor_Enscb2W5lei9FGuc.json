@@ -1,0 +1,40 @@
+{
+  "name": "Spiked Plate Armor",
+  "type": "armor",
+  "img": "systems/daggerheart/assets/icons/armor/tier_3/spiked_plate_armor.png",
+  "system": {
+    "baseScore": 5,
+    "marks": {
+      "max": 6,
+      "value": 0
+    },
+    "description": "",
+    "feature": "sharp",
+    "baseThresholds": {
+      "major": 10,
+      "severe": 25
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748008787719,
+    "modifiedTime": 1748028581947,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_id": "Enscb2W5lei9FGuc",
+  "sort": 200000,
+  "_key": "!items!Enscb2W5lei9FGuc"
+}

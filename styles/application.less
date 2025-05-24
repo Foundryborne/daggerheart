@@ -296,6 +296,7 @@ div.daggerheart.views.multiclass {
                 display: flex;
                 align-items: center;
                 margin-bottom: @fullMargin;
+                gap: 16px;
 
                 .dice-container {
                     display: flex;
@@ -306,6 +307,7 @@ div.daggerheart.views.multiclass {
                         position: relative;
                         display: flex;
                         align-items: center;
+                        justify-content: center;
 
                         i {
                             font-size: 18px;
@@ -319,10 +321,22 @@ div.daggerheart.views.multiclass {
 
                         .dice-number {
                             position: absolute;
-                            top: calc(50% - 14px);
-                            left: calc(50% - 7px);
                             font-size: 24px;
                             font-weight: bold;
+                        }
+                    }
+
+                    .advantage-container {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 2px;
+                        flex: 1;
+
+                        .advantage-button {
+                            &.active,
+                            &:hover {
+                                background: var(--button-hover-background-color);
+                            }
                         }
                     }
                 }
@@ -333,33 +347,19 @@ div.daggerheart.views.multiclass {
                 align-items: flex-start;
                 flex-wrap: wrap;
                 gap: @halfMargin;
-                flex: 2;
+                flex: 1;
                 height: 100%;
 
-                .roll-dialog-chip {
-                    border: @thinBorder solid black;
-                    border-radius: 6px;
-                    flex-basis: calc(50% - 2px);
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    cursor: pointer;
-                    padding: @fullPadding;
-                    background: grey;
-                    overflow: hidden;
+                .experience-chip {
+                    opacity: 0.6;
+                    border-radius: 16px;
+                    width: calc(50% - 4px);
+                    white-space: nowrap;
 
-                    &.hover {
-                        filter: drop-shadow(0 0 3px @mainShadow);
-                    }
-
-                    span {
-                        overflow: hidden;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
-                    }
-
-                    &.selected i {
-                        color: green;
+                    &.active,
+                    &:hover {
+                        opacity: 1;
+                        background: var(--button-hover-background-color);
                     }
                 }
             }

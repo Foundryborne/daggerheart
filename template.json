@@ -37,9 +37,10 @@
         "combat": {}
     },
     "ChatMessage": {
-        "types": ["dualityRoll", "adversaryRoll", "abilityUse"],
+        "types": ["dualityRoll", "adversaryRoll", "damageRoll", "abilityUse"],
         "dualityRoll": {},
         "adversaryRoll": {},
+        "damageRoll": {},
         "abilityUse": {}
     }
 }

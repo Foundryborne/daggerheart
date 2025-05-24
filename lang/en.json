@@ -86,7 +86,8 @@
                 "SecondaryEquipWhileTwohanded": "A secondary weapon can't be equipped together with a Two-Handed weapon.",
                 "TwohandedEquipWhileSecondary": "Can't equip a Two-Handed weapon together with a secondary weapon.",
                 "SelectClassBeforeSubclass": "Select a Class before selecting a Subclass.",
-                "SubclassNotOfClass": "This Subclass doesn't belong to your current Class."
+                "SubclassNotOfClass": "This Subclass doesn't belong to your current Class.",
+                "AttackTargetDoesNotExist": "The target token no longer exists"
             },
             "Error": {
                 "NoClassSelected": "Your character has no class selected!",
@@ -104,8 +105,14 @@
             "Duality": "Duality",
             "Check": "{check} Check",
             "CriticalSuccess": "Critical Success",
-            "Advantage": "Advantage",
-            "Disadvantage": "Disadvantage",
+            "Advantage": {
+                "Full": "Advantage",
+                "Short": "Adv"
+            },
+            "Disadvantage": {
+                "Full": "Disadvantage",
+                "Short": "Dis"
+            },
             "OK": "OK",
             "Cancel": "Cancel",
             "Or": "Or",
@@ -707,6 +714,9 @@
                 "Title": "{actor} - Death Move",
                 "TakeMove": "Take Death Move"
             },
+            "RollSelection": {
+                "Title": "Roll Options"
+            },
             "Settings": {
                 "Title": "Daggerheart Settings"
             },
@@ -728,9 +738,14 @@
         },
         "Chat": {
             "DualityRoll": {
-                "AdvantageChooseTitle": "Select Hope Dice"
+                "AbilityCheckTitle": "{ability} Check"
+            },
+            "AttackRoll": {
+                "Title": "Attack - {attack}"
             },
             "DamageRoll": {
+                "Title": "Damage - {damage}",
+                "DealDamageToTargets": "Damage Hit Targets",
                 "DealDamage": "Deal Damage"
             },
             "HealingRoll": {
@@ -882,8 +897,8 @@
                 "Stress": "Stress",
                 "Experience": "Experience",
                 "Experiences": "Experiences",
-                "Moves": "Moves",
-                "NewMove": "New Move"
+                "Features": "Features",
+                "NewFeature": "New Feature"
             },
             "Environment": {
                 "ToneAndFeel": "Tone And feel",

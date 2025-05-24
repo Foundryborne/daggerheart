@@ -1,0 +1,41 @@
+{
+  "name": "Meridian Cutlass",
+  "type": "weapon",
+  "_id": "jjjGt7Hf4IwMR2vc",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_3/physical/meridian_cutlass.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d10+5",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "presence",
+    "range": "melee",
+    "burden": "oneHanded",
+    "feature": "doubleDuty"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747988541196,
+    "modifiedTime": 1747988582864,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+  },
+  "_key": "!items!jjjGt7Hf4IwMR2vc"
+}

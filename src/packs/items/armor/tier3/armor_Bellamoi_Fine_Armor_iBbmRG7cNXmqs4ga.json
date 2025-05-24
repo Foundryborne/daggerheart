@@ -1,0 +1,40 @@
+{
+  "name": "Bellamoi Fine Armor",
+  "type": "armor",
+  "img": "systems/daggerheart/assets/icons/armor/tier_3/bellamoi_fine_armor.png",
+  "system": {
+    "baseScore": 5,
+    "marks": {
+      "max": 6,
+      "value": 0
+    },
+    "description": "",
+    "feature": "gilded",
+    "baseThresholds": {
+      "major": 11,
+      "severe": 27
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748008783947,
+    "modifiedTime": 1748028554404,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_id": "iBbmRG7cNXmqs4ga",
+  "sort": 600000,
+  "_key": "!items!iBbmRG7cNXmqs4ga"
+}

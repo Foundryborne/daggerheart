@@ -4,27 +4,20 @@
         <div class="dice-container">
             <div class="dice-inner-container">
                 <img src="icons/svg/d20-grey.svg" />
-                <div class="dice-number">{{this.nrDice}}</div>
+                <div class="dice-number">d20</div>
             </div>
-            <div class="flexcol" style="margin-right: 4px;">
-                <i class="fa-solid fa-chevron-up icon-button increase"></i>
-                <i class="fa-solid fa-chevron-down icon-button decrease"></i>
-            </div>
-            <div class="flexcol">
-                <div class="icon-button {{#if this.advantage}}active{{/if}} advantage">Adv</div>
-                <div class="icon-button {{#if (eq this.advantage false)}}active{{/if}} disadvantage">Dis</div>
+            <div class="advantage-container">
+                <button class="advantage-button {{#if this.advantage}}active{{/if}} advantage" data-action="updateIsAdvantage" data-advantage="true">{{localize "DAGGERHEART.General.Advantage.Full"}}</button>
+                <button class="advantage-button {{#if (eq this.advantage false)}}active{{/if}} disadvantage" data-action="updateIsAdvantage">{{localize "DAGGERHEART.General.Disadvantage.Full"}}</button>
             </div>
         </div>
         <div class="roll-dialog-experience-container">
-            {{#each this.experiences as |experience key|}}
-                <div class="roll-dialog-chip {{#if experience.selected}}selected{{/if}}" data-action="selectExperience" data-key="{{key}}">
-                    <span>{{experience.name}}</span>
-                    <i class="fa-solid fa-circle-check"></i>
-                </div>
+            {{#each this.experiences as |experience|}}
+                <button class="experience-chip {{#if experience.selected}}active{{/if}}" data-action="selectExperience" id="{{id}}">{{experience.name}} {{experience.value}}</button>
             {{/each}}
         </div>
     </div>
-    <footer>
-        <button class="roll-button">Roll</button>
+    <footer class="flexrow">
+        <button type="submit" class="roll-button">Roll</button>
     </footer>
 </div>

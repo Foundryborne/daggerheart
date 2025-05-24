@@ -14,5 +14,6 @@ export { default as DhpWeapon } from './weapon.mjs';
 export { default as DhpArmor } from './armor.mjs';
 export { default as DhpDualityRoll } from './dualityRoll.mjs';
 export { default as DhpAdversaryRoll } from './adversaryRoll.mjs';
+export { default as DhpDamageRoll } from './damageRoll.mjs';
 export { default as DhpAbilityUse } from './abilityUse.mjs';
 export { default as DhpEnvironment } from './environment.mjs';

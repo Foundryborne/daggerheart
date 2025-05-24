@@ -1,0 +1,41 @@
+{
+  "name": "Curved Dagger",
+  "type": "weapon",
+  "_id": "sbKB1f2i7bQCR1i8",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_4/physical/curved_dagger.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d8+9",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "finesse",
+    "feature": "serrated",
+    "range": "melee",
+    "burden": "oneHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748035972954,
+    "modifiedTime": 1748035994504,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!sbKB1f2i7bQCR1i8"
+}

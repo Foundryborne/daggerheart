@@ -48,7 +48,7 @@
                     <textarea name="system.potentialAdversaries">{{source.system.potentialAdversaries}}</textarea>
                 </div>
                 <div class="adversary-moves-container">
-                    <h2 class="moves-edit-container">{{localize "DAGGERHEART.Sheets.Adversary.Moves"}} <i class="fa-solid fa-plus" data-action="addFeature"></i></h2>
+                    <h2 class="moves-edit-container">{{localize "DAGGERHEART.Sheets.Adversary.Features"}} <i class="fa-solid fa-plus" data-action="addFeature"></i></h2>
                     {{#each data.features as |feature key|}}
                         <div class="chip-container">
                             <div class="chip-inner-container">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="adversary-moves-container">
-                    <div class="moves-title">{{localize "DAGGERHEART.Sheets.Adversary.Moves"}}</div>
+                    <div class="moves-title">{{localize "DAGGERHEART.Sheets.Adversary.Features"}}</div>
                     {{#each data.features as |feature index|}}
                         <div class="move-container" data-action="useFeature" data-feature="{{feature.uuid}}" data-action-type="{{feature.system.actionType}}">
                             <label class="moves-name">{{feature.name}} - {{feature.system.actionType}}</label>

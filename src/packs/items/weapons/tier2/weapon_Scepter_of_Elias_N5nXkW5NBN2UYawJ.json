@@ -1,0 +1,42 @@
+{
+  "name": "Scepter of Elias",
+  "type": "weapon",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_2/magical/scepter_of_elias.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d6+3",
+      "type": "magical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "presence",
+    "range": "far",
+    "burden": "oneHanded",
+    "feature": "invigorating"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748009505571,
+    "modifiedTime": 1748009543035,
+    "lastModifiedBy": "JKaKJsbixtjbUa07"
+  },
+  "_id": "N5nXkW5NBN2UYawJ",
+  "sort": 3000000,
+  "_key": "!items!N5nXkW5NBN2UYawJ"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Fusion Gloves",
+  "type": "weapon",
+  "_id": "XcJce4ZCzXkhirza",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_4/magical/fusion_gloves.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d6+9",
+      "type": "magical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "knowledge",
+    "feature": "bonded",
+    "range": "veryFar",
+    "burden": "oneHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748038283403,
+    "modifiedTime": 1748038307993,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!XcJce4ZCzXkhirza"
+}

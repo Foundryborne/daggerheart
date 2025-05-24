@@ -1369,54 +1369,67 @@
 .daggerheart.chat.downtime .downtime-refresh-container .refresh-title {
   font-weight: bold;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls {
+.daggerheart.chat.roll .dice-flavor {
+  text-align: center;
+  font-weight: bold;
+}
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality {
   display: flex;
   align-items: center;
-  justify-content: space-around;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .dice-hope-container {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .dice-hope-container {
   display: flex;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .dice-hope-container .roll.die:not(:last-of-type) {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .dice-hope-container .roll.die:not(:last-of-type) {
   margin-right: 8px;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .modifiers-container {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .modifiers-container {
   display: flex;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .modifiers-container .modifier-value:not(:last-of-type) {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .modifiers-container .modifier-value:not(:last-of-type) {
   margin-right: 8px;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .roll.die.hope {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .roll.die.hope {
   color: white;
   -webkit-text-stroke-color: #008080;
   -webkit-text-stroke-width: 1.5px;
   font-weight: 400;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .roll.die.fear {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .roll.die.hope:not(.discarded) {
+  filter: none;
+}
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .roll.die.fear {
   color: white;
   -webkit-text-stroke-color: #430070;
   -webkit-text-stroke-width: 1.5px;
   font-weight: 400;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .roll.die.disadvantage {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .roll.die.fear:not(.discarded) {
+  filter: none;
+}
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .roll.die.disadvantage {
   color: white;
   -webkit-text-stroke-color: #b30000;
   -webkit-text-stroke-width: 1.5px;
   font-weight: 400;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .roll.die.advantage {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .roll.die.advantage {
   color: white;
   -webkit-text-stroke-color: green;
   -webkit-text-stroke-width: 1.5px;
   font-weight: 400;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .roll.die.unused {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .roll.die.unused {
   opacity: 0.3;
 }
-.daggerheart.chat.roll .dice-tooltip .dice-rolls .modifier-value {
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .modifier-value {
   text-align: center;
   font-weight: bold;
   font-size: 16px;
+}
+.daggerheart.chat.roll .dice-tooltip .attack-roll-advantage-container {
+  text-align: end;
+  font-weight: bold;
 }
 .daggerheart.chat.roll .dice-total .dice-total-value .hope {
   color: #008080;
@@ -1468,7 +1481,15 @@
   justify-content: center;
   margin-right: 32px;
 }
-.daggerheart.chat.roll .roll-damage-button {
+.daggerheart.chat.roll .dice-actions {
+  display: flex;
+  gap: 4px;
+}
+.daggerheart.chat.roll .dice-actions button {
+  flex: 1;
+}
+.daggerheart.chat.roll .dice-result .roll-damage-button,
+.daggerheart.chat.roll .dice-result .damage-button {
   margin-top: 5px;
 }
 .daggerheart.chat.domain-card {
@@ -1794,6 +1815,7 @@ div.daggerheart.views.multiclass {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+  gap: 16px;
 }
 .daggerheart.views.npc-roll-selection .npc-roll-dialog-container .selection-container .dice-container {
   display: flex;
@@ -1804,6 +1826,7 @@ div.daggerheart.views.multiclass {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .daggerheart.views.npc-roll-selection .npc-roll-dialog-container .selection-container .dice-container .dice-inner-container i {
   font-size: 18px;
@@ -1815,41 +1838,37 @@ div.daggerheart.views.multiclass {
 }
 .daggerheart.views.npc-roll-selection .npc-roll-dialog-container .selection-container .dice-container .dice-inner-container .dice-number {
   position: absolute;
-  top: calc(50% - 14px);
-  left: calc(50% - 7px);
   font-size: 24px;
   font-weight: bold;
+}
+.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .selection-container .dice-container .advantage-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .selection-container .dice-container .advantage-container .advantage-button.active,
+.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .selection-container .dice-container .advantage-container .advantage-button:hover {
+  background: var(--button-hover-background-color);
 }
 .daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container {
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 4px;
-  flex: 2;
+  flex: 1;
   height: 100%;
 }
-.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .roll-dialog-chip {
-  border: 1px solid black;
-  border-radius: 6px;
-  flex-basis: calc(50% - 2px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  padding: 4px;
-  background: grey;
-  overflow: hidden;
-}
-.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .roll-dialog-chip.hover {
-  filter: drop-shadow(0 0 3px red);
-}
-.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .roll-dialog-chip span {
-  overflow: hidden;
+.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .experience-chip {
+  opacity: 0.6;
+  border-radius: 16px;
+  width: calc(50% - 4px);
   white-space: nowrap;
-  text-overflow: ellipsis;
 }
-.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .roll-dialog-chip.selected i {
-  color: green;
+.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .experience-chip.active,
+.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .experience-chip:hover {
+  opacity: 1;
+  background: var(--button-hover-background-color);
 }
 .daggerheart.views.multiclass .multiclass-container {
   margin-bottom: 16px;

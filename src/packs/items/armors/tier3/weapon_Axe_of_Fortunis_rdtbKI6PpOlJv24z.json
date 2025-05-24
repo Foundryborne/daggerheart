@@ -1,0 +1,41 @@
+{
+  "name": "Axe of Fortunis",
+  "type": "weapon",
+  "_id": "rdtbKI6PpOlJv24z",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_3/magical/axe_of_fortunis.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d10+8",
+      "type": "magical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "strength",
+    "range": "melee",
+    "burden": "twoHanded",
+    "feature": "lucky"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747989384191,
+    "modifiedTime": 1747989403391,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+  },
+  "_key": "!items!rdtbKI6PpOlJv24z"
+}

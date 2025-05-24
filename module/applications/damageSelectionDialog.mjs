@@ -1,7 +1,7 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(rollString, bonusDamage, hope, resolve) {
+    constructor(rollString, bonusDamage, resolve, hope = 0) {
         super({});
 
         this.data = {
@@ -122,64 +122,3 @@ export default class DamageSelectionDialog extends HandlebarsApplicationMixin(Ap
         this.close();
     }
 }
-
-// export default class DamageSelectionDialog extends FormApplication {
-//     constructor(rollString, bonusDamage, resolve){
-//         super({}, {});
-
-//         this.data = {
-//             rollString,
-//             bonusDamage: bonusDamage.map(x => ({
-//                 ...x,
-//                 hopeUses: 0
-//             })),
-//         }
-//         this.resolve = resolve;
-//     }
-
-//     get title (){
-//       return 'Damage Options';
-//     }
-
-//     static get defaultOptions() {
-//         const defaults = super.defaultOptions;
-//         const overrides = {
-//           height: 'auto',
-//           width: 400,
-//           id: 'damage-selection',
-//           template: 'systems/daggerheart/templates/views/damageSelection.hbs',
-//           closeOnSubmit: false,
-//           classes: ["daggerheart", "views", "damage-selection"],
-//         };
-
-//         const mergedOptions = foundry.utils.mergeObject(defaults, overrides);
-
-//         return mergedOptions;
-//     }
-
-//     async getData(){
-//         const context = super.getData();
-//         context.rollString = this.data.rollString;
-//         context.bonusDamage = this.data.bonusDamage;
-
-//         return context;
-//     }
-
-//     activateListeners(html) {
-//         super.activateListeners(html);
-
-//         html.find('.roll-button').click(this.finish.bind(this));
-//         html.find('.').change();
-//     }
-
-//     // async _updateObject(_, formData) {
-//     //     const data = foundry.utils.expandObject(formData);
-//     //     this.data = foundry.utils.mergeObject(this.data, data);
-//     //     this.render(true);
-//     // }
-
-//     finish(){
-//       this.resolve(this.data);
-//       this.close();
-//     }
-//   }

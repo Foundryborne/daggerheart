@@ -213,6 +213,7 @@ import DaggerheartSheet from './daggerheart-sheet.mjs';
 import Tagify from '@yaireo/tagify';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
+const { TextEditor } = foundry.applications.ux;
 export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',

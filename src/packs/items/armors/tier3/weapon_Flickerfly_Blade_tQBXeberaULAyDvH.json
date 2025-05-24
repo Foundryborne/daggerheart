@@ -1,0 +1,41 @@
+{
+  "name": "Flickerfly Blade",
+  "type": "weapon",
+  "_id": "tQBXeberaULAyDvH",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_3/physical/flickerfly_blade.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d8+5",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "agility",
+    "range": "melee",
+    "burden": "oneHanded",
+    "feature": "sheltering"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747988227660,
+    "modifiedTime": 1747988260944,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+  },
+  "_key": "!items!tQBXeberaULAyDvH"
+}

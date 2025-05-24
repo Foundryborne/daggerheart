@@ -94,8 +94,6 @@
                     <div class="form-group">
                         <label>{{localize "DAGGERHEART.Sheets.Adversary.DamageThresholds.Title"}}</label>
                         <div class="form-fields adversary-damage-threshold-container">
-                            <label>{{localize "DAGGERHEART.Sheets.Adversary.DamageThresholds.Minor"}}</label>
-                            <input type="text" name="system.damageThresholds.minor" value="{{source.system.damageThresholds.minor}}" data-dtype="Number" />
                             <label>{{localize "DAGGERHEART.Sheets.Adversary.DamageThresholds.Major"}}</label>
                             <input type="text" name="system.damageThresholds.major" value="{{source.system.damageThresholds.major}}" data-dtype="Number" />
                             <label>{{localize "DAGGERHEART.Sheets.Adversary.DamageThresholds.Severe"}}</label>
@@ -124,21 +122,21 @@
                         <div class="experience-chip">
                             <input class="experience.value" type="text" name="system.experiences.{{index}}.name" value="{{experience.name}}" />
                             <input class="experience-value" type="text" name="system.experiences.{{index}}.value" value="{{experience.value}}" data-dtype="Number" />
-                            <button class="experience-button"><i data-action="removeExperience" data-experience="{{index}}" class="fa-solid fa-x"></i></button>
+                            <button class="experience-button" data-action="removeExperience" data-experience="{{experience.id}}"><i class="fa-solid fa-x"></i></button>
                         </div>
                     {{/each}}
                 </div>
                 <div class="adversary-moves-container">
-                    <h2 class="moves-edit-container">{{localize "DAGGERHEART.Sheets.Adversary.Moves"}} <i class="fa-solid fa-plus" data-action="addMove"></i></h2>
-                    {{#each this.data.moves as |move key|}}
+                    <h2 class="moves-edit-container">{{localize "DAGGERHEART.Sheets.Adversary.Features"}} <i class="fa-solid fa-plus" data-action="addMove"></i></h2>
+                    {{#each this.data.features as |feature key|}}
                         <div class="chip-container">
                             <div class="chip-inner-container">
-                                <img src="{{move.img}}" />
-                                <div class="move-title">{{move.name}}</div>
+                                <img src="{{feature.img}}" />
+                                <div class="move-title">{{feature.name}}</div>
                             </div>
                             <div class="chip-inner-container">
-                                <button data-action="viewMove" data-move={{move.uuid}}><i class="fa-solid fa-fw fa-search"></i></button>
-                                <button data-action="removeMove" data-move={{move.uuid}}><i class="fa-solid fa-trash"></i></button>
+                                <button data-action="viewMove" data-move={{feature.uuid}}><i class="fa-solid fa-fw fa-search"></i></button>
+                                <button data-action="removeMove" data-move={{feature.uuid}}><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     {{/each}}
@@ -177,7 +175,7 @@
                         <div class="statistic-row">
                             <label class="statistic-title">{{localize "DAGGERHEART.Sheets.Adversary.Attack.Modifier"}}:</label>
                             <span class="statistic-value">+{{this.data.attack.attackModifier}}</span>
-                            <img class="adversary-roll" data-action="attackRoll" data-value="{{this.data.attack.attackModifier}}" data-damage="{{this.data.attack.damage.value}}" data-damage-type="{{this.data.attack.damage.type}}" src="icons/svg/d20-grey.svg" />
+                            <img class="adversary-roll" data-action="attackRoll" data-value="{{this.data.attack.attackModifier}}" data-name="{{this.data.attack.name}}" data-damage="{{this.data.attack.damage.value}}" data-damage-type="{{this.data.attack.damage.type}}" src="icons/svg/d20-grey.svg" />
                         </div>
                         <div class="statistic-row">
                             <label class="statistic-title">{{localize this.data.attack.name}}</label>
@@ -186,9 +184,6 @@
                     </div>
                     <div class="statistic-section">
                         <div class="statistic-row">
-                            <label class="statistic-title">{{localize "DAGGERHEART.Sheets.PC.Health.Minor"}}</label>
-                            <span class="statistic-value">{{this.data.damageThresholds.minor}}</span>
-                            <div class="vertical-separator" style="height: 16px; margin: 0 4px;"></div>
                             <label class="statistic-title">{{localize "DAGGERHEART.Sheets.PC.Health.Major"}}</label>
                             <span class="statistic-value">{{this.data.damageThresholds.major}}</span>
                             <div class="vertical-separator" style="height: 16px; margin: 0 4px;"></div>
@@ -228,11 +223,11 @@
                     </div> --}}
                 </div>
                 <div class="adversary-moves-container">
-                    <div class="moves-title">{{localize "DAGGERHEART.Sheets.Adversary.Moves"}}</div>
-                    {{#each this.data.moves as |move index|}}
+                    <div class="moves-title">{{localize "DAGGERHEART.Sheets.Adversary.Features"}}</div>
+                    {{#each this.data.features as |feature index|}}
                         <div class="move-container">
-                            <label class="moves-name">{{move.name}}</label>
-                            <div class="move-description">{{{move.system.description}}}</div>
+                            <label class="moves-name">{{feature.name}}</label>
+                            <div class="move-description">{{{feature.system.description}}}</div>
                         </div>
                     {{/each}}
                 </div>
