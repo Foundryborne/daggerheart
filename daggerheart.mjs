@@ -10,6 +10,7 @@ import DhpChatLog from './module/ui/chatLog.mjs';
 import DhpPlayers from './module/ui/players.mjs';
 import DhpRuler from './module/ui/ruler.mjs';
 import DhpTokenRuler from './module/ui/tokenRuler.mjs';
+import { dualityRollEnricher } from './module/enrichers/DualityRollEnricher.mjs';
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -20,6 +21,11 @@ Hooks.once('init', () => {
         models,
         documents
     };
+
+    CONFIG.TextEditor.enrichers.push({
+        pattern: /\[\[\/dr\s?(.*?)\]\]/g,
+        enricher: dualityRollEnricher
+    });
 
     CONFIG.statusEffects = Object.values(SYSTEM.GENERAL.conditions).map(x => ({
         ...x,
@@ -89,7 +95,6 @@ Hooks.once('init', () => {
     game.socket.on(`system.${SYSTEM.id}`, handleSocketEvent);
 
     registerDHPSettings();
-
     RegisterHandlebarsHelpers.registerHelpers();
 
     return preloadHandlebarsTemplates();
@@ -119,6 +124,29 @@ Hooks.on(socketEvent.GMUpdate, async (action, uuid, update) => {
                 break;
         }
     }
+});
+
+Hooks.on('renderChatMessageHTML', (message, element) => {
+    element.querySelectorAll('.duality-roll-button').forEach(element =>
+        element.addEventListener('click', async event => {
+            const button = event.currentTarget;
+            let target = game.canvas.tokens.controlled.length > 0 ? game.canvas.tokens.controlled[0].actor : null;
+            if (!game.user.isGM) {
+                target = game.user.character;
+                if (!target) {
+                    notifications.error('DAGGERHEART.Notification.Error.NoAssignedPlayerCharacter');
+                    return;
+                }
+            }
+
+            if (!target) {
+                notifications.error('DAGGERHEART.Notification.Error.NoSelectedToken');
+                return;
+            }
+
+            const test = await gmTarget.diceRoll(3);
+        })
+    );
 });
 
 const preloadHandlebarsTemplates = async function () {

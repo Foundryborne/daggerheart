@@ -93,13 +93,16 @@
                 "LacksDomain": "Your character doesn't have the domain of the card!",
                 "MaxLoadoutReached": "You can't have any more domain cards at this level!",
                 "DuplicateDomainCard": "You already have a domain card with that name!",
-                "ActionRequiresTarget": "The action requires at least one target"
+                "ActionRequiresTarget": "The action requires at least one target",
+                "NoAssignedPlayerCharacter": "You have no assigned character.",
+                "NoSelectedToken": "You have no selected token"
             }
         },
         "General": {
-            "OpenBetaDisclaimer": "Daggerheart Open Beta {version}",
             "Hope": "Hope",
             "Fear": "Fear",
+            "Duality": "Duality",
+            "Check": "{check} Check",
             "CriticalSuccess": "Critical Success",
             "Advantage": "Advantage",
             "Disadvantage": "Disadvantage",
