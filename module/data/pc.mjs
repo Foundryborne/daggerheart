@@ -1,5 +1,4 @@
 import { getPathValue, getTier } from '../helpers/utils.mjs';
-import { MappingField } from './fields.mjs';
 
 const fields = foundry.data.fields;
 
@@ -17,37 +16,24 @@ const attributeField = () =>
     });
 
 const levelUpTier = () => ({
-    attributes: new MappingField(new fields.BooleanField()),
-    hitPointSlots: new MappingField(new fields.BooleanField()),
-    stressSlots: new MappingField(new fields.BooleanField()),
-    experiences: new MappingField(new fields.ArrayField(new fields.StringField({}))),
-    proficiency: new MappingField(new fields.BooleanField()),
-    armorOrEvasionSlot: new MappingField(new fields.StringField({})),
-    majorDamageThreshold2: new MappingField(new fields.BooleanField()),
-    severeDamageThreshold2: new MappingField(new fields.BooleanField()),
-    severeDamageThreshold3: new MappingField(new fields.BooleanField()),
-    severeDamageThreshold4: new MappingField(new fields.BooleanField()),
-    subclass: new MappingField(
+    attributes: new fields.TypedObjectField(new fields.BooleanField()),
+    hitPointSlots: new fields.TypedObjectField(new fields.BooleanField()),
+    stressSlots: new fields.TypedObjectField(new fields.BooleanField()),
+    experiences: new fields.TypedObjectField(new fields.ArrayField(new fields.StringField({}))),
+    proficiency: new fields.TypedObjectField(new fields.BooleanField()),
+    armorOrEvasionSlot: new fields.TypedObjectField(new fields.StringField({})),
+    majorDamageThreshold2: new fields.TypedObjectField(new fields.BooleanField()),
+    severeDamageThreshold2: new fields.TypedObjectField(new fields.BooleanField()),
+    severeDamageThreshold3: new fields.TypedObjectField(new fields.BooleanField()),
+    severeDamageThreshold4: new fields.TypedObjectField(new fields.BooleanField()),
+    subclass: new fields.TypedObjectField(
         new fields.SchemaField({
             multiclass: new fields.BooleanField(),
             feature: new fields.StringField({})
         })
     ),
-    multiclass: new MappingField(new fields.BooleanField())
+    multiclass: new fields.TypedObjectField(new fields.BooleanField())
 });
-
-// const weapon = () => new fields.SchemaField({
-//   name: new fields.StringField({}),
-//   trait: new fields.StringField({}),
-//   range: new fields.StringField({}),
-//   damage: new fields.SchemaField({
-//     value: new fields.StringField({}),
-//     type: new fields.StringField({}),
-//   }),
-//   feature: new fields.StringField({}),
-//   img: new fields.StringField({}),
-//   uuid: new fields.StringField({}),
-// }, { initial: null, nullable: true });
 
 export default class DhpPC extends foundry.abstract.TypeDataModel {
     static defineSchema() {
@@ -98,10 +84,6 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                 severe: new fields.NumberField({ initial: 0, integer: true })
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true }),
-            // armor: new fields.SchemaField({
-            //   value: new fields.NumberField({ initial: 0, integer: true }),
-            //   customValue: new fields.NumberField({ initial: null, nullable: true }),
-            // }),
             experiences: new fields.ArrayField(
                 new fields.SchemaField({
                     id: new fields.StringField({ required: true }),
@@ -130,7 +112,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             levelData: new fields.SchemaField({
                 currentLevel: new fields.NumberField({ initial: 1, integer: true }),
                 changedLevel: new fields.NumberField({ initial: 1, integer: true }),
-                levelups: new MappingField(
+                levelups: new fields.TypedObjectField(
                     new fields.SchemaField({
                         level: new fields.NumberField({ required: true, integer: true }),
                         tier1: new fields.SchemaField({

@@ -1,6 +1,5 @@
 import { getTier } from '../helpers/utils.mjs';
 import DaggerheartAction from './action.mjs';
-import { MappingField } from './fields.mjs';
 import DhpEffect from './interface/effects.mjs';
 
 export default class DhpFeature extends DhpEffect {
@@ -26,7 +25,7 @@ export default class DhpFeature extends DhpEffect {
                             initial: Object.keys(SYSTEM.ACTOR.featureProperties).find(x => x === 'spellcastingTrait')
                         }),
                         max: new fields.NumberField({ initial: 1, integer: true }),
-                        numbers: new MappingField(
+                        numbers: new fields.TypedObjectField(
                             new fields.SchemaField({
                                 value: new fields.NumberField({ integer: true }),
                                 used: new fields.BooleanField({ initial: false })
@@ -45,7 +44,7 @@ export default class DhpFeature extends DhpEffect {
                 multiclass: new fields.NumberField({ initial: null, nullable: true, integer: true }),
                 disabled: new fields.BooleanField({ initial: false }),
                 description: new fields.HTMLField({}),
-                effects: new MappingField(
+                effects: new fields.TypedObjectField(
                     new fields.SchemaField({
                         type: new fields.StringField({ choices: SYSTEM.EFFECTS.effectTypes }),
                         valueType: new fields.StringField({ choices: SYSTEM.EFFECTS.valueTypes }),
@@ -63,7 +62,7 @@ export default class DhpFeature extends DhpEffect {
                             { choices: SYSTEM.EFFECTS.applyLocations },
                             { nullable: true, initial: null }
                         ),
-                        applyLocationChoices: new MappingField(new fields.StringField({}), {
+                        applyLocationChoices: new fields.TypedObjectField(new fields.StringField({}), {
                             nullable: true,
                             initial: null
                         }),
@@ -97,10 +96,4 @@ export default class DhpFeature extends DhpEffect {
             }
         }
     }
-
-    // prepareDerivedData(){
-    //   if(this.featureType.type === SYSTEM.ITEM.valueTypes.dice.id){
-    //     this.featureType.numbers = ;
-    //   }
-    // }
 }

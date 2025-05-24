@@ -1,5 +1,3 @@
-import { MappingField } from './fields.mjs';
-
 export default class DhpAdversary extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
