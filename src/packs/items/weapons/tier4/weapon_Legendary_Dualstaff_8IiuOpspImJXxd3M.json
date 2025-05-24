@@ -1,0 +1,41 @@
+{
+  "name": "Legendary Dualstaff",
+  "type": "weapon",
+  "_id": "8IiuOpspImJXxd3M",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_4/magical/legendary_dualstaff.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d8+12",
+      "type": "magical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "instinct",
+    "feature": "",
+    "range": "far",
+    "burden": "twoHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748036876318,
+    "modifiedTime": 1748036899738,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!8IiuOpspImJXxd3M"
+}

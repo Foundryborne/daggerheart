@@ -1,0 +1,42 @@
+{
+  "name": "Wand of Enthrallment",
+  "type": "weapon",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_2/magical/wand_of_enthrallment.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d6+4",
+      "type": "magical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "presence",
+    "range": "far",
+    "burden": "oneHanded",
+    "feature": "persuasive"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748009503226,
+    "modifiedTime": 1748009543035,
+    "lastModifiedBy": "JKaKJsbixtjbUa07"
+  },
+  "_id": "ME6aDBfBjecVkdoZ",
+  "sort": 3900000,
+  "_key": "!items!ME6aDBfBjecVkdoZ"
+}

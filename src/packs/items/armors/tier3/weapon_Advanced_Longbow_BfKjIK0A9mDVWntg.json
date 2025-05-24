@@ -1,0 +1,41 @@
+{
+  "name": "Advanced Longbow",
+  "type": "weapon",
+  "_id": "BfKjIK0A9mDVWntg",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_3/physical/advanced_longbow.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d8+9",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "agility",
+    "range": "veryFar",
+    "burden": "twoHanded",
+    "feature": "cumbersome"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747988185736,
+    "modifiedTime": 1747988212515,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+  },
+  "_key": "!items!BfKjIK0A9mDVWntg"
+}

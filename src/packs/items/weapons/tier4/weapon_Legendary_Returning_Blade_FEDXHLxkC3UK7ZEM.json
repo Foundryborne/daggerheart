@@ -1,0 +1,41 @@
+{
+  "name": "Legendary Returning Blade",
+  "type": "weapon",
+  "_id": "FEDXHLxkC3UK7ZEM",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_4/magical/legendary_returning_blade.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d8+9",
+      "type": "magical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "finesse",
+    "feature": "retrieve",
+    "range": "close",
+    "burden": "oneHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748036711181,
+    "modifiedTime": 1748036774931,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!FEDXHLxkC3UK7ZEM"
+}

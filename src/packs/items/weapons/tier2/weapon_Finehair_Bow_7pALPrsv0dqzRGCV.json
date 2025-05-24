@@ -1,0 +1,42 @@
+{
+  "name": "Finehair Bow",
+  "type": "weapon",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_2/physical/finehair_bow.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d6+5",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "agility",
+    "range": "veryFar",
+    "burden": "twoHanded",
+    "feature": "reliable"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748009540474,
+    "modifiedTime": 1748009543035,
+    "lastModifiedBy": "JKaKJsbixtjbUa07"
+  },
+  "_id": "7pALPrsv0dqzRGCV",
+  "sort": 400000,
+  "_key": "!items!7pALPrsv0dqzRGCV"
+}

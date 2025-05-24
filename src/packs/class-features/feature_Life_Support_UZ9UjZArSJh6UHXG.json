@@ -1,44 +1,44 @@
 {
-    "name": "Life Support",
-    "type": "feature",
-    "_id": "UZ9UjZArSJh6UHXG",
-    "img": "icons/svg/item-bag.svg",
-    "system": {
-        "actionType": "action",
-        "featureType": {
-            "type": "normal",
-            "data": {
-                "property": "spellcastingTrait",
-                "max": 1,
-                "numbers": {}
-            }
-        },
-        "refreshData": null,
-        "multiclass": null,
-        "disabled": false,
-        "description": "<p>Spend 3 Hope to clear a Hit Point on an ally within Close range.</p>",
-        "effects": {},
-        "actions": [],
-        "type": "class"
+  "name": "Life Support",
+  "type": "feature",
+  "_id": "UZ9UjZArSJh6UHXG",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "actionType": "action",
+    "featureType": {
+      "type": "normal",
+      "data": {
+        "property": "spellcastingTrait",
+        "max": 1,
+        "numbers": {}
+      }
     },
-    "effects": [],
-    "folder": null,
-    "sort": 0,
-    "ownership": {
-        "default": 0,
-        "ei8OkswTzyDp4IGC": 3
-    },
-    "flags": {},
-    "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.344",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1748033044907,
-        "modifiedTime": 1748033065659,
-        "lastModifiedBy": "ei8OkswTzyDp4IGC"
-    },
-    "_key": "!items!UZ9UjZArSJh6UHXG"
+    "refreshData": null,
+    "multiclass": null,
+    "disabled": false,
+    "description": "<p>Spend 3 Hope to clear a Hit Point on an ally within Close range.</p>",
+    "effects": {},
+    "actions": [],
+    "type": "class"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748033044907,
+    "modifiedTime": 1748033065659,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!UZ9UjZArSJh6UHXG"
 }

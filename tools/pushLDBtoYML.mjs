@@ -5,11 +5,13 @@ import path from 'path';
 const MODULE_ID = process.cwd();
 const yaml = false;
 
-const packs = await fs.readdir('./packs');
+// const packs = await fs.readdir('./packs');
+const packs = await deepGetDirectories('./packs');
+console.log(packs);
 for (const pack of packs) {
     if (pack === '.gitattributes') continue;
     console.log('Unpacking ' + pack);
-    const directory = `./src/packs/${pack}`;
+    const directory = `./src/${pack}`;
     try {
         for (const file of await fs.readdir(directory)) {
             await fs.unlink(path.join(directory, file));
@@ -18,7 +20,7 @@ for (const pack of packs) {
         if (error.code === 'ENOENT') console.log('No files inside of ' + pack);
         else console.log(error);
     }
-    await extractPack(`${MODULE_ID}/packs/${pack}`, `${MODULE_ID}/src/packs/${pack}`, {
+    await extractPack(`${MODULE_ID}/${pack}`, `${MODULE_ID}/src/${pack}`, {
         yaml,
         transformName
     });
@@ -33,4 +35,24 @@ function transformName(doc) {
     const prefix = ['actors', 'items'].includes(type) ? doc.type : type;
 
     return `${doc.name ? `${prefix}_${safeFileName}_${doc._id}` : doc._id}.${yaml ? 'yml' : 'json'}`;
+}
+
+async function deepGetDirectories(distPath) {
+    const dirr = await fs.readdir(distPath);
+    const dirrsWithSub = [];
+    for (let file of dirr) {
+        const stat = await fs.stat(distPath + '/' + file);
+        if (stat.isDirectory()) {
+            if (file === 'packs') continue;
+
+            const deeper = await deepGetDirectories(distPath + '/' + file);
+            if (deeper.length > 0) {
+                dirrsWithSub.push(...deeper);
+            } else {
+                dirrsWithSub.push(distPath + '/' + file);
+            }
+        }
+    }
+
+    return dirrsWithSub;
 }

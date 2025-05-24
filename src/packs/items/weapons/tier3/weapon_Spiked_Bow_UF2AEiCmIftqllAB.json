@@ -1,0 +1,42 @@
+{
+  "name": "Spiked Bow",
+  "type": "weapon",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_3/physical/spiked_bow.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d6+7",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "agility",
+    "range": "veryFar",
+    "burden": "twoHanded",
+    "feature": "versatile"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748009680484,
+    "modifiedTime": 1748009720858,
+    "lastModifiedBy": "JKaKJsbixtjbUa07"
+  },
+  "_id": "UF2AEiCmIftqllAB",
+  "sort": 3800000,
+  "_key": "!items!UF2AEiCmIftqllAB"
+}

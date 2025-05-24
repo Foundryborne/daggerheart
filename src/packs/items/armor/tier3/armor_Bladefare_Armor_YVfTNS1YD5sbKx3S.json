@@ -1,0 +1,40 @@
+{
+  "name": "Bladefare Armor",
+  "type": "armor",
+  "img": "systems/daggerheart/assets/icons/armor/tier_3/bladefare_armor.png",
+  "system": {
+    "baseScore": 6,
+    "marks": {
+      "max": 6,
+      "value": 0
+    },
+    "description": "",
+    "feature": "physical",
+    "baseThresholds": {
+      "major": 16,
+      "severe": 39
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748008784769,
+    "modifiedTime": 1748028597257,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_id": "YVfTNS1YD5sbKx3S",
+  "sort": 700000,
+  "_key": "!items!YVfTNS1YD5sbKx3S"
+}

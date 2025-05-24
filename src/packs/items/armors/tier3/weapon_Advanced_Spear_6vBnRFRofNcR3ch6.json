@@ -1,0 +1,41 @@
+{
+  "name": "Advanced Spear",
+  "type": "weapon",
+  "_id": "6vBnRFRofNcR3ch6",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_3/physical/advanced_spear.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d10+8",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "finesse",
+    "range": "veryClose",
+    "burden": "twoHanded",
+    "feature": "cumbersome"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747988071381,
+    "modifiedTime": 1747988089008,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+  },
+  "_key": "!items!6vBnRFRofNcR3ch6"
+}

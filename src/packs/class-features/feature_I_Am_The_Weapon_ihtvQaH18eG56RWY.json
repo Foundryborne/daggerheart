@@ -1,44 +1,44 @@
 {
-    "name": "I Am The Weapon",
-    "type": "feature",
-    "_id": "ihtvQaH18eG56RWY",
-    "img": "icons/svg/item-bag.svg",
-    "system": {
-        "actionType": "passive",
-        "featureType": {
-            "type": "normal",
-            "data": {
-                "property": "spellcastingTrait",
-                "max": 1,
-                "numbers": {}
-            }
-        },
-        "refreshData": null,
-        "multiclass": null,
-        "disabled": false,
-        "description": "<p>While you don’t have any equipped weapons, your evasion has a +1 bonus. Your unarmed strikes are considered a Melee weapon, use the trait of your choice, and deal d10+your tier phy damage.</p>",
-        "effects": {},
-        "actions": [],
-        "type": "class"
+  "name": "I Am The Weapon",
+  "type": "feature",
+  "_id": "ihtvQaH18eG56RWY",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "actionType": "passive",
+    "featureType": {
+      "type": "normal",
+      "data": {
+        "property": "spellcastingTrait",
+        "max": 1,
+        "numbers": {}
+      }
     },
-    "effects": [],
-    "folder": null,
-    "sort": 0,
-    "ownership": {
-        "default": 0,
-        "ei8OkswTzyDp4IGC": 3
-    },
-    "flags": {},
-    "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.344",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1748031035883,
-        "modifiedTime": 1748031085182,
-        "lastModifiedBy": "ei8OkswTzyDp4IGC"
-    },
-    "_key": "!items!ihtvQaH18eG56RWY"
+    "refreshData": null,
+    "multiclass": null,
+    "disabled": false,
+    "description": "<p>While you don’t have any equipped weapons, your evasion has a +1 bonus. Your unarmed strikes are considered a Melee weapon, use the trait of your choice, and deal d10+your tier phy damage.</p>",
+    "effects": {},
+    "actions": [],
+    "type": "class"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748031035883,
+    "modifiedTime": 1748031085182,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!ihtvQaH18eG56RWY"
 }

@@ -1,0 +1,41 @@
+{
+  "name": "Improved Shortbow",
+  "type": "weapon",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_2/physical/improved_shortbow.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d6+6",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "agility",
+    "range": "far",
+    "burden": "twoHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3,
+    "JKaKJsbixtjbUa07": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748009512488,
+    "modifiedTime": 1748009543035,
+    "lastModifiedBy": "JKaKJsbixtjbUa07"
+  },
+  "_id": "i27H7xSpYaMOnyTE",
+  "sort": 3100000,
+  "_key": "!items!i27H7xSpYaMOnyTE"
+}

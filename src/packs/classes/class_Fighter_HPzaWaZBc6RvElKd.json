@@ -1,95 +1,98 @@
 {
-    "name": "Fighter",
-    "type": "class",
-    "_id": "HPzaWaZBc6RvElKd",
-    "img": "systems/daggerheart/assets/icons/classes/fighter.png",
-    "system": {
-        "domains": ["bone", "valor"],
-        "classItems": [],
-        "damageThresholds": {
-            "minor": 0,
-            "major": 0,
-            "severe": 0
-        },
-        "evasion": 11,
-        "features": [
-            {
-                "name": "Staggering Strike",
-                "img": "icons/svg/item-bag.svg",
-                "uuid": "Compendium.daggerheart.class-features.Item.xC0ZG862KrjHGHlx"
-            },
-            {
-                "name": "I Am The Weapon",
-                "img": "icons/svg/item-bag.svg",
-                "uuid": "Compendium.daggerheart.class-features.Item.ihtvQaH18eG56RWY"
-            },
-            {
-                "img": "icons/svg/item-bag.svg",
-                "name": "Combo Strikes",
-                "uuid": "Compendium.daggerheart.class-features.Item.RNC8NT8F6x73gRZi"
-            }
-        ],
-        "subclasses": [],
-        "inventory": {
-            "take": [],
-            "choiceA": [],
-            "choiceB": [],
-            "extra": {
-                "title": "",
-                "description": ""
-            }
-        },
-        "characterGuide": {
-            "suggestedTraits": {
-                "agility": 1,
-                "strength": 1,
-                "finesse": 0,
-                "instinct": 2,
-                "presence": 10,
-                "knowledge": -1
-            },
-            "suggestedPrimaryWeapon": null,
-            "suggestedSecondaryWeapon": null,
-            "suggestedArmor": null,
-            "characterDescription": {
-                "clothes": "",
-                "eyes": "",
-                "body": "",
-                "color": "",
-                "attitude": ""
-            },
-            "backgroundQuestions": [
-                "Where did you spend time during your formative years that taught you, directly or indirectly, how to fight in the style you use?",
-                "What group or organization that has always had your back, and how did you get in their good graces?",
-                "Who did you lose to long ago that you are desperate for a rematch against?"
-            ],
-            "connections": [
-                "What is one thing we’re both afraid of?",
-                "I rely on your for something important during our travels together. What is it and how do you feel about it?",
-                "I still haven't forgiven you for something you said to me. What was it and why did you say it?"
-            ]
-        },
-        "multiclass": null,
+  "name": "Fighter",
+  "type": "class",
+  "_id": "HPzaWaZBc6RvElKd",
+  "img": "systems/daggerheart/assets/icons/classes/fighter.png",
+  "system": {
+    "domains": [
+      "bone",
+      "valor"
+    ],
+    "classItems": [],
+    "damageThresholds": {
+      "minor": 0,
+      "major": 0,
+      "severe": 0
+    },
+    "evasion": 11,
+    "features": [
+      {
+        "name": "Staggering Strike",
+        "img": "icons/svg/item-bag.svg",
+        "uuid": "Compendium.daggerheart.class-features.Item.xC0ZG862KrjHGHlx"
+      },
+      {
+        "name": "I Am The Weapon",
+        "img": "icons/svg/item-bag.svg",
+        "uuid": "Compendium.daggerheart.class-features.Item.ihtvQaH18eG56RWY"
+      },
+      {
+        "img": "icons/svg/item-bag.svg",
+        "name": "Combo Strikes",
+        "uuid": "Compendium.daggerheart.class-features.Item.RNC8NT8F6x73gRZi"
+      }
+    ],
+    "subclasses": [],
+    "inventory": {
+      "take": [],
+      "choiceA": [],
+      "choiceB": [],
+      "extra": {
+        "title": "",
         "description": ""
+      }
     },
-    "effects": [],
-    "folder": null,
-    "sort": 0,
-    "ownership": {
-        "default": 0,
-        "NqO2eQGMjrvUO6v9": 3
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 1,
+        "strength": 1,
+        "finesse": 0,
+        "instinct": 2,
+        "presence": 10,
+        "knowledge": -1
+      },
+      "suggestedPrimaryWeapon": null,
+      "suggestedSecondaryWeapon": null,
+      "suggestedArmor": null,
+      "characterDescription": {
+        "clothes": "",
+        "eyes": "",
+        "body": "",
+        "color": "",
+        "attitude": ""
+      },
+      "backgroundQuestions": [
+        "Where did you spend time during your formative years that taught you, directly or indirectly, how to fight in the style you use?",
+        "What group or organization that has always had your back, and how did you get in their good graces?",
+        "Who did you lose to long ago that you are desperate for a rematch against?"
+      ],
+      "connections": [
+        "What is one thing we’re both afraid of?",
+        "I rely on your for something important during our travels together. What is it and how do you feel about it?",
+        "I still haven't forgiven you for something you said to me. What was it and why did you say it?"
+      ]
     },
-    "flags": {},
-    "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.344",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1747946839346,
-        "modifiedTime": 1748031139229,
-        "lastModifiedBy": "ei8OkswTzyDp4IGC"
-    },
-    "_key": "!items!HPzaWaZBc6RvElKd"
+    "multiclass": null,
+    "description": ""
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747946839346,
+    "modifiedTime": 1748031139229,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!HPzaWaZBc6RvElKd"
 }

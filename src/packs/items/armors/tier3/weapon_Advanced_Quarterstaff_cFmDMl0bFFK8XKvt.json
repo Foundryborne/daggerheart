@@ -1,0 +1,40 @@
+{
+  "name": "Advanced Quarterstaff",
+  "type": "weapon",
+  "_id": "cFmDMl0bFFK8XKvt",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_3/physical/advanced_quarterstaff.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d10+9",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "instinct",
+    "range": "melee",
+    "burden": "twoHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747987881903,
+    "modifiedTime": 1747987898698,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+  },
+  "_key": "!items!cFmDMl0bFFK8XKvt"
+}

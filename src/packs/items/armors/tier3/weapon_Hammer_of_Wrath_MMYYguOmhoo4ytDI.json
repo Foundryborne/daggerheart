@@ -1,0 +1,41 @@
+{
+  "name": "Hammer of Wrath",
+  "type": "weapon",
+  "_id": "MMYYguOmhoo4ytDI",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_3/physical/hammer_of_wrath.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d10+7",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "strength",
+    "range": "melee",
+    "burden": "twoHanded",
+    "feature": "devastating"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "NqO2eQGMjrvUO6v9": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1747988406922,
+    "modifiedTime": 1747988429894,
+    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+  },
+  "_key": "!items!MMYYguOmhoo4ytDI"
+}

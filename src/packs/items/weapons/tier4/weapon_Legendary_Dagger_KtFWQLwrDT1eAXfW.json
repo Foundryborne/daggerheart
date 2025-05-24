@@ -1,0 +1,41 @@
+{
+  "name": "Legendary Dagger",
+  "type": "weapon",
+  "_id": "KtFWQLwrDT1eAXfW",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_4/physical/legendary_dagger.png",
+  "system": {
+    "active": false,
+    "inventoryWeapon": null,
+    "secondary": false,
+    "damage": {
+      "value": "d8+10",
+      "type": "physical"
+    },
+    "quantity": 1,
+    "description": "",
+    "trait": "finesse",
+    "feature": "",
+    "range": "melee",
+    "burden": "oneHanded"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748035511214,
+    "modifiedTime": 1748035543656,
+    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+  },
+  "_key": "!items!KtFWQLwrDT1eAXfW"
+}
