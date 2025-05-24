@@ -6,6 +6,7 @@ import AncestrySelectionDialog from '../ancestrySelectionDialog.mjs';
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
+const { TextEditor } = foundry.applications.ux;
 export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     constructor(options = {}) {
         super(options);
