@@ -129,42 +129,56 @@ Hooks.on(socketEvent.GMUpdate, async (action, uuid, update) => {
     }
 });
 
-Hooks.on('renderChatMessageHTML', (message, element) => {
-    element.querySelectorAll('.duality-roll-button').forEach(element =>
-        element.addEventListener('click', async event => {
-            let target = getCommandTarget();
-            if (!target) return;
+const renderDualityButton = async event => {
+    const button = event.currentTarget;
+    const attributeValue = button.dataset.attribute?.toLowerCase();
 
-            const button = event.currentTarget;
-            const rollModifier = button.dataset.attribute
-                ? target.system.attributes[button.dataset.attribute].data.value
-                : null;
-            const { roll, hope, fear, advantage, disadvantage, modifiers } = await target.diceRoll({
-                title: button.dataset.label,
-                value: rollModifier
-            });
-            const cls = getDocumentClass('ChatMessage');
-            const msgData = {
-                type: 'dualityRoll',
-                sound: CONFIG.sounds.dice,
-                system: {
-                    title: button.dataset.label,
-                    origin: target.id,
-                    roll: roll._formula,
-                    modifiers: modifiers,
-                    hope: hope,
-                    fear: fear,
-                    advantage: advantage,
-                    disadvantage: disadvantage
-                },
-                user: game.user.id,
-                content: 'systems/daggerheart/templates/chat/duality-roll.hbs',
-                rolls: [roll]
-            };
+    const target = getCommandTarget();
+    if (!target) return;
 
-            await cls.create(msgData);
-        })
-    );
+    const rollModifier = attributeValue ? target.system.attributes[attributeValue].data.value : null;
+    const { roll, hope, fear, advantage, disadvantage, modifiers } = await target.diceRoll({
+        title: button.dataset.label,
+        value: rollModifier
+    });
+    const cls = getDocumentClass('ChatMessage');
+    const msgData = {
+        type: 'dualityRoll',
+        sound: CONFIG.sounds.dice,
+        system: {
+            title: button.dataset.label,
+            origin: target.id,
+            roll: roll._formula,
+            modifiers: modifiers,
+            hope: hope,
+            fear: fear,
+            advantage: advantage,
+            disadvantage: disadvantage
+        },
+        user: game.user.id,
+        content: 'systems/daggerheart/templates/chat/duality-roll.hbs',
+        rolls: [roll]
+    };
+
+    await cls.create(msgData);
+};
+
+Hooks.on('renderChatMessageHTML', (_, element) => {
+    element
+        .querySelectorAll('.duality-roll-button')
+        .forEach(element => element.addEventListener('click', renderDualityButton));
+});
+
+Hooks.on('renderJournalEntryPageProseMirrorSheet', (_, element) => {
+    element
+        .querySelectorAll('.duality-roll-button')
+        .forEach(element => element.addEventListener('click', renderDualityButton));
+});
+
+Hooks.on('renderHandlebarsApplication', (_, element) => {
+    element
+        .querySelectorAll('.duality-roll-button')
+        .forEach(element => element.addEventListener('click', renderDualityButton));
 });
 
 Hooks.on('chatMessage', (_, message) => {
