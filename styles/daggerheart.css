@@ -1250,7 +1250,7 @@
   filter: drop-shadow(0 0 3px gold);
 }
 .daggerheart.sheet.pc div[data-application-part] .sheet-body .inventory-container .inventory-item-list .inventory-item .inventory-item-quantity {
-  width: 48px;
+  width: 60px;
   display: flex;
   align-items: center;
 }

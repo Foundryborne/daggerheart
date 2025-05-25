@@ -6,12 +6,6 @@
         <div class="inventory-weapon-section-first item-section">
             <h2 class="armor-container">
                 {{localize "DAGGERHEART.Sheets.PC.Inventory.InventoryWeapon"}}
-                {{#if weapons.first}}
-                    <div data-action="viewObject" data-value="{{weapons.first.uuid}}" class="active-item-label-chip">
-                        <img src="{{weapons.first.img}}" />
-                        <button data-action="removeInventoryWeapon" data-item="{{weapons.first.uuid}}"><i class="fa-solid fa-x"></i></button>
-                    </div>
-                {{/if}} 
             </h2>
             <div class="active-item-container">
                 <div class="flexrow">

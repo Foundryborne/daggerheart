@@ -27,8 +27,14 @@ export const range = {
 };
 
 export const burden = {
-    oneHanded: 'DAGGERHEART.Burden.OneHanded',
-    twoHanded: 'DAGGERHEART.Burden.TwoHanded'
+    oneHanded: {
+        value: 'oneHanded',
+        label: 'DAGGERHEART.Burden.OneHanded'
+    },
+    twoHanded: {
+        value: 'twoHanded',
+        label: 'DAGGERHEART.Burden.TwoHanded'
+    }
 };
 
 export const damageTypes = {

@@ -48,8 +48,6 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             useFeature: this.useFeature,
             takeShortRest: this.takeShortRest,
             takeLongRest: this.takeLongRest,
-            removeActiveItem: this.removeActiveItem,
-            removeInventoryWeapon: this.removeInventoryWeapon,
             addMiscItem: this.addMiscItem,
             deleteItem: this.deleteItem,
             addScar: this.addScar,
@@ -63,18 +61,12 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             useAbility: this.useAbility,
             useAdvancementCard: this.useAdvancementCard,
             useAdvancementAbility: this.useAdvancementAbility,
-            selectFeatureSet: this.selectFeatureSet
+            selectFeatureSet: this.selectFeatureSet,
+            toggleEquipItem: this.toggleEquipItem
         },
         window: {
-            //frame: boolean;
-            //positioned: boolean;
-            //title: string;
-            //icon: string | false;
-            //controls: ApplicationHeaderControlsEntry[];
             minimizable: false,
             resizable: true
-            //contentTag: string;
-            //contentClasses: string[];
         },
         form: {
             handler: this.updateForm,
@@ -280,6 +272,20 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                     quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
                 },
                 items: this.document.items.filter(x => x.type === 'miscellaneous')
+            },
+            weapons: {
+                titles: {
+                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.WeaponsTitle'),
+                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
+                },
+                items: this.document.items.filter(x => x.type === 'weapon')
+            },
+            armor: {
+                titles: {
+                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.ArmorsTitle'),
+                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
+                },
+                items: this.document.items.filter(x => x.type === 'armor')
             }
         };
 
@@ -690,7 +696,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         (await game.packs.get('daggerheart.playtest-communities'))?.render(true);
     }
 
-    static async viewObject(button) {
+    static async viewObject(_, button) {
         const object = await fromUuid(button.dataset.value);
         if (!object) return;
 
@@ -710,18 +716,6 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     static async takeLongRest() {
         await new DhpDowntime(this.document, false).render(true);
         await this.minimize();
-    }
-
-    static async removeActiveItem(_, event) {
-        event.stopPropagation();
-        const item = await fromUuid(event.currentTarget.dataset.item);
-        await item.delete();
-    }
-
-    static async removeInventoryWeapon(_, event) {
-        event.stopPropagation();
-        const item = await fromUuid(event.currentTarget.dataset.item);
-        await item.delete();
     }
 
     static async addMiscItem() {
@@ -941,6 +935,57 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
+    static async toggleEquipItem(_, button) {
+        const item = this.document.items.get(button.id);
+        if (item.system.equipped) {
+            await item.update({ 'system.equipped': false });
+            return;
+        }
+
+        switch (item.type) {
+            case 'armor':
+                const currentArmor = this.document.system.armor;
+                if (currentArmor) {
+                    await currentArmor.update({ 'system.equipped': false });
+                }
+
+                await item.update({ 'system.equipped': true });
+                break;
+            case 'weapon':
+                const currentWeapons = this.document.system.equippedWeapons;
+                if (item.system.secondary) {
+                    if (
+                        currentWeapons.primary &&
+                        currentWeapons.primary.burden === SYSTEM.GENERAL.burden.twoHanded.value
+                    ) {
+                        ui.notifications.error(
+                            game.i18n.localize('DAGGERHEART.Notification.Error.TwoHandedWeaponEquipped')
+                        );
+                        return;
+                    }
+
+                    if (currentWeapons.secondary) {
+                        await this.document.items.get(currentWeapons.secondary.id).update({ 'system.equipped': false });
+                    }
+                } else {
+                    if (currentWeapons.secondary && item.system.burden === SYSTEM.GENERAL.burden.twoHanded.value) {
+                        ui.notifications.error(
+                            game.i18n.localize('DAGGERHEART.Notification.Error.SecondaryWeaponEquipped')
+                        );
+                        return;
+                    }
+
+                    if (currentWeapons.primary) {
+                        await this.document.items.get(currentWeapons.primary.id).update({ 'system.equipped': false });
+                    }
+                }
+
+                await item.update({ 'system.equipped': true });
+                break;
+        }
+        this.render();
+    }
+
     static async close(options) {
         this.onVaultTab = false;
         super.close(options);
@@ -984,14 +1029,17 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                 const itemObject = await fromUuid(item.uuid);
                 switch (target) {
                     case 'weapon-section':
-                        if (itemObject.system.secondary && this.document.system.activeWeapons.burden === 'twoHanded') {
+                        if (
+                            itemObject.system.secondary &&
+                            this.document.system.equippedWeapons.burden === 'twoHanded'
+                        ) {
                             ui.notifications.info(
                                 game.i18n.localize('DAGGERHEART.Notification.Info.SecondaryEquipWhileTwohanded')
                             );
                             return;
                         } else if (
                             itemObject.system.burden === 'twoHanded' &&
-                            this.document.system.activeWeapons.secondary
+                            this.document.system.equippedWeapons.secondary
                         ) {
                             ui.notifications.info(
                                 game.i18n.localize('DAGGERHEART.Notification.Info.TwohandedEquipWhileSecondary')
@@ -1160,12 +1208,18 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                 if (!element) return;
 
                 if (element.classList.contains('weapon-section')) {
-                    if (item.system.secondary && this.document.system.activeWeapons.burden === 'twoHanded') {
+                    if (
+                        item.system.secondary &&
+                        this.document.system.equippedWeapons.burden === SYSTEM.GENERAL.burden.twoHanded.value
+                    ) {
                         ui.notifications.info(
                             game.i18n.localize('DAGGERHEART.Notification.Info.SecondaryEquipWhileTwohanded')
                         );
                         return;
-                    } else if (item.system.burden === 'twoHanded' && this.document.system.activeWeapons.secondary) {
+                    } else if (
+                        item.system.burden === SYSTEM.GENERAL.burden.twoHanded.value &&
+                        this.document.system.equippedWeapons.secondary
+                    ) {
                         ui.notifications.info(
                             game.i18n.localize('DAGGERHEART.Notification.Info.TwohandedEquipWhileSecondary')
                         );
@@ -1173,10 +1227,10 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                     }
 
                     const existing =
-                        this.document.system.activeWeapons.primary && !item.system.secondary
-                            ? await fromUuid(this.document.system.activeWeapons.primary.uuid)
-                            : this.document.system.activeWeapons.secondary && item.system.secondary
-                              ? await fromUuid(this.document.system.activeWeapons.secondary.uuid)
+                        this.document.system.equippedWeapons.primary && !item.system.secondary
+                            ? await fromUuid(this.document.system.equippedWeapons.primary.uuid)
+                            : this.document.system.equippedWeapons.secondary && item.system.secondary
+                              ? await fromUuid(this.document.system.equippedWeapons.secondary.uuid)
                               : null;
                     await existing?.delete();
                     itemData.system.active = true;
@@ -1194,7 +1248,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                     await existing?.delete();
 
                     itemData.system.inventoryWeapon = 2;
-                } else return [];
+                }
             }
 
             if (item.type === 'armor') {
@@ -1205,7 +1259,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                         ? await fromUuid(this.document.system.armor.uuid)
                         : null;
                     await existing?.delete();
-                } else return;
+                }
             }
 
             const createdItem = await this._onDropItemCreate(itemData);

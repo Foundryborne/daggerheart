@@ -2,6 +2,7 @@ export default class DhpArmor extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            equipped: new fields.BooleanField({ initial: false }),
             baseScore: new fields.NumberField({ initial: 1, integer: true }),
             feature: new fields.StringField({
                 choices: SYSTEM.ITEM.armorFeatures,
@@ -16,6 +17,7 @@ export default class DhpArmor extends foundry.abstract.TypeDataModel {
                 major: new fields.NumberField({ initial: 0, integer: true }),
                 severe: new fields.NumberField({ initial: 0, integer: true })
             }),
+            quantity: new fields.NumberField({ initial: 1, integer: true }),
             description: new fields.HTMLField({})
         };
     }

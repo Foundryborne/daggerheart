@@ -18,6 +18,9 @@
                                 {{item.name}}
                             </div>
                         </div>
+                        <div class="flexrow">
+                            <button data-action="toggleEquipItem" id="{{item.id}}">{{localize "Equip"}}</button>
+                        </div>
                         <div class="inventory-item-quantity spaced">
                             <i data-action="itemQuantityDecrease" class="fa-solid fa-chevron-left icon-button {{#if (lte item.system.quantity 1)}}disabled{{/if}}"></i>
                             <input type="text" data-item="system.quantity" value="{{item.system.quantity}}" data-dtype="Number" />

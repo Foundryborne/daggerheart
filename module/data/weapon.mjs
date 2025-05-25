@@ -2,7 +2,7 @@ export default class DhpWeapon extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            active: new fields.BooleanField({ initial: false }),
+            equipped: new fields.BooleanField({ initial: false }),
             inventoryWeapon: new fields.NumberField({ initial: null, nullable: true, integer: true }),
             secondary: new fields.BooleanField({ initial: false }),
             trait: new fields.StringField({ choices: SYSTEM.ACTOR.abilities, integer: false }),
