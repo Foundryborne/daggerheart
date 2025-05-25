@@ -190,8 +190,8 @@ export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
 
         let featureField;
         if (event.currentTarget.classList.contains('foundation-tab')) featureField = 'foundation';
-        else if (event.currentTarget.classList.contains('foundation-tab')) featureField = 'foundation';
-        else if (event.currentTarget.classList.contains('foundation-tab')) featureField = 'foundation';
+        else if (event.currentTarget.classList.contains('specialization-tab')) featureField = 'specialization';
+        else if (event.currentTarget.classList.contains('mastery-tab')) featureField = 'mastery';
         else return;
 
         const path = `system.${featureField}Feature.abilities`;
