@@ -32,7 +32,6 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-weapon',
         classes: ['daggerheart', 'sheet', 'weapon'],
         position: { width: 400 },
         form: {

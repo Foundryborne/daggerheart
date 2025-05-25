@@ -38,7 +38,6 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 export default class DomainCardSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-domainCard',
         classes: ['daggerheart', 'sheet', 'domain-card'],
         position: { width: 600, height: 600 },
         actions: {

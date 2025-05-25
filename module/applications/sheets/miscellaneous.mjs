@@ -26,7 +26,6 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 export default class MiscellaneousSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-miscellaneous',
         classes: ['daggerheart', 'sheet', 'miscellaneous'],
         position: { width: 400 },
         form: {

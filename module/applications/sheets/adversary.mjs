@@ -205,7 +205,6 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-adversary',
         classes: ['daggerheart', 'sheet', 'adversary'],
         position: { width: 600 },
         actions: {

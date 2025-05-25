@@ -33,6 +33,7 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
+        id: 'roll-selection', //Having an id causes a new instance to overwrite previous.
         classes: ['daggerheart', 'views', 'roll-selection'],
         position: {
             width: 400,

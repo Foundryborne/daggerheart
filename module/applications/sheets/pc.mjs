@@ -23,7 +23,6 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-pc',
         classes: ['daggerheart', 'sheet', 'pc'],
         position: { width: 810, height: 1080 },
         actions: {
