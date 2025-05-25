@@ -79,7 +79,6 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-subclass',
         classes: ['daggerheart', 'sheet', 'subclass'],
         position: { width: 600 },
         actions: {

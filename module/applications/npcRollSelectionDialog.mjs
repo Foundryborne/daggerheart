@@ -19,7 +19,6 @@ export default class NpcRollSelectionDialog extends HandlebarsApplicationMixin(A
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'roll-selection',
         classes: ['daggerheart', 'views', 'npc-roll-selection'],
         position: { width: '500', height: 'auto' },
         actions: {

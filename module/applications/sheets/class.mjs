@@ -217,7 +217,6 @@ const { TextEditor } = foundry.applications.ux;
 export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-class',
         classes: ['daggerheart', 'sheet', 'class'],
         position: { width: 600 },
         actions: {

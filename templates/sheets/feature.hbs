@@ -22,9 +22,8 @@
                 {{formField systemFields.type value=source.system.type rootId=partId label="DAGGERHEART.Sheets.Feature.FeatureType" localize=true }}
                 {{formField systemFields.actionType value=source.system.actionType label="DAGGERHEART.Sheets.Feature.ActionType" rootId=partId localize=true }}
                 <div class="form-group">
-                    <label>{{localize "DAGGERHEART.Sheets.Feature.RefreshType"}}</label>
                     <div class="form-fields">
-                        {{formField systemFields.refreshData.fields.type value=source.system.refreshData.type rootId=partId label="Type" localize=true }}
+                        {{formField systemFields.refreshData.fields.type value=source.system.refreshData.type rootId=partId label="DAGGERHEART.Sheets.Feature.RefreshType" localize=true }}
                         {{#if document.system.refreshData.type}}
                             <label>Uses</label>
                             <input type="text" name="system.refreshData.uses" value="{{document.system.refreshData.uses}}" data-dtype="Number" />

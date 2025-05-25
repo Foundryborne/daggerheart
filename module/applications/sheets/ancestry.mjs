@@ -61,7 +61,6 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 export default class AncestrySheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-ancestry',
         classes: ['daggerheart', 'sheet', 'heritage'],
         position: { width: 600 },
         actions: {

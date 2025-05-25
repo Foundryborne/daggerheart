@@ -12,9 +12,9 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-feature',
         classes: ['daggerheart', 'sheet', 'feature'],
         position: { width: 600, height: 600 },
+        window: { resizable: true },
         actions: {
             addEffect: this.addEffect,
             removeEffect: this.removeEffect,

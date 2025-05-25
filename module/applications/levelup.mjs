@@ -18,7 +18,6 @@ export default class DhpLevelup extends HandlebarsApplicationMixin(ApplicationV2
     }
 
     static DEFAULT_OPTIONS = {
-        id: 'daggerheart-levelup',
         classes: ['daggerheart', 'views', 'levelup'],
         position: { width: 1200, height: 'auto' },
         window: {

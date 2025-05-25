@@ -1530,9 +1530,6 @@
 .daggerheart.chat.domain-card img {
   width: 80px;
 }
-.daggerheart.sheet.feature {
-  background-color: red;
-}
 .daggerheart.sheet.feature .editable {
   display: flex;
   flex-direction: column;
