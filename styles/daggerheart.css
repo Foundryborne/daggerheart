@@ -1,11 +1,11 @@
-/* General */
-/* Drop Shadows */
-/* Background */
 /* Base Value */
 /* Margins */
 /* Borders */
 /* Padding */
 /* Inputs */
+/* General */
+/* Drop Shadows */
+/* Background */
 @import '../node_modules/@yaireo/tagify/dist/tagify.css';
 .daggerheart.sheet.class .editor {
   height: 500px;
@@ -1391,7 +1391,7 @@
 }
 .daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .roll.die.hope {
   color: white;
-  -webkit-text-stroke-color: #008080;
+  -webkit-text-stroke-color: #ffd700;
   -webkit-text-stroke-width: 1.5px;
   font-weight: 400;
 }
@@ -1400,7 +1400,7 @@
 }
 .daggerheart.chat.roll .dice-tooltip .dice-rolls.duality .roll.die.fear {
   color: white;
-  -webkit-text-stroke-color: #430070;
+  -webkit-text-stroke-color: #0032b1;
   -webkit-text-stroke-width: 1.5px;
   font-weight: 400;
 }
@@ -1432,23 +1432,28 @@
   font-weight: bold;
 }
 .daggerheart.chat.roll .dice-total.duality.hope {
-  background: rgba(0, 128, 128, 0.5);
-  border-color: #008080;
+  border-color: #ffd700;
   border-width: 3px;
+  background: rgba(255, 215, 0, 0.5);
 }
 .daggerheart.chat.roll .dice-total.duality.fear {
+  border-color: #0032b1;
+  border-width: 3px;
+  background: rgba(0, 50, 177, 0.5);
+}
+.daggerheart.chat.roll .dice-total.duality.critical {
   border-color: #430070;
   border-width: 3px;
   background: rgba(67, 0, 112, 0.5);
 }
 .daggerheart.chat.roll .dice-total .dice-total-value .hope {
-  color: #008080;
+  color: #ffd700;
 }
 .daggerheart.chat.roll .dice-total .dice-total-value .fear {
-  color: #430070;
+  color: #0032b1;
 }
 .daggerheart.chat.roll .dice-total .dice-total-value .critical {
-  color: #ffd700;
+  color: #430070;
 }
 .daggerheart.chat.roll .dice-total-label {
   font-size: 12px;

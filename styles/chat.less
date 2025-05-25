@@ -112,14 +112,19 @@
         .dice-total {
             &.duality {
                 &.hope {
-                    background: rgba(0, 128, 128, 0.5);
-                    border-color: #008080;
+                    border-color: @hope;
                     border-width: 3px;
+                    background: rgba(@hope, 0.5);
                 }
                 &.fear {
-                    border-color: #430070;
+                    border-color: @fear;
                     border-width: 3px;
-                    background: rgba(67, 0, 112, 0.5);
+                    background: rgba(@fear, 0.5);
+                }
+                &.critical {
+                    border-color: @critical;
+                    border-width: 3px;
+                    background: rgba(@critical, 0.5);
                 }
             }
 
