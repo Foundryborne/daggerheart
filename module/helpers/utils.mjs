@@ -72,13 +72,31 @@ export const generateId = (title, length) => {
     return Number.isNumeric(length) ? id.slice(0, length).padEnd(length, '0') : id;
 };
 
-export const rollCommandToJSON = text => {
-    try {
-        return JSON.parse(`{${text.replaceAll(' ', ',').replace(/(\w+(?==))(=)/g, '"$1":')}}`);
-    } catch (_) {
-        return null;
+export function rollCommandToJSON(text) {
+    if (!text) return {};
+
+    // Match key="quoted string"  OR  key=unquotedValue
+    const PAIR_RE = /(\w+)=("(?:[^"\\]|\\.)*"|\S+)/g;
+    const result = {};
+    for (const [, key, raw] of text.matchAll(PAIR_RE)) {
+        let value;
+        if (raw.startsWith('"') && raw.endsWith('"')) {
+            // Strip the surrounding quotes, un-escape any \" sequences
+            value = raw.slice(1, -1).replace(/\\"/g, '"');
+        } else if (/^(true|false)$/i.test(raw)) {
+            // Boolean
+            value = raw.toLowerCase() === 'true';
+        } else if (!Number.isNaN(Number(raw))) {
+            // Numeric
+            value = Number(raw);
+        } else {
+            // Fallback to string
+            value = raw;
+        }
+        result[key] = value;
     }
-};
+    return Object.keys(result).length > 0 ? result : null;
+}
 
 export const getCommandTarget = () => {
     let target = game.canvas.tokens.controlled.length > 0 ? game.canvas.tokens.controlled[0].actor : null;
