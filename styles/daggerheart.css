@@ -1431,6 +1431,16 @@
   text-align: end;
   font-weight: bold;
 }
+.daggerheart.chat.roll .dice-total.duality.hope {
+  background: rgba(0, 128, 128, 0.5);
+  border-color: #008080;
+  border-width: 3px;
+}
+.daggerheart.chat.roll .dice-total.duality.fear {
+  border-color: #430070;
+  border-width: 3px;
+  background: rgba(67, 0, 112, 0.5);
+}
 .daggerheart.chat.roll .dice-total .dice-total-value .hope {
   color: #008080;
 }

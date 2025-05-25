@@ -110,6 +110,19 @@
         }
 
         .dice-total {
+            &.duality {
+                &.hope {
+                    background: rgba(0, 128, 128, 0.5);
+                    border-color: #008080;
+                    border-width: 3px;
+                }
+                &.fear {
+                    border-color: #430070;
+                    border-width: 3px;
+                    background: rgba(67, 0, 112, 0.5);
+                }
+            }
+
             .dice-total-value {
                 .hope {
                     color: @hope;
