@@ -14,7 +14,7 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
         tag: 'form',
         id: 'daggerheart-feature',
         classes: ['daggerheart', 'sheet', 'feature'],
-        position: { width: 600, height: 600 },
+        position: { width: 600 },
         actions: {
             addEffect: this.addEffect,
             removeEffect: this.removeEffect,

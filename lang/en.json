@@ -992,6 +992,7 @@
                     "Dice": "Dice",
                     "Icon": "Icon"
                 },
+                "Max": "Max",
                 "Tabs": {
                     "Features": "Features",
                     "Effects": "Effects",
