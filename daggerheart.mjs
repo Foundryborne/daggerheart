@@ -10,7 +10,9 @@ import DhpChatLog from './module/ui/chatLog.mjs';
 import DhpPlayers from './module/ui/players.mjs';
 import DhpRuler from './module/ui/ruler.mjs';
 import DhpTokenRuler from './module/ui/tokenRuler.mjs';
-import { dualityRollEnricher } from './module/enrichers/DualityRollEnricher.mjs';
+import { dualityRollEnricher, getDualityMessage } from './module/enrichers/DualityRollEnricher.mjs';
+import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
+import { abilities } from './module/config/actorConfig.mjs';
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -130,24 +132,106 @@ Hooks.on(socketEvent.GMUpdate, async (action, uuid, update) => {
 Hooks.on('renderChatMessageHTML', (message, element) => {
     element.querySelectorAll('.duality-roll-button').forEach(element =>
         element.addEventListener('click', async event => {
+            let target = getCommandTarget();
+            if (!target) return;
+
             const button = event.currentTarget;
-            let target = game.canvas.tokens.controlled.length > 0 ? game.canvas.tokens.controlled[0].actor : null;
-            if (!game.user.isGM) {
-                target = game.user.character;
-                if (!target) {
-                    notifications.error('DAGGERHEART.Notification.Error.NoAssignedPlayerCharacter');
-                    return;
-                }
-            }
+            const rollModifier = button.dataset.attribute
+                ? target.system.attributes[button.dataset.attribute].data.value
+                : null;
+            const { roll, hope, fear, advantage, disadvantage, modifiers } = await target.diceRoll({
+                title: button.dataset.label,
+                value: rollModifier
+            });
+            const cls = getDocumentClass('ChatMessage');
+            const msgData = {
+                type: 'dualityRoll',
+                sound: CONFIG.sounds.dice,
+                system: {
+                    title: button.dataset.label,
+                    origin: target.id,
+                    roll: roll._formula,
+                    modifiers: modifiers,
+                    hope: hope,
+                    fear: fear,
+                    advantage: advantage,
+                    disadvantage: disadvantage
+                },
+                user: game.user.id,
+                content: 'systems/daggerheart/templates/chat/duality-roll.hbs',
+                rolls: [roll]
+            };
 
-            if (!target) {
-                notifications.error('DAGGERHEART.Notification.Error.NoSelectedToken');
-                return;
-            }
-
-            const test = await gmTarget.diceRoll(3);
+            await cls.create(msgData);
         })
     );
+});
+
+Hooks.on('chatMessage', (_, message) => {
+    if (message.startsWith('/dr')) {
+        const rollCommand = rollCommandToJSON(message.replace(/\/dr\s?/, ''));
+        if (!rollCommand) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.DualityParsing'));
+            return false;
+        }
+
+        const attributeValue = rollCommand.attribute?.toLowerCase();
+
+        // Target not required if an attribute is not used.
+        const target = attributeValue ? getCommandTarget() : undefined;
+        if (target || !attributeValue) {
+            new Promise(async (resolve, reject) => {
+                const attribute = target ? target.system.attributes[attributeValue] : undefined;
+                if (attributeValue && !attribute) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.AttributeFaulty'));
+                    reject();
+                    return;
+                }
+
+                const title = attributeValue
+                    ? game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
+                          ability: game.i18n.localize(abilities[attributeValue].label)
+                      })
+                    : game.i18n.localize('DAGGERHEART.General.Duality');
+
+                const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
+                const advantageRoll = `${rollCommand.advantage && !rollCommand.disadvantage ? '+d6' : rollCommand.disadvantage && !rollCommand.advantage ? '-d6' : ''}`;
+                const attributeRoll = `${attribute?.data?.value ? `${attribute.data.value > 0 ? `+${attribute.data.value}` : `${attribute.data.value}`}` : ''}`;
+                const roll = new Roll(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`);
+                await roll.evaluate();
+                resolve({ roll, attribute, title });
+            }).then(({ roll, attribute, title }) => {
+                const cls = getDocumentClass('ChatMessage');
+                const msgData = {
+                    type: 'dualityRoll',
+                    sound: CONFIG.sounds.dice,
+                    system: {
+                        title: title,
+                        origin: target?.id,
+                        roll: roll._formula,
+                        modifiers: attribute ? [{ value: attribute.data.value }] : [],
+                        hope: { dice: rollCommand.hope ?? 'd12', value: roll.dice[0].total },
+                        fear: { dice: rollCommand.fear ?? 'd12', value: roll.dice[1].total },
+                        advantage:
+                            rollCommand.advantage && !rollCommand.disadvantage
+                                ? { dice: 'd6', value: roll.dice[2].total }
+                                : undefined,
+                        disadvantage:
+                            rollCommand.disadvantage && !rollCommand.advantage
+                                ? { dice: 'd6', value: roll.dice[2].total }
+                                : undefined
+                    },
+                    user: game.user.id,
+                    content: 'systems/daggerheart/templates/chat/duality-roll.hbs',
+                    rolls: [roll]
+                };
+
+                cls.create(msgData);
+            });
+        }
+
+        return false;
+    }
 });
 
 const preloadHandlebarsTemplates = async function () {

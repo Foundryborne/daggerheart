@@ -96,7 +96,10 @@
                 "DuplicateDomainCard": "You already have a domain card with that name!",
                 "ActionRequiresTarget": "The action requires at least one target",
                 "NoAssignedPlayerCharacter": "You have no assigned character.",
-                "NoSelectedToken": "You have no selected token"
+                "NoSelectedToken": "You have no selected token",
+                "OnlyUseableByPC": "This can only be used with a PC token",
+                "DualityParsing": "Duality roll not properly formated",
+                "AttributeFaulty": "The supplied Attribute doesn't exist"
             }
         },
         "General": {

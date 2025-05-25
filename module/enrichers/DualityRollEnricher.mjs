@@ -1,38 +1,36 @@
 import { abilities } from '../config/actorConfig.mjs';
+import { rollCommandToJSON } from '../helpers/utils.mjs';
 
-export async function dualityRollEnricher(match, _options) {
-    try {
-        const {
-            hope = 'd12',
-            fear = 'd12',
-            attribute,
-            advantage,
-            disadvantage
-        } = JSON.parse(`{${match[1].replace(' ', ',').replace(/(\w+(?==))(=)/g, '"$1":')}}`);
-        const dualityElement = document.createElement('span');
+export function dualityRollEnricher(match, _options) {
+    const roll = rollCommandToJSON(match[1]);
+    if (!roll) return match[0];
 
-        const attributeLabel =
-            attribute && abilities[attribute]
-                ? game.i18n.format('DAGGERHEART.General.Check', {
-                      check: game.i18n.localize(abilities[attribute].label)
-                  })
-                : null;
-        const label = attributeLabel ?? game.i18n.localize('DAGGERHEART.General.Duality');
-        dualityElement.innerHTML = `
-            <button class="duality-roll-button" 
-                data-hope="${hope}" 
-                data-fear="${fear}" 
-                ${attribute ? `data-attribute="${attribute}"` : ''}
-                ${advantage ? 'data-advantage="true"' : ''}
-                ${disadvantage ? 'data-disadvantage="true"' : ''}
-            >
-                <i class="fa-solid fa-circle-half-stroke"></i>
-                ${label}
-            </button>
-        `;
+    return getDualityMessage(roll);
+}
 
-        return dualityElement;
-    } catch (_) {
-        return match[0];
-    }
+export function getDualityMessage(roll) {
+    const attributeLabel =
+        roll.attribute && abilities[roll.attribute]
+            ? game.i18n.format('DAGGERHEART.General.Check', {
+                  check: game.i18n.localize(abilities[roll.attribute].label)
+              })
+            : null;
+    const label = attributeLabel ?? game.i18n.localize('DAGGERHEART.General.Duality');
+
+    const dualityElement = document.createElement('span');
+    dualityElement.innerHTML = `
+        <button class="duality-roll-button" 
+            data-label="${label}"
+            data-hope="${roll.hope ?? 'd12'}" 
+            data-fear="${roll.fear ?? 'd12'}" 
+            ${roll.attribute && abilities[roll.attribute] ? `data-attribute="${roll.attribute}"` : ''}
+            ${roll.advantage ? 'data-advantage="true"' : ''}
+            ${roll.disadvantage ? 'data-disadvantage="true"' : ''}
+        >
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            ${label}
+        </button>
+    `;
+
+    return dualityElement;
 }
