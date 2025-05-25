@@ -958,10 +958,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                         currentWeapons.primary &&
                         currentWeapons.primary.burden === SYSTEM.GENERAL.burden.twoHanded.value
                     ) {
-                        ui.notifications.error(
-                            game.i18n.localize('DAGGERHEART.Notification.Error.TwoHandedWeaponEquipped')
-                        );
-                        return;
+                        await this.document.items.get(currentWeapons.primary.id).update({ 'system.equipped': false });
                     }
 
                     if (currentWeapons.secondary) {
@@ -969,10 +966,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                     }
                 } else {
                     if (currentWeapons.secondary && item.system.burden === SYSTEM.GENERAL.burden.twoHanded.value) {
-                        ui.notifications.error(
-                            game.i18n.localize('DAGGERHEART.Notification.Error.SecondaryWeaponEquipped')
-                        );
-                        return;
+                        await this.document.items.get(currentWeapons.secondary.id).update({ 'system.equipped': false });
                     }
 
                     if (currentWeapons.primary) {

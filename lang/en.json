@@ -94,9 +94,7 @@
                 "LacksDomain": "Your character doesn't have the domain of the card!",
                 "MaxLoadoutReached": "You can't have any more domain cards at this level!",
                 "DuplicateDomainCard": "You already have a domain card with that name!",
-                "ActionRequiresTarget": "The action requires at least one target",
-                "TwoHandedWeaponEquipped": "You have a two-handed weapon equipped",
-                "SecondaryWeaponEquipped": "You have a secondary weapon equipped"
+                "ActionRequiresTarget": "The action requires at least one target"
             }
         },
         "General": {
