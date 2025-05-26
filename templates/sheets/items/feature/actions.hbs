@@ -1,0 +1,21 @@
+<section
+    class='tab {{tabs.actions.cssClass}} {{tabs.actions.id}}'
+    data-tab='{{tabs.actions.id}}'
+    data-group='{{tabs.actions.group}}'
+>
+    <fieldset class="one-column">
+        <legend>{{localize "Actions"}} <a><i class="fa-solid fa-plus icon-button" data-action="addAction"></i></a></legend>
+        <div class="actions-list">
+            {{#each document.system.actions as |action index|}}
+                <div class="action-item">
+                    <img class="image" src="{{action.img}}" />
+                    <span>{{action.name}}</span>
+                    <div class="controls">
+                        <a data-action="editAction" data-index="{{index}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-action="removeAction" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div> 
+            {{/each}}
+        </div>
+    </fieldset>
+</section>

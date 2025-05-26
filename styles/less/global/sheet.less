@@ -1,0 +1,81 @@
+@import '../utils/colors.less';
+@import '../utils/fonts.less';
+
+.application.sheet.dh-style .window-header {
+    background: transparent;
+    border-bottom: none;
+    justify-content: end;
+
+    h1 {
+        color: light-dark(@dark-blue, @beige);
+        font-family: @font-body;
+    }
+
+    button {
+        background: light-dark(transparent, @deep-black);
+        color: light-dark(@dark-blue, @beige);
+        border: 1px solid light-dark(@dark-blue, transparent);
+        padding: 0;
+
+        &:hover {
+            border: 1px solid light-dark(@dark-blue, @golden);
+            color: light-dark(@dark-blue, @golden);
+        }
+    }
+}
+
+.application.sheet.dh-style:not(.minimized) {
+    .window-title,
+    .window-icon {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+}
+
+.application.sheet.dh-style.minimized {
+    .window-content {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.1s ease;
+    }
+}
+
+.application.sheet.dh-style:not(.minimized) {
+    .window-content {
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+}
+
+.application.sheet.dh-style .window-content {
+    overflow: initial;
+    backdrop-filter: none;
+    padding: 0;
+}
+
+.theme-dark {
+    .application.sheet.dh-style {
+        backdrop-filter: blur(4px);
+    }
+}
+
+.theme-light {
+    .application.sheet.dh-style {
+        background-image: url('../assets/parchments/dh-parchment-light.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+// D:\Foundry\v13\data\Data\systems\daggerheart\assets\parchments\dh-parchment-light.png
+
+.application.sheet.daggerheart.dh-style {
+    .window-content {
+        position: relative;
+        top: -36px;
+
+        .tab {
+            padding: 0 10px;
+        }
+    }
+}

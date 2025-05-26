@@ -285,19 +285,31 @@ export const weaponFeatures = {
 export const featureTypes = {
     ancestry: {
         id: 'ancestry',
-        label: 'DAGGERHEART.Feature.Type.Ancestry'
+        label: 'DAGGERHEART.Feature.Type.ancestry'
     },
     community: {
         id: 'community',
-        label: 'DAGGERHEART.Feature.Type.Community'
+        label: 'DAGGERHEART.Feature.Type.community'
     },
     class: {
         id: 'class',
-        label: 'DAGGERHEART.Feature.Type.Class'
+        label: 'DAGGERHEART.Feature.Type.class'
     },
     subclass: {
         id: 'subclass',
-        label: 'DAGGERHEART.Feature.Type.Subclass'
+        label: 'DAGGERHEART.Feature.Type.subclass'
+    },
+    classHope: {
+        id: 'classHope',
+        label: 'DAGGERHEART.Feature.Type.classHope'
+    },
+    domainCard: {
+        id: 'domainCard',
+        label: 'DAGGERHEART.Feature.Type.domainCard'
+    },
+    equipment: {
+        id: 'equipment',
+        label: 'DAGGERHEART.Feature.Type.equipment'
     }
 };
 

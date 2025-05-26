@@ -4,6 +4,7 @@ export default class DaggerheartAction extends foundry.abstract.DataModel {
         return {
             id: new fields.StringField({}),
             name: new fields.StringField({ initial: 'New Action' }),
+            img: new fields.StringField({ initial: '' }),
             damage: new fields.SchemaField({
                 type: new fields.StringField({ choices: SYSTEM.GENERAL.damageTypes, nullable: true, initial: null }),
                 value: new fields.StringField({})

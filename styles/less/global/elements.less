@@ -1,0 +1,158 @@
+@import '../utils/colors.less';
+@import '../utils/fonts.less';
+
+.application.sheet.dh-style {
+    border: 1px solid light-dark(@dark-blue, @golden);
+
+    input[type='text'],
+    input[type='number'] {
+        background: light-dark(transparent, transparent);
+        border-radius: 6px;
+        box-shadow: 0 4px 30px @soft-shadow;
+        backdrop-filter: blur(9.5px);
+        -webkit-backdrop-filter: blur(9.5px);
+        outline: none;
+        color: light-dark(@dark-blue, @golden);
+        border: 1px solid light-dark(@dark, @beige);
+
+        &:hover[type='text'],
+        &:hover[type='number'],
+        &:focus[type='text'],
+        &:focus[type='number'] {
+            background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
+            box-shadow: none;
+            outline: 2px solid light-dark(@dark, @beige);
+        }
+    }
+
+    input[type='checkbox'] {
+        &:checked::after {
+            color: light-dark(@dark-blue, @golden);
+        }
+        &::before {
+            color: light-dark(@golden, @dark-blue);
+        }
+    }
+
+    button {
+        background: light-dark(transparent, @golden);
+        border: 1px solid light-dark(@dark-blue, @dark-blue);
+        color: light-dark(@dark-blue, @dark-blue);
+        outline: none;
+        box-shadow: none;
+
+        &:hover {
+            background: light-dark(@light-black, @dark-blue);
+            color: light-dark(@dark-blue, @golden);
+        }
+    }
+
+    select {
+        background: light-dark(transparent, transparent);
+        color: light-dark(@dark, @beige);
+        font-family: @font-body;
+        outline: 2px solid transparent;
+        border: 1px solid light-dark(@dark, @beige);
+
+        &:focus,
+        &:hover {
+            outline: 2px solid light-dark(@dark, @beige);
+            box-shadow: none;
+        }
+
+        & option {
+            color: @beige;
+            background-color: @dark-blue;
+            border-radius: 6px;
+        }
+    }
+
+    p {
+        margin: 0;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        margin: 0;
+    }
+
+    fieldset {
+        align-items: center;
+        margin-top: 5px;
+        border-radius: 6px;
+        border-color: light-dark(@dark-blue, @golden);
+
+        &.one-column {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 10px;
+            min-height: 64px;
+        }
+
+        &.two-columns {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+        }
+
+        legend {
+            font-family: @font-body;
+            font-weight: bold;
+            color: light-dark(@dark-blue, @golden);
+
+            a {
+                text-shadow: none;
+            }
+        }
+
+        input[type='text'],
+        input[type='number'] {
+            color: light-dark(@dark, @beige);
+            font-family: @font-body;
+            transition: all 0.3s ease;
+            outline: 2px solid transparent;
+
+            &:focus,
+            &:hover {
+                outline: 2px solid light-dark(@dark, @beige);
+            }
+        }
+
+        .nest-inputs {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+
+    line-div {
+        display: block;
+        height: 1px;
+        width: 100%;
+        border-bottom: 1px solid light-dark(@dark-blue, @golden);
+        mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
+    }
+
+    .item-description {
+        opacity: 1;
+        transform: translateY(0);
+
+        transition:
+            opacity 0.3s ease-out,
+            transform 0.3s ease-out;
+    }
+
+    .item-description.invisible {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-20px);
+        transform-origin: top;
+    }
+}

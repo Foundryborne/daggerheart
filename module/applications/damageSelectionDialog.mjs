@@ -113,7 +113,9 @@ export default class DamageSelectionDialog extends HandlebarsApplicationMixin(Ap
         }
     }
 
-    static rollDamage() {
+    static rollDamage(event) {
+        event.preventDefault();
+
         this.resolve({
             rollString: this.getRollString(),
             bonusDamage: this.data.bonusDamage,

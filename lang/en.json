@@ -77,6 +77,14 @@
                     "Name": "Enable Range Measurement",
                     "Hint": "Enable measuring of ranges with the ruler according to set distances."
                 }
+            },
+            "DualityRollColor": {
+                "Name": "Duality Roll Colour Scheme",
+                "Hint": "The display type for Duality Rolls",
+                "Options": {
+                    "Colorful": "Colorful",
+                    "Normal": "Normal"
+                }
             }
         },
         "Notification": {
@@ -92,13 +100,19 @@
                 "LacksDomain": "Your character doesn't have the domain of the card!",
                 "MaxLoadoutReached": "You can't have any more domain cards at this level!",
                 "DuplicateDomainCard": "You already have a domain card with that name!",
-                "ActionRequiresTarget": "The action requires at least one target"
+                "ActionRequiresTarget": "The action requires at least one target",
+                "NoAssignedPlayerCharacter": "You have no assigned character.",
+                "NoSelectedToken": "You have no selected token",
+                "OnlyUseableByPC": "This can only be used with a PC token",
+                "DualityParsing": "Duality roll not properly formated",
+                "AttributeFaulty": "The supplied Attribute doesn't exist"
             }
         },
         "General": {
-            "OpenBetaDisclaimer": "Daggerheart Open Beta {version}",
             "Hope": "Hope",
             "Fear": "Fear",
+            "Duality": "Duality",
+            "Check": "{check} Check",
             "CriticalSuccess": "Critical Success",
             "Advantage": {
                 "Full": "Advantage",
@@ -680,10 +694,13 @@
         },
         "Feature": {
             "Type": {
-                "Ancestry": "Ancestry",
-                "Community": "Community",
-                "Class": "Class",
-                "Subclass": "Subclass"
+                "ancestry": "Ancestry",
+                "community": "Community",
+                "class": "Class",
+                "subclass": "Subclass",
+                "classHope": "Class Hope",
+                "domainCard": "Domain Card",
+                "equipment": "Equipment"
             },
             "ValueType": {
                 "Normal": "Normal",
@@ -995,9 +1012,18 @@
                 "Tabs": {
                     "Features": "Features",
                     "Effects": "Effects",
-                    "Actions": "Actions"
+                    "Settings": "Settings",
+                    "Actions": "Actions",
+                    "Description": "Description"
                 },
-                "Description": "Description"
+                "Description": "Description",
+                "effects": {
+                    "addEffect": "Add Effect",
+                    "applyLocation": "Apply Location",
+                    "value": "Value",
+                    "initiallySelected": "Initially Selected",
+                    "hopeIncrease": "Hope Increase"
+                }
             },
             "Consumable": {
                 "Quantity": "Quantity",
@@ -1036,16 +1062,16 @@
         },
         "Effects": {
             "Types": {
-                "Health": {
+                "health": {
                     "Name": "Health"
                 },
-                "Stress": {
+                "stress": {
                     "Name": "Stress"
                 },
-                "Reach": {
+                "reach": {
                     "Name": "Reach"
                 },
-                "Damage": {
+                "damage": {
                     "Name": "Damage"
                 }
             },

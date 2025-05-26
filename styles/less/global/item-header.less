@@ -1,0 +1,52 @@
+@import '../utils/colors.less';
+
+.application.sheet.daggerheart.dh-style {
+    .item-sheet-header {
+        display: flex;
+
+        .profile {
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+            border-right: 1px solid light-dark(@dark-blue, @golden);
+            border-bottom: 1px solid light-dark(@dark-blue, @golden);
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            margin-top: 36px;
+            text-align: center;
+            width: 80%;
+
+            .item-name input[type='text'] {
+                font-size: 32px;
+                height: 42px;
+                text-align: center;
+                width: 90%;
+                transition: all 0.3s ease;
+                outline: 2px solid transparent;
+                border: 1px solid transparent;
+
+                &:hover[type='text'],
+                &:focus[type='text'] {
+                    box-shadow: none;
+                    outline: 2px solid light-dark(@dark-blue, @golden);
+                }
+            }
+
+            .item-description {
+                display: flex;
+                gap: 10px;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+        }
+    }
+}

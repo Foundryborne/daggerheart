@@ -12,7 +12,8 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'sheet', 'feature'],
+        id: 'daggerheart-feature',
+        classes: ['daggerheart', 'sheet', 'dh-style', 'feature'],
         position: { width: 600, height: 600 },
         window: { resizable: true },
         actions: {
@@ -30,17 +31,57 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     };
 
     static PARTS = {
-        form: {
-            id: 'feature',
-            template: 'systems/daggerheart/templates/sheets/feature.hbs'
+        header: { template: 'systems/daggerheart/templates/sheets/items/feature/header.hbs' },
+        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
+        description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
+        actions: {
+            template: 'systems/daggerheart/templates/sheets/items/feature/actions.hbs',
+            scrollable: ['.actions']
+        },
+        settings: {
+            template: 'systems/daggerheart/templates/sheets/items/feature/settings.hbs',
+            scrollable: ['.settings']
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/items/feature/effects.hbs',
+            scrollable: ['.effects']
         }
     };
 
     _getTabs() {
         const tabs = {
-            features: { active: true, cssClass: '', group: 'primary', id: 'features', icon: null, label: 'Features' },
-            effects: { active: false, cssClass: '', group: 'primary', id: 'effects', icon: null, label: 'Effects' },
-            actions: { active: false, cssClass: '', group: 'primary', id: 'actions', icon: null, label: 'Actions' }
+            description: {
+                active: true,
+                cssClass: '',
+                group: 'primary',
+                id: 'description',
+                icon: null,
+                label: 'DAGGERHEART.Sheets.Feature.Tabs.Description'
+            },
+            actions: {
+                active: false,
+                cssClass: '',
+                group: 'primary',
+                id: 'actions',
+                icon: null,
+                label: 'DAGGERHEART.Sheets.Feature.Tabs.Actions'
+            },
+            settings: {
+                active: false,
+                cssClass: '',
+                group: 'primary',
+                id: 'settings',
+                icon: null,
+                label: 'DAGGERHEART.Sheets.Feature.Tabs.Settings'
+            },
+            effects: {
+                active: false,
+                cssClass: '',
+                group: 'primary',
+                id: 'effects',
+                icon: null,
+                label: 'DAGGERHEART.Sheets.Feature.Tabs.Effects'
+            }
         };
         for (const v of Object.values(tabs)) {
             v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
@@ -58,7 +99,8 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
-        (context.tabs = this._getTabs()), (context.generalConfig = SYSTEM.GENERAL);
+        context.tabs = this._getTabs();
+        context.generalConfig = SYSTEM.GENERAL;
         context.itemConfig = SYSTEM.ITEM;
         context.properties = SYSTEM.ACTOR.featureProperties;
         context.dice = SYSTEM.GENERAL.diceTypes;
@@ -98,7 +140,7 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     static async addAction() {
-        const action = await new DaggerheartAction({}, { parent: this.document });
+        const action = await new DaggerheartAction({ img: this.document.img }, { parent: this.document });
         await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
         await new DaggerheartActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(
             true

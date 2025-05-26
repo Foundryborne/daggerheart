@@ -22,17 +22,6 @@ const getCompendiumOptions = async compendium => {
 };
 
 export const getWidthOfText = (txt, fontsize, allCaps, bold) => {
-    // if(getWidthOfText.e === undefined){
-    //     getWidthOfText.e = document.createElement('span');
-    //     getWidthOfText.e.style.display = "none";
-    //     document.body.appendChild(getWidthOfText.e);
-    // }
-    // if(getWidthOfText.e.style.fontSize !== fontsize)
-    //     getWidthOfText.e.style.fontSize = fontsize;
-    // if(getWidthOfText.e.style.fontFamily !== 'Signika, sans-serif')
-    //     getWidthOfText.e.style.fontFamily = 'Signika, sans-serif';
-    // getWidthOfText.e.innerText = txt;
-    // return getWidthOfText.e.offsetWidth;
     const text = allCaps ? txt.toUpperCase() : txt;
     if (getWidthOfText.c === undefined) {
         getWidthOfText.c = document.createElement('canvas');
@@ -81,4 +70,51 @@ export const generateId = (title, length) => {
         })
         .join('');
     return Number.isNumeric(length) ? id.slice(0, length).padEnd(length, '0') : id;
+};
+
+export function rollCommandToJSON(text) {
+    if (!text) return {};
+
+    // Match key="quoted string"  OR  key=unquotedValue
+    const PAIR_RE = /(\w+)=("(?:[^"\\]|\\.)*"|\S+)/g;
+    const result = {};
+    for (const [, key, raw] of text.matchAll(PAIR_RE)) {
+        let value;
+        if (raw.startsWith('"') && raw.endsWith('"')) {
+            // Strip the surrounding quotes, un-escape any \" sequences
+            value = raw.slice(1, -1).replace(/\\"/g, '"');
+        } else if (/^(true|false)$/i.test(raw)) {
+            // Boolean
+            value = raw.toLowerCase() === 'true';
+        } else if (!Number.isNaN(Number(raw))) {
+            // Numeric
+            value = Number(raw);
+        } else {
+            // Fallback to string
+            value = raw;
+        }
+        result[key] = value;
+    }
+    return Object.keys(result).length > 0 ? result : null;
+}
+
+export const getCommandTarget = () => {
+    let target = game.canvas.tokens.controlled.length > 0 ? game.canvas.tokens.controlled[0].actor : null;
+    if (!game.user.isGM) {
+        target = game.user.character;
+        if (!target) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.NoAssignedPlayerCharacter'));
+            return null;
+        }
+    }
+    if (!target) {
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.NoSelectedToken'));
+        return null;
+    }
+    if (target.type !== 'pc') {
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.OnlyUseableByPC'));
+        return null;
+    }
+
+    return target;
 };

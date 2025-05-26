@@ -1,4 +1,5 @@
 @import './variables/variables.less';
+@import './variables/colors.less';
 @import './class.less';
 @import './pc.less';
 @import './ui.less';
@@ -9,6 +10,17 @@
 @import './components.less';
 @import './dialog.less';
 @import '../node_modules/@yaireo/tagify/dist/tagify.css';
+
+// new styles imports
+@import './less/items/feature.less';
+
+@import './less/utils/colors.less';
+@import './less/utils/fonts.less';
+
+@import './less/global/sheet.less';
+@import './less/global/elements.less';
+@import './less/global/tab-navigation.less';
+@import './less/global/item-header.less';
 
 #logo {
     content: url(../assets/DaggerheartLogo.webp);
@@ -72,25 +84,12 @@
             margin-left: @halfMargin;
         }
 
-        &.active {
-            filter: drop-shadow(0 0 3px @mainShadow);
-
-            &.secondary {
-                filter: drop-shadow(0 0 3px @secondaryShadow);
-            }
-        }
-
         &.disabled {
             opacity: 0.6;
         }
 
         &:hover:not(.disabled) {
             cursor: pointer;
-            filter: drop-shadow(0 0 3px @mainShadow);
-
-            &.secondary {
-                filter: drop-shadow(0 0 3px @secondaryShadow);
-            }
         }
     }
 

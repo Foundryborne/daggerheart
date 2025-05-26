@@ -1,64 +1,142 @@
-<div class="dice-roll daggerheart chat roll" data-action="expandRoll">
-    <div class="dice-flavor">{{this.title}}</div>
-    <div class="dice-result">
-        <div class="dice-formula">{{roll}}</div>
-        <div class="dice-tooltip">
-            <div class="wrapper">
-                <section class="tooltip-part">
-                    <div class="dice">
-                        <header class="part-header flexrow">
-                            <span class="part-formula">
-                                <span>1{{hope.dice}}</span>
-                                |
-                                <span>1{{fear.dice}}</span>
-                            </span>
-                            <span class="part-total">{{this.highestRoll}}</span>
-                        </header>
-                        <div class="flexrow">
-                            <ol class="dice-rolls duality">
-                                <li class="roll die {{hope.dice}} {{#if hope.discarded}}discarded{{/if}} hope min" title="{{localize "DAGGERHEART.General.Hope"}}">{{hope.value}}</li>
-                                <li class="roll die {{fear.dice}} {{#if fear.discarded}}discarded{{/if}} fear min" title="{{localize "DAGGERHEART.General.Fear"}}">{{fear.value}}</li>
-                            </ol>
-                        </div>  
+<div class="daggerheart chat roll" data-action="expandRoll">
+    {{#if this.colorful}}
+        <div class="duality-data">
+            <div class="duality-title">
+                <div>{{this.title}}</div>
+                <div class="duality-result-value">{{this.total}}</div>
+            </div>
+            <div class="duality-modifiers">
+                {{#each this.modifiers}}
+                    <div class="duality-modifier">
+                        {{this.label}}
                     </div>
-                    {{#if advantage.value}}
+                {{/each}}
+                {{#if this.advantage.value}}
+                    <div class="duality-modifier">
+                        {{localize "DAGGERHEART.General.Advantage.Full"}}
+                    </div>
+                {{/if}}
+                {{#if this.disadvantage.value}}
+                    <div class="duality-modifier">
+                        {{localize "DAGGERHEART.General.Disadvantage.Full"}}
+                    </div>
+                {{/if}}
+            </div>
+            <div class="duality-line {{#if (not this.damage.value)}}simple{{/if}}">
+                <div class="dice-outer-container">
+                    <div class="dice-container">
+                        <div class="dice-title">{{localize "DAGGERHEART.General.Hope"}}</div>
+                        <div class="dice-inner-container hope" title="{{localize "DAGGERHEART.General.Hope"}}">
+                            <div class="dice-wrapper">
+                                <img class="dice" src="../icons/svg/d12-grey.svg"/>
+                            </div>
+                            <div class="dice-value">{{hope.value}}</div>
+                        </div>
+                    </div>
+                    <div class="dice-container">
+                        <div class="dice-title">{{localize "DAGGERHEART.General.Fear"}}</div>
+                        <div class="dice-inner-container fear" title="{{localize "DAGGERHEART.General.Fear"}}">
+                            <div class="dice-wrapper">
+                                <img class="dice" src="../icons/svg/d12-grey.svg"/>
+                            </div>
+                            <div class="dice-value">{{fear.value}}</div>
+                        </div>
+                    </div>
+                    {{#if this.advantage.value}}
+                        <div class="advantage-container advantage">
+                            <div class="dice-wrapper">
+                                <img class="dice" src="../icons/svg/d6-grey.svg"/>
+                                <div class="dice-value">{{this.advantage.value}}</div>
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if this.disadvantage.value}}
+                        <div class="advantage-container disadvantage">
+                            <div class="dice-wrapper">
+                                <img class="dice" src="../icons/svg/d6-grey.svg"/>
+                                <div class="dice-value">{{this.disadvantage.value}}</div>
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if this.modifierTotal.value}}<div class="duality-modifier">{{this.modifierTotal.label}}</div>{{/if}}
+                </div>
+                {{#if (not this.damage.value)}}
+                    <div class="duality-result">
+                        <div>{{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+        {{#if this.damage.value}}
+            <div class="duality-actions">
+                <div></div>
+                <div class="duality-result">
+                    <div>{{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
+                </div>
+            </div>
+        {{/if}}
+    {{else}}
+        <div class="dice-flavor">{{this.title}}</div>
+        <div class="dice-result">
+            <div class="dice-formula">{{roll}}</div>
+            <div class="dice-tooltip">
+                <div class="wrapper">
+                    <section class="tooltip-part">
                         <div class="dice">
                             <header class="part-header flexrow">
                                 <span class="part-formula">
-                                    <span>1{{advantage.dice}}</span>
+                                    <span>1{{hope.dice}}</span>
+                                    |
+                                    <span>1{{fear.dice}}</span>
                                 </span>
-                                <span class="part-total">{{advantage.value}}</span>
+                                <span class="part-total">{{this.diceTotal}}</span>
                             </header>
                             <div class="flexrow">
-                                <ol class="dice-rolls">
-                                    <li class="roll die {{advantage.dice}} hope min">{{advantage.value}}</li>
+                                <ol class="dice-rolls duality">
+                                    <li class="roll die {{hope.dice}} {{#if hope.discarded}}discarded{{/if}} hope min" title="{{localize "DAGGERHEART.General.Hope"}}">{{hope.value}}</li>
+                                    <li class="roll die {{fear.dice}} {{#if fear.discarded}}discarded{{/if}} fear min" title="{{localize "DAGGERHEART.General.Fear"}}">{{fear.value}}</li>
                                 </ol>
                             </div>  
                         </div>
-                    {{/if}}
-                    {{#if disadvantage.value}}
-                        <div class="dice">
-                            <header class="part-header flexrow">
-                                <span class="part-formula">
-                                    <span>1{{disadvantage.dice}}</span>
-                                </span>
-                                <span class="part-total">{{disadvantage.value}}</span>
-                            </header>
-                            <div class="flexrow">
-                                <ol class="dice-rolls">
-                                    <li class="roll die {{disadvantage.dice}} hope min">{{disadvantage.value}}</li>
-                                </ol>
-                            </div>  
-                        </div>
-                    {{/if}}
-                </section>
+                        {{#if advantage.value}}
+                            <div class="dice">
+                                <header class="part-header flexrow">
+                                    <span class="part-formula">
+                                        <span>1{{advantage.dice}}</span>
+                                    </span>
+                                    <span class="part-total">{{advantage.value}}</span>
+                                </header>
+                                <div class="flexrow">
+                                    <ol class="dice-rolls">
+                                        <li class="roll die {{advantage.dice}} hope min">{{advantage.value}}</li>
+                                    </ol>
+                                </div>  
+                            </div>
+                        {{/if}}
+                        {{#if disadvantage.value}}
+                            <div class="dice">
+                                <header class="part-header flexrow">
+                                    <span class="part-formula">
+                                        <span>1{{disadvantage.dice}}</span>
+                                    </span>
+                                    <span class="part-total">{{disadvantage.value}}</span>
+                                </header>
+                                <div class="flexrow">
+                                    <ol class="dice-rolls">
+                                        <li class="roll die {{disadvantage.dice}} hope min">{{disadvantage.value}}</li>
+                                    </ol>
+                                </div>  
+                            </div>
+                        {{/if}}
+                    </section>
+                </div>
+            </div>
+            <div class="dice-total duality {{#if fear.discarded}}hope{{else}}{{#if hope.discarded}}fear{{else}}critical{{/if}}{{/if}}">
+                <div class="dice-total-label">{{totalLabel}}</div>
+                <div class="dice-total-value">
+                    {{total}}
+                </div>
             </div>
         </div>
-        <div class="dice-total">
-            <div class="dice-total-label">{{totalLabel}}</div>
-            <div class="dice-total-value">
-                {{total}}
-            </div>
-        </div>
-    </div>
+    {{/if}}
 </div>
