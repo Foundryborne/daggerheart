@@ -119,7 +119,10 @@ export default class DhpActor extends Actor {
         const modifiers = [
             {
                 value: modifier.value ? Number.parseInt(modifier.value) : 0,
-                label: modifier.value >= 0 ? `+${modifier.value}` : `-${modifier.value}`,
+                label:
+                    modifier.value >= 0
+                        ? `${modifier.title} +${modifier.value}`
+                        : `${modifier.title} -${modifier.value}`,
                 title: modifier.title
             }
         ];

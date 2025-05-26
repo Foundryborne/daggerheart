@@ -1,3 +1,5 @@
+import { DualityRollColor } from '../config/settingsConfig.mjs';
+
 const fields = foundry.data.fields;
 const diceField = () =>
     new fields.SchemaField({
@@ -6,6 +8,12 @@ const diceField = () =>
     });
 
 export default class DhpDualityRoll extends foundry.abstract.TypeDataModel {
+    static dualityResult = {
+        hope: 1,
+        fear: 2,
+        critical: 3
+    };
+
     static defineSchema() {
         return {
             title: new fields.StringField(),
@@ -57,17 +65,32 @@ export default class DhpDualityRoll extends foundry.abstract.TypeDataModel {
     }
 
     get total() {
-        const modifiers = this.modifiers.reduce((acc, x) => acc + x.value, 0);
         const advantage = this.advantage.value
             ? this.advantage.value
             : this.disadvantage.value
               ? -this.disadvantage.value
               : 0;
-        return this.diceTotal + advantage + modifiers;
+        return this.diceTotal + advantage + this.modifierTotal.value;
     }
 
     get diceTotal() {
         return this.hope.value + this.fear.value;
+    }
+
+    get modifierTotal() {
+        const total = this.modifiers.reduce((acc, x) => acc + x.value, 0);
+        return {
+            value: total,
+            label: total > 0 ? `+${total}` : total < 0 ? `-${total}` : ''
+        };
+    }
+
+    get dualityResult() {
+        return this.hope.value > this.fear.value
+            ? this.constructor.dualityResult.hope
+            : this.fear.value > this.hope.value
+              ? this.constructor.dualityResult.fear
+              : this.constructor.dualityResult.critical;
     }
 
     get totalLabel() {
@@ -79,6 +102,13 @@ export default class DhpDualityRoll extends foundry.abstract.TypeDataModel {
                   : 'DAGGERHEART.General.CriticalSuccess';
 
         return game.i18n.localize(label);
+    }
+
+    get colorful() {
+        return (
+            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.DualityRollColor) ===
+            DualityRollColor.colorful.value
+        );
     }
 
     prepareDerivedData() {

@@ -14,7 +14,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     addChatListeners = async (app, html, data) => {
-        html.querySelectorAll('.roll-damage-button').forEach(element =>
+        html.querySelectorAll('.duality-action').forEach(element =>
             element.addEventListener('click', event => this.onRollDamage(event, data.message))
         );
         html.querySelectorAll('.target-container').forEach(element => {

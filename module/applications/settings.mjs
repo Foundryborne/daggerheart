@@ -1,3 +1,5 @@
+import { DualityRollColor } from '../config/settingsConfig.mjs';
+
 class DhpAutomationSettings extends FormApplication {
     constructor(object = {}, options = {}) {
         super(object, options);
@@ -211,6 +213,16 @@ export const registerDHPSettings = () => {
             far: 60,
             veryFar: 120
         }
+    });
+
+    game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.DualityRollColor, {
+        name: game.i18n.localize('DAGGERHEART.Settings.DualityRollColor.Name'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.DualityRollColor.Hint'),
+        scope: 'world',
+        config: true,
+        type: Number,
+        choices: Object.values(DualityRollColor),
+        default: DualityRollColor.colorful.value
     });
 
     game.settings.registerMenu(SYSTEM.id, SYSTEM.SETTINGS.menu.Automation.Name, {

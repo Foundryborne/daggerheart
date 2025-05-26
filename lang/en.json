@@ -77,6 +77,14 @@
                     "Name": "Enable Range Measurement",
                     "Hint": "Enable measuring of ranges with the ruler according to set distances."
                 }
+            },
+            "DualityRollColor": {
+                "Name": "Duality Roll Colour Scheme",
+                "Hint": "The display type for Duality Rolls",
+                "Options": {
+                    "Colorful": "Colorful",
+                    "Normal": "Normal"
+                }
             }
         },
         "Notification": {

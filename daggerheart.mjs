@@ -213,7 +213,16 @@ Hooks.on('chatMessage', (_, message) => {
                 const attributeRoll = `${attribute?.data?.value ? `${attribute.data.value > 0 ? `+${attribute.data.value}` : `${attribute.data.value}`}` : ''}`;
                 const roll = new Roll(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`);
                 await roll.evaluate();
-                resolve({ roll, attribute, title });
+                resolve({
+                    roll,
+                    attribute: attribute
+                        ? {
+                              value: attribute.data.value,
+                              label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : `-`}${attribute.data.value}`
+                          }
+                        : undefined,
+                    title
+                });
             }).then(({ roll, attribute, title }) => {
                 const cls = getDocumentClass('ChatMessage');
                 const msgData = {
@@ -223,7 +232,7 @@ Hooks.on('chatMessage', (_, message) => {
                         title: title,
                         origin: target?.id,
                         roll: roll._formula,
-                        modifiers: attribute ? [{ value: attribute.data.value }] : [],
+                        modifiers: attribute ? [attribute] : [],
                         hope: { dice: rollCommand.hope ?? 'd12', value: roll.dice[0].total },
                         fear: { dice: rollCommand.fear ?? 'd12', value: roll.dice[1].total },
                         advantage:

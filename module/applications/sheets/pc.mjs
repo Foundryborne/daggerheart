@@ -567,7 +567,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
         const { roll, hope, fear, advantage, disadvantage, modifiers, bonusDamageString } =
             await this.document.dualityRoll(
-                { title: 'Attribute Modifier', value: modifier },
+                { title: game.i18n.localize(abilities[weapon.system.trait].label), value: modifier },
                 event.shiftKey,
                 damage.bonusDamage
             );
