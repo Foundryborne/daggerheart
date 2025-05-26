@@ -186,9 +186,6 @@ export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
         event.preventDefault();
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
-        console.log(event);
-        console.log(data);
-        console.log(item);
         if (!(item.type === 'feature' && item.system.type === SYSTEM.ITEM.featureTypes.subclass.id)) return;
 
         let featureField;
