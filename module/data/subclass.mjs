@@ -15,19 +15,37 @@ export default class DhpSubclass extends foundry.abstract.TypeDataModel {
             }),
             foundationFeature: new fields.SchemaField({
                 description: new fields.HTMLField({}),
-                abilities: new fields.ArrayField(new fields.EmbeddedDataField(DaggerheartFeature))
+                abilities: new fields.ArrayField(
+                    new fields.SchemaField({
+                        name: new fields.StringField({}),
+                        img: new fields.StringField({}),
+                        uuid: new fields.StringField({})
+                    })
+                )
             }),
             specializationFeature: new fields.SchemaField({
                 unlocked: new fields.BooleanField({ initial: false }),
                 tier: new fields.NumberField({ initial: null, nullable: true, integer: true }),
                 description: new fields.HTMLField({}),
-                abilities: new fields.ArrayField(new fields.EmbeddedDataField(DaggerheartFeature))
+                abilities: new fields.ArrayField(
+                    new fields.SchemaField({
+                        name: new fields.StringField({}),
+                        img: new fields.StringField({}),
+                        uuid: new fields.StringField({})
+                    })
+                )
             }),
             masteryFeature: new fields.SchemaField({
                 unlocked: new fields.BooleanField({ initial: false }),
                 tier: new fields.NumberField({ initial: null, nullable: true, integer: true }),
                 description: new fields.HTMLField({}),
-                abilities: new fields.ArrayField(new fields.EmbeddedDataField(DaggerheartFeature))
+                abilities: new fields.ArrayField(
+                    new fields.SchemaField({
+                        name: new fields.StringField({}),
+                        img: new fields.StringField({}),
+                        uuid: new fields.StringField({})
+                    })
+                )
             }),
             multiclass: new fields.NumberField({ initial: null, nullable: true, integer: true })
         };

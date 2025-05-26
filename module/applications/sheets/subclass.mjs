@@ -76,11 +76,14 @@ import DaggerheartSheet from './daggerheart-sheet.mjs';
 import DaggerheartFeature from '../../data/feature.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
+const { TextEditor } = foundry.applications.ux;
+const { duplicate, getProperty } = foundry.utils;
 export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'sheet', 'subclass'],
-        position: { width: 600 },
+        position: { width: 600, height: 600 },
+        window: { resizable: true },
         actions: {
             editAbility: this.editAbility,
             deleteFeatureAbility: this.deleteFeatureAbility
@@ -180,28 +183,22 @@ export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     async _onDrop(event) {
+        event.preventDefault()
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
-        if (item.type === 'feature' && item.system.type === SYSTEM.ITEM.featureTypes.subclass.id) {
-            if (event.currentTarget.classList.contains('foundation-tab')) {
-                await this.document.update({
-                    'system.foundationFeature.abilities': [
-                        ...this.document.system.foundationFeature.abilities,
-                        item.system
-                    ]
-                });
-            } else if (event.currentTarget.classList.contains('specialization-tab')) {
-                await this.document.update({
-                    'system.specializationFeature.abilities': [
-                        ...this.document.system.specializationFeature.abilities,
-                        data.system
-                    ]
-                });
-            } else if (event.currentTarget.classList.contains('mastery-tab')) {
-                await this.document.update({
-                    'system.masteryFeature.abilities': [...this.document.system.masteryFeature.abilities, data.system]
-                });
-            }
-        }
+        if (!(item.type === 'feature' && item.system.type === SYSTEM.ITEM.featureTypes.subclass.id)) return;
+
+        let featureField;
+        if (event.currentTarget.classList.contains('foundation-tab')) featureField = 'foundation';
+        else if (event.currentTarget.classList.contains('specialization-tab')) featureField = 'specialization';
+        else if (event.currentTarget.classList.contains('mastery-tab')) featureField = 'mastery';
+        else return;
+
+        const path = `system.${featureField}Feature.abilities`;
+        const abilities = duplicate(getProperty(this.document, path)) || [];
+        const featureData = {name: item.name, img: item.img, uuid: item.uuid };
+        abilities.push(featureData);
+
+        await this.document.update({ [path]: abilities });
     }
 }
