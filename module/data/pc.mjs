@@ -337,7 +337,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
     get refreshableFeatures() {
         return this.parent.items.reduce(
             (acc, x) => {
-                if (x.type === 'feature' && x.system.refreshData.type) {
+                if (x.type === 'feature' && x.system.refreshData?.type) {
                     acc[x.system.refreshData.type].push(x);
                 }
 

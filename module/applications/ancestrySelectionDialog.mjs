@@ -65,7 +65,7 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
     }
 
     async _prepareContext(_options) {
-        const systemAncestries = Array.from((await game.packs.get('daggerheart.playtest-ancestries')).index).map(x => ({
+        const systemAncestries = Array.from((await game.packs.get('daggerheart.ancestries')).index).map(x => ({
             ...x,
             selected: this.data.ancestries.some(selected => selected.uuid === x.uuid)
         }));

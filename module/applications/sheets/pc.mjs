@@ -658,11 +658,11 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async selectClass() {
-        (await game.packs.get('daggerheart.playtest-classes'))?.render(true);
+        (await game.packs.get('daggerheart.classes'))?.render(true);
     }
 
     static async selectSubclass() {
-        (await game.packs.get('daggerheart.playtest-subclasses'))?.render(true);
+        (await game.packs.get('daggerheart.subclasses'))?.render(true);
     }
 
     static async selectAncestry() {
@@ -693,7 +693,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async selectCommunity() {
-        (await game.packs.get('daggerheart.playtest-communities'))?.render(true);
+        (await game.packs.get('daggerheart.communities'))?.render(true);
     }
 
     static async viewObject(_, button) {
@@ -701,7 +701,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         if (!object) return;
 
         const tab = button.dataset.tab;
-        if (tab) object.sheet._tabs[0].active = tab;
+        if (tab && object.sheet._tabs) object.sheet._tabs[0].active = tab;
 
         if (object.sheet.editMode) object.sheet.editMode = false;
 
