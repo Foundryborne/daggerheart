@@ -67,6 +67,18 @@
                 {{/if}}
             </div>
         </div>
+        {{#if (gt targets.length 0)}}
+            <div class="target-section">
+                {{#each targets as |target|}}
+                    <div class="target-container {{#if target.hit}}hit{{else}}{{#if (not ../total.alternate)}}miss{{/if}}{{/if}}" data-token="{{target.id}}">
+                            <img src="{{target.img}}" />
+                            <div class="target-inner-container">
+                                {{#if target.hit}}{{localize "Hit"}}{{else}}{{#if (not ../total.alternate)}}{{localize "Miss"}}{{else}}?{{/if}}{{/if}}
+                            </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
         {{#if this.damage.value}}
             <div class="duality-actions">
                 <button class="duality-action" data-value="{{this.total}}" data-damage="{{this.damage.value}}" data-damage-type="{{this.damage.type}}" {{#if this.damage.disabled}}disabled{{/if}}><span>Roll Damage</span></button>  

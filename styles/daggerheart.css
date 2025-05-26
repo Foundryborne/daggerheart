@@ -1525,6 +1525,41 @@
 .chat-message.duality .duality-actions .duality-action:hover {
   background: var(--button-hover-background-color);
 }
+.chat-message.duality .target-section {
+  margin: 4px 4px;
+  border: 2px solid;
+}
+.chat-message.duality .target-section .target-container {
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+.chat-message.duality .target-section .target-container:hover {
+  filter: drop-shadow(0 0 3px gold);
+  border-color: gold;
+}
+.chat-message.duality .target-section .target-container.hit {
+  background: #008000;
+}
+.chat-message.duality .target-section .target-container.miss {
+  background: #ff0000;
+}
+.chat-message.duality .target-section .target-container img {
+  flex: 0;
+  width: 22px;
+  height: 22px;
+  margin-left: 8px;
+  align-self: center;
+  border-color: transparent;
+}
+.chat-message.duality .target-section .target-container .target-inner-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-right: 32px;
+  font-weight: bold;
+  font-size: 17px;
+}
 .chat-message.duality.hope {
   background: linear-gradient(0, brown 40px, black);
 }

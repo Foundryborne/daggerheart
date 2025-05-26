@@ -236,44 +236,56 @@
             }
         }
 
+        .target-section {
+            margin: 4px 4px;
+            border: 2px solid;
+
+            .target-container {
+                display: flex;
+                align-items: center;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    filter: drop-shadow(0 0 3px @secondaryShadow);
+                    border-color: gold;
+                }
+
+                &.hit {
+                    background: @hit;
+                }
+
+                &.miss {
+                    background: @miss;
+                }
+
+                img {
+                    flex: 0;
+                    width: 22px;
+                    height: 22px;
+                    margin-left: 8px;
+                    align-self: center;
+                    border-color: transparent;
+                }
+
+                .target-inner-container {
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                    margin-right: @hugeMargin;
+                    font-weight: bold;
+                    font-size: 17px;
+                }
+            }
+        }
+
         &.hope {
             background: linear-gradient(0, @hopeBackgroundEnd 40px, @hopeBackgroundStart);
-
-            // .dice-result {
-            //     color: @hope;
-            //     text-shadow: 0 0 3px black;
-            // }
-
-            // .dice-total, .dice-formula {
-            //     border-color: @hope;
-            //     background: rgba(@hope, 0.5);
-            // }
         }
         &.fear {
             background: linear-gradient(0, @fearBackgroundEnd, @fearBackgroundStart);
-
-            // .dice-result {
-            //     color: var(--color-dark-1);
-            //     text-shadow: 0 0 1px var(--color-light-1);
-            // }
-
-            // .dice-total, .dice-formula {
-            //     border-color: @fear;
-            //     background: @fearAccent;
-            // }
         }
         &.critical {
             background: linear-gradient(0, @criticalBackgroundEnd, @criticalBackgroundStart);
-
-            // .dice-result {
-            //     color: var(--color-dark-1);
-            //     text-shadow: 0 0 1px var(--color-light-1);
-            // }
-
-            // .dice-total, .dice-formula {
-            //     border-color: @critical;
-            //     background: @criticalAccent;
-            // }
         }
 
         .dice-roll {
