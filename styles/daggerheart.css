@@ -1522,6 +1522,9 @@
   min-height: unset;
   height: 26px;
 }
+.chat-message.duality .duality-actions .duality-action:hover {
+  background: var(--button-hover-background-color);
+}
 .chat-message.duality.hope {
   background: linear-gradient(0, brown 40px, black);
 }
