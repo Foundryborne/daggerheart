@@ -1561,13 +1561,13 @@
   font-size: 17px;
 }
 .chat-message.duality.hope {
-  background: linear-gradient(0, brown 40px, black);
+  background: linear-gradient(0, rgba(165, 42, 42, 0.6) 40px, rgba(0, 0, 0, 0.6));
 }
 .chat-message.duality.fear {
-  background: linear-gradient(0, blue, #0f0f61);
+  background: linear-gradient(0, rgba(0, 0, 255, 0.6), rgba(15, 15, 97, 0.6));
 }
 .chat-message.duality.critical {
-  background: linear-gradient(0, purple, #250825);
+  background: linear-gradient(0, rgba(128, 0, 128, 0.6), rgba(37, 8, 37, 0.6));
 }
 .chat-message.duality .dice-roll {
   color: var(--color-dark-1);
