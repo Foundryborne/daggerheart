@@ -27,17 +27,6 @@
                     <input class="domain-input" value="{{domains}}" />
                 </div>
             </div>
-            <div class="form-group">
-                <label>{{localize "DAGGERHEART.Sheets.Class.DamageThresholds.Title"}}</label>
-                <div class="form-fields">
-                    <label>{{localize "DAGGERHEART.Sheets.Class.DamageThresholds.Minor"}}</label>
-                    <input name="system.damageThresholds.minor" value="{{source.system.damageThresholds.minor}}" placeholder="Minor" type="text" data-dtype="Number" />
-                    <label>{{localize "DAGGERHEART.Sheets.Class.DamageThresholds.Major"}}</label>
-                    <input name="system.damageThresholds.major" value="{{source.system.damageThresholds.major}}" placeholder="Major" type="text" data-dtype="Number" />
-                    <label>{{localize "DAGGERHEART.Sheets.Class.DamageThresholds.Severe"}}</label>
-                    <input name="system.damageThresholds.severe" value="{{source.system.damageThresholds.severe}}" placeholder="Severe" type="text" data-dtype="Number" />
-                </div>
-            </div>
             {{formField systemFields.evasion value=source.system.evasion label=(localize "DAGGERHEART.Sheets.Class.Evasion")}}
             {{!-- <div class="form-group">
                 <label>{{localize "DAGGERHEART.Sheets.Class.Evasion"}}</label>
