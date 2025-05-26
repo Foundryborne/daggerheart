@@ -218,7 +218,7 @@ Hooks.on('chatMessage', (_, message) => {
                     attribute: attribute
                         ? {
                               value: attribute.data.value,
-                              label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : `-`}${attribute.data.value}`
+                              label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : ``}${attribute.data.value}`
                           }
                         : undefined,
                     title

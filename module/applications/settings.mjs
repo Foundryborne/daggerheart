@@ -218,11 +218,12 @@ export const registerDHPSettings = () => {
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.DualityRollColor, {
         name: game.i18n.localize('DAGGERHEART.Settings.DualityRollColor.Name'),
         hint: game.i18n.localize('DAGGERHEART.Settings.DualityRollColor.Hint'),
-        scope: 'world',
+        scope: 'client',
         config: true,
         type: Number,
         choices: Object.values(DualityRollColor),
-        default: DualityRollColor.colorful.value
+        default: DualityRollColor.colorful.value,
+        requiresReload: true
     });
 
     game.settings.registerMenu(SYSTEM.id, SYSTEM.SETTINGS.menu.Automation.Name, {

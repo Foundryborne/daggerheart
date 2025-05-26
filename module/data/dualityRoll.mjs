@@ -81,7 +81,7 @@ export default class DhpDualityRoll extends foundry.abstract.TypeDataModel {
         const total = this.modifiers.reduce((acc, x) => acc + x.value, 0);
         return {
             value: total,
-            label: total > 0 ? `+${total}` : total < 0 ? `-${total}` : ''
+            label: total > 0 ? `+${total}` : total < 0 ? `${total}` : ''
         };
     }
 

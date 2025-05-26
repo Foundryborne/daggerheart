@@ -116,16 +116,19 @@ export default class DhpActor extends Actor {
             disadvantageDice = null,
             bonusDamageString = '';
 
-        const modifiers = [
-            {
-                value: modifier.value ? Number.parseInt(modifier.value) : 0,
-                label:
-                    modifier.value >= 0
-                        ? `${modifier.title} +${modifier.value}`
-                        : `${modifier.title} -${modifier.value}`,
-                title: modifier.title
-            }
-        ];
+        const modifiers =
+            modifier.value !== null
+                ? [
+                      {
+                          value: modifier.value ? Number.parseInt(modifier.value) : 0,
+                          label:
+                              modifier.value >= 0
+                                  ? `${modifier.title} +${modifier.value}`
+                                  : `${modifier.title} ${modifier.value}`,
+                          title: modifier.title
+                      }
+                  ]
+                : [];
         if (!shiftKey) {
             const dialogClosed = new Promise((resolve, _) => {
                 new RollSelectionDialog(
