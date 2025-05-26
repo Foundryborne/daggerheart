@@ -83,8 +83,6 @@
             "Info": {
                 "ClassCanOnlyHaveTwoDomains": "A class can only have 2 domains!",
                 "NoTargetsSelected": "No targets are selected.",
-                "SecondaryEquipWhileTwohanded": "A secondary weapon can't be equipped together with a Two-Handed weapon.",
-                "TwohandedEquipWhileSecondary": "Can't equip a Two-Handed weapon together with a secondary weapon.",
                 "SelectClassBeforeSubclass": "Select a Class before selecting a Subclass.",
                 "SubclassNotOfClass": "This Subclass doesn't belong to your current Class.",
                 "AttackTargetDoesNotExist": "The target token no longer exists"

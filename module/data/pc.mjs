@@ -259,6 +259,28 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         };
     }
 
+    static async unequipBeforeEquip(itemToEquip) {
+        const equippedWeapons = this.equippedWeapons;
+
+        if (itemToEquip.system.secondary) {
+            if (equippedWeapons.primary && equippedWeapons.primary.burden === SYSTEM.GENERAL.burden.twoHanded.value) {
+                await this.parent.items.get(equippedWeapons.primary.id).update({ 'system.equipped': false });
+            }
+
+            if (equippedWeapons.secondary) {
+                await this.parent.items.get(equippedWeapons.secondary.id).update({ 'system.equipped': false });
+            }
+        } else {
+            if (equippedWeapons.secondary && itemToEquip.system.burden === SYSTEM.GENERAL.burden.twoHanded.value) {
+                await this.parent.items.get(equippedWeapons.secondary.id).update({ 'system.equipped': false });
+            }
+
+            if (equippedWeapons.primary) {
+                await this.parent.items.get(equippedWeapons.primary.id).update({ 'system.equipped': false });
+            }
+        }
+    }
+
     get inventoryWeapons() {
         const inventoryWeaponFirst = this.parent.items.find(x => x.type === 'weapon' && x.system.inventoryWeapon === 1);
         const inventoryWeaponSecond = this.parent.items.find(

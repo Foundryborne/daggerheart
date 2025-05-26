@@ -952,27 +952,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                 await item.update({ 'system.equipped': true });
                 break;
             case 'weapon':
-                const currentWeapons = this.document.system.equippedWeapons;
-                if (item.system.secondary) {
-                    if (
-                        currentWeapons.primary &&
-                        currentWeapons.primary.burden === SYSTEM.GENERAL.burden.twoHanded.value
-                    ) {
-                        await this.document.items.get(currentWeapons.primary.id).update({ 'system.equipped': false });
-                    }
-
-                    if (currentWeapons.secondary) {
-                        await this.document.items.get(currentWeapons.secondary.id).update({ 'system.equipped': false });
-                    }
-                } else {
-                    if (currentWeapons.secondary && item.system.burden === SYSTEM.GENERAL.burden.twoHanded.value) {
-                        await this.document.items.get(currentWeapons.secondary.id).update({ 'system.equipped': false });
-                    }
-
-                    if (currentWeapons.primary) {
-                        await this.document.items.get(currentWeapons.primary.id).update({ 'system.equipped': false });
-                    }
-                }
+                await this.document.system.constructor.unequipBeforeEquip.bind(this.document.system)(item);
 
                 await item.update({ 'system.equipped': true });
                 break;
@@ -1202,46 +1182,8 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                 if (!element) return;
 
                 if (element.classList.contains('weapon-section')) {
-                    if (
-                        item.system.secondary &&
-                        this.document.system.equippedWeapons.burden === SYSTEM.GENERAL.burden.twoHanded.value
-                    ) {
-                        ui.notifications.info(
-                            game.i18n.localize('DAGGERHEART.Notification.Info.SecondaryEquipWhileTwohanded')
-                        );
-                        return;
-                    } else if (
-                        item.system.burden === SYSTEM.GENERAL.burden.twoHanded.value &&
-                        this.document.system.equippedWeapons.secondary
-                    ) {
-                        ui.notifications.info(
-                            game.i18n.localize('DAGGERHEART.Notification.Info.TwohandedEquipWhileSecondary')
-                        );
-                        return;
-                    }
-
-                    const existing =
-                        this.document.system.equippedWeapons.primary && !item.system.secondary
-                            ? await fromUuid(this.document.system.equippedWeapons.primary.uuid)
-                            : this.document.system.equippedWeapons.secondary && item.system.secondary
-                              ? await fromUuid(this.document.system.equippedWeapons.secondary.uuid)
-                              : null;
-                    await existing?.delete();
-                    itemData.system.active = true;
-                } else if (element.classList.contains('inventory-weapon-section-first')) {
-                    const existing = this.document.system.inventoryWeapons.first
-                        ? await fromUuid(this.document.system.inventoryWeapons.first.uuid)
-                        : null;
-                    await existing?.delete();
-
-                    itemData.system.inventoryWeapon = 1;
-                } else if (element.classList.contains('inventory-weapon-section-second')) {
-                    const existing = this.document.system.inventoryWeapons.second
-                        ? await fromUuid(this.document.system.inventoryWeapons.second.uuid)
-                        : null;
-                    await existing?.delete();
-
-                    itemData.system.inventoryWeapon = 2;
+                    await this.document.system.constructor.unequipBeforeEquip.bind(this.document.system)(itemData);
+                    itemData.system.equipped = true;
                 }
             }
 
@@ -1252,7 +1194,8 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                     const existing = this.document.system.armor
                         ? await fromUuid(this.document.system.armor.uuid)
                         : null;
-                    await existing?.delete();
+                    await existing?.update({ 'system.equipped': false });
+                    itemData.system.equipped = true;
                 }
             }
 

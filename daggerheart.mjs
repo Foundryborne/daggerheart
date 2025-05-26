@@ -132,7 +132,6 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/parts/gold.hbs',
         'systems/daggerheart/templates/sheets/parts/health.hbs',
         'systems/daggerheart/templates/sheets/parts/hope.hbs',
-        'systems/daggerheart/templates/sheets/parts/inventory.hbs',
         'systems/daggerheart/templates/sheets/parts/weapons.hbs',
         'systems/daggerheart/templates/sheets/parts/domainCard.hbs',
         'systems/daggerheart/templates/sheets/parts/heritage.hbs',
