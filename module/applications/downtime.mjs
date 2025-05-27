@@ -71,7 +71,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         const msg = new cls({
             user: game.user.id,
             content: await renderTemplate('systems/daggerheart/templates/chat/downtime.hbs', {
-                player: game.user.character.name,
+                player: this.actor.name,
                 title: game.i18n.localize(this.selectedActivity.name),
                 img: this.selectedActivity.img,
                 description: game.i18n.localize(this.selectedActivity.description),

@@ -183,7 +183,7 @@ export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     async _onDrop(event) {
-        event.preventDefault()
+        event.preventDefault();
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
         if (!(item.type === 'feature' && item.system.type === SYSTEM.ITEM.featureTypes.subclass.id)) return;
@@ -196,7 +196,7 @@ export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
 
         const path = `system.${featureField}Feature.abilities`;
         const abilities = duplicate(getProperty(this.document, path)) || [];
-        const featureData = {name: item.name, img: item.img, uuid: item.uuid };
+        const featureData = { name: item.name, img: item.img, uuid: item.uuid };
         abilities.push(featureData);
 
         await this.document.update({ [path]: abilities });

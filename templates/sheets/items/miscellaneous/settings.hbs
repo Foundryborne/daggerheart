@@ -1,0 +1,11 @@
+<section
+    class='tab {{tabs.settings.cssClass}} {{tabs.settings.id}}'
+    data-tab='{{tabs.settings.id}}'
+    data-group='{{tabs.settings.group}}'
+>
+    <fieldset class="two-columns">
+        <legend>{{localize tabs.settings.label}}</legend>
+        <span>{{localize "DAGGERHEART.Sheets.Miscellaneous.Quantity"}}</span>
+        {{formField systemFields.quantity value=source.system.quantity}}
+    </fieldset>
+</section>
