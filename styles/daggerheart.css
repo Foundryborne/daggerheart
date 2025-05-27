@@ -2985,10 +2985,13 @@ div.daggerheart.views.multiclass {
   outline: 2px solid light-dark(#222, #efe6d8);
 }
 .application.sheet.dh-style input[type='checkbox']:checked::after {
-  color: light-dark(#18162e, #f3c267);
+  color: light-dark(#222, #f3c267);
+}
+.application.sheet.dh-style input[type='checkbox']:checked::before {
+  color: light-dark(transparent, #18162e);
 }
 .application.sheet.dh-style input[type='checkbox']::before {
-  color: light-dark(#f3c267, #18162e);
+  color: light-dark(#222, #efe6d8);
 }
 .application.sheet.dh-style button {
   background: light-dark(transparent, #f3c267);
