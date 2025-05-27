@@ -46,6 +46,21 @@
                     "CloseLabel": "Close",
                     "FarLabel": "Far",
                     "VeryFarLabel": "Very Far"
+                },
+                "Appearance": {
+                    "title": "Appearance Settings",
+                    "label": "Appearance Settings",
+                    "hint": "Modify the look of various parts of the system",
+                    "name": "Appearance Settings",
+                    "duality": "Duality Rolls",
+                    "DiceSoNice": {
+                        "title": "Dice So Nice",
+                        "hint": "Coloration of Hope and Fear dice if the Dice So Nice module is used.",
+                        "foreground": "Foreground",
+                        "background": "Background",
+                        "outline": "Outline",
+                        "edge": "Edge"
+                    }
                 }
             },
             "Automation": {

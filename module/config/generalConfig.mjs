@@ -247,51 +247,43 @@ export const diceTypes = {
     d20: 'd20'
 };
 
-export const diceSoNicePresets = {
-    hope: {
-        colorset: 'inspired',
-        foreground: '#FFFFFF',
-        background: '#ffe760',
-        outline: '#000000',
-        edge: '#FFFFFF',
-        texture: 'bloodmoon',
-        material: 'metal',
-        font: 'Arial Black',
-        system: 'standard'
-    },
-    fear: {
-        colorset: 'bloodmoon',
-        foreground: '#000000',
-        background: '#0032b1',
-        outline: '#FFFFFF',
-        edge: '#000000',
-        texture: 'bloodmoon',
-        material: 'metal',
-        font: 'Arial Black',
-        system: 'standard'
-    },
-    advantage: {
-        colorset: 'bloodmoon',
-        foreground: '#FFFFFF',
-        background: '#008000',
-        outline: '#000000',
-        edge: '#FFFFFF',
-        texture: 'bloodmoon',
-        material: 'metal',
-        font: 'Arial Black',
-        system: 'standard'
-    },
-    disadvantage: {
-        colorset: 'bloodmoon',
-        foreground: '#000000',
-        background: '#b30000',
-        outline: '#FFFFFF',
-        edge: '#000000',
-        texture: 'bloodmoon',
-        material: 'metal',
-        font: 'Arial Black',
-        system: 'standard'
-    }
+export const getDiceSoNicePresets = () => {
+    const { diceSoNice } = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
+
+    return {
+        hope: {
+            ...diceSoNice.hope,
+            colorset: 'inspired',
+            texture: 'bloodmoon',
+            material: 'metal',
+            font: 'Arial Black',
+            system: 'standard'
+        },
+        fear: {
+            ...diceSoNice.fear,
+            colorset: 'bloodmoon',
+            texture: 'bloodmoon',
+            material: 'metal',
+            font: 'Arial Black',
+            system: 'standard'
+        },
+        advantage: {
+            ...diceSoNice.advantage,
+            colorset: 'bloodmoon',
+            texture: 'bloodmoon',
+            material: 'metal',
+            font: 'Arial Black',
+            system: 'standard'
+        },
+        disadvantage: {
+            ...diceSoNice.disadvantage,
+            colorset: 'bloodmoon',
+            texture: 'bloodmoon',
+            material: 'metal',
+            font: 'Arial Black',
+            system: 'standard'
+        }
+    };
 };
 
 export const refreshTypes = {

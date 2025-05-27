@@ -1,4 +1,4 @@
-import { diceSoNicePresets } from '../config/generalConfig.mjs';
+import { diceSoNicePresets, getDiceSoNicePresets } from '../config/generalConfig.mjs';
 
 export const loadCompendiumOptions = async compendiums => {
     const compendiumValues = [];
@@ -122,6 +122,7 @@ export const getCommandTarget = () => {
 };
 
 export const setDiceSoNiceForDualityRoll = (rollResult, advantage, disadvantage) => {
+    const diceSoNicePresets = getDiceSoNicePresets();
     rollResult.dice[0].options.appearance = diceSoNicePresets.hope;
     rollResult.dice[1].options.appearance = diceSoNicePresets.fear;
     if (advantage) {

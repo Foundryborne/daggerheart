@@ -3091,6 +3091,39 @@ div.daggerheart.views.multiclass {
   transform: translateY(-20px);
   transform-origin: top;
 }
+.application.setting.dh-style fieldset h2,
+.application.setting.dh-style fieldset h3,
+.application.setting.dh-style fieldset h4 {
+  margin: 8px 0 4px;
+  text-align: center;
+}
+.application.setting.dh-style fieldset .title-hint {
+  font-size: 12px;
+  font-variant: small-caps;
+  text-align: center;
+}
+.application.setting.dh-style fieldset .field-section .split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.application.setting.dh-style fieldset .label-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.application.setting.dh-style fieldset .label-container label {
+  align-self: center;
+  text-align: center;
+}
+.application.setting.dh-style footer {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+.application.setting.dh-style footer button {
+  flex: 1;
+}
 .sheet.daggerheart.dh-style .tab-navigation {
   margin: 5px 0;
   height: 40px;

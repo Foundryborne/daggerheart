@@ -156,3 +156,48 @@
         transform-origin: top;
     }
 }
+
+.application.setting.dh-style {
+    fieldset {
+        h2,
+        h3,
+        h4 {
+            margin: 8px 0 4px;
+            text-align: center;
+        }
+        .title-hint {
+            font-size: 12px;
+            font-variant: small-caps;
+            text-align: center;
+        }
+
+        .field-section {
+            .split-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+        }
+
+        .label-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+
+            label {
+                align-self: center;
+                text-align: center;
+            }
+        }
+    }
+
+    footer {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+
+        button {
+            flex: 1;
+        }
+    }
+}

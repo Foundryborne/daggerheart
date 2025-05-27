@@ -1,5 +1,5 @@
-import { DualityRollColor } from '../config/settingsConfig.mjs';
 import DhpDualityRoll from '../data/dualityRoll.mjs';
+import { DualityRollColor } from '../data/settings/Appearance.mjs';
 
 export default class DhpChatMesssage extends ChatMessage {
     async renderHTML() {
@@ -16,7 +16,7 @@ export default class DhpChatMesssage extends ChatMessage {
         const html = await super.renderHTML();
         if (
             this.type === 'dualityRoll' &&
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.DualityRollColor) ===
+            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
                 DualityRollColor.colorful.value
         ) {
             html.classList.add('duality');
