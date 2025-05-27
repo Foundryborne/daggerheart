@@ -52,31 +52,31 @@ export const abilities = {
 export const featureProperties = {
     agility: {
         name: 'DAGGERHEART.Abilities.Agility.Name',
-        path: actor => actor.system.attributes.agility.data.value
+        path: actor => actor.system.traits.agility.data.value
     },
     strength: {
         name: 'DAGGERHEART.Abilities.Strength.Name',
-        path: actor => actor.system.attributes.strength.data.value
+        path: actor => actor.system.traits.strength.data.value
     },
     finesse: {
         name: 'DAGGERHEART.Abilities.Finesse.Name',
-        path: actor => actor.system.attributes.finesse.data.value
+        path: actor => actor.system.traits.finesse.data.value
     },
     instinct: {
         name: 'DAGGERHEART.Abilities.Instinct.Name',
-        path: actor => actor.system.attributes.instinct.data.value
+        path: actor => actor.system.traits.instinct.data.value
     },
     presence: {
         name: 'DAGGERHEART.Abilities.Presence.Name',
-        path: actor => actor.system.attributes.presence.data.value
+        path: actor => actor.system.traits.presence.data.value
     },
     knowledge: {
         name: 'DAGGERHEART.Abilities.Knowledge.Name',
-        path: actor => actor.system.attributes.knowledge.data.value
+        path: actor => actor.system.traits.knowledge.data.value
     },
     spellcastingTrait: {
         name: 'DAGGERHEART.FeatureProperty.SpellcastingTrait',
-        path: actor => actor.system.attributes[actor.system.subclass.system.spellcastingTrait].data.value
+        path: actor => actor.system.traits[actor.system.subclass.system.spellcastingTrait].data.value
     }
 };
 

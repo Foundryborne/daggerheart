@@ -31,9 +31,9 @@ export default class DhpActor extends Actor {
                 return acc;
             }, {});
 
-            changed.system.attributes = Object.keys(this.system.attributes).reduce((acc, key) => {
+            changed.system.traits = Object.keys(this.system.traits).reduce((acc, key) => {
                 acc[key] = {
-                    levelMarks: this.system.attributes[key].levelMarks.filter(
+                    levelMarks: this.system.traits[key].levelMarks.filter(
                         x => x <= changed.system.levelData.currentLevel
                     )
                 };

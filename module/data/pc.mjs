@@ -10,26 +10,8 @@ const attributeField = () =>
             bonus: new fields.NumberField({ initial: 0, integer: true }),
             actualValue: new fields.NumberField({ initial: 0, integer: true }),
             overrideValue: new fields.NumberField({ initial: 0, integer: true })
-        }),
-        levelMarks: new fields.ArrayField(new fields.NumberField({ nullable: true, initial: null, integer: true })),
-        levelMark: new fields.NumberField({ nullable: true, initial: null, integer: true })
-    });
-
-const levelUpTier = () => ({
-    attributes: new fields.TypedObjectField(new fields.BooleanField()),
-    hitPointSlots: new fields.TypedObjectField(new fields.BooleanField()),
-    stressSlots: new fields.TypedObjectField(new fields.BooleanField()),
-    experiences: new fields.TypedObjectField(new fields.ArrayField(new fields.StringField({}))),
-    proficiency: new fields.TypedObjectField(new fields.BooleanField()),
-    armorOrEvasionSlot: new fields.TypedObjectField(new fields.StringField({})),
-    subclass: new fields.TypedObjectField(
-        new fields.SchemaField({
-            multiclass: new fields.BooleanField(),
-            feature: new fields.StringField({})
         })
-    ),
-    multiclass: new fields.TypedObjectField(new fields.BooleanField())
-});
+    });
 
 export default class DhpPC extends foundry.abstract.TypeDataModel {
     static defineSchema() {
@@ -61,7 +43,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                     })
                 )
             }),
-            attributes: new fields.SchemaField({
+            traits: new fields.SchemaField({
                 agility: attributeField(),
                 strength: attributeField(),
                 finesse: attributeField(),
@@ -78,14 +60,13 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             experiences: new fields.ArrayField(
                 new fields.SchemaField({
                     id: new fields.StringField({ required: true }),
-                    level: new fields.NumberField({ required: true, integer: true }),
                     description: new fields.StringField({}),
                     value: new fields.NumberField({ integer: true, nullable: true, initial: null })
                 }),
                 {
                     initial: [
-                        { id: foundry.utils.randomID(), level: 1, description: '', value: 2 },
-                        { id: foundry.utils.randomID(), level: 1, description: '', value: 2 }
+                        { id: foundry.utils.randomID(), description: '', value: 2 },
+                        { id: foundry.utils.randomID(), description: '', value: 2 }
                     ]
                 }
             ),
@@ -99,30 +80,6 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             domainData: new fields.SchemaField({
                 maxLoadout: new fields.NumberField({ initial: 2, integer: true }),
                 maxCards: new fields.NumberField({ initial: 2, integer: true })
-            }),
-            levelData: new fields.SchemaField({
-                currentLevel: new fields.NumberField({ initial: 1, integer: true }),
-                changedLevel: new fields.NumberField({ initial: 1, integer: true }),
-                levelups: new fields.TypedObjectField(
-                    new fields.SchemaField({
-                        level: new fields.NumberField({ required: true, integer: true }),
-                        tier1: new fields.SchemaField({
-                            ...levelUpTier()
-                        }),
-                        tier2: new fields.SchemaField(
-                            {
-                                ...levelUpTier()
-                            },
-                            { nullable: true, initial: null }
-                        ),
-                        tier3: new fields.SchemaField(
-                            {
-                                ...levelUpTier()
-                            },
-                            { nullable: true, initial: null }
-                        )
-                    })
-                )
             }),
             story: new fields.SchemaField({
                 background: new fields.HTMLField(),
@@ -141,6 +98,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                 max: new fields.NumberField({ initial: 6, integer: true }),
                 value: new fields.NumberField({ initial: 0, integer: true })
             })
+            // levelUpData: new fields.TypeDataModel(DhpLevelUpData),
         };
     }
 
@@ -292,30 +250,30 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         };
     }
 
-    get totalAttributeMarks() {
-        return Object.keys(this.levelData.levelups).reduce((nr, level) => {
-            const nrAttributeMarks = Object.keys(this.levelData.levelups[level]).reduce((nr, tier) => {
-                nr += Object.keys(this.levelData.levelups[level][tier]?.attributes ?? {}).length * 2;
+    // get totalAttributeMarks() {
+    //     return Object.keys(this.levelData.levelups).reduce((nr, level) => {
+    //         const nrAttributeMarks = Object.keys(this.levelData.levelups[level]).reduce((nr, tier) => {
+    //             nr += Object.keys(this.levelData.levelups[level][tier]?.attributes ?? {}).length * 2;
 
-                return nr;
-            }, 0);
+    //             return nr;
+    //         }, 0);
 
-            nr.push(...Array(nrAttributeMarks).fill(Number.parseInt(level)));
+    //         nr.push(...Array(nrAttributeMarks).fill(Number.parseInt(level)));
 
-            return nr;
-        }, []);
-    }
+    //         return nr;
+    //     }, []);
+    // }
 
-    get availableAttributeMarks() {
-        const attributeMarks = Object.keys(this.attributes).flatMap(y => this.attributes[y].levelMarks);
-        return this.totalAttributeMarks.reduce((acc, attribute) => {
-            if (!attributeMarks.findSplice(x => x === attribute)) {
-                acc.push(attribute);
-            }
+    // get availableAttributeMarks() {
+    //     const attributeMarks = Object.keys(this.attributes).flatMap(y => this.attributes[y].levelMarks);
+    //     return this.totalAttributeMarks.reduce((acc, attribute) => {
+    //         if (!attributeMarks.findSplice(x => x === attribute)) {
+    //             acc.push(attribute);
+    //         }
 
-            return acc;
-        }, []);
-    }
+    //         return acc;
+    //     }, []);
+    // }
 
     get effects() {
         return this.parent.items.reduce((acc, item) => {
@@ -373,8 +331,8 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             this.resources.hope.value = Math.max(this.resources.hope.max - 1, 0);
         }
 
-        for (var attributeKey in this.attributes) {
-            const attribute = this.attributes[attributeKey];
+        for (var attributeKey in this.traits) {
+            const attribute = this.traits[attributeKey];
 
             attribute.levelMark = attribute.levelMarks.find(x => this.isSameTier(x)) ?? null;
 

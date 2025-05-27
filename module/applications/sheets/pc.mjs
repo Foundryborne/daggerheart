@@ -214,9 +214,9 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
               }
             : {};
 
-        context.attributes = Object.keys(this.document.system.attributes).reduce((acc, key) => {
+        context.attributes = Object.keys(this.document.system.traits).reduce((acc, key) => {
             acc[key] = {
-                ...this.document.system.attributes[key],
+                ...this.document.system.traits[key],
                 name: game.i18n.localize(SYSTEM.ACTOR.abilities[key].name),
                 verbs: SYSTEM.ACTOR.abilities[key].verbs.map(x => game.i18n.localize(x))
             };
@@ -478,7 +478,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     async attributeChange(event) {
-        const path = `system.attributes.${event.currentTarget.dataset.attribute}.data.base`;
+        const path = `system.traits.${event.currentTarget.dataset.attribute}.data.base`;
         await this.document.update({ [path]: event.currentTarget.value });
     }
 
@@ -524,14 +524,14 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async toggleAttributeMark(_, button) {
-        const attribute = this.document.system.attributes[button.dataset.attribute];
+        const attribute = this.document.system.traits[button.dataset.attribute];
         const newMark = this.document.system.availableAttributeMarks
-            .filter(x => x > Math.max.apply(null, this.document.system.attributes[button.dataset.attribute].levelMarks))
+            .filter(x => x > Math.max.apply(null, this.document.system.traits[button.dataset.attribute].levelMarks))
             .sort((a, b) => (a > b ? 1 : -1))[0];
 
         if (attribute.levelMark || !newMark) return;
 
-        const path = `system.attributes.${button.dataset.attribute}.levelMarks`;
+        const path = `system.traits.${button.dataset.attribute}.levelMarks`;
         await this.document.update({ [path]: [...attribute.levelMarks, newMark] });
     }
 
@@ -569,7 +569,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             type: weapon.system.damage.type,
             bonusDamage: this.document.system.bonuses.damage
         };
-        const modifier = this.document.system.attributes[weapon.system.trait].data.value;
+        const modifier = this.document.system.traits[weapon.system.trait].data.value;
 
         const { roll, hope, fear, advantage, disadvantage, modifiers, bonusDamageString } =
             await this.document.dualityRoll(
