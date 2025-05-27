@@ -2784,6 +2784,32 @@ div.daggerheart.views.multiclass {
 .item-button .item-icon.checked {
   opacity: 1;
 }
+.theme-light {
+  /* Add specifics*/
+}
+.daggerheart.levelup .tiers-container {
+  display: flex;
+  gap: 16px;
+}
+.daggerheart.levelup .tiers-container .tier-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.daggerheart.levelup .tiers-container .tier-container legend {
+  margin-left: auto;
+  margin-right: auto;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 4px;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container {
+  display: flex;
+  gap: 4px;
+}
 .application.sheet.daggerheart.dh-style.feature .item-sheet-header {
   display: flex;
 }

@@ -42,51 +42,17 @@ class DhLevelOption extends foundry.abstract.DataModel {
             checkboxQuantity: new fields.NumberField({ required: true, integer: true, initial: 1 }),
             minCost: new fields.NumberField({ required: true, integer: true, initial: 1 }),
             type: new fields.StringField({ required: true, choices: LevelOptionType }),
-            choice: new fields.StringField(),
             value: new fields.NumberField({ integer: true }),
             amount: new fields.NumberField({ integer: true })
         };
     }
 }
 
-// class DhLevelOptionType extends foundry.abstract.DataModel {
-//     static defineSchema(){
-//         return new fields.SchemaField({
-//             trait: new fields.SchemaField({
-//                 id: new fields.StringField({ required: true }),
-//                 label: new fields.StringField({ required: true }),
-//             }),
-//             attribute: new fields.SchemaField({
-//                 id: new fields.StringField({ required: true }),
-//                 label: new fields.StringField({ required: true }),
-//                 choice: new fields.StringField({ required: true, choices: attributeChoices })
-//             }),
-//             experience: new fields.SchemaField({
-//                 id: new fields.StringField({ required: true }),
-//                 label: new fields.StringField({ required: true }),
-//             }),
-//             domainCard: new fields.SchemaField({
-//                 id: new fields.StringField({ required: true }),
-//                 label: new fields.StringField({ required: true }),
-//             }),
-//             subclass: new fields.SchemaField({
-//                 id: new fields.StringField({ required: true }),
-//                 label: new fields.StringField({ required: true }),
-//             }),
-//         });
-//     }
-// }
-
-const LevelOptionType = {
+export const LevelOptionType = {
     trait: {
         id: 'trait',
         label: 'Character Trait'
     },
-    // attribute: {
-    //     id: 'attribute',
-    //     label: 'Attribute',
-    //     choices: attributeChoices,
-    // },
     hitPoint: {
         id: 'hitPoint',
         label: 'Hit Points'
@@ -120,25 +86,6 @@ const LevelOptionType = {
         label: 'Multiclass'
     }
 };
-
-// const attributeChoices = {
-//     hitPoint: {
-//         id: 'hitPoint',
-//         label: 'Hit Points',
-//     },
-//     stress: {
-//         id: 'stress',
-//         label: 'Stress',
-//     },
-//     evasion: {
-//         id: 'evasion',
-//         label: 'Evasion',
-//     },
-//     proficiency: {
-//         id: 'proficiency',
-//         label: 'Proficiency',
-//     },
-// };
 
 export const defaultLevelTiers = {
     tiers: {

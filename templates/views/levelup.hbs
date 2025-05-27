@@ -1,12 +1,30 @@
-<div class="flex-col">
+<div>
+    <div class="tiers-container">
+        {{#each this.levelup.tiers as |tier key|}}
+            <fieldset class="tier-container">
+                <legend>{{tier.name}}</legend>
+                
+                {{#each tier.tierCheckboxGroups}}
+                    <div class="checkbox-group-container">
+                        {{this.label}}
+                        <div class="checkboxex-container">
+                            {{#each this.checkboxes}}
+                                <input type="checkbox" {{checked this.selected}} />
+                            {{/each}}
+                        </div>
+                    </div>
+                {{/each}}
+            </fieldset>
+        {{/each}}
+    </div>
+</div>
+
+{{!-- <div class="flex-col">
     <div class="levelup-title-container">Level {{activeLevel}}</div>
     <div class="levelup-section">
         {{#each data}}
             {{> "systems/daggerheart/templates/views/parts/level.hbs" data=this }}
         {{/each}}
-        {{!-- {{#each levelupConfig as |configData key|}}
-            {{> "systems/daggerheart/templates/views/parts/level.hbs" configData=configData levelData=(lookup ../levelData key) completedSelection=../completedSelection  activeTier=../activeTier activeLevel=../activeLevel category=key }}
-        {{/each}} --}}
     </div>
     <footer>
 
@@ -17,4 +35,4 @@
         {{/if}}
         <button data-action="close">{{localize "DAGGERHEART.Application.Cancel"}}</button>
     </footer>
-</div>
+</div> --}}

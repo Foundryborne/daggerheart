@@ -10,9 +10,9 @@
                 <img class="attribute-roll" data-action="attributeRoll" data-attribute="{{key}}" data-value="{{attribute.data.value}}" src="icons/svg/d12-grey.svg" />
                 <div class="attribute-text">{{key}}</div>
             </div>
-            <div class="attribute-mark {{#if (and (not attribute.levelMark) (and (not (includes attribute.levelMarks ../document.system.levelData.currentLevel)) (gt ../document.system.availableAttributeMarks.length 0)))}}selectable{{/if}}" data-action="toggleAttributeMark" data-attribute="{{key}}">
+            {{!-- <div class="attribute-mark {{#if (and (not attribute.levelMark) (and (not (includes attribute.levelMarks ../document.system.levelData.currentLevel)) (gt ../document.system.availableAttributeMarks.length 0)))}}selectable{{/if}}" data-action="toggleAttributeMark" data-attribute="{{key}}">
                 <i class="fa-solid fa-check {{#if attribute.levelMark}}selected{{/if}}"></i>
-            </div>
+            </div> --}}
             <div class="attribute-image">
                 {{#if ../editAttributes}}
                     <select class="attribute-value{{#if (lt attribute.data.base 0)}} negative{{/if}}{{#if (and (not attribute.data.base) (not ../abilityScoresFinished))}} unselected{{/if}}" data-attribute="{{key}}">

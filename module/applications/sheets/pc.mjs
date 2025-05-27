@@ -1,10 +1,10 @@
 import { capitalize } from '../../helpers/utils.mjs';
 import DhpDeathMove from '../deathMove.mjs';
 import DhpDowntime from '../downtime.mjs';
-import DhpLevelup from '../levelup.mjs';
 import AncestrySelectionDialog from '../ancestrySelectionDialog.mjs';
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 import { abilities } from '../../config/actorConfig.mjs';
+import DhlevelUp from '../levelup.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -187,7 +187,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         context.storyEditor = this.storyEditor;
         context.multiclassFeatureSetSelected = this.multiclassFeatureSetSelected;
 
-        const selectedAttributes = Object.values(this.document.system.attributes).map(x => x.data.base);
+        const selectedAttributes = Object.values(this.document.system.traits).map(x => x.data.base);
         context.abilityScoreArray = JSON.parse(
             await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray)
         ).reduce((acc, x) => {
@@ -621,7 +621,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     openLevelUp() {
-        new DhpLevelup(this.document).render(true);
+        new DhlevelUp(this.document).render(true);
     }
 
     static domainCardsTab(toVault) {

@@ -104,7 +104,8 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
 
     get canLevelUp() {
         //  return Object.values(this.levels.data).some(x => !x.completed);
-        return this.levelData.currentLevel !== this.levelData.changedLevel;
+        // return this.levelData.currentLevel !== this.levelData.changedLevel;
+        return true;
     }
 
     get tier() {
@@ -334,20 +335,20 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         for (var attributeKey in this.traits) {
             const attribute = this.traits[attributeKey];
 
-            attribute.levelMark = attribute.levelMarks.find(x => this.isSameTier(x)) ?? null;
+            // attribute.levelMark = attribute.levelMarks.find(x => this.isSameTier(x)) ?? null;
 
-            const actualValue = attribute.data.base + attribute.levelMarks.length + attribute.data.bonus;
-            attribute.data.actualValue = actualValue;
-            attribute.data.value = attribute.data.overrideValue
-                ? attribute.data.overrideValue
-                : attribute.data.actualValue;
+            // const actualValue = attribute.data.base + attribute.levelMarks.length + attribute.data.bonus;
+            // attribute.data.actualValue = actualValue;
+            // attribute.data.value = attribute.data.overrideValue
+            //     ? attribute.data.overrideValue
+            //     : attribute.data.actualValue;
         }
 
         this.evasion = this.class?.system?.evasion ?? 0;
         // this.armor.value = this.activeArmor?.baseScore ?? 0;
-        this.damageThresholds = this.computeDamageThresholds();
+        // this.damageThresholds = this.computeDamageThresholds();
 
-        this.applyLevels();
+        // this.applyLevels();
         this.applyEffects();
     }
 
