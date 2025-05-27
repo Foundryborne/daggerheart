@@ -69,5 +69,14 @@ export default function DhpApplicationMixin(Base) {
         }
 
         _onDrop(event) {}
+
+        _getTabs(tabs) {
+            for (const v of Object.values(tabs)) {
+                v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
+                v.cssClass = v.active ? 'active' : '';
+            }
+
+            return tabs;
+        }
     };
 }

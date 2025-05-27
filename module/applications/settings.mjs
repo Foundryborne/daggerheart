@@ -218,7 +218,7 @@ export const registerDHSettings = () => {
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance, {
         scope: 'client',
-        config: true,
+        config: false,
         type: DhAppearance,
         default: DhAppearance.defaultSchema
     });

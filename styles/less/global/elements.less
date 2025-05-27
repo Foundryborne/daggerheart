@@ -27,10 +27,13 @@
 
     input[type='checkbox'] {
         &:checked::after {
-            color: light-dark(@dark-blue, @golden);
+            color: light-dark(@dark, @golden);
+        }
+        &:checked::before {
+            color: light-dark(transparent, @dark-blue);
         }
         &::before {
-            color: light-dark(@golden, @dark-blue);
+            color: light-dark(@dark, @beige);
         }
     }
 

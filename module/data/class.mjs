@@ -13,11 +13,6 @@ export default class DhpClass extends foundry.abstract.TypeDataModel {
                     uuid: new fields.StringField({})
                 })
             ),
-            damageThresholds: new fields.SchemaField({
-                minor: new fields.NumberField({ initial: 0, integer: true }),
-                major: new fields.NumberField({ initial: 0, integer: true }),
-                severe: new fields.NumberField({ initial: 0, integer: true })
-            }),
             evasion: new fields.NumberField({ initial: 0, integer: true }),
             features: new fields.ArrayField(
                 new fields.SchemaField({

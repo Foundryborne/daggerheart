@@ -1,6 +1,6 @@
-import DaggerheartAction from '../../data/action.mjs';
-import DaggerheartActionConfig from '../config/Action.mjs';
-import DaggerheartSheet from './daggerheart-sheet.mjs';
+import DaggerheartAction from '../../../data/action.mjs';
+import DaggerheartActionConfig from '../../config/Action.mjs';
+import DaggerheartSheet from '../daggerheart-sheet.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
@@ -48,48 +48,40 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
         }
     };
 
-    _getTabs() {
-        const tabs = {
-            description: {
-                active: true,
-                cssClass: '',
-                group: 'primary',
-                id: 'description',
-                icon: null,
-                label: 'DAGGERHEART.Sheets.Feature.Tabs.Description'
-            },
-            actions: {
-                active: false,
-                cssClass: '',
-                group: 'primary',
-                id: 'actions',
-                icon: null,
-                label: 'DAGGERHEART.Sheets.Feature.Tabs.Actions'
-            },
-            settings: {
-                active: false,
-                cssClass: '',
-                group: 'primary',
-                id: 'settings',
-                icon: null,
-                label: 'DAGGERHEART.Sheets.Feature.Tabs.Settings'
-            },
-            effects: {
-                active: false,
-                cssClass: '',
-                group: 'primary',
-                id: 'effects',
-                icon: null,
-                label: 'DAGGERHEART.Sheets.Feature.Tabs.Effects'
-            }
-        };
-        for (const v of Object.values(tabs)) {
-            v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
-            v.cssClass = v.active ? 'active' : '';
+    static TABS = {
+        description: {
+            active: true,
+            cssClass: '',
+            group: 'primary',
+            id: 'description',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Feature.Tabs.Description'
+        },
+        actions: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'actions',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Feature.Tabs.Actions'
+        },
+        settings: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'settings',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Feature.Tabs.Settings'
+        },
+        effects: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'effects',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Feature.Tabs.Effects'
         }
-
-        return tabs;
-    }
+    };
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
@@ -99,7 +91,7 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
-        context.tabs = this._getTabs();
+        context.tabs = super._getTabs(this.constructor.TABS);
         context.generalConfig = SYSTEM.GENERAL;
         context.itemConfig = SYSTEM.ITEM;
         context.properties = SYSTEM.ACTOR.featureProperties;
