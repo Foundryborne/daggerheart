@@ -1728,6 +1728,13 @@
 .daggerheart.chat.roll .dice-result .damage-button {
   margin-top: 5px;
 }
+.daggerheart.chat.roll .dice-actions {
+  margin-top: 5px;
+  display: flex;
+}
+.daggerheart.chat.roll .dice-actions button {
+  flex: 1;
+}
 .daggerheart.chat.domain-card {
   display: flex;
   flex-direction: column;
