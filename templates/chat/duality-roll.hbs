@@ -1,9 +1,8 @@
-<div class="daggerheart chat roll" data-action="expandRoll">
-    {{#if this.colorful}}
+{{#if this.colorful}}
+    <div class="daggerheart chat roll" data-action="expandRoll">
         <div class="duality-data">
             <div class="duality-title">
                 <div>{{this.title}}</div>
-                <div class="duality-result-value">{{this.total}}</div>
             </div>
             <div class="duality-modifiers">
                 {{#each this.modifiers}}
@@ -62,7 +61,7 @@
                 </div>
                 {{#if (not this.damage.value)}}
                     <div class="duality-result">
-                        <div>{{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
+                        <div>{{this.total}} {{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
                     </div>
                 {{/if}}
             </div>
@@ -75,7 +74,9 @@
                 </div>
             </div>
         {{/if}}
-    {{else}}
+    </div>
+{{else}}
+    <div class="dice-roll daggerheart chat roll" data-action="expandRoll">
         <div class="dice-flavor">{{this.title}}</div>
         <div class="dice-result">
             <div class="dice-formula">{{roll}}</div>
@@ -138,5 +139,5 @@
                 </div>
             </div>
         </div>
-    {{/if}}
-</div>
+    </div>
+{{/if}}

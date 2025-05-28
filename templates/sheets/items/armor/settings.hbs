@@ -1,0 +1,21 @@
+<section
+    class='tab {{tabs.settings.cssClass}} {{tabs.settings.id}}'
+    data-tab='{{tabs.settings.id}}'
+    data-group='{{tabs.settings.group}}'
+>
+
+    <fieldset class="two-columns">
+        <legend>{{localize tabs.settings.label}}</legend>
+        <span>{{localize "DAGGERHEART.Sheets.Armor.baseScore"}}</span>
+        {{formField systemFields.baseScore value=source.system.baseScore}}
+
+        <span>{{localize "DAGGERHEART.Sheets.Armor.feature"}}</span>
+        {{formField systemFields.feature value=source.system.feature localize=true blank=""}}
+
+        <span>{{localize "DAGGERHEART.Sheets.Armor.baseThresholds.base"}}</span>
+        <div class="nest-inputs">
+            {{ formField systemFields.baseThresholds.fields.major value=source.system.baseThresholds.major label=(localize "DAGGERHEART.Sheets.Armor.baseThresholds.major") }}
+            {{ formField systemFields.baseThresholds.fields.severe value=source.system.baseThresholds.severe label=(localize "DAGGERHEART.Sheets.Armor.baseThresholds.severe") }}
+        </div>
+    </fieldset>
+</section>

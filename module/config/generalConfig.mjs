@@ -1,27 +1,27 @@
 export const range = {
     melee: {
-        label: 'DAGGERHEART.Range.Melee.Name',
-        description: 'DAGGERHEART.Range.Melee.Description',
+        label: 'DAGGERHEART.Range.melee.name',
+        description: 'DAGGERHEART.Range.melee.description',
         distance: 1
     },
     veryClose: {
-        label: 'DAGGERHEART.Range.VeryClose.Name',
-        description: 'DAGGERHEART.Range.VeryClose.Description',
+        label: 'DAGGERHEART.Range.veryClose.name',
+        description: 'DAGGERHEART.Range.veryClose.description',
         distance: 3
     },
     close: {
-        label: 'DAGGERHEART.Range.Close.Name',
-        description: 'DAGGERHEART.Range.Close.Description',
+        label: 'DAGGERHEART.Range.close.name',
+        description: 'DAGGERHEART.Range.close.description',
         distance: 10
     },
     far: {
-        label: 'DAGGERHEART.Range.Far.Name',
-        description: 'DAGGERHEART.Range.Far.Description',
+        label: 'DAGGERHEART.Range.far.name',
+        description: 'DAGGERHEART.Range.far.description',
         distance: 20
     },
     veryFar: {
-        label: 'DAGGERHEART.Range.VeryFar.Name',
-        description: 'DAGGERHEART.Range.VeryFar.Description',
+        label: 'DAGGERHEART.Range.veryFar.name',
+        description: 'DAGGERHEART.Range.veryFar.description',
         distance: 30
     }
 };
@@ -29,24 +29,24 @@ export const range = {
 export const burden = {
     oneHanded: {
         value: 'oneHanded',
-        label: 'DAGGERHEART.Burden.OneHanded'
+        label: 'DAGGERHEART.Burden.oneHanded'
     },
     twoHanded: {
         value: 'twoHanded',
-        label: 'DAGGERHEART.Burden.TwoHanded'
+        label: 'DAGGERHEART.Burden.twoHanded'
     }
 };
 
 export const damageTypes = {
     physical: {
         id: 'physical',
-        label: 'DAGGERHEART.DamageType.Physical.Name',
-        abbreviation: 'DAGGERHEART.DamageType.Physical.Abbreviation'
+        label: 'DAGGERHEART.DamageType.physical.name',
+        abbreviation: 'DAGGERHEART.DamageType.physical.abbreviation'
     },
     magical: {
         id: 'magical',
-        label: 'DAGGERHEART.DamageType.Magical.Name',
-        abbreviation: 'DAGGERHEART.DamageType.Magical.Abbreviation'
+        label: 'DAGGERHEART.DamageType.magical.name',
+        abbreviation: 'DAGGERHEART.DamageType.magical.abbreviation'
     }
 };
 
@@ -245,6 +245,45 @@ export const diceTypes = {
     d8: 'd8',
     d12: 'd12',
     d20: 'd20'
+};
+
+export const getDiceSoNicePresets = () => {
+    const { diceSoNice } = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
+
+    return {
+        hope: {
+            ...diceSoNice.hope,
+            colorset: 'inspired',
+            texture: 'bloodmoon',
+            material: 'metal',
+            font: 'Arial Black',
+            system: 'standard'
+        },
+        fear: {
+            ...diceSoNice.fear,
+            colorset: 'bloodmoon',
+            texture: 'bloodmoon',
+            material: 'metal',
+            font: 'Arial Black',
+            system: 'standard'
+        },
+        advantage: {
+            ...diceSoNice.advantage,
+            colorset: 'bloodmoon',
+            texture: 'bloodmoon',
+            material: 'metal',
+            font: 'Arial Black',
+            system: 'standard'
+        },
+        disadvantage: {
+            ...diceSoNice.disadvantage,
+            colorset: 'bloodmoon',
+            texture: 'bloodmoon',
+            material: 'metal',
+            font: 'Arial Black',
+            system: 'standard'
+        }
+    };
 };
 
 export const refreshTypes = {

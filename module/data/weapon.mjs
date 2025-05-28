@@ -5,13 +5,17 @@ export default class DhpWeapon extends foundry.abstract.TypeDataModel {
             equipped: new fields.BooleanField({ initial: false }),
             inventoryWeapon: new fields.NumberField({ initial: null, nullable: true, integer: true }),
             secondary: new fields.BooleanField({ initial: false }),
-            trait: new fields.StringField({ choices: SYSTEM.ACTOR.abilities, integer: false }),
-            range: new fields.StringField({ choices: SYSTEM.GENERAL.range, integer: false }),
+            trait: new fields.StringField({ choices: SYSTEM.ACTOR.abilities, integer: false, initial: 'agility' }),
+            range: new fields.StringField({ choices: SYSTEM.GENERAL.range, integer: false, initial: 'melee' }),
             damage: new fields.SchemaField({
-                value: new fields.StringField({}),
-                type: new fields.StringField({ choices: SYSTEM.GENERAL.damageTypes, integer: false })
+                value: new fields.StringField({ initial: 'd6' }),
+                type: new fields.StringField({
+                    choices: SYSTEM.GENERAL.damageTypes,
+                    integer: false,
+                    initial: 'physical'
+                })
             }),
-            burden: new fields.StringField({ choices: SYSTEM.GENERAL.burden, integer: false }),
+            burden: new fields.StringField({ choices: SYSTEM.GENERAL.burden, integer: false, initial: 'oneHanded' }),
             feature: new fields.StringField({ choices: SYSTEM.ITEM.weaponFeatures, integer: false, blank: true }),
             quantity: new fields.NumberField({ initial: 1, integer: true }),
             description: new fields.HTMLField({})

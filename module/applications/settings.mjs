@@ -1,5 +1,7 @@
 import { DualityRollColor } from '../config/settingsConfig.mjs';
 import { defaultLevelTiers, DhLevelTiers } from '../data/levelTier.mjs';
+import DhAppearance from '../data/settings/Appearance.mjs';
+import DHAppearanceSettings from './settings/appearanceSettings.mjs';
 
 class DhpAutomationSettings extends FormApplication {
     constructor(object = {}, options = {}) {
@@ -161,7 +163,7 @@ class DhpRangeSettings extends FormApplication {
     }
 }
 
-export const registerDHPSettings = () => {
+export const registerDHSettings = () => {
     // const debouncedReload = foundry.utils.debounce(() => window.location.reload(), 100);
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray, {
@@ -216,14 +218,11 @@ export const registerDHPSettings = () => {
         }
     });
 
-    game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.DualityRollColor, {
-        name: game.i18n.localize('DAGGERHEART.Settings.DualityRollColor.Name'),
-        hint: game.i18n.localize('DAGGERHEART.Settings.DualityRollColor.Hint'),
-        scope: 'world',
-        config: true,
-        type: Number,
-        choices: Object.values(DualityRollColor),
-        default: DualityRollColor.colorful.value
+    game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance, {
+        scope: 'client',
+        config: false,
+        type: DhAppearance,
+        default: DhAppearance.defaultSchema
     });
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.DualityRollColor, {
@@ -267,53 +266,13 @@ export const registerDHPSettings = () => {
         type: DhpRangeSettings,
         restricted: true
     });
+
+    game.settings.registerMenu(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance, {
+        name: game.i18n.localize('DAGGERHEART.Settings.Menu.Appearance.title'),
+        label: game.i18n.localize('DAGGERHEART.Settings.Menu.Appearance.label'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.Appearance.hint'),
+        icon: 'fa-solid fa-palette',
+        type: DHAppearanceSettings,
+        restricted: false
+    });
 };
-
-// const {HandlebarsApplicationMixin, ApplicationV2} = foundry.applications.api;
-
-// export default class DhpSettings extends HandlebarsApplicationMixin(ApplicationV2) {
-//     constructor(actor, shortrest){
-//         super({});
-
-//         this.actor = actor;
-//         this.selectedActivity = null;
-//         this.shortrest = shortrest;
-
-//         this.customActivity = SYSTEM.GENERAL.downtime.custom;
-//     }
-
-//     get title(){
-//         return game.i18n.localize("DAGGERHEART.Application.Settings.Title");
-//     }
-
-//     static DEFAULT_OPTIONS = {
-//         tag: 'form',
-//         classes: ["daggerheart", "application", "settings"],
-//         position: { width: 800, height: 'auto' },
-//         actions: {
-//             selectActivity: this.selectActivity,
-//         },
-//         form: { handler: this.updateData }
-//     };
-
-//     static PARTS = {
-//         application: {
-//             id: "settings",
-//             template: "systems/daggerheart/templates/application/settings.hbs"
-//         }
-//     }
-
-//     async _prepareContext(_options) {
-//         const context = await super._prepareContext(_options);
-
-//         return context;
-//     }
-
-//     static async updateData(event, element, formData){
-//         this.render();
-//     }
-
-//     static close(){
-//         super.close();
-//     }
-// }

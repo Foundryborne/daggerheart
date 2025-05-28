@@ -5,13 +5,13 @@ import * as documents from './module/documents/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import DhpCombatTracker from './module/ui/combatTracker.mjs';
 import { GMUpdateEvent, handleSocketEvent, socketEvent } from './module/helpers/socket.mjs';
-import { registerDHPSettings } from './module/applications/settings.mjs';
+import { registerDHSettings } from './module/applications/settings.mjs';
 import DhpChatLog from './module/ui/chatLog.mjs';
 import DhpPlayers from './module/ui/players.mjs';
 import DhpRuler from './module/ui/ruler.mjs';
 import DhpTokenRuler from './module/ui/tokenRuler.mjs';
-import { dualityRollEnricher, getDualityMessage } from './module/enrichers/DualityRollEnricher.mjs';
-import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
+import { dualityRollEnricher } from './module/enrichers/DualityRollEnricher.mjs';
+import { getCommandTarget, rollCommandToJSON, setDiceSoNiceForDualityRoll } from './module/helpers/utils.mjs';
 import { abilities } from './module/config/actorConfig.mjs';
 
 globalThis.SYSTEM = SYSTEM;
@@ -97,7 +97,7 @@ Hooks.once('init', () => {
 
     game.socket.on(`system.${SYSTEM.id}`, handleSocketEvent);
 
-    registerDHPSettings();
+    registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
 
     return preloadHandlebarsTemplates();
@@ -213,12 +213,19 @@ Hooks.on('chatMessage', (_, message) => {
                 const attributeRoll = `${attribute?.data?.value ? `${attribute.data.value > 0 ? `+${attribute.data.value}` : `${attribute.data.value}`}` : ''}`;
                 const roll = new Roll(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`);
                 await roll.evaluate();
+
+                setDiceSoNiceForDualityRoll(
+                    roll,
+                    rollCommand.advantage && !rollCommand.disadvantage,
+                    rollCommand.disadvantage && !rollCommand.advantage
+                );
+
                 resolve({
                     roll,
                     attribute: attribute
                         ? {
                               value: attribute.data.value,
-                              label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : `-`}${attribute.data.value}`
+                              label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : ``}${attribute.data.value}`
                           }
                         : undefined,
                     title

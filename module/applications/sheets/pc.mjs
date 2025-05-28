@@ -489,7 +489,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static async rollAttribute(event, button) {
         const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll(
-            { title: 'Attribute Bonus', value: button.dataset.value },
+            { title: game.i18n.localize(abilities[button.dataset.attribute].label), value: button.dataset.value },
             event.shiftKey
         );
 

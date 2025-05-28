@@ -1,0 +1,21 @@
+<header class='item-sheet-header'>
+    <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
+    <div class='item-info'>
+        <line-div></line-div>
+        <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
+        <div class='item-description'>
+            <h3>
+                {{localize 'TYPES.Item.armor'}}
+            </h3>
+            <h3>
+                {{localize "DAGGERHEART.Sheets.Armor.baseScore"}}:
+                {{source.system.baseScore}}
+                <span>-</span>
+                {{localize "DAGGERHEART.Sheets.Armor.baseThresholds.base"}}:
+                {{source.system.baseThresholds.major}}
+                <span>/</span>
+                {{source.system.baseThresholds.severe}}
+            </h3>
+        </div>
+    </div>
+</header>

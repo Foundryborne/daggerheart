@@ -46,6 +46,21 @@
                     "CloseLabel": "Close",
                     "FarLabel": "Far",
                     "VeryFarLabel": "Very Far"
+                },
+                "Appearance": {
+                    "title": "Appearance Settings",
+                    "label": "Appearance Settings",
+                    "hint": "Modify the look of various parts of the system",
+                    "name": "Appearance Settings",
+                    "duality": "Duality Rolls",
+                    "DiceSoNice": {
+                        "title": "Dice So Nice",
+                        "hint": "Coloration of Hope and Fear dice if the Dice So Nice module is used.",
+                        "foreground": "Foreground",
+                        "background": "Background",
+                        "outline": "Outline",
+                        "edge": "Edge"
+                    }
                 }
             },
             "Automation": {
@@ -139,52 +154,58 @@
             "Reaction": "Reaction"
         },
         "Abilities": {
-            "Agility": {
-                "Name": "Agility",
-                "Verb": {
-                    "Sprint": "Sprint",
-                    "Leap": "Leap",
-                    "Maneuver": "Maneuver"
+            "agility": {
+                "name": "Agility",
+                "short": "AGI",
+                "verb": {
+                    "sprint": "Sprint",
+                    "leap": "Leap",
+                    "maneuver": "Maneuver"
                 }
             },
-            "Strength": {
-                "Name": "Strength",
-                "Verb": {
-                    "Lift": "Lift",
-                    "Smash": "Smash",
-                    "Grapple": "Grapple"
+            "strength": {
+                "name": "Strength",
+                "short": "STR",
+                "verb": {
+                    "lift": "Lift",
+                    "smash": "Smash",
+                    "grapple": "Grapple"
                 }
             },
-            "Finesse": {
-                "Name": "Finesse",
-                "Verb": {
-                    "Control": "Control",
-                    "Hide": "Hide",
-                    "Tinker": "Tinker"
+            "finesse": {
+                "name": "Finesse",
+                "short": "FIN",
+                "verb": {
+                    "control": "Control",
+                    "hide": "Hide",
+                    "tinker": "Tinker"
                 }
             },
-            "Instinct": {
-                "Name": "Instinct",
-                "Verb": {
-                    "Perceive": "Perceive",
-                    "Sense": "Sense",
-                    "Navigate": "Navigate"
+            "instinct": {
+                "name": "Instinct",
+                "short": "INS",
+                "verb": {
+                    "perceive": "Perceive",
+                    "sense": "Sense",
+                    "navigate": "Navigate"
                 }
             },
-            "Presence": {
-                "Name": "Presence",
-                "Verb": {
-                    "Charm": "Charm",
-                    "Perform": "Perform",
-                    "Deceive": "Deceive"
+            "presence": {
+                "name": "Presence",
+                "short": "PRE",
+                "verb": {
+                    "charm": "Charm",
+                    "perform": "Perform",
+                    "deceive": "Deceive"
                 }
             },
-            "Knowledge": {
-                "Name": "Knowledge",
-                "Verb": {
-                    "Recall": "Recall",
-                    "Analyze": "Analyze",
-                    "Comprehend": "Comprehend"
+            "knowledge": {
+                "name": "Knowledge",
+                "short": "KNO",
+                "verb": {
+                    "recall": "Recall",
+                    "analyze": "Analyze",
+                    "comprehend": "Comprehend"
                 }
             }
         },
@@ -383,39 +404,39 @@
             }
         },
         "Burden": {
-            "OneHanded": "One-Handed",
-            "TwoHanded": "Two-Handed"
+            "oneHanded": "One-Handed",
+            "twoHanded": "Two-Handed"
         },
         "Range": {
-            "Melee": {
-                "Name": "Melee",
-                "Description": "means a character is within touching distance of the target. PCs can generally touch targets up to a few feet away from them, but melee range may be greater for especially large NPCs."
+            "melee": {
+                "name": "Melee",
+                "description": "means a character is within touching distance of the target. PCs can generally touch targets up to a few feet away from them, but melee range may be greater for especially large NPCs."
             },
-            "VeryClose": {
-                "Name": "Very Close",
-                "Description": "means a distance where one can see fine details of a target- within moments of reaching, if need be. This is usually anywhere from about 5-10 feet away. While in danger, a PC can usually get to anything that’s very close as part of any other action they take. Anything on a battle map that is within the shortest length of a game card (~2-3 inches) can usually be considered very close."
+            "veryClose": {
+                "name": "Very Close",
+                "description": "means a distance where one can see fine details of a target- within moments of reaching, if need be. This is usually anywhere from about 5-10 feet away. While in danger, a PC can usually get to anything that’s very close as part of any other action they take. Anything on a battle map that is within the shortest length of a game card (~2-3 inches) can usually be considered very close."
             },
-            "Close": {
-                "Name": "Close",
-                "Description": "means a distance where one can see prominent details of a target-- across a room or to a neighboring market stall, generally about 10-30 feet away. While in danger, a PC can usually get to anything that’s close as part of any other action they take. Anything on a battle map that is within the length of a standard pen or pencil (~5-6 inches) can usually be considered close."
+            "close": {
+                "name": "Close",
+                "description": "means a distance where one can see prominent details of a target-- across a room or to a neighboring market stall, generally about 10-30 feet away. While in danger, a PC can usually get to anything that’s close as part of any other action they take. Anything on a battle map that is within the length of a standard pen or pencil (~5-6 inches) can usually be considered close."
             },
-            "Far": {
-                "Name": "Far",
-                "Description": "means a distance where one can see the appearance of a person or object, but probably not in great detail-- across a small battlefield or down a large corridor. This is usually about 30-100 feet away. While under danger, a PC will likely have to make an Agility check to get here safely. Anything on a battle map that is within the length of a standard piece of paper (~10-11 inches) can usually be considered far."
+            "far": {
+                "name": "Far",
+                "description": "means a distance where one can see the appearance of a person or object, but probably not in great detail-- across a small battlefield or down a large corridor. This is usually about 30-100 feet away. While under danger, a PC will likely have to make an Agility check to get here safely. Anything on a battle map that is within the length of a standard piece of paper (~10-11 inches) can usually be considered far."
             },
-            "VeryFar": {
-                "Name": "Very Far",
-                "Description": "means a distance where you can see the shape of a person or object, but probably not make outany details-- across a large battlefield or down a long street, generally about 100-300 feet away. While under danger, a PC likely has to make an Agility check to get here safely. Anything on a battle map that is beyond far distance, but still within sight of the characters can usually be considered very far."
+            "veryFar": {
+                "name": "Very Far",
+                "description": "means a distance where you can see the shape of a person or object, but probably not make outany details-- across a large battlefield or down a long street, generally about 100-300 feet away. While under danger, a PC likely has to make an Agility check to get here safely. Anything on a battle map that is beyond far distance, but still within sight of the characters can usually be considered very far."
             }
         },
         "DamageType": {
-            "Physical": {
-                "Name": "Physical",
-                "Abbreviation": "Phy"
+            "physical": {
+                "name": "Physical",
+                "abbreviation": "Phy"
             },
-            "Magical": {
-                "Name": "Magical",
-                "Abbreviation": "Mag"
+            "magical": {
+                "name": "Magical",
+                "abbreviation": "Mag"
             }
         },
         "HealingType": {
@@ -923,13 +944,13 @@
                 "NewFeature": "New Feature"
             },
             "Armor": {
-                "BaseScore": "Base Score",
-                "Feature": "Feature",
-                "Description": "Description",
-                "BaseThresholds": {
-                    "Base": "Base Thresholds",
-                    "Major": "Major Threshold",
-                    "Severe": "Severe Threshold"
+                "baseScore": "Base Score",
+                "feature": "Feature",
+                "description": "Description",
+                "baseThresholds": {
+                    "base": "Base Thresholds",
+                    "major": "Major Threshold",
+                    "severe": "Severe Threshold"
                 }
             },
             "Class": {
@@ -1051,6 +1072,7 @@
                 }
             },
             "Weapon": {
+                "PrimaryWeapon": "Primary Weapon",
                 "SecondaryWeapon": "Secondary Weapon",
                 "Trait": "Trait",
                 "Range": "Range",

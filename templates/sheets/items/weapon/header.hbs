@@ -1,0 +1,24 @@
+<header class='item-sheet-header'>
+    <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
+    <div class='item-info'>
+        <line-div></line-div>
+        <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
+        <div class='item-description'>
+            {{#if source.system.secondary}}
+                <h3>{{localize "DAGGERHEART.Sheets.Weapon.SecondaryWeapon"}}</h3>
+            {{else}}
+                <h3>{{localize "DAGGERHEART.Sheets.Weapon.PrimaryWeapon"}}</h3>
+            {{/if}}
+            <h3>
+                {{localize (concat 'DAGGERHEART.Abilities.' source.system.trait '.short')}}
+                <span>-</span>
+                {{localize (concat 'DAGGERHEART.Range.' source.system.range '.name')}}
+                <span>-</span>
+                {{source.system.damage.value}}
+                ({{localize (concat 'DAGGERHEART.DamageType.' source.system.damage.type '.abbreviation')}})
+                <span>-</span>
+                {{localize (concat 'DAGGERHEART.Burden.' source.system.burden)}}
+            </h3>
+        </div>
+    </div>
+</header>

@@ -1369,14 +1369,6 @@
   justify-content: space-between;
   padding: 0 8px;
 }
-.chat-message.duality .duality-data .duality-title .duality-result-value {
-  border: 1px solid var(--color-dark-5);
-  padding: 2px;
-  font-weight: bold;
-  background: var(--color-dark-1);
-  margin-bottom: 4px;
-  font-size: 16px;
-}
 .chat-message.duality .duality-data .duality-modifiers {
   display: flex;
   gap: 2px;
@@ -1504,7 +1496,7 @@
   text-shadow: 0 0 1px black;
   font-weight: bold;
   background: var(--color-dark-1);
-  padding: 4px;
+  padding: 4px 4px 0 4px;
   border-radius: 6px 0 0 0;
 }
 .chat-message.duality .duality-actions {
@@ -1735,6 +1727,13 @@
 .daggerheart.chat.roll .dice-result .roll-damage-button,
 .daggerheart.chat.roll .dice-result .damage-button {
   margin-top: 5px;
+}
+.daggerheart.chat.roll .dice-actions {
+  margin-top: 5px;
+  display: flex;
+}
+.daggerheart.chat.roll .dice-actions button {
+  flex: 1;
 }
 .daggerheart.chat.domain-card {
   display: flex;
@@ -3117,6 +3116,11 @@ div.daggerheart.views.multiclass {
   align-items: center;
   gap: 5px;
 }
+.application.sheet.dh-style fieldset .form-group label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: smaller;
+}
 .application.sheet.dh-style line-div {
   display: block;
   height: 1px;
@@ -3135,6 +3139,39 @@ div.daggerheart.views.multiclass {
   overflow: hidden;
   transform: translateY(-20px);
   transform-origin: top;
+}
+.application.setting.dh-style fieldset h2,
+.application.setting.dh-style fieldset h3,
+.application.setting.dh-style fieldset h4 {
+  margin: 8px 0 4px;
+  text-align: center;
+}
+.application.setting.dh-style fieldset .title-hint {
+  font-size: 12px;
+  font-variant: small-caps;
+  text-align: center;
+}
+.application.setting.dh-style fieldset .field-section .split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.application.setting.dh-style fieldset .label-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.application.setting.dh-style fieldset .label-container label {
+  align-self: center;
+  text-align: center;
+}
+.application.setting.dh-style footer {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+.application.setting.dh-style footer button {
+  flex: 1;
 }
 .sheet.daggerheart.dh-style .tab-navigation {
   margin: 5px 0;
@@ -3186,6 +3223,7 @@ div.daggerheart.views.multiclass {
 }
 .application.sheet.daggerheart.dh-style .item-sheet-header .item-info .item-description {
   display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 .application.sheet.daggerheart.dh-style .item-sheet-header .item-info h3 {

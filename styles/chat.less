@@ -21,15 +21,6 @@
                 align-items: end;
                 justify-content: space-between;
                 padding: 0 8px;
-
-                .duality-result-value {
-                    border: 1px solid var(--color-dark-5);
-                    padding: 2px;
-                    font-weight: bold;
-                    background: var(--color-dark-1);
-                    margin-bottom: 4px;
-                    font-size: 16px;
-                }
             }
 
             .duality-modifiers {
@@ -211,7 +202,7 @@
             text-shadow: 0 0 1px black;
             font-weight: bold;
             background: var(--color-dark-1);
-            padding: 4px;
+            padding: 4px 4px 0 4px;
             border-radius: 6px 0 0 0;
         }
 
@@ -504,6 +495,15 @@
             .roll-damage-button,
             .damage-button {
                 margin-top: 5px;
+            }
+        }
+
+        .dice-actions {
+            margin-top: 5px;
+            display: flex;
+
+            button {
+                flex: 1;
             }
         }
     }

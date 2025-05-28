@@ -2,6 +2,7 @@ import DamageSelectionDialog from '../applications/damageSelectionDialog.mjs';
 import NpcRollSelectionDialog from '../applications/npcRollSelectionDialog.mjs';
 import RollSelectionDialog from '../applications/rollSelectionDialog.mjs';
 import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
+import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 
 export default class DhpActor extends Actor {
     _preCreate(data, changes, user) {
@@ -116,16 +117,19 @@ export default class DhpActor extends Actor {
             disadvantageDice = null,
             bonusDamageString = '';
 
-        const modifiers = [
-            {
-                value: modifier.value ? Number.parseInt(modifier.value) : 0,
-                label:
-                    modifier.value >= 0
-                        ? `${modifier.title} +${modifier.value}`
-                        : `${modifier.title} -${modifier.value}`,
-                title: modifier.title
-            }
-        ];
+        const modifiers =
+            modifier.value !== null
+                ? [
+                      {
+                          value: modifier.value ? Number.parseInt(modifier.value) : 0,
+                          label:
+                              modifier.value >= 0
+                                  ? `${modifier.title} +${modifier.value}`
+                                  : `${modifier.title} ${modifier.value}`,
+                          title: modifier.title
+                      }
+                  ]
+                : [];
         if (!shiftKey) {
             const dialogClosed = new Promise((resolve, _) => {
                 new RollSelectionDialog(
@@ -161,53 +165,7 @@ export default class DhpActor extends Actor {
             `1${hopeDice} + 1${fearDice}${advantageDice ? ` + 1${advantageDice}` : disadvantageDice ? ` - 1${disadvantageDice}` : ''} ${modifiers.map(x => `+ ${x.value}`).join(' ')}`
         );
         let rollResult = await roll.evaluate();
-        rollResult.dice[0].options.appearance = {
-            colorset: 'inspired',
-            foreground: '#FFFFFF',
-            background: '#008080',
-            outline: '#000000',
-            edge: '#806400',
-            texture: 'bloodmoon',
-            material: 'metal',
-            font: 'Arial Black',
-            system: 'standard'
-        };
-        if (advantageDice || disadvantageDice) {
-            rollResult.dice[1].options.appearance = {
-                colorset: 'inspired',
-                foreground: disadvantageDice ? '#b30000' : '#FFFFFF',
-                background: '#008080',
-                outline: disadvantageDice ? '#000000' : '#000000',
-                edge: '#806400',
-                texture: 'bloodmoon',
-                material: 'metal',
-                font: 'Arial Black',
-                system: 'standard'
-            };
-            rollResult.dice[2].options.appearance = {
-                colorset: 'bloodmoon',
-                foreground: '#000000',
-                background: '#430070',
-                outline: '#b30000',
-                edge: '#000000',
-                texture: 'bloodmoon',
-                material: 'metal',
-                font: 'Arial Black',
-                system: 'standard'
-            };
-        } else {
-            rollResult.dice[1].options.appearance = {
-                colorset: 'bloodmoon',
-                foreground: '#000000',
-                background: '#430070',
-                outline: '#b30000',
-                edge: '#000000',
-                texture: 'bloodmoon',
-                material: 'metal',
-                font: 'Arial Black',
-                system: 'standard'
-            };
-        }
+        setDiceSoNiceForDualityRoll(rollResult, advantageDice, disadvantageDice);
 
         const hope = rollResult.dice[0].results[0].result;
         const fear = rollResult.dice[1].results[0].result;

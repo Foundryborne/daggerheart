@@ -1,6 +1,6 @@
 <div>
     <header>
-        {{formField fields.name value=source.name label="Name" rootId=partId}}
+        {{formField fields.name value=source.name label="Name" name="name" rootId=partId}}
         <nav class="sheet-tabs tabs">
             {{#each tabs as |tab|}}
                 <a class="{{tab.cssClass}}" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}">
@@ -15,23 +15,21 @@
             <fieldset class="action-category">
                 <legend class="action-category-label" data-action="toggleSection" data-section="damage">
                     <div>Damage</div>
-                    <i class="fa-solid {{#if (eq openSection 'damage')}}fa-angle-up{{else}}fa-angle-down{{/if}}"></i>
                 </legend>
 
-                <div class="action-category-data {{#if (eq openSection 'damage')}}open{{/if}}">
-                    {{formField fields.damage.fields.type value=source.damage.type label="Damage Type" rootId=partId localize=true}}
-                    {{formField fields.damage.fields.value value=source.damage.value label="Damage" rootId=partId localize=true}}
+                <div class="action-category-data open">
+                    {{formField fields.damage.fields.type value=source.damage.type label="Damage Type" name="damage.type" rootId=partId localize=true}}
+                    {{formField fields.damage.fields.value value=source.damage.value label="Damage" name="damage.value" rootId=partId localize=true}}
                 </div>
             </fieldset>
             <fieldset class="action-category">
                 <legend class="action-category-label" data-action="toggleSection" data-section="healing">
-                    <div>Healing</div>
-                    <i class="fa-solid {{#if (eq openSection 'healing')}}fa-angle-up{{else}}fa-angle-down{{/if}}"></i>
+                    <div>Healing</div>                    
                 </legend>
 
-                <div class="action-category-data {{#if (eq openSection 'healing')}}open{{/if}}">
-                    {{formField fields.healing.fields.type value=source.healing.type label="Healing Type" rootId=partId localize=true}}
-                    {{formField fields.healing.fields.value value=source.healing.value label="Healing" rootId=partId localize=true}}
+                <div class="action-category-data open ">
+                    {{formField fields.healing.fields.type value=source.healing.type label="Healing Type" name="healing.type" rootId=partId localize=true}}
+                    {{formField fields.healing.fields.value value=source.healing.value label="Healing" name="healing.value" rootId=partId localize=true}}
                 </div>
             </fieldset>
         </div>
@@ -39,16 +37,15 @@
             <fieldset class="action-category">
                 <legend class="action-category-label" data-action="toggleSection" data-section="cost">
                     <div>Cost</div>
-                    <i class="fa-solid {{#if (eq openSection 'cost')}}fa-angle-up{{else}}fa-angle-down{{/if}}"></i>
                 </legend>
 
-                <div class="action-category-data {{#if (eq openSection 'cost')}}open{{/if}}">
-                    {{formField fields.cost.fields.type value=source.cost.type label="Cost Type" rootId=partId}}
-                    {{formField fields.cost.fields.value value=source.cost.value label="Value" rootId=partId}}
+                <div class="action-category-data open ">
+                    {{formField fields.cost.fields.type value=source.cost.type label="Cost Type" name="cost.type" rootId=partId}}
+                    {{formField fields.cost.fields.value value=source.cost.value label="Value" name="cost.value" rootId=partId}}
                 </div>
             </fieldset>
 
-            {{formField fields.target.fields.type value=source.target.type label="Target Type" rootId=partId}}
+            {{formField fields.target.fields.type value=source.target.type label="Target Type" name="target.type" rootId=partId}}
         </div>
         <div class="tab {{this.tabs.conditions.cssClass}}" data-group="primary" data-tab="conditions">
             {{!-- <h2>

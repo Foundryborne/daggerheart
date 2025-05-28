@@ -1,9 +1,8 @@
-<div class="daggerheart chat roll" data-action="expandRoll">
-    {{#if this.colorful}}
+{{#if this.colorful}}
+    <div class="daggerheart chat roll" data-action="expandRoll">
         <div class="duality-data">
             <div class="duality-title">
                 <div>{{localize "DAGGERHEART.Chat.AttackRoll.Title" attack=this.title}}</div>
-                <div class="duality-result-value">{{this.total}}</div>
             </div>
             <div class="duality-modifiers">
                 {{#each this.modifiers}}
@@ -62,7 +61,7 @@
                 </div>
                 {{#if (not this.damage.value)}}
                     <div class="duality-result">
-                        <div>{{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
+                        <div>{{this.total}} {{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
                     </div>
                 {{/if}}
             </div>
@@ -83,90 +82,90 @@
             <div class="duality-actions">
                 <button class="duality-action" data-value="{{this.total}}" data-damage="{{this.damage.value}}" data-damage-type="{{this.damage.type}}" {{#if this.damage.disabled}}disabled{{/if}}><span>Roll Damage</span></button>  
                 <div class="duality-result">
-                    <div>{{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
+                    <div>{{this.total}} {{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
                 </div>
             </div>
         {{/if}}
-    {{else}}
-        <div class="dice-roll daggerheart chat roll" data-action="expandRoll">
-            <div class="dice-flavor">{{localize "DAGGERHEART.Chat.AttackRoll.Title" attack=this.title}}</div>
-            <div class="dice-result">
-                <div class="dice-formula">{{roll}}</div>
+    </div>
+{{else}}
+    <div class="dice-roll daggerheart chat roll" data-action="expandRoll">
+        <div class="dice-flavor">{{localize "DAGGERHEART.Chat.AttackRoll.Title" attack=this.title}}</div>
+        <div class="dice-result">
+            <div class="dice-formula">{{roll}}</div>
 
-                <div class="dice-tooltip">
-                    <div class="wrapper">
-                        <section class="tooltip-part">
+            <div class="dice-tooltip">
+                <div class="wrapper">
+                    <section class="tooltip-part">
+                        <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">
+                                    <span>1{{hope.dice}}</span>
+                                    |
+                                    <span>1{{fear.dice}}</span>
+                                </span>
+                                <span class="part-total">{{this.diceTotal}}</span>
+                            </header>
+                            <div class="flexrow">
+                                <ol class="dice-rolls duality">
+                                    <li class="roll die {{hope.dice}} {{#if hope.discarded}}discarded{{/if}} hope min" title="{{localize "DAGGERHEART.General.Hope"}}">{{hope.value}}</li>
+                                    <li class="roll die {{fear.dice}} {{#if fear.discarded}}discarded{{/if}} fear min" title="{{localize "DAGGERHEART.General.Fear"}}">{{fear.value}}</li>
+                                </ol>
+                            </div>  
+                        </div>
+                        {{#if advantage.value}}
                             <div class="dice">
                                 <header class="part-header flexrow">
                                     <span class="part-formula">
-                                        <span>1{{hope.dice}}</span>
-                                        |
-                                        <span>1{{fear.dice}}</span>
+                                        <span>1{{advantage.dice}}</span>
                                     </span>
-                                    <span class="part-total">{{this.diceTotal}}</span>
+                                    <span class="part-total">{{advantage.value}}</span>
                                 </header>
                                 <div class="flexrow">
-                                    <ol class="dice-rolls duality">
-                                        <li class="roll die {{hope.dice}} {{#if hope.discarded}}discarded{{/if}} hope min" title="{{localize "DAGGERHEART.General.Hope"}}">{{hope.value}}</li>
-                                        <li class="roll die {{fear.dice}} {{#if fear.discarded}}discarded{{/if}} fear min" title="{{localize "DAGGERHEART.General.Fear"}}">{{fear.value}}</li>
+                                    <ol class="dice-rolls">
+                                        <li class="roll die {{advantage.dice}} hope min">{{advantage.value}}</li>
                                     </ol>
                                 </div>  
                             </div>
-                            {{#if advantage.value}}
-                                <div class="dice">
-                                    <header class="part-header flexrow">
-                                        <span class="part-formula">
-                                            <span>1{{advantage.dice}}</span>
-                                        </span>
-                                        <span class="part-total">{{advantage.value}}</span>
-                                    </header>
-                                    <div class="flexrow">
-                                        <ol class="dice-rolls">
-                                            <li class="roll die {{advantage.dice}} hope min">{{advantage.value}}</li>
-                                        </ol>
-                                    </div>  
-                                </div>
-                            {{/if}}
-                            {{#if disadvantage.value}}
-                                <div class="dice">
-                                    <header class="part-header flexrow">
-                                        <span class="part-formula">
-                                            <span>1{{disadvantage.dice}}</span>
-                                        </span>
-                                        <span class="part-total">{{disadvantage.value}}</span>
-                                    </header>
-                                    <div class="flexrow">
-                                        <ol class="dice-rolls">
-                                            <li class="roll die {{disadvantage.dice}} hope min">{{disadvantage.value}}</li>
-                                        </ol>
-                                    </div>  
-                                </div>
-                            {{/if}}
-                        </section>
-                    </div>
-                </div>
-                <div class="dice-total duality {{#if fear.discarded}}hope{{else}}{{#if hope.discarded}}fear{{else}}critical{{/if}}{{/if}}">
-                    <div class="dice-total-label">{{totalLabel}}</div>
-                    <div class="dice-total-value">
-                        {{this.total}}
-                    </div>
-                </div>
-                {{#if (gt targets.length 0)}}
-                    <div class="target-section">
-                        {{#each targets as |target|}}
-                            <div class="dice-total target-container {{#if target.hit}}hit{{else}}{{#if (not ../total.alternate)}}miss{{/if}}{{/if}}" data-token="{{target.id}}">
-                                    <img src="{{target.img}}" />
-                                    <div class="target-inner-container">
-                                        {{#if target.hit}}{{localize "Hit"}}{{else}}{{#if (not ../total.alternate)}}{{localize "Miss"}}{{else}}?{{/if}}{{/if}}
-                                    </div>
+                        {{/if}}
+                        {{#if disadvantage.value}}
+                            <div class="dice">
+                                <header class="part-header flexrow">
+                                    <span class="part-formula">
+                                        <span>1{{disadvantage.dice}}</span>
+                                    </span>
+                                    <span class="part-total">{{disadvantage.value}}</span>
+                                </header>
+                                <div class="flexrow">
+                                    <ol class="dice-rolls">
+                                        <li class="roll die {{disadvantage.dice}} hope min">{{disadvantage.value}}</li>
+                                    </ol>
+                                </div>  
                             </div>
-                        {{/each}}
-                    </div>
-                {{/if}}
-                <div class="flexrow">
-                    <button class="roll-damage-button" data-value="{{this.total}}" data-damage="{{this.damage.value}}" data-damage-type="{{this.damage.type}}" {{#if this.damage.disabled}}disabled{{/if}}><span>Roll Damage</span></button>  
+                        {{/if}}
+                    </section>
                 </div>
             </div>
+            <div class="dice-total duality {{#if fear.discarded}}hope{{else}}{{#if hope.discarded}}fear{{else}}critical{{/if}}{{/if}}">
+                <div class="dice-total-label">{{totalLabel}}</div>
+                <div class="dice-total-value">
+                    {{this.total}}
+                </div>
+            </div>
+            {{#if (gt targets.length 0)}}
+                <div class="target-section">
+                    {{#each targets as |target|}}
+                        <div class="dice-total target-container {{#if target.hit}}hit{{else}}{{#if (not ../total.alternate)}}miss{{/if}}{{/if}}" data-token="{{target.id}}">
+                                <img src="{{target.img}}" />
+                                <div class="target-inner-container">
+                                    {{#if target.hit}}{{localize "Hit"}}{{else}}{{#if (not ../total.alternate)}}{{localize "Miss"}}{{else}}?{{/if}}{{/if}}
+                                </div>
+                        </div>
+                    {{/each}}
+                </div>
+            {{/if}}
+            <div class="dice-actions">
+                <button class="duality-action" data-value="{{this.total}}" data-damage="{{this.damage.value}}" data-damage-type="{{this.damage.type}}" {{#if this.damage.disabled}}disabled{{/if}}><span>Roll Damage</span></button>  
+            </div>
         </div>
-    {{/if}}
-</div>
+    </div>
+{{/if}}

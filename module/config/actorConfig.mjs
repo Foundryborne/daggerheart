@@ -1,77 +1,77 @@
 export const abilities = {
     agility: {
-        label: 'DAGGERHEART.Abilities.Agility.Name',
+        label: 'DAGGERHEART.Abilities.agility.name',
         verbs: [
-            'DAGGERHEART.Abilities.Agility.Verb.Sprint',
-            'DAGGERHEART.Abilities.Agility.Verb.Leap',
-            'DAGGERHEART.Abilities.Agility.Verb.Maneuver'
+            'DAGGERHEART.Abilities.agility.verb.sprint',
+            'DAGGERHEART.Abilities.agility.verb.leap',
+            'DAGGERHEART.Abilities.agility.verb.maneuver'
         ]
     },
     strength: {
-        label: 'DAGGERHEART.Abilities.Strength.Name',
+        label: 'DAGGERHEART.Abilities.strength.name',
         verbs: [
-            'DAGGERHEART.Abilities.Strength.Verb.Lift',
-            'DAGGERHEART.Abilities.Strength.Verb.Smash',
-            'DAGGERHEART.Abilities.Strength.Verb.Grapple'
+            'DAGGERHEART.Abilities.strength.verb.lift',
+            'DAGGERHEART.Abilities.strength.verb.smash',
+            'DAGGERHEART.Abilities.strength.verb.grapple'
         ]
     },
     finesse: {
-        label: 'DAGGERHEART.Abilities.Finesse.Name',
+        label: 'DAGGERHEART.Abilities.finesse.name',
         verbs: [
-            'DAGGERHEART.Abilities.Finesse.Verb.Control',
-            'DAGGERHEART.Abilities.Finesse.Verb.Hide',
-            'DAGGERHEART.Abilities.Finesse.Verb.Tinker'
+            'DAGGERHEART.Abilities.finesse.verb.control',
+            'DAGGERHEART.Abilities.finesse.verb.hide',
+            'DAGGERHEART.Abilities.finesse.verb.tinker'
         ]
     },
     instinct: {
-        label: 'DAGGERHEART.Abilities.Instinct.Name',
+        label: 'DAGGERHEART.Abilities.instinct.name',
         verbs: [
-            'DAGGERHEART.Abilities.Instinct.Verb.Perceive',
-            'DAGGERHEART.Abilities.Instinct.Verb.Sense',
-            'DAGGERHEART.Abilities.Instinct.Verb.Navigate'
+            'DAGGERHEART.Abilities.instinct.verb.perceive',
+            'DAGGERHEART.Abilities.instinct.verb.sense',
+            'DAGGERHEART.Abilities.instinct.verb.navigate'
         ]
     },
     presence: {
-        label: 'DAGGERHEART.Abilities.Presence.Name',
+        label: 'DAGGERHEART.Abilities.presence.name',
         verbs: [
-            'DAGGERHEART.Abilities.Presence.Verb.Charm',
-            'DAGGERHEART.Abilities.Presence.Verb.Perform',
-            'DAGGERHEART.Abilities.Presence.Verb.Deceive'
+            'DAGGERHEART.Abilities.presence.verb.charm',
+            'DAGGERHEART.Abilities.presence.verb.perform',
+            'DAGGERHEART.Abilities.presence.verb.deceive'
         ]
     },
     knowledge: {
-        label: 'DAGGERHEART.Abilities.Knowledge.Name',
+        label: 'DAGGERHEART.Abilities.knowledge.name',
         verbs: [
-            'DAGGERHEART.Abilities.Knowledge.Verb.Recall',
-            'DAGGERHEART.Abilities.Knowledge.Verb.Analyze',
-            'DAGGERHEART.Abilities.Knowledge.Verb.Comprehend'
+            'DAGGERHEART.Abilities.knowledge.verb.recall',
+            'DAGGERHEART.Abilities.knowledge.verb.analyze',
+            'DAGGERHEART.Abilities.knowledge.verb.comprehend'
         ]
     }
 };
 
 export const featureProperties = {
     agility: {
-        name: 'DAGGERHEART.Abilities.Agility.Name',
+        name: 'DAGGERHEART.Abilities.agility.name',
         path: actor => actor.system.traits.agility.data.value
     },
     strength: {
-        name: 'DAGGERHEART.Abilities.Strength.Name',
+        name: 'DAGGERHEART.Abilities.strength.name',
         path: actor => actor.system.traits.strength.data.value
     },
     finesse: {
-        name: 'DAGGERHEART.Abilities.Finesse.Name',
+        name: 'DAGGERHEART.Abilities.finesse.name',
         path: actor => actor.system.traits.finesse.data.value
     },
     instinct: {
-        name: 'DAGGERHEART.Abilities.Instinct.Name',
+        name: 'DAGGERHEART.Abilities.instinct.name',
         path: actor => actor.system.traits.instinct.data.value
     },
     presence: {
-        name: 'DAGGERHEART.Abilities.Presence.Name',
+        name: 'DAGGERHEART.Abilities.presence.name',
         path: actor => actor.system.traits.presence.data.value
     },
     knowledge: {
-        name: 'DAGGERHEART.Abilities.Knowledge.Name',
+        name: 'DAGGERHEART.Abilities.knowledge.name',
         path: actor => actor.system.traits.knowledge.data.value
     },
     spellcastingTrait: {

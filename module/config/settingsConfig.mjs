@@ -26,7 +26,8 @@ export const gameSettings = {
         RangeMeasurement: 'RangeMeasurement'
     },
     DualityRollColor: 'DualityRollColor',
-    LevelTiers: 'LevelTiers'
+    LevelTiers: 'LevelTiers',
+    appearance: 'Appearance'
 };
 
 export const DualityRollColor = {

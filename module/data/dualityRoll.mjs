@@ -1,4 +1,4 @@
-import { DualityRollColor } from '../config/settingsConfig.mjs';
+import { DualityRollColor } from './settings/Appearance.mjs';
 
 const fields = foundry.data.fields;
 const diceField = () =>
@@ -81,7 +81,7 @@ export default class DhpDualityRoll extends foundry.abstract.TypeDataModel {
         const total = this.modifiers.reduce((acc, x) => acc + x.value, 0);
         return {
             value: total,
-            label: total > 0 ? `+${total}` : total < 0 ? `-${total}` : ''
+            label: total > 0 ? `+${total}` : total < 0 ? `${total}` : ''
         };
     }
 
@@ -106,7 +106,7 @@ export default class DhpDualityRoll extends foundry.abstract.TypeDataModel {
 
     get colorful() {
         return (
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.DualityRollColor) ===
+            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
             DualityRollColor.colorful.value
         );
     }
