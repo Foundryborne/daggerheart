@@ -70,7 +70,9 @@ export default class DaggerheartActionConfig extends DaggerheartSheet(Applicatio
     }
 
     static async updateForm(event, _, formData) {
-        const data = foundry.utils.expandObject(foundry.utils.mergeObject(this.action.toObject(), formData.object));
+        const data = foundry.utils.expandObject(
+            foundry.utils.mergeObject(this.action.toObject(), foundry.utils.expandObject(formData.object))
+        );
         const newActions = this.action.parent.actions.map(x => x.toObject());
         if (!newActions.findSplice(x => x.id === data.id, data)) {
             newActions.push(data);
