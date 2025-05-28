@@ -1,4 +1,5 @@
 import { getPathValue, getTier } from '../helpers/utils.mjs';
+import { LevelOptionType } from './levelTier.mjs';
 
 const fields = foundry.data.fields;
 
@@ -97,8 +98,8 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             armorMarks: new fields.SchemaField({
                 max: new fields.NumberField({ initial: 6, integer: true }),
                 value: new fields.NumberField({ initial: 0, integer: true })
-            })
-            // levelUpData: new fields.TypeDataModel(DhpLevelUpData),
+            }),
+            levelData: new fields.EmbeddedDataField(DhPCLevelData)
         };
     }
 
@@ -507,5 +508,31 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         else if (level >= 5) return 2;
         else if (level >= 2) return 1;
         else return 0;
+    }
+}
+
+class DhPCLevelData extends foundry.abstract.DataModel {
+    static defineSchema() {
+        return {
+            level: new fields.SchemaField({
+                current: new fields.NumberField({ required: true, integer: true, initial: 1 }),
+                changed: new fields.NumberField({ required: true, integer: true, initial: 1 })
+            }),
+            selections: new fields.ArrayField(
+                new fields.SchemaField({
+                    tier: new fields.NumberField({ required: true, integer: true }),
+                    level: new fields.NumberField({ required: true, integer: true }),
+                    optionKey: new fields.StringField({ required: true }),
+                    type: new fields.StringField({ required: true, choices: LevelOptionType }),
+                    checkboxNr: new fields.NumberField({ required: true, integer: true }),
+                    value: new fields.NumberField({ integer: true }),
+                    amount: new fields.NumberField({ integer: true })
+                })
+            )
+        };
+    }
+
+    get canLevelUp() {
+        return this.level.current < this.level.updated;
     }
 }

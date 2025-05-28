@@ -2797,18 +2797,33 @@ div.daggerheart.views.multiclass {
   gap: 8px;
   background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
+.daggerheart.levelup .tiers-container .tier-container.inactive {
+  opacity: 0.4;
+  pointer-events: none;
+}
 .daggerheart.levelup .tiers-container .tier-container legend {
   margin-left: auto;
   margin-right: auto;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 0 12px;
 }
 .daggerheart.levelup .tiers-container .tier-container .checkbox-group-container {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 2.3fr;
   gap: 4px;
 }
 .daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container {
   display: flex;
   gap: 4px;
+  justify-content: end;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkbox-group-label {
+  font-size: 14px;
+  font-style: italic;
+}
+.daggerheart.levelup .levelup-footer {
+  display: flex;
 }
 .application.sheet.daggerheart.dh-style.feature .item-sheet-header {
   display: flex;

@@ -6,6 +6,16 @@ export class DhLevelTiers extends foundry.abstract.DataModel {
             tiers: new fields.TypedObjectField(new fields.EmbeddedDataField(DhLevelTier))
         };
     }
+
+    get availableChoicesPerLevel() {
+        return Object.values(this.tiers).reduce((acc, tier) => {
+            for (var level = tier.levels.start; level < tier.levels.end + 1; level++) {
+                acc[level] = tier.availableOptions;
+            }
+
+            return acc;
+        }, {});
+    }
 }
 
 class DhLevelTier extends foundry.abstract.DataModel {
