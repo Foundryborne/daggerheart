@@ -8,7 +8,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
             tiers: Object.keys(levelTierData.tiers).reduce((acc, key) => {
                 acc[key] = DhLevelupTier.initializeData(
                     levelTierData.tiers[key],
-                    pcLevelData.selections.filter(x => x.tier === key),
+                    pcLevelData.selections.filter(x => x.tier === Number(key)),
                     pcLevelData.level.changed
                 );
 

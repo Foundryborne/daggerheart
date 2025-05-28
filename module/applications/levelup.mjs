@@ -90,7 +90,10 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
     static async save() {
         await this.actor.update({
-            'system.levelData.selections': [{ tier: 1, level: 2, type: 'hitPoint', checkboxNr: 1 }]
+            'system.levelData': {
+                'level.current': this.actor.system.levelData.level.changed,
+                'selections': this.levelup.playerData
+            }
         });
 
         this.close();
