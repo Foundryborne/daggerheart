@@ -9,7 +9,7 @@
       {
         "img": "icons/svg/item-bag.svg",
         "name": "Low-Light Living",
-        "uuid": "Compendium.world.community-features.Item.p12Le1M3DPWXa0vh"
+        "uuid": "Compendium.daggerheart.community-features.Item.hX85YvTQcMzc25hW"
       }
     ]
   },
@@ -29,8 +29,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1747940403160,
-    "modifiedTime": 1747991158174,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "modifiedTime": 1748487269990,
+    "lastModifiedBy": "c3xaFsDtL56heKoi"
   },
   "_key": "!items!CXQN2zcQUIjUOx1i"
 }

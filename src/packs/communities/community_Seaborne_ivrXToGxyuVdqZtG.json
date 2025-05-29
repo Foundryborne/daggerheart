@@ -9,7 +9,7 @@
       {
         "img": "icons/svg/item-bag.svg",
         "name": "Know the Tide",
-        "uuid": "Compendium.world.community-features.Item.coBcBEFpXgtxD1Jt"
+        "uuid": "Compendium.daggerheart.community-features.Item.0mdoYz7uZNWCcK5Z"
       }
     ]
   },
@@ -29,8 +29,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1747940375520,
-    "modifiedTime": 1747990980804,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "modifiedTime": 1748487248881,
+    "lastModifiedBy": "c3xaFsDtL56heKoi"
   },
   "_key": "!items!ivrXToGxyuVdqZtG"
 }

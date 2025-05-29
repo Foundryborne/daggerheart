@@ -9,7 +9,7 @@
       {
         "img": "icons/svg/item-bag.svg",
         "name": "Well-Read",
-        "uuid": "Compendium.world.community-features.Item.MUfVlf8hoJ3HZidv"
+        "uuid": "Compendium.daggerheart.community-features.Item.n2RA9iZNiVbGlxco"
       }
     ]
   },
@@ -29,8 +29,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1747940300210,
-    "modifiedTime": 1747990671092,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "modifiedTime": 1748487185921,
+    "lastModifiedBy": "c3xaFsDtL56heKoi"
   },
   "_key": "!items!fgJHuCdoyXX4Q84O"
 }

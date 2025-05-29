@@ -9,7 +9,7 @@
       {
         "img": "icons/svg/item-bag.svg",
         "name": "Scoundrel",
-        "uuid": "Compendium.world.community-features.Item.p2PipVUiMt0Cy0ws"
+        "uuid": "Compendium.daggerheart.community-features.Item.5BUCiSPswsiB0RDW"
       }
     ]
   },
@@ -29,8 +29,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1747940388725,
-    "modifiedTime": 1747991089836,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "modifiedTime": 1748487260950,
+    "lastModifiedBy": "c3xaFsDtL56heKoi"
   },
   "_key": "!items!rwsUCLenOkE9CS7v"
 }

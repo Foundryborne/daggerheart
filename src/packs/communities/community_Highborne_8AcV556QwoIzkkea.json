@@ -9,7 +9,7 @@
       {
         "img": "icons/svg/item-bag.svg",
         "name": "Privilege",
-        "uuid": "Compendium.world.community-features.Item.WoMZCTnDcK8GPSh1"
+        "uuid": "Compendium.daggerheart.community-features.Item.AgJiUvad5tgeam57"
       }
     ]
   },
@@ -29,8 +29,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1747940320728,
-    "modifiedTime": 1747990568291,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "modifiedTime": 1748487208088,
+    "lastModifiedBy": "c3xaFsDtL56heKoi"
   },
   "_key": "!items!8AcV556QwoIzkkea"
 }

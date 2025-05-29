@@ -8,26 +8,7 @@
     "spellcastingTrait": "presence",
     "foundationFeature": {
       "description": "<p><strong>Gifted Performer:</strong> Describe how you perform for others. You can play each song once per long rest:</p><p>• <strong>Relaxing Song:</strong> You and all allies within Close range clear a Hit Point.</p><p>• <strong>Epic Song:</strong> Make a target within Close range temporarily Vulnerable.</p><p>• <strong>Heartbreaking Song:</strong> You and all allies within Close range gain a Hope.</p>",
-      "abilities": [
-        {
-          "actionType": "passive",
-          "featureType": {
-            "type": "normal",
-            "data": {
-              "property": "spellcastingTrait",
-              "max": 1,
-              "numbers": {}
-            }
-          },
-          "refreshData": null,
-          "multiclass": null,
-          "disabled": false,
-          "description": "<p>You are among the greatest of your craft and your skill is boundless. You can perform each of your “Gifted Performer” feature’s songs twice instead of once per long rest.</p>",
-          "effects": {},
-          "actions": [],
-          "type": "subclass"
-        }
-      ]
+      "abilities": []
     },
     "specializationFeature": {
       "unlocked": false,
