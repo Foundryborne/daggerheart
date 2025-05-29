@@ -2786,11 +2786,17 @@ div.daggerheart.views.multiclass {
 .theme-light {
   /* Add specifics*/
 }
+.daggerheart.levelup div[data-application-part="form"] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .daggerheart.levelup .tiers-container {
   display: flex;
   gap: 16px;
 }
 .daggerheart.levelup .tiers-container .tier-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -2809,13 +2815,30 @@ div.daggerheart.views.multiclass {
 }
 .daggerheart.levelup .tiers-container .tier-container .checkbox-group-container {
   display: grid;
-  grid-template-columns: 1fr 2.3fr;
+  grid-template-columns: 1fr 3fr;
   gap: 4px;
 }
 .daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container {
   display: flex;
-  gap: 4px;
   justify-content: end;
+  gap: 4px;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container .checkbox-grouping-coontainer {
+  display: flex;
+  height: min-content;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container .checkbox-grouping-coontainer.multi {
+  border: 2px solid grey;
+  padding: 2.4px 2.5px 0;
+  border-radius: 4px;
+  gap: 2px;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container .checkbox-grouping-coontainer.multi .selection-checkbox {
+  margin-left: 0;
+  margin-right: 0;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container .checkbox-grouping-coontainer .selection-checkbox {
+  margin: 0;
 }
 .daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkbox-group-label {
   font-size: 14px;

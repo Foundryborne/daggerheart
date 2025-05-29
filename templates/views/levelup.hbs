@@ -7,8 +7,19 @@
                 {{#each tier.tierCheckboxGroups}}
                     <div class="checkbox-group-container">
                         <div class="checkboxes-container">
-                            {{#each this.checkboxes}}
-                                <input type="checkbox" class="selection-checkbox" data-tier="{{this.tier}}" data-level="{{this.level}}" data-option="{{this.optionKey}}" data-checkbox-nr="{{this.checkboxNr}}" {{checked this.selected}} />
+                            {{#each this.checkboxGroups}}
+                                <div class="checkbox-grouping-coontainer {{#if this.multi}}multi{{/if}}">
+                                    {{#each this.checkboxes}}
+                                        <input 
+                                            type="checkbox" class="selection-checkbox{{#if (gt this.cost 1)}} multi{{/if}}" {{checked this.selected}} {{#if this.disabled}}disabled{{/if}}
+                                            data-tier="{{this.tier}}" 
+                                            data-level="{{this.level}}" 
+                                            data-option="{{this.optionKey}}" 
+                                            data-checkbox-nr="{{this.checkboxNr}}" 
+                                            data-cost="{{this.cost}}"
+                                        />
+                                    {{/each}}
+                                </div>
                             {{/each}}
                         </div>
                         <div class="checkbox-group-label">{{this.label}}</div>

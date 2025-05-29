@@ -49,7 +49,7 @@ class DhLevelOption extends foundry.abstract.DataModel {
 
         return {
             label: new fields.StringField({ required: true }),
-            checkboxQuantity: new fields.NumberField({ required: true, integer: true, initial: 1 }),
+            checkboxSelections: new fields.NumberField({ required: true, integer: true, initial: 1 }),
             minCost: new fields.NumberField({ required: true, integer: true, initial: 1 }),
             type: new fields.StringField({ required: true, choices: LevelOptionType }),
             value: new fields.NumberField({ integer: true }),
@@ -118,14 +118,14 @@ export const defaultLevelTiers = {
             options: {
                 trait: {
                     label: 'DAGGERHEART.LevelUp.Options.trait',
-                    checkboxQuantity: 3,
+                    checkboxSelections: 3,
                     minCost: 1,
                     type: LevelOptionType.trait.id,
                     amount: 2
                 },
                 hitPoint: {
                     label: 'DAGGERHEART.LevelUp.Options.hitPoint',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.hitPoint.id,
                     value: 1,
@@ -133,14 +133,14 @@ export const defaultLevelTiers = {
                 },
                 stress: {
                     label: 'DAGGERHEART.LevelUp.Options.stress',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.stress.id,
                     value: 1
                 },
                 experience: {
                     label: 'DAGGERHEART.LevelUp.Options.experience',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.experience.id,
                     value: 1,
@@ -148,14 +148,14 @@ export const defaultLevelTiers = {
                 },
                 domainCard: {
                     label: 'DAGGERHEART.LevelUp.Options.domainCard',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.domainCard.id,
                     amount: 1
                 },
                 evasion: {
                     label: 'DAGGERHEART.LevelUp.Options.evasion',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.evasion.id,
                     value: 1
@@ -181,28 +181,28 @@ export const defaultLevelTiers = {
             options: {
                 trait: {
                     label: 'DAGGERHEART.LevelUp.Options.trait',
-                    checkboxQuantity: 3,
+                    checkboxSelections: 3,
                     minCost: 1,
                     type: LevelOptionType.trait.id,
                     amount: 2
                 },
                 hitPoint: {
                     label: 'DAGGERHEART.LevelUp.Options.hitPoint',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.hitPoint.id,
                     value: 1
                 },
                 stress: {
                     label: 'DAGGERHEART.LevelUp.Options.stress',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.stress.id,
                     value: 1
                 },
                 experience: {
                     label: 'DAGGERHEART.LevelUp.Options.experience',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.experience.id,
                     value: 1,
@@ -210,34 +210,34 @@ export const defaultLevelTiers = {
                 },
                 domainCard: {
                     label: 'DAGGERHEART.LevelUp.Options.domainCard',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.domainCard.id,
                     amount: 1
                 },
                 evasion: {
                     label: 'DAGGERHEART.LevelUp.Options.evasion',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.evasion.id,
                     value: 1
                 },
                 subclass: {
                     label: 'DAGGERHEART.LevelUp.Options.subclass',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.subclass.id
                 },
                 proficiency: {
                     label: 'DAGGERHEART.LevelUp.Options.proficiency',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 1,
                     minCost: 2,
                     type: LevelOptionType.proficiency.id,
                     value: 1
                 },
                 multiclass: {
                     label: 'DAGGERHEART.LevelUp.Options.multiclass',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 1,
                     minCost: 2,
                     type: LevelOptionType.multiclass.id
                 }
@@ -262,28 +262,28 @@ export const defaultLevelTiers = {
             options: {
                 trait: {
                     label: 'DAGGERHEART.LevelUp.Options.trait',
-                    checkboxQuantity: 3,
+                    checkboxSelections: 3,
                     minCost: 1,
                     type: LevelOptionType.trait.id,
                     amount: 2
                 },
                 hitPoint: {
                     label: 'DAGGERHEART.LevelUp.Options.hitPoint',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.hitPoint.id,
                     value: 1
                 },
                 stress: {
                     label: 'DAGGERHEART.LevelUp.Options.stress',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.stress.id,
                     value: 1
                 },
                 experience: {
                     label: 'DAGGERHEART.LevelUp.Options.experience',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.experience.id,
                     value: 1,
@@ -291,34 +291,34 @@ export const defaultLevelTiers = {
                 },
                 domainCard: {
                     label: 'DAGGERHEART.LevelUp.Options.domainCard',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.domainCard.id,
                     amount: 1
                 },
                 evasion: {
                     label: 'DAGGERHEART.LevelUp.Options.evasion',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.evasion.id,
                     value: 1
                 },
                 subclass: {
                     label: 'DAGGERHEART.LevelUp.Options.subclass',
-                    checkboxQuantity: 1,
+                    checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.subclass.id
                 },
                 proficiency: {
                     label: 'DAGGERHEART.LevelUp.Options.proficiency',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 1,
                     minCost: 2,
                     type: LevelOptionType.proficiency.id,
                     value: 1
                 },
                 multiclass: {
                     label: 'DAGGERHEART.LevelUp.Options.multiclass',
-                    checkboxQuantity: 2,
+                    checkboxSelections: 1,
                     minCost: 2,
                     type: LevelOptionType.multiclass.id
                 }

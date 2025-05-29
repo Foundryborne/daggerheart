@@ -745,7 +745,13 @@
             },
             "LevelUp": {
                 "AdvanceLevel": "Continue To Level {level}",
-                "TakeLevelUp": "Finish Level Up"
+                "TakeLevelUp": "Finish Level Up",
+                "notifications": {
+                    "info": {
+                        "insufficentAdvancements": "You don't have enough advancements left.",
+                        "insufficientTierAdvancements": "You have no available advancements for this tier."
+                    }
+                }
             },
             "DeathMove": {
                 "Title": "{actor} - Death Move",

@@ -19,7 +19,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'levelup'],
-        position: { width: 1200, height: 'auto' },
+        position: { width: 1000, height: 'auto' },
         window: {
             resizable: true
         },
@@ -57,31 +57,43 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             });
         } else {
             const levelSelections = this.levelup.levelSelections;
-            if (levelSelections.total >= this.levelup.maxSelections) {
-                // Notification?
+            if (levelSelections.total + Number(button.dataset.cost) > this.levelup.maxSelections) {
+                ui.notifications.info(
+                    game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.info.insufficentAdvancements')
+                );
                 this.render();
                 return;
             }
 
-            const tier = this.levelup.tiers[button.dataset.tier];
-            const tierLevels = Object.keys(tier.levels).map(level => Number(level));
-            const lowestLevelChoice = Object.keys(levelSelections.selections).reduce((currentLowest, key) => {
-                const level = Number(key);
-                if (tierLevels.includes(level)) {
-                    if (!currentLowest || level < currentLowest) return level;
-                }
+            const nrTiers = Object.keys(this.levelup.tiers).length;
+            let lowestLevelChoice = null;
+            for (var tierKey = Number(button.dataset.tier); tierKey <= nrTiers + 1; tierKey++) {
+                const tier = this.levelup.tiers[tierKey];
+                lowestLevelChoice = Object.keys(levelSelections.available).reduce((currentLowest, key) => {
+                    const level = Number(key);
+                    if (levelSelections.available[key] >= button.dataset.cost && tier.belongingLevels.includes(level)) {
+                        if (!currentLowest || level < currentLowest) return level;
+                    }
 
-                return currentLowest;
-            }, null);
+                    return currentLowest;
+                }, null);
+
+                if (lowestLevelChoice) break;
+            }
 
             if (!lowestLevelChoice) {
-                // Notification?
+                ui.notifications.info(
+                    game.i18n.localize(
+                        'DAGGERHEART.Application.LevelUp.notifications.info.insufficientTierAdvancements'
+                    )
+                );
                 this.render();
                 return;
             }
 
             await this.levelup.updateSource({
-                [`tiers.${button.dataset.tier}.levels.${lowestLevelChoice}.optionSelections.${button.dataset.option}.${button.dataset.checkboxNr}`]: true
+                [`tiers.${button.dataset.tier}.levels.${lowestLevelChoice}.optionSelections.${button.dataset.option}.${button.dataset.checkboxNr}`]:
+                    { selected: true, minCost: button.dataset.cost }
             });
         }
 

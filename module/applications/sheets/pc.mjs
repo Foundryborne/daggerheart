@@ -166,13 +166,26 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-        $(htmlElement).find('.attribute-value').on('change', this.attributeChange.bind(this));
-        $(htmlElement).find('.tab-selector').on('click', this.tabSwitch.bind(this));
-        $(htmlElement).find('.level-title.levelup').on('click', this.openLevelUp.bind(this));
-        $(htmlElement).find('.feature-input').on('change', this.onFeatureInputBlur.bind(this));
-        $(htmlElement).find('.experience-description').on('change', this.experienceDescriptionChange.bind(this));
-        $(htmlElement).find('.experience-value').on('change', this.experienceValueChange.bind(this));
-        $(htmlElement).find('[data-item]').on('change', this.itemUpdate.bind(this));
+        htmlElement
+            .querySelectorAll('.attribute-value')
+            .forEach(element => element.addEventListener('change', this.attributeChange.bind(this)));
+        htmlElement
+            .querySelectorAll('.tab-selector')
+            .forEach(element => element.addEventListener('click', this.tabSwitch.bind(this)));
+        htmlElement.querySelector('.level-title.levelup')?.addEventListener('click', this.openLevelUp.bind(this));
+        htmlElement
+            .querySelectorAll('.feature-input')
+            .forEach(element => element.addEventListener('change', this.onFeatureInputBlur.bind(this)));
+        htmlElement
+            .querySelectorAll('.experience-description')
+            .forEach(element => element.addEventListener('change', this.experienceDescriptionChange.bind(this)));
+        htmlElement
+            .querySelectorAll('.experience-value')
+            .forEach(element => element.addEventListener('change', this.experienceValueChange.bind(this)));
+        htmlElement
+            .querySelectorAll('[data-item]')
+            .forEach(element => element.addEventListener.on('change', this.itemUpdate.bind(this)));
+        htmlElement.querySelector('.level-value').addEventListener('change', this.onLevelChange.bind(this));
     }
 
     async _prepareContext(_options) {
@@ -836,6 +849,11 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const name = event.currentTarget.dataset.item;
         const item = await fromUuid($(event.currentTarget).closest('[data-item-id]')[0].dataset.itemId);
         await item.update({ [name]: event.currentTarget.value });
+    }
+
+    async onLevelChange(event) {
+        await this.document.updateLevel(Number(event.currentTarget.value));
+        this.render();
     }
 
     static async deleteItem(_, button) {

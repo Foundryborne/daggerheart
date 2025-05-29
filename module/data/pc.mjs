@@ -1,4 +1,4 @@
-import { getPathValue, getTier } from '../helpers/utils.mjs';
+import { getPathValue } from '../helpers/utils.mjs';
 import { LevelOptionType } from './levelTier.mjs';
 
 const fields = foundry.data.fields;
@@ -349,7 +349,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         // this.armor.value = this.activeArmor?.baseScore ?? 0;
         // this.damageThresholds = this.computeDamageThresholds();
 
-        // this.applyLevels();
+        this.applyLevels();
         this.applyEffects();
     }
 
@@ -370,97 +370,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         };
     }
 
-    applyLevels() {
-        let healthBonus = 0,
-            stressBonus = 0,
-            proficiencyBonus = 0,
-            evasionBonus = 0,
-            armorBonus = 0;
-        let experienceBonuses = {};
-        let advancementFirst = null,
-            advancementSecond = null;
-        for (var level in this.levelData.levelups) {
-            var levelData = this.levelData.levelups[level];
-            for (var tier in levelData) {
-                var tierData = levelData[tier];
-                if (tierData) {
-                    healthBonus += Object.keys(tierData.hitPointSlots).length;
-                    stressBonus += Object.keys(tierData.stressSlots).length;
-                    proficiencyBonus += Object.keys(tierData.proficiency).length;
-                    advancementFirst =
-                        Object.keys(tierData.subclass).length > 0 && level >= 5 && level <= 7
-                            ? { ...tierData.subclass[0], tier: getTier(Number.parseInt(level), true) }
-                            : advancementFirst;
-                    advancementSecond =
-                        Object.keys(tierData.subclass).length > 0 && level >= 8 && level <= 10
-                            ? { ...tierData.subclass[0], tier: getTier(Number.parseInt(level), true) }
-                            : advancementSecond;
-
-                    for (var index in Object.keys(tierData.experiences)) {
-                        for (var experienceKey in tierData.experiences[index]) {
-                            var experience = tierData.experiences[index][experienceKey];
-                            experienceBonuses[experience] = experienceBonuses[experience]
-                                ? experienceBonuses[experience] + 1
-                                : 1;
-                        }
-                    }
-
-                    evasionBonus += Object.keys(tierData.armorOrEvasionSlot).filter(
-                        x => tierData.armorOrEvasionSlot[x] === 'evasion'
-                    ).length;
-                    armorBonus += Object.keys(tierData.armorOrEvasionSlot).filter(
-                        x => tierData.armorOrEvasionSlot[x] === 'armor'
-                    ).length;
-                }
-            }
-        }
-
-        this.resources.health.max += healthBonus;
-        this.resources.stress.max += stressBonus;
-        this.proficiency.value += proficiencyBonus;
-        this.evasion += evasionBonus;
-        this.armorMarks = {
-            max: this.armor ? this.armor.system.marks.max + armorBonus : 0,
-            value: this.armor ? this.armor.system.marks.value : 0
-        };
-
-        this.experiences = this.experiences.map(x => ({ ...x, value: x.value + (experienceBonuses[x.id] ?? 0) }));
-
-        const subclassFeatures = this.subclassFeatures;
-        if (advancementFirst) {
-            if (advancementFirst.multiclass) {
-                this.multiclassSubclass.system[`${advancementFirst.feature}Feature`].unlocked = true;
-                this.multiclassSubclass.system[`${advancementFirst.feature}Feature`].tier = advancementFirst.tier;
-                subclassFeatures.multiclassSubclass[advancementFirst.feature].forEach(x => (x.system.disabled = false));
-            } else {
-                this.subclass.system[`${advancementFirst.feature}Feature`].unlocked = true;
-                this.subclass.system[`${advancementFirst.feature}Feature`].tier = advancementFirst.tier;
-                subclassFeatures.subclass[advancementFirst.feature].forEach(x => (x.system.disabled = false));
-            }
-        }
-        if (advancementSecond) {
-            if (advancementSecond.multiclass) {
-                this.multiclassSubclass.system[`${advancementSecond.feature}Feature`].unlocked = true;
-                this.multiclassSubclass.system[`${advancementSecond.feature}Feature`].tier = advancementSecond.tier;
-                subclassFeatures.multiclassSubclass[advancementSecond.feature].forEach(
-                    x => (x.system.disabled = false)
-                );
-            } else {
-                this.subclass.system[`${advancementSecond.feature}Feature`].unlocked = true;
-                this.subclass.system[`${advancementSecond.feature}Feature`].tier = advancementSecond.tier;
-                subclassFeatures.subclass[advancementSecond.feature].forEach(x => (x.system.disabled = false));
-            }
-        }
-
-        //General progression
-        for (var i = 0; i < this.levelData.currentLevel; i++) {
-            const tier = getTier(i + 1);
-            if (tier !== 'tier0') {
-                this.domainData.maxLoadout = Math.min(this.domainData.maxLoadout + 1, 5);
-                this.domainData.maxCards += 1;
-            }
-        }
-    }
+    applyLevels() {}
 
     applyEffects() {
         const effects = this.effects;
@@ -533,6 +443,6 @@ class DhPCLevelData extends foundry.abstract.DataModel {
     }
 
     get canLevelUp() {
-        return this.level.current < this.level.updated;
+        return this.level.current < this.level.changed;
     }
 }

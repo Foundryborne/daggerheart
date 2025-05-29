@@ -131,3 +131,17 @@ export const setDiceSoNiceForDualityRoll = (rollResult, advantage, disadvantage)
         rollResult.dice[2].options.appearance = diceSoNicePresets.disadvantage;
     }
 };
+
+export const chunkify = (array, chunkSize, mappingFunc) => {
+    var chunkifiedArray = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+        const chunk = array.slice(i, i + chunkSize);
+        if (mappingFunc) {
+            chunkifiedArray.push(mappingFunc(chunk));
+        } else {
+            chunkifiedArray.push(chunk);
+        }
+    }
+
+    return chunkifiedArray;
+};

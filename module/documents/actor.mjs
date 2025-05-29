@@ -18,46 +18,31 @@ export default class DhpActor extends Actor {
     }
 
     async _preUpdate(changed, options, user) {
-        //Level Down
-        if (
-            changed.system?.levelData?.changedLevel &&
-            this.system.levelData.currentLevel > changed.system.levelData.changedLevel
-        ) {
-            changed.system.levelData.currentLevel = changed.system.levelData.changedLevel;
-            changed.system.levelData.levelups = Object.keys(this.system.levelData.levelups).reduce((acc, x) => {
-                if (x > changed.system.levelData.currentLevel) {
-                    acc[`-=${x}`] = null;
-                }
-
-                return acc;
-            }, {});
-
-            changed.system.traits = Object.keys(this.system.traits).reduce((acc, key) => {
-                acc[key] = {
-                    levelMarks: this.system.traits[key].levelMarks.filter(
-                        x => x <= changed.system.levelData.currentLevel
-                    )
-                };
-
-                return acc;
-            }, {});
-
-            changed.system.experiences = this.system.experiences.filter(
-                x => x.level <= changed.system.levelData.currentLevel
-            );
-
-            if (
-                this.system.multiclass &&
-                this.system.multiclass.system.multiclass > changed.system.levelData.changedLevel
-            ) {
-                const multiclassFeatures = this.items.filter(x => x.system.multiclass);
-                for (var feature of multiclassFeatures) {
-                    await feature.delete();
-                }
-            }
-        }
-
         super._preUpdate(changed, options, user);
+    }
+
+    async updateLevel(newLevel) {
+        if (this.type !== 'pc' || newLevel === this.system.levelData.level.changed) return;
+
+        if (newLevel > this.system.levelData.level.current) {
+            await this.update({ 'system.levelData.level.changed': newLevel });
+        } else {
+            const newLevelData = {
+                level: {
+                    current: newLevel,
+                    changed: newLevel
+                },
+                selections: Object.keys(this.system.levelData.selections).reduce((acc, key) => {
+                    const level = this.system.levelData.selections[key];
+                    if (level.level <= newLevel) {
+                        acc[key] = level;
+                    }
+
+                    return acc;
+                }, {})
+            };
+            await this.update({ 'system.levelData': newLevelData });
+        }
     }
 
     async diceRoll(modifier, shiftKey) {

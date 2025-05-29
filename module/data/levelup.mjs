@@ -1,13 +1,17 @@
+import { chunkify } from '../helpers/utils.mjs';
 import { LevelOptionType } from './levelTier.mjs';
 
 export class DhLevelup extends foundry.abstract.DataModel {
     static initializeData(levelTierData, pcLevelData) {
         const availableChoicesPerLevel = levelTierData.availableChoicesPerLevel;
+        const tierKeys = Object.keys(levelTierData.tiers);
+        const maxLevel = levelTierData.tiers[tierKeys[tierKeys.length - 1]].levels.end;
 
         return {
-            tiers: Object.keys(levelTierData.tiers).reduce((acc, key) => {
+            tiers: tierKeys.reduce((acc, key) => {
                 acc[key] = DhLevelupTier.initializeData(
                     levelTierData.tiers[key],
+                    maxLevel,
                     pcLevelData.selections.filter(x => x.tier === Number(key)),
                     pcLevelData.level.changed
                 );
@@ -39,16 +43,16 @@ export class DhLevelup extends foundry.abstract.DataModel {
         return Object.values(this.tiers).reduce(
             (acc, tier) => {
                 acc.total += tier.selections.total;
-                for (var key in tier.selections.selections) {
-                    const nrSelections = tier.selections.selections[key];
+                for (var key in tier.selections.available) {
+                    const availableSelections = tier.selections.available[key];
 
-                    if (acc.selections[key]) acc.selections[key] += nrSelections;
-                    else acc.selections[key] = nrSelections;
+                    if (acc.available[key]) acc.available[key] += availableSelections;
+                    else acc.available[key] = availableSelections;
                 }
 
                 return acc;
             },
-            { total: 0, selections: {} }
+            { total: 0, available: {} }
         );
     }
 
@@ -77,14 +81,20 @@ export class DhLevelup extends foundry.abstract.DataModel {
 }
 
 class DhLevelupTier extends foundry.abstract.DataModel {
-    static initializeData(levelTier, pcLevelData, pcLevel) {
+    static initializeData(levelTier, levelEndCap, pcLevelData, pcLevel) {
         const levels = {};
-        const levelEndCap = levelTier.levels.end + 1;
-        for (var level = levelTier.levels.start; level < levelEndCap; level++) {
+        for (var level = levelTier.levels.start; level <= levelEndCap; level++) {
             levels[level] = DhLevelupLevel.initializeData(
-                levelTier.availableOptions,
-                pcLevelData.filter(x => x.level === level)
+                level <= Math.min(pcLevel, levelTier.levels.end) ? levelTier.availableOptions : 0,
+                levelTier.options,
+                pcLevelData.filter(x => x.level === level),
+                level < pcLevel
             );
+        }
+
+        var belongingLevels = [];
+        for (var i = levelTier.levels.start; i <= levelTier.levels.end; i++) {
+            belongingLevels.push(i);
         }
 
         return {
@@ -96,6 +106,7 @@ class DhLevelupTier extends foundry.abstract.DataModel {
 
                 return acc;
             }, {}),
+            belongingLevels: belongingLevels,
             levels: levels
         };
     }
@@ -108,19 +119,26 @@ class DhLevelupTier extends foundry.abstract.DataModel {
             name: new fields.StringField({ required: true }),
             active: new fields.BooleanField({ required: true, initial: true }),
             options: new fields.TypedObjectField(new fields.EmbeddedDataField(DhLevelupTierOption)),
+            belongingLevels: new fields.ArrayField(new fields.NumberField({ required: true, integer: true })),
             levels: new fields.TypedObjectField(new fields.EmbeddedDataField(DhLevelupLevel))
         };
     }
 
     get selections() {
-        const allSelections = Object.keys(this.levels).reduce((acc, key) => {
-            acc[key] = this.levels[key].nrSelections;
+        const allSelections = Object.keys(this.levels).reduce(
+            (acc, key) => {
+                const { selections, available } = this.levels[key].nrSelections;
+                if (acc.available[key]) acc.available[key] += available;
+                else acc.available[key] = available;
+                acc.total += selections;
 
-            return acc;
-        }, {});
+                return acc;
+            },
+            { available: {}, total: 0 }
+        );
         return {
-            selections: allSelections,
-            total: Object.values(allSelections).reduce((acc, nr) => acc + nr, 0)
+            available: allSelections.available,
+            total: allSelections.total
         };
     }
 
@@ -128,24 +146,32 @@ class DhLevelupTier extends foundry.abstract.DataModel {
     get tierCheckboxGroups() {
         return Object.keys(this.options).map(optionKey => {
             const option = this.options[optionKey];
+            const checkboxes = [...Array(option.checkboxSelections).keys()].flatMap(checkboxNr => {
+                const levelId = Object.keys(this.levels).find(levelKey => {
+                    const optionSelect = this.levels[levelKey].optionSelections;
+                    return Object.keys(optionSelect)
+                        .filter(key => key === optionKey)
+                        .some(optionKey => optionSelect[optionKey][checkboxNr]?.selected);
+                });
+
+                return [...Array(option.minCost)].map(_ => ({
+                    ...option,
+                    tier: this.tier,
+                    level: levelId,
+                    selected: Boolean(levelId),
+                    optionKey: optionKey,
+                    checkboxNr: checkboxNr,
+                    disabled: !levelId ? false : this.levels[levelId].optionSelections[optionKey][checkboxNr]?.locked,
+                    cost: option.minCost
+                }));
+            });
+
             return {
                 label: game.i18n.localize(option.label),
-                checkboxes: [...Array(option.checkboxQuantity).keys()].map(checkboxNr => {
-                    const levelId = Object.keys(this.levels).find(levelKey => {
-                        const optionSelect = this.levels[levelKey].optionSelections;
-                        return Object.keys(optionSelect)
-                            .filter(key => key === optionKey)
-                            .some(optionKey => optionSelect[optionKey][checkboxNr]);
-                    });
-                    return {
-                        ...option,
-                        tier: this.tier,
-                        level: levelId,
-                        selected: Boolean(levelId),
-                        optionKey: optionKey,
-                        checkboxNr: checkboxNr
-                    };
-                })
+                checkboxGroups: chunkify(checkboxes, option.minCost, chunkedBoxes => ({
+                    multi: option.minCost > 1,
+                    checkboxes: chunkedBoxes
+                }))
             };
         });
     }
@@ -157,7 +183,7 @@ class DhLevelupTierOption extends foundry.abstract.DataModel {
 
         return {
             label: new fields.StringField({ required: true }),
-            checkboxQuantity: new fields.NumberField({ required: true, integer: true }),
+            checkboxSelections: new fields.NumberField({ required: true, integer: true }),
             minCost: new fields.NumberField({ required: true, integer: true }),
             type: new fields.StringField({ required: true, choices: LevelOptionType }),
             value: new fields.NumberField({ integer: true }),
@@ -167,12 +193,15 @@ class DhLevelupTierOption extends foundry.abstract.DataModel {
 }
 
 class DhLevelupLevel extends foundry.abstract.DataModel {
-    static initializeData(maxSelections, levelData) {
+    static initializeData(maxSelections, optionSelections, levelData, locked) {
         return {
             maxSelections: maxSelections,
             optionSelections: levelData.reduce((acc, data) => {
-                if (!acc[data.optionkey]) acc[data.optionKey] = {};
-                acc[data.optionKey][data.checkboxNr] = true;
+                if (!acc[data.optionKey]) acc[data.optionKey] = {};
+                acc[data.optionKey][data.checkboxNr] = {
+                    minCost: optionSelections[data.optionKey].minCost,
+                    locked: locked
+                };
 
                 return acc;
             }, {})
@@ -185,15 +214,30 @@ class DhLevelupLevel extends foundry.abstract.DataModel {
         return {
             maxSelections: new fields.NumberField({ required: true, integer: true }),
             optionSelections: new fields.TypedObjectField(
-                new fields.TypedObjectField(new fields.BooleanField({ required: true, initial: true }))
+                new fields.TypedObjectField(
+                    new fields.SchemaField({
+                        selected: new fields.BooleanField({ required: true, initial: true }),
+                        minCost: new fields.NumberField({ required: true, integer: true }),
+                        locked: new fields.BooleanField({ required: true, initial: false })
+                    })
+                )
             )
         };
     }
 
     get nrSelections() {
-        return Object.keys(this.optionSelections).reduce(
-            (acc, optionKey) => acc + Object.keys(this.optionSelections[optionKey]).length,
-            0
-        );
+        const selections = Object.keys(this.optionSelections).reduce((acc, optionKey) => {
+            const selection = this.optionSelections[optionKey];
+            acc += Object.values(selection)
+                .filter(x => x.selected)
+                .reduce((acc, x) => acc + x.minCost, 0);
+
+            return acc;
+        }, 0);
+
+        return {
+            selections: selections,
+            available: this.maxSelections - selections
+        };
     }
 }
