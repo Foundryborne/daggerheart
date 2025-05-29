@@ -30,23 +30,13 @@
     </div>
     <footer class="levelup-footer">
         <button data-action="save">{{localize "Finish Levelup"}}</button>
+        <div class="advancement-information-container">
+            {{localize "DAGGERHEART.Application.LevelUp.notifications.info.remainingAdvancementInfo" choices=this.levelup.levelSelections.totalAvailable}}
+
+            {{#each this.levelup.tiers as |tier key|}}
+                <div class="advancement-tier-stats">Tier {{tier.tier}}: {{tier.selections.totalAvailable}}</div>
+            {{/each}}
+            <i class="advancement-tier-info fa-solid fa-circle-question" data-tooltip="{{localize "DAGGERHEART.Application.LevelUp.notifications.info.tierAdvancementInfo"}}"></i>
+        </div>
     </footer>
 </div>
-
-{{!-- <div class="flex-col">
-    <div class="levelup-title-container">Level {{activeLevel}}</div>
-    <div class="levelup-section">
-        {{#each data}}
-            {{> "systems/daggerheart/templates/views/parts/level.hbs" data=this }}
-        {{/each}}
-    </div>
-    <footer>
-
-        {{#if (eq activeLevel changedLevel )}}
-            <button data-action="finishLevelup" {{#if (not completedSelection)}}disabled{{/if}}>{{localize "DAGGERHEART.Application.LevelUp.TakeLevelUp"}}</button>
-        {{else}}
-            <button data-action="advanceLevel" {{#if (not completedSelection)}}disabled{{/if}}>{{localize "DAGGERHEART.Application.LevelUp.AdvanceLevel" level=(add activeLevel 1)}}</button>
-        {{/if}}
-        <button data-action="close">{{localize "DAGGERHEART.Application.Cancel"}}</button>
-    </footer>
-</div> --}}

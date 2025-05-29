@@ -2786,7 +2786,7 @@ div.daggerheart.views.multiclass {
 .theme-light {
   /* Add specifics*/
 }
-.daggerheart.levelup div[data-application-part="form"] {
+.daggerheart.levelup div[data-application-part='form'] {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -3269,6 +3269,7 @@ div.daggerheart.views.multiclass {
   width: 100%;
   object-fit: cover;
   mask-image: linear-gradient(0deg, transparent 0%, black 10%);
+  cursor: pointer;
 }
 .application.sheet.daggerheart.dh-style .item-card-header .item-icons-list {
   position: absolute;
@@ -3397,12 +3398,6 @@ div.daggerheart.views.multiclass {
 .daggerheart {
   /* Flex */
   /****/
-}
-.daggerheart .vertical-separator {
-  border-left: 2px solid black;
-  height: 56px;
-  flex: 0;
-  align-self: center;
 }
 .daggerheart .flex-centered {
   display: flex;

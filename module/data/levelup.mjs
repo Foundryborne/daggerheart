@@ -45,6 +45,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
                 acc.total += tier.selections.total;
                 for (var key in tier.selections.available) {
                     const availableSelections = tier.selections.available[key];
+                    acc.totalAvailable += availableSelections;
 
                     if (acc.available[key]) acc.available[key] += availableSelections;
                     else acc.available[key] = availableSelections;
@@ -52,7 +53,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
 
                 return acc;
             },
-            { total: 0, available: {} }
+            { total: 0, available: {}, totalAvailable: 0 }
         );
     }
 
@@ -128,16 +129,20 @@ class DhLevelupTier extends foundry.abstract.DataModel {
         const allSelections = Object.keys(this.levels).reduce(
             (acc, key) => {
                 const { selections, available } = this.levels[key].nrSelections;
+
                 if (acc.available[key]) acc.available[key] += available;
                 else acc.available[key] = available;
+
+                acc.totalAvailable += available;
                 acc.total += selections;
 
                 return acc;
             },
-            { available: {}, total: 0 }
+            { available: {}, totalAvailable: 0, total: 0 }
         );
         return {
             available: allSelections.available,
+            totalAvailable: allSelections.totalAvailable,
             total: allSelections.total
         };
     }

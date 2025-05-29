@@ -1,4 +1,4 @@
-import { diceSoNicePresets, getDiceSoNicePresets } from '../config/generalConfig.mjs';
+import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
 
 export const loadCompendiumOptions = async compendiums => {
     const compendiumValues = [];
