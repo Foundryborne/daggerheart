@@ -3205,6 +3205,7 @@ div.daggerheart.views.multiclass {
   width: 100%;
   object-fit: cover;
   mask-image: linear-gradient(0deg, transparent 0%, black 10%);
+  cursor: pointer;
 }
 .application.sheet.daggerheart.dh-style .item-card-header .item-icons-list {
   position: absolute;
