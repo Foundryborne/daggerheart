@@ -85,17 +85,17 @@ export const classMap = {
 export const cardTypes = {
     ability: {
         id: 'ability',
-        label: 'DAGGERHEART.Domain.CardTypes.Ability',
+        label: 'DAGGERHEART.Domain.CardTypes.ability',
         img: ''
     },
     spell: {
         id: 'spell',
-        label: 'DAGGERHEART.Domain.CardTypes.Spell',
+        label: 'DAGGERHEART.Domain.CardTypes.spell',
         img: ''
     },
     grimoire: {
         id: 'grimoire',
-        label: 'DAGGERHEART.Domain.CardTypes.Grimoire',
+        label: 'DAGGERHEART.Domain.CardTypes.grimoire',
         img: ''
     }
 };

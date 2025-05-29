@@ -284,6 +284,7 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/pc/parts/heritageCard.hbs',
         'systems/daggerheart/templates/sheets/pc/parts/advancementCard.hbs',
         'systems/daggerheart/templates/views/parts/level.hbs',
-        'systems/daggerheart/templates/components/slider.hbs'
+        'systems/daggerheart/templates/components/slider.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs'
     ]);
 };

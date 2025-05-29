@@ -13,7 +13,7 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
         id: 'daggerheart-feature',
-        classes: ['daggerheart', 'sheet', 'dh-style', 'feature'],
+        classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'feature'],
         position: { width: 600, height: 600 },
         window: { resizable: true },
         actions: {
@@ -35,7 +35,7 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
         actions: {
-            template: 'systems/daggerheart/templates/sheets/items/feature/actions.hbs',
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
             scrollable: ['.actions']
         },
         settings: {

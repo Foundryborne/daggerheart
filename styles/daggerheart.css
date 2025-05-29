@@ -2796,40 +2796,11 @@ div.daggerheart.views.multiclass {
   scrollbar-width: thin;
   scrollbar-color: light-dark(#18162e, #f3c267) transparent;
 }
-.application.sheet.daggerheart.dh-style.feature .tab.actions .actions-list {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  gap: 5px;
-}
-.application.sheet.daggerheart.dh-style.feature .tab.actions .actions-list .action-item {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 4fr 1fr;
-  cursor: pointer;
-}
-.application.sheet.daggerheart.dh-style.feature .tab.actions .actions-list .action-item h4 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: lighter;
-  color: #efe6d8;
-}
-.application.sheet.daggerheart.dh-style.feature .tab.actions .actions-list .action-item .image {
-  height: 40px;
-  width: 40px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: none;
-}
-.application.sheet.daggerheart.dh-style.feature .tab.actions .actions-list .action-item .controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-.application.sheet.daggerheart.dh-style.feature .tab.actions .actions-list .action-item .controls a {
-  text-shadow: none;
+.application.sheet.daggerheart.dh-style.domain-card section.tab {
+  height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: light-dark(#18162e, #f3c267) transparent;
 }
 @font-face {
   font-family: 'Cinzel';
@@ -3145,6 +3116,41 @@ div.daggerheart.views.multiclass {
   text-shadow: none;
   font-family: 'Montserrat', sans-serif;
 }
+.sheet.daggerheart.dh-style .tab.actions .actions-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  gap: 5px;
+}
+.sheet.daggerheart.dh-style .tab.actions .actions-list .action-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 4fr 1fr;
+  cursor: pointer;
+}
+.sheet.daggerheart.dh-style .tab.actions .actions-list .action-item h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: lighter;
+  color: #efe6d8;
+}
+.sheet.daggerheart.dh-style .tab.actions .actions-list .action-item .image {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: none;
+}
+.sheet.daggerheart.dh-style .tab.actions .actions-list .action-item .controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.sheet.daggerheart.dh-style .tab.actions .actions-list .action-item .controls a {
+  text-shadow: none;
+}
 .application.sheet.daggerheart.dh-style .item-sheet-header {
   display: flex;
 }
@@ -3187,6 +3193,135 @@ div.daggerheart.views.multiclass {
 }
 .application.sheet.daggerheart.dh-style .item-sheet-header .item-info h3 {
   font-size: 1rem;
+}
+.application.sheet.daggerheart.dh-style .item-card-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  text-align: center;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .profile {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  mask-image: linear-gradient(0deg, transparent 0%, black 10%);
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-icons-list {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50px;
+  right: 10px;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-icons-list .item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  text-align: center;
+  padding-right: 8px;
+  max-width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  background: light-dark(rgba(0, 0, 0, 0.3), rgba(24, 22, 46, 0.33));
+  border: 4px double light-dark(#efe6d8, #f3c267);
+  color: light-dark(#efe6d8, #f3c267);
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-icons-list .item-icon .recall-label {
+  font-size: 14px;
+  opacity: 0;
+  margin-right: 0.3rem;
+  transition: all 0.3s ease;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-icons-list .item-icon i {
+  font-size: 0.8rem;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-icons-list .item-icon:hover {
+  max-width: 300px;
+  padding: 0 10px;
+  border-radius: 60px;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-icons-list .item-icon:hover .recall-label {
+  opacity: 1;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: -25px;
+  gap: 5px;
+  margin-bottom: -20px;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-info .item-name input[type='text'] {
+  font-size: 32px;
+  height: 42px;
+  text-align: center;
+  width: 90%;
+  transition: all 0.3s ease;
+  outline: 2px solid transparent;
+  border: 1px solid transparent;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-info .item-name input[type='text']:hover[type='text'],
+.application.sheet.daggerheart.dh-style .item-card-header .item-info .item-name input[type='text']:focus[type='text'] {
+  box-shadow: none;
+  outline: 2px solid light-dark(#18162e, #f3c267);
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-info .item-description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.application.sheet.daggerheart.dh-style .item-card-header .item-info h3 {
+  font-size: 1rem;
+}
+.sheet.daggerheart.dh-style.item .tab.features {
+  padding: 0 10px;
+  max-height: 265px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: light-dark(#18162e, #f3c267) transparent;
+}
+.sheet.daggerheart.dh-style.item .tab.features .feature-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.sheet.daggerheart.dh-style.item .tab.features .feature-list .feature-item {
+  margin-bottom: 10px;
+}
+.sheet.daggerheart.dh-style.item .tab.features .feature-list .feature-item:last-child {
+  margin-bottom: 0px;
+}
+.sheet.daggerheart.dh-style.item .tab.features .feature-list .feature-item .feature-line {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 4fr 1fr;
+}
+.sheet.daggerheart.dh-style.item .tab.features .feature-list .feature-item .feature-line h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: lighter;
+  color: light-dark(#222, #efe6d8);
+}
+.sheet.daggerheart.dh-style.item .tab.features .feature-list .feature-item .feature-line .image {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: none;
+}
+.sheet.daggerheart.dh-style.item .tab.features .feature-list .feature-item .feature-line .controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.sheet.daggerheart.dh-style.item .tab.features .feature-list .feature-item .feature-line .controls a {
+  text-shadow: none;
 }
 #logo {
   content: url(../assets/DaggerheartLogo.webp);
