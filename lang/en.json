@@ -316,9 +316,9 @@
         },
         "Domain": {
             "CardTypes": {
-                "Ability": "Ability",
-                "Spell": "Spell",
-                "Grimoire": "Grimoire"
+                "ability": "Ability",
+                "spell": "Spell",
+                "grimoire": "Grimoire"
             }
         },
         "LevelUp": {
@@ -1109,6 +1109,11 @@
                     "Name": "Damage Roll"
                 }
             }
+        },
+
+        "Tooltip": {
+            "openItemWorld": "Open Item World",
+            "delete": "Delete"
         }
     }
 }

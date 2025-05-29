@@ -1,0 +1,14 @@
+<section
+    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
+    data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'
+>
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.Sheets.Feature.Tabs.Features"}}</legend>
+        <div class="feature-list">
+            {{#each source.system.abilities as |feature key|}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' feature=feature}}
+            {{/each}}
+        </div>
+    </fieldset>
+</section>

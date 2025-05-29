@@ -9,7 +9,7 @@
       {
         "img": "icons/svg/item-bag.svg",
         "name": "Nomadic Pack",
-        "uuid": "Compendium.world.community-features.Item.NeuBdFDpV0HTzOIM"
+        "uuid": "Compendium.daggerheart.community-features.Item.o3Q88Rws9Eb5ae5D"
       }
     ]
   },
@@ -29,8 +29,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1747940414913,
-    "modifiedTime": 1747991238462,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "modifiedTime": 1748487280155,
+    "lastModifiedBy": "c3xaFsDtL56heKoi"
   },
   "_key": "!items!DHB5uSzbBeJCJuvC"
 }

@@ -9,7 +9,7 @@
       {
         "img": "icons/svg/item-bag.svg",
         "name": "Steady",
-        "uuid": "Compendium.world.community-features.Item.hKGv54dst9crq3Sw"
+        "uuid": "Compendium.daggerheart.community-features.Item.Oky51ziMZp6bbuUQ"
       }
     ]
   },
@@ -29,8 +29,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1747940346633,
-    "modifiedTime": 1747990891669,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "modifiedTime": 1748487238072,
+    "lastModifiedBy": "c3xaFsDtL56heKoi"
   },
   "_key": "!items!DAQoNvVlc9w7NmZd"
 }

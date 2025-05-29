@@ -9,7 +9,7 @@
       {
         "img": "icons/svg/item-bag.svg",
         "name": "Lightfoot",
-        "uuid": "Compendium.world.community-features.Item.4VaugxNAouI7SKKz"
+        "uuid": "Compendium.daggerheart.community-features.Item.LY9c4DCgMcB1uEiv"
       }
     ]
   },
@@ -29,8 +29,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1747940432585,
-    "modifiedTime": 1747991300734,
-    "lastModifiedBy": "NqO2eQGMjrvUO6v9"
+    "modifiedTime": 1748487285826,
+    "lastModifiedBy": "c3xaFsDtL56heKoi"
   },
   "_key": "!items!jUzXIVyBx0mlIFWa"
 }

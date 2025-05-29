@@ -1,45 +1,13 @@
-// import DhpApplicationMixin from '../daggerheart-sheet.mjs';
-
-// export default class DomainCardSheet extends DhpApplicationMixin(ItemSheet) {
-//     static documentType = "domainCard";
-
-//     /** @override */
-//     static get defaultOptions() {
-//         return foundry.utils.mergeObject(super.defaultOptions, {
-//             classes: ["daggerheart", "sheet", "domain-card"],
-//             width: 600,
-//             height: 600,
-//             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "features" }]
-//         });
-//     }
-
-//     /** @override */
-//     getData() {
-//         const context = super.getData();
-//         context.config = CONFIG.daggerheart;
-
-//         return context;
-//     }
-
-//     async _handleAction(action, event, button) {
-//         switch(action){
-//             case 'attributeRoll':
-
-//                 break;
-//         }
-//     }
-// }
-
-import DaggerheartAction from '../../data/action.mjs';
-import DaggerheartActionConfig from '../config/Action.mjs';
-import DaggerheartSheet from './daggerheart-sheet.mjs';
+import DaggerheartAction from '../../../data/action.mjs';
+import DaggerheartActionConfig from '../../config/Action.mjs';
+import DaggerheartSheet from '../daggerheart-sheet.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 export default class DomainCardSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'sheet', 'domain-card'],
-        position: { width: 600, height: 600 },
+        classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'domain-card'],
+        position: { width: 450, height: 700 },
         actions: {
             addAction: this.addAction,
             editAction: this.editAction,
@@ -53,29 +21,50 @@ export default class DomainCardSheet extends DaggerheartSheet(ItemSheetV2) {
     };
 
     static PARTS = {
-        form: {
-            id: 'feature',
-            template: 'systems/daggerheart/templates/sheets/domainCard.hbs'
+        header: { template: 'systems/daggerheart/templates/sheets/items/domainCard/header.hbs' },
+        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
+        description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
+        actions: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
+            scrollable: ['.actions']
+        },
+        settings: {
+            template: 'systems/daggerheart/templates/sheets/items/domainCard/settings.hbs',
+            scrollable: ['.settings']
         }
     };
 
-    _getTabs() {
-        const tabs = {
-            general: { active: true, cssClass: '', group: 'primary', id: 'general', icon: null, label: 'General' },
-            actions: { active: false, cssClass: '', group: 'primary', id: 'actions', icon: null, label: 'Actions' }
-        };
-        for (const v of Object.values(tabs)) {
-            v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
-            v.cssClass = v.active ? 'active' : '';
+    static TABS = {
+        description: {
+            active: true,
+            cssClass: '',
+            group: 'primary',
+            id: 'description',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Feature.Tabs.Description'
+        },
+        actions: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'actions',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Feature.Tabs.Actions'
+        },
+        settings: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'settings',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Feature.Tabs.Settings'
         }
-
-        return tabs;
-    }
+    };
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.config = CONFIG.daggerheart;
-        context.tabs = this._getTabs();
+        context.tabs = super._getTabs(this.constructor.TABS);
 
         return context;
     }

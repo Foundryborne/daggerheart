@@ -4,7 +4,7 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 export default class ConsumableSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'sheet', 'dh-style', 'consumable'],
+        classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'consumable'],
         position: { width: 550 },
         form: {
             handler: this.updateForm,

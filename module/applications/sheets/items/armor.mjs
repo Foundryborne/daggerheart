@@ -4,7 +4,7 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 export default class ArmorSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'sheet', 'dh-style', 'armor'],
+        classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'armor'],
         position: { width: 600 },
         form: {
             handler: this.updateForm,

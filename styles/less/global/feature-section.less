@@ -1,0 +1,51 @@
+@import '../utils/colors.less';
+@import '../utils/fonts.less';
+
+.sheet.daggerheart.dh-style.item {
+    .tab.features {
+        padding: 0 10px;
+        max-height: 265px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            .feature-item {
+                margin-bottom: 10px;
+                &:last-child {
+                    margin-bottom: 0px;
+                }
+                .feature-line {
+                    display: grid;
+                    align-items: center;
+                    grid-template-columns: 1fr 4fr 1fr;
+                    h4 {
+                        font-family: @font-body;
+                        font-weight: lighter;
+                        color: light-dark(@dark, @beige);
+                    }
+                    .image {
+                        height: 40px;
+                        width: 40px;
+                        object-fit: cover;
+                        border-radius: 6px;
+                        border: none;
+                    }
+                    .controls {
+                        display: flex;
+                        justify-content: center;
+                        gap: 10px;
+                        a {
+                            text-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

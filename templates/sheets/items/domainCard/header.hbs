@@ -1,0 +1,26 @@
+<header class='item-card-header'>
+    <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
+    <div class="item-icons-list">
+        <span class="item-icon">
+            <span class="recall-label">{{localize "DAGGERHEART.Sheets.DomainCard.RecallCost"}}</span>
+            <span class="recall-value">{{source.system.recallCost}}</span>
+            <i class="fa-solid fa-bolt"></i>
+        </span>
+    </div>
+    <div class='item-info'>
+        <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
+        <div class='item-description'>
+            <h3>{{localize 'TYPES.Item.domainCard'}}</h3>
+            <h3>
+                {{localize (concat 'DAGGERHEART.Domain.CardTypes.' source.system.type)}}
+                <span>-</span>
+                {{source.system.domain}}
+                <span>-</span>
+                <span>
+                    {{localize "DAGGERHEART.Sheets.DomainCard.Level"}}:
+                    {{source.system.level}}
+                </span>
+            </h3>
+        </div>
+    </div>
+</header>

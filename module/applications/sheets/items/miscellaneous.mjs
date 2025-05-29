@@ -1,32 +1,10 @@
-// import DhpApplicationMixin from '../daggerheart-sheet.mjs';
-
-// export default class MiscellaneousSheet extends DhpApplicationMixin(ItemSheet) {
-//     static documentType = "miscellaneous";
-
-//     /** @override */
-//     static get defaultOptions() {
-//         return foundry.utils.mergeObject(super.defaultOptions, {
-//             classes: ["daggerheart", "sheet", "miscellaneous"],
-//             width: 400,
-//             height: 'auto',
-//         });
-//     }
-
-//     /** @override */
-//     getData() {
-//         const context = super.getData();
-
-//         return context;
-//     }
-// }
-
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 export default class MiscellaneousSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'sheet', 'dh-style', 'miscellaneous'],
+        classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'miscellaneous'],
         position: { width: 550 },
         form: {
             handler: this.updateForm,
