@@ -1,4 +1,6 @@
-export default class DhpArmor extends foundry.abstract.TypeDataModel {
+
+export default class DHArmor extends foundry.abstract.TypeDataModel {
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
@@ -26,6 +28,9 @@ export default class DhpArmor extends foundry.abstract.TypeDataModel {
         return this.feature ? CONFIG.daggerheart.ITEM.armorFeatures[this.feature] : null;
     }
 
+    /* --------------------------------------------- */
+
+    /** @inheritDoc */
     prepareDerivedData() {
         if (this.parent.parent) {
             this.applyLevels();

@@ -35,18 +35,9 @@ Hooks.once('init', () => {
     }));
 
     CONFIG.Item.documentClass = documents.DhpItem;
-    CONFIG.Item.dataModels = {
-        ancestry: models.DhpAncestry,
-        community: models.DhpCommunity,
-        class: models.DhpClass,
-        subclass: models.DhpSubclass,
-        feature: models.DhpFeature,
-        domainCard: models.DhpDomainCard,
-        miscellaneous: models.DhpMiscellaneous,
-        consumable: models.DhpConsumable,
-        weapon: models.DhpWeapon,
-        armor: models.DhpArmor
-    };
+
+    //Registering the Item DataModel
+    CONFIG.Item.dataModels = models.items.config;
 
     const { Items, Actors } = foundry.documents.collections;
     Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
@@ -103,7 +94,7 @@ Hooks.once('init', () => {
     return preloadHandlebarsTemplates();
 });
 
-Hooks.once('dicesoniceready', () => {});
+Hooks.once('dicesoniceready', () => { });
 
 Hooks.on(socketEvent.GMUpdate, async (action, uuid, update) => {
     if (game.user.isGM) {
@@ -204,8 +195,8 @@ Hooks.on('chatMessage', (_, message) => {
 
                 const title = attributeValue
                     ? game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
-                          ability: game.i18n.localize(abilities[attributeValue].label)
-                      })
+                        ability: game.i18n.localize(abilities[attributeValue].label)
+                    })
                     : game.i18n.localize('DAGGERHEART.General.Duality');
 
                 const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
@@ -224,9 +215,9 @@ Hooks.on('chatMessage', (_, message) => {
                     roll,
                     attribute: attribute
                         ? {
-                              value: attribute.data.value,
-                              label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : ``}${attribute.data.value}`
-                          }
+                            value: attribute.data.value,
+                            label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : ``}${attribute.data.value}`
+                        }
                         : undefined,
                     title
                 });

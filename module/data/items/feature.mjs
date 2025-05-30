@@ -1,8 +1,9 @@
-import { getTier } from '../helpers/utils.mjs';
-import DaggerheartAction from './action.mjs';
-import DhpEffect from './interface/effects.mjs';
+import { getTier } from '../../helpers/utils.mjs';
+import DaggerheartAction from '../action.mjs';
+import DhpEffects from '../interface/effects.mjs';
 
-export default class DhpFeature extends DhpEffect {
+export default class DHFeature extends DhpEffects {
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return foundry.utils.mergeObject(

@@ -1,4 +1,5 @@
-export default class DhpMiscellaneous extends foundry.abstract.TypeDataModel {
+export default class DHMiscellaneous extends foundry.abstract.TypeDataModel {
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

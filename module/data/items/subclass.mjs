@@ -1,8 +1,7 @@
-import { getTier } from '../helpers/utils.mjs';
-import featuresSchema from './interface/featuresSchema.mjs';
-import DaggerheartFeature from './feature.mjs';
+import { getTier } from '../../helpers/utils.mjs';
 
-export default class DhpSubclass extends foundry.abstract.TypeDataModel {
+export default class DHSubclass extends foundry.abstract.TypeDataModel {
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

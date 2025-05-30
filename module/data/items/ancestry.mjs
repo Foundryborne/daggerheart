@@ -1,6 +1,7 @@
-import featuresSchema from './interface/featuresSchema.mjs';
+import featuresSchema from '../interface/featuresSchema.mjs';
 
-export default class DhpCommunity extends foundry.abstract.TypeDataModel {
+export default class DHAncestry extends foundry.abstract.TypeDataModel {
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

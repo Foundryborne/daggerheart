@@ -1,4 +1,5 @@
-export default class DhpConsumable extends foundry.abstract.TypeDataModel {
+export default class DHConsumable extends foundry.abstract.TypeDataModel {
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

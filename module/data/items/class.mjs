@@ -1,7 +1,7 @@
-import { getTier } from '../helpers/utils.mjs';
-import DhpFeature from './feature.mjs';
+import { getTier } from '../../helpers/utils.mjs';
 
-export default class DhpClass extends foundry.abstract.TypeDataModel {
+export default class DHClass extends foundry.abstract.TypeDataModel {
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

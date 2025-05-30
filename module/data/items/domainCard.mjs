@@ -1,6 +1,7 @@
-import DaggerheartAction from './action.mjs';
+import DaggerheartAction from "../action.mjs";
 
-export default class DhpDomainCard extends foundry.abstract.TypeDataModel {
+export default class DHDomainCard extends foundry.abstract.TypeDataModel {
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

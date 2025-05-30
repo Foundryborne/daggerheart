@@ -1,4 +1,5 @@
-export default class DhpWeapon extends foundry.abstract.TypeDataModel {
+export default class DHWeapon extends foundry.abstract.TypeDataModel {
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
