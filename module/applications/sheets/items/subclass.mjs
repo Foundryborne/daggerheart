@@ -1,5 +1,4 @@
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
-import DaggerheartFeature from '../../../data/feature.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
