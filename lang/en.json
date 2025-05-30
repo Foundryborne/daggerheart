@@ -142,6 +142,12 @@
             "Or": "Or",
             "Description": "Description",
             "Features": "Features",
+            "proficiency": "Proficiency",
+            "unarmored": "Unarmored",
+            "Experience": {
+                "Single": "Experience",
+                "plural": "Experiences"
+            },
             "RefreshType": {
                 "Session": "Session",
                 "Shortrest": "Short Rest",
@@ -744,14 +750,38 @@
                 "TakeDowntime": "Take Downtime"
             },
             "LevelUp": {
+                "Title": "{actor} Level Up",
+                "Tabs": {
+                    "advancement": "Level Advancement",
+                    "selections": "Advancement Choices",
+                    "summary": "Summary"
+                },
                 "AdvanceLevel": "Continue To Level {level}",
                 "TakeLevelUp": "Finish Level Up",
+                "Selections": {
+                    "emptyDomainCardHint": "Domain Card Level {level} or below"
+                },
+                "summary": {
+                    "levelAchievements": "Level Achievements",
+                    "levelAdvancements": "Level Advancements",
+                    "proficiencyIncrease": "Proficiency Increased: {proficiency}",
+                    "statisticIncreases": "Statistic Increases",
+                    "damageThresholdMajorIncrease": "Major: {threshold}",
+                    "damageThresholdSevereIncrease": "Severe: {threshold}",
+                    "newExperiences": "New Experiences",
+                    "experiencePlaceholder": "A new experience..",
+                    "domainCards": "Domain Cards"
+                },
                 "notifications": {
                     "info": {
                         "tierAdvancementInfo": "Advancements from a higher tier can always be used to select advancements in a lower tier.",
                         "remainingAdvancementInfo": "Remaining Choices: {choices}",
                         "insufficentAdvancements": "You don't have enough advancements left.",
                         "insufficientTierAdvancements": "You have no available advancements for this tier."
+                    },
+                    "error": {
+                        "domainCardWrongDomain": "You don't have access to that Domain",
+                        "domainCardToHighLevel": "The Domain Card is too high level to be selected"
                     }
                 }
             },

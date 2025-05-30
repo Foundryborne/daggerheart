@@ -1,0 +1,60 @@
+<section
+    class='tab {{tabs.summary.cssClass}} {{tabs.summary.id}}'
+    data-tab='{{tabs.summary.id}}'
+    data-group='{{tabs.summary.group}}'
+>
+    <div class="section-container levelup-summary-container">
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.Application.LevelUp.summary.levelAchievements"}}</legend>
+
+            <div class="level-achievements-container">
+                <div>
+                    <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.statisticIncreases"}}</h3>
+                    <div class="increase-container">
+                        {{localize "DAGGERHEART.Application.LevelUp.summary.proficiencyIncrease" proficiency=this.levelAchievements.statisticIncreases.proficiency.old }}
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                        {{this.levelAchievements.statisticIncreases.proficiency.new}}
+                    </div>
+                    <h5>{{localize "Damage Thresholds"}}{{#if this.levelAchievements.statisticIncreases.damageThresholds.unarmored}}({{localize "DAGGERHEART.General.unarmored"}}){{/if}}</h5>
+                    <div class="increase-container">
+                        {{localize "DAGGERHEART.Application.LevelUp.summary.damageThresholdMajorIncrease" threshold=this.levelAchievements.statisticIncreases.damageThresholds.major.old }}
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                        {{this.levelAchievements.statisticIncreases.damageThresholds.major.new}}
+                    </div>
+                    <div class="increase-container">
+                        {{localize "DAGGERHEART.Application.LevelUp.summary.damageThresholdSevereIncrease" threshold=this.levelAchievements.statisticIncreases.damageThresholds.severe.old }}
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                        {{this.levelAchievements.statisticIncreases.damageThresholds.severe.new}}
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.Application.LevelUp.summary.levelAdvancements"}}</legend>
+
+            {{!-- <div>
+                <h4>{{localize "DAGGERHEART.General.Experience.plural"}}</h4>
+                <div class="level-experience-cards">
+                    {{#each this.levelAchievements.experience}}
+                        <div class="level-experience-card">
+                            {{this.label}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div> --}}
+        </fieldset>
+
+        <footer class="levelup-footer">
+            <button data-action="save">{{localize "Finish Levelup"}}</button>
+            <div class="advancement-information-container">
+                {{localize "DAGGERHEART.Application.LevelUp.notifications.info.remainingAdvancementInfo" choices=this.levelup.levelSelections.totalAvailable}}
+
+                {{#each this.levelup.tiers as |tier key|}}
+                    <div class="advancement-tier-stats">Tier {{tier.tier}}: {{tier.selections.totalAvailable}}</div>
+                {{/each}}
+                <i class="advancement-tier-info fa-solid fa-circle-question" data-tooltip="{{localize "DAGGERHEART.Application.LevelUp.notifications.info.tierAdvancementInfo"}}"></i>
+            </div>
+        </footer>
+    </div>
+</section>

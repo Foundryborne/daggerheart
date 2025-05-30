@@ -45,6 +45,15 @@ export default class DhpActor extends Actor {
         }
     }
 
+    async levelUp(levelupData) {
+        await this.actor.update({
+            'system.levelData': {
+                'level.current': this.system.levelData.level.changed,
+                'selections': levelupData
+            }
+        });
+    }
+
     async diceRoll(modifier, shiftKey) {
         if (this.type === 'pc') {
             return await this.dualityRoll(modifier, shiftKey);

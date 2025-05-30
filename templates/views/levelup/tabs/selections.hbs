@@ -1,0 +1,34 @@
+<section
+    class='tab {{tabs.selections.cssClass}} {{tabs.selections.id}}'
+    data-tab='{{tabs.selections.id}}'
+    data-group='{{tabs.selections.group}}'
+>
+    <div class="section-container levelup-selections-container">
+        <div>
+            <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.newExperiences"}}</h3>
+            <div class="achievement-experience-cards">
+                {{#each this.newExperiences as |experience key|}}
+                    <div class="achievement-experience-card">
+                        <div class="flexrow">
+                            <input type="text" name="{{concat "levelup.allInitialAchievements.newExperiences." key ".name"}}" value="{{experience.name}}" placeholder="{{localize "DAGGERHEART.Application.LevelUp.summary.experiencePlaceholder"}}" />
+                            <div class="flex0">{{signedNumber experience.modifier}}</div>
+                        </div>
+                        <div class="achievement-experience-marker">
+                            {{#if experience.name}}<i class="fa-solid fa-check"></i>{{/if}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div>
+            <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.domainCards"}}</h3>
+
+            <div class="levelup-card-selection domain-cards">
+                {{#each this.domainCards}}
+                    {{> "systems/daggerheart/templates/components/card-preview.hbs" img=this.img name=this.name path=this.path }}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</section>

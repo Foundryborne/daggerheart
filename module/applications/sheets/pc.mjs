@@ -182,9 +182,9 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         htmlElement
             .querySelectorAll('.experience-value')
             .forEach(element => element.addEventListener('change', this.experienceValueChange.bind(this)));
-        htmlElement
-            .querySelectorAll('[data-item]')
-            .forEach(element => element.addEventListener.on('change', this.itemUpdate.bind(this)));
+        // htmlElement
+        //     .querySelectorAll('[data-item]')
+        //     .forEach(element => element.addEventListener.on('change', this.itemUpdate.bind(this)));
         htmlElement.querySelector('.level-value').addEventListener('change', this.onLevelChange.bind(this));
     }
 

@@ -7,10 +7,7 @@ const attributeField = () =>
     new fields.SchemaField({
         data: new fields.SchemaField({
             value: new fields.NumberField({ initial: 0, integer: true }),
-            base: new fields.NumberField({ initial: 0, integer: true }),
-            bonus: new fields.NumberField({ initial: 0, integer: true }),
-            actualValue: new fields.NumberField({ initial: 0, integer: true }),
-            overrideValue: new fields.NumberField({ initial: 0, integer: true })
+            bonus: new fields.NumberField({ initial: 0, integer: true })
         })
     });
 
@@ -52,11 +49,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                 presence: attributeField(),
                 knowledge: attributeField()
             }),
-            proficiency: new fields.SchemaField({
-                value: new fields.NumberField({ initial: 1, integer: true }),
-                min: new fields.NumberField({ initial: 1, integer: true }),
-                max: new fields.NumberField({ initial: 6, integer: true })
-            }),
+            proficiency: new fields.NumberField({ required: true, initial: 1, integer: true }),
             evasion: new fields.NumberField({ initial: 0, integer: true }),
             experiences: new fields.ArrayField(
                 new fields.SchemaField({
@@ -347,7 +340,15 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
 
         this.evasion = this.class?.system?.evasion ?? 0;
         // this.armor.value = this.activeArmor?.baseScore ?? 0;
-        // this.damageThresholds = this.computeDamageThresholds();
+        const armor = this.armor;
+        this.damageThresholds = {
+            major: armor
+                ? armor.system.baseThresholds.major + this.levelData.level.current
+                : this.levelData.level.current,
+            severe: armor
+                ? armor.system.baseThresholds.severe + this.levelData.level.current
+                : this.levelData.level.current * 2
+        };
 
         this.applyLevels();
         this.applyEffects();

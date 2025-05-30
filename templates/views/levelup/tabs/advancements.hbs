@@ -1,0 +1,37 @@
+<section
+    class='tab {{tabs.advancements.cssClass}} {{tabs.advancements.id}}'
+    data-tab='{{tabs.advancements.id}}'
+    data-group='{{tabs.advancements.group}}'
+>
+    <div class="section-container">
+        <div class="tiers-container">
+            {{#each this.levelup.tiers as |tier key|}}
+                <fieldset class="tier-container {{#if (not tier.active)}}inactive{{/if}}">
+                    <legend>{{tier.name}}</legend>
+                    
+                    {{#each tier.tierCheckboxGroups}}
+                        <div class="checkbox-group-container">
+                            <div class="checkboxes-container">
+                                {{#each this.checkboxGroups}}
+                                    <div class="checkbox-grouping-coontainer {{#if this.multi}}multi{{/if}}">
+                                        {{#each this.checkboxes}}
+                                            <input 
+                                                type="checkbox" class="selection-checkbox{{#if (gt this.cost 1)}} multi{{/if}}" {{checked this.selected}} {{#if this.disabled}}disabled{{/if}}
+                                                data-tier="{{this.tier}}" 
+                                                data-level="{{this.level}}" 
+                                                data-option="{{this.optionKey}}" 
+                                                data-checkbox-nr="{{this.checkboxNr}}" 
+                                                data-cost="{{this.cost}}"
+                                            />
+                                        {{/each}}
+                                    </div>
+                                {{/each}}
+                            </div>
+                            <div class="checkbox-group-label">{{this.label}}</div>
+                        </div>
+                    {{/each}}
+                </fieldset>
+            {{/each}}
+        </div>
+    </div>
+</section>

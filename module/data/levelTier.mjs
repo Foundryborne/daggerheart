@@ -61,19 +61,31 @@ class DhLevelOption extends foundry.abstract.DataModel {
 export const LevelOptionType = {
     trait: {
         id: 'trait',
-        label: 'Character Trait'
+        label: 'Character Trait',
+        dataPath: ''
     },
     hitPoint: {
         id: 'hitPoint',
-        label: 'Hit Points'
+        label: 'Hit Points',
+        dataPath: 'resources.hitPoints',
+        dataPathData: {
+            property: 'max',
+            dependencies: ['value']
+        }
     },
     stress: {
         id: 'stress',
-        label: 'Stress'
+        label: 'Stress',
+        dataPath: 'resources.stress',
+        dataPathData: {
+            property: 'max',
+            dependencies: ['value']
+        }
     },
     evasion: {
         id: 'evasion',
-        label: 'Evasion'
+        label: 'Evasion',
+        dataPath: 'evasion'
     },
     proficiency: {
         id: 'proficiency',
@@ -108,8 +120,8 @@ export const defaultLevelTiers = {
             },
             initialAchievements: {
                 experience: {
-                    nr: 2,
-                    modifier: 1
+                    nr: 1,
+                    modifier: 2
                 },
                 proficiency: 1
             },
@@ -171,8 +183,8 @@ export const defaultLevelTiers = {
             },
             initialAchievements: {
                 experience: {
-                    nr: 2,
-                    modifier: 1
+                    nr: 1,
+                    modifier: 2
                 },
                 proficiency: 1
             },
@@ -252,8 +264,8 @@ export const defaultLevelTiers = {
             },
             initialAchievements: {
                 experience: {
-                    nr: 2,
-                    modifier: 1
+                    nr: 1,
+                    modifier: 2
                 },
                 proficiency: 1
             },
