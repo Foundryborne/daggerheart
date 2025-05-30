@@ -774,7 +774,8 @@
                 "AbilityCheckTitle": "{ability} Check"
             },
             "AttackRoll": {
-                "Title": "Attack - {attack}"
+                "Title": "Attack - {attack}",
+                "RollDamage": "Roll Damage"
             },
             "DamageRoll": {
                 "Title": "Damage - {damage}",

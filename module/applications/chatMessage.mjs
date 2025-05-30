@@ -2,23 +2,6 @@ import DhpDualityRoll from '../data/dualityRoll.mjs';
 import { DualityRollColor } from '../data/settings/Appearance.mjs';
 
 export default class DhpChatMessage extends ChatMessage {
-    constructor(data, options) {
-        super(data, options);
-
-        if (
-            data.type === 'dualityRoll' ||
-            data.type === 'adversaryRoll' ||
-            data.type === 'damageRoll' ||
-            data.type === 'abilityUse'
-        ) {
-            this.#templateInjection(data);
-        }
-    }
-
-    async #templateInjection(data) {
-        return await foundry.applications.handlebars.renderTemplate(data.content, data.system);
-    }
-
     async renderHTML() {
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML();

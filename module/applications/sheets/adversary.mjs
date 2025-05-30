@@ -330,15 +330,19 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         );
 
         const cls = getDocumentClass('ChatMessage');
+        const systemData = {
+            roll: roll._formula,
+            total: roll._total,
+            modifiers: modifiers,
+            diceResults: diceResults
+        };
         const msg = new cls({
             type: 'adversaryRoll',
-            system: {
-                roll: roll._formula,
-                total: roll._total,
-                modifiers: modifiers,
-                diceResults: diceResults
-            },
-            content: 'systems/daggerheart/templates/chat/adversary-roll.hbs',
+            system: systemData,
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/chat/adversary-roll.hbs',
+                systemData
+            ),
             rolls: [roll]
         });
 
@@ -362,21 +366,25 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         }));
 
         const cls = getDocumentClass('ChatMessage');
+        const systemData = {
+            title: button.dataset.name,
+            origin: this.document.id,
+            roll: roll._formula,
+            advantageState,
+            total: roll._total,
+            modifiers: modifiers,
+            dice: dice,
+            targets: targets,
+            damage: { value: button.dataset.damage, type: button.dataset.damageType }
+        };
         const msg = new cls({
             type: 'adversaryRoll',
             sound: CONFIG.sounds.dice,
-            system: {
-                title: button.dataset.name,
-                origin: this.document.id,
-                roll: roll._formula,
-                advantageState,
-                total: roll._total,
-                modifiers: modifiers,
-                dice: dice,
-                targets: targets,
-                damage: { value: button.dataset.damage, type: button.dataset.damageType }
-            },
-            content: 'systems/daggerheart/templates/chat/adversary-attack-roll.hbs',
+            system: systemData,
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/chat/adversary-attack-roll.hbs',
+                systemData
+            ),
             rolls: [roll]
         });
 

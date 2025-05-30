@@ -246,22 +246,26 @@ export default class DhpActor extends Actor {
         }
 
         const cls = getDocumentClass('ChatMessage');
+        const systemData = {
+            title: game.i18n.format('DAGGERHEART.Chat.DamageRoll.Title', { damage: title }),
+            roll: rollString,
+            damage: {
+                total: rollResult.total,
+                type: damage.type
+            },
+            dice: dice,
+            modifiers: modifiers,
+            targets: targets
+        };
         const msg = new cls({
             type: 'damageRoll',
             user: game.user.id,
             sound: CONFIG.sounds.dice,
-            system: {
-                title: game.i18n.format('DAGGERHEART.Chat.DamageRoll.Title', { damage: title }),
-                roll: rollString,
-                damage: {
-                    total: rollResult.total,
-                    type: damage.type
-                },
-                dice: dice,
-                modifiers: modifiers,
-                targets: targets
-            },
-            content: 'systems/daggerheart/templates/chat/damage-roll.hbs',
+            system: systemData,
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/chat/damage-roll.hbs',
+                systemData
+            ),
             rolls: [roll]
         });
 
