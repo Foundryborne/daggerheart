@@ -435,6 +435,35 @@
         "distance": 5,
         "units": "feet"
     },
+    "documentTypes": {
+        "Actor": {
+            "pc": {},
+            "npc": {},
+            "adversary": {},
+            "environment": {}
+        },
+        "Item": {
+            "ancestry": {},
+            "community": {},
+            "class": {},
+            "subclass": {},
+            "feature": {},
+            "domainCard": {},
+            "miscellaneous": {},
+            "consumable": {},
+            "weapon": {},
+            "armor": {}
+        },
+        "Combat": {
+            "combat": {}
+        },
+        "ChatMessage": {
+            "dualityRoll": {},
+            "adversaryRoll": {},
+            "damageRoll": {},
+            "abilityUse": {}
+        }
+    },
     "primaryTokenAttribute": "resources.health",
     "secondaryTokenAttribute": "resources.stress",
     "url": "https://your/hosted/system/repo/",
