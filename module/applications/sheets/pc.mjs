@@ -790,13 +790,16 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                     const cls = getDocumentClass('ChatMessage');
                     const msg = new cls({
                         user: game.user.id,
-                        content: await renderTemplate('systems/daggerheart/templates/chat/ability-use.hbs', {
-                            title: game.i18n.localize('DAGGERHEART.Chat.FeatureTitle'),
-                            card: {
-                                name: `${feature.name} - Roll Of ${feature.system.featureType.data.numbers[index].value}`,
-                                img: feature.img
+                        content: await foundry.applications.handlebars.renderTemplate(
+                            'systems/daggerheart/templates/chat/ability-use.hbs',
+                            {
+                                title: game.i18n.localize('DAGGERHEART.Chat.FeatureTitle'),
+                                card: {
+                                    name: `${feature.name} - Roll Of ${feature.system.featureType.data.numbers[index].value}`,
+                                    img: feature.img
+                                }
                             }
-                        })
+                        )
                     });
 
                     cls.create(msg.toObject());
@@ -905,10 +908,13 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             user: game.user.id,
-            content: await renderTemplate('systems/daggerheart/templates/chat/ability-use.hbs', {
-                title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
-                card: { name: title, img: item.img, description: ability.description }
-            })
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/chat/ability-use.hbs',
+                {
+                    title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+                    card: { name: title, img: item.img, description: ability.description }
+                }
+            )
         });
 
         cls.create(msg.toObject());
@@ -921,10 +927,13 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             user: game.user.id,
-            content: await renderTemplate('systems/daggerheart/templates/chat/ability-use.hbs', {
-                title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
-                card: { name: item.name, img: item.img, description: item.system.description }
-            })
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/chat/ability-use.hbs',
+                {
+                    title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+                    card: { name: item.name, img: item.img, description: item.system.description }
+                }
+            )
         });
 
         cls.create(msg.toObject());

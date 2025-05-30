@@ -355,11 +355,14 @@ export default class DhpActor extends Actor {
             const cls = getDocumentClass('ChatMessage');
             const msg = new cls({
                 user: game.user.id,
-                content: await renderTemplate('systems/daggerheart/templates/chat/damage-roll.hbs', {
-                    roll: roll.formula,
-                    total: roll.result,
-                    type: action.damage.type
-                })
+                content: await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/chat/damage-roll.hbs',
+                    {
+                        roll: roll.formula,
+                        total: roll.result,
+                        type: action.damage.type
+                    }
+                )
             });
 
             cls.create(msg.toObject());
@@ -374,11 +377,14 @@ export default class DhpActor extends Actor {
             const cls = getDocumentClass('ChatMessage');
             const msg = new cls({
                 user: game.user.id,
-                content: await renderTemplate('systems/daggerheart/templates/chat/healing-roll.hbs', {
-                    roll: roll.formula,
-                    total: roll.result,
-                    type: action.healing.type
-                })
+                content: await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/chat/healing-roll.hbs',
+                    {
+                        roll: roll.formula,
+                        total: roll.result,
+                        type: action.healing.type
+                    }
+                )
             });
 
             cls.create(msg.toObject());
