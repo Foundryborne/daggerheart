@@ -1,12 +1,28 @@
 import { getTier } from '../../helpers/utils.mjs';
+import BaseDataItem from './base.mjs';
 
-export default class DHClass extends foundry.abstract.TypeDataModel {
+export default class DHClass extends BaseDataItem {
+    /** @inheritDoc */
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: "TYPES.Item.class",
+            type: "class",
+            hasDescription: true,
+        });
+    }
+
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            ...super.defineSchema(),
+
+            //TODO: USE SetField instead ArrayField
+            //set choices for this field
             domains: new fields.ArrayField(new fields.StringField({})),
+
             classItems: new fields.ArrayField(
+                //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
                 new fields.SchemaField({
                     name: new fields.StringField({}),
                     img: new fields.StringField({}),
@@ -15,13 +31,17 @@ export default class DHClass extends foundry.abstract.TypeDataModel {
             ),
             evasion: new fields.NumberField({ initial: 0, integer: true }),
             features: new fields.ArrayField(
+                //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
                 new fields.SchemaField({
                     name: new fields.StringField({}),
                     img: new fields.StringField({}),
                     uuid: new fields.StringField({})
                 })
             ),
+
+            //TODO: use SetField intead of ArrayField
             subclasses: new fields.ArrayField(
+                //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
                 new fields.SchemaField({
                     name: new fields.StringField({}),
                     img: new fields.StringField({}),
@@ -30,6 +50,7 @@ export default class DHClass extends foundry.abstract.TypeDataModel {
             ),
             inventory: new fields.SchemaField({
                 take: new fields.ArrayField(
+                    //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
                     new fields.SchemaField({
                         name: new fields.StringField({}),
                         img: new fields.StringField({}),
@@ -37,6 +58,7 @@ export default class DHClass extends foundry.abstract.TypeDataModel {
                     })
                 ),
                 choiceA: new fields.ArrayField(
+                    //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
                     new fields.SchemaField({
                         name: new fields.StringField({}),
                         img: new fields.StringField({}),
@@ -44,6 +66,7 @@ export default class DHClass extends foundry.abstract.TypeDataModel {
                     })
                 ),
                 choiceB: new fields.ArrayField(
+                    //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
                     new fields.SchemaField({
                         name: new fields.StringField({}),
                         img: new fields.StringField({}),
@@ -51,6 +74,7 @@ export default class DHClass extends foundry.abstract.TypeDataModel {
                     })
                 ),
                 extra: new fields.SchemaField(
+                    //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
                     {
                         title: new fields.StringField({}),
                         description: new fields.StringField({})
@@ -91,18 +115,14 @@ export default class DHClass extends foundry.abstract.TypeDataModel {
                     },
                     { initial: null, nullable: true }
                 ),
-                characterDescription: new fields.SchemaField({
-                    clothes: new fields.StringField({}),
-                    eyes: new fields.StringField({}),
-                    body: new fields.StringField({}),
-                    color: new fields.StringField({}),
-                    attitude: new fields.StringField({})
-                }),
+
+                //FIXME this not will work
                 backgroundQuestions: new fields.ArrayField(new fields.StringField({}), { initial: ['', '', ''] }),
+                
+                //FIXME this not will work
                 connections: new fields.ArrayField(new fields.StringField({}), { initial: ['', '', ''] })
             }),
             multiclass: new fields.NumberField({ initial: null, nullable: true, integer: true }),
-            description: new fields.HTMLField({})
         };
     }
 

@@ -1,11 +1,22 @@
 import featuresSchema from '../interface/featuresSchema.mjs';
+import BaseDataItem from './base.mjs';
 
-export default class DHAncestry extends foundry.abstract.TypeDataModel {
+export default class DHAncestry extends BaseDataItem {
+    /** @inheritDoc */
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: "TYPES.Item.ancestry",
+            type: "ancestry",
+            hasDescription: true,
+        });
+    }
+
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            description: new fields.HTMLField({}),
+            ...super.defineSchema(),
+            //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
             abilities: featuresSchema()
         };
     }

@@ -1,11 +1,21 @@
 import { getTier } from '../../helpers/utils.mjs';
+import BaseDataItem from './base.mjs';
 
-export default class DHSubclass extends foundry.abstract.TypeDataModel {
+export default class DHSubclass extends BaseDataItem {
+    /** @inheritDoc */
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: "TYPES.Item.subclass",
+            type: "subclass",
+            hasDescription: true,
+        });
+    }
+
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            description: new fields.HTMLField({}),
+            ...super.defineSchema(),
             spellcastingTrait: new fields.StringField({
                 choices: SYSTEM.ACTOR.abilities,
                 integer: false,

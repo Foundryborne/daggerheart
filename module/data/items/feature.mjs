@@ -1,83 +1,91 @@
 import { getTier } from '../../helpers/utils.mjs';
 import DaggerheartAction from '../action.mjs';
-import DhpEffects from '../interface/effects.mjs';
+import BaseDataItem from './base.mjs';
 
-export default class DHFeature extends DhpEffects {
+export default class DHFeature extends BaseDataItem {
+    /** @inheritDoc */
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: "TYPES.Item.feature",
+            type: "feature",
+            hasDescription: true,
+        });
+    }
+
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
-        return foundry.utils.mergeObject(
-            {},
-            {
-                type: new fields.StringField({ choices: SYSTEM.ITEM.featureTypes }),
-                actionType: new fields.StringField({
-                    choices: SYSTEM.ITEM.actionTypes,
-                    initial: SYSTEM.ITEM.actionTypes.passive.id
+        console.log(SYSTEM.EFFECTS.applyLocations)
+        return {
+            ...super.defineSchema(),
+            type: new fields.StringField({ choices: SYSTEM.ITEM.featureTypes }),
+            actionType: new fields.StringField({
+                choices: SYSTEM.ITEM.actionTypes,
+                initial: SYSTEM.ITEM.actionTypes.passive.id
+            }),
+            featureType: new fields.SchemaField({
+                type: new fields.StringField({
+                    choices: SYSTEM.ITEM.valueTypes,
+                    initial: Object.keys(SYSTEM.ITEM.valueTypes).find(x => x === 'normal')
                 }),
-                featureType: new fields.SchemaField({
-                    type: new fields.StringField({
-                        choices: SYSTEM.ITEM.valueTypes,
-                        initial: Object.keys(SYSTEM.ITEM.valueTypes).find(x => x === 'normal')
+                data: new fields.SchemaField({
+                    value: new fields.StringField({}),
+                    property: new fields.StringField({
+                        choices: SYSTEM.ACTOR.featureProperties,
+                        initial: Object.keys(SYSTEM.ACTOR.featureProperties).find(x => x === 'spellcastingTrait')
                     }),
-                    data: new fields.SchemaField({
-                        value: new fields.StringField({}),
-                        property: new fields.StringField({
-                            choices: SYSTEM.ACTOR.featureProperties,
-                            initial: Object.keys(SYSTEM.ACTOR.featureProperties).find(x => x === 'spellcastingTrait')
-                        }),
-                        max: new fields.NumberField({ initial: 1, integer: true }),
-                        numbers: new fields.TypedObjectField(
-                            new fields.SchemaField({
-                                value: new fields.NumberField({ integer: true }),
-                                used: new fields.BooleanField({ initial: false })
-                            })
-                        )
-                    })
-                }),
-                refreshData: new fields.SchemaField(
-                    {
-                        type: new fields.StringField({ choices: SYSTEM.GENERAL.refreshTypes }),
-                        uses: new fields.NumberField({ initial: 1, integer: true }),
-                        refreshed: new fields.BooleanField({ initial: true })
-                    },
-                    { nullable: true, initial: null }
-                ),
-                multiclass: new fields.NumberField({ initial: null, nullable: true, integer: true }),
-                disabled: new fields.BooleanField({ initial: false }),
-                description: new fields.HTMLField({}),
-                effects: new fields.TypedObjectField(
-                    new fields.SchemaField({
-                        type: new fields.StringField({ choices: SYSTEM.EFFECTS.effectTypes }),
-                        valueType: new fields.StringField({ choices: SYSTEM.EFFECTS.valueTypes }),
-                        parseType: new fields.StringField({ choices: SYSTEM.EFFECTS.parseTypes }),
-                        initiallySelected: new fields.BooleanField({ initial: true }),
-                        options: new fields.ArrayField(
-                            new fields.SchemaField({
-                                name: new fields.StringField({}),
-                                value: new fields.StringField({})
-                            }),
-                            { nullable: true, initial: null }
-                        ),
-                        dataField: new fields.StringField({}),
-                        appliesOn: new fields.StringField(
-                            { choices: SYSTEM.EFFECTS.applyLocations },
-                            { nullable: true, initial: null }
-                        ),
-                        applyLocationChoices: new fields.TypedObjectField(new fields.StringField({}), {
-                            nullable: true,
-                            initial: null
-                        }),
-                        valueData: new fields.SchemaField({
-                            value: new fields.StringField({}),
-                            fromValue: new fields.StringField({ initial: null, nullable: true }),
-                            type: new fields.StringField({ initial: null, nullable: true }),
-                            hopeIncrease: new fields.StringField({ initial: null, nullable: true })
+                    max: new fields.NumberField({ initial: 1, integer: true }),
+                    numbers: new fields.TypedObjectField(
+                        new fields.SchemaField({
+                            value: new fields.NumberField({ integer: true }),
+                            used: new fields.BooleanField({ initial: false })
                         })
+                    )
+                })
+            }),
+            refreshData: new fields.SchemaField(
+                {
+                    type: new fields.StringField({ choices: SYSTEM.GENERAL.refreshTypes }),
+                    uses: new fields.NumberField({ initial: 1, integer: true }),
+                    refreshed: new fields.BooleanField({ initial: true })
+                },
+                { nullable: true, initial: null }
+            ),
+            multiclass: new fields.NumberField({ initial: null, nullable: true, integer: true }),
+            disabled: new fields.BooleanField({ initial: false }),
+            effects: new fields.TypedObjectField(
+                new fields.SchemaField({
+                    type: new fields.StringField({ choices: SYSTEM.EFFECTS.effectTypes }),
+                    valueType: new fields.StringField({ choices: SYSTEM.EFFECTS.valueTypes }),
+                    parseType: new fields.StringField({ choices: SYSTEM.EFFECTS.parseTypes }),
+                    initiallySelected: new fields.BooleanField({ initial: true }),
+                    options: new fields.ArrayField(
+                        new fields.SchemaField({
+                            name: new fields.StringField({}),
+                            value: new fields.StringField({})
+                        }),
+                        { nullable: true, initial: null }
+                    ),
+                    dataField: new fields.StringField({}),
+                    appliesOn: new fields.StringField({
+                        choices: SYSTEM.EFFECTS.applyLocations,
+                    },
+                        { nullable: true, initial: null }
+                    ),
+                    applyLocationChoices: new fields.TypedObjectField(new fields.StringField({}), {
+                        nullable: true,
+                        initial: null
+                    }),
+                    valueData: new fields.SchemaField({
+                        value: new fields.StringField({}),
+                        fromValue: new fields.StringField({ initial: null, nullable: true }),
+                        type: new fields.StringField({ initial: null, nullable: true }),
+                        hopeIncrease: new fields.StringField({ initial: null, nullable: true })
                     })
-                ),
-                actions: new fields.ArrayField(new fields.EmbeddedDataField(DaggerheartAction))
-            }
-        );
+                })
+            ),
+            actions: new fields.ArrayField(new fields.EmbeddedDataField(DaggerheartAction))
+        };
     }
 
     get multiclassTier() {
@@ -95,6 +103,40 @@ export default class DHFeature extends DhpEffects {
             } else {
                 await this.parent.update({ 'system.refreshData.refreshed': true });
             }
+        }
+    }
+
+    get effectData() {
+        const effectValues = Object.values(this.effects);
+        const effectCategories = Object.keys(SYSTEM.EFFECTS.effectTypes).reduce((acc, effectType) => {
+            acc[effectType] = effectValues.reduce((acc, effect) => {
+                if (effect.type === effectType) {
+                    acc.push({ ...effect, valueData: this.#parseValues(effect.parseType, effect.valueData) });
+                }
+
+                return acc;
+            }, []);
+
+            return acc;
+        }, {});
+
+        return effectCategories;
+    }
+
+    #parseValues(parseType, values) {
+        return Object.keys(values).reduce((acc, prop) => {
+            acc[prop] = this.#parseValue(parseType, values[prop]);
+
+            return acc;
+        }, {});
+    }
+
+    #parseValue(parseType, value) {
+        switch (parseType) {
+            case SYSTEM.EFFECTS.parseTypes.number.id:
+                return Number.parseInt(value);
+            default:
+                return value;
         }
     }
 }

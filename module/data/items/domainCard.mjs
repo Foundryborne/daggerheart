@@ -1,10 +1,21 @@
 import DaggerheartAction from "../action.mjs";
+import BaseDataItem from "./base.mjs";
 
-export default class DHDomainCard extends foundry.abstract.TypeDataModel {
+export default class DHDomainCard extends BaseDataItem {
+    /** @inheritDoc */
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: "TYPES.Item.domainCard",
+            type: "domainCard",
+            hasDescription: true,
+        });
+    }
+
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            ...super.defineSchema(),
             domain: new fields.StringField(
                 { choices: SYSTEM.DOMAIN.domains, integer: false },
                 { required: true, initial: [] }
@@ -16,7 +27,6 @@ export default class DHDomainCard extends foundry.abstract.TypeDataModel {
                 { required: true, initial: [] }
             ),
             foundation: new fields.BooleanField({ initial: false }),
-            effect: new fields.HTMLField({}),
             inVault: new fields.BooleanField({ initial: false }),
             actions: new fields.ArrayField(new fields.EmbeddedDataField(DaggerheartAction))
         };

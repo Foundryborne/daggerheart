@@ -1,16 +1,24 @@
+import BaseDataItem from './base.mjs';
 
-export default class DHArmor extends foundry.abstract.TypeDataModel {
+export default class DHArmor extends BaseDataItem {
+    /** @inheritDoc */
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: "TYPES.Item.armor",
+            type: "armor",
+            hasDescription: true,
+            isQuantifiable: true,
+        });
+    }
+
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            ...super.defineSchema(),
             equipped: new fields.BooleanField({ initial: false }),
             baseScore: new fields.NumberField({ integer: true, initial: 0 }),
-            feature: new fields.StringField({
-                choices: SYSTEM.ITEM.armorFeatures,
-                integer: false,
-                blank: true
-            }),
+            feature: new fields.StringField({ choices: SYSTEM.ITEM.armorFeatures, blank: true }),
             marks: new fields.SchemaField({
                 max: new fields.NumberField({ initial: 6, integer: true }),
                 value: new fields.NumberField({ initial: 0, integer: true })
@@ -19,8 +27,6 @@ export default class DHArmor extends foundry.abstract.TypeDataModel {
                 major: new fields.NumberField({ integer: true, initial: 0 }),
                 severe: new fields.NumberField({ integer: true, initial: 0 })
             }),
-            quantity: new fields.NumberField({ integer: true, initial: 1 }),
-            description: new fields.HTMLField({})
         };
     }
 

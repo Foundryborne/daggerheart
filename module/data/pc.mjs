@@ -348,6 +348,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
     }
 
     //Should not be done in data?
+    //TODO: REMOVE THIS
     #weaponData(weapon) {
         return weapon
             ? {

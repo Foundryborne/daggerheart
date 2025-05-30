@@ -1,25 +1,45 @@
-export default class DHWeapon extends foundry.abstract.TypeDataModel {
+import BaseDataItem from "./base.mjs";
+
+export default class DHWeapon extends BaseDataItem {
+    /** @inheritDoc */
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: "TYPES.Item.weapon",
+            type: "weapon",
+            hasDescription: true,
+            isQuantifiable: true,
+        });
+    }
+
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            ...super.defineSchema(),
             equipped: new fields.BooleanField({ initial: false }),
+
+            //TODO: NEED REVISION
+            //It makes more sense to control the inventory from the actor
             inventoryWeapon: new fields.NumberField({ initial: null, nullable: true, integer: true }),
+
+            //SETTINGS
             secondary: new fields.BooleanField({ initial: false }),
-            trait: new fields.StringField({ choices: SYSTEM.ACTOR.abilities, integer: false, initial: 'agility' }),
-            range: new fields.StringField({ choices: SYSTEM.GENERAL.range, integer: false, initial: 'melee' }),
+            trait: new fields.StringField({ required: true, choices: SYSTEM.ACTOR.abilities, initial: 'agility' }),
+            range: new fields.StringField({ required: true, choices: SYSTEM.GENERAL.range, initial: 'melee' }),
+            burden: new fields.StringField({ required: true, choices: SYSTEM.GENERAL.burden, initial: 'oneHanded' }),
+
+            //DAMAGE
             damage: new fields.SchemaField({
+                //TODO: CREATE FORMULA FIELD
                 value: new fields.StringField({ initial: 'd6' }),
                 type: new fields.StringField({
+                    required: true,
                     choices: SYSTEM.GENERAL.damageTypes,
-                    integer: false,
                     initial: 'physical'
                 })
             }),
-            burden: new fields.StringField({ choices: SYSTEM.GENERAL.burden, integer: false, initial: 'oneHanded' }),
-            feature: new fields.StringField({ choices: SYSTEM.ITEM.weaponFeatures, integer: false, blank: true }),
-            quantity: new fields.NumberField({ initial: 1, integer: true }),
-            description: new fields.HTMLField({})
+
+            feature: new fields.StringField({ choices: SYSTEM.ITEM.weaponFeatures, blank: true }),
         };
     }
 
@@ -31,9 +51,10 @@ export default class DHWeapon extends foundry.abstract.TypeDataModel {
 
     applyEffects() {
         const effects = this.parent.parent.system.effects;
-        for (var key in effects) {
+        for (const key in effects) {
+            console.log
             const effectType = effects[key];
-            for (var effect of effectType) {
+            for (const effect of effectType) {
                 switch (key) {
                     case SYSTEM.EFFECTS.effectTypes.reach.id:
                         if (
@@ -44,10 +65,6 @@ export default class DHWeapon extends foundry.abstract.TypeDataModel {
                         }
 
                         break;
-                    // case SYSTEM.EFFECTS.effectTypes.damage.id:
-
-                    //   if(this.damage.type === 'physical') this.damage.value = (`${this.damage.value} + ${this.parent.parent.system.levelData.currentLevel}`);
-                    //   break;
                 }
             }
         }
