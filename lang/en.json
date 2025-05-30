@@ -816,7 +816,8 @@
                 "AbilityCheckTitle": "{ability} Check"
             },
             "AttackRoll": {
-                "Title": "Attack - {attack}"
+                "Title": "Attack - {attack}",
+                "RollDamage": "Roll Damage"
             },
             "DamageRoll": {
                 "Title": "Damage - {damage}",
@@ -996,7 +997,8 @@
                     "Features": "Features",
                     "Guide": "Character Guide",
                     "Items": "Items",
-                    "Appearance": "Appearance"
+                    "Appearance": "Appearance",
+                    "settings": "Settings"
                 },
                 "Domains": "Domains",
                 "DamageThresholds": {
@@ -1010,14 +1012,14 @@
                 "Subclasses": "Subclasses",
                 "Guide": {
                     "Suggestions": {
-                        "Title": "Suggested",
+                        "Title": "Suggested Equipments",
                         "Traits": {
                             "Title": "Traits"
                         }
                     },
-                    "SuggestedPrimaryWeaponTitle": "Suggested Primary Weapon",
-                    "SuggestedSecondaryWeaponTitle": "Suggested Secondary Weapon",
-                    "SuggestedArmorTitle": "Suggested Armor",
+                    "SuggestedPrimaryWeaponTitle": "Primary Weapon",
+                    "SuggestedSecondaryWeaponTitle": "Secondary Weapon",
+                    "SuggestedArmorTitle": "Armor",
                     "Inventory": {
                         "Title": "Inventory",
                         "Take": "Take",

@@ -5,9 +5,12 @@ export default class SelectDialog extends Dialog {
         this.data = {
             title: data.title,
             buttons: data.buttons,
-            content: renderTemplate('systems/daggerheart/templates/dialog/item-select.hbs', {
-                items: data.choices
-            })
+            content: foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/dialog/item-select.hbs',
+                {
+                    items: data.choices
+                }
+            )
         };
 
         this.actor = data.actor;

@@ -1,0 +1,26 @@
+<section
+    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
+    data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'
+>
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.Sheets.Subclass.Tabs.Foundation"}}</legend>
+        {{#each source.system.foundationFeature.abilities as |feature key|}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' feature=feature}}
+        {{/each}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.Sheets.Subclass.Tabs.Specialization"}}</legend>
+        {{#each source.system.specializationFeature.abilities as |feature key|}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' feature=feature}}
+        {{/each}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.Sheets.Subclass.Tabs.Mastery"}}</legend>
+        {{#each source.system.masteryFeature.abilities as |feature key|}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' feature=feature}}
+        {{/each}}
+    </fieldset>
+</section>

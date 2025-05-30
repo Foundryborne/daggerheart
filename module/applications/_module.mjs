@@ -1,7 +1,7 @@
 export { default as DhpPCSheet } from './sheets/pc.mjs';
 export { default as DhpAdversarySheet } from './sheets/adversary.mjs';
-export { default as DhpClassSheet } from './sheets/class.mjs';
-export { default as DhpSubclass } from './sheets/subclass.mjs';
+export { default as DhpClassSheet } from './sheets/items/class.mjs';
+export { default as DhpSubclass } from './sheets/items/subclass.mjs';
 export { default as DhpFeatureSheet } from './sheets/items/feature.mjs';
 export { default as DhpDomainCardSheet } from './sheets/items/domainCard.mjs';
 export { default as DhpAncestry } from './sheets/items/ancestry.mjs';

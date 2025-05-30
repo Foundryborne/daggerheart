@@ -1,0 +1,10 @@
+<header class='item-sheet-header'>
+    <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
+    <div class='item-info'>
+        <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
+        <div class='item-description'>
+            <h3>{{localize 'TYPES.Item.subclass'}}</h3>
+            <h3>{{localize (concat 'DAGGERHEART.Abilities.' source.system.spellcastingTrait '.name')}}</h3>
+        </div>
+    </div>
+</header>

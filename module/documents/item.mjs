@@ -38,25 +38,28 @@ export default class DhpItem extends Item {
         }, {});
 
         // Render the document creation form
-        const html = await renderTemplate('systems/daggerheart/templates/sidebar/documentCreate.hbs', {
-            folders,
-            name: data.name || game.i18n.format('DOCUMENT.New', { type: label }),
-            folder: data.folder,
-            hasFolders: folders.length >= 1,
-            type: data.type || CONFIG[documentName]?.defaultType || typeObjects.armor,
-            types: {
-                Items: [typeObjects.armor, typeObjects.weapon, typeObjects.consumable, typeObjects.miscellaneous],
-                Character: [
-                    typeObjects.class,
-                    typeObjects.subclass,
-                    typeObjects.ancestry,
-                    typeObjects.community,
-                    typeObjects.feature,
-                    typeObjects.domainCard
-                ]
-            },
-            hasTypes: types.length > 1
-        });
+        const html = await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/sidebar/documentCreate.hbs',
+            {
+                folders,
+                name: data.name || game.i18n.format('DOCUMENT.New', { type: label }),
+                folder: data.folder,
+                hasFolders: folders.length >= 1,
+                type: data.type || CONFIG[documentName]?.defaultType || typeObjects.armor,
+                types: {
+                    Items: [typeObjects.armor, typeObjects.weapon, typeObjects.consumable, typeObjects.miscellaneous],
+                    Character: [
+                        typeObjects.class,
+                        typeObjects.subclass,
+                        typeObjects.ancestry,
+                        typeObjects.community,
+                        typeObjects.feature,
+                        typeObjects.domainCard
+                    ]
+                },
+                hasTypes: types.length > 1
+            }
+        );
 
         // Render the confirmation dialog window
         return Dialog.prompt({

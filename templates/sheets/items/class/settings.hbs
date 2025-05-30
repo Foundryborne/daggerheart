@@ -1,0 +1,132 @@
+<section
+    class='tab {{tabs.settings.cssClass}} {{tabs.settings.id}}'
+    data-tab='{{tabs.settings.id}}'
+    data-group='{{tabs.settings.group}}'
+>
+
+    <fieldset class="two-columns">
+        <legend>{{localize tabs.settings.label}}</legend>
+        <span>{{localize "DAGGERHEART.Sheets.Class.Evasion"}}</span>
+        {{formField systemFields.evasion value=source.system.evasion}}
+    </fieldset>
+
+    <div class="fieldsets-section">
+        <fieldset class="drop-section two-columns">
+            <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Suggestions.Traits.Title"}}</legend>
+
+            <span>{{localize "DAGGERHEART.Abilities.agility.name"}}</span>
+            <input type="text" name="system.characterGuide.suggestedTraits.agility" value="{{source.system.characterGuide.suggestedTraits.agility}}" />
+
+            <span>{{localize "DAGGERHEART.Abilities.strength.name"}}</span>
+            <input type="text" name="system.characterGuide.suggestedTraits.strength" value="{{source.system.characterGuide.suggestedTraits.strength}}" />
+
+            <span>{{localize "DAGGERHEART.Abilities.finesse.name"}}</span>
+            <input type="text" name="system.characterGuide.suggestedTraits.finesse" value="{{source.system.characterGuide.suggestedTraits.finesse}}" />
+
+            <span>{{localize "DAGGERHEART.Abilities.instinct.name"}}</span>
+            <input type="text" name="system.characterGuide.suggestedTraits.instinct" value="{{source.system.characterGuide.suggestedTraits.instinct}}" />
+
+            <span>{{localize "DAGGERHEART.Abilities.presence.name"}}</span>
+            <input type="text" name="system.characterGuide.suggestedTraits.presence" value="{{source.system.characterGuide.suggestedTraits.presence}}" />
+
+            <span>{{localize "DAGGERHEART.Abilities.knowledge.name"}}</span>
+            <input type="text" name="system.characterGuide.suggestedTraits.knowledge" value="{{source.system.characterGuide.suggestedTraits.knowledge}}" />
+        </fieldset>
+
+        <fieldset class="one-column">
+            <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Suggestions.Title"}}</legend>
+            <fieldset class="one-column drop-section primary-weapon-section">
+                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.SuggestedPrimaryWeaponTitle"}}</legend>
+                <div class="drop-section-body list-items">
+                    {{#if source.system.characterGuide.suggestedPrimaryWeapon}}
+                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{source.system.characterGuide.suggestedPrimaryWeapon.uuid}}">
+                            <img class="image" src="{{source.system.characterGuide.suggestedPrimaryWeapon.img}}" />
+                            <span>{{source.system.characterGuide.suggestedPrimaryWeapon.name}}</span>
+                            <div class="controls">
+                                <i data-action="removePrimaryWeapon" class="fa-solid fa-trash icon-button"></i>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </fieldset>
+
+            <fieldset class="one-column drop-section secondary-weapon-section">
+                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.SuggestedSecondaryWeaponTitle"}}</legend>
+                <div class="drop-section-body list-items">
+                    {{#if source.system.characterGuide.suggestedSecondaryWeapon}}
+                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{source.system.characterGuide.suggestedSecondaryWeapon.uuid}}">
+                            <img class="image" src="{{source.system.characterGuide.suggestedSecondaryWeapon.img}}" />
+                            <span>{{source.system.characterGuide.suggestedSecondaryWeapon.name}}</span>
+                            <div class="controls">
+                                <i data-action="removeSecondaryWeapon" class="fa-solid fa-trash icon-button"></i>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </fieldset>
+
+            <fieldset class="one-column drop-section armor-section">
+                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.SuggestedArmorTitle"}}</legend>
+                <div class="drop-section-body list-items">
+                    {{#if source.system.characterGuide.suggestedArmor}}
+                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{source.system.characterGuide.suggestedArmor.uuid}}">
+                            <img class="image" src="{{source.system.characterGuide.suggestedArmor.img}}" />
+                            <span>{{source.system.characterGuide.suggestedArmor.name}}</span>
+                            <div class="controls">
+                                <i data-action="removeArmor" class="fa-solid fa-trash icon-button"></i>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </fieldset>
+        </fieldset>
+
+        <fieldset class="one-column">
+            <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Inventory.Title"}}</legend>
+            <fieldset class="one-column drop-section take-section">
+                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Inventory.Take"}}</legend>
+                <div class="drop-section-body list-items">
+                    {{#each source.system.inventory.take}}
+                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{this.uuid}}">
+                            <img class="image" src="{{this.img}}" />
+                            <span>{{this.name}}</span>
+                            <div class="controls">
+                                <i data-action="removeItem" data-type="take" data-item="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+
+            <fieldset class="one-column drop-section choice-a-section">
+                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Inventory.ThenChoose"}}</legend>
+                <div class="drop-section-body list-items">
+                    {{#each source.system.inventory.choiceA}}
+                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{this.uuid}}">
+                            <img class="image" src="{{this.img}}" />
+                            <span>{{this.name}}</span>
+                            <div class="controls">
+                                <i data-action="removeItem" data-type="choiceA" data-item="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+
+            <fieldset class="one-column drop-section choice-b-section">
+                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Inventory.AndEither"}}</legend>
+                <div class="drop-section-body list-items">
+                    {{#each source.system.inventory.choiceB}}
+                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{this.uuid}}">
+                            <img class="image" src="{{this.img}}" />
+                            <span>{{this.name}}</span>
+                            <div class="controls">
+                                <i data-action="removeItem" data-type="choiceB" data-item="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+        </fieldset>
+    </div>
+</section>

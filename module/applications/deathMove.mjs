@@ -47,12 +47,15 @@ export default class DhpDeathMove extends HandlebarsApplicationMixin(Application
         const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             user: game.user.id,
-            content: await renderTemplate('systems/daggerheart/templates/chat/deathMove.hbs', {
-                player: this.actor.name,
-                title: game.i18n.localize(this.selectedMove.name),
-                img: this.selectedMove.img,
-                description: game.i18n.localize(this.selectedMove.description)
-            })
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/chat/deathMove.hbs',
+                {
+                    player: this.actor.name,
+                    title: game.i18n.localize(this.selectedMove.name),
+                    img: this.selectedMove.img,
+                    description: game.i18n.localize(this.selectedMove.description)
+                }
+            )
         });
 
         cls.create(msg.toObject());

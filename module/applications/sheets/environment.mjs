@@ -123,10 +123,15 @@ export default class DhpEnvironment extends DaggerheartSheet(DocumentSheetV2) {
         const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             user: game.user.id,
-            content: await renderTemplate('systems/daggerheart/templates/chat/ability-use.hbs', {
-                title: game.i18n.format('DAGGERHEART.Chat.EnvironmentTitle', { actionType: button.dataset.actionType }),
-                card: { name: item.name, img: item.img, description: item.system.description }
-            })
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/chat/ability-use.hbs',
+                {
+                    title: game.i18n.format('DAGGERHEART.Chat.EnvironmentTitle', {
+                        actionType: button.dataset.actionType
+                    }),
+                    card: { name: item.name, img: item.img, description: item.system.description }
+                }
+            )
         });
 
         cls.create(msg.toObject());
