@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "c380soh7Z1YAqzOT",
+  "name": "Level 4",
+  "color": null,
+  "sorting": "a",
+  "_id": "thP6nUk0nkrNcpXY",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!thP6nUk0nkrNcpXY"
+}
