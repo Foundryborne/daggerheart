@@ -7,6 +7,7 @@
 #resources {
     min-height: calc(var(--header-height) + 4rem);
     min-width: 4rem;
+    color: #d3d3d3;
     .window-content {
         padding: .5rem;
         #resource-fear {
@@ -105,5 +106,8 @@
         header, .controls, .window-resize-handle {
             visibility: hidden;
         }
+    }
+    &:has(.fear-bar) {
+        min-width: 200px;
     }
 }

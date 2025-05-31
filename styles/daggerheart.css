@@ -2726,6 +2726,7 @@ div.daggerheart.views.multiclass {
 #resources {
   min-height: calc(var(--header-height) + 4rem);
   min-width: 4rem;
+  color: #d3d3d3;
 }
 #resources .window-content {
   padding: 0.5rem;
@@ -2822,6 +2823,9 @@ div.daggerheart.views.multiclass {
 #resources:not(:hover):not(.minimized) .controls,
 #resources:not(:hover):not(.minimized) .window-resize-handle {
   visibility: hidden;
+}
+#resources:has(.fear-bar) {
+  min-width: 200px;
 }
 .application.sheet.daggerheart.dh-style.feature .item-sheet-header {
   display: flex;
