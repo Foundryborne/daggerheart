@@ -1,5 +1,6 @@
 import { getTier } from '../../helpers/utils.mjs';
 import BaseDataItem from './base.mjs';
+import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -19,64 +20,26 @@ export default class DHClass extends BaseDataItem {
             domains: new fields.ArrayField(new fields.StringField(), { max: 2 }),
 
             classItems: new fields.ArrayField(
-                //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
-                new fields.SchemaField({
-                    name: new fields.StringField({}),
-                    img: new fields.StringField({}),
-                    uuid: new fields.StringField({})
-                })
+                new ForeignDocumentUUIDField({ type:"Item" }),
             ),
             evasion: new fields.NumberField({ initial: 0, integer: true }),
             features: new fields.ArrayField(
-                //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
-                new fields.SchemaField({
-                    name: new fields.StringField({}),
-                    img: new fields.StringField({}),
-                    uuid: new fields.StringField({})
-                })
+                new ForeignDocumentUUIDField({ type:"Item" }),
             ),
 
             subclasses: new fields.ArrayField(
-                //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
-                new fields.SchemaField({
-                    name: new fields.StringField({}),
-                    img: new fields.StringField({}),
-                    uuid: new fields.StringField({})
-                })
+                new ForeignDocumentUUIDField({ type:"Item", required: false, nullable: true, initial: undefined}),
             ),
             inventory: new fields.SchemaField({
                 take: new fields.ArrayField(
-                    //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
-                    new fields.SchemaField({
-                        name: new fields.StringField({}),
-                        img: new fields.StringField({}),
-                        uuid: new fields.StringField({})
-                    })
+                     new ForeignDocumentUUIDField({ type:"Item", required: false, nullable: true, initial: undefined}),
                 ),
                 choiceA: new fields.ArrayField(
-                    //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
-                    new fields.SchemaField({
-                        name: new fields.StringField({}),
-                        img: new fields.StringField({}),
-                        uuid: new fields.StringField({})
-                    })
+                     new ForeignDocumentUUIDField({ type:"Item", required: false, nullable: true, initial: undefined}),
                 ),
                 choiceB: new fields.ArrayField(
-                    //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
-                    new fields.SchemaField({
-                        name: new fields.StringField({}),
-                        img: new fields.StringField({}),
-                        uuid: new fields.StringField({})
-                    })
+                     new ForeignDocumentUUIDField({ type:"Item", required: false, nullable: true, initial: undefined}),
                 ),
-                extra: new fields.SchemaField(
-                    //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
-                    {
-                        title: new fields.StringField({}),
-                        description: new fields.StringField({})
-                    },
-                    { initial: null, nullable: true }
-                )
             }),
             characterGuide: new fields.SchemaField({
                 suggestedTraits: new fields.SchemaField({
@@ -87,48 +50,15 @@ export default class DHClass extends BaseDataItem {
                     presence: new fields.NumberField({ initial: 0, integer: true }),
                     knowledge: new fields.NumberField({ initial: 0, integer: true })
                 }),
-                suggestedPrimaryWeapon: new fields.SchemaField(
-                    {
-                        name: new fields.StringField({}),
-                        img: new fields.StringField({}),
-                        uuid: new fields.StringField({})
-                    },
-                    { initial: null, nullable: true }
-                ),
-                suggestedSecondaryWeapon: new fields.SchemaField(
-                    {
-                        name: new fields.StringField({}),
-                        img: new fields.StringField({}),
-                        uuid: new fields.StringField({})
-                    },
-                    { initial: null, nullable: true }
-                ),
-                suggestedArmor: new fields.SchemaField(
-                    {
-                        name: new fields.StringField({}),
-                        img: new fields.StringField({}),
-                        uuid: new fields.StringField({})
-                    },
-                    { initial: null, nullable: true }
-                ),
-
-                //FIXME this not will work
-                backgroundQuestions: new fields.ArrayField(new fields.StringField({}), { initial: ['', '', ''] }),
-                
-                //FIXME this not will work
-                connections: new fields.ArrayField(new fields.StringField({}), { initial: ['', '', ''] })
+                suggestedPrimaryWeapon: new ForeignDocumentUUIDField({ type:"Item" }),
+                suggestedSecondaryWeapon: new ForeignDocumentUUIDField({ type:"Item" }),
+                suggestedArmor: new ForeignDocumentUUIDField({ type:"Item" }),
             }),
             multiclass: new fields.NumberField({ initial: null, nullable: true, integer: true }),
         };
     }
 
-    get multiclassTier() {
+    get multiclassTier() { 
         return getTier(this.multiclass, true);
-    }
-
-    /** @inheritDoc */
-    prepareBaseData() {
-        super.prepareBaseData()
-        this.domains = this.domains.map(k => SYSTEM.DOMAIN.domains[k]);
     }
 }
