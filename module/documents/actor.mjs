@@ -5,12 +5,15 @@ import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
 import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 
 export default class DhpActor extends Actor {
-    _preCreate(data, changes, user) {
-        if (data.type === 'pc') {
-            data.prototypeToken = { actorLink: true, disposition: 1, sight: { enabled: true } };
-        }
-
-        super._preCreate(data, changes, user);
+    async _preCreate(data, options, user) {
+        if ( (await super._preCreate(data, options, user)) === false ) return false;
+        
+        // Configure prototype token settings
+        const prototypeToken = {};
+        if ( this.type === "pc" ) Object.assign(prototypeToken, {
+        sight: { enabled: true }, actorLink: true, disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+        });
+        this.updateSource({ prototypeToken });
     }
 
     prepareData() {
