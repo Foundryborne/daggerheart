@@ -13,6 +13,7 @@ import DhpTokenRuler from './module/ui/tokenRuler.mjs';
 import { dualityRollEnricher } from './module/enrichers/DualityRollEnricher.mjs';
 import { getCommandTarget, rollCommandToJSON, setDiceSoNiceForDualityRoll } from './module/helpers/utils.mjs';
 import { abilities } from './module/config/actorConfig.mjs';
+import Resources from './module/applications/resources.mjs';
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -92,8 +93,10 @@ Hooks.once('init', () => {
     CONFIG.Combat.documentClass = documents.DhpCombat;
     CONFIG.ui.combat = DhpCombatTracker;
     CONFIG.ui.chat = DhpChatLog;
-    CONFIG.ui.players = DhpPlayers;
+    // CONFIG.ui.players = DhpPlayers;
     CONFIG.Token.rulerClass = DhpTokenRuler;
+
+    CONFIG.ui.resources = Resources;
 
     game.socket.on(`system.${SYSTEM.id}`, handleSocketEvent);
 
@@ -102,6 +105,11 @@ Hooks.once('init', () => {
 
     return preloadHandlebarsTemplates();
 });
+
+Hooks.on('ready', () => {
+    ui.resources = new CONFIG.ui.resources();
+    ui.resources.render({force: true});
+})
 
 Hooks.once('dicesoniceready', () => {});
 
