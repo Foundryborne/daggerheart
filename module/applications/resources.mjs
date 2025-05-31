@@ -2,11 +2,6 @@
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 /**
- * @import User from "@client/documents/user.mjs"
- * @import {ContextMenuEntry} from "../ux/context-menu.mjs"
- */
-
-/**
  * A UI element which displays the Users defined for this world.
  * Currently active users are always displayed, while inactive users can be displayed on toggle.
  *
