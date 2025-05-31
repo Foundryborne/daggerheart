@@ -2714,8 +2714,12 @@ div.daggerheart.views.multiclass {
 .item-button .item-icon.checked {
   opacity: 1;
 }
-.theme-light {
-  /* Add specifics*/
+.theme-light .daggerheart.levelup .tiers-container .tier-container {
+  background-image: url('../assets/parchments/dh-parchment-light.png');
+}
+.daggerheart.levelup .window-content {
+  max-height: 960px;
+  overflow: auto;
 }
 .daggerheart.levelup div[data-application-part='form'] {
   display: flex;
@@ -2805,10 +2809,40 @@ div.daggerheart.views.multiclass {
   font-size: 12px;
 }
 .daggerheart.levelup .levelup-selections-container .levelup-card-selection {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 40px;
-  padding-right: 120px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .card-preview-container {
+  width: calc(100% * (1 / 5));
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container div {
+  position: absolute;
+  text-align: center;
+  top: 4px;
+  background: grey;
+  padding: 0 12px;
+  border-radius: 6px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container img {
+  height: 124px;
 }
 .daggerheart.levelup .levelup-summary-container .level-achievements-container {
   display: flex;
@@ -3250,13 +3284,18 @@ div.daggerheart.views.multiclass {
 .system-daggerheart.theme-light .tagify__dropdown .tagify__dropdown__item--active {
   color: #efe6d8;
 }
-.theme-light .application .component.dh-style.card.card-preview-container {
+.theme-light .application .component.dh-style.card-preview-container {
   background-image: url('../assets/parchments/dh-parchment-light.png');
 }
-.theme-light .application .component.dh-style.card.card-preview-container .preview-text-container {
+.theme-light .application .component.dh-style.card-preview-container .preview-text-container {
   background-image: url(../assets/parchments/dh-parchment-dark.png);
 }
+.theme-light .application .component.dh-style.card-preview-container .preview-selected-icon-container {
+  background-image: url(../assets/parchments/dh-parchment-dark.png);
+  color: var(--color-light-5);
+}
 .application .component.dh-style.card-preview-container {
+  position: relative;
   border-radius: 6px;
   border: 2px solid var(--color-tabs-border);
   display: flex;
@@ -3264,12 +3303,22 @@ div.daggerheart.views.multiclass {
   aspect-ratio: 0.75;
   background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
-.application .component.dh-style.card-preview-container.empty {
+.application .component.dh-style.card-preview-container.selectable {
   cursor: pointer;
+}
+.application .component.dh-style.card-preview-container.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.application .component.dh-style.card-preview-container .preview-image-outer-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .application .component.dh-style.card-preview-container .preview-image-container {
   flex: 1;
-  border-radius: 4px 4px 0;
+  border-radius: 4px 4px 0 0;
 }
 .application .component.dh-style.card-preview-container .preview-text-container {
   flex: 1;
@@ -3283,13 +3332,14 @@ div.daggerheart.views.multiclass {
   background-image: url(../assets/parchments/dh-parchment-light.png);
 }
 .application .component.dh-style.card-preview-container .preview-empty-container {
+  pointer-events: none;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex: 1;
 }
 .application .component.dh-style.card-preview-container .preview-empty-container .preview-empty-inner-container {
-  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -3299,10 +3349,27 @@ div.daggerheart.views.multiclass {
 }
 .application .component.dh-style.card-preview-container .preview-empty-container .preview-empty-inner-container .preview-empty-subtext {
   position: absolute;
-  bottom: -48px;
+  top: 10%;
   font-size: 18px;
   font-variant: small-caps;
   text-align: center;
+}
+.application .component.dh-style.card-preview-container .preview-selected-icon-container {
+  position: absolute;
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+  border: 2px solid;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../assets/parchments/dh-parchment-light.png);
+  color: var(--color-dark-5);
+}
+.application .component.dh-style.card-preview-container .preview-selected-icon-container i {
+  position: relative;
+  right: 2px;
 }
 .sheet.daggerheart.dh-style .tab-navigation {
   margin: 5px 0;

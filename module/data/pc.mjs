@@ -50,7 +50,9 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                 knowledge: attributeField()
             }),
             proficiency: new fields.NumberField({ required: true, initial: 1, integer: true }),
-            evasion: new fields.NumberField({ initial: 0, integer: true }),
+            evasion: new fields.SchemaField({
+                bonuses: new fields.NumberField({ initial: 0, integer: true })
+            }),
             experiences: new fields.ArrayField(
                 new fields.SchemaField({
                     id: new fields.StringField({ required: true }),
@@ -338,7 +340,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             //     : attribute.data.actualValue;
         }
 
-        this.evasion = this.class?.system?.evasion ?? 0;
+        this.evasion.value = (this.class?.system?.evasion ?? 0) + this.evasion.bonuses;
         // this.armor.value = this.activeArmor?.baseScore ?? 0;
         const armor = this.armor;
         this.damageThresholds = {
@@ -429,15 +431,37 @@ class DhPCLevelData extends foundry.abstract.DataModel {
                 current: new fields.NumberField({ required: true, integer: true, initial: 1 }),
                 changed: new fields.NumberField({ required: true, integer: true, initial: 1 })
             }),
-            selections: new fields.ArrayField(
+            levelups: new fields.TypedObjectField(
                 new fields.SchemaField({
-                    tier: new fields.NumberField({ required: true, integer: true }),
-                    level: new fields.NumberField({ required: true, integer: true }),
-                    optionKey: new fields.StringField({ required: true }),
-                    type: new fields.StringField({ required: true, choices: LevelOptionType }),
-                    checkboxNr: new fields.NumberField({ required: true, integer: true }),
-                    value: new fields.NumberField({ integer: true }),
-                    amount: new fields.NumberField({ integer: true })
+                    achievements: new fields.SchemaField(
+                        {
+                            experiences: new fields.TypedObjectField(
+                                new fields.SchemaField({
+                                    name: new fields.StringField({ required: true }),
+                                    modifier: new fields.NumberField({ required: true, integer: true })
+                                })
+                            ),
+                            proficiency: new fields.NumberField({ integer: true })
+                        },
+                        { nullable: true, initial: null }
+                    ),
+                    domainCards: new fields.ArrayField(
+                        new fields.SchemaField({
+                            uuid: new fields.StringField({ required: true })
+                        })
+                    ),
+                    selections: new fields.ArrayField(
+                        new fields.SchemaField({
+                            tier: new fields.NumberField({ required: true, integer: true }),
+                            level: new fields.NumberField({ required: true, integer: true }),
+                            optionKey: new fields.StringField({ required: true }),
+                            type: new fields.StringField({ required: true, choices: LevelOptionType }),
+                            checkboxNr: new fields.NumberField({ required: true, integer: true }),
+                            value: new fields.NumberField({ integer: true }),
+                            amount: new fields.NumberField({ integer: true }),
+                            data: new fields.ArrayField(new fields.StringField({ required: true }))
+                        })
+                    )
                 })
             )
         };

@@ -33,5 +33,15 @@
                 </fieldset>
             {{/each}}
         </div>
+        <footer class="levelup-footer">
+            <div class="advancement-information-container">
+                {{localize "DAGGERHEART.Application.LevelUp.notifications.info.remainingAdvancementInfo" choices=this.levelup.levelSelections.totalAvailable}}
+
+                {{#each this.levelup.tiers as |tier key|}}
+                    <div class="advancement-tier-stats">Tier {{tier.tier}}: {{tier.selections.totalAvailable}}</div>
+                {{/each}}
+                <i class="advancement-tier-info fa-solid fa-circle-question" data-tooltip="{{localize "DAGGERHEART.Application.LevelUp.notifications.info.tierAdvancementInfo"}}"></i>
+            </div>
+        </footer>
     </div>
 </section>

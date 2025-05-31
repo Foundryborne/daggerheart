@@ -604,7 +604,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             name: x.actor.name,
             img: x.actor.img,
             difficulty: x.actor.system.difficulty,
-            evasion: x.actor.system.evasion
+            evasion: x.actor.system.evasion.value
         }));
 
         const systemData = {
@@ -645,6 +645,11 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     openLevelUp() {
+        if (!this.document.system.class || !this.document.system.subclass) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.missingClassOrSubclass'));
+            return;
+        }
+
         new DhlevelUp(this.document).render(true);
     }
 

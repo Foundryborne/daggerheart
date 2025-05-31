@@ -1,8 +1,19 @@
 .theme-light {
-    /* Add specifics*/
+    .daggerheart.levelup {
+        .tiers-container {
+            .tier-container {
+                background-image: url('../assets/parchments/dh-parchment-light.png');
+            }
+        }
+    }
 }
 
 .daggerheart.levelup {
+    .window-content {
+        max-height: 960px;
+        overflow: auto;
+    }
+
     div[data-application-part='form'] {
         display: flex;
         flex-direction: column;
@@ -110,10 +121,46 @@
         }
 
         .levelup-card-selection {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
             gap: 40px;
-            padding-right: 120px;
+
+            .card-preview-container {
+                width: calc(100% * (1 / 5));
+            }
+
+            .levelup-domains-selection-container {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                .levelup-domain-selection-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    flex: 1;
+                    position: relative;
+                    cursor: pointer;
+
+                    &.disabled {
+                        pointer-events: none;
+                        opacity: 0.4;
+                    }
+
+                    div {
+                        position: absolute;
+                        text-align: center;
+                        top: 4px;
+                        background: grey;
+                        padding: 0 12px;
+                        border-radius: 6px;
+                    }
+
+                    img {
+                        height: 124px; // Can it be dynamically sized? Won't follow any window resizing like this.
+                    }
+                }
+            }
         }
     }
 

@@ -770,7 +770,11 @@
                     "damageThresholdSevereIncrease": "Severe: {threshold}",
                     "newExperiences": "New Experiences",
                     "experiencePlaceholder": "A new experience..",
-                    "domainCards": "Domain Cards"
+                    "domainCards": "Domain Cards",
+                    "subclass": "Subclass",
+                    "multiclass": "Multiclass",
+                    "traits": "Increased Traits",
+                    "experienceIncreases": "Experience Increases"
                 },
                 "notifications": {
                     "info": {
@@ -781,7 +785,9 @@
                     },
                     "error": {
                         "domainCardWrongDomain": "You don't have access to that Domain",
-                        "domainCardToHighLevel": "The Domain Card is too high level to be selected"
+                        "domainCardToHighLevel": "The Domain Card is too high level to be selected",
+                        "noSelectionsLeft": "Nothing more to select!",
+                        "alreadySelectedClass": "You already have that class!"
                     }
                 }
             },
@@ -944,7 +950,10 @@
                 },
                 "NewItem": "New Item",
                 "NewScar": "New Scar",
-                "DeleteConfirmation": "Are you sure you want to delete the item - {item}?"
+                "DeleteConfirmation": "Are you sure you want to delete the item - {item}?",
+                "Errors": {
+                    "missingClassOrSubclass": "The character doesn't have a class and subclass"
+                }
             },
             "Adversary": {
                 "Description": "Description",

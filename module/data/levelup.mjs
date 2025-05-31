@@ -12,35 +12,36 @@ export class DhLevelup extends foundry.abstract.DataModel {
             totalLevelProgression.push(level);
         }
 
+        const pcSelections = Object.values(pcLevelData.levelups).flatMap(x => x.selections);
         const tiers = tierKeys.reduce((acc, key) => {
             acc[key] = DhLevelupTier.initializeData(
                 levelTierData.tiers[key],
                 maxLevel,
-                pcLevelData.selections.filter(x => x.tier === Number(key)),
+                pcSelections.filter(x => x.tier === Number(key)),
                 pcLevelData.level.changed
             );
 
             return acc;
         }, {});
 
-        const allInitialAchievements = Object.values(tiers).reduce(
-            (acc, tier) => {
-                const levelThreshold = Math.min(...tier.belongingLevels);
+        const allInitialAchievements = Object.values(tiers).reduce((acc, tier) => {
+            const levelThreshold = Math.min(...tier.belongingLevels);
 
-                if (totalLevelProgression.includes(levelThreshold)) {
-                    acc.proficiency += tier.initialAchievements.proficiency;
-                    [...Array(tier.initialAchievements.experience.nr).keys()].forEach(_ => {
-                        acc.newExperiences[foundry.utils.randomID()] = {
-                            name: '',
-                            modifier: tier.initialAchievements.experience.modifier
-                        };
-                    });
-                }
+            if (totalLevelProgression.includes(levelThreshold)) {
+                acc[levelThreshold] = {
+                    newExperiences: {},
+                    proficiency: tier.initialAchievements.proficiency
+                };
+                [...Array(tier.initialAchievements.experience.nr).keys()].forEach(_ => {
+                    acc[levelThreshold].newExperiences[foundry.utils.randomID()] = {
+                        name: '',
+                        modifier: tier.initialAchievements.experience.modifier
+                    };
+                });
+            }
 
-                return acc;
-            },
-            { newExperiences: {}, proficiency: 0 }
-        );
+            return acc;
+        }, {});
 
         const domainCards = Object.keys(tiers).reduce((acc, tierKey) => {
             const tier = tiers[tierKey];
@@ -73,11 +74,9 @@ export class DhLevelup extends foundry.abstract.DataModel {
 
                 return acc;
             }, 0),
-            allInitialAchievements: {
-                newExperiences: allInitialAchievements.newExperiences,
-                proficiency: allInitialAchievements.proficiency
-            },
-            domainCards: domainCards
+            allInitialAchievements: allInitialAchievements,
+            domainCards: domainCards,
+            progressionLevels: totalLevelProgression
         };
     }
 
@@ -87,15 +86,17 @@ export class DhLevelup extends foundry.abstract.DataModel {
         return {
             tiers: new fields.TypedObjectField(new fields.EmbeddedDataField(DhLevelupTier)),
             maxSelections: new fields.NumberField({ required: true, integer: true }),
-            allInitialAchievements: new fields.SchemaField({
-                newExperiences: new fields.TypedObjectField(
-                    new fields.SchemaField({
-                        name: new fields.StringField({ required: true }),
-                        modifier: new fields.NumberField({ required: true, integer: true })
-                    })
-                ),
-                proficiency: new fields.NumberField({ required: true, integer: true })
-            }),
+            allInitialAchievements: new fields.TypedObjectField(
+                new fields.SchemaField({
+                    newExperiences: new fields.TypedObjectField(
+                        new fields.SchemaField({
+                            name: new fields.StringField({ required: true }),
+                            modifier: new fields.NumberField({ required: true, integer: true })
+                        })
+                    ),
+                    proficiency: new fields.NumberField({ required: true, integer: true })
+                })
+            ),
             domainCards: new fields.TypedObjectField(
                 new fields.SchemaField({
                     uuid: new fields.StringField({ required: true, nullable: true, initial: null }),
@@ -104,11 +105,42 @@ export class DhLevelup extends foundry.abstract.DataModel {
                     domainCardSlot: new fields.NumberField({ required: true, integer: true }),
                     path: new fields.StringField({ required: true })
                 })
-            )
-            // advancementSelections: new fields.SchemaField({
-            //     experiences: new fields.SetField(new fields.StringField()),
-            // }),
+            ),
+            progressionLevels: new fields.ArrayField(new fields.NumberField({ required: true, integer: true }))
         };
+    }
+
+    get canLevelUp() {
+        if (this.levelSelections.total !== this.maxSelections) return false;
+
+        const achievementsDone =
+            Object.values(this.allInitialAchievements).every(achievement =>
+                Object.values(achievement.newExperiences).every(experience => experience.name)
+            ) && Object.values(this.domainCards).every(card => card.uuid);
+
+        const selectionData = this.selectionData;
+        let advancementsDone = true;
+        for (var advancement of selectionData) {
+            switch (advancement.type) {
+                case 'trait':
+                case 'experience':
+                case 'domainCard':
+                case 'subclass':
+                    advancementsDone = advancement.amount
+                        ? advancement.data.length === advancement.amount
+                        : advancement.data.length === 1;
+                    break;
+                case 'multiclass':
+                    const classSelected = advancement.data.length === 1;
+                    const domainSelected = advancement.secondaryData;
+                    advancementsDone = classSelected && domainSelected;
+                    break;
+            }
+
+            if (!advancementsDone) break;
+        }
+
+        return achievementsDone && advancementsDone;
     }
 
     get levelSelections() {
@@ -148,12 +180,34 @@ export class DhLevelup extends foundry.abstract.DataModel {
                             checkboxNr: Number(checkboxNr),
                             value: optionSelect.value,
                             amount: optionSelect.amount,
-                            data: selectionObj.data
+                            data: selectionObj.data,
+                            secondaryData: selectionObj.secondaryData
                         };
                     });
                 });
             });
         });
+    }
+
+    get levelupData() {
+        const leveledSelections = this.selectionData.reduce((acc, data) => {
+            if (!acc[data.level]) acc[data.level] = [data];
+            else acc[data.level].push(data);
+
+            return acc;
+        }, {});
+        return this.progressionLevels.reduce((acc, level) => {
+            acc[level] = {
+                achievements: {
+                    experiences: this.allInitialAchievements[level].newExperiences,
+                    proficiency: this.allInitialAchievements[level].proficiency
+                },
+                domainCards: Object.values(this.domainCards).map(card => ({ ...card })),
+                selections: leveledSelections[level]
+            };
+
+            return acc;
+        }, {});
     }
 }
 
@@ -295,6 +349,7 @@ class DhLevelupLevel extends foundry.abstract.DataModel {
                 if (!acc[data.optionKey]) acc[data.optionKey] = {};
                 acc[data.optionKey][data.checkboxNr] = {
                     minCost: optionSelections[data.optionKey].minCost,
+                    minCost: optionSelections[data.optionKey].amount,
                     locked: locked
                 };
 
@@ -313,8 +368,10 @@ class DhLevelupLevel extends foundry.abstract.DataModel {
                     new fields.SchemaField({
                         selected: new fields.BooleanField({ required: true, initial: true }),
                         minCost: new fields.NumberField({ required: true, integer: true }),
+                        amount: new fields.NumberField({ integer: true }),
                         locked: new fields.BooleanField({ required: true, initial: false }),
-                        data: new fields.StringField()
+                        data: new fields.ArrayField(new fields.StringField()),
+                        secondaryData: new fields.StringField()
                     })
                 )
             )

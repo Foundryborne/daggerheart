@@ -27,29 +27,178 @@ export default class DhpActor extends Actor {
         if (newLevel > this.system.levelData.level.current) {
             await this.update({ 'system.levelData.level.changed': newLevel });
         } else {
+            const changes = this.getLevelChangedFeatures(
+                newLevel,
+                this.system.levelData.level.changed,
+                this.system.levelData.levelups
+            );
+
+            for (var domainCard of changes.domainCards) {
+                const uuid = domainCard.uuid ? domainCard.uuid : domainCard.data;
+                const itemCard = await this.items.find(x => x.uuid === uuid);
+                itemCard.delete();
+            }
+
+            var traitsUpdate = changes.traits.reduce((acc, trait) => {
+                acc[`${trait}.data.value`] = this.system.traits[trait].data.value - 1;
+                return acc;
+            }, {});
+
+            const newExperienceKeys = Object.keys(changes.experiences);
+            const experienceUpdate = this.system.experiences.filter(x => !newExperienceKeys.includes(x.id));
+            for (var experience of changes.experienceIncreases) {
+                for (var id of experience.data) {
+                    const existingExperience = experienceUpdate.find(x => x.id === id);
+                    existingExperience.value -= experience.value;
+                }
+            }
+
             const newLevelData = {
                 level: {
                     current: newLevel,
                     changed: newLevel
                 },
-                selections: Object.keys(this.system.levelData.selections).reduce((acc, key) => {
-                    const level = this.system.levelData.selections[key];
-                    if (level.level <= newLevel) {
-                        acc[key] = level;
-                    }
+                levelups: Object.keys(this.system.levelData.levelups).reduce((acc, levelKey) => {
+                    const level = Number(levelKey);
+                    if (level > newLevel) acc[`-=${level}`] = null;
 
                     return acc;
                 }, {})
             };
-            await this.update({ 'system.levelData': newLevelData });
+            await this.update({
+                system: {
+                    'traits': traitsUpdate,
+                    'experiences': experienceUpdate,
+                    'resources': {
+                        health: {
+                            max: this.system.resources.health.max - changes.hitPoint
+                        },
+                        stress: {
+                            max: this.system.resources.stress.max - changes.stress
+                        }
+                    },
+                    'evasion.bonuses': this.system.evasion.bonuses - changes.evasion,
+                    'proficiency': this.system.proficiency - changes.proficiency,
+                    'levelData': newLevelData
+                }
+            });
         }
     }
 
+    getLevelChangedFeatures(startLevel, endLevel, levelData) {
+        const changedFeatures = {
+            hitPoint: 0,
+            stress: 0,
+            evasion: 0,
+            proficiency: 0,
+            domainCards: [],
+            multiclass: null,
+            subclasses: [],
+            traits: [],
+            experiences: [],
+            experienceIncreases: []
+        };
+
+        for (var level = startLevel + 1; level <= endLevel; level++) {
+            const achievements = levelData[level].achievements;
+            const selections = levelData[level].selections.reduce((acc, selection) => {
+                if (!acc[selection.type]) acc[selection.type] = [selection];
+                else acc[selection.type].push(selection);
+
+                return acc;
+            }, {});
+
+            changedFeatures.hitPoint += selections.hitPoint
+                ? selections.hitPoint.reduce((acc, hp) => acc + Number(hp.value), 0)
+                : 0;
+            changedFeatures.stress += selections.stress
+                ? selections.stress.reduce((acc, stress) => acc + Number(stress.value), 0)
+                : 0;
+            changedFeatures.evasion += selections.evasion
+                ? selections.evasion.reduce((acc, evasion) => acc + Number(evasion.value), 0)
+                : 0;
+            changedFeatures.proficiency +=
+                (achievements?.proficiency ?? 0) +
+                (selections.evasion ? selections.evasion.reduce((acc, evasion) => acc + Number(evasion.value), 0) : 0);
+            changedFeatures.domainCards = [
+                ...levelData[level].domainCards,
+                ...(selections.domainCard.flatMap(x => x.data.map(data => ({ ...x, data: data }))) ?? [])
+            ];
+            changedFeatures.traits = selections.trait ? selections.trait.flatMap(x => x.data) : [];
+            changedFeatures.experiences = achievements?.experiences ? achievements.experiences : {};
+            changedFeatures.experienceIncreases = selections.experience ?? [];
+            changedFeatures.subclasses = selections.subclasses ? [] : [];
+            changedFeatures.multiclass = selections.multiclass ? [] : [];
+        }
+
+        return changedFeatures;
+    }
+
     async levelUp(levelupData) {
-        await this.actor.update({
-            'system.levelData': {
-                'level.current': this.system.levelData.level.changed,
-                'selections': levelupData
+        const changes = this.getLevelChangedFeatures(
+            this.system.levelData.level.current,
+            this.system.levelData.level.changed,
+            levelupData
+        );
+
+        for (var card of changes.domainCards) {
+            const fromAchievement = Boolean(card.uuid);
+            const domainCard = await foundry.utils.fromUuid(fromAchievement ? card.uuid : card.data);
+            const newCard = (await this.createEmbeddedDocuments('Item', [domainCard]))[0];
+            if (fromAchievement) {
+                const levelupCard = levelupData[card.level].domainCards.find(
+                    x => x.tier === card.tier && x.level === card.level
+                );
+                if (levelupCard) levelupCard.uuid = newCard.uuid;
+            } else {
+                const levelupCard = levelupData[card.level].selections.find(
+                    x =>
+                        x.tier === card.tier &&
+                        x.level === card.level &&
+                        x.optionKey === card.optionKey &&
+                        x.checkboxNr === card.checkboxNr
+                );
+                if (levelupCard) levelupCard.data.findSplice(x => x === card.data, newCard.uuid);
+            }
+        }
+
+        var traitsUpdate = changes.traits.reduce((acc, trait) => {
+            acc[`${trait}.data.value`] = this.system.traits[trait].data.value + 1;
+            return acc;
+        }, {});
+
+        const experienceUpdate = this.system.experiences;
+        const newExperienceKeys = Object.keys(changes.experiences);
+        for (var key of newExperienceKeys) {
+            const experience = changes.experiences[key];
+            experienceUpdate.push({ id: key, description: experience.name, value: experience.modifier });
+        }
+
+        for (var experience of changes.experienceIncreases) {
+            for (var id of experience.data) {
+                const existingExperience = experienceUpdate.find(x => x.id === id);
+                existingExperience.value += experience.value;
+            }
+        }
+
+        await this.update({
+            system: {
+                'traits': traitsUpdate,
+                'experiences': experienceUpdate,
+                'resources': {
+                    health: {
+                        max: this.system.resources.health.max + changes.hitPoint
+                    },
+                    stress: {
+                        max: this.system.resources.stress.max + changes.stress
+                    }
+                },
+                'evasion.bonuses': this.system.evasion.bonuses + changes.evasion,
+                'proficiency': this.system.proficiency + changes.proficiency,
+                'levelData': {
+                    'level.current': this.system.levelData.level.changed,
+                    'levelups': levelupData
+                }
             }
         });
     }

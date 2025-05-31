@@ -1,4 +1,7 @@
+import { abilities } from '../config/actorConfig.mjs';
+import { domains } from '../config/domainConfig.mjs';
 import { DhLevelup } from '../data/levelup.mjs';
+import { tagifyElement } from '../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -27,7 +30,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             resizable: true
         },
         actions: {
-            save: this.save
+            save: this.save,
+            viewCompendium: this.viewCompendium,
+            selectPreview: this.selectPreview
         },
         form: {
             handler: this.updateForm,
@@ -93,7 +98,27 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     return acc;
                 }, {});
 
-                context.newExperiences = this.levelup.allInitialAchievements.newExperiences;
+                const traits = Object.values(context.advancementChoices.trait ?? {});
+                context.traits = {
+                    values: traits.filter(trait => trait.data.length > 0).flatMap(trait => trait.data),
+                    active: traits.length > 0
+                };
+
+                const experienceIncreases = Object.values(context.advancementChoices.experience ?? {});
+                context.experienceIncreases = {
+                    values: experienceIncreases.filter(trait => trait.data.length > 0).flatMap(trait => trait.data),
+                    active: experienceIncreases.length > 0
+                };
+
+                context.newExperiences = Object.keys(this.levelup.allInitialAchievements).flatMap(level => {
+                    const achievement = this.levelup.allInitialAchievements[level];
+                    return Object.keys(achievement.newExperiences).map(key => ({
+                        ...achievement.newExperiences[key],
+                        level: level,
+                        key: key
+                    }));
+                });
+
                 const allDomainCards = {
                     ...context.advancementChoices.domainCard,
                     ...this.levelup.domainCards
@@ -102,7 +127,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 context.domainCards = [];
                 for (var domainCard of allDomainCardValues) {
-                    const uuid = domainCard.data ?? domainCard.uuid;
+                    const uuid = domainCard.data?.length > 0 ? domainCard.data[0] : domainCard.uuid;
                     const card = uuid ? await foundry.utils.fromUuid(uuid) : { path: domainCard.path };
                     context.domainCards.push({
                         ...(card.toObject?.() ?? card),
@@ -112,6 +137,54 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                         ),
                         limit: domainCard.level
                     });
+                }
+
+                const subclassSelections = context.advancementChoices.subclass?.flatMap(x => x.data) ?? [];
+
+                const multiclassSubclass = this.actor.system.multiclass?.system?.subclasses?.[0];
+                const possibleSubclasses = [
+                    this.actor.system.subclass,
+                    ...(multiclassSubclass ? [multiclassSubclass] : [])
+                ];
+                const selectedSubclasses = possibleSubclasses.filter(x => subclassSelections.includes(x.uuid));
+                context.subclassCards = [];
+                if (context.advancementChoices.subclass?.length > 0) {
+                    for (var subclass of possibleSubclasses) {
+                        const data = await foundry.utils.fromUuid(subclass.uuid);
+                        const selected = selectedSubclasses.some(x => x.uuid === data.uuid);
+                        context.subclassCards.push({
+                            ...data.toObject(),
+                            uuid: data.uuid,
+                            disabled:
+                                !selected && subclassSelections.length === context.advancementChoices.subclass.length,
+                            selected: selected
+                        });
+                    }
+                }
+
+                const multiclasses = Object.values(context.advancementChoices.multiclass ?? {});
+                if (multiclasses?.[0]) {
+                    const data = multiclasses[0];
+                    const path = `tiers.${data.tier}.levels.${data.level}.optionSelections.${data.optionKey}.${data.checkboxNr}.data`;
+                    const multiclass =
+                        data.data.length > 0 ? await foundry.utils.fromUuid(data.data[0]) : { path: path };
+
+                    context.multiclass = {
+                        ...(multiclass.toObject?.() ?? multiclass),
+                        domains:
+                            multiclass?.system?.domains.map(key => {
+                                const domain = domains[key];
+                                const alreadySelected = this.actor.system.class.system.domains.includes(key);
+
+                                return {
+                                    ...domain,
+                                    selected: key === data.secondaryData,
+                                    disabled: (key !== data.secondaryData && data.secondaryData) || alreadySelected
+                                };
+                            }) ?? [],
+                        compendium: 'classes',
+                        limit: 1
+                    };
                 }
 
                 break;
@@ -169,8 +242,52 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         htmlElement
             .querySelectorAll('.selection-checkbox')
             .forEach(element => element.addEventListener('change', this.selectionClick.bind(this)));
+
+        const traitsTagify = htmlElement.querySelector('.levelup-trait-increases');
+        if (traitsTagify) {
+            tagifyElement(traitsTagify, abilities, this.tagifyUpdate('trait').bind(this));
+        }
+
+        const experienceIncreaseTagify = htmlElement.querySelector('.levelup-experience-increases');
+        if (experienceIncreaseTagify) {
+            tagifyElement(
+                experienceIncreaseTagify,
+                this.actor.system.experiences.reduce((acc, experience) => {
+                    acc[experience.id] = { label: experience.description };
+
+                    return acc;
+                }, {}),
+                this.tagifyUpdate('experience').bind(this)
+            );
+        }
+
         this._dragDrop.forEach(d => d.bind(htmlElement));
     }
+
+    tagifyUpdate =
+        type =>
+        async (_, { option, removed }) => {
+            /* Needs to take Amount into account to allow multiple to be stored in the same option. Array structure? */
+            const updatePath = this.levelup.selectionData.reduce((acc, data) => {
+                if (data.optionKey === type && removed ? data.data.includes(option) : data.data.length < data.amount) {
+                    return `tiers.${data.tier}.levels.${data.level}.optionSelections.${data.optionKey}.${data.checkboxNr}.data`;
+                }
+
+                return acc;
+            }, null);
+
+            if (!updatePath) {
+                ui.notifications.error(
+                    game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.noSelectionsLeft')
+                );
+                return;
+            }
+
+            const currentData = foundry.utils.getProperty(this.levelup, updatePath);
+            const updatedData = removed ? currentData.filter(x => x !== option) : [...currentData, option];
+            await this.levelup.updateSource({ [updatePath]: updatedData });
+            this.render();
+        };
 
     static async updateForm(event, _, formData) {
         const { levelup } = foundry.utils.expandObject(formData.object);
@@ -181,7 +298,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
-        if (event.currentTarget.parentElement?.classList?.contains('domain-cards')) {
+        if (event.target.parentElement?.classList?.contains('domain-cards')) {
             if (item.type === 'domainCard') {
                 if (!this.actor.system.class.system.domains.includes(item.system.domain)) {
                     // Also needs to check for multiclass adding a new domain
@@ -191,15 +308,25 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     return;
                 }
 
-                if (item.system.level > Number(event.currentTarget.dataset.limit)) {
+                if (item.system.level > Number(event.target.dataset.limit)) {
                     ui.notifications.error(
                         game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardToHighLevel')
                     );
                     return;
                 }
 
-                const achievementCard = event.currentTarget.dataset.path.startsWith('domainCards');
-                await this.levelup.updateSource({ [event.currentTarget.dataset.path]: item.uuid });
+                await this.levelup.updateSource({ [event.target.dataset.path]: item.uuid });
+                this.render();
+            }
+        } else if (event.target.parentElement?.classList?.contains('multiclass-cards')) {
+            if (item.type === 'class') {
+                if (item.name === this.actor.system.class.name) {
+                    ui.notifications.error(
+                        game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.alreadySelectedClass')
+                    );
+                    return;
+                }
+                await this.levelup.updateSource({ [event.target.dataset.path]: item.uuid });
                 this.render();
             }
         }
@@ -260,9 +387,27 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         this.render();
     }
 
-    static async save() {
-        await this.actor.levelUp(this.levelup.selectionData);
+    static async viewCompendium(_, button) {
+        (await game.packs.get(`daggerheart.${button.dataset.compendium}`))?.render(true);
+    }
 
+    static async selectPreview(_, button) {
+        const remove = button.dataset.selected;
+        const selectionData = Object.values(this.levelup.selectionData);
+        const option = remove
+            ? selectionData.find(x => x.type === 'subclass' && x.data.includes(button.dataset.uuid))
+            : selectionData.find(x => x.type === 'subclass' && x.data.length === 0);
+        if (!option) {
+            return; // Notification?
+        }
+
+        const path = `tiers.${option.tier}.levels.${option.level}.optionSelections.${option.optionKey}.${option.checkboxNr}.data`;
+        await this.levelup.updateSource({ [path]: remove ? [] : button.dataset.uuid });
+        this.render();
+    }
+
+    static async save() {
+        await this.actor.levelUp(this.levelup.levelupData);
         this.close();
     }
 }
