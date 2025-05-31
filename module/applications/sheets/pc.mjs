@@ -1066,10 +1066,12 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                         await itemObject.update({ 'system.active': true });
                         break;
                     case 'inventory-weapon-section':
+                        /* FIXME inventoryWeapon is no longer a field
                         const existingInventoryWeapon = this.document.items.find(x => x.system.inventoryWeapon);
                         await existingInventoryWeapon?.update({ 'system.inventoryWeapon': false });
                         await itemObject.update({ 'system.inventoryWeapon': true });
                         break;
+                        */
                     case 'inventory-armor-section':
                         const existingInventoryArmor = this.document.items.find(x => x.system.inventoryArmor);
                         await existingInventoryArmor?.update({ 'system.inventoryArmor': false });

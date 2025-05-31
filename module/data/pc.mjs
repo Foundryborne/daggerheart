@@ -281,17 +281,6 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         }
     }
 
-    get inventoryWeapons() {
-        const inventoryWeaponFirst = this.parent.items.find(x => x.type === 'weapon' && x.system.inventoryWeapon === 1);
-        const inventoryWeaponSecond = this.parent.items.find(
-            x => x.type === 'weapon' && x.system.inventoryWeapon === 2
-        );
-        return {
-            first: this.#weaponData(inventoryWeaponFirst),
-            second: this.#weaponData(inventoryWeaponSecond)
-        };
-    }
-
     get totalAttributeMarks() {
         return Object.keys(this.levelData.levelups).reduce((nr, level) => {
             const nrAttributeMarks = Object.keys(this.levelData.levelups[level]).reduce((nr, tier) => {

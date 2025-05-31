@@ -1,4 +1,5 @@
 import BaseDataItem from "./base.mjs";
+import FormulaField from "../fields/formulaField.mjs";
 
 export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
@@ -18,10 +19,6 @@ export default class DHWeapon extends BaseDataItem {
             ...super.defineSchema(),
             equipped: new fields.BooleanField({ initial: false }),
 
-            //TODO: NEED REVISION
-            //It makes more sense to control the inventory from the actor
-            inventoryWeapon: new fields.NumberField({ initial: null, nullable: true, integer: true }),
-
             //SETTINGS
             secondary: new fields.BooleanField({ initial: false }),
             trait: new fields.StringField({ required: true, choices: SYSTEM.ACTOR.abilities, initial: 'agility' }),
@@ -30,8 +27,7 @@ export default class DHWeapon extends BaseDataItem {
 
             //DAMAGE
             damage: new fields.SchemaField({
-                //TODO: CREATE FORMULA FIELD
-                value: new fields.StringField({ initial: 'd6' }),
+                value: new FormulaField({ initial: 'd6' }),
                 type: new fields.StringField({
                     required: true,
                     choices: SYSTEM.GENERAL.damageTypes,
