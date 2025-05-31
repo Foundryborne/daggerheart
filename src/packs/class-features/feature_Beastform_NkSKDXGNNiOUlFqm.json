@@ -22,8 +22,8 @@
     "type": "class"
   },
   "effects": [],
-  "folder": null,
-  "sort": 0,
+  "folder": "l94HTIXSvdZG3zIh",
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3
@@ -37,8 +37,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1748028817729,
-    "modifiedTime": 1748028856597,
-    "lastModifiedBy": "ei8OkswTzyDp4IGC"
+    "modifiedTime": 1748710083736,
+    "lastModifiedBy": "MxkU9FQYKmOxbdzm"
   },
   "_key": "!items!NkSKDXGNNiOUlFqm"
 }

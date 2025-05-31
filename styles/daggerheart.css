@@ -1770,6 +1770,10 @@
 .daggerheart.chat.domain-card .ability-card-footer button:nth-of-type(n + 3) {
   margin-top: 2px;
 }
+.daggerheart.chat.domain-card .ability-card-footer .ability-card-action-cost {
+  margin: auto;
+  font-size: 1.5em;
+}
 .daggerheart.chat.domain-card img {
   width: 80px;
 }

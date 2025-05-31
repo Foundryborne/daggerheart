@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Midnight",
+  "color": "#26252b",
+  "sorting": "a",
+  "_id": "tgwSE1t5B0Ka10Xh",
+  "description": "",
+  "sort": 600000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748717122329,
+    "modifiedTime": 1748717766758,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_key": "!folders!tgwSE1t5B0Ka10Xh"
+}
