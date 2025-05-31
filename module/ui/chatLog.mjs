@@ -36,7 +36,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             element.addEventListener('click', event => this.selectAdvantage.bind(this)(event, data.message))
         );
         html.querySelectorAll('.ability-use-button').forEach(element =>
-            element.addEventListener('click', this.abilityUseButton.bind(this)(event, data.message))
+            element.addEventListener('click', event => this.abilityUseButton.bind(this)(event, data.message))
         );
     };
 
@@ -134,6 +134,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         event.stopPropagation();
 
         const action = message.system.actions[Number.parseInt(event.currentTarget.dataset.index)];
-        await game.user.character.useAction(action);
+        const actor = game.actors.get(message.system.origin);
+        await actor.useAction(action);
     };
 }

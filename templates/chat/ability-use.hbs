@@ -10,6 +10,7 @@
             <button class="ability-use-button" data-index="{{index}}">
                 {{action.name}}
             </button>
+            {{#if action.cost.value}}<div class="ability-card-action-cost">{{action.cost.value}} {{action.cost.type}}</div>{{/if}}            
         {{/each}}
     </footer>
 </div>

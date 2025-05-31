@@ -97,6 +97,9 @@ Hooks.once('init', () => {
 
     game.socket.on(`system.${SYSTEM.id}`, handleSocketEvent);
 
+    // Make Compendium Dialog resizable
+    foundry.applications.sidebar.apps.Compendium.DEFAULT_OPTIONS.window.resizable = true;
+
     registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
 

@@ -16,6 +16,7 @@
         </div>  
     </div>
     <div class="abilities-text-container domain">
+        <div ><i data-action="removeCard" data-type="{{card.type}}" data-key="{{card.uuid}}" class="fas fa-trash icon-button row-icon"></i></div>
         <div class="abilities-card-title">{{card.name}}</div>
         {{#if inVault}}
             <div class="abilities-card-description">{{{card.system.effect}}}</div>
