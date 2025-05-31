@@ -2719,6 +2719,10 @@ div.daggerheart.views.multiclass {
   --secondary-color-fear: rgba(9, 71, 179, 0.75);
   --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
+#resources {
+  min-height: calc(var(--header-height) + 4rem);
+  min-width: 4rem;
+}
 #resources .window-content {
   padding: 0.5rem;
 }
@@ -2730,14 +2734,13 @@ div.daggerheart.views.multiclass {
 }
 #resources .window-content #resource-fear i {
   font-size: var(--font-size-18);
-  flex: 1 1 calc(25% - 0.25rem);
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   aspect-ratio: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 0.5rem;
+  width: 3rem;
   background-color: var(--primary-color-fear);
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
@@ -2812,7 +2815,8 @@ div.daggerheart.views.multiclass {
   border-color: transparent;
 }
 #resources:not(:hover):not(.minimized) header,
-#resources:not(:hover):not(.minimized) .controls {
+#resources:not(:hover):not(.minimized) .controls,
+#resources:not(:hover):not(.minimized) .window-resize-handle {
   visibility: hidden;
 }
 .application.sheet.daggerheart.dh-style.feature .item-sheet-header {

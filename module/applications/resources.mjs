@@ -17,18 +17,24 @@ export default class Resources extends HandlebarsApplicationMixin(ApplicationV2)
   /** @inheritDoc */
   static DEFAULT_OPTIONS = {
     id: "resources",
-    classes: ["flexcol"],
+    classes: [],
     tag: "div",
     window: {
         frame: true,
         title: "Fear",
-        positioned: true
+        positioned: true,
+        resizable: true
     },
     actions: {
         setFear: Resources.setFear,
         increaseFear: Resources.increaseFear 
     },
-    position: {}
+    position: {
+      width: 222,
+      height: 222,
+      // top: "200px",
+      // left: "120px"
+    }
   };
 
   /** @override */
@@ -65,7 +71,7 @@ export default class Resources extends HandlebarsApplicationMixin(ApplicationV2)
 
   /** @override */
   async _preFirstRender(context, options) {
-    options.position = game.user.getFlag(SYSTEM.id, 'app.resources.position') ?? {};
+    options.position = game.user.getFlag(SYSTEM.id, 'app.resources.position') ?? Resources.DEFAULT_OPTIONS.position;
   }
 
   /** @override */
