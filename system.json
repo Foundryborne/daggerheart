@@ -438,7 +438,6 @@
     "documentTypes": {
         "Actor": {
             "pc": {},
-            "npc": {},
             "adversary": {},
             "environment": {}
         },

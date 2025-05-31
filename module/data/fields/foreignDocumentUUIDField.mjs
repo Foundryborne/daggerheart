@@ -1,8 +1,9 @@
 /**
- * A class extending DocumentUUIDField to allow selecting a foreign document reference
+ * A subclass of {@link foundry.data.fields.DocumentUUIDField} to allow selecting a foreign document reference
  * that resolves to either the document, the index(for items in compenidums) or the UUID string.
  */
 export default class ForeignDocumentUUIDField extends foundry.data.fields.DocumentUUIDField {
+  /** @inheritdoc */
   static get _defaults() {
     return foundry.utils.mergeObject(super._defaults, {
       nullable: true,
@@ -11,6 +12,7 @@ export default class ForeignDocumentUUIDField extends foundry.data.fields.Docume
     });
   }
 
+  /**@override */
   initialize(value, _model, _options = {}) {
     if (this.idOnly) return value;
     return () => {
@@ -23,7 +25,7 @@ export default class ForeignDocumentUUIDField extends foundry.data.fields.Docume
       }
     };
   }
-
+  /**@override */
   toObject(value) {
     return value?.uuid ?? value;
   }
