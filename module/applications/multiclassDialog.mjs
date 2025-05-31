@@ -67,6 +67,8 @@ export default class DhpMulticlassDialog extends HandlebarsApplicationMixin(Appl
             this.data.subclass = null;
             this.data.domain = null;
             this.subclassChoices = this.data.class ? this.data.class.system.subclasses : [];
+            
+            //FIXME
             this.domainChoices = this.data.class
                 ? this.data.class.system.domains.map(x => {
                       const config = SYSTEM.DOMAIN.domains[x];

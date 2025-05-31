@@ -203,6 +203,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         if (!context.abilityScoreArray.includes(0)) context.abilityScoreArray.push({ name: 0, value: 0 });
         context.abilityScoresFinished = context.abilityScoreArray.every(x => x.value === 0);
 
+        //FIXME: 
         context.domains = this.document.system.class
             ? {
                   first: this.document.system.class.system.domains[0]

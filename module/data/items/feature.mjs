@@ -15,7 +15,6 @@ export default class DHFeature extends BaseDataItem {
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
-        console.log(SYSTEM.EFFECTS.applyLocations)
         return {
             ...super.defineSchema(),
             type: new fields.StringField({ choices: SYSTEM.ITEM.featureTypes }),

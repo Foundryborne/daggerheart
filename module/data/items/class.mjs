@@ -16,10 +16,7 @@ export default class DHClass extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-
-            //TODO: USE SetField instead ArrayField
-            //set choices for this field
-            domains: new fields.ArrayField(new fields.StringField({})),
+            domains: new fields.ArrayField(new fields.StringField(), { max: 2 }),
 
             classItems: new fields.ArrayField(
                 //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
@@ -39,7 +36,6 @@ export default class DHClass extends BaseDataItem {
                 })
             ),
 
-            //TODO: use SetField intead of ArrayField
             subclasses: new fields.ArrayField(
                 //TODO: use DocumentUUIDField, DocumentIdField or create LocalDocumentField
                 new fields.SchemaField({
@@ -128,5 +124,11 @@ export default class DHClass extends BaseDataItem {
 
     get multiclassTier() {
         return getTier(this.multiclass, true);
+    }
+
+    /** @inheritDoc */
+    prepareBaseData() {
+        super.prepareBaseData()
+        this.domains = this.domains.map(k => SYSTEM.DOMAIN.domains[k]);
     }
 }
