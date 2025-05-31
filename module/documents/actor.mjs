@@ -307,10 +307,20 @@ export default class DhpActor extends Actor {
         let update = {};
         switch (type) {
             case SYSTEM.GENERAL.healingTypes.health.id:
-                update = { 'system.resources.health.value': Math.max(this.system.resources.health.value - healing, 0) };
+                update = {
+                    'system.resources.health.value': Math.min(
+                        this.system.resources.health.value + healing,
+                        this.system.resources.health.max
+                    )
+                };
                 break;
             case SYSTEM.GENERAL.healingTypes.stress.id:
-                update = { 'system.resources.stress.value': Math.max(this.system.resources.stress.value - healing, 0) };
+                update = {
+                    'system.resources.stress.value': Math.min(
+                        this.system.resources.stress.value + healing,
+                        this.system.resources.stress.max
+                    )
+                };
                 break;
         }
 
@@ -343,7 +353,10 @@ export default class DhpActor extends Actor {
         }
 
         if (action.cost.type != null && action.cost.value != null) {
-            if (this.system.resources[action.cost.type].value < action.cost.value - 1) {
+            if (
+                this.system.resources[action.cost.type].value - action.cost.value <=
+                this.system.resources[action.cost.type].min
+            ) {
                 ui.notifications.error(game.i18n.localize(`Insufficient ${action.cost.type} to use this ability`));
                 return;
             }

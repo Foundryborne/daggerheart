@@ -37,9 +37,10 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             attackRoll: this.attackRoll,
             tabToLoadout: () => this.domainCardsTab(false),
             tabToVault: () => this.domainCardsTab(true),
-            sendToVault: (_, button) => this.moveDomainCard(button, true),
-            sentToLoadout: (_, button) => this.moveDomainCard(button, false),
+            sendToVault: this.moveDomainCard,
+            sendToLoadout: this.moveDomainCard,
             useDomainCard: this.useDomainCard,
+            removeCard: this.removeDomainCard,
             selectClass: this.selectClass,
             selectSubclass: this.selectSubclass,
             selectAncestry: this.selectAncestry,
@@ -640,7 +641,8 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    static async moveDomainCard(button, toVault) {
+    static async moveDomainCard(_, button) {
+        const toVault = button.dataset.action === 'sendToVault';
         if (!toVault && this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout) {
             return;
         }
@@ -655,6 +657,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
             title: `${game.i18n.localize('DAGGERHEART.Chat.DomainCard.Title')} - ${capitalize(button.dataset.domain)}`,
+            origin: this.document.id,
             img: card.img,
             name: card.name,
             description: card.system.effect,
@@ -671,6 +674,13 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         });
 
         cls.create(msg.toObject());
+    }
+
+    static async removeDomainCard(_, button) {
+        if (button.dataset.type === 'domainCard') {
+            const card = this.document.items.find(x => x.uuid === button.dataset.key);
+            await card.delete();
+        }
     }
 
     static async selectClass() {
@@ -872,6 +882,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
             title: game.i18n.localize('DAGGERHEART.Chat.FeatureTitle'),
+            origin: this.document.id,
             img: item.img,
             name: item.name,
             description: item.system.description,
@@ -902,6 +913,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                     : type === 'community'
                       ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.CommunityTitle')
                       : game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+            origin: this.document.id,
             img: item.img,
             name: item.name,
             description: item.system.description,
@@ -929,14 +941,20 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const title = `${item.name} - ${game.i18n.localize(`DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`)}`;
 
         const cls = getDocumentClass('ChatMessage');
+        const systemData = {
+            title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+            origin: this.document.id,
+            name: title,
+            img: item.img,
+            description: ability.description
+        };
         const msg = new cls({
+            type: 'abilityUse',
             user: game.user.id,
+            system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/chat/ability-use.hbs',
-                {
-                    title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
-                    card: { name: title, img: item.img, description: ability.description }
-                }
+                systemData
             )
         });
 
@@ -948,14 +966,19 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const item = this.document.items.find(x => x.uuid === button.dataset.id);
 
         const cls = getDocumentClass('ChatMessage');
+        const systemData = {
+            title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+            origin: this.document.id,
+            name: item.name,
+            img: item.img,
+            description: item.system.description
+        };
         const msg = new cls({
             user: game.user.id,
+            system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/chat/ability-use.hbs',
-                {
-                    title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
-                    card: { name: item.name, img: item.img, description: item.system.description }
-                }
+                systemData
             )
         });
 

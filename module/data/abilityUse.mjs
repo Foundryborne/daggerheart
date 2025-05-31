@@ -4,11 +4,12 @@ export default class DhpAbilityUse extends foundry.abstract.TypeDataModel {
 
         return {
             title: new fields.StringField({}),
+            origin: new fields.StringField({}),
             img: new fields.StringField({}),
             name: new fields.StringField({}),
             description: new fields.StringField({}),
             actions: new fields.ArrayField(
-                new fields.SchemaField({
+                new fields.ObjectField({
                     name: new fields.StringField({}),
                     damage: new fields.SchemaField({
                         type: new fields.StringField({}),
@@ -19,11 +20,11 @@ export default class DhpAbilityUse extends foundry.abstract.TypeDataModel {
                         value: new fields.StringField({})
                     }),
                     cost: new fields.SchemaField({
-                        type: new fields.StringField({ nullable: true }),
-                        value: new fields.NumberField({ nullable: true })
+                        type: new fields.StringField({}),
+                        value: new fields.NumberField({})
                     }),
                     target: new fields.SchemaField({
-                        type: new fields.StringField({})
+                        type: new fields.StringField({ nullable: true })
                     })
                 })
             )
