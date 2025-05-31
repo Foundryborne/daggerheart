@@ -443,16 +443,36 @@
             "environment": {}
         },
         "Item": {
-            "ancestry": {},
-            "community": {},
-            "class": {},
-            "subclass": {},
-            "feature": {},
-            "domainCard": {},
-            "miscellaneous": {},
-            "consumable": {},
-            "weapon": {},
-            "armor": {}
+            "ancestry": {
+                "htmlFields": ["description"]
+            },
+            "community": {
+                "htmlFields": ["description"]
+            },
+            "class": {
+                "htmlFields": ["description"]
+            },
+            "subclass": {
+                "htmlFields": ["description"]
+            },
+            "feature": {
+                "htmlFields": ["description"]
+            },
+            "domainCard": {
+                "htmlFields": ["description"]
+            },
+            "miscellaneous": {
+                "htmlFields": ["description"]
+            },
+            "consumable": {
+                "htmlFields": ["description"]
+            },
+            "weapon": {
+                "htmlFields": ["description"]
+            },
+            "armor": {
+                "htmlFields": ["description"]
+            }
         },
         "Combat": {
             "combat": {}
