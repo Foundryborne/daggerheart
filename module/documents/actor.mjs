@@ -33,6 +33,12 @@ export default class DhpActor extends Actor {
         if (newLevel > this.system.levelData.level.current) {
             await this.update({ 'system.levelData.level.changed': newLevel });
         } else {
+            const levelTiers = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers);
+            const passedLevelTiers = Object.values(levelTiers.tiers)
+                .filter(x => newLevel <= x.levels.end)
+                .map(x => x.levels.start);
+            const firstPassedLevelTier = passedLevelTiers.length > 0 ? Math.min(...passedLevelTiers) : null;
+
             const changes = this.getLevelChangedFeatures(
                 newLevel,
                 this.system.levelData.level.changed,
@@ -46,7 +52,16 @@ export default class DhpActor extends Actor {
             }
 
             var traitsUpdate = changes.traits.reduce((acc, trait) => {
-                acc[`${trait}.bonus`] = this.system.traits[trait].bonus - 1;
+                const currentTrait = this.system.traits[trait.data];
+                acc[trait.data] = {
+                    bonus: currentTrait.bonus - 1,
+                    tierMarked: trait.first
+                        ? !firstPassedLevelTier || trait.level <= firstPassedLevelTier
+                            ? true
+                            : false
+                        : currentTrait.tierMarked
+                };
+
                 return acc;
             }, {});
 
@@ -144,7 +159,18 @@ export default class DhpActor extends Actor {
                     ...(selections.domainCard?.flatMap(x => x.data.map(data => ({ ...x, data: data }))) ?? [])
                 ]
             );
-            changedFeatures.traits.push(...(selections.trait ? selections.trait.flatMap(x => x.data) : []));
+            changedFeatures.traits.push(
+                ...(selections.trait
+                    ? selections.trait.flatMap(x =>
+                          x.data.map(data => ({
+                              level: x.level,
+                              data: data,
+                              first: level === startLevel,
+                              last: level === endLevel
+                          }))
+                      )
+                    : [])
+            );
             changedFeatures.experiences = Object.keys(achievements?.experiences ? achievements.experiences : {}).reduce(
                 (acc, key) => {
                     acc[key] = achievements.experiences[key];
@@ -162,6 +188,12 @@ export default class DhpActor extends Actor {
     }
 
     async levelUp(levelupData) {
+        const levelTiers = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers);
+        const passedLevelTiers = Object.values(levelTiers.tiers)
+            .filter(x => this.system.levelData.level.changed >= x.levels.start)
+            .map(x => x.levels.start);
+        const lastPassedLevelTier = passedLevelTiers.length > 0 ? Math.max(...passedLevelTiers) : null;
+
         const changes = this.getLevelChangedFeatures(
             this.system.levelData.level.current,
             this.system.levelData.level.changed,
@@ -191,7 +223,15 @@ export default class DhpActor extends Actor {
         }
 
         var traitsUpdate = changes.traits.reduce((acc, trait) => {
-            acc[`${trait}.bonus`] = this.system.traits[trait].bonus + 1;
+            const currentTrait = this.system.traits[trait.data];
+            acc[`${trait.data}`] = {
+                bonus: currentTrait.bonus + 1,
+                tierMarked: trait.last
+                    ? !lastPassedLevelTier || trait.level >= lastPassedLevelTier
+                        ? true
+                        : false
+                    : currentTrait.tierMarked
+            };
             return acc;
         }, {});
 

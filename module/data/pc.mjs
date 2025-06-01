@@ -6,7 +6,8 @@ const fields = foundry.data.fields;
 const attributeField = () =>
     new fields.SchemaField({
         bonus: new fields.NumberField({ initial: 0, integer: true }),
-        base: new fields.NumberField({ initial: 0, integer: true })
+        base: new fields.NumberField({ initial: 0, integer: true }),
+        tierMarked: new fields.BooleanField({ required: true, initial: false })
     });
 
 const resourceField = max =>
