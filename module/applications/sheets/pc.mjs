@@ -201,7 +201,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         context.storyEditor = this.storyEditor;
         context.multiclassFeatureSetSelected = this.multiclassFeatureSetSelected;
 
-        const selectedAttributes = Object.values(this.document.system.traits).map(x => x.data.base);
+        const selectedAttributes = Object.values(this.document.system.traits).map(x => x.base);
         context.abilityScoreArray = JSON.parse(
             await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray)
         ).reduce((acc, x) => {
@@ -492,7 +492,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     async attributeChange(event) {
-        const path = `system.traits.${event.currentTarget.dataset.attribute}.data.base`;
+        const path = `system.traits.${event.currentTarget.dataset.attribute}.base`;
         await this.document.update({ [path]: event.currentTarget.value });
     }
 
@@ -557,8 +557,8 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static async toggleHP(_, button) {
         const healthValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.resources.health.value >= healthValue ? healthValue - 1 : healthValue;
-        await this.document.update({ 'system.resources.health.value': newValue });
+        const newValue = this.document.system.resources.hitPoints.value >= healthValue ? healthValue - 1 : healthValue;
+        await this.document.update({ 'system.resources.hitPoints.value': newValue });
     }
 
     static async toggleStress(_, button) {
@@ -589,7 +589,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             type: weapon.system.damage.type,
             bonusDamage: this.document.system.bonuses.damage
         };
-        const modifier = this.document.system.traits[weapon.system.trait].data.value;
+        const modifier = this.document.system.traits[weapon.system.trait].value;
 
         const { roll, hope, fear, advantage, disadvantage, modifiers, bonusDamageString } =
             await this.document.dualityRoll(
@@ -799,7 +799,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async makeDeathMove() {
-        if (this.document.system.resources.health.value === this.document.system.resources.health.max) {
+        if (this.document.system.resources.hitPoints.value === this.document.system.resources.hitPoints.max) {
             await new DhpDeathMove(this.document).render(true);
             await this.minimize();
         }

@@ -5,26 +5,24 @@ const fields = foundry.data.fields;
 
 const attributeField = () =>
     new fields.SchemaField({
-        data: new fields.SchemaField({
-            bonus: new fields.NumberField({ initial: 0, integer: true }),
-            base: new fields.NumberField({ initial: 0, integer: true })
-        })
+        bonus: new fields.NumberField({ initial: 0, integer: true }),
+        base: new fields.NumberField({ initial: 0, integer: true })
+    });
+
+const resourceField = max =>
+    new fields.SchemaField({
+        value: new fields.NumberField({ initial: 0, integer: true }),
+        bonus: new fields.NumberField({ initial: 0, integer: true }),
+        min: new fields.NumberField({ initial: 0, integer: true }),
+        baseMax: new fields.NumberField({ initial: max, integer: true })
     });
 
 export default class DhpPC extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         return {
             resources: new fields.SchemaField({
-                health: new fields.SchemaField({
-                    value: new fields.NumberField({ initial: 0, integer: true }),
-                    min: new fields.NumberField({ initial: 0, integer: true }),
-                    max: new fields.NumberField({ initial: 6, integer: true })
-                }),
-                stress: new fields.SchemaField({
-                    value: new fields.NumberField({ initial: 0, integer: true }),
-                    min: new fields.NumberField({ initial: 0, integer: true }),
-                    max: new fields.NumberField({ initial: 6, integer: true })
-                }),
+                hitPoints: resourceField(6),
+                stress: resourceField(6),
                 hope: new fields.SchemaField({
                     value: new fields.NumberField({ initial: -1, integer: true }), // FIXME. Logic is gte and needs -1 in PC/Hope. Change to 0
                     min: new fields.NumberField({ initial: 0, integer: true })
@@ -49,9 +47,12 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                 presence: attributeField(),
                 knowledge: attributeField()
             }),
-            proficiency: new fields.NumberField({ required: true, initial: 1, integer: true }),
+            proficiency: new fields.SchemaField({
+                base: new fields.NumberField({ required: true, initial: 1, integer: true }),
+                bonus: new fields.NumberField({ required: true, initial: 0, integer: true })
+            }),
             evasion: new fields.SchemaField({
-                bonuses: new fields.NumberField({ initial: 0, integer: true })
+                bonus: new fields.NumberField({ initial: 0, integer: true })
             }),
             experiences: new fields.ArrayField(
                 new fields.SchemaField({
@@ -96,12 +97,6 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             }),
             levelData: new fields.EmbeddedDataField(DhPCLevelData)
         };
-    }
-
-    get canLevelUp() {
-        //  return Object.values(this.levels.data).some(x => !x.completed);
-        // return this.levelData.currentLevel !== this.levelData.changedLevel;
-        return true;
     }
 
     get tier() {
@@ -236,42 +231,6 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         }
     }
 
-    get inventoryWeapons() {
-        const inventoryWeaponFirst = this.parent.items.find(x => x.type === 'weapon' && x.system.inventoryWeapon === 1);
-        const inventoryWeaponSecond = this.parent.items.find(
-            x => x.type === 'weapon' && x.system.inventoryWeapon === 2
-        );
-        return {
-            first: this.#weaponData(inventoryWeaponFirst),
-            second: this.#weaponData(inventoryWeaponSecond)
-        };
-    }
-
-    // get totalAttributeMarks() {
-    //     return Object.keys(this.levelData.levelups).reduce((nr, level) => {
-    //         const nrAttributeMarks = Object.keys(this.levelData.levelups[level]).reduce((nr, tier) => {
-    //             nr += Object.keys(this.levelData.levelups[level][tier]?.attributes ?? {}).length * 2;
-
-    //             return nr;
-    //         }, 0);
-
-    //         nr.push(...Array(nrAttributeMarks).fill(Number.parseInt(level)));
-
-    //         return nr;
-    //     }, []);
-    // }
-
-    // get availableAttributeMarks() {
-    //     const attributeMarks = Object.keys(this.attributes).flatMap(y => this.attributes[y].levelMarks);
-    //     return this.totalAttributeMarks.reduce((acc, attribute) => {
-    //         if (!attributeMarks.findSplice(x => x === attribute)) {
-    //             acc.push(attribute);
-    //         }
-
-    //         return acc;
-    //     }, []);
-    // }
-
     get effects() {
         return this.parent.items.reduce((acc, item) => {
             const effects = item.system.effectData;
@@ -322,19 +281,24 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             : null;
     }
 
+    prepareBaseData() {
+        this.resources.hitPoints.max = this.resources.hitPoints.baseMax + this.resources.hitPoints.bonus;
+        this.resources.stress.max = this.resources.stress.baseMax + this.resources.stress.bonus;
+        this.evasion.value = (this.class?.system?.evasion ?? 0) + this.evasion.bonus;
+        this.proficiency.value = this.proficiency.base + this.proficiency.bonus;
+
+        for (var attributeKey in this.traits) {
+            const attribute = this.traits[attributeKey];
+            attribute.value = attribute.base + attribute.bonus;
+        }
+    }
+
     prepareDerivedData() {
         this.resources.hope.max = 6 - this.story.scars.length;
         if (this.resources.hope.value >= this.resources.hope.max) {
             this.resources.hope.value = Math.max(this.resources.hope.max - 1, 0);
         }
 
-        for (var attributeKey in this.traits) {
-            const attribute = this.traits[attributeKey];
-            attribute.data.value = attribute.data.base + attribute.data.bonus;
-        }
-
-        this.evasion.value = (this.class?.system?.evasion ?? 0) + this.evasion.bonuses;
-        // this.armor.value = this.activeArmor?.baseScore ?? 0;
         const armor = this.armor;
         this.damageThresholds = {
             major: armor
@@ -345,28 +309,8 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                 : this.levelData.level.current * 2
         };
 
-        this.applyLevels();
         this.applyEffects();
     }
-
-    computeDamageThresholds() {
-        // TODO: missing weapon features and domain cards calculation
-        if (!this.armor) {
-            return {
-                major: this.levelData.currentLevel,
-                severe: this.levelData.currentLevel * 2
-            };
-        }
-        const {
-            baseThresholds: { major = 0, severe = 0 }
-        } = this.armor.system;
-        return {
-            major: major + this.levelData.currentLevel,
-            severe: severe + this.levelData.currentLevel
-        };
-    }
-
-    applyLevels() {}
 
     applyEffects() {
         const effects = this.effects;
@@ -375,10 +319,10 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             for (var effect of effectType) {
                 switch (key) {
                     case SYSTEM.EFFECTS.effectTypes.health.id:
-                        this.resources.health.max += effect.value.valueData.value;
+                        this.resources.hitPoints.bonus += effect.value.valueData.value;
                         break;
                     case SYSTEM.EFFECTS.effectTypes.stress.id:
-                        this.resources.stress.max += effect.value.valueData.value;
+                        this.resources.stress.bonus += effect.value.valueData.value;
                         break;
                     case SYSTEM.EFFECTS.effectTypes.damage.id:
                         this.bonuses.damage.push({
@@ -403,10 +347,6 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             !twoHanded && (primary?.system?.burden === 'oneHanded' || secondary?.system?.burden === 'oneHanded');
 
         return twoHanded ? 'twoHanded' : oneHanded ? 'oneHanded' : null;
-    }
-
-    isSameTier(level) {
-        return this.#getTier(this.levelData.currentLevel) === this.#getTier(level);
     }
 
     #getTier(level) {

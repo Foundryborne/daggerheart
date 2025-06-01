@@ -46,7 +46,7 @@ export default class DhpActor extends Actor {
             }
 
             var traitsUpdate = changes.traits.reduce((acc, trait) => {
-                acc[`${trait}.data.bonus`] = this.system.traits[trait].data.bonus - 1;
+                acc[`${trait}.bonus`] = this.system.traits[trait].bonus - 1;
                 return acc;
             }, {});
 
@@ -84,15 +84,15 @@ export default class DhpActor extends Actor {
                     'traits': traitsUpdate,
                     'experiences': experienceUpdate,
                     'resources': {
-                        health: {
-                            max: this.system.resources.health.max - changes.hitPoint
+                        hitPoints: {
+                            bonus: this.system.resources.hitPoints.bonus - changes.hitPoint
                         },
                         stress: {
-                            max: this.system.resources.stress.max - changes.stress
+                            bonus: this.system.resources.stress.bonus - changes.stress
                         }
                     },
-                    'evasion.bonuses': this.system.evasion.bonuses - changes.evasion,
-                    'proficiency': this.system.proficiency - changes.proficiency,
+                    'evasion.bonus': this.system.evasion.bonus - changes.evasion,
+                    'proficiency.bonus': this.system.proficiency.bonus - changes.proficiency,
                     'levelData': newLevelData
                 }
             });
@@ -191,7 +191,7 @@ export default class DhpActor extends Actor {
         }
 
         var traitsUpdate = changes.traits.reduce((acc, trait) => {
-            acc[`${trait}.data.bonus`] = this.system.traits[trait].data.bonus + 1;
+            acc[`${trait}.bonus`] = this.system.traits[trait].bonus + 1;
             return acc;
         }, {});
 
@@ -222,15 +222,15 @@ export default class DhpActor extends Actor {
                 'traits': traitsUpdate,
                 'experiences': experienceUpdate,
                 'resources': {
-                    health: {
-                        max: this.system.resources.health.max + changes.hitPoint
+                    hitPoints: {
+                        bonus: this.system.resources.hitPoints.bonus + changes.hitPoint
                     },
                     stress: {
-                        max: this.system.resources.stress.max + changes.stress
+                        bonus: this.system.resources.stress.bonus + changes.stress
                     }
                 },
-                'evasion.bonuses': this.system.evasion.bonuses + changes.evasion,
-                'proficiency': this.system.proficiency + changes.proficiency,
+                'evasion.bonus': this.system.evasion.bonus + changes.evasion,
+                'proficiency.bonus': this.system.proficiency.bonus + changes.proficiency,
                 'levelData': {
                     'level.current': this.system.levelData.level.changed,
                     'levelups': levelupData
@@ -462,9 +462,9 @@ export default class DhpActor extends Actor {
                     : 0;
 
         const update = {
-            'system.resources.health.value': Math.min(
-                this.system.resources.health.value + hpDamage,
-                this.system.resources.health.max
+            'system.resources.hitPoints.value': Math.min(
+                this.system.resources.hitPoints.value + hpDamage,
+                this.system.resources.hitPoints.max
             )
         };
 
@@ -487,9 +487,9 @@ export default class DhpActor extends Actor {
         switch (type) {
             case SYSTEM.GENERAL.healingTypes.health.id:
                 update = {
-                    'system.resources.health.value': Math.min(
-                        this.system.resources.health.value + healing,
-                        this.system.resources.health.max
+                    'system.resources.hitPoints.value': Math.min(
+                        this.system.resources.hitPoints.value + healing,
+                        this.system.resources.hitPoints.max
                     )
                 };
                 break;

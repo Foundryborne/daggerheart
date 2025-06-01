@@ -21,7 +21,7 @@
             <i class="fa-solid fa-caret-left"></i>
             <div class="health-category">{{localize "DAGGERHEART.Sheets.PC.Health.Severe"}}</div>
         </div>
-        <i data-action="makeDeathMove" class="fas fa-skull death-save {{#if (lt resources.health.value document.system.resources.health.max)}}disabled{{/if}}" title="{{localize "DAGGERHEART.Sheets.PC.Health.DeathMoveTooltip"}}"></i>
+        <i data-action="makeDeathMove" class="fas fa-skull death-save {{#if (lt resources.hitPoints.value document.system.resources.hitPoints.max)}}disabled{{/if}}" title="{{localize "DAGGERHEART.Sheets.PC.Health.DeathMoveTooltip"}}"></i>
     </div>
     <div class="flexrow" style="flex-wrap: nowrap; align-items: center;">
         <div class="flexcol flex0">
@@ -30,12 +30,12 @@
         </div>
         <div class="flexcol">
             <div class="flexrow" style="flex-wrap: nowrap;">
-                {{#times document.system.resources.health.max}}
+                {{#times document.system.resources.hitPoints.max}}
                     {{#with (add this 1)}}
-                        <input class="resource-box" type="checkbox" data-action="toggleHP" data-value="{{this}}" {{ checked (gte ../../document.system.resources.health.value this) }} />
+                        <input class="resource-box" type="checkbox" data-action="toggleHP" data-value="{{this}}" {{ checked (gte ../../document.system.resources.hitPoints.value this) }} />
                     {{/with}}
                 {{/times}}
-                {{#times (subtract 12 document.system.resources.health.max)}}
+                {{#times (subtract 12 document.system.resources.hitPoints.max)}}
                     <input class="resource-box disabled" type="checkbox" disabled />
                 {{/times}}
             </div>

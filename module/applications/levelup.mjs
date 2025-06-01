@@ -210,9 +210,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 context.achievements = {
                     proficiency: {
-                        old: this.actor.system.proficiency,
+                        old: this.actor.system.proficiency.value,
                         new:
-                            this.actor.system.proficiency +
+                            this.actor.system.proficiency.value +
                             Object.values(this.levelup.allInitialAchievements).reduce(
                                 (acc, x) => acc + x.proficiency,
                                 0
@@ -280,9 +280,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                                 Object.values(advancementChoices.proficiency ?? {}).reduce((acc, x) => acc + x.value, 0)
                         },
                         hitPoints: {
-                            old: this.actor.system.resources.health.max,
+                            old: this.actor.system.resources.hitPoints.max,
                             new:
-                                this.actor.system.resources.health.max +
+                                this.actor.system.resources.hitPoints.max +
                                 Object.values(advancementChoices.hitPoint ?? {}).reduce((acc, x) => acc + x.value, 0)
                         },
                         stress: {
