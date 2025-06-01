@@ -7,7 +7,7 @@ const attributeField = () =>
     new fields.SchemaField({
         data: new fields.SchemaField({
             value: new fields.NumberField({ initial: 0, integer: true }),
-            bonus: new fields.NumberField({ initial: 0, integer: true })
+            base: new fields.NumberField({ initial: 0, integer: true })
         })
     });
 
@@ -330,14 +330,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
 
         for (var attributeKey in this.traits) {
             const attribute = this.traits[attributeKey];
-
-            // attribute.levelMark = attribute.levelMarks.find(x => this.isSameTier(x)) ?? null;
-
-            // const actualValue = attribute.data.base + attribute.levelMarks.length + attribute.data.bonus;
-            // attribute.data.actualValue = actualValue;
-            // attribute.data.value = attribute.data.overrideValue
-            //     ? attribute.data.overrideValue
-            //     : attribute.data.actualValue;
+            attribute.data.total = attribute.data.base + attribute.data.value;
         }
 
         this.evasion.value = (this.class?.system?.evasion ?? 0) + this.evasion.bonuses;
