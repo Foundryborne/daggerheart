@@ -182,6 +182,38 @@ export const registerDHSettings = () => {
         default: 0
     });
 
+    game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.MaxFear, {
+        name: game.i18n.localize('DAGGERHEART.Settings.Resources.MaxFear.Name'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Resources.MaxFear.Hint'),
+        scope: 'world',
+        config: true,
+        type: Number,
+        default: 12,
+        onChange: () => {
+            if(ui.resources) ui.resources.render({force: true});
+        }
+    });
+
+    game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.DisplayFear, {
+        name: game.i18n.localize('DAGGERHEART.Settings.Resources.DisplayFear.Name'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Resources.DisplayFear.Hint'),
+        scope: 'client',
+        config: true,
+        type: String,
+        choices: {
+            'token': 'Tokens',
+            'bar': 'Bar',
+            'hide': 'Hide'
+        },
+        default: 'token',
+        onChange: value => {
+            if(ui.resources) {
+                if(value === 'hide') ui.resources.close({allowed: true});
+                else ui.resources.render({force: true});
+            }
+        }
+    });
+
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope, {
         name: game.i18n.localize('DAGGERHEART.Settings.Automation.Hope.Name'),
         hint: game.i18n.localize('DAGGERHEART.Settings.Automation.Hope.Hint'),

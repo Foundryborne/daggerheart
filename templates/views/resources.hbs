@@ -1,0 +1,16 @@
+<div>
+    <div id="resource-fear" class="{{#if isGM}}isGM{{/if}}">
+        {{#if (eq display 'token')}}
+            {{#times max}}
+            <i class="fas fa-skull {{#if (gte @this ../current)}} inactive{{/if}}" style="filter: hue-rotate(calc(({{this}}/{{../max}})*75deg))" data-index="{{this}}" data-action="setFear"></i>
+            {{/times}}
+        {{/if}}
+        {{#if (eq display 'bar')}}
+            {{#if isGM}}<div class="controls control-minus {{#if (lte current 0)}} disabled{{/if}}" data-increment="-1" data-action="increaseFear">-</div>{{/if}}
+            <div class="resource-bar fear-bar" style="--fear-percent: {{percent}}%">
+                <span>{{current}}/{{max}}</span>
+            </div>
+            {{#if isGM}}<div class="controls control-plus {{#if (gte current max)}} disabled{{/if}}" data-increment="+1" data-action="increaseFear">+</div>{{/if}}
+        {{/if}}
+    </div>
+</div>

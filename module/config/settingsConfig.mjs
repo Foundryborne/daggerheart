@@ -19,7 +19,9 @@ export const gameSettings = {
         ActionPoints: 'AutomationActionPoints'
     },
     Resources: {
-        Fear: 'ResourcesFear'
+        Fear: 'ResourcesFear',
+        MaxFear: 'ResourcesMaxFear',
+        DisplayFear: 'DisplayFear'
     },
     General: {
         AbilityArray: 'AbilityArray',

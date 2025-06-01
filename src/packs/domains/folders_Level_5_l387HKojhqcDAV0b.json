@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "jc1HbSpJmjAsq9GX",
+  "name": "Level 5",
+  "color": null,
+  "sorting": "a",
+  "_id": "l387HKojhqcDAV0b",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!l387HKojhqcDAV0b"
+}

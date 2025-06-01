@@ -68,82 +68,10 @@
             "flags": {}
         },
         {
-            "name": "arcana-domain",
-            "label": "Arcana",
+            "name": "domains",
+            "label": "Domains",
             "system": "daggerheart",
-            "path": "packs/domain-cards/arcana.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "blade-domain",
-            "label": "Blade",
-            "system": "daggerheart",
-            "path": "packs/domain-cards/blade.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "bone-domain",
-            "label": "Bone",
-            "system": "daggerheart",
-            "path": "packs/domain-cards/bone.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "codex-domain",
-            "label": "Codex",
-            "system": "daggerheart",
-            "path": "packs/domain-cards/codex.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "grace-domain",
-            "label": "Grace",
-            "system": "daggerheart",
-            "path": "packs/domain-cards/grace.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "midnight-domain",
-            "label": "Midnight",
-            "system": "daggerheart",
-            "path": "packs/domain-cards/midnight.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "sage-domain",
-            "label": "Sage",
-            "system": "daggerheart",
-            "path": "packs/domain-cards/sage.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "splendor-domain",
-            "label": "Splendor",
-            "system": "daggerheart",
-            "path": "packs/domain-cards/splendor.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "valor-domain",
-            "label": "Valor",
-            "system": "daggerheart",
-            "path": "packs/domain-cards/valor.db",
+            "path": "packs/domains.db",
             "type": "Item",
             "private": false,
             "flags": {}
@@ -176,73 +104,19 @@
             "flags": {}
         },
         {
-            "name": "weapons-tier1",
-            "label": "Tier 1",
+            "name": "weapons",
+            "label": "Weapons",
             "system": "daggerheart",
-            "path": "packs/items/weapons/tier1.db",
+            "path": "packs/items/weapons.db",
             "type": "Item",
             "private": false,
             "flags": {}
         },
         {
-            "name": "weapons-tier2",
-            "label": "Tier 2",
+            "name": "armors",
+            "label": "Armors",
             "system": "daggerheart",
-            "path": "packs/items/weapons/tier2.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "weapons-tier3",
-            "label": "Tier 3",
-            "system": "daggerheart",
-            "path": "packs/items/weapons/tier3.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "weapons-tier4",
-            "label": "Tier 4",
-            "system": "daggerheart",
-            "path": "packs/items/weapons/tier4.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "armor-tier1",
-            "label": "Tier 1",
-            "system": "daggerheart",
-            "path": "packs/items/armor/tier1.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "armor-tier2",
-            "label": "Tier 2",
-            "system": "daggerheart",
-            "path": "packs/items/armor/tier2.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "armor-tier3",
-            "label": "Tier 3",
-            "system": "daggerheart",
-            "path": "packs/items/armor/tier3.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "armor-tier4",
-            "label": "Tier 4",
-            "system": "daggerheart",
-            "path": "packs/items/armor/tier4.db",
+            "path": "packs/items/armors.db",
             "type": "Item",
             "private": false,
             "flags": {}
@@ -266,73 +140,19 @@
             "flags": {}
         },
         {
-            "name": "adversaries-tier1",
-            "label": "Tier 1",
+            "name": "adversaries",
+            "label": "Adversaries",
             "system": "daggerheart",
-            "path": "packs/adversaries/tier1.db",
+            "path": "packs/adversaries.db",
             "type": "Item",
             "private": false,
             "flags": {}
         },
         {
-            "name": "adversaries-tier2",
-            "label": "Tier 2",
+            "name": "environments",
+            "label": "Environments",
             "system": "daggerheart",
-            "path": "packs/adversaries/tier2.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "adversaries-tier3",
-            "label": "Tier 3",
-            "system": "daggerheart",
-            "path": "packs/adversaries/tier3.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "adversaries-tier4",
-            "label": "Tier 4",
-            "system": "daggerheart",
-            "path": "packs/adversaries/tier4.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "environments-tier1",
-            "label": "Tier 1",
-            "system": "daggerheart",
-            "path": "packs/environments/tier1.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "environments-tier2",
-            "label": "Tier 2",
-            "system": "daggerheart",
-            "path": "packs/environments/tier2.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "environments-tier3",
-            "label": "Tier 3",
-            "system": "daggerheart",
-            "path": "packs/environments/tier3.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "environments-tier4",
-            "label": "Tier 4",
-            "system": "daggerheart",
-            "path": "packs/environments/tier4.db",
+            "path": "packs/environments.db",
             "type": "Item",
             "private": false,
             "flags": {}
@@ -343,7 +163,10 @@
             "name": "Daggerheart",
             "sorting": "m",
             "color": "#08718c",
-            "packs": [],
+            "packs": [
+                "adversaries",
+                "environments"
+            ],
             "folders": [
                 {
                     "name": "Character Options",
@@ -353,71 +176,22 @@
                         "classes",
                         "class-features",
                         "subclasses",
+                        "domains",
                         "ancestries",
                         "communities",
                         "community-features"
-                    ],
-                    "folders": [
-                        {
-                            "name": "Domains",
-                            "sorting": "m",
-                            "color": "#000000",
-                            "packs": [
-                                "arcana-domain",
-                                "blade-domain",
-                                "bone-domain",
-                                "codex-domain",
-                                "grace-domain",
-                                "midnight-domain",
-                                "sage-domain",
-                                "splendor-domain",
-                                "valor-domain"
-                            ]
-                        }
                     ]
                 },
                 {
                     "name": "Items",
                     "sorting": "m",
                     "color": "#000000",
-                    "folders": [
-                        {
-                            "name": "Weapons",
-                            "sorting": "m",
-                            "color": "#000000",
-                            "packs": ["weapons-tier1", "weapons-tier2", "weapons-tier3", "weapons-tier4"]
-                        },
-                        {
-                            "name": "Armor",
-                            "sorting": "m",
-                            "color": "#000000",
-                            "packs": ["armor-tier1", "armor-tier2", "armor-tier3", "armor-tier4"]
-                        },
-                        {
-                            "name": "Consumables",
-                            "sorting": "m",
-                            "color": "#000000",
-                            "packs": ["consumables"]
-                        },
-                        {
-                            "name": "General",
-                            "sorting": "m",
-                            "color": "#000000",
-                            "packs": ["general-items"]
-                        }
+                    "packs": [
+                        "weapons",
+                        "armors",
+                        "consumables",
+                        "general-items"
                     ]
-                },
-                {
-                    "name": "Adversaries",
-                    "sorting": "m",
-                    "color": "#000000",
-                    "packs": ["adversaries-tier1", "adversaries-tier2", "adversaries-tier3", "adversaries-tier4"]
-                },
-                {
-                    "name": "Environments",
-                    "sorting": "m",
-                    "color": "#000000",
-                    "packs": ["environments-tier1", "environments-tier2", "environments-tier3", "environments-tier4"]
                 }
             ]
         }

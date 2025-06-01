@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Valor",
+  "color": "#b07229",
+  "sorting": "a",
+  "_id": "yPVeShe47ETIqs9q",
+  "description": "",
+  "sort": 900000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1748717138700,
+    "modifiedTime": 1748717766758,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_key": "!folders!yPVeShe47ETIqs9q"
+}

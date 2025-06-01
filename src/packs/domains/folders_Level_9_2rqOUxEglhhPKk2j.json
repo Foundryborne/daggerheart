@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "tgwSE1t5B0Ka10Xh",
+  "name": "Level 9",
+  "color": null,
+  "sorting": "a",
+  "_id": "2rqOUxEglhhPKk2j",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!2rqOUxEglhhPKk2j"
+}
