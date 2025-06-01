@@ -6,13 +6,16 @@ import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 
 export default class DhpActor extends Actor {
     async _preCreate(data, options, user) {
-        if ( (await super._preCreate(data, options, user)) === false ) return false;
-        
+        if ((await super._preCreate(data, options, user)) === false) return false;
+
         // Configure prototype token settings
         const prototypeToken = {};
-        if ( this.type === "pc" ) Object.assign(prototypeToken, {
-        sight: { enabled: true }, actorLink: true, disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-        });
+        if (this.type === 'pc')
+            Object.assign(prototypeToken, {
+                sight: { enabled: true },
+                actorLink: true,
+                disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+            });
         this.updateSource({ prototypeToken });
     }
 
@@ -37,7 +40,7 @@ export default class DhpActor extends Actor {
             );
 
             for (var domainCard of changes.domainCards) {
-                const uuid = domainCard.uuid ? domainCard.uuid : domainCard.data;
+                const uuid = domainCard.itemUuid ? domainCard.itemUuid : domainCard.uuid;
                 const itemCard = await this.items.find(x => x.uuid === uuid);
                 itemCard.delete();
             }
@@ -54,6 +57,14 @@ export default class DhpActor extends Actor {
                     const existingExperience = experienceUpdate.find(x => x.id === id);
                     existingExperience.value -= experience.value;
                 }
+            }
+
+            for (var subclass of changes.subclasses) {
+                /* Implemented after datamodel rework is in */
+            }
+
+            if (changes.multiclass) {
+                /* Implemented after datamodel rework is in */
             }
 
             const newLevelData = {
@@ -98,11 +109,13 @@ export default class DhpActor extends Actor {
             multiclass: null,
             subclasses: [],
             traits: [],
-            experiences: [],
+            experiences: {},
             experienceIncreases: []
         };
 
         for (var level = startLevel + 1; level <= endLevel; level++) {
+            if (!levelData[level]) continue;
+
             const achievements = levelData[level].achievements;
             const selections = levelData[level].selections.reduce((acc, selection) => {
                 if (!acc[selection.type]) acc[selection.type] = [selection];
@@ -122,16 +135,27 @@ export default class DhpActor extends Actor {
                 : 0;
             changedFeatures.proficiency +=
                 (achievements?.proficiency ?? 0) +
-                (selections.evasion ? selections.evasion.reduce((acc, evasion) => acc + Number(evasion.value), 0) : 0);
-            changedFeatures.domainCards = [
-                ...levelData[level].domainCards,
-                ...(selections.domainCard.flatMap(x => x.data.map(data => ({ ...x, data: data }))) ?? [])
-            ];
-            changedFeatures.traits = selections.trait ? selections.trait.flatMap(x => x.data) : [];
-            changedFeatures.experiences = achievements?.experiences ? achievements.experiences : {};
-            changedFeatures.experienceIncreases = selections.experience ?? [];
-            changedFeatures.subclasses = selections.subclasses ? [] : [];
-            changedFeatures.multiclass = selections.multiclass ? [] : [];
+                (selections.proficiency
+                    ? selections.proficiency.reduce((acc, proficiency) => acc + Number(proficiency.value), 0)
+                    : 0);
+            changedFeatures.domainCards.push(
+                ...[
+                    ...levelData[level].domainCards,
+                    ...(selections.domainCard?.flatMap(x => x.data.map(data => ({ ...x, data: data }))) ?? [])
+                ]
+            );
+            changedFeatures.traits.push(...(selections.trait ? selections.trait.flatMap(x => x.data) : []));
+            changedFeatures.experiences = Object.keys(achievements?.experiences ? achievements.experiences : {}).reduce(
+                (acc, key) => {
+                    acc[key] = achievements.experiences[key];
+
+                    return acc;
+                },
+                changedFeatures.experiences
+            );
+            changedFeatures.experienceIncreases.push(...(selections.experience ?? []));
+            changedFeatures.subclasses.push(...(selections.subclasses ? [] : []));
+            changedFeatures.multiclass = selections.multiclass ? selections.multiclass[0] : null;
         }
 
         return changedFeatures;
@@ -147,12 +171,13 @@ export default class DhpActor extends Actor {
         for (var card of changes.domainCards) {
             const fromAchievement = Boolean(card.uuid);
             const domainCard = await foundry.utils.fromUuid(fromAchievement ? card.uuid : card.data);
-            const newCard = (await this.createEmbeddedDocuments('Item', [domainCard]))[0];
+            const createdCards = await this.createEmbeddedDocuments('Item', [domainCard]);
+            const newCard = createdCards[0];
             if (fromAchievement) {
                 const levelupCard = levelupData[card.level].domainCards.find(
                     x => x.tier === card.tier && x.level === card.level
                 );
-                if (levelupCard) levelupCard.uuid = newCard.uuid;
+                if (levelupCard) levelupCard.itemUuid = newCard.uuid;
             } else {
                 const levelupCard = levelupData[card.level].selections.find(
                     x =>
@@ -161,7 +186,7 @@ export default class DhpActor extends Actor {
                         x.optionKey === card.optionKey &&
                         x.checkboxNr === card.checkboxNr
                 );
-                if (levelupCard) levelupCard.data.findSplice(x => x === card.data, newCard.uuid);
+                if (levelupCard) levelupCard.uuid = newCard.uuid;
             }
         }
 
@@ -182,6 +207,14 @@ export default class DhpActor extends Actor {
                 const existingExperience = experienceUpdate.find(x => x.id === id);
                 existingExperience.value += experience.value;
             }
+        }
+
+        for (var subclass of changes.subclasses) {
+            /* Implemented after datamodel rework is in */
+        }
+
+        if (changes.multiclass) {
+            /* Implemented after datamodel rework is in */
         }
 
         await this.update({

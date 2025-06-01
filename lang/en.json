@@ -786,6 +786,7 @@
                     "error": {
                         "domainCardWrongDomain": "You don't have access to that Domain",
                         "domainCardToHighLevel": "The Domain Card is too high level to be selected",
+                        "domainCardDuplicate": "You already have that domain card!",
                         "noSelectionsLeft": "Nothing more to select!",
                         "alreadySelectedClass": "You already have that class!"
                     }

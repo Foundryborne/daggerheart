@@ -447,7 +447,8 @@ class DhPCLevelData extends foundry.abstract.DataModel {
                     ),
                     domainCards: new fields.ArrayField(
                         new fields.SchemaField({
-                            uuid: new fields.StringField({ required: true })
+                            uuid: new fields.StringField({ required: true }),
+                            itemUuid: new fields.StringField({ required: true })
                         })
                     ),
                     selections: new fields.ArrayField(
@@ -459,7 +460,8 @@ class DhPCLevelData extends foundry.abstract.DataModel {
                             checkboxNr: new fields.NumberField({ required: true, integer: true }),
                             value: new fields.NumberField({ integer: true }),
                             amount: new fields.NumberField({ integer: true }),
-                            data: new fields.ArrayField(new fields.StringField({ required: true }))
+                            data: new fields.ArrayField(new fields.StringField({ required: true })),
+                            uuid: new fields.StringField({ required: true })
                         })
                     )
                 })

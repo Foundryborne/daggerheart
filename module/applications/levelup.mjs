@@ -32,7 +32,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         actions: {
             save: this.save,
             viewCompendium: this.viewCompendium,
-            selectPreview: this.selectPreview
+            selectPreview: this.selectPreview,
+            selectDomain: this.selectDomain
         },
         form: {
             handler: this.updateForm,
@@ -100,13 +101,17 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 const traits = Object.values(context.advancementChoices.trait ?? {});
                 context.traits = {
-                    values: traits.filter(trait => trait.data.length > 0).flatMap(trait => trait.data),
-                    active: traits.length > 0
+                    values: traits.filter(trait => !trait.locked && trait.data.length > 0).flatMap(trait => trait.data),
+                    active: traits.length > 0 && traits.filter(trait => !trait.locked).length > 0
                 };
 
-                const experienceIncreases = Object.values(context.advancementChoices.experience ?? {});
+                const experienceIncreases = Object.values(context.advancementChoices.experience ?? {}).filter(
+                    x => !x.locked
+                );
                 context.experienceIncreases = {
-                    values: experienceIncreases.filter(trait => trait.data.length > 0).flatMap(trait => trait.data),
+                    values: experienceIncreases
+                        .filter(trait => !trait.locked && trait.data.length > 0)
+                        .flatMap(trait => trait.data),
                     active: experienceIncreases.length > 0
                 };
 
@@ -127,6 +132,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 context.domainCards = [];
                 for (var domainCard of allDomainCardValues) {
+                    if (domainCard.locked) continue;
+
                     const uuid = domainCard.data?.length > 0 ? domainCard.data[0] : domainCard.uuid;
                     const card = uuid ? await foundry.utils.fromUuid(uuid) : { path: domainCard.path };
                     context.domainCards.push({
@@ -135,7 +142,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                             'DAGGERHEART.Application.LevelUp.Selections.emptyDomainCardHint',
                             { level: domainCard.level }
                         ),
-                        limit: domainCard.level
+                        limit: domainCard.level,
+                        compendium: 'domains'
                     });
                 }
 
@@ -165,12 +173,13 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 const multiclasses = Object.values(context.advancementChoices.multiclass ?? {});
                 if (multiclasses?.[0]) {
                     const data = multiclasses[0];
-                    const path = `tiers.${data.tier}.levels.${data.level}.optionSelections.${data.optionKey}.${data.checkboxNr}.data`;
-                    const multiclass =
-                        data.data.length > 0 ? await foundry.utils.fromUuid(data.data[0]) : { path: path };
+                    const path = `tiers.${data.tier}.levels.${data.level}.optionSelections.${data.optionKey}.${data.checkboxNr}`;
+                    const multiclass = data.data.length > 0 ? await foundry.utils.fromUuid(data.data[0]) : {};
 
                     context.multiclass = {
                         ...(multiclass.toObject?.() ?? multiclass),
+                        uuid: multiclass.uuid,
+                        path: path,
                         domains:
                             multiclass?.system?.domains.map(key => {
                                 const domain = domains[key];
@@ -179,7 +188,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                                 return {
                                     ...domain,
                                     selected: key === data.secondaryData,
-                                    disabled: (key !== data.secondaryData && data.secondaryData) || alreadySelected
+                                    disabled: (data.secondaryData && key !== data.secondaryData) || alreadySelected
                                 };
                             }) ?? [],
                         compendium: 'classes',
@@ -267,7 +276,6 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
     tagifyUpdate =
         type =>
         async (_, { option, removed }) => {
-            /* Needs to take Amount into account to allow multiple to be stored in the same option. Array structure? */
             const updatePath = this.levelup.selectionData.reduce((acc, data) => {
                 if (data.optionKey === type && removed ? data.data.includes(option) : data.data.length < data.amount) {
                     return `tiers.${data.tier}.levels.${data.level}.optionSelections.${data.optionKey}.${data.checkboxNr}.data`;
@@ -298,7 +306,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
-        if (event.target.parentElement?.classList?.contains('domain-cards')) {
+        if (event.target.closest('.domain-cards')) {
+            const target = event.target.closest('.card-preview-container');
             if (item.type === 'domainCard') {
                 if (!this.actor.system.class.system.domains.includes(item.system.domain)) {
                     // Also needs to check for multiclass adding a new domain
@@ -308,17 +317,28 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     return;
                 }
 
-                if (item.system.level > Number(event.target.dataset.limit)) {
+                if (item.system.level > Number(target.dataset.limit)) {
                     ui.notifications.error(
                         game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardToHighLevel')
                     );
                     return;
                 }
 
-                await this.levelup.updateSource({ [event.target.dataset.path]: item.uuid });
+                if (
+                    Object.values(this.levelup.domainCards).some(x => x.uuid === item.uuid) ||
+                    this.levelup.selectionData.some(x => x.type === 'domainCard' && x.data.includes(item.uuid))
+                ) {
+                    ui.notifications.error(
+                        game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardDuplicate')
+                    );
+                    return;
+                }
+
+                await this.levelup.updateSource({ [target.dataset.path]: item.uuid });
                 this.render();
             }
-        } else if (event.target.parentElement?.classList?.contains('multiclass-cards')) {
+        } else if (event.target.closest('.multiclass-cards')) {
+            const target = event.target.closest('.card-preview-container');
             if (item.type === 'class') {
                 if (item.name === this.actor.system.class.name) {
                     ui.notifications.error(
@@ -326,7 +346,13 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     );
                     return;
                 }
-                await this.levelup.updateSource({ [event.target.dataset.path]: item.uuid });
+
+                await this.levelup.updateSource({
+                    [target.dataset.path]: {
+                        data: item.uuid,
+                        secondaryData: null
+                    }
+                });
                 this.render();
             }
         }
@@ -336,7 +362,6 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         event.stopPropagation();
         const button = event.currentTarget;
 
-        // const advancementSelections = this.getAdvancementSelectionUpdates(button);
         if (!button.checked) {
             await this.levelup.updateSource({
                 [`tiers.${button.dataset.tier}.levels.${button.dataset.level}.optionSelections.${button.dataset.option}.-=${button.dataset.checkboxNr}`]:
@@ -397,12 +422,17 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         const option = remove
             ? selectionData.find(x => x.type === 'subclass' && x.data.includes(button.dataset.uuid))
             : selectionData.find(x => x.type === 'subclass' && x.data.length === 0);
-        if (!option) {
-            return; // Notification?
-        }
+        if (!option) return;
 
         const path = `tiers.${option.tier}.levels.${option.level}.optionSelections.${option.optionKey}.${option.checkboxNr}.data`;
         await this.levelup.updateSource({ [path]: remove ? [] : button.dataset.uuid });
+        this.render();
+    }
+
+    static async selectDomain(_, button) {
+        const option = this.levelup.selectionData.find(x => x.type === 'multiclass');
+        const path = `tiers.${option.tier}.levels.${option.level}.optionSelections.${option.optionKey}.${option.checkboxNr}.secondaryData`;
+        await this.levelup.updateSource({ [path]: option.secondaryData ? null : button.dataset.domain });
         this.render();
     }
 

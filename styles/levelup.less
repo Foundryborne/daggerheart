@@ -147,7 +147,7 @@
                         opacity: 0.4;
                     }
 
-                    div {
+                    .levelup-domain-label {
                         position: absolute;
                         text-align: center;
                         top: 4px;
@@ -158,6 +158,26 @@
 
                     img {
                         height: 124px; // Can it be dynamically sized? Won't follow any window resizing like this.
+                    }
+
+                    .levelup-domain-selected {
+                        position: absolute;
+                        height: 54px;
+                        width: 54px;
+                        border-radius: 50%;
+                        border: 2px solid;
+                        font-size: 48px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-image: url(../assets/parchments/dh-parchment-light.png);
+                        color: var(--color-dark-5);
+                        top: calc(50% - 29px);
+
+                        i {
+                            position: relative;
+                            right: 2px;
+                        }
                     }
                 }
             }

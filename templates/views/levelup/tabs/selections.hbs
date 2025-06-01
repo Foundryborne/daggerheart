@@ -71,9 +71,14 @@
                     {{> "systems/daggerheart/templates/components/card-preview.hbs" img=this.multiclass.img name=this.multiclass.name path=this.multiclass.path compendium=this.multiclass.compendium }}
                     <div class="levelup-domains-selection-container">
                         {{#each this.multiclass.domains}}
-                            <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}">
-                                <div>{{localize this.label}}</div>
+                            <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}" {{#if (not this.disabled)}}data-action="selectDomain" data-uuid="{{../multiclass.uuid}}" data-domain="{{this.id}}"{{/if}}>
+                                <div class="levelup-domain-label">{{localize this.label}}</div>
                                 <img src="{{this.src}}" />
+                                {{#if this.selected}}
+                                    <div class="levelup-domain-selected">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                {{/if}}
                             </div>
                         {{/each}}
                     </div>

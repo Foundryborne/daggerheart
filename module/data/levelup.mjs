@@ -46,7 +46,16 @@ export class DhLevelup extends foundry.abstract.DataModel {
         const domainCards = Object.keys(tiers).reduce((acc, tierKey) => {
             const tier = tiers[tierKey];
             for (var level of tier.belongingLevels) {
-                if (level <= pcLevelData.level.changed) {
+                if (level <= pcLevelData.level.current) {
+                    const cardId = foundry.utils.randomID();
+                    acc[cardId] = {
+                        ...pcLevelData.levelups[level].domainCards[0],
+                        path: `domainCards.${cardId}.uuid`,
+                        locked: true,
+                        level: level,
+                        tier: tierKey
+                    };
+                } else if (level <= pcLevelData.level.changed) {
                     for (var domainCardSlot = 1; domainCardSlot <= tier.domainCardByLevel; domainCardSlot++) {
                         const cardId = foundry.utils.randomID();
                         acc[cardId] = {
@@ -103,7 +112,8 @@ export class DhLevelup extends foundry.abstract.DataModel {
                     tier: new fields.NumberField({ required: true, integer: true }),
                     level: new fields.NumberField({ required: true, integer: true }),
                     domainCardSlot: new fields.NumberField({ required: true, integer: true }),
-                    path: new fields.StringField({ required: true })
+                    path: new fields.StringField({ required: true }),
+                    locked: new fields.BooleanField({ required: true, initial: false })
                 })
             ),
             progressionLevels: new fields.ArrayField(new fields.NumberField({ required: true, integer: true }))
@@ -181,7 +191,8 @@ export class DhLevelup extends foundry.abstract.DataModel {
                             value: optionSelect.value,
                             amount: optionSelect.amount,
                             data: selectionObj.data,
-                            secondaryData: selectionObj.secondaryData
+                            secondaryData: selectionObj.secondaryData,
+                            locked: selectionObj.locked
                         };
                     });
                 });
@@ -191,6 +202,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
 
     get levelupData() {
         const leveledSelections = this.selectionData.reduce((acc, data) => {
+            if (data.type === 'domainCard' && data.locked) return acc;
             if (!acc[data.level]) acc[data.level] = [data];
             else acc[data.level].push(data);
 
@@ -198,13 +210,15 @@ export class DhLevelup extends foundry.abstract.DataModel {
         }, {});
         return this.progressionLevels.reduce((acc, level) => {
             acc[level] = {
-                achievements: {
-                    experiences: this.allInitialAchievements[level].newExperiences,
-                    proficiency: this.allInitialAchievements[level].proficiency
-                },
-                domainCards: Object.values(this.domainCards).map(card => ({ ...card })),
+                domainCards: Object.values(this.domainCards).filter(x => !x.locked && x.level === level),
                 selections: leveledSelections[level]
             };
+            if (this.allInitialAchievements[level]) {
+                acc[level].achievements = {
+                    experiences: this.allInitialAchievements[level].newExperiences,
+                    proficiency: this.allInitialAchievements[level].proficiency
+                };
+            }
 
             return acc;
         }, {});
@@ -348,8 +362,9 @@ class DhLevelupLevel extends foundry.abstract.DataModel {
             optionSelections: levelData.reduce((acc, data) => {
                 if (!acc[data.optionKey]) acc[data.optionKey] = {};
                 acc[data.optionKey][data.checkboxNr] = {
+                    ...data,
                     minCost: optionSelections[data.optionKey].minCost,
-                    minCost: optionSelections[data.optionKey].amount,
+                    amount: optionSelections[data.optionKey].amount,
                     locked: locked
                 };
 
