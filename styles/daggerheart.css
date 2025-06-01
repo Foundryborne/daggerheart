@@ -2905,6 +2905,115 @@ div.daggerheart.views.multiclass {
 .daggerheart.levelup .levelup-footer .advancement-information-container .advancement-tier-info {
   font-size: 14px;
 }
+:root {
+  --primary-color-fear: rgba(9, 71, 179, 0.75);
+  --secondary-color-fear: rgba(9, 71, 179, 0.75);
+  --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+#resources {
+  min-height: calc(var(--header-height) + 4rem);
+  min-width: 4rem;
+  color: #d3d3d3;
+}
+#resources .window-content {
+  padding: 0.5rem;
+}
+#resources .window-content #resource-fear {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem 0.25rem;
+  flex-wrap: wrap;
+}
+#resources .window-content #resource-fear i {
+  font-size: var(--font-size-18);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  background-color: var(--primary-color-fear);
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+  color: #d3d3d3;
+  flex-grow: 0;
+}
+#resources .window-content #resource-fear i.inactive {
+  filter: grayscale(1) !important;
+  opacity: 0.5;
+}
+#resources .window-content #resource-fear .controls,
+#resources .window-content #resource-fear .resource-bar {
+  border: 2px solid #997a4f;
+  background-color: #18162e;
+}
+#resources .window-content #resource-fear .controls {
+  display: flex;
+  align-self: center;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: var(--font-size-20);
+  cursor: pointer;
+}
+#resources .window-content #resource-fear .controls:hover {
+  font-size: 1.5rem;
+}
+#resources .window-content #resource-fear .controls.disabled {
+  opacity: 0.5;
+}
+#resources .window-content #resource-fear .resource-bar {
+  display: flex;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: var(--font-size-20);
+  overflow: hidden;
+  position: relative;
+  padding: 0.25rem 0.5rem;
+  flex: 1;
+  text-shadow: var(--shadow-text-stroke);
+}
+#resources .window-content #resource-fear .resource-bar:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--fear-percent);
+  max-width: 100%;
+  background: linear-gradient(90deg, #020026 0%, #c701fc 100%);
+  z-index: 0;
+  border-radius: 4px;
+}
+#resources .window-content #resource-fear .resource-bar span {
+  position: inherit;
+  z-index: 1;
+}
+#resources .window-content #resource-fear.isGM i {
+  cursor: pointer;
+}
+#resources .window-content #resource-fear.isGM i:hover {
+  font-size: var(--font-size-20);
+}
+#resources button[data-action="close"] {
+  display: none;
+}
+#resources:not(:hover):not(.minimized) {
+  background: transparent;
+  box-shadow: unset;
+  border-color: transparent;
+}
+#resources:not(:hover):not(.minimized) header,
+#resources:not(:hover):not(.minimized) .controls,
+#resources:not(:hover):not(.minimized) .window-resize-handle {
+  visibility: hidden;
+}
+#resources:has(.fear-bar) {
+  min-width: 200px;
+}
 .application.sheet.daggerheart.dh-style.feature .item-sheet-header {
   display: flex;
 }

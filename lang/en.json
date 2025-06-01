@@ -81,6 +81,14 @@
                 "Fear": {
                     "Name": "Fear",
                     "Hint": "The Fear pool of the GM."
+                },
+                "MaxFear": {
+                    "Name": "Maximum amount of Fear",
+                    "Hint": "The maximum amount of Fear the GM can get."
+                },
+                "DisplayFear": {
+                    "Name": "Fear display style",
+                    "Hint": "Change how the GM Fear count should be displayed."
                 }
             },
             "General": {

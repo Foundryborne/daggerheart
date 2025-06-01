@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "ES6",
+        "target": "ES6",
+        "paths": {
+            "@client/*": ["./foundry/client/*"],
+            "@common/*": ["./foundry/common/*"]
+        }
+    },
+    "exclude": ["node_modules", "**/node_modules/*"],
+    "include": ["daggerheart.mjs", "foundry/client/client.mjs", "daggerheart.d.ts"],
+    "typeAcquisition": {
+        "include": ["jquery"]
+    }
+}
