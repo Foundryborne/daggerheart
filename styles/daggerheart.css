@@ -2866,15 +2866,20 @@ div.daggerheart.views.multiclass {
   position: relative;
   right: 2px;
 }
-.daggerheart.levelup .levelup-summary-container .level-achievements-container {
+.daggerheart.levelup .levelup-summary-container .level-achievements-container,
+.daggerheart.levelup .levelup-summary-container .level-advancements-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 .daggerheart.levelup .levelup-summary-container .level-achievements-container h2,
+.daggerheart.levelup .levelup-summary-container .level-advancements-container h2,
 .daggerheart.levelup .levelup-summary-container .level-achievements-container h3,
+.daggerheart.levelup .levelup-summary-container .level-advancements-container h3,
 .daggerheart.levelup .levelup-summary-container .level-achievements-container h4,
-.daggerheart.levelup .levelup-summary-container .level-achievements-container h5 {
+.daggerheart.levelup .levelup-summary-container .level-advancements-container h4,
+.daggerheart.levelup .levelup-summary-container .level-achievements-container h5,
+.daggerheart.levelup .levelup-summary-container .level-advancements-container h5 {
   margin: 0;
   color: var(--color-text-secondary);
 }
@@ -2883,6 +2888,16 @@ div.daggerheart.views.multiclass {
   align-items: center;
   gap: 4px;
   font-size: 20px;
+}
+.daggerheart.levelup .levelup-summary-container .summary-selection-container {
+  display: flex;
+  gap: 8px;
+}
+.daggerheart.levelup .levelup-summary-container .summary-selection-container .summary-selection {
+  border: 2px solid;
+  border-radius: 6px;
+  padding: 0 4px;
+  font-size: 18px;
 }
 .daggerheart.levelup .levelup-footer {
   display: flex;
@@ -2998,7 +3013,7 @@ div.daggerheart.views.multiclass {
 #resources .window-content #resource-fear.isGM i:hover {
   font-size: var(--font-size-20);
 }
-#resources button[data-action="close"] {
+#resources button[data-action='close'] {
   display: none;
 }
 #resources:not(:hover):not(.minimized) {

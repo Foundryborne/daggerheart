@@ -223,6 +223,66 @@ export class DhLevelup extends foundry.abstract.DataModel {
             return acc;
         }, {});
     }
+
+    /* Data to render all options from */
+    get tierCheckboxGroups() {
+        const multiclassSelected = Object.values(this.tiers).some(tier =>
+            Object.values(tier.levels).some(level => {
+                return Object.keys(level.optionSelections).some(option =>
+                    Object.values(level.optionSelections[option]).some(x => option === 'multiclass' && x.selected)
+                );
+            })
+        );
+        return Object.keys(this.tiers).map(tierKey => {
+            const tier = this.tiers[tierKey];
+            const subclassSelected = Object.values(tier.levels).some(level => {
+                return Object.keys(level.optionSelections).some(option =>
+                    Object.values(level.optionSelections[option]).some(x => option === 'subclass' && x.selected)
+                );
+            });
+
+            return {
+                tierActive: tier.active,
+                tierName: tier.name,
+                groups: Object.keys(tier.options).map(optionKey => {
+                    const option = tier.options[optionKey];
+                    const checkboxes = [...Array(option.checkboxSelections).keys()].flatMap(checkboxNr => {
+                        const levelId = Object.keys(tier.levels).find(levelKey => {
+                            const optionSelect = tier.levels[levelKey].optionSelections;
+                            return Object.keys(optionSelect)
+                                .filter(key => key === optionKey)
+                                .some(optionKey => optionSelect[optionKey][checkboxNr]?.selected);
+                        });
+
+                        const selected = Boolean(levelId);
+                        const disabled = !levelId
+                            ? false
+                            : tier.levels[levelId].optionSelections[optionKey][checkboxNr]?.locked;
+                        const multiclassDisabled =
+                            !selected && optionKey === 'multiclass' && (multiclassSelected || subclassSelected);
+                        return [...Array(option.minCost)].map(_ => ({
+                            ...option,
+                            tier: tierKey,
+                            level: levelId,
+                            selected: selected,
+                            optionKey: optionKey,
+                            checkboxNr: checkboxNr,
+                            disabled: disabled || multiclassDisabled,
+                            cost: option.minCost
+                        }));
+                    });
+
+                    return {
+                        label: game.i18n.localize(option.label),
+                        checkboxGroups: chunkify(checkboxes, option.minCost, chunkedBoxes => ({
+                            multi: option.minCost > 1,
+                            checkboxes: chunkedBoxes
+                        }))
+                    };
+                })
+            };
+        });
+    }
 }
 
 class DhLevelupTier extends foundry.abstract.DataModel {
@@ -303,40 +363,6 @@ class DhLevelupTier extends foundry.abstract.DataModel {
             totalAvailable: allSelections.totalAvailable,
             total: allSelections.total
         };
-    }
-
-    /* Data to render all options in a Tier from */
-    get tierCheckboxGroups() {
-        return Object.keys(this.options).map(optionKey => {
-            const option = this.options[optionKey];
-            const checkboxes = [...Array(option.checkboxSelections).keys()].flatMap(checkboxNr => {
-                const levelId = Object.keys(this.levels).find(levelKey => {
-                    const optionSelect = this.levels[levelKey].optionSelections;
-                    return Object.keys(optionSelect)
-                        .filter(key => key === optionKey)
-                        .some(optionKey => optionSelect[optionKey][checkboxNr]?.selected);
-                });
-
-                return [...Array(option.minCost)].map(_ => ({
-                    ...option,
-                    tier: this.tier,
-                    level: levelId,
-                    selected: Boolean(levelId),
-                    optionKey: optionKey,
-                    checkboxNr: checkboxNr,
-                    disabled: !levelId ? false : this.levels[levelId].optionSelections[optionKey][checkboxNr]?.locked,
-                    cost: option.minCost
-                }));
-            });
-
-            return {
-                label: game.i18n.localize(option.label),
-                checkboxGroups: chunkify(checkboxes, option.minCost, chunkedBoxes => ({
-                    multi: option.minCost > 1,
-                    checkboxes: chunkedBoxes
-                }))
-            };
-        });
     }
 }
 

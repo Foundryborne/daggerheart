@@ -773,7 +773,9 @@
                     "levelAchievements": "Level Achievements",
                     "levelAdvancements": "Level Advancements",
                     "proficiencyIncrease": "Proficiency Increased: {proficiency}",
-                    "statisticIncreases": "Statistic Increases",
+                    "hpIncrease": "Hit Points Increased: {hitPoints}",
+                    "stressIncrease": "Stress Increased: {stress}",
+                    "evasionIncrease": "Evasion Increased: {evasion}",
                     "damageThresholdMajorIncrease": "Major: {threshold}",
                     "damageThresholdSevereIncrease": "Severe: {threshold}",
                     "newExperiences": "New Experiences",
@@ -782,7 +784,8 @@
                     "subclass": "Subclass",
                     "multiclass": "Multiclass",
                     "traits": "Increased Traits",
-                    "experienceIncreases": "Experience Increases"
+                    "experienceIncreases": "Experience Increases",
+                    "damageThresholds": "Damage Thresholds"
                 },
                 "notifications": {
                     "info": {

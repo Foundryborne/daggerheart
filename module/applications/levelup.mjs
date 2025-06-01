@@ -200,27 +200,126 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             case 'summary':
                 const actorArmor = this.actor.system.armor;
                 const { current: currentLevel, changed: changedLevel } = this.actor.system.levelData.level;
-                context.levelAchievements = {
-                    statisticIncreases: {
-                        proficiency: {
-                            old: this.actor.system.proficiency,
-                            new: this.actor.system.proficiency + this.levelup.allInitialAchievements.proficiency
+                const achievementCards = [];
+                for (var card of Object.values(this.levelup.domainCards)) {
+                    if (card.uuid) {
+                        const itemCard = await foundry.utils.fromUuid(card.uuid);
+                        achievementCards.push(itemCard);
+                    }
+                }
+
+                context.achievements = {
+                    proficiency: {
+                        old: this.actor.system.proficiency,
+                        new:
+                            this.actor.system.proficiency +
+                            Object.values(this.levelup.allInitialAchievements).reduce(
+                                (acc, x) => acc + x.proficiency,
+                                0
+                            )
+                    },
+                    damageThresholds: {
+                        major: {
+                            old: this.actor.system.damageThresholds.major,
+                            new: this.actor.system.damageThresholds.major + changedLevel - currentLevel
                         },
-                        damageThresholds: {
-                            major: {
-                                old: this.actor.system.damageThresholds.major,
-                                new: this.actor.system.damageThresholds.major + changedLevel - currentLevel
-                            },
-                            severe: {
-                                old: this.actor.system.damageThresholds.severe,
-                                new:
-                                    this.actor.system.damageThresholds.severe +
-                                    (actorArmor ? changedLevel - currentLevel : (changedLevel - currentLevel) * 2)
-                            },
-                            unarmored: !actorArmor
-                        }
+                        severe: {
+                            old: this.actor.system.damageThresholds.severe,
+                            new:
+                                this.actor.system.damageThresholds.severe +
+                                (actorArmor ? changedLevel - currentLevel : (changedLevel - currentLevel) * 2)
+                        },
+                        unarmored: !actorArmor
+                    },
+                    domainCards: {
+                        values: achievementCards,
+                        shown: achievementCards.length > 0
+                    },
+                    experiences: {
+                        values: Object.values(this.levelup.allInitialAchievements).flatMap(achievements => {
+                            return Object.values(achievements.newExperiences).reduce((acc, experience) => {
+                                if (experience.name) acc.push(experience);
+
+                                return acc;
+                            }, []);
+                        })
                     }
                 };
+                context.achievements.proficiency.shown =
+                    context.achievements.proficiency.new > context.achievements.proficiency.old;
+                context.achievements.experiences.shown = context.achievements.experiences.values.length > 0;
+
+                const advancementChoices = this.levelup.selectionData.reduce((acc, data) => {
+                    const advancementChoice = {
+                        ...data,
+                        path: `tiers.${data.tier}.levels.${data.level}.optionSelections.${data.optionKey}.${data.checkboxNr}.data`
+                    };
+                    if (acc[data.type]) acc[data.type].push(advancementChoice);
+                    else acc[data.type] = [advancementChoice];
+
+                    return acc;
+                }, {});
+
+                const advancementCards = [];
+                const cardChoices = advancementChoices.domainCard ?? [];
+                for (var card of cardChoices) {
+                    if (card.data.length > 0) {
+                        for (var data of card.data) {
+                            const itemCard = await foundry.utils.fromUuid(data);
+                            advancementCards.push(itemCard);
+                        }
+                    }
+                }
+
+                context.advancements = {
+                    statistics: {
+                        proficiency: {
+                            old: context.achievements.proficiency.new,
+                            new:
+                                context.achievements.proficiency.new +
+                                Object.values(advancementChoices.proficiency ?? {}).reduce((acc, x) => acc + x.value, 0)
+                        },
+                        hitPoints: {
+                            old: this.actor.system.resources.health.max,
+                            new:
+                                this.actor.system.resources.health.max +
+                                Object.values(advancementChoices.hitPoint ?? {}).reduce((acc, x) => acc + x.value, 0)
+                        },
+                        stress: {
+                            old: this.actor.system.resources.stress.max,
+                            new:
+                                this.actor.system.resources.stress.max +
+                                Object.values(advancementChoices.stress ?? {}).reduce((acc, x) => acc + x.value, 0)
+                        },
+                        evasion: {
+                            old: this.actor.system.evasion.value,
+                            new:
+                                this.actor.system.evasion.value +
+                                Object.values(advancementChoices.evasion ?? {}).reduce((acc, x) => acc + x.value, 0)
+                        }
+                    },
+                    traits: Object.values(advancementChoices.trait ?? {}).flatMap(x =>
+                        x.data.map(data => game.i18n.localize(abilities[data].label))
+                    ),
+                    domainCards: advancementCards,
+                    experiences: Object.values(advancementChoices.experience ?? {}).flatMap(x =>
+                        x.data.map(data => ({ name: data, modifier: x.value }))
+                    )
+                };
+
+                context.advancements.statistics.proficiency.shown =
+                    context.advancements.statistics.proficiency.new > context.advancements.statistics.proficiency.old;
+                context.advancements.statistics.hitPoints.shown =
+                    context.advancements.statistics.hitPoints.new > context.advancements.statistics.hitPoints.old;
+                context.advancements.statistics.stress.shown =
+                    context.advancements.statistics.stress.new > context.advancements.statistics.stress.old;
+                context.advancements.statistics.evasion.shown =
+                    context.advancements.statistics.evasion.new > context.advancements.statistics.evasion.old;
+                context.advancements.statistics.shown =
+                    context.advancements.statistics.proficiency.shown ||
+                    context.advancements.statistics.hitPoints.shown ||
+                    context.advancements.statistics.stress.shown ||
+                    context.advancements.statistics.evasion.shown;
 
                 break;
         }
