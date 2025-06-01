@@ -46,7 +46,7 @@ export default class DhpActor extends Actor {
             }
 
             var traitsUpdate = changes.traits.reduce((acc, trait) => {
-                acc[`${trait}.data.value`] = this.system.traits[trait].data.value - 1;
+                acc[`${trait}.data.bonus`] = this.system.traits[trait].data.bonus - 1;
                 return acc;
             }, {});
 
@@ -191,7 +191,7 @@ export default class DhpActor extends Actor {
         }
 
         var traitsUpdate = changes.traits.reduce((acc, trait) => {
-            acc[`${trait}.data.value`] = this.system.traits[trait].data.value + 1;
+            acc[`${trait}.data.bonus`] = this.system.traits[trait].data.bonus + 1;
             return acc;
         }, {});
 

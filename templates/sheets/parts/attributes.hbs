@@ -22,7 +22,7 @@
                         {{/each}}
                     </select>
                 {{else}}
-                    <div class="attribute-text {{#if (lt attribute.data.total 0)}}negative{{/if}}">{{attribute.data.total}}</div>
+                    <div class="attribute-text {{#if (lt attribute.data.value 0)}}negative{{/if}}">{{attribute.data.value}}</div>
                 {{/if}}
                 <img src="systems/daggerheart/assets/AttributeShield.svg" />
                 <div>
