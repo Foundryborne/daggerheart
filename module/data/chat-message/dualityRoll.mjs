@@ -7,7 +7,7 @@ const diceField = () =>
         value: new fields.NumberField({ integer: true })
     });
 
-export default class DhpDualityRoll extends foundry.abstract.TypeDataModel {
+export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
     static dualityResult = {
         hope: 1,
         fear: 2,

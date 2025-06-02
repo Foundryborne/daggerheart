@@ -1,4 +1,3 @@
-import featuresSchema from '../interface/featuresSchema.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHCommunity extends BaseDataItem {
