@@ -20,14 +20,15 @@ export default class Resources extends HandlebarsApplicationMixin(ApplicationV2)
     classes: [],
     tag: "div",
     window: {
-        frame: true,
-        title: "Fear",
-        positioned: true,
-        resizable: true
+      frame: true,
+      title: "Fear",
+      positioned: true,
+      resizable: true,
+      minimizable: false
     },
     actions: {
-        setFear: Resources.setFear,
-        increaseFear: Resources.increaseFear 
+      setFear: Resources.setFear,
+      increaseFear: Resources.increaseFear 
     },
     position: {
       width: 222,
