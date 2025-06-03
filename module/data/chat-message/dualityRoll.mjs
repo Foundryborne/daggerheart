@@ -1,4 +1,4 @@
-import { DualityRollColor } from './settings/Appearance.mjs';
+import { DualityRollColor } from "../settings/Appearance.mjs";
 
 const fields = foundry.data.fields;
 const diceField = () =>

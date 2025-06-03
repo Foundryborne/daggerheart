@@ -1,7 +1,9 @@
 /**
+ * Describes metadata about the item data model type
  * @typedef {Object} ItemDataModelMetadata
- * @property {String} type - System type that this type data model represents
- * @property {Boolean} hasDescription
+ * @property {string} type - The system type that this data model represents (e.g., "weapon", "armor", "consumable")
+ * @property {boolean} hasDescription - Indicates whether items of this type have description field
+ * @property {boolean} isQuantifiable - Indicates whether items of this type have quantity field
  */
 
 const fields = foundry.data.fields;

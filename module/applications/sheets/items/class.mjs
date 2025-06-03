@@ -199,42 +199,32 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
         if (item.type === 'subclass') {
             await this.document.update({
                 'system.subclasses': [
-                    ...this.document.system.subclasses,
-                    { img: item.img, name: item.name, uuid: item.uuid }
+                    ...this.document.system.subclasses, item.uuid
                 ]
             });
         } else if (item.type === 'feature') {
             await this.document.update({
                 'system.features': [
-                    ...this.document.system.features,
-                    { img: item.img, name: item.name, uuid: item.uuid }
+                    ...this.document.system.features, item.uuid
                 ]
             });
         } else if (item.type === 'weapon') {
             if (event.currentTarget.classList.contains('primary-weapon-section')) {
                 if (!this.document.system.characterGuide.suggestedPrimaryWeapon && !item.system.secondary)
                     await this.document.update({
-                        'system.characterGuide.suggestedPrimaryWeapon': {
-                            img: item.img,
-                            name: item.name,
-                            uuid: item.uuid
-                        }
+                        'system.characterGuide.suggestedPrimaryWeapon': item.uuid
                     });
             } else if (event.currentTarget.classList.contains('secondary-weapon-section')) {
                 if (!this.document.system.characterGuide.suggestedSecondaryWeapon && item.system.secondary)
                     await this.document.update({
-                        'system.characterGuide.suggestedSecondaryWeapon': {
-                            img: item.img,
-                            name: item.name,
-                            uuid: item.uuid
-                        }
+                        'system.characterGuide.suggestedSecondaryWeapon': item.uuid
                     });
             }
         } else if (item.type === 'armor') {
             if (event.currentTarget.classList.contains('armor-section')) {
                 if (!this.document.system.characterGuide.suggestedArmor)
                     await this.document.update({
-                        'system.characterGuide.suggestedArmor': { img: item.img, name: item.name, uuid: item.uuid }
+                        'system.characterGuide.suggestedArmor': item.uuid
                     });
             }
         } else if (event.currentTarget.classList.contains('choice-a-section')) {
@@ -242,8 +232,7 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
                 if (this.document.system.inventory.choiceA.length < 2)
                     await this.document.update({
                         'system.inventory.choiceA': [
-                            ...this.document.system.inventory.choiceA,
-                            { img: item.img, name: item.name, uuid: item.uuid }
+                            ...this.document.system.inventory.choiceA, item.uuid 
                         ]
                     });
             }
@@ -252,16 +241,14 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
                 if (this.document.system.inventory.take.length < 3)
                     await this.document.update({
                         'system.inventory.take': [
-                            ...this.document.system.inventory.take,
-                            { img: item.img, name: item.name, uuid: item.uuid }
+                            ...this.document.system.inventory.take, item.uuid
                         ]
                     });
             } else if (event.currentTarget.classList.contains('choice-b-section')) {
                 if (this.document.system.inventory.choiceB.length < 2)
                     await this.document.update({
                         'system.inventory.choiceB': [
-                            ...this.document.system.inventory.choiceB,
-                            { img: item.img, name: item.name, uuid: item.uuid }
+                            ...this.document.system.inventory.choiceB, item.uuid
                         ]
                     });
             }

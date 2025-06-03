@@ -38,10 +38,10 @@
             <fieldset class="one-column drop-section primary-weapon-section">
                 <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.SuggestedPrimaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#if source.system.characterGuide.suggestedPrimaryWeapon}}
-                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{source.system.characterGuide.suggestedPrimaryWeapon.uuid}}">
-                            <img class="image" src="{{source.system.characterGuide.suggestedPrimaryWeapon.img}}" />
-                            <span>{{source.system.characterGuide.suggestedPrimaryWeapon.name}}</span>
+                    {{#if document.system.characterGuide.suggestedPrimaryWeapon}}
+                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{document.system.characterGuide.suggestedPrimaryWeapon.uuid}}">
+                            <img class="image" src="{{document.system.characterGuide.suggestedPrimaryWeapon.img}}" />
+                            <span>{{document.system.characterGuide.suggestedPrimaryWeapon.name}}</span>
                             <div class="controls">
                                 <i data-action="removePrimaryWeapon" class="fa-solid fa-trash icon-button"></i>
                             </div>
@@ -53,10 +53,10 @@
             <fieldset class="one-column drop-section secondary-weapon-section">
                 <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.SuggestedSecondaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#if source.system.characterGuide.suggestedSecondaryWeapon}}
-                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{source.system.characterGuide.suggestedSecondaryWeapon.uuid}}">
-                            <img class="image" src="{{source.system.characterGuide.suggestedSecondaryWeapon.img}}" />
-                            <span>{{source.system.characterGuide.suggestedSecondaryWeapon.name}}</span>
+                    {{#if document.system.characterGuide.suggestedSecondaryWeapon}}
+                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{system.system.characterGuide.suggestedSecondaryWeapon.uuid}}">
+                            <img class="image" src="{{document.system.characterGuide.suggestedSecondaryWeapon.img}}" />
+                            <span>{{document.system.characterGuide.suggestedSecondaryWeapon.name}}</span>
                             <div class="controls">
                                 <i data-action="removeSecondaryWeapon" class="fa-solid fa-trash icon-button"></i>
                             </div>
@@ -68,10 +68,10 @@
             <fieldset class="one-column drop-section armor-section">
                 <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.SuggestedArmorTitle"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#if source.system.characterGuide.suggestedArmor}}
-                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{source.system.characterGuide.suggestedArmor.uuid}}">
-                            <img class="image" src="{{source.system.characterGuide.suggestedArmor.img}}" />
-                            <span>{{source.system.characterGuide.suggestedArmor.name}}</span>
+                    {{#if document.system.characterGuide.suggestedArmor}}
+                        <div class="suggested-item item-line" data-action="viewItem" data-item="{{document.system.characterGuide.suggestedArmor.uuid}}">
+                            <img class="image" src="{{document.system.characterGuide.suggestedArmor.img}}" />
+                            <span>{{document.system.characterGuide.suggestedArmor.name}}</span>
                             <div class="controls">
                                 <i data-action="removeArmor" class="fa-solid fa-trash icon-button"></i>
                             </div>
