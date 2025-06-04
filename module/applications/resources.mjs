@@ -105,6 +105,5 @@ export default class Resources extends HandlebarsApplicationMixin(ApplicationV2)
     if(!game.user.isGM) return;
     value = Math.max(0, Math.min(this.maxFear, value));
     await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear, value);
-    await this.render(true);
   }
 }

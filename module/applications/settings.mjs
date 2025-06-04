@@ -179,7 +179,10 @@ export const registerDHSettings = () => {
         scope: 'world',
         config: false,
         type: Number,
-        default: 0
+        default: 0,
+        onChange: () => {
+            if(ui.resources) ui.resources.render({force: true});
+        }
     });
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.MaxFear, {
