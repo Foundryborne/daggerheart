@@ -444,9 +444,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     Object.keys(choice).forEach(checkboxNr => {
                         const checkbox = choice[checkboxNr];
                         if (
-                            choiceKey === type && removed
-                                ? checkbox.data.includes(option)
-                                : checkbox.data.length < checkbox.amount
+                            choiceKey === type &&
+                            (removed ? checkbox.data.includes(option) : checkbox.data.length < checkbox.amount)
                         ) {
                             acc = `levels.${this.levelup.currentLevel}.choices.${choiceKey}.${checkboxNr}.data`;
                         }
