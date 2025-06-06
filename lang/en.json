@@ -765,6 +765,7 @@
                     "summary": "Summary"
                 },
                 "navigateLevel": "To Level {level}",
+                "navigateToLevelup": "Return To Levelup",
                 "navigateToSummary": "To Summary",
                 "TakeLevelUp": "Finish Level Up",
                 "Delevel": {

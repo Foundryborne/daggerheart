@@ -2739,6 +2739,7 @@ div.daggerheart.views.multiclass {
   display: flex;
   align-items: center;
   gap: 22px;
+  height: 36px;
 }
 .daggerheart.levelup .levelup-navigation-container nav {
   flex: 1;
@@ -2934,7 +2935,7 @@ div.daggerheart.views.multiclass {
   --primary-color-fear: rgba(9, 71, 179, 0.75);
   --secondary-color-fear: rgba(9, 71, 179, 0.75);
   --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  --fear-animation: background 0.3s ease, box-shadow .3s ease, border-color .3s ease, opacity .3s ease;
+  --fear-animation: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
 }
 #resources {
   min-height: calc(var(--header-height) + 4rem);
@@ -3030,7 +3031,7 @@ div.daggerheart.views.multiclass {
 #resources .window-content #resource-fear.isGM i:hover {
   font-size: var(--font-size-20);
 }
-#resources button[data-action="close"] {
+#resources button[data-action='close'] {
   display: none;
 }
 #resources:not(:hover):not(.minimized) {

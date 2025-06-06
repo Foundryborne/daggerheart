@@ -115,6 +115,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 const { selections } = currentLevel.nrSelections;
                 context.tabs.advancements.progress = { selected: selections, max: currentLevel.maxSelections };
+                context.showTabs = this.tabGroups.primary !== 'summary';
                 break;
             case 'selections':
                 const advancementChoices = Object.keys(currentLevel.choices).reduce((acc, choiceKey) => {
