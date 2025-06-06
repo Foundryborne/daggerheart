@@ -533,7 +533,11 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 }
 
                 await this.levelup.updateSource({
-                    multiclass: { class: item.uuid, level: this.levelup.currentLevel },
+                    multiclass: {
+                        class: item.uuid,
+                        level: this.levelup.currentLevel,
+                        tier: Number(target.dataset.tier)
+                    },
                     [target.dataset.path]: {
                         tier: Number(target.dataset.tier),
                         minCost: Number(target.dataset.minCost),
@@ -557,6 +561,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         if (!button.checked) {
             update[`levels.${button.dataset.level}.choices.${button.dataset.option}.-=${button.dataset.checkboxNr}`] =
                 null;
+            if (button.dataset.type === 'multiclass') {
+                update['-=multiclass'] = null;
+            }
         } else {
             if (!this.levelup.levels[this.levelup.currentLevel].nrSelections.available) {
                 ui.notifications.info(
@@ -575,6 +582,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 value: button.dataset.value,
                 type: button.dataset.type
             };
+            update['multiclass'] = { tier: Number(button.dataset.tier), level: this.levelup.currentLevel };
         }
 
         await this.levelup.updateSource(update);
@@ -639,7 +647,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             });
         } else {
             await this.levelup.updateSource({
-                currentLevel: Math.max(this.levelup.currentLevel + 1, this.levelup.endLevel)
+                currentLevel: Math.min(this.levelup.currentLevel + 1, this.levelup.endLevel)
             });
         }
 

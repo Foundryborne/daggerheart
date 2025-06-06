@@ -87,6 +87,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
             multiclass: new fields.SchemaField({
                 class: new fields.StringField({ required: true }),
                 domain: new fields.StringField(),
+                tier: new fields.NumberField({ required: true, integer: true }),
                 level: new fields.NumberField({ required: true, integer: true })
             })
         };
