@@ -42,7 +42,6 @@ export default class Resources extends HandlebarsApplicationMixin(ApplicationV2)
         resources: {
             root: true,
             template: 'systems/daggerheart/templates/views/resources.hbs'
-            //   template: "templates/ui/players.hbs"
         }
     };
 

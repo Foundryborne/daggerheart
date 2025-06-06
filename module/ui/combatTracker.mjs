@@ -1,199 +1,100 @@
-import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
-
-export default class DhpCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
-    constructor(data, context) {
-        super(data, context);
-
-        Hooks.on(socketEvent.DhpFearUpdate, this.onFearUpdate);
-    }
-
-    get template() {
-        return 'systems/daggerheart/templates/ui/combatTracker.hbs';
-    }
-
-    activateListeners(html) {
-        super.activateListeners(html);
-        html.on('click', '.token-action-tokens .use-action-token', this.useActionToken.bind(this));
-        html.on('click', '.encounter-gm-resources .trade-actions', this.tradeActions.bind(this));
-        html.on('click', '.encounter-gm-resources .trade-fear', this.tradeFear.bind(this));
-        html.on('click', '.encounter-gm-resources .icon-button.up', this.increaseResource.bind(this));
-        html.on('click', '.encounter-gm-resources .icon-button.down', this.decreaseResource.bind(this));
-    }
-
-    async useActionToken(event) {
-        event.stopPropagation();
-        const combatant = event.currentTarget.dataset.combatant;
-        await game.combat.useActionToken(combatant);
-    }
-
-    async tradeActions(event) {
-        if (event.currentTarget.classList.contains('disabled')) return;
-
-        const currentFear = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear);
-        const value = currentFear + 1;
-
-        if (value <= 6) {
-            Hooks.callAll(socketEvent.GMUpdate, GMUpdateEvent.UpdateFear, null, value);
-            await game.socket.emit(`system.${SYSTEM.id}`, {
-                action: socketEvent.GMUpdate,
-                data: { action: GMUpdateEvent.UpdateFear, update: value }
-            });
-            await game.combat.update({ 'system.actions': game.combat.system.actions - 2 });
+export default class DhCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
+    static DEFAULT_OPTIONS = {
+        actions: {
+            requestSpotlight: this.requestSpotlight,
+            toggleSpotlight: this.toggleSpotlight,
+            setActionTokens: this.setActionTokens
         }
-    }
-
-    async tradeFear() {
-        if (event.currentTarget.classList.contains('disabled')) return;
-
-        const currentFear = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear);
-        const value = currentFear - 1;
-        if (value >= 0) {
-            Hooks.callAll(socketEvent.GMUpdate, GMUpdateEvent.UpdateFear, null, value);
-            await game.socket.emit(`system.${SYSTEM.id}`, {
-                action: socketEvent.GMUpdate,
-                data: { action: GMUpdateEvent.UpdateFear, update: value }
-            });
-            await game.combat.update({ 'system.actions': game.combat.system.actions + 2 });
-        }
-    }
-
-    async increaseResource(event) {
-        if (event.currentTarget.dataset.type === 'action') {
-            await game.combat.update({ 'system.actions': game.combat.system.actions + 1 });
-        }
-
-        const currentFear = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear);
-        const value = currentFear + 1;
-        if (event.currentTarget.dataset.type === 'fear' && value <= 6) {
-            Hooks.callAll(socketEvent.GMUpdate, GMUpdateEvent.UpdateFear, null, value);
-            await game.socket.emit(`system.${SYSTEM.id}`, {
-                action: socketEvent.GMUpdate,
-                data: { action: GMUpdateEvent.UpdateFear, update: value }
-            });
-        }
-
-        this.render();
-    }
-
-    async decreaseResource(event) {
-        if (event.currentTarget.dataset.type === 'action' && game.combat.system.actions - 1 >= 0) {
-            await game.combat.update({ 'system.actions': game.combat.system.actions - 1 });
-        }
-
-        const currentFear = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear);
-        const value = currentFear - 1;
-        if (event.currentTarget.dataset.type === 'fear' && value >= 0) {
-            Hooks.callAll(socketEvent.GMUpdate, GMUpdateEvent.UpdateFear, null, value);
-            await game.socket.emit(`system.${SYSTEM.id}`, {
-                action: socketEvent.GMUpdate,
-                data: { action: GMUpdateEvent.UpdateFear, update: value }
-            });
-        }
-
-        this.render();
-    }
-
-    async getData(options = {}) {
-        let context = await super.getData(options);
-
-        // Get the combat encounters possible for the viewed Scene
-        const combat = this.viewed;
-        const hasCombat = combat !== null;
-        const combats = this.combats;
-        const currentIdx = combats.findIndex(c => c === combat);
-        const previousId = currentIdx > 0 ? combats[currentIdx - 1].id : null;
-        const nextId = currentIdx < combats.length - 1 ? combats[currentIdx + 1].id : null;
-        const settings = game.settings.get('core', Combat.CONFIG_SETTING);
-
-        // Prepare rendering data
-        context = foundry.utils.mergeObject(context, {
-            combats: combats,
-            currentIndex: currentIdx + 1,
-            combatCount: combats.length,
-            hasCombat: hasCombat,
-            combat,
-            turns: [],
-            previousId,
-            nextId,
-            started: this.started,
-            control: false,
-            settings,
-            linked: combat?.scene !== null,
-            labels: {}
-        });
-        context.labels.scope = game.i18n.localize(`COMBAT.${context.linked ? 'Linked' : 'Unlinked'}`);
-        if (!hasCombat) return context;
-
-        // Format information about each combatant in the encounter
-        let hasDecimals = false;
-        const turns = [];
-        for (let [i, combatant] of combat.turns.entries()) {
-            if (!combatant.visible) continue;
-
-            // Prepare turn data
-            const resource =
-                combatant.permission >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER ? combatant.resource : null;
-            const turn = {
-                id: combatant.id,
-                name: combatant.name,
-                img: await this._getCombatantThumbnail(combatant),
-                active: combatant.id === combat.system.activeCombatant,
-                owner: combatant.isOwner,
-                defeated: combatant.isDefeated,
-                hidden: combatant.hidden,
-                initiative: combatant.initiative,
-                hasRolled: combatant.initiative !== null,
-                hasResource: resource !== null,
-                resource: resource,
-                canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission('PING_CANVAS'),
-                playerCharacter: game.user?.character?.id === combatant.actor.id,
-                ownedByPlayer: combatant.hasPlayerOwner
-            };
-            if (turn.initiative !== null && !Number.isInteger(turn.initiative)) hasDecimals = true;
-            turn.css = [turn.active ? 'active' : '', turn.hidden ? 'hidden' : '', turn.defeated ? 'defeated' : '']
-                .join(' ')
-                .trim();
-
-            // Actor and Token status effects
-            turn.effects = new Set();
-            if (combatant.token) {
-                combatant.token.effects.forEach(e => turn.effects.add(e));
-                if (combatant.token.overlayEffect) turn.effects.add(combatant.token.overlayEffect);
-            }
-            if (combatant.actor) {
-                for (const effect of combatant.actor.temporaryEffects) {
-                    if (effect.statuses.has(CONFIG.specialStatusEffects.DEFEATED)) turn.defeated = true;
-                    else if (effect.icon) turn.effects.add(effect.icon);
-                }
-            }
-            turns.push(turn);
-        }
-
-        // Format initiative numeric precision
-        const precision = CONFIG.Combat.initiative.decimals;
-        turns.forEach(t => {
-            if (t.initiative !== null) t.initiative = t.initiative.toFixed(hasDecimals ? precision : 0);
-        });
-
-        const fear = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear);
-
-        // Merge update data for rendering
-        return foundry.utils.mergeObject(context, {
-            round: combat.round,
-            turn: combat.turn,
-            turns: turns,
-            control: combat.combatant?.players?.includes(game.user),
-            fear: fear
-        });
-    }
-
-    onFearUpdate = async () => {
-        this.render(true);
     };
 
-    async close(options) {
-        Hooks.off(socketEvent.DhpFearUpdate, this.onFearUpdate);
+    static PARTS = {
+        header: {
+            template: 'systems/daggerheart/templates/ui/combat/combatTrackerHeader.hbs'
+        },
+        tracker: {
+            template: 'systems/daggerheart/templates/ui/combat/combatTracker.hbs'
+        },
+        footer: {
+            template: 'systems/daggerheart/templates/ui/combat/combatTrackerFooter.hbs'
+        }
+    };
 
-        return super.close(options);
+    async _prepareCombatContext(context, options) {
+        await super._prepareCombatContext(context, options);
+
+        Object.assign(context, {
+            fear: game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear)
+        });
+    }
+
+    async _prepareTrackerContext(context, options) {
+        await super._prepareTrackerContext(context, options);
+
+        const adversaries = context.turns.filter(x => x.isNPC);
+        const characters = context.turns.filter(x => !x.isNPC);
+
+        Object.assign(context, {
+            actionTokens: game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.variantRules).actionTokens,
+            adversaries,
+            characters
+        });
+    }
+
+    async _prepareTurnContext(combat, combatant, index) {
+        const turn = await super._prepareTurnContext(combat, combatant, index);
+        return { ...turn, isNPC: combatant.isNPC, system: combatant.system.toObject() };
+    }
+
+    _getCombatContextOptions() {
+        return [
+            {
+                name: 'COMBAT.ClearMovementHistories',
+                icon: '<i class="fa-solid fa-shoe-prints"></i>',
+                condition: () => game.user.isGM && this.viewed?.combatants.size > 0,
+                callback: () => this.viewed.clearMovementHistories()
+            },
+            {
+                name: 'COMBAT.Delete',
+                icon: '<i class="fa-solid fa-trash"></i>',
+                condition: () => game.user.isGM && !!this.viewed,
+                callback: () => this.viewed.endCombat()
+            }
+        ];
+    }
+
+    static async requestSpotlight(_, target) {
+        const { combatantId } = target.closest('[data-combatant-id]')?.dataset ?? {};
+        const combatant = this.viewed.combatants.get(combatantId);
+        await combatant.update({
+            'system.spotlight': {
+                requesting: !combatant.system.spotlight.requesting
+            }
+        });
+
+        this.render();
+    }
+
+    static async toggleSpotlight(_, target) {
+        const { combatantId } = target.closest('[data-combatant-id]')?.dataset ?? {};
+        const combatant = this.viewed.combatants.get(combatantId);
+
+        const toggleTurn = this.viewed.combatants.contents
+            .sort(this.viewed._sortCombatants)
+            .map(x => x.id)
+            .indexOf(combatantId);
+
+        await this.viewed.update({ turn: this.viewed.turn === toggleTurn ? null : toggleTurn });
+        await combatant.update({ 'system.spotlight.requesting': false });
+    }
+
+    static async setActionTokens(_, target) {
+        const { combatantId, tokenIndex } = target.closest('[data-combatant-id]')?.dataset ?? {};
+
+        const combatant = this.viewed.combatants.get(combatantId);
+        const changeIndex = Number(tokenIndex);
+        const newIndex = combatant.system.actionTokens > changeIndex ? changeIndex : changeIndex + 1;
+
+        await combatant.update({ 'system.actionTokens': newIndex });
+        this.render();
     }
 }

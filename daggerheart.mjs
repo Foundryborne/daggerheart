@@ -3,11 +3,10 @@ import * as applications from './module/applications/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
-import DhpCombatTracker from './module/ui/combatTracker.mjs';
+import DhCombatTracker from './module/ui/combatTracker.mjs';
 import { GMUpdateEvent, handleSocketEvent, socketEvent } from './module/helpers/socket.mjs';
 import { registerDHSettings } from './module/applications/settings.mjs';
 import DhpChatLog from './module/ui/chatLog.mjs';
-import DhpPlayers from './module/ui/players.mjs';
 import DhpRuler from './module/ui/ruler.mjs';
 import DhpTokenRuler from './module/ui/tokenRuler.mjs';
 import { dualityRollEnricher } from './module/enrichers/DualityRollEnricher.mjs';
@@ -74,11 +73,11 @@ Hooks.once('init', () => {
     Actors.registerSheet(SYSTEM.id, applications.DhpEnvironment, { types: ['environment'], makeDefault: true });
 
     CONFIG.Combat.dataModels = {
-        base: models.DhpCombat
+        base: models.DhCombat
     };
 
     CONFIG.Combatant.dataModels = {
-        base: models.DhpCombatant
+        base: models.DhCombatant
     };
 
     CONFIG.ChatMessage.dataModels = {
@@ -91,7 +90,7 @@ Hooks.once('init', () => {
 
     CONFIG.Canvas.rulerClass = DhpRuler;
     CONFIG.Combat.documentClass = documents.DhpCombat;
-    CONFIG.ui.combat = DhpCombatTracker;
+    CONFIG.ui.combat = DhCombatTracker;
     CONFIG.ui.chat = DhpChatLog;
     // CONFIG.ui.players = DhpPlayers;
     CONFIG.Token.rulerClass = DhpTokenRuler;
@@ -297,6 +296,7 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/views/levelup/parts/selectable-card-preview.hbs',
         'systems/daggerheart/templates/views/levelup/parts/multiclass-preview-card.hbs',
-        'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs'
+        'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',
+        'systems/daggerheart/templates/ui/combat/combatTrackerSection.hbs'
     ]);
 };

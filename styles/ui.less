@@ -1,71 +1,106 @@
 .combat-sidebar {
-    .encounter-gm-resources {
-        flex: 0;
-        display: flex;
-        justify-content: center;
-        padding: @largePadding 0;
+    .encounter-controls.combat {
+        justify-content: space-between;
 
-        .gm-resource-controls {
+        .encounter-control-fear-container {
             display: flex;
-            flex-direction: column;
+            position: relative;
             align-items: center;
-            padding: 0 4px;
             justify-content: center;
-        }
+            color: black;
 
-        .gm-resource-tools {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 5px 0 @fullPadding;
+            .dice {
+                height: 24px;
+            }
 
-            i {
-                margin: 0 @tinyMargin;
+            .encounter-control-fear {
+                position: absolute;
                 font-size: 16px;
+            }
 
-                &.disabled {
-                    opacity: 0.6;
-                }
+            .encounter-control-counter {
+                position: absolute;
+                right: -10px;
+                color: var(--color-text-secondary);
+            }
+        }
 
-                &:hover:not(.disabled) {
-                    cursor: pointer;
-                    filter: drop-shadow(0 0 3px @mainShadow);
+        .control-buttons {
+            width: min-content;
+        }
+    }
+
+    .combatant-controls {
+        flex: 0;
+    }
+
+    .token-actions {
+        align-self: stretch;
+        display: flex;
+        align-items: top;
+        justify-content: center;
+        gap: 16px;
+
+        .action-tokens {
+            display: flex;
+            gap: 4px;
+
+            .action-token {
+                height: 22px;
+                width: 22px;
+                border: 1px solid;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                padding: 8px;
+                --button-size: 0;
+
+                &.used {
+                    opacity: 0.5;
+                    background: transparent;
                 }
             }
         }
 
-        .gm-resource {
-            background: rgba(255, 255, 255, 0.1);
-            padding: @fullPadding;
-            border-radius: 8px;
-            border: @normalBorder solid black;
-            font-size: 20px;
+        button {
+            font-size: 22px;
+            height: 24px;
+            width: 24px;
+
+            &.main {
+                background: var(--button-hover-background-color);
+                color: var(--button-hover-text-color);
+                border-color: var(--button-hover-border-color);
+
+                &:hover {
+                    filter: drop-shadow(0 0 3px var(--button-hover-text-color));
+                }
+            }
         }
     }
 
-    .token-action-tokens {
-        flex: 0 0 48px;
+    .spotlight-control {
+        font-size: 26px;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &.discrete:hover {
+            background: inherit;
+        }
+
+        &.requesting {
+            filter: drop-shadow(0 0 3px gold);
+            color: var(--button-hover-text-color);
+        }
+    }
+
+    h4 {
+        margin: 0;
         text-align: center;
-
-        .use-action-token {
-            &.disabled {
-                opacity: 0.6;
-            }
-        }
-    }
-
-    .icon-button {
-        &.spaced {
-            margin-left: @halfMargin;
-        }
-
-        &.disabled {
-            opacity: 0.6;
-        }
-
-        &:hover:not(.disabled) {
-            cursor: pointer;
-            filter: drop-shadow(0 0 3px @mainShadow);
-        }
     }
 }

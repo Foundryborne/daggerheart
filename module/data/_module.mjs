@@ -1,8 +1,8 @@
 export { default as DhpPC } from './pc.mjs';
 export { default as DhpClass } from './class.mjs';
 export { default as DhpSubclass } from './subclass.mjs';
-export { default as DhpCombat } from './combat.mjs';
-export { default as DhpCombatant } from './combatant.mjs';
+export { default as DhCombat } from './combat.mjs';
+export { default as DhCombatant } from './combatant.mjs';
 export { default as DhpAdversary } from './adversary.mjs';
 export { default as DhpFeature } from './feature.mjs';
 export { default as DhpDomainCard } from './domainCard.mjs';

@@ -10,6 +10,10 @@ export const menu = {
     Range: {
         Name: 'GameSettingsRange',
         Icon: 'fa-solid fa-ruler'
+    },
+    VariantRules: {
+        Name: 'GameSettingsVariantrules',
+        Icon: 'fa-solid fa-scale-balanced'
     }
 };
 
@@ -29,7 +33,8 @@ export const gameSettings = {
     },
     DualityRollColor: 'DualityRollColor',
     LevelTiers: 'LevelTiers',
-    appearance: 'Appearance'
+    appearance: 'Appearance',
+    variantRules: 'VariantRules'
 };
 
 export const DualityRollColor = {
