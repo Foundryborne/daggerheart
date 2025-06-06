@@ -10,6 +10,10 @@ export const menu = {
     Range: {
         Name: 'GameSettingsRange',
         Icon: 'fa-solid fa-ruler'
+    },
+    VariantRules: {
+        Name: 'GameSettingsVariantrules',
+        Icon: 'fa-solid fa-scale-balanced'
     }
 };
 
@@ -27,5 +31,6 @@ export const gameSettings = {
         AbilityArray: 'AbilityArray',
         RangeMeasurement: 'RangeMeasurement'
     },
-    appearance: 'Appearance'
+    appearance: 'Appearance',
+    variantRules: 'VariantRules'
 };

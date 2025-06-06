@@ -61,6 +61,13 @@
                         "outline": "Outline",
                         "edge": "Edge"
                     }
+                },
+                "VariantRules": {
+                    "title": "Variant Rules",
+                    "label": "Variant Rules",
+                    "hint": "Apply variant rules from the Daggerheart system",
+                    "name": "Variant Rules",
+                    "actionTokens": "Action Tokens"
                 }
             },
             "Automation": {
@@ -99,6 +106,12 @@
                 "RangeMeasurement": {
                     "Name": "Enable Range Measurement",
                     "Hint": "Enable measuring of ranges with the ruler according to set distances."
+                }
+            },
+            "VariantRules": {
+                "ActionTokens": {
+                    "Name": "Action Tokens",
+                    "Hint": "Give each player action tokens to use in combat"
                 }
             },
             "DualityRollColor": {
@@ -328,6 +341,12 @@
                 "spell": "Spell",
                 "grimoire": "Grimoire"
             }
+        },
+        "Combat": {
+            "giveSpotlight": "Give The Spotlight",
+            "requestSpotlight": "Request The Spotlight",
+            "requestingSpotlight": "Requesting The Spotlight",
+            "combatStarted": "Active"
         },
         "LevelUp": {
             "Tier1": {

@@ -1293,59 +1293,77 @@
 .daggerheart.sheet.pc div[data-application-part] .sheet-body .inventory-container .inventory-item-list .inventory-row img {
   width: 32px;
 }
-.combat-sidebar .encounter-gm-resources {
-  flex: 0;
-  display: flex;
-  justify-content: center;
-  padding: 8px 0;
+.combat-sidebar .encounter-controls.combat {
+  justify-content: space-between;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-controls {
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container {
   display: flex;
-  flex-direction: column;
+  position: relative;
   align-items: center;
-  padding: 0 4px;
   justify-content: center;
+  color: black;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 5px 0 4px;
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container .dice {
+  height: 24px;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools i {
-  margin: 0 2px;
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container .encounter-control-fear {
+  position: absolute;
   font-size: 16px;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools i.disabled {
-  opacity: 0.6;
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container .encounter-control-counter {
+  position: absolute;
+  right: -10px;
+  color: var(--color-text-secondary);
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools i:hover:not(.disabled) {
-  cursor: pointer;
-  filter: drop-shadow(0 0 3px red);
+.combat-sidebar .encounter-controls.combat .control-buttons {
+  width: min-content;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 4px;
+.combat-sidebar .token-actions {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.combat-sidebar .token-actions .action-tokens {
+  display: flex;
+  gap: 4px;
+}
+.combat-sidebar .token-actions .action-tokens .action-token {
+  height: 24px;
+  border: 1px solid;
   border-radius: 8px;
-  border: 2px solid black;
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  padding: 8px;
+  --button-size: 0;
 }
-.combat-sidebar .token-action-tokens {
-  flex: 0 0 48px;
-  text-align: center;
+.combat-sidebar .token-actions .action-tokens .action-token.used {
+  opacity: 0.5;
 }
-.combat-sidebar .token-action-tokens .use-action-token.disabled {
-  opacity: 0.6;
+.combat-sidebar .token-actions button {
+  font-size: 22px;
 }
-.combat-sidebar .icon-button.spaced {
-  margin-left: 4px;
+.combat-sidebar .token-actions button.main {
+  background: var(--button-hover-background-color);
+  color: var(--button-hover-text-color);
+  border-color: var(--button-hover-border-color);
 }
-.combat-sidebar .icon-button.disabled {
-  opacity: 0.6;
+.combat-sidebar .token-actions button.main:hover {
+  filter: drop-shadow(0 0 3px var(--button-hover-text-color));
 }
-.combat-sidebar .icon-button:hover:not(.disabled) {
-  cursor: pointer;
-  filter: drop-shadow(0 0 3px red);
+.combat-sidebar .token-actions button.discrete:hover {
+  background: inherit;
+}
+.combat-sidebar .token-actions .combatant-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+.combat-sidebar .token-actions .combatant-control.requesting {
+  filter: drop-shadow(0 0 3px gold);
+  color: var(--button-hover-text-color);
 }
 .chat-message.duality {
   border-color: black;
@@ -2722,11 +2740,18 @@ div.daggerheart.views.multiclass {
   --primary-color-fear: rgba(9, 71, 179, 0.75);
   --secondary-color-fear: rgba(9, 71, 179, 0.75);
   --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  --fear-animation: background 0.3s ease, box-shadow .3s ease, border-color .3s ease, opacity .3s ease;
 }
 #resources {
   min-height: calc(var(--header-height) + 4rem);
   min-width: 4rem;
   color: #d3d3d3;
+  transition: var(--fear-animation);
+}
+#resources header,
+#resources .controls,
+#resources .window-resize-handle {
+  transition: var(--fear-animation);
 }
 #resources .window-content {
   padding: 0.5rem;
@@ -2822,7 +2847,7 @@ div.daggerheart.views.multiclass {
 #resources:not(:hover):not(.minimized) header,
 #resources:not(:hover):not(.minimized) .controls,
 #resources:not(:hover):not(.minimized) .window-resize-handle {
-  visibility: hidden;
+  opacity: 0;
 }
 #resources:has(.fear-bar) {
   min-width: 200px;
@@ -2903,7 +2928,7 @@ div.daggerheart.views.multiclass {
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v17/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v18/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Montserrat';
@@ -3185,6 +3210,19 @@ div.daggerheart.views.multiclass {
 }
 .application.setting.dh-style footer button {
   flex: 1;
+}
+.application.setting.dh-style .form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.application.setting.dh-style .form-group label {
+  font-size: 16px;
+}
+.application.setting.dh-style .form-group .form-fields {
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 .system-daggerheart .tagify {
   background: light-dark(transparent, transparent);
