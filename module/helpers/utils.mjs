@@ -205,3 +205,21 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
     };
     tagifyElement.on('change', onSelect);
 };
+
+export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue) => {
+    return Object.keys(property).reduce((acc, key) => {
+        if (innerProperty) {
+            if (innerPropertyDefaultValue !== undefined) {
+                acc[`${key}`] = {
+                    [innerProperty]: innerPropertyDefaultValue
+                };
+            } else {
+                acc[`${key}.-=${innerProperty}`] = null;
+            }
+        } else {
+            acc[`-=${key}`] = null;
+        }
+
+        return acc;
+    }, {});
+};

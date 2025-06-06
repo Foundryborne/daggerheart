@@ -242,14 +242,14 @@ export const defaultLevelTiers = {
                 },
                 proficiency: {
                     label: 'DAGGERHEART.LevelUp.Options.proficiency',
-                    checkboxSelections: 1,
+                    checkboxSelections: 2,
                     minCost: 2,
                     type: LevelOptionType.proficiency.id,
                     value: 1
                 },
                 multiclass: {
                     label: 'DAGGERHEART.LevelUp.Options.multiclass',
-                    checkboxSelections: 1,
+                    checkboxSelections: 2,
                     minCost: 2,
                     type: LevelOptionType.multiclass.id
                 }
@@ -323,14 +323,14 @@ export const defaultLevelTiers = {
                 },
                 proficiency: {
                     label: 'DAGGERHEART.LevelUp.Options.proficiency',
-                    checkboxSelections: 1,
+                    checkboxSelections: 2,
                     minCost: 2,
                     type: LevelOptionType.proficiency.id,
                     value: 1
                 },
                 multiclass: {
                     label: 'DAGGERHEART.LevelUp.Options.multiclass',
-                    checkboxSelections: 1,
+                    checkboxSelections: 2,
                     minCost: 2,
                     type: LevelOptionType.multiclass.id
                 }

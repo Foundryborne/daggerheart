@@ -11,7 +11,7 @@
                     {{#each this.newExperiences}}
                         <div class="achievement-experience-card">
                             <div class="flexrow">
-                                <input type="text" name="{{concat "levelup.allInitialAchievements." this.level ".newExperiences." this.key ".name"}}" value="{{this.name}}" placeholder="{{localize "DAGGERHEART.Application.LevelUp.summary.experiencePlaceholder"}}" />
+                                <input type="text" name="{{concat "levelup.levels." this.level ".achievements.experiences." this.key ".name"}}" value="{{this.name}}" placeholder="{{localize "DAGGERHEART.Application.LevelUp.summary.experiencePlaceholder"}}" />
                                 <div class="flex0">{{signedNumber this.modifier}}</div>
                             </div>
                             <div class="achievement-experience-marker">
@@ -68,10 +68,10 @@
                 <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.multiclass"}}</h3>
 
                 <div class="levelup-card-selection multiclass-cards">
-                    {{> "systems/daggerheart/templates/components/card-preview.hbs" img=this.multiclass.img name=this.multiclass.name path=this.multiclass.path compendium=this.multiclass.compendium }}
+                    {{> "systems/daggerheart/templates/views/levelup/parts/multiclass-preview-card.hbs" this.multiclass }}
                     <div class="levelup-domains-selection-container">
                         {{#each this.multiclass.domains}}
-                            <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}" {{#if (not this.disabled)}}data-action="selectDomain" data-uuid="{{../multiclass.uuid}}" data-domain="{{this.id}}"{{/if}}>
+                            <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}" {{#if (not this.disabled)}}data-action="selectDomain" data-uuid="{{../multiclass.uuid}}" data-domain="{{this.id}}" data-path="{{../multiclass.path}}" {{/if}}>
                                 <div class="levelup-domain-label">{{localize this.label}}</div>
                                 <img src="{{this.src}}" />
                                 {{#if this.selected}}

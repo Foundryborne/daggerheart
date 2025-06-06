@@ -2735,6 +2735,24 @@ div.daggerheart.views.multiclass {
   flex-direction: column;
   gap: 8px;
 }
+.daggerheart.levelup .levelup-navigation-container {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.daggerheart.levelup .levelup-navigation-container nav {
+  flex: 1;
+}
+.daggerheart.levelup .levelup-navigation-container .levelup-navigation-actions {
+  width: 306px;
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+  margin-right: 4px;
+}
+.daggerheart.levelup .levelup-navigation-container .levelup-navigation-actions * {
+  width: calc(50% - 8px);
+}
 .daggerheart.levelup .tiers-container {
   display: flex;
   gap: 16px;
@@ -3091,21 +3109,21 @@ div.daggerheart.views.multiclass {
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/cinzel/v23/8vIU7ww63mVu7gtR-kwKxNvkNOjw-tbnTYo.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/cinzel/v25/8vIU7ww63mVu7gtR-kwKxNvkNOjw-tbnTYo.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Cinzel';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/cinzel/v23/8vIU7ww63mVu7gtR-kwKxNvkNOjw-jHgTYo.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/cinzel/v25/8vIU7ww63mVu7gtR-kwKxNvkNOjw-jHgTYo.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Cinzel Decorative';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v17/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v18/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Montserrat';

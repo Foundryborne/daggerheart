@@ -764,8 +764,13 @@
                     "selections": "Advancement Choices",
                     "summary": "Summary"
                 },
-                "AdvanceLevel": "Continue To Level {level}",
+                "navigateLevel": "To Level {level}",
+                "navigateToSummary": "To Summary",
                 "TakeLevelUp": "Finish Level Up",
+                "Delevel": {
+                    "title": "Go back to previous level",
+                    "content": "Returning to the previous level selection will remove all selections made for this level. Do you want to proceed?"
+                },
                 "Selections": {
                     "emptyDomainCardHint": "Domain Card Level {level} or below"
                 },

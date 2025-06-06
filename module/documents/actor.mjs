@@ -33,247 +33,91 @@ export default class DhpActor extends Actor {
         if (newLevel > this.system.levelData.level.current) {
             await this.update({ 'system.levelData.level.changed': newLevel });
         } else {
-            const levelTiers = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers);
-            const passedLevelTiers = Object.values(levelTiers.tiers)
-                .filter(x => newLevel <= x.levels.end)
-                .map(x => x.levels.start);
-            const firstPassedLevelTier = passedLevelTiers.length > 0 ? Math.min(...passedLevelTiers) : null;
-
-            const changes = this.getLevelChangedFeatures(
-                newLevel,
-                this.system.levelData.level.changed,
-                this.system.levelData.levelups
-            );
-
-            for (var domainCard of changes.domainCards) {
-                const uuid = domainCard.itemUuid ? domainCard.itemUuid : domainCard.uuid;
-                const itemCard = await this.items.find(x => x.uuid === uuid);
-                itemCard.delete();
-            }
-
-            var traitsUpdate = changes.traits.reduce((acc, trait) => {
-                const currentTrait = this.system.traits[trait.data];
-                acc[trait.data] = {
-                    bonus: currentTrait.bonus - 1,
-                    tierMarked: trait.first
-                        ? !firstPassedLevelTier || trait.level <= firstPassedLevelTier
-                            ? true
-                            : false
-                        : currentTrait.tierMarked
-                };
+            const updatedLevelups = Object.keys(this.system.levelData.levelups).reduce((acc, level) => {
+                if (Number(level) > newLevel) acc[`-=${level}`] = null;
 
                 return acc;
             }, {});
 
-            const newExperienceKeys = Object.keys(changes.experiences);
-            const experienceUpdate = this.system.experiences.filter(x => !newExperienceKeys.includes(x.id));
-            for (var experience of changes.experienceIncreases) {
-                for (var id of experience.data) {
-                    const existingExperience = experienceUpdate.find(x => x.id === id);
-                    existingExperience.value -= experience.value;
-                }
+            const domainCards = Object.keys(this.system.levelData.levelups)
+                .filter(x => x > newLevel)
+                .flatMap(levelKey => {
+                    const level = this.system.levelData.levelups[levelKey];
+                    const achievementCards = level.achievements.domainCards.map(x => x.itemUuid);
+                    const advancementCards = level.selections.filter(x => x.type === 'domainCard').map(x => x.itemUuid);
+                    return [...achievementCards, ...advancementCards];
+                });
+
+            for (var domainCard of domainCards) {
+                const itemCard = await this.items.find(x => x.uuid === domainCard);
+                itemCard.delete();
             }
 
-            for (var subclass of changes.subclasses) {
-                /* Implemented after datamodel rework is in */
-            }
-
-            if (changes.multiclass) {
-                /* Implemented after datamodel rework is in */
-            }
-
-            const newLevelData = {
-                level: {
-                    current: newLevel,
-                    changed: newLevel
-                },
-                levelups: Object.keys(this.system.levelData.levelups).reduce((acc, levelKey) => {
-                    const level = Number(levelKey);
-                    if (level > newLevel) acc[`-=${level}`] = null;
-
-                    return acc;
-                }, {})
-            };
             await this.update({
                 system: {
-                    'traits': traitsUpdate,
-                    'experiences': experienceUpdate,
-                    'resources': {
-                        hitPoints: {
-                            bonus: this.system.resources.hitPoints.bonus - changes.hitPoint
+                    levelData: {
+                        level: {
+                            current: newLevel,
+                            changed: newLevel
                         },
-                        stress: {
-                            bonus: this.system.resources.stress.bonus - changes.stress
-                        }
-                    },
-                    'evasion.bonus': this.system.evasion.bonus - changes.evasion,
-                    'proficiency.bonus': this.system.proficiency.bonus - changes.proficiency,
-                    'levelData': newLevelData
+                        levelups: updatedLevelups
+                    }
                 }
             });
         }
     }
 
-    getLevelChangedFeatures(startLevel, endLevel, levelData) {
-        const changedFeatures = {
-            hitPoint: 0,
-            stress: 0,
-            evasion: 0,
-            proficiency: 0,
-            domainCards: [],
-            multiclass: null,
-            subclasses: [],
-            traits: [],
-            experiences: {},
-            experienceIncreases: []
-        };
-
-        for (var level = startLevel + 1; level <= endLevel; level++) {
-            if (!levelData[level]) continue;
-
-            const achievements = levelData[level].achievements;
-            const selections = levelData[level].selections.reduce((acc, selection) => {
-                if (!acc[selection.type]) acc[selection.type] = [selection];
-                else acc[selection.type].push(selection);
-
-                return acc;
-            }, {});
-
-            changedFeatures.hitPoint += selections.hitPoint
-                ? selections.hitPoint.reduce((acc, hp) => acc + Number(hp.value), 0)
-                : 0;
-            changedFeatures.stress += selections.stress
-                ? selections.stress.reduce((acc, stress) => acc + Number(stress.value), 0)
-                : 0;
-            changedFeatures.evasion += selections.evasion
-                ? selections.evasion.reduce((acc, evasion) => acc + Number(evasion.value), 0)
-                : 0;
-            changedFeatures.proficiency +=
-                (achievements?.proficiency ?? 0) +
-                (selections.proficiency
-                    ? selections.proficiency.reduce((acc, proficiency) => acc + Number(proficiency.value), 0)
-                    : 0);
-            changedFeatures.domainCards.push(
-                ...[
-                    ...levelData[level].domainCards,
-                    ...(selections.domainCard?.flatMap(x => x.data.map(data => ({ ...x, data: data }))) ?? [])
-                ]
-            );
-            changedFeatures.traits.push(
-                ...(selections.trait
-                    ? selections.trait.flatMap(x =>
-                          x.data.map(data => ({
-                              level: x.level,
-                              data: data,
-                              first: level === startLevel,
-                              last: level === endLevel
-                          }))
-                      )
-                    : [])
-            );
-            changedFeatures.experiences = Object.keys(achievements?.experiences ? achievements.experiences : {}).reduce(
-                (acc, key) => {
-                    acc[key] = achievements.experiences[key];
-
-                    return acc;
-                },
-                changedFeatures.experiences
-            );
-            changedFeatures.experienceIncreases.push(...(selections.experience ?? []));
-            changedFeatures.subclasses.push(...(selections.subclasses ? [] : []));
-            changedFeatures.multiclass = selections.multiclass ? selections.multiclass[0] : null;
-        }
-
-        return changedFeatures;
-    }
-
     async levelUp(levelupData) {
-        const levelTiers = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers);
-        const passedLevelTiers = Object.values(levelTiers.tiers)
-            .filter(x => this.system.levelData.level.changed >= x.levels.start)
-            .map(x => x.levels.start);
-        const lastPassedLevelTier = passedLevelTiers.length > 0 ? Math.max(...passedLevelTiers) : null;
-
-        const changes = this.getLevelChangedFeatures(
-            this.system.levelData.level.current,
-            this.system.levelData.level.changed,
-            levelupData
-        );
-
-        for (var card of changes.domainCards) {
-            const fromAchievement = Boolean(card.uuid);
-            const domainCard = await foundry.utils.fromUuid(fromAchievement ? card.uuid : card.data);
-            const createdCards = await this.createEmbeddedDocuments('Item', [domainCard]);
-            const newCard = createdCards[0];
-            if (fromAchievement) {
-                const levelupCard = levelupData[card.level].domainCards.find(
-                    x => x.tier === card.tier && x.level === card.level
-                );
-                if (levelupCard) levelupCard.itemUuid = newCard.uuid;
-            } else {
-                const levelupCard = levelupData[card.level].selections.find(
-                    x =>
-                        x.tier === card.tier &&
-                        x.level === card.level &&
-                        x.optionKey === card.optionKey &&
-                        x.checkboxNr === card.checkboxNr
-                );
-                if (levelupCard) levelupCard.uuid = newCard.uuid;
+        const levelups = {};
+        for (var levelKey of Object.keys(levelupData)) {
+            const level = levelupData[levelKey];
+            const achievementDomainCards = [];
+            for (var card of Object.values(level.achievements.domainCards)) {
+                const item = await foundry.utils.fromUuid(card.uuid);
+                const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                card.itemUuid = embeddedItem[0].uuid;
+                achievementDomainCards.push(card);
             }
-        }
 
-        var traitsUpdate = changes.traits.reduce((acc, trait) => {
-            const currentTrait = this.system.traits[trait.data];
-            acc[`${trait.data}`] = {
-                bonus: currentTrait.bonus + 1,
-                tierMarked: trait.last
-                    ? !lastPassedLevelTier || trait.level >= lastPassedLevelTier
-                        ? true
-                        : false
-                    : currentTrait.tierMarked
+            const selections = [];
+            for (var optionKey of Object.keys(level.choices)) {
+                const selection = level.choices[optionKey];
+                for (var checkboxNr of Object.keys(selection)) {
+                    const checkbox = selection[checkboxNr];
+                    let itemUuid = null;
+
+                    if (checkbox.type === 'domainCard') {
+                        const item = await foundry.utils.fromUuid(checkbox.data[0]);
+                        const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                        itemUuid = embeddedItem[0].uuid;
+                    }
+
+                    selections.push({
+                        ...checkbox,
+                        level: Number(levelKey),
+                        optionKey: optionKey,
+                        checkboxNr: Number(checkboxNr),
+                        itemUuid
+                    });
+                }
+            }
+
+            levelups[levelKey] = {
+                achievements: {
+                    ...level.achievements,
+                    domainCards: achievementDomainCards
+                },
+                selections: selections
             };
-            return acc;
-        }, {});
-
-        const experienceUpdate = this.system.experiences;
-        const newExperienceKeys = Object.keys(changes.experiences);
-        for (var key of newExperienceKeys) {
-            const experience = changes.experiences[key];
-            experienceUpdate.push({ id: key, description: experience.name, value: experience.modifier });
-        }
-
-        for (var experience of changes.experienceIncreases) {
-            for (var id of experience.data) {
-                const existingExperience = experienceUpdate.find(x => x.id === id);
-                existingExperience.value += experience.value;
-            }
-        }
-
-        for (var subclass of changes.subclasses) {
-            /* Implemented after datamodel rework is in */
-        }
-
-        if (changes.multiclass) {
-            /* Implemented after datamodel rework is in */
         }
 
         await this.update({
             system: {
-                'traits': traitsUpdate,
-                'experiences': experienceUpdate,
-                'resources': {
-                    hitPoints: {
-                        bonus: this.system.resources.hitPoints.bonus + changes.hitPoint
+                levelData: {
+                    level: {
+                        current: this.system.levelData.level.changed
                     },
-                    stress: {
-                        bonus: this.system.resources.stress.bonus + changes.stress
-                    }
-                },
-                'evasion.bonus': this.system.evasion.bonus + changes.evasion,
-                'proficiency.bonus': this.system.proficiency.bonus + changes.proficiency,
-                'levelData': {
-                    'level.current': this.system.levelData.level.changed,
-                    'levelups': levelupData
+                    levelups: levelups
                 }
             }
         });

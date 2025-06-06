@@ -375,15 +375,15 @@ class DhPCLevelData extends foundry.abstract.DataModel {
                                     modifier: new fields.NumberField({ required: true, integer: true })
                                 })
                             ),
+                            domainCards: new fields.ArrayField(
+                                new fields.SchemaField({
+                                    uuid: new fields.StringField({ required: true }),
+                                    itemUuid: new fields.StringField({ required: true })
+                                })
+                            ),
                             proficiency: new fields.NumberField({ integer: true })
                         },
                         { nullable: true, initial: null }
-                    ),
-                    domainCards: new fields.ArrayField(
-                        new fields.SchemaField({
-                            uuid: new fields.StringField({ required: true }),
-                            itemUuid: new fields.StringField({ required: true })
-                        })
                     ),
                     selections: new fields.ArrayField(
                         new fields.SchemaField({
@@ -393,9 +393,11 @@ class DhPCLevelData extends foundry.abstract.DataModel {
                             type: new fields.StringField({ required: true, choices: LevelOptionType }),
                             checkboxNr: new fields.NumberField({ required: true, integer: true }),
                             value: new fields.NumberField({ integer: true }),
+                            minCost: new fields.NumberField({ integer: true }),
                             amount: new fields.NumberField({ integer: true }),
                             data: new fields.ArrayField(new fields.StringField({ required: true })),
-                            uuid: new fields.StringField({ required: true })
+                            secondaryData: new fields.StringField(),
+                            itemUuid: new fields.StringField({ required: true })
                         })
                     )
                 })

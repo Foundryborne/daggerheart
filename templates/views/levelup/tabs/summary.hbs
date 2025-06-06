@@ -84,7 +84,7 @@
                         {{/if}}
                         {{#if this.advancements.statistics.evasion.shown}}
                             <div class="increase-container">
-                                {{localize "DAGGERHEART.Application.LevelUp.summary.evasionIncrease" stress=this.advancements.statistics.evasion.old }}
+                                {{localize "DAGGERHEART.Application.LevelUp.summary.evasionIncrease" evasion=this.advancements.statistics.evasion.old }}
                                 <i class="fa-solid fa-arrow-right-long"></i>
                                 {{this.advancements.statistics.evasion.new}}
                             </div>
@@ -128,7 +128,7 @@
         </fieldset>
 
         <footer class="levelup-footer">
-            <button data-action="save" {{#if (not this.levelup.canLevelUp)}}disabled{{/if}}>{{localize "Finish Levelup"}}</button>
+            <button data-action="save" {{#if (not this.levelup.allLevelsFinished)}}disabled{{/if}}>{{localize "Finish Levelup"}}</button>
         </footer>
     </div>
 </section>
