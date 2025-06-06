@@ -30,8 +30,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     async _prepareTrackerContext(context, options) {
         await super._prepareTrackerContext(context, options);
 
-        const adversaries = context.turns.filter(x => x.isNPC);
-        const characters = context.turns.filter(x => !x.isNPC);
+        const adversaries = context.turns?.filter(x => x.isNPC) ?? [];
+        const characters = context.turns?.filter(x => !x.isNPC) ?? [];
 
         Object.assign(context, {
             actionTokens: game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.variantRules).actionTokens,
