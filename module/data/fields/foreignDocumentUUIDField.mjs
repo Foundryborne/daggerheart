@@ -3,6 +3,15 @@
  * that resolves to either the document, the index(for items in compenidums) or the UUID string.
  */
 export default class ForeignDocumentUUIDField extends foundry.data.fields.DocumentUUIDField {
+
+/**
+ * @param {foundry.data.types.DocumentUUIDFieldOptions} [options] Options which configure the behavior of the field
+ * @param {foundry.data.types.DataFieldContext} [context]    Additional context which describes the field
+ */
+  constructor(options, context) {
+    super(options, context);
+  }
+
   /** @inheritdoc */
   static get _defaults() {
     return foundry.utils.mergeObject(super._defaults, {
@@ -25,6 +34,7 @@ export default class ForeignDocumentUUIDField extends foundry.data.fields.Docume
       }
     };
   }
+  
   /**@override */
   toObject(value) {
     return value?.uuid ?? value;

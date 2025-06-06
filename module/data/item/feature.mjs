@@ -17,11 +17,16 @@ export default class DHFeature extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
+            
+            //A type of feature seems unnecessary
             type: new fields.StringField({ choices: SYSTEM.ITEM.featureTypes }),
+
+            //TODO: remove  actionType field
             actionType: new fields.StringField({
                 choices: SYSTEM.ITEM.actionTypes,
                 initial: SYSTEM.ITEM.actionTypes.passive.id
             }),
+               //TODO: remove  featureType field
             featureType: new fields.SchemaField({
                 type: new fields.StringField({
                     choices: SYSTEM.ITEM.valueTypes,
@@ -46,12 +51,16 @@ export default class DHFeature extends BaseDataItem {
                 {
                     type: new fields.StringField({ choices: SYSTEM.GENERAL.refreshTypes }),
                     uses: new fields.NumberField({ initial: 1, integer: true }),
+                    //TODO: remove refreshed field
                     refreshed: new fields.BooleanField({ initial: true })
                 },
                 { nullable: true, initial: null }
             ),
+            //TODO: remove refreshed field
             multiclass: new fields.NumberField({ initial: null, nullable: true, integer: true }),
             disabled: new fields.BooleanField({ initial: false }),
+
+            //TODO: re do it completely or just remove it
             effects: new fields.TypedObjectField(
                 new fields.SchemaField({
                     type: new fields.StringField({ choices: SYSTEM.EFFECTS.effectTypes }),

@@ -15,7 +15,7 @@ export default class DHAncestry extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            //use ForeignDocumentUUIDField for Abilities
+            //TODO: add features field
         };
     }
 }

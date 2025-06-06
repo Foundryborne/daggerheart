@@ -33,28 +33,4 @@ export default class DHArmor extends BaseDataItem {
     get featureInfo() {
         return this.feature ? CONFIG.daggerheart.ITEM.armorFeatures[this.feature] : null;
     }
-
-    /* --------------------------------------------- */
-
-    /** @inheritDoc */
-    prepareDerivedData() {
-        if (this.parent.parent) {
-            this.applyLevels();
-        }
-    }
-
-    // Currently bugged as it double triggers. Should get fixed in an updated foundry version.
-    applyLevels() {
-        // let armorBonus = 0;
-        // for(var level in this.parent.parent.system.levelData.levelups){
-        //   var levelData = this.parent.parent.system.levelData.levelups[level];
-        //   for(var tier in levelData){
-        //     var tierData = levelData[tier];
-        //     if(tierData){
-        //       armorBonus += Object.keys(tierData.armorOrEvasionSlot).filter(x => tierData.armorOrEvasionSlot[x] === 'armor').length;
-        //     }
-        //   }
-        // }
-        // this.marks.max += armorBonus;
-    }
 }

@@ -24,7 +24,6 @@ export default class DHWeapon extends BaseDataItem {
             trait: new fields.StringField({ required: true, choices: SYSTEM.ACTOR.abilities, initial: 'agility' }),
             range: new fields.StringField({ required: true, choices: SYSTEM.GENERAL.range, initial: 'melee' }),
             burden: new fields.StringField({ required: true, choices: SYSTEM.GENERAL.burden, initial: 'oneHanded' }),
-
             //DAMAGE
             damage: new fields.SchemaField({
                 value: new FormulaField({ initial: 'd6' }),
@@ -37,32 +36,5 @@ export default class DHWeapon extends BaseDataItem {
 
             feature: new fields.StringField({ choices: SYSTEM.ITEM.weaponFeatures, blank: true }),
         };
-    }
-
-    prepareDerivedData() {
-        if (this.parent.parent) {
-            this.applyEffects();
-        }
-    }
-
-    applyEffects() {
-        const effects = this.parent.parent.system.effects;
-        for (const key in effects) {
-            console.log
-            const effectType = effects[key];
-            for (const effect of effectType) {
-                switch (key) {
-                    case SYSTEM.EFFECTS.effectTypes.reach.id:
-                        if (
-                            SYSTEM.GENERAL.range[this.range].distance <
-                            SYSTEM.GENERAL.range[effect.valueData.value].distance
-                        ) {
-                            this.range = effect.valueData.value;
-                        }
-
-                        break;
-                }
-            }
-        }
     }
 }

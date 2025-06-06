@@ -12,6 +12,26 @@ export default class DhpItem extends Item {
         }
     }
 
+    /**
+     * @inheritdoc
+     * @param {object} options - Options which modify the getRollData method.
+     * @returns 
+     */
+    getRollData(options = {}) {
+        let data;
+        if (this.system.getRollData) data = this.system.getRollData(options);
+        else {
+            const actorRollData = this.actor?.getRollData(options) ?? {};
+            data = { ...actorRollData, item: { ...this.system } };
+        }
+
+        if (data?.item) {
+            data.item.flags = { ...this.flags };
+            data.item.name = this.name;
+        }
+        return data;
+    }
+
     isInventoryItem() {
         return ['weapon', 'armor', 'miscellaneous', 'consumable'].includes(this.type);
     }

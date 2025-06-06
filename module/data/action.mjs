@@ -2,9 +2,8 @@ export default class DaggerheartAction extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            id: new fields.StringField({}),
+            id: new fields.DocumentIdField(),
             name: new fields.StringField({ initial: 'New Action' }),
-            img: new fields.StringField({ initial: '' }),
             damage: new fields.SchemaField({
                 type: new fields.StringField({ choices: SYSTEM.GENERAL.damageTypes, nullable: true, initial: null }),
                 value: new fields.StringField({})
@@ -30,15 +29,6 @@ export default class DaggerheartAction extends foundry.abstract.DataModel {
                     initial: SYSTEM.ACTIONS.targetTypes.other.id
                 })
             })
-            // uses: new fields.SchemaField({
-            //     nr: new fields.StringField({}),
-            //     refreshType: new fields.StringField({ choices: SYSTEM.GENERAL.refreshTypes, initial: SYSTEM.GENERAL.refreshTypes.session.id }),
-            //     refreshed: new fields.BooleanField({ initial: true }),
-            // }),
         };
     }
-
-    use = async () => {
-        console.log('Test Use');
-    };
 }

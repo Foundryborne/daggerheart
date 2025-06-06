@@ -16,16 +16,10 @@ export default class DHDomainCard extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            domain: new fields.StringField(
-                { choices: SYSTEM.DOMAIN.domains},
-                { required: true, initial: [] }
-            ),
+            domain: new fields.StringField({ choices: SYSTEM.DOMAIN.domains, required: true, blank: true }),
             level: new fields.NumberField({ initial: 1, integer: true }),
             recallCost: new fields.NumberField({ initial: 0, integer: true }),
-            type: new fields.StringField(
-                { choices: SYSTEM.DOMAIN.cardTypes},
-                { required: true, initial: [] }
-            ),
+            type: new fields.StringField({ choices: SYSTEM.DOMAIN.cardTypes, required: true, blank: true}),
             foundation: new fields.BooleanField({ initial: false }),
             inVault: new fields.BooleanField({ initial: false }),
             actions: new fields.ArrayField(new fields.EmbeddedDataField(DaggerheartAction))

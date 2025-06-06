@@ -16,7 +16,7 @@ export default class DHCommunity extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            //use ForeignDocumentUUIDField for Abilities
+            //TODO: add features field
         };
     }
 }
