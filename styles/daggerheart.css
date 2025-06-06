@@ -1318,6 +1318,9 @@
 .combat-sidebar .encounter-controls.combat .control-buttons {
   width: min-content;
 }
+.combat-sidebar .combatant-controls {
+  flex: 0;
+}
 .combat-sidebar .token-actions {
   align-self: stretch;
   display: flex;
@@ -1330,7 +1333,8 @@
   gap: 4px;
 }
 .combat-sidebar .token-actions .action-tokens .action-token {
-  height: 24px;
+  height: 22px;
+  width: 22px;
   border: 1px solid;
   border-radius: 50%;
   display: flex;
@@ -1357,14 +1361,17 @@
 .combat-sidebar .token-actions button.main:hover {
   filter: drop-shadow(0 0 3px var(--button-hover-text-color));
 }
-.combat-sidebar .token-actions button.discrete:hover {
-  background: inherit;
+.combat-sidebar .spotlight-control {
+  font-size: 26px;
 }
-.combat-sidebar .token-actions .combatant-control:focus {
+.combat-sidebar .spotlight-control:focus {
   outline: none;
   box-shadow: none;
 }
-.combat-sidebar .token-actions .combatant-control.requesting {
+.combat-sidebar .spotlight-control.discrete:hover {
+  background: inherit;
+}
+.combat-sidebar .spotlight-control.requesting {
   filter: drop-shadow(0 0 3px gold);
   color: var(--button-hover-text-color);
 }

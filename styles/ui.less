@@ -30,6 +30,10 @@
         }
     }
 
+    .combatant-controls {
+        flex: 0;
+    }
+
     .token-actions {
         align-self: stretch;
         display: flex;
@@ -42,7 +46,8 @@
             gap: 4px;
 
             .action-token {
-                height: 24px;
+                height: 22px;
+                width: 22px;
                 border: 1px solid;
                 border-radius: 50%;
                 display: flex;
@@ -73,22 +78,24 @@
                     filter: drop-shadow(0 0 3px var(--button-hover-text-color));
                 }
             }
+        }
+    }
 
-            &.discrete:hover {
-                background: inherit;
-            }
+    .spotlight-control {
+        font-size: 26px;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
         }
 
-        .combatant-control {
-            &:focus {
-                outline: none;
-                box-shadow: none;
-            }
+        &.discrete:hover {
+            background: inherit;
+        }
 
-            &.requesting {
-                filter: drop-shadow(0 0 3px gold);
-                color: var(--button-hover-text-color);
-            }
+        &.requesting {
+            filter: drop-shadow(0 0 3px gold);
+            color: var(--button-hover-text-color);
         }
     }
 
