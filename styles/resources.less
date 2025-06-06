@@ -2,12 +2,19 @@
     --primary-color-fear: rgba(9, 71, 179, 0.75);
     --secondary-color-fear: rgba(9, 71, 179, 0.75);
     --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    --fear-animation: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
 }
 
 #resources {
     min-height: calc(var(--header-height) + 4rem);
     min-width: 4rem;
     color: #d3d3d3;
+    transition: var(--fear-animation);
+    header,
+    .controls,
+    .window-resize-handle {
+        transition: var(--fear-animation);
+    }
     .window-content {
         padding: 0.5rem;
         #resource-fear {
@@ -106,7 +113,7 @@
         header,
         .controls,
         .window-resize-handle {
-            visibility: hidden;
+            opacity: 0;
         }
     }
     &:has(.fear-bar) {
