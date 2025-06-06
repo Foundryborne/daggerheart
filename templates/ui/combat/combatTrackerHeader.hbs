@@ -62,7 +62,7 @@
         {{!-- Combat Status --}}
         <strong class="encounter-title">
             {{#if combats.length}}
-            {{#if combat.system.started}}
+            {{#if combat.round}}
             {{ localize "DAGGERHEART.Combat.combatStarted" }}
             {{else}}
             {{ localize "COMBAT.NotStarted" }}

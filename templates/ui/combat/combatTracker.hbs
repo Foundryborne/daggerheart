@@ -41,7 +41,7 @@
                 </div>
             {{/if}}
 
-            {{#if ../combat.system.started}}
+            {{#if ../combat.round}}
                 <div class="token-actions">
                     {{#if isOwner}}
                         {{#if (and (not isNPC) ../actionTokens.enabled)}}

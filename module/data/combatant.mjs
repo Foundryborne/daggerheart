@@ -3,8 +3,7 @@ export default class DhCombatant extends foundry.abstract.TypeDataModel {
         const fields = foundry.data.fields;
         return {
             spotlight: new fields.SchemaField({
-                requesting: new fields.BooleanField({ required: true, initial: false }),
-                active: new fields.BooleanField({ required: true, initial: false })
+                requesting: new fields.BooleanField({ required: true, initial: false })
             }),
             actionTokens: new fields.NumberField({ required: true, integer: true, initial: 3 })
         };

@@ -1,11 +1,7 @@
 export default class DhpCombat extends Combat {
-    get combatant() {
-        return this.combatants.contents.find(x => x.system.spotlight.active) ?? null;
-    }
-
     async startCombat() {
         this._playCombatSound('startEncounter');
-        const updateData = { 'system.started': true };
+        const updateData = { round: 1, turn: null };
         Hooks.callAll('combatStart', this, updateData);
         await this.update(updateData);
         return this;

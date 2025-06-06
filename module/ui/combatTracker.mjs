@@ -71,16 +71,15 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
 
     static async toggleSpotlight(_, target) {
         const { combatantId } = target.closest('[data-combatant-id]')?.dataset ?? {};
-        for (var combatant of this.viewed.combatants) {
-            const giveSpotlight = combatant.id === combatantId;
+        const combatant = this.viewed.combatants.get(combatantId);
 
-            await combatant.update({
-                'system.spotlight': {
-                    requesting: giveSpotlight ? false : combatant.system.spotlight.requesting,
-                    active: giveSpotlight ? !combatant.system.spotlight.active : false
-                }
-            });
-        }
+        const toggleTurn = this.viewed.combatants.contents
+            .sort(this.viewed._sortCombatants)
+            .map(x => x.id)
+            .indexOf(combatantId);
+
+        await this.viewed.update({ turn: this.viewed.turn === toggleTurn ? null : toggleTurn });
+        await combatant.update({ 'system.spotlight.requesting': false });
     }
 
     static async setActionTokens(_, target) {
