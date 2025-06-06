@@ -1321,7 +1321,7 @@
 .combat-sidebar .token-actions {
   align-self: stretch;
   display: flex;
-  align-items: center;
+  align-items: top;
   justify-content: center;
   gap: 16px;
 }
@@ -1332,7 +1332,7 @@
 .combat-sidebar .token-actions .action-tokens .action-token {
   height: 24px;
   border: 1px solid;
-  border-radius: 8px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1342,9 +1342,12 @@
 }
 .combat-sidebar .token-actions .action-tokens .action-token.used {
   opacity: 0.5;
+  background: transparent;
 }
 .combat-sidebar .token-actions button {
   font-size: 22px;
+  height: 24px;
+  width: 24px;
 }
 .combat-sidebar .token-actions button.main {
   background: var(--button-hover-background-color);
@@ -1365,7 +1368,7 @@
   filter: drop-shadow(0 0 3px gold);
   color: var(--button-hover-text-color);
 }
-.combat-sidebar h5 {
+.combat-sidebar h4 {
   margin: 0;
   text-align: center;
 }

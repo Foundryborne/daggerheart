@@ -33,7 +33,7 @@
     .token-actions {
         align-self: stretch;
         display: flex;
-        align-items: center;
+        align-items: top;
         justify-content: center;
         gap: 16px;
 
@@ -44,7 +44,7 @@
             .action-token {
                 height: 24px;
                 border: 1px solid;
-                border-radius: 8px;
+                border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -54,12 +54,15 @@
 
                 &.used {
                     opacity: 0.5;
+                    background: transparent;
                 }
             }
         }
 
         button {
             font-size: 22px;
+            height: 24px;
+            width: 24px;
 
             &.main {
                 background: var(--button-hover-background-color);
@@ -89,7 +92,7 @@
         }
     }
 
-    h5 {
+    h4 {
         margin: 0;
         text-align: center;
     }
