@@ -2743,6 +2743,11 @@ div.daggerheart.views.multiclass {
 .daggerheart.levelup .levelup-navigation-container nav {
   flex: 1;
 }
+.daggerheart.levelup .levelup-navigation-container nav .levelup-tab-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 .daggerheart.levelup .levelup-navigation-container .levelup-navigation-actions {
   width: 306px;
   display: flex;
@@ -2884,6 +2889,11 @@ div.daggerheart.views.multiclass {
   position: relative;
   right: 2px;
 }
+.daggerheart.levelup .levelup-selections-container .levelup-selections-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 .daggerheart.levelup .levelup-summary-container .level-achievements-container,
 .daggerheart.levelup .levelup-summary-container .level-advancements-container {
   display: flex;
@@ -2919,24 +2929,6 @@ div.daggerheart.views.multiclass {
 }
 .daggerheart.levelup .levelup-footer {
   display: flex;
-}
-.daggerheart.levelup .levelup-footer .advancement-information-container {
-  display: flex;
-  gap: 8px;
-  border-bottom: 3px solid;
-  border-radius: 4px;
-  margin-left: 8px;
-  align-items: center;
-  padding: 0 8px;
-  border-color: #9f8475;
-}
-.daggerheart.levelup .levelup-footer .advancement-information-container .advancement-tier-stats {
-  border: 1px solid;
-  padding: 0 2px;
-  border-radius: 6px;
-}
-.daggerheart.levelup .levelup-footer .advancement-information-container .advancement-tier-info {
-  font-size: 14px;
 }
 :root {
   --primary-color-fear: rgba(9, 71, 179, 0.75);

@@ -112,6 +112,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                         show: this.tabGroups.primary !== 'summary'
                     }
                 };
+
+                const { selections } = currentLevel.nrSelections;
+                context.tabs.advancements.progress = { selected: selections, max: currentLevel.maxSelections };
                 break;
             case 'selections':
                 const advancementChoices = Object.keys(currentLevel.choices).reduce((acc, choiceKey) => {
@@ -131,19 +134,29 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 }, {});
 
                 const traits = Object.values(advancementChoices.trait ?? {});
+                const traitValues = traits.filter(trait => trait.data.length > 0).flatMap(trait => trait.data);
                 context.traits = {
-                    values: traits.filter(trait => trait.data.length > 0).flatMap(trait => trait.data),
-                    active: traits.length > 0
+                    values: traitValues,
+                    active: traits.length > 0,
+                    progress: {
+                        selected: traitValues.length,
+                        max: traits.reduce((acc, exp) => acc + exp.amount, 0)
+                    }
                 };
 
                 const experienceIncreases = Object.values(advancementChoices.experience ?? {});
+                const experienceIncreaseValues = experienceIncreases
+                    .filter(exp => exp.data.length > 0)
+                    .flatMap(exp =>
+                        exp.data.map(data => this.actor.system.experiences.find(x => x.id === data).description)
+                    );
                 context.experienceIncreases = {
-                    values: experienceIncreases
-                        .filter(exp => exp.data.length > 0)
-                        .flatMap(exp =>
-                            exp.data.map(data => this.actor.system.experiences.find(x => x.id === data).description)
-                        ),
-                    active: experienceIncreases.length > 0
+                    values: experienceIncreaseValues,
+                    active: experienceIncreases.length > 0,
+                    progress: {
+                        selected: experienceIncreaseValues.length,
+                        max: experienceIncreases.reduce((acc, exp) => acc + exp.amount, 0)
+                    }
                 };
 
                 context.newExperiences = Object.keys(currentLevel.achievements.experiences).map(key => {

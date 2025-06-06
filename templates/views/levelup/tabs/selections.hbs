@@ -25,7 +25,10 @@
 
         {{#if this.traits.active}}
             <div>
-                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.traits"}}</h3>
+                <h3 class="levelup-selections-title">
+                    <div>{{localize "DAGGERHEART.Application.LevelUp.summary.traits"}}</div>
+                    <div>{{this.traits.progress.selected}}/{{this.traits.progress.max}}</div>
+                </h3>
 
                 <input type="text" class="levelup-trait-increases" value="{{this.traits.values}}" />
             </div>
@@ -33,7 +36,10 @@
 
         {{#if this.experienceIncreases.active}}
             <div>
-                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.experienceIncreases"}}</h3>
+                <h3 class="levelup-selections-title">
+                    <div>{{localize "DAGGERHEART.Application.LevelUp.summary.experienceIncreases"}}</div>
+                    <div>{{this.experienceIncreases.progress.selected}}/{{this.experienceIncreases.progress.max}}</div>
+                </h3>
 
                 <input type="text" class="levelup-experience-increases" value="{{this.experienceIncreases.values}}" />
             </div>

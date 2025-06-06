@@ -794,8 +794,6 @@
                 },
                 "notifications": {
                     "info": {
-                        "tierAdvancementInfo": "Advancements from a higher tier can always be used to select advancements in a lower tier.",
-                        "remainingAdvancementInfo": "Remaining Choices: {choices}",
                         "insufficentAdvancements": "You don't have enough advancements left.",
                         "insufficientTierAdvancements": "You have no available advancements for this tier."
                     },

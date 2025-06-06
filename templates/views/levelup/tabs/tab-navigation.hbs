@@ -4,9 +4,14 @@
         <nav class='feature-tab sheet-tabs tabs' data-group='primary'>
             {{#each tabs as |tab|}}
                 {{#if (not (eq tab.id 'summary'))}}
-                    <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
-                        {{localize tab.label}}
-                    </a>
+                    <div class="levelup-tab-container">
+                        <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                            {{localize tab.label}}
+                        </a>
+                        {{#if tab.progress}}
+                            <div>{{tab.progress.selected}}/{{tab.progress.max}}</div>
+                        {{/if}}
+                    </div>
                 {{/if}}
             {{/each}}
         </nav>
