@@ -329,6 +329,10 @@
                 "grimoire": "Grimoire"
             }
         },
+        "Combat": {
+            "takeSpotlight": "Take The Spotlight",
+            "combatStarted": "Active"
+        },
         "LevelUp": {
             "Tier1": {
                 "Label": "Level 2-4",

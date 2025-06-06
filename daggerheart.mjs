@@ -3,11 +3,10 @@ import * as applications from './module/applications/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
-import DhpCombatTracker from './module/ui/combatTracker.mjs';
+import DhCombatTracker from './module/ui/combatTracker.mjs';
 import { GMUpdateEvent, handleSocketEvent, socketEvent } from './module/helpers/socket.mjs';
 import { registerDHSettings } from './module/applications/settings.mjs';
 import DhpChatLog from './module/ui/chatLog.mjs';
-import DhpPlayers from './module/ui/players.mjs';
 import DhpRuler from './module/ui/ruler.mjs';
 import DhpTokenRuler from './module/ui/tokenRuler.mjs';
 import { dualityRollEnricher } from './module/enrichers/DualityRollEnricher.mjs';
@@ -65,11 +64,11 @@ Hooks.once('init', () => {
     Actors.registerSheet(SYSTEM.id, applications.DhpEnvironment, { types: ['environment'], makeDefault: true });
 
     CONFIG.Combat.dataModels = {
-        base: models.DhpCombat
+        base: models.DhCombat
     };
 
     CONFIG.Combatant.dataModels = {
-        base: models.DhpCombatant
+        base: models.DhCombatant
     };
 
     CONFIG.ChatMessage.dataModels = models.messages.config;
@@ -77,7 +76,7 @@ Hooks.once('init', () => {
 
     CONFIG.Canvas.rulerClass = DhpRuler;
     CONFIG.Combat.documentClass = documents.DhpCombat;
-    CONFIG.ui.combat = DhpCombatTracker;
+    CONFIG.ui.combat = DhCombatTracker;
     CONFIG.ui.chat = DhpChatLog;
     // CONFIG.ui.players = DhpPlayers;
     CONFIG.Token.rulerClass = DhpTokenRuler;
@@ -97,8 +96,8 @@ Hooks.once('init', () => {
 
 Hooks.on('ready', () => {
     ui.resources = new CONFIG.ui.resources();
-    ui.resources.render({force: true});
-})
+    ui.resources.render({ force: true });
+});
 
 Hooks.once('dicesoniceready', () => {});
 
@@ -201,8 +200,8 @@ Hooks.on('chatMessage', (_, message) => {
 
                 const title = attributeValue
                     ? game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
-                        ability: game.i18n.localize(abilities[attributeValue].label)
-                    })
+                          ability: game.i18n.localize(abilities[attributeValue].label)
+                      })
                     : game.i18n.localize('DAGGERHEART.General.Duality');
 
                 const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
@@ -221,9 +220,9 @@ Hooks.on('chatMessage', (_, message) => {
                     roll,
                     attribute: attribute
                         ? {
-                            value: attribute.data.value,
-                            label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : ``}${attribute.data.value}`
-                        }
+                              value: attribute.data.value,
+                              label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : ``}${attribute.data.value}`
+                          }
                         : undefined,
                     title
                 });

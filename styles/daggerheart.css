@@ -1293,59 +1293,44 @@
 .daggerheart.sheet.pc div[data-application-part] .sheet-body .inventory-container .inventory-item-list .inventory-row img {
   width: 32px;
 }
-.combat-sidebar .encounter-gm-resources {
-  flex: 0;
-  display: flex;
-  justify-content: center;
-  padding: 8px 0;
+.combat-sidebar .encounter-controls.combat {
+  justify-content: space-between;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-controls {
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container .dice {
+  height: 24px;
+}
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container .encounter-control-fear {
+  position: absolute;
+  font-size: 16px;
+}
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container .encounter-control-counter {
+  position: absolute;
+  right: -10px;
+  color: var(--color-text-secondary);
+}
+.combat-sidebar .encounter-controls.combat .control-buttons {
+  width: min-content;
+}
+.combat-sidebar .token-actions {
+  flex: 0 0 var(--input-height);
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 4px;
   justify-content: center;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 5px 0 4px;
+.combat-sidebar .token-actions button {
+  font-size: 22px;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools i {
-  margin: 0 2px;
-  font-size: 16px;
-}
-.combat-sidebar .encounter-gm-resources .gm-resource-tools i.disabled {
-  opacity: 0.6;
-}
-.combat-sidebar .encounter-gm-resources .gm-resource-tools i:hover:not(.disabled) {
-  cursor: pointer;
-  filter: drop-shadow(0 0 3px red);
-}
-.combat-sidebar .encounter-gm-resources .gm-resource {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 4px;
-  border-radius: 8px;
-  border: 2px solid black;
-  font-size: 20px;
-}
-.combat-sidebar .token-action-tokens {
-  flex: 0 0 48px;
-  text-align: center;
-}
-.combat-sidebar .token-action-tokens .use-action-token.disabled {
-  opacity: 0.6;
-}
-.combat-sidebar .icon-button.spaced {
-  margin-left: 4px;
-}
-.combat-sidebar .icon-button.disabled {
-  opacity: 0.6;
-}
-.combat-sidebar .icon-button:hover:not(.disabled) {
-  cursor: pointer;
-  filter: drop-shadow(0 0 3px red);
+.combat-sidebar .token-actions button:hover {
+  background: inherit;
 }
 .chat-message.duality {
   border-color: black;
@@ -2903,7 +2888,7 @@ div.daggerheart.views.multiclass {
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v17/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v18/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Montserrat';

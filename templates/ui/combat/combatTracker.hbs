@@ -1,0 +1,53 @@
+<ol class="combat-tracker plain">
+    {{#each turns}}
+        <li class="combatant {{ css }}" data-combatant-id="{{ id }}" data-action="activateCombatant">
+            {{!-- TODO: Targets --}}
+
+            {{!-- Image --}}
+            <img class="token-image" src="{{ img }}" alt="{{ name }}" loading="lazy">
+
+            {{!-- Name & Controls --}}
+            <div class="token-name">
+                <strong class="name">{{ name }}</strong>
+                <div class="combatant-controls">
+                    {{#if @root.user.isGM}}
+                    <button type="button" class="inline-control combatant-control icon fa-solid fa-eye-slash {{#if hidden}}active{{/if}}"
+                            data-action="toggleHidden" data-tooltip aria-label="{{ localize "COMBAT.ToggleVis" }}"></button>
+                    <button type="button" class="inline-control combatant-control icon fa-solid fa-skull {{#if isDefeated}}active{{/if}}"
+                            data-action="toggleDefeated" data-tooltip
+                            aria-label="{{ localize "COMBAT.ToggleDead" }}"></button>
+                    {{/if}}
+                    {{#if canPing}}
+                    <button type="button" class="inline-control combatant-control icon fa-solid fa-bullseye-arrow"
+                            data-action="pingCombatant" data-tooltip
+                            aria-label="{{ localize "COMBAT.PingCombatant" }}"></button>
+                    {{/if}}
+                    {{#unless @root.user.isGM}}
+                    <button type="button" class="inline-control combatant-control icon fa-solid fa-arrows-to-eye"
+                            data-action="panToCombatant" data-tooltip
+                            aria-label="{{ localize "COMBAT.PanToCombatant" }}"></button>
+                    {{/unless}}
+                    {{!-- TODO: Target Control --}}
+                    <div class="token-effects" data-tooltip-html="{{ effects.tooltip }}">
+                        {{#each effects.icons}}
+                        <img class="token-effect" src="{{ img }}" alt="{{ name }}">
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Resource --}}
+            {{#if resource includeZero=true}}
+            <div class="token-resource">
+                <span class="resource">{{ resource }}</span>
+            </div>
+            {{/if}}
+
+            {{#if ../combat.system.started}}
+                <div class="token-actions">
+                    <button type="button" class="inline-control combatant-control icon fa-solid fa-hand" data-action="takeSpotlight" data-combatant-id="{{id}}" data-tooltip aria-label="{{ localize "DAGGERHEART.Combat.takeSpotlight" }}"></button>
+                </div>
+            {{/if}}
+        </li>
+    {{/each}}
+</ol>

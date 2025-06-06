@@ -1,71 +1,118 @@
 .combat-sidebar {
-    .encounter-gm-resources {
-        flex: 0;
-        display: flex;
-        justify-content: center;
-        padding: @largePadding 0;
+    // .encounter-gm-resources {
+    //     flex: 0;
+    //     display: flex;
+    //     justify-content: center;
+    //     padding: @largePadding 0;
 
-        .gm-resource-controls {
+    //     .gm-resource-controls {
+    //         display: flex;
+    //         flex-direction: column;
+    //         align-items: center;
+    //         padding: 0 4px;
+    //         justify-content: center;
+    //     }
+
+    //     .gm-resource-tools {
+    //         display: flex;
+    //         flex-direction: column;
+    //         justify-content: center;
+    //         padding: 0 5px 0 @fullPadding;
+
+    //         i {
+    //             margin: 0 @tinyMargin;
+    //             font-size: 16px;
+
+    //             &.disabled {
+    //                 opacity: 0.6;
+    //             }
+
+    //             &:hover:not(.disabled) {
+    //                 cursor: pointer;
+    //                 filter: drop-shadow(0 0 3px @mainShadow);
+    //             }
+    //         }
+    //     }
+
+    //     .gm-resource {
+    //         background: rgba(255, 255, 255, 0.1);
+    //         padding: @fullPadding;
+    //         border-radius: 8px;
+    //         border: @normalBorder solid black;
+    //         font-size: 20px;
+    //     }
+    // }
+
+    // .token-action-tokens {
+    //     flex: 0 0 48px;
+    //     text-align: center;
+
+    //     .use-action-token {
+    //         &.disabled {
+    //             opacity: 0.6;
+    //         }
+    //     }
+    // }
+
+    // .icon-button {
+    //     &.spaced {
+    //         margin-left: @halfMargin;
+    //     }
+
+    //     &.disabled {
+    //         opacity: 0.6;
+    //     }
+
+    //     &:hover:not(.disabled) {
+    //         cursor: pointer;
+    //         filter: drop-shadow(0 0 3px @mainShadow);
+    //     }
+    // }
+    .encounter-controls.combat {
+        justify-content: space-between;
+
+        .encounter-control-fear-container {
             display: flex;
-            flex-direction: column;
+            position: relative;
             align-items: center;
-            padding: 0 4px;
             justify-content: center;
-        }
+            color: black;
 
-        .gm-resource-tools {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 5px 0 @fullPadding;
+            .dice {
+                height: 24px;
+            }
 
-            i {
-                margin: 0 @tinyMargin;
+            .encounter-control-fear {
+                position: absolute;
                 font-size: 16px;
+            }
 
-                &.disabled {
-                    opacity: 0.6;
-                }
-
-                &:hover:not(.disabled) {
-                    cursor: pointer;
-                    filter: drop-shadow(0 0 3px @mainShadow);
-                }
+            .encounter-control-counter {
+                position: absolute;
+                right: -10px;
+                color: var(--color-text-secondary);
             }
         }
 
-        .gm-resource {
-            background: rgba(255, 255, 255, 0.1);
-            padding: @fullPadding;
-            border-radius: 8px;
-            border: @normalBorder solid black;
-            font-size: 20px;
+        .control-buttons {
+            width: min-content;
         }
     }
 
-    .token-action-tokens {
-        flex: 0 0 48px;
-        text-align: center;
+    .token-actions {
+        flex: 0 0 var(--input-height);
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-        .use-action-token {
-            &.disabled {
-                opacity: 0.6;
+        button {
+            font-size: 22px;
+
+            &:hover {
+                background: inherit;
             }
-        }
-    }
-
-    .icon-button {
-        &.spaced {
-            margin-left: @halfMargin;
-        }
-
-        &.disabled {
-            opacity: 0.6;
-        }
-
-        &:hover:not(.disabled) {
-            cursor: pointer;
-            filter: drop-shadow(0 0 3px @mainShadow);
         }
     }
 }
