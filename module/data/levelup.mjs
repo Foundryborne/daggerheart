@@ -83,13 +83,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
             levels: new fields.TypedObjectField(new fields.EmbeddedDataField(DhLevelupLevel)),
             startLevel: new fields.NumberField({ required: true, integer: true }),
             currentLevel: new fields.NumberField({ required: true, integer: true }),
-            endLevel: new fields.NumberField({ required: true, integer: true }),
-            multiclass: new fields.SchemaField({
-                class: new fields.StringField({ required: true }),
-                domain: new fields.StringField(),
-                tier: new fields.NumberField({ required: true, integer: true }),
-                level: new fields.NumberField({ required: true, integer: true })
-            })
+            endLevel: new fields.NumberField({ required: true, integer: true })
         };
     }
 
@@ -134,6 +128,33 @@ export class DhLevelup extends foundry.abstract.DataModel {
             .every(this.#levelFinished.bind(this));
     }
 
+    get classUpgradeChoices() {
+        let subclass = null;
+        let multiclass = null;
+        Object.keys(this.levels).forEach(levelKey => {
+            const level = this.levels[levelKey];
+            Object.values(level.choices).forEach(choice => {
+                Object.values(choice).forEach(checkbox => {
+                    if (checkbox.type === 'multiclass') {
+                        multiclass = {
+                            class: checkbox.data.length > 0 ? checkbox.data[0] : null,
+                            domain: checkbox.secondaryData ?? null,
+                            tier: checkbox.tier,
+                            level: levelKey
+                        };
+                    }
+                    if (checkbox.type === 'subclass') {
+                        subclass = {
+                            tier: checkbox.tier,
+                            level: levelKey
+                        };
+                    }
+                });
+            });
+        });
+        return { subclass, multiclass };
+    }
+
     get tiersForRendering() {
         const tierKeys = Object.keys(this.tiers);
         const selections = Object.keys(this.levels).reduce(
@@ -158,8 +179,12 @@ export class DhLevelup extends foundry.abstract.DataModel {
             }, {})
         );
 
+        const { multiclass, subclass } = this.classUpgradeChoices;
         return tierKeys.map(tierKey => {
             const tier = this.tiers[tierKey];
+            const multiclassInTier = multiclass?.tier === Number(tierKey);
+            const subclassInTier = subclass?.tier === Number(tierKey);
+
             return {
                 name: tier.name,
                 active: this.currentLevel >= Math.min(...tier.belongingLevels),
@@ -175,6 +200,16 @@ export class DhLevelup extends foundry.abstract.DataModel {
                             checkbox.level = checkboxData.level;
                             checkbox.selected = true;
                             checkbox.disabled = checkbox.level !== this.currentLevel;
+                        }
+
+                        if (optionKey === 'multiclass') {
+                            if ((multiclass && !multiclassInTier) || subclassInTier) {
+                                checkbox.disabled = true;
+                            }
+                        }
+
+                        if (optionKey === 'subclass' && multiclassInTier) {
+                            checkbox.disabled = true;
                         }
 
                         return checkbox;

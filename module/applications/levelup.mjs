@@ -484,7 +484,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             if (item.type === 'domainCard') {
                 if (
                     !this.actor.system.class.system.domains.includes(item.system.domain) &&
-                    this.levelup.multiclass?.domain !== item.system.domain
+                    this.levelup.classUpgradeChoices?.multiclass?.domain !== item.system.domain
                 ) {
                     ui.notifications.error(
                         game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardWrongDomain')
@@ -559,10 +559,13 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
         const update = {};
         if (!button.checked) {
-            update[`levels.${button.dataset.level}.choices.${button.dataset.option}.-=${button.dataset.checkboxNr}`] =
-                null;
-            if (button.dataset.type === 'multiclass') {
-                update['-=multiclass'] = null;
+            if (button.dataset.cost > 1) {
+                // Simple handling that doesn't cover potential Custom LevelTiers.
+                update[`levels.${this.levelup.currentLevel}.choices.-=${button.dataset.option}`] = null;
+            } else {
+                update[
+                    `levels.${this.levelup.currentLevel}.choices.${button.dataset.option}.-=${button.dataset.checkboxNr}`
+                ] = null;
             }
         } else {
             if (!this.levelup.levels[this.levelup.currentLevel].nrSelections.available) {
@@ -582,7 +585,6 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 value: button.dataset.value,
                 type: button.dataset.type
             };
-            update['multiclass'] = { tier: Number(button.dataset.tier), level: this.levelup.currentLevel };
         }
 
         await this.levelup.updateSource(update);
@@ -642,8 +644,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                         };
                     }
                     return acc;
-                }, {}),
-                ...(this.levelup.multiclass?.level === this.levelup.currentLevel ? { '-=multiclass': null } : {})
+                }, {})
             });
         } else {
             await this.levelup.updateSource({
