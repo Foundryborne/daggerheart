@@ -103,15 +103,58 @@
         flex: 0 0 var(--input-height);
         align-self: stretch;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 16px;
+
+        .action-tokens {
+            display: flex;
+            gap: 4px;
+
+            .action-token {
+                height: 24px;
+                border: 1px solid;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                padding: 8px;
+                --button-size: 0;
+
+                &.used {
+                    opacity: 0.5;
+                }
+            }
+        }
 
         button {
             font-size: 22px;
 
-            &:hover {
+            &.main {
+                background: var(--button-hover-background-color);
+                color: var(--button-hover-text-color);
+                border-color: var(--button-hover-border-color);
+
+                &:hover {
+                    filter: drop-shadow(0 0 3px var(--button-hover-text-color));
+                }
+            }
+
+            &.discrete:hover {
                 background: inherit;
+            }
+        }
+
+        .combatant-control {
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
+            &.requesting {
+                filter: drop-shadow(0 0 3px gold);
+                color: var(--button-hover-text-color);
             }
         }
     }

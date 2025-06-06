@@ -1,5 +1,7 @@
 import DhAppearance from '../data/settings/Appearance.mjs';
 import DHAppearanceSettings from './settings/appearanceSettings.mjs';
+import DhVariantRules from '../data/settings/VariantRules.mjs';
+import DHVariantRuleSettings from './settings/variantRuleSettings.mjs';
 
 class DhpAutomationSettings extends FormApplication {
     constructor(object = {}, options = {}) {
@@ -181,7 +183,8 @@ export const registerDHSettings = () => {
         type: Number,
         default: 0,
         onChange: () => {
-            if(ui.resources) ui.resources.render({force: true});
+            if (ui.resources) ui.resources.render({ force: true });
+            ui.combat.render({ force: true });
         }
     });
 
@@ -193,7 +196,7 @@ export const registerDHSettings = () => {
         type: Number,
         default: 12,
         onChange: () => {
-            if(ui.resources) ui.resources.render({force: true});
+            if (ui.resources) ui.resources.render({ force: true });
         }
     });
 
@@ -204,15 +207,15 @@ export const registerDHSettings = () => {
         config: true,
         type: String,
         choices: {
-            'token': 'Tokens',
-            'bar': 'Bar',
-            'hide': 'Hide'
+            token: 'Tokens',
+            bar: 'Bar',
+            hide: 'Hide'
         },
         default: 'token',
         onChange: value => {
-            if(ui.resources) {
-                if(value === 'hide') ui.resources.close({allowed: true});
-                else ui.resources.render({force: true});
+            if (ui.resources) {
+                if (value === 'hide') ui.resources.close({ allowed: true });
+                else ui.resources.render({ force: true });
             }
         }
     });
@@ -249,6 +252,13 @@ export const registerDHSettings = () => {
             far: 60,
             veryFar: 120
         }
+    });
+
+    game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.variantRules, {
+        scope: 'world',
+        config: false,
+        type: DhVariantRules,
+        default: DhVariantRules.defaultSchema
     });
 
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance, {
@@ -289,6 +299,15 @@ export const registerDHSettings = () => {
         hint: game.i18n.localize('DAGGERHEART.Settings.Menu.Appearance.hint'),
         icon: 'fa-solid fa-palette',
         type: DHAppearanceSettings,
+        restricted: false
+    });
+
+    game.settings.registerMenu(SYSTEM.id, SYSTEM.SETTINGS.menu.VariantRules.Name, {
+        name: game.i18n.localize('DAGGERHEART.Settings.Menu.VariantRules.title'),
+        label: game.i18n.localize('DAGGERHEART.Settings.Menu.VariantRules.label'),
+        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.VariantRules.hint'),
+        icon: SYSTEM.SETTINGS.menu.VariantRules.Icon,
+        type: DHVariantRuleSettings,
         restricted: false
     });
 };

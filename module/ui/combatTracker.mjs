@@ -1,7 +1,9 @@
 export default class DhCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
     static DEFAULT_OPTIONS = {
         actions: {
-            takeSpotlight: this.takeSpotlight
+            requestSpotlight: this.requestSpotlight,
+            toggleSpotlight: this.toggleSpotlight,
+            setActionTokens: this.setActionTokens
         }
     };
 
@@ -16,6 +18,27 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             template: 'systems/daggerheart/templates/ui/combat/combatTrackerFooter.hbs'
         }
     };
+
+    async _prepareCombatContext(context, options) {
+        await super._prepareCombatContext(context, options);
+
+        Object.assign(context, {
+            fear: game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear)
+        });
+    }
+
+    async _prepareTrackerContext(context, options) {
+        await super._prepareTrackerContext(context, options);
+
+        Object.assign(context, {
+            actionTokens: game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.variantRules).actionTokens
+        });
+    }
+
+    async _prepareTurnContext(combat, combatant, index) {
+        const turn = await super._prepareTurnContext(combat, combatant, index);
+        return { ...turn, system: combatant.system.toObject() };
+    }
 
     _getCombatContextOptions() {
         return [
@@ -34,12 +57,40 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         ];
     }
 
-    static async takeSpotlight(_, target) {
+    static async requestSpotlight(_, target) {
+        const { combatantId } = target.closest('[data-combatant-id]')?.dataset ?? {};
+        const combatant = this.viewed.combatants.get(combatantId);
+        await combatant.update({
+            'system.spotlight': {
+                requesting: !combatant.system.spotlight.requesting
+            }
+        });
+
+        this.render();
+    }
+
+    static async toggleSpotlight(_, target) {
         const { combatantId } = target.closest('[data-combatant-id]')?.dataset ?? {};
         for (var combatant of this.viewed.combatants) {
-            await combatant.update({ 'system.active': combatantId === combatant.id ? true : false });
-        }
+            const giveSpotlight = combatant.id === combatantId;
 
+            await combatant.update({
+                'system.spotlight': {
+                    requesting: giveSpotlight ? false : combatant.system.spotlight.requesting,
+                    active: giveSpotlight ? !combatant.system.spotlight.active : false
+                }
+            });
+        }
+    }
+
+    static async setActionTokens(_, target) {
+        const { combatantId, tokenIndex } = target.closest('[data-combatant-id]')?.dataset ?? {};
+
+        const combatant = this.viewed.combatants.get(combatantId);
+        const changeIndex = Number(tokenIndex);
+        const newIndex = combatant.system.actionTokens > changeIndex ? changeIndex : changeIndex + 1;
+
+        await combatant.update({ 'system.actionTokens': newIndex });
         this.render();
     }
 }

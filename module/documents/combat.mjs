@@ -1,6 +1,6 @@
 export default class DhpCombat extends Combat {
     get combatant() {
-        return this.combatants.contents.find(x => x.system.active) ?? null;
+        return this.combatants.contents.find(x => x.system.spotlight.active) ?? null;
     }
 
     async startCombat() {
