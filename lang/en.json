@@ -163,6 +163,14 @@
             "Or": "Or",
             "Description": "Description",
             "Features": "Features",
+            "Adversary": {
+                "Singular": "Adversary",
+                "Plural": "Adversaries"
+            },
+            "Character": {
+                "Singular": "Character",
+                "Plural": "Characters"
+            },
             "RefreshType": {
                 "Session": "Session",
                 "Shortrest": "Short Rest",

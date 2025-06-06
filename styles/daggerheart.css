@@ -1365,6 +1365,10 @@
   filter: drop-shadow(0 0 3px gold);
   color: var(--button-hover-text-color);
 }
+.combat-sidebar h5 {
+  margin: 0;
+  text-align: center;
+}
 .chat-message.duality {
   border-color: black;
   padding: 8px 0 0 0;
