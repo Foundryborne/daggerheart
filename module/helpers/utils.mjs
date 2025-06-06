@@ -161,7 +161,6 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
             };
         }),
         maxTags: maxTags,
-        // callbacks: { invalid: this.onAddTag },
         dropdown: {
             mapValueTo: 'name',
             searchKeys: ['name'],

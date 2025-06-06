@@ -7,6 +7,7 @@
 /* Drop Shadows */
 /* Background */
 /* Duality */
+/* Fear */
 @import '../node_modules/@yaireo/tagify/dist/tagify.css';
 .daggerheart.sheet.class .editor {
   height: 500px;
@@ -2964,8 +2965,6 @@ div.daggerheart.views.multiclass {
   display: flex;
 }
 :root {
-  --primary-color-fear: rgba(9, 71, 179, 0.75);
-  --secondary-color-fear: rgba(9, 71, 179, 0.75);
   --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   --fear-animation: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
 }
@@ -2998,7 +2997,7 @@ div.daggerheart.views.multiclass {
   justify-content: center;
   align-items: center;
   width: 3rem;
-  background-color: var(--primary-color-fear);
+  background-color: var(rgba(9, 71, 179, 0.75));
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   color: #d3d3d3;

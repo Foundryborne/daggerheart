@@ -213,8 +213,6 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                         context.subclassCards.push({
                             ...data.toObject(),
                             uuid: data.uuid,
-                            // disabled:
-                            //     !selected && subclassSelections.length === context.advancementChoices.subclass.length,
                             selected: selected
                         });
                     }
@@ -522,7 +520,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 this.render();
             }
         } else if (event.target.closest('.multiclass-cards')) {
-            const target = event.target.closest('.card-preview-container');
+            const target = event.target.closest('.multiclass-cards');
             if (item.type === 'class') {
                 if (item.name === this.actor.system.class.name) {
                     ui.notifications.error(
