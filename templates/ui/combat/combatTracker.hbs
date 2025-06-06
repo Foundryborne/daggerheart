@@ -44,7 +44,7 @@
             {{#if ../combat.system.started}}
                 <div class="token-actions">
                     {{#if isOwner}}
-                        {{#if ../actionTokens.enabled}}
+                        {{#if (and (not isNPC) ../actionTokens.enabled)}}
                             <div class="action-tokens">
                                 {{#times ../actionTokens.tokens}}
                                     <button type="button" class="inline-control main icon fa-solid fa-bolt-lightning action-token {{#if (lte ../system/actionTokens this)}}used{{/if}}" data-action="setActionTokens" data-combatant-id="{{../id}}" data-token-index="{{this}}">

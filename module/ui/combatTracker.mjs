@@ -37,7 +37,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
 
     async _prepareTurnContext(combat, combatant, index) {
         const turn = await super._prepareTurnContext(combat, combatant, index);
-        return { ...turn, system: combatant.system.toObject() };
+        return { ...turn, isNPC: combatant.isNPC, system: combatant.system.toObject() };
     }
 
     _getCombatContextOptions() {
