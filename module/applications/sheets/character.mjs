@@ -11,14 +11,6 @@ const { TextEditor } = foundry.applications.ux;
 export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     constructor(options = {}) {
         super(options);
-
-        this.editAttributes = false;
-        this.onVaultTab = false;
-        this.currentInventoryPage = 0;
-        this.selectedScar = null;
-        this.storyEditor = null;
-        this.dropItemBlock = false;
-        this.multiclassFeatureSetSelected = false;
     }
 
     static DEFAULT_OPTIONS = {
@@ -26,19 +18,13 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         classes: ['daggerheart', 'sheet', 'pc'],
         position: { width: 810, height: 1080 },
         actions: {
-            toggleEditAttributes: this.toggleEditAttributes,
             attributeRoll: this.rollAttribute,
             toggleMarks: this.toggleMarks,
-            toggleAttributeMark: this.toggleAttributeMark,
             toggleHP: this.toggleHP,
             toggleStress: this.toggleStress,
             toggleHope: this.toggleHope,
             toggleGold: this.toggleGold,
             attackRoll: this.attackRoll,
-            tabToLoadout: () => this.domainCardsTab(false),
-            tabToVault: () => this.domainCardsTab(true),
-            sendToVault: this.moveDomainCard,
-            sendToLoadout: this.moveDomainCard,
             useDomainCard: this.useDomainCard,
             removeCard: this.removeDomainCard,
             selectClass: this.selectClass,
@@ -49,20 +35,17 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useFeature: this.useFeature,
             takeShortRest: this.takeShortRest,
             takeLongRest: this.takeLongRest,
-            addMiscItem: this.addMiscItem,
             deleteItem: this.deleteItem,
             addScar: this.addScar,
-            selectScar: this.selectScar,
             deleteScar: this.deleteScar,
             makeDeathMove: this.makeDeathMove,
-            setStoryEditor: this.setStoryEditor,
             itemQuantityDecrease: (_, button) => this.setItemQuantity(button, -1),
             itemQuantityIncrease: (_, button) => this.setItemQuantity(button, 1),
             useAbility: this.useAbility,
             useAdvancementCard: this.useAdvancementCard,
             useAdvancementAbility: this.useAdvancementAbility,
-            selectFeatureSet: this.selectFeatureSet,
-            toggleEquipItem: this.toggleEquipItem
+            toggleEquipItem: this.toggleEquipItem,
+            levelup: this.openLevelUp
         },
         window: {
             minimizable: false,
@@ -76,8 +59,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         dragDrop: [
             { dragSelector: null, dropSelector: '.weapon-section' },
             { dragSelector: null, dropSelector: '.armor-section' },
-            { dragSelector: null, dropSelector: '.inventory-weapon-section-first' },
-            { dragSelector: null, dropSelector: '.inventory-weapon-section-second' },
             { dragSelector: '.item-list .item', dropSelector: null }
         ]
     };
@@ -166,22 +147,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-        htmlElement
-            .querySelectorAll('.attribute-value')
-            .forEach(element => element.addEventListener('change', this.attributeChange.bind(this)));
-        htmlElement
-            .querySelectorAll('.tab-selector')
-            .forEach(element => element.addEventListener('click', this.tabSwitch.bind(this)));
-        htmlElement.querySelector('.level-title.levelup')?.addEventListener('click', this.openLevelUp.bind(this));
-        htmlElement
-            .querySelectorAll('.feature-input')
-            .forEach(element => element.addEventListener('change', this.onFeatureInputBlur.bind(this)));
-        htmlElement
-            .querySelectorAll('.experience-description')
-            .forEach(element => element.addEventListener('change', this.experienceDescriptionChange.bind(this)));
-        htmlElement
-            .querySelectorAll('.experience-value')
-            .forEach(element => element.addEventListener('change', this.experienceValueChange.bind(this)));
+
         htmlElement.querySelector('.level-value').addEventListener('change', this.onLevelChange.bind(this));
     }
 
@@ -191,11 +157,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         context.tabs = this._getTabs();
 
         context.config = SYSTEM;
-        context.editAttributes = this.editAttributes;
-        context.onVaultTab = this.onVaultTab;
-        context.selectedScar = this.selectedScar;
-        context.storyEditor = this.storyEditor;
-        context.multiclassFeatureSetSelected = this.multiclassFeatureSetSelected;
 
         const selectedAttributes = Object.values(this.document.system.traits).map(x => x.base);
         context.abilityScoreArray = JSON.parse(
@@ -212,18 +173,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         }, []);
         if (!context.abilityScoreArray.includes(0)) context.abilityScoreArray.push({ name: 0, value: 0 });
         context.abilityScoresFinished = context.abilityScoreArray.every(x => x.value === 0);
-
-        //FIXME:
-        context.domains = this.document.system.class.value
-            ? {
-                  first: this.document.system.class.value.system.domains[0]
-                      ? SYSTEM.DOMAIN.domains[this.document.system.class.value.system.domains[0]].src
-                      : null,
-                  second: this.document.system.class.value.system.domains[1]
-                      ? SYSTEM.DOMAIN.domains[this.document.system.class.value.system.domains[1]].src
-                      : null
-              }
-            : {};
 
         context.attributes = Object.keys(this.document.system.traits).reduce((acc, key) => {
             acc[key] = {
@@ -329,16 +278,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         );
     }
 
-    async attributeChange(event) {
-        const path = `system.traits.${event.currentTarget.dataset.attribute}.base`;
-        await this.document.update({ [path]: event.currentTarget.value });
-    }
-
-    static toggleEditAttributes() {
-        this.editAttributes = !this.editAttributes;
-        this.render();
-    }
-
     static async rollAttribute(event, button) {
         const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll(
             { title: game.i18n.localize(abilities[button.dataset.attribute].label), value: button.dataset.value },
@@ -379,18 +318,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const markValue = Number.parseInt(button.dataset.value);
         const newValue = this.document.system.armor.system.marks.value >= markValue ? markValue - 1 : markValue;
         await this.document.system.armor.update({ 'system.marks.value': newValue });
-    }
-
-    static async toggleAttributeMark(_, button) {
-        const attribute = this.document.system.traits[button.dataset.attribute];
-        const newMark = this.document.system.availableAttributeMarks
-            .filter(x => x > Math.max.apply(null, this.document.system.traits[button.dataset.attribute].levelMarks))
-            .sort((a, b) => (a > b ? 1 : -1))[0];
-
-        if (attribute.levelMark || !newMark) return;
-
-        const path = `system.traits.${button.dataset.attribute}.levelMarks`;
-        await this.document.update({ [path]: [...attribute.levelMarks, newMark] });
     }
 
     static async toggleHP(_, button) {
@@ -469,37 +396,13 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         await cls.create(msg.toObject());
     }
 
-    tabSwitch(event) {
-        const tab = event.currentTarget.dataset.tab;
-        if (tab !== 'loadout') {
-            this.onVaultTab = false;
-        }
-
-        this.render();
-    }
-
-    openLevelUp() {
+    static openLevelUp() {
         if (!this.document.system.class.value || !this.document.system.class.subclass) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.missingClassOrSubclass'));
             return;
         }
 
         new DhlevelUp(this.document).render(true);
-    }
-
-    static domainCardsTab(toVault) {
-        this.onVaultTab = toVault;
-        this.render();
-    }
-
-    static async moveDomainCard(_, button) {
-        const toVault = button.dataset.action === 'sendToVault';
-        if (!toVault && this.document.system.domainCards.loadout.length >= 5) {
-            return;
-        }
-
-        const card = this.document.items.find(x => x.uuid === button.dataset.domain);
-        await card.update({ 'system.inVault': toVault });
     }
 
     static async useDomainCard(_, button) {
@@ -548,7 +451,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         });
         const result = await dialogClosed;
 
-        // await this.emulateItemDrop({ type: 'item', data: result });
         for (var ancestry of this.document.items.filter(x => x => x.type === 'ancestry')) {
             await ancestry.delete();
         }
@@ -560,13 +462,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             await feature.delete();
         }
 
-        // createdItems.push(...result.data.system.abilities);
         createdItems.push(result.data);
 
         await this.document.createEmbeddedDocuments('Item', createdItems);
-
-        // await this.document.createEmbeddedDocuments("Item", [result.toObject()]);
-        // (await game.packs.get('daggerheart.playtest-ancestries'))?.render(true);
     }
 
     static async selectCommunity() {
@@ -595,17 +493,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         await this.minimize();
     }
 
-    static async addMiscItem() {
-        const result = await this.document.createEmbeddedDocuments('Item', [
-            {
-                name: game.i18n.localize('DAGGERHEART.Sheets.PC.NewItem'),
-                type: 'miscellaneous'
-            }
-        ]);
-
-        await result[0].sheet.render(true);
-    }
-
     static async addScar() {
         if (this.document.system.story.scars.length === 5) return;
 
@@ -615,11 +502,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 { name: game.i18n.localize('DAGGERHEART.Sheets.PC.NewScar'), description: '' }
             ]
         });
-    }
-
-    static async selectScar(_, button) {
-        this.selectedScar = Number.parseInt(button.dataset.value);
-        this.render();
     }
 
     static async deleteScar(event, button) {
@@ -636,21 +518,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             await new DhpDeathMove(this.document).render(true);
             await this.minimize();
         }
-    }
-
-    async experienceDescriptionChange(event) {
-        const path = `system.experiences.${event.currentTarget.dataset.experience}.description`;
-        await this.document.update({ [path]: event.currentTarget.value });
-    }
-
-    async experienceValueChange(event) {
-        const path = `system.experiences.${event.currentTarget.dataset.index}.value`;
-        await this.document.update({ [path]: event.currentTarget.value });
-    }
-
-    static setStoryEditor(_, button) {
-        this.storyEditor = this.storyEditor === button.dataset.value ? null : button.dataset.value;
-        this.render();
     }
 
     async itemUpdate(event) {
@@ -760,7 +627,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async useAdvancementAbility(_, button) {
-        // const item = await fromUuid(button.dataset.id);
         const item = this.document.items.find(x => x.uuid === button.dataset.id);
 
         const cls = getDocumentClass('ChatMessage');
@@ -781,12 +647,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         });
 
         cls.create(msg.toObject());
-    }
-
-    static async selectFeatureSet(_, button) {
-        const multiclass = button.dataset.multiclass === 'true';
-        this.multiclassFeatureSetSelected = multiclass;
-        this.render();
     }
 
     static async toggleEquipItem(_, button) {
@@ -814,11 +674,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    static async close(options) {
-        this.onVaultTab = false;
-        super.close(options);
-    }
-
     async _onDragStart(_, event) {
         if (event.currentTarget.classList.contains('inventory-item')) {
             if (!['weapon', 'armor'].includes(event.currentTarget.dataset.type)) {
@@ -844,70 +699,11 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     async _onDrop(event) {
-        const itemData = event.dataTransfer?.getData('text/plain');
-        const item = itemData ? JSON.parse(itemData) : null;
-        if (item?.internal) {
-            let target = null;
-            event.currentTarget.classList.forEach(x => {
-                if (item.targets.some(target => target === x)) {
-                    target = x;
-                }
-            });
-            if (target) {
-                const itemObject = await fromUuid(item.uuid);
-                switch (target) {
-                    case 'weapon-section':
-                        if (itemObject.system.secondary && this.document.system.getWeaponBurden === 'twoHanded') {
-                            ui.notifications.info(
-                                game.i18n.localize('DAGGERHEART.Notification.Info.SecondaryEquipWhileTwohanded')
-                            );
-                            return;
-                        } else if (itemObject.system.burden === 'twoHanded' && this.document.system.secondaryWeapon) {
-                            ui.notifications.info(
-                                game.i18n.localize('DAGGERHEART.Notification.Info.TwohandedEquipWhileSecondary')
-                            );
-                            return;
-                        }
-
-                        const existingWeapon = this.document.items.find(
-                            x => x.system.active && x.system.secondary === itemObject.system.secondary
-                        );
-                        await existingWeapon?.update({ 'system.active': false });
-                        await itemObject.update({ 'system.active': true });
-                        break;
-                    case 'armor-section':
-                        const existingArmor = this.document.items.find(x => x.type === 'armor' && x.system.active);
-                        await existingArmor?.update({ 'system.active': false });
-                        await itemObject.update({ 'system.active': true });
-                        break;
-                    case 'inventory-weapon-section':
-                    /* FIXME inventoryWeapon is no longer a field
-                        const existingInventoryWeapon = this.document.items.find(x => x.system.inventoryWeapon);
-                        await existingInventoryWeapon?.update({ 'system.inventoryWeapon': false });
-                        await itemObject.update({ 'system.inventoryWeapon': true });
-                        break;
-                        */
-                    case 'inventory-armor-section':
-                        const existingInventoryArmor = this.document.items.find(x => x.system.inventoryArmor);
-                        await existingInventoryArmor?.update({ 'system.inventoryArmor': false });
-                        await itemObject.update({ 'system.inventoryArmor': true });
-                        break;
-                }
-            }
-        } else {
-            super._onDrop(event);
-            this._onDropItem(event, TextEditor.getDragEventData(event));
-        }
+        super._onDrop(event);
+        this._onDropItem(event, TextEditor.getDragEventData(event));
     }
 
     async _onDropItem(event, data) {
-        if (this.dropItemBlock) {
-            return;
-        } else {
-            this.dropItemBlock = true;
-            setTimeout(() => (this.dropItemBlock = false), 500);
-        }
-
         const element = event.currentTarget;
         const item = await Item.implementation.fromDropData(data);
         const itemData = item.toObject();
@@ -915,26 +711,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const createdItems = [];
 
         if (item.type === 'domainCard') {
-            if (!this.document.system.class.value) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.NoClassSelected'));
-                return;
-            }
-
-            if (!this.document.system.domains.find(x => x === item.system.domain)) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.LacksDomain'));
-                return;
-            }
-
-            if (this.document.system.domainCards.total.length === 5) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.MaxLoadoutReached'));
-                return;
-            }
-
-            if (this.document.system.domainCards.total.find(x => x.name === item.name)) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.DuplicateDomainCard'));
-                return;
-            }
-
             if (this.document.system.domainCards.loadout.length >= 5) {
                 itemData.system.inVault = true;
             }
@@ -1003,10 +779,5 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     async _onDropItemCreate(itemData, event) {
         itemData = itemData instanceof Array ? itemData : [itemData];
         return this.document.createEmbeddedDocuments('Item', itemData);
-    }
-
-    async emulateItemDrop(data) {
-        const event = new DragEvent('drop', { altKey: game.keyboard.isModifierActive('Alt') });
-        return this._onDropItem(event, data);
     }
 }

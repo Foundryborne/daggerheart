@@ -138,10 +138,6 @@
                 "AttackTargetDoesNotExist": "The target token no longer exists"
             },
             "Error": {
-                "NoClassSelected": "Your character has no class selected!",
-                "LacksDomain": "Your character doesn't have the domain of the card!",
-                "MaxLoadoutReached": "You can't have any more domain cards at this level!",
-                "DuplicateDomainCard": "You already have a domain card with that name!",
                 "ActionRequiresTarget": "The action requires at least one target",
                 "NoAssignedPlayerCharacter": "You have no assigned character.",
                 "NoSelectedToken": "You have no selected token",
@@ -1189,7 +1185,11 @@
                 "MissingClass": "The character is missing a class",
                 "SubclassNotInClass": "The subclass does not belong to the character's class",
                 "ClassAlreadySelected": "The character already has a class",
-                "SubclassAlreadySelected": "The character already has a subclass for that class."
+                "SubclassAlreadySelected": "The character already has a subclass for that class.",
+                "NoClassSelected": "Your character has no class selected!",
+                "LacksDomain": "Your character doesn't have the domain of the card!",
+                "MaxLoadoutReached": "You can't have any more domain cards at this level!",
+                "DuplicateDomainCard": "You already have a domain card with that name!"
             }
         },
         "Effects": {

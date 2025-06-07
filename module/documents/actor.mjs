@@ -395,11 +395,6 @@ export default class DhpActor extends Actor {
         }
     }
 
-    async emulateItemDrop(data) {
-        const event = new DragEvent('drop', { altKey: game.keyboard.isModifierActive('Alt') });
-        return this.sheet._onDropItem(event, { data: data });
-    }
-
     //Move to action-scope?
     async useAction(action) {
         const userTargets = Array.from(game.user.targets);
