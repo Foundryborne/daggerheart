@@ -1178,6 +1178,14 @@
                 "Description": "Description"
             }
         },
+        "Item": {
+            "Errors": {
+                "MissingClass": "The character is missing a class",
+                "SubclassNotInClass": "The subclass does not belong to the character's class",
+                "ClassAlreadySelected": "The character already has a class",
+                "SubclassAlreadySelected": "The character already has a subclass for that class."
+            }
+        },
         "Effects": {
             "Types": {
                 "health": {

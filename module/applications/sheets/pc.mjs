@@ -215,13 +215,13 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         context.abilityScoresFinished = context.abilityScoreArray.every(x => x.value === 0);
 
         //FIXME:
-        context.domains = this.document.system.class
+        context.domains = this.document.system.class.value
             ? {
-                  first: this.document.system.class.system.domains[0]
-                      ? SYSTEM.DOMAIN.domains[this.document.system.class.system.domains[0]].src
+                  first: this.document.system.class.value.system.domains[0]
+                      ? SYSTEM.DOMAIN.domains[this.document.system.class.value.system.domains[0]].src
                       : null,
-                  second: this.document.system.class.system.domains[1]
-                      ? SYSTEM.DOMAIN.domains[this.document.system.class.system.domains[1]].src
+                  second: this.document.system.class.value.system.domains[1]
+                      ? SYSTEM.DOMAIN.domains[this.document.system.class.value.system.domains[1]].src
                       : null
               }
             : {};
@@ -361,7 +361,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     mapAdvancementFeatures(actor, config) {
-        if (!actor.system.subclass) return { foundation: null, advancements: [] };
+        if (!actor.system.class.value || !actor.system.class.subclass) return { foundation: null, advancements: [] };
 
         const { subclass, multiclassSubclass } = actor.system.subclassFeatures;
 
@@ -370,8 +370,8 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             multiclass: false,
             img: actor.system.subclass.img,
             subtitle: game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle'),
-            domains: actor.system.class.system.domains.map(x => config.DOMAIN.domains[x].src),
-            className: actor.system.class.name,
+            domains: actor.system.class.value.system.domains.map(x => config.DOMAIN.domains[x].src),
+            className: actor.system.class.value.name,
             subclassUuid: actor.system.subclass.uuid,
             subclassName: actor.system.subclass.name,
             spellcast: config.ACTOR.abilities[actor.system.subclass.system.spellcastingTrait]?.name ?? null,
@@ -402,9 +402,9 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                           : game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle'),
                   domains:
                       firstKey === 'sub'
-                          ? actor.system.class.system.domains.map(x => config.DOMAIN.domains[x].src)
+                          ? actor.system.class.value.system.domains.map(x => config.DOMAIN.domains[x].src)
                           : actor.system.multiclass.system.domains.map(x => config.DOMAIN.domains[x].src),
-                  className: firstKey === 'sub' ? actor.system.class.name : actor.system.multiclass.name,
+                  className: firstKey === 'sub' ? actor.system.class.value.name : actor.system.multiclass.name,
                   subclassUuid: firstBase.uuid,
                   subclassName: firstBase.name,
                   spellcast:
@@ -456,9 +456,9 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                         : game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle'),
                   domains:
                       secondKey === 'sub'
-                          ? actor.system.class.system.domains.map(x => config.DOMAIN.domains[x].src)
+                          ? actor.system.class.value.system.domains.map(x => config.DOMAIN.domains[x].src)
                           : actor.system.multiclass.system.domains.map(x => config.DOMAIN.domains[x].src),
-                  className: secondKey === 'sub' ? actor.system.class.name : actor.system.multiclass.name,
+                  className: secondKey === 'sub' ? actor.system.class.value.name : actor.system.multiclass.name,
                   subclassUuid: secondBase.uuid,
                   subclassName: secondBase.name,
                   spellcast:
@@ -644,7 +644,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     openLevelUp() {
-        if (!this.document.system.class || !this.document.system.subclass) {
+        if (!this.document.system.class.value || !this.document.system.subclass) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.missingClassOrSubclass'));
             return;
         }
@@ -1144,7 +1144,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const createdItems = [];
 
         if (item.type === 'domainCard') {
-            if (!this.document.system.class) {
+            if (!this.document.system.class.value) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.NoClassSelected'));
                 return;
             }
@@ -1173,63 +1173,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
             return createdItem;
         } else {
-            if (!item.system.multiclass && ['class', 'subclass', 'ancestry', 'community'].includes(item.type)) {
-                const existing = this.document.items.find(x => x.type === item.type);
-                await existing?.delete();
-            }
-
-            if (item.type === 'subclass') {
-                if (!item.system.multiclass) {
-                    if (!this.document.system.class) {
-                        ui.notifications.info(
-                            game.i18n.localize('DAGGERHEART.Notification.Info.SelectClassBeforeSubclass')
-                        );
-                        return;
-                    } else if (!this.document.system.class.system.subclasses.some(x => x.uuid === item.uuid)) {
-                        ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.SubclassNotOfClass'));
-                        return;
-                    }
-
-                    for (var feature of this.document.items.filter(
-                        x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.subclass.id
-                    )) {
-                        await feature.delete();
-                    }
-                }
-
-                const features = [
-                    itemData.system.foundationFeature,
-                    itemData.system.specializationFeature,
-                    itemData.system.masteryFeature
-                ];
-                for (var i = 0; i < features.length; i++) {
-                    const feature = features[i];
-                    for (var ability of feature.abilities) {
-                        const data = (await fromUuid(ability.uuid)).toObject();
-                        if (i > 0) data.system.disabled = true;
-                        data.uuid = itemData.uuid;
-
-                        const abilityData = await this._onDropItemCreate(data);
-                        ability.uuid = abilityData[0].uuid;
-
-                        createdItems.push(abilityData);
-                    }
-                }
-            } else if (item.type === 'class') {
-                if (!item.system.multiclass) {
-                    for (var feature of this.document.items.filter(
-                        x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.class.id
-                    )) {
-                        await feature.delete();
-                    }
-                }
-
-                for (var feature of item.system.features) {
-                    const data = (await fromUuid(feature.uuid)).toObject();
-                    const itemData = await this._onDropItemCreate(data);
-                    createdItems.push(itemData);
-                }
-            } else if (item.type === 'ancestry') {
+            if (item.type === 'ancestry') {
                 for (var feature of this.document.items.filter(
                     x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.ancestry.id
                 )) {
