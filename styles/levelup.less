@@ -1,0 +1,261 @@
+.theme-light {
+    .daggerheart.levelup {
+        .tiers-container {
+            .tier-container {
+                background-image: url('../assets/parchments/dh-parchment-light.png');
+            }
+        }
+    }
+}
+
+.daggerheart.levelup {
+    .window-content {
+        max-height: 960px;
+        overflow: auto;
+    }
+
+    div[data-application-part='form'] {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    section {
+        .section-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+    }
+
+    .levelup-navigation-container {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        height: 36px;
+
+        nav {
+            flex: 1;
+
+            .levelup-tab-container {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+        }
+
+        .levelup-navigation-actions {
+            width: 306px;
+            display: flex;
+            justify-content: end;
+            gap: 16px;
+            margin-right: 4px;
+
+            * {
+                width: calc(50% - 8px);
+            }
+        }
+    }
+
+    .tiers-container {
+        display: flex;
+        gap: 16px;
+
+        .tier-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background-image: url('../assets/parchments/dh-parchment-dark.png');
+
+            &.inactive {
+                opacity: 0.4;
+                pointer-events: none;
+            }
+
+            legend {
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 22px;
+                font-weight: bold;
+                padding: 0 12px;
+            }
+
+            .checkbox-group-container {
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+                gap: 4px;
+
+                .checkboxes-container {
+                    display: flex;
+                    justify-content: end;
+                    gap: 4px;
+
+                    .checkbox-grouping-coontainer {
+                        display: flex;
+                        height: min-content;
+
+                        &.multi {
+                            border: 2px solid grey;
+                            padding: 2.4px 2.5px 0;
+                            border-radius: 4px;
+                            gap: 2px;
+
+                            .selection-checkbox {
+                                margin-left: 0;
+                                margin-right: 0;
+                            }
+                        }
+
+                        .selection-checkbox {
+                            margin: 0;
+                        }
+                    }
+                }
+
+                .checkbox-group-label {
+                    font-size: 14px;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+
+    .levelup-selections-container {
+        .achievement-experience-cards {
+            display: flex;
+            gap: 8px;
+
+            .achievement-experience-card {
+                border: 1px solid;
+                border-radius: 4px;
+                padding-right: 4px;
+                font-size: 18px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 4px;
+
+                .achievement-experience-marker {
+                    border: 1px solid;
+                    border-radius: 50%;
+                    height: 18px;
+                    width: 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .levelup-card-selection {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+
+            .card-preview-container {
+                width: calc(100% * (1 / 5));
+            }
+
+            .levelup-domains-selection-container {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                .levelup-domain-selection-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    flex: 1;
+                    position: relative;
+                    cursor: pointer;
+
+                    &.disabled {
+                        pointer-events: none;
+                        opacity: 0.4;
+                    }
+
+                    .levelup-domain-label {
+                        position: absolute;
+                        text-align: center;
+                        top: 4px;
+                        background: grey;
+                        padding: 0 12px;
+                        border-radius: 6px;
+                    }
+
+                    img {
+                        height: 124px;
+                    }
+
+                    .levelup-domain-selected {
+                        position: absolute;
+                        height: 54px;
+                        width: 54px;
+                        border-radius: 50%;
+                        border: 2px solid;
+                        font-size: 48px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-image: url(../assets/parchments/dh-parchment-light.png);
+                        color: var(--color-dark-5);
+                        top: calc(50% - 29px);
+
+                        i {
+                            position: relative;
+                            right: 2px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .levelup-selections-title {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    }
+
+    .levelup-summary-container {
+        .level-achievements-container,
+        .level-advancements-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            h2,
+            h3,
+            h4,
+            h5 {
+                margin: 0;
+                color: var(--color-text-secondary);
+            }
+        }
+
+        .increase-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 20px;
+        }
+
+        .summary-selection-container {
+            display: flex;
+            gap: 8px;
+
+            .summary-selection {
+                border: 2px solid;
+                border-radius: 6px;
+                padding: 0 4px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .levelup-footer {
+        display: flex;
+    }
+}

@@ -61,6 +61,13 @@
                         "outline": "Outline",
                         "edge": "Edge"
                     }
+                },
+                "VariantRules": {
+                    "title": "Variant Rules",
+                    "label": "Variant Rules",
+                    "hint": "Apply variant rules from the Daggerheart system",
+                    "name": "Variant Rules",
+                    "actionTokens": "Action Tokens"
                 }
             },
             "Automation": {
@@ -99,6 +106,12 @@
                 "RangeMeasurement": {
                     "Name": "Enable Range Measurement",
                     "Hint": "Enable measuring of ranges with the ruler according to set distances."
+                }
+            },
+            "VariantRules": {
+                "ActionTokens": {
+                    "Name": "Action Tokens",
+                    "Hint": "Give each player action tokens to use in combat"
                 }
             },
             "DualityRollColor": {
@@ -150,6 +163,20 @@
             "Or": "Or",
             "Description": "Description",
             "Features": "Features",
+            "proficiency": "Proficiency",
+            "unarmored": "Unarmored",
+            "Experience": {
+                "Single": "Experience",
+                "plural": "Experiences"
+            },
+            "Adversary": {
+                "Singular": "Adversary",
+                "Plural": "Adversaries"
+            },
+            "Character": {
+                "Singular": "Character",
+                "Plural": "Characters"
+            },
             "RefreshType": {
                 "Session": "Session",
                 "Shortrest": "Short Rest",
@@ -329,40 +356,50 @@
                 "grimoire": "Grimoire"
             }
         },
+        "Combat": {
+            "giveSpotlight": "Give The Spotlight",
+            "requestSpotlight": "Request The Spotlight",
+            "requestingSpotlight": "Requesting The Spotlight",
+            "combatStarted": "Active"
+        },
         "LevelUp": {
-            "Tier1": {
-                "Label": "Level 2-4",
-                "InfoLabel": "At Level 2, take an additional Experience.",
-                "Pretext": "When you level up, record it on your character sheet, then choose two available options from the list below and mark them.",
-                "Posttext": "Then increase your Severe Damage Threshold by +2 and choose a new Domain Deck card at your Level or lower."
+            "Options": {
+                "trait": "Gain a +1 bonus to two unmarked character traits and mark them.",
+                "hitPoint": "Permanently gain one Hit Point slot.",
+                "stress": "Permanently gain one Stress slot.",
+                "experience": "Permanently gain a +1 bonus to two experiences.",
+                "domainCard": "Choose an additional domain card of your level or lower from a domain you have access to (up to level {maxLevel})",
+                "evasion": "Permanently gain a +1 bonus to your Evasion.",
+                "subclass": "Take an upgraded subclass card. Then cross out the multiclass option for this tier.",
+                "proficiency": "Increase your Proficiency by +1.",
+                "multiclass": "Multiclass: Choose an additional class for your character, then cross out an unused “Take an upgraded subclass card” and the other multiclass option on this sheet."
             },
             "Tier2": {
-                "Label": "Level 5-7",
-                "InfoLabel": "At Level 5, take an additional Experience and clear all marks on Character Traits.",
-                "Pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
-                "Posttext": "Then, increase your Damage Thresholds: Major by +1 and Severe by +3. Then choose a new Domain Deck card at your Level or lower. If your loadout is full, you may choose a card to swap."
+                "Label": "Levels 2-4",
+                "InfoLabel": "At Level 2, gain an additional Experience at +2 and gain a +1 bonus to your Proficiency.",
+                "Pretext": "Choose two options from the list below",
+                "Posttext": "Take an additional domain card of your level or lower from a domain you have access to."
             },
             "Tier3": {
-                "Label": "Level 8-10",
+                "Label": "Levels 5-7",
+                "InfoLabel": "At Level 5, take an additional Experience and clear all marks on Character Traits.",
+                "Pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
+                "Posttext": "Take an additional domain card of your level or lower from a domain you have access to."
+            },
+            "Tier4": {
+                "Label": "Levels 8-10",
                 "InfoLabel": "At Level 8, take an additional Experience and clear all marks on Character Traits.",
                 "Pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
-                "Posttext": "Then, increase your Damage Thresholds: Minor by +1, Major by +2, and Severe by +4. Then choose a new Domain Deck card at your Level or lower. If your loadout is full, you may choose a card to swap."
+                "Posttext": "Take an additional domain card of your level or lower from a domain you have access to."
             },
             "ChoiceDescriptions": {
-                "Attributes": "Increase two unmarked Character Traits by +1 and mark them.",
-                "HitPointSlots": "Permanently add one Hit Point Slot.",
-                "StressSlots": "Permanently add one Stress Slot.",
-                "Experiences": "Increase two Experiences by +1.",
-                "Proficiency": "Increase your Proficiency by +1",
-                "ArmorOrEvasionSlot": "Permanently add one Armor Slot or take +1 to your Evasion.",
-                "MajorDamageThreshold2": "Increase your Major Damage Threshold by +2.",
-                "SevereDamageThreshold2": "Increase your Severe Damage Threshold by +2.",
-                "MinorDamageThreshold2": "Increase your Minor Damage Threshold by +2.",
-                "SevereDamageThreshold3": "Increase your Severe Damage Threshold by +3.",
-                "Major2OrSevere4DamageThreshold": "Increase your Major Damage Threshold by +2 or Severe Damage Threshold by +4",
-                "Minor1OrMajor1DamageThreshold": "Increase your Minor or Major Damage Threshold by +1.",
-                "SevereDamageThreshold4": "Increase your Severe Damage Threshold by +4.",
-                "MajorDamageThreshold1": "Increase your Major Damage Threshold by +1.",
+                "Attributes": "Gain a +1 bonus to two unmarked character traits and mark them.",
+                "HitPointSlots": "Permanently gain one Hit Point slot.",
+                "StressSlots": "Permanently gain one Stress slot.",
+                "Experiences": "Permanently gain a +1 bonus to two experiences.",
+                "DomainCard": "Choose an additional domain card of your level or lower from a domain you have access to (up to level {maxLevel})",
+                "Evasion": "Permanently gain a +1 bonus to your Evasion.",
+                "Proficiency": "Increase your Proficiency by +1.",
                 "Subclass": "Take an upgraded subclass card. Then cross out the multiclass option for this tier.",
                 "Multiclass": "Multiclass: Choose an additional class for your character, then cross out an unused “Take an upgraded subclass card” and the other multiclass option on this sheet."
             }
@@ -748,8 +785,54 @@
                 "TakeDowntime": "Take Downtime"
             },
             "LevelUp": {
-                "AdvanceLevel": "Continue To Level {level}",
-                "TakeLevelUp": "Finish Level Up"
+                "Title": "{actor} Level Up",
+                "Tabs": {
+                    "advancement": "Level Advancement",
+                    "selections": "Advancement Choices",
+                    "summary": "Summary"
+                },
+                "navigateLevel": "To Level {level}",
+                "navigateToLevelup": "Return To Levelup",
+                "navigateToSummary": "To Summary",
+                "TakeLevelUp": "Finish Level Up",
+                "Delevel": {
+                    "title": "Go back to previous level",
+                    "content": "Returning to the previous level selection will remove all selections made for this level. Do you want to proceed?"
+                },
+                "Selections": {
+                    "emptyDomainCardHint": "Domain Card Level {level} or below"
+                },
+                "summary": {
+                    "levelAchievements": "Level Achievements",
+                    "levelAdvancements": "Level Advancements",
+                    "proficiencyIncrease": "Proficiency Increased: {proficiency}",
+                    "hpIncrease": "Hit Points Increased: {hitPoints}",
+                    "stressIncrease": "Stress Increased: {stress}",
+                    "evasionIncrease": "Evasion Increased: {evasion}",
+                    "damageThresholdMajorIncrease": "Major: {threshold}",
+                    "damageThresholdSevereIncrease": "Severe: {threshold}",
+                    "newExperiences": "New Experiences",
+                    "experiencePlaceholder": "A new experience..",
+                    "domainCards": "Domain Cards",
+                    "subclass": "Subclass",
+                    "multiclass": "Multiclass",
+                    "traits": "Increased Traits",
+                    "experienceIncreases": "Experience Increases",
+                    "damageThresholds": "Damage Thresholds"
+                },
+                "notifications": {
+                    "info": {
+                        "insufficentAdvancements": "You don't have enough advancements left.",
+                        "insufficientTierAdvancements": "You have no available advancements for this tier."
+                    },
+                    "error": {
+                        "domainCardWrongDomain": "You don't have access to that Domain",
+                        "domainCardToHighLevel": "The Domain Card is too high level to be selected",
+                        "domainCardDuplicate": "You already have that domain card!",
+                        "noSelectionsLeft": "Nothing more to select!",
+                        "alreadySelectedClass": "You already have that class!"
+                    }
+                }
             },
             "DeathMove": {
                 "Title": "{actor} - Death Move",
@@ -910,7 +993,10 @@
                 },
                 "NewItem": "New Item",
                 "NewScar": "New Scar",
-                "DeleteConfirmation": "Are you sure you want to delete the item - {item}?"
+                "DeleteConfirmation": "Are you sure you want to delete the item - {item}?",
+                "Errors": {
+                    "missingClassOrSubclass": "The character doesn't have a class and subclass"
+                }
             },
             "Adversary": {
                 "Description": "Description",

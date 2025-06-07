@@ -10,6 +10,10 @@ export const menu = {
     Range: {
         Name: 'GameSettingsRange',
         Icon: 'fa-solid fa-ruler'
+    },
+    VariantRules: {
+        Name: 'GameSettingsVariantrules',
+        Icon: 'fa-solid fa-scale-balanced'
     }
 };
 
@@ -27,5 +31,19 @@ export const gameSettings = {
         AbilityArray: 'AbilityArray',
         RangeMeasurement: 'RangeMeasurement'
     },
-    appearance: 'Appearance'
+    DualityRollColor: 'DualityRollColor',
+    LevelTiers: 'LevelTiers',
+    appearance: 'Appearance',
+    variantRules: 'VariantRules'
+};
+
+export const DualityRollColor = {
+    colorful: {
+        value: 0,
+        label: 'DAGGERHEART.Settings.DualityRollColor.Options.Colorful'
+    },
+    normal: {
+        value: 1,
+        label: 'DAGGERHEART.Settings.DualityRollColor.Options.Normal'
+    }
 };

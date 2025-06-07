@@ -1,0 +1,86 @@
+<header class="combat-tracker-header">
+
+    {{!-- Encounter Controls --}}
+    {{#if user.isGM}}
+    <nav class="encounters {{ css }}" aria-label="{{ localize "COMBAT.NavLabel" }}">
+
+        {{!-- Cycle Display --}}
+        {{#if displayCycle}}
+        <button type="button" class="inline-control icon fa-solid fa-plus" data-action="createCombat"
+                data-tooltip aria-label="{{ localize "COMBAT.Create" }}"></button>
+
+        <div class="cycle-combats">
+            <button type="button" class="inline-control icon fa-solid fa-caret-left" data-action="cycleCombat"
+                    {{#if previousId}}data-combat-id="{{ previousId }}" {{else}}disabled{{/if}}
+                    data-tooltip aria-label="{{ localize "COMBAT.EncounterPrevious" }}"></button>
+            <div class="encounter-count">
+                <span class="value">{{ currentIndex }}</span>
+                <span class="separator">&sol;</span>
+                <span class="max">{{ combats.length }}</span>
+            </div>
+            <button type="button" class="inline-control icon fa-solid fa-caret-right" data-action="cycleCombat"
+                    {{#if nextId}}data-combat-id="{{ nextId }}" {{else}}disabled{{/if}}
+                    data-tooltip aria-label="{{ localize "COMBAT.EncounterNext" }}"></button>
+        </div>
+
+        <button type="button" class="inline-control icon fa-solid fa-gear" data-action="trackerSettings"
+                data-tooltip aria-label="{{ localize "COMBAT.Settings" }}"></button>
+
+        {{!-- Tabbed Display --}}
+        {{else if combats.length}}
+        <button type="button" class="inline-control icon fa-solid fa-plus" data-action="createCombat"
+                data-tooltip aria-label="{{ localize "COMBAT.Create" }}"></button>
+        {{#each combats}}
+        <button type="button" class="inline-control {{#if active}}active{{/if}}" data-action="cycleCombat"
+                data-combat-id="{{ id }}">
+            {{ label }}
+        </button>
+        {{/each}}
+        <button type="button" class="inline-control icon fa-solid fa-gear" data-action="trackerSettings"
+                data-tooltip aria-label="{{ localize "COMBAT.Settings" }}"></button>
+
+        {{!-- No Combats --}}
+        {{else}}
+        <button type="button" class="combat-control-lg" data-action="createCombat">
+            <i class="fa-solid fa-plus" inert></i>
+            <span>{{ localize "COMBAT.Create" }}</span>
+        </button>
+
+        {{/if}}
+    </nav>
+    {{/if}}
+
+    <div class="encounter-controls {{#if hasCombat}}combat{{/if}}">
+        {{#if hasCombat}}
+            <div class="encounter-control-fear-container">
+                <img class="dice " src="../icons/svg/d12-grey.svg"/>
+                <i class="fas fa-skull encounter-control-fear"></i>
+                <div class="encounter-control-counter">{{fear}}</div>
+            </div>
+        {{/if}}
+
+        {{!-- Combat Status --}}
+        <strong class="encounter-title">
+            {{#if combats.length}}
+            {{#if combat.round}}
+            {{ localize "DAGGERHEART.Combat.combatStarted" }}
+            {{else}}
+            {{ localize "COMBAT.NotStarted" }}
+            {{/if}}
+            {{else}}
+            {{ localize "COMBAT.None" }}
+            {{/if}}
+        </strong>
+
+        {{!-- Combat Controls --}}
+        {{#if hasCombat}}
+            <div class="control-buttons right flexrow">
+                <div class="spacer"></div>
+                <button type="button" class="encounter-context-menu inline-control combat-control icon fa-solid fa-ellipsis-vertical"
+                        {{#unless (and user.isGM hasCombat)}}disabled{{/unless}}></button>
+            </div>
+        {{/if}}
+
+    </div>
+
+</header>

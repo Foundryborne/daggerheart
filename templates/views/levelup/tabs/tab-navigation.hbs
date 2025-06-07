@@ -1,0 +1,40 @@
+<section class='tab-navigation'>
+    <line-div></line-div>
+    <div class="levelup-navigation-container">
+        {{#if this.showTabs}}
+            <nav class='feature-tab sheet-tabs tabs' data-group='primary'>
+                {{#each tabs as |tab|}}
+                    {{#if (not (eq tab.id 'summary'))}}
+                        <div class="levelup-tab-container">
+                            <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                                {{localize tab.label}}
+                            </a>
+                            {{#if tab.progress}}
+                                <div>{{tab.progress.selected}}/{{tab.progress.max}}</div>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </nav>
+        {{/if}}
+        <div class="levelup-navigation-actions {{#if (not this.showTabs)}}test{{/if}}">       
+            {{#if this.navigate.previous.fromSummary}}
+                <button data-action="activatePart" data-part="advancements">{{localize "DAGGERHEART.Application.LevelUp.navigateToLevelup"}}</button>
+            {{else}}
+                {{#if (not this.navigate.previous.disabled)}}
+                    <button data-action="updateCurrentLevel" >{{this.navigate.previous.label}}</button>
+                {{/if}}
+            {{/if}}
+            {{#if this.navigate.next.show}}
+                {{#if this.navigate.next.toSummary}}
+                    <button data-action="activatePart" data-part="summary"  {{#if this.navigate.next.disabled}}disabled{{/if}}>{{localize "DAGGERHEART.Application.LevelUp.navigateToSummary"}}</button>
+                {{else}}
+                    <button data-action="updateCurrentLevel" data-forward="true" {{#if this.navigate.next.disabled}}disabled{{/if}}>{{this.navigate.next.label}}</button>
+                {{/if}}
+            {{else}}
+                <div></div>
+            {{/if}}
+        </div>
+    </div>
+    <line-div></line-div>
+</section>

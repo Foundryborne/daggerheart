@@ -1,0 +1,64 @@
+<div>
+    <h4 class="divider">{{title}}</h4>
+    <ol class="combat-tracker plain">
+        {{#each turns}}
+            <li class="combatant {{ css }}" data-combatant-id="{{ id }}" data-action="activateCombatant">
+                {{!-- Image --}}
+                <img class="token-image" src="{{ img }}" alt="{{ name }}" loading="lazy">
+
+                {{!-- Name & Controls --}}
+                <div class="token-name">
+                    <strong class="name">{{ name }}</strong>
+                    <div class="flexrow">
+                        <div class="combatant-controls flex-0">
+                            {{#if @root.user.isGM}}
+                            <button type="button" class="inline-control combatant-control icon fa-solid fa-eye-slash {{#if hidden}}active{{/if}}"
+                                    data-action="toggleHidden" data-tooltip aria-label="{{ localize "COMBAT.ToggleVis" }}"></button>
+                            <button type="button" class="inline-control combatant-control icon fa-solid fa-skull {{#if isDefeated}}active{{/if}}"
+                                    data-action="toggleDefeated" data-tooltip
+                                    aria-label="{{ localize "COMBAT.ToggleDead" }}"></button>
+                            {{/if}}
+                            {{#if canPing}}
+                            <button type="button" class="inline-control combatant-control icon fa-solid fa-bullseye-arrow"
+                                    data-action="pingCombatant" data-tooltip
+                                    aria-label="{{ localize "COMBAT.PingCombatant" }}"></button>
+                            {{/if}}
+                            {{#unless @root.user.isGM}}
+                            <button type="button" class="inline-control combatant-control icon fa-solid fa-arrows-to-eye"
+                                    data-action="panToCombatant" data-tooltip
+                                    aria-label="{{ localize "COMBAT.PanToCombatant" }}"></button>
+                            {{/unless}}
+                        </div>
+
+                        {{#if ../combat.round}}
+                            <div class="token-actions">
+                                {{#if isOwner}}
+                                    {{#if (and (not isNPC) ../actionTokens.enabled)}}
+                                        <div class="action-tokens">
+                                            {{#times ../actionTokens.tokens}}
+                                                <button type="button" class="inline-control main icon fa-solid fa-bolt-lightning action-token {{#if (lte ../system/actionTokens this)}}used{{/if}}" data-action="setActionTokens" data-combatant-id="{{../id}}" data-token-index="{{this}}">
+                                                </button>
+                                            {{/times}}
+                                        </div>
+                                    {{/if}}
+                                {{/if}}
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                {{#if @root.user.isGM}}
+                    <button 
+                        type="button" class="inline-control spotlight-control discrete icon fa-solid {{#if system.spotlight.requesting}}fa-hand-sparkles requesting{{else}}fa-hand{{/if}}" 
+                        data-action="toggleSpotlight" data-combatant-id="{{id}}" data-tooltip aria-label="{{localize "DAGGERHEART.Combat.giveSpotlight"}}"
+                    ></button>
+                {{else}}
+                    <button 
+                        type="button" class="inline-control spotlight-control discrete icon fa-solid {{#if system.spotlight.requesting}}fa-hand-sparkles requesting{{else}}fa-hand{{/if}}" 
+                        data-action="requestSpotlight" data-combatant-id="{{id}}" data-tooltip aria-label="{{#if system.spotlight.requesting}}{{localize "DAGGERHEART.Combat.requestingSpotlight"}}{{else}}{{localize "DAGGERHEART.Combat.requestSpotlight"}}{{/if}}"
+                    ></button>
+                {{/if}}
+            </li>
+        {{/each}}
+    </ol>
+</div>

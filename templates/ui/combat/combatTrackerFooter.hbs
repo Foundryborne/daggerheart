@@ -1,0 +1,17 @@
+<nav class="combat-controls" data-tooltip-direction="UP">
+    {{~#if hasCombat~}}
+        {{#if user.isGM}}
+            {{#if combat.round}}
+                <button type="button" class="combat-control combat-control-lg" data-action="endCombat">
+                    <i class="fa-solid fa-xmark" inert></i>
+                    <span>{{ localize "COMBAT.End" }}</span>
+                </button>
+            {{else}}
+                <button type="button" class="combat-control combat-control-lg" data-action="startCombat">
+                    <i class="fa-solid fa-swords" inert></i>
+                    <span>{{ localize "COMBAT.Begin" }}</span>
+                </button>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</nav>

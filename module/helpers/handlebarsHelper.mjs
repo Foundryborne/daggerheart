@@ -3,20 +3,17 @@ import { getWidthOfText } from './utils.mjs';
 export default class RegisterHandlebarsHelpers {
     static registerHelpers() {
         Handlebars.registerHelper({
-            looseEq: this.looseEq,
             times: this.times,
             join: this.join,
             add: this.add,
             subtract: this.subtract,
             objectSelector: this.objectSelector,
             includes: this.includes,
-            simpleEditor: this.simpleEditor,
-            debug: this.debug
+            debug: this.debug,
+            signedNumber: this.signedNumber,
+            switch: this.switch,
+            case: this.case
         });
-    }
-
-    static looseEq(a, b) {
-        return a == b;
     }
 
     static times(nr, block) {
@@ -77,33 +74,25 @@ export default class RegisterHandlebarsHelpers {
         return new Handlebars.SafeString(html);
     }
 
-    static rangePicker(options) {
-        let { name, value, min, max, step } = options.hash;
-        name = name || 'range';
-        value = value ?? '';
-        if (Number.isNaN(value)) value = '';
-        const html = `<input type="range" name="${name}" value="${value}" min="${min}" max="${max}" step="${step}"/>
-         <span class="range-value">${value}</span>`;
-        return new Handlebars.SafeString(html);
-    }
-
     static includes(list, item) {
         return list.includes(item);
     }
 
-    static simpleEditor(content, options) {
-        const {
-            target,
-            editable = true,
-            button,
-            engine = 'tinymce',
-            collaborate = false,
-            class: cssClass
-        } = options.hash;
-        const config = { name: target, value: content, button, collaborate, editable, engine };
-        const element = foundry.applications.fields.createEditorInput(config);
-        if (cssClass) element.querySelector('.editor-content').classList.add(cssClass);
-        return new Handlebars.SafeString(element.outerHTML);
+    static signedNumber(number) {
+        return number >= 0 ? `+${number}` : number;
+    }
+
+    static switch(value, options) {
+        this.switch_value = value;
+        this.switch_break = false;
+        return options.fn(this);
+    }
+
+    static case(value, options) {
+        if (value == this.switch_value) {
+            this.switch_break = true;
+            return options.fn(this);
+        }
     }
 
     static debug(a) {

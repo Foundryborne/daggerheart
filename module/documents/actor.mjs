@@ -6,13 +6,16 @@ import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 
 export default class DhpActor extends Actor {
     async _preCreate(data, options, user) {
-        if ( (await super._preCreate(data, options, user)) === false ) return false;
-        
+        if ((await super._preCreate(data, options, user)) === false) return false;
+
         // Configure prototype token settings
         const prototypeToken = {};
-        if ( this.type === "pc" ) Object.assign(prototypeToken, {
-        sight: { enabled: true }, actorLink: true, disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
-        });
+        if (this.type === 'pc')
+            Object.assign(prototypeToken, {
+                sight: { enabled: true },
+                actorLink: true,
+                disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
+            });
         this.updateSource({ prototypeToken });
     }
 
@@ -21,46 +24,103 @@ export default class DhpActor extends Actor {
     }
 
     async _preUpdate(changed, options, user) {
-        //Level Down
-        if (
-            changed.system?.levelData?.changedLevel &&
-            this.system.levelData.currentLevel > changed.system.levelData.changedLevel
-        ) {
-            changed.system.levelData.currentLevel = changed.system.levelData.changedLevel;
-            changed.system.levelData.levelups = Object.keys(this.system.levelData.levelups).reduce((acc, x) => {
-                if (x > changed.system.levelData.currentLevel) {
-                    acc[`-=${x}`] = null;
+        super._preUpdate(changed, options, user);
+    }
+
+    async updateLevel(newLevel) {
+        if (this.type !== 'pc' || newLevel === this.system.levelData.level.changed) return;
+
+        if (newLevel > this.system.levelData.level.current) {
+            await this.update({ 'system.levelData.level.changed': newLevel });
+        } else {
+            const updatedLevelups = Object.keys(this.system.levelData.levelups).reduce((acc, level) => {
+                if (Number(level) > newLevel) acc[`-=${level}`] = null;
+
+                return acc;
+            }, {});
+
+            const domainCards = Object.keys(this.system.levelData.levelups)
+                .filter(x => x > newLevel)
+                .flatMap(levelKey => {
+                    const level = this.system.levelData.levelups[levelKey];
+                    const achievementCards = level.achievements.domainCards.map(x => x.itemUuid);
+                    const advancementCards = level.selections.filter(x => x.type === 'domainCard').map(x => x.itemUuid);
+                    return [...achievementCards, ...advancementCards];
+                });
+
+            for (var domainCard of domainCards) {
+                const itemCard = await this.items.find(x => x.uuid === domainCard);
+                itemCard.delete();
+            }
+
+            await this.update({
+                system: {
+                    levelData: {
+                        level: {
+                            current: newLevel,
+                            changed: newLevel
+                        },
+                        levelups: updatedLevelups
+                    }
                 }
+            });
+        }
+    }
 
-                return acc;
-            }, {});
+    async levelUp(levelupData) {
+        const levelups = {};
+        for (var levelKey of Object.keys(levelupData)) {
+            const level = levelupData[levelKey];
+            const achievementDomainCards = [];
+            for (var card of Object.values(level.achievements.domainCards)) {
+                const item = await foundry.utils.fromUuid(card.uuid);
+                const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                card.itemUuid = embeddedItem[0].uuid;
+                achievementDomainCards.push(card);
+            }
 
-            changed.system.attributes = Object.keys(this.system.attributes).reduce((acc, key) => {
-                acc[key] = {
-                    levelMarks: this.system.attributes[key].levelMarks.filter(
-                        x => x <= changed.system.levelData.currentLevel
-                    )
-                };
+            const selections = [];
+            for (var optionKey of Object.keys(level.choices)) {
+                const selection = level.choices[optionKey];
+                for (var checkboxNr of Object.keys(selection)) {
+                    const checkbox = selection[checkboxNr];
+                    let itemUuid = null;
 
-                return acc;
-            }, {});
+                    if (checkbox.type === 'domainCard') {
+                        const item = await foundry.utils.fromUuid(checkbox.data[0]);
+                        const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                        itemUuid = embeddedItem[0].uuid;
+                    }
 
-            changed.system.experiences = this.system.experiences.filter(
-                x => x.level <= changed.system.levelData.currentLevel
-            );
-
-            if (
-                this.system.multiclass &&
-                this.system.multiclass.system.multiclass > changed.system.levelData.changedLevel
-            ) {
-                const multiclassFeatures = this.items.filter(x => x.system.multiclass);
-                for (var feature of multiclassFeatures) {
-                    await feature.delete();
+                    selections.push({
+                        ...checkbox,
+                        level: Number(levelKey),
+                        optionKey: optionKey,
+                        checkboxNr: Number(checkboxNr),
+                        itemUuid
+                    });
                 }
             }
+
+            levelups[levelKey] = {
+                achievements: {
+                    ...level.achievements,
+                    domainCards: achievementDomainCards
+                },
+                selections: selections
+            };
         }
 
-        super._preUpdate(changed, options, user);
+        await this.update({
+            system: {
+                levelData: {
+                    level: {
+                        current: this.system.levelData.level.changed
+                    },
+                    levelups: levelups
+                }
+            }
+        });
     }
 
     async diceRoll(modifier, shiftKey) {
@@ -286,9 +346,9 @@ export default class DhpActor extends Actor {
                     : 0;
 
         const update = {
-            'system.resources.health.value': Math.min(
-                this.system.resources.health.value + hpDamage,
-                this.system.resources.health.max
+            'system.resources.hitPoints.value': Math.min(
+                this.system.resources.hitPoints.value + hpDamage,
+                this.system.resources.hitPoints.max
             )
         };
 
@@ -311,9 +371,9 @@ export default class DhpActor extends Actor {
         switch (type) {
             case SYSTEM.GENERAL.healingTypes.health.id:
                 update = {
-                    'system.resources.health.value': Math.min(
-                        this.system.resources.health.value + healing,
-                        this.system.resources.health.max
+                    'system.resources.hitPoints.value': Math.min(
+                        this.system.resources.hitPoints.value + healing,
+                        this.system.resources.hitPoints.max
                     )
                 };
                 break;

@@ -1,0 +1,13 @@
+<div class="component dh-style card-preview-container {{#if (and this.compendium (not this.img))}}selectable{{/if}}" data-action="viewCompendium" data-compendium="{{this.compendium}}" data-path="{{this.path}}" data-limit="{{this.limit}}">
+    {{#if this.img}}
+        <img class="preview-image-container" src="{{this.img}}" />
+        <div class="preview-text-container">{{this.name}}</div>
+    {{else}}
+        <div class="preview-empty-container">
+            <div class="preview-empty-inner-container">
+                <i class="preview-add-icon fa-solid fa-plus"></i>
+                <div class="preview-empty-subtext">{{this.emptySubtext}}</div>
+            </div>
+        </div>
+    {{/if}}
+</div>

@@ -41,13 +41,13 @@
                                     <button data-action="takeLongRest" title="{{localize "DAGGERHEART.Sheets.PC.LongRest"}}"><i class="fa-solid fa-bed"></i></button>
                                 </div>
                             </div>
-                            <div class="level-container {{#if document.system.canLevelUp}}levelup{{/if}}">
+                            <div class="level-container {{#if document.system.levelData.canLevelUp}}levelup{{/if}}">
                                 <div class="level-value-container">
-                                    <input class="level-value {{#if document.system.canLevelUp}}levelup{{/if}}" name="system.levelData.changedLevel" value="{{document.system.levelData.changedLevel}}" type="text" data-dtype="Number" />
-                                    {{#if document.system.canLevelUp}}<div class="levelup-marker {{#if (gte document.system.levels.current 10)}}double-digit{{/if}}">*</div>{{/if}}
+                                    <input class="level-value {{#if document.system.levelData.canLevelUp}}levelup{{/if}}" value="{{document.system.levelData.level.changed}}" type="text" data-dtype="Number" />
+                                    {{#if document.system.levelData.canLevelUp}}<div class="levelup-marker">*</div>{{/if}}
                                 </div>
                                 <img src="systems/daggerheart/assets/AttributeShield.svg" />
-                                <div class="level-title {{#if document.system.canLevelUp}}levelup{{/if}}">{{localize "DAGGERHEART.Sheets.PC.Level"}}</div>
+                                <div class="level-title {{#if document.system.levelData.canLevelUp}}levelup{{/if}}">{{localize "DAGGERHEART.Sheets.PC.Level"}}</div>
                             </div>
                         </div>
                         <div class="flexrow">

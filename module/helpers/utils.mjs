@@ -1,4 +1,5 @@
 import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
+import Tagify from '@yaireo/tagify';
 
 export const loadCompendiumOptions = async compendiums => {
     const compendiumValues = [];
@@ -130,4 +131,94 @@ export const setDiceSoNiceForDualityRoll = (rollResult, advantage, disadvantage)
     } else if (disadvantage) {
         rollResult.dice[2].options.appearance = diceSoNicePresets.disadvantage;
     }
+};
+
+export const chunkify = (array, chunkSize, mappingFunc) => {
+    var chunkifiedArray = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+        const chunk = array.slice(i, i + chunkSize);
+        if (mappingFunc) {
+            chunkifiedArray.push(mappingFunc(chunk));
+        } else {
+            chunkifiedArray.push(chunk);
+        }
+    }
+
+    return chunkifiedArray;
+};
+
+export const tagifyElement = (element, options, onChange, tagifyOptions = {}) => {
+    const { maxTags } = tagifyOptions;
+    const tagifyElement = new Tagify(element, {
+        tagTextProp: 'name',
+        enforceWhitelist: true,
+        whitelist: Object.keys(options).map(key => {
+            const option = options[key];
+            return {
+                value: key,
+                name: game.i18n.localize(option.label),
+                src: option.src
+            };
+        }),
+        maxTags: maxTags,
+        dropdown: {
+            mapValueTo: 'name',
+            searchKeys: ['name'],
+            enabled: 0,
+            maxItems: 20,
+            closeOnSelect: true,
+            highlightFirst: false
+        },
+        templates: {
+            tag(tagData) {
+                return `<tag title="${tagData.title || tagData.value}"
+                    contenteditable='false'
+                    spellcheck='false'
+                    tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
+                    class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
+                    ${this.getAttributes(tagData)}> 
+            <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
+            <div>
+                <span class="${this.settings.classNames.tagText}">${tagData[this.settings.tagTextProp] || tagData.value}</span>
+                ${tagData.src ? `<img src="${tagData.src}"></i>` : ''}
+            </div>
+            </tag>`;
+            }
+        }
+    });
+
+    const onSelect = async event => {
+        const inputElement = event.detail.tagify.DOM.originalInput;
+        const selectedOptions = event.detail?.value ? JSON.parse(event.detail.value) : [];
+
+        const unusedDropDownItems = event.detail.tagify.suggestedListItems;
+        const missingOptions = Object.keys(options).filter(x => !unusedDropDownItems.find(item => item.value === x));
+        const removedItem = missingOptions.find(x => !selectedOptions.find(item => item.value === x));
+        const addedItem = removedItem
+            ? null
+            : selectedOptions.find(x => !missingOptions.find(item => item === x.value));
+
+        const changedItem = { option: removedItem ?? addedItem.value, removed: Boolean(removedItem) };
+
+        onChange(selectedOptions, changedItem, inputElement);
+    };
+    tagifyElement.on('change', onSelect);
+};
+
+export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue) => {
+    return Object.keys(property).reduce((acc, key) => {
+        if (innerProperty) {
+            if (innerPropertyDefaultValue !== undefined) {
+                acc[`${key}`] = {
+                    [innerProperty]: innerPropertyDefaultValue
+                };
+            } else {
+                acc[`${key}.-=${innerProperty}`] = null;
+            }
+        } else {
+            acc[`-=${key}`] = null;
+        }
+
+        return acc;
+    }, {});
 };

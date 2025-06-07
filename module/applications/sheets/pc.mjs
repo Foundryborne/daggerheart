@@ -1,10 +1,10 @@
 import { capitalize } from '../../helpers/utils.mjs';
 import DhpDeathMove from '../deathMove.mjs';
 import DhpDowntime from '../downtime.mjs';
-import DhpLevelup from '../levelup.mjs';
 import AncestrySelectionDialog from '../ancestrySelectionDialog.mjs';
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 import { abilities } from '../../config/actorConfig.mjs';
+import DhlevelUp from '../levelup.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -167,13 +167,23 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-        $(htmlElement).find('.attribute-value').on('change', this.attributeChange.bind(this));
-        $(htmlElement).find('.tab-selector').on('click', this.tabSwitch.bind(this));
-        $(htmlElement).find('.level-title.levelup').on('click', this.openLevelUp.bind(this));
-        $(htmlElement).find('.feature-input').on('change', this.onFeatureInputBlur.bind(this));
-        $(htmlElement).find('.experience-description').on('change', this.experienceDescriptionChange.bind(this));
-        $(htmlElement).find('.experience-value').on('change', this.experienceValueChange.bind(this));
-        $(htmlElement).find('[data-item]').on('change', this.itemUpdate.bind(this));
+        htmlElement
+            .querySelectorAll('.attribute-value')
+            .forEach(element => element.addEventListener('change', this.attributeChange.bind(this)));
+        htmlElement
+            .querySelectorAll('.tab-selector')
+            .forEach(element => element.addEventListener('click', this.tabSwitch.bind(this)));
+        htmlElement.querySelector('.level-title.levelup')?.addEventListener('click', this.openLevelUp.bind(this));
+        htmlElement
+            .querySelectorAll('.feature-input')
+            .forEach(element => element.addEventListener('change', this.onFeatureInputBlur.bind(this)));
+        htmlElement
+            .querySelectorAll('.experience-description')
+            .forEach(element => element.addEventListener('change', this.experienceDescriptionChange.bind(this)));
+        htmlElement
+            .querySelectorAll('.experience-value')
+            .forEach(element => element.addEventListener('change', this.experienceValueChange.bind(this)));
+        htmlElement.querySelector('.level-value').addEventListener('change', this.onLevelChange.bind(this));
     }
 
     async _prepareContext(_options) {
@@ -188,7 +198,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         context.storyEditor = this.storyEditor;
         context.multiclassFeatureSetSelected = this.multiclassFeatureSetSelected;
 
-        const selectedAttributes = Object.values(this.document.system.attributes).map(x => x.data.base);
+        const selectedAttributes = Object.values(this.document.system.traits).map(x => x.base);
         context.abilityScoreArray = JSON.parse(
             await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray)
         ).reduce((acc, x) => {
@@ -204,7 +214,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         if (!context.abilityScoreArray.includes(0)) context.abilityScoreArray.push({ name: 0, value: 0 });
         context.abilityScoresFinished = context.abilityScoreArray.every(x => x.value === 0);
 
-        //FIXME: 
+        //FIXME:
         context.domains = this.document.system.class
             ? {
                   first: this.document.system.class.system.domains[0]
@@ -216,9 +226,9 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
               }
             : {};
 
-        context.attributes = Object.keys(this.document.system.attributes).reduce((acc, key) => {
+        context.attributes = Object.keys(this.document.system.traits).reduce((acc, key) => {
             acc[key] = {
-                ...this.document.system.attributes[key],
+                ...this.document.system.traits[key],
                 name: game.i18n.localize(SYSTEM.ACTOR.abilities[key].name),
                 verbs: SYSTEM.ACTOR.abilities[key].verbs.map(x => game.i18n.localize(x))
             };
@@ -480,7 +490,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     async attributeChange(event) {
-        const path = `system.attributes.${event.currentTarget.dataset.attribute}.data.base`;
+        const path = `system.traits.${event.currentTarget.dataset.attribute}.base`;
         await this.document.update({ [path]: event.currentTarget.value });
     }
 
@@ -532,21 +542,21 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async toggleAttributeMark(_, button) {
-        const attribute = this.document.system.attributes[button.dataset.attribute];
+        const attribute = this.document.system.traits[button.dataset.attribute];
         const newMark = this.document.system.availableAttributeMarks
-            .filter(x => x > Math.max.apply(null, this.document.system.attributes[button.dataset.attribute].levelMarks))
+            .filter(x => x > Math.max.apply(null, this.document.system.traits[button.dataset.attribute].levelMarks))
             .sort((a, b) => (a > b ? 1 : -1))[0];
 
         if (attribute.levelMark || !newMark) return;
 
-        const path = `system.attributes.${button.dataset.attribute}.levelMarks`;
+        const path = `system.traits.${button.dataset.attribute}.levelMarks`;
         await this.document.update({ [path]: [...attribute.levelMarks, newMark] });
     }
 
     static async toggleHP(_, button) {
         const healthValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.resources.health.value >= healthValue ? healthValue - 1 : healthValue;
-        await this.document.update({ 'system.resources.health.value': newValue });
+        const newValue = this.document.system.resources.hitPoints.value >= healthValue ? healthValue - 1 : healthValue;
+        await this.document.update({ 'system.resources.hitPoints.value': newValue });
     }
 
     static async toggleStress(_, button) {
@@ -577,7 +587,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             type: weapon.system.damage.type,
             bonusDamage: this.document.system.bonuses.damage
         };
-        const modifier = this.document.system.attributes[weapon.system.trait].data.value;
+        const modifier = this.document.system.traits[weapon.system.trait].value;
 
         const { roll, hope, fear, advantage, disadvantage, modifiers, bonusDamageString } =
             await this.document.dualityRoll(
@@ -593,7 +603,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             name: x.actor.name,
             img: x.actor.img,
             difficulty: x.actor.system.difficulty,
-            evasion: x.actor.system.evasion
+            evasion: x.actor.system.evasion.value
         }));
 
         const systemData = {
@@ -634,7 +644,12 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     openLevelUp() {
-        new DhpLevelup(this.document).render(true);
+        if (!this.document.system.class || !this.document.system.subclass) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.missingClassOrSubclass'));
+            return;
+        }
+
+        new DhlevelUp(this.document).render(true);
     }
 
     static domainCardsTab(toVault) {
@@ -782,7 +797,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async makeDeathMove() {
-        if (this.document.system.resources.health.value === this.document.system.resources.health.max) {
+        if (this.document.system.resources.hitPoints.value === this.document.system.resources.hitPoints.max) {
             await new DhpDeathMove(this.document).render(true);
             await this.minimize();
         }
@@ -865,6 +880,11 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const name = event.currentTarget.dataset.item;
         const item = await fromUuid($(event.currentTarget).closest('[data-item-id]')[0].dataset.itemId);
         await item.update({ [name]: event.currentTarget.value });
+    }
+
+    async onLevelChange(event) {
+        await this.document.updateLevel(Number(event.currentTarget.value));
+        this.render();
     }
 
     static async deleteItem(_, button) {
@@ -1090,7 +1110,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                         await itemObject.update({ 'system.active': true });
                         break;
                     case 'inventory-weapon-section':
-                        /* FIXME inventoryWeapon is no longer a field
+                    /* FIXME inventoryWeapon is no longer a field
                         const existingInventoryWeapon = this.document.items.find(x => x.system.inventoryWeapon);
                         await existingInventoryWeapon?.update({ 'system.inventoryWeapon': false });
                         await itemObject.update({ 'system.inventoryWeapon': true });

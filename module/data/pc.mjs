@@ -1,50 +1,29 @@
-import { getPathValue, getTier } from '../helpers/utils.mjs';
+import { getPathValue } from '../helpers/utils.mjs';
+import { LevelOptionType } from './levelTier.mjs';
 
 const fields = foundry.data.fields;
 
 const attributeField = () =>
     new fields.SchemaField({
-        data: new fields.SchemaField({
-            value: new fields.NumberField({ initial: 0, integer: true }),
-            base: new fields.NumberField({ initial: 0, integer: true }),
-            bonus: new fields.NumberField({ initial: 0, integer: true }),
-            actualValue: new fields.NumberField({ initial: 0, integer: true }),
-            overrideValue: new fields.NumberField({ initial: 0, integer: true })
-        }),
-        levelMarks: new fields.ArrayField(new fields.NumberField({ nullable: true, initial: null, integer: true })),
-        levelMark: new fields.NumberField({ nullable: true, initial: null, integer: true })
+        bonus: new fields.NumberField({ initial: 0, integer: true }),
+        base: new fields.NumberField({ initial: 0, integer: true }),
+        tierMarked: new fields.BooleanField({ required: true, initial: false })
     });
 
-const levelUpTier = () => ({
-    attributes: new fields.TypedObjectField(new fields.BooleanField()),
-    hitPointSlots: new fields.TypedObjectField(new fields.BooleanField()),
-    stressSlots: new fields.TypedObjectField(new fields.BooleanField()),
-    experiences: new fields.TypedObjectField(new fields.ArrayField(new fields.StringField({}))),
-    proficiency: new fields.TypedObjectField(new fields.BooleanField()),
-    armorOrEvasionSlot: new fields.TypedObjectField(new fields.StringField({})),
-    subclass: new fields.TypedObjectField(
-        new fields.SchemaField({
-            multiclass: new fields.BooleanField(),
-            feature: new fields.StringField({})
-        })
-    ),
-    multiclass: new fields.TypedObjectField(new fields.BooleanField())
-});
+const resourceField = max =>
+    new fields.SchemaField({
+        value: new fields.NumberField({ initial: 0, integer: true }),
+        bonus: new fields.NumberField({ initial: 0, integer: true }),
+        min: new fields.NumberField({ initial: 0, integer: true }),
+        baseMax: new fields.NumberField({ initial: max, integer: true })
+    });
 
 export default class DhpPC extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         return {
             resources: new fields.SchemaField({
-                health: new fields.SchemaField({
-                    value: new fields.NumberField({ initial: 0, integer: true }),
-                    min: new fields.NumberField({ initial: 0, integer: true }),
-                    max: new fields.NumberField({ initial: 6, integer: true })
-                }),
-                stress: new fields.SchemaField({
-                    value: new fields.NumberField({ initial: 0, integer: true }),
-                    min: new fields.NumberField({ initial: 0, integer: true }),
-                    max: new fields.NumberField({ initial: 6, integer: true })
-                }),
+                hitPoints: resourceField(6),
+                stress: resourceField(6),
                 hope: new fields.SchemaField({
                     value: new fields.NumberField({ initial: -1, integer: true }), // FIXME. Logic is gte and needs -1 in PC/Hope. Change to 0
                     min: new fields.NumberField({ initial: 0, integer: true })
@@ -61,7 +40,7 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                     })
                 )
             }),
-            attributes: new fields.SchemaField({
+            traits: new fields.SchemaField({
                 agility: attributeField(),
                 strength: attributeField(),
                 finesse: attributeField(),
@@ -70,22 +49,22 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                 knowledge: attributeField()
             }),
             proficiency: new fields.SchemaField({
-                value: new fields.NumberField({ initial: 1, integer: true }),
-                min: new fields.NumberField({ initial: 1, integer: true }),
-                max: new fields.NumberField({ initial: 6, integer: true })
+                base: new fields.NumberField({ required: true, initial: 1, integer: true }),
+                bonus: new fields.NumberField({ required: true, initial: 0, integer: true })
             }),
-            evasion: new fields.NumberField({ initial: 0, integer: true }),
+            evasion: new fields.SchemaField({
+                bonus: new fields.NumberField({ initial: 0, integer: true })
+            }),
             experiences: new fields.ArrayField(
                 new fields.SchemaField({
                     id: new fields.StringField({ required: true }),
-                    level: new fields.NumberField({ required: true, integer: true }),
                     description: new fields.StringField({}),
                     value: new fields.NumberField({ integer: true, nullable: true, initial: null })
                 }),
                 {
                     initial: [
-                        { id: foundry.utils.randomID(), level: 1, description: '', value: 2 },
-                        { id: foundry.utils.randomID(), level: 1, description: '', value: 2 }
+                        { id: foundry.utils.randomID(), description: '', value: 2 },
+                        { id: foundry.utils.randomID(), description: '', value: 2 }
                     ]
                 }
             ),
@@ -99,30 +78,6 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             domainData: new fields.SchemaField({
                 maxLoadout: new fields.NumberField({ initial: 2, integer: true }),
                 maxCards: new fields.NumberField({ initial: 2, integer: true })
-            }),
-            levelData: new fields.SchemaField({
-                currentLevel: new fields.NumberField({ initial: 1, integer: true }),
-                changedLevel: new fields.NumberField({ initial: 1, integer: true }),
-                levelups: new fields.TypedObjectField(
-                    new fields.SchemaField({
-                        level: new fields.NumberField({ required: true, integer: true }),
-                        tier1: new fields.SchemaField({
-                            ...levelUpTier()
-                        }),
-                        tier2: new fields.SchemaField(
-                            {
-                                ...levelUpTier()
-                            },
-                            { nullable: true, initial: null }
-                        ),
-                        tier3: new fields.SchemaField(
-                            {
-                                ...levelUpTier()
-                            },
-                            { nullable: true, initial: null }
-                        )
-                    })
-                )
             }),
             story: new fields.SchemaField({
                 background: new fields.HTMLField(),
@@ -140,13 +95,9 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             armorMarks: new fields.SchemaField({
                 max: new fields.NumberField({ initial: 6, integer: true }),
                 value: new fields.NumberField({ initial: 0, integer: true })
-            })
+            }),
+            levelData: new fields.EmbeddedDataField(DhPCLevelData)
         };
-    }
-
-    get canLevelUp() {
-        //  return Object.values(this.levels.data).some(x => !x.completed);
-        return this.levelData.currentLevel !== this.levelData.changedLevel;
     }
 
     get tier() {
@@ -281,31 +232,6 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         }
     }
 
-    get totalAttributeMarks() {
-        return Object.keys(this.levelData.levelups).reduce((nr, level) => {
-            const nrAttributeMarks = Object.keys(this.levelData.levelups[level]).reduce((nr, tier) => {
-                nr += Object.keys(this.levelData.levelups[level][tier]?.attributes ?? {}).length * 2;
-
-                return nr;
-            }, 0);
-
-            nr.push(...Array(nrAttributeMarks).fill(Number.parseInt(level)));
-
-            return nr;
-        }, []);
-    }
-
-    get availableAttributeMarks() {
-        const attributeMarks = Object.keys(this.attributes).flatMap(y => this.attributes[y].levelMarks);
-        return this.totalAttributeMarks.reduce((acc, attribute) => {
-            if (!attributeMarks.findSplice(x => x === attribute)) {
-                acc.push(attribute);
-            }
-
-            return acc;
-        }, []);
-    }
-
     get effects() {
         return this.parent.items.reduce((acc, item) => {
             const effects = item.system.effectData;
@@ -357,139 +283,35 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             : null;
     }
 
+    prepareBaseData() {
+        this.resources.hitPoints.max = this.resources.hitPoints.baseMax + this.resources.hitPoints.bonus;
+        this.resources.stress.max = this.resources.stress.baseMax + this.resources.stress.bonus;
+        this.evasion.value = (this.class?.system?.evasion ?? 0) + this.evasion.bonus;
+        this.proficiency.value = this.proficiency.base + this.proficiency.bonus;
+
+        for (var attributeKey in this.traits) {
+            const attribute = this.traits[attributeKey];
+            attribute.value = attribute.base + attribute.bonus;
+        }
+    }
+
     prepareDerivedData() {
         this.resources.hope.max = 6 - this.story.scars.length;
         if (this.resources.hope.value >= this.resources.hope.max) {
             this.resources.hope.value = Math.max(this.resources.hope.max - 1, 0);
         }
 
-        for (var attributeKey in this.attributes) {
-            const attribute = this.attributes[attributeKey];
+        const armor = this.armor;
+        this.damageThresholds = {
+            major: armor
+                ? armor.system.baseThresholds.major + this.levelData.level.current
+                : this.levelData.level.current,
+            severe: armor
+                ? armor.system.baseThresholds.severe + this.levelData.level.current
+                : this.levelData.level.current * 2
+        };
 
-            attribute.levelMark = attribute.levelMarks.find(x => this.isSameTier(x)) ?? null;
-
-            const actualValue = attribute.data.base + attribute.levelMarks.length + attribute.data.bonus;
-            attribute.data.actualValue = actualValue;
-            attribute.data.value = attribute.data.overrideValue
-                ? attribute.data.overrideValue
-                : attribute.data.actualValue;
-        }
-
-        this.evasion = this.class?.system?.evasion ?? 0;
-        // this.armor.value = this.activeArmor?.baseScore ?? 0;
-        this.damageThresholds = this.computeDamageThresholds();
-
-        this.applyLevels();
         this.applyEffects();
-    }
-
-    computeDamageThresholds() {
-        // TODO: missing weapon features and domain cards calculation
-        if (!this.armor) {
-            return {
-                major: this.levelData.currentLevel,
-                severe: this.levelData.currentLevel * 2
-            };
-        }
-        const {
-            baseThresholds: { major = 0, severe = 0 }
-        } = this.armor.system;
-        return {
-            major: major + this.levelData.currentLevel,
-            severe: severe + this.levelData.currentLevel
-        };
-    }
-
-    applyLevels() {
-        let healthBonus = 0,
-            stressBonus = 0,
-            proficiencyBonus = 0,
-            evasionBonus = 0,
-            armorBonus = 0;
-        let experienceBonuses = {};
-        let advancementFirst = null,
-            advancementSecond = null;
-        for (var level in this.levelData.levelups) {
-            var levelData = this.levelData.levelups[level];
-            for (var tier in levelData) {
-                var tierData = levelData[tier];
-                if (tierData) {
-                    healthBonus += Object.keys(tierData.hitPointSlots).length;
-                    stressBonus += Object.keys(tierData.stressSlots).length;
-                    proficiencyBonus += Object.keys(tierData.proficiency).length;
-                    advancementFirst =
-                        Object.keys(tierData.subclass).length > 0 && level >= 5 && level <= 7
-                            ? { ...tierData.subclass[0], tier: getTier(Number.parseInt(level), true) }
-                            : advancementFirst;
-                    advancementSecond =
-                        Object.keys(tierData.subclass).length > 0 && level >= 8 && level <= 10
-                            ? { ...tierData.subclass[0], tier: getTier(Number.parseInt(level), true) }
-                            : advancementSecond;
-
-                    for (var index in Object.keys(tierData.experiences)) {
-                        for (var experienceKey in tierData.experiences[index]) {
-                            var experience = tierData.experiences[index][experienceKey];
-                            experienceBonuses[experience] = experienceBonuses[experience]
-                                ? experienceBonuses[experience] + 1
-                                : 1;
-                        }
-                    }
-
-                    evasionBonus += Object.keys(tierData.armorOrEvasionSlot).filter(
-                        x => tierData.armorOrEvasionSlot[x] === 'evasion'
-                    ).length;
-                    armorBonus += Object.keys(tierData.armorOrEvasionSlot).filter(
-                        x => tierData.armorOrEvasionSlot[x] === 'armor'
-                    ).length;
-                }
-            }
-        }
-
-        this.resources.health.max += healthBonus;
-        this.resources.stress.max += stressBonus;
-        this.proficiency.value += proficiencyBonus;
-        this.evasion += evasionBonus;
-        this.armorMarks = {
-            max: this.armor ? this.armor.system.marks.max + armorBonus : 0,
-            value: this.armor ? this.armor.system.marks.value : 0
-        };
-
-        this.experiences = this.experiences.map(x => ({ ...x, value: x.value + (experienceBonuses[x.id] ?? 0) }));
-
-        const subclassFeatures = this.subclassFeatures;
-        if (advancementFirst) {
-            if (advancementFirst.multiclass) {
-                this.multiclassSubclass.system[`${advancementFirst.feature}Feature`].unlocked = true;
-                this.multiclassSubclass.system[`${advancementFirst.feature}Feature`].tier = advancementFirst.tier;
-                subclassFeatures.multiclassSubclass[advancementFirst.feature].forEach(x => (x.system.disabled = false));
-            } else {
-                this.subclass.system[`${advancementFirst.feature}Feature`].unlocked = true;
-                this.subclass.system[`${advancementFirst.feature}Feature`].tier = advancementFirst.tier;
-                subclassFeatures.subclass[advancementFirst.feature].forEach(x => (x.system.disabled = false));
-            }
-        }
-        if (advancementSecond) {
-            if (advancementSecond.multiclass) {
-                this.multiclassSubclass.system[`${advancementSecond.feature}Feature`].unlocked = true;
-                this.multiclassSubclass.system[`${advancementSecond.feature}Feature`].tier = advancementSecond.tier;
-                subclassFeatures.multiclassSubclass[advancementSecond.feature].forEach(
-                    x => (x.system.disabled = false)
-                );
-            } else {
-                this.subclass.system[`${advancementSecond.feature}Feature`].unlocked = true;
-                this.subclass.system[`${advancementSecond.feature}Feature`].tier = advancementSecond.tier;
-                subclassFeatures.subclass[advancementSecond.feature].forEach(x => (x.system.disabled = false));
-            }
-        }
-
-        //General progression
-        for (var i = 0; i < this.levelData.currentLevel; i++) {
-            const tier = getTier(i + 1);
-            if (tier !== 'tier0') {
-                this.domainData.maxLoadout = Math.min(this.domainData.maxLoadout + 1, 5);
-                this.domainData.maxCards += 1;
-            }
-        }
     }
 
     applyEffects() {
@@ -499,10 +321,10 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
             for (var effect of effectType) {
                 switch (key) {
                     case SYSTEM.EFFECTS.effectTypes.health.id:
-                        this.resources.health.max += effect.value.valueData.value;
+                        this.resources.hitPoints.bonus += effect.value.valueData.value;
                         break;
                     case SYSTEM.EFFECTS.effectTypes.stress.id:
-                        this.resources.stress.max += effect.value.valueData.value;
+                        this.resources.stress.bonus += effect.value.valueData.value;
                         break;
                     case SYSTEM.EFFECTS.effectTypes.damage.id:
                         this.bonuses.damage.push({
@@ -529,14 +351,62 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
         return twoHanded ? 'twoHanded' : oneHanded ? 'oneHanded' : null;
     }
 
-    isSameTier(level) {
-        return this.#getTier(this.levelData.currentLevel) === this.#getTier(level);
-    }
-
     #getTier(level) {
         if (level >= 8) return 3;
         else if (level >= 5) return 2;
         else if (level >= 2) return 1;
         else return 0;
+    }
+}
+
+class DhPCLevelData extends foundry.abstract.DataModel {
+    static defineSchema() {
+        return {
+            level: new fields.SchemaField({
+                current: new fields.NumberField({ required: true, integer: true, initial: 1 }),
+                changed: new fields.NumberField({ required: true, integer: true, initial: 1 })
+            }),
+            levelups: new fields.TypedObjectField(
+                new fields.SchemaField({
+                    achievements: new fields.SchemaField(
+                        {
+                            experiences: new fields.TypedObjectField(
+                                new fields.SchemaField({
+                                    name: new fields.StringField({ required: true }),
+                                    modifier: new fields.NumberField({ required: true, integer: true })
+                                })
+                            ),
+                            domainCards: new fields.ArrayField(
+                                new fields.SchemaField({
+                                    uuid: new fields.StringField({ required: true }),
+                                    itemUuid: new fields.StringField({ required: true })
+                                })
+                            ),
+                            proficiency: new fields.NumberField({ integer: true })
+                        },
+                        { nullable: true, initial: null }
+                    ),
+                    selections: new fields.ArrayField(
+                        new fields.SchemaField({
+                            tier: new fields.NumberField({ required: true, integer: true }),
+                            level: new fields.NumberField({ required: true, integer: true }),
+                            optionKey: new fields.StringField({ required: true }),
+                            type: new fields.StringField({ required: true, choices: LevelOptionType }),
+                            checkboxNr: new fields.NumberField({ required: true, integer: true }),
+                            value: new fields.NumberField({ integer: true }),
+                            minCost: new fields.NumberField({ integer: true }),
+                            amount: new fields.NumberField({ integer: true }),
+                            data: new fields.ArrayField(new fields.StringField({ required: true })),
+                            secondaryData: new fields.StringField(),
+                            itemUuid: new fields.StringField({ required: true })
+                        })
+                    )
+                })
+            )
+        };
+    }
+
+    get canLevelUp() {
+        return this.level.current < this.level.changed;
     }
 }

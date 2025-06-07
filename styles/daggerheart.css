@@ -7,6 +7,7 @@
 /* Drop Shadows */
 /* Background */
 /* Duality */
+/* Fear */
 @import '../node_modules/@yaireo/tagify/dist/tagify.css';
 .daggerheart.sheet.class .editor {
   height: 500px;
@@ -1293,59 +1294,91 @@
 .daggerheart.sheet.pc div[data-application-part] .sheet-body .inventory-container .inventory-item-list .inventory-row img {
   width: 32px;
 }
-.combat-sidebar .encounter-gm-resources {
-  flex: 0;
-  display: flex;
-  justify-content: center;
-  padding: 8px 0;
+.combat-sidebar .encounter-controls.combat {
+  justify-content: space-between;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-controls {
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container {
   display: flex;
-  flex-direction: column;
+  position: relative;
   align-items: center;
-  padding: 0 4px;
   justify-content: center;
+  color: black;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 5px 0 4px;
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container .dice {
+  height: 24px;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools i {
-  margin: 0 2px;
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container .encounter-control-fear {
+  position: absolute;
   font-size: 16px;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools i.disabled {
-  opacity: 0.6;
+.combat-sidebar .encounter-controls.combat .encounter-control-fear-container .encounter-control-counter {
+  position: absolute;
+  right: -10px;
+  color: var(--color-text-secondary);
 }
-.combat-sidebar .encounter-gm-resources .gm-resource-tools i:hover:not(.disabled) {
-  cursor: pointer;
-  filter: drop-shadow(0 0 3px red);
+.combat-sidebar .encounter-controls.combat .control-buttons {
+  width: min-content;
 }
-.combat-sidebar .encounter-gm-resources .gm-resource {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 4px;
-  border-radius: 8px;
-  border: 2px solid black;
-  font-size: 20px;
+.combat-sidebar .combatant-controls {
+  flex: 0;
 }
-.combat-sidebar .token-action-tokens {
-  flex: 0 0 48px;
+.combat-sidebar .token-actions {
+  align-self: stretch;
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  gap: 16px;
+}
+.combat-sidebar .token-actions .action-tokens {
+  display: flex;
+  gap: 4px;
+}
+.combat-sidebar .token-actions .action-tokens .action-token {
+  height: 22px;
+  width: 22px;
+  border: 1px solid;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  padding: 8px;
+  --button-size: 0;
+}
+.combat-sidebar .token-actions .action-tokens .action-token.used {
+  opacity: 0.5;
+  background: transparent;
+}
+.combat-sidebar .token-actions button {
+  font-size: 22px;
+  height: 24px;
+  width: 24px;
+}
+.combat-sidebar .token-actions button.main {
+  background: var(--button-hover-background-color);
+  color: var(--button-hover-text-color);
+  border-color: var(--button-hover-border-color);
+}
+.combat-sidebar .token-actions button.main:hover {
+  filter: drop-shadow(0 0 3px var(--button-hover-text-color));
+}
+.combat-sidebar .spotlight-control {
+  font-size: 26px;
+}
+.combat-sidebar .spotlight-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+.combat-sidebar .spotlight-control.discrete:hover {
+  background: inherit;
+}
+.combat-sidebar .spotlight-control.requesting {
+  filter: drop-shadow(0 0 3px gold);
+  color: var(--button-hover-text-color);
+}
+.combat-sidebar h4 {
+  margin: 0;
   text-align: center;
-}
-.combat-sidebar .token-action-tokens .use-action-token.disabled {
-  opacity: 0.6;
-}
-.combat-sidebar .icon-button.spaced {
-  margin-left: 4px;
-}
-.combat-sidebar .icon-button.disabled {
-  opacity: 0.6;
-}
-.combat-sidebar .icon-button:hover:not(.disabled) {
-  cursor: pointer;
-  filter: drop-shadow(0 0 3px red);
 }
 .chat-message.duality {
   border-color: black;
@@ -2718,15 +2751,233 @@ div.daggerheart.views.multiclass {
 .item-button .item-icon.checked {
   opacity: 1;
 }
+.theme-light .daggerheart.levelup .tiers-container .tier-container {
+  background-image: url('../assets/parchments/dh-parchment-light.png');
+}
+.daggerheart.levelup .window-content {
+  max-height: 960px;
+  overflow: auto;
+}
+.daggerheart.levelup div[data-application-part='form'] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.daggerheart.levelup section .section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.daggerheart.levelup .levelup-navigation-container {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  height: 36px;
+}
+.daggerheart.levelup .levelup-navigation-container nav {
+  flex: 1;
+}
+.daggerheart.levelup .levelup-navigation-container nav .levelup-tab-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.daggerheart.levelup .levelup-navigation-container .levelup-navigation-actions {
+  width: 306px;
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+  margin-right: 4px;
+}
+.daggerheart.levelup .levelup-navigation-container .levelup-navigation-actions * {
+  width: calc(50% - 8px);
+}
+.daggerheart.levelup .tiers-container {
+  display: flex;
+  gap: 16px;
+}
+.daggerheart.levelup .tiers-container .tier-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.daggerheart.levelup .tiers-container .tier-container.inactive {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.daggerheart.levelup .tiers-container .tier-container legend {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 0 12px;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 4px;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container {
+  display: flex;
+  justify-content: end;
+  gap: 4px;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container .checkbox-grouping-coontainer {
+  display: flex;
+  height: min-content;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container .checkbox-grouping-coontainer.multi {
+  border: 2px solid grey;
+  padding: 2.4px 2.5px 0;
+  border-radius: 4px;
+  gap: 2px;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container .checkbox-grouping-coontainer.multi .selection-checkbox {
+  margin-left: 0;
+  margin-right: 0;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkboxes-container .checkbox-grouping-coontainer .selection-checkbox {
+  margin: 0;
+}
+.daggerheart.levelup .tiers-container .tier-container .checkbox-group-container .checkbox-group-label {
+  font-size: 14px;
+  font-style: italic;
+}
+.daggerheart.levelup .levelup-selections-container .achievement-experience-cards {
+  display: flex;
+  gap: 8px;
+}
+.daggerheart.levelup .levelup-selections-container .achievement-experience-cards .achievement-experience-card {
+  border: 1px solid;
+  border-radius: 4px;
+  padding-right: 4px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+.daggerheart.levelup .levelup-selections-container .achievement-experience-cards .achievement-experience-card .achievement-experience-marker {
+  border: 1px solid;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .card-preview-container {
+  width: calc(100% * (1 / 5));
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container .levelup-domain-label {
+  position: absolute;
+  text-align: center;
+  top: 4px;
+  background: grey;
+  padding: 0 12px;
+  border-radius: 6px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container img {
+  height: 124px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container .levelup-domain-selected {
+  position: absolute;
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+  border: 2px solid;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../assets/parchments/dh-parchment-light.png);
+  color: var(--color-dark-5);
+  top: calc(50% - 29px);
+}
+.daggerheart.levelup .levelup-selections-container .levelup-card-selection .levelup-domains-selection-container .levelup-domain-selection-container .levelup-domain-selected i {
+  position: relative;
+  right: 2px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-selections-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.daggerheart.levelup .levelup-summary-container .level-achievements-container,
+.daggerheart.levelup .levelup-summary-container .level-advancements-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.daggerheart.levelup .levelup-summary-container .level-achievements-container h2,
+.daggerheart.levelup .levelup-summary-container .level-advancements-container h2,
+.daggerheart.levelup .levelup-summary-container .level-achievements-container h3,
+.daggerheart.levelup .levelup-summary-container .level-advancements-container h3,
+.daggerheart.levelup .levelup-summary-container .level-achievements-container h4,
+.daggerheart.levelup .levelup-summary-container .level-advancements-container h4,
+.daggerheart.levelup .levelup-summary-container .level-achievements-container h5,
+.daggerheart.levelup .levelup-summary-container .level-advancements-container h5 {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+.daggerheart.levelup .levelup-summary-container .increase-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 20px;
+}
+.daggerheart.levelup .levelup-summary-container .summary-selection-container {
+  display: flex;
+  gap: 8px;
+}
+.daggerheart.levelup .levelup-summary-container .summary-selection-container .summary-selection {
+  border: 2px solid;
+  border-radius: 6px;
+  padding: 0 4px;
+  font-size: 18px;
+}
+.daggerheart.levelup .levelup-footer {
+  display: flex;
+}
 :root {
-  --primary-color-fear: rgba(9, 71, 179, 0.75);
-  --secondary-color-fear: rgba(9, 71, 179, 0.75);
   --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  --fear-animation: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
 }
 #resources {
   min-height: calc(var(--header-height) + 4rem);
   min-width: 4rem;
   color: #d3d3d3;
+  transition: var(--fear-animation);
+}
+#resources header,
+#resources .controls,
+#resources .window-resize-handle {
+  transition: var(--fear-animation);
 }
 #resources .window-content {
   padding: 0.5rem;
@@ -2746,7 +2997,7 @@ div.daggerheart.views.multiclass {
   justify-content: center;
   align-items: center;
   width: 3rem;
-  background-color: var(--primary-color-fear);
+  background-color: var(rgba(9, 71, 179, 0.75));
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   color: #d3d3d3;
@@ -2811,7 +3062,7 @@ div.daggerheart.views.multiclass {
 #resources .window-content #resource-fear.isGM i:hover {
   font-size: var(--font-size-20);
 }
-#resources button[data-action="close"] {
+#resources button[data-action='close'] {
   display: none;
 }
 #resources:not(:hover):not(.minimized) {
@@ -2822,7 +3073,7 @@ div.daggerheart.views.multiclass {
 #resources:not(:hover):not(.minimized) header,
 #resources:not(:hover):not(.minimized) .controls,
 #resources:not(:hover):not(.minimized) .window-resize-handle {
-  visibility: hidden;
+  opacity: 0;
 }
 #resources:has(.fear-bar) {
   min-width: 200px;
@@ -2903,7 +3154,7 @@ div.daggerheart.views.multiclass {
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v17/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v18/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Montserrat';
@@ -3186,6 +3437,19 @@ div.daggerheart.views.multiclass {
 .application.setting.dh-style footer button {
   flex: 1;
 }
+.application.setting.dh-style .form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.application.setting.dh-style .form-group label {
+  font-size: 16px;
+}
+.application.setting.dh-style .form-group .form-fields {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
 .system-daggerheart .tagify {
   background: light-dark(transparent, transparent);
   border: 1px solid light-dark(#222, #efe6d8);
@@ -3227,6 +3491,93 @@ div.daggerheart.views.multiclass {
 }
 .system-daggerheart.theme-light .tagify__dropdown .tagify__dropdown__item--active {
   color: #efe6d8;
+}
+.theme-light .application .component.dh-style.card-preview-container {
+  background-image: url('../assets/parchments/dh-parchment-light.png');
+}
+.theme-light .application .component.dh-style.card-preview-container .preview-text-container {
+  background-image: url(../assets/parchments/dh-parchment-dark.png);
+}
+.theme-light .application .component.dh-style.card-preview-container .preview-selected-icon-container {
+  background-image: url(../assets/parchments/dh-parchment-dark.png);
+  color: var(--color-light-5);
+}
+.application .component.dh-style.card-preview-container {
+  position: relative;
+  border-radius: 6px;
+  border: 2px solid var(--color-tabs-border);
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 0.75;
+  background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.application .component.dh-style.card-preview-container.selectable {
+  cursor: pointer;
+}
+.application .component.dh-style.card-preview-container.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.application .component.dh-style.card-preview-container .preview-image-outer-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.application .component.dh-style.card-preview-container .preview-image-container {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+}
+.application .component.dh-style.card-preview-container .preview-text-container {
+  flex: 1;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  text-align: center;
+  color: var(--color-text-selection-bg);
+  background-image: url(../assets/parchments/dh-parchment-light.png);
+}
+.application .component.dh-style.card-preview-container .preview-empty-container {
+  pointer-events: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.application .component.dh-style.card-preview-container .preview-empty-container .preview-empty-inner-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.application .component.dh-style.card-preview-container .preview-empty-container .preview-empty-inner-container .preview-add-icon {
+  font-size: 48px;
+}
+.application .component.dh-style.card-preview-container .preview-empty-container .preview-empty-inner-container .preview-empty-subtext {
+  position: absolute;
+  top: 10%;
+  font-size: 18px;
+  font-variant: small-caps;
+  text-align: center;
+}
+.application .component.dh-style.card-preview-container .preview-selected-icon-container {
+  position: absolute;
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+  border: 2px solid;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../assets/parchments/dh-parchment-light.png);
+  color: var(--color-dark-5);
+}
+.application .component.dh-style.card-preview-container .preview-selected-icon-container i {
+  position: relative;
+  right: 2px;
 }
 .sheet.daggerheart.dh-style .tab-navigation {
   margin: 5px 0;
