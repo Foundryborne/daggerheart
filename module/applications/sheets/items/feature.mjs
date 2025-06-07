@@ -1,5 +1,5 @@
-import DaggerheartAction from '../../../data/action.mjs';
-import DaggerheartActionConfig from '../../config/Action.mjs';
+import DHAction from '../../../data/action.mjs';
+import DHActionConfig from '../../config/Action.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -132,16 +132,16 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     static async addAction() {
-        const action = await new DaggerheartAction({ img: this.document.img }, { parent: this.document });
+        const action = await new DHAction({ img: this.document.img }, { parent: this.document });
         await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
-        await new DaggerheartActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(
+        await new DHActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(
             true
         );
     }
 
     static async editAction(_, button) {
         const action = this.document.system.actions[button.dataset.index];
-        await new DaggerheartActionConfig(action).render(true);
+        await new DHActionConfig(action).render(true);
     }
 
     static async removeAction(event, button) {

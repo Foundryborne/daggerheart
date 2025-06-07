@@ -1,5 +1,5 @@
-import DaggerheartAction from '../../../data/action.mjs';
-import DaggerheartActionConfig from '../../config/Action.mjs';
+import DHAction from '../../../data/action.mjs';
+import DHActionConfig from '../../config/Action.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -76,7 +76,7 @@ export default class DomainCardSheet extends DaggerheartSheet(ItemSheetV2) {
 
     static async addAction() {
         const actionIndexes = this.document.system.actions.map(x => x.id.split('-')[2]).sort((a, b) => a - b);
-        const action = await new DaggerheartAction(
+        const action = await new DHAction(
             {
                 id: `${this.document.id}-Action-${actionIndexes.length > 0 ? actionIndexes[0] + 1 : 1}`
             },
@@ -85,14 +85,14 @@ export default class DomainCardSheet extends DaggerheartSheet(ItemSheetV2) {
             }
         );
         await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
-        await new DaggerheartActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(
+        await new DHActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(
             true
         );
     }
 
     static async editAction(_, button) {
         const action = this.document.system.actions[button.dataset.index];
-        await new DaggerheartActionConfig(action).render(true);
+        await new DHActionConfig(action).render(true);
     }
 
     static async removeAction(event, button) {

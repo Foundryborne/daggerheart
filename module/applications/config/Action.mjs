@@ -1,7 +1,7 @@
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
-export default class DaggerheartActionConfig extends DaggerheartSheet(ApplicationV2) {
+export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     constructor(action) {
         super({});
 
