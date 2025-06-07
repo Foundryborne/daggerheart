@@ -8,7 +8,7 @@ import DhlevelUp from '../levelup.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
-export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
+export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     constructor(options = {}) {
         super(options);
 
@@ -248,7 +248,8 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             ancestry: ancestry[0],
             community: community[0],
             advancement: {
-                ...this.mapAdvancementFeatures(this.document, SYSTEM)
+                // Removed until we have features again
+                // ...this.mapAdvancementFeatures(this.document, SYSTEM)
             }
         };
 
@@ -265,8 +266,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             vault: vault.map(x => ({
                 ...x,
                 uuid: x.uuid,
-                sendToLoadoutDisabled:
-                    this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout
+                sendToLoadoutDisabled: this.document.system.domainCards.loadout.length >= 5
             }))
         };
 
@@ -584,26 +584,21 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         const weapon = await fromUuid(button.dataset.weapon);
         const damage = {
             value: `${this.document.system.proficiency.value}${weapon.system.damage.value}`,
-            type: weapon.system.damage.type,
-            bonusDamage: this.document.system.bonuses.damage
+            type: weapon.system.damage.type
         };
         const modifier = this.document.system.traits[weapon.system.trait].value;
 
-        const { roll, hope, fear, advantage, disadvantage, modifiers, bonusDamageString } =
-            await this.document.dualityRoll(
-                { title: game.i18n.localize(abilities[weapon.system.trait].label), value: modifier },
-                event.shiftKey,
-                damage.bonusDamage
-            );
-
-        damage.value = damage.value.concat(bonusDamageString);
+        const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll(
+            { title: game.i18n.localize(abilities[weapon.system.trait].label), value: modifier },
+            event.shiftKey
+        );
 
         const targets = Array.from(game.user.targets).map(x => ({
             id: x.id,
             name: x.actor.name,
             img: x.actor.img,
             difficulty: x.actor.system.difficulty,
-            evasion: x.actor.system.evasion.value
+            evasion: x.actor.system.evasion
         }));
 
         const systemData = {
@@ -659,7 +654,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static async moveDomainCard(_, button) {
         const toVault = button.dataset.action === 'sendToVault';
-        if (!toVault && this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout) {
+        if (!toVault && this.document.system.domainCards.loadout.length >= 5) {
             return;
         }
 
@@ -860,15 +855,13 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     async experienceDescriptionChange(event) {
-        const newExperiences = [...this.document.system.experiences];
-        newExperiences[event.currentTarget.dataset.index].description = event.currentTarget.value;
-        await this.document.update({ 'system.experiences': newExperiences });
+        const path = `system.experiences.${event.currentTarget.dataset.experience}.description`;
+        await this.document.update({ [path]: event.currentTarget.value });
     }
 
     async experienceValueChange(event) {
-        const newExperiences = [...this.document.system.experiences];
-        newExperiences[event.currentTarget.dataset.index].value = event.currentTarget.value;
-        await this.document.update({ 'system.experiences': newExperiences });
+        const path = `system.experiences.${event.currentTarget.dataset.index}.value`;
+        await this.document.update({ [path]: event.currentTarget.value });
     }
 
     static setStoryEditor(_, button) {
@@ -1080,18 +1073,12 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                 const itemObject = await fromUuid(item.uuid);
                 switch (target) {
                     case 'weapon-section':
-                        if (
-                            itemObject.system.secondary &&
-                            this.document.system.equippedWeapons.burden === 'twoHanded'
-                        ) {
+                        if (itemObject.system.secondary && this.document.system.getWeaponBurden === 'twoHanded') {
                             ui.notifications.info(
                                 game.i18n.localize('DAGGERHEART.Notification.Info.SecondaryEquipWhileTwohanded')
                             );
                             return;
-                        } else if (
-                            itemObject.system.burden === 'twoHanded' &&
-                            this.document.system.equippedWeapons.secondary
-                        ) {
+                        } else if (itemObject.system.burden === 'twoHanded' && this.document.system.secondaryWeapon) {
                             ui.notifications.info(
                                 game.i18n.localize('DAGGERHEART.Notification.Info.TwohandedEquipWhileSecondary')
                             );
@@ -1154,7 +1141,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                 return;
             }
 
-            if (this.document.system.domainCards.total.length === this.document.system.domainData.maxCards) {
+            if (this.document.system.domainCards.total.length === 5) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.MaxLoadoutReached'));
                 return;
             }
@@ -1164,7 +1151,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
                 return;
             }
 
-            if (this.document.system.domainCards.loadout.length >= this.document.system.domainData.maxLoadout) {
+            if (this.document.system.domainCards.loadout.length >= 5) {
                 itemData.system.inVault = true;
             }
 

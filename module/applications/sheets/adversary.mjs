@@ -362,7 +362,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             name: x.actor.name,
             img: x.actor.img,
             difficulty: x.actor.system.difficulty,
-            evasion: x.actor.system.evasion.value
+            evasion: x.actor.system.evasion
         }));
 
         const cls = getDocumentClass('ChatMessage');

@@ -54,12 +54,12 @@ Hooks.once('init', () => {
 
     CONFIG.Actor.documentClass = documents.DhpActor;
     CONFIG.Actor.dataModels = {
-        pc: models.DhpPC,
+        pc: models.DhCharacter,
         adversary: models.DhpAdversary,
         environment: models.DhpEnvironment
     };
     Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
-    Actors.registerSheet(SYSTEM.id, applications.DhpPCSheet, { types: ['pc'], makeDefault: true });
+    Actors.registerSheet(SYSTEM.id, applications.DhCharacterSheet, { types: ['pc'], makeDefault: true });
     Actors.registerSheet(SYSTEM.id, applications.DhpAdversarySheet, { types: ['adversary'], makeDefault: true });
     Actors.registerSheet(SYSTEM.id, applications.DhpEnvironment, { types: ['environment'], makeDefault: true });
 

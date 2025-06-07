@@ -110,8 +110,14 @@
             },
             "VariantRules": {
                 "ActionTokens": {
-                    "Name": "Action Tokens",
-                    "Hint": "Give each player action tokens to use in combat"
+                    "label": "Action Tokens",
+                    "hint": "Give each player action tokens to use in combat"
+                },
+                "FIELDS": {
+                    "useCoins": {
+                        "label": "Use Coins",
+                        "hint": "test"
+                    }
                 }
             },
             "DualityRollColor": {

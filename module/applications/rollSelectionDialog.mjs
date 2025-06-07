@@ -1,7 +1,7 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class RollSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(experiences, bonusDamage, hopeResource, resolve, isNpc) {
+    constructor(experiences, hopeResource, resolve) {
         super({}, {});
 
         this.experiences = experiences;
@@ -17,23 +17,13 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
             fear: ['d12'],
             advantage: null,
             disadvantage: null,
-            bonusDamage: bonusDamage.reduce((acc, x) => {
-                if (x.appliesOn === SYSTEM.EFFECTS.applyLocations.attackRoll.id) {
-                    acc.push({
-                        ...x,
-                        hopeUses: 0
-                    });
-                }
-
-                return acc;
-            }, []),
             hopeResource: hopeResource
         };
     }
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'roll-selection', //Having an id causes a new instance to overwrite previous.
+        id: 'roll-selection',
         classes: ['daggerheart', 'views', 'roll-selection'],
         position: {
             width: 400,
@@ -41,8 +31,6 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
         },
         actions: {
             selectExperience: this.selectExperience,
-            decreaseHopeUse: this.decreaseHopeUse,
-            increaseHopeUse: this.increaseHopeUse,
             setAdvantage: this.setAdvantage,
             setDisadvantage: this.setDisadvantage,
             finish: this.finish
@@ -76,9 +64,8 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
         context.disadvantage = this.data.disadvantage;
         context.experiences = this.experiences.map(x => ({
             ...x,
-            selected: this.selectedExperiences.find(selected => selected.id === x.id)
+            selected: this.selectedExperiences.includes(x.id)
         }));
-        context.bonusDamage = this.data.bonusDamage;
         context.hopeResource = this.data.hopeResource + 1;
         context.hopeUsed = this.getHopeUsed();
 
@@ -86,15 +73,7 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
     }
 
     static updateSelection(event, _, formData) {
-        const { bonusDamage, ...rest } = foundry.utils.expandObject(formData.object);
-
-        for (var index in bonusDamage) {
-            this.data.bonusDamage[index].initiallySelected = bonusDamage[index].initiallySelected;
-            if (bonusDamage[index].hopeUses) {
-                const value = Number.parseInt(bonusDamage[index].hopeUses);
-                if (!Number.isNaN(value)) this.data.bonusDamage[index].hopeUses = value;
-            }
-        }
+        const { ...rest } = foundry.utils.expandObject(formData.object);
 
         this.data = foundry.utils.mergeObject(this.data, rest);
         this.render();
@@ -104,33 +83,10 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
         if (this.selectedExperiences.find(x => x.id === button.dataset.key)) {
             this.selectedExperiences = this.selectedExperiences.filter(x => x.id !== button.dataset.key);
         } else {
-            this.selectedExperiences = [
-                ...this.selectedExperiences,
-                this.experiences.find(x => x.id === button.dataset.key)
-            ];
+            this.selectedExperiences = [...this.selectedExperiences, button.dataset.key];
         }
 
         this.render();
-    }
-
-    getHopeUsed() {
-        return this.data.bonusDamage.reduce((acc, x) => acc + x.hopeUses, 0);
-    }
-
-    static decreaseHopeUse(_, button) {
-        const index = Number.parseInt(button.dataset.index);
-        if (this.data.bonusDamage[index].hopeUses - 1 >= 0) {
-            this.data.bonusDamage[index].hopeUses -= 1;
-            this.render(true);
-        }
-    }
-
-    static increaseHopeUse(_, button) {
-        const index = Number.parseInt(button.dataset.index);
-        if (this.data.bonusDamage[index].hopeUses <= this.data.hopeResource + 1) {
-            this.data.bonusDamage[index].hopeUses += 1;
-            this.render(true);
-        }
     }
 
     static setAdvantage() {
@@ -149,11 +105,10 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
 
     static async finish() {
         const { diceOptions, ...rest } = this.data;
+
         this.resolve({
             ...rest,
-            experiences: this.selectedExperiences,
-            hopeUsed: this.getHopeUsed(),
-            bonusDamage: this.data.bonusDamage.reduce((acc, x) => acc.concat(` + ${1 + x.hopeUses}${x.value}`), '')
+            experiences: this.selectedExperiences.map(x => ({ id: x, ...this.experiences[x] }))
         });
         this.close();
     }

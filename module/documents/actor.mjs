@@ -173,12 +173,11 @@ export default class DhpActor extends Actor {
         return { roll, dice: dice[0], modifiers, advantageState: advantage === true ? 1 : advantage === false ? 2 : 0 };
     }
 
-    async dualityRoll(modifier, shiftKey, bonusDamage = []) {
+    async dualityRoll(modifier, shiftKey) {
         let hopeDice = 'd12',
             fearDice = 'd12',
             advantageDice = null,
-            disadvantageDice = null,
-            bonusDamageString = '';
+            disadvantageDice = null;
 
         const modifiers =
             modifier.value !== null
@@ -195,12 +194,9 @@ export default class DhpActor extends Actor {
                 : [];
         if (!shiftKey) {
             const dialogClosed = new Promise((resolve, _) => {
-                new RollSelectionDialog(
-                    this.system.experiences,
-                    bonusDamage,
-                    this.system.resources.hope.value,
-                    resolve
-                ).render(true);
+                new RollSelectionDialog(this.system.experiences, this.system.resources.hope.value, resolve).render(
+                    true
+                );
             });
             const result = await dialogClosed;
             (hopeDice = result.hope),
@@ -214,7 +210,6 @@ export default class DhpActor extends Actor {
                     title: x.description
                 })
             );
-            bonusDamageString = result.bonusDamage;
 
             const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
 
@@ -268,8 +263,7 @@ export default class DhpActor extends Actor {
             fear: { dice: fearDice, value: fear },
             advantage: { dice: advantageDice, value: advantage },
             disadvantage: { dice: disadvantageDice, value: disadvantage },
-            modifiers: modifiers,
-            bonusDamageString
+            modifiers: modifiers
         };
     }
 

@@ -1,4 +1,4 @@
-export { default as DhpPC } from './pc.mjs';
+export { default as DhCharacter } from './character.mjs';
 export { default as DhClass } from './item/class.mjs';
 export { default as DhSubclass } from './item/subclass.mjs';
 export { default as DhCombat } from './combat.mjs';
