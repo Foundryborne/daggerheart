@@ -5,9 +5,9 @@ export default class DHSubclass extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
-            label: "TYPES.Item.subclass",
-            type: "subclass",
-            hasDescription: true,
+            label: 'TYPES.Item.subclass',
+            type: 'subclass',
+            hasDescription: true
         });
     }
 
@@ -56,11 +56,7 @@ export default class DHSubclass extends BaseDataItem {
                     })
                 )
             }),
-            multiclass: new fields.NumberField({ initial: null, nullable: true, integer: true })
+            isMulticlass: new fields.BooleanField({ initial: false })
         };
-    }
-
-    get multiclassTier() {
-        return getTier(this.multiclass);
     }
 }

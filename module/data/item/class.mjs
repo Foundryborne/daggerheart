@@ -6,9 +6,9 @@ export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
-            label: "TYPES.Item.class",
-            type: "class",
-            hasDescription: true,
+            label: 'TYPES.Item.class',
+            type: 'class',
+            hasDescription: true
         });
     }
 
@@ -19,15 +19,22 @@ export default class DHClass extends BaseDataItem {
             ...super.defineSchema(),
             domains: new fields.ArrayField(new fields.StringField(), { max: 2 }),
 
-            classItems: new fields.ArrayField(new ForeignDocumentUUIDField({ type: "Item" })),
+            classItems: new fields.ArrayField(new ForeignDocumentUUIDField({ type: 'Item' })),
             evasion: new fields.NumberField({ initial: 0, integer: true }),
-            features: new fields.ArrayField(new ForeignDocumentUUIDField({ type: "Item" })),
-
-            subclasses: new fields.ArrayField(new ForeignDocumentUUIDField({ type: "Item", required: false, nullable: true, initial: undefined })),
+            features: new fields.ArrayField(new ForeignDocumentUUIDField({ type: 'Item' })),
+            subclasses: new fields.ArrayField(
+                new ForeignDocumentUUIDField({ type: 'Item', required: false, nullable: true, initial: undefined })
+            ),
             inventory: new fields.SchemaField({
-                take: new fields.ArrayField(new ForeignDocumentUUIDField({ type: "Item", required: false, nullable: true, initial: undefined })),
-                choiceA: new fields.ArrayField(new ForeignDocumentUUIDField({ type: "Item", required: false, nullable: true, initial: undefined })),
-                choiceB: new fields.ArrayField(new ForeignDocumentUUIDField({ type: "Item", required: false, nullable: true, initial: undefined })),
+                take: new fields.ArrayField(
+                    new ForeignDocumentUUIDField({ type: 'Item', required: false, nullable: true, initial: undefined })
+                ),
+                choiceA: new fields.ArrayField(
+                    new ForeignDocumentUUIDField({ type: 'Item', required: false, nullable: true, initial: undefined })
+                ),
+                choiceB: new fields.ArrayField(
+                    new ForeignDocumentUUIDField({ type: 'Item', required: false, nullable: true, initial: undefined })
+                )
             }),
             characterGuide: new fields.SchemaField({
                 suggestedTraits: new fields.SchemaField({
@@ -38,15 +45,11 @@ export default class DHClass extends BaseDataItem {
                     presence: new fields.NumberField({ initial: 0, integer: true }),
                     knowledge: new fields.NumberField({ initial: 0, integer: true })
                 }),
-                suggestedPrimaryWeapon: new ForeignDocumentUUIDField({ type: "Item" }),
-                suggestedSecondaryWeapon: new ForeignDocumentUUIDField({ type: "Item" }),
-                suggestedArmor: new ForeignDocumentUUIDField({ type: "Item" }),
+                suggestedPrimaryWeapon: new ForeignDocumentUUIDField({ type: 'Item' }),
+                suggestedSecondaryWeapon: new ForeignDocumentUUIDField({ type: 'Item' }),
+                suggestedArmor: new ForeignDocumentUUIDField({ type: 'Item' })
             }),
-            multiclass: new fields.NumberField({ initial: null, nullable: true, integer: true }),
+            isMulticlass: new fields.BooleanField({ initial: false })
         };
-    }
-
-    get multiclassTier() {
-        return getTier(this.multiclass, true);
     }
 }

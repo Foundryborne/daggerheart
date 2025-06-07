@@ -230,7 +230,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                         domains:
                             multiclass?.system?.domains.map(key => {
                                 const domain = domains[key];
-                                const alreadySelected = this.actor.system.class.system.domains.includes(key);
+                                const alreadySelected = this.actor.system.class.value.system.domains.includes(key);
 
                                 return {
                                     ...domain,
@@ -480,7 +480,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             const target = event.target.closest('.card-preview-container');
             if (item.type === 'domainCard') {
                 if (
-                    !this.actor.system.class.system.domains.includes(item.system.domain) &&
+                    !this.actor.system.class.value.system.domains.includes(item.system.domain) &&
                     this.levelup.classUpgradeChoices?.multiclass?.domain !== item.system.domain
                 ) {
                     ui.notifications.error(
@@ -522,7 +522,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         } else if (event.target.closest('.multiclass-cards')) {
             const target = event.target.closest('.multiclass-cards');
             if (item.type === 'class') {
-                if (item.name === this.actor.system.class.name) {
+                if (item.name === this.actor.system.class.value.name) {
                     ui.notifications.error(
                         game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.alreadySelectedClass')
                     );

@@ -1,6 +1,75 @@
 export default class DhpItem extends Item {
-    _preCreate(data, changes, user) {
-        super._preCreate(data, changes, user);
+    async _preCreate(data, changes, user) {
+        const allowed = await super._preCreate(data, changes, user);
+        if (allowed === false) return;
+
+        if (data.type === 'class') {
+            if (this.parent?.type === 'pc') {
+                const path = data.system.isMulticlass ? 'system.multiclass.value' : 'system.class.value';
+                if (foundry.utils.getProperty(this.parent, path)) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.ClassAlreadySelected'));
+                    return false;
+                }
+            }
+        }
+
+        if (data.type === 'subclass') {
+            if (this.parent?.type === 'pc') {
+                const path = data.system.isMulticlass ? 'system.multiclass' : 'system.class';
+                const classData = foundry.utils.getProperty(this.parent, path);
+                if (!classData.value) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.MissingClass'));
+                    return false;
+                } else if (classData.subclass) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.SubclassAlreadySelected'));
+                    return false;
+                } else if (
+                    classData.value.system.subclasses.every(x => `${this.parent.uuid}.${x.uuid}` !== this.uuid)
+                ) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.SubclassNotInClass'));
+                    return false;
+                }
+            }
+        }
+    }
+
+    static async _onCreateOperation(documents, operation, user) {
+        await super._onCreateOperation(documents, operation, user);
+        for (var document of documents) {
+            if (document.type === 'class') {
+                if (operation.parent?.type === 'pc') {
+                    const path = `system.${document.system.isMulticlass ? 'multiclass.value' : 'class.value'}`;
+                    await operation.parent.update({ [path]: document.uuid });
+                }
+            } else if (document.type === 'subclass') {
+                if (operation.parent?.type === 'pc') {
+                    const path = `system.${document.system.isMulticlass ? 'multiclass.subclass' : 'class.subclass'}`;
+                    await operation.parent.update({ [path]: document.uuid });
+                }
+            }
+        }
+    }
+
+    static async _onDeleteOperation(documents, operation, user) {
+        await super._onDeleteOperation(documents, operation, user);
+        for (var document of documents) {
+            if (document.type === 'class') {
+                if (operation.parent?.type === 'pc') {
+                    const path = `system.${document.system.isMulticlass ? 'multiclass' : 'class'}`;
+                    await operation.parent.update({
+                        [path]: {
+                            class: null,
+                            subclass: null
+                        }
+                    });
+                }
+            } else if (document.type === 'subclass') {
+                if (operation.parent?.type === 'pc') {
+                    const path = `system.${document.system.isMulticlass ? 'multiclass.subclass' : 'class.subclass'}`;
+                    await operation.parent.update({ [path]: null });
+                }
+            }
+        }
     }
 
     prepareData() {
@@ -15,7 +84,7 @@ export default class DhpItem extends Item {
     /**
      * @inheritdoc
      * @param {object} options - Options which modify the getRollData method.
-     * @returns 
+     * @returns
      */
     getRollData(options = {}) {
         let data;

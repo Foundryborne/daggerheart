@@ -1,4 +1,5 @@
 import { getPathValue } from '../helpers/utils.mjs';
+import ForeignDocumentUUIDField from './fields/foreignDocumentUUIDField.mjs';
 import { LevelOptionType } from './levelTier.mjs';
 
 const fields = foundry.data.fields;
@@ -96,6 +97,14 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
                 max: new fields.NumberField({ initial: 6, integer: true }),
                 value: new fields.NumberField({ initial: 0, integer: true })
             }),
+            class: new fields.SchemaField({
+                value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
+                subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })
+            }),
+            multiclass: new fields.SchemaField({
+                value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
+                subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })
+            }),
             levelData: new fields.EmbeddedDataField(DhPCLevelData)
         };
     }
@@ -106,14 +115,6 @@ export default class DhpPC extends foundry.abstract.TypeDataModel {
 
     get ancestry() {
         return this.parent.items.find(x => x.type === 'ancestry') ?? null;
-    }
-
-    get class() {
-        return this.parent.items.find(x => x.type === 'class' && !x.system.multiclass) ?? null;
-    }
-
-    get multiclass() {
-        return this.parent.items.find(x => x.type === 'class' && x.system.multiclass) ?? null;
     }
 
     get multiclassSubclass() {

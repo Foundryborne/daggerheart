@@ -4,17 +4,17 @@
             <div class="class-info">
                     <div class="flexrow">
                         <img class="portrait" src="{{document.img}}" alt="{{document.name}}" data-edit="img">
-                        {{#if document.system.class}}
+                        {{#if document.system.class.value}}
                             <div class="flexcol">
-                                <h2 class="class-title flex0" data-action="viewObject" data-value="{{document.system.class.uuid}}" data-tab="guide">
+                                <h2 class="class-title flex0" data-action="viewObject" data-value="{{document.system.class.value.uuid}}" data-tab="guide">
                                     <img class="domain-image" src="{{domains.first}}" />
-                                    <span>{{document.system.class.name}}</span>
+                                    <span>{{document.system.class.value.name}}</span>
                                     <img class="domain-image" src="{{domains.second}}" />
                                 </h2>
                                 <span class="domain-title flex0">
-                                    <span>{{document.system.class.system.domains.[0]}}</span> 
+                                    <span>{{document.system.class.value.system.domains.[0]}}</span> 
                                     <span>and</span>
-                                    <span>{{document.system.class.system.domains.[1]}}</span>
+                                    <span>{{document.system.class.value.system.domains.[1]}}</span>
                             </div>
                         {{else}}
                             <div class="flexcol">
@@ -56,7 +56,7 @@
                                 <button data-action="selectAncestry" class="option-select"><i class="fa-solid fa-user-large"></i></button>
                             {{/objectSelector}}
                             {{#objectSelector title="Subclass" ids=(join document.system.subclass.uuid) values=(join document.system.subclass.name) titleFontSize=14}}
-                                <button data-action="selectSubclass" class="option-select" {{#if (not ../document.system.class)}}disabled{{/if}}><i class="fa-solid fa-fw fa-search"></i></button>
+                                <button data-action="selectSubclass" class="option-select" {{#if (not ../document.system.class.value)}}disabled{{/if}}><i class="fa-solid fa-fw fa-search"></i></button>
                             {{/objectSelector}}
                         </div>
                     </div>

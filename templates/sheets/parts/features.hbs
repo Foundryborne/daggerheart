@@ -1,12 +1,12 @@
 <fieldset class="left-main-container" style="flex: 1;">
     <legend class="legend">
-        {{#if this.document.system.class}}
-            {{#if this.document.system.multiclass}}
+        {{#if this.document.system.class.value}}
+            {{#if this.document.system.multiclass.value}}
                 <span class="class-feature-selectable {{#if this.multiclass}}inactive{{/if}}" data-action="selectFeatureSet" data-multiclass="false">{{this.document.system.class.name}}&nbsp;{{localize "DAGGERHEART.General.Features"}}</span>
                 /&nbsp;
                 <span class="class-feature-selectable {{#if (not this.multiclass)}}inactive{{/if}}" data-action="selectFeatureSet" data-multiclass="true">{{this.document.system.multiclass.name}}&nbsp;{{localize "DAGGERHEART.General.Features"}}</span>
             {{else}}
-                <span>{{this.document.system.class.name}}&nbsp;{{localize "DAGGERHEART.General.Features"}}</span>
+                <span>{{this.document.system.class.value.name}}&nbsp;{{localize "DAGGERHEART.General.Features"}}</span>
             {{/if}}
         {{else}}
             <span>{{localize "DAGGERHEART.Sheets.PC.Features.Title"}}</span>
