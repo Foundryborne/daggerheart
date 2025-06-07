@@ -55,7 +55,7 @@
                                 <button data-action="selectCommunity" class="option-select deeper"><i class="fa-solid fa-house-chimney"></i></button>
                                 <button data-action="selectAncestry" class="option-select"><i class="fa-solid fa-user-large"></i></button>
                             {{/objectSelector}}
-                            {{#objectSelector title="Subclass" ids=(join document.system.subclass.uuid) values=(join document.system.subclass.name) titleFontSize=14}}
+                            {{#objectSelector title="Subclass" ids=(join document.system.class.subclass.uuid) values=(join document.system.class.subclass.name) titleFontSize=14}}
                                 <button data-action="selectSubclass" class="option-select" {{#if (not ../document.system.class.value)}}disabled{{/if}}><i class="fa-solid fa-fw fa-search"></i></button>
                             {{/objectSelector}}
                         </div>

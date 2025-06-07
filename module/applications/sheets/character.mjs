@@ -55,7 +55,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             selectScar: this.selectScar,
             deleteScar: this.deleteScar,
             makeDeathMove: this.makeDeathMove,
-            toggleFeatureDice: this.toggleFeatureDice,
             setStoryEditor: this.setStoryEditor,
             itemQuantityDecrease: (_, button) => this.setItemQuantity(button, -1),
             itemQuantityIncrease: (_, button) => this.setItemQuantity(button, 1),
@@ -247,10 +246,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const foundation = {
             ancestry: ancestry[0],
             community: community[0],
-            advancement: {
-                // Removed until we have features again
-                // ...this.mapAdvancementFeatures(this.document, SYSTEM)
-            }
+            advancement: {}
         };
 
         const nrLoadoutCards = this.document.system.domainCards.loadout.length;
@@ -305,33 +301,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             context.inventory = Array(1).fill(Array(5).fill([]));
         }
 
-        context.classFeatures = (
-            this.multiclassFeatureSetSelected
-                ? this.document.system.multiclassFeatures
-                : this.document.system.classFeatures
-        ).map(x => {
-            if (x.system.featureType.type !== 'dice') {
-                return x;
-            }
-
-            return {
-                ...x,
-                uuid: x.uuid,
-                system: {
-                    ...x.system,
-                    featureType: {
-                        ...x.system.featureType,
-                        data: {
-                            ...x.system.featureType.data,
-                            property: this.document.system.subclass
-                                ? SYSTEM.ACTOR.featureProperties[x.system.featureType.data.property].path(this.document)
-                                : 0
-                        }
-                    }
-                }
-            };
-        });
-
         return context;
     }
 
@@ -358,135 +327,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 };
             })
         );
-    }
-
-    mapAdvancementFeatures(actor, config) {
-        if (!actor.system.class.value || !actor.system.class.subclass) return { foundation: null, advancements: [] };
-
-        const { subclass, multiclassSubclass } = actor.system.subclassFeatures;
-
-        const foundation = {
-            type: 'foundation',
-            multiclass: false,
-            img: actor.system.subclass.img,
-            subtitle: game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle'),
-            domains: actor.system.class.value.system.domains.map(x => config.DOMAIN.domains[x].src),
-            className: actor.system.class.value.name,
-            subclassUuid: actor.system.subclass.uuid,
-            subclassName: actor.system.subclass.name,
-            spellcast: config.ACTOR.abilities[actor.system.subclass.system.spellcastingTrait]?.name ?? null,
-            description: actor.system.subclass.system.foundationFeature.description,
-            abilities: subclass.foundation,
-            abilityKey: 'foundationFeature'
-        };
-
-        const firstKey =
-            actor.system.subclass.system.specializationFeature.unlocked &&
-            actor.system.subclass.system.specializationFeature.tier === 2
-                ? 'sub'
-                : actor.system.multiclass?.system?.multiclassTier === 2
-                  ? 'multi'
-                  : null;
-        const firstType = firstKey === 'sub' ? 'specialization' : 'foundation';
-        const firstBase =
-            firstKey === 'sub' ? actor.system.subclass : firstKey === 'multi' ? actor.system.multiclassSubclass : null;
-        const first = !firstBase
-            ? null
-            : {
-                  type: firstType,
-                  multiclass: firstKey === 'multi',
-                  img: firstBase.img,
-                  subtitle:
-                      firstKey === 'sub'
-                          ? game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.SpecializationTitle')
-                          : game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle'),
-                  domains:
-                      firstKey === 'sub'
-                          ? actor.system.class.value.system.domains.map(x => config.DOMAIN.domains[x].src)
-                          : actor.system.multiclass.system.domains.map(x => config.DOMAIN.domains[x].src),
-                  className: firstKey === 'sub' ? actor.system.class.value.name : actor.system.multiclass.name,
-                  subclassUuid: firstBase.uuid,
-                  subclassName: firstBase.name,
-                  spellcast:
-                      firstKey === 'sub'
-                          ? null
-                          : (config.ACTOR.abilities[firstBase.system.spellcastingTrait]?.name ?? null),
-                  description:
-                      firstKey === 'sub'
-                          ? firstBase.system.specializationFeature.description
-                          : firstBase.system.foundationFeature.description,
-                  abilities: firstKey === 'sub' ? subclass.specialization : multiclassSubclass.foundation,
-                  abilityKey: firstKey === 'sub' ? 'specializationFeature' : 'foundationFeature'
-              };
-
-        const secondKey =
-            (actor.system.subclass.system.specializationFeature.unlocked &&
-                actor.system.subclass.system.specializationFeature.tier === 3) ||
-            (actor.system.subclass.system.masteryFeature.unlocked &&
-                actor.system.subclass.system.masteryFeature.tier === 3)
-                ? 'sub'
-                : actor.system.multiclass?.system?.multiclassTier === 3 ||
-                    actor.system.multiclassSubclass?.system?.specializationFeature?.unlocked
-                  ? 'multi'
-                  : null;
-        const secondBase =
-            secondKey === 'sub'
-                ? actor.system.subclass
-                : secondKey === 'multi'
-                  ? actor.system.multiclassSubclass
-                  : null;
-        const secondAbilities = secondKey === 'sub' ? subclass : multiclassSubclass;
-        const secondType = secondBase
-            ? secondBase.system.masteryFeature.unlocked
-                ? 'mastery'
-                : secondBase.system.specializationFeature.unlocked
-                  ? 'specialization'
-                  : 'foundation'
-            : null;
-        const second = !secondBase
-            ? null
-            : {
-                  type: secondType,
-                  multiclass: secondKey === 'multi',
-                  img: secondBase.img,
-                  subtitle: secondBase.system.masteryFeature.unlocked
-                      ? game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.MasteryTitle')
-                      : secondBase.system.specializationFeature.unlocked
-                        ? game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.SpecializationTitle')
-                        : game.i18n.localize('DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle'),
-                  domains:
-                      secondKey === 'sub'
-                          ? actor.system.class.value.system.domains.map(x => config.DOMAIN.domains[x].src)
-                          : actor.system.multiclass.system.domains.map(x => config.DOMAIN.domains[x].src),
-                  className: secondKey === 'sub' ? actor.system.class.value.name : actor.system.multiclass.name,
-                  subclassUuid: secondBase.uuid,
-                  subclassName: secondBase.name,
-                  spellcast:
-                      secondKey === 'sub' || secondBase.system.specializationFeature.unlocked
-                          ? null
-                          : (config.ACTOR.abilities[firstBase.system.spellcastingTrait]?.name ?? null),
-                  description: secondBase.system.masteryFeature.unlocked
-                      ? secondBase.system.masteryFeature.description
-                      : secondBase.system.specializationFeature.unlocked
-                        ? secondBase.system.specializationFeature.description
-                        : firstBase.system.foundationFeature.description,
-                  abilities: secondBase.system.masteryFeature.unlocked
-                      ? secondAbilities.mastery
-                      : secondBase.system.specializationFeature.unlocked
-                        ? secondAbilities.specialization
-                        : secondAbilities.foundation,
-                  abilityKey: secondBase.system.masteryFeature.unlocked
-                      ? 'masteryFeature'
-                      : secondBase.system.specializationFeature.unlocked
-                        ? 'specializationFeature'
-                        : 'foundationFeature'
-              };
-
-        return {
-            foundation: foundation,
-            first: first,
-            second: second
-        };
     }
 
     async attributeChange(event) {
@@ -639,7 +479,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     openLevelUp() {
-        if (!this.document.system.class.value || !this.document.system.subclass) {
+        if (!this.document.system.class.value || !this.document.system.class.subclass) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.missingClassOrSubclass'));
             return;
         }
@@ -798,62 +638,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         }
     }
 
-    static async toggleFeatureDice(_, button) {
-        const index = Number.parseInt(button.dataset.index);
-        const feature = this.document.system.classFeatures.find(x => x.uuid === button.dataset.feature);
-        const path = `system.featureType.data.numbers.${index}`;
-        if (feature.system.featureType.data.numbers[index]?.used) return;
-
-        if (Object.keys(feature.system.featureType.data.numbers).length <= index) {
-            const roll = new Roll(feature.system.featureType.data.value);
-            const rollData = await roll.evaluate();
-            const cls = getDocumentClass('ChatMessage');
-            const msg = new cls({
-                user: game.user.id,
-                rolls: [roll]
-            });
-
-            await cls.create(msg.toObject());
-
-            await feature.update({ [path]: { value: Number.parseInt(rollData.total), used: false } });
-        } else {
-            await Dialog.confirm({
-                title: game.i18n.localize('Confirm feature use'),
-                content: `Are you sure you want to use ${feature.name}?`,
-                yes: async () => {
-                    await feature.update({ [path]: { used: true } });
-
-                    const cls = getDocumentClass('ChatMessage');
-                    const msg = new cls({
-                        user: game.user.id,
-                        content: await foundry.applications.handlebars.renderTemplate(
-                            'systems/daggerheart/templates/chat/ability-use.hbs',
-                            {
-                                title: game.i18n.localize('DAGGERHEART.Chat.FeatureTitle'),
-                                card: {
-                                    name: `${feature.name} - Roll Of ${feature.system.featureType.data.numbers[index].value}`,
-                                    img: feature.img
-                                }
-                            }
-                        )
-                    });
-
-                    cls.create(msg.toObject());
-                },
-                no: () => {
-                    return;
-                },
-                defaultYes: false
-            });
-        }
-    }
-
-    async onFeatureInputBlur(event) {
-        const feature = this.document.system.classFeatures.find(x => x.uuid === event.currentTarget.dataset.feature);
-        const value = Number.parseInt(event.currentTarget.value);
-        if (!Number.isNaN(value)) await feature?.update({ 'system.featureType.data.value': value });
-    }
-
     async experienceDescriptionChange(event) {
         const path = `system.experiences.${event.currentTarget.dataset.experience}.description`;
         await this.document.update({ [path]: event.currentTarget.value });
@@ -949,8 +733,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     static async useAdvancementCard(_, button) {
         const item =
             button.dataset.multiclass === 'true'
-                ? this.document.system.multiclassSubclass
-                : this.document.system.subclass;
+                ? this.document.system.multiclass.subclass
+                : this.document.system.class.subclass;
         const ability = item.system[`${button.dataset.key}Feature`];
         const title = `${item.name} - ${game.i18n.localize(`DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`)}`;
 

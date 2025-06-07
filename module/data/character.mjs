@@ -77,62 +77,8 @@ export default class DhCharacter extends foundry.abstract.TypeDataModel {
         return this.parent.items.find(x => x.type === 'ancestry') ?? null;
     }
 
-    get multiclassSubclass() {
-        return this.parent.items.find(x => x.type === 'subclass' && x.system.multiclass) ?? null;
-    }
-
-    get subclass() {
-        return this.parent.items.find(x => x.type === 'subclass' && !x.system.multiclass) ?? null;
-    }
-
-    get subclassFeatures() {
-        const subclass = this.subclass;
-        const multiclass = this.multiclassSubclass;
-        const subclassItems = this.parent.items.filter(x => x.type === 'feature' && x.system.type === 'subclass');
-        return {
-            subclass: !subclass
-                ? {}
-                : {
-                      foundation: subclassItems.filter(x =>
-                          subclass.system.foundationFeature.abilities.some(ability => ability.uuid === x.uuid)
-                      ),
-                      specialization: subclassItems.filter(x =>
-                          subclass.system.specializationFeature.abilities.some(ability => ability.uuid === x.uuid)
-                      ),
-                      mastery: subclassItems.filter(x =>
-                          subclass.system.masteryFeature.abilities.some(ability => ability.uuid === x.uuid)
-                      )
-                  },
-            multiclassSubclass: !multiclass
-                ? {}
-                : {
-                      foundation: subclassItems.filter(x =>
-                          multiclass.system.foundationFeature.abilities.some(ability => ability.uuid === x.uuid)
-                      ),
-                      specialization: subclassItems.filter(x =>
-                          multiclass.system.specializationFeature.abilities.some(ability => ability.uuid === x.uuid)
-                      ),
-                      mastery: subclassItems.filter(x =>
-                          multiclass.system.masteryFeature.abilities.some(ability => ability.uuid === x.uuid)
-                      )
-                  }
-        };
-    }
-
     get community() {
         return this.parent.items.find(x => x.type === 'community') ?? null;
-    }
-
-    get classFeatures() {
-        return this.parent.items.filter(
-            x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.class.id && !x.system.multiclass
-        );
-    }
-
-    get multiclassFeatures() {
-        return this.parent.items.filter(
-            x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.class.id && x.system.multiclass
-        );
     }
 
     get domains() {

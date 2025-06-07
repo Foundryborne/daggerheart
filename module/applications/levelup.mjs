@@ -204,7 +204,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 const multiclassSubclass = this.actor.system.multiclass?.system?.subclasses?.[0];
                 const possibleSubclasses = [
-                    this.actor.system.subclass,
+                    this.actor.system.class.subclass,
                     ...(multiclassSubclass ? [multiclassSubclass] : [])
                 ];
                 const selectedSubclasses = possibleSubclasses.filter(x => subclassSelections.includes(x.uuid));

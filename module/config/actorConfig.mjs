@@ -76,7 +76,7 @@ export const featureProperties = {
     },
     spellcastingTrait: {
         name: 'DAGGERHEART.FeatureProperty.SpellcastingTrait',
-        path: actor => actor.system.traits[actor.system.subclass.system.spellcastingTrait].data.value
+        path: actor => actor.system.traits[actor.system.class.subclass.system.spellcastingTrait].data.value
     }
 };
 
