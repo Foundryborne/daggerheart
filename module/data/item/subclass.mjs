@@ -1,3 +1,4 @@
+import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHSubclass extends BaseDataItem {
@@ -21,40 +22,9 @@ export default class DHSubclass extends BaseDataItem {
                 nullable: true,
                 initial: null
             }),
-            foundationFeature: new fields.SchemaField({
-                description: new fields.HTMLField({}),
-                abilities: new fields.ArrayField(
-                    new fields.SchemaField({
-                        name: new fields.StringField({}),
-                        img: new fields.StringField({}),
-                        uuid: new fields.StringField({})
-                    })
-                )
-            }),
-            specializationFeature: new fields.SchemaField({
-                unlocked: new fields.BooleanField({ initial: false }),
-                tier: new fields.NumberField({ initial: null, nullable: true, integer: true }),
-                description: new fields.HTMLField({}),
-                abilities: new fields.ArrayField(
-                    new fields.SchemaField({
-                        name: new fields.StringField({}),
-                        img: new fields.StringField({}),
-                        uuid: new fields.StringField({})
-                    })
-                )
-            }),
-            masteryFeature: new fields.SchemaField({
-                unlocked: new fields.BooleanField({ initial: false }),
-                tier: new fields.NumberField({ initial: null, nullable: true, integer: true }),
-                description: new fields.HTMLField({}),
-                abilities: new fields.ArrayField(
-                    new fields.SchemaField({
-                        name: new fields.StringField({}),
-                        img: new fields.StringField({}),
-                        uuid: new fields.StringField({})
-                    })
-                )
-            }),
+            foundationFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
+            specializationFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
+            masteryFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
             isMulticlass: new fields.BooleanField({ initial: false })
         };
     }
