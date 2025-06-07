@@ -11,8 +11,8 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
         actions: {
             removeSubclass: this.removeSubclass,
             viewSubclass: this.viewSubclass,
-            removeFeature: this.removeFeature,
-            viewFeature: this.viewFeature,
+            deleteFeature: this.deleteFeature,
+            editFeature: this.editFeature,
             removeItem: this.removeItem,
             viewItem: this.viewItem,
             removePrimaryWeapon: this.removePrimaryWeapon,
@@ -153,13 +153,13 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
         subclass.sheet.render(true);
     }
 
-    static async removeFeature(_, button) {
+    static async deleteFeature(_, button) {
         await this.document.update({
-            'system.features': this.document.system.features.filter(x => x.uuid !== button.dataset.feature)
+            'system.features': this.document.system.features.map(x => x.uuid).filter(x => x !== button.dataset.feature)
         });
     }
 
-    static async viewFeature(_, button) {
+    static async editFeature(_, button) {
         const feature = await fromUuid(button.dataset.feature);
         feature.sheet.render(true);
     }
@@ -198,11 +198,11 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
         const item = await fromUuid(data.uuid);
         if (item.type === 'subclass') {
             await this.document.update({
-                'system.subclasses': item.uuid
+                'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
             });
         } else if (item.type === 'feature') {
             await this.document.update({
-                'system.features': [...this.document.system.features, item.uuid]
+                'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
             });
         } else if (item.type === 'weapon') {
             if (event.currentTarget.classList.contains('primary-weapon-section')) {

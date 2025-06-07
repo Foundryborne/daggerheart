@@ -1,4 +1,3 @@
-import { getTier } from '../../helpers/utils.mjs';
 import BaseDataItem from './base.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 
@@ -51,5 +50,39 @@ export default class DHClass extends BaseDataItem {
             }),
             isMulticlass: new fields.BooleanField({ initial: false })
         };
+    }
+
+    async _preCreate(data, options, user) {
+        const allowed = await super._preCreate(data, options, user);
+        if (allowed === false) return;
+
+        if (this.actor?.type === 'pc') {
+            const path = data.system.isMulticlass ? 'system.multiclass.value' : 'system.class.value';
+            if (foundry.utils.getProperty(this.actor, path)) {
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.ClassAlreadySelected'));
+                return false;
+            }
+        }
+    }
+
+    _onCreate(data, options, userId) {
+        super._onCreate(data, options, userId);
+        if (options.parent?.type === 'pc') {
+            const path = `system.${data.system.isMulticlass ? 'multiclass.value' : 'class.value'}`;
+            options.parent.update({ [path]: `${options.parent.uuid}.Item.${data._id}` });
+        }
+    }
+
+    _onDelete(options, userId) {
+        super._onDelete(options, userId);
+
+        if (options.parent?.type === 'pc') {
+            const path = `system.${this.isMulticlass ? 'multiclass' : 'class'}`;
+            options.parent.update({
+                [`${path}.value`]: null
+            });
+
+            foundry.utils.getProperty(options.parent, `${path}.subclass`)?.delete();
+        }
     }
 }

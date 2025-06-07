@@ -361,7 +361,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     mapAdvancementFeatures(actor, config) {
-        if (!actor.system.subclass) return { foundation: null, advancements: [] };
+        if (!actor.system.class.value || !actor.system.class.subclass) return { foundation: null, advancements: [] };
 
         const { subclass, multiclassSubclass } = actor.system.subclassFeatures;
 
