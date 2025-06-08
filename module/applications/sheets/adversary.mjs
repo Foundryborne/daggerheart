@@ -86,9 +86,8 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         cls.create(msg.toObject());
     }
 
-    static async attackRoll(event, button) {
-        const modifier = Number.parseInt(button.dataset.value);
-
+    static async attackRoll() {
+        const { modifier, damage, name: attackName } = this.actor.system.attack;
         const { roll, dice, advantageState, modifiers } = await this.actor.diceRoll(
             { title: `${this.actor.name} - Attack Roll`, value: modifier },
             event.shiftKey
@@ -104,7 +103,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: button.dataset.name,
+            title: attackName,
             origin: this.document.id,
             roll: roll._formula,
             advantageState,
@@ -112,7 +111,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             modifiers: modifiers,
             dice: dice,
             targets: targets,
-            damage: { value: button.dataset.damage, type: button.dataset.damageType }
+            damage: { value: damage.value, type: damage.type }
         };
         const msg = new cls({
             type: 'adversaryRoll',

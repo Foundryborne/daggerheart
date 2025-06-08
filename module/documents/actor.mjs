@@ -346,10 +346,7 @@ export default class DhpActor extends Actor {
                     : 0;
 
         const update = {
-            'system.resources.hitPoints.value': Math.min(
-                this.system.resources.hitPoints.value + hpDamage,
-                this.system.resources.hitPoints.max
-            )
+            'system.resources.hitPoints.value': Math.max(this.system.resources.hitPoints.value - hpDamage, 0)
         };
 
         if (game.user.isGM) {

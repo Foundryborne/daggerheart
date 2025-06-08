@@ -1017,13 +1017,15 @@
                         "major": { "label": "Major" },
                         "severe": { "label": "Severe" }
                     },
-                    "hitPoints": {
-                        "value": { "label": "Current" },
-                        "max": { "label": "Max" }
-                    },
-                    "stress": {
-                        "value": { "label": "Current" },
-                        "max": { "label": "Max" }
+                    "resources": {
+                        "hitPoints": {
+                            "value": { "label": "Current" },
+                            "max": { "label": "Max" }
+                        },
+                        "stress": {
+                            "value": { "label": "Current" },
+                            "max": { "label": "Max" }
+                        }
                     },
                     "experiences": {
                         "element": {

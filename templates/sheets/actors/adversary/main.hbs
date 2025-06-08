@@ -20,15 +20,15 @@
         <fieldset>
             <legend>{{localize "DAGGERHEART.Sheets.Adversary.HitPoints"}}</legend>
 
-            {{formGroup systemFields.hitPoints.fields.value value=source.system.hitPoints.value}}
-            {{formGroup systemFields.hitPoints.fields.max value=source.system.hitPoints.max}}
+            {{formGroup systemFields.resources.fields.hitPoints.fields.value value=source.system.resources.hitPoints.value}}
+            {{formGroup systemFields.resources.fields.hitPoints.fields.max value=source.system.resources.hitPoints.max}}
         </fieldset>
 
         <fieldset>
             <legend>{{localize "DAGGERHEART.Sheets.Adversary.Stress"}}</legend>
 
-            {{formGroup systemFields.stress.fields.value value=source.system.stress.value}}
-            {{formGroup systemFields.stress.fields.max value=source.system.stress.max}}
+            {{formGroup systemFields.resources.fields.stress.fields.value value=source.system.resources.stress.value}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=source.system.resources.stress.max}}
         </fieldset>
 
         <fieldset>
@@ -48,7 +48,8 @@
     <fieldset class="two-columns even">
         <legend>{{localize "DAGGERHEART.Sheets.Adversary.Attack"}}</legend>
 
-        <div class=full-width>{{formGroup systemFields.attack.fields.name value=source.system.attack.name}}</div>
+        {{formGroup systemFields.attack.fields.name value=source.system.attack.name}}
+        <button data-action="attackRoll">Attack</button>
         {{formGroup systemFields.attack.fields.modifier value=source.system.attack.modifier}}
         {{formGroup systemFields.attack.fields.range value=source.system.attack.range localize=true}}
         {{formGroup systemFields.attack.fields.damage.fields.value value=source.system.attack.damage.value}}

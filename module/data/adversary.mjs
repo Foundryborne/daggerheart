@@ -27,8 +27,10 @@ export default class DhpAdversary extends foundry.abstract.TypeDataModel {
                 major: new fields.NumberField({ required: true, initial: 0, integer: true }),
                 severe: new fields.NumberField({ required: true, initial: 0, integer: true })
             }),
-            hitPoints: resourceField(),
-            stress: resourceField(),
+            resources: new fields.SchemaField({
+                hitPoints: resourceField(),
+                stress: resourceField()
+            }),
             attack: new fields.SchemaField({
                 name: new fields.StringField({}),
                 modifier: new fields.NumberField({ required: true, integer: true, initial: 0 }),
