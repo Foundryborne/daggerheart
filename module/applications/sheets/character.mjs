@@ -349,7 +349,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     static async attackRoll(event, button) {
         const weapon = await fromUuid(button.dataset.weapon);
         const damage = {
-            value: `${this.document.system.proficiency.value}${weapon.system.damage.value}`,
+            value: `${this.document.system.proficiency}${weapon.system.damage.value}`,
             type: weapon.system.damage.type
         };
         const modifier = this.document.system.traits[weapon.system.trait].value;

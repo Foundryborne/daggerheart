@@ -277,8 +277,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 context.achievements = {
                     proficiency: {
-                        old: this.actor.system.proficiency.value,
-                        new: this.actor.system.proficiency.value + achivementProficiency,
+                        old: this.actor.system.proficiency,
+                        new: this.actor.system.proficiency + achivementProficiency,
                         shown: achivementProficiency > 0
                     },
                     damageThresholds: {
