@@ -9,3 +9,4 @@ export { default as DhpEnvironment } from './environment.mjs';
 export * as items from './item/_module.mjs';
 export * as messages from './chat-message/_modules.mjs';
 export * as fields from "./fields/_module.mjs";
+export * as PseudoDocuments from "./pseudo-documents/_module.mjs";

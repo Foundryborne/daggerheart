@@ -1,3 +1,4 @@
+import ApplicationV2 from '@client/applications/api/application.mjs';
 import DataModel from '@common/abstract/data.mjs';
 
 export type PseudoDocumentMetadata = {
@@ -10,7 +11,7 @@ export type PseudoDocumentMetadata = {
     /* Record of document names of pseudo-documents and the path to the collection. */
     embedded: Record<string, string>;
     /* The class used to render this pseudo-document. */
-    sheetClass?: PseudoDocumentSheet;
+    sheetClass?: ApplicationV2;
     /* The default image used for newly created documents. */
     defaultArtwork: string;
 };
@@ -28,3 +29,8 @@ declare class BasePseudoDocument extends DataModel {
     /** An HTML text description for this pseudo-document */
     description: string;
 }
+
+/**
+ * Data model for pseudo-documents.
+ */
+declare class PseudoDocument extends BasePseudoDocument {}
