@@ -1,6 +1,12 @@
 export default class DhpItem extends Item {
-    prepareData() {
-        super.prepareData();
+    /** @inheritdoc */
+    getEmbeddedDocument(embeddedName, id, { invalid = false, strict = false } = {}) {
+        const systemEmbeds = this.system.constructor.metadata.embedded ?? {};
+        if (embeddedName in systemEmbeds) {
+            const path = `system.${systemEmbeds[embeddedName]}.${id}`;
+            return foundry.utils.getProperty(this, path) ?? null;
+        }
+        return super.getEmbeddedDocument(embeddedName, id, { invalid, strict });
     }
 
     /**
@@ -25,10 +31,6 @@ export default class DhpItem extends Item {
 
     isInventoryItem() {
         return ['weapon', 'armor', 'miscellaneous', 'consumable'].includes(this.type);
-    }
-
-    _onUpdate(data, options, userId) {
-        super._onUpdate(data, options, userId);
     }
 
     static async createDialog(data = {}, { parent = null, pack = null, ...options } = {}) {
