@@ -163,10 +163,7 @@
             "name": "Daggerheart",
             "sorting": "m",
             "color": "#08718c",
-            "packs": [
-                "adversaries",
-                "environments"
-            ],
+            "packs": ["adversaries", "environments"],
             "folders": [
                 {
                     "name": "Character Options",
@@ -186,12 +183,7 @@
                     "name": "Items",
                     "sorting": "m",
                     "color": "#000000",
-                    "packs": [
-                        "weapons",
-                        "armors",
-                        "consumables",
-                        "general-items"
-                    ]
+                    "packs": ["weapons", "armors", "consumables", "general-items"]
                 }
             ]
         }
@@ -212,7 +204,9 @@
     "documentTypes": {
         "Actor": {
             "pc": {},
-            "adversary": {},
+            "adversary": {
+                "htmlFields": ["description", "motivesAndTactics"]
+            },
             "environment": {}
         },
         "Item": {

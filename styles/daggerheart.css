@@ -3354,6 +3354,12 @@ div.daggerheart.views.multiclass {
   grid-template-columns: 1fr 2fr;
   gap: 10px;
 }
+.application.sheet.dh-style fieldset.two-columns.even {
+  grid-template-columns: 1fr 1fr;
+}
+.application.sheet.dh-style fieldset.two-columns .full-width {
+  grid-column: span 2;
+}
 .application.sheet.dh-style fieldset legend {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;

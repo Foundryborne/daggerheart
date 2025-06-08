@@ -1,0 +1,17 @@
+<section
+    class='tab {{tabs.information.cssClass}} {{tabs.information.id}}'
+    data-tab='{{tabs.information.id}}'
+    data-group='{{tabs.information.group}}'
+>
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.Sheets.Adversary.Description" }}</legend>
+
+        {{formGroup systemFields.description value=source.system.description}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.Sheets.Adversary.MotivesAndTactics" }}</legend>
+
+        {{formGroup systemFields.motivesAndTactics value=source.system.motivesAndTactics}}
+    </fieldset>
+</section>
