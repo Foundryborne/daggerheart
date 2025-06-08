@@ -65,8 +65,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static PARTS = {
         form: {
-            id: 'pc',
-            template: 'systems/daggerheart/templates/sheets/pc/pc.hbs'
+            id: 'character',
+            template: 'systems/daggerheart/templates/sheets/character/character.hbs'
         }
     };
 
@@ -675,26 +675,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     async _onDragStart(_, event) {
-        if (event.currentTarget.classList.contains('inventory-item')) {
-            if (!['weapon', 'armor'].includes(event.currentTarget.dataset.type)) {
-                return;
-            }
-
-            const targets = {
-                weapon: ['weapon-section', 'inventory-weapon-section'],
-                armor: ['armor-section', 'inventory-armor-section']
-            };
-
-            event.dataTransfer.setData(
-                'text/plain',
-                JSON.stringify({
-                    uuid: event.currentTarget.dataset.item,
-                    internal: true,
-                    targets: targets[event.currentTarget.dataset.type]
-                })
-            );
-        }
-
         super._onDragStart(event);
     }
 
@@ -704,76 +684,17 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     async _onDropItem(event, data) {
-        const element = event.currentTarget;
         const item = await Item.implementation.fromDropData(data);
         const itemData = item.toObject();
 
-        const createdItems = [];
-
-        if (item.type === 'domainCard') {
-            if (this.document.system.domainCards.loadout.length >= 5) {
-                itemData.system.inVault = true;
-            }
-
-            if (this.document.uuid === item.parent?.uuid) return this._onSortItem(event, itemData);
-            const createdItem = await this._onDropItemCreate(itemData);
-
-            return createdItem;
-        } else {
-            if (item.type === 'ancestry') {
-                for (var feature of this.document.items.filter(
-                    x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.ancestry.id
-                )) {
-                    await feature.delete();
-                }
-
-                for (var feature of item.system.abilities) {
-                    const data = (await fromUuid(feature.uuid)).toObject();
-                    const itemData = await this._onDropItemCreate(data);
-                    createdItems.push(itemData);
-                }
-            } else if (item.type === 'community') {
-                for (var feature of this.document.items.filter(
-                    x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.community.id
-                )) {
-                    await feature.delete();
-                }
-
-                for (var feature of item.system.abilities) {
-                    const data = (await fromUuid(feature.uuid)).toObject();
-                    const itemData = await this._onDropItemCreate(data);
-                    createdItems.push(itemData);
-                }
-            }
-
-            if (this.document.uuid === item.parent?.uuid) return this._onSortItem(event, item);
-
-            if (item.type === 'weapon') {
-                if (!element) return;
-
-                if (element.classList.contains('weapon-section')) {
-                    await this.document.system.constructor.unequipBeforeEquip.bind(this.document.system)(itemData);
-                    itemData.system.equipped = true;
-                }
-            }
-
-            if (item.type === 'armor') {
-                if (!element) return;
-
-                if (element.classList.contains('armor-section')) {
-                    const existing = this.document.system.armor
-                        ? await fromUuid(this.document.system.armor.uuid)
-                        : null;
-                    await existing?.update({ 'system.equipped': false });
-                    itemData.system.equipped = true;
-                }
-            }
-
-            const createdItem = await this._onDropItemCreate(itemData);
-            createdItems.push(createdItem);
-
-            return createdItems;
+        if (item.type === 'domainCard' && this.document.system.domainCards.loadout.length >= 5) {
+            itemData.system.inVault = true;
         }
+
+        if (this.document.uuid === item.parent?.uuid) return this._onSortItem(event, itemData);
+        const createdItem = await this._onDropItemCreate(itemData);
+
+        return createdItem;
     }
 
     async _onDropItemCreate(itemData, event) {

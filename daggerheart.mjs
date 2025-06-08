@@ -40,7 +40,7 @@ Hooks.once('init', () => {
     CONFIG.Item.dataModels = models.items.config;
 
     const { Items, Actors } = foundry.documents.collections;
-    Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet);
+    Items.unregisterSheet('core', foundry.applications.sheets.ItemSheetV2);
     Items.registerSheet(SYSTEM.id, applications.DhpAncestry, { types: ['ancestry'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.DhpCommunity, { types: ['community'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.DhpClassSheet, { types: ['class'], makeDefault: true });
@@ -54,12 +54,12 @@ Hooks.once('init', () => {
 
     CONFIG.Actor.documentClass = documents.DhpActor;
     CONFIG.Actor.dataModels = {
-        pc: models.DhCharacter,
+        character: models.DhCharacter,
         adversary: models.DhpAdversary,
         environment: models.DhpEnvironment
     };
-    Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
-    Actors.registerSheet(SYSTEM.id, applications.DhCharacterSheet, { types: ['pc'], makeDefault: true });
+    Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
+    Actors.registerSheet(SYSTEM.id, applications.DhCharacterSheet, { types: ['character'], makeDefault: true });
     Actors.registerSheet(SYSTEM.id, applications.DhpAdversarySheet, { types: ['adversary'], makeDefault: true });
     Actors.registerSheet(SYSTEM.id, applications.DhpEnvironment, { types: ['environment'], makeDefault: true });
 
@@ -275,10 +275,10 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/parts/heritage.hbs',
         'systems/daggerheart/templates/sheets/parts/subclassFeature.hbs',
         'systems/daggerheart/templates/sheets/parts/effects.hbs',
-        'systems/daggerheart/templates/sheets/pc/sections/inventory.hbs',
-        'systems/daggerheart/templates/sheets/pc/sections/loadout.hbs',
-        'systems/daggerheart/templates/sheets/pc/parts/heritageCard.hbs',
-        'systems/daggerheart/templates/sheets/pc/parts/advancementCard.hbs',
+        'systems/daggerheart/templates/sheets/character/sections/inventory.hbs',
+        'systems/daggerheart/templates/sheets/character/sections/loadout.hbs',
+        'systems/daggerheart/templates/sheets/character/parts/heritageCard.hbs',
+        'systems/daggerheart/templates/sheets/character/parts/advancementCard.hbs',
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/views/levelup/parts/selectable-card-preview.hbs',
         'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',

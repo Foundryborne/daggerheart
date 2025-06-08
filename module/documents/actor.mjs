@@ -10,7 +10,7 @@ export default class DhpActor extends Actor {
 
         // Configure prototype token settings
         const prototypeToken = {};
-        if (this.type === 'pc')
+        if (this.type === 'character')
             Object.assign(prototypeToken, {
                 sight: { enabled: true },
                 actorLink: true,
@@ -28,7 +28,7 @@ export default class DhpActor extends Actor {
     }
 
     async updateLevel(newLevel) {
-        if (this.type !== 'pc' || newLevel === this.system.levelData.level.changed) return;
+        if (this.type !== 'character' || newLevel === this.system.levelData.level.changed) return;
 
         if (newLevel > this.system.levelData.level.current) {
             await this.update({ 'system.levelData.level.changed': newLevel });
@@ -124,7 +124,7 @@ export default class DhpActor extends Actor {
     }
 
     async diceRoll(modifier, shiftKey) {
-        if (this.type === 'pc') {
+        if (this.type === 'character') {
             return await this.dualityRoll(modifier, shiftKey);
         } else {
             return await this.npcRoll(modifier, shiftKey);

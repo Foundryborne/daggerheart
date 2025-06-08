@@ -30,7 +30,7 @@ export default class DHDomainCard extends BaseDataItem {
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return;
 
-        if (this.actor?.type === 'pc') {
+        if (this.actor?.type === 'character') {
             if (!this.actor.system.class.value) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.NoClassSelected'));
                 return false;
