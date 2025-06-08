@@ -175,25 +175,21 @@ export const deathMoves = {
 };
 
 export const tiers = {
-    0: {
-        key: 0,
-        id: 'tier0',
-        name: 'DAGGERHEART.General.Tier.0'
-    },
-    1: {
-        key: 1,
+    tier1: {
         id: 'tier1',
-        name: 'DAGGERHEART.General.Tier.1'
+        label: 'DAGGERHEART.Tiers.tier1'
     },
-    2: {
-        key: 2,
+    tier2: {
         id: 'tier2',
-        name: 'DAGGERHEART.General.Tier.2'
+        label: 'DAGGERHEART.Tiers.tier2'
     },
-    3: {
-        key: 3,
+    tier3: {
         id: 'tier3',
-        name: 'DAGGERHEART.General.Tier.3'
+        label: 'DAGGERHEART.Tiers.tier3'
+    },
+    tier4: {
+        id: 'tier4',
+        label: 'DAGGERHEART.Tiers.tier4'
     }
 };
 

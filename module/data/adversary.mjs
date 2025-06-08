@@ -14,7 +14,10 @@ export default class DhpAdversary extends foundry.abstract.TypeDataModel {
                     max: new fields.NumberField({ initial: 0, integer: true })
                 })
             }),
-            tier: new fields.StringField({ choices: Object.keys(SYSTEM.GENERAL.tiers), integer: false }),
+            tier: new fields.StringField({
+                choices: Object.keys(SYSTEM.GENERAL.tiers),
+                initial: SYSTEM.GENERAL.tiers.tier1.id
+            }),
             type: new fields.StringField({
                 choices: Object.keys(SYSTEM.ACTOR.adversaryTypes),
                 integer: false,
