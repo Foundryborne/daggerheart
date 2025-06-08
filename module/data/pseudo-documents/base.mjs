@@ -121,8 +121,8 @@ export default class BasePseudoDocument extends foundry.abstract.DataModel {
   getEmbeddedDocument(embeddedName, id, { invalid = false, strict = false } = {}) {
     const embeds = this.constructor.metadata.embedded ?? {};
     if (embeddedName in embeds) {
-      const path = embeds[embeddedName];
-      return foundry.utils.getProperty(this, path).get(id, { invalid, strict }) ?? null;
+      const path = `${embeds[embeddedName]}.${id}`;
+      return foundry.utils.getProperty(this, path) ?? null;
     }
     return null;
   }
