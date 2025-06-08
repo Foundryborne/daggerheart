@@ -5,6 +5,7 @@ import AncestrySelectionDialog from '../ancestrySelectionDialog.mjs';
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 import { abilities } from '../../config/actorConfig.mjs';
 import DhlevelUp from '../levelup.mjs';
+import DHDualityRoll from '../../data/chat-message/dualityRoll.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -286,7 +287,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
         const cls = getDocumentClass('ChatMessage');
 
-        const systemContent = {
+        const systemContent = new DHDualityRoll({
             title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
                 ability: game.i18n.localize(abilities[button.dataset.attribute].label)
             }),
@@ -297,9 +298,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             fear: fear,
             advantage: advantage,
             disadvantage: disadvantage
-        };
+        });
 
-        const msg = new cls({
+        await cls.create({
             type: 'dualityRoll',
             sound: CONFIG.sounds.dice,
             system: systemContent,
@@ -310,8 +311,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             ),
             rolls: [roll]
         });
-
-        await cls.create(msg.toObject());
     }
 
     static async toggleMarks(_, button) {
@@ -368,7 +367,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             evasion: x.actor.system.evasion
         }));
 
-        const systemData = {
+        const systemData = new DHDualityRoll({
             title: weapon.name,
             origin: this.document.id,
             roll: roll._formula,
@@ -379,7 +378,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             disadvantage: disadvantage,
             damage: damage,
             targets: targets
-        };
+        });
 
         const cls = getDocumentClass('ChatMessage');
         const msg = new cls({

@@ -62,12 +62,8 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
         context.fear = this.data.fear;
         context.advantage = this.data.advantage;
         context.disadvantage = this.data.disadvantage;
-        context.experiences = this.experiences.map(x => ({
-            ...x,
-            selected: this.selectedExperiences.includes(x.id)
-        }));
+        context.experiences = Object.keys(this.experiences).map(id => ({ id, ...this.experiences[id] }));
         context.hopeResource = this.data.hopeResource + 1;
-        context.hopeUsed = this.getHopeUsed();
 
         return context;
     }

@@ -13,6 +13,7 @@ import { dualityRollEnricher } from './module/enrichers/DualityRollEnricher.mjs'
 import { getCommandTarget, rollCommandToJSON, setDiceSoNiceForDualityRoll } from './module/helpers/utils.mjs';
 import { abilities } from './module/config/actorConfig.mjs';
 import Resources from './module/applications/resources.mjs';
+import DHDualityRoll from './module/data/chat-message/dualityRoll.mjs';
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -137,22 +138,28 @@ const renderDualityButton = async event => {
         title: button.dataset.label,
         value: rollModifier
     });
+
+    const systemData = new DHDualityRoll({
+        title: button.dataset.label,
+        origin: target.id,
+        roll: roll._formula,
+        modifiers: modifiers,
+        hope: hope,
+        fear: fear,
+        advantage: advantage,
+        disadvantage: disadvantage
+    });
+
     const cls = getDocumentClass('ChatMessage');
     const msgData = {
         type: 'dualityRoll',
         sound: CONFIG.sounds.dice,
-        system: {
-            title: button.dataset.label,
-            origin: target.id,
-            roll: roll._formula,
-            modifiers: modifiers,
-            hope: hope,
-            fear: fear,
-            advantage: advantage,
-            disadvantage: disadvantage
-        },
+        system: systemData,
         user: game.user.id,
-        content: 'systems/daggerheart/templates/chat/duality-roll.hbs',
+        content: await foundry.applications.handlebars.renderTemplate(
+            'systems/daggerheart/templates/chat/duality-roll.hbs',
+            systemData
+        ),
         rolls: [roll]
     };
 
@@ -226,29 +233,34 @@ Hooks.on('chatMessage', (_, message) => {
                         : undefined,
                     title
                 });
-            }).then(({ roll, attribute, title }) => {
+            }).then(async ({ roll, attribute, title }) => {
                 const cls = getDocumentClass('ChatMessage');
+                const systemData = new DHDualityRoll({
+                    title: title,
+                    origin: target?.id,
+                    roll: roll._formula,
+                    modifiers: attribute ? [attribute] : [],
+                    hope: { dice: rollCommand.hope ?? 'd12', value: roll.dice[0].total },
+                    fear: { dice: rollCommand.fear ?? 'd12', value: roll.dice[1].total },
+                    advantage:
+                        rollCommand.advantage && !rollCommand.disadvantage
+                            ? { dice: 'd6', value: roll.dice[2].total }
+                            : undefined,
+                    disadvantage:
+                        rollCommand.disadvantage && !rollCommand.advantage
+                            ? { dice: 'd6', value: roll.dice[2].total }
+                            : undefined
+                });
+
                 const msgData = {
                     type: 'dualityRoll',
                     sound: CONFIG.sounds.dice,
-                    system: {
-                        title: title,
-                        origin: target?.id,
-                        roll: roll._formula,
-                        modifiers: attribute ? [attribute] : [],
-                        hope: { dice: rollCommand.hope ?? 'd12', value: roll.dice[0].total },
-                        fear: { dice: rollCommand.fear ?? 'd12', value: roll.dice[1].total },
-                        advantage:
-                            rollCommand.advantage && !rollCommand.disadvantage
-                                ? { dice: 'd6', value: roll.dice[2].total }
-                                : undefined,
-                        disadvantage:
-                            rollCommand.disadvantage && !rollCommand.advantage
-                                ? { dice: 'd6', value: roll.dice[2].total }
-                                : undefined
-                    },
+                    system: systemData,
                     user: game.user.id,
-                    content: 'systems/daggerheart/templates/chat/duality-roll.hbs',
+                    content: await foundry.applications.handlebars.renderTemplate(
+                        'systems/daggerheart/templates/chat/duality-roll.hbs',
+                        systemData
+                    ),
                     rolls: [roll]
                 };
 
