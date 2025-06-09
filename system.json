@@ -204,7 +204,9 @@
     "documentTypes": {
         "Actor": {
             "pc": {},
-            "adversary": {},
+            "adversary": {
+                "htmlFields": ["description", "motivesAndTactics"]
+            },
             "environment": {
                 "htmlFields": ["description", "impulses"]
             }

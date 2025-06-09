@@ -1,25 +1,30 @@
 export const range = {
     melee: {
+        id: 'melee',
         label: 'DAGGERHEART.Range.melee.name',
         description: 'DAGGERHEART.Range.melee.description',
         distance: 1
     },
     veryClose: {
+        id: 'veryClose',
         label: 'DAGGERHEART.Range.veryClose.name',
         description: 'DAGGERHEART.Range.veryClose.description',
         distance: 3
     },
     close: {
+        id: 'close',
         label: 'DAGGERHEART.Range.close.name',
         description: 'DAGGERHEART.Range.close.description',
         distance: 10
     },
     far: {
+        id: 'far',
         label: 'DAGGERHEART.Range.far.name',
         description: 'DAGGERHEART.Range.far.description',
         distance: 20
     },
     veryFar: {
+        id: 'veryFar',
         label: 'DAGGERHEART.Range.veryFar.name',
         description: 'DAGGERHEART.Range.veryFar.description',
         distance: 30

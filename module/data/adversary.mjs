@@ -1,55 +1,60 @@
+const resourceField = () =>
+    new foundry.data.fields.SchemaField({
+        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
+        max: new foundry.data.fields.NumberField({ initial: 0, integer: true })
+    });
+
 export default class DhpAdversary extends foundry.abstract.TypeDataModel {
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.Sheets.Adversary'];
+
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            resources: new fields.SchemaField({
-                health: new fields.SchemaField({
-                    value: new fields.NumberField({ initial: 0, integer: true }),
-                    min: new fields.NumberField({ initial: 0, integer: true }),
-                    max: new fields.NumberField({ initial: 0, integer: true })
-                }),
-                stress: new fields.SchemaField({
-                    value: new fields.NumberField({ initial: 0, integer: true }),
-                    min: new fields.NumberField({ initial: 0, integer: true }),
-                    max: new fields.NumberField({ initial: 0, integer: true })
-                })
-            }),
             tier: new fields.StringField({
-                choices: Object.keys(SYSTEM.GENERAL.tiers),
+                required: true,
+                choices: SYSTEM.GENERAL.tiers,
                 initial: SYSTEM.GENERAL.tiers.tier1.id
             }),
             type: new fields.StringField({
-                choices: Object.keys(SYSTEM.ACTOR.adversaryTypes),
-                integer: false,
-                initial: Object.keys(SYSTEM.ACTOR.adversaryTypes).find(x => x === 'standard')
+                required: true,
+                choices: SYSTEM.ACTOR.adversaryTypes,
+                initial: SYSTEM.ACTOR.adversaryTypes.standard.id
             }),
-            description: new fields.StringField({}),
-            motivesAndTactics: new fields.ArrayField(new fields.StringField({})),
-            attackModifier: new fields.NumberField({ integer: true, nullabe: true, initial: null }),
+            description: new fields.HTMLField(),
+            motivesAndTactics: new fields.HTMLField(),
+            difficulty: new fields.NumberField({ required: true, initial: 1, integer: true }),
+            damageThresholds: new fields.SchemaField({
+                major: new fields.NumberField({ required: true, initial: 0, integer: true }),
+                severe: new fields.NumberField({ required: true, initial: 0, integer: true })
+            }),
+            resources: new fields.SchemaField({
+                hitPoints: resourceField(),
+                stress: resourceField()
+            }),
             attack: new fields.SchemaField({
                 name: new fields.StringField({}),
-                range: new fields.StringField({ choices: Object.keys(SYSTEM.GENERAL.range), integer: false }),
+                modifier: new fields.NumberField({ required: true, integer: true, initial: 0 }),
+                range: new fields.StringField({
+                    required: true,
+                    choices: SYSTEM.GENERAL.range,
+                    initial: SYSTEM.GENERAL.range.melee.id
+                }),
                 damage: new fields.SchemaField({
-                    value: new fields.StringField({}),
-                    type: new fields.StringField({ choices: Object.keys(SYSTEM.GENERAL.damageTypes), integer: false })
+                    value: new fields.StringField(),
+                    type: new fields.StringField({
+                        required: true,
+                        choices: SYSTEM.GENERAL.damageTypes,
+                        initial: SYSTEM.GENERAL.damageTypes.physical.id
+                    })
                 })
-            }),
-            difficulty: new fields.NumberField({ initial: 1, integer: true }),
-            damageThresholds: new fields.SchemaField({
-                major: new fields.NumberField({ initial: 0, integer: true }),
-                severe: new fields.NumberField({ initial: 0, integer: true })
             }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
-                    id: new fields.StringField({ required: true }),
                     name: new fields.StringField(),
-                    value: new fields.NumberField({ integer: true, nullable: true, initial: null })
+                    value: new fields.NumberField({ required: true, integer: true, initial: 1 })
                 })
             )
+            /* Features waiting on pseudo-document data model addition */
         };
-    }
-
-    get features() {
-        return this.parent.items.filter(x => x.type === 'feature');
     }
 }
