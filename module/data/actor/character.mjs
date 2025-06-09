@@ -1,6 +1,7 @@
-import { burden } from '../config/generalConfig.mjs';
-import ForeignDocumentUUIDField from './fields/foreignDocumentUUIDField.mjs';
-import { LevelOptionType } from './levelTier.mjs';
+import { burden } from '../../config/generalConfig.mjs';
+import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
+import { LevelOptionType } from '../levelTier.mjs';
+import BaseDataActor from './base.mjs';
 
 const attributeField = () =>
     new foundry.data.fields.SchemaField({
@@ -14,7 +15,14 @@ const resourceField = max =>
         max: new foundry.data.fields.NumberField({ initial: max, integer: true })
     });
 
-export default class DhCharacter extends foundry.abstract.TypeDataModel {
+export default class DhCharacter extends BaseDataActor {
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: 'TYPES.Actor.character',
+            type: 'character'
+        });
+    }
+
     static defineSchema() {
         const fields = foundry.data.fields;
 
@@ -60,7 +68,6 @@ export default class DhCharacter extends foundry.abstract.TypeDataModel {
                 })
             ),
             story: new fields.HTMLField(),
-            description: new fields.HTMLField(),
             class: new fields.SchemaField({
                 value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
                 subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })

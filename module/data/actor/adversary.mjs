@@ -1,11 +1,20 @@
+import BaseDataActor from './base.mjs';
+
 const resourceField = () =>
     new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
         max: new foundry.data.fields.NumberField({ initial: 0, integer: true })
     });
 
-export default class DhpAdversary extends foundry.abstract.TypeDataModel {
+export default class DhpAdversary extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.Sheets.Adversary'];
+
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: 'TYPES.Actor.adversary',
+            type: 'adversary'
+        });
+    }
 
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -20,7 +29,6 @@ export default class DhpAdversary extends foundry.abstract.TypeDataModel {
                 choices: SYSTEM.ACTOR.adversaryTypes,
                 initial: SYSTEM.ACTOR.adversaryTypes.standard.id
             }),
-            description: new fields.HTMLField(),
             motivesAndTactics: new fields.HTMLField(),
             difficulty: new fields.NumberField({ required: true, initial: 1, integer: true }),
             damageThresholds: new fields.SchemaField({

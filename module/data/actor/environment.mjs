@@ -1,8 +1,16 @@
 import { environmentTypes } from '../config/actorConfig.mjs';
+import BaseDataActor from './base.mjs';
 import ForeignDocumentUUIDField from './fields/foreignDocumentUUIDField.mjs';
 
-export default class DhEnvironment extends foundry.abstract.TypeDataModel {
+export default class DhEnvironment extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.Sheets.Environment'];
+
+    static get metadata() {
+        return foundry.utils.mergeObject(super.metadata, {
+            label: 'TYPES.Actor.environment',
+            type: 'environment'
+        });
+    }
 
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -13,7 +21,6 @@ export default class DhEnvironment extends foundry.abstract.TypeDataModel {
                 initial: SYSTEM.GENERAL.tiers.tier1.id
             }),
             type: new fields.StringField({ choices: environmentTypes }),
-            description: new fields.HTMLField(),
             impulses: new fields.HTMLField(),
             difficulty: new fields.NumberField({ required: true, initial: 11, integer: true }),
             potentialAdversaries: new fields.TypedObjectField(
