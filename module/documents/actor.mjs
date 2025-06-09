@@ -10,7 +10,7 @@ export default class DhpActor extends Actor {
 
         // Configure prototype token settings
         const prototypeToken = {};
-        if (this.type === 'pc')
+        if (this.type === 'character')
             Object.assign(prototypeToken, {
                 sight: { enabled: true },
                 actorLink: true,
@@ -28,7 +28,7 @@ export default class DhpActor extends Actor {
     }
 
     async updateLevel(newLevel) {
-        if (this.type !== 'pc' || newLevel === this.system.levelData.level.changed) return;
+        if (this.type !== 'character' || newLevel === this.system.levelData.level.changed) return;
 
         if (newLevel > this.system.levelData.level.current) {
             await this.update({ 'system.levelData.level.changed': newLevel });
@@ -124,7 +124,7 @@ export default class DhpActor extends Actor {
     }
 
     async diceRoll(modifier, shiftKey) {
-        if (this.type === 'pc') {
+        if (this.type === 'character') {
             return await this.dualityRoll(modifier, shiftKey);
         } else {
             return await this.npcRoll(modifier, shiftKey);
@@ -173,12 +173,11 @@ export default class DhpActor extends Actor {
         return { roll, dice: dice[0], modifiers, advantageState: advantage === true ? 1 : advantage === false ? 2 : 0 };
     }
 
-    async dualityRoll(modifier, shiftKey, bonusDamage = []) {
+    async dualityRoll(modifier, shiftKey) {
         let hopeDice = 'd12',
             fearDice = 'd12',
             advantageDice = null,
-            disadvantageDice = null,
-            bonusDamageString = '';
+            disadvantageDice = null;
 
         const modifiers =
             modifier.value !== null
@@ -195,12 +194,9 @@ export default class DhpActor extends Actor {
                 : [];
         if (!shiftKey) {
             const dialogClosed = new Promise((resolve, _) => {
-                new RollSelectionDialog(
-                    this.system.experiences,
-                    bonusDamage,
-                    this.system.resources.hope.value,
-                    resolve
-                ).render(true);
+                new RollSelectionDialog(this.system.experiences, this.system.resources.hope.value, resolve).render(
+                    true
+                );
             });
             const result = await dialogClosed;
             (hopeDice = result.hope),
@@ -214,7 +210,6 @@ export default class DhpActor extends Actor {
                     title: x.description
                 })
             );
-            bonusDamageString = result.bonusDamage;
 
             const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
 
@@ -268,8 +263,7 @@ export default class DhpActor extends Actor {
             fear: { dice: fearDice, value: fear },
             advantage: { dice: advantageDice, value: advantage },
             disadvantage: { dice: disadvantageDice, value: disadvantage },
-            modifiers: modifiers,
-            bonusDamageString
+            modifiers: modifiers
         };
     }
 
@@ -399,11 +393,6 @@ export default class DhpActor extends Actor {
                 }
             });
         }
-    }
-
-    async emulateItemDrop(data) {
-        const event = new DragEvent('drop', { altKey: game.keyboard.isModifierActive('Alt') });
-        return this.sheet._onDropItem(event, { data: data });
     }
 
     //Move to action-scope?

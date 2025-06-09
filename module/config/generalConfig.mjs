@@ -199,8 +199,8 @@ export const tiers = {
 };
 
 export const objectTypes = {
-    pc: {
-        name: 'TYPES.Actor.pc'
+    character: {
+        name: 'TYPES.Actor.character'
     },
     npc: {
         name: 'TYPES.Actor.npc'

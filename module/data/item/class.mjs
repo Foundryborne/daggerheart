@@ -56,7 +56,7 @@ export default class DHClass extends BaseDataItem {
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return;
 
-        if (this.actor?.type === 'pc') {
+        if (this.actor?.type === 'character') {
             const path = data.system.isMulticlass ? 'system.multiclass.value' : 'system.class.value';
             if (foundry.utils.getProperty(this.actor, path)) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.ClassAlreadySelected'));
@@ -67,7 +67,7 @@ export default class DHClass extends BaseDataItem {
 
     _onCreate(data, options, userId) {
         super._onCreate(data, options, userId);
-        if (options.parent?.type === 'pc') {
+        if (options.parent?.type === 'character') {
             const path = `system.${data.system.isMulticlass ? 'multiclass.value' : 'class.value'}`;
             options.parent.update({ [path]: `${options.parent.uuid}.Item.${data._id}` });
         }
@@ -76,7 +76,7 @@ export default class DHClass extends BaseDataItem {
     _onDelete(options, userId) {
         super._onDelete(options, userId);
 
-        if (options.parent?.type === 'pc') {
+        if (options.parent?.type === 'character') {
             const path = `system.${this.isMulticlass ? 'multiclass' : 'class'}`;
             options.parent.update({
                 [`${path}.value`]: null

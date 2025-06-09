@@ -203,7 +203,9 @@
     },
     "documentTypes": {
         "Actor": {
-            "pc": {},
+            "character": {
+                "htmlFields": ["story", "description", "scars.*.description"]
+            },
             "adversary": {
                 "htmlFields": ["description", "motivesAndTactics"]
             },
