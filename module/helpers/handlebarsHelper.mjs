@@ -11,6 +11,7 @@ export default class RegisterHandlebarsHelpers {
             includes: this.includes,
             debug: this.debug,
             signedNumber: this.signedNumber,
+            length: this.length,
             switch: this.switch,
             case: this.case
         });
@@ -80,6 +81,10 @@ export default class RegisterHandlebarsHelpers {
 
     static signedNumber(number) {
         return number >= 0 ? `+${number}` : number;
+    }
+
+    static length(obj) {
+        return Object.keys(obj).length;
     }
 
     static switch(value, options) {

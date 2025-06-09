@@ -261,6 +261,12 @@
                 "Description": "When an effect makes a creature Restrained, it means they cannot move until this condition is cleared.\nThey can still take actions from their current position."
             }
         },
+        "Tiers": {
+            "tier1": "Tier 1",
+            "tier2": "Tier 2",
+            "tier3": "Tier 3",
+            "tier4": "Tier 4"
+        },
         "Adversary": {
             "Bruiser": {
                 "Name": "Bruiser",
@@ -317,6 +323,26 @@
                     "Name": "Minion",
                     "Description": "For every X damage a PC deals to this adversary, they also deal 1 HP to an additional minion within their attack’s range.",
                     "Tip": "The Minion move is useful when you want to drop lots of small enemies into the battlefield, knowing the party can swing through them very easily. This move means that if a PC hits one minion and they do enough damage, they also hit a number of others that are in range for them. Because of this, it’s often best to have minions crowd a PC–it will feel overwhelming and dangerous until they’re able to make an attack against them. If you want that cinematic feeling of the PCs taking out waves of enemies with a single attack roll, minions are a great tool to make that happen."
+                }
+            }
+        },
+        "Environment": {
+            "Type": {
+                "Exploration": {
+                    "label": "Exploration",
+                    "description": ""
+                },
+                "Social": {
+                    "label": "Social",
+                    "description": ""
+                },
+                "Traversal": {
+                    "label": "Traversal",
+                    "description": ""
+                },
+                "Event": {
+                    "label": "Event",
+                    "description": ""
                 }
             }
         },
@@ -1030,9 +1056,33 @@
                 "NewFeature": "New Feature"
             },
             "Environment": {
-                "ToneAndFeel": "Tone And feel",
-                "PotentialAdversaries": "Potential Adversaries",
-                "NewFeature": "New Feature"
+                "FIELDS": {
+                    "tier": {
+                        "label": "Tier"
+                    },
+                    "type": {
+                        "label": "Type"
+                    },
+                    "difficulty": {
+                        "label": "Difficulty"
+                    }
+                },
+                "Tabs": {
+                    "Main": "Data",
+                    "Information": "Information"
+                },
+                "general": "General",
+                "newAdversary": "New Adversary",
+                "newFeature": "New feature",
+                "description": "Description",
+                "impulses": "Impulses",
+                "potentialAdversaries": {
+                    "label": "Potential Adversaries",
+                    "placeholder": "Optionally drag and drop adversaries here"
+                },
+                "features": {
+                    "label": "Features"
+                }
             },
             "Armor": {
                 "baseScore": "Base Score",
