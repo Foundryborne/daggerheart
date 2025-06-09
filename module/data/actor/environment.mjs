@@ -1,6 +1,6 @@
-import { environmentTypes } from '../config/actorConfig.mjs';
+import { environmentTypes } from '../../config/actorConfig.mjs';
 import BaseDataActor from './base.mjs';
-import ForeignDocumentUUIDField from './fields/foreignDocumentUUIDField.mjs';
+import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 
 export default class DhEnvironment extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.Sheets.Environment'];

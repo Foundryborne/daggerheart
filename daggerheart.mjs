@@ -54,11 +54,8 @@ Hooks.once('init', () => {
     Items.registerSheet(SYSTEM.id, applications.DhpArmor, { types: ['armor'], makeDefault: true });
 
     CONFIG.Actor.documentClass = documents.DhpActor;
-    CONFIG.Actor.dataModels = {
-        character: models.DhCharacter,
-        adversary: models.DhpAdversary,
-        environment: models.DhpEnvironment
-    };
+    CONFIG.Actor.dataModels = models.actors.config;
+
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
     Actors.registerSheet(SYSTEM.id, applications.DhCharacterSheet, { types: ['character'], makeDefault: true });
     Actors.registerSheet(SYSTEM.id, applications.DhpAdversarySheet, { types: ['adversary'], makeDefault: true });
