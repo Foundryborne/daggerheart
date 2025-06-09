@@ -893,6 +893,29 @@
                 "Title": "Downtime"
             }
         },
+        "Countdown": {
+            "FIELDS": {
+                "countdowns": {
+                    "element": {
+                        "name": { "label": "Name" },
+                        "progress": {
+                            "current": { "label": "Current" },
+                            "max": { "label": "Max" },
+                            "type": {
+                                "value": { "label": "Value" },
+                                "label": { "label": "Label", "hint": "Used for custom" }
+                            }
+                        }
+                    }
+                }
+            },
+            "Type": {
+                "Spotlight": "Spotlight",
+                "Custom": "Custom"
+            },
+            "NewCountdown": "New Countdown",
+            "Title": "Countdowns"
+        },
         "Sheets": {
             "PC": {
                 "Name": "Name",

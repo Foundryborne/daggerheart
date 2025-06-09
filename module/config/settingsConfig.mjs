@@ -33,6 +33,7 @@ export const gameSettings = {
     },
     DualityRollColor: 'DualityRollColor',
     LevelTiers: 'LevelTiers',
+    Countdowns: 'Countdowns',
     appearance: 'Appearance',
     variantRules: 'VariantRules'
 };

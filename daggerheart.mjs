@@ -13,6 +13,8 @@ import { dualityRollEnricher } from './module/enrichers/DualityRollEnricher.mjs'
 import { getCommandTarget, rollCommandToJSON, setDiceSoNiceForDualityRoll } from './module/helpers/utils.mjs';
 import { abilities } from './module/config/actorConfig.mjs';
 import Resources from './module/applications/resources.mjs';
+import Countdowns from './module/applications/countdowns.mjs';
+import DhCountdowns from './module/data/countdowns.mjs';
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -96,6 +98,7 @@ Hooks.once('init', () => {
     CONFIG.Token.rulerClass = DhpTokenRuler;
 
     CONFIG.ui.resources = Resources;
+    CONFIG.ui.countdowns = Countdowns;
 
     game.socket.on(`system.${SYSTEM.id}`, handleSocketEvent);
 
@@ -111,6 +114,9 @@ Hooks.once('init', () => {
 Hooks.on('ready', () => {
     ui.resources = new CONFIG.ui.resources();
     ui.resources.render({ force: true });
+
+    /* Temporary for ease of development. Countdown application should be opened through buttons somewhere */
+    new CONFIG.ui.countdowns(DhCountdowns.CountdownCategories.narrative).render({ force: true });
 });
 
 Hooks.once('dicesoniceready', () => {});

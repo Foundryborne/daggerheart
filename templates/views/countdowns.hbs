@@ -1,0 +1,13 @@
+<div>
+    <div>{{localize "DAGGERHEART.Countdown.Title"}} <a><i class="fa-solid fa-plus icon-button" data-action="addCountdown"></i></a></div>
+    {{#each source.countdowns}}
+        <fieldset>
+            <legend>{{this.name}} <a><i class="fa-solid fa-trash icon-button" data-action="removeCountdown" data-countdown="{{@key}}"></i></a></legend>
+
+            {{formGroup @root.countdownFields.name name=(concat @root.base ".countdowns." @key ".name") value=this.name localize=true}}
+
+            {{formGroup @root.countdownFields.progress.fields.current name=(concat @root.base ".countdowns." @key ".progress.current") value=this.progress.current localize=true}}
+            {{formGroup @root.countdownFields.progress.fields.type.fields.value name=(concat @root.base ".countdowns." @key ".progress.type.value") value=this.progress.type.value localize=true localize=true}}
+        </fieldset>
+    {{/each}}
+</div>

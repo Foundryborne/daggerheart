@@ -311,3 +311,14 @@ export const abilityCosts = {
         label: 'Stress'
     }
 };
+
+export const countdownTypes = {
+    spotlight: {
+        id: 'spotlight',
+        label: 'DAGGERHEART.Countdown.Type.Spotlight'
+    },
+    custom: {
+        id: 'custom',
+        label: 'DAGGERHEART.Countdown.Type.Custom'
+    }
+};

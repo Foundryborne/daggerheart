@@ -4,6 +4,7 @@ import DhAppearance from '../data/settings/Appearance.mjs';
 import DHAppearanceSettings from './settings/appearanceSettings.mjs';
 import DhVariantRules from '../data/settings/VariantRules.mjs';
 import DHVariantRuleSettings from './settings/variantRuleSettings.mjs';
+import DhCountdowns from '../data/countdowns.mjs';
 
 class DhpAutomationSettings extends FormApplication {
     constructor(object = {}, options = {}) {
@@ -285,6 +286,12 @@ export const registerDHSettings = () => {
         config: false,
         type: DhLevelTiers,
         default: defaultLevelTiers
+    });
+
+    game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, {
+        scope: 'world',
+        config: false,
+        type: DhCountdowns
     });
 
     game.settings.registerMenu(SYSTEM.id, SYSTEM.SETTINGS.menu.Automation.Name, {
