@@ -206,8 +206,12 @@
             "character": {
                 "htmlFields": ["story", "description", "scars.*.description"]
             },
-            "adversary": {},
-            "environment": {}
+            "adversary": {
+                "htmlFields": ["description", "motivesAndTactics"]
+            },
+            "environment": {
+                "htmlFields": ["description", "impulses"]
+            }
         },
         "Item": {
             "ancestry": {

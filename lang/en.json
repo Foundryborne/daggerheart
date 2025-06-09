@@ -263,46 +263,54 @@
                 "Description": "When an effect makes a creature Restrained, it means they cannot move until this condition is cleared.\nThey can still take actions from their current position."
             }
         },
+        "Tiers": {
+            "tier1": "Tier 1",
+            "tier2": "Tier 2",
+            "tier3": "Tier 3",
+            "tier4": "Tier 4"
+        },
         "Adversary": {
-            "Bruiser": {
-                "Name": "Bruiser",
-                "Description": "Tough adversaries with powerful attacks."
-            },
-            "Horde": {
-                "Name": "Horde",
-                "Description": "A Horde represents a number of foes working in a group."
-            },
-            "Leader": {
-                "Name": "Leader",
-                "Description": "Adversaries that command and summon other adversaries."
-            },
-            "Minion": {
-                "Name": "Minion",
-                "Description": "Basic enemies that are easily dispatched but dangerous in numbers."
-            },
-            "Ranged": {
-                "Name": "Ranged",
-                "Description": "Adversaries that attack from a distance."
-            },
-            "Skulker": {
-                "Name": "Skulker",
-                "Description": "Adversaries that maneuver and exploit opportunities to ambush their opponents."
-            },
-            "Social": {
-                "Name": "Social",
-                "Description": "Adversaries that are primarily interpersonal threats or challenges."
-            },
-            "Solo": {
-                "Name": "Solo",
-                "Description": "Designed to present a challenge to a whole party."
-            },
-            "Standard": {
-                "Name": "Standard",
-                "Description": "Rank and File adversaries."
-            },
-            "Support": {
-                "Name": "Support",
-                "Description": "Enemies that enhance their allies and/or disrupt their opponents."
+            "Type": {
+                "Bruiser": {
+                    "label": "Bruiser",
+                    "Description": "Tough adversaries with powerful attacks."
+                },
+                "Horde": {
+                    "label": "Horde",
+                    "Description": "A Horde represents a number of foes working in a group."
+                },
+                "Leader": {
+                    "label": "Leader",
+                    "Description": "Adversaries that command and summon other adversaries."
+                },
+                "Minion": {
+                    "label": "Minion",
+                    "Description": "Basic enemies that are easily dispatched but dangerous in numbers."
+                },
+                "Ranged": {
+                    "label": "Ranged",
+                    "Description": "Adversaries that attack from a distance."
+                },
+                "Skulk": {
+                    "label": "Skulk",
+                    "Description": "Adversaries that maneuver and exploit opportunities to ambush their opponents."
+                },
+                "Social": {
+                    "label": "Social",
+                    "Description": "Adversaries that are primarily interpersonal threats or challenges."
+                },
+                "Solo": {
+                    "label": "Solo",
+                    "Description": "Designed to present a challenge to a whole party."
+                },
+                "Standard": {
+                    "label": "Standard",
+                    "Description": "Rank and File adversaries."
+                },
+                "Support": {
+                    "label": "Support",
+                    "Description": "Enemies that enhance their allies and/or disrupt their opponents."
+                }
             },
             "Trait": {
                 "Relentless": {
@@ -319,6 +327,26 @@
                     "Name": "Minion",
                     "Description": "For every X damage a PC deals to this adversary, they also deal 1 HP to an additional minion within their attack’s range.",
                     "Tip": "The Minion move is useful when you want to drop lots of small enemies into the battlefield, knowing the party can swing through them very easily. This move means that if a PC hits one minion and they do enough damage, they also hit a number of others that are in range for them. Because of this, it’s often best to have minions crowd a PC–it will feel overwhelming and dangerous until they’re able to make an attack against them. If you want that cinematic feeling of the PCs taking out waves of enemies with a single attack roll, minions are a great tool to make that happen."
+                }
+            }
+        },
+        "Environment": {
+            "Type": {
+                "Exploration": {
+                    "label": "Exploration",
+                    "description": ""
+                },
+                "Social": {
+                    "label": "Social",
+                    "description": ""
+                },
+                "Traversal": {
+                    "label": "Traversal",
+                    "description": ""
+                },
+                "Event": {
+                    "label": "Event",
+                    "description": ""
                 }
             }
         },
@@ -1001,40 +1029,81 @@
                 }
             },
             "Adversary": {
-                "Description": "Description",
-                "MotivesAndTactics": "Motives & Tactics",
-                "Tier": "Tier",
-                "Type": "Type",
-                "Attack": {
-                    "Title": "Attack",
-                    "Modifier": "Attack Modifier",
-                    "Name": "Name",
-                    "Range": "Range",
-                    "Damage": {
-                        "Title": "Damage",
-                        "Value": "Value",
-                        "Type": "Type"
+                "FIELDS": {
+                    "tier": { "label": "Tier" },
+                    "type": { "label": "Type" },
+                    "description": { "label": "Description" },
+                    "motivesAndTactics": { "label": "Motives & Tactics" },
+                    "difficulty": { "label": "Difficulty" },
+                    "damageThresholds": {
+                        "major": { "label": "Major" },
+                        "severe": { "label": "Severe" }
+                    },
+                    "resources": {
+                        "hitPoints": {
+                            "value": { "label": "Current" },
+                            "max": { "label": "Max" }
+                        },
+                        "stress": {
+                            "value": { "label": "Current" },
+                            "max": { "label": "Max" }
+                        }
+                    },
+                    "experiences": {
+                        "element": {
+                            "name": { "label": "Name" },
+                            "value": { "label": "Modifier" }
+                        }
+                    },
+                    "attack": {
+                        "name": { "label": "Name" },
+                        "modifier": { "label": "Modifier" },
+                        "range": { "label": "Range" },
+                        "damage": {
+                            "value": { "label": "Damage" },
+                            "type": { "label": "Damage Type" }
+                        }
                     }
                 },
-                "Difficulty": "Difficulty",
-                "Reaction": "Reaction Roll",
-                "DamageThresholds": {
-                    "Title": "Damage Thresholds",
-                    "Minor": "Minor",
-                    "Major": "Major",
-                    "Severe": "Severe"
+                "Tabs": {
+                    "Main": "Data",
+                    "Information": "Information"
                 },
-                "HP": "HP",
+                "General": "General",
+                "DamageThresholds": "Damage Thresholds",
+                "HitPoints": "Hit Points",
                 "Stress": "Stress",
-                "Experience": "Experience",
                 "Experiences": "Experiences",
-                "Features": "Features",
-                "NewFeature": "New Feature"
+                "Attack": "Attack"
             },
             "Environment": {
-                "ToneAndFeel": "Tone And feel",
-                "PotentialAdversaries": "Potential Adversaries",
-                "NewFeature": "New Feature"
+                "FIELDS": {
+                    "tier": {
+                        "label": "Tier"
+                    },
+                    "type": {
+                        "label": "Type"
+                    },
+                    "difficulty": {
+                        "label": "Difficulty"
+                    }
+                },
+                "Tabs": {
+                    "Main": "Data",
+                    "Information": "Information"
+                },
+                "general": "General",
+                "newAdversary": "New Adversary",
+                "newFeature": "New feature",
+                "description": "Description",
+                "impulses": "Impulses",
+                "potentialAdversaries": {
+                    "label": "Potential Adversaries",
+                    "placeholder": "Optionally drag and drop adversaries here"
+                },
+                "features": {
+                    "label": "Features"
+                }
             },
             "Armor": {
                 "baseScore": "Base Score",
