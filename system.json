@@ -207,7 +207,9 @@
             "adversary": {
                 "htmlFields": ["description", "motivesAndTactics"]
             },
-            "environment": {}
+            "environment": {
+                "htmlFields": ["description", "impulses"]
+            }
         },
         "Item": {
             "ancestry": {

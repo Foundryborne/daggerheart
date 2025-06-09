@@ -328,6 +328,26 @@
                 }
             }
         },
+        "Environment": {
+            "Type": {
+                "Exploration": {
+                    "label": "Exploration",
+                    "description": ""
+                },
+                "Social": {
+                    "label": "Social",
+                    "description": ""
+                },
+                "Traversal": {
+                    "label": "Traversal",
+                    "description": ""
+                },
+                "Event": {
+                    "label": "Event",
+                    "description": ""
+                }
+            }
+        },
         "Domains": {
             "Arcana": {
                 "Description": "This is the domain of the innate or instinctual use of magic. Those who walk this path tap into the raw, enigmatic forces of the realms to manipulate both the elements and their own energy. Arcana offers wielders a volatile power, but it is incredibly potent when correctly channeled."
@@ -1055,9 +1075,33 @@
                 "Attack": "Attack"
             },
             "Environment": {
-                "ToneAndFeel": "Tone And feel",
-                "PotentialAdversaries": "Potential Adversaries",
-                "NewFeature": "New Feature"
+                "FIELDS": {
+                    "tier": {
+                        "label": "Tier"
+                    },
+                    "type": {
+                        "label": "Type"
+                    },
+                    "difficulty": {
+                        "label": "Difficulty"
+                    }
+                },
+                "Tabs": {
+                    "Main": "Data",
+                    "Information": "Information"
+                },
+                "general": "General",
+                "newAdversary": "New Adversary",
+                "newFeature": "New feature",
+                "description": "Description",
+                "impulses": "Impulses",
+                "potentialAdversaries": {
+                    "label": "Potential Adversaries",
+                    "placeholder": "Optionally drag and drop adversaries here"
+                },
+                "features": {
+                    "label": "Features"
+                }
             },
             "Armor": {
                 "baseScore": "Base Score",

@@ -133,6 +133,25 @@ export const adversaryTypes = {
     }
 };
 
+export const environmentTypes = {
+    exploration: {
+        label: 'DAGGERHEART.Environment.Type.Exploration.label',
+        description: 'DAGGERHEART.Environment.Type.Exploration.description'
+    },
+    social: {
+        label: 'DAGGERHEART.Environment.Type.Social.label',
+        description: 'DAGGERHEART.Environment.Type.Social.description'
+    },
+    traversal: {
+        label: 'DAGGERHEART.Environment.Type.Traversal.label',
+        description: 'DAGGERHEART.Environment.Type.Traversal.description'
+    },
+    event: {
+        label: 'DAGGERHEART.Environment.Type.Event.label',
+        description: 'DAGGERHEART.Environment.Type.Event.description'
+    }
+};
+
 export const adversaryTraits = {
     relentless: {
         name: 'DAGGERHEART.Adversary.Trait..Name',
