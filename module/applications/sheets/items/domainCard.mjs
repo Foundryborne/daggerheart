@@ -1,4 +1,4 @@
-import DHAction from '../../../data/action.mjs';
+import DHAction from '../../../data/action/action.mjs';
 import DHActionConfig from '../../config/Action.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
 
@@ -79,6 +79,7 @@ export default class DomainCardSheet extends DaggerheartSheet(ItemSheetV2) {
         const action = await new DHAction(
             {
                 id: `${this.document.id}-Action-${actionIndexes.length > 0 ? actionIndexes[0] + 1 : 1}`
+                // id: foundry.utils.randomID()
             },
             {
                 parent: this.document

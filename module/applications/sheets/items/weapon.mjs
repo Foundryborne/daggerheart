@@ -1,4 +1,6 @@
+import DHActionConfig from '../../config/Action.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
+import { actionsTypes } from '../../../data/_module.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {
@@ -6,6 +8,11 @@ export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {
         tag: 'form',
         classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'weapon'],
         position: { width: 600 },
+        actions: {
+            addAction: this.addAction,
+            editAction: this.editAction,
+            removeAction: this.removeAction
+        },
         form: {
             handler: this.updateForm,
             submitOnChange: true,
@@ -17,6 +24,10 @@ export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {
         header: { template: 'systems/daggerheart/templates/sheets/items/weapon/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
+        actions: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
+            scrollable: ['.actions']
+        },
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/weapon/settings.hbs',
             scrollable: ['.settings']
@@ -31,6 +42,14 @@ export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {
             id: 'description',
             icon: null,
             label: 'DAGGERHEART.Sheets.Feature.Tabs.Description'
+        },
+        actions: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'actions',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Feature.Tabs.Actions'
         },
         settings: {
             active: false,
@@ -54,5 +73,68 @@ export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {
     static async updateForm(event, _, formData) {
         await this.document.update(formData.object);
         this.render();
+    }
+
+    static async selectActionType() {
+        const content = await foundry.applications.handlebars.renderTemplate(
+                "systems/daggerheart/templates/views/actionType.hbs",
+                {types: SYSTEM.ACTIONS.actionTypes}
+            ),
+            title = 'Select Action Type',
+            type = 'form',
+            data = {};
+        return Dialog.prompt({
+            title,
+            label: title,
+            content, type,
+            callback: html => {
+                const form = html[0].querySelector("form"),
+                    fd = new foundry.applications.ux.FormDataExtended(form);
+                foundry.utils.mergeObject(data, fd.object, { inplace: true });
+                // if (!data.name?.trim()) data.name = game.i18n.localize(SYSTEM.ACTIONS.actionTypes[data.type].name);
+                return data;
+            },
+            rejectClose: false
+        })
+    }
+    
+    static async addAction() {
+        // const actionType = await WeaponSheet.selectActionType();
+        const actionType = await WeaponSheet.selectActionType(),
+            actionIndexes = this.document.system.actions.map(x => x._id.split('-')[2]).sort((a, b) => a - b)
+        try {
+            // const cls = DHAction,
+            const cls = actionsTypes[actionType?.type] ?? actionsTypes.attack,
+                action = new cls(
+                    {
+                        // id: `${this.document.id}-Action-${actionIndexes.length > 0 ? actionIndexes[0] + 1 : 1}`
+                        _id: foundry.utils.randomID(),
+                        type: actionType.type,
+                        name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType.type].name),
+                        ...cls.getSourceConfig(this.document)
+                    },
+                    {
+                        parent: this.document
+                    }
+                );
+                await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
+                await new DHActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(true);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    static async editAction(_, button) {
+        const action = this.document.system.actions[button.dataset.index];
+        await new DHActionConfig(action).render(true);
+    }
+
+    static async removeAction(event, button) {
+        event.stopPropagation();
+        await this.document.update({
+            'system.actions': this.document.system.actions.filter(
+                (_, index) => index !== Number.parseInt(button.dataset.index)
+            )
+        });
     }
 }

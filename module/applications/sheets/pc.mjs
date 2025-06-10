@@ -46,6 +46,7 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             selectAncestry: this.selectAncestry,
             selectCommunity: this.selectCommunity,
             viewObject: this.viewObject,
+            useItem: this.useItem,
             useFeature: this.useFeature,
             takeShortRest: this.takeShortRest,
             takeLongRest: this.takeLongRest,
@@ -184,6 +185,9 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
             .querySelectorAll('.experience-value')
             .forEach(element => element.addEventListener('change', this.experienceValueChange.bind(this)));
         htmlElement.querySelector('.level-value').addEventListener('change', this.onLevelChange.bind(this));
+        htmlElement
+            .querySelectorAll('[data-item-id]')
+            .forEach(element => element.addEventListener('contextmenu', this.editItem.bind(this)));
     }
 
     async _prepareContext(_options) {
@@ -738,6 +742,12 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         (await game.packs.get('daggerheart.communities'))?.render(true);
     }
 
+    static useItem(event) {
+        const uuid = event.target.closest('[data-item-id]').dataset.itemId,
+            item = this.document.items.find(i => i.uuid === uuid);
+        item.use(event);
+    }
+
     static async viewObject(_, button) {
         const object = await fromUuid(button.dataset.value);
         if (!object) return;
@@ -748,6 +758,16 @@ export default class PCSheet extends DaggerheartSheet(ActorSheetV2) {
         if (object.sheet.editMode) object.sheet.editMode = false;
 
         object.sheet.render(true);
+    }
+
+    editItem(event) {
+        const uuid = event.target.closest('[data-item-id]').dataset.itemId,
+            item = this.document.items.find(i => i.uuid === uuid);
+        if (!item) return;
+
+        if (item.sheet.editMode) item.sheet.editMode = false;
+
+        item.sheet.render(true);
     }
 
     static async takeShortRest() {

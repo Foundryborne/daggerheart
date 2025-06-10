@@ -1,4 +1,4 @@
-import DHAction from '../../../data/action.mjs';
+import DHAction from '../../../data/action/action.mjs';
 import DHActionConfig from '../../config/Action.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
 
@@ -132,7 +132,10 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     static async addAction() {
-        const action = await new DHAction({ img: this.document.img }, { parent: this.document });
+        const action = new DHAction({
+            id: foundry.utils.randomID(),
+            // img: this.document.img
+        }, { parent: this.document });
         await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
         await new DHActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(
             true

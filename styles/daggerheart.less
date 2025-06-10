@@ -125,3 +125,38 @@
         }
     }
 }
+
+.unlist {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.list-select {
+    margin: 1rem;
+    li {
+        &:not(:last-child) {
+            border-bottom: 1px solid #bbb;
+        }
+        label {
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            > span {
+                flex: 1;
+                font-weight: bold;
+                font-size: var(--font-size-16);
+            }
+        }
+    }
+}
+
+dh-icon, dh-icon > img {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+}

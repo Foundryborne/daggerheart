@@ -1,5 +1,7 @@
 import BaseDataItem from "./base.mjs";
 import FormulaField from "../fields/formulaField.mjs";
+import ActionField from "../fields/actionField.mjs"
+import { DHBaseAction, DHAttackAction } from "../action/action.mjs";
 
 export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
@@ -33,8 +35,9 @@ export default class DHWeapon extends BaseDataItem {
                     initial: 'physical'
                 })
             }),
-
             feature: new fields.StringField({ choices: SYSTEM.ITEM.weaponFeatures, blank: true }),
+            actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAttackAction))
+            // actions: new fields.ArrayField(new ActionField(DHBaseAction))
         };
     }
 }

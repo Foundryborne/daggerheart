@@ -27,6 +27,7 @@ export default function DhpApplicationMixin(Base) {
 
         async _prepareContext(_options, objectPath = 'document') {
             const context = await super._prepareContext(_options);
+            console.log(this, objectPath)
             context.source = this[objectPath].toObject();
             context.fields = this[objectPath].schema.fields;
             context.systemFields = this[objectPath].system ? this[objectPath].system.schema.fields : {};

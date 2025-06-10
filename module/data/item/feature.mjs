@@ -1,5 +1,5 @@
 import { getTier } from '../../helpers/utils.mjs';
-import DHAction from '../action.mjs';
+import DHAction from '../action/action.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHFeature extends BaseDataItem {

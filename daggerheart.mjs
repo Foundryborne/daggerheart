@@ -282,6 +282,12 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/views/levelup/parts/selectable-card-preview.hbs',
         'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',
-        'systems/daggerheart/templates/ui/combat/combatTrackerSection.hbs'
+        'systems/daggerheart/templates/ui/combat/combatTrackerSection.hbs',
+        'systems/daggerheart/templates/views/actionTypes/damage.hbs',
+        'systems/daggerheart/templates/views/actionTypes/uses.hbs',
+        'systems/daggerheart/templates/views/actionTypes/roll.hbs',
+        'systems/daggerheart/templates/views/actionTypes/cost.hbs',
+        'systems/daggerheart/templates/views/actionTypes/range-target.hbs',
+        'systems/daggerheart/templates/views/actionTypes/effect.hbs'
     ]);
 };
