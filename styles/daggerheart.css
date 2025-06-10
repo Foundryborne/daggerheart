@@ -2593,6 +2593,9 @@ div.daggerheart.views.multiclass {
   width: 40px;
   background: white;
 }
+.application.sheet.daggerheart.dh-style.active-effect-config label {
+  white-space: nowrap;
+}
 .daggerheart.sheet .title-container {
   display: flex;
   gap: 8px;
@@ -3385,6 +3388,14 @@ div.daggerheart.views.multiclass {
   font-weight: bold;
   font-size: smaller;
 }
+.application.sheet.dh-style .two-columns {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+}
+.application.sheet.dh-style .two-columns.even {
+  grid-template-columns: 1fr 1fr;
+}
 .application.sheet.dh-style line-div {
   display: block;
   height: 1px;
@@ -3591,6 +3602,14 @@ div.daggerheart.views.multiclass {
   color: light-dark(#18162e, #f3c267);
   text-shadow: none;
   font-family: 'Montserrat', sans-serif;
+}
+.sheet.daggerheart.dh-style .tab-form-footer {
+  display: flex;
+  padding: 0 8px 0 12px;
+}
+.sheet.daggerheart.dh-style .tab-form-footer button {
+  flex: 1;
+  border-width: 2px;
 }
 .sheet.daggerheart.dh-style .tab.actions .actions-list {
   display: flex;

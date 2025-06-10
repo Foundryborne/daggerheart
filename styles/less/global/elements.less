@@ -143,6 +143,16 @@
         }
     }
 
+    .two-columns {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 10px;
+
+        &.even {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
     line-div {
         display: block;
         height: 1px;
