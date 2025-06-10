@@ -1,15 +1,6 @@
 export default class DhpItem extends Item {
-    _preCreate(data, changes, user) {
-        super._preCreate(data, changes, user);
-    }
-
     prepareData() {
         super.prepareData();
-
-        if (this.type === 'class') {
-            // Bad. Make this better.
-            // this.system.domains = CONFIG.daggerheart.DOMAIN.classDomainMap[Object.keys(CONFIG.daggerheart.DOMAIN.classDomainMap).find(x => x === this.name.toLowerCase())];
-        }
     }
     
     /** @inheritDoc */
@@ -22,7 +13,7 @@ export default class DhpItem extends Item {
     /**
      * @inheritdoc
      * @param {object} options - Options which modify the getRollData method.
-     * @returns 
+     * @returns
      */
     getRollData(options = {}) {
         let data;

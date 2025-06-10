@@ -103,6 +103,14 @@
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 10px;
+
+            &.even {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .full-width {
+                grid-column: span 2;
+            }
         }
 
         legend {

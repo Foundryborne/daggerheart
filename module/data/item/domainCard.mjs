@@ -5,9 +5,9 @@ export default class DHDomainCard extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
-            label: "TYPES.Item.domainCard",
-            type: "domainCard",
-            hasDescription: true,
+            label: 'TYPES.Item.domainCard',
+            type: 'domainCard',
+            hasDescription: true
         });
     }
 
@@ -19,10 +19,37 @@ export default class DHDomainCard extends BaseDataItem {
             domain: new fields.StringField({ choices: SYSTEM.DOMAIN.domains, required: true, blank: true }),
             level: new fields.NumberField({ initial: 1, integer: true }),
             recallCost: new fields.NumberField({ initial: 0, integer: true }),
-            type: new fields.StringField({ choices: SYSTEM.DOMAIN.cardTypes, required: true, blank: true}),
+            type: new fields.StringField({ choices: SYSTEM.DOMAIN.cardTypes, required: true, blank: true }),
             foundation: new fields.BooleanField({ initial: false }),
             inVault: new fields.BooleanField({ initial: false }),
             actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAction))
         };
+    }
+
+    async _preCreate(data, options, user) {
+        const allowed = await super._preCreate(data, options, user);
+        if (allowed === false) return;
+
+        if (this.actor?.type === 'character') {
+            if (!this.actor.system.class.value) {
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.NoClassSelected'));
+                return false;
+            }
+
+            if (!this.actor.system.domains.find(x => x === item.system.domain)) {
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.LacksDomain'));
+                return false;
+            }
+
+            if (this.actor.system.domainCards.total.length === 5) {
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.MaxLoadoutReached'));
+                return false;
+            }
+
+            if (this.actor.system.domainCards.total.find(x => x.name === item.name)) {
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.DuplicateDomainCard'));
+                return false;
+            }
+        }
     }
 }
