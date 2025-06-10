@@ -2774,7 +2774,7 @@ div.daggerheart.views.multiclass {
   justify-content: center;
   align-items: center;
   width: 3rem;
-  background-color: var(rgba(9, 71, 179, 0.75));
+  background-color: rgba(9, 71, 179, 0.75);
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   color: #d3d3d3;
