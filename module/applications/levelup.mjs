@@ -179,6 +179,20 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 };
                 const allDomainCardKeys = Object.keys(allDomainCards);
 
+                const classDomainsData = this.actor.system.class.value.system.domains.map(domain => ({
+                    domain,
+                    multiclass: false
+                }));
+                const multiclassDomainsData = (this.actor.system.multiclass?.value?.system?.domains ?? []).map(
+                    domain => ({ domain, multiclass: true })
+                );
+                const domainsData = [...classDomainsData, ...multiclassDomainsData];
+                const multiclassDomain = this.levelup.classUpgradeChoices?.multiclass?.domain;
+                if (multiclassDomain) {
+                    if (!domainsData.some(x => x.domain === multiclassDomain))
+                        domainsData.push({ domain: multiclassDomain, multiclass: true });
+                }
+
                 context.domainCards = [];
                 for (var key of allDomainCardKeys) {
                     const domainCard = allDomainCards[key];
@@ -189,10 +203,16 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                     context.domainCards.push({
                         ...(card.toObject?.() ?? card),
-                        emptySubtext: game.i18n.format(
-                            'DAGGERHEART.Application.LevelUp.Selections.emptyDomainCardHint',
-                            { level: domainCard.level }
-                        ),
+                        emptySubtexts: domainsData.map(domain => {
+                            const levelMax = domain.multiclass
+                                ? Math.ceil(this.levelup.currentLevel / 2)
+                                : this.levelup.currentLevel;
+
+                            return game.i18n.format('DAGGERHEART.Application.LevelUp.Selections.emptyDomainCardHint', {
+                                domain: game.i18n.localize(domains[domain.domain].label),
+                                level: levelMax
+                            });
+                        }),
                         path: domainCard.data
                             ? `${domainCard.path}.data`
                             : `levels.${domainCard.level}.achievements.domainCards.${key}.uuid`,
@@ -207,10 +227,6 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     possibleSubclasses.push(this.actor.system.multiclass.subclass);
                 }
 
-                // const featureStateIncrease =  advancementChoices.subclass?.reduce((acc, subclass) => {
-                //     if(subclass.secondaryData.featureState) acc += 1;
-                //     return acc;
-                // }, 0) ?? 0;
                 context.subclassCards = [];
                 if (advancementChoices.subclass?.length > 0) {
                     const featureStateIncrease = Object.values(this.levelup.levels).reduce((acc, level) => {
@@ -554,6 +570,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         if (event.target.closest('.domain-cards')) {
             const target = event.target.closest('.card-preview-container');
             if (item.type === 'domainCard') {
+                const { multiclass } = this.levelup.classUpgradeChoices;
+                const isMulticlass = !multiclass ? false : item.system.domain === multiclass.domain;
                 if (
                     !this.actor.system.domains.includes(item.system.domain) &&
                     this.levelup.classUpgradeChoices?.multiclass?.domain !== item.system.domain
@@ -564,7 +582,10 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     return;
                 }
 
-                if (item.system.level > Number(target.dataset.limit)) {
+                if (
+                    (isMulticlass ? Math.ceil(this.levelup.currentLevel / 2) : this.levelup.currentLevel) <
+                    item.system.level
+                ) {
                     ui.notifications.error(
                         game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardToHighLevel')
                     );

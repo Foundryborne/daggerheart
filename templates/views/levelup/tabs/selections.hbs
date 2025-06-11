@@ -51,7 +51,11 @@
 
                 <div class="levelup-card-selection domain-cards">
                     {{#each this.domainCards}}
-                        {{> "systems/daggerheart/templates/components/card-preview.hbs" this }}
+                        {{#> "systems/daggerheart/templates/components/card-preview.hbs" this }}
+                            {{#each this.emptySubtexts}}
+                                <div>{{this}}</div>
+                            {{/each}}
+                        {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                     {{/each}}
                 </div>
             </div>
@@ -74,7 +78,9 @@
                 <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.multiclass"}}</h3>
 
                 <div class="levelup-card-selection multiclass-cards" data-path="{{this.multiclass.path}}" data-tier="{{this.multiclass.tier}}" data-min-cost="{{this.multiclass.minCost}}" data-amount="{{this.multiclass.amount}}" data-value="{{this.multiclass.value}}" data-type="{{this.multiclass.type}}">
-                    {{> "systems/daggerheart/templates/components/card-preview.hbs" this.multiclass }}
+                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" this.multiclass }}
+                        {{this.multiclass.emptySubtext}}
+                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                     <div class="levelup-domains-selection-container">
                         {{#each this.multiclass.domains}}
                             <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}" {{#if (not this.disabled)}}data-action="selectDomain" data-uuid="{{../multiclass.uuid}}" data-domain="{{this.id}}" data-path="{{../multiclass.path}}" {{/if}}>

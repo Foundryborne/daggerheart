@@ -838,7 +838,7 @@
                     "content": "Returning to the previous level selection will remove all selections made for this level. Do you want to proceed?"
                 },
                 "Selections": {
-                    "emptyDomainCardHint": "Domain Card Level {level} or below"
+                    "emptyDomainCardHint": "{domain} level {level} or below"
                 },
                 "summary": {
                     "levelAchievements": "Level Achievements",
