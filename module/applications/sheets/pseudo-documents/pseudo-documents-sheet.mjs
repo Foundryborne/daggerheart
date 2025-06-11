@@ -47,7 +47,6 @@ export default class PseudoDocumentSheet extends HandlebarsApplicationMixin(Appl
     return Object.assign(context, {
       document,
       source: document._source,
-      fields: document.schema.fields,
       editable: this.isEditable,
       user: game.user,
       rootId: this.id,
@@ -62,6 +61,6 @@ export default class PseudoDocumentSheet extends HandlebarsApplicationMixin(Appl
    */
   static async #onSubmitForm(event, form, formData) {
     const submitData = foundry.utils.expandObject(formData.object);
-    await this.pseudoDocument.update(submitData, options);
+    await this.pseudoDocument.update(submitData);
   }
 }
