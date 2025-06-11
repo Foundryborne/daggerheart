@@ -20,16 +20,14 @@ export default class PseudoDocumentsField extends TypedObjectField {
         options.validateKey ||= key => foundry.data.validators.isValidId(key);
         if (!foundry.utils.isSubclass(model, PseudoDocument)) throw new Error('The model must be a PseudoDocument');
 
-        const allTypes = foundry.utils.duplicate(model.TYPES);
-        options.validTypes ??= Object.keys(allTypes);
-        const filteredTypes = {};
-        for (const typeName of options.validTypes) {
-            if (typeName in allTypes) {
-                filteredTypes[typeName] = allTypes[typeName];
-            } else {
-                console.warn(`Document type "${typeName}" is not found in model.TYPES`);
-            }
-        }
+        const allTypes = model.TYPES;
+
+        const filteredTypes = options.validTypes
+            ? Object.fromEntries(
+                Object.entries(allTypes).filter(([key]) => options.validTypes.includes(key))
+            )
+            : allTypes;
+
         const field = new TypedSchemaField(filteredTypes);
         super(field, options, context);
     }

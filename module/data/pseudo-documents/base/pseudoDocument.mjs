@@ -4,18 +4,29 @@ import SheetManagementMixin from './sheetManagementMixin.mjs';
 /** @extends BasePseudoDocument */
 export default class PseudoDocument extends SheetManagementMixin(BasePseudoDocument) {
     static get TYPES() {
-        return (this._TYPES ??= Object.freeze(CONFIG.daggerheart.pseudoDocuments[this.metadata.name]));
+        const { types } = CONFIG.daggerheart.pseudoDocuments[this.metadata.name];
+        const typeEntries = Object.entries(types).map(([key, { documentClass }]) => [key, documentClass]);
+        return (this._TYPES ??= Object.freeze(Object.fromEntries(typeEntries)));
     }
 
     static _TYPES;
-
-    /* -------------------------------------------- */
 
     /**
      * The type of this shape.
      * @type {string}
      */
     static TYPE = '';
+
+    /* -------------------------------------------- */
+
+    static getTypesChoices(validTypes) {
+        const { types } = CONFIG.daggerheart.pseudoDocuments[model.metadata.name];
+        const typeEntries = Object.entries(types)
+            .map(([key, { label }]) => [key, label])
+            .filter(([key]) => !validTypes || validTypes.includes(key));
+
+        return Object.entries(typeEntries);
+    }
 
     /* -------------------------------------------- */
 

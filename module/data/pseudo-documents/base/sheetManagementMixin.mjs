@@ -104,16 +104,52 @@ export default function SheetManagementMixin(Base) {
          * @param {object} context
          * @param {foundry.documents.Item} context.parent        A parent for the document.
          * @param {string[]|null} [context.types]  A list of types to restrict the choices to, or null for no restriction.
-         * @returns {Promise<PseudoDocument|null>}
+         * @returns {Promise<BasePseudoDocument|null>}
          */
-        static async createDialog(data = {}, { parent, types = null, ...options } = {}) {}
+        static async createDialog(data = {}, { parent, types = null, ...options } = {}) {
+            // TODO
+        }
 
         /**
          * Present a Dialog form to confirm deletion of this PseudoDocument.
-         * @param {object} [options]           Positioning and sizing options for the resulting dialog.
-         * @returns {Promise<PseudoDocument>}  A Promise which resolves to the deleted PseudoDocument.
+         * @param {object} [options] - Additional options passed to `DialogV2.confirm`;
+         * @returns {Promise<foundry.abstract.Document>}  A Promise which resolves to the deleted PseudoDocument.
          */
-        async deleteDialog(options = {}) {}
+        async deleteDialog(options = {}) {
+            const type = game.i18n.localize(this.constructor.metadata.label);
+            const content = options.content ?? `<p>
+            <strong>${game.i18n.localize("AreYouSure")}</strong>
+            ${game.i18n.format("SIDEBAR.DeleteWarning", { type })}
+            </p>`;
+
+            return foundry.applications.api.DialogV2.confirm({
+                content,
+                yes: { callback: () => this.delete(operation) },
+                window: {
+                    icon: "fa-solid fa-trash",
+                    title: `${game.i18n.format("DOCUMENT.Delete", { type })}: ${this.name}`
+                },
+                ...options
+            });
+        }
+
+        /**
+         * Gets the default new name for a Document
+         * @param {object} collection - Collection of Documents
+         * @returns {string}
+         */
+        static defaultName(collection) {
+            const documentName = this.metadata.name;
+            const takenNames = new Set();
+            for (const document of collection) takenNames.add(document.name);
+
+            const config = CONFIG.daggerheart.pseudoDocuments[documentName];
+            const baseName = game.i18n.localize(config.label);
+            let name = baseName;
+            let index = 1;
+            while (takenNames.has(name)) name = `${baseName} (${++index})`;
+            return name;
+        }
     }
 
     return PseudoDocumentWithSheets;

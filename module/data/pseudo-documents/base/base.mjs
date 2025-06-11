@@ -68,7 +68,7 @@ export default class BasePseudoDocument extends foundry.abstract.DataModel {
 
     /**
      * The parent document of this pseudo-document.
-     * @type {Document}
+     * @type {foundry.abstract.Document}
      */
     get document() {
         let parent = this;
@@ -122,14 +122,13 @@ export default class BasePseudoDocument extends foundry.abstract.DataModel {
      * @param {string} embeddedName         The document name of the embedded pseudo-document.
      * @param {string} id                   The id of the embedded pseudo-document.
      * @param {object} [options]            Retrieval options.
-     * @param {boolean} [options.invalid]   Retrieve an invalid pseudo-document?
      * @param {boolean} [options.strinct]   Throw an error if the embedded pseudo-document does not exist?
      * @returns {PseudoDocument|null}
      */
-    getEmbeddedDocument(embeddedName, id, { invalid = false, strict = false } = {}) {
+    getEmbeddedDocument(embeddedName, id, { strict = false } = {}) {
         const embeds = this.constructor.metadata.embedded ?? {};
         if (embeddedName in embeds) {
-            return foundry.utils.getProperty(this, embeds[embeddedName]).get(id) ?? null;
+            return foundry.utils.getProperty(this, embeds[embeddedName]).get(id, { strict }) ?? null;
         }
         return null;
     }
@@ -172,7 +171,8 @@ export default class BasePseudoDocument extends foundry.abstract.DataModel {
         }
 
         const update = { [`system.${fieldPath}.${id}`]: { ...data, _id: id } };
-        return parent.update(update, operation);
+        const updatedParent = await parent.update(update, operation);
+        return foundry.utils.getProperty(updatedParent, `system.${fieldPath}.${id}`);
     }
 
     /**

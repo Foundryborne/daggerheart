@@ -7,7 +7,6 @@ export default class BaseFeatureData extends PseudoDocument {
             super.metadata,
             {
                 name: 'feature',
-                label: 'DAGGERHEART.Feature.Label',
                 embedded: {},
                 sheetClass: null //TODO: define feature-sheet
             },
