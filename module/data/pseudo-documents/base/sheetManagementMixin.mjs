@@ -16,7 +16,8 @@ export default function SheetManagementMixin(Base) {
         get sheet() {
             if (this._sheet) return this._sheet;
             const cls = this.constructor.metadata.sheetClass ?? ApplicationV2;
-            if (!ApplicationV2.isPrototypeOf(cls)) {
+            
+            if (!foundry.utils.isSubclass(cls, ApplicationV2)) {
                 return void ui.notifications.error(
                     'Daggerheart | Error on PseudoDocument | sheetClass must be ApplicationV2'
                 );
@@ -24,6 +25,7 @@ export default function SheetManagementMixin(Base) {
 
             const sheet = new cls({ document: this });
             this._sheet = sheet;
+            return sheet;
         }
 
         /* -------------------------------------------- */

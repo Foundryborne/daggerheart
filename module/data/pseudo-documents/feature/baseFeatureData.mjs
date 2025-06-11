@@ -8,7 +8,7 @@ export default class BaseFeatureData extends PseudoDocument {
             {
                 name: 'feature',
                 embedded: {},
-                sheetClass: null //TODO: define feature-sheet
+                //sheetClass: null //TODO: define feature-sheet
             },
             { inplace: false }
         );

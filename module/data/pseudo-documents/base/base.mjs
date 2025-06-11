@@ -20,7 +20,7 @@ export default class BasePseudoDocument extends foundry.abstract.DataModel {
             name: '',
             embedded: {},
             defaultArtwork: foundry.documents.Item.DEFAULT_ICON,
-            sheetClass: null
+            sheetClass: CONFIG.daggerheart.pseudoDocuments.sheetClass,
         };
     }
 
