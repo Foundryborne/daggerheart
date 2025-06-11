@@ -5,6 +5,7 @@ import * as ITEM from './itemConfig.mjs';
 import * as SETTINGS from './settingsConfig.mjs';
 import * as EFFECTS from './effectConfig.mjs';
 import * as ACTIONS from './actionConfig.mjs';
+import pseudoDocuments from "./pseudoConfig.mjs";
 
 export const SYSTEM_ID = 'daggerheart';
 
@@ -16,5 +17,6 @@ export const SYSTEM = {
     ITEM,
     SETTINGS,
     EFFECTS,
-    ACTIONS
+    ACTIONS,
+    pseudoDocuments
 };

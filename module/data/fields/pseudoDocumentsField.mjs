@@ -1,16 +1,44 @@
-import { BasePseudoDocument } from "../pseudo-documents/_types";
-export default class PseudoDocumentsField extends foundry.data.fields.TypedObjectField {
+import PseudoDocument from '../pseudo-documents/base/pseudoDocument.mjs';
+
+const { TypedObjectField, TypedSchemaField } = foundry.data.fields;
+
+/**
+ * @typedef _PseudoDocumentsFieldOptions
+ * @property {Number} [max] - The maximum amount of elements (default: `Infinity`)
+ * @property {String[]} [validTypes] - Allowed pseudo-documents types (default: `[]`)
+ * @property {Function} [validateKey] - callback for validate keys of the object;
+
+ * @typedef {foundry.data.types.DataFieldOptions & _PseudoDocumentsFieldOptions} PseudoDocumentsFieldOptions
+ */
+export default class PseudoDocumentsField extends TypedObjectField {
+    /**
+     * @param {PseudoDocument} model - The PseudoDocument of each entry in this collection.
+     * @param {PseudoDocumentsFieldOptions} [options] - Options which configure the behavior of the field
+     * @param {foundry.data.types.DataFieldContext} [context] - Additional context which describes the field
+     */
     constructor(model, options = {}, context = {}) {
-        options.validateKey ||= ((key) => foundry.data.validators.isValidId(key));
-        if (!(model instanceof BasePseudoDocument)) throw new Error("The model must be a PseudoDocument");
-        const field = new foundry.data.fields.EmbeddedDataField(model);
+        options.validateKey ||= key => foundry.data.validators.isValidId(key);
+        if (!foundry.utils.isSubclass(model, PseudoDocument)) throw new Error('The model must be a PseudoDocument');
+
+        const allTypes = foundry.utils.duplicate(model.TYPES);
+        options.validTypes ??= Object.keys(allTypes);
+        const filteredTypes = {};
+        for (const typeName of options.validTypes) {
+            if (typeName in allTypes) {
+                filteredTypes[typeName] = allTypes[typeName];
+            } else {
+                console.warn(`Document type "${typeName}" is not found in model.TYPES`);
+            }
+        }
+        const field = new TypedSchemaField(filteredTypes);
         super(field, options, context);
     }
 
     /** @inheritdoc */
     static get _defaults() {
         return Object.assign(super._defaults, {
-            max: Infinity
+            max: Infinity,
+            validTypes: []
         });
     }
 
@@ -18,5 +46,13 @@ export default class PseudoDocumentsField extends foundry.data.fields.TypedObjec
     _validateType(value, options = {}) {
         if (Object.keys(value).length > this.max) throw new Error(`cannot have more than ${this.max} elements`);
         return super._validateType(value, options);
+    }
+
+    /** @override */
+    initialize(value, model, options = {}) {
+        if (!value) return;
+        value = super.initialize(value, model, options);
+        const collection = new foundry.utils.Collection(Object.values(value).map(d => [d._id, d]));
+        return collection;
     }
 }

@@ -1,4 +1,3 @@
-import './module/_types';
 import '@client/global.mjs';
 import Canvas from '@client/canvas/board.mjs';
 

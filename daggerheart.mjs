@@ -18,6 +18,7 @@ globalThis.SYSTEM = SYSTEM;
 
 Hooks.once('init', () => {
     CONFIG.daggerheart = SYSTEM;
+
     game.system.api = {
         applications,
         models,

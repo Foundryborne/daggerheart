@@ -1,7 +1,2 @@
-import BasePseudoDocument from "./base.mjs";
-import PseudoDocument from "./pseudoDocument.mjs";
-
-export {
-  BasePseudoDocument,
-  PseudoDocument
-}
+export { default as base } from './base/pseudoDocument.mjs';
+export * as feature from './feature/_module.mjs';
