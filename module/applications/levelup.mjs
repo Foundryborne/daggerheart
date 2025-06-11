@@ -1,4 +1,4 @@
-import { abilities } from '../config/actorConfig.mjs';
+import { abilities, subclassFeatureLabels } from '../config/actorConfig.mjs';
 import { domains } from '../config/domainConfig.mjs';
 import { DhLevelup } from '../data/levelup.mjs';
 import { getDeleteKeys, tagifyElement } from '../helpers/utils.mjs';
@@ -35,6 +35,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             viewCompendium: this.viewCompendium,
             selectPreview: this.selectPreview,
             selectDomain: this.selectDomain,
+            selectSubclass: this.selectSubclass,
             updateCurrentLevel: this.updateCurrentLevel,
             activatePart: this.activatePart
         },
@@ -201,22 +202,38 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 }
 
                 const subclassSelections = advancementChoices.subclass?.flatMap(x => x.data) ?? [];
+                const possibleSubclasses = [this.actor.system.class.subclass];
+                if (this.actor.system.multiclass?.subclass) {
+                    possibleSubclasses.push(this.actor.system.multiclass.subclass);
+                }
 
-                const multiclassSubclass = this.actor.system.multiclass?.system?.subclasses?.[0];
-                const possibleSubclasses = [
-                    this.actor.system.class.subclass,
-                    ...(multiclassSubclass ? [multiclassSubclass] : [])
-                ];
-                const selectedSubclasses = possibleSubclasses.filter(x => subclassSelections.includes(x.uuid));
+                // const featureStateIncrease =  advancementChoices.subclass?.reduce((acc, subclass) => {
+                //     if(subclass.secondaryData.featureState) acc += 1;
+                //     return acc;
+                // }, 0) ?? 0;
                 context.subclassCards = [];
                 if (advancementChoices.subclass?.length > 0) {
+                    const featureStateIncrease = Object.values(this.levelup.levels).reduce((acc, level) => {
+                        acc += Object.values(level.choices).filter(choice => {
+                            return Object.values(choice).every(checkbox => checkbox.type === 'subclass');
+                        }).length;
+                        return acc;
+                    }, 0);
+
                     for (var subclass of possibleSubclasses) {
+                        const choice =
+                            advancementChoices.subclass.find(x => x.data[0] === subclass.uuid) ??
+                            advancementChoices.subclass.find(x => x.data.length === 0);
+                        const featureState = subclass.system.featureState + featureStateIncrease;
                         const data = await foundry.utils.fromUuid(subclass.uuid);
-                        const selected = selectedSubclasses.some(x => x.uuid === data.uuid);
                         context.subclassCards.push({
                             ...data.toObject(),
+                            path: choice?.path,
                             uuid: data.uuid,
-                            selected: selected
+                            selected: subclassSelections.includes(subclass.uuid),
+                            featureState: featureState,
+                            featureLabel: game.i18n.localize(subclassFeatureLabels[featureState]),
+                            isMulticlass: subclass.system.isMulticlass ? 'true' : 'false'
                         });
                     }
                 }
@@ -237,10 +254,19 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                                 return {
                                     ...domain,
-                                    selected: key === data.secondaryData,
-                                    disabled: (data.secondaryData && key !== data.secondaryData) || alreadySelected
+                                    selected: key === data.secondaryData.domain,
+                                    disabled:
+                                        (data.secondaryData.domain && key !== data.secondaryData.domain) ||
+                                        alreadySelected
                                 };
                             }) ?? [],
+                        subclasses:
+                            multiclass?.system?.subclasses.map(subclass => ({
+                                ...subclass,
+                                uuid: subclass.uuid,
+                                selected: data.secondaryData.subclass === subclass.uuid,
+                                disabled: data.secondaryData.subclass && data.secondaryData.subclass !== subclass.uuid
+                            })) ?? [],
                         compendium: 'classes',
                         limit: 1
                     };
@@ -277,8 +303,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 context.achievements = {
                     proficiency: {
-                        old: this.actor.system.proficiency,
-                        new: this.actor.system.proficiency + achivementProficiency,
+                        old: this.actor.system.proficiency.total,
+                        new: this.actor.system.proficiency.total + achivementProficiency,
                         shown: achivementProficiency > 0
                     },
                     damageThresholds: {
@@ -322,6 +348,13 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                                         ? advancement[choiceKey] + Number(checkbox.value)
                                         : Number(checkbox.value);
                                     break;
+                                case 'trait':
+                                    if (!advancement[choiceKey]) advancement[choiceKey] = {};
+                                    for (var traitKey of checkbox.data) {
+                                        if (!advancement[choiceKey][traitKey]) advancement[choiceKey][traitKey] = 0;
+                                        advancement[choiceKey][traitKey] += 1;
+                                    }
+                                    break;
                                 case 'domainCard':
                                     if (!advancement[choiceKey]) advancement[choiceKey] = [];
                                     if (checkbox.data.length === 1) {
@@ -339,6 +372,33 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                                     });
                                     advancement[choiceKey].push({ data: data, value: checkbox.value });
                                     break;
+                                case 'subclass':
+                                    if (checkbox.data[0]) {
+                                        const subclassItem = await foundry.utils.fromUuid(checkbox.data[0]);
+                                        if (!advancement[choiceKey]) advancement[choiceKey] = [];
+                                        advancement[choiceKey].push({
+                                            ...subclassItem.toObject(),
+                                            featureLabel: game.i18n.localize(
+                                                subclassFeatureLabels[Number(checkbox.secondaryData.featureState)]
+                                            )
+                                        });
+                                    }
+                                    break;
+                                case 'multiclass':
+                                    const multiclassItem = await foundry.utils.fromUuid(checkbox.data[0]);
+                                    const subclass = multiclassItem
+                                        ? await foundry.utils.fromUuid(checkbox.secondaryData.subclass)
+                                        : null;
+                                    advancement[choiceKey] = multiclassItem
+                                        ? {
+                                              ...multiclassItem.toObject(),
+                                              domain: checkbox.secondaryData.domain
+                                                  ? game.i18n.localize(domains[checkbox.secondaryData.domain].label)
+                                                  : null,
+                                              subclass: subclass ? subclass.name : null
+                                          }
+                                        : {};
+                                    break;
                             }
                         }
                     }
@@ -351,26 +411,35 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                             new: context.achievements.proficiency.new + (advancement.proficiency ?? 0)
                         },
                         hitPoints: {
-                            old: this.actor.system.resources.hitPoints.max,
-                            new: this.actor.system.resources.hitPoints.max + (advancement.hitPoint ?? 0)
+                            old: this.actor.system.resources.hitPoints.maxTotal,
+                            new: this.actor.system.resources.hitPoints.maxTotal + (advancement.hitPoint ?? 0)
                         },
                         stress: {
-                            old: this.actor.system.resources.stress.max,
-                            new: this.actor.system.resources.stress.max + (advancement.stress ?? 0)
+                            old: this.actor.system.resources.stress.maxTotal,
+                            new: this.actor.system.resources.stress.maxTotal + (advancement.stress ?? 0)
                         },
                         evasion: {
-                            old: this.actor.system.evasion,
-                            new: this.actor.system.evasion + (advancement.evasion ?? 0)
+                            old: this.actor.system.evasion.total,
+                            new: this.actor.system.evasion.total + (advancement.evasion ?? 0)
                         }
                     },
-                    traits:
-                        advancement.trait?.flatMap(x =>
-                            x.data.map(data => game.i18n.localize(abilities[data].label))
-                        ) ?? [],
+                    traits: Object.keys(this.actor.system.traits).reduce((acc, traitKey) => {
+                        if (advancement.trait?.[traitKey]) {
+                            if (!acc) acc = {};
+                            acc[traitKey] = {
+                                label: game.i18n.localize(abilities[traitKey].label),
+                                old: this.actor.system.traits[traitKey].total,
+                                new: this.actor.system.traits[traitKey].total + advancement.trait[traitKey]
+                            };
+                        }
+                        return acc;
+                    }, null),
                     domainCards: advancement.domainCard ?? [],
                     experiences:
                         advancement.experience?.flatMap(x => x.data.map(data => ({ name: data, modifier: x.value }))) ??
-                        []
+                        [],
+                    multiclass: advancement.multiclass,
+                    subclass: advancement.subclass
                 };
 
                 context.advancements.statistics.proficiency.shown =
@@ -486,7 +555,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             const target = event.target.closest('.card-preview-container');
             if (item.type === 'domainCard') {
                 if (
-                    !this.actor.system.class.value.system.domains.includes(item.system.domain) &&
+                    !this.actor.system.domains.includes(item.system.domain) &&
                     this.levelup.classUpgradeChoices?.multiclass?.domain !== item.system.domain
                 ) {
                     ui.notifications.error(
@@ -547,8 +616,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                         amount: target.dataset.amount ? Number(target.dataset.amount) : null,
                         value: target.dataset.value,
                         type: target.dataset.type,
-                        data: item.uuid,
-                        secondaryData: null
+                        data: item.uuid
                     }
                 });
                 this.render();
@@ -562,16 +630,16 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
         const update = {};
         if (!button.checked) {
-            if (button.dataset.cost > 1) {
+            const basePath = `levels.${this.levelup.currentLevel}.choices`;
+            const current = foundry.utils.getProperty(this.levelup, `${basePath}.${button.dataset.option}`);
+            if (Number(button.dataset.cost) > 1 || Object.keys(current).length === 1) {
                 // Simple handling that doesn't cover potential Custom LevelTiers.
-                update[`levels.${this.levelup.currentLevel}.choices.-=${button.dataset.option}`] = null;
+                update[`${basePath}.-=${button.dataset.option}`] = null;
             } else {
-                update[
-                    `levels.${this.levelup.currentLevel}.choices.${button.dataset.option}.-=${button.dataset.checkboxNr}`
-                ] = null;
+                update[`${basePath}.${button.dataset.option}.-=${button.dataset.checkboxNr}`] = null;
             }
         } else {
-            if (!this.levelup.levels[this.levelup.currentLevel].nrSelections.available) {
+            if (this.levelup.levels[this.levelup.currentLevel].nrSelections.available < Number(button.dataset.cost)) {
                 ui.notifications.info(
                     game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.info.insufficentAdvancements')
                 );
@@ -600,24 +668,35 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
     static async selectPreview(_, button) {
         const remove = button.dataset.selected;
-        const selectionData = Object.values(this.levelup.selectionData);
-        const option = remove
-            ? selectionData.find(x => x.type === 'subclass' && x.data.includes(button.dataset.uuid))
-            : selectionData.find(x => x.type === 'subclass' && x.data.length === 0);
-        if (!option) return;
+        await this.levelup.updateSource({
+            [`${button.dataset.path}`]: {
+                data: remove ? [] : [button.dataset.uuid],
+                secondaryData: {
+                    featureState: button.dataset.featureState,
+                    isMulticlass: button.dataset.isMulticlass
+                }
+            }
+        });
 
-        const path = `tiers.${option.tier}.levels.${option.level}.optionSelections.${option.optionKey}.${option.checkboxNr}.data`;
-        await this.levelup.updateSource({ [path]: remove ? [] : button.dataset.uuid });
         this.render();
     }
 
     static async selectDomain(_, button) {
         const option = foundry.utils.getProperty(this.levelup, button.dataset.path);
-        const domain = option.secondaryData ? null : button.dataset.domain;
+        const domain = option.secondaryData.domain ? null : button.dataset.domain;
 
         await this.levelup.updateSource({
-            multiclass: { domain },
-            [`${button.dataset.path}.secondaryData`]: domain
+            [`${button.dataset.path}.secondaryData.domain`]: domain
+        });
+        this.render();
+    }
+
+    static async selectSubclass(_, button) {
+        const option = foundry.utils.getProperty(this.levelup, button.dataset.path);
+        const subclass = option.secondaryData.subclass ? null : button.dataset.subclass;
+
+        await this.levelup.updateSource({
+            [`${button.dataset.path}.secondaryData.subclass`]: subclass
         });
         this.render();
     }

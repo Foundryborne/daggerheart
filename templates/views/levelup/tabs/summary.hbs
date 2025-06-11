@@ -95,11 +95,14 @@
                 {{#if this.advancements.traits}}
                     <div>
                         <h5>{{localize "DAGGERHEART.Application.LevelUp.summary.traits"}}</h5>
-                        <div class="summary-selection-container">
+  
                             {{#each this.advancements.traits}}
-                                <div class="summary-selection">{{this}}</div>
+                                <div class="increase-container">
+                                    {{this.label}}: {{this.old}}
+                                    <i class="fa-solid fa-arrow-right-long"></i>
+                                    {{this.new}}
+                                </div>
                             {{/each}}
-                        </div>
                     </div>
                 {{/if}}
 
@@ -123,6 +126,30 @@
                             {{/each}}
                         </div>
                     </div>
+                {{/if}}
+
+                {{#if this.advancements.subclass}}
+                    <div>
+                        <h5>{{localize "DAGGERHEART.Application.LevelUp.summary.subclass"}}</h5>
+                        <div class="summary-selection-container">
+                            {{#each this.advancements.subclass}}
+                                <div class="summary-selection">{{this.name}} - {{this.featureLabel}}</div>
+                            {{/each}}
+                        </div>
+                    </div>
+                {{/if}}
+
+                {{#if this.advancements.multiclass}}
+                    {{#with this.advancements.multiclass}}
+                        <div>
+                            <h5>{{localize "DAGGERHEART.Application.LevelUp.summary.multiclass"}}</h5>
+                            <div class="summary-selection-container">
+                                <div class="summary-selection">{{this.name}}</div>
+                                <div class="summary-selection">{{this.domain}}</div>
+                                <div class="summary-selection">{{this.subclass}}</div>
+                            </div>
+                        </div>
+                    {{/with}}
                 {{/if}}
             </div>
         </fieldset>

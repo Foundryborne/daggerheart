@@ -63,7 +63,7 @@
 
                 <div class="levelup-card-selection subclass-cards">
                     {{#each this.subclassCards}}
-                        {{> "systems/daggerheart/templates/views/levelup/parts/selectable-card-preview.hbs" img=this.img name=this.name path=this.path selected=this.selected uuid=this.uuid disabled=this.disabled }}
+                        {{> "systems/daggerheart/templates/views/levelup/parts/selectable-card-preview.hbs" img=this.img header=this.featureLabel name=this.name path=this.path selected=this.selected uuid=this.uuid isMulticlass=this.isMulticlass featureState=this.featureState disabled=this.disabled }}
                     {{/each}}
                 </div>
             </div>
@@ -80,6 +80,20 @@
                             <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}" {{#if (not this.disabled)}}data-action="selectDomain" data-uuid="{{../multiclass.uuid}}" data-domain="{{this.id}}" data-path="{{../multiclass.path}}" {{/if}}>
                                 <div class="levelup-domain-label">{{localize this.label}}</div>
                                 <img src="{{this.src}}" />
+                                {{#if this.selected}}
+                                    <div class="levelup-domain-selected">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        {{/each}}
+                    </div>
+
+                    <div class="levelup-domains-selection-container">
+                        {{#each this.multiclass.subclasses}}
+                            <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}" {{#if (not this.disabled)}}data-action="selectSubclass" data-uuid="{{../multiclass.uuid}}" data-subclass="{{this.uuid}}" data-path="{{../multiclass.path}}" {{/if}}>
+                                <div class="levelup-domain-label">{{localize this.name}}</div>
+                                <img src="{{this.img}}" />
                                 {{#if this.selected}}
                                     <div class="levelup-domain-selected">
                                         <i class="fa-solid fa-check"></i>

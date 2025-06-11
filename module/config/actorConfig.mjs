@@ -409,3 +409,9 @@ export const levelupData = {
         }
     }
 };
+
+export const subclassFeatureLabels = {
+    1: 'DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle',
+    2: 'DAGGERHEART.Sheets.PC.DomainCard.SpecializationTitle',
+    3: 'DAGGERHEART.Sheets.PC.DomainCard.MasteryTitle'
+};

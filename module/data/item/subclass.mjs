@@ -25,7 +25,16 @@ export default class DHSubclass extends BaseDataItem {
             foundationFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
             specializationFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
             masteryFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
+            featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),
             isMulticlass: new fields.BooleanField({ initial: false })
+        };
+    }
+
+    get features() {
+        return {
+            foundation: this.foundationFeature,
+            specialization: this.featureState >= 2 ? this.specializationFeature : null,
+            mastery: this.featureState === 3 ? this.masteryFeature : null
         };
     }
 
@@ -34,15 +43,19 @@ export default class DHSubclass extends BaseDataItem {
         if (allowed === false) return;
 
         if (this.actor?.type === 'character') {
-            const path = data.system.isMulticlass ? 'system.multiclass' : 'system.class';
-            const classData = foundry.utils.getProperty(this.actor, path);
-            if (!classData.value) {
+            const classData = this.actor.items.find(
+                x => x.type === 'class' && x.system.isMulticlass === data.system.isMulticlass
+            );
+            const subclassData = this.actor.items.find(
+                x => x.type === 'subclass' && x.system.isMulticlass === data.system.isMulticlass
+            );
+            if (!classData) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.MissingClass'));
                 return false;
-            } else if (classData.subclass) {
+            } else if (subclassData) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.SubclassAlreadySelected'));
                 return false;
-            } else if (classData.value.system.subclasses.every(x => x.uuid !== `Item.${data._id}`)) {
+            } else if (classData.system.subclasses.every(x => x.uuid !== `Item.${data._id}`)) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.SubclassNotInClass'));
                 return false;
             }

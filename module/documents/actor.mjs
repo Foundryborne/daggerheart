@@ -39,17 +39,65 @@ export default class DhpActor extends Actor {
                 return acc;
             }, {});
 
-            const domainCards = Object.keys(this.system.levelData.levelups)
+            const domainCards = [];
+            const experiences = [];
+            const subclassFeatureState = { class: null, multiclass: null };
+            let multiclass = null;
+            Object.keys(this.system.levelData.levelups)
                 .filter(x => x > newLevel)
-                .flatMap(levelKey => {
+                .forEach(levelKey => {
                     const level = this.system.levelData.levelups[levelKey];
                     const achievementCards = level.achievements.domainCards.map(x => x.itemUuid);
                     const advancementCards = level.selections.filter(x => x.type === 'domainCard').map(x => x.itemUuid);
-                    return [...achievementCards, ...advancementCards];
+                    domainCards.push(...achievementCards, ...advancementCards);
+                    experiences.push(...Object.keys(level.achievements.experiences));
+
+                    const subclass = level.selections.find(x => x.type === 'subclass');
+                    if (subclass) {
+                        const path = subclass.secondaryData.isMulticlass === 'true' ? 'multiclass' : 'class';
+                        const subclassState = Number(subclass.secondaryData.featureState) - 1;
+                        subclassFeatureState[path] = subclassFeatureState[path]
+                            ? Math.min(subclassState, subclassFeatureState[path])
+                            : subclassState;
+                    }
+
+                    multiclass = level.selections.find(x => x.type === 'multiclass');
                 });
 
-            for (var domainCard of domainCards) {
-                const itemCard = await this.items.find(x => x.uuid === domainCard);
+            if (experiences.length > 0) {
+                this.update({
+                    'system.experiences': experiences.reduce((acc, key) => {
+                        acc[`-=${key}`] = null;
+                        return acc;
+                    }, {})
+                });
+            }
+
+            if (subclassFeatureState.class) {
+                this.system.class.subclass.update({ 'system.featureState': subclassFeatureState.class });
+            }
+
+            if (subclassFeatureState.multiclass) {
+                this.system.multiclass.subclass.update({ 'system.featureState': subclassFeatureState.multiclass });
+            }
+
+            if (multiclass) {
+                const multiclassSubclass = this.items.find(x => x.type === 'subclass' && x.system.isMulticlass);
+                const multiclassItem = this.items.find(x => x.uuid === multiclass.itemUuid);
+
+                multiclassSubclass.delete();
+                multiclassItem.delete();
+
+                this.update({
+                    'system.multiclass': {
+                        value: null,
+                        subclass: null
+                    }
+                });
+            }
+
+            for (let domainCard of domainCards) {
+                const itemCard = this.items.find(x => x.uuid === domainCard);
                 itemCard.delete();
             }
 
@@ -71,6 +119,94 @@ export default class DhpActor extends Actor {
         const levelups = {};
         for (var levelKey of Object.keys(levelupData)) {
             const level = levelupData[levelKey];
+
+            for (var experienceKey in level.achievements.experiences) {
+                const experience = level.achievements.experiences[experienceKey];
+                await this.update({
+                    [`system.experiences.${experienceKey}`]: {
+                        description: experience.name,
+                        value: experience.modifier
+                    }
+                });
+            }
+
+            let multiclass = null;
+            const domainCards = [];
+            const subclassFeatureState = { class: null, multiclass: null };
+            const selections = [];
+            for (var optionKey of Object.keys(level.choices)) {
+                const selection = level.choices[optionKey];
+                for (var checkboxNr of Object.keys(selection)) {
+                    const checkbox = selection[checkboxNr];
+
+                    if (checkbox.type === 'multiclass') {
+                        multiclass = {
+                            ...checkbox,
+                            level: Number(levelKey),
+                            optionKey: optionKey,
+                            checkboxNr: Number(checkboxNr)
+                        };
+                    } else if (checkbox.type === 'domainCard') {
+                        domainCards.push({
+                            ...checkbox,
+                            level: Number(levelKey),
+                            optionKey: optionKey,
+                            checkboxNr: Number(checkboxNr)
+                        });
+                    } else {
+                        if (checkbox.type === 'subclass') {
+                            const path = checkbox.secondaryData.isMulticlass === 'true' ? 'multiclass' : 'class';
+                            subclassFeatureState[path] = Math.max(
+                                Number(checkbox.secondaryData.featureState),
+                                subclassFeatureState[path]
+                            );
+                        }
+
+                        selections.push({
+                            ...checkbox,
+                            level: Number(levelKey),
+                            optionKey: optionKey,
+                            checkboxNr: Number(checkboxNr)
+                        });
+                    }
+                }
+            }
+
+            if (multiclass) {
+                const subclassItem = await foundry.utils.fromUuid(multiclass.secondaryData.subclass);
+                const subclassData = subclassItem.toObject();
+                const multiclassItem = await foundry.utils.fromUuid(multiclass.data[0]);
+                const multiclassData = multiclassItem.toObject();
+
+                const embeddedItem = await this.createEmbeddedDocuments('Item', [
+                    {
+                        ...multiclassData,
+                        system: {
+                            ...multiclassData.system,
+                            domains: [multiclass.secondaryData.domain],
+                            isMulticlass: true
+                        }
+                    }
+                ]);
+
+                await this.createEmbeddedDocuments('Item', [
+                    {
+                        ...subclassData,
+                        system: {
+                            ...subclassData.system,
+                            isMulticlass: true
+                        }
+                    }
+                ]);
+                selections.push({ ...multiclass, itemUuid: embeddedItem[0].uuid });
+            }
+
+            for (var domainCard of domainCards) {
+                const item = await foundry.utils.fromUuid(domainCard.data[0]);
+                const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                selections.push({ ...domainCard, itemUuid: embeddedItem[0].uuid });
+            }
+
             const achievementDomainCards = [];
             for (var card of Object.values(level.achievements.domainCards)) {
                 const item = await foundry.utils.fromUuid(card.uuid);
@@ -79,27 +215,14 @@ export default class DhpActor extends Actor {
                 achievementDomainCards.push(card);
             }
 
-            const selections = [];
-            for (var optionKey of Object.keys(level.choices)) {
-                const selection = level.choices[optionKey];
-                for (var checkboxNr of Object.keys(selection)) {
-                    const checkbox = selection[checkboxNr];
-                    let itemUuid = null;
+            if (subclassFeatureState.class) {
+                await this.system.class.subclass.update({ 'system.featureState': subclassFeatureState.class });
+            }
 
-                    if (checkbox.type === 'domainCard') {
-                        const item = await foundry.utils.fromUuid(checkbox.data[0]);
-                        const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
-                        itemUuid = embeddedItem[0].uuid;
-                    }
-
-                    selections.push({
-                        ...checkbox,
-                        level: Number(levelKey),
-                        optionKey: optionKey,
-                        checkboxNr: Number(checkboxNr),
-                        itemUuid
-                    });
-                }
+            if (subclassFeatureState.multiclass) {
+                await this.system.multiclass.subclass.update({
+                    'system.featureState': subclassFeatureState.multiclass
+                });
             }
 
             levelups[levelKey] = {
