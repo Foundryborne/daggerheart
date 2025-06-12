@@ -507,7 +507,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
         const traitsTagify = htmlElement.querySelector('.levelup-trait-increases');
         if (traitsTagify) {
-            tagifyElement(traitsTagify, abilities, this.tagifyUpdate('trait').bind(this));
+            tagifyElement(traitsTagify, this.levelup.unmarkedTraits, this.tagifyUpdate('trait').bind(this));
         }
 
         const experienceIncreaseTagify = htmlElement.querySelector('.levelup-experience-increases');

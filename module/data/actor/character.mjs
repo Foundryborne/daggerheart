@@ -171,6 +171,13 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareBaseData() {
+        const currentLevel = this.levelData.level.current;
+        const currentTier =
+            currentLevel === 1
+                ? null
+                : Object.values(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers).find(
+                      tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
+                  ).tier;
         for (let levelKey in this.levelData.levelups) {
             const level = this.levelData.levelups[levelKey];
 
@@ -181,6 +188,7 @@ export default class DhCharacter extends BaseDataActor {
                     case 'trait':
                         selection.data.forEach(data => {
                             this.traits[data].bonus += 1;
+                            this.traits[data].tierMarked = selection.tier === currentTier;
                         });
                         break;
                     case 'hitPoint':

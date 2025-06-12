@@ -172,17 +172,17 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
         templates: {
             tag(tagData) {
                 return `<tag title="${tagData.title || tagData.value}"
-                    contenteditable='false'
-                    spellcheck='false'
-                    tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
-                    class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
-                    ${this.getAttributes(tagData)}> 
-            <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
-            <div>
-                <span class="${this.settings.classNames.tagText}">${tagData[this.settings.tagTextProp] || tagData.value}</span>
-                ${tagData.src ? `<img src="${tagData.src}"></i>` : ''}
-            </div>
-            </tag>`;
+                            contenteditable='false'
+                            spellcheck='false'
+                            tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
+                            class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
+                            ${this.getAttributes(tagData)}> 
+                    <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
+                    <div>
+                        <span class="${this.settings.classNames.tagText}">${tagData[this.settings.tagTextProp] || tagData.value}</span>
+                        ${tagData.src ? `<img src="${tagData.src}"></i>` : ''}
+                    </div>
+                </tag>`;
             }
         }
     });

@@ -1,3 +1,4 @@
+import { abilities } from '../config/actorConfig.mjs';
 import { chunkify } from '../helpers/utils.mjs';
 import { LevelOptionType } from './levelTier.mjs';
 
@@ -127,6 +128,35 @@ export class DhLevelup extends foundry.abstract.DataModel {
         return Object.keys(this.levels)
             .filter(level => Number(level) >= this.startLevel)
             .every(this.#levelFinished.bind(this));
+    }
+
+    get unmarkedTraits() {
+        const possibleLevels = Object.values(this.tiers).reduce((acc, tier) => {
+            if (tier.belongingLevels.includes(this.currentLevel)) acc = tier.belongingLevels;
+            return acc;
+        }, []);
+
+        return Object.keys(this.levels)
+            .filter(key => possibleLevels.some(x => x === Number(key)))
+            .reduce(
+                (acc, levelKey) => {
+                    const level = this.levels[levelKey];
+                    Object.values(level.choices).forEach(choice =>
+                        Object.values(choice).forEach(checkbox => {
+                            if (
+                                checkbox.type === 'trait' &&
+                                checkbox.data.length > 0 &&
+                                Number(levelKey) !== this.currentLevel
+                            ) {
+                                checkbox.data.forEach(data => delete acc[data]);
+                            }
+                        })
+                    );
+
+                    return acc;
+                },
+                { ...abilities }
+            );
     }
 
     get classUpgradeChoices() {
