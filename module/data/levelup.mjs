@@ -182,7 +182,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
         );
 
         const { multiclass, subclasses } = this.classUpgradeChoices;
-        return tierKeys.map(tierKey => {
+        return tierKeys.map((tierKey, tierIndex) => {
             const tier = this.tiers[tierKey];
             const multiclassInTier = multiclass?.tier === Number(tierKey);
             const subclassInTier = subclasses.some(x => x.tier === Number(tierKey));
@@ -216,8 +216,15 @@ export class DhLevelup extends foundry.abstract.DataModel {
 
                         return checkbox;
                     });
+
+                    let label = game.i18n.localize(option.label);
+                    if (optionKey === 'domainCard') {
+                        const maxLevel = tier.belongingLevels[tier.belongingLevels.length - 1];
+                        label = game.i18n.format(option.label, { maxLevel });
+                    }
+
                     return {
-                        label: game.i18n.localize(option.label),
+                        label: label,
                         checkboxGroups: chunkify(checkboxes, option.minCost, chunkedBoxes => {
                             const anySelected = chunkedBoxes.some(x => x.selected);
                             const anyDisabled = chunkedBoxes.some(x => x.disabled);

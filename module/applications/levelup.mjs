@@ -204,9 +204,12 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     context.domainCards.push({
                         ...(card.toObject?.() ?? card),
                         emptySubtexts: domainsData.map(domain => {
-                            const levelMax = domain.multiclass
+                            const levelBase = domain.multiclass
                                 ? Math.ceil(this.levelup.currentLevel / 2)
                                 : this.levelup.currentLevel;
+                            const levelMax = domainCard.secondaryData?.limit
+                                ? Math.min(domainCard.secondaryData.limit, levelBase)
+                                : levelBase;
 
                             return game.i18n.format('DAGGERHEART.Application.LevelUp.Selections.emptyDomainCardHint', {
                                 domain: game.i18n.localize(domains[domain.domain].label),
@@ -216,7 +219,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                         path: domainCard.data
                             ? `${domainCard.path}.data`
                             : `levels.${domainCard.level}.achievements.domainCards.${key}.uuid`,
-                        limit: domainCard.level,
+                        limit: domainCard.secondaryData?.limit ?? null,
                         compendium: 'domains'
                     });
                 }
@@ -582,10 +585,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     return;
                 }
 
-                if (
-                    (isMulticlass ? Math.ceil(this.levelup.currentLevel / 2) : this.levelup.currentLevel) <
-                    item.system.level
-                ) {
+                const levelBase = isMulticlass ? Math.ceil(this.levelup.currentLevel / 2) : this.levelup.currentLevel;
+                const levelMax = target.dataset.limit ? Math.min(Number(target.dataset.limit), levelBase) : levelBase;
+                if (levelMax < item.system.level) {
                     ui.notifications.error(
                         game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardToHighLevel')
                     );
@@ -668,15 +670,23 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 return;
             }
 
-            update[
-                `levels.${this.levelup.currentLevel}.choices.${button.dataset.option}.${button.dataset.checkboxNr}`
-            ] = {
+            const updateData = {
                 tier: Number(button.dataset.tier),
                 minCost: Number(button.dataset.cost),
                 amount: button.dataset.amount ? Number(button.dataset.amount) : null,
                 value: button.dataset.value,
                 type: button.dataset.type
             };
+
+            if (button.dataset.type === 'domainCard') {
+                updateData.secondaryData = {
+                    limit: Math.max(...this.levelup.tiers[button.dataset.tier].belongingLevels)
+                };
+            }
+
+            update[
+                `levels.${this.levelup.currentLevel}.choices.${button.dataset.option}.${button.dataset.checkboxNr}`
+            ] = updateData;
         }
 
         await this.levelup.updateSource(update);
