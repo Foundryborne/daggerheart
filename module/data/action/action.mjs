@@ -43,6 +43,9 @@ const fields = foundry.data.fields;
     - Add Drag & Drop for documentUUID field (Macro & Summon)
     - Add optionnal Role for Healing ?
     - Handle Roll result as part of formula if needed
+    - Target Check
+    - Cost Check
+    - Range Check
 */
 
 export class DHBaseAction extends foundry.abstract.DataModel {

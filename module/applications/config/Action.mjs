@@ -7,12 +7,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         
         this.action = action;
         this.openSection = null;
-        // console.log(this.action)
     }
-
-    // get title(){
-    //     return `Action - ${this.action.name}`;
-    // }
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
@@ -67,8 +62,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         if(!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
         if(this.action.damage?.hasOwnProperty('includeBase')) context.hasBaseDamage = !!this.action.parent.damage;
         context.getRealIndex = this.getRealIndex.bind(this);
-        
-        console.log(context, this.action)
         return context;
     }
 
@@ -100,15 +93,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         this.action = updates.system.actions[this.action.index];
         this.render();
     }
-
-    /* cleanData(data) {
-        for(let k in data) {
-            if(typeof data[k] === 'object' && !Array.isArray(data[k])) {
-                if(!isNaN(Object.keys(data[k])[0])) data[k] = Object.values(data[k]);
-            }
-        }
-        return data;
-    } */
 
     static addElement(event) {
         const data = this.action.toObject(),
@@ -143,7 +127,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     static async addEffect(event) {
         if ( !this.action.effects ) return;
-        // console.log(this, this.action.item)
         const effectData = this._addEffectData.bind(this)(),
             [created] = await this.action.item.createEmbeddedDocuments("ActiveEffect", [effectData], { render: false }),
             data = this.action.toObject();

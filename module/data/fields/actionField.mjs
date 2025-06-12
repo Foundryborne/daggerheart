@@ -2,13 +2,7 @@ import { actionsTypes } from "../action/_module.mjs";
 
 // Temporary Solution
 export default class ActionField extends foundry.data.fields.ObjectField {
-    /** @override */
-    // initialize(value, model, options={}) {
-    //     console.log('initialize', value.type)
-    //     this.model = actionsTypes[value?.type] ?? actionsTypes.attack;
-    //     this.fields = this._initialize(this.model.defineSchema());
-    //     return super.initialize(value, model, options)
-    // }
+    
     getModel(value) {
         return actionsTypes[value.type] ?? actionsTypes.attack;
     }

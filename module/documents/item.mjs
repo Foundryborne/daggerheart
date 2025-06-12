@@ -7,7 +7,6 @@ export default class DhpItem extends Item {
     prepareEmbeddedDocuments() {
         super.prepareEmbeddedDocuments();
         for ( const action of this.system.actions ?? [] ) action.prepareData();
-        // for ( const action of this.system.actions ?? [] ) console.log(action);
     }
 
     /**

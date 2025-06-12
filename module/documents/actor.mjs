@@ -255,7 +255,6 @@ export default class DhpActor extends Actor {
                 ),
                 rolls: [roll]
             });
-            console.log(systemData)
 
             await cls.create(msg.toObject());
         }

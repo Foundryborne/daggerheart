@@ -99,11 +99,9 @@ export default class WeaponSheet extends DaggerheartSheet(ItemSheetV2) {
     }
     
     static async addAction() {
-        // const actionType = await WeaponSheet.selectActionType();
         const actionType = await WeaponSheet.selectActionType(),
             actionIndexes = this.document.system.actions.map(x => x._id.split('-')[2]).sort((a, b) => a - b)
         try {
-            // const cls = DHAction,
             const cls = actionsTypes[actionType?.type] ?? actionsTypes.attack,
                 action = new cls(
                     {
