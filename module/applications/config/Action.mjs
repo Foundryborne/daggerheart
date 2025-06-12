@@ -96,7 +96,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     static addElement(event) {
         const data = this.action.toObject(),
-            key = $(event.target).closest('.action-category-data').data('key');
+            key = event.target.closest('.action-category-data').dataset.key;
         if ( !this.action[key] ) return;
         data[key].push({});
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
@@ -104,8 +104,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     static removeElement(event) {
         const data = this.action.toObject(),
-            key = $(event.target).closest('.action-category-data').data('key'),
-            index = $(event.target).data('index');
+            key = event.target.closest('.action-category-data').dataset.key,
+            index = event.target.dataset.index;
         data[key].splice(index, 1);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
@@ -120,7 +120,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     static removeDamage(event) {
         if ( !this.action.damage.parts ) return;
         const data = this.action.toObject(),
-            index = $(event.target).data('index');
+            index = event.target.dataset.index;
         data.damage.parts.splice(index, 1);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
@@ -150,7 +150,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     static removeEffect(event) {
         if ( !this.action.effects ) return;
-        const index = $(event.target).data('index'),
+        const index = event.target.dataset.index,
             effectId = this.action.effects[index]._id;
         this.constructor.removeElement.bind(this)(event);
         this.action.item.deleteEmbeddedDocuments("ActiveEffect", [effectId]);
