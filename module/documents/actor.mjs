@@ -144,7 +144,7 @@ export default class DhpActor extends Actor {
             fearDice = 'd12',
             advantageDice = 'd6',
             disadvantageDice = 'd6',
-            advantage = (config.event.altKey ?? config.event.ctrlKey) ? false : null,
+            advantage = config.event.altKey ? true : config.event.ctrlKey ? false : null,
             targets,
             damage = config.damage,
             modifiers = this.formatRollModifier(config.roll),
