@@ -114,7 +114,7 @@ export const getCommandTarget = () => {
         ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.NoSelectedToken'));
         return null;
     }
-    if (target.type !== 'pc') {
+    if (target.type !== 'character') {
         ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.OnlyUseableByPC'));
         return null;
     }

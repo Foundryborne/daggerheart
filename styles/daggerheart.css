@@ -2370,228 +2370,8 @@ div.daggerheart.views.multiclass {
   align-items: center;
   gap: 5px;
 }
-.daggerheart.sheet.adversary .adversary-header-container {
-  position: relative;
-  background-color: grey;
-  display: flex;
-}
-.daggerheart.sheet.adversary .adversary-header-container .adversary-header {
-  flex: 1;
-}
-.daggerheart.sheet.adversary .adversary-header-container .adversary-header img {
-  height: 60px;
-  width: 60px;
-}
-.daggerheart.sheet.adversary .adversary-header-container .adversary-header .adversary-title {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  font-size: 28px;
-}
-.daggerheart.sheet.adversary .adversary-header-container .adversary-header .adversary-title .title-text {
-  width: 100%;
-}
-.daggerheart.sheet.adversary .adversary-header-container .adversary-header .adversary-title input {
-  font-size: 28px;
-  border: 0;
-  height: 100%;
-}
-.daggerheart.sheet.adversary .adversary-header-container .adversary-toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: white;
-  color: black;
-  flex: 0;
-}
-.daggerheart.sheet.adversary .motive-container {
-  background: lightgrey;
-  margin-bottom: 8px;
-  padding-bottom: 4px;
-}
-.daggerheart.sheet.adversary .motive-container .motive-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.daggerheart.sheet.adversary .motive-container .motive-title .motive-title-base {
-  font-size: 21px;
-}
-.daggerheart.sheet.adversary .motive-container .motive-title .motive-title-value {
-  font-style: italic;
-  position: relative;
-  top: 2px;
-}
-.daggerheart.sheet.adversary .motive-container .motive-title i {
-  margin-left: 4px;
-  cursor: pointer;
-}
-.daggerheart.sheet.adversary .motive-container .motive-title i:hover {
-  filter: drop-shadow(0 0 3px red);
-}
-.daggerheart.sheet.adversary .adversary-content-container {
-  display: flex;
-  align-items: baseline;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container {
-  flex: 1;
-  margin-right: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-title {
-  flex: 0;
+.application.sheet.daggerheart.dh-style.active-effect-config label {
   white-space: nowrap;
-  font-weight: bold;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-row {
-  display: flex;
-  align-items: center;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-row .statistic-value {
-  flex: 0;
-  white-space: nowrap;
-  margin-left: 4px;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-row .adversary-roll {
-  border: 0;
-  width: 16px;
-  margin-left: 4px;
-  align-self: baseline;
-  transition: transform 0.2s;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-row .adversary-roll:hover {
-  transform: rotate(30deg);
-  filter: drop-shadow(0px 0px 3px red);
-  cursor: pointer;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-resource-container {
-  display: flex;
-  align-items: center;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-resource-container label {
-  min-width: 44px;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-resource-container .statistic-resource-inner-container {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-resource-container .resource-title {
-  align-self: center;
-  font-weight: bold;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .statistic-resource-container .statistic-resource-input {
-  margin: 0;
-  flex: 0;
-  min-width: 16px;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .attack-container {
-  border: 1px solid black dotted;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .experience-row {
-  display: flex;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .experience-row * {
-  flex: 0;
-  white-space: nowrap;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .experience-container i {
-  margin-left: 4px;
-  cursor: pointer;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .experience-container i:hover {
-  filter: drop-shadow(0 0 3px red);
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .experience-chip {
-  border: 2px solid #708090;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  padding: 4px;
-  margin-bottom: 6px;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .experience-chip .experience-text {
-  flex: 1;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .experience-chip .experience-value {
-  flex: 0;
-  min-width: 26px;
-  margin: 0 4px;
-}
-.daggerheart.sheet.adversary .adversary-statistics-container .experience-chip .experience-button {
-  flex: 0;
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-}
-.daggerheart.sheet.adversary .adversary-damage-threshold-container input {
-  min-width: 26px;
-}
-.daggerheart.sheet.adversary .adversary-moves-container {
-  flex: 2.5;
-}
-.daggerheart.sheet.adversary .adversary-moves-container .moves-title {
-  text-decoration: underline;
-  font-weight: bold;
-}
-.daggerheart.sheet.adversary .adversary-moves-container .move-container {
-  cursor: pointer;
-}
-.daggerheart.sheet.adversary .adversary-moves-container .move-container:hover {
-  background: #2f4f4f40;
-}
-.daggerheart.sheet.adversary .adversary-moves-container .move-container .moves-name {
-  font-weight: bold;
-  text-decoration: none;
-}
-.daggerheart.sheet.adversary .adversary-moves-container .move-container .move-description p {
-  margin-top: 0;
-}
-.daggerheart.sheet.adversary .adversary-moves-container .moves-edit-container i {
-  margin-left: 4px;
-  cursor: pointer;
-}
-.daggerheart.sheet.adversary .adversary-moves-container .moves-edit-container i:hover {
-  filter: drop-shadow(0 0 3px red);
-}
-.daggerheart.sheet.adversary .chip-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #778899;
-  padding: 8px;
-  border: 2px solid black;
-  border-radius: 6px;
-}
-.daggerheart.sheet.adversary .chip-container:not(:last-child) {
-  margin-bottom: 8px;
-}
-.daggerheart.sheet.adversary .chip-container .chip-inner-container {
-  display: flex;
-  align-items: center;
-}
-.daggerheart.sheet.adversary .chip-container .chip-inner-container img {
-  height: 40px;
-  width: 40px;
-  margin-right: 8px;
-}
-.daggerheart.sheet.adversary .chip-container .chip-inner-container .chip-title {
-  font-size: 22px;
-  font-weight: bold;
-  font-style: italic;
-}
-.daggerheart.sheet.adversary .chip-container button {
-  height: 40px;
-  width: 40px;
-  background: white;
 }
 .daggerheart.sheet .title-container {
   display: flex;
@@ -2997,7 +2777,7 @@ div.daggerheart.views.multiclass {
   justify-content: center;
   align-items: center;
   width: 3rem;
-  background-color: var(rgba(9, 71, 179, 0.75));
+  background-color: rgba(9, 71, 179, 0.75);
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
   color: #d3d3d3;
@@ -3077,6 +2857,31 @@ div.daggerheart.views.multiclass {
 }
 #resources:has(.fear-bar) {
   min-width: 200px;
+}
+.application.sheet.daggerheart.actor.dh-style.adversary .window-content {
+  overflow: auto;
+}
+.daggerheart.sheet.actor.environment .potential-adversary-container {
+  width: 100%;
+  height: 50px;
+}
+.daggerheart.sheet.actor.environment .potential-adversary-container .adversary-placeholder {
+  font-style: italic;
+  text-align: center;
+  opacity: 0.6;
+}
+.daggerheart.sheet.actor.environment .potential-adversary-container .adversaries-container {
+  display: flex;
+  gap: 8px;
+}
+.daggerheart.sheet.actor.environment .potential-adversary-container .adversaries-container .adversary-container {
+  border: 1px solid var(--color-dark-5);
+  border-radius: 6px;
+  padding: 0 2px;
+  font-weight: bold;
+  cursor: pointer;
+  background-image: url(../assets/parchments/dh-parchment-dark.png);
+  color: var(--color-light-3);
 }
 .application.sheet.daggerheart.dh-style.feature .item-sheet-header {
   display: flex;
@@ -3354,6 +3159,12 @@ div.daggerheart.views.multiclass {
   grid-template-columns: 1fr 2fr;
   gap: 10px;
 }
+.application.sheet.dh-style fieldset.two-columns.even {
+  grid-template-columns: 1fr 1fr;
+}
+.application.sheet.dh-style fieldset.two-columns .full-width {
+  grid-column: span 2;
+}
 .application.sheet.dh-style fieldset legend {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -3384,6 +3195,14 @@ div.daggerheart.views.multiclass {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: smaller;
+}
+.application.sheet.dh-style .two-columns {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+}
+.application.sheet.dh-style .two-columns.even {
+  grid-template-columns: 1fr 1fr;
 }
 .application.sheet.dh-style line-div {
   display: block;
@@ -3591,6 +3410,16 @@ div.daggerheart.views.multiclass {
   color: light-dark(#18162e, #f3c267);
   text-shadow: none;
   font-family: 'Montserrat', sans-serif;
+}
+.sheet.daggerheart.dh-style .tab-form-footer {
+  display: flex;
+  padding: 0 10px;
+  position: relative;
+  bottom: -32px;
+}
+.sheet.daggerheart.dh-style .tab-form-footer button {
+  flex: 1;
+  border-width: 2px;
 }
 .sheet.daggerheart.dh-style .tab.actions .actions-list {
   display: flex;

@@ -149,7 +149,10 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 const experienceIncreaseValues = experienceIncreases
                     .filter(exp => exp.data.length > 0)
                     .flatMap(exp =>
-                        exp.data.map(data => this.actor.system.experiences.find(x => x.id === data).description)
+                        exp.data.map(data => {
+                            const experience = Object.keys(this.actor.system.experiences).find(x => x === data);
+                            return this.actor.system.experiences[experience].description;
+                        })
                     );
                 context.experienceIncreases = {
                     values: experienceIncreaseValues,
@@ -201,7 +204,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 const multiclassSubclass = this.actor.system.multiclass?.system?.subclasses?.[0];
                 const possibleSubclasses = [
-                    this.actor.system.subclass,
+                    this.actor.system.class.subclass,
                     ...(multiclassSubclass ? [multiclassSubclass] : [])
                 ];
                 const selectedSubclasses = possibleSubclasses.filter(x => subclassSelections.includes(x.uuid));
@@ -274,8 +277,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
                 context.achievements = {
                     proficiency: {
-                        old: this.actor.system.proficiency.value,
-                        new: this.actor.system.proficiency.value + achivementProficiency,
+                        old: this.actor.system.proficiency,
+                        new: this.actor.system.proficiency + achivementProficiency,
                         shown: achivementProficiency > 0
                     },
                     damageThresholds: {
@@ -328,10 +331,12 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                                     break;
                                 case 'experience':
                                     if (!advancement[choiceKey]) advancement[choiceKey] = [];
-                                    const data = checkbox.data.map(
-                                        data =>
-                                            this.actor.system.experiences.find(x => x.id === data)?.description ?? ''
-                                    );
+                                    const data = checkbox.data.map(data => {
+                                        const experience = Object.keys(this.actor.system.experiences).find(
+                                            x => x === data
+                                        );
+                                        return this.actor.system.experiences[experience]?.description ?? '';
+                                    });
                                     advancement[choiceKey].push({ data: data, value: checkbox.value });
                                     break;
                             }
@@ -354,8 +359,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                             new: this.actor.system.resources.stress.max + (advancement.stress ?? 0)
                         },
                         evasion: {
-                            old: this.actor.system.evasion.value,
-                            new: this.actor.system.evasion.value + (advancement.evasion ?? 0)
+                            old: this.actor.system.evasion,
+                            new: this.actor.system.evasion + (advancement.evasion ?? 0)
                         }
                     },
                     traits:
@@ -421,8 +426,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         if (experienceIncreaseTagify) {
             tagifyElement(
                 experienceIncreaseTagify,
-                this.actor.system.experiences.reduce((acc, experience) => {
-                    acc[experience.id] = { label: experience.description };
+                Object.keys(this.actor.system.experiences).reduce((acc, id) => {
+                    const experience = this.actor.system.experiences[id];
+                    acc[id] = { label: experience.description };
 
                     return acc;
                 }, {}),
