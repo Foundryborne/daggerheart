@@ -61,7 +61,23 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async reactionRoll(event) {
-        const { roll, diceResults, modifiers } = await this.actor.diceRoll(
+        const config = {
+            event: event,
+            title: `${this.actor.name} - Reaction Roll`,
+            roll: {
+                modifier: 0,
+                type: 'reaction'
+            },
+            chatMessage: {
+                type: 'adversaryRoll',
+                template: 'systems/daggerheart/templates/chat/adversary-roll.hbs',
+                mute: true
+            }
+        };
+        this.actor.diceRoll(config);
+
+        // Delete when new roll logic test done
+        /* const { roll, diceResults, modifiers } = await this.actor.diceRoll(
             { title: `${this.actor.name} - Reaction Roll`, value: 0 },
             event.shiftKey
         );
@@ -83,12 +99,33 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             rolls: [roll]
         });
 
-        cls.create(msg.toObject());
+        cls.create(msg.toObject()); */
     }
 
-    static async attackRoll() {
-        const { modifier, damage, name: attackName } = this.actor.system.attack;
-        const { roll, dice, advantageState, modifiers } = await this.actor.diceRoll(
+    static async attackRoll(event) {
+        const { modifier, damage, name: attackName } = this.actor.system.attack,
+            config = {
+                event: event,
+                title: attackName,
+                roll: {
+                    modifier: modifier,
+                    type: 'action'
+                },
+                chatMessage: {
+                    type: 'adversaryRoll',
+                    template: 'systems/daggerheart/templates/chat/adversary-attack-roll.hbs'
+                },
+                damage: {
+                    value: damage.value,
+                    type: damage.type
+                },
+                checkTarget: true
+        };
+        this.actor.diceRoll(config);
+
+        // Delete when new roll logic test done
+        /* const { modifier, damage, name: attackName } = this.actor.system.attack;
+        const { roll, dice, advantageState, modifiers } = await this.actor.diceRollOld(
             { title: `${this.actor.name} - Attack Roll`, value: modifier },
             event.shiftKey
         );
@@ -105,11 +142,12 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         const systemData = {
             title: attackName,
             origin: this.document.id,
-            roll: roll._formula,
+            roll,
+            // roll: roll._formula,
             advantageState,
-            total: roll._total,
+            // total: roll._total,
             modifiers: modifiers,
-            dice: dice,
+            // dice: dice,
             targets: targets,
             damage: { value: damage.value, type: damage.type }
         };
@@ -124,7 +162,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             rolls: [roll]
         });
 
-        cls.create(msg.toObject());
+        cls.create(msg.toObject()); */
     }
 
     static async addExperience() {

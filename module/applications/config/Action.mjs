@@ -47,17 +47,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         const tabs = {
             base: { active: true, cssClass: '', group: 'primary', id: 'base', icon: null, label: 'Base' },
             config: { active: false, cssClass: '', group: 'primary', id: 'config', icon: null, label: 'Configuration' },
-            effect: { active: false, cssClass: '', group: 'primary', id: 'effect', icon: null, label: 'Effect' },
-            // effects: { active: true, cssClass: '', group: 'primary', id: 'effects', icon: null, label: 'Effects' },
-            // useage: { active: false, cssClass: '', group: 'primary', id: 'useage', icon: null, label: 'Useage' },
-            // conditions: {
-            //     active: false,
-            //     cssClass: '',
-            //     group: 'primary',
-            //     id: 'conditions',
-            //     icon: null,
-            //     label: 'Conditions'
-            // }
+            effect: { active: false, cssClass: '', group: 'primary', id: 'effect', icon: null, label: 'Effect' }
         };
 
         for (const v of Object.values(tabs)) {
@@ -74,8 +64,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         context.openSection = this.openSection;
         context.tabs = this._getTabs();
         context.config = SYSTEM;
-        context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
-        context.hasBaseDamage = !!this.action.parent.damage;
+        if(!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
+        if(this.action.damage?.hasOwnProperty('includeBase')) context.hasBaseDamage = !!this.action.parent.damage;
         context.getRealIndex = this.getRealIndex.bind(this);
         
         console.log(context, this.action)

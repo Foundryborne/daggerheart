@@ -126,10 +126,12 @@ export const setDiceSoNiceForDualityRoll = (rollResult, advantage, disadvantage)
     const diceSoNicePresets = getDiceSoNicePresets();
     rollResult.dice[0].options.appearance = diceSoNicePresets.hope;
     rollResult.dice[1].options.appearance = diceSoNicePresets.fear;
-    if (advantage) {
-        rollResult.dice[2].options.appearance = diceSoNicePresets.advantage;
-    } else if (disadvantage) {
-        rollResult.dice[2].options.appearance = diceSoNicePresets.disadvantage;
+    if(rollResult.dice[2]) {
+        if (advantage) {
+            rollResult.dice[2].options.appearance = diceSoNicePresets.advantage;
+        } else if (disadvantage) {
+            rollResult.dice[2].options.appearance = diceSoNicePresets.disadvantage;
+        }
     }
 };
 
@@ -222,3 +224,11 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
         return acc;
     }, {});
 };
+
+// Fix on Foundry native formula replacement for DH
+const nativeReplaceFormulaData = Roll.replaceFormulaData;
+Roll.replaceFormulaData = function(formula, data, {missing, warn=false}={}) {
+    const terms = [{term: 'prof', default: 1}, {term: 'cast', default: 1}];
+    formula = terms.reduce((a,c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
+    return nativeReplaceFormulaData(formula, data, {missing, warn});
+}

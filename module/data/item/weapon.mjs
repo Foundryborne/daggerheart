@@ -36,8 +36,8 @@ export default class DHWeapon extends BaseDataItem {
                 })
             }),
             feature: new fields.StringField({ choices: SYSTEM.ITEM.weaponFeatures, blank: true }),
-            actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAttackAction))
-            // actions: new fields.ArrayField(new ActionField(DHBaseAction))
+            // actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAttackAction))
+            actions: new fields.ArrayField(new ActionField())
         };
     }
 }

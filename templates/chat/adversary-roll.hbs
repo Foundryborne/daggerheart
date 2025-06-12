@@ -1,22 +1,24 @@
 <div class="dice-roll daggerheart chat roll">
     <div class="dice-result">
-        <div class="dice-formula">{{roll}}</div>
+        <div class="dice-formula">{{roll.formula}}</div>
         <div class="dice-tooltip">
             <ol class="dice-rolls">
                 <div class="dice-hope-container">
-                    {{#each diceResults}}
-                        <li class="roll die d20 {{#if this.discarded}}discarded{{/if}}">{{this.value}}</li>
+                    {{#each roll.dice}}
+                        {{#each results}}
+                            <li class="roll die {{../denomination}}{{#if discarded}} discarded{{/if}}">{{result}}</li>
+                        {{/each}}
                     {{/each}}
                 </div>
                 <div class="modifiers-container">
                     {{#each modifiers}}
-                        <li class="modifier-value" data-value="{{this.value}}" title="{{this.title}}">{{this.label}}</li>
+                        <li class="modifier-value" data-value="{{value}}" title="{{title}}">{{label}}</li>
                     {{/each}}
                 </div>
             </ol>
         </div>
         <div class="dice-total">
-            <div class="dice-total-value">{{total}}</div>
+            <div class="dice-total-value">{{roll.total}}</div>
         </div>
     </div>
 </div>

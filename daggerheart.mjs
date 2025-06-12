@@ -124,7 +124,26 @@ Hooks.on(socketEvent.GMUpdate, async (action, uuid, update) => {
 });
 
 const renderDualityButton = async event => {
-    const button = event.currentTarget;
+    const button = event.currentTarget,
+        attributeValue = button.dataset.attribute?.toLowerCase(),
+        target = getCommandTarget();
+    if (!target) return;
+
+    const config = {
+            event: event,
+            title: button.dataset.label,
+            roll: {
+                modifier: attributeValue ? target.system.attributes[attributeValue].data.value : null,
+                type: button.dataset.actionType ?? null, // Need check
+            },
+            chatMessage: {
+                template: 'systems/daggerheart/templates/chat/attack-roll.hbs'
+            }
+        };
+    await target.diceRoll(config);
+
+    // Delete when new roll logic test done
+    /* const button = event.currentTarget;
     const attributeValue = button.dataset.attribute?.toLowerCase();
 
     const target = getCommandTarget();
@@ -160,7 +179,7 @@ const renderDualityButton = async event => {
         rolls: [roll]
     };
 
-    await cls.create(msgData);
+    await cls.create(msgData); */
 };
 
 Hooks.on('renderChatMessageHTML', (_, element) => {
@@ -293,6 +312,9 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',
         'systems/daggerheart/templates/ui/combat/combatTrackerSection.hbs',
         'systems/daggerheart/templates/views/actionTypes/damage.hbs',
+        'systems/daggerheart/templates/views/actionTypes/healing.hbs',
+        'systems/daggerheart/templates/views/actionTypes/resource.hbs',
+        'systems/daggerheart/templates/views/actionTypes/uuid.hbs',
         'systems/daggerheart/templates/views/actionTypes/uses.hbs',
         'systems/daggerheart/templates/views/actionTypes/roll.hbs',
         'systems/daggerheart/templates/views/actionTypes/cost.hbs',

@@ -14,7 +14,7 @@ export default class NpcRollSelectionDialog extends HandlebarsApplicationMixin(A
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Application.Settings.Title');
+        return game.i18n.localize('DAGGERHEART.Application.RollSelection.Title');
     }
 
     static DEFAULT_OPTIONS = {

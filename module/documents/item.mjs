@@ -120,23 +120,23 @@ export default class DhpItem extends Item {
     }
 
     async use(event) {
-        const actions = this.system.actions;
+        const actions = this.system.actions
+        let response;
         if(actions?.length) {
             let action = actions[0];
             if(actions.length > 1 && !event?.shiftKey) {
                 // Actions Choice Dialog
                 action = await this.selectActionDialog();
             }
-            if(!action) return;
+            if(action) response = action.use(event);
             // Check Target
             // If action.roll           => Roll Dialog
             // Else If action.cost      => Cost Dialog
             // Then
             // Apply Cost
             // Apply Effect
-
-            return action.use(event);
         }
         // Display Item Card in chat
+        return response;
     }
 }

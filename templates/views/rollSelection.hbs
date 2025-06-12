@@ -12,8 +12,8 @@
                 {{/each}}
             </div>
             <div class="flexrow">
-                <button class="disadvantage flex1 {{#if this.advantage}}selected{{/if}}" data-action="setAdvantage">Advantage</button>
-                <button class="disadvantage flex1 {{#if this.disadvantage}}selected{{/if}}" data-action="setDisadvantage">Disadvantage</button>
+                <button class="disadvantage flex1 {{#if this.advantage}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="true">{{localize "DAGGERHEART.General.Advantage.Full"}}</button>
+                <button class="disadvantage flex1 {{#if this.disadvantage}}selected{{/if}}" data-action="updateIsAdvantage">{{localize "DAGGERHEART.General.Disadvantage.Full"}}</button>
             </div>
             {{#if (not this.isNpc)}}
                 <div class="form-group">

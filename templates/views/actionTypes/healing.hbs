@@ -1,0 +1,21 @@
+
+<fieldset class="action-category">
+    <legend class="action-category-label" data-action="toggleSection" data-section="effects">
+        <div>Healing</div>
+    </legend>
+    <div class="action-category-data open">
+        <fieldset>
+            {{formField fields.type value=source.type name="healing.type" localize=true}}
+            <div class="multi-display">
+                {{formField fields.value.fields.custom.fields.enabled value=source.value.custom.enabled name="healing.value.custom.enabled"}}
+                {{#if source.value.custom.enabled}}
+                    {{formField fields.value.fields.custom.fields.formula value=source.value.custom.formula name="healing.value.custom.formula" localize=true}}
+                {{else}}
+                    {{formField fields.value.fields.multiplier value=source.value.multiplier name="healing.value.multiplier" localize=true}}
+                    {{formField fields.value.fields.dice value=source.value.dice name="healing.value.dice"}}
+                    {{formField fields.value.fields.bonus value=source.value.bonus name="healing.value.bonus" localize=true}}
+                {{/if}}
+            </div>
+        </fieldset>
+    </div>
+</fieldset>
