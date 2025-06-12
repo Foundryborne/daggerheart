@@ -42,6 +42,7 @@ const fields = foundry.data.fields;
     - Apply ActiveEffect => Add to Chat message like Damage Button ?
     - Add Drag & Drop for documentUUID field (Macro & Summon)
     - Add optionnal Role for Healing ?
+    - Handle Roll result as part of formula if needed
 */
 
 export class DHBaseAction extends foundry.abstract.DataModel {
