@@ -135,7 +135,7 @@ Hooks.on(socketEvent.GMUpdate, async (action, uuid, update) => {
 
 const renderDualityButton = async event => {
     const button = event.currentTarget,
-        attributeValue = button.dataset.attribute?.toLowerCase(),
+        traitValue = button.dataset.trait?.toLowerCase(),
         target = getCommandTarget();
     if (!target) return;
 
@@ -143,7 +143,8 @@ const renderDualityButton = async event => {
         event: event,
         title: button.dataset.label,
         roll: {
-            modifier: attributeValue ? target.system.attributes[attributeValue].data.value : null,
+            modifier: traitValue ? target.system.traits[traitValue].value : null,
+            label: button.dataset.label,
             type: button.dataset.actionType ?? null // Need check
         },
         chatMessage: {
@@ -239,7 +240,7 @@ Hooks.on('chatMessage', (_, message) => {
 
                 const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
                 const advantageRoll = `${rollCommand.advantage && !rollCommand.disadvantage ? '+d6' : rollCommand.disadvantage && !rollCommand.advantage ? '-d6' : ''}`;
-                const attributeRoll = `${trait?.data?.value ? `${trait.data.value > 0 ? `+${trait.data.value}` : `${trait.data.value}`}` : ''}`;
+                const attributeRoll = `${trait?.value ? `${trait.value > 0 ? `+${trait.value}` : `${trait.value}`}` : ''}`;
                 const roll = await Roll.create(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`).evaluate();
 
                 setDiceSoNiceForDualityRoll(

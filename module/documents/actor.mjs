@@ -271,8 +271,8 @@ export default class DhpActor extends Actor {
     }
 
     formatRollModifier(roll) {
-        const modifier = roll.modifier ? Number.parseInt(roll.modifier) : null;
-        return roll.modifier !== null
+        const modifier = roll.modifier !== null ? Number.parseInt(roll.modifier) : null;
+        return modifier !== null
             ? [
                   {
                       value: modifier,
