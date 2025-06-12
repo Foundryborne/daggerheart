@@ -3605,7 +3605,7 @@ div.daggerheart.views.multiclass {
 }
 .sheet.daggerheart.dh-style .tab-form-footer {
   display: flex;
-  padding: 0 8px 0 12px;
+  padding: 0 10px;
   position: relative;
   bottom: -32px;
 }
