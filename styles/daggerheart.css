@@ -2216,6 +2216,34 @@ div.daggerheart.views.multiclass {
 .daggerheart.views.action .action-category .action-category-data.open {
   max-height: initial;
 }
+.daggerheart.views.action .action-category .action-category-data .multi-display {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.daggerheart.views.action .action-category .action-category-data .multi-display .form-group {
+  flex: 1;
+}
+.daggerheart.views.action .action-category .action-category-data .form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.daggerheart.views.action .action-category .action-category-data .form-group label {
+  flex: 2;
+}
+.daggerheart.views.action .action-category .action-category-data .form-group .form-fields {
+  flex: 3;
+}
+.daggerheart.views.action .action-category .action-category-data .form-group img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.daggerheart.views.action .action-category .action-category-data .data-form-array {
+  border: 1px solid var(--color-fieldset-border);
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 .daggerheart.views.ancestry-selection .ancestry-section {
   display: flex;
   flex-direction: column;
@@ -3704,4 +3732,35 @@ div.daggerheart.views.multiclass {
 #players h3 .fear-control:hover:not(.disabled) {
   cursor: pointer;
   filter: drop-shadow(0 0 3px red);
+}
+.unlist {
+  list-style: none;
+  padding-inline-start: 0;
+}
+.list-select {
+  margin: 1rem;
+}
+.list-select li:not(:last-child) {
+  border-bottom: 1px solid #bbb;
+}
+.list-select li label {
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+.list-select li label > span {
+  flex: 1;
+  font-weight: bold;
+  font-size: var(--font-size-16);
+}
+dh-icon,
+dh-icon > img {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
 }

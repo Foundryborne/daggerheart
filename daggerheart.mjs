@@ -140,16 +140,16 @@ const renderDualityButton = async event => {
     if (!target) return;
 
     const config = {
-            event: event,
-            title: button.dataset.label,
-            roll: {
-                modifier: attributeValue ? target.system.attributes[attributeValue].data.value : null,
-                type: button.dataset.actionType ?? null, // Need check
-            },
-            chatMessage: {
-                template: 'systems/daggerheart/templates/chat/attack-roll.hbs'
-            }
-        };
+        event: event,
+        title: button.dataset.label,
+        roll: {
+            modifier: attributeValue ? target.system.attributes[attributeValue].data.value : null,
+            type: button.dataset.actionType ?? null // Need check
+        },
+        chatMessage: {
+            template: 'systems/daggerheart/templates/chat/attack-roll.hbs'
+        }
+    };
     await target.diceRoll(config);
 
     // Delete when new roll logic test done
@@ -240,8 +240,7 @@ Hooks.on('chatMessage', (_, message) => {
                 const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
                 const advantageRoll = `${rollCommand.advantage && !rollCommand.disadvantage ? '+d6' : rollCommand.disadvantage && !rollCommand.advantage ? '-d6' : ''}`;
                 const attributeRoll = `${attribute?.data?.value ? `${attribute.data.value > 0 ? `+${attribute.data.value}` : `${attribute.data.value}`}` : ''}`;
-                const roll = new Roll(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`);
-                await roll.evaluate();
+                const roll = await Roll.create(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`).evaluate();
 
                 setDiceSoNiceForDualityRoll(
                     roll,
@@ -264,7 +263,7 @@ Hooks.on('chatMessage', (_, message) => {
                 const systemData = new DHDualityRoll({
                     title: title,
                     origin: target?.id,
-                    roll: roll._formula,
+                    roll: roll,
                     modifiers: attribute ? [attribute] : [],
                     hope: { dice: rollCommand.hope ?? 'd12', value: roll.dice[0].total },
                     fear: { dice: rollCommand.fear ?? 'd12', value: roll.dice[1].total },
