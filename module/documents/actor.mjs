@@ -144,18 +144,24 @@ export default class DhpActor extends Actor {
             fearDice = 'd12',
             advantageDice = 'd6',
             disadvantageDice = 'd6',
-            advantage = config.event.altKey ?? config.event.ctrlKey ? false : null,
+            advantage = (config.event.altKey ?? config.event.ctrlKey) ? false : null,
             targets,
             damage = config.damage,
-            modifiers = this.formatRollModifier(config.roll.modifier),
+            modifiers = this.formatRollModifier(config.roll),
             rollConfig,
             formula,
             hope,
             fear;
-        
+
         if (!config.event.shiftKey && !config.event.altKey && !config.event.ctrlKey) {
             const dialogClosed = new Promise((resolve, _) => {
-                this.type === 'character' ? new RollSelectionDialog(this.system.experiences, this.system.resources.hope.value, resolve).render(true) : new NpcRollSelectionDialog(this.system.experiences, resolve).render(true);
+                this.type === 'character'
+                    ? new RollSelectionDialog(
+                          this.system.experiences,
+                          this.system.resources.hope.value,
+                          resolve
+                      ).render(true)
+                    : new NpcRollSelectionDialog(this.system.experiences, resolve).render(true);
             });
             rollConfig = await dialogClosed;
 
@@ -164,7 +170,7 @@ export default class DhpActor extends Actor {
             advantage = rollConfig.advantage;
             hopeDice = rollConfig.hope;
             fearDice = rollConfig.fear;
-            
+
             rollConfig.experiences.forEach(x =>
                 modifiers.push({
                     value: x.value,
@@ -173,7 +179,7 @@ export default class DhpActor extends Actor {
                 })
             );
 
-            if(this.type === 'character') {
+            if (this.type === 'character') {
                 const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
 
                 if (automateHope && result.hopeUsed) {
@@ -184,30 +190,36 @@ export default class DhpActor extends Actor {
             }
         }
 
-        if(this.type === 'character') {
-            formula = `1${hopeDice} + 1${fearDice}${advantage === true ? ` + 1d6` : advantage === false ? ` - 1d6` : ''}`
+        if (this.type === 'character') {
+            formula = `1${hopeDice} + 1${fearDice}${advantage === true ? ` + 1d6` : advantage === false ? ` - 1d6` : ''}`;
         } else {
-            formula = `${advantage === true || advantage === false ? 2 : 1}d20${advantage === true ? 'kh' : advantage === false ? 'kl' : ''}`
+            formula = `${advantage === true || advantage === false ? 2 : 1}d20${advantage === true ? 'kh' : advantage === false ? 'kl' : ''}`;
         }
         formula += ` ${modifiers.map(x => `+ ${x.value}`).join(' ')}`;
         const roll = await Roll.create(formula).evaluate();
 
-        if(this.type === 'character') {
+        if (this.type === 'character') {
             setDiceSoNiceForDualityRoll(roll, advantageDice, disadvantageDice);
             hope = roll.dice[0].results[0].result;
             fear = roll.dice[1].results[0].result;
-            if(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope) && config.roll.type === 'action') {
-                if(hope > fear) {
+            if (
+                game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope) &&
+                config.roll.type === 'action'
+            ) {
+                if (hope > fear) {
                     await this.update({
                         'system.resources.hope.value': Math.min(
                             this.system.resources.hope.value + 1,
                             this.system.resources.hope.max
                         )
                     });
-                } else if(hope === fear) {
+                } else if (hope === fear) {
                     await this.update({
                         'system.resources': {
-                            'hope.value': Math.min(this.system.resources.hope.value + 1, this.system.resources.hope.max),
+                            'hope.value': Math.min(
+                                this.system.resources.hope.value + 1,
+                                this.system.resources.hope.max
+                            ),
                             'stress.value': Math.max(this.system.resources.stress.value - 1, 0)
                         }
                     });
@@ -215,7 +227,7 @@ export default class DhpActor extends Actor {
             }
         }
 
-        if(config.checkTarget) {
+        if (config.checkTarget) {
             targets = Array.from(game.user.targets).map(x => ({
                 id: x.id,
                 name: x.actor.name,
@@ -225,7 +237,7 @@ export default class DhpActor extends Actor {
             }));
         }
 
-        if(config.chatMessage) {
+        if (config.chatMessage) {
             const configRoll = {
                 title: config.title,
                 origin: this.id,
@@ -233,46 +245,42 @@ export default class DhpActor extends Actor {
                 modifiers,
                 advantageState: advantage
             };
-            if(this.type === 'character') {
+            if (this.type === 'character') {
                 configRoll.hope = { dice: hopeDice, value: hope };
                 configRoll.fear = { dice: fearDice, value: fear };
-                configRoll.advantage = { dice: advantageDice, value: roll.dice[2]?.results[0].result ?? null }
+                configRoll.advantage = { dice: advantageDice, value: roll.dice[2]?.results[0].result ?? null };
                 /* advantage: { dice: advantageDice, value: advantage },
                 disadvantage: { dice: disadvantageDice, value: disadvantage } */
             }
-            if(damage) configRoll.damage = damage;
-            if(targets) configRoll.targets = targets;
-            const systemData = this.type === 'character' && !config.roll.simple ? new DHDualityRoll(configRoll) : configRoll,
-            cls = getDocumentClass('ChatMessage'),
-            msg = new cls({
-                type: config.chatMessage.type ?? 'dualityRoll',
-                sound: config.chatMessage.mute ? null : CONFIG.sounds.dice,
-                system: systemData,
-                // user: config.chatMessage.user ?? game.user.id,
-                content: await foundry.applications.handlebars.renderTemplate(
-                    config.chatMessage.template,
-                    systemData
-                ),
-                rolls: [roll]
-            });
+            if (damage) configRoll.damage = damage;
+            if (targets) configRoll.targets = targets;
+            const systemData =
+                    this.type === 'character' && !config.roll.simple ? new DHDualityRoll(configRoll) : configRoll,
+                cls = getDocumentClass('ChatMessage'),
+                msg = new cls({
+                    type: config.chatMessage.type ?? 'dualityRoll',
+                    sound: config.chatMessage.mute ? null : CONFIG.sounds.dice,
+                    system: systemData,
+                    content: config.chatMessage.template,
+                    rolls: [roll]
+                });
 
             await cls.create(msg.toObject());
         }
         return roll;
     }
 
-    formatRollModifier(modifier) {
-        return modifier.value !== null ? [
-                {
-                    value: modifier.value ? Number.parseInt(modifier.value) : 0,
-                    label:
-                        modifier.value >= 0
-                            ? `${modifier.title} +${modifier.value}`
-                            : `${modifier.title} ${modifier.value}`,
-                    title: modifier.title
-                }
-            ]
-        : [];
+    formatRollModifier(roll) {
+        const modifier = roll.modifier ? Number.parseInt(roll.modifier) : null;
+        return roll.modifier !== null
+            ? [
+                  {
+                      value: modifier,
+                      label: modifier >= 0 ? `${roll.label} +${modifier}` : `${roll.label} ${modifier}`,
+                      title: roll.label
+                  }
+              ]
+            : [];
     }
 
     // Delete when new roll logic test done

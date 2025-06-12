@@ -1,4 +1,4 @@
-import { DualityRollColor } from "../settings/Appearance.mjs";
+import { DualityRollColor } from '../settings/Appearance.mjs';
 
 const fields = foundry.data.fields;
 const diceField = () =>
@@ -23,8 +23,7 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
             modifiers: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.NumberField({ integer: true }),
-                    label: new fields.StringField({}),
-                    title: new fields.StringField({})
+                    label: new fields.StringField({})
                 })
             ),
             hope: diceField(),
