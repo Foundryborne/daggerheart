@@ -3379,6 +3379,7 @@ div.daggerheart.views.multiclass {
   flex: 1;
   border-radius: 0 0 4px 4px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 18px;

@@ -17,7 +17,6 @@ export default class DHClass extends BaseDataItem {
         return {
             ...super.defineSchema(),
             domains: new fields.ArrayField(new fields.StringField(), { max: 2 }),
-
             classItems: new fields.ArrayField(new ForeignDocumentUUIDField({ type: 'Item' })),
             evasion: new fields.NumberField({ initial: 0, integer: true }),
             features: new fields.ArrayField(new ForeignDocumentUUIDField({ type: 'Item' })),

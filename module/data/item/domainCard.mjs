@@ -36,17 +36,12 @@ export default class DHDomainCard extends BaseDataItem {
                 return false;
             }
 
-            if (!this.actor.system.domains.find(x => x === item.system.domain)) {
+            if (!this.actor.system.domains.find(x => x === this.domain)) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.LacksDomain'));
                 return false;
             }
 
-            if (this.actor.system.domainCards.total.length === 5) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.MaxLoadoutReached'));
-                return false;
-            }
-
-            if (this.actor.system.domainCards.total.find(x => x.name === item.name)) {
+            if (this.actor.system.domainCards.total.find(x => x.name === this.parent.name)) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.DuplicateDomainCard'));
                 return false;
             }

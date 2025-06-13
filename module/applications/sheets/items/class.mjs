@@ -1,5 +1,5 @@
+import { tagifyElement } from '../../../helpers/utils.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
-import Tagify from '@yaireo/tagify';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -72,55 +72,14 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
         super._attachPartListeners(partId, htmlElement, options);
 
         const domainInput = htmlElement.querySelector('.domain-input');
-        const domainTagify = new Tagify(domainInput, {
-            tagTextProp: 'name',
-            enforceWhitelist: true,
-            whitelist: Object.keys(SYSTEM.DOMAIN.domains).map(key => {
-                const domain = SYSTEM.DOMAIN.domains[key];
-                return {
-                    value: key,
-                    name: game.i18n.localize(domain.label),
-                    src: domain.src,
-                    background: domain.background
-                };
-            }),
-            maxTags: 2,
-            callbacks: { invalid: this.onAddTag },
-            dropdown: {
-                mapValueTo: 'name',
-                searchKeys: ['name'],
-                enabled: 0,
-                maxItems: 20,
-                closeOnSelect: true,
-                highlightFirst: false
-            },
-            templates: {
-                tag(tagData) {
-                    //z-index: unset; background-image: ${tagData.background}; Maybe a domain specific background for the chips?
-                    return `<tag title="${tagData.title || tagData.value}"
-                        contenteditable='false'
-                        spellcheck='false'
-                        tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
-                        class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
-                        ${this.getAttributes(tagData)}> 
-                <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
-                <div>
-                    <span class="${this.settings.classNames.tagText}">${tagData[this.settings.tagTextProp] || tagData.value}</span>
-                    <img src="${tagData.src}"></i>
-                </div>
-              </tag>`;
-                }
-            }
-        });
-
-        domainTagify.on('change', this.onDomainSelect.bind(this));
+        tagifyElement(domainInput, SYSTEM.DOMAIN.domains, this.onDomainSelect.bind(this));
     }
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
         context.tabs = super._getTabs(this.constructor.TABS);
-        context.domains = this.document.system.domains.map(x => SYSTEM.DOMAIN.domains[x].label);
+        context.domains = this.document.system.domains;
 
         return context;
     }
@@ -136,8 +95,7 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
         }
     }
 
-    async onDomainSelect(event) {
-        const domains = event.detail?.value ? JSON.parse(event.detail.value) : [];
+    async onDomainSelect(domains) {
         await this.document.update({ 'system.domains': domains.map(x => x.value) });
         this.render(true);
     }

@@ -5,7 +5,7 @@
              <div class="proficiency-container">
                 <span>{{localize "DAGGERHEART.Sheets.PC.Weapons.ProficiencyTitle"}}</span>
                 {{#times 6}}
-                    <i class="fa-solid fa-circle proficiency-dot {{#if (gt ../proficiency this)}}marked{{/if}}"></i>
+                    <i class="fa-solid fa-circle proficiency-dot {{#if (gt ../proficiency.total this)}}marked{{/if}}"></i>
                 {{/times}}
              </div>
              <div class="proficiency-container-visual-element"></div>

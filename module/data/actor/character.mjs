@@ -6,12 +6,14 @@ import BaseDataActor from './base.mjs';
 const attributeField = () =>
     new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
+        bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
         tierMarked: new foundry.data.fields.BooleanField({ initial: false })
     });
 
 const resourceField = max =>
     new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
+        bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
         max: new foundry.data.fields.NumberField({ initial: max, integer: true })
     });
 
@@ -40,12 +42,18 @@ export default class DhCharacter extends BaseDataActor {
                 presence: attributeField(),
                 knowledge: attributeField()
             }),
-            proficiency: new fields.NumberField({ initial: 1, integer: true }),
-            evasion: new fields.NumberField({ initial: 0, integer: true }),
+            proficiency: new fields.SchemaField({
+                value: new fields.NumberField({ initial: 1, integer: true }),
+                bonus: new fields.NumberField({ initial: 0, integer: true })
+            }),
+            evasion: new fields.SchemaField({
+                bonus: new fields.NumberField({ initial: 0, integer: true })
+            }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     description: new fields.StringField({}),
-                    value: new fields.NumberField({ integer: true, nullable: true, initial: null })
+                    value: new fields.NumberField({ integer: true, initial: 0 }),
+                    bonus: new fields.NumberField({ integer: true, initial: 0 })
                 }),
                 {
                     initial: {
@@ -89,8 +97,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get domains() {
-        const classDomains = this.class ? this.class.system.domains : [];
-        const multiclassDomains = this.multiclass ? this.multiclass.system.domains : [];
+        const classDomains = this.class.value ? this.class.value.system.domains : [];
+        const multiclassDomains = this.multiclass.value ? this.multiclass.value.system.domains : [];
         return [...classDomains, ...multiclassDomains];
     }
 
@@ -163,9 +171,46 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareBaseData() {
-        for (var attributeKey in this.traits) {
-            const attribute = this.traits[attributeKey];
-            /* Levleup handling */
+        const currentLevel = this.levelData.level.current;
+        const currentTier =
+            currentLevel === 1
+                ? null
+                : Object.values(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers).find(
+                      tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
+                  ).tier;
+        for (let levelKey in this.levelData.levelups) {
+            const level = this.levelData.levelups[levelKey];
+
+            this.proficiency.bonus += level.achievements.proficiency;
+
+            for (let selection of level.selections) {
+                switch (selection.type) {
+                    case 'trait':
+                        selection.data.forEach(data => {
+                            this.traits[data].bonus += 1;
+                            this.traits[data].tierMarked = selection.tier === currentTier;
+                        });
+                        break;
+                    case 'hitPoint':
+                        this.resources.hitPoints.bonus += selection.value;
+                        break;
+                    case 'stress':
+                        this.resources.stress.bonus += selection.value;
+                        break;
+                    case 'evasion':
+                        this.evasion.bonus += selection.value;
+                        break;
+                    case 'proficiency':
+                        this.proficiency.bonus = selection.value;
+                        break;
+                    case 'experience':
+                        Object.keys(this.experiences).forEach(key => {
+                            const experience = this.experiences[key];
+                            experience.bonus += selection.value;
+                        });
+                        break;
+                }
+            }
         }
 
         const armor = this.armor;
@@ -182,6 +227,21 @@ export default class DhCharacter extends BaseDataActor {
     prepareDerivedData() {
         this.resources.hope.max -= Object.keys(this.scars).length;
         this.resources.hope.value = Math.min(this.resources.hope.value, this.resources.hope.max);
+
+        for (var traitKey in this.traits) {
+            var trait = this.traits[traitKey];
+            trait.total = trait.value + trait.bonus;
+        }
+
+        for (var experienceKey in this.experiences) {
+            var experience = this.experiences[experienceKey];
+            experience.total = experience.value + experience.bonus;
+        }
+
+        this.resources.hitPoints.maxTotal = this.resources.hitPoints.max + this.resources.hitPoints.bonus;
+        this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
+        this.evasion.total = (this.class?.evasion ?? 0) + this.evasion.bonus;
+        this.proficiency.total = this.proficiency.value + this.proficiency.bonus;
     }
 }
 
@@ -225,7 +285,7 @@ class DhPCLevelData extends foundry.abstract.DataModel {
                             minCost: new fields.NumberField({ integer: true }),
                             amount: new fields.NumberField({ integer: true }),
                             data: new fields.ArrayField(new fields.StringField({ required: true })),
-                            secondaryData: new fields.StringField(),
+                            secondaryData: new fields.TypedObjectField(new fields.StringField({ required: true })),
                             itemUuid: new fields.StringField({ required: true })
                         })
                     )
