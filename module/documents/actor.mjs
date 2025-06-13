@@ -195,7 +195,12 @@ export default class DhpActor extends Actor {
         }
         formula += ` ${modifiers.map(x => `+ ${x.value}`).join(' ')}`;
         const roll = await Roll.create(formula).evaluate();
-        roll.rolledDice = roll.dice; // Perpetuating getter field
+        const dice = roll.dice.flatMap(dice => ({
+            denomination: dice.denomination,
+            number: dice.number,
+            total: dice.total,
+            results: dice.results.map(result => ({ result: result.result, discarded: !result.active }))
+        }));
 
         if (this.type === 'character') {
             setDiceSoNiceForDualityRoll(roll, advantage);
@@ -246,6 +251,7 @@ export default class DhpActor extends Actor {
             const configRoll = {
                 title: config.title,
                 origin: this.id,
+                dice,
                 roll,
                 modifiers: modifiers.filter(x => x.label),
                 advantageState: advantage

@@ -5,6 +5,7 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
         return {
             title: new fields.StringField(),
             origin: new fields.StringField({ required: true }),
+            dice: new fields.DataField(),
             roll: new fields.DataField(),
             modifiers: new fields.ArrayField(
                 new fields.SchemaField({
