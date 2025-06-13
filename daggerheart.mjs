@@ -120,7 +120,7 @@ Hooks.once('init', () => {
 
 Hooks.on('ready', () => {
     ui.resources = new CONFIG.ui.resources();
-    ui.resources.render({ force: true });
+    if(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.DisplayFear) !== 'hide') ui.resources.render({ force: true });
 });
 
 Hooks.once('dicesoniceready', () => {});
