@@ -19,7 +19,7 @@ export {
   DHFeature,
   DHMiscellaneous,
   DHSubclass,
-  DHWeapon,
+  DHWeapon
 }
 
 export const config = {

@@ -1,5 +1,5 @@
 import { getTier } from '../../helpers/utils.mjs';
-import DaggerheartAction from '../action.mjs';
+import DHAction from '../action/action.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHFeature extends BaseDataItem {
@@ -92,7 +92,7 @@ export default class DHFeature extends BaseDataItem {
                     })
                 })
             ),
-            actions: new fields.ArrayField(new fields.EmbeddedDataField(DaggerheartAction))
+            actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAction))
         };
     }
 

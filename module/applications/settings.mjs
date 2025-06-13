@@ -166,8 +166,6 @@ class DhpRangeSettings extends FormApplication {
 }
 
 export const registerDHSettings = () => {
-    // const debouncedReload = foundry.utils.debounce(() => window.location.reload(), 100);
-
     game.settings.register(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray, {
         name: game.i18n.localize('DAGGERHEART.Settings.General.AbilityArray.Name'),
         hint: game.i18n.localize('DAGGERHEART.Settings.General.AbilityArray.Hint'),
@@ -274,7 +272,7 @@ export const registerDHSettings = () => {
         name: game.i18n.localize('DAGGERHEART.Settings.DualityRollColor.Name'),
         hint: game.i18n.localize('DAGGERHEART.Settings.DualityRollColor.Hint'),
         scope: 'world',
-        config: true,
+        config: false,
         type: Number,
         choices: Object.values(DualityRollColor),
         default: DualityRollColor.colorful.value

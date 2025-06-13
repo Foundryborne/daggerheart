@@ -61,70 +61,42 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async reactionRoll(event) {
-        const { roll, diceResults, modifiers } = await this.actor.diceRoll(
-            { title: `${this.actor.name} - Reaction Roll`, value: 0 },
-            event.shiftKey
-        );
-
-        const cls = getDocumentClass('ChatMessage');
-        const systemData = {
-            roll: roll._formula,
-            total: roll._total,
-            modifiers: modifiers,
-            diceResults: diceResults
+        const config = {
+            event: event,
+            title: `${this.actor.name} - Reaction Roll`,
+            roll: {
+                modifier: null,
+                type: 'reaction'
+            },
+            chatMessage: {
+                type: 'adversaryRoll',
+                template: 'systems/daggerheart/templates/chat/adversary-roll.hbs',
+                mute: true
+            }
         };
-        const msg = new cls({
-            type: 'adversaryRoll',
-            system: systemData,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/adversary-roll.hbs',
-                systemData
-            ),
-            rolls: [roll]
-        });
-
-        cls.create(msg.toObject());
+        this.actor.diceRoll(config);
     }
 
-    static async attackRoll() {
-        const { modifier, damage, name: attackName } = this.actor.system.attack;
-        const { roll, dice, advantageState, modifiers } = await this.actor.diceRoll(
-            { title: `${this.actor.name} - Attack Roll`, value: modifier },
-            event.shiftKey
-        );
-
-        const targets = Array.from(game.user.targets).map(x => ({
-            id: x.id,
-            name: x.actor.name,
-            img: x.actor.img,
-            difficulty: x.actor.system.difficulty,
-            evasion: x.actor.system.evasion
-        }));
-
-        const cls = getDocumentClass('ChatMessage');
-        const systemData = {
-            title: attackName,
-            origin: this.document.id,
-            roll: roll._formula,
-            advantageState,
-            total: roll._total,
-            modifiers: modifiers,
-            dice: dice,
-            targets: targets,
-            damage: { value: damage.value, type: damage.type }
-        };
-        const msg = new cls({
-            type: 'adversaryRoll',
-            sound: CONFIG.sounds.dice,
-            system: systemData,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/adversary-attack-roll.hbs',
-                systemData
-            ),
-            rolls: [roll]
-        });
-
-        cls.create(msg.toObject());
+    static async attackRoll(event) {
+        const { modifier, damage, name: attackName } = this.actor.system.attack,
+            config = {
+                event: event,
+                title: attackName,
+                roll: {
+                    modifier: modifier,
+                    type: 'action'
+                },
+                chatMessage: {
+                    type: 'adversaryRoll',
+                    template: 'systems/daggerheart/templates/chat/adversary-attack-roll.hbs'
+                },
+                damage: {
+                    value: damage.value,
+                    type: damage.type
+                },
+                checkTarget: true
+            };
+        this.actor.diceRoll(config);
     }
 
     static async addExperience() {

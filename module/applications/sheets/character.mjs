@@ -33,6 +33,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             selectAncestry: this.selectAncestry,
             selectCommunity: this.selectCommunity,
             viewObject: this.viewObject,
+            useItem: this.useItem,
             useFeature: this.useFeature,
             takeShortRest: this.takeShortRest,
             takeLongRest: this.takeLongRest,
@@ -150,6 +151,10 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         super._attachPartListeners(partId, htmlElement, options);
 
         htmlElement.querySelector('.level-value').addEventListener('change', this.onLevelChange.bind(this));
+        // To Remove when ContextMenu Handler is made
+        htmlElement
+            .querySelectorAll('[data-item-id]')
+            .forEach(element => element.addEventListener('contextmenu', this.editItem.bind(this)));
     }
 
     async _prepareContext(_options) {
@@ -280,7 +285,24 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async rollAttribute(event, button) {
-        const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll(
+        const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
+        const config = {
+            event: event,
+            title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
+                ability: abilityLabel
+            }),
+            roll: {
+                label: abilityLabel,
+                modifier: button.dataset.value
+            },
+            chatMessage: {
+                template: 'systems/daggerheart/templates/chat/duality-roll.hbs'
+            }
+        };
+        this.document.diceRoll(config);
+
+        // Delete when new roll logic test done
+        /* const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll(
             { title: game.i18n.localize(abilities[button.dataset.attribute].label), value: button.dataset.value },
             event.shiftKey
         );
@@ -310,7 +332,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 systemContent
             ),
             rolls: [roll]
-        });
+        }); */
     }
 
     static async toggleMarks(_, button) {
@@ -348,51 +370,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static async attackRoll(event, button) {
         const weapon = await fromUuid(button.dataset.weapon);
-        const damage = {
-            value: `${this.document.system.proficiency}${weapon.system.damage.value}`,
-            type: weapon.system.damage.type
-        };
-        const modifier = this.document.system.traits[weapon.system.trait].value;
-
-        const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll(
-            { title: game.i18n.localize(abilities[weapon.system.trait].label), value: modifier },
-            event.shiftKey
-        );
-
-        const targets = Array.from(game.user.targets).map(x => ({
-            id: x.id,
-            name: x.actor.name,
-            img: x.actor.img,
-            difficulty: x.actor.system.difficulty,
-            evasion: x.actor.system.evasion
-        }));
-
-        const systemData = new DHDualityRoll({
-            title: weapon.name,
-            origin: this.document.id,
-            roll: roll._formula,
-            modifiers: modifiers,
-            hope: hope,
-            fear: fear,
-            advantage: advantage,
-            disadvantage: disadvantage,
-            damage: damage,
-            targets: targets
-        });
-
-        const cls = getDocumentClass('ChatMessage');
-        const msg = new cls({
-            type: 'dualityRoll',
-            sound: CONFIG.sounds.dice,
-            system: systemData,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/attack-roll.hbs',
-                systemData
-            ),
-            rolls: [roll]
-        });
-
-        await cls.create(msg.toObject());
+        if (!weapon) return;
+        weapon.use(event);
     }
 
     static openLevelUp() {
@@ -470,6 +449,12 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         (await game.packs.get('daggerheart.communities'))?.render(true);
     }
 
+    static useItem(event) {
+        const uuid = event.target.closest('[data-item-id]').dataset.itemId,
+            item = this.document.items.find(i => i.uuid === uuid);
+        item.use(event);
+    }
+
     static async viewObject(_, button) {
         const object = await fromUuid(button.dataset.value);
         if (!object) return;
@@ -480,6 +465,16 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         if (object.sheet.editMode) object.sheet.editMode = false;
 
         object.sheet.render(true);
+    }
+
+    editItem(event) {
+        const uuid = event.target.closest('[data-item-id]').dataset.itemId,
+            item = this.document.items.find(i => i.uuid === uuid);
+        if (!item) return;
+
+        if (item.sheet.editMode) item.sheet.editMode = false;
+
+        item.sheet.render(true);
     }
 
     static async takeShortRest() {

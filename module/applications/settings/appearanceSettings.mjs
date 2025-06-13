@@ -54,6 +54,20 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
 
     static async save() {
         await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance, this.settings.toObject());
+        const reload = await foundry.applications.api.DialogV2.confirm({
+            id: 'reload-world-confirm',
+            modal: true,
+            rejectClose: false,
+            window: { title: 'SETTINGS.ReloadPromptTitle' },
+            position: { width: 400 },
+            content: `<p>${game.i18n.localize('SETTINGS.ReloadPromptBody')}</p>`
+        });
+
+        if (reload) {
+            await game.socket.emit('reload');
+            foundry.utils.debouncedReload();
+        }
+
         this.close();
     }
 }

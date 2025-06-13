@@ -1,0 +1,13 @@
+<form id="item-action-select">
+    <ul class="unlist list-select">
+    {{#each actions}}
+        <li>
+            <label>
+                <dh-icon><img src="{{ img }}"></dh-icon>
+                <span>{{ name }}</span>
+                <input type="radio" name="actionId" value="{{_id}}" {{#if (eq @index 0)}}checked{{/if}}>
+            </label>
+        </li>
+    {{/each}}
+    </ul>
+</form>

@@ -1,0 +1,12 @@
+<fieldset class="action-category">
+    <legend class="action-category-label" data-action="toggleSection" data-section="uses">
+        <div>Uses</div>
+    </legend>
+    <div class="action-category-data open">
+        <div class="multi-display">
+            {{formField fields.value label="Value" value=source.value name="uses.value" rootId=partId}}
+            {{formField fields.max label="Max" value=source.max name="uses.max" rootId=partId}}
+        </div>
+        {{formField fields.recovery label="Recovery" value=source.recovery name="uses.recovery" rootId=partId localize=true}}
+    </div>
+</fieldset>

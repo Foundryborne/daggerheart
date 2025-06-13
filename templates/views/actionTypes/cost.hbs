@@ -1,0 +1,21 @@
+<fieldset class="action-category">
+    <legend class="action-category-label" data-action="toggleSection" data-section="cost">
+        <div>Cost</div>
+    </legend>
+    <div class="action-category-data open" data-key="cost">
+        <div class="fas fa-plus icon-button" data-action="addElement"></div>
+        {{#each source as |cost index|}}
+            <fieldset>
+                <div class="multi-display">
+                    {{formField ../fields.type label="Resource" value=cost.type name=(concat "cost." index ".type") localize=true}}
+                    {{formField ../fields.value label="Value" value=cost.value name=(concat "cost." index ".value")}}
+                </div>
+                <div class="multi-display">
+                    {{formField ../fields.scalable label="Scalable" value=cost.scalable name=(concat "cost." index ".scalable")}}
+                    {{formField ../fields.step label="Step" value=cost.step name=(concat "cost." index ".step")}}
+                </div>
+                <div class="fas fa-trash" data-action="removeElement" data-index="{{index}}"></div>
+            </fieldset>
+        {{/each}}
+    </div>
+</fieldset>
