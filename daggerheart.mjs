@@ -14,6 +14,7 @@ import { getCommandTarget, rollCommandToJSON, setDiceSoNiceForDualityRoll } from
 import { abilities } from './module/config/actorConfig.mjs';
 import Resources from './module/applications/resources.mjs';
 import DHDualityRoll from './module/data/chat-message/dualityRoll.mjs';
+import { DualityRollColor } from './module/data/settings/Appearance.mjs';
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -105,6 +106,7 @@ Hooks.once('init', () => {
 Hooks.on('ready', () => {
     ui.resources = new CONFIG.ui.resources();
     ui.resources.render({ force: true });
+    document.body.classList.toggle('theme-colorfull', game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme === DualityRollColor.colorful.value);
 });
 
 Hooks.once('dicesoniceready', () => {});

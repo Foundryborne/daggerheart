@@ -2,7 +2,7 @@
     <div class="daggerheart chat roll" data-action="expandRoll">
         <div class="duality-data">
             <div class="duality-title">
-                <div>{{localize "DAGGERHEART.Chat.AttackRoll.Title" attack=title}}</div>
+                <div>{{title}}</div>
             </div>
             <div class="duality-modifiers">
                 {{#each modifiers}}
@@ -66,33 +66,20 @@
                 {{/if}}
             </div>
         </div>
-        {{#if (gt targets.length 0)}}
-            <div class="target-section">
-                {{#each targets as |target|}}
-                    <div class="target-container {{#if target.hit}}hit{{else}}{{#if (not ../total.alternate)}}miss{{/if}}{{/if}}" data-token="{{target.id}}">
-                            <img src="{{target.img}}" />
-                            <div class="target-inner-container">
-                                {{#if target.hit}}{{localize "Hit"}}{{else}}{{#if (not ../total.alternate)}}{{localize "Miss"}}{{else}}?{{/if}}{{/if}}
-                            </div>
-                    </div>
-                {{/each}}
-            </div>
-        {{/if}}
         {{#if damage.value}}
             <div class="duality-actions">
-                <button class="duality-action" data-value="{{roll.total}}" data-damage="{{damage.value}}" data-damage-type="{{damage.type}}" {{#if damage.disabled}}disabled{{/if}}><span>Roll Damage</span></button>  
+                <div></div>
                 <div class="duality-result">
-                    <div>{{roll.total}} {{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
+                    <div>{{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
                 </div>
             </div>
         {{/if}}
     </div>
 {{else}}
     <div class="dice-roll daggerheart chat roll" data-action="expandRoll">
-        <div class="dice-flavor">{{localize "DAGGERHEART.Chat.AttackRoll.Title" attack=title}}</div>
+        <div class="dice-flavor">{{title}}</div>
         <div class="dice-result">
-            <div class="dice-formula">{{roll}}</div>
-
+            <div class="dice-formula">{{roll.formula}}</div>
             <div class="dice-tooltip">
                 <div class="wrapper">
                     <section class="tooltip-part">
@@ -150,21 +137,6 @@
                 <div class="dice-total-value">
                     {{roll.total}}
                 </div>
-            </div>
-            {{#if (gt targets.length 0)}}
-                <div class="target-section">
-                    {{#each targets as |target|}}
-                        <div class="dice-total target-container {{#if target.hit}}hit{{else}}{{#if (not ../total.alternate)}}miss{{/if}}{{/if}}" data-token="{{target.id}}">
-                                <img src="{{target.img}}" />
-                                <div class="target-inner-container">
-                                    {{#if target.hit}}{{localize "Hit"}}{{else}}{{#if (not ../total.alternate)}}{{localize "Miss"}}{{else}}?{{/if}}{{/if}}
-                                </div>
-                        </div>
-                    {{/each}}
-                </div>
-            {{/if}}
-            <div class="dice-actions">
-                <button class="duality-action" data-value="{{roll.total}}" data-damage="{{damage.value}}" data-damage-type="{{damage.type}}" {{#if damage.disabled}}disabled{{/if}}><span>{{localize "DAGGERHEART.Chat.AttackRoll.RollDamage"}}</span></button>  
             </div>
         </div>
     </div>

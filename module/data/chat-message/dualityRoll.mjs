@@ -59,7 +59,8 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
                     }),
                     { nullable: true, initial: null }
                 )
-            })
+            }),
+            forceDisplay: new fields.BooleanField({initial: false})
         };
     }
 
@@ -96,7 +97,7 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
 
     get colorful() {
         return (
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
+            !this.forceDisplay && game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
             DualityRollColor.colorful.value
         );
     }
