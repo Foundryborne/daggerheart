@@ -15,12 +15,17 @@ export function getDualityMessage(roll) {
                   check: game.i18n.localize(abilities[roll.trait].label)
               })
             : null;
+
     const label = traitLabel ?? game.i18n.localize('DAGGERHEART.General.Duality');
+    const dataLabel = traitLabel
+        ? game.i18n.localize(abilities[roll.trait].label)
+        : game.i18n.localize('DAGGERHEART.General.Duality');
 
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `
         <button class="duality-roll-button" 
-            data-label="${label}"
+            data-title="${label}"
+            data-label="${dataLabel}"
             data-hope="${roll.hope ?? 'd12'}" 
             data-fear="${roll.fear ?? 'd12'}" 
             ${roll.trait && abilities[roll.trait] ? `data-trait="${roll.trait}"` : ''}

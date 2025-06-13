@@ -165,8 +165,6 @@ export default class DhpActor extends Actor {
             });
             rollConfig = await dialogClosed;
 
-            // advantageDice = result.advantage;
-            // disadvantageDice = result.disadvantage;
             advantage = rollConfig.advantage;
             hopeDice = rollConfig.hope;
             fearDice = rollConfig.fear;
@@ -197,9 +195,10 @@ export default class DhpActor extends Actor {
         }
         formula += ` ${modifiers.map(x => `+ ${x.value}`).join(' ')}`;
         const roll = await Roll.create(formula).evaluate();
+        roll.rolledDice = roll.dice; // Perpetuating getter field
 
         if (this.type === 'character') {
-            setDiceSoNiceForDualityRoll(roll, advantageDice, disadvantageDice);
+            setDiceSoNiceForDualityRoll(roll, advantage);
             hope = roll.dice[0].results[0].result;
             fear = roll.dice[1].results[0].result;
             if (
@@ -228,13 +227,19 @@ export default class DhpActor extends Actor {
         }
 
         if (config.checkTarget) {
-            targets = Array.from(game.user.targets).map(x => ({
-                id: x.id,
-                name: x.actor.name,
-                img: x.actor.img,
-                difficulty: x.actor.system.difficulty,
-                evasion: x.actor.system.evasion.value ?? x.actor.system.evasion
-            }));
+            targets = Array.from(game.user.targets).map(x => {
+                const target = {
+                    id: x.id,
+                    name: x.actor.name,
+                    img: x.actor.img,
+                    difficulty: x.actor.system.difficulty,
+                    evasion: x.actor.system.evasion?.value
+                };
+
+                target.hit = target.difficulty ? roll.total >= target.difficulty : roll.total >= target.evasion;
+
+                return target;
+            });
         }
 
         if (config.chatMessage) {
@@ -242,15 +247,13 @@ export default class DhpActor extends Actor {
                 title: config.title,
                 origin: this.id,
                 roll,
-                modifiers,
+                modifiers: modifiers.filter(x => x.label),
                 advantageState: advantage
             };
             if (this.type === 'character') {
                 configRoll.hope = { dice: hopeDice, value: hope };
                 configRoll.fear = { dice: fearDice, value: fear };
                 configRoll.advantage = { dice: advantageDice, value: roll.dice[2]?.results[0].result ?? null };
-                /* advantage: { dice: advantageDice, value: advantage },
-                disadvantage: { dice: disadvantageDice, value: disadvantage } */
             }
             if (damage) configRoll.damage = damage;
             if (targets) configRoll.targets = targets;
@@ -276,157 +279,16 @@ export default class DhpActor extends Actor {
             ? [
                   {
                       value: modifier,
-                      label: modifier >= 0 ? `${roll.label} +${modifier}` : `${roll.label} ${modifier}`,
+                      label: roll.label
+                          ? modifier >= 0
+                              ? `${roll.label} +${modifier}`
+                              : `${roll.label} ${modifier}`
+                          : null,
                       title: roll.label
                   }
               ]
             : [];
     }
-
-    // Delete when new roll logic test done
-    /* async diceRollOld(modifier, shiftKey) {
-        if (this.type === 'character') {
-            return await this.dualityRoll(modifier, shiftKey);
-        } else {
-            return await this.npcRoll(modifier, shiftKey);
-        }
-    }
-
-    async npcRoll(modifier, shiftKey) {
-        let advantage = null;
-
-        const modifiers = [
-            {
-                value: Number.parseInt(modifier.value),
-                label: modifier.value >= 0 ? `+${modifier.value}` : `-${modifier.value}`,
-                title: modifier.title
-            }
-        ];
-        if (!shiftKey) {
-            const dialogClosed = new Promise((resolve, _) => {
-                new NpcRollSelectionDialog(this.system.experiences, resolve).render(true);
-            });
-            const result = await dialogClosed;
-
-            advantage = result.advantage;
-            result.experiences.forEach(x =>
-                modifiers.push({
-                    value: x.value,
-                    label: x.value >= 0 ? `+${x.value}` : `-${x.value}`,
-                    title: x.description
-                })
-            );
-        }
-        
-        const roll = Roll.create(
-            `${advantage === true || advantage === false ? 2 : 1}d20${advantage === true ? 'kh' : advantage === false ? 'kl' : ''} ${modifiers.map(x => `+ ${x.value}`).join(' ')}`
-        );
-        let rollResult = await roll.evaluate();
-        const dice = [];
-        for (var i = 0; i < rollResult.terms.length; i++) {
-            const term = rollResult.terms[i];
-            if (term.faces) {
-                dice.push({ type: `d${term.faces}`, rolls: term.results.map(x => ({ value: x.result })) });
-            }
-        }
-
-        // There is Only ever one dice term here
-        return { roll, dice: dice[0], modifiers, advantageState: advantage === true ? 1 : advantage === false ? 2 : 0 };
-    }
-
-    async dualityRoll(modifier, shiftKey) {
-        let hopeDice = 'd12',
-            fearDice = 'd12',
-            advantageDice = null,
-            disadvantageDice = null;
-
-        const modifiers =
-            modifier.value !== null
-                ? [
-                      {
-                          value: modifier.value ? Number.parseInt(modifier.value) : 0,
-                          label:
-                              modifier.value >= 0
-                                  ? `${modifier.title} +${modifier.value}`
-                                  : `${modifier.title} ${modifier.value}`,
-                          title: modifier.title
-                      }
-                  ]
-                : [];
-        if (!shiftKey) {
-            const dialogClosed = new Promise((resolve, _) => {
-                new RollSelectionDialog(this.system.experiences, this.system.resources.hope.value, resolve).render(
-                    true
-                );
-            });
-            const result = await dialogClosed;
-            (hopeDice = result.hope),
-                (fearDice = result.fear),
-                (advantageDice = result.advantage),
-                (disadvantageDice = result.disadvantage);
-            result.experiences.forEach(x =>
-                modifiers.push({
-                    value: x.value,
-                    label: x.value >= 0 ? `+${x.value}` : `-${x.value}`,
-                    title: x.description
-                })
-            );
-
-            const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
-
-            if (automateHope && result.hopeUsed) {
-                await this.update({
-                    'system.resources.hope.value': this.system.resources.hope.value - result.hopeUsed
-                });
-            }
-        }
-        const roll = new Roll(
-            `1${hopeDice} + 1${fearDice}${advantageDice ? ` + 1${advantageDice}` : disadvantageDice ? ` - 1${disadvantageDice}` : ''} ${modifiers.map(x => `+ ${x.value}`).join(' ')}`
-        );
-        let rollResult = await roll.evaluate();
-        setDiceSoNiceForDualityRoll(rollResult, advantageDice, disadvantageDice);
-
-        const hope = rollResult.dice[0].results[0].result;
-        const fear = rollResult.dice[1].results[0].result;
-        const advantage = advantageDice ? rollResult.dice[2].results[0].result : null;
-        const disadvantage = disadvantageDice ? rollResult.dice[2].results[0].result : null;
-
-        if (disadvantage) {
-            rollResult = { ...rollResult, total: rollResult.total - Math.max(hope, disadvantage) };
-        }
-        if (advantage) {
-            rollResult = { ...rollResult, total: 'Select Hope Die' };
-        }
-
-        const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
-        if (automateHope && hope > fear) {
-            await this.update({
-                'system.resources.hope.value': Math.min(
-                    this.system.resources.hope.value + 1,
-                    this.system.resources.hope.max
-                )
-            });
-        }
-
-        if (automateHope && hope === fear) {
-            await this.update({
-                'system.resources': {
-                    'hope.value': Math.min(this.system.resources.hope.value + 1, this.system.resources.hope.max),
-                    'stress.value': Math.max(this.system.resources.stress.value - 1, 0)
-                }
-            });
-        }
-
-        return {
-            roll,
-            rollResult,
-            hope: { dice: hopeDice, value: hope },
-            fear: { dice: fearDice, value: fear },
-            advantage: { dice: advantageDice, value: advantage },
-            disadvantage: { dice: disadvantageDice, value: disadvantage },
-            modifiers: modifiers
-        };
-    } */
 
     async damageRoll(title, damage, targets, shiftKey) {
         let rollString = damage.value;
@@ -455,7 +317,11 @@ export default class DhpActor extends Actor {
         for (var i = 0; i < rollResult.terms.length; i++) {
             const term = rollResult.terms[i];
             if (term.faces) {
-                dice.push({ type: `d${term.faces}`, rolls: term.results.map(x => x.result) });
+                dice.push({
+                    type: `d${term.faces}`,
+                    rolls: term.results.map(x => x.result),
+                    total: term.results.reduce((acc, x) => acc + x.result, 0)
+                });
             } else if (term.operator) {
             } else if (term.number) {
                 const operator = i === 0 ? '' : rollResult.terms[i - 1].operator;

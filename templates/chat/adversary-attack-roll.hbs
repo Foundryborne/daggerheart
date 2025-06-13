@@ -7,18 +7,18 @@
                 <section class="tooltip-part">
                     <div class="dice">
                         {{#each roll.dice}}
-                        <header class="part-header flexrow">
-                            <span class="part-formula">{{number}}{{denomination}}</span>
-                            <span class="part-total">{{total}}</span>
-                        </header>
-                        <div class="flexrow">
-                            <ol class="dice-rolls">
-                                {{#each results}}
-                                    <li class="roll die {{../denomination}}{{#if discarded}} discarded{{/if}} min">{{result}}</li>
-                                {{/each}}
-                            </ol>
-                            <div class="attack-roll-advantage-container">{{#if (eq ../advantageState 1)}}{{localize "DAGGERHEART.General.Advantage.Full"}}{{/if}}{{#if (eq ../advantageState 2)}}{{localize "DAGGERHEART.General.Disadvantage.Full"}}{{/if}}</div>
-                        </div>
+                            <header class="part-header flexrow">
+                                <span class="part-formula">{{number}}{{denomination}}</span>
+                                <span class="part-total">{{total}}</span>
+                            </header>
+                            <div class="flexrow">
+                                <ol class="dice-rolls">
+                                    {{#each results}}
+                                        <li class="roll die {{../denomination}}{{#if discarded}} discarded{{/if}} min">{{result}}</li>
+                                    {{/each}}
+                                </ol>
+                                <div class="attack-roll-advantage-container">{{#if (eq ../advantageState 1)}}{{localize "DAGGERHEART.General.Advantage.Full"}}{{/if}}{{#if (eq ../advantageState 2)}}{{localize "DAGGERHEART.General.Disadvantage.Full"}}{{/if}}</div>
+                            </div>
                         {{/each}}
                     </div>
                 </section>

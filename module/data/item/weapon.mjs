@@ -1,16 +1,15 @@
-import BaseDataItem from "./base.mjs";
-import FormulaField from "../fields/formulaField.mjs";
-import ActionField from "../fields/actionField.mjs"
-import { DHBaseAction, DHAttackAction } from "../action/action.mjs";
+import BaseDataItem from './base.mjs';
+import FormulaField from '../fields/formulaField.mjs';
+import ActionField from '../fields/actionField.mjs';
 
 export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
-            label: "TYPES.Item.weapon",
-            type: "weapon",
+            label: 'TYPES.Item.weapon',
+            type: 'weapon',
             hasDescription: true,
-            isQuantifiable: true,
+            isQuantifiable: true
         });
     }
 

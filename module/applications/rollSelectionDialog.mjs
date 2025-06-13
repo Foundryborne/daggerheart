@@ -16,7 +16,6 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
             hope: ['d12'],
             fear: ['d12'],
             advantage: null,
-            // disadvantage: null,
             hopeResource: hopeResource
         };
     }
@@ -32,8 +31,6 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
         actions: {
             updateIsAdvantage: this.updateIsAdvantage,
             selectExperience: this.selectExperience,
-            // setAdvantage: this.setAdvantage,
-            // setDisadvantage: this.setDisadvantage,
             finish: this.finish
         },
         form: {
@@ -62,7 +59,6 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
         context.hope = this.data.hope;
         context.fear = this.data.fear;
         context.advantage = this.data.advantage;
-        // context.disadvantage = this.data.disadvantage;
         context.experiences = Object.keys(this.experiences).map(id => ({ id, ...this.experiences[id] }));
         context.hopeResource = this.data.hopeResource + 1;
 
@@ -91,20 +87,6 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
         this.data.advantage = this.data.advantage === advantage ? null : advantage;
         this.render();
     }
-
-    /* static setAdvantage() {
-        this.data.advantage = this.data.advantage ? null : 'd6';
-        this.data.disadvantage = null;
-
-        this.render(true);
-    }
-
-    static setDisadvantage() {
-        this.data.advantage = null;
-        this.data.disadvantage = this.data.disadvantage ? null : 'd6';
-
-        this.render(true);
-    } */
 
     static async finish() {
         const { diceOptions, ...rest } = this.data;

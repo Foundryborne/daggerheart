@@ -3,15 +3,15 @@
     data-tab='{{tabs.information.id}}'
     data-group='{{tabs.information.group}}'
 >
+    {{!-- <fieldset>
+        <legend>{{localize "DAGGERHEART.Sheets.Adversary.FIELDS.description.label" }}</legend>
+
+        {{formInput systemFields.description value=source.system.description}}
+    </fieldset> --}}
+
     <fieldset>
-        <legend>{{localize "DAGGERHEART.Sheets.Adversary.Description" }}</legend>
+        <legend>{{localize "DAGGERHEART.Sheets.Adversary.FIELDS.motivesAndTactics.label" }}</legend>
 
-        {{formGroup systemFields.description value=source.system.description}}
-    </fieldset>
-
-    <fieldset>
-        <legend>{{localize "DAGGERHEART.Sheets.Adversary.MotivesAndTactics" }}</legend>
-
-        {{formGroup systemFields.motivesAndTactics value=source.system.motivesAndTactics}}
+        {{formInput systemFields.motivesAndTactics value=source.system.motivesAndTactics}}
     </fieldset>
 </section>
