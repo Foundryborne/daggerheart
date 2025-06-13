@@ -1382,8 +1382,7 @@
 }
 .chat-message .duality-modifiers,
 .chat-message .duality-result,
-.chat-message .dice-title,
-.chat-message .duality-modifier {
+.chat-message .dice-title {
   display: none;
 }
 .daggerheart.chat.downtime {
@@ -1720,30 +1719,24 @@
   justify-content: end;
   margin-top: -20px;
 }
-.theme-colorful .chat-message.duality .message-content .dice-result .dice-actions .duality-action {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-actions > * {
+  display: flex;
   color: var(--color-light-1);
   text-shadow: 0 0 1px black;
   font-weight: bold;
   background: var(--color-dark-1);
   padding: 4px;
-  border-radius: 0 6px 0 0;
   border-color: black;
   min-height: unset;
   height: 26px;
-  margin-left: -8px;
   flex: unset;
+  margin: 0;
+}
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-actions .duality-action {
+  border-radius: 0 6px 0 0;
+  margin-left: -8px;
 }
 .theme-colorful .chat-message.duality .message-content .dice-result .dice-actions .duality-result {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  justify-content: center;
-  gap: 2px;
-  color: var(--color-light-1);
-  text-shadow: 0 0 1px black;
-  font-weight: bold;
-  background: var(--color-dark-1);
-  padding: 4px 4px 0 4px;
   border-radius: 6px 0 0 0;
   margin-right: -8px;
 }
