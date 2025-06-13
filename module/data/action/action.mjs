@@ -46,6 +46,8 @@ const fields = foundry.data.fields;
     - Target Check
     - Cost Check
     - Range Check
+    - Area of effect and measurement placement
+    - Auto use costs and action
 */
 
 export class DHBaseAction extends foundry.abstract.DataModel {
