@@ -1,4 +1,5 @@
-import { DHActionDiceData, DHDamageData, DHDamageField } from "./actionDice.mjs";
+import { abilities } from '../../config/actorConfig.mjs';
+import { DHActionDiceData, DHDamageData, DHDamageField } from './actionDice.mjs';
 
 export default class DHAction extends foundry.abstract.DataModel {
     static defineSchema() {
@@ -56,25 +57,39 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             _id: new fields.DocumentIdField(),
             type: new fields.StringField({ initial: undefined, readonly: true, required: true }),
             name: new fields.StringField({ initial: undefined }),
-            img: new fields.FilePathField({ initial: undefined, categories: ["IMAGE"], base64: false }),
+            img: new fields.FilePathField({ initial: undefined, categories: ['IMAGE'], base64: false }),
             actionType: new fields.StringField({ choices: SYSTEM.ITEM.actionTypes, initial: 'action', nullable: true }),
             cost: new fields.ArrayField(
                 new fields.SchemaField({
-                    type: new fields.StringField({ choices: SYSTEM.GENERAL.abilityCosts, nullable: false, required: true, initial: 'hope' }),
+                    type: new fields.StringField({
+                        choices: SYSTEM.GENERAL.abilityCosts,
+                        nullable: false,
+                        required: true,
+                        initial: 'hope'
+                    }),
                     value: new fields.NumberField({ nullable: true, initial: 1 }),
                     scalable: new fields.BooleanField({ initial: false }),
-                    step: new fields.NumberField({ nullable: true, initial: null }),
+                    step: new fields.NumberField({ nullable: true, initial: null })
                 })
             ),
             uses: new fields.SchemaField({
                 value: new fields.NumberField({ nullable: true, initial: null }),
                 max: new fields.NumberField({ nullable: true, initial: null }),
-                recovery: new fields.StringField({ choices: SYSTEM.GENERAL.refreshTypes, initial: null, nullable: true })
+                recovery: new fields.StringField({
+                    choices: SYSTEM.GENERAL.refreshTypes,
+                    initial: null,
+                    nullable: true
+                })
             }),
-            range: new fields.StringField({ choices: SYSTEM.GENERAL.range, required: true, blank: false, initial: "self" })
-        }
+            range: new fields.StringField({
+                choices: SYSTEM.GENERAL.range,
+                required: true,
+                blank: false,
+                initial: 'self'
+            })
+        };
     }
-    
+
     prepareData() {}
 
     get index() {
@@ -100,25 +115,27 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     static getSourceConfig(parent) {
         const updateSource = {};
         updateSource.img ??= parent?.img ?? parent?.system?.img;
-        if(parent?.system?.trait) {
+        if (parent?.system?.trait) {
             updateSource['roll'] = {
                 type: this.getRollType(),
                 trait: parent.system.trait
             };
         }
-        if(parent?.system?.range) {
+        if (parent?.system?.range) {
             updateSource['range'] = parent?.system?.range;
         }
         return updateSource;
     }
 
     async use(event) {
-        if(this.roll.type && this.roll.trait) {
+        if (this.roll.type && this.roll.trait) {
+            const modifierValue = this.actor.system.traits[this.roll.trait].value;
             const config = {
                 event: event,
                 title: this.item.name,
                 roll: {
-                    modifier: this.actor.system.traits[this.roll.trait].value,
+                    modifier: modifierValue,
+                    label: game.i18n.localize(abilities[this.roll.trait].label),
                     type: this.actionType,
                     difficulty: this.roll?.difficulty
                 },
@@ -126,14 +143,14 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                     template: this.chatTemplate
                 }
             };
-            if(this.target?.type) config.checkTarget = true;
-            if(this.damage.parts.length) {
+            if (this.target?.type) config.checkTarget = true;
+            if (this.damage.parts.length) {
                 config.damage = {
                     value: this.damage.parts.map(p => p.getFormula(this.actor)).join(' + '),
                     type: this.damage.parts[0].type
                 };
             }
-            if(this.effects.length) {
+            if (this.effects.length) {
                 // Apply Active Effects. In Chat Message ?
             }
             return this.actor.diceRoll(config);
@@ -143,7 +160,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
 const extraDefineSchema = (field, option) => {
     return {
-        [field] : {
+        [field]: {
             // damage: new fields.SchemaField({
             //     parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData))
             // }),
@@ -154,16 +171,19 @@ const extraDefineSchema = (field, option) => {
                 difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 })
             }),
             target: new fields.SchemaField({
-                type: new fields.StringField({ choices: SYSTEM.ACTIONS.targetTypes, initial: SYSTEM.ACTIONS.targetTypes.other.id })
+                type: new fields.StringField({
+                    choices: SYSTEM.ACTIONS.targetTypes,
+                    initial: SYSTEM.ACTIONS.targetTypes.other.id
+                })
             }),
             effects: new fields.ArrayField( // ActiveEffect
                 new fields.SchemaField({
-                    '_id': new fields.DocumentIdField()
+                    _id: new fields.DocumentIdField()
                 })
             )
         }[field]
     };
-}
+};
 
 export class DHAttackAction extends DHBaseAction {
     static defineSchema() {
@@ -173,7 +193,7 @@ export class DHAttackAction extends DHBaseAction {
             ...extraDefineSchema('roll'),
             ...extraDefineSchema('target'),
             ...extraDefineSchema('effects')
-        }
+        };
     }
 
     static getRollType() {
@@ -182,7 +202,7 @@ export class DHAttackAction extends DHBaseAction {
 
     prepareData() {
         super.prepareData();
-        if ( this.damage.includeBase && !!this.item?.system?.damage ) {
+        if (this.damage.includeBase && !!this.item?.system?.damage) {
             const baseDamage = this.getParentDamage();
             this.damage.parts.unshift(new DHDamageData(baseDamage));
         }
@@ -212,7 +232,7 @@ export class DHSpellCastAction extends DHBaseAction {
             ...extraDefineSchema('roll'),
             ...extraDefineSchema('target'),
             ...extraDefineSchema('effects')
-        }
+        };
     }
 
     static getRollType() {
@@ -227,12 +247,12 @@ export class DHDamageAction extends DHBaseAction {
             ...extraDefineSchema('damage', false),
             ...extraDefineSchema('target'),
             ...extraDefineSchema('effects')
-        }
+        };
     }
 
     async use(event) {
         const formula = this.damage.parts.map(p => p.getFormula(this.actor)).join(' + ');
-        if(!formula || formula == '') return;
+        if (!formula || formula == '') return;
 
         let roll = { formula: formula, total: formula };
         if (isNaN(formula)) {
@@ -261,17 +281,23 @@ export class DHHealingAction extends DHBaseAction {
         return {
             ...super.defineSchema(),
             healing: new fields.SchemaField({
-                type: new fields.StringField({ choices: SYSTEM.GENERAL.healingTypes, required: true, blank: false, initial: SYSTEM.GENERAL.healingTypes.health.id, label: "Healing" }),
+                type: new fields.StringField({
+                    choices: SYSTEM.GENERAL.healingTypes,
+                    required: true,
+                    blank: false,
+                    initial: SYSTEM.GENERAL.healingTypes.health.id,
+                    label: 'Healing'
+                }),
                 value: new fields.EmbeddedDataField(DHActionDiceData)
             }),
             ...extraDefineSchema('target'),
             ...extraDefineSchema('effects')
-        }
+        };
     }
 
     async use(event) {
         const formula = this.healing.value.getFormula(this.actor);
-        if(!formula || formula == '') return;
+        if (!formula || formula == '') return;
 
         // const roll = await super.use(event);
         let roll = { formula: formula, total: formula };
@@ -308,10 +334,10 @@ export class DHResourceAction extends DHBaseAction {
             ...extraDefineSchema('target'),
             ...extraDefineSchema('effects'),
             resource: new fields.SchemaField({
-                type: new fields.StringField({ choices: [], initial: "", label: "Resource" }),
-                value: new fields.NumberField({ initial: 0, label: "Value" })
+                type: new fields.StringField({ choices: [], initial: '', label: 'Resource' }),
+                value: new fields.NumberField({ initial: 0, label: 'Value' })
             })
-        }
+        };
     }
 }
 
@@ -319,8 +345,8 @@ export class DHSummonAction extends DHBaseAction {
     static defineSchema() {
         return {
             ...super.defineSchema(),
-            documentUUID: new fields.StringField({ blank: true, initial: "", placeholder:'Enter a Creature UUID' })
-        }
+            documentUUID: new fields.StringField({ blank: true, initial: '', placeholder: 'Enter a Creature UUID' })
+        };
     }
 }
 
@@ -329,7 +355,7 @@ export class DHEffectAction extends DHBaseAction {
         return {
             ...super.defineSchema(),
             ...extraDefineSchema('effects')
-        }
+        };
     }
 }
 
@@ -337,19 +363,18 @@ export class DHMacroAction extends DHBaseAction {
     static defineSchema() {
         return {
             ...super.defineSchema(),
-            documentUUID: new fields.StringField({ blank: true, initial: "", placeholder:'Enter a macro UUID' })
-        }
+            documentUUID: new fields.StringField({ blank: true, initial: '', placeholder: 'Enter a macro UUID' })
+        };
     }
 
     async use(event) {
         const fixUUID = !this.documentUUID.includes('Macro.') ? `Macro.${this.documentUUID}` : this.documentUUID,
             macro = await fromUuid(fixUUID);
         try {
-            if(!macro) throw new Error(`No macro found for the UUID: ${this.documentUUID}.`);
+            if (!macro) throw new Error(`No macro found for the UUID: ${this.documentUUID}.`);
             macro.execute();
         } catch (error) {
             ui.notifications.error(error);
         }
-        
     }
 }

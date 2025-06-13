@@ -141,14 +141,14 @@ const renderDualityButton = async event => {
 
     const config = {
         event: event,
-        title: button.dataset.label,
+        title: button.dataset.title,
         roll: {
             modifier: traitValue ? target.system.traits[traitValue].value : null,
             label: button.dataset.label,
             type: button.dataset.actionType ?? null // Need check
         },
         chatMessage: {
-            template: 'systems/daggerheart/templates/chat/attack-roll.hbs'
+            template: 'systems/daggerheart/templates/chat/duality-roll.hbs'
         }
     };
     await target.diceRoll(config);
@@ -220,6 +220,7 @@ Hooks.on('chatMessage', (_, message) => {
         }
 
         const traitValue = rollCommand.trait?.toLowerCase();
+        const advantageState = rollCommand.advantage ? true : rollCommand.disadvantage ? false : null;
 
         // Target not required if an attribute is not used.
         const target = traitValue ? getCommandTarget() : undefined;
@@ -239,15 +240,11 @@ Hooks.on('chatMessage', (_, message) => {
                     : game.i18n.localize('DAGGERHEART.General.Duality');
 
                 const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
-                const advantageRoll = `${rollCommand.advantage && !rollCommand.disadvantage ? '+d6' : rollCommand.disadvantage && !rollCommand.advantage ? '-d6' : ''}`;
+                const advantageRoll = `${advantageState === true ? '+d6' : advantageState === false ? '-d6' : ''}`;
                 const attributeRoll = `${trait?.value ? `${trait.value > 0 ? `+${trait.value}` : `${trait.value}`}` : ''}`;
                 const roll = await Roll.create(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`).evaluate();
 
-                setDiceSoNiceForDualityRoll(
-                    roll,
-                    rollCommand.advantage && !rollCommand.disadvantage,
-                    rollCommand.disadvantage && !rollCommand.advantage
-                );
+                setDiceSoNiceForDualityRoll(roll, advantageState);
 
                 resolve({
                     roll,
@@ -268,14 +265,8 @@ Hooks.on('chatMessage', (_, message) => {
                     modifiers: trait ? [trait] : [],
                     hope: { dice: rollCommand.hope ?? 'd12', value: roll.dice[0].total },
                     fear: { dice: rollCommand.fear ?? 'd12', value: roll.dice[1].total },
-                    advantage:
-                        rollCommand.advantage && !rollCommand.disadvantage
-                            ? { dice: 'd6', value: roll.dice[2].total }
-                            : undefined,
-                    disadvantage:
-                        rollCommand.disadvantage && !rollCommand.advantage
-                            ? { dice: 'd6', value: roll.dice[2].total }
-                            : undefined
+                    advantage: advantageState !== null ? { dice: 'd6', value: roll.dice[2].total } : undefined,
+                    advantageState
                 });
 
                 const msgData = {

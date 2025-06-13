@@ -10,12 +10,12 @@
                         {{label}}
                     </div>
                 {{/each}}
-                {{#if (eq advantageState 1)}}
+                {{#if advantageState}}
                     <div class="duality-modifier">
                         {{localize "DAGGERHEART.General.Advantage.Full"}}
                     </div>
                 {{/if}}
-                {{#if (eq advantageState 2)}}
+                {{#if (eq advantageState false)}}
                     <div class="duality-modifier">
                         {{localize "DAGGERHEART.General.Disadvantage.Full"}}
                     </div>
@@ -41,7 +41,7 @@
                             <div class="dice-value">{{fear.value}}</div>
                         </div>
                     </div>
-                    {{#if (eq advantageState 1)}}
+                    {{#if advantageState}}
                         <div class="advantage-container advantage">
                             <div class="dice-wrapper">
                                 <img class="dice" src="../icons/svg/d6-grey.svg"/>
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                     {{/if}}
-                    {{#if (eq advantageState 2)}}
+                    {{#if (eq advantageState false)}}
                         <div class="advantage-container disadvantage">
                             <div class="dice-wrapper">
                                 <img class="dice" src="../icons/svg/d6-grey.svg"/>
@@ -61,7 +61,7 @@
                 </div>
                 {{#if (not damage.value)}}
                     <div class="duality-result">
-                        <div>{{total}} {{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
+                        <div>{{roll.total}} {{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
                     </div>
                 {{/if}}
             </div>
@@ -135,7 +135,7 @@
             <div class="dice-total duality {{#if fear.discarded}}hope{{else}}{{#if hope.discarded}}fear{{else}}critical{{/if}}{{/if}}">
                 <div class="dice-total-label">{{totalLabel}}</div>
                 <div class="dice-total-value">
-                    {{total}}
+                    {{roll.total}}
                 </div>
             </div>
         </div>

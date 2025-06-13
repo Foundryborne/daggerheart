@@ -28,10 +28,8 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
             ),
             hope: diceField(),
             fear: diceField(),
-            advantageState: new fields.NumberField({ integer: true }),
+            advantageState: new fields.BooleanField({ nullable: true, initial: null }),
             advantage: diceField(),
-            // advantage: diceField(),
-            // disadvantage: diceField(),
             targets: new fields.ArrayField(
                 new fields.SchemaField({
                     id: new fields.StringField({}),
@@ -64,16 +62,6 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
                 )
             })
         };
-    }
-
-    get total() {
-        // const advantage = this.advantage.value
-        //     ? this.advantage.value
-        //     : this.disadvantage.value
-        //       ? -this.disadvantage.value
-        //       : 0;
-        // return this.diceTotal + advantage + this.modifierTotal.value;
-        return this.roll.total;
     }
 
     get diceTotal() {
@@ -115,7 +103,7 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
     }
 
     prepareDerivedData() {
-        const total = this.total;
+        const total = this.roll.total;
 
         this.hope.discarded = this.hope.value < this.fear.value;
         this.fear.discarded = this.fear.value < this.hope.value;
