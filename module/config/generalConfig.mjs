@@ -1,4 +1,9 @@
 export const range = {
+    self: {
+        label: 'DAGGERHEART.Range.self.name',
+        description: 'DAGGERHEART.Range.self.description',
+        distance: 0
+    },
     melee: {
         id: 'melee',
         label: 'DAGGERHEART.Range.melee.name',
@@ -248,6 +253,11 @@ export const diceTypes = {
     d20: 'd20'
 };
 
+export const multiplierTypes = {
+    proficiency: 'Proficiency',
+    spellcast: 'Spellcast'
+};
+
 export const getDiceSoNicePresets = () => {
     const { diceSoNice } = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
 
@@ -310,5 +320,20 @@ export const abilityCosts = {
     stress: {
         id: 'stress',
         label: 'Stress'
+    }
+};
+
+export const rollTypes = {
+    weapon: {
+        id: 'weapon',
+        label: 'DAGGERHEART.RollTypes.weapon.name'
+    },
+    spellcast: {
+        id: 'spellcast',
+        label: 'DAGGERHEART.RollTypes.spellcast.name'
+    },
+    ability: {
+        id: 'ability',
+        label: 'DAGGERHEART.RollTypes.ability.name'
     }
 };

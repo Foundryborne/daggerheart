@@ -1,7 +1,7 @@
 <div class="dice-roll daggerheart chat roll" data-action="expandRoll">
-    <div class="dice-flavor">{{this.title}}</div>
+    <div class="dice-flavor">{{title}}</div>
     <div class="dice-result">
-        <div class="dice-formula">{{this.roll}}</div>
+        <div class="dice-formula">{{roll}}</div>
 
         <div class="dice-tooltip">
             <div class="wrapper">
@@ -9,12 +9,12 @@
                     {{#each dice}}
                         <div class="dice">
                             <header class="part-header flexrow">
-                                <span class="part-formula">{{this.rolls.length}}{{this.type}}</span>
+                                <span class="part-formula">{{rolls.length}}{{type}}</span>
                                 
-                                <span class="part-total">{{this.rollTotal}}</span>
+                                <span class="part-total">{{this.total}}</span>
                             </header>
                             <ol class="dice-rolls">
-                                {{#each this.rolls}}
+                                {{#each rolls}}
                                     <li class="roll die {{../type}} min">{{this}}</li>
                                 {{/each}}
                             </ol>
@@ -23,9 +23,9 @@
                 </section>
             </div>
         </div>
-        <div class="dice-total">{{this.damage.total}}</div>
+        <div class="dice-total">{{damage.total}}</div>
         <div class="dice-actions">
-            <button class="damage-button" data-target-hit="true" {{#if (eq this.targets.length 0)}}disabled{{/if}}>{{localize "DAGGERHEART.Chat.DamageRoll.DealDamageToTargets"}}</button>  
+            <button class="damage-button" data-target-hit="true" {{#if (eq targets.length 0)}}disabled{{/if}}>{{localize "DAGGERHEART.Chat.DamageRoll.DealDamageToTargets"}}</button>  
             <button class="damage-button">{{localize "DAGGERHEART.Chat.DamageRoll.DealDamage"}}</button>  
         </div>
     </div>

@@ -1,0 +1,19 @@
+<fieldset class="action-category">
+    <legend class="action-category-label" data-action="toggleSection" data-section="effects">
+        <div>Effects</div>
+    </legend>
+    <div class="action-category-data open" data-key="effects">
+        <div class="fas fa-plus icon-button" data-action="addEffect"></div>
+        {{#each @root.effects as | effect index | }}
+            <fieldset>
+                {{!-- <div class="multi-display"> --}}
+                    <div class="form-group">
+                        <img src="{{img}}">
+                        <label data-action="editEffect">{{name}}</label>
+                        <div class="fas fa-trash" data-action="removeEffect" data-index="{{index}}"></div>
+                    </div>
+                {{!-- </div> --}}
+            </fieldset>
+        {{/each}}
+    </div>
+</fieldset>

@@ -452,6 +452,37 @@ div.daggerheart.views.multiclass {
                 &.open {
                     max-height: initial;
                 }
+
+                .multi-display {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+                    .form-group {
+                        flex: 1;
+                    }
+                }
+
+                .form-group {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 0.5rem;
+                    label {
+                        flex: 2;
+                    }
+                    .form-fields {
+                        flex: 3;
+                    }
+                    img {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                    }
+                }
+
+                .data-form-array {
+                    border: 1px solid var(--color-fieldset-border);
+                    padding: 0.5rem;
+                    margin-bottom: 0.5rem;
+                }
             }
         }
     }

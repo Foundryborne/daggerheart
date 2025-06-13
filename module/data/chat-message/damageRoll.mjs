@@ -9,7 +9,13 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
                 total: new fields.NumberField({ required: true, integer: true }),
                 type: new fields.StringField({ choices: Object.keys(SYSTEM.GENERAL.damageTypes), integer: false })
             }),
-            dice: new fields.ArrayField(new fields.EmbeddedDataField(DhpDamageDice)),
+            dice: new fields.ArrayField(
+                new fields.SchemaField({
+                    type: new fields.StringField({ required: true }),
+                    rolls: new fields.ArrayField(new fields.NumberField({ required: true, integer: true })),
+                    total: new fields.NumberField({ integer: true })
+                })
+            ),
             modifiers: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.NumberField({ required: true, integer: true }),
@@ -24,20 +30,5 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
                 })
             )
         };
-    }
-}
-
-class DhpDamageDice extends foundry.abstract.DataModel {
-    static defineSchema() {
-        const fields = foundry.data.fields;
-
-        return {
-            type: new fields.StringField({ required: true }),
-            rolls: new fields.ArrayField(new fields.NumberField({ required: true, integer: true }))
-        };
-    }
-
-    get rollTotal() {
-        return this.rolls.reduce((acc, roll) => acc + roll, 0);
     }
 }

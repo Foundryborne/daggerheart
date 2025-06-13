@@ -1,4 +1,4 @@
-import { DualityRollColor } from "../settings/Appearance.mjs";
+import { DualityRollColor } from '../settings/Appearance.mjs';
 
 const fields = foundry.data.fields;
 const diceField = () =>
@@ -18,18 +18,17 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
         return {
             title: new fields.StringField(),
             origin: new fields.StringField({ required: true }),
-            roll: new fields.StringField({}),
+            roll: new fields.DataField({}),
             modifiers: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.NumberField({ integer: true }),
-                    label: new fields.StringField({}),
-                    title: new fields.StringField({})
+                    label: new fields.StringField({})
                 })
             ),
             hope: diceField(),
             fear: diceField(),
+            advantageState: new fields.BooleanField({ nullable: true, initial: null }),
             advantage: diceField(),
-            disadvantage: diceField(),
             targets: new fields.ArrayField(
                 new fields.SchemaField({
                     id: new fields.StringField({}),
@@ -62,15 +61,6 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
                 )
             })
         };
-    }
-
-    get total() {
-        const advantage = this.advantage.value
-            ? this.advantage.value
-            : this.disadvantage.value
-              ? -this.disadvantage.value
-              : 0;
-        return this.diceTotal + advantage + this.modifierTotal.value;
     }
 
     get diceTotal() {
@@ -112,13 +102,7 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
     }
 
     prepareDerivedData() {
-        const total = this.total;
-
         this.hope.discarded = this.hope.value < this.fear.value;
         this.fear.discarded = this.fear.value < this.hope.value;
-
-        this.targets.forEach(target => {
-            target.hit = target.difficulty ? total >= target.difficulty : total >= target.evasion;
-        });
     }
 }

@@ -13,3 +13,5 @@ export { default as DhpArmor } from './sheets/items/armor.mjs';
 export { default as DhpChatMessage } from './chatMessage.mjs';
 export { default as DhpEnvironment } from './sheets/environment.mjs';
 export { default as DhActiveEffectConfig } from './sheets/activeEffectConfig.mjs';
+
+export * as pseudoDocumentSheet from './sheets/pseudo-documents/_module.mjs';

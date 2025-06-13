@@ -1,14 +1,14 @@
 import { getTier } from '../../helpers/utils.mjs';
-import DaggerheartAction from '../action.mjs';
+import DHAction from '../action/action.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHFeature extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
-            label: "TYPES.Item.feature",
-            type: "feature",
-            hasDescription: true,
+            label: 'TYPES.Item.feature',
+            type: 'feature',
+            hasDescription: true
         });
     }
 
@@ -17,7 +17,7 @@ export default class DHFeature extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            
+
             //A type of feature seems unnecessary
             type: new fields.StringField({ choices: SYSTEM.ITEM.featureTypes }),
 
@@ -26,7 +26,7 @@ export default class DHFeature extends BaseDataItem {
                 choices: SYSTEM.ITEM.actionTypes,
                 initial: SYSTEM.ITEM.actionTypes.passive.id
             }),
-               //TODO: remove  featureType field
+            //TODO: remove  featureType field
             featureType: new fields.SchemaField({
                 type: new fields.StringField({
                     choices: SYSTEM.ITEM.valueTypes,
@@ -75,9 +75,10 @@ export default class DHFeature extends BaseDataItem {
                         { nullable: true, initial: null }
                     ),
                     dataField: new fields.StringField({}),
-                    appliesOn: new fields.StringField({
-                        choices: SYSTEM.EFFECTS.applyLocations,
-                    },
+                    appliesOn: new fields.StringField(
+                        {
+                            choices: SYSTEM.EFFECTS.applyLocations
+                        },
                         { nullable: true, initial: null }
                     ),
                     applyLocationChoices: new fields.TypedObjectField(new fields.StringField({}), {
@@ -92,7 +93,7 @@ export default class DHFeature extends BaseDataItem {
                     })
                 })
             ),
-            actions: new fields.ArrayField(new fields.EmbeddedDataField(DaggerheartAction))
+            actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAction))
         };
     }
 

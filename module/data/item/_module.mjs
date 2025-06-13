@@ -10,27 +10,27 @@ import DHSubclass from './subclass.mjs';
 import DHWeapon from './weapon.mjs';
 
 export {
-  DHAncestry,
-  DHArmor,
-  DHClass,
-  DHCommunity,
-  DHConsumable,
-  DHDomainCard,
-  DHFeature,
-  DHMiscellaneous,
-  DHSubclass,
-  DHWeapon,
-}
+    DHAncestry,
+    DHArmor,
+    DHClass,
+    DHCommunity,
+    DHConsumable,
+    DHDomainCard,
+    DHFeature,
+    DHMiscellaneous,
+    DHSubclass,
+    DHWeapon
+};
 
 export const config = {
-  ancestry: DHAncestry,
-  armor: DHArmor,
-  class: DHClass,
-  community: DHCommunity,
-  consumable: DHConsumable,
-  domainCard: DHDomainCard,
-  feature: DHFeature,
-  miscellaneous: DHMiscellaneous,
-  subclass: DHSubclass,
-  weapon: DHWeapon,
+    ancestry: DHAncestry,
+    armor: DHArmor,
+    class: DHClass,
+    community: DHCommunity,
+    consumable: DHConsumable,
+    domainCard: DHDomainCard,
+    feature: DHFeature,
+    miscellaneous: DHMiscellaneous,
+    subclass: DHSubclass,
+    weapon: DHWeapon
 };

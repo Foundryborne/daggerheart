@@ -1,6 +1,18 @@
 export default class DhpItem extends Item {
-    prepareData() {
-        super.prepareData();
+    /** @inheritdoc */
+    getEmbeddedDocument(embeddedName, id, { invalid = false, strict = false } = {}) {
+        const systemEmbeds = this.system.constructor.metadata.embedded ?? {};
+        if (embeddedName in systemEmbeds) {
+            const path = `system.${systemEmbeds[embeddedName]}`;
+            return foundry.utils.getProperty(this, path).get(id) ?? null;
+        }
+        return super.getEmbeddedDocument(embeddedName, id, { invalid, strict });
+    }
+
+    /** @inheritDoc */
+    prepareEmbeddedDocuments() {
+        super.prepareEmbeddedDocuments();
+        for (const action of this.system.actions ?? []) action.prepareData();
     }
 
     /**
@@ -25,10 +37,6 @@ export default class DhpItem extends Item {
 
     isInventoryItem() {
         return ['weapon', 'armor', 'miscellaneous', 'consumable'].includes(this.type);
-    }
-
-    _onUpdate(data, options, userId) {
-        super._onUpdate(data, options, userId);
     }
 
     static async createDialog(data = {}, { parent = null, pack = null, ...options } = {}) {
@@ -89,5 +97,48 @@ export default class DhpItem extends Item {
             rejectClose: false,
             options
         });
+    }
+
+    async selectActionDialog() {
+        const content = await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/views/actionSelect.hbs',
+                { actions: this.system.actions }
+            ),
+            title = 'Select Action',
+            type = 'div',
+            data = {};
+        return Dialog.prompt({
+            title,
+            // label: title,
+            content,
+            type,
+            callback: html => {
+                const form = html[0].querySelector('form'),
+                    fd = new foundry.applications.ux.FormDataExtended(form);
+                return this.system.actions.find(a => a._id === fd.object.actionId);
+            },
+            rejectClose: false
+        });
+    }
+
+    async use(event) {
+        const actions = this.system.actions;
+        let response;
+        if (actions?.length) {
+            let action = actions[0];
+            if (actions.length > 1 && !event?.shiftKey) {
+                // Actions Choice Dialog
+                action = await this.selectActionDialog();
+            }
+            if (action) response = action.use(event);
+            // Check Target
+            // If action.roll           => Roll Dialog
+            // Else If action.cost      => Cost Dialog
+            // Then
+            // Apply Cost
+            // Apply Effect
+        }
+        // Display Item Card in chat
+        return response;
     }
 }

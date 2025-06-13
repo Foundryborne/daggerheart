@@ -1,9 +1,7 @@
-import DaggerheartAction from '../../../data/action.mjs';
-import DaggerheartActionConfig from '../../config/Action.mjs';
-import DaggerheartSheet from '../daggerheart-sheet.mjs';
+import DHItemSheetV2 from '../item.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
-export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
+export default class FeatureSheet extends DHItemSheetV2(ItemSheetV2) {
     constructor(options = {}) {
         super(options);
 
@@ -11,22 +9,13 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     }
 
     static DEFAULT_OPTIONS = {
-        tag: 'form',
         id: 'daggerheart-feature',
-        classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'feature'],
+        classes: ['feature'],
         position: { width: 600, height: 600 },
         window: { resizable: true },
         actions: {
             addEffect: this.addEffect,
-            removeEffect: this.removeEffect,
-            addAction: this.addAction,
-            editAction: this.editAction,
-            removeAction: this.removeAction
-        },
-        form: {
-            handler: this.updateForm,
-            submitOnChange: true,
-            closeOnSubmit: false
+            removeEffect: this.removeEffect
         }
     };
 
@@ -49,30 +38,7 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     };
 
     static TABS = {
-        description: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'description',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Feature.Tabs.Description'
-        },
-        actions: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'actions',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Feature.Tabs.Actions'
-        },
-        settings: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'settings',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Feature.Tabs.Settings'
-        },
+        ...super.TABS,
         effects: {
             active: false,
             cssClass: '',
@@ -102,11 +68,6 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
         return context;
     }
 
-    static async updateForm(event, _, formData) {
-        await this.document.update(formData.object);
-        this.render();
-    }
-
     effectSelect(event) {
         this.selectedEffectType = event.currentTarget.value;
         this.render(true);
@@ -129,27 +90,5 @@ export default class FeatureSheet extends DaggerheartSheet(ItemSheetV2) {
     static async removeEffect(_, button) {
         const path = `system.effects.-=${button.dataset.effect}`;
         await this.item.update({ [path]: null });
-    }
-
-    static async addAction() {
-        const action = await new DaggerheartAction({ img: this.document.img }, { parent: this.document });
-        await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
-        await new DaggerheartActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(
-            true
-        );
-    }
-
-    static async editAction(_, button) {
-        const action = this.document.system.actions[button.dataset.index];
-        await new DaggerheartActionConfig(action).render(true);
-    }
-
-    static async removeAction(event, button) {
-        event.stopPropagation();
-        await this.document.update({
-            'system.actions': this.document.system.actions.filter(
-                (_, index) => index !== Number.parseInt(button.dataset.index)
-            )
-        });
     }
 }
