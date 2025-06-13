@@ -285,12 +285,14 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async rollAttribute(event, button) {
+        const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
         const config = {
             event: event,
             title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
-                ability: game.i18n.localize(abilities[button.dataset.attribute].label)
+                ability: abilityLabel
             }),
             roll: {
+                label: abilityLabel,
                 modifier: button.dataset.value
             },
             chatMessage: {
@@ -368,7 +370,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static async attackRoll(event, button) {
         const weapon = await fromUuid(button.dataset.weapon);
-        if(!weapon) return;
+        if (!weapon) return;
         weapon.use(event);
     }
 

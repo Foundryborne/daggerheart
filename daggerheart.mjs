@@ -135,7 +135,7 @@ Hooks.on(socketEvent.GMUpdate, async (action, uuid, update) => {
 
 const renderDualityButton = async event => {
     const button = event.currentTarget,
-        attributeValue = button.dataset.attribute?.toLowerCase(),
+        traitValue = button.dataset.trait?.toLowerCase(),
         target = getCommandTarget();
     if (!target) return;
 
@@ -143,7 +143,8 @@ const renderDualityButton = async event => {
         event: event,
         title: button.dataset.label,
         roll: {
-            modifier: attributeValue ? target.system.attributes[attributeValue].data.value : null,
+            modifier: traitValue ? target.system.traits[traitValue].value : null,
+            label: button.dataset.label,
             type: button.dataset.actionType ?? null // Need check
         },
         chatMessage: {
@@ -218,28 +219,28 @@ Hooks.on('chatMessage', (_, message) => {
             return false;
         }
 
-        const attributeValue = rollCommand.attribute?.toLowerCase();
+        const traitValue = rollCommand.trait?.toLowerCase();
 
         // Target not required if an attribute is not used.
-        const target = attributeValue ? getCommandTarget() : undefined;
-        if (target || !attributeValue) {
+        const target = traitValue ? getCommandTarget() : undefined;
+        if (target || !traitValue) {
             new Promise(async (resolve, reject) => {
-                const attribute = target ? target.system.attributes[attributeValue] : undefined;
-                if (attributeValue && !attribute) {
+                const trait = target ? target.system.traits[traitValue] : undefined;
+                if (traitValue && !trait) {
                     ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.AttributeFaulty'));
                     reject();
                     return;
                 }
 
-                const title = attributeValue
+                const title = traitValue
                     ? game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
-                          ability: game.i18n.localize(abilities[attributeValue].label)
+                          ability: game.i18n.localize(abilities[traitValue].label)
                       })
                     : game.i18n.localize('DAGGERHEART.General.Duality');
 
                 const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
                 const advantageRoll = `${rollCommand.advantage && !rollCommand.disadvantage ? '+d6' : rollCommand.disadvantage && !rollCommand.advantage ? '-d6' : ''}`;
-                const attributeRoll = `${attribute?.data?.value ? `${attribute.data.value > 0 ? `+${attribute.data.value}` : `${attribute.data.value}`}` : ''}`;
+                const attributeRoll = `${trait?.value ? `${trait.value > 0 ? `+${trait.value}` : `${trait.value}`}` : ''}`;
                 const roll = await Roll.create(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`).evaluate();
 
                 setDiceSoNiceForDualityRoll(
@@ -250,21 +251,21 @@ Hooks.on('chatMessage', (_, message) => {
 
                 resolve({
                     roll,
-                    attribute: attribute
+                    trait: trait
                         ? {
-                              value: attribute.data.value,
-                              label: `${game.i18n.localize(abilities[attributeValue].label)} ${attribute.data.value >= 0 ? `+` : ``}${attribute.data.value}`
+                              value: trait.value,
+                              label: `${game.i18n.localize(abilities[traitValue].label)} ${trait.value >= 0 ? `+` : ``}${trait.value}`
                           }
                         : undefined,
                     title
                 });
-            }).then(async ({ roll, attribute, title }) => {
+            }).then(async ({ roll, trait, title }) => {
                 const cls = getDocumentClass('ChatMessage');
                 const systemData = new DHDualityRoll({
                     title: title,
                     origin: target?.id,
                     roll: roll,
-                    modifiers: attribute ? [attribute] : [],
+                    modifiers: trait ? [trait] : [],
                     hope: { dice: rollCommand.hope ?? 'd12', value: roll.dice[0].total },
                     fear: { dice: rollCommand.fear ?? 'd12', value: roll.dice[1].total },
                     advantage:
@@ -282,10 +283,7 @@ Hooks.on('chatMessage', (_, message) => {
                     sound: CONFIG.sounds.dice,
                     system: systemData,
                     user: game.user.id,
-                    content: await foundry.applications.handlebars.renderTemplate(
-                        'systems/daggerheart/templates/chat/duality-roll.hbs',
-                        systemData
-                    ),
+                    content: 'systems/daggerheart/templates/chat/duality-roll.hbs',
                     rolls: [roll]
                 };
 
