@@ -152,45 +152,6 @@ const renderDualityButton = async event => {
         }
     };
     await target.diceRoll(config);
-
-    // Delete when new roll logic test done
-    /* const button = event.currentTarget;
-    const attributeValue = button.dataset.attribute?.toLowerCase();
-
-    const target = getCommandTarget();
-    if (!target) return;
-
-    const rollModifier = attributeValue ? target.system.attributes[attributeValue].data.value : null;
-    const { roll, hope, fear, advantage, disadvantage, modifiers } = await target.diceRoll({
-        title: button.dataset.label,
-        value: rollModifier
-    });
-
-    const systemData = new DHDualityRoll({
-        title: button.dataset.label,
-        origin: target.id,
-        roll: roll._formula,
-        modifiers: modifiers,
-        hope: hope,
-        fear: fear,
-        advantage: advantage,
-        disadvantage: disadvantage
-    });
-
-    const cls = getDocumentClass('ChatMessage');
-    const msgData = {
-        type: 'dualityRoll',
-        sound: CONFIG.sounds.dice,
-        system: systemData,
-        user: game.user.id,
-        content: await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/chat/duality-roll.hbs',
-            systemData
-        ),
-        rolls: [roll]
-    };
-
-    await cls.create(msgData); */
 };
 
 Hooks.on('renderChatMessageHTML', (_, element) => {

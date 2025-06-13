@@ -195,6 +195,7 @@ export default class DhpActor extends Actor {
         }
         formula += ` ${modifiers.map(x => `+ ${x.value}`).join(' ')}`;
         const roll = await Roll.create(formula).evaluate();
+        roll.rolledDice = roll.dice; // Perpetuating getter field
 
         if (this.type === 'character') {
             setDiceSoNiceForDualityRoll(roll, advantage);
@@ -226,13 +227,19 @@ export default class DhpActor extends Actor {
         }
 
         if (config.checkTarget) {
-            targets = Array.from(game.user.targets).map(x => ({
-                id: x.id,
-                name: x.actor.name,
-                img: x.actor.img,
-                difficulty: x.actor.system.difficulty,
-                evasion: x.actor.system.evasion.value ?? x.actor.system.evasion
-            }));
+            targets = Array.from(game.user.targets).map(x => {
+                const target = {
+                    id: x.id,
+                    name: x.actor.name,
+                    img: x.actor.img,
+                    difficulty: x.actor.system.difficulty,
+                    evasion: x.actor.system.evasion?.value
+                };
+
+                target.hit = target.difficulty ? roll.total >= target.difficulty : roll.total >= target.evasion;
+
+                return target;
+            });
         }
 
         if (config.chatMessage) {
@@ -240,7 +247,7 @@ export default class DhpActor extends Actor {
                 title: config.title,
                 origin: this.id,
                 roll,
-                modifiers,
+                modifiers: modifiers.filter(x => x.label),
                 advantageState: advantage
             };
             if (this.type === 'character') {
@@ -272,7 +279,11 @@ export default class DhpActor extends Actor {
             ? [
                   {
                       value: modifier,
-                      label: modifier >= 0 ? `${roll.label} +${modifier}` : `${roll.label} ${modifier}`,
+                      label: roll.label
+                          ? modifier >= 0
+                              ? `${roll.label} +${modifier}`
+                              : `${roll.label} ${modifier}`
+                          : null,
                       title: roll.label
                   }
               ]

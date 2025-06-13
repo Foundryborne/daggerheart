@@ -18,7 +18,6 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
         return {
             title: new fields.StringField(),
             origin: new fields.StringField({ required: true }),
-            // roll: new fields.StringField({}),
             roll: new fields.DataField({}),
             modifiers: new fields.ArrayField(
                 new fields.SchemaField({
@@ -103,13 +102,7 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
     }
 
     prepareDerivedData() {
-        const total = this.roll.total;
-
         this.hope.discarded = this.hope.value < this.fear.value;
         this.fear.discarded = this.fear.value < this.hope.value;
-
-        this.targets.forEach(target => {
-            target.hit = target.difficulty ? total >= target.difficulty : total >= target.evasion;
-        });
     }
 }
