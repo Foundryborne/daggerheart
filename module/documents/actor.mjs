@@ -272,17 +272,9 @@ export default class DhpActor extends Actor {
                     system: systemData,
                     content: config.chatMessage.template,
                     rolls: [roll]
-                }),
-                msg2 = new cls({
-                    type: config.chatMessage.type ?? 'dualityRoll',
-                    sound: config.chatMessage.mute ? null : CONFIG.sounds.dice,
-                    system: {...systemData, forceDisplay: true },
-                    content: config.chatMessage.template,
-                    rolls: [roll]
                 });
 
             await cls.create(msg.toObject());
-            await cls.create(msg2.toObject());
         }
         return roll;
     }

@@ -59,8 +59,7 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
                     }),
                     { nullable: true, initial: null }
                 )
-            }),
-            forceDisplay: new fields.BooleanField({initial: false})
+            })
         };
     }
 
@@ -69,6 +68,7 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
     }
 
     get modifierTotal() {
+        // return {value: 12, label: "+12"}
         const total = this.modifiers.reduce((acc, x) => acc + x.value, 0);
         return {
             value: total,
@@ -97,7 +97,7 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
 
     get colorful() {
         return (
-            !this.forceDisplay && game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
+            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
             DualityRollColor.colorful.value
         );
     }

@@ -67,7 +67,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
             await game.socket.emit('reload');
             foundry.utils.debouncedReload();
         } */
-        document.body.classList.toggle('theme-colorfull', game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme === DualityRollColor.colorful.value);
+        document.body.classList.toggle('theme-colorful', game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme === DualityRollColor.colorful.value);
 
         this.close();
     }

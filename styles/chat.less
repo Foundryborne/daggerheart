@@ -332,6 +332,7 @@
                 > .roll {
                     display: flex;
                     align-items: center;
+                    justify-content: center;
                     gap: 4px;
                     margin-bottom: 4px;
                     .dice-container {
@@ -608,17 +609,9 @@
 
         .dice-result {
             .roll-damage-button,
-            .damage-button {
+            .damage-button,
+            .duality-action {
                 margin-top: 5px;
-            }
-        }
-
-        .dice-actions {
-            margin-top: 5px;
-            display: flex;
-
-            button {
-                flex: 1;
             }
         }
     }
@@ -675,7 +668,7 @@
     }
 }
 
-.theme-colorfull {
+.theme-colorful {
     .chat-message.duality {
         border-color: black;
         padding: 8px 0 0 0;
@@ -752,9 +745,9 @@
                             gap: .25rem;
                             .dice {
                                 .dice-rolls {
+                                    margin-bottom: 0;
                                     display: flex;
                                     gap: 0.25rem;
-                                    margin-bottom: 0;
                                     li {
                                         display: flex;
                                         align-items: center;
@@ -782,6 +775,10 @@
                 }
                 .dice-actions {
                     justify-content: space-between;
+                    &.duality-alone {
+                        justify-content: end;
+                        margin-top: -20px;
+                    }
                     .duality-action {
                         color: var(--color-light-1);
                         text-shadow: 0 0 1px black;
@@ -795,20 +792,20 @@
                         margin-left: -8px;
                         flex: unset;
                     }
-                }
-                .duality-result {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: end;
-                    justify-content: center;
-                    gap: 2px;
-                    color: var(--color-light-1);
-                    text-shadow: 0 0 1px black;
-                    font-weight: bold;
-                    background: var(--color-dark-1);
-                    padding: 4px 4px 0 4px;
-                    border-radius: 6px 0 0 0;
-                    margin-right: -8px;
+                    .duality-result {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: end;
+                        justify-content: center;
+                        gap: 2px;
+                        color: var(--color-light-1);
+                        text-shadow: 0 0 1px black;
+                        font-weight: bold;
+                        background: var(--color-dark-1);
+                        padding: 4px 4px 0 4px;
+                        border-radius: 6px 0 0 0;
+                        margin-right: -8px;
+                    }
                 }
             }
         }

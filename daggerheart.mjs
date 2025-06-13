@@ -106,7 +106,7 @@ Hooks.once('init', () => {
 Hooks.on('ready', () => {
     ui.resources = new CONFIG.ui.resources();
     ui.resources.render({ force: true });
-    document.body.classList.toggle('theme-colorfull', game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme === DualityRollColor.colorful.value);
+    document.body.classList.toggle('theme-colorful', game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme === DualityRollColor.colorful.value);
 });
 
 Hooks.once('dicesoniceready', () => {});

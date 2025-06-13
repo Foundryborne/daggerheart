@@ -1490,6 +1490,7 @@
 .daggerheart.chat.roll .dice-tooltip .dice-rolls > .roll {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   margin-bottom: 4px;
 }
@@ -1630,15 +1631,9 @@
   flex: 1;
 }
 .daggerheart.chat.roll .dice-result .roll-damage-button,
-.daggerheart.chat.roll .dice-result .damage-button {
+.daggerheart.chat.roll .dice-result .damage-button,
+.daggerheart.chat.roll .dice-result .duality-action {
   margin-top: 5px;
-}
-.daggerheart.chat.roll .dice-actions {
-  margin-top: 5px;
-  display: flex;
-}
-.daggerheart.chat.roll .dice-actions button {
-  flex: 1;
 }
 .daggerheart.chat.domain-card {
   display: flex;
@@ -1682,47 +1677,47 @@
 .daggerheart.chat.domain-card img {
   width: 80px;
 }
-.theme-colorfull .chat-message.duality {
+.theme-colorful .chat-message.duality {
   border-color: black;
   padding: 8px 0 0 0;
 }
-.theme-colorfull .chat-message.duality .message-header {
+.theme-colorful .chat-message.duality .message-header {
   color: var(--color-light-3);
   padding: 0 8px;
 }
-.theme-colorfull .chat-message.duality.hope {
+.theme-colorful .chat-message.duality.hope {
   background: linear-gradient(0, rgba(165, 42, 42, 0.6) 40px, rgba(0, 0, 0, 0.6));
 }
-.theme-colorfull .chat-message.duality.fear {
+.theme-colorful .chat-message.duality.fear {
   background: linear-gradient(0, rgba(0, 0, 255, 0.6), rgba(15, 15, 97, 0.6));
 }
-.theme-colorfull .chat-message.duality.critical {
+.theme-colorful .chat-message.duality.critical {
   background: linear-gradient(0, rgba(128, 0, 128, 0.6), rgba(37, 8, 37, 0.6));
 }
-.theme-colorfull .chat-message.duality .chat-message header {
+.theme-colorful .chat-message.duality .chat-message header {
   color: var(--color-light-3);
 }
-.theme-colorfull .chat-message.duality > * {
+.theme-colorful .chat-message.duality > * {
   padding: 0 8px;
 }
-.theme-colorfull .chat-message.duality .message-content .duality-modifiers,
-.theme-colorfull .chat-message.duality .message-content .duality-result,
-.theme-colorfull .chat-message.duality .message-content .dice-title {
+.theme-colorful .chat-message.duality .message-content .duality-modifiers,
+.theme-colorful .chat-message.duality .message-content .duality-result,
+.theme-colorful .chat-message.duality .message-content .dice-title {
   display: flex;
 }
-.theme-colorfull .chat-message.duality .message-content .duality-modifiers {
+.theme-colorful .chat-message.duality .message-content .duality-modifiers {
   display: flex;
   gap: 2px;
   margin-bottom: 4px;
 }
-.theme-colorfull .chat-message.duality .message-content .duality-modifiers .duality-modifier {
+.theme-colorful .chat-message.duality .message-content .duality-modifiers .duality-modifier {
   padding: 2px;
   border-radius: 6px;
   border: 1px solid;
   background: var(--color-dark-6);
   font-size: 12px;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-flavor {
+.theme-colorful .chat-message.duality .message-content .dice-flavor {
   color: var(--color-light-1);
   text-shadow: 0 0 1px black;
   border-bottom: 1px solid;
@@ -1733,37 +1728,37 @@
   margin: 0 -8px 2px;
   font-weight: unset;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .duality-modifiers {
+.theme-colorful .chat-message.duality .message-content .dice-result .duality-modifiers {
   display: flex;
   gap: 2px;
   margin-bottom: 4px;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .duality-modifiers .duality-modifier {
+.theme-colorful .chat-message.duality .message-content .dice-result .duality-modifiers .duality-modifier {
   padding: 2px;
   border-radius: 6px;
   border: 1px solid;
   background: var(--color-dark-6);
   font-size: 12px;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .dice-formula,
-.theme-colorfull .chat-message.duality .message-content .dice-result > .dice-total,
-.theme-colorfull .chat-message.duality .message-content .dice-result .part-header {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-formula,
+.theme-colorful .chat-message.duality .message-content .dice-result > .dice-total,
+.theme-colorful .chat-message.duality .message-content .dice-result .part-header {
   display: none;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .dice-tooltip {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip {
   grid-template-rows: 1fr;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part {
   display: flex;
   align-items: end;
   gap: 0.25rem;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls {
+  margin-bottom: 0;
   display: flex;
   gap: 0.25rem;
-  margin-bottom: 0;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls li {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls li {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1772,21 +1767,25 @@
   line-height: unset;
   font-weight: unset;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .target-section {
+.theme-colorful .chat-message.duality .message-content .dice-result .target-section {
   margin: 4px 0;
   border: 2px solid;
   margin-top: 5px;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .target-section .dice-total {
+.theme-colorful .chat-message.duality .message-content .dice-result .target-section .dice-total {
   box-shadow: unset;
   border: unset;
   border-radius: unset;
   font-size: var(--font-size-18);
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .dice-actions {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-actions {
   justify-content: space-between;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .dice-actions .duality-action {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-actions.duality-alone {
+  justify-content: end;
+  margin-top: -20px;
+}
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-actions .duality-action {
   color: var(--color-light-1);
   text-shadow: 0 0 1px black;
   font-weight: bold;
@@ -1799,7 +1798,7 @@
   margin-left: -8px;
   flex: unset;
 }
-.theme-colorfull .chat-message.duality .message-content .dice-result .duality-result {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-actions .duality-result {
   display: flex;
   flex-direction: column;
   align-items: end;

@@ -218,14 +218,14 @@
                     {{/each}}
                 </div>
             {{/if}}
-            {{#if damage.value}}
-                <div class="dice-actions">
-                    <button class="duality-action" data-value="{{roll.total}}" data-damage="{{damage.value}}" data-damage-type="{{damage.type}}" {{#if damage.disabled}}disabled{{/if}}><span>{{localize "DAGGERHEART.Chat.AttackRoll.RollDamage"}}</span></button>
-                    <div class="duality-result">
-                        <div>{{roll.total}} {{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
-                    </div>
+            <div class="dice-actions{{#unless damage.value}} duality-alone{{/unless}}">
+                {{#if damage.value}}
+                        <button class="duality-action" data-value="{{roll.total}}" data-damage="{{damage.value}}" data-damage-type="{{damage.type}}" {{#if damage.disabled}}disabled{{/if}}><span>{{localize "DAGGERHEART.Chat.AttackRoll.RollDamage"}}</span></button>
+                {{/if}}
+                <div class="duality-result">
+                    <div>{{roll.total}} {{#if (eq dualityResult 1)}}With Hope{{else}}{{#if (eq dualityResult 2)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
                 </div>
-            {{/if}}
+            </div>
         </div>
     </div>
 {{!-- {{/if}} --}}
