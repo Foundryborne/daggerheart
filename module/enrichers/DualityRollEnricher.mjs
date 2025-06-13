@@ -9,13 +9,13 @@ export function dualityRollEnricher(match, _options) {
 }
 
 export function getDualityMessage(roll) {
-    const attributeLabel =
-        roll.attribute && abilities[roll.attribute]
+    const traitLabel =
+        roll.trait && abilities[roll.trait]
             ? game.i18n.format('DAGGERHEART.General.Check', {
-                  check: game.i18n.localize(abilities[roll.attribute].label)
+                  check: game.i18n.localize(abilities[roll.trait].label)
               })
             : null;
-    const label = attributeLabel ?? game.i18n.localize('DAGGERHEART.General.Duality');
+    const label = traitLabel ?? game.i18n.localize('DAGGERHEART.General.Duality');
 
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `
@@ -23,7 +23,7 @@ export function getDualityMessage(roll) {
             data-label="${label}"
             data-hope="${roll.hope ?? 'd12'}" 
             data-fear="${roll.fear ?? 'd12'}" 
-            ${roll.attribute && abilities[roll.attribute] ? `data-attribute="${roll.attribute}"` : ''}
+            ${roll.trait && abilities[roll.trait] ? `data-trait="${roll.trait}"` : ''}
             ${roll.advantage ? 'data-advantage="true"' : ''}
             ${roll.disadvantage ? 'data-disadvantage="true"' : ''}
         >

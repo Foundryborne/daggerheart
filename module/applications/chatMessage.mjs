@@ -3,6 +3,15 @@ import DHDualityRoll from '../data/chat-message/dualityRoll.mjs';
 
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async renderHTML() {
+        if (
+            this.type === 'dualityRoll' ||
+            this.type === 'adversaryRoll' ||
+            this.type === 'damageRoll' ||
+            this.type === 'abilityUse'
+        ) {
+            this.content = await foundry.applications.handlebars.renderTemplate(this.content, this.system);
+        }
+
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML();
 
