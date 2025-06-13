@@ -9,6 +9,12 @@ export default class DhpItem extends Item {
         return super.getEmbeddedDocument(embeddedName, id, { invalid, strict });
     }
 
+    /** @inheritDoc */
+    prepareEmbeddedDocuments() {
+        super.prepareEmbeddedDocuments();
+        for (const action of this.system.actions ?? []) action.prepareData();
+    }
+
     /**
      * @inheritdoc
      * @param {object} options - Options which modify the getRollData method.
@@ -91,5 +97,48 @@ export default class DhpItem extends Item {
             rejectClose: false,
             options
         });
+    }
+
+    async selectActionDialog() {
+        const content = await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/views/actionSelect.hbs',
+                { actions: this.system.actions }
+            ),
+            title = 'Select Action',
+            type = 'div',
+            data = {};
+        return Dialog.prompt({
+            title,
+            // label: title,
+            content,
+            type,
+            callback: html => {
+                const form = html[0].querySelector('form'),
+                    fd = new foundry.applications.ux.FormDataExtended(form);
+                return this.system.actions.find(a => a._id === fd.object.actionId);
+            },
+            rejectClose: false
+        });
+    }
+
+    async use(event) {
+        const actions = this.system.actions;
+        let response;
+        if (actions?.length) {
+            let action = actions[0];
+            if (actions.length > 1 && !event?.shiftKey) {
+                // Actions Choice Dialog
+                action = await this.selectActionDialog();
+            }
+            if (action) response = action.use(event);
+            // Check Target
+            // If action.roll           => Roll Dialog
+            // Else If action.cost      => Cost Dialog
+            // Then
+            // Apply Cost
+            // Apply Effect
+        }
+        // Display Item Card in chat
+        return response;
     }
 }

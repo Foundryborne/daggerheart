@@ -146,6 +146,7 @@
             }
         },
         "General": {
+            "Name": "Name",
             "Hope": "Hope",
             "Fear": "Fear",
             "Duality": "Duality",
@@ -478,6 +479,10 @@
             "twoHanded": "Two-Handed"
         },
         "Range": {
+            "self": {
+                "name": "Self",
+                "description": "means yourself."
+            },
             "melee": {
                 "name": "Melee",
                 "description": "means a character is within touching distance of the target. PCs can generally touch targets up to a few feet away from them, but melee range may be greater for especially large NPCs."
@@ -1284,10 +1289,48 @@
                 }
             }
         },
-
         "Tooltip": {
             "openItemWorld": "Open Item World",
             "delete": "Delete"
+        },
+        "Actions": {
+            "Types": {
+                "Attack": {
+                    "Name": "Attack"
+                },
+                "Spellcast": {
+                    "Name": "Spellcast"
+                },
+                "Resource": {
+                    "Name": "Resource"
+                },
+                "Damage": {
+                    "Name": "Damage"
+                },
+                "Healing": {
+                    "Name": "Healing"
+                },
+                "Summon": {
+                    "Name": "Summon"
+                },
+                "Effect": {
+                    "Name": "Effect"
+                },
+                "Macro": {
+                    "Name": "Macro"
+                }
+            }
+        },
+        "RollTypes": {
+            "ability": {
+                "name": "Ability"
+            },
+            "weapon": {
+                "name": "Weapon"
+            },
+            "spellcast": {
+                "name": "SpellCast"
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 <div>
     <header>
-        {{formField fields.name value=source.name label="Name" name="name" rootId=partId}}
+        {{!-- {{formField fields.name value=source.name label="Name" name="name" rootId=partId}} --}}
         <nav class="sheet-tabs tabs">
             {{#each tabs as |tab|}}
                 <a class="{{tab.cssClass}}" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}">
@@ -11,51 +11,30 @@
         </nav>
     </header>
     <section>
-        <div class="tab {{this.tabs.effects.cssClass}}" data-group="primary" data-tab="effects">
+        <div class="tab {{this.tabs.base.cssClass}}" data-group="primary" data-tab="base">
             <fieldset class="action-category">
-                <legend class="action-category-label" data-action="toggleSection" data-section="damage">
-                    <div>Damage</div>
+                <legend class="action-category-label" data-action="toggleSection" data-section="identity">
+                    <div>Identity</div>
                 </legend>
-
                 <div class="action-category-data open">
-                    {{formField fields.damage.fields.type value=source.damage.type label="Damage Type" name="damage.type" rootId=partId localize=true}}
-                    {{formField fields.damage.fields.value value=source.damage.value label="Damage" name="damage.value" rootId=partId localize=true}}
+                    {{formField fields.name value=source.name label="Name" name="name"}}
+                    {{formField fields.img value=source.img label="Icon" name="img"}}
+                    {{formField fields.actionType value=source.actionType label="Type" name="actionType" localize=true}}
                 </div>
             </fieldset>
-            <fieldset class="action-category">
-                <legend class="action-category-label" data-action="toggleSection" data-section="healing">
-                    <div>Healing</div>                    
-                </legend>
-
-                <div class="action-category-data open ">
-                    {{formField fields.healing.fields.type value=source.healing.type label="Healing Type" name="healing.type" rootId=partId localize=true}}
-                    {{formField fields.healing.fields.value value=source.healing.value label="Healing" name="healing.value" rootId=partId localize=true}}
-                </div>
-            </fieldset>
+            {{#if fields.roll}}{{> 'systems/daggerheart/templates/views/actionTypes/roll.hbs' fields=fields.roll.fields source=source.roll}}{{/if}}
         </div>
-        <div class="tab {{this.tabs.useage.cssClass}}" data-group="primary" data-tab="useage">
-            <fieldset class="action-category">
-                <legend class="action-category-label" data-action="toggleSection" data-section="cost">
-                    <div>Cost</div>
-                </legend>
-
-                <div class="action-category-data open ">
-                    {{formField fields.cost.fields.type value=source.cost.type label="Cost Type" name="cost.type" rootId=partId}}
-                    {{formField fields.cost.fields.value value=source.cost.value label="Value" name="cost.value" rootId=partId}}
-                </div>
-            </fieldset>
-
-            {{formField fields.target.fields.type value=source.target.type label="Target Type" name="target.type" rootId=partId}}
+        <div class="tab {{this.tabs.config.cssClass}}" data-group="primary" data-tab="config">
+            {{> 'systems/daggerheart/templates/views/actionTypes/uses.hbs' fields=fields.uses.fields source=source.uses}}
+            {{> 'systems/daggerheart/templates/views/actionTypes/cost.hbs' fields=fields.cost.element.fields source=source.cost}}
+            {{#if fields.target}}{{> 'systems/daggerheart/templates/views/actionTypes/range-target.hbs' fields=(object range=fields.range target=fields.target.fields) source=(object target=source.target range=source.range)}}{{/if}}
         </div>
-        <div class="tab {{this.tabs.conditions.cssClass}}" data-group="primary" data-tab="conditions">
-            {{!-- <h2>
-                {{localize "Conditions"}}
-                <select class="effect-select">
-                    {{selectOptions this.config.effectTypes selected=this.selectedEffectType labelAttr="name" localize=true blank=""}} 
-                </select>
-                <i class="fa-solid fa-plus icon-button {{#if (not this.selectedEffectType)}}disabled{{/if}}" data-action="addCondition"></i>
-            </h2> --}}
+        <div class="tab {{this.tabs.effect.cssClass}}" data-group="primary" data-tab="effect">
+            {{#if fields.damage}}{{> 'systems/daggerheart/templates/views/actionTypes/damage.hbs' fields=fields.damage.fields.parts.element.fields source=source.damage}}{{/if}}
+            {{#if fields.healing}}{{> 'systems/daggerheart/templates/views/actionTypes/healing.hbs' fields=fields.healing.fields source=source.healing}}{{/if}}
+            {{#if fields.resource}}{{> 'systems/daggerheart/templates/views/actionTypes/resource.hbs' fields=fields.resource.fields source=source.resource}}{{/if}}
+            {{#if fields.documentUUID}}{{> 'systems/daggerheart/templates/views/actionTypes/uuid.hbs' fields=fields.documentUUID source=source.documentUUID}}{{/if}}
+             {{#if fields.effects}}{{> 'systems/daggerheart/templates/views/actionTypes/effect.hbs'}}{{/if}}
         </div>
     </section>
-    <button type="submit">Save</button>
 </div>

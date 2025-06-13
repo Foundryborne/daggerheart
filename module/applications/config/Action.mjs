@@ -1,7 +1,7 @@
 import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
-export default class DaggerheartActionConfig extends DaggerheartSheet(ApplicationV2) {
+export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     constructor(action) {
         super({});
 
@@ -9,21 +9,25 @@ export default class DaggerheartActionConfig extends DaggerheartSheet(Applicatio
         this.openSection = null;
     }
 
-    // get title(){
-    //     return `Action - ${this.action.name}`;
-    // }
-
     static DEFAULT_OPTIONS = {
         tag: 'form',
         id: 'daggerheart-action',
         classes: ['daggerheart', 'views', 'action'],
         position: { width: 600, height: 'auto' },
         actions: {
-            toggleSection: this.toggleSection
+            toggleSection: this.toggleSection,
+            addEffect: this.addEffect,
+            removeEffect: this.removeEffect,
+            addElement: this.addElement,
+            removeElement: this.removeElement,
+            editEffect: this.editEffect,
+            addDamage: this.addDamage,
+            removeDamage: this.removeDamage
         },
         form: {
             handler: this.updateForm,
-            closeOnSubmit: true
+            submitOnChange: true,
+            closeOnSubmit: false
         }
     };
 
@@ -36,16 +40,9 @@ export default class DaggerheartActionConfig extends DaggerheartSheet(Applicatio
 
     _getTabs() {
         const tabs = {
-            effects: { active: true, cssClass: '', group: 'primary', id: 'effects', icon: null, label: 'Effects' },
-            useage: { active: false, cssClass: '', group: 'primary', id: 'useage', icon: null, label: 'Useage' },
-            conditions: {
-                active: false,
-                cssClass: '',
-                group: 'primary',
-                id: 'conditions',
-                icon: null,
-                label: 'Conditions'
-            }
+            base: { active: true, cssClass: '', group: 'primary', id: 'base', icon: null, label: 'Base' },
+            config: { active: false, cssClass: '', group: 'primary', id: 'config', icon: null, label: 'Configuration' },
+            effect: { active: false, cssClass: '', group: 'primary', id: 'effect', icon: null, label: 'Effect' }
         };
 
         for (const v of Object.values(tabs)) {
@@ -58,9 +55,13 @@ export default class DaggerheartActionConfig extends DaggerheartSheet(Applicatio
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options, 'action');
+        context.source = this.action.toObject(false);
         context.openSection = this.openSection;
         context.tabs = this._getTabs();
-
+        context.config = SYSTEM;
+        if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
+        if (this.action.damage?.hasOwnProperty('includeBase')) context.hasBaseDamage = !!this.action.parent.damage;
+        context.getRealIndex = this.getRealIndex.bind(this);
         return context;
     }
 
@@ -69,15 +70,91 @@ export default class DaggerheartActionConfig extends DaggerheartSheet(Applicatio
         this.render(true);
     }
 
-    static async updateForm(event, _, formData) {
-        const data = foundry.utils.expandObject(
-            foundry.utils.mergeObject(this.action.toObject(), foundry.utils.expandObject(formData.object))
-        );
-        const newActions = this.action.parent.actions.map(x => x.toObject());
-        if (!newActions.findSplice(x => x.id === data.id, data)) {
-            newActions.push(data);
-        }
-
-        await this.action.parent.parent.update({ 'system.actions': newActions });
+    getRealIndex(index) {
+        const data = this.action.toObject(false);
+        return data.damage.parts.find(d => d.base) ? index - 1 : index;
     }
+
+    _prepareSubmitData(event, formData) {
+        const submitData = foundry.utils.expandObject(formData.object);
+        // this.element.querySelectorAll("fieldset[disabled] :is(input, select)").forEach(input => {
+        //     foundry.utils.setProperty(submitData, input.name, input.value);
+        // });
+        return submitData;
+    }
+
+    static async updateForm(event, _, formData) {
+        const submitData = this._prepareSubmitData(event, formData),
+            data = foundry.utils.expandObject(foundry.utils.mergeObject(this.action.toObject(), submitData)),
+            newActions = this.action.parent.actions.map(x => x.toObject()); // Find better way
+        if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
+        const updates = await this.action.parent.parent.update({ 'system.actions': newActions });
+        if (!updates) return;
+        this.action = updates.system.actions[this.action.index];
+        this.render();
+    }
+
+    static addElement(event) {
+        const data = this.action.toObject(),
+            key = event.target.closest('.action-category-data').dataset.key;
+        if (!this.action[key]) return;
+        data[key].push({});
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static removeElement(event) {
+        const data = this.action.toObject(),
+            key = event.target.closest('.action-category-data').dataset.key,
+            index = event.target.dataset.index;
+        data[key].splice(index, 1);
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static addDamage(event) {
+        if (!this.action.damage.parts) return;
+        const data = this.action.toObject();
+        data.damage.parts.push({});
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static removeDamage(event) {
+        if (!this.action.damage.parts) return;
+        const data = this.action.toObject(),
+            index = event.target.dataset.index;
+        data.damage.parts.splice(index, 1);
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    static async addEffect(event) {
+        if (!this.action.effects) return;
+        const effectData = this._addEffectData.bind(this)(),
+            [created] = await this.action.item.createEmbeddedDocuments('ActiveEffect', [effectData], { render: false }),
+            data = this.action.toObject();
+        data.effects.push({ _id: created._id });
+        this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+    }
+
+    /**
+     * The data for a newly created applied effect.
+     * @returns {object}
+     * @protected
+     */
+    _addEffectData() {
+        return {
+            name: this.action.item.name,
+            img: this.action.item.img,
+            origin: this.action.item.uuid,
+            transfer: false
+        };
+    }
+
+    static removeEffect(event) {
+        if (!this.action.effects) return;
+        const index = event.target.dataset.index,
+            effectId = this.action.effects[index]._id;
+        this.constructor.removeElement.bind(this)(event);
+        this.action.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
+    }
+
+    static editEffect(event) {}
 }
