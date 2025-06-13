@@ -123,7 +123,7 @@
                             </header>
                             <div class="flexrow">
                                 <ol class="dice-rolls duality">
-                                    <li class="roll die {{hope.dice}} {{#if hope.discarded}}discarded{{/if}} hope min" title="{{localize "DAGGERHEART.General.Hope"}}">
+                                    <li class="roll die {{hope.dice}} {{#if hope.discarded}}discarded{{/if}}" title="{{localize "DAGGERHEART.General.Hope"}}">
                                         <div class="dice-container">
                                             <div class="dice-title">{{localize "DAGGERHEART.General.Hope"}}</div>
                                             <div class="dice-inner-container hope" title="{{localize "DAGGERHEART.General.Hope"}}">
@@ -134,7 +134,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="roll die {{fear.dice}} {{#if fear.discarded}}discarded{{/if}} fear min" title="{{localize "DAGGERHEART.General.Fear"}}">
+                                    <li class="roll die {{fear.dice}} {{#if fear.discarded}}discarded{{/if}}" title="{{localize "DAGGERHEART.General.Fear"}}">
                                         <div class="dice-container">
                                             <div class="dice-title">{{localize "DAGGERHEART.General.Fear"}}</div>
                                             <div class="dice-inner-container fear" title="{{localize "DAGGERHEART.General.Fear"}}">
@@ -158,9 +158,9 @@
                                 </header>
                                 <div class="flexrow">
                                     <ol class="dice-rolls">
-                                        <li class="roll die {{advantage.dice}} hope min">
-                                            <div class="dice-container advantage">
-                                                <div class="dice-inner-container">
+                                        <li class="roll die {{advantage.dice}}">
+                                            <div class="dice-container">
+                                                <div class="dice-inner-container advantage">
                                                     <div class="dice-wrapper">
                                                         <img class="dice" src="../icons/svg/d6-grey.svg"/>
                                                     </div>
@@ -182,10 +182,12 @@
                                 </header>
                                 <div class="flexrow">
                                     <ol class="dice-rolls">
-                                        <li class="roll die {{advantage.dice}} hope min">
-                                            <div class="advantage-container disadvantage">
-                                                <div class="dice-wrapper">
-                                                    <img class="dice" src="../icons/svg/d6-grey.svg"/>
+                                        <li class="roll die {{advantage.dice}}">
+                                            <div class="dice-container">
+                                                <div class="dice-inner-container disadvantage">
+                                                    <div class="dice-wrapper">
+                                                        <img class="dice" src="../icons/svg/d6-grey.svg"/>
+                                                    </div>
                                                     <div class="dice-value">{{advantage.value}}</div>
                                                 </div>
                                             </div>

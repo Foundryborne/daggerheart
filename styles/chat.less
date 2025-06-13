@@ -349,7 +349,22 @@
                             align-items: center;
                             justify-content: center;
                             position: relative;
-
+                            &.hope, &.fear {
+                                .dice-wrapper {
+                                    clip-path: polygon(
+                                        50% 0%,
+                                        80% 10%,
+                                        100% 35%,
+                                        100% 70%,
+                                        80% 90%,
+                                        50% 100%,
+                                        20% 90%,
+                                        0% 70%,
+                                        0% 35%,
+                                        20% 10%
+                                    );
+                                }
+                            }
                             .dice-wrapper {
                                 height: 24px;
                                 width: 24px;
@@ -357,18 +372,6 @@
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                clip-path: polygon(
-                                    50% 0%,
-                                    80% 10%,
-                                    100% 35%,
-                                    100% 70%,
-                                    80% 90%,
-                                    50% 100%,
-                                    20% 90%,
-                                    0% 70%,
-                                    0% 35%,
-                                    20% 10%
-                                );
 
                                 .dice {
                                     height: 26px;
@@ -413,6 +416,24 @@
                                 .dice-value {
                                     color: var(--color-light-1);
                                     text-shadow: 0 0 4px black;
+                                }
+                            }
+
+                            &.advantage {
+                                .dice-wrapper {
+                                    .dice {
+                                        filter: brightness(0) saturate(100%) invert(18%) sepia(92%) saturate(4133%)
+                                            hue-rotate(96deg) brightness(104%) contrast(107%);
+                                    }
+                                }
+                            }
+
+                            &.disadvantage {
+                                .dice-wrapper {
+                                    .dice {
+                                        filter: brightness(0) saturate(100%) invert(9%) sepia(78%) saturate(6903%)
+                                            hue-rotate(11deg) brightness(93%) contrast(117%);
+                                    }
                                 }
                             }
                         }
