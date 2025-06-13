@@ -1,4 +1,4 @@
-import DHItemSheetV2 from '../item.mjs'
+import DHItemSheetV2 from '../item.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 export default class ConsumableSheet extends DHItemSheetV2(ItemSheetV2) {

@@ -4,7 +4,7 @@ const { ApplicationV2 } = foundry.applications.api;
 export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     constructor(action) {
         super({});
-        
+
         this.action = action;
         this.openSection = null;
     }
@@ -59,8 +59,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         context.openSection = this.openSection;
         context.tabs = this._getTabs();
         context.config = SYSTEM;
-        if(!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
-        if(this.action.damage?.hasOwnProperty('includeBase')) context.hasBaseDamage = !!this.action.parent.damage;
+        if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
+        if (this.action.damage?.hasOwnProperty('includeBase')) context.hasBaseDamage = !!this.action.parent.damage;
         context.getRealIndex = this.getRealIndex.bind(this);
         return context;
     }
@@ -86,10 +86,10 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     static async updateForm(event, _, formData) {
         const submitData = this._prepareSubmitData(event, formData),
             data = foundry.utils.expandObject(foundry.utils.mergeObject(this.action.toObject(), submitData)),
-            newActions = this.action.parent.actions.map(x => x.toObject());                               // Find better way
+            newActions = this.action.parent.actions.map(x => x.toObject()); // Find better way
         if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
         const updates = await this.action.parent.parent.update({ 'system.actions': newActions });
-        if(!updates) return;
+        if (!updates) return;
         this.action = updates.system.actions[this.action.index];
         this.render();
     }
@@ -97,7 +97,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     static addElement(event) {
         const data = this.action.toObject(),
             key = event.target.closest('.action-category-data').dataset.key;
-        if ( !this.action[key] ) return;
+        if (!this.action[key]) return;
         data[key].push({});
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
@@ -109,16 +109,16 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         data[key].splice(index, 1);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
-    
+
     static addDamage(event) {
-        if ( !this.action.damage.parts ) return;
+        if (!this.action.damage.parts) return;
         const data = this.action.toObject();
         data.damage.parts.push({});
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
     static removeDamage(event) {
-        if ( !this.action.damage.parts ) return;
+        if (!this.action.damage.parts) return;
         const data = this.action.toObject(),
             index = event.target.dataset.index;
         data.damage.parts.splice(index, 1);
@@ -126,15 +126,15 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     }
 
     static async addEffect(event) {
-        if ( !this.action.effects ) return;
+        if (!this.action.effects) return;
         const effectData = this._addEffectData.bind(this)(),
-            [created] = await this.action.item.createEmbeddedDocuments("ActiveEffect", [effectData], { render: false }),
+            [created] = await this.action.item.createEmbeddedDocuments('ActiveEffect', [effectData], { render: false }),
             data = this.action.toObject();
-        data.effects.push( { '_id': created._id } )
+        data.effects.push({ _id: created._id });
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-        /**
+    /**
      * The data for a newly created applied effect.
      * @returns {object}
      * @protected
@@ -149,14 +149,12 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     }
 
     static removeEffect(event) {
-        if ( !this.action.effects ) return;
+        if (!this.action.effects) return;
         const index = event.target.dataset.index,
             effectId = this.action.effects[index]._id;
         this.constructor.removeElement.bind(this)(event);
-        this.action.item.deleteEmbeddedDocuments("ActiveEffect", [effectId]);
+        this.action.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
     }
 
-    static editEffect(event) {
-
-    }
+    static editEffect(event) {}
 }

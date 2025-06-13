@@ -336,4 +336,4 @@ export const rollTypes = {
         id: 'ability',
         label: 'DAGGERHEART.RollTypes.ability.name'
     }
-}
+};

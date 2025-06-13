@@ -1,4 +1,4 @@
-import FormulaField from "../fields/formulaField.mjs";
+import FormulaField from '../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -6,27 +6,33 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
     /** @override */
     static defineSchema() {
         return {
-            multiplier: new fields.StringField({ choices: SYSTEM.GENERAL.multiplierTypes, initial: 'proficiency', label: 'Multiplier' }),
+            multiplier: new fields.StringField({
+                choices: SYSTEM.GENERAL.multiplierTypes,
+                initial: 'proficiency',
+                label: 'Multiplier'
+            }),
             dice: new fields.StringField({ choices: SYSTEM.GENERAL.diceTypes, initial: 'd6', label: 'Formula' }),
             bonus: new fields.NumberField({ nullable: true, initial: null, label: 'Bonus' }),
             custom: new fields.SchemaField({
                 enabled: new fields.BooleanField({ label: 'Custom Formula' }),
-                formula: new FormulaField( { label: 'Formula' } )
+                formula: new FormulaField({ label: 'Formula' })
             })
-        }
+        };
     }
 
     getFormula(actor) {
-        return this.custom.enabled ? this.custom.formula : `${(actor.system[this.multiplier] ?? 1)}${this.dice}${this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : ''}`;
+        return this.custom.enabled
+            ? this.custom.formula
+            : `${actor.system[this.multiplier] ?? 1}${this.dice}${this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : ''}`;
     }
 }
 
 export class DHDamageField extends fields.SchemaField {
-    constructor(hasBase, options, context={}) {
+    constructor(hasBase, options, context = {}) {
         const damageFields = {
             parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData))
-        }
-        if(hasBase) damageFields.includeBase = new fields.BooleanField({ initial: true })
+        };
+        if (hasBase) damageFields.includeBase = new fields.BooleanField({ initial: true });
         super(damageFields, options, context);
     }
 }
@@ -44,6 +50,6 @@ export class DHDamageData extends DHActionDiceData {
                 nullable: false,
                 required: true
             })
-        }
+        };
     }
 }

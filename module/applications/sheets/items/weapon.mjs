@@ -1,10 +1,10 @@
-import DHItemSheetV2 from '../item.mjs'
+import DHItemSheetV2 from '../item.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 export default class WeaponSheet extends DHItemSheetV2(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         classes: ['weapon']
-    }
+    };
 
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/weapon/header.hbs' },
@@ -18,5 +18,5 @@ export default class WeaponSheet extends DHItemSheetV2(ItemSheetV2) {
             template: 'systems/daggerheart/templates/sheets/items/weapon/settings.hbs',
             scrollable: ['.settings']
         }
-    }
+    };
 }

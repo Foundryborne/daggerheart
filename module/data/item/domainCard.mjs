@@ -1,5 +1,5 @@
-import DHAction from "../action/action.mjs";
-import BaseDataItem from "./base.mjs";
+import DHAction from '../action/action.mjs';
+import BaseDataItem from './base.mjs';
 
 export default class DHDomainCard extends BaseDataItem {
     /** @inheritDoc */

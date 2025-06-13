@@ -1,5 +1,7 @@
 import BaseDataItem from './base.mjs';
 import FormulaField from '../fields/formulaField.mjs';
+import PseudoDocumentsField from '../fields/pseudoDocumentsField.mjs';
+import BaseFeatureData from '../pseudo-documents/feature/baseFeatureData.mjs';
 import ActionField from '../fields/actionField.mjs';
 
 export default class DHWeapon extends BaseDataItem {
@@ -9,7 +11,10 @@ export default class DHWeapon extends BaseDataItem {
             label: 'TYPES.Item.weapon',
             type: 'weapon',
             hasDescription: true,
-            isQuantifiable: true
+            isQuantifiable: true,
+            embedded: {
+                feature: 'featureTest'
+            }
         });
     }
 
@@ -35,6 +40,12 @@ export default class DHWeapon extends BaseDataItem {
                 })
             }),
             feature: new fields.StringField({ choices: SYSTEM.ITEM.weaponFeatures, blank: true }),
+            featureTest: new PseudoDocumentsField(BaseFeatureData, {
+                required: true,
+                nullable: true,
+                max: 1,
+                validTypes: ['weapon']
+            }),
             // actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAttackAction))
             actions: new fields.ArrayField(new ActionField())
         };

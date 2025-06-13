@@ -22,7 +22,7 @@ export default function DHItemMixin(Base) {
                 editAction: this.editAction,
                 removeAction: this.removeAction
             }
-        }
+        };
 
         static TABS = {
             description: {
@@ -49,7 +49,7 @@ export default function DHItemMixin(Base) {
                 icon: null,
                 label: 'DAGGERHEART.Sheets.Feature.Tabs.Settings'
             }
-        }
+        };
 
         async _prepareContext(_options) {
             const context = await super._prepareContext(_options);
@@ -67,8 +67,8 @@ export default function DHItemMixin(Base) {
 
         static async selectActionType() {
             const content = await foundry.applications.handlebars.renderTemplate(
-                    "systems/daggerheart/templates/views/actionType.hbs",
-                    {types: SYSTEM.ACTIONS.actionTypes}
+                    'systems/daggerheart/templates/views/actionType.hbs',
+                    { types: SYSTEM.ACTIONS.actionTypes }
                 ),
                 title = 'Select Action Type',
                 type = 'form',
@@ -76,21 +76,22 @@ export default function DHItemMixin(Base) {
             return Dialog.prompt({
                 title,
                 label: title,
-                content, type,
+                content,
+                type,
                 callback: html => {
-                    const form = html[0].querySelector("form"),
+                    const form = html[0].querySelector('form'),
                         fd = new foundry.applications.ux.FormDataExtended(form);
                     foundry.utils.mergeObject(data, fd.object, { inplace: true });
                     // if (!data.name?.trim()) data.name = game.i18n.localize(SYSTEM.ACTIONS.actionTypes[data.type].name);
                     return data;
                 },
                 rejectClose: false
-            })
+            });
         }
-        
+
         static async addAction() {
             const actionType = await DHItemSheetV2.selectActionType(),
-                actionIndexes = this.document.system.actions.map(x => x._id.split('-')[2]).sort((a, b) => a - b)
+                actionIndexes = this.document.system.actions.map(x => x._id.split('-')[2]).sort((a, b) => a - b);
             try {
                 const cls = actionsTypes[actionType?.type] ?? actionsTypes.attack,
                     action = new cls(
@@ -105,10 +106,12 @@ export default function DHItemMixin(Base) {
                             parent: this.document
                         }
                     );
-                    await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
-                    await new DHActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(true);
+                await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
+                await new DHActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render(
+                    true
+                );
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         }
 
@@ -125,5 +128,5 @@ export default function DHItemMixin(Base) {
                 )
             });
         }
-    }
+    };
 }

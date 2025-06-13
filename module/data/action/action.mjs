@@ -334,8 +334,14 @@ export class DHResourceAction extends DHBaseAction {
             ...extraDefineSchema('target'),
             ...extraDefineSchema('effects'),
             resource: new fields.SchemaField({
-                type: new fields.StringField({ choices: [], blank: true, required: false, initial: "", label: "Resource" }),
-                value: new fields.NumberField({ initial: 0, label: "Value" })
+                type: new fields.StringField({
+                    choices: [],
+                    blank: true,
+                    required: false,
+                    initial: '',
+                    label: 'Resource'
+                }),
+                value: new fields.NumberField({ initial: 0, label: 'Value' })
             })
         };
     }

@@ -1,4 +1,14 @@
-import { DHAttackAction, DHBaseAction, DHDamageAction, DHEffectAction, DHHealingAction, DHMacroAction, DHResourceAction, DHSpellCastAction, DHSummonAction } from "./action.mjs";
+import {
+    DHAttackAction,
+    DHBaseAction,
+    DHDamageAction,
+    DHEffectAction,
+    DHHealingAction,
+    DHMacroAction,
+    DHResourceAction,
+    DHSpellCastAction,
+    DHSummonAction
+} from './action.mjs';
 
 export const actionsTypes = {
     base: DHBaseAction,
@@ -10,4 +20,4 @@ export const actionsTypes = {
     summon: DHSummonAction,
     effect: DHEffectAction,
     macro: DHMacroAction
-}
+};

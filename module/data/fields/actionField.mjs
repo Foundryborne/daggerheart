@@ -1,8 +1,7 @@
-import { actionsTypes } from "../action/_module.mjs";
+import { actionsTypes } from '../action/_module.mjs';
 
 // Temporary Solution
 export default class ActionField extends foundry.data.fields.ObjectField {
-    
     getModel(value) {
         return actionsTypes[value.type] ?? actionsTypes.attack;
     }
@@ -11,10 +10,10 @@ export default class ActionField extends foundry.data.fields.ObjectField {
 
     /** @override */
     _cleanType(value, options) {
-        if ( !(typeof value === "object") ) value = {};
+        if (!(typeof value === 'object')) value = {};
 
         const cls = this.getModel(value);
-        if ( cls ) return cls.cleanData(value, options);
+        if (cls) return cls.cleanData(value, options);
         return value;
     }
 
@@ -23,7 +22,7 @@ export default class ActionField extends foundry.data.fields.ObjectField {
     /** @override */
     initialize(value, model, options = {}) {
         const cls = this.getModel(value);
-        if ( cls ) return new cls(value, { parent: model, ...options });
+        if (cls) return new cls(value, { parent: model, ...options });
         return foundry.utils.deepClone(value);
     }
 
@@ -36,6 +35,6 @@ export default class ActionField extends foundry.data.fields.ObjectField {
      */
     migrateSource(sourceData, fieldData) {
         const cls = this.getModel(fieldData);
-        if ( cls ) cls.migrateDataSafe(fieldData);
+        if (cls) cls.migrateDataSafe(fieldData);
     }
 }
