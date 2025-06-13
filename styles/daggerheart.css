@@ -1382,7 +1382,8 @@
 }
 .chat-message .duality-modifiers,
 .chat-message .duality-result,
-.chat-message .dice-title {
+.chat-message .dice-title,
+.chat-message .duality-modifier {
   display: none;
 }
 .daggerheart.chat.downtime {
@@ -1412,80 +1413,9 @@
   text-align: center;
   font-weight: bold;
 }
-.daggerheart.chat.roll .dice-tooltip {
-  /* .dice-rolls.duality {
-                display: flex;
-                align-items: center;
-
-                .dice-hope-container {
-                    display: flex;
-
-                    .roll.die:not(:last-of-type) {
-                        margin-right: @fullMargin;
-                    }
-                }
-
-                .modifiers-container {
-                    display: flex;
-
-                    .modifier-value:not(:last-of-type) {
-                        margin-right: @fullMargin;
-                    }
-                }
-
-                .roll.die {
-                    &.hope {
-                        color: white;
-                        -webkit-text-stroke-color: @hope;
-                        -webkit-text-stroke-width: 1.5px;
-                        font-weight: 400;
-                        &:not(.discarded) {
-                            filter: none;
-                        }
-                    }
-                    &.fear {
-                        color: white;
-                        -webkit-text-stroke-color: @fear;
-                        -webkit-text-stroke-width: 1.5px;
-                        font-weight: 400;
-                        &:not(.discarded) {
-                            filter: none;
-                        }
-                    }
-                    &.disadvantage {
-                        color: white;
-                        -webkit-text-stroke-color: @disadvantage;
-                        -webkit-text-stroke-width: 1.5px;
-                        font-weight: 400;
-                    }
-                    &.advantage {
-                        color: white;
-                        -webkit-text-stroke-color: @advantage;
-                        -webkit-text-stroke-width: 1.5px;
-                        font-weight: 400;
-                    }
-                    //V1.3
-                    // &.advantage {
-                    //     filter: drop-shadow(0 -4px 4px gold);
-                    //     cursor: pointer;
-                    // }
-
-                    &.unused {
-                        opacity: 0.3;
-                    }
-                }
-
-                .modifier-value {
-                    text-align: center;
-                    font-weight: bold;
-                    font-size: 16px;
-                }
-            }
-
-            .attack-roll-advantage-container {
-                text-align: end;
-                font-weight: bold;
-            } */
+.daggerheart.chat.roll .dice-tooltip .dice-rolls.duality {
+  display: flex;
+  gap: 0.25rem;
 }
 .daggerheart.chat.roll .dice-tooltip .dice-rolls > .roll {
   display: flex;
@@ -1755,8 +1685,6 @@
 }
 .theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls {
   margin-bottom: 0;
-  display: flex;
-  gap: 0.25rem;
 }
 .theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls li {
   display: flex;
@@ -1766,6 +1694,13 @@
   background: unset;
   line-height: unset;
   font-weight: unset;
+}
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .duality-modifier {
+  display: flex;
+  margin-bottom: 6px;
+  color: var(--color-light-1);
+  text-shadow: 0 0 1px black;
+  font-size: var(--font-size-16);
 }
 .theme-colorful .chat-message.duality .message-content .dice-result .target-section {
   margin: 4px 0;

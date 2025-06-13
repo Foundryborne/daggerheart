@@ -68,7 +68,7 @@ export default class DHDualityRoll extends foundry.abstract.TypeDataModel {
     }
 
     get modifierTotal() {
-        // return {value: 12, label: "+12"}
+        return {value: 12, label: "+12"}
         const total = this.modifiers.reduce((acc, x) => acc + x.value, 0);
         return {
             value: total,
