@@ -105,7 +105,10 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     get chatTemplate() {
-        return 'systems/daggerheart/templates/chat/attack-roll.hbs';
+        return 'systems/daggerheart/templates/chat/duality-roll.hbs';
+    }
+    get chatTitle() {
+        return this.item.name;
     }
 
     static getRollType() {
@@ -132,7 +135,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             const modifierValue = this.actor.system.traits[this.roll.trait].value;
             const config = {
                 event: event,
-                title: this.item.name,
+                title: this.chatTitle,
                 roll: {
                     modifier: modifierValue,
                     label: game.i18n.localize(abilities[this.roll.trait].label),
@@ -198,6 +201,12 @@ export class DHAttackAction extends DHBaseAction {
 
     static getRollType() {
         return 'weapon';
+    }
+ 
+    get chatTitle() {
+        return game.i18n.format('DAGGERHEART.Chat.AttackRoll.Title', {
+            attack: this.item.name
+        });
     }
 
     prepareData() {

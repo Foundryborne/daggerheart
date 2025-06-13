@@ -11,9 +11,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const html = await super.renderHTML();
 
         if (
-            this.type === 'dualityRoll' &&
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
-                DualityRollColor.colorful.value
+            this.type === 'dualityRoll'
         ) {
             html.classList.add('duality');
             const dualityResult = this.system.dualityResult;
