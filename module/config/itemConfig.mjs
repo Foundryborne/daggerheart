@@ -187,112 +187,16 @@ export const armorFeatures = {
 };
 
 export const weaponFeatures = {
-    barrier1: {
-        label: 'DAGGERHEART.WeaponFeature.Barrier1.Name',
-        description: 'DAGGERHEART.WeaponFeature.Barrier1.Description',
+    barrier: {
+        label: 'DAGGERHEART.WeaponFeature.Barrier.Name',
+        description: 'DAGGERHEART.WeaponFeature.Barrier.Description',
         effects: [
             {
                 changes: [
                     {
                         key: 'system.bonuses.armorScore',
                         mode: 2,
-                        value: '1'
-                    }
-                ]
-            },
-            {
-                changes: [
-                    {
-                        key: 'system.evasion.bonus',
-                        mode: 2,
-                        value: '-1'
-                    }
-                ]
-            }
-        ]
-    },
-    barrier2: {
-        label: 'DAGGERHEART.WeaponFeature.Barrier2.Name',
-        description: 'DAGGERHEART.WeaponFeature.Barrier2.Description',
-        effects: [
-            {
-                changes: [
-                    {
-                        key: 'system.bonuses.armorScore',
-                        mode: 2,
-                        value: '2'
-                    }
-                ]
-            },
-            {
-                changes: [
-                    {
-                        key: 'system.evasion.bonus',
-                        mode: 2,
-                        value: '-1'
-                    }
-                ]
-            }
-        ]
-    },
-    barrier3: {
-        label: 'DAGGERHEART.WeaponFeature.Barrier3.Name',
-        description: 'DAGGERHEART.WeaponFeature.Barrier3.Description',
-        effects: [
-            {
-                changes: [
-                    {
-                        key: 'system.bonuses.armorScore',
-                        mode: 2,
-                        value: '3'
-                    }
-                ]
-            },
-            {
-                changes: [
-                    {
-                        key: 'system.evasion.bonus',
-                        mode: 2,
-                        value: '-1'
-                    }
-                ]
-            }
-        ]
-    },
-    barrier4: {
-        label: 'DAGGERHEART.WeaponFeature.Barrier4.Name',
-        description: 'DAGGERHEART.WeaponFeature.Barrier4.Description',
-        effects: [
-            {
-                changes: [
-                    {
-                        key: 'system.bonuses.armorScore',
-                        mode: 2,
-                        value: '4'
-                    }
-                ]
-            },
-            {
-                changes: [
-                    {
-                        key: 'system.evasion.bonus',
-                        mode: 2,
-                        value: '-1'
-                    }
-                ]
-            }
-        ]
-    },
-    barrier5: {
-        label: 'DAGGERHEART.WeaponFeature.Barrier5.Name',
-        description: 'DAGGERHEART.WeaponFeature.Barrier5.Description',
-        effects: [
-            {
-                changes: [
-                    {
-                        key: 'system.bonuses.armorScore',
-                        mode: 2,
-                        value: '5'
+                        value: '@system.tier + 1'
                     }
                 ]
             },
@@ -520,61 +424,16 @@ export const weaponFeatures = {
         label: 'DAGGERHEART.WeaponFeature.Powerful.Name',
         description: 'DAGGERHEART.WeaponFeature.Powerful.Description'
     },
-    protective1: {
-        label: 'DAGGERHEART.WeaponFeature.Protective1.Name',
-        description: 'DAGGERHEART.WeaponFeature.Protective1.Description',
+    protective: {
+        label: 'DAGGERHEART.WeaponFeature.Protective.Name',
+        description: 'DAGGERHEART.WeaponFeature.Protective.Description',
         effects: [
             {
                 changes: [
                     {
                         key: 'system.bonuses.armorScore',
                         mode: 2,
-                        value: '1'
-                    }
-                ]
-            }
-        ]
-    },
-    protective2: {
-        label: 'DAGGERHEART.WeaponFeature.Protective2.Name',
-        description: 'DAGGERHEART.WeaponFeature.Protective2.Description',
-        effects: [
-            {
-                changes: [
-                    {
-                        key: 'system.bonuses.armorScore',
-                        mode: 2,
-                        value: '2'
-                    }
-                ]
-            }
-        ]
-    },
-    protective3: {
-        label: 'DAGGERHEART.WeaponFeature.Protective3.Name',
-        description: 'DAGGERHEART.WeaponFeature.Protective3.Description',
-        effects: [
-            {
-                changes: [
-                    {
-                        key: 'system.bonuses.armorScore',
-                        mode: 2,
-                        value: '3'
-                    }
-                ]
-            }
-        ]
-    },
-    protective4: {
-        label: 'DAGGERHEART.WeaponFeature.Protective4.Name',
-        description: 'DAGGERHEART.WeaponFeature.Protective4.Description',
-        effects: [
-            {
-                changes: [
-                    {
-                        key: 'system.bonuses.armorScore',
-                        mode: 2,
-                        value: '4'
+                        value: '@system.tier'
                     }
                 ]
             }

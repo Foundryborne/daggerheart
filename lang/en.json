@@ -264,6 +264,7 @@
             }
         },
         "Tiers": {
+            "singular": "Tier",
             "tier1": "Tier 1",
             "tier2": "Tier 2",
             "tier3": "Tier 3",
@@ -620,25 +621,9 @@
             }
         },
         "WeaponFeature": {
-            "Barrier1": {
-                "Name": "Barrier 1",
-                "Description": "+1 to Armor Score; -1 to Evasion"
-            },
-            "Barrier2": {
-                "Name": "Barrier 2",
-                "Description": "+2 to Armor Score; -1 to Evasion"
-            },
-            "Barrier3": {
-                "Name": "Barrier 3",
-                "Description": "+3 to Armor Score; -1 to Evasion"
-            },
-            "Barrier4": {
-                "Name": "Barrier 4",
-                "Description": "+4 to Armor Score; -1 to Evasion"
-            },
-            "Barrier5": {
-                "Name": "Barrier 5",
-                "Description": "+5 to Armor Score; -1 to Evasion"
+            "Barrier": {
+                "Name": "Barrier",
+                "Description": "+{armorScore} to Armor Score; -1 to Evasion"
             },
             "Bonded": {
                 "Name": "Bonded",
@@ -764,21 +749,9 @@
                 "Name": "Powerful",
                 "Description": "On a successful attack, roll an additional damage die and discard the lowest result."
             },
-            "Protective1": {
-                "Name": "Protective 1",
-                "Description": "+1 to Armor Score"
-            },
-            "Protective2": {
-                "Name": "Protective 2",
-                "Description": "+2 to Armor Score"
-            },
-            "Protective3": {
-                "Name": "Protective 3",
-                "Description": "+3 to Armor Score"
-            },
-            "Protective4": {
-                "Name": "Protective 4",
-                "Description": "+4 to Armor Score"
+            "Protective": {
+                "Name": "Protective",
+                "Description": "+{tier} to Armor Score"
             },
             "Quick": {
                 "Name": "Quick",

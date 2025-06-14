@@ -22,6 +22,7 @@ export default class DHWeapon extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
+            tier: new fields.NumberField({ required: true, integer: true, initial: 1 }),
             equipped: new fields.BooleanField({ initial: false }),
 
             //SETTINGS

@@ -18,6 +18,7 @@ export default class DHArmor extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
+            tier: new fields.NumberField({ required: true, integer: true, initial: 1 }),
             equipped: new fields.BooleanField({ initial: false }),
             baseScore: new fields.NumberField({ integer: true, initial: 0 }),
             features: new fields.ArrayField(
