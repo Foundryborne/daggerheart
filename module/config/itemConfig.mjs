@@ -5,15 +5,78 @@ export const armorFeatures = {
     },
     channeling: {
         label: 'DAGGERHEART.ArmorFeature.Channeling.Name',
-        description: 'DAGGERHEART.ArmorFeature.Channeling.Description'
+        description: 'DAGGERHEART.ArmorFeature.Channeling.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.spellcast',
+                        mode: 2,
+                        value: '1'
+                    }
+                ]
+            }
+        ]
     },
     difficult: {
         label: 'DAGGERHEART.ArmorFeature.Difficult.Name',
-        description: 'DAGGERHEART.ArmorFeature.Difficult.Description'
+        description: 'DAGGERHEART.ArmorFeature.Difficult.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.traits.agility.bonus',
+                        mode: 2,
+                        value: '-1'
+                    },
+                    {
+                        key: 'system.traits.strength.bonus',
+                        mode: 2,
+                        value: '-1'
+                    },
+                    {
+                        key: 'system.traits.finesse.bonus',
+                        mode: 2,
+                        value: '-1'
+                    },
+                    {
+                        key: 'system.traits.instinct.bonus',
+                        mode: 2,
+                        value: '-1'
+                    },
+                    {
+                        key: 'system.traits.presence.bonus',
+                        mode: 2,
+                        value: '-1'
+                    },
+                    {
+                        key: 'system.traits.knowledge.bonus',
+                        mode: 2,
+                        value: '-1'
+                    },
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
     },
     flexible: {
         label: 'DAGGERHEART.ArmorFeature.Flexible.Name',
-        description: 'DAGGERHEART.ArmorFeature.Flexible.Description'
+        description: 'DAGGERHEART.ArmorFeature.Flexible.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '1'
+                    }
+                ]
+            }
+        ]
     },
     fortified: {
         label: 'DAGGERHEART.ArmorFeature.Fortified.Name',
@@ -21,11 +84,33 @@ export const armorFeatures = {
     },
     gilded: {
         label: 'DAGGERHEART.ArmorFeature.Gilded.Name',
-        description: 'DAGGERHEART.ArmorFeature.Gilded.Description'
+        description: 'DAGGERHEART.ArmorFeature.Gilded.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.traits.presence.bonus',
+                        mode: 2,
+                        value: '1'
+                    }
+                ]
+            }
+        ]
     },
     heavy: {
         label: 'DAGGERHEART.ArmorFeature.Heavy.Name',
-        description: 'DAGGERHEART.ArmorFeature.Heavy.Description'
+        description: 'DAGGERHEART.ArmorFeature.Heavy.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
     },
     hopeful: {
         label: 'DAGGERHEART.ArmorFeature.Hopeful.Name',
@@ -77,7 +162,23 @@ export const armorFeatures = {
     },
     veryheavy: {
         label: 'DAGGERHEART.ArmorFeature.VeryHeavy.Name',
-        description: 'DAGGERHEART.ArmorFeature.VeryHeavy.Description'
+        description: 'DAGGERHEART.ArmorFeature.VeryHeavy.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-2'
+                    },
+                    {
+                        key: 'system.traits.agility.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
     },
     warded: {
         label: 'DAGGERHEART.ArmorFeature.Warded.Name',
@@ -86,16 +187,140 @@ export const armorFeatures = {
 };
 
 export const weaponFeatures = {
-    barrier: {
-        label: 'DAGGERHEART.WeaponFeature.Barrier.Name',
-        description: 'DAGGERHEART.WeaponFeature.Barrier.Description',
-        override: {
-            armorBonus: 1
-        }
+    barrier1: {
+        label: 'DAGGERHEART.WeaponFeature.Barrier1.Name',
+        description: 'DAGGERHEART.WeaponFeature.Barrier1.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '1'
+                    }
+                ]
+            },
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
+    },
+    barrier2: {
+        label: 'DAGGERHEART.WeaponFeature.Barrier2.Name',
+        description: 'DAGGERHEART.WeaponFeature.Barrier2.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '2'
+                    }
+                ]
+            },
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
+    },
+    barrier3: {
+        label: 'DAGGERHEART.WeaponFeature.Barrier3.Name',
+        description: 'DAGGERHEART.WeaponFeature.Barrier3.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '3'
+                    }
+                ]
+            },
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
+    },
+    barrier4: {
+        label: 'DAGGERHEART.WeaponFeature.Barrier4.Name',
+        description: 'DAGGERHEART.WeaponFeature.Barrier4.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '4'
+                    }
+                ]
+            },
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
+    },
+    barrier5: {
+        label: 'DAGGERHEART.WeaponFeature.Barrier5.Name',
+        description: 'DAGGERHEART.WeaponFeature.Barrier5.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '5'
+                    }
+                ]
+            },
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
     },
     bonded: {
         label: 'DAGGERHEART.WeaponFeature.Bonded.Name',
-        description: 'DAGGERHEART.WeaponFeature.Bonded.Description'
+        description: 'DAGGERHEART.WeaponFeature.Bonded.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.damage',
+                        mode: 2,
+                        value: 'system.levelData.levels.current'
+                    }
+                ]
+            }
+        ]
     },
     bouncing: {
         label: 'DAGGERHEART.WeaponFeature.Bouncing.Name',
@@ -103,7 +328,27 @@ export const weaponFeatures = {
     },
     brave: {
         label: 'DAGGERHEART.WeaponFeature.Brave.Name',
-        description: 'DAGGERHEART.WeaponFeature.Brave.Description'
+        description: 'DAGGERHEART.WeaponFeature.Brave.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            },
+            {
+                changes: [
+                    {
+                        key: 'system.damageThresholds.severe',
+                        mode: 2,
+                        value: '3'
+                    }
+                ]
+            }
+        ]
     },
     brutal: {
         label: 'DAGGERHEART.WeaponFeature.Brutal.Name',
@@ -119,7 +364,18 @@ export const weaponFeatures = {
     },
     cumbersome: {
         label: 'DAGGERHEART.WeaponFeature.Cumbersome.Name',
-        description: 'DAGGERHEART.WeaponFeature.Cumbersome.Description'
+        description: 'DAGGERHEART.WeaponFeature.Cumbersome.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.traits.finesse.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
     },
     deadly: {
         label: 'DAGGERHEART.WeaponFeature.Deadly.Name',
@@ -131,7 +387,18 @@ export const weaponFeatures = {
     },
     destructive: {
         label: 'DAGGERHEART.WeaponFeature.Destructive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Destructive.Description'
+        description: 'DAGGERHEART.WeaponFeature.Destructive.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.traits.agility.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
     },
     devastating: {
         label: 'DAGGERHEART.WeaponFeature.Devastating.Name',
@@ -139,7 +406,18 @@ export const weaponFeatures = {
     },
     doubleduty: {
         label: 'DAGGERHEART.WeaponFeature.DoubleDuty.Name',
-        description: 'DAGGERHEART.WeaponFeature.DoubleDuty.Description'
+        description: 'DAGGERHEART.WeaponFeature.DoubleDuty.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '1'
+                    }
+                ]
+            }
+        ]
     },
     doubledup: {
         label: 'DAGGERHEART.WeaponFeature.DoubledUp.Name',
@@ -163,7 +441,18 @@ export const weaponFeatures = {
     },
     heavy: {
         label: 'DAGGERHEART.WeaponFeature.Heavy.Name',
-        description: 'DAGGERHEART.WeaponFeature.Heavy.Description'
+        description: 'DAGGERHEART.WeaponFeature.Heavy.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
     },
     hooked: {
         label: 'DAGGERHEART.WeaponFeature.Hooked.Name',
@@ -191,7 +480,18 @@ export const weaponFeatures = {
     },
     massive: {
         label: 'DAGGERHEART.WeaponFeature.Massive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Massive.Description'
+        description: 'DAGGERHEART.WeaponFeature.Massive.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.evasion.bonus',
+                        mode: 2,
+                        value: '-1'
+                    }
+                ]
+            }
+        ]
     },
     painful: {
         label: 'DAGGERHEART.WeaponFeature.Painful.Name',
@@ -220,12 +520,65 @@ export const weaponFeatures = {
         label: 'DAGGERHEART.WeaponFeature.Powerful.Name',
         description: 'DAGGERHEART.WeaponFeature.Powerful.Description'
     },
-    protective: {
-        label: 'DAGGERHEART.WeaponFeature.Protective.Name',
-        description: 'DAGGERHEART.WeaponFeature.Protective.Description',
-        override: {
-            armorBonus: 1
-        }
+    protective1: {
+        label: 'DAGGERHEART.WeaponFeature.Protective1.Name',
+        description: 'DAGGERHEART.WeaponFeature.Protective1.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '1'
+                    }
+                ]
+            }
+        ]
+    },
+    protective2: {
+        label: 'DAGGERHEART.WeaponFeature.Protective2.Name',
+        description: 'DAGGERHEART.WeaponFeature.Protective2.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '2'
+                    }
+                ]
+            }
+        ]
+    },
+    protective3: {
+        label: 'DAGGERHEART.WeaponFeature.Protective3.Name',
+        description: 'DAGGERHEART.WeaponFeature.Protective3.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '3'
+                    }
+                ]
+            }
+        ]
+    },
+    protective4: {
+        label: 'DAGGERHEART.WeaponFeature.Protective4.Name',
+        description: 'DAGGERHEART.WeaponFeature.Protective4.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.armorScore',
+                        mode: 2,
+                        value: '4'
+                    }
+                ]
+            }
+        ]
     },
     quick: {
         label: 'DAGGERHEART.WeaponFeature.Quick.Name',
@@ -233,7 +586,18 @@ export const weaponFeatures = {
     },
     reliable: {
         label: 'DAGGERHEART.WeaponFeature.Reliable.Name',
-        description: 'DAGGERHEART.WeaponFeature.Reliable.Description'
+        description: 'DAGGERHEART.WeaponFeature.Reliable.Description',
+        effects: [
+            {
+                changes: [
+                    {
+                        key: 'system.bonuses.attack',
+                        mode: 2,
+                        value: 1
+                    }
+                ]
+            }
+        ]
     },
     reloading: {
         label: 'DAGGERHEART.WeaponFeature.Reloading.Name',

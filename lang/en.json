@@ -620,9 +620,25 @@
             }
         },
         "WeaponFeature": {
-            "Barrier": {
-                "Name": "Barrier",
-                "Description": "+{armorBonus} to Armor Score; -1 to Evasion"
+            "Barrier1": {
+                "Name": "Barrier 1",
+                "Description": "+1 to Armor Score; -1 to Evasion"
+            },
+            "Barrier2": {
+                "Name": "Barrier 2",
+                "Description": "+2 to Armor Score; -1 to Evasion"
+            },
+            "Barrier3": {
+                "Name": "Barrier 3",
+                "Description": "+3 to Armor Score; -1 to Evasion"
+            },
+            "Barrier4": {
+                "Name": "Barrier 4",
+                "Description": "+4 to Armor Score; -1 to Evasion"
+            },
+            "Barrier5": {
+                "Name": "Barrier 5",
+                "Description": "+5 to Armor Score; -1 to Evasion"
             },
             "Bonded": {
                 "Name": "Bonded",
@@ -748,9 +764,21 @@
                 "Name": "Powerful",
                 "Description": "On a successful attack, roll an additional damage die and discard the lowest result."
             },
-            "Protective": {
-                "Name": "Protective",
-                "Description": "+{armorBonus} to Armor Score"
+            "Protective1": {
+                "Name": "Protective 1",
+                "Description": "+1 to Armor Score"
+            },
+            "Protective2": {
+                "Name": "Protective 2",
+                "Description": "+2 to Armor Score"
+            },
+            "Protective3": {
+                "Name": "Protective 3",
+                "Description": "+3 to Armor Score"
+            },
+            "Protective4": {
+                "Name": "Protective 4",
+                "Description": "+4 to Armor Score"
             },
             "Quick": {
                 "Name": "Quick",
