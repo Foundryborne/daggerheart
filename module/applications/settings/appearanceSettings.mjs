@@ -1,4 +1,4 @@
-import DhAppearance from '../../data/settings/Appearance.mjs';
+import DhAppearance, { DualityRollColor } from '../../data/settings/Appearance.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -54,7 +54,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
 
     static async save() {
         await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance, this.settings.toObject());
-        const reload = await foundry.applications.api.DialogV2.confirm({
+        /* const reload = await foundry.applications.api.DialogV2.confirm({
             id: 'reload-world-confirm',
             modal: true,
             rejectClose: false,
@@ -66,7 +66,8 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         if (reload) {
             await game.socket.emit('reload');
             foundry.utils.debouncedReload();
-        }
+        } */
+       document.body.classList.toggle('theme-colorful', game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme === DualityRollColor.colorful.value);
 
         this.close();
     }
