@@ -1,4 +1,5 @@
 import BaseDataItem from './base.mjs';
+import ActionField from '../fields/actionField.mjs';
 
 export default class DHMiscellaneous extends BaseDataItem {
     /** @inheritDoc */
@@ -16,6 +17,7 @@ export default class DHMiscellaneous extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
+            actions: new fields.ArrayField(new ActionField())
         };
     }
 }

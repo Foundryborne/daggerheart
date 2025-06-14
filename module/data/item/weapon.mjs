@@ -46,7 +46,6 @@ export default class DHWeapon extends BaseDataItem {
                 max: 1,
                 validTypes: ['weapon']
             }),
-            // actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAttackAction))
             actions: new fields.ArrayField(new ActionField())
         };
     }

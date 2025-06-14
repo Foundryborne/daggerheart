@@ -1,5 +1,5 @@
-import DHAction from '../action/action.mjs';
 import BaseDataItem from './base.mjs';
+import ActionField from '../fields/actionField.mjs';
 
 export default class DHDomainCard extends BaseDataItem {
     /** @inheritDoc */
@@ -22,7 +22,7 @@ export default class DHDomainCard extends BaseDataItem {
             type: new fields.StringField({ choices: SYSTEM.DOMAIN.cardTypes, required: true, blank: true }),
             foundation: new fields.BooleanField({ initial: false }),
             inVault: new fields.BooleanField({ initial: false }),
-            actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAction))
+            actions: new fields.ArrayField(new ActionField())
         };
     }
 

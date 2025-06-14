@@ -1,6 +1,7 @@
 import { getTier } from '../../helpers/utils.mjs';
 import DHAction from '../action/action.mjs';
 import BaseDataItem from './base.mjs';
+import ActionField from '../fields/actionField.mjs';
 
 export default class DHFeature extends BaseDataItem {
     /** @inheritDoc */
@@ -93,7 +94,7 @@ export default class DHFeature extends BaseDataItem {
                     })
                 })
             ),
-            actions: new fields.ArrayField(new fields.EmbeddedDataField(DHAction))
+            actions: new fields.ArrayField(new ActionField())
         };
     }
 
