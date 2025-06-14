@@ -693,6 +693,10 @@
                 "Name": "Greedy",
                 "Description": "Spend a handful of gold to gain a +1 bonus to your Proficiency on a damage roll."
             },
+            "Healing": {
+                "Name": "Healing",
+                "Description": "During downtime, automatically clear a Hit Point."
+            },
             "Heavy": {
                 "Name": "Heavy",
                 "Description": "-1 to Evasion"
@@ -716,6 +720,10 @@
             "LockedOn": {
                 "Name": "Locked On",
                 "Description": "On a successful attack, your next attack against the same target with your primary weapon automatically succeeds."
+            },
+            "Lucky": {
+                "Name": "Lucky",
+                "Description": "On a failed attack, you can mark a Stress to reroll your attack."
             },
             "Long": {
                 "Name": "Long",

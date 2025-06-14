@@ -2,6 +2,7 @@ import BaseDataItem from './base.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 import ActionField from '../fields/actionField.mjs';
 import { weaponFeatures } from '../../config/itemConfig.mjs';
+import { actionsTypes } from '../../data/_module.mjs';
 
 export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
@@ -22,7 +23,7 @@ export default class DHWeapon extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            tier: new fields.NumberField({ required: true, integer: true, initial: 1 }),
+            tier: new fields.NumberField({ required: true, integer: true, initial: 1, min: 1 }),
             equipped: new fields.BooleanField({ initial: false }),
 
             //SETTINGS
@@ -42,7 +43,8 @@ export default class DHWeapon extends BaseDataItem {
             features: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({ required: true, choices: SYSTEM.ITEM.weaponFeatures, blank: true }),
-                    effectIds: new fields.ArrayField(new fields.StringField({ required: true }))
+                    effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
+                    actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
             ),
             actions: new fields.ArrayField(new ActionField())
@@ -61,6 +63,8 @@ export default class DHWeapon extends BaseDataItem {
                 for (var effectId of feature.effectIds) {
                     await this.parent.effects.get(effectId).delete();
                 }
+
+                changes.system.actions = this.actions.filter(x => !feature.actionIds.includes(x._id));
             }
 
             for (var feature of added) {
@@ -74,6 +78,17 @@ export default class DHWeapon extends BaseDataItem {
                         }
                     ]);
                     feature.effectIds = embeddedItems.map(x => x.id);
+                }
+                if (featureData.actions?.length > 0) {
+                    const newActions = featureData.actions.map(action => {
+                        const cls = actionsTypes[action.type];
+                        return new cls(
+                            { ...action, _id: foundry.utils.randomID(), name: game.i18n.localize(action.name) },
+                            { parent: this }
+                        );
+                    });
+                    changes.system.actions = [...this.actions, ...newActions];
+                    feature.actionIds = newActions.map(x => x._id);
                 }
             }
         }

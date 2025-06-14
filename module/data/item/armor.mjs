@@ -18,13 +18,14 @@ export default class DHArmor extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            tier: new fields.NumberField({ required: true, integer: true, initial: 1 }),
+            tier: new fields.NumberField({ required: true, integer: true, initial: 1, min: 1 }),
             equipped: new fields.BooleanField({ initial: false }),
             baseScore: new fields.NumberField({ integer: true, initial: 0 }),
             features: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({ required: true, choices: SYSTEM.ITEM.armorFeatures, blank: true }),
-                    effectIds: new fields.ArrayField(new fields.StringField({ required: true }))
+                    effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
+                    actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
             ),
             marks: new fields.SchemaField({
@@ -55,6 +56,8 @@ export default class DHArmor extends BaseDataItem {
                 for (var effectId of feature.effectIds) {
                     await this.parent.effects.get(effectId).delete();
                 }
+
+                changes.system.actions = this.actions.filter(x => !feature.actionIds.includes(x._id));
             }
 
             for (var feature of added) {
@@ -68,6 +71,17 @@ export default class DHArmor extends BaseDataItem {
                         }
                     ]);
                     feature.effectIds = embeddedItems.map(x => x.id);
+                }
+                if (featureData.actions?.length > 0) {
+                    const newActions = featureData.actions.map(action => {
+                        const cls = actionsTypes[action.type];
+                        return new cls(
+                            { ...action, _id: foundry.utils.randomID(), name: game.i18n.localize(action.name) },
+                            { parent: this }
+                        );
+                    });
+                    changes.system.actions = [...this.actions, ...newActions];
+                    feature.actionIds = newActions.map(x => x._id);
                 }
             }
         }
