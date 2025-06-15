@@ -6,11 +6,13 @@
 
     <fieldset class="two-columns">
         <legend>{{localize tabs.settings.label}}</legend>
+        <span>{{localize "DAGGERHEART.Tiers.singular"}}</span>
+        {{formField systemFields.tier value=source.system.tier}}
         <span>{{localize "DAGGERHEART.Sheets.Armor.baseScore"}}</span>
         {{formField systemFields.baseScore value=source.system.baseScore}}
 
         <span>{{localize "DAGGERHEART.Sheets.Armor.feature"}}</span>
-        {{formField systemFields.feature value=source.system.feature localize=true blank=""}}
+        <input type="text" class="features-input" value="{{features}}" />
 
         <span>{{localize "DAGGERHEART.Sheets.Armor.baseThresholds.base"}}</span>
         <div class="nest-inputs">

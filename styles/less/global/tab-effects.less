@@ -1,0 +1,46 @@
+@import '../utils/colors.less';
+@import '../utils/fonts.less';
+
+.sheet.daggerheart.dh-style {
+    .tab.effects {
+        .effects-list {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            gap: 5px;
+
+            .effect-item {
+                display: grid;
+                align-items: center;
+                grid-template-columns: 1fr 4fr 1fr;
+                cursor: pointer;
+
+                h4 {
+                    font-family: @font-body;
+                    font-weight: lighter;
+                    color: @beige;
+                }
+
+                .image {
+                    height: 40px;
+                    width: 40px;
+                    object-fit: cover;
+                    border-radius: 6px;
+                    border: none;
+                }
+
+                .controls {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    a {
+                        text-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}

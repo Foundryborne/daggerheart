@@ -133,7 +133,8 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
     async use(event) {
         if (this.roll.type && this.roll.trait) {
-            const modifierValue = this.actor.system.traits[this.roll.trait].value;
+            const modifierValue =
+                this.actor.system.traits[this.roll.trait].value + (this.actor.system.bonuses.attack ?? 0);
             const config = {
                 event: event,
                 title: this.chatTitle,

@@ -23,7 +23,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
     getFormula(actor) {
         return this.custom.enabled
             ? this.custom.formula
-            : `${actor.system[this.multiplier] ?? 1}${this.dice}${this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : ''}`;
+            : `${actor.system[this.multiplier]?.total ?? 1}${this.dice}${this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : ''}`;
     }
 }
 

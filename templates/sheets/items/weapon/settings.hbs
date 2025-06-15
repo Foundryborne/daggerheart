@@ -5,6 +5,8 @@
 >
     <fieldset class="two-columns">
         <legend>{{localize tabs.settings.label}}</legend>
+        <span>{{localize "DAGGERHEART.Tiers.singular"}}</span>
+        {{formField systemFields.tier value=source.system.tier}}
         <span>{{localize "DAGGERHEART.Sheets.Weapon.SecondaryWeapon"}}</span>
         {{formField systemFields.secondary value=source.system.secondary}}
         <span>{{localize "DAGGERHEART.Sheets.Weapon.Trait"}}</span>
@@ -25,6 +27,6 @@
     <fieldset class="two-columns">
         <legend>{{localize "DAGGERHEART.Sheets.Weapon.Feature"}}</legend>
         <span>{{localize "DAGGERHEART.Sheets.Weapon.Feature"}}</span>
-        {{formField systemFields.feature value=source.system.feature localize=true}}
+        <input type="text" class="features-input" value="{{features}}" />
     </fieldset>
 </section>
