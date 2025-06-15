@@ -2816,6 +2816,31 @@ div.daggerheart.views.multiclass {
 #resources:has(.fear-bar) {
   min-width: 200px;
 }
+.daggerheart.dh-style.setting .settings-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.daggerheart.dh-style.setting .trait-array-container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.daggerheart.dh-style.setting .trait-array-container .trait-array-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.daggerheart.dh-style.setting .trait-array-container .trait-array-item label {
+  position: absolute;
+  top: -7px;
+  font-size: 12px;
+  font-variant: petite-caps;
+}
+.daggerheart.dh-style.setting .trait-array-container .trait-array-item input {
+  text-align: center;
+}
 .application.sheet.daggerheart.actor.dh-style.adversary .window-content {
   overflow: auto;
 }

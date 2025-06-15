@@ -106,7 +106,7 @@ Hooks.once('init', () => {
 
 Hooks.on('ready', () => {
     ui.resources = new CONFIG.ui.resources();
-    if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.DisplayFear) !== 'hide')
+    if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
         ui.resources.render({ force: true });
     document.body.classList.toggle(
         'theme-colorful',

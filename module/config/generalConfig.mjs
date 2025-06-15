@@ -337,3 +337,9 @@ export const rollTypes = {
         label: 'DAGGERHEART.RollTypes.ability.name'
     }
 };
+
+export const fearDisplay = {
+    token: { value: 'token', label: 'DAGGERHEART.Settings.Appearance.FearDisplay.Token' },
+    bar: { value: 'bar', label: 'DAGGERHEART.Settings.Appearance.FearDisplay.Bar' },
+    hide: { value: 'hide', label: 'DAGGERHEART.Settings.Appearance.FearDisplay.Hide' }
+};

@@ -3,7 +3,7 @@ export default class DhpRuler extends foundry.canvas.interaction.Ruler {
         const context = super._getWaypointLabelContext(waypoint, state);
         if (!context) return;
 
-        const range = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.RangeMeasurement);
+        const range = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.RangeMeasurement);
 
         if (range.enabled) {
             const distance = this.#getRangeLabel(waypoint.measurement.distance.toNearest(0.01), range);

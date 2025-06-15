@@ -165,18 +165,18 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         context.config = SYSTEM;
 
         const selectedAttributes = Object.values(this.document.system.traits).map(x => x.base);
-        context.abilityScoreArray = JSON.parse(
-            await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.General.AbilityArray)
-        ).reduce((acc, x) => {
-            const selectedIndex = selectedAttributes.indexOf(x);
-            if (selectedIndex !== -1) {
-                selectedAttributes.splice(selectedIndex, 1);
-            } else {
-                acc.push({ name: x, value: x });
-            }
+        context.abilityScoreArray = await game.settings
+            .get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew)
+            .traitArray.reduce((acc, x) => {
+                const selectedIndex = selectedAttributes.indexOf(x);
+                if (selectedIndex !== -1) {
+                    selectedAttributes.splice(selectedIndex, 1);
+                } else {
+                    acc.push({ name: x, value: x });
+                }
 
-            return acc;
-        }, []);
+                return acc;
+            }, []);
         if (!context.abilityScoreArray.includes(0)) context.abilityScoreArray.push({ name: 0, value: 0 });
         context.abilityScoresFinished = context.abilityScoreArray.every(x => x.value === 0);
 

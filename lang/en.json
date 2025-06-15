@@ -24,10 +24,7 @@
                 "Automation": {
                     "Name": "Automation Settings",
                     "Label": "Configure Automation",
-                    "Hint": "Various settings automating resource management and more",
-                    "HopeLabel": "Hope",
-                    "FearLabel": "Fear",
-                    "ActionPointsLabel": "Action Points"
+                    "Hint": "Various settings automating resource management and more"
                 },
                 "Homebrew": {
                     "Name": "Homebrew Settings",
@@ -38,13 +35,7 @@
                 "Range": {
                     "Name": "Range Settings",
                     "Label": "Configure Range Handling",
-                    "Hint": "System ruler setup for displaying ranges in Daggerheart",
-                    "EnabledLabel": "Enabled",
-                    "MeleeLabel": "Melee",
-                    "VeryCloseLabel": "Very Close",
-                    "CloseLabel": "Close",
-                    "FarLabel": "Far",
-                    "VeryFarLabel": "Very Far"
+                    "Hint": "System ruler setup for displaying ranges in Daggerheart"
                 },
                 "Appearance": {
                     "title": "Appearance Settings",
@@ -69,18 +60,36 @@
                     "actionTokens": "Action Tokens"
                 }
             },
-            "Automation": {
-                "Hope": {
-                    "Name": "Hope",
-                    "Hint": "Automatically increase a character's hope on a hope duality roll result."
+            "Appearance": {
+                "FIELDS": {
+                    "displayFear": { "label": "Fear Display" }
                 },
+                "FearDisplay": {
+                    "Token": "Tokens",
+                    "Bar": "Bar",
+                    "Hide": "Hide"
+                }
+            },
+            "Automation": {
                 "Fear": {
                     "Name": "Fear",
                     "Hint": "Automatically increase the GM's fear pool on a fear duality roll result."
                 },
-                "ActionPoints": {
-                    "Name": "Action Points",
-                    "Hint": "Automatically give and take Action Points as combatants take their turns."
+                "FIELDS": {
+                    "hope": {
+                        "label": "Hope",
+                        "hint": "Automatically increase a character's hope on a hope duality roll result."
+                    },
+                    "actionPoints": {
+                        "label": "Action Points",
+                        "hint": "Automatically give and take Action Points as combatants take their turns."
+                    }
+                }
+            },
+            "Homebrew": {
+                "FIELDS": {
+                    "maxFear": { "label": "Max Fear" },
+                    "traitArray": { "label": "Initial Trait Modifiers" }
                 }
             },
             "Resources": {
@@ -113,6 +122,10 @@
                     "hint": "Give each player action tokens to use in combat"
                 },
                 "FIELDS": {
+                    "actionTokens": {
+                        "enabled": { "label": "Enabled" },
+                        "tokens": { "label": "Tokens" }
+                    },
                     "useCoins": {
                         "label": "Use Coins",
                         "hint": "test"
@@ -163,7 +176,9 @@
             "OK": "OK",
             "Cancel": "Cancel",
             "Or": "Or",
+            "Enabled": "Enabled",
             "Description": "Description",
+            "Modifier": "Modifier",
             "Features": "Features",
             "proficiency": "Proficiency",
             "unarmored": "Unarmored",

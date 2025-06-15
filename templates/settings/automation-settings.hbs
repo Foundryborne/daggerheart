@@ -1,0 +1,26 @@
+<div>
+    <div class="form-group">
+        <label>{{localize "DAGGERHEART.Settings.Automation.FIELDS.hope.label"}}</label>
+        <div class="form-fields">
+            {{formInput settingFields.schema.fields.hope value=settingFields._source.hope }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label>{{localize "DAGGERHEART.Settings.Automation.FIELDS.actionPoints.label"}}</label>
+        <div class="form-fields">
+            {{formInput settingFields.schema.fields.actionPoints value=settingFields._source.actionPoints }}
+        </div>
+    </div>
+    
+    <footer class="form-footer">
+        <button data-action="reset">
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+            <span>{{localize "Reset"}}</span>
+        </button>
+        <button data-action="save" >
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>{{localize "Save Changes"}}</span>
+        </button>
+    </footer>
+</div>
+  

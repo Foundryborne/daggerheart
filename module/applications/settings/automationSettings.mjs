@@ -1,23 +1,23 @@
-import DhAppearance, { DualityRollColor } from '../../data/settings/Appearance.mjs';
+import { DhAutomation } from '../../data/settings/_module.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
-export default class DHAppearanceSettings extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class DhAutomationSettings extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor() {
         super({});
 
-        this.settings = new DhAppearance(
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).toObject()
+        this.settings = new DhAutomation(
+            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation).toObject()
         );
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Settings.Menu.Appearance.name');
+        return game.i18n.localize('DAGGERHEART.Settings.Menu.Automation.Name');
     }
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-appearance-settings',
+        id: 'daggerheart-automation-settings',
         classes: ['daggerheart', 'setting', 'dh-style'],
         position: { width: '600', height: 'auto' },
         actions: {
@@ -29,7 +29,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
 
     static PARTS = {
         main: {
-            template: 'systems/daggerheart/templates/settings/appearance-settings.hbs'
+            template: 'systems/daggerheart/templates/settings/automation-settings.hbs'
         }
     };
 
@@ -48,18 +48,12 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
     }
 
     static async reset() {
-        this.settings = new DhAppearance();
+        this.settings = new DhAutomation();
         this.render();
     }
 
     static async save() {
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance, this.settings.toObject());
-        document.body.classList.toggle(
-            'theme-colorful',
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
-                DualityRollColor.colorful.value
-        );
-
+        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation, this.settings.toObject());
         this.close();
     }
 }
