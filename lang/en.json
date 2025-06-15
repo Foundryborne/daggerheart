@@ -1137,6 +1137,8 @@
                     "Appearance": "Appearance",
                     "settings": "Settings"
                 },
+                "HopeFeatures": "Hope Features",
+                "Class Features": "Class Features",
                 "Domains": "Domains",
                 "DamageThresholds": {
                     "Title": "Damage Thresholds",

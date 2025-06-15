@@ -1,5 +1,6 @@
 import BaseDataItem from './base.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
+import ActionField from '../fields/actionField.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -19,7 +20,8 @@ export default class DHClass extends BaseDataItem {
             domains: new fields.ArrayField(new fields.StringField(), { max: 2 }),
             classItems: new fields.ArrayField(new ForeignDocumentUUIDField({ type: 'Item' })),
             evasion: new fields.NumberField({ initial: 0, integer: true }),
-            features: new fields.ArrayField(new ForeignDocumentUUIDField({ type: 'Item' })),
+            hopeFeatures: new foundry.data.fields.ArrayField(new ActionField()),
+            classFeatures: new foundry.data.fields.ArrayField(new ActionField()),
             subclasses: new fields.ArrayField(
                 new ForeignDocumentUUIDField({ type: 'Item', required: false, nullable: true, initial: undefined })
             ),
@@ -49,6 +51,10 @@ export default class DHClass extends BaseDataItem {
             }),
             isMulticlass: new fields.BooleanField({ initial: false })
         };
+    }
+
+    get hopeFeature() {
+        return this.hopeFeatures.length > 0 ? this.hopeFeatures[0] : null;
     }
 
     async _preCreate(data, options, user) {

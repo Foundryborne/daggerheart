@@ -1,8 +1,11 @@
+import { actionsTypes } from '../../../data/_module.mjs';
 import { tagifyElement } from '../../../helpers/utils.mjs';
+import DHActionConfig from '../../config/Action.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
+
 export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
@@ -11,8 +14,9 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
         actions: {
             removeSubclass: this.removeSubclass,
             viewSubclass: this.viewSubclass,
-            deleteFeature: this.deleteFeature,
+            addFeature: this.addFeature,
             editFeature: this.editFeature,
+            deleteFeature: this.deleteFeature,
             removeItem: this.removeItem,
             viewItem: this.viewItem,
             removePrimaryWeapon: this.removePrimaryWeapon,
@@ -151,16 +155,75 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
         await this.document.update({ 'system.characterGuide.suggestedArmor': null }, { diff: false });
     }
 
+    async selectActionType() {
+        const content = await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/views/actionType.hbs',
+                { types: SYSTEM.ACTIONS.actionTypes }
+            ),
+            title = 'Select Action Type',
+            type = 'form',
+            data = {};
+        return Dialog.prompt({
+            title,
+            label: title,
+            content,
+            type,
+            callback: html => {
+                const form = html[0].querySelector('form'),
+                    fd = new foundry.applications.ux.FormDataExtended(form);
+                foundry.utils.mergeObject(data, fd.object, { inplace: true });
+
+                return data;
+            },
+            rejectClose: false
+        });
+    }
+
+    getActionPath(type) {
+        return type === 'hope' ? 'hopeFeatures' : 'classFeatures';
+    }
+
+    static async addFeature(_, target) {
+        const actionPath = this.getActionPath(target.dataset.type);
+        const actionType = await this.selectActionType();
+        const cls = actionsTypes[actionType?.type] ?? actionsTypes.attack,
+            action = new cls(
+                {
+                    _id: foundry.utils.randomID(),
+                    systemPath: actionPath,
+                    type: actionType.type,
+                    name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType.type].name),
+                    ...cls.getSourceConfig(this.document)
+                },
+                {
+                    parent: this.document
+                }
+            );
+        await this.document.update({ [`system.${actionPath}`]: [...this.document.system[actionPath], action] });
+    }
+
+    static async editFeature(_, target) {
+        const action = this.document.system[this.getActionPath(target.dataset.type)].find(
+            x => x._id === target.dataset.feature
+        );
+        await new DHActionConfig(action).render(true);
+    }
+
+    static async deleteFeature(_, target) {
+        const actionPath = this.getActionPath(target.dataset.type);
+        await this.document.update({
+            [`system.${actionPath}`]: this.document.system[actionPath].filter(
+                action => action._id !== target.dataset.feature
+            )
+        });
+    }
+
     async _onDrop(event) {
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
         if (item.type === 'subclass') {
             await this.document.update({
                 'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
-            });
-        } else if (item.type === 'feature') {
-            await this.document.update({
-                'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
             });
         } else if (item.type === 'weapon') {
             if (event.currentTarget.classList.contains('primary-weapon-section')) {
