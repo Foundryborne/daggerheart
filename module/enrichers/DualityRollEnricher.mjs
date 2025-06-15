@@ -1,7 +1,7 @@
 import { abilities } from '../config/actorConfig.mjs';
-import { rollCommandToJSON } from '../helpers/utils.mjs';
+import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
-export function dualityRollEnricher(match, _options) {
+export default function DhDualityRollEnricher(match, _options) {
     const roll = rollCommandToJSON(match[1]);
     if (!roll) return match[0];
 
@@ -39,3 +39,24 @@ export function getDualityMessage(roll) {
 
     return dualityElement;
 }
+
+export const renderDualityButton = async event => {
+    const button = event.currentTarget,
+        traitValue = button.dataset.trait?.toLowerCase(),
+        target = getCommandTarget();
+    if (!target) return;
+
+    const config = {
+        event: event,
+        title: button.dataset.title,
+        roll: {
+            modifier: traitValue ? target.system.traits[traitValue].value : null,
+            label: button.dataset.label,
+            type: button.dataset.actionType ?? null // Need check
+        },
+        chatMessage: {
+            template: 'systems/daggerheart/templates/chat/duality-roll.hbs'
+        }
+    };
+    await target.diceRoll(config);
+};

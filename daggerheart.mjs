@@ -9,13 +9,15 @@ import { registerDHSettings } from './module/applications/settings.mjs';
 import DhpChatLog from './module/ui/chatLog.mjs';
 import DhpRuler from './module/ui/ruler.mjs';
 import DhpTokenRuler from './module/ui/tokenRuler.mjs';
-import { dualityRollEnricher } from './module/enrichers/DualityRollEnricher.mjs';
+import { DhDualityRollEnricher, DhTemplateEnricher } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON, setDiceSoNiceForDualityRoll } from './module/helpers/utils.mjs';
 import { abilities } from './module/config/actorConfig.mjs';
 import Resources from './module/applications/resources.mjs';
 import DHDualityRoll from './module/data/chat-message/dualityRoll.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
 import { DhMeasuredTemplate } from './module/placeables/_module.mjs';
+import { renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
+import { renderMeasuredTemplate } from './module/enrichers/TemplateEnricher.mjs';
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -28,10 +30,18 @@ Hooks.once('init', () => {
         documents
     };
 
-    CONFIG.TextEditor.enrichers.push({
-        pattern: /\[\[\/dr\s?(.*?)\]\]/g,
-        enricher: dualityRollEnricher
-    });
+    CONFIG.TextEditor.enrichers.push(
+        ...[
+            {
+                pattern: /\[\[\/dr\s?(.*?)\]\]/g,
+                enricher: DhDualityRollEnricher
+            },
+            {
+                pattern: /^@Template\[(.*)\]$/g,
+                enricher: DhTemplateEnricher
+            }
+        ]
+    );
 
     CONFIG.statusEffects = Object.values(SYSTEM.GENERAL.conditions).map(x => ({
         ...x,
@@ -144,43 +154,34 @@ Hooks.on(socketEvent.GMUpdate, async (action, uuid, update) => {
     }
 });
 
-const renderDualityButton = async event => {
-    const button = event.currentTarget,
-        traitValue = button.dataset.trait?.toLowerCase(),
-        target = getCommandTarget();
-    if (!target) return;
-
-    const config = {
-        event: event,
-        title: button.dataset.title,
-        roll: {
-            modifier: traitValue ? target.system.traits[traitValue].value : null,
-            label: button.dataset.label,
-            type: button.dataset.actionType ?? null // Need check
-        },
-        chatMessage: {
-            template: 'systems/daggerheart/templates/chat/duality-roll.hbs'
-        }
-    };
-    await target.diceRoll(config);
-};
-
 Hooks.on('renderChatMessageHTML', (_, element) => {
     element
         .querySelectorAll('.duality-roll-button')
         .forEach(element => element.addEventListener('click', renderDualityButton));
+
+    element
+        .querySelectorAll('.measured-template-button')
+        .forEach(element => element.addEventListener('click', renderMeasuredTemplate));
 });
 
 Hooks.on('renderJournalEntryPageProseMirrorSheet', (_, element) => {
     element
         .querySelectorAll('.duality-roll-button')
         .forEach(element => element.addEventListener('click', renderDualityButton));
+
+    element
+        .querySelectorAll('.measured-template-button')
+        .forEach(element => element.addEventListener('click', renderMeasuredTemplate));
 });
 
 Hooks.on('renderHandlebarsApplication', (_, element) => {
     element
         .querySelectorAll('.duality-roll-button')
         .forEach(element => element.addEventListener('click', renderDualityButton));
+
+    element
+        .querySelectorAll('.measured-template-button')
+        .forEach(element => element.addEventListener('click', renderMeasuredTemplate));
 });
 
 Hooks.on('chatMessage', (_, message) => {
