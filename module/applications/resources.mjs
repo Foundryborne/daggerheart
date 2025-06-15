@@ -32,7 +32,7 @@ export default class Resources extends HandlebarsApplicationMixin(ApplicationV2)
         position: {
             width: 222,
             height: 222
-            // top: "200px",s
+            // top: "200px",
             // left: "120px"
         }
     };
