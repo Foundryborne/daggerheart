@@ -1185,8 +1185,9 @@
                     }
                 }
             },
-            "Heritage": {
-                "Title": "Abilities"
+            "Global": {
+                "Actions": "Actions",
+                "Effects": "Effects"
             },
             "DomainCard": {
                 "Type": "Type",

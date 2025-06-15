@@ -3415,6 +3415,41 @@ div.daggerheart.views.multiclass {
 .sheet.daggerheart.dh-style .tab.actions .actions-list .action-item .controls a {
   text-shadow: none;
 }
+.sheet.daggerheart.dh-style .tab.effects .effects-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  gap: 5px;
+}
+.sheet.daggerheart.dh-style .tab.effects .effects-list .effect-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 4fr 1fr;
+  cursor: pointer;
+}
+.sheet.daggerheart.dh-style .tab.effects .effects-list .effect-item h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: lighter;
+  color: #efe6d8;
+}
+.sheet.daggerheart.dh-style .tab.effects .effects-list .effect-item .image {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: none;
+}
+.sheet.daggerheart.dh-style .tab.effects .effects-list .effect-item .controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.sheet.daggerheart.dh-style .tab.effects .effects-list .effect-item .controls a {
+  text-shadow: none;
+}
 .application.sheet.daggerheart.dh-style .item-sheet-header {
   display: flex;
 }

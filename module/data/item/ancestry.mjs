@@ -1,12 +1,13 @@
+import ActionField from '../fields/actionField.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHAncestry extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
-            label: "TYPES.Item.ancestry",
-            type: "ancestry",
-            hasDescription: true,
+            label: 'TYPES.Item.ancestry',
+            type: 'ancestry',
+            hasDescription: true
         });
     }
 
@@ -15,7 +16,7 @@ export default class DHAncestry extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            //TODO: add features field
+            actions: new fields.ArrayField(new ActionField())
         };
     }
 }
