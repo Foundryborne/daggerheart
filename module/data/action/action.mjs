@@ -55,6 +55,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
             _id: new fields.DocumentIdField(),
+            systemPath: new fields.StringField({ required: true, initial: 'actions' }),
             type: new fields.StringField({ initial: undefined, readonly: true, required: true }),
             name: new fields.StringField({ initial: undefined }),
             img: new fields.FilePathField({ initial: undefined, categories: ['IMAGE'], base64: false }),
@@ -93,7 +94,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     prepareData() {}
 
     get index() {
-        return this.parent.actions.indexOf(this);
+        return foundry.utils.getProperty(this.parent, this.systemPath).indexOf(this);
     }
 
     get item() {
@@ -202,7 +203,7 @@ export class DHAttackAction extends DHBaseAction {
     static getRollType() {
         return 'weapon';
     }
- 
+
     get chatTitle() {
         return game.i18n.format('DAGGERHEART.Chat.AttackRoll.Title', {
             attack: this.item.name

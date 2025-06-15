@@ -86,11 +86,11 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     static async updateForm(event, _, formData) {
         const submitData = this._prepareSubmitData(event, formData),
             data = foundry.utils.expandObject(foundry.utils.mergeObject(this.action.toObject(), submitData)),
-            newActions = this.action.parent.actions.map(x => x.toObject()); // Find better way
+            newActions = foundry.utils.getProperty(this.action.parent, this.action.systemPath).map(x => x.toObject()); // Find better way
         if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
-        const updates = await this.action.parent.parent.update({ 'system.actions': newActions });
+        const updates = await this.action.parent.parent.update({ [`system.${this.action.systemPath}`]: newActions });
         if (!updates) return;
-        this.action = updates.system.actions[this.action.index];
+        this.action = foundry.utils.getProperty(updates.system, this.action.systemPath)[this.action.index];
         this.render();
     }
 

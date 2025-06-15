@@ -3544,7 +3544,6 @@ div.daggerheart.views.multiclass {
 }
 .sheet.daggerheart.dh-style.item .tab.features {
   padding: 0 10px;
-  max-height: 265px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: light-dark(#18162e, #f3c267) transparent;

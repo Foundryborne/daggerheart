@@ -1,0 +1,30 @@
+<li class='feature-item'>
+    <div class='feature-line'>
+        <img class='image' src='{{feature.img}}' />
+        <h4>{{feature.name}}</h4>
+        {{#unless hideContrals}}
+            <div class='controls'>
+                <a
+                    class='effect-control'
+                    data-action='editFeature'
+                    data-type="{{type}}"
+                    data-level="{{level}}"
+                    data-feature='{{id}}'
+                    data-tooltip='{{localize "DAGGERHEART.Tooltip.openItemWorld"}}'
+                >
+                    <i class="fa-solid fa-globe"></i>
+                </a>
+                <a
+                    class='effect-control'
+                    data-action='deleteFeature'
+                    data-type="{{type}}"
+                    data-level="{{level}}"
+                    data-feature='{{id}}'
+                    data-tooltip='{{localize "DAGGERHEART.Tooltip.delete"}}'
+                >
+                    <i class='fas fa-trash'></i>
+                </a>
+            </div>
+        {{/unless}}
+    </div>
+</li>

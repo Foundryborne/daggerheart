@@ -1,5 +1,14 @@
+import ActionField from '../fields/actionField.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import BaseDataItem from './base.mjs';
+
+const featureSchema = () => {
+    return new foundry.data.fields.SchemaField({
+        name: new foundry.data.fields.StringField({ required: true }),
+        effects: new foundry.data.fields.ArrayField(new ForeignDocumentUUIDField({ type: 'ActiveEffect' })),
+        actions: new foundry.data.fields.ArrayField(new ActionField())
+    });
+};
 
 export default class DHSubclass extends BaseDataItem {
     /** @inheritDoc */
@@ -22,9 +31,9 @@ export default class DHSubclass extends BaseDataItem {
                 nullable: true,
                 initial: null
             }),
-            foundationFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
-            specializationFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
-            masteryFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
+            foundationFeature: featureSchema(),
+            specializationFeature: featureSchema(),
+            masteryFeature: featureSchema(),
             featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),
             isMulticlass: new fields.BooleanField({ initial: false })
         };

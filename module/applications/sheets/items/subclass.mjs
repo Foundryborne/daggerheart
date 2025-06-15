@@ -1,28 +1,24 @@
-import DaggerheartSheet from '../daggerheart-sheet.mjs';
+import { actionsTypes } from '../../../data/_module.mjs';
+import DHActionConfig from '../../config/Action.mjs';
+import DhpApplicationMixin from '../daggerheart-sheet.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
-const { TextEditor } = foundry.applications.ux;
-const { duplicate, getProperty } = foundry.utils;
-export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
+export default class SubclassSheet extends DhpApplicationMixin(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'subclass'],
         position: { width: 600 },
         window: { resizable: false },
         actions: {
-            editAbility: this.editAbility,
-            deleteFeatureAbility: this.deleteFeatureAbility
+            addFeature: this.addFeature,
+            editFeature: this.editFeature,
+            deleteFeature: this.deleteFeature
         },
         form: {
             handler: this.updateForm,
             submitOnChange: true,
             closeOnSubmit: false
-        },
-        dragDrop: [
-            { dragSelector: null, dropSelector: '.foundation-tab' },
-            { dragSelector: null, dropSelector: '.specialization-tab' },
-            { dragSelector: null, dropSelector: '.mastery-tab' }
-        ]
+        }
     };
 
     static PARTS = {
@@ -80,41 +76,99 @@ export default class SubclassSheet extends DaggerheartSheet(ItemSheetV2) {
         this.render();
     }
 
-    static async editAbility(_, button) {
-        const feature = await fromUuid(button.dataset.ability);
-        feature.sheet.render(true);
+    static addFeature(_, target) {
+        if (target.dataset.type === 'action') this.addAction(target.dataset.level);
+        else this.addEffect(target.dataset.level);
     }
 
-    static async deleteFeatureAbility(event, button) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const feature = button.dataset.feature;
-        const newAbilities = this.document.system[`${feature}Feature`].abilities.filter(
-            x => x.uuid !== button.dataset.ability
-        );
-        const path = `system.${feature}Feature.abilities`;
-
-        await this.document.update({ [path]: newAbilities });
+    static async editFeature(_, target) {
+        if (target.dataset.type === 'action') this.editAction(target.dataset.level, target.dataset.feature);
+        else this.editEffect(target.dataset.feature);
     }
 
-    async _onDrop(event) {
-        event.preventDefault();
-        const data = TextEditor.getDragEventData(event);
-        const item = await fromUuid(data.uuid);
-        if (!(item.type === 'feature' && item.system.type === SYSTEM.ITEM.featureTypes.subclass.id)) return;
+    static async deleteFeature(_, target) {
+        if (target.dataset.type === 'action') this.removeAction(target.dataset.level, target.dataset.feature);
+        else this.removeEffect(target.dataset.level, target.dataset.feature);
+    }
 
-        let featureField;
-        if (event.currentTarget.classList.contains('foundation-tab')) featureField = 'foundation';
-        else if (event.currentTarget.classList.contains('specialization-tab')) featureField = 'specialization';
-        else if (event.currentTarget.classList.contains('mastery-tab')) featureField = 'mastery';
-        else return;
+    async #selectActionType() {
+        const content = await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/views/actionType.hbs',
+                { types: SYSTEM.ACTIONS.actionTypes }
+            ),
+            title = 'Select Action Type',
+            type = 'form',
+            data = {};
+        return Dialog.prompt({
+            title,
+            label: title,
+            content,
+            type,
+            callback: html => {
+                const form = html[0].querySelector('form'),
+                    fd = new foundry.applications.ux.FormDataExtended(form);
+                foundry.utils.mergeObject(data, fd.object, { inplace: true });
+                return data;
+            },
+            rejectClose: false
+        });
+    }
 
-        const path = `system.${featureField}Feature.abilities`;
-        const abilities = duplicate(getProperty(this.document, path)) || [];
-        const featureData = { name: item.name, img: item.img, uuid: item.uuid };
-        abilities.push(featureData);
+    async addAction(level) {
+        const actionType = await this.#selectActionType();
+        const cls = actionsTypes[actionType?.type] ?? actionsTypes.attack,
+            action = new cls(
+                {
+                    _id: foundry.utils.randomID(),
+                    systemPath: `${level}.actions`,
+                    type: actionType.type,
+                    name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType.type].name),
+                    ...cls.getSourceConfig(this.document)
+                },
+                {
+                    parent: this.document
+                }
+            );
+        await this.document.update({ [`system.${level}.actions`]: [...this.document.system[level].actions, action] });
+        await new DHActionConfig(
+            this.document.system[level].actions[this.document.system[level].actions.length - 1]
+        ).render(true);
+    }
 
-        await this.document.update({ [path]: abilities });
+    async addEffect(level) {
+        const embeddedItems = await this.document.createEmbeddedDocuments('ActiveEffect', [
+            { name: game.i18n.localize('DAGGERHEART.Feature.NewEffect') }
+        ]);
+        await this.document.update({
+            [`system.${level}.effects`]: [
+                ...this.document.system[level].effects.map(x => x.uuid),
+                embeddedItems[0].uuid
+            ]
+        });
+    }
+
+    async editAction(level, id) {
+        const action = this.document.system[level].actions.find(x => x._id === id);
+        await new DHActionConfig(action).render(true);
+    }
+
+    async editEffect(id) {
+        const effect = this.document.effects.get(id);
+        effect.sheet.render(true);
+    }
+
+    async removeAction(level, id) {
+        await this.document.update({
+            [`system.${level}.actions`]: this.document.system[level].actions.filter(action => action._id !== id)
+        });
+    }
+
+    async removeEffect(level, id) {
+        await this.document.effects.get(id).delete();
+        await this.document.update({
+            [`system.${level}.effects`]: this.document.system[level].effects
+                .filter(x => x && x.id !== id)
+                .map(effect => effect.uuid)
+        });
     }
 }

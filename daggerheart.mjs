@@ -106,8 +106,13 @@ Hooks.once('init', () => {
 
 Hooks.on('ready', () => {
     ui.resources = new CONFIG.ui.resources();
-    if(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.DisplayFear) !== 'hide') ui.resources.render({ force: true });
-    document.body.classList.toggle('theme-colorful', game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme === DualityRollColor.colorful.value);
+    if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.DisplayFear) !== 'hide')
+        ui.resources.render({ force: true });
+    document.body.classList.toggle(
+        'theme-colorful',
+        game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
+            DualityRollColor.colorful.value
+    );
 });
 
 Hooks.once('dicesoniceready', () => {});
@@ -269,6 +274,8 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/character/sections/loadout.hbs',
         'systems/daggerheart/templates/sheets/character/parts/heritageCard.hbs',
         'systems/daggerheart/templates/sheets/character/parts/advancementCard.hbs',
+        'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-features.hbs',
+        'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-feature.hbs',
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/views/levelup/parts/selectable-card-preview.hbs',
         'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',
