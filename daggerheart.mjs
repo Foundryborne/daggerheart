@@ -15,6 +15,7 @@ import { abilities } from './module/config/actorConfig.mjs';
 import Resources from './module/applications/resources.mjs';
 import DHDualityRoll from './module/data/chat-message/dualityRoll.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
+import { DhMeasuredTemplate } from './module/placeables/_module.mjs';
 
 globalThis.SYSTEM = SYSTEM;
 
@@ -36,6 +37,8 @@ Hooks.once('init', () => {
         ...x,
         name: game.i18n.localize(x.name)
     }));
+
+    CONFIG.MeasuredTemplate.objectClass = DhMeasuredTemplate;
 
     CONFIG.Item.documentClass = documents.DhpItem;
 
