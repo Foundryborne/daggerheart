@@ -1,4 +1,4 @@
-export default class DhMeasuredTemplate extends MeasuredTemplate {
+export default class DhMeasuredTemplate extends foundry.canvas.placeables.MeasuredTemplate {
     _refreshRulerText() {
         super._refreshRulerText();
 

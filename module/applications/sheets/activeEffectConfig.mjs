@@ -1,4 +1,4 @@
-export default class DhActiveEffectConfig extends ActiveEffectConfig {
+export default class DhActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'sheet', 'dh-style']
     };

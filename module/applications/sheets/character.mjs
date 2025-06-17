@@ -6,6 +6,7 @@ import DaggerheartSheet from './daggerheart-sheet.mjs';
 import { abilities } from '../../config/actorConfig.mjs';
 import DhlevelUp from '../levelup.mjs';
 import DHDualityRoll from '../../data/chat-message/dualityRoll.mjs';
+import DhCharacterCreation from '../characterCreation.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -47,7 +48,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useAdvancementCard: this.useAdvancementCard,
             useAdvancementAbility: this.useAdvancementAbility,
             toggleEquipItem: this.toggleEquipItem,
-            levelup: this.openLevelUp
+            levelup: this.openLevelUp,
+            temp: this.temp
         },
         window: {
             minimizable: false,
@@ -381,6 +383,10 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         }
 
         new DhlevelUp(this.document).render(true);
+    }
+
+    static temp() {
+        new DhCharacterCreation(this.document).render(true);
     }
 
     static async useDomainCard(_, button) {

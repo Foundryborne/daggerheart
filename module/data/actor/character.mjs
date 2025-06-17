@@ -5,7 +5,7 @@ import BaseDataActor from './base.mjs';
 
 const attributeField = () =>
     new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
+        value: new foundry.data.fields.NumberField({ initial: null, integer: true }),
         bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
         tierMarked: new foundry.data.fields.BooleanField({ initial: false })
     });
@@ -54,13 +54,7 @@ export default class DhCharacter extends BaseDataActor {
                     description: new fields.StringField({}),
                     value: new fields.NumberField({ integer: true, initial: 0 }),
                     bonus: new fields.NumberField({ integer: true, initial: 0 })
-                }),
-                {
-                    initial: {
-                        [foundry.utils.randomID()]: { description: '', value: 2 },
-                        [foundry.utils.randomID()]: { description: '', value: 2 }
-                    }
-                }
+                })
             ),
             gold: new fields.SchemaField({
                 coins: new fields.NumberField({ initial: 0, integer: true }),
@@ -235,7 +229,7 @@ export default class DhCharacter extends BaseDataActor {
 
         for (var traitKey in this.traits) {
             var trait = this.traits[traitKey];
-            trait.total = trait.value + trait.bonus;
+            trait.total = (trait.value ?? 0) + trait.bonus;
         }
 
         for (var experienceKey in this.experiences) {

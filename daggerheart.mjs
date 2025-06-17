@@ -77,14 +77,19 @@ Hooks.once('init', () => {
     Actors.registerSheet(SYSTEM.id, applications.DhpEnvironment, { types: ['environment'], makeDefault: true });
 
     CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
-    DocumentSheetConfig.unregisterSheet(
+    foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
         CONFIG.ActiveEffect.documentClass,
         'core',
         foundry.applications.sheets.ActiveEffectConfig
     );
-    DocumentSheetConfig.registerSheet(CONFIG.ActiveEffect.documentClass, SYSTEM.id, applications.DhActiveEffectConfig, {
-        makeDefault: true
-    });
+    foundry.applications.apps.DocumentSheetConfig.registerSheet(
+        CONFIG.ActiveEffect.documentClass,
+        SYSTEM.id,
+        applications.DhActiveEffectConfig,
+        {
+            makeDefault: true
+        }
+    );
 
     CONFIG.Combat.dataModels = {
         base: models.DhCombat

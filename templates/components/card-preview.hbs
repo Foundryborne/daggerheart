@@ -1,4 +1,7 @@
-<div class="component dh-style card-preview-container {{#if (and this.compendium (not this.img))}}selectable{{/if}}" data-action="viewCompendium" data-compendium="{{this.compendium}}" data-path="{{this.path}}" data-limit="{{this.limit}}">
+<div 
+    class="component dh-style card-preview-container {{#if (and (not this.disabled) (and this.compendium (not this.img)))}}selectable{{/if}} {{#if this.disabled}}disabled{{/if}}" 
+    {{#if (not disabled)}}data-action="viewCompendium"{{/if}} data-compendium="{{this.compendium}}" data-path="{{this.path}}" data-limit="{{this.limit}}"
+>
     {{#if this.img}}
         <img class="preview-image-container" src="{{this.img}}" />
         <div class="preview-text-container">{{this.name}}</div>
