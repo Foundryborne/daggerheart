@@ -31,7 +31,7 @@ export default class ForeignDocumentUUIDField extends foundry.data.fields.Docume
                 console.error(error);
                 return value ?? null;
             }
-        })();
+        });
     }
 
     /**@override */

@@ -1,5 +1,3 @@
-export { default as DhClass } from './item/class.mjs';
-export { default as DhSubclass } from './item/subclass.mjs';
 export { default as DhCombat } from './combat.mjs';
 export { default as DhCombatant } from './combatant.mjs';
 
