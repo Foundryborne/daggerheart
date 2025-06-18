@@ -427,6 +427,15 @@
             "SelectCommunity": "Select Community",
             "SelectClass": "Select Class",
             "SelectSubclass": "Select Subclass",
+            "SelectArmor": "Select Armor",
+            "SelectPrimaryWeapon": "Select Primary Weapon",
+            "SelectSecondaryWeapon": "Select Secondary Weapon",
+            "SuggestedArmor": "Suggested Armor",
+            "SuggestedWeapons": "Suggested Weapon",
+            "SuggestedPrimaryWeapon": "Suggested Primary Weapon",
+            "SuggestedSecondaryWeapon": "Suggested Secondary Weapon",
+            "StartingItems": "Starting Items",
+            "Choice": "Choice",
             "NewExperience": "New Experience..",
             "FinishCreation": "Finish Character Setup",
             "Tabs": {
@@ -440,7 +449,11 @@
                 "MissingClass": "You don't have a class selected yet.",
                 "WrongDomain": "The card isn't from one of your class domains.",
                 "CardTooHighLevel": "The card is too high level!",
-                "DuplicateCard": "You cannot select the same card more than once."
+                "DuplicateCard": "You cannot select the same card more than once.",
+                "NotPrimary": "The weapon is not a primary weapon!",
+                "NotSecondary": "The weapon is not a secondary weapon!",
+                "ItemTooHighTier": "The item must be from Tier1",
+                "PrimaryIsTwoHanded": "Cannot select a secondary weapon with a two-handed primary!"
             }
         },
         "LevelUp": {

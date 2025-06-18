@@ -221,46 +221,53 @@ export default class ClassSheet extends DaggerheartSheet(ItemSheetV2) {
     async _onDrop(event) {
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
+        const target = event.target.closest('fieldset.drop-section');
         if (item.type === 'subclass') {
             await this.document.update({
                 'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
             });
         } else if (item.type === 'weapon') {
-            if (event.currentTarget.classList.contains('primary-weapon-section')) {
+            if (target.classList.contains('primary-weapon-section')) {
                 if (!this.document.system.characterGuide.suggestedPrimaryWeapon && !item.system.secondary)
                     await this.document.update({
                         'system.characterGuide.suggestedPrimaryWeapon': item.uuid
                     });
-            } else if (event.currentTarget.classList.contains('secondary-weapon-section')) {
+            } else if (target.classList.contains('secondary-weapon-section')) {
                 if (!this.document.system.characterGuide.suggestedSecondaryWeapon && item.system.secondary)
                     await this.document.update({
                         'system.characterGuide.suggestedSecondaryWeapon': item.uuid
                     });
             }
         } else if (item.type === 'armor') {
-            if (event.currentTarget.classList.contains('armor-section')) {
+            if (target.classList.contains('armor-section')) {
                 if (!this.document.system.characterGuide.suggestedArmor)
                     await this.document.update({
                         'system.characterGuide.suggestedArmor': item.uuid
                     });
             }
-        } else if (event.currentTarget.classList.contains('choice-a-section')) {
+        } else if (target.classList.contains('choice-a-section')) {
             if (item.type === 'miscellaneous' || item.type === 'consumable') {
                 if (this.document.system.inventory.choiceA.length < 2)
                     await this.document.update({
-                        'system.inventory.choiceA': [...this.document.system.inventory.choiceA, item.uuid]
+                        'system.inventory.choiceA': [
+                            ...this.document.system.inventory.choiceA.map(x => x.uuid),
+                            item.uuid
+                        ]
                     });
             }
         } else if (item.type === 'miscellaneous') {
-            if (event.currentTarget.classList.contains('take-section')) {
+            if (target.classList.contains('take-section')) {
                 if (this.document.system.inventory.take.length < 3)
                     await this.document.update({
-                        'system.inventory.take': [...this.document.system.inventory.take, item.uuid]
+                        'system.inventory.take': [...this.document.system.inventory.take.map(x => x.uuid), item.uuid]
                     });
-            } else if (event.currentTarget.classList.contains('choice-b-section')) {
+            } else if (target.classList.contains('choice-b-section')) {
                 if (this.document.system.inventory.choiceB.length < 2)
                     await this.document.update({
-                        'system.inventory.choiceB': [...this.document.system.inventory.choiceB, item.uuid]
+                        'system.inventory.choiceB': [
+                            ...this.document.system.inventory.choiceB.map(x => x.uuid),
+                            item.uuid
+                        ]
                     });
             }
         }

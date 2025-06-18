@@ -2524,7 +2524,7 @@ div.daggerheart.views.multiclass {
   align-items: center;
   justify-content: center;
   background-color: var(--color-cool-4);
-  content: "";
+  content: '';
 }
 .daggerheart.dh-style.dialog.character-creation .tab-navigation nav a .finish-marker.active {
   background-color: var(--color-warm-2);
@@ -2546,6 +2546,20 @@ div.daggerheart.views.multiclass {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .selections-container {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .selections-container .card-preview-container {
+  border-color: light-dark(#18162e, #f3c267);
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .selections-outer-container {
+  display: flex;
+  justify-content: space-evenly;
+  height: 210px;
 }
 .daggerheart.dh-style.dialog.character-creation .main-selections-container .section-container {
   border-radius: 8px;
@@ -2635,20 +2649,6 @@ div.daggerheart.views.multiclass {
   align-items: center;
   justify-content: center;
 }
-.daggerheart.dh-style.dialog.character-creation .main-selections-container .selections-container {
-  display: flex;
-  justify-content: space-evenly;
-  height: 210px;
-}
-.daggerheart.dh-style.dialog.character-creation .main-selections-container .selections-container .selections-inner-container {
-  width: 140px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-.daggerheart.dh-style.dialog.character-creation .main-selections-container .selections-container .selections-inner-container .card-preview-container {
-  border-color: light-dark(#18162e, #f3c267);
-}
 .daggerheart.dh-style.dialog.character-creation .main-selections-container .creation-action-footer {
   display: flex;
   align-items: center;
@@ -2692,7 +2692,7 @@ div.daggerheart.views.multiclass {
   align-items: center;
   justify-content: center;
   background-color: var(--color-cool-4);
-  content: "";
+  content: '';
 }
 .daggerheart.dh-style.dialog.character-creation .main-selections-container .creation-action-footer .footer-section nav a .finish-marker.finished {
   background-color: var(--color-warm-2);
@@ -2714,6 +2714,109 @@ div.daggerheart.views.multiclass {
   flex: 1;
   height: 100%;
   white-space: nowrap;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .main-equipment-selection {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .main-equipment-selection.triple {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid light-dark(#18162e, #f3c267);
+  border-radius: 8px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection legend {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 0 8px;
+  white-space: nowrap;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .equipment-subsection {
+  display: flex;
+  align-items: start;
+  gap: 32px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .equipment-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .simple-equipment-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 8px;
+  height: 100%;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .simple-equipment-container .simple-equipment {
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .simple-equipment-container .simple-equipment.selectable {
+  cursor: pointer;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .simple-equipment-container .simple-equipment.inactive {
+  opacity: 0.4;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .simple-equipment-container .simple-equipment label {
+  position: absolute;
+  top: -8px;
+  font-size: 12px;
+  white-space: nowrap;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  color: light-dark(#efe6d8, #222);
+  background-image: url('../assets/parchments/dh-parchment-light.png');
+  padding: 0 2px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .simple-equipment-container .simple-equipment img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .suggestion-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: min-content;
+  border: 2px solid light-dark(#18162e, #f3c267);
+  border-radius: 8px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .suggestion-container legend {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .suggestion-container .suggestion-inner-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  cursor: grab;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .suggestion-container .suggestion-inner-container.taken {
+  opacity: 0.4;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .suggestion-container .suggestion-inner-container label {
+  position: absolute;
+  top: -2px;
+  font-size: 12px;
+}
+.daggerheart.dh-style.dialog.character-creation .main-selections-container .equipment-selection .suggestion-container .suggestion-inner-container img {
+  width: 120px;
 }
 .daggerheart.dh-style.dialog.character-creation .creation-action-footer {
   display: flex;
