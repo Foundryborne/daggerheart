@@ -1,5 +1,6 @@
 import BaseDataItem from './base.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
+import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import ActionField from '../fields/actionField.mjs';
 
 export default class DHClass extends BaseDataItem {
@@ -18,23 +19,16 @@ export default class DHClass extends BaseDataItem {
         return {
             ...super.defineSchema(),
             domains: new fields.ArrayField(new fields.StringField(), { max: 2 }),
-            classItems: new fields.ArrayField(new ForeignDocumentUUIDField({ type: 'Item' })),
+            classItems: new ForeignDocumentUUIDArrayField({type: 'Item', required: false}),
+
             evasion: new fields.NumberField({ initial: 0, integer: true }),
             hopeFeatures: new foundry.data.fields.ArrayField(new ActionField()),
             classFeatures: new foundry.data.fields.ArrayField(new ActionField()),
-            subclasses: new fields.ArrayField(
-                new ForeignDocumentUUIDField({ type: 'Item', required: false, nullable: true, initial: undefined })
-            ),
+            subclasses: new ForeignDocumentUUIDArrayField({type: 'Item', required: false}),
             inventory: new fields.SchemaField({
-                take: new fields.ArrayField(
-                    new ForeignDocumentUUIDField({ type: 'Item', required: false, nullable: true, initial: undefined })
-                ),
-                choiceA: new fields.ArrayField(
-                    new ForeignDocumentUUIDField({ type: 'Item', required: false, nullable: true, initial: undefined })
-                ),
-                choiceB: new fields.ArrayField(
-                    new ForeignDocumentUUIDField({ type: 'Item', required: false, nullable: true, initial: undefined })
-                )
+                take: new ForeignDocumentUUIDArrayField({type: 'Item', required: false}),
+                choiceA: new ForeignDocumentUUIDArrayField({type: 'Item', required: false}),
+                choiceB: new ForeignDocumentUUIDArrayField({type: 'Item', required: false}),
             }),
             characterGuide: new fields.SchemaField({
                 suggestedTraits: new fields.SchemaField({

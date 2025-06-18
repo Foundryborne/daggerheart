@@ -1,11 +1,11 @@
 import ActionField from '../fields/actionField.mjs';
-import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
+import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import BaseDataItem from './base.mjs';
 
 const featureSchema = () => {
     return new foundry.data.fields.SchemaField({
         name: new foundry.data.fields.StringField({ required: true }),
-        effects: new foundry.data.fields.ArrayField(new ForeignDocumentUUIDField({ type: 'ActiveEffect' })),
+        effects: new ForeignDocumentUUIDArrayField({type: 'Item', required: false}),
         actions: new foundry.data.fields.ArrayField(new ActionField())
     });
 };
