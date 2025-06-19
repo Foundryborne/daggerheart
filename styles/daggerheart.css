@@ -3178,6 +3178,11 @@ div.daggerheart.views.multiclass {
 #resources:has(.fear-bar) {
   min-width: 200px;
 }
+.daggerheart.dh-style.setting fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .daggerheart.dh-style.setting fieldset.two-columns {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -3185,6 +3190,12 @@ div.daggerheart.views.multiclass {
 }
 .daggerheart.dh-style.setting fieldset.two-columns.even {
   grid-template-columns: 1fr 1fr;
+}
+.daggerheart.dh-style.setting .setting-group-field {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .daggerheart.dh-style.setting .settings-items {
   display: flex;

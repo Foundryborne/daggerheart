@@ -1,5 +1,9 @@
 .daggerheart.dh-style.setting {
     fieldset {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
         &.two-columns {
             display: grid;
             grid-template-columns: 1fr 2fr;
@@ -9,6 +13,13 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+    }
+
+    .setting-group-field {
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     .settings-items {

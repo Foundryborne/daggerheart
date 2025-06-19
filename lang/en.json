@@ -89,6 +89,7 @@
             "Homebrew": {
                 "NewDowntimeMove": "Downtime Move",
                 "DowntimeMoves": "Downtime Moves",
+                "NrChoices": "# Moves Per Rest",
                 "ResetMovesTitle": "Reset {type} Downtime Moves",
                 "ResetMovesText": "Are you sure you want to reset?",
                 "FIELDS": {
