@@ -87,6 +87,10 @@
                 }
             },
             "Homebrew": {
+                "NewDowntimeMove": "Downtime Move",
+                "DowntimeMoves": "Downtime Moves",
+                "ResetMovesTitle": "Reset {type} Downtime Moves",
+                "ResetMovesText": "Are you sure you want to reset?",
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
                     "traitArray": { "label": "Initial Trait Modifiers" }

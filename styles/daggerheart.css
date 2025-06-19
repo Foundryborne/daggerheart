@@ -3178,6 +3178,72 @@ div.daggerheart.views.multiclass {
 #resources:has(.fear-bar) {
   min-width: 200px;
 }
+.daggerheart.dh-style.setting fieldset.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+}
+.daggerheart.dh-style.setting fieldset.two-columns.even {
+  grid-template-columns: 1fr 1fr;
+}
+.daggerheart.dh-style.setting .settings-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.daggerheart.dh-style.setting .settings-items .settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 0 8px 0 0;
+}
+.daggerheart.dh-style.setting .settings-items .settings-item .settings-sub-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.daggerheart.dh-style.setting .settings-items .settings-item .settings-sub-item img {
+  width: 60px;
+  border-radius: 8px 0 0 8px;
+}
+.daggerheart.dh-style.setting .settings-items .settings-item .settings-sub-item i {
+  font-size: 18px;
+}
+.daggerheart.dh-style.setting .settings-item-header {
+  display: flex;
+  align-items: center;
+}
+.daggerheart.dh-style.setting .settings-item-header .profile {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.daggerheart.dh-style.setting .settings-item-header .item-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  width: 80%;
+}
+.daggerheart.dh-style.setting .settings-item-header .item-info .item-name input[type='text'] {
+  font-size: 32px;
+  height: 42px;
+  text-align: center;
+  width: 90%;
+  transition: all 0.3s ease;
+  outline: 2px solid transparent;
+  border: 1px solid transparent;
+}
+.daggerheart.dh-style.setting .settings-item-header .item-info .item-name input[type='text']:hover[type='text'],
+.daggerheart.dh-style.setting .settings-item-header .item-info .item-name input[type='text']:focus[type='text'] {
+  box-shadow: none;
+  outline: 2px solid light-dark(#18162e, #f3c267);
+}
 .daggerheart.dh-style.setting .settings-col {
   display: flex;
   flex-direction: column;

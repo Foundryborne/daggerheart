@@ -297,6 +297,7 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/views/actionTypes/roll.hbs',
         'systems/daggerheart/templates/views/actionTypes/cost.hbs',
         'systems/daggerheart/templates/views/actionTypes/range-target.hbs',
-        'systems/daggerheart/templates/views/actionTypes/effect.hbs'
+        'systems/daggerheart/templates/views/actionTypes/effect.hbs',
+        'systems/daggerheart/templates/settings/components/settings-item-line.hbs'
     ]);
 };
