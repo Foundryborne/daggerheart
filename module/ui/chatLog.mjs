@@ -1,3 +1,5 @@
+import { actionsTypes } from '../data/_module.mjs';
+
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor() {
         super();
@@ -37,6 +39,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         );
         html.querySelectorAll('.ability-use-button').forEach(element =>
             element.addEventListener('click', event => this.abilityUseButton.bind(this)(event, data.message))
+        );
+        html.querySelectorAll('.action-use-button').forEach(element =>
+            element.addEventListener('click', event => this.actionUseButton.bind(this)(event, data.message))
         );
     };
 
@@ -136,5 +141,17 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const action = message.system.actions[Number.parseInt(event.currentTarget.dataset.index)];
         const actor = game.actors.get(message.system.origin);
         await actor.useAction(action);
+    };
+
+    actionUseButton = async (_, message) => {
+        const parent = await foundry.utils.fromUuid(message.system.actor);
+        const testAction = Object.values(message.system.moves)[0].actions[0];
+        const cls = actionsTypes[testAction.type];
+        const action = new cls(
+            { ...testAction, _id: foundry.utils.randomID(), name: game.i18n.localize(testAction.name) },
+            { parent: parent }
+        );
+
+        action.use();
     };
 }
