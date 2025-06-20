@@ -16,7 +16,14 @@
 @import './settings.less';
 
 // new styles imports
-@import './less/actors/character.less';
+@import './less/actors/character/header.less';
+@import './less/actors/character/sidebar.less';
+@import './less/actors/character/sheet.less';
+@import './less/actors/character/inventory.less';
+@import './less/actors/character/loadout.less';
+@import './less/actors/character/biography.less';
+@import './less/actors/character/features.less';
+
 @import './less/actors/adversary.less';
 @import './less/actors/environment.less';
 
@@ -35,14 +42,8 @@
 @import './less/global/tab-effects.less';
 @import './less/global/item-header.less';
 @import './less/global/feature-section.less';
-
-#logo {
-    content: url(../assets/DaggerheartLogo.webp);
-    height: 50px;
-    width: 50px;
-    position: relative;
-    left: 25px;
-}
+@import './less/global/inventory-item.less';
+@import './less/global/inventory-fieldset-items.less';
 
 .daggerheart {
     .vertical-separator {

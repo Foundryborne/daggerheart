@@ -14,12 +14,10 @@
             <h3>
                 {{localize (concat 'DAGGERHEART.Domain.CardTypes.' source.system.type)}}
                 <span>-</span>
-                {{source.system.domain}}
+                {{localize (concat 'DAGGERHEART.Domains.' source.system.domain '.label')}}
                 <span>-</span>
-                <span>
-                    {{localize "DAGGERHEART.Sheets.DomainCard.Level"}}:
-                    {{source.system.level}}
-                </span>
+                {{localize "DAGGERHEART.Sheets.DomainCard.Level"}}:
+                {{source.system.level}}
             </h3>
         </div>
     </div>

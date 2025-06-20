@@ -404,6 +404,8 @@
   flex-direction: column;
   align-items: flex-start;
   border-radius: 6px;
+  height: 100px;
+  width: 100px;
 }
 .daggerheart.sheet.pc div[data-application-part] .sheet-body .left-main-container .legend {
   margin-left: auto;
@@ -3442,6 +3444,550 @@ div.daggerheart.views.multiclass {
 .daggerheart.dh-style.setting .trait-array-container .trait-array-item input {
   text-align: center;
 }
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet {
+  padding: 0 15px;
+  padding-top: 36px;
+  width: 100%;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0;
+  padding-top: 5px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row input[type='text'] {
+  font-size: 32px;
+  height: 42px;
+  width: 380px;
+  text-align: start;
+  border: 1px solid transparent;
+  outline: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row input[type='text']:hover {
+  outline: 2px solid light-dark(#222, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: light-dark(#18162e, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-details span {
+  padding: 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-details span:hover {
+  background: light-dark(#18162e40, #f3c26740);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-details span.dot {
+  background: transparent;
+  cursor: default;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin-bottom: 15px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .hope-section,
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .threshold-section {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  background-color: light-dark(transparent, #18162e);
+  color: light-dark(#18162e, #f3c267);
+  padding: 5px 10px;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  align-items: center;
+  width: fit-content;
+  height: 30px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .hope-section h4,
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .threshold-section h4 {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: light-dark(#18162e, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .hope-section h4.threshold-value,
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .threshold-section h4.threshold-value {
+  color: light-dark(#222, #efe6d8);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .hope-section .threshold-legend,
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .threshold-section .threshold-legend {
+  position: absolute;
+  bottom: -21px;
+  color: light-dark(#f3c267, #18162e);
+  background-color: light-dark(#18162e, #f3c267);
+  padding: 3px;
+  justify-self: anchor-center;
+  border-radius: 0 0 3px 3px;
+  text-transform: capitalize;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .hope-section .hope-value,
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-row .threshold-section .hope-value {
+  display: flex;
+  cursor: pointer;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-traits {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin-bottom: 15px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-traits .trait {
+  height: 60px;
+  width: 60px;
+  background: url(../assets/svg/trait-shield.svg) no-repeat;
+  cursor: pointer;
+}
+.theme-light .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-traits .trait {
+  background: url('../assets/svg/trait-shield-light.svg') no-repeat;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-traits .trait .trait-name {
+  display: flex;
+  padding-top: 5px;
+  color: light-dark(#18162e, #f3c267);
+  font-size: 14px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-traits .trait .trait-name i {
+  line-height: 17px;
+  font-size: 10px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-traits .trait .trait-value {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet {
+  width: 275px;
+  min-width: 275px;
+  border-right: 1px solid light-dark(#18162e, #f3c267);
+  background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.theme-light .application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet {
+  background: transparent;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet img {
+  height: 235px;
+  width: 275px;
+  border-bottom: 1px solid light-dark(#18162e, #f3c267);
+  cursor: pointer;
+  object-fit: cover;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  top: -20px;
+  gap: 30px;
+  margin-bottom: -10px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section {
+  display: flex;
+  justify-content: space-evenly;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  justify-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-label {
+  position: relative;
+  top: 40px;
+  height: 22px;
+  width: 79px;
+  clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
+  background: light-dark(#18162e, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-label h4 {
+  font-weight: bold;
+  text-align: center;
+  line-height: 18px;
+  color: light-dark(#efe6d8, #18162e);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value {
+  position: absolute;
+  display: flex;
+  padding: 0 6px;
+  font-size: 1.5rem;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  color: #efe6d8;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'] {
+  background: transparent;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  border: none;
+  outline: 2px solid transparent;
+  color: #efe6d8;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input {
+  padding: 0;
+  color: #efe6d8;
+  backdrop-filter: none;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:hover,
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:focus {
+  background: rgba(24, 22, 46, 0.33);
+  backdrop-filter: blur(9.5px);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value .bar-label {
+  width: 40px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar {
+  position: absolute;
+  appearance: none;
+  width: 100px;
+  height: 40px;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  z-index: 1;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-bar {
+  border: none;
+  background: #18162e;
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-value {
+  background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-webkit-progress-value {
+  background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-value,
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
+  background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-moz-progress-bar {
+  background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number {
+  justify-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number .status-value {
+  position: relative;
+  display: flex;
+  width: 50px;
+  height: 30px;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  padding: 0 6px;
+  font-size: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  background: light-dark(transparent, #18162e);
+  z-index: 2;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number .status-value.armor-slots {
+  width: 80px;
+  height: 30px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number .status-label {
+  padding: 2px 10px;
+  width: 100%;
+  border-radius: 3px;
+  background: light-dark(#18162e, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number .status-label h4 {
+  font-weight: bold;
+  text-align: center;
+  line-height: 18px;
+  font-size: 12px;
+  color: light-dark(#efe6d8, #18162e);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .items-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .items-sidebar-list .inventory-item {
+  padding: 0 10px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .equipment-section .title {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .equipment-section .title h3 {
+  font-size: 20px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .equipment-section .items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .loadout-section .title {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .loadout-section .title h3 {
+  font-size: 20px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .title {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .title h3 {
+  font-size: 20px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  margin-top: 10px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-row {
+  display: flex;
+  gap: 5px;
+  width: 250px;
+  align-items: center;
+  justify-content: space-between;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text'] {
+  height: 32px;
+  width: 180px;
+  border: 1px solid transparent;
+  outline: 2px solid transparent;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  color: light-dark(#222, #efe6d8);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text']:hover {
+  outline: 2px solid light-dark(#222, #efe6d8);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-value {
+  height: 25px;
+  width: 35px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  color: light-dark(#222, #efe6d8);
+  align-content: center;
+  text-align: center;
+  background: url(../assets/svg/experience-shield.svg) no-repeat;
+}
+.theme-light .application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-value {
+  background: url('../assets/svg/experience-shield-light.svg') no-repeat;
+}
+.application.sheet.daggerheart.actor.dh-style.character .window-content {
+  display: grid;
+  grid-template-columns: 275px 1fr;
+  grid-template-rows: 283px 1fr;
+  gap: 15px 0;
+  height: 100%;
+  width: 100%;
+}
+.application.sheet.daggerheart.actor.dh-style.character .window-content .character-sidebar-sheet {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+}
+.application.sheet.daggerheart.actor.dh-style.character .window-content .character-header-sheet {
+  grid-row: 1;
+  grid-column: 2;
+}
+.application.sheet.daggerheart.actor.dh-style.character .window-content .tab {
+  grid-row: 2;
+  grid-column: 2;
+}
+.application.sheet.daggerheart.actor.dh-style.character .window-content .old-sheet {
+  width: 500px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.inventory .search-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.inventory .search-section .search-bar {
+  position: relative;
+  color: light-dark(#18162e50, #efe6d850);
+  width: 100%;
+  padding-top: 5px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.inventory .search-section .search-bar input {
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  background: light-dark(#18162e10, #f3c26710);
+  border: none;
+  outline: 2px solid transparent;
+  transition: all 0.3s ease;
+  padding: 0 20px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.inventory .search-section .search-bar input:hover {
+  outline: 2px solid light-dark(#222, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.inventory .search-section .search-bar input:placeholder {
+  color: light-dark(#18162e50, #efe6d850);
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.inventory .search-section .search-bar .icon {
+  align-content: center;
+  height: 32px;
+  position: absolute;
+  right: 20px;
+  font-size: 16px;
+  z-index: 1;
+  color: light-dark(#18162e50, #efe6d850);
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.inventory .items-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  mask-image: linear-gradient(0deg, transparent 0%, black 5%, black 95%, transparent 100%);
+  padding: 20px 0;
+  height: 80%;
+  scrollbar-width: thin;
+  scrollbar-color: light-dark(#18162e, #f3c267) transparent;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.inventory .currency-section {
+  display: flex;
+  gap: 10px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .search-bar {
+  position: relative;
+  color: light-dark(#18162e50, #efe6d850);
+  width: 80%;
+  padding-top: 5px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .search-bar input {
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  background: light-dark(#18162e10, #f3c26710);
+  border: none;
+  outline: 2px solid transparent;
+  transition: all 0.3s ease;
+  padding: 0 20px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .search-bar input:hover {
+  outline: 2px solid light-dark(#222, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .search-bar input:placeholder {
+  color: light-dark(#18162e50, #efe6d850);
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .search-bar .icon {
+  align-content: center;
+  height: 32px;
+  position: absolute;
+  right: 20px;
+  font-size: 16px;
+  z-index: 1;
+  color: light-dark(#18162e50, #efe6d850);
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view {
+  background: light-dark(#18162e10, #18162e);
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 15px;
+  padding: 0;
+  gap: 0;
+  width: 62px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span {
+  margin: 1px;
+  width: 26px;
+  color: light-dark(#18162e, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span.list-icon i {
+  margin-left: 3px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span.grid-icon i {
+  margin-right: 3px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span.list-active {
+  border-radius: 32px 3px 3px 32px;
+  background-color: light-dark(#18162e, #f3c267);
+  color: light-dark(#efe6d8, #18162e);
+  padding: 2px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span.grid-active {
+  border-radius: 3px 32px 32px 3px;
+  background-color: light-dark(#18162e, #f3c267);
+  color: light-dark(#efe6d8, #18162e);
+  padding: 2px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .items-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  overflow-y: auto;
+  mask-image: linear-gradient(0deg, transparent 0%, black 10%, black 98%, transparent 100%);
+  padding: 20px 0;
+  height: 90%;
+  scrollbar-width: thin;
+  scrollbar-color: light-dark(#18162e, #f3c267) transparent;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.biography .items-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  mask-image: linear-gradient(0deg, transparent 0%, black 10%, black 98%, transparent 100%);
+  padding-bottom: 40px;
+  height: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: light-dark(#18162e, #f3c267) transparent;
+}
+.application.sheet.daggerheart.actor.dh-style.character .tab.features .features-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  mask-image: linear-gradient(0deg, transparent 0%, black 5%, black 95%, transparent 100%);
+  padding: 20px 0;
+  padding-top: 10px;
+  height: 95%;
+  scrollbar-width: thin;
+  scrollbar-color: light-dark(#18162e, #f3c267) transparent;
+}
 .application.sheet.daggerheart.actor.dh-style.adversary .window-content {
   overflow: auto;
 }
@@ -3520,9 +4066,6 @@ div.daggerheart.views.multiclass {
   display: flex;
   justify-content: center;
   gap: 10px;
-}
-.application.sheet.daggerheart.dh-style.class .tab.settings .list-items .item-line .controls a {
-  text-shadow: none;
 }
 @font-face {
   font-family: 'Cinzel';
@@ -3622,7 +4165,6 @@ div.daggerheart.views.multiclass {
   transition: opacity 0.3s ease;
 }
 .application.sheet.dh-style.minimized .window-content {
-  display: none;
   opacity: 0;
   transition: opacity 0.1s ease;
 }
@@ -3630,25 +4172,37 @@ div.daggerheart.views.multiclass {
   opacity: 1;
   transition: opacity 0.3s ease;
 }
-.application.sheet.dh-style .window-content {
-  overflow: initial;
-  backdrop-filter: none;
-  padding: 0;
-}
 .theme-dark .application.sheet.dh-style {
-  backdrop-filter: blur(4px);
+  background: rgba(24, 22, 46, 0.33);
+  backdrop-filter: blur(9px);
 }
 .theme-light .application.sheet.dh-style {
   background-image: url('../assets/parchments/dh-parchment-light.png');
   background-repeat: no-repeat;
   background-position: center;
 }
+.application.sheet.daggerheart.dh-style {
+  border-radius: 10px;
+}
 .application.sheet.daggerheart.dh-style .window-content {
+  padding: 0;
   position: relative;
   top: -36px;
+  min-height: -webkit-fill-available;
 }
 .application.sheet.daggerheart.dh-style .window-content .tab {
   padding: 0 10px;
+}
+.application.sheet.daggerheart.character.dh-style {
+  border-radius: 10px;
+}
+.application.sheet.daggerheart.character.dh-style .window-content {
+  position: absolute;
+  top: 0;
+}
+.application.sheet.daggerheart.character.dh-style .window-content .tab {
+  padding: 0 15px;
+  overflow-y: hidden;
 }
 .application.sheet.dh-style {
   border: 1px solid light-dark(#18162e, #f3c267);
@@ -3724,11 +4278,29 @@ div.daggerheart.views.multiclass {
 .application.sheet.dh-style li {
   margin: 0;
 }
+.application.sheet.dh-style a:hover,
+.application.sheet.dh-style a.active {
+  text-shadow: 0 0 8px light-dark(#18162e, #f3c267);
+}
 .application.sheet.dh-style fieldset {
   align-items: center;
   margin-top: 5px;
   border-radius: 6px;
   border-color: light-dark(#18162e, #f3c267);
+}
+.application.sheet.dh-style fieldset.glassy {
+  background-color: light-dark(#18162e10, #f3c26710);
+  border-color: transparent;
+}
+.application.sheet.dh-style fieldset.glassy legend {
+  padding: 2px 12px;
+  border-radius: 3px;
+  background-color: light-dark(#18162e, #f3c267);
+  color: light-dark(#efe6d8, #18162e);
+}
+.application.sheet.dh-style fieldset.flex {
+  display: flex;
+  gap: 20px;
 }
 .application.sheet.dh-style fieldset.one-column {
   display: flex;
@@ -3736,7 +4308,6 @@ div.daggerheart.views.multiclass {
   align-items: start;
   gap: 10px;
   min-height: 64px;
-  width: 100%;
 }
 .application.sheet.dh-style fieldset.two-columns {
   display: grid;
@@ -3753,9 +4324,6 @@ div.daggerheart.views.multiclass {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   color: light-dark(#18162e, #f3c267);
-}
-.application.sheet.dh-style fieldset legend a {
-  text-shadow: none;
 }
 .application.sheet.dh-style fieldset input[type='text'],
 .application.sheet.dh-style fieldset input[type='number'] {
@@ -3794,6 +4362,16 @@ div.daggerheart.views.multiclass {
   width: 100%;
   border-bottom: 1px solid light-dark(#18162e, #f3c267);
   mask-image: linear-gradient(270deg, transparent 0%, black 50%, transparent 100%);
+}
+.application.sheet.dh-style side-line-div {
+  display: block;
+  height: 1px;
+  width: 100%;
+  border-bottom: 1px solid light-dark(#18162e, #f3c267);
+  mask-image: linear-gradient(270deg, transparent 0%, black 100%);
+}
+.application.sheet.dh-style side-line-div.invert {
+  mask-image: linear-gradient(270deg, black 0%, transparent 100%);
 }
 .application.sheet.dh-style .item-description {
   opacity: 1;
@@ -3989,11 +4567,9 @@ div.daggerheart.views.multiclass {
 }
 .sheet.daggerheart.dh-style .tab-navigation .feature-tab {
   border: none;
-  gap: 5px;
 }
 .sheet.daggerheart.dh-style .tab-navigation .feature-tab a {
   color: light-dark(#18162e, #f3c267);
-  text-shadow: none;
   font-family: 'Montserrat', sans-serif;
 }
 .sheet.daggerheart.dh-style .tab-form-footer {
@@ -4038,9 +4614,6 @@ div.daggerheart.views.multiclass {
   justify-content: center;
   gap: 10px;
 }
-.sheet.daggerheart.dh-style .tab.actions .actions-list .action-item .controls a {
-  text-shadow: none;
-}
 .sheet.daggerheart.dh-style .tab.effects .effects-list {
   display: flex;
   flex-direction: column;
@@ -4072,9 +4645,6 @@ div.daggerheart.views.multiclass {
   display: flex;
   justify-content: center;
   gap: 10px;
-}
-.sheet.daggerheart.dh-style .tab.effects .effects-list .effect-item .controls a {
-  text-shadow: none;
 }
 .application.sheet.daggerheart.dh-style .item-sheet-header {
   display: flex;
@@ -4248,12 +4818,129 @@ div.daggerheart.views.multiclass {
 .sheet.daggerheart.dh-style.item .tab.features .feature-list .feature-item .feature-line .controls a {
   text-shadow: none;
 }
-#logo {
-  content: url(../assets/DaggerheartLogo.webp);
-  height: 50px;
-  width: 50px;
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 60px;
+  gap: 10px;
+  width: 100%;
+}
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .item-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  object-fit: cover;
+}
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .item-label {
+  font-family: 'Montserrat', sans-serif;
+  align-self: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .item-label .item-name {
+  font-size: 14px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .item-label .item-tags,
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .item-label .item-labels {
+  display: flex;
+  gap: 10px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .item-label .item-tags .tag,
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .item-label .item-labels .tag {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  font-size: 12px;
+  background: light-dark(#22222215, #efe6d815);
+  border: 1px solid light-dark(#222, #efe6d8);
+  border-radius: 3px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .item-label .item-tags .label,
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .item-label .item-labels .label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .controls {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 8px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .controls a {
+  text-align: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .inventory-item .controls a.unequipped {
+  opacity: 0.4;
+}
+.application.sheet.daggerheart.actor.dh-style.character .card-item {
   position: relative;
-  left: 25px;
+  height: 120px;
+  width: 100px;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.application.sheet.daggerheart.actor.dh-style.character .card-item:hover .card-label {
+  padding-top: 15px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .card-item:hover .card-label .controls {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease;
+  max-height: 16px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .card-item .card-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.application.sheet.daggerheart.actor.dh-style.character .card-item .card-label {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  align-items: center;
+  gap: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  position: absolute;
+  background-color: #18162e;
+  bottom: 0;
+  mask-image: linear-gradient(180deg, transparent 0%, black 20%);
+}
+.application.sheet.daggerheart.actor.dh-style.character .card-item .card-label .card-name {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #efe6d8;
+}
+.application.sheet.daggerheart.actor.dh-style.character .card-item .card-label .controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  max-height: 0px;
+  opacity: 0;
+  visibility: collapse;
+  transition: all 0.3s ease;
+  color: #efe6d8;
+}
+.application.sheet.daggerheart.actor.dh-style.character .items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .card-list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 }
 .daggerheart {
   /* Flex */

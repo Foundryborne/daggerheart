@@ -16,8 +16,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'sheet', 'pc'],
-        position: { width: 810, height: 1080 },
+        classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'daggerheart', 'character'],
+        position: { width: 850, height: 800 },
         actions: {
             attributeRoll: this.rollAttribute,
             toggleMarks: this.toggleMarks,
@@ -47,10 +47,10 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useAdvancementCard: this.useAdvancementCard,
             useAdvancementAbility: this.useAdvancementAbility,
             toggleEquipItem: this.toggleEquipItem,
-            levelup: this.openLevelUp
+            levelup: this.openLevelUp,
+            editImage: this._onEditImage
         },
         window: {
-            minimizable: false,
             resizable: true
         },
         form: {
@@ -66,9 +66,76 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     };
 
     static PARTS = {
-        form: {
-            id: 'character',
-            template: 'systems/daggerheart/templates/sheets/character/character.hbs'
+        sidebar: {
+            id: 'sidebar',
+            template: 'systems/daggerheart/templates/sheets/actors/character/sidebar.hbs'
+        },
+        header: {
+            id: 'header',
+            template: 'systems/daggerheart/templates/sheets/actors/character/header.hbs'
+        },
+        features: {
+            id: 'features',
+            template: 'systems/daggerheart/templates/sheets/actors/character/features.hbs'
+        },
+        loadout: {
+            id: 'loadout',
+            template: 'systems/daggerheart/templates/sheets/actors/character/loadout.hbs'
+        },
+        inventory: {
+            id: 'inventory',
+            template: 'systems/daggerheart/templates/sheets/actors/character/inventory.hbs'
+        },
+        biography: {
+            id: 'biography',
+            template: 'systems/daggerheart/templates/sheets/actors/character/biography.hbs'
+        },
+        effects: {
+            id: 'effects',
+            template: 'systems/daggerheart/templates/sheets/actors/character/effects.hbs'
+        }
+    };
+
+    static TABS = {
+        features: {
+            active: true,
+            cssClass: '',
+            group: 'primary',
+            id: 'features',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.PC.Tabs.Features'
+        },
+        loadout: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'loadout',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.PC.Tabs.Loadout'
+        },
+        inventory: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'inventory',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.PC.Tabs.Inventory'
+        },
+        biography: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'biography',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.PC.Tabs.biography'
+        },
+        effects: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'effects',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.PC.Tabs.effects'
         }
     };
 
@@ -150,17 +217,29 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        htmlElement.querySelector('.level-value').addEventListener('change', this.onLevelChange.bind(this));
+        // htmlElement.querySelector('.level-value').addEventListener('change', this.onLevelChange.bind(this));
         // To Remove when ContextMenu Handler is made
         htmlElement
             .querySelectorAll('[data-item-id]')
             .forEach(element => element.addEventListener('contextmenu', this.editItem.bind(this)));
     }
 
+    static _onEditImage() {
+        const fp = new FilePicker({
+            current: this.document.img,
+            type: 'image',
+            redirectToRoot: ['icons/svg/mystery-man.svg'],
+            callback: async path => this._updateImage.bind(this)(path),
+            top: this.position.top + 40,
+            left: this.position.left + 10
+        });
+        return fp.browse();
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
-        context.tabs = this._getTabs();
+        context.tabs = super._getTabs(this.constructor.TABS);
 
         context.config = SYSTEM;
 

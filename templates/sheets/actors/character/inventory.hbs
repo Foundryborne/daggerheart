@@ -1,0 +1,42 @@
+<section
+    class='tab {{tabs.inventory.cssClass}} {{tabs.inventory.id}}'
+    data-tab='{{tabs.inventory.id}}'
+    data-group='{{tabs.inventory.group}}'
+>
+    <div class="search-section">
+        <div class="search-bar">
+            <div class="icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="text" name="" id="" placeholder="Search...">
+        </div>
+        <a><i class="fa-solid fa-filter"></i></a>
+    </div>
+
+    <div class="items-section">
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'TYPES.Item.weapon') type='weapon' isGlassy=true}}
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'TYPES.Item.armor') type='armor' isGlassy=true}}
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'TYPES.Item.consumable') type='consumable' isGlassy=true}}
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'TYPES.Item.miscellaneous') type='miscellaneous' isGlassy=true}}
+    </div>
+
+    <div class="currency-section">
+        <div class="input">
+            <span>{{localize "DAGGERHEART.Sheets.PC.Gold.Coins"}}</span>
+            {{formInput systemFields.gold.fields.coins value=source.system.gold.coins enriched=source.system.gold.coins localize=true toggled=true}}
+        </div>
+        <div class="input">
+            <span>{{localize "DAGGERHEART.Sheets.PC.Gold.Handfulls"}}</span>
+            {{formInput systemFields.gold.fields.handfulls value=source.system.gold.handfulls enriched=source.system.gold.handfulls localize=true toggled=true}}
+        </div>
+        <div class="input">
+            <span>{{localize "DAGGERHEART.Sheets.PC.Gold.Bags"}}</span>
+            {{formInput systemFields.gold.fields.bags value=source.system.gold.bags enriched=source.system.gold.bags localize=true toggled=true}}
+        </div>
+        <div class="input">
+            <span>{{localize "DAGGERHEART.Sheets.PC.Gold.Chests"}}</span>
+            {{formInput systemFields.gold.fields.chests value=source.system.gold.chests enriched=source.system.gold.chests localize=true toggled=true}}
+        </div>
+    </div>
+
+</section>

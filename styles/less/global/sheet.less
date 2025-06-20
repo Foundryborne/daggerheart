@@ -35,7 +35,6 @@
 
 .application.sheet.dh-style.minimized {
     .window-content {
-        display: none;
         opacity: 0;
         transition: opacity 0.1s ease;
     }
@@ -48,15 +47,10 @@
     }
 }
 
-.application.sheet.dh-style .window-content {
-    overflow: initial;
-    backdrop-filter: none;
-    padding: 0;
-}
-
 .theme-dark {
     .application.sheet.dh-style {
-        backdrop-filter: blur(4px);
+        background: @semi-transparent-dark-blue;
+        backdrop-filter: blur(9px);
     }
 }
 
@@ -69,12 +63,29 @@
 }
 
 .application.sheet.daggerheart.dh-style {
+    border-radius: 10px;
+
     .window-content {
+        padding: 0;
         position: relative;
         top: -36px;
+        min-height: -webkit-fill-available;
 
         .tab {
             padding: 0 10px;
+        }
+    }
+}
+
+.application.sheet.daggerheart.character.dh-style {
+    border-radius: 10px;
+
+    .window-content {
+        position: absolute;
+        top: 0;
+        .tab {
+            padding: 0 15px;
+            overflow-y: hidden;
         }
     }
 }

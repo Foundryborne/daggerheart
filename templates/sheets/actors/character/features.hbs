@@ -1,0 +1,20 @@
+<section
+    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
+    data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'
+>
+    <div class="features-sections">
+        {{#if document.system.class.value}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(concat (localize 'TYPES.Item.class') ' - ' document.system.class.value.name) type='class'}}
+        {{/if}}
+        {{#if document.system.class.subclass}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(concat (localize 'TYPES.Item.subclass') ' - ' document.system.class.subclass.name) type='subclass'}}
+        {{/if}}
+        {{#if document.system.community}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(concat (localize 'TYPES.Item.community') ' - ' document.system.community.name) type='community'}}
+        {{/if}}
+        {{#if document.system.ancestry}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(concat (localize 'TYPES.Item.ancestry') ' - ' document.system.ancestry.name) type='ancestry'}}
+        {{/if}}
+    </div>
+</section>

@@ -1,0 +1,32 @@
+<li class="card-item">
+    <img src="{{item.img}}" data-action="viewObject" data-value="{{item.uuid}}" class="card-img" />
+    <div class="card-label">
+        <div class="controls">
+            {{#if (eq type 'weapon')}}
+                <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" id="{{item.id}}" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.Tooltip.unequip'}}{{/unless}}">
+                    <i class="fa-solid fa-hands"></i>
+                </a>
+            {{/if}}
+            {{#if (eq type 'armor')}}
+                <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" id="{{item.id}}" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.Tooltip.unequip'}}{{/unless}}">
+                <i class="fa-solid fa-shield"></i>
+                </a>
+            {{/if}}
+            {{#if (eq type 'domainCard')}}
+                {{#unless item.system.inVault}}
+                    <a data-action="sendToVault" data-domain="{{card.uuid}}" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                {{else}}
+                    <a data-action="sendToLoadout" data-domain="{{card.uuid}}" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </a>
+                {{/unless}}
+                
+            {{/if}}
+            <a data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToChat'}}"><i class="fa-regular fa-message"></i></a>
+            <a data-tooltip="{{localize 'DAGGERHEART.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+        </div>
+        <div class="card-name">{{item.name}}</div>
+    </div>
+</li>

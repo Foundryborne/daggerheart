@@ -62,14 +62,21 @@ export default class DhCharacter extends BaseDataActor {
                 bags: new fields.NumberField({ initial: 0, integer: true }),
                 chests: new fields.NumberField({ initial: 0, integer: true })
             }),
-            pronouns: new fields.StringField({}),
             scars: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField({}),
                     description: new fields.HTMLField()
                 })
             ),
-            story: new fields.HTMLField(),
+            biography: new fields.SchemaField({
+                background: new fields.HTMLField(),
+                connections: new fields.HTMLField(),
+                characteristics: new fields.SchemaField({
+                    pronouns: new fields.StringField({}),
+                    age: new fields.StringField({}),
+                    faith: new fields.StringField({})
+                })
+            }),
             class: new fields.SchemaField({
                 value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
                 subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })

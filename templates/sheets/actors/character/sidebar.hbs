@@ -1,0 +1,120 @@
+<aside class="character-sidebar-sheet">
+    <img class="portrait" src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
+    <div class="info-section">
+        <div class="resources-section">
+            <div class="status-bar">
+                <div class='status-value'>
+                    <p><input class="bar-input" name="system.resources.hitPoints.value" value="{{document.system.resources.hitPoints.value}}" type="number"></p>
+                    <p>/</p>
+                    <p class="bar-label">{{document.system.resources.hitPoints.max}}</p>
+                </div>
+                <progress
+                    class='progress-bar'
+                    value='{{document.system.resources.hitPoints.value}}'
+                    max='{{document.system.resources.hitPoints.max}}'
+                ></progress>
+                <div class="status-label">
+                    <h4>Health</h4>
+                </div>
+                
+            </div>
+            <div class="status-bar">
+                <div class='status-value'>
+                    <p><input class="bar-input" name="system.resources.stress.value" value="{{document.system.resources.stress.value}}" type="number"></p>
+                    <p>/</p>
+                    <p class="bar-label">{{document.system.resources.stress.max}}</p>
+                </div>
+                <progress
+                    class='progress-bar stress-color'
+                    value='{{document.system.resources.stress.value}}'
+                    max='{{document.system.resources.stress.max}}'
+                ></progress>
+                <div class="status-label">
+                    <h4>Stress</h4>
+                </div>
+            </div>
+        </div>
+        <div class="status-section">
+            <div class="status-number">
+                <div class='status-value'>
+                    <p>{{document.system.proficiency.total}}</p>
+                </div>
+                <div class="status-label">
+                    <h4>Proficiency</h4>
+                </div>
+            </div>
+
+            <div class="status-number">
+                <div class='status-value armor-slots'>
+                    {{#if document.system.armor.system.marks}}
+                        <p>{{document.system.armor.system.marks.value}}/{{document.system.armor.system.marks.max}}</p>
+                    {{else}}
+                        <p>-</p>
+                    {{/if}}
+                </div>
+                <div class="status-label">
+                    <h4>Armor Slots</h4>
+                </div>
+            </div>
+
+            <div class="status-number">
+                <div class='status-value'>
+                    <p>{{document.system.evasion.total}}</p>
+                </div>
+                <div class="status-label">
+                    <h4>Evasion</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="equipment-section">
+        <div class="title">
+            <side-line-div  class="invert"></side-line-div>
+            <h3>Equipment</h3>
+            <side-line-div></side-line-div>
+        </div>
+        <ul class="items-sidebar-list">
+            {{#each document.items as |item|}}
+                {{#if item.system.equipped}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=item type=item.type isSidebar=true}}
+                {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+    <div class="loadout-section">
+        <div class="title">
+            <side-line-div  class="invert"></side-line-div>
+            <h3>Loadout</h3>
+            <side-line-div></side-line-div>
+        </div>
+        <ul class="items-sidebar-list">
+            {{#each document.items as |item|}}
+                {{#if (eq item.type 'domainCard')}}
+                    {{#unless item.system.inVault}}
+                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=item type=item.type isSidebar=true}}
+                    {{/unless}}
+                {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+    <div class="experience-section">
+        <div class="title">
+            <side-line-div  class="invert"></side-line-div>
+            <h3>Experience</h3>
+            <side-line-div></side-line-div>
+        </div>
+        <div class="experience-list">
+            {{#each document.system.experiences as |experience id|}}
+                <div class="experience-row">
+                    <div class="experience-value">
+                        +{{experience.total}}
+                    </div>
+                    <input name="{{concat "system.experiences." id ".description"}}" data-experience={{id}} value="{{experience.description}}" type="text" />
+                    <div class="controls">
+                        <a><i class="fa-regular fa-message"></i></a>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</aside>

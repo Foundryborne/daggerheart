@@ -1,0 +1,130 @@
+<li class="inventory-item">
+    <img src="{{item.img}}" data-action="viewObject" data-value="{{item.uuid}}" class="item-img" />
+    <div class="item-label">
+        <div class="item-name">{{item.name}}</div>
+        {{#if  (eq type 'weapon')}}
+            <div class="item-tags">
+                {{#if isSidebar}}
+                    <div class="item-labels">
+                        <div class="label">
+                            {{localize (concat 'DAGGERHEART.Abilities.' item.system.trait '.name')}}
+                            {{localize (concat 'DAGGERHEART.Range.' item.system.range '.name')}}
+                            <span> - </span>
+                            {{item.system.damage.value}}
+                            ({{localize (concat 'DAGGERHEART.DamageType.' item.system.damage.type '.abbreviation')}})
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="tag">
+                        {{localize (concat 'DAGGERHEART.Abilities.' item.system.trait '.name')}}
+                        {{localize (concat 'DAGGERHEART.Range.' item.system.range '.name')}}
+                    </div>
+                    <div class="tag">
+                        {{item.system.damage.value}}
+                        ({{localize (concat 'DAGGERHEART.DamageType.' item.system.damage.type '.abbreviation')}})
+                    </div>
+                    <div class="tag">
+                        {{localize (concat 'DAGGERHEART.Burden.' item.system.burden)}}
+                    </div>
+                {{/if}}
+            </div>
+        {{/if}}
+        {{#if  (eq type 'armor')}}
+            {{#if isSidebar}}
+                <div class="item-labels">
+                    <div class="label">
+                        {{localize "DAGGERHEART.Sheets.Armor.baseScore"}}:
+                        {{item.system.baseScore}}
+                    </div>
+                </div>
+            {{else}}
+                <div class="item-tags">
+                    <div class="tag">
+                        {{localize "DAGGERHEART.Sheets.Armor.baseScore"}}:
+                        {{item.system.baseScore}}
+                    </div>
+                    <div class="tag">
+                        {{localize "DAGGERHEART.Sheets.Armor.baseThresholds.base"}}:
+                        {{item.system.baseThresholds.major}}
+                        <span>/</span>
+                        {{item.system.baseThresholds.severe}}
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+        {{#if  (eq type 'domainCard')}}
+            {{#if isSidebar}}
+                <div class="item-labels">
+                    <div class="label">
+                        {{localize (concat 'DAGGERHEART.Domain.CardTypes.' item.system.type)}}
+                        <span> - </span>
+                        {{localize (concat 'DAGGERHEART.Domains.' item.system.domain '.label')}}
+                        <span> - </span>
+                        <span class="recall-value">{{item.system.recallCost}}</span>
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                </div>
+            {{else}}
+                <div class="item-tags">
+                    <div class="tag">
+                        {{localize (concat 'DAGGERHEART.Domain.CardTypes.' item.system.type)}}
+                    </div>
+                    <div class="tag">
+                        {{localize (concat 'DAGGERHEART.Domains.' item.system.domain '.label')}}
+                    </div>
+                    <div class="tag">
+                        <span class="recall-label">{{localize "DAGGERHEART.Sheets.DomainCard.RecallCost"}}: </span>
+                        <span class="recall-value">{{item.system.recallCost}}</span>
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+        {{#if  (eq type 'effect')}}
+            <div class="item-tags">
+                <div class="tag">
+                    {{localize (concat 'TYPES.Item.' item.parent.type)}}
+                    <span>: </span>
+                    {{item.parent.name}}
+                </div>
+                <div class="tag">
+                    {{#if item.duration.duration}}
+                        {{localize 'DAGGERHEART.Effects.duration.temporary'}}
+                    {{else}}
+                        {{localize 'DAGGERHEART.Effects.duration.passive'}}
+                    {{/if}}
+                </div>
+                {{#each item.statuses as |status|}}
+                    <div class="tag">
+                        {{localize (concat 'DAGGERHEART.Condition.' status '.name')}}
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+    </div>
+    <div class="controls">
+        {{#if (eq type 'weapon')}}
+            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" id="{{item.id}}" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.Tooltip.unequip'}}{{/unless}}">
+                <i class="fa-solid fa-hands"></i>
+            </a>
+        {{/if}}
+        {{#if (eq type 'armor')}}
+            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" id="{{item.id}}" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.Tooltip.unequip'}}{{/unless}}">
+               <i class="fa-solid fa-shield"></i>
+            </a>
+        {{/if}}
+        {{#if (eq type 'domainCard')}}
+            {{#unless item.system.inVault}}
+                <a data-action="sendToVault" data-domain="{{card.uuid}}" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+            {{else}}
+                <a data-action="sendToLoadout" data-domain="{{card.uuid}}" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+            {{/unless}}
+            
+        {{/if}}
+        <a data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToChat'}}"><i class="fa-regular fa-message"></i></a>
+        <a data-tooltip="{{localize 'DAGGERHEART.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+    </div>
+</li>

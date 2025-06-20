@@ -1,0 +1,133 @@
+@import '../utils/colors.less';
+@import '../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.character {
+    .inventory-item {
+        display: grid;
+        grid-template-columns: 40px 1fr 60px;
+        gap: 10px;
+        width: 100%;
+
+        .item-img {
+            height: 40px;
+            width: 40px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+            object-fit: cover;
+        }
+
+        .item-label {
+            font-family: @font-body;
+            align-self: center;
+
+            .item-name {
+                font-size: 14px;
+            }
+
+            .item-tags,
+            .item-labels {
+                display: flex;
+                gap: 10px;
+
+                .tag {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 3px 5px;
+                    font-size: 12px;
+
+                    background: light-dark(@dark-15, @beige-15);
+                    border: 1px solid light-dark(@dark, @beige);
+                    border-radius: 3px;
+                }
+
+                .label {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            gap: 8px;
+
+            a {
+                text-align: center;
+
+                &.unequipped {
+                    opacity: 0.4;
+                }
+            }
+        }
+    }
+    .card-item {
+        position: relative;
+        height: 120px;
+        width: 100px;
+        border: 1px solid light-dark(@dark-blue, @golden);
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:hover {
+            .card-label {
+                padding-top: 15px;
+                .controls {
+                    opacity: 1;
+                    visibility: visible;
+                    transition: all 0.3s ease;
+                    max-height: 16px;
+                }
+            }
+        }
+
+        .card-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-label {
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            align-items: center;
+            gap: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            width: 100%;
+            position: absolute;
+            background-color: @dark-blue;
+            bottom: 0;
+            mask-image: linear-gradient(180deg, transparent 0%, black 20%);
+
+            .card-name {
+                font-family: @font-body;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 15px;
+
+                color: @beige;
+            }
+
+            .controls {
+                display: flex;
+                gap: 15px;
+                align-items: center;
+                max-height: 0px;
+                opacity: 0;
+                visibility: collapse;
+                transition: all 0.3s ease;
+                color: @beige;
+            }
+        }
+    }
+}

@@ -272,6 +272,11 @@ Hooks.on('renderJournalDirectory', async (tab, html, _, options) => {
 
 const preloadHandlebarsTemplates = async function () {
     return foundry.applications.handlebars.loadTemplates([
+        'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs',
+
         'systems/daggerheart/templates/sheets/parts/attributes.hbs',
         'systems/daggerheart/templates/sheets/parts/defense.hbs',
         'systems/daggerheart/templates/sheets/parts/armor.hbs',
