@@ -18,24 +18,16 @@ export const menu = {
 };
 
 export const gameSettings = {
-    Automation: {
-        Hope: 'AutomationHope',
-        ActionPoints: 'AutomationActionPoints'
-    },
-    Resources: {
-        Fear: 'ResourcesFear',
-        MaxFear: 'ResourcesMaxFear',
-        DisplayFear: 'DisplayFear'
-    },
-    General: {
-        AbilityArray: 'AbilityArray',
-        RangeMeasurement: 'RangeMeasurement'
-    },
-    DualityRollColor: 'DualityRollColor',
-    LevelTiers: 'LevelTiers',
-    Countdowns: 'Countdowns',
+    Automation: 'Automation',
+    Homebrew: 'Homebrew',
+    RangeMeasurement: 'RangeMeasurement',
     appearance: 'Appearance',
-    variantRules: 'VariantRules'
+    variantRules: 'VariantRules',
+    Resources: {
+        Fear: 'ResourcesFear'
+    },
+    LevelTiers: 'LevelTiers',
+    Countdowns: 'Countdowns'
 };
 
 export const DualityRollColor = {

@@ -13,8 +13,7 @@
             "armor": "Armor"
         },
         "Actor": {
-            "pc": "PC",
-            "npc": "NPC",
+            "character": "Character",
             "adversary": "Adversary",
             "environment": "Environment"
         }
@@ -25,10 +24,7 @@
                 "Automation": {
                     "Name": "Automation Settings",
                     "Label": "Configure Automation",
-                    "Hint": "Various settings automating resource management and more",
-                    "HopeLabel": "Hope",
-                    "FearLabel": "Fear",
-                    "ActionPointsLabel": "Action Points"
+                    "Hint": "Various settings automating resource management and more"
                 },
                 "Homebrew": {
                     "Name": "Homebrew Settings",
@@ -39,13 +35,7 @@
                 "Range": {
                     "Name": "Range Settings",
                     "Label": "Configure Range Handling",
-                    "Hint": "System ruler setup for displaying ranges in Daggerheart",
-                    "EnabledLabel": "Enabled",
-                    "MeleeLabel": "Melee",
-                    "VeryCloseLabel": "Very Close",
-                    "CloseLabel": "Close",
-                    "FarLabel": "Far",
-                    "VeryFarLabel": "Very Far"
+                    "Hint": "System ruler setup for displaying ranges in Daggerheart"
                 },
                 "Appearance": {
                     "title": "Appearance Settings",
@@ -70,18 +60,36 @@
                     "actionTokens": "Action Tokens"
                 }
             },
-            "Automation": {
-                "Hope": {
-                    "Name": "Hope",
-                    "Hint": "Automatically increase a character's hope on a hope duality roll result."
+            "Appearance": {
+                "FIELDS": {
+                    "displayFear": { "label": "Fear Display" }
                 },
+                "FearDisplay": {
+                    "Token": "Tokens",
+                    "Bar": "Bar",
+                    "Hide": "Hide"
+                }
+            },
+            "Automation": {
                 "Fear": {
                     "Name": "Fear",
                     "Hint": "Automatically increase the GM's fear pool on a fear duality roll result."
                 },
-                "ActionPoints": {
-                    "Name": "Action Points",
-                    "Hint": "Automatically give and take Action Points as combatants take their turns."
+                "FIELDS": {
+                    "hope": {
+                        "label": "Hope",
+                        "hint": "Automatically increase a character's hope on a hope duality roll result."
+                    },
+                    "actionPoints": {
+                        "label": "Action Points",
+                        "hint": "Automatically give and take Action Points as combatants take their turns."
+                    }
+                }
+            },
+            "Homebrew": {
+                "FIELDS": {
+                    "maxFear": { "label": "Max Fear" },
+                    "traitArray": { "label": "Initial Trait Modifiers" }
                 }
             },
             "Resources": {
@@ -110,8 +118,18 @@
             },
             "VariantRules": {
                 "ActionTokens": {
-                    "Name": "Action Tokens",
-                    "Hint": "Give each player action tokens to use in combat"
+                    "label": "Action Tokens",
+                    "hint": "Give each player action tokens to use in combat"
+                },
+                "FIELDS": {
+                    "actionTokens": {
+                        "enabled": { "label": "Enabled" },
+                        "tokens": { "label": "Tokens" }
+                    },
+                    "useCoins": {
+                        "label": "Use Coins",
+                        "hint": "test"
+                    }
                 }
             },
             "DualityRollColor": {
@@ -132,10 +150,6 @@
                 "AttackTargetDoesNotExist": "The target token no longer exists"
             },
             "Error": {
-                "NoClassSelected": "Your character has no class selected!",
-                "LacksDomain": "Your character doesn't have the domain of the card!",
-                "MaxLoadoutReached": "You can't have any more domain cards at this level!",
-                "DuplicateDomainCard": "You already have a domain card with that name!",
                 "ActionRequiresTarget": "The action requires at least one target",
                 "NoAssignedPlayerCharacter": "You have no assigned character.",
                 "NoSelectedToken": "You have no selected token",
@@ -145,6 +159,7 @@
             }
         },
         "General": {
+            "Name": "Name",
             "Hope": "Hope",
             "Fear": "Fear",
             "Duality": "Duality",
@@ -161,7 +176,9 @@
             "OK": "OK",
             "Cancel": "Cancel",
             "Or": "Or",
+            "Enabled": "Enabled",
             "Description": "Description",
+            "Modifier": "Modifier",
             "Features": "Features",
             "proficiency": "Proficiency",
             "unarmored": "Unarmored",
@@ -261,46 +278,55 @@
                 "Description": "When an effect makes a creature Restrained, it means they cannot move until this condition is cleared.\nThey can still take actions from their current position."
             }
         },
+        "Tiers": {
+            "singular": "Tier",
+            "tier1": "Tier 1",
+            "tier2": "Tier 2",
+            "tier3": "Tier 3",
+            "tier4": "Tier 4"
+        },
         "Adversary": {
-            "Bruiser": {
-                "Name": "Bruiser",
-                "Description": "Tough adversaries with powerful attacks."
-            },
-            "Horde": {
-                "Name": "Horde",
-                "Description": "A Horde represents a number of foes working in a group."
-            },
-            "Leader": {
-                "Name": "Leader",
-                "Description": "Adversaries that command and summon other adversaries."
-            },
-            "Minion": {
-                "Name": "Minion",
-                "Description": "Basic enemies that are easily dispatched but dangerous in numbers."
-            },
-            "Ranged": {
-                "Name": "Ranged",
-                "Description": "Adversaries that attack from a distance."
-            },
-            "Skulker": {
-                "Name": "Skulker",
-                "Description": "Adversaries that maneuver and exploit opportunities to ambush their opponents."
-            },
-            "Social": {
-                "Name": "Social",
-                "Description": "Adversaries that are primarily interpersonal threats or challenges."
-            },
-            "Solo": {
-                "Name": "Solo",
-                "Description": "Designed to present a challenge to a whole party."
-            },
-            "Standard": {
-                "Name": "Standard",
-                "Description": "Rank and File adversaries."
-            },
-            "Support": {
-                "Name": "Support",
-                "Description": "Enemies that enhance their allies and/or disrupt their opponents."
+            "Type": {
+                "Bruiser": {
+                    "label": "Bruiser",
+                    "Description": "Tough adversaries with powerful attacks."
+                },
+                "Horde": {
+                    "label": "Horde",
+                    "Description": "A Horde represents a number of foes working in a group."
+                },
+                "Leader": {
+                    "label": "Leader",
+                    "Description": "Adversaries that command and summon other adversaries."
+                },
+                "Minion": {
+                    "label": "Minion",
+                    "Description": "Basic enemies that are easily dispatched but dangerous in numbers."
+                },
+                "Ranged": {
+                    "label": "Ranged",
+                    "Description": "Adversaries that attack from a distance."
+                },
+                "Skulk": {
+                    "label": "Skulk",
+                    "Description": "Adversaries that maneuver and exploit opportunities to ambush their opponents."
+                },
+                "Social": {
+                    "label": "Social",
+                    "Description": "Adversaries that are primarily interpersonal threats or challenges."
+                },
+                "Solo": {
+                    "label": "Solo",
+                    "Description": "Designed to present a challenge to a whole party."
+                },
+                "Standard": {
+                    "label": "Standard",
+                    "Description": "Rank and File adversaries."
+                },
+                "Support": {
+                    "label": "Support",
+                    "Description": "Enemies that enhance their allies and/or disrupt their opponents."
+                }
             },
             "Trait": {
                 "Relentless": {
@@ -320,32 +346,61 @@
                 }
             }
         },
+        "Environment": {
+            "Type": {
+                "Exploration": {
+                    "label": "Exploration",
+                    "description": ""
+                },
+                "Social": {
+                    "label": "Social",
+                    "description": ""
+                },
+                "Traversal": {
+                    "label": "Traversal",
+                    "description": ""
+                },
+                "Event": {
+                    "label": "Event",
+                    "description": ""
+                }
+            }
+        },
         "Domains": {
-            "Arcana": {
+            "arcana": {
+                "label": "Arcana",
                 "Description": "This is the domain of the innate or instinctual use of magic. Those who walk this path tap into the raw, enigmatic forces of the realms to manipulate both the elements and their own energy. Arcana offers wielders a volatile power, but it is incredibly potent when correctly channeled."
             },
-            "Blade": {
+            "blade": {
+                "label": "Blade",
                 "Description": "This is the domain of those who dedicate their lives to the mastery of weapons. Whether by blade, bow, or perhaps a more specialized arm, those who follow this path have the skill to cut short the lives of others. Blade requires study and dedication from its followers, in exchange for inexorable power over death."
             },
-            "Bone": {
+            "bone": {
+                "label": "Bone",
                 "Description": "This is the domain of mastery of swiftness and tactical mastery. Practitioners of this domain have an uncanny control over their own physical abilities, and an eye for predicting the behaviors of others in combat. Bone grants its adherents unparalleled understanding of bodies and their movements in exchange for diligent training."
             },
-            "Codex": {
+            "codex": {
+                "label": "Codex",
                 "Description": "This is the domain of intensive magical study. Those who seek magical knowledge turn to the recipes of power recorded in books, on scrolls, etched into walls, or tattooed on bodies. Codex offers a commanding and versatile understanding of magic to those devotees who are willing to seek beyond the common knowledge."
             },
-            "Grace": {
+            "grace": {
+                "label": "Grace",
                 "Description": "This is the domain of charisma. Through rapturous storytelling, clever charm, or a shroud of lies, those who channel this power define the realities of their adversaries, bending perception to their will. Grace offers its wielders raw magnetism and mastery over language."
             },
-            "Midnight": {
+            "midnight": {
+                "label": "Midnight",
                 "Description": "This is the domain of shadows and secrecy. Whether by clever tricks, or cloak of night those who channel these forces are practiced in that art of obscurity and there is nothing hidden they cannot reach. Midnight offers practitioners the incredible power to control and create enigmas."
             },
-            "Sage": {
+            "sage": {
+                "label": "Sage",
                 "Description": "This is the domain of the natural world. Those who walk this path tap into the unfettered power of the earth and its creatures to unleash raw magic. Sage grants its adherents the vitality of a blooming flower and ferocity of a hungry predator."
             },
-            "Splendor": {
+            "splendor": {
+                "label": "Splendor",
                 "Description": "This is the domain of life. Through this magic, followers gain the ability to heal, though such power also grants the wielder some control over death. Splendor offers its disciples the magnificent ability to both give and end life."
             },
-            "Valor": {
+            "valor": {
+                "label": "Valor",
                 "Description": "This is the domain of protection. Whether through attack or defense, those who choose this discipline channel formidable strength to protect their allies in battle. Valor offers great power to those who raise their shield in defense of others."
             }
         },
@@ -361,6 +416,45 @@
             "requestSpotlight": "Request The Spotlight",
             "requestingSpotlight": "Requesting The Spotlight",
             "combatStarted": "Active"
+        },
+        "CharacterCreation": {
+            "Title": "{actor} - Character Setup",
+            "TraitIncreases": "Trait Increases",
+            "SuggestedTraits": "Suggested Traits",
+            "InitialExperiences": "Initial Experiences",
+            "Heritage": "Heritage",
+            "SelectAncestry": "Select Ancestry",
+            "SelectCommunity": "Select Community",
+            "SelectClass": "Select Class",
+            "SelectSubclass": "Select Subclass",
+            "SelectArmor": "Select Armor",
+            "SelectPrimaryWeapon": "Select Primary Weapon",
+            "SelectSecondaryWeapon": "Select Secondary Weapon",
+            "SuggestedArmor": "Suggested Armor",
+            "SuggestedWeapons": "Suggested Weapon",
+            "SuggestedPrimaryWeapon": "Suggested Primary Weapon",
+            "SuggestedSecondaryWeapon": "Suggested Secondary Weapon",
+            "StartingItems": "Starting Items",
+            "Choice": "Choice",
+            "NewExperience": "New Experience..",
+            "FinishCreation": "Finish Character Setup",
+            "Tabs": {
+                "Optional": "Optional",
+                "Setup": "Setup",
+                "Equipment": "Equipment",
+                "Story": "Story"
+            },
+            "Notifications": {
+                "SubclassNotInClass": "This subclass does not belong to your selected class.",
+                "MissingClass": "You don't have a class selected yet.",
+                "WrongDomain": "The card isn't from one of your class domains.",
+                "CardTooHighLevel": "The card is too high level!",
+                "DuplicateCard": "You cannot select the same card more than once.",
+                "NotPrimary": "The weapon is not a primary weapon!",
+                "NotSecondary": "The weapon is not a secondary weapon!",
+                "ItemTooHighTier": "The item must be from Tier1",
+                "PrimaryIsTwoHanded": "Cannot select a secondary weapon with a two-handed primary!"
+            }
         },
         "LevelUp": {
             "Options": {
@@ -449,6 +543,10 @@
             "twoHanded": "Two-Handed"
         },
         "Range": {
+            "self": {
+                "name": "Self",
+                "description": "means yourself."
+            },
             "melee": {
                 "name": "Melee",
                 "description": "means a character is within touching distance of the target. PCs can generally touch targets up to a few feet away from them, but melee range may be greater for especially large NPCs."
@@ -579,7 +677,7 @@
         "WeaponFeature": {
             "Barrier": {
                 "Name": "Barrier",
-                "Description": "+{armorBonus} to Armor Score; -1 to Evasion"
+                "Description": "+{armorScore} to Armor Score; -1 to Evasion"
             },
             "Bonded": {
                 "Name": "Bonded",
@@ -649,6 +747,10 @@
                 "Name": "Greedy",
                 "Description": "Spend a handful of gold to gain a +1 bonus to your Proficiency on a damage roll."
             },
+            "Healing": {
+                "Name": "Healing",
+                "Description": "During downtime, automatically clear a Hit Point."
+            },
             "Heavy": {
                 "Name": "Heavy",
                 "Description": "-1 to Evasion"
@@ -672,6 +774,10 @@
             "LockedOn": {
                 "Name": "Locked On",
                 "Description": "On a successful attack, your next attack against the same target with your primary weapon automatically succeeds."
+            },
+            "Lucky": {
+                "Name": "Lucky",
+                "Description": "On a failed attack, you can mark a Stress to reroll your attack."
             },
             "Long": {
                 "Name": "Long",
@@ -707,7 +813,7 @@
             },
             "Protective": {
                 "Name": "Protective",
-                "Description": "+{armorBonus} to Armor Score"
+                "Description": "+{tier} to Armor Score"
             },
             "Quick": {
                 "Name": "Quick",
@@ -773,7 +879,8 @@
                 "Input": "Input",
                 "Dice": "Dice"
             },
-            "Max": "Max"
+            "Max": "Max",
+            "NewEffect": "New Effect"
         },
         "FeatureType": {
             "Normal": "Normal",
@@ -800,7 +907,7 @@
                     "content": "Returning to the previous level selection will remove all selections made for this level. Do you want to proceed?"
                 },
                 "Selections": {
-                    "emptyDomainCardHint": "Domain Card Level {level} or below"
+                    "emptyDomainCardHint": "{domain} level {level} or below"
                 },
                 "summary": {
                     "levelAchievements": "Level Achievements",
@@ -1022,40 +1129,81 @@
                 }
             },
             "Adversary": {
-                "Description": "Description",
-                "MotivesAndTactics": "Motives & Tactics",
-                "Tier": "Tier",
-                "Type": "Type",
-                "Attack": {
-                    "Title": "Attack",
-                    "Modifier": "Attack Modifier",
-                    "Name": "Name",
-                    "Range": "Range",
-                    "Damage": {
-                        "Title": "Damage",
-                        "Value": "Value",
-                        "Type": "Type"
+                "FIELDS": {
+                    "tier": { "label": "Tier" },
+                    "type": { "label": "Type" },
+                    "description": { "label": "Description" },
+                    "motivesAndTactics": { "label": "Motives & Tactics" },
+                    "difficulty": { "label": "Difficulty" },
+                    "damageThresholds": {
+                        "major": { "label": "Major" },
+                        "severe": { "label": "Severe" }
+                    },
+                    "resources": {
+                        "hitPoints": {
+                            "value": { "label": "Current" },
+                            "max": { "label": "Max" }
+                        },
+                        "stress": {
+                            "value": { "label": "Current" },
+                            "max": { "label": "Max" }
+                        }
+                    },
+                    "experiences": {
+                        "element": {
+                            "name": { "label": "Name" },
+                            "value": { "label": "Modifier" }
+                        }
+                    },
+                    "attack": {
+                        "name": { "label": "Name" },
+                        "modifier": { "label": "Modifier" },
+                        "range": { "label": "Range" },
+                        "damage": {
+                            "value": { "label": "Damage" },
+                            "type": { "label": "Damage Type" }
+                        }
                     }
                 },
-                "Difficulty": "Difficulty",
-                "Reaction": "Reaction Roll",
-                "DamageThresholds": {
-                    "Title": "Damage Thresholds",
-                    "Minor": "Minor",
-                    "Major": "Major",
-                    "Severe": "Severe"
+                "Tabs": {
+                    "Main": "Data",
+                    "Information": "Information"
                 },
-                "HP": "HP",
+                "General": "General",
+                "DamageThresholds": "Damage Thresholds",
+                "HitPoints": "Hit Points",
                 "Stress": "Stress",
-                "Experience": "Experience",
                 "Experiences": "Experiences",
-                "Features": "Features",
-                "NewFeature": "New Feature"
+                "Attack": "Attack"
             },
             "Environment": {
-                "ToneAndFeel": "Tone And feel",
-                "PotentialAdversaries": "Potential Adversaries",
-                "NewFeature": "New Feature"
+                "FIELDS": {
+                    "tier": {
+                        "label": "Tier"
+                    },
+                    "type": {
+                        "label": "Type"
+                    },
+                    "difficulty": {
+                        "label": "Difficulty"
+                    }
+                },
+                "Tabs": {
+                    "Main": "Data",
+                    "Information": "Information"
+                },
+                "general": "General",
+                "newAdversary": "New Adversary",
+                "newFeature": "New feature",
+                "description": "Description",
+                "impulses": "Impulses",
+                "potentialAdversaries": {
+                    "label": "Potential Adversaries",
+                    "placeholder": "Optionally drag and drop adversaries here"
+                },
+                "features": {
+                    "label": "Features"
+                }
             },
             "Armor": {
                 "baseScore": "Base Score",
@@ -1075,6 +1223,8 @@
                     "Appearance": "Appearance",
                     "settings": "Settings"
                 },
+                "HopeFeatures": "Hope Features",
+                "Class Features": "Class Features",
                 "Domains": "Domains",
                 "DamageThresholds": {
                     "Title": "Damage Thresholds",
@@ -1124,8 +1274,9 @@
                     }
                 }
             },
-            "Heritage": {
-                "Title": "Abilities"
+            "Global": {
+                "Actions": "Actions",
+                "Effects": "Effects"
             },
             "DomainCard": {
                 "Type": "Type",
@@ -1183,7 +1334,9 @@
                 "Description": "Description",
                 "SubclassFeature": {
                     "Description": "Description",
-                    "Abilities": "Abilities"
+                    "Abilities": "Abilities",
+                    "Actions": "Actions",
+                    "Effects": "Effects"
                 }
             },
             "Weapon": {
@@ -1199,6 +1352,18 @@
                 "Burden": "Burden",
                 "Feature": "Feature",
                 "Description": "Description"
+            }
+        },
+        "Item": {
+            "Errors": {
+                "MissingClass": "The character is missing a class",
+                "SubclassNotInClass": "The subclass does not belong to the character's class",
+                "ClassAlreadySelected": "The character already has a class",
+                "SubclassAlreadySelected": "The character already has a subclass for that class.",
+                "NoClassSelected": "Your character has no class selected!",
+                "LacksDomain": "Your character doesn't have the domain of the card!",
+                "MaxLoadoutReached": "You can't have any more domain cards at this level!",
+                "DuplicateDomainCard": "You already have a domain card with that name!"
             }
         },
         "Effects": {
@@ -1225,10 +1390,48 @@
                 }
             }
         },
-
         "Tooltip": {
             "openItemWorld": "Open Item World",
             "delete": "Delete"
+        },
+        "Actions": {
+            "Types": {
+                "Attack": {
+                    "Name": "Attack"
+                },
+                "Spellcast": {
+                    "Name": "Spellcast"
+                },
+                "Resource": {
+                    "Name": "Resource"
+                },
+                "Damage": {
+                    "Name": "Damage"
+                },
+                "Healing": {
+                    "Name": "Healing"
+                },
+                "Summon": {
+                    "Name": "Summon"
+                },
+                "Effect": {
+                    "Name": "Effect"
+                },
+                "Macro": {
+                    "Name": "Macro"
+                }
+            }
+        },
+        "RollTypes": {
+            "ability": {
+                "name": "Ability"
+            },
+            "weapon": {
+                "name": "Weapon"
+            },
+            "spellcast": {
+                "name": "SpellCast"
+            }
         }
     }
 }

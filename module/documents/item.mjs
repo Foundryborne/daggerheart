@@ -1,23 +1,42 @@
 export default class DhpItem extends Item {
-    _preCreate(data, changes, user) {
-        super._preCreate(data, changes, user);
+    /** @inheritdoc */
+    getEmbeddedDocument(embeddedName, id, { invalid = false, strict = false } = {}) {
+        const systemEmbeds = this.system.constructor.metadata.embedded ?? {};
+        if (embeddedName in systemEmbeds) {
+            const path = `system.${systemEmbeds[embeddedName]}`;
+            return foundry.utils.getProperty(this, path).get(id) ?? null;
+        }
+        return super.getEmbeddedDocument(embeddedName, id, { invalid, strict });
     }
 
-    prepareData() {
-        super.prepareData();
+    /** @inheritDoc */
+    prepareEmbeddedDocuments() {
+        super.prepareEmbeddedDocuments();
+        for (const action of this.system.actions ?? []) action.prepareData();
+    }
 
-        if (this.type === 'class') {
-            // Bad. Make this better.
-            // this.system.domains = CONFIG.daggerheart.DOMAIN.classDomainMap[Object.keys(CONFIG.daggerheart.DOMAIN.classDomainMap).find(x => x === this.name.toLowerCase())];
+    /**
+     * @inheritdoc
+     * @param {object} options - Options which modify the getRollData method.
+     * @returns
+     */
+    getRollData(options = {}) {
+        let data;
+        if (this.system.getRollData) data = this.system.getRollData(options);
+        else {
+            const actorRollData = this.actor?.getRollData(options) ?? {};
+            data = { ...actorRollData, item: { ...this.system } };
         }
+
+        if (data?.item) {
+            data.item.flags = { ...this.flags };
+            data.item.name = this.name;
+        }
+        return data;
     }
 
     isInventoryItem() {
         return ['weapon', 'armor', 'miscellaneous', 'consumable'].includes(this.type);
-    }
-
-    _onUpdate(data, options, userId) {
-        super._onUpdate(data, options, userId);
     }
 
     static async createDialog(data = {}, { parent = null, pack = null, ...options } = {}) {
@@ -78,5 +97,48 @@ export default class DhpItem extends Item {
             rejectClose: false,
             options
         });
+    }
+
+    async selectActionDialog() {
+        const content = await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/views/actionSelect.hbs',
+                { actions: this.system.actions }
+            ),
+            title = 'Select Action',
+            type = 'div',
+            data = {};
+        return Dialog.prompt({
+            title,
+            // label: title,
+            content,
+            type,
+            callback: html => {
+                const form = html[0].querySelector('form'),
+                    fd = new foundry.applications.ux.FormDataExtended(form);
+                return this.system.actions.find(a => a._id === fd.object.actionId);
+            },
+            rejectClose: false
+        });
+    }
+
+    async use(event) {
+        const actions = this.system.actions;
+        let response;
+        if (actions?.length) {
+            let action = actions[0];
+            if (actions.length > 1 && !event?.shiftKey) {
+                // Actions Choice Dialog
+                action = await this.selectActionDialog();
+            }
+            if (action) response = action.use(event);
+            // Check Target
+            // If action.roll           => Roll Dialog
+            // Else If action.cost      => Cost Dialog
+            // Then
+            // Apply Cost
+            // Apply Effect
+        }
+        // Display Item Card in chat
+        return response;
     }
 }

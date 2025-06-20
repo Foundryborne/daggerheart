@@ -1,7 +1,15 @@
+import { fearDisplay } from '../../config/generalConfig.mjs';
+
 export default class DhAppearance extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            displayFear: new fields.StringField({
+                required: true,
+                choices: fearDisplay,
+                initial: fearDisplay.token.value,
+                label: 'DAGGERHEART.Settings.Appearance.FIELDS.displayFear.label'
+            }),
             dualityColorScheme: new fields.StringField({
                 required: true,
                 choices: DualityRollColor,
@@ -35,8 +43,6 @@ export default class DhAppearance extends foundry.abstract.DataModel {
             })
         };
     }
-
-    static defaultSchema = {};
 }
 
 export const DualityRollColor = {

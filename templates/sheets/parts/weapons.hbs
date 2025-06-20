@@ -5,45 +5,45 @@
              <div class="proficiency-container">
                 <span>{{localize "DAGGERHEART.Sheets.PC.Weapons.ProficiencyTitle"}}</span>
                 {{#times 6}}
-                    <i class="fa-solid fa-circle proficiency-dot {{#if (gt ../proficiency this)}}marked{{/if}}"></i>
+                    <i class="fa-solid fa-circle proficiency-dot {{#if (gt ../proficiency.total this)}}marked{{/if}}"></i>
                 {{/times}}
              </div>
              <div class="proficiency-container-visual-element"></div>
         </div>
         <div class="weapons-burden">
-            <i class="fa-solid fa-hand weapons-burden-icon left {{#if (or (eq weapons.burden "oneHanded") (eq weapons.burden "twoHanded"))}}active{{/if}}"></i>
-            <i class="fa-solid fa-hand weapons-burden-icon right {{#if (eq weapons.burden "twoHanded")}}active{{/if}}"></i>
+            <i class="fa-solid fa-hand weapons-burden-icon left {{#if (or (eq weaponBurden "oneHanded") (eq weaponBurden "twoHanded"))}}active{{/if}}"></i>
+            <i class="fa-solid fa-hand weapons-burden-icon right {{#if (eq weaponBurden "twoHanded")}}active{{/if}}"></i>
         </div>
     </legend>
 
     <div class="active-item-container">
         <h2 class="weapons-label-row">
             {{localize "DAGGERHEART.Sheets.PC.Weapons.PrimaryTitle"}} 
-            {{#if weapons.primary}}
-                <img class="damage-roll" data-action="attackRoll" data-weapon="{{weapons.primary.uuid}}" src="icons/svg/d12-grey.svg" />
+            {{#if primaryWeapon}}
+                <img class="damage-roll" data-action="attackRoll" data-weapon="{{primaryWeapon.uuid}}" src="icons/svg/d12-grey.svg" />
             {{/if}}
         </h2>
         <div class="flexrow">
-            <input value="{{weapons.primary.name}}" type="text" />
-            <input value="{{localize weapons.primary.trait}}" type="text" />
-            <input value="{{localize weapons.primary.range.label}}" type="text" />
-            <input value="{{weapons.primary.damage.value}} {{#if weapons.primary}}({{localize weapons.primary.damage.type.abbreviation}}){{/if}}" type="text" />
+            <input value="{{primaryWeapon.name}}" type="text" />
+            <input value="{{localize primaryWeapon.trait}}" type="text" />
+            <input value="{{localize primaryWeapon.range.label}}" type="text" />
+            <input value="{{primaryWeapon.damage.value}} {{#if primaryWeapon}}({{localize primaryWeapon.damage.type.abbreviation}}){{/if}}" type="text" />
         </div>
-        <input value="{{localize weapons.primary.feature.label}} {{#if weapons.primary.feature}}({{localize weapons.primary.feature.description}}){{/if}}" type="text" />
+        <input value="{{localize primaryWeapon.feature.label}} {{#if primaryWeapon.feature}}({{localize primaryWeapon.feature.description}}){{/if}}" type="text" />
     </div>
     <div class="active-item-container">
         <h2 class="weapons-label-row">
             {{localize "DAGGERHEART.Sheets.PC.Weapons.SecondaryTitle"}}
-            {{#if weapons.secondary}}
-                <img class="damage-roll" data-action="damageRoll" data-value="{{weapons.secondary.damage.value}}" src="icons/svg/d12-grey.svg" />
+            {{#if secondaryWeapon}}
+                <img class="damage-roll" data-action="damageRoll" data-value="{{secondaryWeapon.damage.value}}" src="icons/svg/d12-grey.svg" />
             {{/if}}
         </h2>
         <div class="flexrow">
-            <input value="{{weapons.secondary.name}}" type="text" />
-            <input value="{{localize weapons.secondary.trait}}" type="text" />
-            <input value="{{localize weapons.secondary.range.label}}" type="text" />
-            <input value="{{weapons.secondary.damage.label}} {{#if weapons.secondary}}({{localize weapons.secondary.damage.type.abbreviation}}){{/if}}" type="text" />
+            <input value="{{secondaryWeapon.name}}" type="text" />
+            <input value="{{localize secondaryWeapon.trait}}" type="text" />
+            <input value="{{localize secondaryWeapon.range.label}}" type="text" />
+            <input value="{{secondaryWeapon.damage.label}} {{#if secondaryWeapon}}({{localize secondaryWeapon.damage.type.abbreviation}}){{/if}}" type="text" />
         </div>
-        <input value="{{localize weapons.secondary.feature.name}} {{#if weapons.secondary.feature}}({{localize weapons.secondary.feature.description}}){{/if}}" style="text-overflow: ellipsis;" type="text" />
+        <input value="{{localize secondaryWeapon.feature.name}} {{#if secondaryWeapon.feature}}({{localize secondaryWeapon.feature.description}}){{/if}}" style="text-overflow: ellipsis;" type="text" />
     </div>
 </fieldset>

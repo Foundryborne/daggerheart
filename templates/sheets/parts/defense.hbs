@@ -4,7 +4,7 @@
     <div class="defense-row">
         <div class="defense-section">
             <div class="defense-container">
-                <div class="defense-value">{{document.system.evasion.value}}</div>
+                <div class="defense-value">{{document.system.evasion.total}}</div>
                 <img src="systems/daggerheart/assets/AttributeShield.svg" />
                 <div class="defense-banner">{{localize "DAGGERHEART.Sheets.PC.Defense.Evasion"}}</div>
             </div>
@@ -16,16 +16,18 @@
                 <img src="systems/daggerheart/assets/AttributeShield.svg" />
                 <div class="defense-banner">{{localize "DAGGERHEART.Sheets.PC.Defense.Armor"}}</div>
             </div>
-            <div class="armor-marks">
-                {{#times (subtract 12 document.system.armorMarks.max)}}
-                    <input class="mark disabled-mark" type="checkbox" disabled />
-                {{/times}}
-                {{#times document.system.armorMarks.max}}
-                    {{#with (add this 1)}}
-                        <input class="mark" type="checkbox" data-action="toggleMarks" data-value="{{this}}" {{ checked (gte ../../document.system.armor.system.marks.value this) }} />
-                    {{/with}}
-                {{/times}}
-            </div>
+            {{#if document.system.armor.system.marks}}
+                <div class="armor-marks">
+                    {{#times (subtract 12 document.system.armor.system.marks.max)}}
+                        <input class="mark disabled-mark" type="checkbox" disabled />
+                    {{/times}}
+                    {{#times document.system.armor.system.marks.max}}
+                        {{#with (add this 1)}}
+                            <input class="mark" type="checkbox" data-action="toggleMarks" data-value="{{this}}" {{ checked (gte ../../document.system.armor.system.marks.value this) }} />
+                        {{/with}}
+                    {{/times}}
+                </div>
+            {{/if}}
         </div>
     </div>
 </fieldset>

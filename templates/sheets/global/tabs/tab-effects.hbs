@@ -1,0 +1,21 @@
+<section
+    class='tab {{tabs.effects.cssClass}} {{tabs.effects.id}}'
+    data-tab='{{tabs.effects.id}}'
+    data-group='{{tabs.effects.group}}'
+>
+    <fieldset class="one-column">
+            <legend>{{localize "DAGGERHEART.Sheets.Global.Effects"}} <a><i class="fa-solid fa-plus icon-button" data-action="addEffect"></i></a></legend>
+        <div class="effects-list">
+            {{#each document.effects as |effect|}}
+                <div class="effect-item">
+                    <img class="image" src="{{effect.img}}" />
+                    <span>{{effect.name}}</span>
+                    <div class="controls">
+                        <a data-action="editEffect" data-effect="{{effect.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-action="removeEffect" data-effect="{{effect.id}}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div> 
+            {{/each}}
+        </div>
+    </fieldset>
+</section>

@@ -3,10 +3,12 @@
         <label>{{localize "DAGGERHEART.Settings.Menu.VariantRules.actionTokens"}}</label>
 
         <div class="form-fields">
-            {{formInput settingFields.schema.fields.actionTokens.fields.enabled value=settingFields._source.actionTokens.enabled}}
-            {{formInput settingFields.schema.fields.actionTokens.fields.tokens value=settingFields._source.actionTokens.tokens disabled=(not settingFields._source.actionTokens.enabled)}}
+            {{formGroup settingFields.schema.fields.actionTokens.fields.enabled value=settingFields._source.actionTokens.enabled localize=true}}
+            {{formGroup settingFields.schema.fields.actionTokens.fields.tokens value=settingFields._source.actionTokens.tokens disabled=(not settingFields._source.actionTokens.enabled) localize=true}}
         </div>
     </div>
+
+    {{formGroup settingFields.schema.fields.useCoins value=settingFields._source.useCoins localize=true }}
 
     <footer class="form-footer">
         <button data-action="reset">

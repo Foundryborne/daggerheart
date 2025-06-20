@@ -76,50 +76,79 @@ export const featureProperties = {
     },
     spellcastingTrait: {
         name: 'DAGGERHEART.FeatureProperty.SpellcastingTrait',
-        path: actor => actor.system.traits[actor.system.subclass.system.spellcastingTrait].data.value
+        path: actor => actor.system.traits[actor.system.class.subclass.system.spellcastingTrait].data.value
     }
 };
 
 export const adversaryTypes = {
     bruiser: {
-        name: 'DAGGERHEART.Adversary.Bruiser.Name',
+        id: 'bruiser',
+        label: 'DAGGERHEART.Adversary.Type.Bruiser.label',
         description: 'DAGGERHEART.Adversary.Bruiser.Description'
     },
     horde: {
-        name: 'DAGGERHEART.Adversary.Horde.Name',
+        id: 'horde',
+        label: 'DAGGERHEART.Adversary.Type.Horde.label',
         description: 'DAGGERHEART.Adversary.Horde.Description'
     },
     leader: {
-        name: 'DAGGERHEART.Adversary.Leader.Name',
+        id: 'leader',
+        label: 'DAGGERHEART.Adversary.Type.Leader.label',
         description: 'DAGGERHEART.Adversary.Leader.Description'
     },
     minion: {
-        name: 'DAGGERHEART.Adversary.Minion.Name',
+        id: 'minion',
+        label: 'DAGGERHEART.Adversary.Type.Minion.label',
         description: 'DAGGERHEART.Adversary.Minion.Description'
     },
     ranged: {
-        name: 'DAGGERHEART.Adversary.Ranged.Name',
+        id: 'ranged',
+        label: 'DAGGERHEART.Adversary.Type.Ranged.label',
         description: 'DAGGERHEART.Adversary.Ranged.Description'
     },
-    skulker: {
-        name: 'DAGGERHEART.Adversary.Skulker.Name',
-        description: 'DAGGERHEART.Adversary.Skulker.Description'
+    skulk: {
+        id: 'skulk',
+        label: 'DAGGERHEART.Adversary.Type.Skulk.label',
+        description: 'DAGGERHEART.Adversary.Skulk.Description'
     },
     social: {
-        name: 'DAGGERHEART.Adversary.Social.Name',
+        id: 'social',
+        label: 'DAGGERHEART.Adversary.Type.Social.label',
         description: 'DAGGERHEART.Adversary.Social.Description'
     },
     solo: {
-        name: 'DAGGERHEART.Adversary.Solo.Name',
+        id: 'solo',
+        label: 'DAGGERHEART.Adversary.Type.Solo.label',
         description: 'DAGGERHEART.Adversary.Solo.Description'
     },
     standard: {
-        name: 'DAGGERHEART.Adversary.Standard.Name',
+        id: 'standard',
+        label: 'DAGGERHEART.Adversary.Type.Standard.label',
         description: 'DAGGERHEART.Adversary.Standard.Description'
     },
     support: {
-        name: 'DAGGERHEART.Adversary.Support.Name',
+        id: 'support',
+        label: 'DAGGERHEART.Adversary.Type.Support.label',
         description: 'DAGGERHEART.Adversary.Support.Description'
+    }
+};
+
+export const environmentTypes = {
+    exploration: {
+        label: 'DAGGERHEART.Environment.Type.Exploration.label',
+        description: 'DAGGERHEART.Environment.Type.Exploration.description'
+    },
+    social: {
+        label: 'DAGGERHEART.Environment.Type.Social.label',
+        description: 'DAGGERHEART.Environment.Type.Social.description'
+    },
+    traversal: {
+        label: 'DAGGERHEART.Environment.Type.Traversal.label',
+        description: 'DAGGERHEART.Environment.Type.Traversal.description'
+    },
+    event: {
+        label: 'DAGGERHEART.Environment.Type.Event.label',
+        description: 'DAGGERHEART.Environment.Type.Event.description'
     }
 };
 
@@ -379,4 +408,10 @@ export const levelupData = {
             }
         }
     }
+};
+
+export const subclassFeatureLabels = {
+    1: 'DAGGERHEART.Sheets.PC.DomainCard.FoundationTitle',
+    2: 'DAGGERHEART.Sheets.PC.DomainCard.SpecializationTitle',
+    3: 'DAGGERHEART.Sheets.PC.DomainCard.MasteryTitle'
 };

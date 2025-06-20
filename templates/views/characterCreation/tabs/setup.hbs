@@ -1,0 +1,101 @@
+<section
+    class='tab {{tabs.setup.cssClass}} {{tabs.setup.id}}'
+    data-tab='{{tabs.setup.id}}'
+    data-group='{{tabs.setup.group}}'
+>
+    <div class="main-selections-container">
+        <fieldset class="section-container">
+            <legend>{{localize "TYPES.Item.class"}}</legend>
+            <div class="selections-outer-container">
+                <div class="selections-container class-card">
+                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" class }}
+                        {{localize "DAGGERHEART.CharacterCreation.SelectClass"}}
+                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                </div>
+
+                <div class="selections-container subclass-card">
+                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" subclass disabled=(not class.img) }}
+                        {{localize "DAGGERHEART.CharacterCreation.SelectSubclass"}}
+                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                </div>
+            </div>
+        </fieldset>
+
+        {{#if (gte visibility 2)}} 
+            <fieldset class="section-container">
+                <legend>{{localize "DAGGERHEART.CharacterCreation.Heritage"}}</legend>
+                <div class="selections-outer-container">
+                    <div class="selections-container ancestry-card">
+                        {{#> "systems/daggerheart/templates/components/card-preview.hbs" ancestry }}
+                            {{localize "DAGGERHEART.CharacterCreation.SelectAncestry"}}
+                        {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                    </div>
+
+                    <div class="selections-container community-card">
+                        {{#> "systems/daggerheart/templates/components/card-preview.hbs" community }}
+                            {{localize "DAGGERHEART.CharacterCreation.SelectCommunity"}}
+                        {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                    </div>
+                </div>
+            </fieldset>
+        {{/if}}
+
+        {{#if (gte visibility 3)}}
+            <fieldset class="section-container">
+                <legend>{{localize "DAGGERHEART.CharacterCreation.TraitIncreases"}} {{traits.nrSelected}}/{{traits.nrTotal}}</legend>
+                <div class="traits-container">
+                    <fieldset class="section-inner-container">
+                        <legend>{{localize "DAGGERHEART.CharacterCreation.SuggestedTraits"}}</legend>
+                        <div class="suggested-traits-container">
+                            {{#each suggestedTraits}}
+                                <div class="suggested-trait-container">{{this}}</div>
+                            {{/each}}
+                        </div>
+                        <button class="action-button" data-action="useSuggestedTraits">{{localize "Use"}}</button>
+                    </fieldset>
+                    <div class="traits-inner-container">
+                        {{#each traits.values}}
+                            <div class="trait-container">
+                                <div>{{this.name}}</div>
+                                <select name="{{concat "traits." this.key ".value"}}" data-dtype="Number">
+                                    {{selectOptions this.options selected=this.value valueAttr="key" labelAttr="value" blank=""}}
+                                </select>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </fieldset>
+        {{/if}}
+
+        {{#if (gte visibility 4)}}
+            <fieldset class="section-container">
+                <legend>{{localize "DAGGERHEART.CharacterCreation.InitialExperiences"}} {{experience.nrSelected}}/{{experience.nrTotal}}</legend>
+                <div class="experiences-inner-container">
+                    {{#each experience.values as |experience id|}}
+                        <div class="experience-container">
+                            <input class="experience-description" type="text" name="{{concat "experiences." id ".description" }}" value="{{experience.description}}" placeholder="{{localize "DAGGERHEART.CharacterCreation.NewExperience"}}" />
+                            <div class="experience-value">{{signedNumber this.value}}</div>
+                        </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+        {{/if}}
+
+        {{#if (gte visibility 5)}}
+            <fieldset class="section-container">
+                <legend>{{localize "TYPES.Item.domainCard"}}</legend>
+                <div class="selections-outer-container">
+                    {{#each domainCards as |domainCard id|}}
+                        <div class="selections-container domain-card" data-card="{{id}}"> 
+                            {{#> "systems/daggerheart/templates/components/card-preview.hbs" domainCard }}
+                                {{#each @root.class.system.domains }}
+                                    <div>{{localize (concat "DAGGERHEART.Domains." this ".label")}}</div>
+                                {{/each}}
+                            {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                        </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+        {{/if}}
+    </div>
+</section>

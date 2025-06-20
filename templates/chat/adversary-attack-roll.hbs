@@ -1,30 +1,32 @@
 <div class="dice-roll daggerheart chat roll" data-action="expandRoll">
     <div class="dice-flavor">{{localize "DAGGERHEART.Chat.AttackRoll.Title" attack=this.title}}</div>
     <div class="dice-result">
-        <div class="dice-formula">{{roll}}</div>
+        <div class="dice-formula">{{roll.formula}}</div>
         <div class="dice-tooltip">
             <div class="wrapper">
                 <section class="tooltip-part">
                     <div class="dice">
-                        <header class="part-header flexrow">
-                            <span class="part-formula">{{this.dice.rolls.length}}{{this.dice.type}}</span>
-                            <span class="part-total">{{this.dice.rollTotal}}</span>
-                        </header>
-                        <div class="flexrow">
-                            <ol class="dice-rolls">
-                                {{#each this.dice.rolls}}
-                                    <li class="roll die {{../dice.type}} {{#if this.discarded}}discarded{{/if}} min">{{this.value}}</li>
-                                {{/each}}
-                            </ol>
-                            <div class="attack-roll-advantage-container">{{#if (eq this.advantageState 1)}}{{localize "DAGGERHEART.General.Advantage.Full"}}{{/if}}{{#if (eq this.advantageState 2)}}{{localize "DAGGERHEART.General.Disadvantage.Full"}}{{/if}}</div>
-                        </div>  
+                        {{#each dice}}
+                            <header class="part-header flexrow">
+                                <span class="part-formula">{{number}}{{denomination}}</span>
+                                <span class="part-total">{{total}}</span>
+                            </header>
+                            <div class="flexrow">
+                                <ol class="dice-rolls">
+                                    {{#each results}}
+                                        <li class="roll die {{../denomination}}{{#if discarded}} discarded{{/if}} min">{{result}}</li>
+                                    {{/each}}
+                                </ol>
+                                <div class="attack-roll-advantage-container">{{#if ../advantageState}}{{localize "DAGGERHEART.General.Advantage.Full"}}{{/if}}{{#if (eq ../advantageState false)}}{{localize "DAGGERHEART.General.Disadvantage.Full"}}{{/if}}</div>
+                            </div>
+                        {{/each}}
                     </div>
                 </section>
             </div>
         </div>
 
         <div class="dice-total">
-            <div class="dice-total-value">{{this.total}}</div>
+            <div class="dice-total-value">{{roll.total}}</div>
         </div>
         {{#if (gt targets.length 0)}}
             <div class="target-section">
@@ -39,7 +41,7 @@
             </div>
         {{/if}}
         <div class="flexrow">
-            <button class="roll-damage-button" data-value="{{this.total.normal}}" data-damage="{{this.damage.value}}" data-damage-type="{{this.damage.type}}" {{#if this.damage.disabled}}disabled{{/if}}><span>Roll Damage</span></button>  
+            <button class="duality-action" data-value="{{roll.total}}" data-damage="{{damage.value}}" data-damage-type="{{damage.type}}"{{#if damage.disabled}} disabled{{/if}}><span>Roll Damage</span></button>  
         </div>
     </div>
 </div>

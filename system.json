@@ -5,7 +5,7 @@
     "version": "0.0.1",
     "compatibility": {
         "minimum": "13",
-        "verified": "13.344",
+        "verified": "13.345",
         "maximum": "13"
     },
     "authors": [
@@ -163,10 +163,7 @@
             "name": "Daggerheart",
             "sorting": "m",
             "color": "#08718c",
-            "packs": [
-                "adversaries",
-                "environments"
-            ],
+            "packs": ["adversaries", "environments"],
             "folders": [
                 {
                     "name": "Character Options",
@@ -186,12 +183,7 @@
                     "name": "Items",
                     "sorting": "m",
                     "color": "#000000",
-                    "packs": [
-                        "weapons",
-                        "armors",
-                        "consumables",
-                        "general-items"
-                    ]
+                    "packs": ["weapons", "armors", "consumables", "general-items"]
                 }
             ]
         }
@@ -211,22 +203,47 @@
     },
     "documentTypes": {
         "Actor": {
-            "pc": {},
-            "npc": {},
-            "adversary": {},
-            "environment": {}
+            "character": {
+                "htmlFields": ["story", "description", "scars.*.description"]
+            },
+            "adversary": {
+                "htmlFields": ["description", "motivesAndTactics"]
+            },
+            "environment": {
+                "htmlFields": ["description", "impulses"]
+            }
         },
         "Item": {
-            "ancestry": {},
-            "community": {},
-            "class": {},
-            "subclass": {},
-            "feature": {},
-            "domainCard": {},
-            "miscellaneous": {},
-            "consumable": {},
-            "weapon": {},
-            "armor": {}
+            "ancestry": {
+                "htmlFields": ["description"]
+            },
+            "community": {
+                "htmlFields": ["description"]
+            },
+            "class": {
+                "htmlFields": ["description"]
+            },
+            "subclass": {
+                "htmlFields": ["description"]
+            },
+            "feature": {
+                "htmlFields": ["description"]
+            },
+            "domainCard": {
+                "htmlFields": ["description"]
+            },
+            "miscellaneous": {
+                "htmlFields": ["description"]
+            },
+            "consumable": {
+                "htmlFields": ["description"]
+            },
+            "weapon": {
+                "htmlFields": ["description"]
+            },
+            "armor": {
+                "htmlFields": ["description"]
+            }
         },
         "Combat": {
             "combat": {}

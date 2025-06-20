@@ -1,0 +1,61 @@
+<section
+    class='tab {{tabs.main.cssClass}} {{tabs.main.id}}'
+    data-tab='{{tabs.main.id}}'
+    data-group='{{tabs.main.group}}'
+>
+    <div class="adversary-container">
+        <button data-action="reactionRoll">Reaction Test</button>
+        <fieldset class="two-columns even">
+            <legend>{{localize "DAGGERHEART.Sheets.Adversary.General"}}</legend>
+
+            {{formGroup systemFields.tier value=source.system.tier localize=true}}
+            {{formGroup systemFields.type value=source.system.type localize=true}}
+            <div class="full-width">{{formGroup systemFields.difficulty value=source.system.difficulty}}</div>
+
+            <fieldset>
+                <legend>{{localize "DAGGERHEART.Sheets.Adversary.DamageThresholds"}}</legend>
+
+                {{formGroup systemFields.damageThresholds.fields.major value=source.system.damageThresholds.major}}
+                {{formGroup systemFields.damageThresholds.fields.severe value=source.system.damageThresholds.severe}}
+            </fieldset>
+            
+            <fieldset>
+                <legend>{{localize "DAGGERHEART.Sheets.Adversary.HitPoints"}}</legend>
+
+                {{formGroup systemFields.resources.fields.hitPoints.fields.value value=source.system.resources.hitPoints.value}}
+                {{formGroup systemFields.resources.fields.hitPoints.fields.max value=source.system.resources.hitPoints.max}}
+            </fieldset>
+
+            <fieldset>
+                <legend>{{localize "DAGGERHEART.Sheets.Adversary.Stress"}}</legend>
+
+                {{formGroup systemFields.resources.fields.stress.fields.value value=source.system.resources.stress.value}}
+                {{formGroup systemFields.resources.fields.stress.fields.max value=source.system.resources.stress.max}}
+            </fieldset>
+
+            <fieldset>
+                <legend>{{localize "DAGGERHEART.Sheets.Adversary.Experiences"}} <a><i class="fa-solid fa-plus icon-button" data-action="addExperience"></i></a></legend>
+
+                {{#each source.system.experiences}}
+                    <fieldset class="one-column">
+                        <legend>{{this.name}} <a><i class="fa-solid fa-trash icon-button" data-action="removeExperience" data-experience="{{@key}}"></i></a></legend>
+
+                        {{formGroup @root.systemFields.experiences.element.fields.name name=(concat "system.experiences." @key ".name") value=this.name }}
+                        {{formGroup @root.systemFields.experiences.element.fields.value name=(concat "system.experiences." @key ".value") value=this.value }}
+                    </fieldset>
+                {{/each}}
+            </fieldset>
+        </fieldset>
+
+        <fieldset class="two-columns even">
+            <legend>{{localize "DAGGERHEART.Sheets.Adversary.Attack"}}</legend>
+
+            {{formGroup systemFields.attack.fields.name value=source.system.attack.name}}
+            <button data-action="attackRoll">Attack</button>
+            {{formGroup systemFields.attack.fields.modifier value=source.system.attack.modifier}}
+            {{formGroup systemFields.attack.fields.range value=source.system.attack.range localize=true}}
+            {{formGroup systemFields.attack.fields.damage.fields.value value=source.system.attack.damage.value}}
+            {{formGroup systemFields.attack.fields.damage.fields.type value=source.system.attack.damage.type localize=true}}
+        </fieldset> 
+    </div>
+</section>

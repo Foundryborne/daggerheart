@@ -1,78 +1,60 @@
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 
-const { DocumentSheetV2 } = foundry.applications.api;
-export default class DhpEnvironment extends DaggerheartSheet(DocumentSheetV2) {
-    constructor(options) {
-        super(options);
-
-        this.editMode = false;
-    }
-
+const { ActorSheetV2 } = foundry.applications.sheets;
+export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'sheet', 'adversary', 'environment'],
+        classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'environment'],
         position: {
-            width: 600,
-            height: 'auto'
+            width: 450,
+            height: 1000
         },
         actions: {
-            toggleSlider: this.toggleSlider,
-            viewFeature: this.viewFeature,
+            addAdversary: this.addAdversary,
             addFeature: this.addFeature,
-            removeFeature: this.removeFeature,
-            addTone: this.addTone,
-            removeTone: this.removeTone,
-            useFeature: this.useFeature
+            deleteProperty: this.deleteProperty,
+            viewAdversary: this.viewAdversary
         },
         form: {
             handler: this._updateForm,
-            closeOnSubmit: false,
-            submitOnChange: true
-        }
+            submitOnChange: true,
+            closeOnSubmit: false
+        },
+        dragDrop: [{ dragSelector: null, dropSelector: '.adversary-container' }]
     };
 
-    /** @override */
     static PARTS = {
-        form: {
-            id: 'form',
-            template: 'systems/daggerheart/templates/sheets/environment.hbs'
-        }
+        header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
+        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
+        main: { template: 'systems/daggerheart/templates/sheets/actors/environment/main.hbs' },
+        information: { template: 'systems/daggerheart/templates/sheets/actors/environment/information.hbs' }
     };
 
-    /* -------------------------------------------- */
-
-    /** @inheritDoc */
-    get title() {
-        return `${game.i18n.localize('Environment')} - ${this.document.name}`;
-    }
+    static TABS = {
+        main: {
+            active: true,
+            cssClass: '',
+            group: 'primary',
+            id: 'main',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Environment.Tabs.Main'
+        },
+        information: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'information',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Environment.Tabs.Information'
+        }
+    };
 
     async _prepareContext(_options) {
-        return {
-            title: `${this.document.name} - ${game.i18n.localize(SYSTEM.ACTOR.adversaryTypes[this.document.system.type].name)}`,
-            user: this.document,
-            source: this.document.toObject(),
-            fields: this.document.schema.fields,
-            data: {
-                type: game.i18n.localize(SYSTEM.ACTOR.adversaryTypes[this.document.system.type].name),
-                features: this.document.items.reduce((acc, x) => {
-                    if (x.type === 'feature') {
-                        const feature = x.toObject();
-                        acc.push({
-                            ...feature,
-                            system: {
-                                ...feature.system,
-                                actionType: game.i18n.localize(SYSTEM.ITEM.actionTypes[feature.system.actionType].name)
-                            },
-                            uuid: x.uuid
-                        });
-                    }
+        const context = await super._prepareContext(_options);
+        context.document = this.document;
+        context.tabs = super._getTabs(this.constructor.TABS);
 
-                    return acc;
-                }, [])
-            },
-            editMode: this.editMode,
-            config: SYSTEM
-        };
+        return context;
     }
 
     static async _updateForm(event, _, formData) {
@@ -80,60 +62,41 @@ export default class DhpEnvironment extends DaggerheartSheet(DocumentSheetV2) {
         this.render();
     }
 
-    static toggleSlider() {
-        this.editMode = !this.editMode;
+    static async addAdversary() {
+        await this.document.update({
+            [`system.potentialAdversaries.${foundry.utils.randomID()}.label`]: game.i18n.localize(
+                'DAGGERHEART.Sheets.Environment.newAdversary'
+            )
+        });
         this.render();
     }
 
-    static async viewFeature(_, button) {
-        const move = await fromUuid(button.dataset.feature);
-        move.sheet.render(true);
-    }
-
     static async addFeature() {
-        const result = await this.document.createEmbeddedDocuments('Item', [
-            {
-                name: game.i18n.localize('DAGGERHEART.Sheets.Environment.NewFeature'),
-                type: 'feature'
-            }
-        ]);
-
-        await result[0].sheet.render(true);
+        ui.notifications.error('Not Implemented yet. Awaiting datamodel rework');
     }
 
-    static async removeFeature(_, button) {
-        await this.document.items.find(x => x.uuid === button.dataset.feature).delete();
+    static async deleteProperty(_, target) {
+        await this.document.update({ [`${target.dataset.path}.-=${target.id}`]: null });
+        this.render();
     }
 
-    static async addTone() {
-        await this.document.update({ 'system.toneAndFeel': [...this.document.system.toneAndFeel, ''] });
+    static async viewAdversary(_, button) {
+        const adversary = foundry.utils.getProperty(
+            this.document.system.potentialAdversaries,
+            `${button.dataset.potentialAdversary}.adversaries.${button.dataset.adversary}`
+        );
+        adversary.sheet.render(true);
     }
 
-    static async removeTone(button) {
-        await this.document.update({
-            'system.toneAndFeel': this.document.system.toneAndFeel.filter(
-                (_, index) => index !== Number.parseInt(button.dataset.tone)
-            )
-        });
-    }
-
-    static async useFeature(_, button) {
-        const item = this.document.items.find(x => x.uuid === button.dataset.feature);
-
-        const cls = getDocumentClass('ChatMessage');
-        const msg = new cls({
-            user: game.user.id,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/ability-use.hbs',
-                {
-                    title: game.i18n.format('DAGGERHEART.Chat.EnvironmentTitle', {
-                        actionType: button.dataset.actionType
-                    }),
-                    card: { name: item.name, img: item.img, description: item.system.description }
-                }
-            )
-        });
-
-        cls.create(msg.toObject());
+    async _onDrop(event) {
+        const data = TextEditor.getDragEventData(event);
+        const item = await fromUuid(data.uuid);
+        if (item.type === 'adversary') {
+            const target = event.target.closest('.adversary-container');
+            const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries.${item.id}`;
+            await this.document.update({
+                [path]: item.uuid
+            });
+        }
     }
 }

@@ -1,12 +1,12 @@
 <fieldset class="left-main-container experience-container">
     <legend class="legend">{{localize "DAGGERHEART.Sheets.PC.Experience.Title"}}</legend>
-    {{#each document.system.experiences as |experience index|}}
+    {{#each document.system.experiences as |experience id|}}
         <div class="experience-row">
-            <input class="experience-description" data-index={{index}} value="{{experience.description}}" type="text" />
-            <div class="experience-value">{{experience.value}}</div>
+            <input name="{{concat "system.experiences." id ".description"}}" data-experience={{id}} value="{{experience.description}}" type="text" />
+            <div name="{{concat "system.experiences." id ".value"}}" class="experience-value">{{experience.total}}</div>
         </div>
     {{/each}}
-    {{#times (subtract 5 document.system.experiences.length)}}
+    {{#times (subtract 5 (length document.system.experiences))}}
         <div class="experience-row">
             <input type="text" class="disabled-experience" disabled />
             <div class="experience-value empty"></div>

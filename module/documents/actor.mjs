@@ -3,6 +3,7 @@ import NpcRollSelectionDialog from '../applications/npcRollSelectionDialog.mjs';
 import RollSelectionDialog from '../applications/rollSelectionDialog.mjs';
 import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
 import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
+import DHDualityRoll from '../data/chat-message/dualityRoll.mjs';
 
 export default class DhpActor extends Actor {
     async _preCreate(data, options, user) {
@@ -10,7 +11,7 @@ export default class DhpActor extends Actor {
 
         // Configure prototype token settings
         const prototypeToken = {};
-        if (this.type === 'pc')
+        if (this.type === 'character')
             Object.assign(prototypeToken, {
                 sight: { enabled: true },
                 actorLink: true,
@@ -28,7 +29,7 @@ export default class DhpActor extends Actor {
     }
 
     async updateLevel(newLevel) {
-        if (this.type !== 'pc' || newLevel === this.system.levelData.level.changed) return;
+        if (this.type !== 'character' || newLevel === this.system.levelData.level.changed) return;
 
         if (newLevel > this.system.levelData.level.current) {
             await this.update({ 'system.levelData.level.changed': newLevel });
@@ -39,17 +40,65 @@ export default class DhpActor extends Actor {
                 return acc;
             }, {});
 
-            const domainCards = Object.keys(this.system.levelData.levelups)
+            const domainCards = [];
+            const experiences = [];
+            const subclassFeatureState = { class: null, multiclass: null };
+            let multiclass = null;
+            Object.keys(this.system.levelData.levelups)
                 .filter(x => x > newLevel)
-                .flatMap(levelKey => {
+                .forEach(levelKey => {
                     const level = this.system.levelData.levelups[levelKey];
                     const achievementCards = level.achievements.domainCards.map(x => x.itemUuid);
                     const advancementCards = level.selections.filter(x => x.type === 'domainCard').map(x => x.itemUuid);
-                    return [...achievementCards, ...advancementCards];
+                    domainCards.push(...achievementCards, ...advancementCards);
+                    experiences.push(...Object.keys(level.achievements.experiences));
+
+                    const subclass = level.selections.find(x => x.type === 'subclass');
+                    if (subclass) {
+                        const path = subclass.secondaryData.isMulticlass === 'true' ? 'multiclass' : 'class';
+                        const subclassState = Number(subclass.secondaryData.featureState) - 1;
+                        subclassFeatureState[path] = subclassFeatureState[path]
+                            ? Math.min(subclassState, subclassFeatureState[path])
+                            : subclassState;
+                    }
+
+                    multiclass = level.selections.find(x => x.type === 'multiclass');
                 });
 
-            for (var domainCard of domainCards) {
-                const itemCard = await this.items.find(x => x.uuid === domainCard);
+            if (experiences.length > 0) {
+                this.update({
+                    'system.experiences': experiences.reduce((acc, key) => {
+                        acc[`-=${key}`] = null;
+                        return acc;
+                    }, {})
+                });
+            }
+
+            if (subclassFeatureState.class) {
+                this.system.class.subclass.update({ 'system.featureState': subclassFeatureState.class });
+            }
+
+            if (subclassFeatureState.multiclass) {
+                this.system.multiclass.subclass.update({ 'system.featureState': subclassFeatureState.multiclass });
+            }
+
+            if (multiclass) {
+                const multiclassSubclass = this.items.find(x => x.type === 'subclass' && x.system.isMulticlass);
+                const multiclassItem = this.items.find(x => x.uuid === multiclass.itemUuid);
+
+                multiclassSubclass.delete();
+                multiclassItem.delete();
+
+                this.update({
+                    'system.multiclass': {
+                        value: null,
+                        subclass: null
+                    }
+                });
+            }
+
+            for (let domainCard of domainCards) {
+                const itemCard = this.items.find(x => x.uuid === domainCard);
                 itemCard.delete();
             }
 
@@ -71,6 +120,94 @@ export default class DhpActor extends Actor {
         const levelups = {};
         for (var levelKey of Object.keys(levelupData)) {
             const level = levelupData[levelKey];
+
+            for (var experienceKey in level.achievements.experiences) {
+                const experience = level.achievements.experiences[experienceKey];
+                await this.update({
+                    [`system.experiences.${experienceKey}`]: {
+                        description: experience.name,
+                        value: experience.modifier
+                    }
+                });
+            }
+
+            let multiclass = null;
+            const domainCards = [];
+            const subclassFeatureState = { class: null, multiclass: null };
+            const selections = [];
+            for (var optionKey of Object.keys(level.choices)) {
+                const selection = level.choices[optionKey];
+                for (var checkboxNr of Object.keys(selection)) {
+                    const checkbox = selection[checkboxNr];
+
+                    if (checkbox.type === 'multiclass') {
+                        multiclass = {
+                            ...checkbox,
+                            level: Number(levelKey),
+                            optionKey: optionKey,
+                            checkboxNr: Number(checkboxNr)
+                        };
+                    } else if (checkbox.type === 'domainCard') {
+                        domainCards.push({
+                            ...checkbox,
+                            level: Number(levelKey),
+                            optionKey: optionKey,
+                            checkboxNr: Number(checkboxNr)
+                        });
+                    } else {
+                        if (checkbox.type === 'subclass') {
+                            const path = checkbox.secondaryData.isMulticlass === 'true' ? 'multiclass' : 'class';
+                            subclassFeatureState[path] = Math.max(
+                                Number(checkbox.secondaryData.featureState),
+                                subclassFeatureState[path]
+                            );
+                        }
+
+                        selections.push({
+                            ...checkbox,
+                            level: Number(levelKey),
+                            optionKey: optionKey,
+                            checkboxNr: Number(checkboxNr)
+                        });
+                    }
+                }
+            }
+
+            if (multiclass) {
+                const subclassItem = await foundry.utils.fromUuid(multiclass.secondaryData.subclass);
+                const subclassData = subclassItem.toObject();
+                const multiclassItem = await foundry.utils.fromUuid(multiclass.data[0]);
+                const multiclassData = multiclassItem.toObject();
+
+                const embeddedItem = await this.createEmbeddedDocuments('Item', [
+                    {
+                        ...multiclassData,
+                        system: {
+                            ...multiclassData.system,
+                            domains: [multiclass.secondaryData.domain],
+                            isMulticlass: true
+                        }
+                    }
+                ]);
+
+                await this.createEmbeddedDocuments('Item', [
+                    {
+                        ...subclassData,
+                        system: {
+                            ...subclassData.system,
+                            isMulticlass: true
+                        }
+                    }
+                ]);
+                selections.push({ ...multiclass, itemUuid: embeddedItem[0].uuid });
+            }
+
+            for (var domainCard of domainCards) {
+                const item = await foundry.utils.fromUuid(domainCard.data[0]);
+                const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                selections.push({ ...domainCard, itemUuid: embeddedItem[0].uuid });
+            }
+
             const achievementDomainCards = [];
             for (var card of Object.values(level.achievements.domainCards)) {
                 const item = await foundry.utils.fromUuid(card.uuid);
@@ -79,27 +216,14 @@ export default class DhpActor extends Actor {
                 achievementDomainCards.push(card);
             }
 
-            const selections = [];
-            for (var optionKey of Object.keys(level.choices)) {
-                const selection = level.choices[optionKey];
-                for (var checkboxNr of Object.keys(selection)) {
-                    const checkbox = selection[checkboxNr];
-                    let itemUuid = null;
+            if (subclassFeatureState.class) {
+                await this.system.class.subclass.update({ 'system.featureState': subclassFeatureState.class });
+            }
 
-                    if (checkbox.type === 'domainCard') {
-                        const item = await foundry.utils.fromUuid(checkbox.data[0]);
-                        const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
-                        itemUuid = embeddedItem[0].uuid;
-                    }
-
-                    selections.push({
-                        ...checkbox,
-                        level: Number(levelKey),
-                        optionKey: optionKey,
-                        checkboxNr: Number(checkboxNr),
-                        itemUuid
-                    });
-                }
+            if (subclassFeatureState.multiclass) {
+                await this.system.multiclass.subclass.update({
+                    'system.featureState': subclassFeatureState.multiclass
+                });
             }
 
             levelups[levelKey] = {
@@ -123,154 +247,176 @@ export default class DhpActor extends Actor {
         });
     }
 
-    async diceRoll(modifier, shiftKey) {
-        if (this.type === 'pc') {
-            return await this.dualityRoll(modifier, shiftKey);
-        } else {
-            return await this.npcRoll(modifier, shiftKey);
-        }
-    }
-
-    async npcRoll(modifier, shiftKey) {
-        let advantage = null;
-
-        const modifiers = [
-            {
-                value: Number.parseInt(modifier.value),
-                label: modifier.value >= 0 ? `+${modifier.value}` : `-${modifier.value}`,
-                title: modifier.title
-            }
-        ];
-        if (!shiftKey) {
-            const dialogClosed = new Promise((resolve, _) => {
-                new NpcRollSelectionDialog(this.system.experiences, resolve).render(true);
-            });
-            const result = await dialogClosed;
-
-            advantage = result.advantage;
-            result.experiences.forEach(x =>
-                modifiers.push({
-                    value: x.value,
-                    label: x.value >= 0 ? `+${x.value}` : `-${x.value}`,
-                    title: x.description
-                })
-            );
-        }
-
-        const roll = Roll.create(
-            `${advantage === true || advantage === false ? 2 : 1}d20${advantage === true ? 'kh' : advantage === false ? 'kl' : ''} ${modifiers.map(x => `+ ${x.value}`).join(' ')}`
-        );
-        let rollResult = await roll.evaluate();
-        const dice = [];
-        for (var i = 0; i < rollResult.terms.length; i++) {
-            const term = rollResult.terms[i];
-            if (term.faces) {
-                dice.push({ type: `d${term.faces}`, rolls: term.results.map(x => ({ value: x.result })) });
-            }
-        }
-
-        // There is Only ever one dice term here
-        return { roll, dice: dice[0], modifiers, advantageState: advantage === true ? 1 : advantage === false ? 2 : 0 };
-    }
-
-    async dualityRoll(modifier, shiftKey, bonusDamage = []) {
+    /**
+     * @param {object} config
+     * @param {Event} config.event
+     * @param {string} config.title
+     * @param {object} config.roll
+     * @param {number} config.roll.modifier
+     * @param {boolean} [config.roll.simple=false]
+     * @param {string} [config.roll.type]
+     * @param {number} [config.roll.difficulty]
+     * @param {any} [config.damage]
+     * @param {object} [config.chatMessage]
+     * @param {string} config.chatMessage.template
+     * @param {boolean} [config.chatMessage.mute]
+     * @param {boolean} [config.checkTarget]
+     */
+    async diceRoll(config) {
         let hopeDice = 'd12',
             fearDice = 'd12',
-            advantageDice = null,
-            disadvantageDice = null,
-            bonusDamageString = '';
+            advantageDice = 'd6',
+            disadvantageDice = 'd6',
+            advantage = config.event.altKey ? true : config.event.ctrlKey ? false : null,
+            targets,
+            damage = config.damage,
+            modifiers = this.formatRollModifier(config.roll),
+            rollConfig,
+            formula,
+            hope,
+            fear;
 
-        const modifiers =
-            modifier.value !== null
-                ? [
-                      {
-                          value: modifier.value ? Number.parseInt(modifier.value) : 0,
-                          label:
-                              modifier.value >= 0
-                                  ? `${modifier.title} +${modifier.value}`
-                                  : `${modifier.title} ${modifier.value}`,
-                          title: modifier.title
-                      }
-                  ]
-                : [];
-        if (!shiftKey) {
+        if (!config.event.shiftKey && !config.event.altKey && !config.event.ctrlKey) {
             const dialogClosed = new Promise((resolve, _) => {
-                new RollSelectionDialog(
-                    this.system.experiences,
-                    bonusDamage,
-                    this.system.resources.hope.value,
-                    resolve
-                ).render(true);
+                this.type === 'character'
+                    ? new RollSelectionDialog(
+                          this.system.experiences,
+                          this.system.resources.hope.value,
+                          resolve
+                      ).render(true)
+                    : new NpcRollSelectionDialog(this.system.experiences, resolve).render(true);
             });
-            const result = await dialogClosed;
-            (hopeDice = result.hope),
-                (fearDice = result.fear),
-                (advantageDice = result.advantage),
-                (disadvantageDice = result.disadvantage);
-            result.experiences.forEach(x =>
+            rollConfig = await dialogClosed;
+
+            advantage = rollConfig.advantage;
+            hopeDice = rollConfig.hope;
+            fearDice = rollConfig.fear;
+
+            rollConfig.experiences.forEach(x =>
                 modifiers.push({
                     value: x.value,
                     label: x.value >= 0 ? `+${x.value}` : `-${x.value}`,
                     title: x.description
                 })
             );
-            bonusDamageString = result.bonusDamage;
 
-            const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
+            if (this.type === 'character') {
+                const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
 
-            if (automateHope && result.hopeUsed) {
-                await this.update({
-                    'system.resources.hope.value': this.system.resources.hope.value - result.hopeUsed
-                });
+                if (automateHope && result.hopeUsed) {
+                    await this.update({
+                        'system.resources.hope.value': this.system.resources.hope.value - result.hopeUsed
+                    });
+                }
             }
         }
-        const roll = new Roll(
-            `1${hopeDice} + 1${fearDice}${advantageDice ? ` + 1${advantageDice}` : disadvantageDice ? ` - 1${disadvantageDice}` : ''} ${modifiers.map(x => `+ ${x.value}`).join(' ')}`
-        );
-        let rollResult = await roll.evaluate();
-        setDiceSoNiceForDualityRoll(rollResult, advantageDice, disadvantageDice);
 
-        const hope = rollResult.dice[0].results[0].result;
-        const fear = rollResult.dice[1].results[0].result;
-        const advantage = advantageDice ? rollResult.dice[2].results[0].result : null;
-        const disadvantage = disadvantageDice ? rollResult.dice[2].results[0].result : null;
-
-        if (disadvantage) {
-            rollResult = { ...rollResult, total: rollResult.total - Math.max(hope, disadvantage) };
+        if (this.type === 'character') {
+            formula = `1${hopeDice} + 1${fearDice}${advantage === true ? ` + 1d6` : advantage === false ? ` - 1d6` : ''}`;
+        } else {
+            formula = `${advantage === true || advantage === false ? 2 : 1}d20${advantage === true ? 'kh' : advantage === false ? 'kl' : ''}`;
         }
-        if (advantage) {
-            rollResult = { ...rollResult, total: 'Select Hope Die' };
-        }
+        formula += ` ${modifiers.map(x => `+ ${x.value}`).join(' ')}`;
+        const roll = await Roll.create(formula).evaluate();
+        const dice = roll.dice.flatMap(dice => ({
+            denomination: dice.denomination,
+            number: dice.number,
+            total: dice.total,
+            results: dice.results.map(result => ({ result: result.result, discarded: !result.active }))
+        }));
 
-        const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
-        if (automateHope && hope > fear) {
-            await this.update({
-                'system.resources.hope.value': Math.min(
-                    this.system.resources.hope.value + 1,
-                    this.system.resources.hope.max
-                )
-            });
-        }
-
-        if (automateHope && hope === fear) {
-            await this.update({
-                'system.resources': {
-                    'hope.value': Math.min(this.system.resources.hope.value + 1, this.system.resources.hope.max),
-                    'stress.value': Math.max(this.system.resources.stress.value - 1, 0)
+        if (this.type === 'character') {
+            setDiceSoNiceForDualityRoll(roll, advantage);
+            hope = roll.dice[0].results[0].result;
+            fear = roll.dice[1].results[0].result;
+            if (
+                game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope) &&
+                config.roll.type === 'action'
+            ) {
+                if (hope > fear) {
+                    await this.update({
+                        'system.resources.hope.value': Math.min(
+                            this.system.resources.hope.value + 1,
+                            this.system.resources.hope.max
+                        )
+                    });
+                } else if (hope === fear) {
+                    await this.update({
+                        'system.resources': {
+                            'hope.value': Math.min(
+                                this.system.resources.hope.value + 1,
+                                this.system.resources.hope.max
+                            ),
+                            'stress.value': Math.max(this.system.resources.stress.value - 1, 0)
+                        }
+                    });
                 }
+            }
+        }
+
+        if (config.checkTarget) {
+            targets = Array.from(game.user.targets).map(x => {
+                const target = {
+                    id: x.id,
+                    name: x.actor.name,
+                    img: x.actor.img,
+                    difficulty: x.actor.system.difficulty,
+                    evasion: x.actor.system.evasion?.value
+                };
+
+                target.hit = target.difficulty ? roll.total >= target.difficulty : roll.total >= target.evasion;
+
+                return target;
             });
         }
 
-        return {
-            roll,
-            rollResult,
-            hope: { dice: hopeDice, value: hope },
-            fear: { dice: fearDice, value: fear },
-            advantage: { dice: advantageDice, value: advantage },
-            disadvantage: { dice: disadvantageDice, value: disadvantage },
-            modifiers: modifiers,
-            bonusDamageString
-        };
+        if (config.chatMessage) {
+            const configRoll = {
+                title: config.title,
+                origin: this.id,
+                dice,
+                roll,
+                modifiers: modifiers.filter(x => x.label),
+                advantageState: advantage
+            };
+            if (this.type === 'character') {
+                configRoll.hope = { dice: hopeDice, value: hope };
+                configRoll.fear = { dice: fearDice, value: fear };
+                configRoll.advantage = { dice: advantageDice, value: roll.dice[2]?.results[0].result ?? null };
+            }
+            if (damage) configRoll.damage = damage;
+            if (targets) configRoll.targets = targets;
+            const systemData =
+                    this.type === 'character' && !config.roll.simple ? new DHDualityRoll(configRoll) : configRoll,
+                cls = getDocumentClass('ChatMessage'),
+                msg = new cls({
+                    type: config.chatMessage.type ?? 'dualityRoll',
+                    sound: config.chatMessage.mute ? null : CONFIG.sounds.dice,
+                    system: systemData,
+                    content: config.chatMessage.template,
+                    rolls: [roll]
+                });
+
+            await cls.create(msg.toObject());
+        }
+        return roll;
+    }
+
+    formatRollModifier(roll) {
+        const modifier = roll.modifier !== null ? Number.parseInt(roll.modifier) : null;
+        return modifier !== null
+            ? [
+                  {
+                      value: modifier,
+                      label: roll.label
+                          ? modifier >= 0
+                              ? `${roll.label} +${modifier}`
+                              : `${roll.label} ${modifier}`
+                          : null,
+                      title: roll.label
+                  }
+              ]
+            : [];
     }
 
     async damageRoll(title, damage, targets, shiftKey) {
@@ -300,7 +446,11 @@ export default class DhpActor extends Actor {
         for (var i = 0; i < rollResult.terms.length; i++) {
             const term = rollResult.terms[i];
             if (term.faces) {
-                dice.push({ type: `d${term.faces}`, rolls: term.results.map(x => x.result) });
+                dice.push({
+                    type: `d${term.faces}`,
+                    rolls: term.results.map(x => x.result),
+                    total: term.results.reduce((acc, x) => acc + x.result, 0)
+                });
             } else if (term.operator) {
             } else if (term.number) {
                 const operator = i === 0 ? '' : rollResult.terms[i - 1].operator;
@@ -399,11 +549,6 @@ export default class DhpActor extends Actor {
                 }
             });
         }
-    }
-
-    async emulateItemDrop(data) {
-        const event = new DragEvent('drop', { altKey: game.keyboard.isModifierActive('Alt') });
-        return this.sheet._onDropItem(event, { data: data });
     }
 
     //Move to action-scope?

@@ -114,7 +114,7 @@ export const getCommandTarget = () => {
         ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.NoSelectedToken'));
         return null;
     }
-    if (target.type !== 'pc') {
+    if (target.type !== 'character') {
         ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.OnlyUseableByPC'));
         return null;
     }
@@ -122,14 +122,16 @@ export const getCommandTarget = () => {
     return target;
 };
 
-export const setDiceSoNiceForDualityRoll = (rollResult, advantage, disadvantage) => {
+export const setDiceSoNiceForDualityRoll = (rollResult, advantageState) => {
     const diceSoNicePresets = getDiceSoNicePresets();
     rollResult.dice[0].options.appearance = diceSoNicePresets.hope;
     rollResult.dice[1].options.appearance = diceSoNicePresets.fear;
-    if (advantage) {
-        rollResult.dice[2].options.appearance = diceSoNicePresets.advantage;
-    } else if (disadvantage) {
-        rollResult.dice[2].options.appearance = diceSoNicePresets.disadvantage;
+    if (rollResult.dice[2]) {
+        if (advantageState === true) {
+            rollResult.dice[2].options.appearance = diceSoNicePresets.advantage;
+        } else if (advantageState === false) {
+            rollResult.dice[2].options.appearance = diceSoNicePresets.disadvantage;
+        }
     }
 };
 
@@ -172,17 +174,17 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
         templates: {
             tag(tagData) {
                 return `<tag title="${tagData.title || tagData.value}"
-                    contenteditable='false'
-                    spellcheck='false'
-                    tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
-                    class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
-                    ${this.getAttributes(tagData)}> 
-            <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
-            <div>
-                <span class="${this.settings.classNames.tagText}">${tagData[this.settings.tagTextProp] || tagData.value}</span>
-                ${tagData.src ? `<img src="${tagData.src}"></i>` : ''}
-            </div>
-            </tag>`;
+                            contenteditable='false'
+                            spellcheck='false'
+                            tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
+                            class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
+                            ${this.getAttributes(tagData)}> 
+                    <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
+                    <div>
+                        <span class="${this.settings.classNames.tagText}">${tagData[this.settings.tagTextProp] || tagData.value}</span>
+                        ${tagData.src ? `<img src="${tagData.src}"></i>` : ''}
+                    </div>
+                </tag>`;
             }
         }
     });
@@ -221,4 +223,15 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
 
         return acc;
     }, {});
+};
+
+// Fix on Foundry native formula replacement for DH
+const nativeReplaceFormulaData = Roll.replaceFormulaData;
+Roll.replaceFormulaData = function (formula, data, { missing, warn = false } = {}) {
+    const terms = [
+        { term: 'prof', default: 1 },
+        { term: 'cast', default: 1 }
+    ];
+    formula = terms.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
+    return nativeReplaceFormulaData(formula, data, { missing, warn });
 };

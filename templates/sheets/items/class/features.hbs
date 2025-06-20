@@ -3,15 +3,25 @@
     data-tab='{{tabs.features.id}}'
     data-group='{{tabs.features.group}}'
 >
+    <div class="two-columns even">
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.Sheets.Class.HopeFeatures"}} <a><i class="fa-solid fa-plus icon-button" data-type="hope" data-action="addFeature"></i></a></legend>
+            <div class="feature-list">
+                {{#each source.system.hopeFeatures as |feature index|}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='hope' feature=feature}}
+                {{/each}}
+            </div>
+        </fieldset>
 
-    <fieldset>
-        <legend>{{localize "DAGGERHEART.Sheets.Feature.Tabs.Features"}}</legend>
-        <div class="feature-list">
-            {{#each source.system.features as |feature index|}}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' feature=feature}}
-            {{/each}}
-        </div>
-    </fieldset>
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.Sheets.Class.ClassFeatures"}} <a><i class="fa-solid fa-plus icon-button" data-type="class" data-action="addFeature"></i></a></legend>
+            <div class="feature-list">
+                {{#each source.system.classFeatures as |feature index|}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='class' feature=feature}}
+                {{/each}}
+            </div>
+        </fieldset>
+    </div>
 
     <fieldset>
         <legend>{{localize "TYPES.Item.subclass"}}</legend>

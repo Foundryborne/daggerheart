@@ -1,0 +1,13 @@
+<fieldset class="action-category">
+    <legend class="action-category-label" data-action="toggleSection" data-section="range">
+        <div>Range{{#if fields.target}} & Target{{/if}}</div>
+    </legend>
+    <div class="action-category-data open">
+        {{formField fields.range value=source.range label="Range" name="range" localize=true}}
+    </div>
+    {{#if fields.target}}
+    <div class="action-category-data open">
+        {{formField fields.target.type value=source.target.type label="Target" name="target.type" localize=true}}
+    </div>
+    {{/if}}
+</fieldset>

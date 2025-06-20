@@ -1,0 +1,107 @@
+<section
+    class='tab {{tabs.equipment.cssClass}} {{tabs.equipment.id}}'
+    data-tab='{{tabs.equipment.id}}'
+    data-group='{{tabs.equipment.group}}'
+>
+    <div class="main-selections-container">
+        <div class="main-equipment-selection">
+            <fieldset class="equipment-selection">
+                <legend>{{localize "DAGGERHEART.CharacterCreation.SuggestedArmor"}}</legend>
+
+                <div class="selections-container armor-card">
+                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" armor }}
+                        {{localize "DAGGERHEART.CharacterCreation.SelectArmor"}}
+                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                </div>
+                {{#if armor.suggestion}}
+                    <fieldset class="suggestion-container">
+                        <legend>{{armor.suggestion.name}}</legend>
+                        <div class="suggestion-inner-container {{#if armor.suggestion.taken}}taken{{/if}}" data-action="viewItem" data-uuid="{{armor.suggestion.uuid}}">
+                            <img src="{{armor.suggestion.img}}" />
+                        </div>
+                    </fieldset>
+                {{/if}}
+            </fieldset>
+
+            <fieldset class="equipment-selection">
+                <legend>{{localize "DAGGERHEART.CharacterCreation.SuggestedWeapons"}}</legend>
+
+                <div class="equipment-subsection">
+                    <div class="equipment-wrapper">
+                        <div class="selections-container primary-weapon-card">
+                            {{#> "systems/daggerheart/templates/components/card-preview.hbs" primaryWeapon }}
+                                {{localize "DAGGERHEART.CharacterCreation.SelectPrimaryWeapon"}}
+                            {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                        </div>
+                        {{#if primaryWeapon.suggestion}}
+                            <fieldset class="suggestion-container">
+                                <legend>{{primaryWeapon.suggestion.name}}</legend>
+                                <div class="suggestion-inner-container {{#if primaryWeapon.suggestion.taken}}taken{{/if}}" data-action="viewItem" data-uuid="{{primaryWeapon.suggestion.uuid}}">
+                                    <img src="{{primaryWeapon.suggestion.img}}" />
+                                </div>
+                            </fieldset>
+                        {{/if}}
+                    </div>
+                    <div class="equipment-wrapper">
+                        <div class="selections-container secondary-weapon-card">
+                            {{#> "systems/daggerheart/templates/components/card-preview.hbs" secondaryWeapon }}
+                                {{localize "DAGGERHEART.CharacterCreation.SelectSecondaryWeapon"}}
+                            {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                        </div>
+                        {{#if secondaryWeapon.suggestion}}
+                            <fieldset class="suggestion-container">
+                                <legend>{{secondaryWeapon.suggestion.name}}</legend>
+                                <div 
+                                    class="suggestion-inner-container {{#if secondaryWeapon.suggestion.taken}}taken{{/if}}" 
+                                    data-action="viewItem" data-uuid="{{secondaryWeapon.suggestion.uuid}}"
+                                >
+                                    <img src="{{secondaryWeapon.suggestion.img}}" />
+                                </div>
+                            </fieldset>
+                        {{/if}}
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="main-equipment-selection triple">
+            <fieldset class="equipment-selection">
+                <legend>{{localize "DAGGERHEART.CharacterCreation.StartingItems"}}</legend>
+
+                <div class="simple-equipment-container">
+                    {{#each inventory.take}}
+                        <div class="simple-equipment">
+                            <label>{{this.name}}</label>
+                            <img src="{{this.img}}" />
+                        </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+
+            <fieldset class="equipment-selection">
+                <legend>{{localize "DAGGERHEART.CharacterCreation.Choice"}}</legend>
+
+                <div class="simple-equipment-container">
+                    {{#each inventory.choiceA.suggestions}}
+                        <div class="simple-equipment selectable {{#if (not this.selected)}}inactive{{/if}}" data-action="equipmentChoice" data-path="choiceA" data-uuid="{{this.uuid}}">
+                            <label>{{this.name}}</label>
+                            <img src="{{this.img}}" />
+                        </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+
+            <fieldset class="equipment-selection">
+                <legend>{{localize "DAGGERHEART.CharacterCreation.Choice"}}</legend>
+
+                <div class="simple-equipment-container">
+                    {{#each inventory.choiceB.suggestions}}
+                        <div class="simple-equipment selectable {{#if (not this.selected)}}inactive{{/if}}" data-action="equipmentChoice" data-path="choiceB" data-uuid="{{this.uuid}}"  >
+                            <label>{{this.name}}</label>
+                            <img src="{{this.img}}" />
+                        </div>
+                    {{/each}}
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</section>

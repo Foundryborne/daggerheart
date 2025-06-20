@@ -1,0 +1,25 @@
+<div>
+    {{formGroup settingFields.schema.fields.maxFear value=settingFields._source.maxFear localize=true}}
+
+    <h4>{{localize "DAGGERHEART.Settings.Homebrew.FIELDS.traitArray.label"}}</h4>
+    <div class="trait-array-container">
+        {{#each settingFields._source.traitArray as |trait index|}}
+            <div class="trait-array-item">
+                <label>{{localize "DAGGERHEART.General.Modifier"}} {{add index 1}}</label>
+                <input type="text" data-dtype="Number" name="{{concat "traitArray." index}}" value="{{this}}" />
+            </div>
+        {{/each}}
+    </div>
+   
+    <footer class="form-footer">
+        <button data-action="reset">
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+            <span>{{localize "Reset"}}</span>
+        </button>
+        <button data-action="save" >
+            <i class="fa-solid fa-floppy-disk"></i>
+            <span>{{localize "Save Changes"}}</span>
+        </button>
+    </footer>
+</div>
+  

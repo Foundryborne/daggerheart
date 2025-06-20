@@ -50,7 +50,7 @@ export default class Resources extends HandlebarsApplicationMixin(ApplicationV2)
     }
 
     get maxFear() {
-        return game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.MaxFear);
+        return game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew).maxFear;
     }
 
     /* -------------------------------------------- */
@@ -59,7 +59,7 @@ export default class Resources extends HandlebarsApplicationMixin(ApplicationV2)
 
     /** @override */
     async _prepareContext(_options) {
-        const display = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.DisplayFear),
+        const display = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear,
             current = this.currentFear,
             max = this.maxFear,
             percent = (current / max) * 100,

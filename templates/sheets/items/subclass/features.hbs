@@ -5,22 +5,16 @@
 >
     <fieldset>
         <legend>{{localize "DAGGERHEART.Sheets.Subclass.Tabs.Foundation"}}</legend>
-        {{#each source.system.foundationFeature.abilities as |feature key|}}
-            {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' feature=feature}}
-        {{/each}}
+        {{> 'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-features.hbs' level='foundationFeature' feature=source.system.foundationFeature}}
     </fieldset>
 
     <fieldset>
         <legend>{{localize "DAGGERHEART.Sheets.Subclass.Tabs.Specialization"}}</legend>
-        {{#each source.system.specializationFeature.abilities as |feature key|}}
-            {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' feature=feature}}
-        {{/each}}
+        {{> 'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-features.hbs' level='specializationFeature' feature=source.system.specializationFeature}}
     </fieldset>
 
     <fieldset>
         <legend>{{localize "DAGGERHEART.Sheets.Subclass.Tabs.Mastery"}}</legend>
-        {{#each source.system.masteryFeature.abilities as |feature key|}}
-            {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' feature=feature}}
-        {{/each}}
+        {{> 'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-features.hbs' level='masteryFeature' feature=source.system.masteryFeature}}
     </fieldset>
 </section>

@@ -1,0 +1,22 @@
+<div class="two-columns even">
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.Sheets.Subclass.SubclassFeature.Actions"}} <a><i class="fa-solid fa-plus icon-button" data-level="{{level}}" data-type="action" data-action="addFeature"></i></a></legend>
+        
+        <div class="feature-list">
+            {{#each feature.actions}}
+                {{> 'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-feature.hbs' level=../level type="action" id=this._id feature=this}}
+            {{/each}}
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.Sheets.Subclass.SubclassFeature.Effects"}} <a><i class="fa-solid fa-plus icon-button" data-level="{{level}}" data-type="effect" data-action="addFeature"></i></a></legend>
+        
+        <div class="feature-list">
+            {{#each feature.effects}}
+                {{> 'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-feature.hbs' level=../level type="effect" id=this.id feature=this}}
+            {{/each}}
+        </div>
+    </fieldset>
+</div>
+

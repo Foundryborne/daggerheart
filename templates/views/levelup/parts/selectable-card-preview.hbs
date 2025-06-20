@@ -1,4 +1,4 @@
-<div class="component dh-style card-preview-container selectable {{#if this.disabled}}disabled{{/if}}" data-action="selectPreview" data-path="{{this.path}}" data-uuid="{{this.uuid}}" {{#if selected}}data-selected="true"{{/if}}>
+<div class="component dh-style card-preview-container selectable {{#if this.disabled}}disabled{{/if}}" data-action="selectPreview" data-path="{{this.path}}" data-uuid="{{this.uuid}}" data-is-multiclass="{{this.isMulticlass}}" data-feature-state="{{this.featureState}}" {{#if selected}}data-selected="true"{{/if}}>
     <div class="preview-image-outer-container">
         <img class="preview-image-container" src="{{this.img}}" />
         {{#if this.selected}}
@@ -7,5 +7,8 @@
             </div>
         {{/if}}
     </div>
-    <div class="preview-text-container">{{this.name}}</div>
+    <div class="preview-text-container">
+        <div>{{this.name}}</div>
+        <strong>{{this.featureLabel}}</strong>
+    </div>
 </div>

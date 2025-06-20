@@ -1,16 +1,11 @@
-import DaggerheartSheet from '../daggerheart-sheet.mjs';
+import { armorFeatures } from '../../../config/itemConfig.mjs';
+import { tagifyElement } from '../../../helpers/utils.mjs';
+import DHItemSheetV2 from '../item.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
-export default class ArmorSheet extends DaggerheartSheet(ItemSheetV2) {
+export default class ArmorSheet extends DHItemSheetV2(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
-        tag: 'form',
-        classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'armor'],
-        position: { width: 600 },
-        form: {
-            handler: this.updateForm,
-            submitOnChange: true,
-            closeOnSubmit: false
-        },
+        classes: ['armor'],
         dragDrop: [{ dragSelector: null, dropSelector: null }]
     };
 
@@ -18,42 +13,37 @@ export default class ArmorSheet extends DaggerheartSheet(ItemSheetV2) {
         header: { template: 'systems/daggerheart/templates/sheets/items/armor/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
+        actions: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
+            scrollable: ['.actions']
+        },
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/armor/settings.hbs',
             scrollable: ['.settings']
         }
     };
 
-    static TABS = {
-        description: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'description',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Feature.Tabs.Description'
-        },
-        settings: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'settings',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Feature.Tabs.Settings'
-        }
-    };
+    async _preparePartContext(partId, context) {
+        super._preparePartContext(partId, context);
 
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-        context.document = this.document;
-        context.config = CONFIG.daggerheart;
-        context.tabs = super._getTabs(this.constructor.TABS);
+        switch (partId) {
+            case 'settings':
+                context.features = this.document.system.features.map(x => x.value);
+                break;
+        }
 
         return context;
     }
 
-    static async updateForm(event, _, formData) {
-        await this.document.update(formData.object);
-        this.render();
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        const featureInput = htmlElement.querySelector('.features-input');
+        tagifyElement(featureInput, armorFeatures, this.onFeatureSelect.bind(this));
+    }
+
+    async onFeatureSelect(features) {
+        await this.document.update({ 'system.features': features.map(x => ({ value: x.value })) });
+        this.render(true);
     }
 }

@@ -7,19 +7,19 @@
     {{#each this.attributes as |attribute key|}}
         <div class="attribute">
             <div class="attribute-banner">
-                <img class="attribute-roll" data-action="attributeRoll" data-attribute="{{key}}" data-value="{{attribute.value}}" src="icons/svg/d12-grey.svg" />
+                <img class="attribute-roll" data-action="attributeRoll" data-attribute="{{key}}" data-value="{{attribute.total}}" src="icons/svg/d12-grey.svg" />
                 <div class="attribute-text">{{key}}</div>
             </div>
             <div class="attribute-image">
                 {{#if ../editAttributes}}
-                    <select class="attribute-value{{#if (lt attribute.base 0)}} negative{{/if}}{{#if (and (not attribute.base) (not ../abilityScoresFinished))}} unselected{{/if}}" data-attribute="{{key}}">
-                        {{#if (not (eq attribute.base 0))}}<option value="">{{attribute.base}}</option>{{/if}}
+                    <select class="attribute-value{{#if (lt attribute.total 0)}} negative{{/if}}{{#if (and (not attribute.total) (not ../abilityScoresFinished))}} unselected{{/if}}" data-attribute="{{key}}">
+                        {{#if (not (eq attribute.total 0))}}<option value="">{{attribute.total}}</option>{{/if}}
                         {{#each ../abilityScoreArray as |option|}}
-                            <option value="{{option.value}}"{{#if (eq option.value attribute.base)}} selected="selected"{{/if}}>{{option.name}}</option>
+                            <option value="{{option.total}}">{{option.name}}</option>
                         {{/each}}
                     </select>
                 {{else}}
-                    <div class="attribute-text {{#if (lt attribute.value 0)}}negative{{/if}}">{{attribute.value}}</div>
+                    <div class="attribute-text {{#if (lt attribute.total 0)}}negative{{/if}}">{{attribute.total}}</div>
                 {{/if}}
                 <img src="systems/daggerheart/assets/AttributeShield.svg" />
                 <div>
