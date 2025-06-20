@@ -134,6 +134,12 @@ div.daggerheart.views.multiclass {
     }
 
     .downtime-container {
+        .downtime-header {
+            margin: 0;
+            color: light-dark(@dark-blue, @golden);
+            text-align: center;
+        }
+
         .activity-container {
             display: flex;
             align-items: center;
@@ -150,11 +156,31 @@ div.daggerheart.views.multiclass {
                 }
 
                 .activity-image {
-                    width: 120px;
+                    width: 80px;
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    margin-right: 8px;
                     border: 2px solid black;
                     border-radius: 50%;
-                    margin-right: 8px;
                     cursor: pointer;
+
+                    .activity-select-label {
+                        position: absolute;
+                        top: -9px;
+                        font-size: 14px;
+                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border-radius: 6px;
+                        color: light-dark(@beige, @dark);
+                        background-image: url(../assets/parchments/dh-parchment-light.png);
+                        padding: 0 8px;
+                        line-height: 1;
+                        font-weight: bold;
+                    }
+
+                    img {
+                        border-radius: 50%;
+                    }
 
                     &:hover,
                     &.selected {

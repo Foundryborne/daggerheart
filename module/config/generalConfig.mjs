@@ -101,65 +101,99 @@ export const conditions = {
     }
 };
 
-export const downtime = {
-    shortRest: {
+export const defaultRestOptions = {
+    shortRest: () => ({
         tendToWounds: {
             id: 'tendToWounds',
-            name: 'DAGGERHEART.Downtime.TendToWounds.Name',
+            name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.TendToWounds.Name'),
             img: 'icons/magic/life/cross-worn-green.webp',
-            description: 'DAGGERHEART.Downtime.TendToWounds.Description'
+            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.TendToWounds.Description'),
+            actions: [
+                {
+                    type: 'healing',
+                    name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.TendToWounds.Name'),
+                    img: 'icons/magic/life/cross-worn-green.webp',
+                    actionType: 'action',
+                    healing: {
+                        type: 'health',
+                        value: {
+                            custom: {
+                                enabled: true,
+                                formula: '1d4 + 1' // should be 1d4 + {tier}. How to use the roll param?
+                            }
+                        }
+                    }
+                }
+            ]
         },
         clearStress: {
             id: 'clearStress',
-            name: 'DAGGERHEART.Downtime.ClearStress.Name',
+            name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.ClearStress.Name'),
             img: 'icons/magic/perception/eye-ringed-green.webp',
-            description: 'DAGGERHEART.Downtime.ClearStress.Description'
+            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.ClearStress.Description'),
+            actions: [
+                {
+                    type: 'healing',
+                    name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.ClearStress.Name'),
+                    img: 'icons/magic/perception/eye-ringed-green.webp',
+                    actionType: 'action',
+                    healing: {
+                        type: 'stress',
+                        value: {
+                            custom: {
+                                enabled: true,
+                                formula: '1d4 + 1' // should be 1d4 + {tier}. How to use the roll param?
+                            }
+                        }
+                    }
+                }
+            ]
         },
         repairArmor: {
             id: 'repairArmor',
-            name: 'DAGGERHEART.Downtime.RepairArmor.Name',
+            name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.RepairArmor.Name'),
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
-            description: 'DAGGERHEART.Downtime.RepairArmor.Description'
+            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.RepairArmor.Description')
         },
         prepare: {
             id: 'prepare',
-            name: 'DAGGERHEART.Downtime.Prepare.Name',
+            name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.Prepare.Name'),
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
-            description: 'DAGGERHEART.Downtime.Prepare.Description'
+            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.Prepare.Description')
         }
-    },
-    longRest: {
+    }),
+    longRest: () => ({
         tendToWounds: {
             id: 'tendToWounds',
-            name: 'DAGGERHEART.Downtime.TendToWounds.Name',
+            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.TendToWounds.Name'),
             img: 'icons/magic/life/cross-worn-green.webp',
-            description: 'DAGGERHEART.Downtime.TendToWounds.Description'
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.TendToWounds.Description')
         },
         clearStress: {
             id: 'clearStress',
-            name: 'DAGGERHEART.Downtime.ClearStress.Name',
+            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.ClearStress.Name'),
             img: 'icons/magic/perception/eye-ringed-green.webp',
-            description: 'DAGGERHEART.Downtime.ClearStress.Description'
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.ClearStress.Description')
         },
         repairArmor: {
             id: 'repairArmor',
-            name: 'DAGGERHEART.Downtime.RepairArmor.Name',
+            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.RepairArmor.Name'),
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
-            description: 'DAGGERHEART.Downtime.RepairArmor.Description'
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.RepairArmor.Description')
         },
         prepare: {
             id: 'prepare',
-            name: 'DAGGERHEART.Downtime.Prepare.Name',
+            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.Prepare.Name'),
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
-            description: 'DAGGERHEART.Downtime.Prepare.Description'
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.Prepare.Description')
         },
         workOnAProject: {
             id: 'workOnAProject',
-            name: 'DAGGERHEART.Downtime.WorkOnAProject.Name',
+            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.WorkOnAProject.Name'),
             img: 'icons/skills/social/thumbsup-approval-like.webp',
-            description: 'DAGGERHEART.Downtime.WorkOnAProject.Description'
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.WorkOnAProject.Description')
         }
-    },
+    }),
     custom: {
         id: 'customActivity',
         name: '',

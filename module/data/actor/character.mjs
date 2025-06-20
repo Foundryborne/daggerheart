@@ -87,6 +87,14 @@ export default class DhCharacter extends BaseDataActor {
         };
     }
 
+    get tier() {
+        return this.levelData.level.current === 1
+            ? 1
+            : Object.values(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers).find(
+                  tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
+              ).tier;
+    }
+
     get ancestry() {
         return this.parent.items.find(x => x.type === 'ancestry') ?? null;
     }
@@ -132,19 +140,6 @@ export default class DhCharacter extends BaseDataActor {
             : this.primaryWeapon || this.secondaryWeapon
               ? burden.oneHanded.value
               : null;
-    }
-
-    get refreshableFeatures() {
-        return this.parent.items.reduce(
-            (acc, x) => {
-                if (x.type === 'feature' && x.system.refreshData?.type === 'feature' && x.system.refreshData?.type) {
-                    acc[x.system.refreshData.type].push(x);
-                }
-
-                return acc;
-            },
-            { shortRest: [], longRest: [] }
-        );
     }
 
     static async unequipBeforeEquip(itemToEquip) {
@@ -241,6 +236,14 @@ export default class DhCharacter extends BaseDataActor {
         this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
         this.evasion.total = (this.class?.evasion ?? 0) + this.evasion.bonus;
         this.proficiency.total = this.proficiency.value + this.proficiency.bonus;
+    }
+
+    getRollData() {
+        const data = super.getRollData();
+        return {
+            ...data,
+            tier: this.tier
+        };
     }
 }
 

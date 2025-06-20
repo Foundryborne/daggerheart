@@ -1,9 +1,14 @@
 <div>
     <div class="downtime-container">
-        {{#each this.options as |option key|}}
+        <h2 class="downtime-header">{{localize "DAGGERHEART.Downtime.DowntimeHeader" current=nrCurrentChoices  max=moveData.nrChoices}}</h2>
+        {{#each moveData.moves as |move key|}}
             <div class="activity-container">
                 <div class="activity-title">
-                    <img class="activity-image {{#if (eq ../selectedActivity.id key)}}selected{{/if}}" src="{{option.img}}" data-action="selectActivity" data-activity="{{key}}" />
+                    <div class="activity-image {{#if this.selected}}selected{{/if}}" data-action="selectMove" data-move="{{key}}">
+                        {{#if this.selected}}<div class="activity-select-label">{{move.selected}}</div>{{/if}}
+                        <img src="{{move.img}}" />
+                    </div>
+
                     <span class="activity-title-text">{{localize this.name}}</span>
                 </div>
                 <div class="activity-body">
@@ -11,18 +16,9 @@
                 </div>
             </div>
         {{/each}}
-        <div class="activity-container">
-            <div class="activity-title">
-                <img class="activity-image {{#if (eq selectedActivity this.customActivity)}}selected{{/if}}" src="{{this.customActivity.img}}" data-action="selectActivity" data-activity="{{this.customActivity.id}}" />
-                <input class="custom-name-input" type="text" name="name" value="{{this.customActivity.name}}" placeholder="{{localize this.customActivity.namePlaceholder}}" />
-            </div>
-            <div class="activity-body">
-                <textarea class="activity-text-area" name="description" placeholder="{{localize this.customActivity.placeholder}}">{{this.customActivity.description}}</textarea>
-            </div>
-        </div>
     </div>
     <footer class="flexrow">
-        <button data-action="takeDowntime" {{#if this.disabledDowntime}}disabled{{/if}}>{{localize "DAGGERHEART.Application.Downtime.TakeDowntime"}}</button>
-        <button data-action="close">{{localize "DAGGERHEART.Application.Cancel"}}</button>
+        <button type="button" data-action="close">{{localize "DAGGERHEART.Application.Cancel"}}</button>
+        <button type="button" data-action="takeDowntime" {{#if this.disabledDowntime}}disabled{{/if}}>{{localize "DAGGERHEART.Application.Downtime.TakeDowntime"}}</button>
     </footer>
 </div>

@@ -1,3 +1,5 @@
+import { actionsTypes } from '../data/_module.mjs';
+
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -5,25 +7,25 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         super({});
 
         this.actor = actor;
-        this.selectedActivity = null;
         this.shortrest = shortrest;
 
-        this.customActivity = SYSTEM.GENERAL.downtime.custom;
+        const options = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew).restMoves;
+        this.moveData = shortrest ? options.shortRest : options.longRest;
     }
 
     get title() {
-        return `${this.actor.name} - ${this.shortrest ? 'Short Rest' : 'Long Rest'}`;
+        return '';
     }
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'views', 'downtime'],
-        position: { width: 800, height: 'auto' },
+        position: { width: 680, height: 'auto' },
         actions: {
-            selectActivity: this.selectActivity,
+            selectMove: this.selectMove,
             takeDowntime: this.takeDowntime
         },
-        form: { handler: this.updateData, submitOnChange: true }
+        form: { handler: this.updateData, submitOnChange: true, closeOnSubmit: false }
     };
 
     static PARTS = {
@@ -33,51 +35,63 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         }
     };
 
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement
+            .querySelectorAll('.activity-image')
+            .forEach(element => element.addEventListener('contextmenu', this.deselectMove.bind(this)));
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.selectedActivity = this.selectedActivity;
-        context.options = this.shortrest ? SYSTEM.GENERAL.downtime.shortRest : SYSTEM.GENERAL.downtime.longRest;
-        context.customActivity = this.customActivity;
-
-        context.disabledDowntime =
-            !this.selectedActivity ||
-            (this.selectedActivity.id === this.customActivity.id &&
-                (!this.customActivity.name || !this.customActivity.description));
+        context.moveData = this.moveData;
+        context.nrCurrentChoices = Object.values(this.moveData.moves).reduce((acc, x) => acc + (x.selected ?? 0), 0);
+        context.disabledDowntime = context.nrCurrentChoices < context.moveData.nrChoices;
 
         return context;
     }
 
-    static selectActivity(_, button) {
-        const activity = button.dataset.activity;
-        this.selectedActivity =
-            activity === this.customActivity.id
-                ? this.customActivity
-                : this.shortrest
-                  ? SYSTEM.GENERAL.downtime.shortRest[activity]
-                  : SYSTEM.GENERAL.downtime.longRest[activity];
+    static selectMove(_, button) {
+        const nrSelected = Object.values(this.moveData.moves).reduce((acc, x) => acc + (x.selected ?? 0), 0);
+        if (nrSelected === this.moveData.nrChoices) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.Downtime.Notifications.NoMoreMoves'));
+            return;
+        }
+
+        const move = button.dataset.move;
+        this.moveData.moves[move].selected = this.moveData.moves[move].selected
+            ? this.moveData.moves[move].selected + 1
+            : 1;
+
+        this.render();
+    }
+
+    deselectMove(event) {
+        const move = event.currentTarget.dataset.move;
+        this.moveData.moves[move].selected = this.moveData.moves[move].selected
+            ? this.moveData.moves[move].selected - 1
+            : 0;
 
         this.render();
     }
 
     static async takeDowntime() {
-        const refreshedFeatures = this.shortrest
-            ? this.actor.system.refreshableFeatures.shortRest
-            : [...this.actor.system.refreshableFeatures.shortRest, ...this.actor.system.refreshableFeatures.longRest];
-        for (var feature of refreshedFeatures) {
-            await feature.system.refresh();
-        }
+        const moves = Object.values(this.moveData.moves).filter(x => x.selected);
 
         const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
             user: game.user.id,
+            system: {
+                moves: moves,
+                actor: this.actor.uuid
+            },
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/chat/downtime.hbs',
                 {
-                    player: this.actor.name,
-                    title: game.i18n.localize(this.selectedActivity.name),
-                    img: this.selectedActivity.img,
-                    description: game.i18n.localize(this.selectedActivity.description),
-                    refreshedFeatures: refreshedFeatures
+                    title: `${this.actor.name} - ${game.i18n.localize(`DAGGERHEART.Downtime.${this.shortRest ? 'ShortRest' : 'LongRest'}.title`)}`,
+                    moves: moves
                 }
             )
         });

@@ -1,0 +1,22 @@
+<div class="settings-item">
+    <div class="settings-sub-item">
+        <img src="{{this.img}}" />
+        <div>{{this.name}}</div>
+    </div>
+    <div class="settings-sub-item">
+        <a
+            data-action="editItem"
+            data-type="{{this.type}}"
+            data-id="{{this.id}}"
+        >
+            <i class="fa-solid fa-globe"></i>
+        </a>
+        <a
+            data-action="removeItem"
+            data-type="{{this.type}}"
+            data-id="{{this.id}}"
+        >
+            <i class='fas fa-trash'></i>
+        </a>
+    </div>
+</div>

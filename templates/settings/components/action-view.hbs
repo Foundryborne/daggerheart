@@ -1,0 +1,18 @@
+<div>
+    <fieldset>
+        <legend>{{localize "Description"}}</legend>
+        
+        <prose-mirror name="description" value="{{description}}" toggled=true>
+            {{{ enrichedDescription }}}
+        </prose-mirror>
+    </fieldset>
+    {{!-- <fieldset>
+        <legend>{{localize "Actions"}} <a data-action="addItem"><i class="fa-solid fa-plus"></i></a></legend>
+
+        <div class="settings-items">
+            {{#each this.actions as |action index|}}
+                {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" action type="actions" id=index }}
+            {{/each}}
+        </div>
+    </fieldset> --}}
+</div>

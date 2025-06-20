@@ -87,6 +87,11 @@
                 }
             },
             "Homebrew": {
+                "NewDowntimeMove": "Downtime Move",
+                "DowntimeMoves": "Downtime Moves",
+                "NrChoices": "# Moves Per Rest",
+                "ResetMovesTitle": "Reset {type} Downtime Moves",
+                "ResetMovesText": "Are you sure you want to reset?",
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
                     "traitArray": { "label": "Initial Trait Modifiers" }
@@ -499,29 +504,51 @@
             }
         },
         "Downtime": {
-            "TendToWounds": {
-                "Name": "Tend to Wounds",
-                "Description": "Describe how you patch yourself up and remove all marked Hit Points. You may also do this on an ally instead."
+            "DowntimeHeader": "Downtime Moves ({current}/{max})",
+            "ShortRest": {
+                "title": "Short Rest",
+                "TendToWounds": {
+                    "Name": "Tend to Wounds",
+                    "Description": "Describe how you hastily patch yourself up, then clear a number of Hit Points equal to 1d4 + your tier. You can do this to an ally instead."
+                },
+                "ClearStress": {
+                    "Name": "Clear Stress",
+                    "Description": "Describe how you blow off steam or pull yourself together, then clear a number of Stress equal to 1d4 + your tier."
+                },
+                "RepairArmor": {
+                    "Name": "Repair Armor",
+                    "Description": "Describe how you quickly repair your armor, then clear a number of Armor Slots equal to 1d4 + your tier. You can do this to an ally's armor instead."
+                },
+                "Prepare": {
+                    "Name": "Prepare",
+                    "Description": "Describe how you prepare yourself for the path ahead, then gain a Hope. If you choose to Prepare with one or more members of your party, you each gain 2 Hope."
+                }
             },
-            "ClearStress": {
-                "Name": "Clear Stress",
-                "Description": "Describe how you blow off steam or pull yourself together, and clear all marked Stress."
+            "LongRest": {
+                "title": "Long Rest",
+                "TendToWounds": {
+                    "Name": "Tend to Wounds",
+                    "Description": "Describe how you patch yourself up and remove all marked Hit Points. You may also do this on an ally instead."
+                },
+                "ClearStress": {
+                    "Name": "Clear Stress",
+                    "Description": "Describe how you blow off steam or pull yourself together, and clear all marked Stress."
+                },
+                "RepairArmor": {
+                    "Name": "Repair Armor",
+                    "Description": "Describe how you spend time repairing your armor and clear all of its Armor Slots. You may also do this to an ally's armor instead."
+                },
+                "Prepare": {
+                    "Name": "Prepare",
+                    "Description": "Describe how you are preparing for the next day's adventure, then gain a Hope. If you choose to Prepare with one or more members of your party, you may each take two Hope."
+                },
+                "WorkOnAProject": {
+                    "Name": "Work on a Project",
+                    "Description": "Establish or continue work on a project."
+                }
             },
-            "RepairArmor": {
-                "Name": "Repair Armor",
-                "Description": "Describe how you spend time repairing your armor and clear all of its Armor Slots. You may also do this to an ally’s armor instead."
-            },
-            "Prepare": {
-                "Name": "Prepare",
-                "Description": "Describe how you are preparing for the next day’s adventure, then gain a Hope. If you choose to Prepare with one or more members of your party, you may each take two Hope."
-            },
-            "WorkOnAProject": {
-                "Name": "Work on a Project",
-                "Description": "Establish or continue work on a project. The GM might ask for a roll to determine how much to tick down on the completion track."
-            },
-            "Custom": {
-                "NamePlaceholder": "Custom Activity...",
-                "Placeholder": "A custom downtime activity description..."
+            "Notifications": {
+                "NoMoreMoves": "You cannot select any more downtime moves"
             }
         },
         "DeathMoves": {

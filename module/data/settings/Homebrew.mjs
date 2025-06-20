@@ -31,8 +31,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                             actions: new fields.ArrayField(new fields.ObjectField())
                         }),
                         { initial: defaultRestOptions.longRest() }
-                    ),
-                    consequences: new fields.SchemaField({})
+                    )
                 }),
                 shortRest: new fields.SchemaField({
                     nrChoices: new fields.NumberField({ required: true, integer: true, min: 1, initial: 2 }),
