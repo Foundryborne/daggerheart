@@ -3077,6 +3077,24 @@ div.daggerheart.views.multiclass {
 .daggerheart.levelup .levelup-footer {
   display: flex;
 }
+.daggerheart.views.ownership-selection .ownership-outer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.daggerheart.views.ownership-selection .ownership-outer-container .ownership-container {
+  display: flex;
+  border: 2px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  padding: 0 4px 0 0;
+  align-items: center;
+  gap: 8px;
+}
+.daggerheart.views.ownership-selection .ownership-outer-container .ownership-container img {
+  height: 40px;
+  width: 40px;
+  border-radius: 6px 0 0 6px;
+}
 :root {
   --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   --fear-animation: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
@@ -3268,6 +3286,13 @@ div.daggerheart.views.multiclass {
 .daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset {
   width: 340px;
   height: min-content;
+  position: relative;
+}
+.daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset .ownership-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 18px;
 }
 .daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset .countdown-container {
   display: flex;
@@ -3278,6 +3303,9 @@ div.daggerheart.views.multiclass {
   width: 150px;
   height: 150px;
   cursor: pointer;
+}
+.daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset .countdown-container img.disabled {
+  cursor: initial;
 }
 .daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset .countdown-container .countdown-inner-container {
   display: flex;

@@ -5,7 +5,7 @@ import BaseDataItem from './base.mjs';
 const featureSchema = () => {
     return new foundry.data.fields.SchemaField({
         name: new foundry.data.fields.StringField({ required: true }),
-        effects: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
+        effects: new ForeignDocumentUUIDArrayField({ type: 'ActiveEffect', required: false }),
         actions: new foundry.data.fields.ArrayField(new ActionField())
     });
 };

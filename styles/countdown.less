@@ -90,6 +90,14 @@
                     .countdown-fieldset {
                         width: 340px;
                         height: min-content;
+                        position: relative;
+
+                        .ownership-button {
+                            position: absolute;
+                            top: 8px;
+                            right: 8px;
+                            font-size: 18px;
+                        }
 
                         .countdown-container {
                             display: flex;
@@ -100,6 +108,10 @@
                                 width: 150px;
                                 height: 150px;
                                 cursor: pointer;
+
+                                &.disabled {
+                                    cursor: initial;
+                                }
                             }
 
                             .countdown-inner-container {

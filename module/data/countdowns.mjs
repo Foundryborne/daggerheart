@@ -1,4 +1,5 @@
 import { countdownTypes } from '../config/generalConfig.mjs';
+import { RefreshType, socketEvent } from '../helpers/socket.mjs';
 
 export default class DhCountdowns extends foundry.abstract.DataModel {
     static defineSchema() {
@@ -19,8 +20,39 @@ class DhCountdownData extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            countdowns: new fields.TypedObjectField(new fields.EmbeddedDataField(DhCountdown))
+            countdowns: new fields.TypedObjectField(new fields.EmbeddedDataField(DhCountdown)),
+            ownership: new fields.SchemaField({
+                default: new fields.NumberField({
+                    required: true,
+                    choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
+                    initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
+                }),
+                players: new fields.TypedObjectField(
+                    new fields.SchemaField({
+                        type: new fields.NumberField({
+                            required: true,
+                            choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
+                            initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
+                        })
+                    })
+                )
+            })
         };
+    }
+
+    get playerOwnership() {
+        return Array.from(game.users).reduce((acc, user) => {
+            acc[user.id] = {
+                value: user.isGM
+                    ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
+                    : this.ownership.players[user.id] && this.ownership.players[user.id].type !== -1
+                      ? this.ownership.players[user.id].type
+                      : this.ownership.default,
+                isGM: user.isGM
+            };
+
+            return acc;
+        }, {});
     }
 }
 
@@ -36,6 +68,22 @@ class DhCountdown extends foundry.abstract.DataModel {
                 categories: ['IMAGE'],
                 base64: false,
                 initial: 'icons/magic/time/hourglass-yellow-green.webp'
+            }),
+            ownership: new fields.SchemaField({
+                default: new fields.NumberField({
+                    required: true,
+                    choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
+                    initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
+                }),
+                players: new fields.TypedObjectField(
+                    new fields.SchemaField({
+                        type: new fields.NumberField({
+                            required: true,
+                            choices: Object.values(CONST.DOCUMENT_OWNERSHIP_LEVELS),
+                            initial: CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT
+                        })
+                    })
+                )
             }),
             progress: new fields.SchemaField({
                 current: new fields.NumberField({
@@ -64,4 +112,28 @@ class DhCountdown extends foundry.abstract.DataModel {
             })
         };
     }
+
+    get playerOwnership() {
+        return Array.from(game.users).reduce((acc, user) => {
+            acc[user.id] = {
+                value: user.isGM
+                    ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
+                    : this.ownership.players[user.id] && this.ownership.players[user.id].type !== -1
+                      ? this.ownership.players[user.id].type
+                      : this.ownership.default,
+                isGM: user.isGM
+            };
+
+            return acc;
+        }, {});
+    }
 }
+
+export const registerCountdownHooks = () => {
+    Hooks.on(socketEvent.Refresh, ({ refreshType, application }) => {
+        if (refreshType === RefreshType.Countdown) {
+            foundry.applications.instances.get(application)?.render();
+            return false;
+        }
+    });
+};

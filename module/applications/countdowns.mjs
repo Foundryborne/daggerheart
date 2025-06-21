@@ -1,4 +1,6 @@
 import { countdownTypes } from '../config/generalConfig.mjs';
+import { GMUpdateEvent, RefreshType, socketEvent } from '../helpers/socket.mjs';
+import OwnershipSelection from './ownershipSelection.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -28,7 +30,9 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
         actions: {
             addCountdown: this.addCountdown,
             removeCountdown: this.removeCountdown,
-            editImage: this.onEditImage
+            editImage: this.onEditImage,
+            openOwnership: this.openOwnership,
+            openCountdownOwnership: this.openCountdownOwnership
         },
         form: { handler: this.updateData, submitOnChange: true }
     };
@@ -60,8 +64,23 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
         const context = await super._prepareContext(_options);
         const countdownData = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns)[this.basePath];
 
+        context.isGM = game.user.isGM;
         context.base = this.basePath;
-        context.source = countdownData.toObject();
+
+        context.canCreate = countdownData.playerOwnership[game.user.id].value === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+        context.source = {
+            ...countdownData,
+            countdowns: Object.keys(countdownData.countdowns).reduce((acc, key) => {
+                const countdown = countdownData.countdowns[key];
+
+                const ownershipValue = countdown.playerOwnership[game.user.id].value;
+                if (ownershipValue > CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
+                    acc[key] = { ...countdown, canEdit: ownershipValue === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER };
+                }
+
+                return acc;
+            }, {})
+        };
         context.systemFields = countdownData.schema.fields;
         context.countdownFields = context.systemFields.countdowns.element.fields;
         context.minimized = this.minimized || _options.isFirstRender;
@@ -75,8 +94,20 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
             game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns).toObject(),
             data
         );
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, newSetting);
-        this.render();
+
+        if (game.user.isGM) {
+            await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, newSetting);
+            this.render();
+        } else {
+            await game.socket.emit(`system.${SYSTEM.id}`, {
+                action: socketEvent.GMUpdate,
+                data: {
+                    action: GMUpdateEvent.UpdateSetting,
+                    uuid: SYSTEM.SETTINGS.gameSettings.Countdowns,
+                    update: newSetting
+                }
+            });
+        }
     }
 
     async minimize() {
@@ -88,11 +119,42 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
 
     async maximize() {
         if (this.minimized) {
+            const settings = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns)[this.basePath];
+            if (settings.playerOwnership[game.user.id].value <= CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED) {
+                ui.notifications.info(game.i18n.localize('DAGGERHEART.Countdown.Notifications.LimitedOwnership'));
+                return;
+            }
+
             this.element.querySelector('.expanded-view').classList.toggle('hidden');
             this.element.querySelector('.minimized-view').classList.toggle('hidden');
         }
 
         await super.maximize();
+    }
+
+    async updateSetting(update) {
+        if (game.user.isGM) {
+            await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, update);
+            await game.socket.emit(`system.${SYSTEM.id}`, {
+                action: socketEvent.Refresh,
+                data: {
+                    refreshType: RefreshType.Countdown,
+                    application: `${this.basePath}-countdowns`
+                }
+            });
+
+            this.render();
+        } else {
+            await game.socket.emit(`system.${SYSTEM.id}`, {
+                action: socketEvent.GMUpdate,
+                data: {
+                    action: GMUpdateEvent.UpdateSetting,
+                    uuid: SYSTEM.SETTINGS.gameSettings.Countdowns,
+                    update: update,
+                    refresh: { refreshType: RefreshType.Countdown, application: `${this.basePath}-countdowns` }
+                }
+            });
+        }
     }
 
     static onEditImage(_, target) {
@@ -114,13 +176,51 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
             [`${this.basePath}.countdowns.${countdown}.img`]: path
         });
 
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, setting);
-        this.render();
+        await this.updateSetting(setting);
+    }
+
+    static openOwnership(_, target) {
+        new Promise((resolve, reject) => {
+            const setting = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns)[this.basePath];
+            const ownership = { default: setting.ownership.default, players: setting.playerOwnership };
+            new OwnershipSelection(resolve, reject, this.title, ownership).render(true);
+        }).then(async ownership => {
+            const setting = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns);
+            await setting.updateSource({
+                [`${this.basePath}.ownership`]: ownership
+            });
+
+            await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, setting.toObject());
+            this.render();
+        });
+    }
+
+    static openCountdownOwnership(_, target) {
+        const countdownId = target.dataset.countdown;
+        new Promise((resolve, reject) => {
+            const countdown = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns)[this.basePath]
+                .countdowns[countdownId];
+            const ownership = { default: countdown.ownership.default, players: countdown.playerOwnership };
+            new OwnershipSelection(resolve, reject, countdown.name, ownership).render(true);
+        }).then(async ownership => {
+            const setting = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns);
+            await setting.updateSource({
+                [`${this.basePath}.countdowns.${countdownId}.ownership`]: ownership
+            });
+
+            await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, setting);
+            this.render();
+        });
     }
 
     async updateCountdownValue(event, increase) {
         const countdownSetting = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns);
         const countdown = countdownSetting[this.basePath].countdowns[event.currentTarget.dataset.countdown];
+
+        if (countdown.playerOwnership[game.user.id] < CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+            return;
+        }
+
         const currentValue = countdown.progress.current;
 
         if (increase && currentValue === countdown.progress.max) return;
@@ -132,20 +232,25 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
                 : currentValue - 1
         });
 
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, countdownSetting.toObject());
-        this.render();
+        await this.updateSetting(countdownSetting.toObject());
     }
 
     static async addCountdown() {
         const countdownSetting = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns);
         await countdownSetting.updateSource({
             [`${this.basePath}.countdowns.${foundry.utils.randomID()}`]: {
-                name: game.i18n.localize('DAGGERHEART.Countdown.NewCountdown')
+                name: game.i18n.localize('DAGGERHEART.Countdown.NewCountdown'),
+                ownership: game.user.isGM
+                    ? {}
+                    : {
+                          players: {
+                              [game.user.id]: { type: CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER }
+                          }
+                      }
             }
         });
 
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, countdownSetting.toObject());
-        this.render();
+        await this.updateSetting(countdownSetting.toObject());
     }
 
     static async removeCountdown(_, target) {
@@ -162,8 +267,7 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
 
         await countdownSetting.updateSource({ [`${this.basePath}.countdowns.-=${target.dataset.countdown}`]: null });
 
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, countdownSetting.toObject());
-        this.render();
+        await this.updateSetting(countdownSetting.toObject());
     }
 
     async open() {
@@ -197,7 +301,7 @@ export class EncounterCountdowns extends Countdowns {
     };
 }
 
-export const registerCountdownHooks = () => {
+export const registerCountdownApplicationHooks = () => {
     const updateCountdowns = async shouldIncrease => {
         if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation).countdowns) {
             const countdownSetting = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns);

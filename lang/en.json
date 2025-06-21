@@ -1056,11 +1056,19 @@
             "AddCountdown": "Add Countdown",
             "RemoveCountdownTitle": "Remove Countdown",
             "RemoveCountdownText": "Are you sure you want to remove the countdown: {name}?",
+            "OpenOwnership": "Edit Player Ownership",
             "Title": "{type} Countdowns",
             "Types": {
                 "narrative": "Narrative",
                 "encounter": "Encounter"
+            },
+            "Notifications": {
+                "LimitedOwnershipMaximise": "You don't have permission to enter edit view"
             }
+        },
+        "OwnershipSelection": {
+            "Title": "Ownership Selection - {name}",
+            "Default": "Default Ownership"
         },
         "Sheets": {
             "PC": {

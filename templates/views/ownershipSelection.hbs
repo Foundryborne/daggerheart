@@ -1,0 +1,22 @@
+<div class="ownership-outer-container">
+    <div class="form-group">
+        <label>{{localize "DAGGERHEART.OwnershipSelection.Default"}}</label>
+        <div class="form-fields">
+            <select name="ownership.default" data-dtype="Number">
+                {{selectOptions @root.ownershipOptions selected=ownership.default  labelAttr="label" valueAttr="value" }}
+            </select>
+        </div>
+    </div>
+    {{#each ownership.players as |player id|}}
+        <div class="ownership-container">
+            {{#if player.img}}<img src="{{player.img}}" />{{/if}}
+            <div>{{player.name}}</div>
+            <select name="{{concat "ownership.players." id ".type"}}" data-dtype="Number">
+                {{selectOptions @root.ownershipOptions selected=player.ownership  labelAttr="label" valueAttr="value" }}
+            </select>
+        </div>
+    {{/each}}
+    <footer class="flexrow">
+        <button type="submit">{{localize "Save"}}</button>
+    </footer>
+</div>
