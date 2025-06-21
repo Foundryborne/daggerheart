@@ -1,13 +1,31 @@
 <div>
-    <div>{{localize "DAGGERHEART.Countdown.Title"}} <a><i class="fa-solid fa-plus icon-button" data-action="addCountdown"></i></a></div>
-    {{#each source.countdowns}}
-        <fieldset>
-            <legend>{{this.name}} <a><i class="fa-solid fa-trash icon-button" data-action="removeCountdown" data-countdown="{{@key}}"></i></a></legend>
+    <div class="expanded-view {{#if minimized}}hidden{{/if}}">
+        <div class="flexrow"><button data-action="addCountdown">{{localize "DAGGERHEART.Countdown.AddCountdown"}}</button></div>
+        {{#each source.countdowns}}
+            <fieldset>
+                <legend>{{this.name}} <a><i class="fa-solid fa-trash icon-button" data-action="removeCountdown" data-countdown="{{@key}}"></i></a></legend>
 
-            {{formGroup @root.countdownFields.name name=(concat @root.base ".countdowns." @key ".name") value=this.name localize=true}}
-
-            {{formGroup @root.countdownFields.progress.fields.current name=(concat @root.base ".countdowns." @key ".progress.current") value=this.progress.current localize=true}}
-            {{formGroup @root.countdownFields.progress.fields.type.fields.value name=(concat @root.base ".countdowns." @key ".progress.type.value") value=this.progress.type.value localize=true localize=true}}
-        </fieldset>
-    {{/each}}
+                <div class="countdown-container">
+                    <img src="{{this.img}}" data-action='editImage' data-countdown="{{@key}}" />
+                    <div class="countdown-inner-container">
+                        {{formGroup @root.countdownFields.name name=(concat @root.base ".countdowns." @key ".name") value=this.name localize=true}}
+                        <div class="countdown-value-container">
+                            {{formGroup @root.countdownFields.progress.fields.current name=(concat @root.base ".countdowns." @key ".progress.current") value=this.progress.current localize=true}}
+                            {{formGroup @root.countdownFields.progress.fields.max name=(concat @root.base ".countdowns." @key ".progress.max") value=this.progress.max localize=true}}
+                        </div>
+                        {{formGroup @root.countdownFields.progress.fields.type.fields.value name=(concat @root.base ".countdowns." @key ".progress.type.value") value=this.progress.type.value localize=true localize=true}}
+                    </div>
+                </div>
+            </fieldset>
+        {{/each}}
+    </div>
+    <div class="minimized-view {{#if (not minimized)}}hidden{{/if}}">
+        {{#each source.countdowns}}
+            <a class="mini-countdown-container" data-countdown="{{@key}}">
+                <img src="{{this.img}}" />
+                <div class="mini-countdown-name">{{this.name}}</div>
+                <div class="mini-countdown-value">{{this.progress.current}}/{{this.progress.max}}</div>
+            </a>
+        {{/each}}
+    </div>
 </div>

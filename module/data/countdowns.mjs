@@ -6,7 +6,7 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
 
         return {
             narrative: new fields.EmbeddedDataField(DhCountdownData),
-            combat: new fields.EmbeddedDataField(DhCountdownData)
+            encounter: new fields.EmbeddedDataField(DhCountdownData)
         };
     }
 
@@ -32,6 +32,11 @@ class DhCountdown extends foundry.abstract.DataModel {
                 required: true,
                 label: 'DAGGERHEART.Countdown.FIELDS.countdowns.element.name.label'
             }),
+            img: new fields.FilePathField({
+                categories: ['IMAGE'],
+                base64: false,
+                initial: 'icons/magic/time/hourglass-yellow-green.webp'
+            }),
             progress: new fields.SchemaField({
                 current: new fields.NumberField({
                     required: true,
@@ -42,7 +47,7 @@ class DhCountdown extends foundry.abstract.DataModel {
                 max: new fields.NumberField({
                     required: true,
                     integer: true,
-                    initial: 0,
+                    initial: 1,
                     label: 'DAGGERHEART.Countdown.FIELDS.countdowns.element.progress.max.label'
                 }),
                 type: new fields.SchemaField({

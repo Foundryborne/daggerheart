@@ -371,7 +371,11 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     static async attackRoll(event, button) {
         const weapon = await fromUuid(button.dataset.weapon);
         if (!weapon) return;
-        weapon.use(event);
+
+        const wasUsed = await weapon.use(event);
+        if (wasUsed) {
+            Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+        }
     }
 
     static openLevelUp() {

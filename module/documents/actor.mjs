@@ -301,7 +301,7 @@ export default class DhpActor extends Actor {
             );
 
             if (this.type === 'character') {
-                const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
+                const automateHope = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation).hope;
 
                 if (automateHope && result.hopeUsed) {
                     await this.update({
@@ -330,7 +330,7 @@ export default class DhpActor extends Actor {
             hope = roll.dice[0].results[0].result;
             fear = roll.dice[1].results[0].result;
             if (
-                game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope) &&
+                game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation).hope &&
                 config.roll.type === 'action'
             ) {
                 if (hope > fear) {

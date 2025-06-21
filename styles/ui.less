@@ -2,26 +2,42 @@
     .encounter-controls.combat {
         justify-content: space-between;
 
-        .encounter-control-fear-container {
+        .encounter-fear-controls {
             display: flex;
-            position: relative;
             align-items: center;
-            justify-content: center;
-            color: black;
+            gap: 8px;
 
-            .dice {
-                height: 24px;
+            .encounter-fear-dice-container {
+                display: flex;
+                gap: 2px;
+
+                .encounter-control-fear-container {
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    justify-content: center;
+                    color: black;
+
+                    .dice {
+                        height: 22px;
+                        width: 22px;
+                    }
+
+                    .encounter-control-fear {
+                        position: absolute;
+                        font-size: 16px;
+                    }
+
+                    .encounter-control-counter {
+                        position: absolute;
+                        right: -10px;
+                        color: var(--color-text-secondary);
+                    }
+                }
             }
 
-            .encounter-control-fear {
-                position: absolute;
-                font-size: 16px;
-            }
-
-            .encounter-control-counter {
-                position: absolute;
-                right: -10px;
-                color: var(--color-text-secondary);
+            .encounter-countdowns {
+                color: var(--content-link-icon-color);
             }
         }
 

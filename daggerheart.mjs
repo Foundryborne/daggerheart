@@ -13,8 +13,7 @@ import { DhDualityRollEnricher, DhTemplateEnricher } from './module/enrichers/_m
 import { getCommandTarget, rollCommandToJSON, setDiceSoNiceForDualityRoll } from './module/helpers/utils.mjs';
 import { abilities } from './module/config/actorConfig.mjs';
 import Resources from './module/applications/resources.mjs';
-import Countdowns from './module/applications/countdowns.mjs';
-import DhCountdowns from './module/data/countdowns.mjs';
+import { NarrativeCountdowns, registerCountdownHooks } from './module/applications/countdowns.mjs';
 import DHDualityRoll from './module/data/chat-message/dualityRoll.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
 import { DhMeasuredTemplate } from './module/placeables/_module.mjs';
@@ -112,7 +111,6 @@ Hooks.once('init', () => {
     CONFIG.Token.rulerClass = DhpTokenRuler;
 
     CONFIG.ui.resources = Resources;
-    CONFIG.ui.countdowns = Countdowns;
 
     game.socket.on(`system.${SYSTEM.id}`, handleSocketEvent);
 
@@ -136,8 +134,7 @@ Hooks.on('ready', () => {
             DualityRollColor.colorful.value
     );
 
-    /* Temporary for ease of development. Countdown application should be opened through buttons somewhere */
-    new CONFIG.ui.countdowns(DhCountdowns.CountdownCategories.narrative).render({ force: true });
+    registerCountdownHooks();
 });
 
 Hooks.once('dicesoniceready', () => {});
@@ -268,6 +265,29 @@ Hooks.on('chatMessage', (_, message) => {
         }
 
         return false;
+    }
+});
+
+Hooks.on('renderJournalDirectory', async (tab, html, _, options) => {
+    if (tab.id === 'journal') {
+        if (options.parts && !options.parts.includes('footer')) return;
+
+        const buttons = tab.element.querySelector('.directory-footer.action-buttons');
+        const title = game.i18n.format('DAGGERHEART.Countdown.Title', {
+            type: game.i18n.localize('DAGGERHEART.Countdown.Types.narrative')
+        });
+        buttons.insertAdjacentHTML(
+            'afterbegin',
+            `
+            <button id="narrative-countdown-button">
+                <i class="fa-solid fa-stopwatch"></i>
+                <span style="font-weight: 400; font-family: var(--font-sans);">${title}</span>
+            </button>`
+        );
+
+        buttons.querySelector('#narrative-countdown-button').onclick = async () => {
+            new NarrativeCountdowns().open();
+        };
     }
 });
 

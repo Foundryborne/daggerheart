@@ -369,6 +369,10 @@ export const countdownTypes = {
         id: 'spotlight',
         label: 'DAGGERHEART.Countdown.Type.Spotlight'
     },
+    characterAttack: {
+        id: 'characterAttack',
+        label: 'DAGGERHEART.Countdown.Type.CharacterAttack'
+    },
     custom: {
         id: 'custom',
         label: 'DAGGERHEART.Countdown.Type.Custom'

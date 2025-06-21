@@ -1,9 +1,12 @@
+import { EncounterCountdowns } from '../applications/countdowns.mjs';
+
 export default class DhCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
     static DEFAULT_OPTIONS = {
         actions: {
             requestSpotlight: this.requestSpotlight,
             toggleSpotlight: this.toggleSpotlight,
-            setActionTokens: this.setActionTokens
+            setActionTokens: this.setActionTokens,
+            openCountdowns: this.openCountdowns
         }
     };
 
@@ -83,6 +86,8 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             .map(x => x.id)
             .indexOf(combatantId);
 
+        if (this.viewed.turn !== toggleTurn) Hooks.callAll(SYSTEM.HOOKS.spotlight, {});
+
         await this.viewed.update({ turn: this.viewed.turn === toggleTurn ? null : toggleTurn });
         await combatant.update({ 'system.spotlight.requesting': false });
     }
@@ -96,5 +101,9 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
 
         await combatant.update({ 'system.actionTokens': newIndex });
         this.render();
+    }
+
+    static openCountdowns() {
+        new EncounterCountdowns().open();
     }
 }

@@ -83,6 +83,10 @@
                     "actionPoints": {
                         "label": "Action Points",
                         "hint": "Automatically give and take Action Points as combatants take their turns."
+                    },
+                    "countdowns": {
+                        "label": "Countdowns",
+                        "hint": "Automatically progress non-custom countdowns"
                     }
                 }
             },
@@ -1045,10 +1049,16 @@
             },
             "Type": {
                 "Spotlight": "Spotlight",
-                "Custom": "Custom"
+                "Custom": "Custom",
+                "CharacterAttack": "Character Attack"
             },
             "NewCountdown": "New Countdown",
-            "Title": "Countdowns"
+            "AddCountdown": "Add Countdown",
+            "Title": "{type} Countdowns",
+            "Types": {
+                "narrative": "Narrative",
+                "encounter": "Encounter"
+            }
         },
         "Sheets": {
             "PC": {

@@ -5,7 +5,8 @@ export default class DhAutomation extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
         return {
             hope: new fields.BooleanField({ required: true, initial: false }),
-            actionPoints: new fields.BooleanField({ required: true, initial: false })
+            actionPoints: new fields.BooleanField({ required: true, initial: false }),
+            countdowns: new fields.BooleanField({ requireD: true, initial: false })
         };
     }
 }
