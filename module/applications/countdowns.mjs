@@ -18,6 +18,7 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart', 'dh-style', 'countdown'],
         tag: 'form',
+        position: { width: 740, height: 700 },
         window: {
             frame: true,
             title: 'Countdowns',
@@ -34,7 +35,8 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static PARTS = {
         countdowns: {
-            template: 'systems/daggerheart/templates/views/countdowns.hbs'
+            template: 'systems/daggerheart/templates/views/countdowns.hbs',
+            scrollable: ['.expanded-view']
         }
     };
 
@@ -148,6 +150,16 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static async removeCountdown(_, target) {
         const countdownSetting = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns);
+        const countdownName = countdownSetting[this.basePath].countdowns[target.dataset.countdown].name;
+
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize('DAGGERHEART.Countdown.RemoveCountdownTitle')
+            },
+            content: game.i18n.format('DAGGERHEART.Countdown.RemoveCountdownText', { name: countdownName })
+        });
+        if (!confirmed) return;
+
         await countdownSetting.updateSource({ [`${this.basePath}.countdowns.-=${target.dataset.countdown}`]: null });
 
         await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns, countdownSetting.toObject());

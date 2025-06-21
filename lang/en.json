@@ -1054,6 +1054,8 @@
             },
             "NewCountdown": "New Countdown",
             "AddCountdown": "Add Countdown",
+            "RemoveCountdownTitle": "Remove Countdown",
+            "RemoveCountdownText": "Are you sure you want to remove the countdown: {name}?",
             "Title": "{type} Countdowns",
             "Types": {
                 "narrative": "Narrative",

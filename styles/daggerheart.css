@@ -3191,6 +3191,9 @@ div.daggerheart.views.multiclass {
 #resources:has(.fear-bar) {
   min-width: 200px;
 }
+.daggerheart.dh-style.countdown {
+  overflow: hidden;
+}
 .daggerheart.dh-style.countdown fieldset {
   align-items: center;
   margin-top: 5px;
@@ -3208,7 +3211,7 @@ div.daggerheart.views.multiclass {
 .daggerheart.dh-style.countdown.minimized {
   height: auto !important;
   max-height: unset !important;
-  max-width: 600px !important;
+  max-width: 740px !important;
   width: auto !important;
 }
 .daggerheart.dh-style.countdown.minimized .window-content {
@@ -3247,26 +3250,45 @@ div.daggerheart.views.multiclass {
 .daggerheart.dh-style.countdown .hidden {
   display: none;
 }
-.daggerheart.dh-style.countdown .countdown-container {
+.daggerheart.dh-style.countdown .window-content > div {
+  height: 100%;
+}
+.daggerheart.dh-style.countdown .window-content > div .expanded-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  overflow: auto;
+  max-height: 100%;
+}
+.daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset {
+  width: 340px;
+  height: min-content;
+}
+.daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset .countdown-container {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-.daggerheart.dh-style.countdown .countdown-container img {
+.daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset .countdown-container img {
   width: 150px;
   height: 150px;
   cursor: pointer;
 }
-.daggerheart.dh-style.countdown .countdown-container .countdown-inner-container {
+.daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset .countdown-container .countdown-inner-container {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.daggerheart.dh-style.countdown .countdown-container .countdown-inner-container .countdown-value-container {
+.daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset .countdown-container .countdown-inner-container .countdown-value-container {
   display: flex;
   gap: 4px;
 }
-.daggerheart.dh-style.countdown .countdown-container .countdown-inner-container .countdown-value-container input {
+.daggerheart.dh-style.countdown .window-content > div .expanded-view .countdowns-container .countdown-fieldset .countdown-container .countdown-inner-container .countdown-value-container input {
   max-width: 80px;
 }
 .daggerheart.dh-style.setting fieldset {

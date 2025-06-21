@@ -1,4 +1,6 @@
 .daggerheart.dh-style.countdown {
+    overflow: hidden;
+
     fieldset {
         align-items: center;
         margin-top: 5px;
@@ -19,7 +21,7 @@
     &.minimized {
         height: auto !important;
         max-height: unset !important;
-        max-width: 600px !important;
+        max-width: 740px !important;
         width: auto !important;
 
         .window-content {
@@ -69,28 +71,53 @@
         display: none;
     }
 
-    .countdown-container {
-        display: flex;
-        align-items: center;
-        gap: 16px;
+    .window-content {
+        > div {
+            height: 100%;
 
-        img {
-            width: 150px;
-            height: 150px;
-            cursor: pointer;
-        }
-
-        .countdown-inner-container {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-
-            .countdown-value-container {
+            .expanded-view {
+                height: 100%;
                 display: flex;
-                gap: 4px;
+                flex-direction: column;
 
-                input {
-                    max-width: 80px;
+                .countdowns-container {
+                    display: flex;
+                    gap: 8px;
+                    flex-wrap: wrap;
+                    overflow: auto;
+                    max-height: 100%;
+
+                    .countdown-fieldset {
+                        width: 340px;
+                        height: min-content;
+
+                        .countdown-container {
+                            display: flex;
+                            align-items: center;
+                            gap: 16px;
+
+                            img {
+                                width: 150px;
+                                height: 150px;
+                                cursor: pointer;
+                            }
+
+                            .countdown-inner-container {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 4px;
+
+                                .countdown-value-container {
+                                    display: flex;
+                                    gap: 4px;
+
+                                    input {
+                                        max-width: 80px;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
