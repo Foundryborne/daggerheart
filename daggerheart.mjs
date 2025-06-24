@@ -16,7 +16,7 @@ import Resources from './module/applications/resources.mjs';
 import { NarrativeCountdowns, registerCountdownApplicationHooks } from './module/applications/countdowns.mjs';
 import DHDualityRoll from './module/data/chat-message/dualityRoll.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
-import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/applications/roll.mjs'
+import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/applications/roll.mjs';
 import { DhMeasuredTemplate } from './module/placeables/_module.mjs';
 import { renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
 import { renderMeasuredTemplate } from './module/enrichers/TemplateEnricher.mjs';
@@ -282,6 +282,11 @@ Hooks.on('renderJournalDirectory', async (tab, html, _, options) => {
 
 const preloadHandlebarsTemplates = async function () {
     return foundry.applications.handlebars.loadTemplates([
+        'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs',
+
         'systems/daggerheart/templates/sheets/parts/attributes.hbs',
         'systems/daggerheart/templates/sheets/parts/defense.hbs',
         'systems/daggerheart/templates/sheets/parts/armor.hbs',

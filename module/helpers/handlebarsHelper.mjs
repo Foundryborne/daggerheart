@@ -13,8 +13,41 @@ export default class RegisterHandlebarsHelpers {
             signedNumber: this.signedNumber,
             length: this.length,
             switch: this.switch,
-            case: this.case
+            case: this.case,
+            eq: this.eq,
+            ne: this.ne,
+            lt: this.lt,
+            gt: this.gt,
+            lte: this.lte,
+            gte: this.gte,
+            and: this.and,
+            or: this.or
         });
+    }
+
+    static eq(v1, v2) {
+        return v1 === v2;
+    }
+    static ne(v1, v2) {
+        return v1 !== v2;
+    }
+    static lt(v1, v2) {
+        return v1 < v2;
+    }
+    static gt(v1, v2) {
+        return v1 > v2;
+    }
+    static lte(v1, v2) {
+        return v1 <= v2;
+    }
+    static gte(v1, v2) {
+        return v1 >= v2;
+    }
+    static and() {
+        return Array.prototype.every.call(arguments, Boolean);
+    }
+    static or() {
+        return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
     }
 
     static times(nr, block) {
@@ -101,7 +134,7 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static debug(a) {
-        console.log(JSON.stringify(a));
+        console.log(a);
         return a;
     }
 }

@@ -1,0 +1,157 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.character {
+    .character-header-sheet {
+        padding: 0 15px;
+        padding-top: 36px;
+        width: 100%;
+
+        .name-row {
+            display: flex;
+            gap: 20px;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 0;
+            padding-top: 5px;
+
+            input[type='text'] {
+                font-size: 32px;
+                height: 42px;
+                width: 380px;
+                text-align: start;
+                border: 1px solid transparent;
+                outline: 2px solid transparent;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    outline: 2px solid light-dark(@dark, @golden);
+                }
+            }
+
+            .level-div {
+                white-space: nowrap;
+            }
+        }
+
+        .character-details {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: light-dark(@dark-blue, @golden);
+
+            span {
+                padding: 3px;
+                border-radius: 3px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+
+                &:hover {
+                    background: light-dark(@dark-blue-40, @golden-40);
+                }
+
+                &.dot {
+                    background: transparent;
+                    cursor: default;
+                }
+            }
+        }
+
+        .character-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+            margin-bottom: 15px;
+
+            .hope-section,
+            .threshold-section {
+                position: relative;
+                display: flex;
+                gap: 10px;
+                background-color: light-dark(transparent, @dark-blue);
+                color: light-dark(@dark-blue, @golden);
+                padding: 5px 10px;
+                border: 1px solid light-dark(@dark-blue, @golden);
+                border-radius: 6px;
+                align-items: center;
+                width: fit-content;
+                height: 30px;
+
+                h4 {
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    color: light-dark(@dark-blue, @golden);
+
+                    &.threshold-value {
+                        color: light-dark(@dark, @beige);
+                    }
+                }
+
+                .threshold-legend {
+                    position: absolute;
+                    bottom: -21px;
+                    color: light-dark(@golden, @dark-blue);
+                    background-color: light-dark(@dark-blue, @golden);
+                    padding: 3px;
+                    justify-self: anchor-center;
+                    border-radius: 0 0 3px 3px;
+                    text-transform: capitalize;
+                }
+
+                .hope-value {
+                    display: flex;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .character-traits {
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            margin-bottom: 15px;
+
+            .trait {
+                height: 60px;
+                width: 60px;
+                background: url(../assets/svg/trait-shield.svg) no-repeat;
+
+                cursor: pointer;
+
+                .theme-light & {
+                    background: url('../assets/svg/trait-shield-light.svg') no-repeat;
+                }
+
+                .trait-name {
+                    display: flex;
+                    align-items: center;
+                    padding-top: 5px;
+                    color: light-dark(@dark-blue, @golden);
+                    font-size: 14px;
+                    font-weight: 600;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 3px;
+
+                    i {
+                        line-height: 17px;
+                        font-size: 10px;
+                    }
+                }
+
+                .trait-value {
+                    font-family: @font-body;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 20px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

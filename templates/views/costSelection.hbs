@@ -1,4 +1,12 @@
 <div>
+    {{#if uses}}
+        <div class="form-group">
+            <div class="form-fields">
+                <label for="uses.enabled">Uses: {{uses.value}}/{{uses.max}}</label>
+                <input name="uses.enabled" type="checkbox"{{#if uses.enabled}} checked{{/if}}>
+            </div>
+        </div>
+    {{/if}}
     {{#each costs as | cost index |}}
         <div class="form-group">
             <div class="form-fields">

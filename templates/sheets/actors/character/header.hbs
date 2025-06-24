@@ -1,0 +1,111 @@
+4<header class="character-header-sheet">
+    <line-div></line-div>
+    <div class="name-row">
+        <h1 class='actor-name'>
+            <input
+                type='text'
+                name='name'
+                value='{{document.name}}'
+                placeholder='Actor Name'
+            />
+        </h1>
+
+        <div class='level-div'>
+            <h3 class='label'>
+                {{localize 'DAGGERHEART.Sheets.PC.Level'}}
+                {{document.system.levelData.level.current}}
+            </h3>
+        </div>
+    </div>
+    <div class="character-details">
+        <div>
+            {{#if document.system.class.value}}
+                <span data-action="viewObject" data-value="{{document.system.class.value.uuid}}">{{document.system.class.value.name}}</span>
+            {{else}}
+                <span>{{localize 'TYPES.Item.class'}}</span>
+            {{/if}}
+            <span class="dot">•</span>
+            {{#if document.system.class.subclass}}
+                <span data-action="viewObject" data-value="{{document.system.class.subclass.uuid}}">{{document.system.class.subclass.name}}</span>
+            {{else}}
+                <span data-action="selectSubclass">{{localize 'TYPES.Item.subclass'}}</span>
+            {{/if}}
+            <span class="dot">•</span>
+            {{#if document.system.community}}
+                <span data-action="viewObject" data-value="{{document.system.community.uuid}}">{{document.system.community.name}}</span>
+            {{else}}
+                <span data-action="selectCommunity">{{localize 'TYPES.Item.community'}}</span>
+            {{/if}}
+            <span class="dot">•</span>
+            {{#if document.system.ancestry}}
+                <span data-action="viewObject" data-value="{{document.system.ancestry.uuid}}">{{document.system.ancestry.name}}</span>
+            {{else}}
+                <span data-action="selectAncestry">{{localize 'TYPES.Item.ancestry'}}</span>
+            {{/if}}
+        </div>
+
+        {{#if document.system.multiclass.value}}
+            <div class="multiclass">
+                {{#if document.system.multiclass.value}}
+                    <span data-action="viewObject" data-value="{{document.system.multiclass.value.uuid}}">{{document.system.multiclass.value.name}}</span>
+                {{else}}
+                    <span>{{localize 'DAGGERHEART.Sheets.PC.Heritage.Multiclass'}}</span>
+                {{/if}}
+                <span class="dot">•</span>
+                {{#if document.system.multiclass.subclass}}
+                    <span data-action="viewObject" data-value="{{document.system.multiclass.subclass.uuid}}">{{document.system.multiclass.subclass.name}}</span>
+                {{else}}
+                    <span data-action="selectSubclass">{{localize 'TYPES.Item.subclass'}}</span>
+                {{/if}}
+            </div>
+        {{/if}}
+
+
+    </div>
+
+    <div class="character-row">
+        <div class="hope-section">
+            <h4>{{localize "DAGGERHEART.General.Hope"}}</h4>
+            {{#times document.system.resources.hope.max}}
+                <span class='hope-value' data-action='toggleHope' data-value="{{this}}">
+                    {{#if (gte ../document.system.resources.hope.value this)}}
+                        <i class='fa-solid fa-diamond'></i>
+                    {{else}}
+                        <i class='fa-regular fa-circle'></i>
+                    {{/if}}
+                </span>
+            {{/times}}
+        </div>
+        <div class="threshold-section">
+            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Minor"}}</h4>
+            <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Major"}}</h4>
+            <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Severe"}}</h4>
+        </div>
+    </div>
+
+    <div class="character-traits">
+        {{#each this.attributes as |attribute key|}}
+            <div class="trait" data-tooltip="{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="attributeRoll" data-attribute="{{key}}" data-value="{{attribute.total}}">
+                <div class="trait-name">
+                    <span>{{localize (concat 'DAGGERHEART.Abilities.' key '.short')}}</span>
+                    {{#if attribute.tierMarked}}
+                        <i class='fa-solid fa-circle'></i>
+                    {{else}}
+                        <i class='fa-regular fa-circle'></i>
+                    {{/if}}
+                </div>
+                <div class="trait-value">
+                    {{#if (gt attribute.total 0)}}
+                        <span>+{{attribute.total}}</span>
+                    {{else}}
+                        <span>{{attribute.total}}</span>
+                    {{/if}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+</header>

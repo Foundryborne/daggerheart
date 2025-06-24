@@ -1,9 +1,10 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class CostSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(costs, action, resolve) {
+    constructor(costs, uses, action, resolve) {
         super({});
         this.costs = costs;
+        this.uses = uses;
         this.action = action;
         this.resolve = resolve;
     }
@@ -41,21 +42,25 @@ export default class CostSelectionDialog extends HandlebarsApplicationMixin(Appl
     }
 
     async _prepareContext(_options) {
-        const updatedCosts = this.action.calcCosts(this.costs);
+        const updatedCosts = this.action.calcCosts(this.costs),
+            updatedUses = this.action.calcUses(this.uses);
         return {
             costs: updatedCosts,
-            canUse: this.action.getRealCosts(updatedCosts)?.hasCost
+            uses: updatedUses,
+            canUse: this.action.getRealCosts(updatedCosts)?.hasCost && this.action.hasUses(updatedUses)
         };
     }
 
     static async updateForm(event, _, formData) {
-        this.costs = foundry.utils.mergeObject(this.costs, foundry.utils.expandObject(formData.object).costs);
-        this.render(true)
+        const data = foundry.utils.expandObject(formData.object);
+        this.costs = foundry.utils.mergeObject(this.costs, data.costs);
+        this.uses = foundry.utils.mergeObject(this.uses, data.uses);
+        this.render(true);
     }
 
     static sendCost(event) {
         event.preventDefault();
-        this.resolve(this.action.getRealCosts(this.costs));
+        this.resolve({ costs: this.action.getRealCosts(this.costs), uses: this.uses });
         this.close();
     }
 }

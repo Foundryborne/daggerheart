@@ -1,0 +1,20 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.character {
+    .tab.biography {
+        .items-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+            overflow-y: auto;
+            mask-image: linear-gradient(0deg, transparent 0%, black 10%, black 98%, transparent 100%);
+            padding-bottom: 40px;
+            height: 100%;
+
+            scrollbar-width: thin;
+            scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+        }
+    }
+}

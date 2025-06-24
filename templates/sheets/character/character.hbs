@@ -1,9 +1,8 @@
-<div>
+<div class="old-sheet">
     <header>
         <div class="pc-sheet-header">
             <div class="class-info">
                     <div class="flexrow">
-                        <img class="portrait" src="{{document.img}}" alt="{{document.name}}" data-edit="img">
                         {{#if document.system.class.value}}
                             <div class="flexcol">
                                 <h2 class="class-title flex0" data-action="viewObject" data-value="{{document.system.class.value.uuid}}" data-tab="guide">
@@ -41,12 +40,12 @@
                                     <button data-action="takeLongRest" title="{{localize "DAGGERHEART.Sheets.PC.LongRest"}}"><i class="fa-solid fa-bed"></i></button>
                                 </div>
                             </div>
-                            <div class="level-container {{#if document.system.levelData.canLevelUp}}levelup{{/if}}">
+                            <div class="level-container {{#if document.system.levelData.canLevelUp}}levelup{{/if}}" style="width: 30px; height: 30px;">
                                 <div class="level-value-container">
                                     <input class="level-value {{#if document.system.levelData.canLevelUp}}levelup{{/if}}" value="{{document.system.levelData.level.changed}}" type="text" data-dtype="Number" />
                                     {{#if document.system.levelData.canLevelUp}}<div class="levelup-marker">*</div>{{/if}}
                                 </div>
-                                <img src="systems/daggerheart/assets/AttributeShield.svg" />
+                                <img style="width: 30px; height: 30px;" src="systems/daggerheart/assets/AttributeShield.svg" />
                                 <div data-action="levelup" class="level-title {{#if document.system.levelData.canLevelUp}}levelup{{/if}}">{{localize "DAGGERHEART.Sheets.PC.Level"}}</div>
                             </div>
                         </div>
@@ -81,7 +80,6 @@
                             {{> "systems/daggerheart/templates/sheets/parts/defense.hbs" }}
                             {{> "systems/daggerheart/templates/sheets/parts/health.hbs" }}
                             {{> "systems/daggerheart/templates/sheets/parts/hope.hbs" }}
-                            {{> "systems/daggerheart/templates/sheets/parts/experience.hbs" }}
                             {{> "systems/daggerheart/templates/sheets/parts/gold.hbs" }}
                             {{> "systems/daggerheart/templates/sheets/parts/features.hbs" }}
                         </div>

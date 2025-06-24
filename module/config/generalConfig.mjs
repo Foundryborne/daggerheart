@@ -93,21 +93,21 @@ export const healingTypes = {
 export const conditions = {
     vulnerable: {
         id: 'vulnerable',
-        name: 'DAGGERHEART.Condition.Vulnerable.Name',
+        name: 'DAGGERHEART.Condition.vulnerable.name',
         icon: 'icons/magic/control/silhouette-fall-slip-prone.webp',
-        description: 'DAGGERHEART.Condition.Vulnerable.Description'
+        description: 'DAGGERHEART.Condition.vulnerable.description'
     },
     hidden: {
         id: 'hidden',
-        name: 'DAGGERHEART.Condition.Hidden.Name',
+        name: 'DAGGERHEART.Condition.hidden.name',
         icon: 'icons/magic/perception/silhouette-stealth-shadow.webp',
-        description: 'DAGGERHEART.Condition.Hidden.Description'
+        description: 'DAGGERHEART.Condition.hidden.description'
     },
     restrained: {
         id: 'restrained',
-        name: 'DAGGERHEART.Condition.Restrained.Name',
+        name: 'DAGGERHEART.Condition.restrained.name',
         icon: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
-        description: 'DAGGERHEART.Condition.Restrained.Description'
+        description: 'DAGGERHEART.Condition.restrained.description'
     }
 };
 

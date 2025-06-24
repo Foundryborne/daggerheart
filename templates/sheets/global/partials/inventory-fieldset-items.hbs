@@ -1,0 +1,49 @@
+<fieldset class="{{#if isGlassy}}glassy{{/if}}">
+    <legend>{{title}}</legend>
+    <ul class="items-list">
+        {{#each document.items as |item|}}
+            {{#if (eq item.type ../type)}}
+                {{#unless (or (eq ../type 'ancestry') (eq item.type 'class') (eq item.type 'subclass'))}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=item type=../type}}
+                {{/unless}}
+            {{/if}}
+        {{/each}}
+        {{#each document.system.ancestry.system.actions as |action|}}
+            {{#if (or (eq ../type 'ancestry'))}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=action type=../type}}
+            {{/if}}
+        {{/each}}
+        {{#each document.system.ancestry.system.actions as |action|}}
+            {{#if (or (eq ../type 'ancestry'))}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=action type=../type}}
+            {{/if}}
+        {{/each}}
+        {{#each document.system.class.value.system.classFeatures as |classFeature|}}
+            {{#if (or (eq ../type 'class'))}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=classFeature type=../type}}
+            {{/if}}
+        {{/each}}
+        {{#each document.system.class.value.system.classFeatures as |classFeature|}}
+            {{#if (or (eq ../type 'class'))}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=classFeature type=../type}}
+            {{/if}}
+        {{/each}}
+        {{#each document.appliedEffects as |effect|}}
+            {{#if (or (eq ../type 'effect'))}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=effect type=../type}}
+            {{/if}}
+        {{/each}}
+        
+    </ul>
+    <ul class="card-list">
+        {{#each document.items as |item|}}
+            {{#if (eq item.type ../type)}}
+                {{#if (eq item.type 'domainCard')}}
+                    {{#unless (eq ../cardView 'list')}}
+                        {{> 'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs' item=item type=../type}}
+                    {{/unless}}
+                {{/if}}
+            {{/if}}
+        {{/each}}
+    </ul>
+</fieldset>

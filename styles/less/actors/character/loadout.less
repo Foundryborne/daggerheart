@@ -1,0 +1,101 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.character {
+    .tab.loadout {
+        .search-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .search-bar {
+                position: relative;
+                color: light-dark(@dark-blue-50, @beige-50);
+                width: 80%;
+                padding-top: 5px;
+
+                input {
+                    border-radius: 50px;
+                    font-family: @font-body;
+                    background: light-dark(@dark-blue-10, @golden-10);
+                    border: none;
+                    outline: 2px solid transparent;
+                    transition: all 0.3s ease;
+                    padding: 0 20px;
+
+                    &:hover {
+                        outline: 2px solid light-dark(@dark, @golden);
+                    }
+
+                    &:placeholder {
+                        color: light-dark(@dark-blue-50, @beige-50);
+                    }
+                }
+
+                .icon {
+                    align-content: center;
+                    height: 32px;
+                    position: absolute;
+                    right: 20px;
+                    font-size: 16px;
+                    z-index: 1;
+                    color: light-dark(@dark-blue-50, @beige-50);
+                }
+            }
+
+            .btn-toogle-view {
+                background: light-dark(@dark-blue-10, @dark-blue);
+                border: 1px solid light-dark(@dark-blue, @golden);
+                border-radius: 15px;
+                padding: 0;
+                gap: 0;
+                width: 62px;
+
+                span {
+                    margin: 1px;
+                    width: 26px;
+                    color: light-dark(@dark-blue, @golden);
+
+                    &.list-icon {
+                        i {
+                            margin-left: 3px;
+                        }
+                    }
+                    &.grid-icon {
+                        i {
+                            margin-right: 3px;
+                        }
+                    }
+
+                    &.list-active {
+                        border-radius: 32px 3px 3px 32px;
+                        background-color: light-dark(@dark-blue, @golden);
+                        color: light-dark(@beige, @dark-blue);
+                        padding: 2px;
+                    }
+
+                    &.grid-active {
+                        border-radius: 3px 32px 32px 3px;
+                        background-color: light-dark(@dark-blue, @golden);
+                        color: light-dark(@beige, @dark-blue);
+                        padding: 2px;
+                    }
+                }
+            }
+        }
+
+        .items-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+            overflow-y: auto;
+            mask-image: linear-gradient(0deg, transparent 0%, black 10%, black 98%, transparent 100%);
+            padding: 20px 0;
+            height: 90%;
+
+            scrollbar-width: thin;
+            scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+        }
+    }
+}

@@ -1,0 +1,36 @@
+<section
+    class='tab {{tabs.biography.cssClass}} {{tabs.biography.id}}'
+    data-tab='{{tabs.biography.id}}'
+    data-group='{{tabs.biography.group}}'
+>
+
+    <div class="items-section">
+        <fieldset class="flex">
+            <legend>{{localize 'DAGGERHEART.Sheets.PC.Story.characteristics'}}</legend>
+            
+            <div class="input">
+                <span>{{localize 'DAGGERHEART.Sheets.PC.Pronouns'}}</span>
+                {{formInput systemFields.biography.fields.characteristics.fields.pronouns value=source.system.biography.characteristics.pronouns enriched=source.system.biography.characteristics.pronouns localize=true toggled=true}}
+            </div>
+
+            <div class="input">
+                <span>{{localize 'DAGGERHEART.Sheets.PC.age'}}</span>
+                {{formInput systemFields.biography.fields.characteristics.fields.age value=source.system.biography.characteristics.age enriched=source.system.biography.characteristics.age localize=true toggled=true}}
+            </div>
+
+            <div class="input">
+                <span>{{localize 'DAGGERHEART.Sheets.PC.faith'}}</span>
+                {{formInput systemFields.biography.fields.characteristics.fields.faith value=source.system.biography.characteristics.faith enriched=source.system.biography.characteristics.faith localize=true toggled=true}}
+            </div>
+
+        </fieldset>
+        <fieldset>
+            <legend>{{localize 'DAGGERHEART.Sheets.PC.Story.BackgroundTitle'}}</legend>
+            {{formInput systemFields.biography.fields.background value=source.system.biography.background enriched=source.system.biography.background localize=true toggled=true}}
+        </fieldset>
+        <fieldset>
+            <legend>{{localize 'DAGGERHEART.Sheets.PC.Story.ConnectionsTitle'}}</legend>
+            {{formInput systemFields.biography.fields.connections value=source.system.biography.connections enriched=source.system.biography.connections localize=true toggled=true}}
+        </fieldset>
+    </div>
+</section>

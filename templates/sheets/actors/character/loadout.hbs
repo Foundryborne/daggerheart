@@ -1,0 +1,28 @@
+<section
+    class='tab {{tabs.loadout.cssClass}} {{tabs.loadout.id}}'
+    data-tab='{{tabs.loadout.id}}'
+    data-group='{{tabs.loadout.group}}'
+>
+    <div class="search-section">
+        <div class="search-bar">
+            <div class="icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="text" name="" id="" placeholder="Search...">
+        </div>
+        <a><i class="fa-solid fa-filter"></i></a>
+        <button class="btn-toogle-view">
+            <span class="{{#if listView}}list-active{{/if}}list-active list-icon">
+                <i class="fa-solid fa-bars"></i>
+            </span>
+            <span class="{{#if gridView}}grid-active{{/if}} grid-icon">
+                <i class="fa-solid fa-grip"></i>
+            </span>
+        </button>
+    </div>
+
+    <div class="items-section">
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Loadout') type='domainCard' isGlassy=true cardView='list'}}
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Vault') type='domainCard' isGlassy=true cardView='list'}}
+    </div>
+</section>
