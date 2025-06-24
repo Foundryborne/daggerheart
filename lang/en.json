@@ -1095,9 +1095,11 @@
             "ArmorMarks": "Armor Marks",
             "UsedMarks": "Used Marks",
             "Stress": "Stress",
+            "ArmorWithStress": "Spend 1 stress to use an extra mark",
+            "StressReduction": "Reduce By Stress",
             "Notifications": {
                 "DamageAlreadyNone": "The damage has already been reduced to none",
-                "NotEnoughArmor": "You don't have enough unspent armor marks"
+                "DamageIgnore": "{character} did not take damage"
             }
         },
         "Sheets": {

@@ -515,13 +515,24 @@ export default class DhpActor extends Actor {
         ) {
             new Promise((resolve, reject) => {
                 new DamageReductionDialog(resolve, reject, this, hpDamage).render(true);
-            }).then(async ({ modifiedDamage, armorSpent }) => {
-                const resources = [
-                    { value: modifiedDamage, type: 'hitPoints' },
-                    ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : [])
-                ];
-                await this.modifyResource(resources);
-            });
+            })
+                .then(async ({ modifiedDamage, armorSpent }) => {
+                    const resources = [
+                        { value: modifiedDamage, type: 'hitPoints' },
+                        ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : [])
+                    ];
+                    await this.modifyResource(resources);
+                })
+                .catch(() => {
+                    const cls = getDocumentClass('ChatMessage');
+                    const msg = new cls({
+                        user: game.user.id,
+                        content: game.i18n.format('DAGGERHEART.DamageReduction.Notifications.DamageIgnore', {
+                            character: this.name
+                        })
+                    });
+                    cls.create(msg.toObject());
+                });
         } else {
             await this.modifyResource([{ value: hpDamage, type: 'hitPoints' }]);
         }

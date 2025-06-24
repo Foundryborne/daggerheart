@@ -248,3 +248,16 @@ export const getDamageLabel = damage => {
             return game.i18n.localize('DAGGERHEART.General.Damage.None');
     }
 };
+
+export const damageKeyToNumber = key => {
+    switch (key) {
+        case 'severe':
+            return 3;
+        case 'major':
+            return 2;
+        case 'minor':
+            return 1;
+        case 'none':
+            return 0;
+    }
+};

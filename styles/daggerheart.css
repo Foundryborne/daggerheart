@@ -3135,6 +3135,18 @@ div.daggerheart.views.multiclass {
 }
 .daggerheart.views.damage-reduction .damage-reduction-container .armor-title {
   margin: 0;
+  white-space: nowrap;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .resources-container {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .resources-container .resource-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .daggerheart.views.damage-reduction .damage-reduction-container .mark-selection {
   display: flex;
@@ -3148,7 +3160,7 @@ div.daggerheart.views.multiclass {
   border: 1px solid light-dark(#18162e, #f3c267);
   border-radius: 6px;
   height: 26px;
-  width: 26px;
+  padding: 0 1px;
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -3158,8 +3170,38 @@ div.daggerheart.views.multiclass {
 .daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-container.selected {
   opacity: 1;
 }
-.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-container.disabled {
-  cursor: initial;
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-container .fa-shield {
+  position: relative;
+  right: 0.5px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container {
+  margin: 0;
+  width: 100%;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container .stress-reduction {
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  height: 26px;
+  padding: 0 4px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0.4;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container .stress-reduction.active {
+  opacity: 1;
+  cursor: pointer;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container .stress-reduction.selected {
+  opacity: 1;
+  background: var(--color-warm-2);
+  color: white;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container .stress-reduction .stress-reduction-cost {
+  display: flex;
+  align-items: center;
 }
 .daggerheart.views.damage-reduction .damage-reduction-container .markers-subtitle {
   margin: -4px 0 0 0;
@@ -3168,26 +3210,19 @@ div.daggerheart.views.multiclass {
   font-variant: all-small-caps;
   font-weight: bold;
 }
-.daggerheart.views.damage-reduction .damage-reduction-container .damage-container {
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-  font-weight: bold;
-  height: 18px;
-}
-.daggerheart.views.damage-reduction .damage-reduction-container .damage-container i {
-  font-size: 18px;
-}
-.daggerheart.views.damage-reduction .damage-reduction-container .damage-container .reduced-value {
-  opacity: 0.4;
-  text-decoration: line-through;
-}
 .daggerheart.views.damage-reduction .damage-reduction-container footer {
   display: flex;
   width: 100%;
 }
 .daggerheart.views.damage-reduction .damage-reduction-container footer button {
   flex: 1;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container footer button .damage-value {
+  font-weight: bold;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container footer button .damage-value.reduced-value {
+  opacity: 0.4;
+  text-decoration: line-through;
 }
 :root {
   --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;

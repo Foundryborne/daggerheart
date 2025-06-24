@@ -1,15 +1,25 @@
 <div class="damage-reduction-container">
     <div class="section-container padded">
-        <h4 class="armor-title">{{localize "DAGGERHEART.DamageReduction.ArmorMarks"}}</h4>
-        <div class="markers-subtitle">{{armorMarks}}/{{armorScore}}</div>
+        <div class="resources-container">
+            <div class="resource-container">
+                <h4 class="armor-title">{{localize "DAGGERHEART.DamageReduction.ArmorMarks"}}</h4>
+                <div class="markers-subtitle">{{armorMarks}}/{{armorScore}}</div>
+            </div>
+            {{#if this.stress}}
+                <div class="resource-container">
+                    <h4 class="armor-title">{{localize "DAGGERHEART.DamageReduction.Stress"}}</h4>
+                    <div class="markers-subtitle">{{this.stress.value}}/{{this.stress.maxTotal}}</div>
+                </div>
+            {{/if}}
+        </div>
     </div>
     
     <div class="section-container">
         <h4 class="mark-selection divider">
             {{#times availableArmorMarks.max}}
                 <div 
-                    class="mark-container {{#if (lt this @root.availableArmorMarks.selected)}}selected{{/if}} {{#if (gte this this.maxUseable)}}disabled{{/if}}" 
-                    data-action="setMarks" data-index="{{this}}"
+                    class="mark-container {{#if (lt this @root.availableArmorMarks.selected)}}selected{{/if}}" 
+                    data-action="setMarks" data-index="{{this}}" {{#if (gte this @root.availableArmorMarks.stressIndex)}}data-tooltip="{{localize "DAGGERHEART.DamageReduction.ArmorWithStress"}}"{{/if}}
                 >
                     {{#if (or (not @root.availableArmorMarks.stressIndex) (lt this @root.availableArmorMarks.stressIndex))}}
                         <i class="fa-solid fa-shield"></i>
@@ -23,18 +33,37 @@
         <div class="markers-subtitle bold">{{localize "DAGGERHEART.DamageReduction.UsedMarks"}}</div>
     </div>
 
-    <div class="section-container">
-        <div>{{localize "Incoming Damage"}}</div>
-        <div class="damage-container">
-            <div class="{{#if this.reducedDamage}}reduced-value{{/if}}">{{this.damage}}</div>
-            {{#if this.reducedDamage}}
-                <i class="fa-solid fa-arrow-right-long"></i>
-                <div>{{this.reducedDamage}}</div>
-            {{/if}}
+    <div class="resources-container">
+        <div class="resource-container">
+            <h4 class="armor-title">{{localize "DAGGERHEART.DamageReduction.StressReduction"}}</h4>
         </div>
     </div>
 
+    {{#each availableStressReductions}}
+        <div class="section-container">
+            <h4 class="stress-reduction-container divider">
+                <div class="stress-reduction {{#if (eq this.from @root.currentDamage)}}active{{/if}} {{#if this.selected}}selected{{/if}}" data-action="useStressReduction" data-reduction="{{@key}}">
+                    {{this.from}}
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                    {{this.to}}
+                    <div class="stress-reduction-cost">
+                        {{this.cost}}
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                </div>
+            </h4>
+        </div>
+    {{/each}}
+
     <footer class="padded">
-        <button type="button" data-action="takeDamage">{{localize "Take Damage"}}</button>
+        <button type="button" data-action="takeDamage">
+            {{localize "Take"}}
+            <div class="damage-value {{#if this.reducedDamage}}reduced-value{{/if}}">{{this.damage}}</div>
+            {{#if this.reducedDamage}}
+                <i class="fa-solid fa-arrow-right-long"></i>
+                <div class="damage-value">{{this.reducedDamage}}</div>
+            {{/if}}
+            {{localize "Damage"}}
+        </button>
     </footer>
 </div>

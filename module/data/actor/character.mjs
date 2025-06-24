@@ -17,6 +17,12 @@ const resourceField = max =>
         max: new foundry.data.fields.NumberField({ initial: max, integer: true })
     });
 
+const stressDamageReductionRule = () =>
+    new foundry.data.fields.SchemaField({
+        enabled: new foundry.data.fields.BooleanField({ required: true, initial: false }),
+        cost: new foundry.data.fields.NumberField({ integer: true })
+    });
+
 export default class DhCharacter extends BaseDataActor {
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -98,9 +104,9 @@ export default class DhCharacter extends BaseDataActor {
                     stressExtra: new fields.NumberField({ required: true, integer: true, initial: 0 })
                 }),
                 stressDamageReduction: new fields.SchemaField({
-                    enabled: new fields.BooleanField({ required: true, initial: false }),
-                    cost: new fields.NumberField({ integer: true }),
-                    fromSeverity: new fields.NumberField({ integer: true, max: 3 })
+                    severe: stressDamageReductionRule(),
+                    major: stressDamageReductionRule(),
+                    minor: stressDamageReductionRule()
                 })
             })
         };
