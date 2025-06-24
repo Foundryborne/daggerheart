@@ -3469,6 +3469,9 @@ div.daggerheart.views.multiclass {
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row input[type='text']:hover {
   outline: 2px solid light-dark(#222, #f3c267);
 }
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row .level-div {
+  white-space: nowrap;
+}
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-details {
   display: flex;
   justify-content: space-between;
