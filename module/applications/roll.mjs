@@ -38,7 +38,7 @@ export class DHRoll extends Roll {
             config = await DialogClass.configure(config, message);
             if (!config) return;
         }
-        let roll = new this(config.formula, config.actor, config);
+        let roll = new this(config.formula, config.data, config);
 
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.post${hook.capitalize()}RollConfiguration`, roll, config, message) === false)
@@ -101,9 +101,6 @@ export class DualityDie extends foundry.dice.terms.Die {
 export class D20Roll extends DHRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
-        // console.log(data, options)
-        // this.options = this._prepareData(data);
-        // this.options = options;
         this.createBaseDice();
         this.configureModifiers();
 
@@ -194,10 +191,10 @@ export class D20Roll extends DHRoll {
         this.applyBaseBonus();
 
         this.options.experiences?.forEach(m => {
-            if (this.options.actor.experiences?.[m])
+            if (this.options.data.experiences?.[m])
                 this.options.roll.modifiers.push({
-                    label: this.options.actor.experiences[m].description,
-                    value: this.options.actor.experiences[m].total
+                    label: this.options.data.experiences[m].description,
+                    value: this.options.data.experiences[m].total
                 });
         });
         this.options.roll.modifiers?.forEach(m => {
@@ -214,31 +211,17 @@ export class D20Roll extends DHRoll {
     }
 
     applyBaseBonus() {
-        // if(this.options.action) {
         if (this.options.type === 'attack')
-            this.terms.push(...this.formatModifier(this.options.actor.system.attack.modifier));
-        /* this.options.roll.modifiers?.forEach(m => {
-                this.terms.push(...this.formatModifier(m));
-            }) */
-        // }
+            this.terms.push(...this.formatModifier(this.options.data.attack.roll.bonus));
     }
 
     static async postEvaluate(roll, config = {}) {
         if (config.targets?.length) {
-            /* targets = config.targets.map(target => {
-                const difficulty = config.roll.difficulty ??  target.difficulty ?? target.evasion
-                target.hit = roll.total >= difficulty;
-                return target;
-            }); */
             config.targets.forEach(target => {
                 const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
                 target.hit = roll.total >= difficulty;
             });
         } else if (config.roll.difficulty) roll.success = roll.total >= config.roll.difficulty;
-        // config.roll.advantage = {
-        //     dice: roll.dHope.faces,
-        //     value: roll.dHope.total
-        // }
         config.roll.total = roll.total;
         config.roll.formula = roll.formula;
         config.roll.advantage = {
@@ -247,10 +230,19 @@ export class D20Roll extends DHRoll {
             value: roll.dAdvantage?.total
         };
         config.roll.modifierTotal = config.roll.modifiers.reduce((a, c) => a + c.value, 0);
+        config.roll.dice = [];
+        roll.dice.forEach(d => {
+            config.roll.dice.push({
+                dice: d.denomination,
+                total: d.total,
+                formula: d.formula,
+                results: d.results
+            });
+        });
     }
 
     getRollData() {
-        return this.options.actor.getRollData();
+        return this.options.data();
     }
 
     formatModifier(modifier) {
@@ -357,7 +349,6 @@ export class DualityRoll extends D20Roll {
         const dieFaces = 6,
             bardRallyFaces = this.hasBarRally,
             advDie = new foundry.dice.terms.Die({ faces: dieFaces });
-        // console.log(this.hasAdvantage, this.hasDisadvantage)
         if (this.hasAdvantage || this.hasDisadvantage || bardRallyFaces)
             this.terms.push(new foundry.dice.terms.OperatorTerm({ operator: '+' }));
         if (bardRallyFaces) {
@@ -376,22 +367,15 @@ export class DualityRoll extends D20Roll {
     }
 
     applyBaseBonus() {
-        // if(this.options.action) {
-        // console.log(this.options, this.options.actor.system.traits[this.options.roll.trait].bonus)
-        // console.log(this.options.actor.system);
-        /* if(this.options.roll?.trait) this.terms.push(...this.formatModifier(this.options.actor.traits[this.options.roll.trait].total)); */
         if (!this.options.roll.modifiers) this.options.roll.modifiers = [];
         if (this.options.roll?.trait)
             this.options.roll.modifiers.push({
                 label: `DAGGERHEART.Abilities.${this.options.roll.trait}.name`,
-                value: this.options.actor.traits[this.options.roll.trait].total
+                value: this.options.data.traits[this.options.roll.trait].total
             });
-        console.log(this.options);
-        // } else if(this.options.trait) this.terms.push(...this.formatModifier(this.options.actor.system.traits[this.options.roll.trait].total));
     }
 
     static async postEvaluate(roll, config = {}) {
-        console.log(roll, config);
         super.postEvaluate(roll, config);
         config.roll.hope = {
             dice: roll.dHope.denomination,
@@ -427,30 +411,10 @@ export class DamageRoll extends DHRoll {
     static DefaultDialog = DamageDialog;
 
     static async postEvaluate(roll, config = {}) {
-        console.log(roll, config);
         config.roll = {
-            // formula : config.formula,
             result: roll.total,
             dice: roll.dice
         };
         if (roll.healing) config.roll.type = roll.healing.type;
-        /* const dice = [];
-        const modifiers = [];
-        for (var i = 0; i < roll.terms.length; i++) {
-            const term = roll.terms[i];
-            if (term.faces) {
-                dice.push({
-                    type: `d${term.faces}`,
-                    rolls: term.results.map(x => x.result),
-                    total: term.results.reduce((acc, x) => acc + x.result, 0)
-                });
-            } else if (term.operator) {
-            } else if (term.number) {
-                const operator = i === 0 ? '' : roll.terms[i - 1].operator;
-                modifiers.push({ value: term.number, operator: operator });
-            }
-        }
-        config.roll.dice = dice;
-        config.roll.modifiers = modifiers; */
     }
 }

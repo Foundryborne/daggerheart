@@ -60,48 +60,51 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         super.close(options);
     }
 
+    getActor(id) {
+        return game.actors.get(id);
+    }
+
+    getAction(actor, itemId, actionId) {
+        const item = actor.items.get(itemId),
+            action =
+                actor.system.attack?._id === actionId
+                    ? actor.system.attack
+                    : item?.system?.actions?.find(a => a._id === actionId);
+        return action;
+    }
+
     onRollDamage = async (event, message) => {
         event.stopPropagation();
-        const actor = game.actors.get(message.system.source.actor);
+        const actor = this.getActor(message.system.source.actor);
         if (!actor || !game.user.isGM) return true;
-        if(message.system.source.item && message.system.source.action) {
-            const item = actor.items.get(message.system.source.item),
-                action = item?.system?.actions?.find(a => a._id === message.system.source.action);
-            if(!item || !action || !action?.rollDamage) return;
+        if (message.system.source.item && message.system.source.action) {
+            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
+            if (!action || !action?.rollDamage) return;
             await action.rollDamage(event, message);
-        } else {
-            await actor.damageRoll(
-                message.system.title,
-                message.system.damage,
-                message.system.targets.filter(x => x.hit).map(x => ({ id: x.id, name: x.name, img: x.img })),
-                event.shiftKey
-            );
         }
     };
 
     onRollHealing = async (event, message) => {
         event.stopPropagation();
-        const actor = game.actors.get(message.system.source.actor);
+        const actor = this.getActor(message.system.source.actor);
         if (!actor || !game.user.isGM) return true;
-        if(message.system.source.item && message.system.source.action) {
-            const item = actor.items.get(message.system.source.item),
-                action = item?.system?.actions?.find(a => a._id === message.system.source.action);
-            if(!item || !action || !action?.rollHealing) return;
+        if (message.system.source.item && message.system.source.action) {
+            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
+            if (!action || !action?.rollHealing) return;
             await action.rollHealing(event, message);
         }
     };
 
     onApplyEffect = async (event, message) => {
         event.stopPropagation();
-        const actor = game.actors.get(message.system.source.actor);
+        const actor = this.getActor(message.system.source.actor);
         if (!actor || !game.user.isGM) return true;
-        if(message.system.source.item && message.system.source.action) {
-            const item = actor.items.get(message.system.source.item),
-                action = item?.system?.actions?.find(a => a._id === message.system.source.action);
-            if(!item || !action || !action.applyEffects) return;
+        if (message.system.source.item && message.system.source.action) {
+            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
+            if (!action || !action?.applyEffects) return;
             await action.applyEffects(event, message);
         }
-    }
+    };
 
     hoverTarget = event => {
         event.stopPropagation();
@@ -148,7 +151,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
 
         for (var target of targets) {
-            await target.actor.modifyResource([{value: healing, type: event.currentTarget.dataset.type}]);
+            await target.actor.modifyResource([{ value: healing, type: event.currentTarget.dataset.type }]);
         }
     };
 

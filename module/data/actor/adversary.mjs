@@ -1,3 +1,6 @@
+import DhpItem from '../../documents/item.mjs';
+import ActionField from '../fields/actionField.mjs';
+import DHWeapon from '../item/weapon.mjs';
 import BaseDataActor from './base.mjs';
 
 const resourceField = () =>
@@ -39,7 +42,7 @@ export default class DhpAdversary extends BaseDataActor {
                 hitPoints: resourceField(),
                 stress: resourceField()
             }),
-            attack: new fields.SchemaField({
+            /* attack: new fields.SchemaField({
                 name: new fields.StringField({}),
                 modifier: new fields.NumberField({ required: true, integer: true, initial: 0 }),
                 range: new fields.StringField({
@@ -55,6 +58,45 @@ export default class DhpAdversary extends BaseDataActor {
                         initial: SYSTEM.GENERAL.damageTypes.physical.id
                     })
                 })
+            }), */
+            /* attack: new fields.EmbeddedDocumentField(DhpItem,
+                {
+                    // type: 'weapon'
+                //    initial: new DhpItem(
+                //         {
+                //             name: 'Attack',
+                //             type: 'weapon'
+                //         },
+                //         {
+                //             parent: this.parent,
+                //             parentCollection: 'items'
+                //         }
+                //     )
+                    // initial: {type: 'weapon'}
+                }
+            ), */
+            attack: new ActionField({
+                initial: {
+                    name: 'Attack',
+                    _id: foundry.utils.randomID(),
+                    systemPath: 'attack',
+                    type: 'attack',
+                    range: 'melee',
+                    target: {
+                        type: 'any',
+                        amount: 1
+                    },
+                    roll: {
+                        type: 'weapon'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                multiplier: 'flat'
+                            }
+                        ]
+                    }
+                }
             }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
@@ -64,5 +106,22 @@ export default class DhpAdversary extends BaseDataActor {
             )
             /* Features waiting on pseudo-document data model addition */
         };
+    }
+
+    prepareBaseData() {
+        // console.log(this.attack)
+        /* if(!this.attack) {
+            this.attack = new DhpItem(
+                {
+                    name: 'Attack',
+                    type: 'weapon',
+                    _id: foundry.utils.randomID()
+                },
+                {
+                    parent: this.parent,
+                    parentCollection: 'items'
+                }
+            )
+        } */
     }
 }

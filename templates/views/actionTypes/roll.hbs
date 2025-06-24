@@ -3,8 +3,12 @@
         <div>Roll</div>
     </legend>
     <div class="action-category-data open">
-        {{formField fields.type label="Type" name="roll.type" value=source.type localize=true}}
-        {{formField fields.trait label="Trait" name="roll.trait" value=source.trait localize=true}}
-        {{formField fields.difficulty label="Difficulty" name="roll.difficulty" value=source.difficulty}}
+        {{#if @root.isNPC}}
+            {{formField fields.bonus label="Bonus" name="roll.bonus" value=source.bonus}}
+        {{else}}
+            {{formField fields.type label="Type" name="roll.type" value=source.type localize=true}}
+            {{formField fields.trait label="Trait" name="roll.trait" value=source.trait localize=true}}
+            {{formField fields.difficulty label="Difficulty" name="roll.difficulty" value=source.difficulty}}
+        {{/if}}
     </div>
 </fieldset>

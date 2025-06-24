@@ -2,6 +2,7 @@ import DamageSelectionDialog from '../../applications/damageSelectionDialog.mjs'
 import CostSelectionDialog from '../../applications/costSelectionDialog.mjs';
 import { abilities } from '../../config/actorConfig.mjs';
 import { DHActionDiceData, DHDamageData, DHDamageField } from './actionDice.mjs';
+import DhpActor from '../../documents/actor.mjs';
 
 const fields = foundry.data.fields;
 
@@ -86,8 +87,8 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             range: new fields.StringField({
                 choices: SYSTEM.GENERAL.range,
                 required: false,
-                blank: true,
-                initial: null
+                blank: true
+                // initial: null
             }),
             ...this.defineExtraSchema()
         };
@@ -99,7 +100,8 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                 roll: new fields.SchemaField({
                     type: new fields.StringField({ nullable: true, initial: null, choices: SYSTEM.GENERAL.rollTypes }),
                     trait: new fields.StringField({ nullable: true, initial: null, choices: SYSTEM.ACTOR.abilities }),
-                    difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 })
+                    difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
+                    bonus: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 })
                 }),
                 save: new fields.SchemaField({
                     trait: new fields.StringField({ nullable: true, initial: null, choices: SYSTEM.ACTOR.abilities }),
@@ -151,7 +153,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     get actor() {
-        return this.item?.actor;
+        return this.item instanceof DhpActor ? this.item : this.item?.actor;
     }
 
     get chatTemplate() {
@@ -203,6 +205,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             source: {
                 item: this.item._id,
                 action: this._id
+                // action: this
             },
             type: this.type,
             hasDamage: !!this.damage?.parts?.length,
@@ -236,25 +239,25 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         this.spendCost(config.costs.values);
         this.spendUses(config.uses);
 
-        // console.log(config)
-
         return config;
     }
 
     /* ROLL */
     hasRoll() {
-        return this.roll?.type && this.roll?.trait;
+        // return this.roll?.type && this.roll?.trait;
+        return this.roll?.type;
     }
 
     async proceedRoll(config) {
         if (!this.hasRoll()) return config;
-        const modifierValue = this.actor.system.traits[this.roll.trait].value;
+        // const modifierValue = this.actor.system.traits[this.roll.trait].value;
         config = {
             ...config,
             roll: {
                 modifiers: [],
                 trait: this.roll?.trait,
-                label: game.i18n.localize(abilities[this.roll.trait].label),
+                // label: game.i18n.localize(abilities[this.roll.trait].label),
+                label: 'Attack',
                 type: this.actionType,
                 difficulty: this.roll?.difficulty
             }
@@ -359,7 +362,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             name: actor.actor.name,
             img: actor.actor.img,
             difficulty: actor.actor.system.difficulty,
-            evasion: actor.actor.system.evasion?.value
+            evasion: actor.actor.system.evasion?.total
         };
     }
     /* TARGET */
@@ -375,7 +378,6 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     async applyEffects(event, data, force = false) {
         if (!this.effects?.length || !data.system.targets.length) return;
         data.system.targets.forEach(async token => {
-            // console.log(token, force)
             if (!token.hit && !force) return;
             this.effects.forEach(async e => {
                 const actor = canvas.tokens.get(token.id)?.actor,
@@ -497,7 +499,6 @@ export class DHHealingAction extends DHBaseAction {
     }
 
     async rollHealing(event, data) {
-        console.log(event, data);
         let formula = this.healing.value.getFormula(this.actor);
 
         if (!formula || formula == '') return;

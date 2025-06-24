@@ -60,9 +60,12 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         context.tabs = this._getTabs();
         context.config = SYSTEM;
         if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
-        if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack') context.hasBaseDamage = !!this.action.parent.damage;
+        if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack')
+            context.hasBaseDamage = !!this.action.parent.damage;
         context.getRealIndex = this.getRealIndex.bind(this);
         context.disableOption = this.disableOption.bind(this);
+        context.isNPC = this.action.actor.type !== 'character';
+
         return context;
     }
 
@@ -74,9 +77,9 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     disableOption(index, options, choices) {
         const filtered = foundry.utils.deepClone(options);
         Object.keys(filtered).forEach(o => {
-            if(choices.find((c, idx) => c.type === o && index !== idx)) delete filtered[o];
+            if (choices.find((c, idx) => c.type === o && index !== idx)) delete filtered[o];
         });
-        return filtered
+        return filtered;
     }
 
     getRealIndex(index) {
@@ -95,11 +98,18 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     static async updateForm(event, _, formData) {
         const submitData = this._prepareSubmitData(event, formData),
             data = foundry.utils.expandObject(foundry.utils.mergeObject(this.action.toObject(), submitData)),
+            container = foundry.utils.getProperty(this.action.parent, this.action.systemPath);
+        let newActions;
+        if (Array.isArray(container)) {
             newActions = foundry.utils.getProperty(this.action.parent, this.action.systemPath).map(x => x.toObject()); // Find better way
-        if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
+            if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
+        } else newActions = data;
+
         const updates = await this.action.parent.parent.update({ [`system.${this.action.systemPath}`]: newActions });
         if (!updates) return;
-        this.action = foundry.utils.getProperty(updates.system, this.action.systemPath)[this.action.index];
+        this.action = Array.isArray(container)
+            ? foundry.utils.getProperty(updates.system, this.action.systemPath)[this.action.index]
+            : foundry.utils.getProperty(updates.system, this.action.systemPath);
         this.render();
     }
 

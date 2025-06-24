@@ -11,6 +11,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
                 initial: 'proficiency',
                 label: 'Multiplier'
             }),
+            flatMultiplier: new fields.NumberField({ nullable: true, initial: 1, label: 'Flat Multiplier' }),
             dice: new fields.StringField({ choices: SYSTEM.GENERAL.diceTypes, initial: 'd6', label: 'Formula' }),
             bonus: new fields.NumberField({ nullable: true, initial: null, label: 'Bonus' }),
             custom: new fields.SchemaField({
@@ -21,9 +22,10 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
     }
 
     getFormula(actor) {
+        const multiplier = this.multiplier === 'flat' ? this.flatMultiplier : actor.system[this.multiplier]?.total;
         return this.custom.enabled
             ? this.custom.formula
-            : `${actor.system[this.multiplier]?.total ?? 1}${this.dice}${this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : ''}`;
+            : `${multiplier ?? 1}${this.dice}${this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : ''}`;
     }
 }
 

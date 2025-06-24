@@ -49,13 +49,43 @@
 
         <fieldset class="two-columns even">
             <legend>{{localize "DAGGERHEART.Sheets.Adversary.Attack"}}</legend>
+            <button data-action="attackConfigure">Configure</button>
+            <button data-action="attackRoll">Attack</button>
+            <fieldset class="action-category" style="grid-column: 1 / -1;">
+                <legend class="action-category-label" data-action="toggleSection" data-section="range">
+                    <div>Name</div>
+                </legend>
+                <div class="action-category-data open">
+                    {{formGroup systemFields.attack.fields.name value=source.system.attack.name name="system.attack.name"}}
+                    {{formGroup systemFields.attack.fields.img value=source.img label="Icon" name="system.attack.img"}}
+                </div>
+            </fieldset>
+            <div>
+                <fieldset class="action-category">
+                    <legend class="action-category-label" data-action="toggleSection" data-section="range">
+                        <div>Bonus</div>
+                    </legend>
+                    <div class="action-category-data open">
+                        {{formField systemFields.attack.fields.roll.fields.bonus value=source.system.attack.roll.bonus name="system.attack.roll.bonus"}}
+                    </div>
+                </fieldset>
+                {{> 'systems/daggerheart/templates/views/actionTypes/range-target.hbs' fields=(object range=systemFields.attack.fields.range target=systemFields.attack.fields.target.fields) source=(object target=source.system.attack.target range=source.system.attack.range) path="system.attack."}}
+            </div>
+            {{> 'systems/daggerheart/templates/views/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields.parts.element.fields source=source.system.attack.damage path="system.attack."}}
+            <div style="grid-column: 1 / -1;">
+                {{> 'systems/daggerheart/templates/views/actionTypes/effect.hbs'}}
+            </div>
+
+
+
+            {{!-- <legend>{{localize "DAGGERHEART.Sheets.Adversary.Attack"}}</legend>
 
             {{formGroup systemFields.attack.fields.name value=source.system.attack.name}}
             <button data-action="attackRoll">Attack</button>
             {{formGroup systemFields.attack.fields.modifier value=source.system.attack.modifier}}
             {{formGroup systemFields.attack.fields.range value=source.system.attack.range localize=true}}
             {{formGroup systemFields.attack.fields.damage.fields.value value=source.system.attack.damage.value}}
-            {{formGroup systemFields.attack.fields.damage.fields.type value=source.system.attack.damage.type localize=true}}
+            {{formGroup systemFields.attack.fields.damage.fields.type value=source.system.attack.damage.type localize=true}} --}}
         </fieldset> 
     </div>
 </section>

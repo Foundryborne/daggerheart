@@ -4,33 +4,49 @@
         <div>Damage</div>
     </legend>
     <div class="action-category-data open">
-        <div class="fas fa-plus icon-button" data-action="addDamage"></div>
-        {{#if @root.hasBaseDamage}}
-            <div>
-                {{!-- <input type="checkbox" data-action="addBaseDamage"{{#if @root.hasBaseDamage}} checked{{/if}}> --}}
-                {{formField @root.fields.damage.fields.includeBase value=@root.source.damage.includeBase label="Include Item Damage" name="damage.includeBase" }}
-            </div>
-        {{/if}}
+        {{#unless @root.isNPC}}
+            <div class="fas fa-plus icon-button" data-action="addDamage"></div>
+            {{#if @root.hasBaseDamage}}
+                <div>
+                    {{!-- <input type="checkbox" data-action="addBaseDamage"{{#if @root.hasBaseDamage}} checked{{/if}}> --}}
+                    {{formField @root.fields.damage.fields.includeBase value=@root.source.damage.includeBase label="Include Item Damage" name="damage.includeBase" }}
+                </div>
+            {{/if}}
+        {{/unless}}
         {{#each source.parts as |dmg index|}}
-            {{#with (@root.getRealIndex index) as | realIndex |}}
-            <fieldset{{#if dmg.base}} disabled{{/if}}>
-                {{#unless dmg.base}}
-                    {{formField ../../fields.custom.fields.enabled value=dmg.custom.enabled name=(concat "damage.parts." realIndex ".custom.enabled")}}
-                {{/unless}}
+            {{#if @root.isNPC}}
+                {{formField ../fields.custom.fields.enabled value=dmg.custom.enabled name=(concat ../path "damage.parts." index ".custom.enabled")}}
                 {{#if dmg.custom.enabled}}
-                    {{formField ../../fields.custom.fields.formula value=dmg.custom.formula name=(concat "damage.parts." realIndex ".custom.formula") localize=true}}
+                    {{formField ../fields.custom.fields.formula value=dmg.custom.formula name=(concat ../path "damage.parts." index ".custom.formula") localize=true}}
                 {{else}}
                     <div class="multi-display">
-                        {{formField ../../fields.multiplier value=dmg.multiplier name=(concat "damage.parts." realIndex ".multiplier") localize=true}}
-                        {{formField ../../fields.dice value=dmg.dice name=(concat "damage.parts." realIndex ".dice")}}
-                        {{formField ../../fields.bonus value=dmg.bonus name=(concat "damage.parts." realIndex ".bonus") localize=true}}
+                        {{formField ../fields.flatMultiplier value=dmg.flatMultiplier name=(concat "damage.parts." realIndex ".flatMultiplier") label="Multiplier" }}
+                        {{formField ../fields.dice value=dmg.dice name=(concat ../path "damage.parts." index ".dice")}}
+                        {{formField ../fields.bonus value=dmg.bonus name=(concat ../path "damage.parts." index ".bonus") localize=true}}
                     </div>
                 {{/if}}
-                {{formField ../../fields.type value=dmg.type name=(concat "damage.parts." realIndex ".type") localize=true}}
-                <input type="hidden" name="damage.parts.{{realIndex}}.base" value="{{dmg.base}}">
-                {{#unless dmg.base}}<div class="fas fa-trash" data-action="removeDamage" data-index="{{realIndex}}"></div>{{/unless}}
-            </fieldset>
-            {{/with}}
+            {{else}}
+                {{#with (@root.getRealIndex index) as | realIndex |}}
+                <fieldset{{#if dmg.base}} disabled{{/if}}>
+                    {{#unless dmg.base}}
+                        {{formField ../../fields.custom.fields.enabled value=dmg.custom.enabled name=(concat "damage.parts." realIndex ".custom.enabled")}}
+                    {{/unless}}
+                    {{#if dmg.custom.enabled}}
+                        {{formField ../../fields.custom.fields.formula value=dmg.custom.formula name=(concat "damage.parts." realIndex ".custom.formula") localize=true}}
+                    {{else}}
+                        <div class="multi-display">
+                            {{formField ../../fields.multiplier value=dmg.multiplier name=(concat "damage.parts." realIndex ".multiplier") localize=true}}
+                            {{#if (eq dmg.multiplier 'flat')}}{{formField ../../fields.flatMultiplier value=dmg.flatMultiplier name=(concat "damage.parts." realIndex ".flatMultiplier") }}{{/if}}
+                            {{formField ../../fields.dice value=dmg.dice name=(concat "damage.parts." realIndex ".dice")}}
+                            {{formField ../../fields.bonus value=dmg.bonus name=(concat "damage.parts." realIndex ".bonus") localize=true}}
+                        </div>
+                    {{/if}}
+                    {{formField ../../fields.type value=dmg.type name=(concat "damage.parts." realIndex ".type") localize=true}}
+                    <input type="hidden" name="damage.parts.{{realIndex}}.base" value="{{dmg.base}}">
+                    {{#unless dmg.base}}<div class="fas fa-trash" data-action="removeDamage" data-index="{{realIndex}}"></div>{{/unless}}
+                </fieldset>
+                {{/with}}
+            {{/if}}
         {{/each}}
     </div>
 </fieldset>
