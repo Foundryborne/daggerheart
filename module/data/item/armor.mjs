@@ -29,7 +29,6 @@ export default class DHArmor extends BaseDataItem {
                 })
             ),
             marks: new fields.SchemaField({
-                max: new fields.NumberField({ initial: 6, integer: true }),
                 value: new fields.NumberField({ initial: 0, integer: true })
             }),
             baseThresholds: new fields.SchemaField({

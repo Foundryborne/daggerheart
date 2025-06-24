@@ -1,0 +1,40 @@
+<div class="damage-reduction-container">
+    <div class="section-container padded">
+        <h4 class="armor-title">{{localize "DAGGERHEART.DamageReduction.ArmorMarks"}}</h4>
+        <div class="markers-subtitle">{{armorMarks}}/{{armorScore}}</div>
+    </div>
+    
+    <div class="section-container">
+        <h4 class="mark-selection divider">
+            {{#times availableArmorMarks.max}}
+                <div 
+                    class="mark-container {{#if (lt this @root.availableArmorMarks.selected)}}selected{{/if}} {{#if (gte this this.maxUseable)}}disabled{{/if}}" 
+                    data-action="setMarks" data-index="{{this}}"
+                >
+                    {{#if (or (not @root.availableArmorMarks.stressIndex) (lt this @root.availableArmorMarks.stressIndex))}}
+                        <i class="fa-solid fa-shield"></i>
+                    {{else}}
+                        <i class="fa-solid fa-bolt"></i>
+                    {{/if}}
+                    
+                </div>
+            {{/times}}
+        </h4>
+        <div class="markers-subtitle bold">{{localize "DAGGERHEART.DamageReduction.UsedMarks"}}</div>
+    </div>
+
+    <div class="section-container">
+        <div>{{localize "Incoming Damage"}}</div>
+        <div class="damage-container">
+            <div class="{{#if this.reducedDamage}}reduced-value{{/if}}">{{this.damage}}</div>
+            {{#if this.reducedDamage}}
+                <i class="fa-solid fa-arrow-right-long"></i>
+                <div>{{this.reducedDamage}}</div>
+            {{/if}}
+        </div>
+    </div>
+
+    <footer class="padded">
+        <button type="button" data-action="takeDamage">{{localize "Take Damage"}}</button>
+    </footer>
+</div>

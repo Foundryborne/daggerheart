@@ -83,6 +83,18 @@ export default class DhCharacter extends BaseDataActor {
                 attack: new fields.NumberField({ integer: true, initial: 0 }),
                 spellcast: new fields.NumberField({ integer: true, initial: 0 }),
                 armorScore: new fields.NumberField({ integer: true, initial: 0 })
+            }),
+            rules: new fields.SchemaField({
+                maxArmorMarked: new fields.SchemaField({
+                    value: new fields.NumberField({ required: true, integer: true, initial: 1 }),
+                    bonus: new fields.NumberField({ required: true, integer: true, initial: 0 }),
+                    stressExtra: new fields.NumberField({ required: true, integer: true, initial: 0 })
+                }),
+                stressDamageReduction: new fields.SchemaField({
+                    enabled: new fields.BooleanField({ required: true, initial: false }),
+                    cost: new fields.NumberField({ integer: true }),
+                    fromSeverity: new fields.NumberField({ integer: true, max: 3 })
+                })
             })
         };
     }
@@ -232,6 +244,9 @@ export default class DhCharacter extends BaseDataActor {
             experience.total = experience.value + experience.bonus;
         }
 
+        this.rules.maxArmorMarked.total = this.rules.maxArmorMarked.value + this.rules.maxArmorMarked.bonus;
+
+        this.armorScore = this.armor ? this.armor.system.baseScore + (this.bonuses.armorScore ?? 0) : 0;
         this.resources.hitPoints.maxTotal = this.resources.hitPoints.max + this.resources.hitPoints.bonus;
         this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
         this.evasion.total = (this.class?.evasion ?? 0) + this.evasion.bonus;

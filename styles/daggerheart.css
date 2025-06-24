@@ -3113,6 +3113,80 @@ div.daggerheart.views.multiclass {
 .daggerheart.views.ownership-selection .ownership-outer-container .ownership-container select {
   margin: 4px 0;
 }
+.daggerheart.views.damage-reduction .window-content {
+  padding: 8px 0;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .padded {
+  padding: 0 8px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .armor-title {
+  margin: 0;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  margin: 0;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-container {
+  cursor: pointer;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  height: 26px;
+  width: 26px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-container.selected {
+  opacity: 1;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-container.disabled {
+  cursor: initial;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .markers-subtitle {
+  margin: -4px 0 0 0;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .markers-subtitle.bold {
+  font-variant: all-small-caps;
+  font-weight: bold;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .damage-container {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  font-weight: bold;
+  height: 18px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .damage-container i {
+  font-size: 18px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .damage-container .reduced-value {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container footer {
+  display: flex;
+  width: 100%;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container footer button {
+  flex: 1;
+}
 :root {
   --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   --fear-animation: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;

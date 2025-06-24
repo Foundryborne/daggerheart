@@ -207,6 +207,12 @@
                 "Session": "Session",
                 "Shortrest": "Short Rest",
                 "Longrest": "Long Rest"
+            },
+            "Damage": {
+                "Severe": "Severe",
+                "Major": "Major",
+                "Minor": "Minor",
+                "None": "None"
             }
         },
         "ActionType": {
@@ -1083,6 +1089,16 @@
         "OwnershipSelection": {
             "Title": "Ownership Selection - {name}",
             "Default": "Default Ownership"
+        },
+        "DamageReduction": {
+            "Title": "Damage Reduction",
+            "ArmorMarks": "Armor Marks",
+            "UsedMarks": "Used Marks",
+            "Stress": "Stress",
+            "Notifications": {
+                "DamageAlreadyNone": "The damage has already been reduced to none",
+                "NotEnoughArmor": "You don't have enough unspent armor marks"
+            }
         },
         "Sheets": {
             "PC": {

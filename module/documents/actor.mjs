@@ -4,6 +4,7 @@ import RollSelectionDialog from '../applications/rollSelectionDialog.mjs';
 import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
 import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 import DHDualityRoll from '../data/chat-message/dualityRoll.mjs';
+import DamageReductionDialog from '../applications/damageReductionDialog.mjs';
 
 export default class DhpActor extends Actor {
     async _preCreate(data, options, user) {
@@ -266,21 +267,21 @@ export default class DhpActor extends Actor {
      */
     async diceRoll(config, action) {
         // console.log(config)
-        config.source = {...(config.source ?? {}), actor: this.id};
+        config.source = { ...(config.source ?? {}), actor: this.id };
         const newConfig = {
             // data: {
-                ...config,
-                /* action, */
-                // actor: this.getRollData(),
-                actor: this.system
+            ...config,
+            /* action, */
+            // actor: this.getRollData(),
+            actor: this.system
             // },
             // options: {
-                // dialog: false,
+            // dialog: false,
             // },
             // event: config.event
-        }
+        };
         // console.log(this, newConfig)
-        const roll = CONFIG.Dice.daggerheart[this.type === 'character' ? 'DualityRoll' : 'D20Roll'].build(newConfig)
+        const roll = CONFIG.Dice.daggerheart[this.type === 'character' ? 'DualityRoll' : 'D20Roll'].build(newConfig);
         return config;
         /* let hopeDice = 'd12',
             fearDice = 'd12',
@@ -508,67 +509,67 @@ export default class DhpActor extends Actor {
     async takeDamage(damage, type) {
         const hpDamage =
             damage >= this.system.damageThresholds.severe
-                ? -3
+                ? 3
                 : damage >= this.system.damageThresholds.major
-                  ? -2
+                  ? 2
                   : damage >= this.system.damageThresholds.minor
-                    ? -1
+                    ? 1
                     : 0;
-        await this.modifyResource([{value: hpDamage, type}]);
-        /* const update = {
-            'system.resources.hitPoints.value': Math.min(
-                this.system.resources.hitPoints.value + hpDamage,
-                this.system.resources.hitPoints.max
-            )
-        };
 
-        if (game.user.isGM) {
-            await this.update(update);
-        } else {
-            await game.socket.emit(`system.${SYSTEM.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateDocument,
-                    uuid: this.uuid,
-                    update: update
-                }
+        if (
+            this.type === 'character' &&
+            this.system.armor &&
+            this.system.armor.system.marks.value < this.system.armorScore
+        ) {
+            new Promise((resolve, reject) => {
+                new DamageReductionDialog(resolve, reject, this, hpDamage).render(true);
+            }).then(async ({ modifiedDamage, armorSpent }) => {
+                const resources = [
+                    { value: modifiedDamage, type: 'hitPoints' },
+                    ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : [])
+                ];
+                await this.modifyResource(resources);
             });
-        } */
+        } else {
+            await this.modifyResource([{ value: hpDamage, type: 'hitPoints' }]);
+        }
     }
 
     async modifyResource(resources) {
-        if(!resources.length) return;
-        let updates = { actor: { target: this, resources: {} }, armor: { target: this.armor, resources: {} } };
+        if (!resources.length) return;
+        let updates = { actor: { target: this, resources: {} }, armor: { target: this.system.armor, resources: {} } };
         resources.forEach(r => {
-            switch (type) {
-                case 'armorStrack':
-                    // resource = 'system.stacks.value';
-                    // target = this.armor;
-                    // update = Math.min(this.marks.value + value, this.marks.max);
-                    updates.armor.resources['system.stacks.value'] = Math.min(this.marks.value + value, this.marks.max);
+            switch (r.type) {
+                case 'armorStack':
+                    updates.armor.resources['system.marks.value'] = Math.min(
+                        this.system.armor.system.marks.value + r.value,
+                        this.system.armorScore
+                    );
                     break;
                 default:
-                    // resource = `system.resources.${type}`;
-                    // target = this;
-                    // update = Math.min(this.resources[type].value + value, this.resources[type].max);
-                    updates.armor.resources[`system.resources.${type}`] = Math.min(this.resources[type].value + value, this.resources[type].max);
+                    updates.actor.resources[`system.resources.${r.type}.value`] = Math.min(
+                        this.system.resources[r.type].value + r.value,
+                        this.system.resources[r.type].max
+                    );
                     break;
             }
-        })
-        Object.values(updates).forEach(async (u) => {
-            if (game.user.isGM) {
-                await u.target.update(u.resources);
-            } else {
-                await game.socket.emit(`system.${SYSTEM.id}`, {
-                    action: socketEvent.GMUpdate,
-                    data: {
-                        action: GMUpdateEvent.UpdateDocument,
-                        uuid: u.target.uuid,
-                        update: u.resources
-                    }
-                });
+        });
+        Object.values(updates).forEach(async u => {
+            if (Object.keys(u.resources).length > 0) {
+                if (game.user.isGM) {
+                    await u.target.update(u.resources);
+                } else {
+                    await game.socket.emit(`system.${SYSTEM.id}`, {
+                        action: socketEvent.GMUpdate,
+                        data: {
+                            action: GMUpdateEvent.UpdateDocument,
+                            uuid: u.target.uuid,
+                            update: u.resources
+                        }
+                    });
+                }
             }
-        })
+        });
     }
 
     /* async takeHealing(healing, type) {
