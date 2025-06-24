@@ -516,10 +516,11 @@ export default class DhpActor extends Actor {
             new Promise((resolve, reject) => {
                 new DamageReductionDialog(resolve, reject, this, hpDamage).render(true);
             })
-                .then(async ({ modifiedDamage, armorSpent }) => {
+                .then(async ({ modifiedDamage, armorSpent, stressSpent }) => {
                     const resources = [
                         { value: modifiedDamage, type: 'hitPoints' },
-                        ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : [])
+                        ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : []),
+                        ...(stressSpent ? [{ value: stressSpent, type: 'stress' }] : [])
                     ];
                     await this.modifyResource(resources);
                 })

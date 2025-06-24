@@ -3151,11 +3151,17 @@ div.daggerheart.views.multiclass {
 .daggerheart.views.damage-reduction .damage-reduction-container .mark-selection {
   display: flex;
   align-items: center;
-  gap: 4px;
   width: 100%;
   margin: 0;
 }
-.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-container {
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner {
+  display: flex;
+  gap: 2px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner:not(:last-child) {
+  margin-right: 8px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner .mark-container {
   cursor: pointer;
   border: 1px solid light-dark(#18162e, #f3c267);
   border-radius: 6px;
@@ -3167,10 +3173,14 @@ div.daggerheart.views.multiclass {
   justify-content: center;
   opacity: 0.4;
 }
-.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-container.selected {
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner .mark-container.selected {
   opacity: 1;
 }
-.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-container .fa-shield {
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner .mark-container.inactive {
+  cursor: initial;
+  opacity: 0.2;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner .mark-container .fa-shield {
   position: relative;
   right: 0.5px;
 }

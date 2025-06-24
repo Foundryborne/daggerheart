@@ -1096,9 +1096,11 @@
             "UsedMarks": "Used Marks",
             "Stress": "Stress",
             "ArmorWithStress": "Spend 1 stress to use an extra mark",
+            "UnncessaryStress": "You don't need to expend stress",
             "StressReduction": "Reduce By Stress",
             "Notifications": {
                 "DamageAlreadyNone": "The damage has already been reduced to none",
+                "NoAvailableArmorMarks": "You have no more available armor marks",
                 "DamageIgnore": "{character} did not take damage"
             }
         },

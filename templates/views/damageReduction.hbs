@@ -16,19 +16,26 @@
     
     <div class="section-container">
         <h4 class="mark-selection divider">
-            {{#times availableArmorMarks.max}}
-                <div 
-                    class="mark-container {{#if (lt this @root.availableArmorMarks.selected)}}selected{{/if}}" 
-                    data-action="setMarks" data-index="{{this}}" {{#if (gte this @root.availableArmorMarks.stressIndex)}}data-tooltip="{{localize "DAGGERHEART.DamageReduction.ArmorWithStress"}}"{{/if}}
-                >
-                    {{#if (or (not @root.availableArmorMarks.stressIndex) (lt this @root.availableArmorMarks.stressIndex))}}
-                        <i class="fa-solid fa-shield"></i>
-                    {{else}}
+            <div class="mark-selection-inner">
+                {{#each marks.armor}}
+                    <div 
+                        class="mark-container {{#if this.selected}}selected{{/if}}" 
+                        data-action="setMarks" data-key="{{@key}}" data-type="armor"
+                    >
+                        <i class="fa-solid fa-shield"></i>    
+                    </div>
+                {{/each}}
+            </div>
+             <div class="mark-selection-inner">
+                {{#each marks.stress}}
+                    <div 
+                        class="mark-container {{#if this.selected}}selected{{/if}} {{#if (not @root.basicMarksUsed)}}inactive{{/if}}" 
+                        {{#if @root.basicMarksUsed}}data-action="setMarks"{{/if}} data-key="{{@key}}" data-type="stress" data-tooltip="{{#if @root.basicMarksUsed}}{{localize "DAGGERHEART.DamageReduction.ArmorWithStress"}}{{else}}{{localize "DAGGERHEART.DamageReduction.UnncessaryStress"}}{{/if}}"
+                    >
                         <i class="fa-solid fa-bolt"></i>
-                    {{/if}}
-                    
-                </div>
-            {{/times}}
+                    </div>
+                {{/each}}
+            </div>
         </h4>
         <div class="markers-subtitle bold">{{localize "DAGGERHEART.DamageReduction.UsedMarks"}}</div>
     </div>

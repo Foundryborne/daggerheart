@@ -11,15 +11,20 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.actor = actor;
         this.damage = damage;
 
-        const maxUseable = actor.system.armorScore - actor.system.armor.system.marks.value;
-        this.availableArmorMarks = {
-            max: Math.min(
-                maxUseable,
-                actor.system.rules.maxArmorMarked.total + (actor.system.rules.maxArmorMarked.stressExtra ?? 0)
-            ),
-            stressIndex: actor.system.rules.maxArmorMarked.total,
-            selected: 0
-        };
+        const maxArmorMarks = Math.min(
+            actor.system.armorScore - actor.system.armor.system.marks.value,
+            actor.system.rules.maxArmorMarked.total
+        );
+
+        const armor = [...Array(maxArmorMarks).keys()].reduce((acc, _) => {
+            acc[foundry.utils.randomID()] = { selected: false };
+            return acc;
+        }, {});
+        const stress = [...Array(actor.system.rules.maxArmorMarked.stressExtra ?? 0).keys()].reduce((acc, _) => {
+            acc[foundry.utils.randomID()] = { selected: false };
+            return acc;
+        }, {});
+        this.marks = { armor, stress };
 
         this.availableStressReductions = Object.keys(actor.system.rules.stressDamageReduction).reduce((acc, key) => {
             const dr = actor.system.rules.stressDamageReduction[key];
@@ -79,32 +84,31 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.armorScore = this.actor.system.armorScore;
-        context.armorMarks = this.actor.system.armor.system.marks.value + this.availableArmorMarks.selected;
 
-        const selectedStressReductions = Object.values(this.availableStressReductions).filter(red => red.selected);
+        const { selectedArmorMarks, selectedStressMarks, stressReductions, currentMarks, currentDamage } =
+            this.getDamageInfo();
+
+        context.armorScore = this.actor.system.armorScore;
+        context.armorMarks = currentMarks;
+        context.basicMarksUsed = selectedArmorMarks.length === this.actor.system.rules.maxArmorMarked.total;
+
         const stressReductionStress = this.availableStressReductions
-            ? selectedStressReductions.reduce((acc, red) => acc + red.cost, 0)
+            ? stressReductions.reduce((acc, red) => acc + red.cost, 0)
             : 0;
         context.stress =
-            this.availableArmorMarks.stressIndex || this.availableStressReductions
+            selectedStressMarks.length > 0 || this.availableStressReductions
                 ? {
                       value:
-                          this.actor.system.resources.stress.value +
-                          (Math.max(this.availableArmorMarks.selected - this.availableArmorMarks.stressIndex, 0) +
-                              stressReductionStress),
+                          this.actor.system.resources.stress.value + selectedStressMarks.length + stressReductionStress,
                       maxTotal: this.actor.system.resources.stress.maxTotal
                   }
                 : null;
 
-        context.availableArmorMarks = this.availableArmorMarks;
+        context.marks = this.marks;
         context.availableStressReductions = this.availableStressReductions;
 
         context.damage = getDamageLabel(this.damage);
-        context.reducedDamage =
-            this.availableArmorMarks.selected > 0 || selectedStressReductions.length > 0
-                ? getDamageLabel(this.damage - this.availableArmorMarks.selected - selectedStressReductions.length)
-                : null;
+        context.reducedDamage = currentDamage !== this.damage ? getDamageLabel(currentDamage) : null;
         context.currentDamage = context.reducedDamage ?? context.damage;
 
         return context;
@@ -115,47 +119,64 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.render(true);
     }
 
+    getDamageInfo = () => {
+        const selectedArmorMarks = Object.values(this.marks.armor).filter(x => x.selected);
+        const selectedStressMarks = Object.values(this.marks.stress).filter(x => x.selected);
+        const stressReductions = Object.values(this.availableStressReductions).filter(red => red.selected);
+        const currentMarks =
+            this.actor.system.armor.system.marks.value + selectedArmorMarks.length + selectedStressMarks.length;
+
+        const currentDamage =
+            this.damage - selectedArmorMarks.length - selectedStressMarks.length - stressReductions.length;
+
+        return { selectedArmorMarks, selectedStressMarks, stressReductions, currentMarks, currentDamage };
+    };
+
     static setMarks(_, target) {
-        const index = Number(target.dataset.index);
-        const isDecreasing = index < this.availableArmorMarks.selected;
-        if (!isDecreasing && this.damage - this.availableArmorMarks.selected === 0) {
+        const currentMark = this.marks[target.dataset.type][target.dataset.key];
+        const { selectedStressMarks, stressReductions, currentMarks, currentDamage } = this.getDamageInfo();
+        if (!currentMark.selected && currentDamage === 0) {
             ui.notifications.info(game.i18n.localize('DAGGERHEART.DamageReduction.Notifications.DamageAlreadyNone'));
             return;
         }
 
-        if (isDecreasing) {
-            const selectedStressReductions = Object.values(this.availableStressReductions).filter(red => red.selected);
-            const reducedDamage =
-                this.availableArmorMarks.selected > 0 || selectedStressReductions.length > 0
-                    ? getDamageLabel(this.damage - this.availableArmorMarks.selected - selectedStressReductions.length)
-                    : null;
-            const currentDamage = reducedDamage ?? getDamageLabel(this.damage);
-            for (let reduction of selectedStressReductions) {
-                if (reduction.selected && reduction.to === currentDamage) {
+        if (!currentMark.selected && currentMarks === this.actor.system.armorScore) {
+            ui.notifications.info(
+                game.i18n.localize('DAGGERHEART.DamageReduction.Notifications.NoAvailableArmorMarks')
+            );
+            return;
+        }
+
+        if (currentMark.selected) {
+            const currentDamageLabel = getDamageLabel(currentDamage);
+            for (let reduction of stressReductions) {
+                if (reduction.selected && reduction.to === currentDamageLabel) {
                     reduction.selected = false;
                 }
             }
+
+            if (target.dataset.type === 'armor' && selectedStressMarks.length > 0) {
+                selectedStressMarks.forEach(mark => (mark.selected = false));
+            }
         }
 
-        this.availableArmorMarks.selected = isDecreasing ? index : index + 1;
+        currentMark.selected = !currentMark.selected;
         this.render();
     }
 
     static useStressReduction(_, target) {
         const damageValue = Number(target.dataset.reduction);
         const stressReduction = this.availableStressReductions[damageValue];
+        const { currentDamage } = this.getDamageInfo();
+
         if (stressReduction.selected) {
             stressReduction.selected = false;
             this.render();
         } else {
-            const selectedStressReductions = Object.values(this.availableStressReductions).filter(red => red.selected);
-            const reducedDamage =
-                this.availableArmorMarks.selected > 0 || selectedStressReductions.length > 0
-                    ? getDamageLabel(this.damage - this.availableArmorMarks.selected - selectedStressReductions.length)
-                    : null;
-            const currentDamage = reducedDamage ?? getDamageLabel(this.damage);
+            const reducedDamage = currentDamage !== this.damage ? getDamageLabel(currentDamage) : null;
+            const currentDamageLabel = reducedDamage ?? getDamageLabel(this.damage);
 
-            if (stressReduction.from !== currentDamage) return;
+            if (stressReduction.from !== currentDamageLabel) return;
 
             stressReduction.selected = true;
             this.render();
@@ -163,10 +184,11 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     static async takeDamage() {
-        const armorSpent = this.availableArmorMarks.selected;
-        const modifiedDamage = this.damage - armorSpent;
+        const { selectedArmorMarks, selectedStressMarks, stressReductions, currentDamage } = this.getDamageInfo();
+        const armorSpent = selectedArmorMarks.length + selectedStressMarks.length;
+        const stressSpent = selectedStressMarks.length + stressReductions.reduce((acc, red) => acc + red.cost, 0);
 
-        this.resolve({ modifiedDamage, armorSpent });
+        this.resolve({ modifiedDamage: currentDamage, armorSpent, stressSpent });
         await this.close(true);
     }
 

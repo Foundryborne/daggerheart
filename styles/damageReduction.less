@@ -41,29 +41,42 @@
         .mark-selection {
             display: flex;
             align-items: center;
-            gap: 4px;
             width: 100%;
             margin: 0;
 
-            .mark-container {
-                cursor: pointer;
-                border: 1px solid light-dark(@dark-blue, @golden);
-                border-radius: 6px;
-                height: 26px;
-                padding: 0 1px;
-                font-size: 18px;
+            .mark-selection-inner {
                 display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0.4;
+                gap: 2px;
 
-                &.selected {
-                    opacity: 1;
+                &:not(:last-child) {
+                    margin-right: 8px;
                 }
 
-                .fa-shield {
-                    position: relative;
-                    right: 0.5px;
+                .mark-container {
+                    cursor: pointer;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    height: 26px;
+                    padding: 0 1px;
+                    font-size: 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0.4;
+
+                    &.selected {
+                        opacity: 1;
+                    }
+
+                    &.inactive {
+                        cursor: initial;
+                        opacity: 0.2;
+                    }
+
+                    .fa-shield {
+                        position: relative;
+                        right: 0.5px;
+                    }
                 }
             }
         }
