@@ -38,7 +38,14 @@ export default class DhCharacter extends BaseDataActor {
             resources: new fields.SchemaField({
                 hitPoints: resourceField(6),
                 stress: resourceField(6),
-                hope: resourceField(6)
+                hope: resourceField(6),
+                rallyDice: new fields.SchemaField({
+                    d6: new fields.NumberField({ integer: true, initial: 0 }),
+                    d8: new fields.NumberField({ integer: true, initial: 0 }),
+                    d10: new fields.NumberField({ integer: true, initial: 0 })
+                }),
+                slayerDice: new fields.NumberField({ integer: true, initial: 0 }),
+                tideTokens: new fields.NumberField({ integer: true, initial: 0 })
             }),
             traits: new fields.SchemaField({
                 agility: attributeField(),
@@ -93,9 +100,22 @@ export default class DhCharacter extends BaseDataActor {
             }),
             levelData: new fields.EmbeddedDataField(DhPCLevelData),
             bonuses: new fields.SchemaField({
-                attack: new fields.NumberField({ integer: true, initial: 0 }),
-                spellcast: new fields.NumberField({ integer: true, initial: 0 }),
-                armorScore: new fields.NumberField({ integer: true, initial: 0 })
+                armorScore: new fields.NumberField({ integer: true, initial: 0 }),
+                damageThresholds: new fields.SchemaField({
+                    severe: new fields.NumberField({ integer: true, initial: 0 }),
+                    major: new fields.NumberField({ integer: true, initial: 0 })
+                }),
+                roll: new fields.SchemaField({
+                    attack: new fields.NumberField({ integer: true, initial: 0 }),
+                    spellcast: new fields.NumberField({ integer: true, initial: 0 }),
+                    action: new fields.NumberField({ integer: true, initial: 0 }),
+                    hopeOrFear: new fields.NumberField({ integer: true, initial: 0 })
+                }),
+                damage: new fields.SchemaField({
+                    all: new fields.NumberField({ integer: true, initial: 0 }),
+                    physical: new fields.NumberField({ integer: true, initial: 0 }),
+                    magic: new fields.NumberField({ integer: true, initial: 0 })
+                })
             }),
             rules: new fields.SchemaField({
                 maxArmorMarked: new fields.SchemaField({
@@ -107,6 +127,13 @@ export default class DhCharacter extends BaseDataActor {
                     severe: stressDamageReductionRule(),
                     major: stressDamageReductionRule(),
                     minor: stressDamageReductionRule()
+                }),
+                strangePatterns: new fields.NumberField({
+                    integer: true,
+                    min: 1,
+                    max: 12,
+                    nullable: true,
+                    initial: null
                 })
             })
         };

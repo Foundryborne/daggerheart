@@ -68,7 +68,13 @@ export default class DhpAdversary extends BaseDataActor {
                     name: new fields.StringField(),
                     value: new fields.NumberField({ required: true, integer: true, initial: 1 })
                 })
-            )
+            ),
+            bonuses: new fields.SchemaField({
+                difficulty: new fields.SchemaField({
+                    all: new fields.NumberField({ integer: true, initial: 0 }),
+                    reaction: new fields.NumberField({ integer: true, initial: 0 })
+                })
+            })
         };
     }
 }
