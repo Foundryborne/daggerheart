@@ -1078,9 +1078,9 @@
                 "faith": "Faith",
                 "ShortRest": "Take a Short Rest",
                 "LongRest": "Take a Long Rest",
-                "CharacterSetup": "Setup",
+                "CharacterSetup": "Character setup isn't done yet",
                 "Level": "Level",
-                "LevelUp": "Level Up!",
+                "LevelUp": "You can level up",
                 "Tabs": {
                     "Features": "Features",
                     "Inventory": "Inventory",

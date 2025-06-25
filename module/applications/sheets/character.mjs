@@ -47,8 +47,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useAdvancementCard: this.useAdvancementCard,
             useAdvancementAbility: this.useAdvancementAbility,
             toggleEquipItem: this.toggleEquipItem,
-            characterSetup: this.characterSetup,
-            levelup: this.openLevelUp,
+            levelManagement: this.levelManagement,
             editImage: this._onEditImage
         },
         window: {
@@ -458,11 +457,19 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         }
     }
 
-    static characterSetup() {
+    static levelManagement() {
+        if (this.document.system.needsCharacterSetup) {
+            this.characterSetup();
+        } else {
+            this.openLevelUp();
+        }
+    }
+
+    characterSetup() {
         new DhCharacterCreation(this.document).render(true);
     }
 
-    static openLevelUp() {
+    openLevelUp() {
         if (!this.document.system.class.value || !this.document.system.class.subclass) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.missingClassOrSubclass'));
             return;

@@ -12,17 +12,16 @@
 
         <div class='level-div'>
             <h3 class='label'>
-                {{#if document.system.needsCharacterSetup}}
-                    <button class="level-button glow" data-action="characterSetup">{{localize 'DAGGERHEART.Sheets.PC.CharacterSetup'}}</button>
-                {{else}}
-                    {{#if document.system.levelData.canLevelUp}}
-                        <button class="level-button glow" data-action="levelup">{{localize 'DAGGERHEART.Sheets.PC.LevelUp'}}</button>
-                        {{!-- <div class="levelup">{{localize 'DAGGERHEART.Sheets.PC.LevelUp'}}</div> --}}
-                    {{else}}
-                        {{localize 'DAGGERHEART.Sheets.PC.Level'}}
-                    {{/if}}
-                    <input type="text" data-dtype="Number" class="level-value" value={{document.system.levelData.level.changed}} />
+                {{#if (or document.system.needsCharacterSetup document.system.levelData.canLevelUp)}}
+                    <button 
+                        class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.Sheets.PC.CharacterSetup"}}{{else}}{{localize "DAGGERHEART.Sheets.PC.LevelUp"}}{{/if}}"
+                        data-action="levelManagement"
+                    >
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </button>
                 {{/if}}
+                {{localize 'DAGGERHEART.Sheets.PC.Level'}}
+                <input type="text" data-dtype="Number" class="level-value" value={{#if document.system.needsCharacterSetup}}0{{else}}{{document.system.levelData.level.changed}}{{/if}} {{#if document.system.needsCharacterSetup}}disabled{{/if}} />
             </h3>
         </div>
     </div>

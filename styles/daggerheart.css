@@ -3453,7 +3453,7 @@ div.daggerheart.views.multiclass {
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row {
   display: flex;
   gap: 5px;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   padding: 0;
   padding-top: 5px;
@@ -3487,7 +3487,7 @@ div.daggerheart.views.multiclass {
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row .level-div .level-button {
   color: light-dark(#222, #efe6d8);
-  font-size: 28px;
+  font-size: 18px;
   line-height: 1;
   min-height: unset;
   height: min-content;
@@ -4106,7 +4106,7 @@ div.daggerheart.views.multiclass {
     box-shadow: 0 0 1px 1px #f3c267;
   }
   100% {
-    box-shadow: 0 0 3px 3px #f3c267;
+    box-shadow: 0 0 2px 2px #f3c267;
   }
 }
 @keyframes glow-dark {
@@ -4114,7 +4114,7 @@ div.daggerheart.views.multiclass {
     box-shadow: 0 0 1px 1px #18162e;
   }
   100% {
-    box-shadow: 0 0 3px 3px #18162e;
+    box-shadow: 0 0 2px 2px #18162e;
   }
 }
 @font-face {
