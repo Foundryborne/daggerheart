@@ -189,20 +189,20 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
         }
     });
 
-    const onSelect = async event => {
-        const inputElement = event.detail.tagify.DOM.originalInput;
-        const selectedOptions = event.detail?.value ? JSON.parse(event.detail.value) : [];
-
-        const unusedDropDownItems = event.detail.tagify.suggestedListItems;
-        const missingOptions = Object.keys(options).filter(x => !unusedDropDownItems.find(item => item.value === x));
-        const removedItem = missingOptions.find(x => !selectedOptions.find(item => item.value === x));
-        const addedItem = removedItem ? null : selectedOptions.find(x => missingOptions.find(item => item === x.value));
-
-        const changedItem = { option: removedItem ?? addedItem.value, removed: Boolean(removedItem) };
-
-        onChange(selectedOptions, changedItem, inputElement);
-    };
-    tagifyElement.on('change', onSelect);
+    tagifyElement.on('add', event => {
+        const input = event.detail.tagify.DOM.originalInput;
+        const currentList = input.value ? JSON.parse(input.value) : [];
+        onChange([...currentList, event.detail.data], { option: event.detail.data.value, removed: false }, input);
+    });
+    tagifyElement.on('remove', event => {
+        const input = event.detail.tagify.DOM.originalInput;
+        const currentList = input.value ? JSON.parse(input.value) : [];
+        onChange(
+            currentList.filter(x => x.value !== event.detail.data.value),
+            { option: event.detail.data.value, removed: true },
+            event.detail.tagify.DOM.originalInput
+        );
+    });
 };
 
 export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue) => {

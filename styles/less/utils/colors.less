@@ -19,3 +19,23 @@
 @soft-shadow: rgba(0, 0, 0, 0.05);
 @gradient-hp: linear-gradient(15deg, rgb(70, 20, 10) 0%, rgb(190, 0, 0) 42%, rgb(252, 176, 69) 100%);
 @gradient-stress: linear-gradient(15deg, rgb(130, 59, 1) 0%, rgb(252, 142, 69) 65%, rgb(190, 0, 0) 100%);
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 1px 1px @golden;
+    }
+
+    100% {
+        box-shadow: 0 0 3px 3px @golden;
+    }
+}
+
+@keyframes glow-dark {
+    0% {
+        box-shadow: 0 0 1px 1px @dark-blue;
+    }
+
+    100% {
+        box-shadow: 0 0 3px 3px @dark-blue;
+    }
+}

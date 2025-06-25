@@ -48,6 +48,10 @@
             background: light-dark(@light-black, @dark-blue);
             color: light-dark(@dark-blue, @golden);
         }
+
+        &.glow {
+            animation: glow 0.75s infinite alternate;
+        }
     }
 
     select {
@@ -336,16 +340,24 @@
     }
 }
 
-.theme-light .application .component.dh-style.card-preview-container {
-    background-image: url('../assets/parchments/dh-parchment-light.png');
-
-    .preview-text-container {
-        background-image: url(../assets/parchments/dh-parchment-dark.png);
+.theme-light .application {
+    &.sheet.dh-style {
+        button.glow {
+            animation: glow-dark 0.75s infinite alternate;
+        }
     }
 
-    .preview-selected-icon-container {
-        background-image: url(../assets/parchments/dh-parchment-dark.png);
-        color: var(--color-light-5);
+    .component.dh-style.card-preview-container {
+        background-image: url('../assets/parchments/dh-parchment-light.png');
+
+        .preview-text-container {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
+        }
+
+        .preview-selected-icon-container {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
+            color: var(--color-light-5);
+        }
     }
 }
 

@@ -1078,6 +1078,7 @@
                 "faith": "Faith",
                 "ShortRest": "Take a Short Rest",
                 "LongRest": "Take a Long Rest",
+                "CharacterSetup": "Setup",
                 "Level": "Level",
                 "LevelUp": "Level Up!",
                 "Tabs": {
@@ -1177,7 +1178,9 @@
                 "NewScar": "New Scar",
                 "DeleteConfirmation": "Are you sure you want to delete the item - {item}?",
                 "Errors": {
-                    "missingClassOrSubclass": "The character doesn't have a class and subclass"
+                    "missingClassOrSubclass": "The character doesn't have a class and subclass",
+                    "tooHighLevel": "You cannot raise the character level past the maximum",
+                    "tooLowLevel": "You cannot lower the character level below starting level"
                 }
             },
             "Adversary": {

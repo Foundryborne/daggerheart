@@ -5,7 +5,7 @@ import AncestrySelectionDialog from '../ancestrySelectionDialog.mjs';
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 import { abilities } from '../../config/actorConfig.mjs';
 import DhlevelUp from '../levelup.mjs';
-import DHDualityRoll from '../../data/chat-message/dualityRoll.mjs';
+import DhCharacterCreation from '../characterCreation.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -47,6 +47,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useAdvancementCard: this.useAdvancementCard,
             useAdvancementAbility: this.useAdvancementAbility,
             toggleEquipItem: this.toggleEquipItem,
+            characterSetup: this.characterSetup,
             levelup: this.openLevelUp,
             editImage: this._onEditImage
         },
@@ -217,7 +218,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 
-        // htmlElement.querySelector('.level-value').addEventListener('change', this.onLevelChange.bind(this));
+        htmlElement.querySelector('.level-value')?.addEventListener('change', this.onLevelChange.bind(this));
         // To Remove when ContextMenu Handler is made
         htmlElement
             .querySelectorAll('[data-item-id]')
@@ -455,6 +456,10 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         if (wasUsed) {
             Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
         }
+    }
+
+    static characterSetup() {
+        new DhCharacterCreation(this.document).render(true);
     }
 
     static openLevelUp() {

@@ -9,16 +9,16 @@
 
         .name-row {
             display: flex;
-            gap: 20px;
+            gap: 5px;
             align-items: baseline;
             justify-content: space-between;
             padding: 0;
             padding-top: 5px;
+            flex: 1;
 
             input[type='text'] {
                 font-size: 32px;
                 height: 42px;
-                width: 380px;
                 text-align: start;
                 border: 1px solid transparent;
                 outline: 2px solid transparent;
@@ -31,6 +31,40 @@
 
             .level-div {
                 white-space: nowrap;
+                display: flex;
+                justify-content: end;
+
+                .label {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                }
+
+                input {
+                    width: 40px;
+                    padding: 0;
+                    text-align: center;
+                }
+
+                .level-button {
+                    color: light-dark(@dark, @beige);
+                    font-size: 28px;
+                    line-height: 1;
+                    min-height: unset;
+                    height: min-content;
+                    padding: 4px;
+                    font-family: 'Cinzel', serif;
+                    margin: 0;
+                    font-weight: normal;
+                    border-color: light-dark(@dark-blue, @golden);
+                    background-color: light-dark(transparent, @deep-black);
+
+                    &:hover {
+                        background-image: none;
+                        background-color: var(--color-warm-2);
+                        filter: drop-shadow(0 0 3px lightgray);
+                    }
+                }
             }
         }
 

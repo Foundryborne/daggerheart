@@ -110,6 +110,10 @@ export default class DhCharacter extends BaseDataActor {
         return this.parent.items.find(x => x.type === 'community') ?? null;
     }
 
+    get needsCharacterSetup() {
+        return !this.class.value || !this.class.subclass;
+    }
+
     get domains() {
         const classDomains = this.class.value ? this.class.value.system.domains : [];
         const multiclassDomains = this.multiclass.value ? this.multiclass.value.system.domains : [];

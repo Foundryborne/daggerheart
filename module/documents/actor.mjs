@@ -32,10 +32,22 @@ export default class DhpActor extends Actor {
         if (this.type !== 'character' || newLevel === this.system.levelData.level.changed) return;
 
         if (newLevel > this.system.levelData.level.current) {
-            await this.update({ 'system.levelData.level.changed': newLevel });
+            const maxLevel = Object.values(
+                game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers
+            ).reduce((acc, tier) => Math.max(acc, tier.levels.end), 0);
+            if (newLevel > maxLevel) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.tooHighLevel'));
+            }
+
+            await this.update({ 'system.levelData.level.changed': Math.min(newLevel, maxLevel) });
         } else {
+            const usedLevel = Math.max(newLevel, 1);
+            if (newLevel < 1) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.tooLowLevel'));
+            }
+
             const updatedLevelups = Object.keys(this.system.levelData.levelups).reduce((acc, level) => {
-                if (Number(level) > newLevel) acc[`-=${level}`] = null;
+                if (Number(level) > usedLevel) acc[`-=${level}`] = null;
 
                 return acc;
             }, {});
@@ -45,7 +57,7 @@ export default class DhpActor extends Actor {
             const subclassFeatureState = { class: null, multiclass: null };
             let multiclass = null;
             Object.keys(this.system.levelData.levelups)
-                .filter(x => x > newLevel)
+                .filter(x => x > usedLevel)
                 .forEach(levelKey => {
                     const level = this.system.levelData.levelups[levelKey];
                     const achievementCards = level.achievements.domainCards.map(x => x.itemUuid);
@@ -106,8 +118,8 @@ export default class DhpActor extends Actor {
                 system: {
                     levelData: {
                         level: {
-                            current: newLevel,
-                            changed: newLevel
+                            current: usedLevel,
+                            changed: usedLevel
                         },
                         levelups: updatedLevelups
                     }

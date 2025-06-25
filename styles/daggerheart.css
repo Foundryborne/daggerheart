@@ -3452,16 +3452,16 @@ div.daggerheart.views.multiclass {
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row {
   display: flex;
-  gap: 20px;
+  gap: 5px;
   align-items: baseline;
   justify-content: space-between;
   padding: 0;
   padding-top: 5px;
+  flex: 1;
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row input[type='text'] {
   font-size: 32px;
   height: 42px;
-  width: 380px;
   text-align: start;
   border: 1px solid transparent;
   outline: 2px solid transparent;
@@ -3472,6 +3472,36 @@ div.daggerheart.views.multiclass {
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row .level-div {
   white-space: nowrap;
+  display: flex;
+  justify-content: end;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row .level-div .label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row .level-div input {
+  width: 40px;
+  padding: 0;
+  text-align: center;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row .level-div .level-button {
+  color: light-dark(#222, #efe6d8);
+  font-size: 28px;
+  line-height: 1;
+  min-height: unset;
+  height: min-content;
+  padding: 4px;
+  font-family: 'Cinzel', serif;
+  margin: 0;
+  font-weight: normal;
+  border-color: light-dark(#18162e, #f3c267);
+  background-color: light-dark(transparent, #0e0d15);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .name-row .level-div .level-button:hover {
+  background-image: none;
+  background-color: var(--color-warm-2);
+  filter: drop-shadow(0 0 3px lightgray);
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-details {
   display: flex;
@@ -4071,6 +4101,22 @@ div.daggerheart.views.multiclass {
   justify-content: center;
   gap: 10px;
 }
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 1px 1px #f3c267;
+  }
+  100% {
+    box-shadow: 0 0 3px 3px #f3c267;
+  }
+}
+@keyframes glow-dark {
+  0% {
+    box-shadow: 0 0 1px 1px #18162e;
+  }
+  100% {
+    box-shadow: 0 0 3px 3px #18162e;
+  }
+}
 @font-face {
   font-family: 'Cinzel';
   font-style: normal;
@@ -4253,6 +4299,9 @@ div.daggerheart.views.multiclass {
 .application.sheet.dh-style button:hover {
   background: light-dark(rgba(0, 0, 0, 0.3), #18162e);
   color: light-dark(#18162e, #f3c267);
+}
+.application.sheet.dh-style button.glow {
+  animation: glow 0.75s infinite alternate;
 }
 .application.sheet.dh-style select {
   background: light-dark(transparent, transparent);
@@ -4476,6 +4525,9 @@ div.daggerheart.views.multiclass {
 }
 .system-daggerheart.theme-light .tagify__dropdown .tagify__dropdown__item--active {
   color: #efe6d8;
+}
+.theme-light .application.sheet.dh-style button.glow {
+  animation: glow-dark 0.75s infinite alternate;
 }
 .theme-light .application .component.dh-style.card-preview-container {
   background-image: url('../assets/parchments/dh-parchment-light.png');
