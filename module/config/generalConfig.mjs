@@ -393,6 +393,14 @@ export const abilityCosts = {
     slayer: {
         id: 'slayer',
         label: 'Slayer Dice'
+    },
+    tide: {
+        id: 'tide',
+        label: 'Tide'
+    },
+    chaos: {
+        id: 'chaos',
+        label: 'Chaos'
     }
 };
 

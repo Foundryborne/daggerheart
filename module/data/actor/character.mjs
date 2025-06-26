@@ -39,13 +39,8 @@ export default class DhCharacter extends BaseDataActor {
                 hitPoints: resourceField(6),
                 stress: resourceField(6),
                 hope: resourceField(6),
-                rallyDice: new fields.SchemaField({
-                    d6: new fields.NumberField({ integer: true, initial: 0 }),
-                    d8: new fields.NumberField({ integer: true, initial: 0 }),
-                    d10: new fields.NumberField({ integer: true, initial: 0 })
-                }),
-                slayerDice: new fields.NumberField({ integer: true, initial: 0 }),
-                tideTokens: new fields.NumberField({ integer: true, initial: 0 })
+                tokens: new fields.ObjectField(),
+                dice: new fields.ObjectField()
             }),
             traits: new fields.SchemaField({
                 agility: attributeField(),
@@ -134,7 +129,8 @@ export default class DhCharacter extends BaseDataActor {
                     max: 12,
                     nullable: true,
                     initial: null
-                })
+                }),
+                runeWard: new fields.BooleanField({ initial: false })
             })
         };
     }
@@ -301,7 +297,11 @@ export default class DhCharacter extends BaseDataActor {
         const data = super.getRollData();
         return {
             ...data,
-            tier: this.tier
+            ...this.resources.tokens,
+            ...this.resources.dice,
+            ...this.bonuses,
+            tier: this.tier,
+            level: this.levelData.level.current
         };
     }
 }
