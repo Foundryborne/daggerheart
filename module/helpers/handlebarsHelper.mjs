@@ -11,6 +11,8 @@ export default class RegisterHandlebarsHelpers {
             includes: this.includes,
             debug: this.debug,
             signedNumber: this.signedNumber,
+            cleanClass: this.cleanClass,
+            tertiary: this.tertiary,
             length: this.length,
             switch: this.switch,
             case: this.case,
@@ -136,5 +138,13 @@ export default class RegisterHandlebarsHelpers {
     static debug(a) {
         console.log(a);
         return a;
+    }
+
+    static cleanClass(className) {
+        return className.replaceAll('.', '-');
+    }
+
+    static tertiary(condition, a, b) {
+        return condition ? a : b;
     }
 }

@@ -6,12 +6,15 @@ import DaggerheartSheet from './daggerheart-sheet.mjs';
 import { abilities } from '../../config/actorConfig.mjs';
 import DhlevelUp from '../levelup.mjs';
 import DhCharacterCreation from '../characterCreation.mjs';
+import DhContextMenu from '../contextMenu.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
 export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     constructor(options = {}) {
         super(options);
+
+        this.contextMenu = null;
     }
 
     static DEFAULT_OPTIONS = {
@@ -48,7 +51,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useAdvancementAbility: this.useAdvancementAbility,
             toggleEquipItem: this.toggleEquipItem,
             levelManagement: this.levelManagement,
-            editImage: this._onEditImage
+            editImage: this._onEditImage,
+            contextMenu: this.createContextMenu
         },
         window: {
             resizable: true
@@ -212,6 +216,78 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         setActive(secondaryTabs);
 
         return { primary: primaryTabs, secondary: secondaryTabs };
+    }
+
+    static async createContextMenu(event, baseTarget) {
+        const target = baseTarget.closest('a');
+        const selector = Array.from(target.classList)
+            .map(x => `.${x}`)
+            .join('');
+
+        const getMenuOptions = () => {
+            const allOptions = {
+                equip: {
+                    name: 'DAGGERHEART.Sheets.PC.ContextMenu.Equip',
+                    icon: '<i class="fa-solid fa-hands"></i>',
+                    callback: () => this.constructor.toggleEquipItem.bind(this)(event, target)
+                },
+                unequip: {
+                    name: 'DAGGERHEART.Sheets.PC.ContextMenu.Unequip',
+                    icon: '<i class="fa-solid fa-hands"></i>',
+                    callback: this.constructor.toggleEquipItem.bind(this)
+                },
+                edit: {
+                    name: 'DAGGERHEART.Sheets.PC.ContextMenu.Edit',
+                    icon: '<i class="fa-solid fa-pen-to-square"></i>',
+                    callback: this.constructor.viewObject.bind(this)
+                },
+                delete: {
+                    name: 'DAGGERHEART.Sheets.PC.ContextMenu.Delete',
+                    icon: '<i class="fa-solid fa-trash"></i>',
+                    callback: this.constructor.deleteItem.bind(this)
+                },
+                sendToLoadout: {
+                    name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToLoadout',
+                    icon: '<i class="fa-solid fa-plus"></i>',
+                    callback: () => {}
+                },
+                sendToVault: {
+                    name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToVault',
+                    icon: '<i class="fa-solid fa-plus"></i>',
+                    callback: () => {}
+                },
+                consumeItem: {
+                    name: 'DAGGERHEART.Sheets.PC.ContextMenu.Consume',
+                    icon: '<i class="fa-solid fa-plus"></i>',
+                    callback: this.constructor.useItem.bind(this)
+                },
+                sendToChat: {
+                    name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
+                    icon: '<i class="fa-solid fa-plus"></i>',
+                    callback: () => {}
+                }
+            };
+
+            let menuItems = [];
+            switch (target.dataset.type) {
+                case 'weapon':
+                case 'armor':
+                    menuItems = [allOptions.equip, allOptions.unequip];
+                    break;
+                case 'domainCard':
+                    menuItems = [allOptions.sendToLoadout, allOptions.sendToVault];
+                    break;
+                case 'consumable':
+                    menuItems = [allOptions.consumeItem];
+            }
+            menuItems.push(...[allOptions.edit, allOptions.sendToChat, allOptions.delete]);
+
+            return menuItems;
+        };
+
+        this._createContextMenu(getMenuOptions, selector, { fixed: true, parentClassHooks: false }).render(
+            this.element.querySelector(selector)
+        );
     }
 
     _attachPartListeners(partId, htmlElement, options) {
