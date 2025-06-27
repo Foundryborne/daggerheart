@@ -12,8 +12,6 @@ const { TextEditor } = foundry.applications.ux;
 export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     constructor(options = {}) {
         super(options);
-
-        this.contextMenu = null;
     }
 
     static DEFAULT_OPTIONS = {
@@ -276,11 +274,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 },
                 callback: this.constructor.toggleVault.bind(this)
             },
-            consumeItem: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Consume',
-                icon: '<i class="fa-solid fa-bottle-droplet"></i>',
-                callback: this.constructor.useItem.bind(this)
-            },
             sendToChat: {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
                 icon: '<i class="fa-regular fa-message"></i>',
@@ -298,8 +291,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 case 'domainCard':
                     menuItems.push(...[allOptions.sendToLoadout, allOptions.sendToVault]);
                     break;
-                case 'consumable':
-                    menuItems.push(...[allOptions.consumeItem]);
             }
             menuItems.push(...[allOptions.sendToChat, allOptions.edit, allOptions.delete]);
 
