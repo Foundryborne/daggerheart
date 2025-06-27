@@ -111,7 +111,7 @@
                     </div>
                     <input name="{{concat "system.experiences." id ".description"}}" data-experience={{id}} value="{{experience.description}}" type="text" />
                     <div class="controls">
-                        <a><i class="fa-regular fa-message"></i></a>
+                        <a data-action="toChat" data-type="experience" data-uuid="{{id}}"><i class="fa-regular fa-message"></i></a>
                     </div>
                 </div>
             {{/each}}

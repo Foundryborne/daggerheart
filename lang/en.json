@@ -1100,6 +1100,7 @@
                     "effects": "Effects"
                 },
                 "ContextMenu": {
+                    "UseItem": "Use",
                     "Equip": "Equip",
                     "Unequip": "Unequip",
                     "Edit": "Edit",
