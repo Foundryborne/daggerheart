@@ -3956,7 +3956,7 @@ div.daggerheart.views.multiclass {
   z-index: 1;
   color: light-dark(#18162e50, #efe6d850);
 }
-.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view {
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toggle-view {
   background: light-dark(#18162e10, #18162e);
   border: 1px solid light-dark(#18162e, #f3c267);
   border-radius: 15px;
@@ -3964,24 +3964,24 @@ div.daggerheart.views.multiclass {
   gap: 0;
   width: 62px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span {
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toggle-view span {
   margin: 1px;
   width: 26px;
   color: light-dark(#18162e, #f3c267);
 }
-.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span.list-icon i {
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toggle-view span.list-icon i {
   margin-left: 3px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span.grid-icon i {
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toggle-view span.grid-icon i {
   margin-right: 3px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span.list-active {
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toggle-view span.list-active {
   border-radius: 32px 3px 3px 32px;
   background-color: light-dark(#18162e, #f3c267);
   color: light-dark(#efe6d8, #18162e);
   padding: 2px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toogle-view span.grid-active {
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .btn-toggle-view span.grid-active {
   border-radius: 3px 32px 32px 3px;
   background-color: light-dark(#18162e, #f3c267);
   color: light-dark(#efe6d8, #18162e);

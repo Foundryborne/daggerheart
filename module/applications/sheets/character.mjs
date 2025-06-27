@@ -25,6 +25,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             toggleStress: this.toggleStress,
             toggleHope: this.toggleHope,
             toggleGold: this.toggleGold,
+            toggleLoadoutView: this.toggleLoadoutView,
             attackRoll: this.attackRoll,
             useDomainCard: this.useDomainCard,
             removeCard: this.removeDomainCard,
@@ -291,7 +292,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             loadout: {
                 top: loadout.slice(0, Math.min(2, nrLoadoutCards)),
                 bottom: nrLoadoutCards > 2 ? loadout.slice(2, Math.min(5, nrLoadoutCards)) : [],
-                nrTotal: nrLoadoutCards
+                nrTotal: nrLoadoutCards,
+                listView: this.document.system.layout.listView
             },
             vault: vault.map(x => ({
                 ...x,
@@ -445,6 +447,11 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
         const update = `system.gold.${goldType}`;
         await this.document.update({ [update]: newValue });
+    }
+
+    static async toggleLoadoutView(_, button) {
+        const listView = !(button.dataset.value === 'true');
+        await this.document.update({ 'system.layout.listView': listView });
     }
 
     static async attackRoll(event, button) {
