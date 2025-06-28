@@ -9,10 +9,9 @@
 This is a community repo for a Foundry VTT implementation of Daggerheart. It is not associated with Critical Role or Darrington Press.
 
 ## User Install
-### Download Through system.json
-1. Pasting `https://raw.githubusercontent.com/Foundryborne/daggerheart/refs/heads/main/system.json` into the Install System dialog on the Setup menu of the application.
-2. (No Releases Yet) Browsing the repository's Releases page, where you can copy any system.json link for use in the Install System dialog.
-3. (No Archives Yet) Downloading one of the .zip archives from the Releases page and extracting it into your foundry Data folder, under Data/systems/daggerheart.
+1. **(Not Yet Supported - No Releases Yet)** Pasting `https://raw.githubusercontent.com/Foundryborne/daggerheart/refs/heads/main/system.json` into the Install System dialog on the Setup menu of the application.
+2. **(Not Yet Supported - No Releases Yet)** Browsing the repository's Releases page, where you can copy any system.json link for use in the Install System dialog.
+3. **(Not Yet Supported - No Releases Yet)** Downloading one of the .zip archives from the Releases page and extracting it into your foundry Data folder, under Data/systems/daggerheart.
 
 ## Development Setup
 - Open a terminal in the directory with the repo `cd <path>/<to>/<repo>`
