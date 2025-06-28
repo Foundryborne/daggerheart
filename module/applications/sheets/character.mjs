@@ -223,7 +223,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useItem: {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.UseItem',
                 icon: '<i class="fa-solid fa-burst"></i>',
-                callback: this.constructor.useItem.bind(this)
+                callback: (element, event) => this.constructor.useItem.bind(this)(event, element)
             },
             equip: {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.Equip',
@@ -555,6 +555,12 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
+    static async toggleLoadoutView(_, button) {
+        const newAbilityView = !(button.dataset.value === 'true');
+        await game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList, newAbilityView);
+        this.render();
+    }
+
     static async attackRoll(event, button) {
         const weapon = await fromUuid(button.dataset.weapon);
         if (!weapon) return;
@@ -652,10 +658,13 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         (await game.packs.get('daggerheart.communities'))?.render(true);
     }
 
-    static useItem(element, button) {
-        const id = (button ?? element).closest('a').id,
+    static async useItem(event, button) {
+        const id = button.closest('a').id,
             item = this.document.items.get(id);
-        item.use({});
+        const wasUsed = await item.use(event);
+        if (wasUsed && item.type === 'weapon') {
+            Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+        }
     }
 
     static async viewObject(element, button) {
@@ -707,7 +716,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     static async makeDeathMove() {
         if (this.document.system.resources.hitPoints.value === this.document.system.resources.hitPoints.max) {
             await new DhpDeathMove(this.document).render(true);
-            await this.minimize();
         }
     }
 
@@ -763,7 +771,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
-                description: `${experience.description} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
+                description: `${experience.description} ${
+                    experience.total < 0 ? experience.total : `+${experience.total}`
+                }`
             };
             const msg = new cls({
                 type: 'abilityUse',
@@ -788,7 +798,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 ? this.document.system.multiclass.subclass
                 : this.document.system.class.subclass;
         const ability = item.system[`${button.dataset.key}Feature`];
-        const title = `${item.name} - ${game.i18n.localize(`DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`)}`;
+        const title = `${item.name} - ${game.i18n.localize(
+            `DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`
+        )}`;
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {

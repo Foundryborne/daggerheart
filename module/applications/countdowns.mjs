@@ -48,8 +48,8 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
         super._attachPartListeners(partId, htmlElement, options);
 
         htmlElement.querySelectorAll('.mini-countdown-container').forEach(element => {
-            element.addEventListener('click', event => this.updateCountdownValue.bind(this)(event, true));
-            element.addEventListener('contextmenu', event => this.updateCountdownValue.bind(this)(event, false));
+            element.addEventListener('click', event => this.updateCountdownValue.bind(this)(event, false));
+            element.addEventListener('contextmenu', event => this.updateCountdownValue.bind(this)(event, true));
         });
     }
 

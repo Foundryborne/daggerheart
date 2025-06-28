@@ -112,6 +112,7 @@ Hooks.once('init', () => {
     CONFIG.Token.rulerClass = DhpTokenRuler;
 
     CONFIG.ui.resources = Resources;
+    CONFIG.ux.ContextMenu = applications.DhContextMenu;
 
     game.socket.on(`system.${SYSTEM.id}`, handleSocketEvent);
 
