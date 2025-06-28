@@ -1295,6 +1295,7 @@
                     "Severe": "Severe"
                 },
                 "Evasion": "Evasion",
+                "HitPoints": "Hit Points",
                 "ClassFeatures": "Class Features",
                 "Subclasses": "Subclasses",
                 "Guide": {
