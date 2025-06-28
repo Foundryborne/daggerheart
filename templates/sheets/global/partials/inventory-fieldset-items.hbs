@@ -37,15 +37,17 @@
         {{/unless}}
         
     </ul>
-    <ul class="card-list">
-        {{#each document.items as |item|}}
-            {{#if (eq item.type ../type)}}
-                {{#if (eq item.type 'domainCard')}}
-                    {{#unless (eq ../cardView 'list')}}
-                        {{> 'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs' item=item type=../type}}
-                    {{/unless}}
-                {{/if}}
+    {{#if (and (eq cardView 'card') (eq type 'domainCard'))}}
+        <ul class="card-list">
+            {{#if isVault}}
+                {{#each document.system.domainCards.vault as |card|}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs' item=card type=../type}}
+                {{/each}}
+            {{else}}
+                {{#each document.system.domainCards.loadout as |card|}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs' item=card type=../type}}
+                {{/each}}
             {{/if}}
-        {{/each}}
-    </ul>
+        </ul>
+    {{/if}}
 </fieldset>

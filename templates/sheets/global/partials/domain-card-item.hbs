@@ -14,18 +14,18 @@
             {{/if}}
             {{#if (eq type 'domainCard')}}
                 {{#unless item.system.inVault}}
-                    <a data-action="sendToVault" data-domain="{{card.uuid}}" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
+                    <a data-action="toggleVault" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
                         <i class="fa-solid fa-arrow-down"></i>
                     </a>
                 {{else}}
-                    <a data-action="sendToLoadout" data-domain="{{card.uuid}}" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
+                    <a data-action="toggleVault" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
                         <i class="fa-solid fa-arrow-up"></i>
                     </a>
                 {{/unless}}
                 
             {{/if}}
             <a data-action="toChat" data-uuid="{{item.uuid}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToChat'}}"><i class="fa-regular fa-message"></i></a>
-            <a class="{{concat type "-context-menu"}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+            <a class="{{concat type "-context-menu"}}" data-type="{{type}}" data-uuid="{{item.uuid}}" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
         </div>
         <div class="card-name">{{item.name}}</div>
     </div>
