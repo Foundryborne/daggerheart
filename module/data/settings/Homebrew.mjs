@@ -17,6 +17,11 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 initial: () => [2, 1, 1, 0, 0, -1]
             }),
             currency: new fields.SchemaField({
+                enabled: new fields.BooleanField({
+                    required: true,
+                    initial: false,
+                    label: 'DAGGERHEART.Settings.Homebrew.Currency.enabled'
+                }),
                 title: new fields.StringField({
                     required: true,
                     initial: 'Gold',

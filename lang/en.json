@@ -101,6 +101,7 @@
                     "traitArray": { "label": "Initial Trait Modifiers" }
                 },
                 "Currency": {
+                    "enabled": "Enable Overrides",
                     "title": "Currency Overrides",
                     "currencyName": "Currency Name",
                     "coinName": "Coin Name",
