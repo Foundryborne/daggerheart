@@ -1,5 +1,9 @@
 <aside class="character-sidebar-sheet">
-    <img class="portrait" src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
+    <div class="portrait {{#if (gte document.system.resources.hitPoints.value document.system.resources.hitPoints.maxTotal)}}death-roll{{/if}}">
+        <img src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
+        <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.Sheets.PC.Health.DeathMoveTooltip"}}" data-action="makeDeathMove"><i class="fas fa-skull death-save" ></i></a>
+    </div>
+    
     <div class="info-section">
         <div class="resources-section">
             <div class="status-bar">
