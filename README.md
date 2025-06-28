@@ -1,7 +1,7 @@
 # Daggerheart
 ## Table of Contents
 - [Overview](#overview)
-- [User Setup](#user-install)
+- [User Install Guide](#user-install)
 - [Developer Setup](#developer-setup)
 - [Contribution Info](#contributing)
 
