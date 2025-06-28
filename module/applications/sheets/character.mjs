@@ -293,7 +293,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 top: loadout.slice(0, Math.min(2, nrLoadoutCards)),
                 bottom: nrLoadoutCards > 2 ? loadout.slice(2, Math.min(5, nrLoadoutCards)) : [],
                 nrTotal: nrLoadoutCards,
-                listView: this.document.system.layout.listView
+                listView: game.user.getFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList)
             },
             vault: vault.map(x => ({
                 ...x,
@@ -450,8 +450,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async toggleLoadoutView(_, button) {
-        const listView = !(button.dataset.value === 'true');
-        await this.document.update({ 'system.layout.listView': listView });
+        const newAbilityView = !(button.dataset.value === 'true');
+        await game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList, newAbilityView);
+        this.render();
     }
 
     static async attackRoll(event, button) {

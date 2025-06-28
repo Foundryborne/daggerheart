@@ -90,9 +90,6 @@ export default class DhCharacter extends BaseDataActor {
                 attack: new fields.NumberField({ integer: true, initial: 0 }),
                 spellcast: new fields.NumberField({ integer: true, initial: 0 }),
                 armorScore: new fields.NumberField({ integer: true, initial: 0 })
-            }),
-            layout: new fields.SchemaField({
-                listView: new fields.BooleanField({ initial: true })
             })
         };
     }
