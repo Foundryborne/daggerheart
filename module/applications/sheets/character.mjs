@@ -25,7 +25,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             toggleStress: this.toggleStress,
             toggleHope: this.toggleHope,
             toggleGold: this.toggleGold,
-            attackRoll: this.attackRoll,
+            toggleLoadoutView: this.toggleLoadoutView,
             useDomainCard: this.useDomainCard,
             removeCard: this.removeDomainCard,
             selectClass: this.selectClass,
@@ -547,14 +547,10 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         await this.document.update({ [update]: newValue });
     }
 
-    static async attackRoll(event, button) {
-        const weapon = await fromUuid(button.dataset.weapon);
-        if (!weapon) return;
-
-        const wasUsed = await weapon.use(event);
-        if (wasUsed) {
-            Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
-        }
+    static async toggleLoadoutView(_, button) {
+        const newAbilityView = !(button.dataset.value === 'true');
+        await game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList, newAbilityView);
+        this.render();
     }
 
     static levelManagement() {
@@ -644,10 +640,13 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         (await game.packs.get('daggerheart.communities'))?.render(true);
     }
 
-    static useItem(element, button) {
+    static async useItem(element, button) {
         const id = (button ?? element).closest('a').id,
             item = this.document.items.get(id);
-        item.use({});
+        const wasUsed = await item.use({});
+        if (wasUsed && item.type === 'weapon') {
+            Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+        }
     }
 
     static async viewObject(element, button) {
