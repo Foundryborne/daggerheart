@@ -11,18 +11,29 @@
             <input type="text" name="" id="" placeholder="Search...">
         </div>
         <a><i class="fa-solid fa-filter"></i></a>
-        <button class="btn-toogle-view">
-            <span class="{{#if listView}}list-active{{/if}}list-active list-icon">
+        <button class="btn-toggle-view" data-action="toggleLoadoutView" data-value="{{this.abilities.loadout.listView}}">
+            <span class="{{#if this.abilities.loadout.listView}}list-active{{/if}} list-icon">
                 <i class="fa-solid fa-bars"></i>
             </span>
-            <span class="{{#if gridView}}grid-active{{/if}} grid-icon">
+            <span class="{{#unless this.abilities.loadout.listView}}grid-active{{/unless}} grid-icon">
                 <i class="fa-solid fa-grip"></i>
             </span>
         </button>
     </div>
 
     <div class="items-section">
+        {{#if this.abilities.loadout.listView}}
         {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Loadout') type='domainCard' isGlassy=true cardView='list'}}
+        {{else}}
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Loadout') type='domainCard' isGlassy=true cardView='card'}}
+        {{/if}}
+
+        {{#if this.abilities.loadout.listView}}
         {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Vault') type='domainCard' isVault=true isGlassy=true cardView='list'}}
+        {{else}}
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Vault') type='domainCard' isVault=true isGlassy=true cardView='card'}}
+        {{/if}}
+        
+        
     </div>
 </section>

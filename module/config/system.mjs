@@ -6,6 +6,7 @@ import * as SETTINGS from './settingsConfig.mjs';
 import { hooks as HOOKS } from './hooksConfig.mjs';
 import * as EFFECTS from './effectConfig.mjs';
 import * as ACTIONS from './actionConfig.mjs';
+import * as FLAGS from './flagsConfig.mjs';
 
 export const SYSTEM_ID = 'daggerheart';
 
@@ -18,5 +19,6 @@ export const SYSTEM = {
     SETTINGS,
     HOOKS,
     EFFECTS,
-    ACTIONS
+    ACTIONS,
+    FLAGS
 };

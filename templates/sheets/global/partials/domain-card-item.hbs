@@ -14,11 +14,11 @@
             {{/if}}
             {{#if (eq type 'domainCard')}}
                 {{#unless item.system.inVault}}
-                    <a data-action="sendToVault" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
+                    <a data-action="toggleVault" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
                         <i class="fa-solid fa-arrow-down"></i>
                     </a>
                 {{else}}
-                    <a data-action="sendToLoadout" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
+                    <a data-action="toggleVault" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
                         <i class="fa-solid fa-arrow-up"></i>
                     </a>
                 {{/unless}}

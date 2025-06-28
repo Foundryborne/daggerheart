@@ -26,6 +26,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             toggleHope: this.toggleHope,
             toggleGold: this.toggleGold,
             toggleLoadoutView: this.toggleLoadoutView,
+            attackRoll: this.attackRoll,
             useDomainCard: this.useDomainCard,
             selectClass: this.selectClass,
             selectSubclass: this.selectSubclass,
@@ -370,7 +371,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             loadout: {
                 top: loadout.slice(0, Math.min(2, nrLoadoutCards)),
                 bottom: nrLoadoutCards > 2 ? loadout.slice(2, Math.min(5, nrLoadoutCards)) : [],
-                nrTotal: nrLoadoutCards
+                nrTotal: nrLoadoutCards,
+                listView: game.user.getFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList)
             },
             vault: vault.map(x => ({
                 ...x,
@@ -491,6 +493,22 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const newAbilityView = !(button.dataset.value === 'true');
         await game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList, newAbilityView);
         this.render();
+    }
+
+    static async toggleLoadoutView(_, button) {
+        const newAbilityView = !(button.dataset.value === 'true');
+        await game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList, newAbilityView);
+        this.render();
+    }
+
+    static async attackRoll(event, button) {
+        const weapon = await fromUuid(button.dataset.weapon);
+        if (!weapon) return;
+
+        const wasUsed = await weapon.use(event);
+        if (wasUsed) {
+            Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+        }
     }
 
     static levelManagement() {
@@ -683,7 +701,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
-                description: `${experience.description} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
+                description: `${experience.description} ${
+                    experience.total < 0 ? experience.total : `+${experience.total}`
+                }`
             };
             const msg = new cls({
                 type: 'abilityUse',
@@ -709,7 +729,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 ? this.document.system.multiclass.subclass
                 : this.document.system.class.subclass;
         const ability = item.system[`${button.dataset.key}Feature`];
-        const title = `${item.name} - ${game.i18n.localize(`DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`)}`;
+        const title = `${item.name} - ${game.i18n.localize(
+            `DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`
+        )}`;
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
@@ -782,8 +804,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async toggleVault(event, button) {
-        const itemId = event.target.closest('[data-item-id]').dataset.itemId,
-            item = this.document.items.get(itemId);
+        const item = this.getItem(event);
         if (!item) return;
         await item.update({ 'system.inVault': !item.system.inVault });
     }
