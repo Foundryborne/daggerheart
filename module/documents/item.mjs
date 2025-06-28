@@ -131,14 +131,35 @@ export default class DhpItem extends Item {
                 action = await this.selectActionDialog();
             }
             if (action) response = action.use(event);
-            // Check Target
-            // If action.roll           => Roll Dialog
-            // Else If action.cost      => Cost Dialog
-            // Then
-            // Apply Cost
-            // Apply Effect
         }
-        // Display Item Card in chat
         return response;
+    }
+
+    async toChat(origin) {
+        const cls = getDocumentClass('ChatMessage');
+        const systemData = {
+            title:
+                this.type === 'ancestry'
+                    ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.AncestryTitle')
+                    : this.type === 'community'
+                      ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.CommunityTitle')
+                      : game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+            origin: origin,
+            img: this.img,
+            name: this.name,
+            description: this.system.description,
+            actions: []
+        };
+        const msg = new cls({
+            type: 'abilityUse',
+            user: game.user.id,
+            system: systemData,
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/chat/ability-use.hbs',
+                systemData
+            )
+        });
+
+        cls.create(msg.toObject());
     }
 }

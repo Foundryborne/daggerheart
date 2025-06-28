@@ -22,13 +22,13 @@
         <legend>{{localize "DAGGERHEART.Sheets.Feature.ValueType.Title"}}</legend>
         <span>{{localize "DAGGERHEART.Sheets.Feature.ValueType.Title"}}</span>
         <select name="system.featureType.type">
-            {{selectOptions this.itemConfig.valueTypes selected=document.system.featureType.type labelAttr="name" localize=true}}
+            {{selectOptions itemConfig.valueTypes selected=document.system.featureType.type labelAttr="name" localize=true}}
         </select>
 
         {{#if (eq document.system.featureType.type "dice")}}
             <span>{{localize "DAGGERHEART.Sheets.Feature.ValueType.Dice"}}</span>
             <select name="system.featureType.data.value">
-                {{selectOptions this.dice selected=document.system.featureType.data.value }}
+                {{selectOptions dice selected=document.system.featureType.data.value }}
             </select>
 
             <span>{{localize "DAGGERHEART.Feature.Max"}}</span>
@@ -36,7 +36,7 @@
 
             <span>{{localize "DAGGERHEART.Sheets.Feature.ValueType.Property"}}</span>
             <select name="system.featureType.data.property">
-                {{selectOptions this.properties selected=document.system.featureType.data.property labelAttr="name" localize=true}}
+                {{selectOptions properties selected=document.system.featureType.data.property labelAttr="name" localize=true}}
             </select>
         {{/if}}
     </fieldset>

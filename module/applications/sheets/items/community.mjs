@@ -1,11 +1,12 @@
-import DHHeritageSheetV2 from './heritage.mjs';
+import DHHeritageSheet from '../api/heritage-sheet.mjs';
 
-const { ItemSheetV2 } = foundry.applications.sheets;
-export default class CommunitySheet extends DHHeritageSheetV2(ItemSheetV2) {
+export default class CommunitySheet extends DHHeritageSheet {
+    /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['community']
     };
 
+    /**@inheritdoc */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/community/header.hbs' },
         ...super.PARTS

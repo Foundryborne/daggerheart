@@ -1,12 +1,13 @@
-import DHItemSheetV2 from '../item.mjs';
+import DHBaseItemSheet from '../api/base-item.mjs';
 
-const { ItemSheetV2 } = foundry.applications.sheets;
-export default class MiscellaneousSheet extends DHItemSheetV2(ItemSheetV2) {
+export default class MiscellaneousSheet extends DHBaseItemSheet {
+    /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['miscellaneous'],
         position: { width: 550 }
     };
 
+    /**@override */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/miscellaneous/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },

@@ -1,26 +1,21 @@
+import DHBaseItemSheet from '../api/base-item.mjs';
 import { actionsTypes } from '../../../data/_module.mjs';
 import DHActionConfig from '../../config/Action.mjs';
-import DhpApplicationMixin from '../daggerheart-sheet.mjs';
 
-const { ItemSheetV2 } = foundry.applications.sheets;
-export default class SubclassSheet extends DhpApplicationMixin(ItemSheetV2) {
+export default class SubclassSheet extends DHBaseItemSheet {
+    /**@inheritdoc */
     static DEFAULT_OPTIONS = {
-        tag: 'form',
-        classes: ['daggerheart', 'sheet', 'item', 'dh-style', 'subclass'],
+        classes: ['subclass'],
         position: { width: 600 },
         window: { resizable: false },
         actions: {
             addFeature: this.addFeature,
             editFeature: this.editFeature,
             deleteFeature: this.deleteFeature
-        },
-        form: {
-            handler: this.updateForm,
-            submitOnChange: true,
-            closeOnSubmit: false
         }
     };
 
+    /**@override */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/subclass/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
@@ -35,46 +30,16 @@ export default class SubclassSheet extends DhpApplicationMixin(ItemSheetV2) {
         }
     };
 
+    /** @inheritdoc */
     static TABS = {
-        description: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'description',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Feature.Tabs.Description'
-        },
-        features: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'features',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Feature.Tabs.Features'
-        },
-        settings: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'settings',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Feature.Tabs.Settings'
+        primary: {
+            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }],
+            initial: 'description',
+            labelPrefix: 'DAGGERHEART.Sheets.TABS'
         }
     };
 
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-        context.document = this.document;
-        context.config = CONFIG.daggerheart;
-        context.tabs = super._getTabs(this.constructor.TABS);
-
-        return context;
-    }
-
-    static async updateForm(event, _, formData) {
-        await this.document.update(formData.object);
-        this.render();
-    }
+    //TODO redo everything below this message
 
     static addFeature(_, target) {
         if (target.dataset.type === 'action') this.addAction(target.dataset.level);

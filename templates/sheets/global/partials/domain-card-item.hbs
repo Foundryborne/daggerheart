@@ -1,5 +1,5 @@
-<li class="card-item">
-    <img src="{{item.img}}" data-action="viewObject" data-value="{{item.uuid}}" class="card-img" />
+<li class="card-item" data-item-id="{{item.id}}">
+    <img src="{{item.img}}" data-action="useItem" class="card-img" />
     <div class="card-label">
         <div class="controls">
             {{#if (eq type 'weapon')}}
@@ -14,18 +14,18 @@
             {{/if}}
             {{#if (eq type 'domainCard')}}
                 {{#unless item.system.inVault}}
-                    <a data-action="sendToVault" data-domain="{{card.uuid}}" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
+                    <a data-action="sendToVault" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
                         <i class="fa-solid fa-arrow-down"></i>
                     </a>
                 {{else}}
-                    <a data-action="sendToLoadout" data-domain="{{card.uuid}}" id="{{item.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
+                    <a data-action="sendToLoadout" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
                         <i class="fa-solid fa-arrow-up"></i>
                     </a>
                 {{/unless}}
                 
             {{/if}}
-            <a data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToChat'}}"><i class="fa-regular fa-message"></i></a>
-            <a data-tooltip="{{localize 'DAGGERHEART.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+            <a data-action="toChat" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToChat'}}"><i class="fa-regular fa-message"></i></a>
+            <a data-action="triggerContextMenu" data-tooltip="{{localize 'DAGGERHEART.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
         </div>
         <div class="card-name">{{item.name}}</div>
     </div>

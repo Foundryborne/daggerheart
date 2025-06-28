@@ -1,37 +1,8 @@
 # Daggerheart
 
-#### For Foundry VTT
+This is a repo for a Foundry VTT implementation of daggerheart. It is not associated with Critical Role or Darrington Press.
 
-This is a repo for a Foundry VTT implementation of daggerheart. It is not associated with critical role
-or darrington press.
-
-# Table Of Contents
-
-- [Overview](#overview)
-- [Developer Guide](#developer-guide)
-
-# Overview
-
-# Developer Guide
-
-#### Coding Practises
-##### Style Code
-The project is set up for Prettify. Make sure you've run `npm install` since it was added.
-There is a pre-commit hook that will automatically run prettify on the files you've changed whenever you do a commit to maintain the formating.
-
-##### Branches And Pull Requests
-
-During pre-release development, we are making use of `main` as the development branch. Once release is getting closer we will instead be making a `dev` branch to base development from to make `main` more stable.
-
-When you work on an issue or feature, start from `main` and make a new branch. Branches should be topically named and with the associated Issue number if it relates to an Issue. EX: `#6/Level-Up-Bugginess`.
-
----
-
-Once you're finished with an issue or feature, open a Pull Request on Github for that branch.
-
-The Reviewers Team will be approving submissions. This is mainly since we have a wide spread of experience with system building and the system itself, and we do want the system to become something great. As time goes on, more collaborators are likely to be added as reviewers.
-
-#### Setup
+## Setup
 
 - Open a terminal in the directory with the repo `cd <path>/<to>/<repo>`
 - NOTE: The repo should be placed in the system files are or somewhere else and a link (if on linux) is placed in the system directory
@@ -52,4 +23,8 @@ The Reviewers Team will be approving submissions. This is mainly since we have a
 Now you should be able to build the app using `npm start`
 [Foundry VTT Website][1]
 
-[1]: https://foundryvtt.com/
+[1]: https://foundryvtt.com/  
+
+## Contributing  
+
+Looking to contribute to the project? Look no further, check out our [contributing guide](contributing.md), and keep the [Code of Conduct](coc.md) in mind when working on things.

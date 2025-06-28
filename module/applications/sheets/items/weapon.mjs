@@ -1,13 +1,19 @@
-import { weaponFeatures } from '../../../config/itemConfig.mjs';
-import { tagifyElement } from '../../../helpers/utils.mjs';
-import DHItemSheetV2 from '../item.mjs';
+import DHBaseItemSheet from '../api/base-item.mjs';
 
-const { ItemSheetV2 } = foundry.applications.sheets;
-export default class WeaponSheet extends DHItemSheetV2(ItemSheetV2) {
+export default class WeaponSheet extends DHBaseItemSheet {
+    /**@inheritdoc */
     static DEFAULT_OPTIONS = {
-        classes: ['weapon']
+        classes: ['weapon'],
+        tagifyConfigs: [
+            {
+                selector: '.features-input',
+                options: () => CONFIG.daggerheart.ITEM.weaponFeatures,
+                callback: WeaponSheet.#onFeatureSelect
+            }
+        ]
     };
 
+    /**@override */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/weapon/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
@@ -22,6 +28,7 @@ export default class WeaponSheet extends DHItemSheetV2(ItemSheetV2) {
         }
     };
 
+    /**@inheritdoc */
     async _preparePartContext(partId, context) {
         super._preparePartContext(partId, context);
 
@@ -34,15 +41,11 @@ export default class WeaponSheet extends DHItemSheetV2(ItemSheetV2) {
         return context;
     }
 
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
-
-        const featureInput = htmlElement.querySelector('.features-input');
-        tagifyElement(featureInput, weaponFeatures, this.onFeatureSelect.bind(this));
-    }
-
-    async onFeatureSelect(features) {
-        await this.document.update({ 'system.features': features.map(x => ({ value: x.value })) });
-        this.render(true);
+    /**
+     * Callback function used by `tagifyElement`.
+     * @param {Array<Object>} selectedOptions - The currently selected tag objects.
+     */
+    static async #onFeatureSelect(selectedOptions) {
+        await this.document.update({ 'system.features': selectedOptions.map(x => ({ value: x.value })) });
     }
 }

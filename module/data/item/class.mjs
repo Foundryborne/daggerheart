@@ -20,8 +20,14 @@ export default class DHClass extends BaseDataItem {
             ...super.defineSchema(),
             domains: new fields.ArrayField(new fields.StringField(), { max: 2 }),
             classItems: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
-
-            evasion: new fields.NumberField({ initial: 0, integer: true }),
+            hitPoints: new fields.NumberField({
+                required: true,
+                integer: true,
+                min: 1,
+                initial: 5,
+                label: 'DAGGERHEART.Sheets.Class.HitPoints'
+            }),
+            evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.Sheets.Class.Evasion' }),
             hopeFeatures: new foundry.data.fields.ArrayField(new ActionField()),
             classFeatures: new foundry.data.fields.ArrayField(new ActionField()),
             subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),

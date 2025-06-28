@@ -12,12 +12,39 @@
             background: transparent;
         }
 
-        img {
+        .portrait {
+            position: relative;
             height: 235px;
             width: 275px;
             border-bottom: 1px solid light-dark(@dark-blue, @golden);
             cursor: pointer;
-            object-fit: cover;
+
+            img {
+                height: 235px;
+                width: 275px;
+                object-fit: cover;
+            }
+
+            .death-roll-btn {
+                display: none;
+            }
+
+            &.death-roll {
+                filter: grayscale(1);
+
+                .death-roll-btn {
+                    display: flex;
+                    position: absolute;
+                    top: 30%;
+                    right: 30%;
+                    font-size: 6rem;
+                    color: @beige;
+
+                    &:hover {
+                        text-shadow: 0 0 8px @beige;
+                    }
+                }
+            }
         }
 
         .info-section {

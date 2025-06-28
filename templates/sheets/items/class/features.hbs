@@ -36,16 +36,17 @@
                         <div class='controls'>
                             <a
                                 class='effect-control'
-                                data-action='viewSubclass'
-                                data-subclass={{subclass.uuid}}
+                                data-action='viewDoc'
+                                data-uuid={{subclass.uuid}}
                                 data-tooltip='{{localize "DAGGERHEART.Tooltip.openItemWorld"}}'
                             >
                                 <i class="fa-solid fa-globe"></i>
                             </a>
                             <a
                                 class='effect-control'
-                                data-action='removeSubclass'
-                                data-subclass={{subclass.uuid}}
+                                data-action='removeItemFromCollection'
+                                data-target="subclasses"
+                                data-uuid={{subclass.uuid}}
                                 data-tooltip='{{localize "DAGGERHEART.Tooltip.delete"}}'
                             >
                                 <i class='fas fa-trash'></i>

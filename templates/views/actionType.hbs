@@ -3,6 +3,7 @@
     {{#each types}}
         <li>
             <label>
+                {{! TODO: remove dh-icon}}
                 <dh-icon class="dh-icon fas {{icon}}"></dh-icon>
                 <span>{{localize name}}</span>
                 <input type="radio" name="type" value="{{id}}" {{#if (eq @index 0)}}checked{{/if}}>

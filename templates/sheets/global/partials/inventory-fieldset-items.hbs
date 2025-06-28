@@ -3,7 +3,7 @@
     <ul class="items-list">
         {{#each document.items as |item|}}
             {{#if (eq item.type ../type)}}
-                {{#unless (or (eq ../type 'ancestry') (eq item.type 'class') (eq item.type 'subclass'))}}
+                {{#unless (or (eq ../type 'ancestry') (eq item.type 'class') (eq item.type 'subclass') (and (eq ../type 'domainCard') (or (and item.system.inVault (not ../isVault)) (and (not item.system.inVault) ../isVault))))}}
                     {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=item type=../type}}
                 {{/unless}}
             {{/if}}

@@ -1106,6 +1106,13 @@
             }
         },
         "Sheets": {
+            "TABS": {
+                "features": "Features",
+                "effects": "Effects",
+                "settings": "Settings",
+                "actions": "Actions",
+                "description": "Description"
+            },
             "PC": {
                 "Name": "Name",
                 "Pronouns": "Pronouns",
@@ -1126,6 +1133,17 @@
                     "Story": "Story",
                     "biography": "Biography",
                     "effects": "Effects"
+                },
+                "ContextMenu": {
+                    "UseItem": "Use",
+                    "Equip": "Equip",
+                    "Unequip": "Unequip",
+                    "Edit": "Edit",
+                    "Delete": "Delete",
+                    "ToLoadout": "Send to Loadout",
+                    "ToVault": "Send to Vault",
+                    "Consume": "Consume Item",
+                    "SendToChat": "Send To Chat"
                 },
                 "Armor": {
                     "Title": "Active Armor"
@@ -1323,6 +1341,7 @@
                     "Severe": "Severe"
                 },
                 "Evasion": "Evasion",
+                "HitPoints": "Hit Points",
                 "ClassFeatures": "Class Features",
                 "Subclasses": "Subclasses",
                 "Guide": {

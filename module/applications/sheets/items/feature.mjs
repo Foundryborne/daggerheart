@@ -1,17 +1,11 @@
-import DHItemSheetV2 from '../item.mjs';
+import DHBaseItemSheet from '../api/base-item.mjs';
 
-const { ItemSheetV2 } = foundry.applications.sheets;
-export default class FeatureSheet extends DHItemSheetV2(ItemSheetV2) {
-    constructor(options = {}) {
-        super(options);
-
-        this.selectedEffectType = null;
-    }
-
+export default class FeatureSheet extends DHBaseItemSheet {
+    /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         id: 'daggerheart-feature',
         classes: ['feature'],
-        position: { width: 600, height: 600 },
+        position: { height: 600 },
         window: { resizable: true },
         actions: {
             addEffect: this.addEffect,
@@ -19,6 +13,7 @@ export default class FeatureSheet extends DHItemSheetV2(ItemSheetV2) {
         }
     };
 
+    /**@override */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/feature/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
@@ -37,58 +32,86 @@ export default class FeatureSheet extends DHItemSheetV2(ItemSheetV2) {
         }
     };
 
+    /**
+     * Internally tracks the selected effect type from the select.
+     * @type {String}
+     * @private
+     */
+    _selectedEffectType;
+
+    /**@override */
     static TABS = {
-        ...super.TABS,
-        effects: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'effects',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Feature.Tabs.Effects'
+        primary: {
+            tabs: [{ id: 'description' }, { id: 'actions' }, { id: 'settings' }, { id: 'effects' }],
+            initial: 'description',
+            labelPrefix: 'DAGGERHEART.Sheets.TABS'
         }
     };
 
+    /* -------------------------------------------- */
+
+    /**@inheritdoc*/
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-        $(htmlElement).find('.effect-select').on('change', this.effectSelect.bind(this));
+        if (partId === 'effects')
+            htmlElement.querySelector('.effect-select')?.addEventListener('change', this._effectSelect.bind(this));
     }
 
+    /**
+     * Handles selection of a new effect type.
+     * @param {Event} event - Change Event
+     */
+    _effectSelect(event) {
+        const value = event.currentTarget.value;
+        this._selectedEffectType = value;
+        this.render({ parts: ['effects'] });
+    }
+
+    /* -------------------------------------------- */
+
+    /**@inheritdoc */
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.document = this.document;
-        context.tabs = super._getTabs(this.constructor.TABS);
-        context.generalConfig = SYSTEM.GENERAL;
-        context.itemConfig = SYSTEM.ITEM;
-        context.properties = SYSTEM.ACTOR.featureProperties;
-        context.dice = SYSTEM.GENERAL.diceTypes;
-        context.selectedEffectType = this.selectedEffectType;
-        context.effectConfig = SYSTEM.EFFECTS;
+        context.properties = CONFIG.daggerheart.ACTOR.featureProperties;
+        context.dice = CONFIG.daggerheart.GENERAL.diceTypes;
+        context.effectConfig = CONFIG.daggerheart.EFFECTS;
+
+        context.selectedEffectType = this._selectedEffectType;
 
         return context;
     }
 
-    effectSelect(event) {
-        this.selectedEffectType = event.currentTarget.value;
-        this.render(true);
-    }
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
 
-    static async addEffect() {
-        if (!this.selectedEffectType) return;
-
-        const { id, name, ...rest } = SYSTEM.EFFECTS.effectTypes[this.selectedEffectType];
-        const update = {
-            [foundry.utils.randomID()]: {
-                type: this.selectedEffectType,
+    /**
+     * Adds a new effect to the item, based on the selected effect type.
+     * @param {PointerEvent} _event - The originating click event
+     * @param {HTMLElement} _target - The capturing HTML element which defines the [data-action]
+     * @returns
+     */
+    static async addEffect(_event, _target) {
+        const type = this._selectedEffectType;
+        if (!type) return;
+        const { id, name, ...rest } = CONFIG.daggerheart.EFFECTS.effectTypes[type];
+        await this.item.update({
+            [`system.effects.${foundry.utils.randomID()}`]: {
+                type,
                 value: '',
                 ...rest
             }
-        };
-        await this.item.update({ 'system.effects': update });
+        });
     }
 
-    static async removeEffect(_, button) {
-        const path = `system.effects.-=${button.dataset.effect}`;
+    /**
+     * Removes an effect from the item.
+     * @param {PointerEvent} _event - The originating click event
+     * @param {HTMLElement} target - The capturing HTML element which defines the [data-action]
+     * @returns
+     */
+    static async removeEffect(_event, target) {
+        const path = `system.effects.-=${target.dataset.effect}`;
         await this.item.update({ [path]: null });
     }
 }

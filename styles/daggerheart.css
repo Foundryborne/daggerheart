@@ -1618,6 +1618,7 @@ fieldset.daggerheart.chat {
 .daggerheart.chat.domain-card .domain-card-title h2 {
   width: 100%;
   text-align: center;
+  margin: 0;
 }
 .daggerheart.chat.domain-card .ability-card-footer {
   display: flex;
@@ -3778,12 +3779,34 @@ div.daggerheart.views.multiclass {
 .theme-light .application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet {
   background: transparent;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet img {
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait {
+  position: relative;
   height: 235px;
   width: 275px;
   border-bottom: 1px solid light-dark(#18162e, #f3c267);
   cursor: pointer;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait img {
+  height: 235px;
+  width: 275px;
   object-fit: cover;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait .death-roll-btn {
+  display: none;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait.death-roll {
+  filter: grayscale(1);
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait.death-roll .death-roll-btn {
+  display: flex;
+  position: absolute;
+  top: 30%;
+  right: 30%;
+  font-size: 6rem;
+  color: #efe6d8;
+}
+.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait.death-roll .death-roll-btn:hover {
+  text-shadow: 0 0 8px #efe6d8;
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section {
   position: relative;

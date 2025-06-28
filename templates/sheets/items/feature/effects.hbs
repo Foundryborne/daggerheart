@@ -8,15 +8,15 @@
         <span>{{localize "DAGGERHEART.Sheets.Feature.effects.addEffect"}}</span>
         <div class="nest-inputs">
             <select class="effect-select">
-                {{selectOptions this.effectConfig.effectTypes selected=this.selectedEffectType labelAttr="name" localize=true blank=""}} 
+                {{selectOptions effectConfig.effectTypes selected=selectedEffectType labelAttr="name" localize=true blank=""}} 
             </select>
-            <a>
-                <i class="fa-solid fa-plus icon-button {{#if (not this.selectedEffectType)}}disabled{{/if}}" data-action="addEffect"></i>
+            <a data-action="addEffect" {{disabled (not selectedEffectType)}}>
+                <i class="fa-solid fa-plus icon-button {{disabled (not selectedEffectType)}}"></i>
             </a>
         </div>
     </fieldset>
 
-    {{#each this.document.system.effects as |effect key|}}
+    {{#each document.system.effects as |effect key|}}
         <fieldset class="two-columns">
             <legend>
                 {{localize (concat 'DAGGERHEART.Effects.Types.' effect.type '.Name')}}
@@ -32,8 +32,8 @@
                     {{selectOptions effect.applyLocationChoices selected=effect.appliesOn localize=true}}
                 </select>
             {{/if}}
-            {{#if (eq effect.valueType ../this.effectConfig.valueTypes.numberString.id)}}
-                {{#if (eq effect.type ../this.effectConfig.effectTypes.damage.id) }}
+            {{#if (eq effect.valueType @root.effectConfig.valueTypes.numberString.id)}}
+                {{#if (eq effect.type @root.effectConfig.effectTypes.damage.id) }}
                     <span>{{localize "DAGGERHEART.Sheets.Feature.effects.value"}}</span>
                     <input type="text" name="system.effects.{{key}}.valueData.value" value="{{effect.valueData.value}}" />
 
@@ -47,7 +47,7 @@
                     <input type="text" name="system.effects.{{key}}.valueData.value" value="{{effect.valueData.value}}" />
                 {{/if}}
             {{/if}}
-            {{#if (eq effect.valueType ../this.effectConfig.valueTypes.select.id)}}
+            {{#if (eq effect.valueType @root.effectConfig.valueTypes.select.id)}}
                 <span>
                     {{localize effect.valueData.fromValue}}
                 </span>
