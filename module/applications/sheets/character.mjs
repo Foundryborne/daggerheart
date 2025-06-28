@@ -59,11 +59,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             submitOnChange: true,
             closeOnSubmit: false
         },
-        dragDrop: [
-            { dragSelector: null, dropSelector: '.weapon-section' },
-            { dragSelector: null, dropSelector: '.armor-section' },
-            { dragSelector: '.item-list .item', dropSelector: null }
-        ]
+        dragDrop: []
     };
 
     static PARTS = {
