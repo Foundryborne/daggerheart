@@ -1598,6 +1598,7 @@
 .daggerheart.chat.domain-card .domain-card-title h2 {
   width: 100%;
   text-align: center;
+  margin: 0;
 }
 .daggerheart.chat.domain-card .ability-card-footer {
   display: flex;

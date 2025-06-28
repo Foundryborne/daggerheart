@@ -29,9 +29,9 @@
         {{/if}}
 
         {{#if this.abilities.loadout.listView}}
-        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Vault') type='domainCard' isGlassy=true cardView='list'}}
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Vault') type='domainCard' isVault=true isGlassy=true cardView='list'}}
         {{else}}
-        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Vault') type='domainCard' isGlassy=true cardView='card'}}
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.Sheets.PC.Tabs.Vault') type='domainCard' isVault=true isGlassy=true cardView='card'}}
         {{/if}}
         
         

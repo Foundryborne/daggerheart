@@ -2,56 +2,55 @@ export const domains = {
     arcana: {
         id: 'arcana',
         label: 'DAGGERHEART.Domains.arcana.label',
-        src: 'icons/magic/symbols/circled-gem-pink.webp',
+        src: 'systems/daggerheart/assets/icons/domains/arcana.svg',
         description: 'DAGGERHEART.Domains.Arcana'
     },
     blade: {
         id: 'blade',
         label: 'DAGGERHEART.Domains.blade.label',
-        src: 'icons/weapons/swords/sword-broad-crystal-paired.webp',
+        src: 'systems/daggerheart/assets/icons/domains/blade.svg',
         description: 'DAGGERHEART.Domains.Blade'
     },
     bone: {
         id: 'bone',
         label: 'DAGGERHEART.Domains.bone.label',
-        src: 'icons/skills/wounds/bone-broken-marrow-red.webp',
+        src: 'systems/daggerheart/assets/icons/domains/bone.svg',
         description: 'DAGGERHEART.Domains.Bone'
     },
     codex: {
         id: 'codex',
         label: 'DAGGERHEART.Domains.codex.label',
-        src: 'icons/sundries/books/book-embossed-jewel-gold-purple.webp',
+        src: 'systems/daggerheart/assets/icons/domains/codex.svg',
         description: 'DAGGERHEART.Domains.Codex'
     },
     grace: {
         id: 'grace',
         label: 'DAGGERHEART.Domains.grace.label',
-        src: 'icons/skills/movement/feet-winged-boots-glowing-yellow.webp',
+        src: 'systems/daggerheart/assets/icons/domains/grace.svg',
         description: 'DAGGERHEART.Domains.Grace'
     },
     midnight: {
         id: 'midnight',
         label: 'DAGGERHEART.Domains.midnight.label',
-        src: 'icons/environment/settlement/watchtower-castle-night.webp',
-        background: 'systems/daggerheart/assets/backgrounds/MidnightBackground.webp',
+        src: 'systems/daggerheart/assets/icons/domains/midnight.svg',
         description: 'DAGGERHEART.Domains.Midnight'
     },
     sage: {
         id: 'sage',
         label: 'DAGGERHEART.Domains.sage.label',
-        src: 'icons/sundries/misc/pipe-wooden-straight-brown.webp',
+        src: 'systems/daggerheart/assets/icons/domains/sage.svg',
         description: 'DAGGERHEART.Domains.Sage'
     },
     splendor: {
         id: 'splendor',
         label: 'DAGGERHEART.Domains.splendor.label',
-        src: 'icons/magic/control/control-influence-crown-gold.webp',
+        src: 'systems/daggerheart/assets/icons/domains/splendor.svg',
         description: 'DAGGERHEART.Domains.Splendor'
     },
     valor: {
         id: 'valor',
         label: 'DAGGERHEART.Domains.valor.label',
-        src: 'icons/magic/control/control-influence-rally-purple.webp',
+        src: 'systems/daggerheart/assets/icons/domains/valor.svg',
         description: 'DAGGERHEART.Domains.Valor'
     }
 };

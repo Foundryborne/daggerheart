@@ -30,7 +30,10 @@ export default class DhCharacter extends BaseDataActor {
 
         return {
             resources: new fields.SchemaField({
-                hitPoints: resourceField(6),
+                hitPoints: new fields.SchemaField({
+                    value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
+                    bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true })
+                }),
                 stress: resourceField(6),
                 hope: resourceField(6)
             }),
@@ -243,7 +246,7 @@ export default class DhCharacter extends BaseDataActor {
             experience.total = experience.value + experience.bonus;
         }
 
-        this.resources.hitPoints.maxTotal = this.resources.hitPoints.max + this.resources.hitPoints.bonus;
+        this.resources.hitPoints.maxTotal = (this.class.value?.system?.hitPoints ?? 0) + this.resources.hitPoints.bonus;
         this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
         this.evasion.total = (this.class?.evasion ?? 0) + this.evasion.bonus;
         this.proficiency.total = this.proficiency.value + this.proficiency.bonus;

@@ -3,11 +3,10 @@
     data-tab='{{tabs.settings.id}}'
     data-group='{{tabs.settings.group}}'
 >
-
-    <fieldset class="two-columns">
+    <fieldset class="two-columns even">
         <legend>{{localize tabs.settings.label}}</legend>
-        <span>{{localize "DAGGERHEART.Sheets.Class.Evasion"}}</span>
-        {{formField systemFields.evasion value=source.system.evasion}}
+        {{formGroup systemFields.hitPoints value=source.system.hitPoints localize=true}}
+        {{formGroup systemFields.evasion value=source.system.evasion localize=true}}
     </fieldset>
 
     <div class="fieldsets-section">
