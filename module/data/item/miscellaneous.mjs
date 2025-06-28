@@ -8,7 +8,8 @@ export default class DHMiscellaneous extends BaseDataItem {
             label: 'TYPES.Item.miscellaneous',
             type: 'miscellaneous',
             hasDescription: true,
-            isQuantifiable: true
+            isQuantifiable: true,
+            isInventoryItem: true,
         });
     }
 

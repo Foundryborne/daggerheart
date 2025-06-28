@@ -9,7 +9,8 @@ export default class DHArmor extends BaseDataItem {
             label: 'TYPES.Item.armor',
             type: 'armor',
             hasDescription: true,
-            isQuantifiable: true
+            isQuantifiable: true,
+            isInventoryItem: true,
         });
     }
 

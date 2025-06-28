@@ -12,9 +12,7 @@ export default class DHWeapon extends BaseDataItem {
             type: 'weapon',
             hasDescription: true,
             isQuantifiable: true,
-            embedded: {
-                feature: 'featureTest'
-            }
+            isInventoryItem: true,
         });
     }
 

@@ -1,4 +1,8 @@
-export default class DhpItem extends Item {
+/**
+ * Override and extend the basic Item implementation.
+ * @extends {foundry.documents.Item}
+ */
+export default class DHItem extends foundry.documents.Item {
     /** @inheritDoc */
     prepareEmbeddedDocuments() {
         super.prepareEmbeddedDocuments();
@@ -25,75 +29,59 @@ export default class DhpItem extends Item {
         return data;
     }
 
-    isInventoryItem() {
-        return ['weapon', 'armor', 'miscellaneous', 'consumable'].includes(this.type);
+    /**
+     * Determine if this item is classified as an inventory item based on its metadata.
+     * @returns {boolean} Returns `true` if the item is an inventory item.
+     */
+    get isInventoryItem() {
+        return this.system.constructor.metadata.isInventoryItem ?? false;
     }
 
-    static async createDialog(data = {}, { parent = null, pack = null, ...options } = {}) {
-        const documentName = this.metadata.name;
-        const types = game.documentTypes[documentName].filter(t => t !== CONST.BASE_DOCUMENT_TYPE);
-        let collection;
-        if (!parent) {
-            if (pack) collection = game.packs.get(pack);
-            else collection = game.collections.get(documentName);
-        }
-        const folders = collection?._formatFolderSelectOptions() ?? [];
-        const label = game.i18n.localize(this.metadata.label);
-        const title = game.i18n.format('DOCUMENT.Create', { type: label });
-        const typeObjects = types.reduce((obj, t) => {
-            const label = CONFIG[documentName]?.typeLabels?.[t] ?? t;
-            obj[t] = { value: t, label: game.i18n.has(label) ? game.i18n.localize(label) : t };
-            return obj;
-        }, {});
+    /** @inheritdoc */
+    static async createDialog(data = {}, createOptions = {}, options = {}) {
+        const { folders, types, template, context = {}, ...dialogOptions } = options;
 
-        // Render the document creation form
-        const html = await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/sidebar/documentCreate.hbs',
-            {
-                folders,
-                name: data.name || game.i18n.format('DOCUMENT.New', { type: label }),
-                folder: data.folder,
-                hasFolders: folders.length >= 1,
-                type: data.type || CONFIG[documentName]?.defaultType || typeObjects.armor,
-                types: {
-                    Items: [typeObjects.armor, typeObjects.weapon, typeObjects.consumable, typeObjects.miscellaneous],
-                    Character: [
-                        typeObjects.class,
-                        typeObjects.subclass,
-                        typeObjects.ancestry,
-                        typeObjects.community,
-                        typeObjects.feature,
-                        typeObjects.domainCard
-                    ]
-                },
-                hasTypes: types.length > 1
+        if (types?.length === 0) {
+            throw new Error('The array of sub-types to restrict to must not be empty.');
+        }
+
+        const documentTypes = this.TYPES.filter(type => type !== 'base' && (!types || types.includes(type))).map(
+            type => {
+                const labelKey = CONFIG.Item?.typeLabels?.[type];
+                const label = labelKey && game.i18n.has(labelKey) ? game.i18n.localize(labelKey) : type;
+
+                const isInventoryItem = CONFIG.Item.dataModels[type]?.metadata?.isInventoryItem;
+                const group =
+                    isInventoryItem === true
+                        ? 'Inventory Items'
+                        : isInventoryItem === false
+                            ? 'Character Items'
+                            : 'Other';
+
+                return { value: type, label, group };
             }
         );
 
-        // Render the confirmation dialog window
-        return Dialog.prompt({
-            title: title,
-            content: html,
-            label: title,
-            callback: html => {
-                const form = html[0].querySelector('form');
-                const fd = new FormDataExtended(form);
-                foundry.utils.mergeObject(data, fd.object, { inplace: true });
-                if (!data.folder) delete data.folder;
-                if (types.length === 1) data.type = types[0];
-                if (!data.name?.trim()) data.name = this.defaultName();
-                return this.create(data, { parent, pack, renderSheet: true });
-            },
-            rejectClose: false,
-            options
+        if (!documentTypes.length) {
+            throw new Error('No document types were permitted to be created.');
+        }
+
+        const sortedTypes = documentTypes.sort((a, b) => a.label.localeCompare(b.label, game.i18n.lang));
+
+        return await super.createDialog(data, createOptions, {
+            folders,
+            types,
+            template,
+            context: { types: sortedTypes, ...context },
+            ...dialogOptions
         });
     }
 
     async selectActionDialog() {
         const content = await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/views/actionSelect.hbs',
-                { actions: this.system.actions }
-            ),
+            'systems/daggerheart/templates/views/actionSelect.hbs',
+            { actions: this.system.actions }
+        ),
             title = 'Select Action',
             type = 'div',
             data = {};
@@ -139,8 +127,8 @@ export default class DhpItem extends Item {
                 this.type === 'ancestry'
                     ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.AncestryTitle')
                     : this.type === 'community'
-                      ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.CommunityTitle')
-                      : game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+                        ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.CommunityTitle')
+                        : game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
             origin: origin,
             img: this.img,
             name: this.name,

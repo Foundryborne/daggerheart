@@ -52,7 +52,7 @@ Hooks.once('init', () => {
 
     CONFIG.MeasuredTemplate.objectClass = DhMeasuredTemplate;
 
-    CONFIG.Item.documentClass = documents.DhpItem;
+    CONFIG.Item.documentClass = documents.DHItem;
 
     //Registering the Item DataModel
     CONFIG.Item.dataModels = models.items.config;
