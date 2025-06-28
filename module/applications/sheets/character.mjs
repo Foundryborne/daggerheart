@@ -647,7 +647,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async makeDeathMove() {
-        if (this.document.system.resources.hitPoints.value === this.document.system.resources.hitPoints.max) {
+        if (this.document.system.resources.hitPoints.value >= this.document.system.resources.hitPoints.maxTotal) {
             await new DhpDeathMove(this.document).render(true);
         }
     }
