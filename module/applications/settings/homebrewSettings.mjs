@@ -171,9 +171,11 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             if (obj.hasOwnProperty(key)) {
                 const value = obj[key];
                 if (typeof value === 'object' && value !== null) {
+                    obj[key] = this.localizeObject(value);
                 } else {
                     if (typeof value === 'string' && value.startsWith('DAGGERHEART.')) {
                         obj[key] = game.i18n.localize(value);
+                        console.log(obj[key]);
                     }
                 }
             }

@@ -15,6 +15,7 @@
         <legend>
             {{localize "DAGGERHEART.Settings.Homebrew.Currency.title"}} 
         </legend>
+        {{formGroup settingFields.schema.fields.currency.fields.title value=settingFields._source.currency.title localize=true}}
         {{formGroup settingFields.schema.fields.currency.fields.coins value=settingFields._source.currency.coins localize=true}}
         {{formGroup settingFields.schema.fields.currency.fields.handfulls value=settingFields._source.currency.handfulls localize=true}}
         {{formGroup settingFields.schema.fields.currency.fields.bags value=settingFields._source.currency.bags localize=true}}

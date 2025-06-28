@@ -102,6 +102,7 @@
                 },
                 "Currency": {
                     "title": "Currency Overrides",
+                    "currencyName": "Currency Name",
                     "coinName": "Coin Name",
                     "handfullName": "Handfull Name",
                     "bagName": "Bag Name",
