@@ -328,7 +328,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                     quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
                 },
                 items: this.document.items.filter(x => x.type === 'armor')
-            }
+            },
+            currency: game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew).currency
         };
 
         if (context.inventory.length === 0) {

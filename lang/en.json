@@ -99,6 +99,13 @@
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
                     "traitArray": { "label": "Initial Trait Modifiers" }
+                },
+                "Currency": {
+                    "title": "Currency Overrides",
+                    "coinName": "Coin Name",
+                    "handfullName": "Handfull Name",
+                    "bagName": "Bag Name",
+                    "chestName": "Chest Name"
                 }
             },
             "Resources": {
