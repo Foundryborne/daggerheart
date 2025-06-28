@@ -1,14 +1,4 @@
 export default class DhpItem extends Item {
-    /** @inheritdoc */
-    getEmbeddedDocument(embeddedName, id, { invalid = false, strict = false } = {}) {
-        const systemEmbeds = this.system.constructor.metadata.embedded ?? {};
-        if (embeddedName in systemEmbeds) {
-            const path = `system.${systemEmbeds[embeddedName]}`;
-            return foundry.utils.getProperty(this, path).get(id) ?? null;
-        }
-        return super.getEmbeddedDocument(embeddedName, id, { invalid, strict });
-    }
-
     /** @inheritDoc */
     prepareEmbeddedDocuments() {
         super.prepareEmbeddedDocuments();
