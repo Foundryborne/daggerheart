@@ -1,0 +1,32 @@
+{{#if (gt targets.length 0)}}
+<fieldset class="dice-roll daggerheart chat roll expanded" data-action="expandRoll">
+    <legend class="dice-flavor">Targets</legend>
+    <div class="dice-result">
+        <div class="dice-tooltip">
+            <div class="wrapper">
+                <div class="target-section">
+                    {{#each targets as |target|}}
+                        <div class="dice-total target-container {{#if target.hit}}hit{{else}}{{#if (not ../total.alternate)}}miss{{/if}}{{/if}}" data-token="{{target.id}}">
+                                <img src="{{target.img}}" />
+                                <div class="target-inner-container">
+                                    {{#if ../directDamage}}
+                                        <div data-perm-id="{{target.actorId}}"><span>{{target.name}}</span></div>
+                                    {{else}}
+                                        {{#if target.hit}}{{localize "Hit"}}{{else}}{{#if (not ../total.alternate)}}{{localize "Miss"}}{{else}}?{{/if}}{{/if}}
+                                    {{/if}}
+                                </div>
+                                {{#if ../hasSave}}
+                                <button class="target-save-container{{#if target.saved.result includeZero=true}} is-rolled{{/if}}"{{#unless target.hit}} style="visibility: hidden;"{{/unless}} data-perm-id="{{target.actorId}}">
+                                    {{!-- {{target.saved.result}} --}}
+                                    <i class="fa-solid {{#if target.saved.result includeZero=true}}{{#if target.saved.success}}fa-check{{else}}fa-xmark{{/if}}{{else}}fa-shield{{/if}}">
+                                    </i>
+                                </button>
+                                {{/if}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+{{/if}}

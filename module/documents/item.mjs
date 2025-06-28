@@ -109,14 +109,7 @@ export default class DHItem extends foundry.documents.Item {
                 action = await this.selectActionDialog();
             }
             if (action) response = action.use(event);
-            // Check Target
-            // If action.roll           => Roll Dialog
-            // Else If action.cost      => Cost Dialog
-            // Then
-            // Apply Cost
-            // Apply Effect
         }
-        // Display Item Card in chat
         return response;
     }
 

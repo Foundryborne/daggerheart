@@ -1400,6 +1400,12 @@
 .chat-message .dice-title {
   display: none;
 }
+fieldset.daggerheart.chat {
+  padding: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-bottom-width: 0;
+}
 .daggerheart.chat.downtime {
   display: flex;
   flex-direction: column;
@@ -1553,18 +1559,32 @@
 .daggerheart.chat.roll .target-section .target-container.miss {
   background: #ff0000;
 }
-.daggerheart.chat.roll .target-section .target-container img {
-  flex: 0;
+.daggerheart.chat.roll .target-section .target-container img,
+.daggerheart.chat.roll .target-section .target-container .target-save-container {
   width: 22px;
   height: 22px;
-  margin-left: 8px;
   align-self: center;
   border-color: transparent;
+}
+.daggerheart.chat.roll .target-section .target-container img {
+  flex: 0;
+  margin-left: 8px;
+}
+.daggerheart.chat.roll .target-section .target-container .target-save-container {
+  margin-right: 8px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  min-height: unset;
+  border: 1px solid black;
 }
 .daggerheart.chat.roll .target-section .target-container .target-inner-container {
   flex: 1;
   display: flex;
   justify-content: center;
+  font-size: var(--font-size-16);
+}
+.daggerheart.chat.roll .target-section .target-container:not(:has(.target-save-container)) .target-inner-container {
   margin-right: 32px;
 }
 .daggerheart.chat.roll .dice-actions {
@@ -1622,9 +1642,23 @@
 .daggerheart.chat.domain-card img {
   width: 80px;
 }
+.daggerheart.chat [data-use-perm='false'] {
+  pointer-events: none;
+  border-color: transparent;
+}
+.daggerheart.chat [data-view-perm='false'] > * {
+  display: none;
+}
+.daggerheart.chat [data-view-perm='false']::after {
+  content: "??";
+}
 .theme-colorful .chat-message.duality {
   border-color: black;
   padding: 8px 0 0 0;
+}
+.theme-colorful .chat-message.duality fieldset.daggerheart.chat {
+  border-top-width: 0;
+  display: contents;
 }
 .theme-colorful .chat-message.duality .message-header {
   color: var(--color-light-3);
@@ -1751,6 +1785,10 @@
 .theme-colorful .chat-message.duality .message-content .dice-result .dice-actions .duality-action {
   border-radius: 0 6px 0 0;
   margin-left: -8px;
+}
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-actions .duality-action.duality-action-effect {
+  border-top-left-radius: 6px;
+  margin-left: initial;
 }
 .theme-colorful .chat-message.duality .message-content .dice-result .dice-actions .duality-result {
   border-radius: 6px 0 0 0;
@@ -1977,6 +2015,9 @@ div.daggerheart.views.multiclass {
 }
 .daggerheart.views.roll-selection .roll-selection-container i {
   filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(21deg) brightness(17%) contrast(103%);
+}
+.daggerheart.views.roll-selection #roll-selection-costSelection footer {
+  display: none;
 }
 .daggerheart.views.roll-selection .roll-dialog-container .disadvantage,
 .daggerheart.views.roll-selection .roll-dialog-container .advantage {
@@ -3109,6 +3150,125 @@ div.daggerheart.views.multiclass {
 }
 .daggerheart.views.ownership-selection .ownership-outer-container .ownership-container select {
   margin: 4px 0;
+}
+.daggerheart.views.damage-reduction .window-content {
+  padding: 8px 0;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .padded {
+  padding: 0 8px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .armor-title {
+  margin: 0;
+  white-space: nowrap;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .resources-container {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .resources-container .resource-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner {
+  display: flex;
+  gap: 2px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner:not(:last-child) {
+  margin-right: 8px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner .mark-container {
+  cursor: pointer;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  height: 26px;
+  padding: 0 1px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner .mark-container.selected {
+  opacity: 1;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner .mark-container.inactive {
+  cursor: initial;
+  opacity: 0.2;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .mark-selection .mark-selection-inner .mark-container .fa-shield {
+  position: relative;
+  right: 0.5px;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container {
+  margin: 0;
+  width: 100%;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container .stress-reduction {
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  height: 26px;
+  padding: 0 4px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0.4;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container .stress-reduction.active {
+  opacity: 1;
+  cursor: pointer;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container .stress-reduction.selected {
+  opacity: 1;
+  background: var(--color-warm-2);
+  color: white;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .stress-reduction-container .stress-reduction .stress-reduction-cost {
+  display: flex;
+  align-items: center;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .markers-subtitle {
+  margin: -4px 0 0 0;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container .markers-subtitle.bold {
+  font-variant: all-small-caps;
+  font-weight: bold;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container footer {
+  display: flex;
+  width: 100%;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container footer button {
+  flex: 1;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container footer button .damage-value {
+  font-weight: bold;
+}
+.daggerheart.views.damage-reduction .damage-reduction-container footer button .damage-value.reduced-value {
+  opacity: 0.4;
+  text-decoration: line-through;
 }
 :root {
   --shadow-text-stroke: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;

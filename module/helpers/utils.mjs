@@ -233,3 +233,29 @@ Roll.replaceFormulaData = function (formula, data, { missing, warn = false } = {
     formula = terms.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
     return nativeReplaceFormulaData(formula, data, { missing, warn });
 };
+
+export const getDamageLabel = damage => {
+    switch (damage) {
+        case 3:
+            return game.i18n.localize('DAGGERHEART.General.Damage.Severe');
+        case 2:
+            return game.i18n.localize('DAGGERHEART.General.Damage.Major');
+        case 1:
+            return game.i18n.localize('DAGGERHEART.General.Damage.Minor');
+        case 0:
+            return game.i18n.localize('DAGGERHEART.General.Damage.None');
+    }
+};
+
+export const damageKeyToNumber = key => {
+    switch (key) {
+        case 'severe':
+            return 3;
+        case 'major':
+            return 2;
+        case 'minor':
+            return 1;
+        case 'none':
+            return 0;
+    }
+};

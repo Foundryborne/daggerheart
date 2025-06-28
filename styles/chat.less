@@ -6,6 +6,13 @@
     }
 }
 
+fieldset.daggerheart.chat {
+    padding: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+}
+
 .daggerheart.chat {
     &.downtime {
         display: flex;
@@ -227,19 +234,35 @@
                     background: @miss;
                 }
 
-                img {
-                    flex: 0;
+                img, .target-save-container {
                     width: 22px;
                     height: 22px;
-                    margin-left: 8px;
                     align-self: center;
                     border-color: transparent;
+                }
+
+                img {
+                    flex: 0;
+                    margin-left: 8px;
+                }
+
+                .target-save-container {
+                    margin-right: 8px;
+                    justify-content: center;
+                    display: flex;
+                    align-items: center;
+                    min-height: unset;
+                    border: 1px solid black;
                 }
 
                 .target-inner-container {
                     flex: 1;
                     display: flex;
                     justify-content: center;
+                    font-size: var(--font-size-16);
+                }
+
+                &:not(:has(.target-save-container)) .target-inner-container {
                     margin-right: @hugeMargin;
                 }
             }
@@ -314,12 +337,29 @@
             width: 80px;
         }
     }
+
+    [data-use-perm='false'] {
+        pointer-events: none;
+        border-color: transparent;
+    }
+    [data-view-perm='false'] {
+        > * {
+            display: none;
+        }
+        &::after {
+            content: "??";
+        }
+    }
 }
 
 .theme-colorful {
     .chat-message.duality {
         border-color: black;
         padding: 8px 0 0 0;
+        fieldset.daggerheart.chat {
+            border-top-width: 0;
+            display: contents;
+        }
         .message-header {
             color: var(--color-light-3);
             padding: 0 8px;
@@ -450,6 +490,10 @@
                     .duality-action {
                         border-radius: 0 6px 0 0;
                         margin-left: -8px;
+                        &.duality-action-effect {
+                            border-top-left-radius: 6px;
+                            margin-left: initial;
+                        }
                     }
                     .duality-result {
                         border-radius: 6px 0 0 0;

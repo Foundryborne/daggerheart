@@ -38,6 +38,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         }
     };
 
+    static CLEAN_ARRAYS = ["damage.parts", "cost", "effects"];
+
     _getTabs() {
         const tabs = {
             base: { active: true, cssClass: '', group: 'primary', id: 'base', icon: null, label: 'Base' },
@@ -60,8 +62,14 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         context.tabs = this._getTabs();
         context.config = SYSTEM;
         if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
-        if (this.action.damage?.hasOwnProperty('includeBase')) context.hasBaseDamage = !!this.action.parent.damage;
+        if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack')
+            context.hasBaseDamage = !!this.action.parent.damage;
         context.getRealIndex = this.getRealIndex.bind(this);
+        context.getEffectDetails = this.getEffectDetails.bind(this);
+        context.disableOption = this.disableOption.bind(this);
+        context.isNPC = this.action.actor && this.action.actor.type !== 'character';
+        context.hasRoll = this.action.hasRoll;
+        console.log(context)
         return context;
     }
 
@@ -70,27 +78,47 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         this.render(true);
     }
 
+    disableOption(index, options, choices) {
+        const filtered = foundry.utils.deepClone(options);
+        Object.keys(filtered).forEach(o => {
+            if (choices.find((c, idx) => c.type === o && index !== idx)) delete filtered[o];
+        });
+        return filtered;
+    }
+
     getRealIndex(index) {
         const data = this.action.toObject(false);
         return data.damage.parts.find(d => d.base) ? index - 1 : index;
     }
 
+    getEffectDetails(id) {
+        return this.action.item.effects.get(id);
+    }
+
     _prepareSubmitData(event, formData) {
         const submitData = foundry.utils.expandObject(formData.object);
-        // this.element.querySelectorAll("fieldset[disabled] :is(input, select)").forEach(input => {
-        //     foundry.utils.setProperty(submitData, input.name, input.value);
-        // });
+        for ( const keyPath of this.constructor.CLEAN_ARRAYS ) {
+            const data = foundry.utils.getProperty(submitData, keyPath);
+            if ( data ) foundry.utils.setProperty(submitData, keyPath, Object.values(data));
+        }
         return submitData;
     }
 
     static async updateForm(event, _, formData) {
         const submitData = this._prepareSubmitData(event, formData),
-            data = foundry.utils.expandObject(foundry.utils.mergeObject(this.action.toObject(), submitData)),
+            data = foundry.utils.mergeObject(this.action.toObject(), submitData),
+            container = foundry.utils.getProperty(this.action.parent, this.action.systemPath);
+        let newActions;
+        if (Array.isArray(container)) {
             newActions = foundry.utils.getProperty(this.action.parent, this.action.systemPath).map(x => x.toObject()); // Find better way
-        if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
+            if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
+        } else newActions = data;
+
         const updates = await this.action.parent.parent.update({ [`system.${this.action.systemPath}`]: newActions });
         if (!updates) return;
-        this.action = foundry.utils.getProperty(updates.system, this.action.systemPath)[this.action.index];
+        this.action = Array.isArray(container)
+            ? foundry.utils.getProperty(updates.system, this.action.systemPath)[this.action.index]
+            : foundry.utils.getProperty(updates.system, this.action.systemPath);
         this.render();
     }
 
@@ -103,6 +131,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     }
 
     static removeElement(event) {
+        event.stopPropagation();
         const data = this.action.toObject(),
             key = event.target.closest('.action-category-data').dataset.key,
             index = event.target.dataset.index;
@@ -132,6 +161,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             data = this.action.toObject();
         data.effects.push({ _id: created._id });
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
+        this.action.item.effects.get(created._id).sheet.render(true);
     }
 
     /**
@@ -156,5 +186,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         this.action.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
     }
 
-    static editEffect(event) {}
+    static editEffect(event) {
+        const id = event.target.closest('[data-effect-id]')?.dataset?.effectId;
+        this.action.item.effects.get(id).sheet.render(true);
+    }
 }

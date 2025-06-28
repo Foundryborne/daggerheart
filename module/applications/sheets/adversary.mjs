@@ -1,3 +1,4 @@
+import DHActionConfig from '../config/Action.mjs';
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -9,6 +10,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         actions: {
             reactionRoll: this.reactionRoll,
             attackRoll: this.attackRoll,
+            attackConfigure: this.attackConfigure,
             addExperience: this.addExperience,
             removeExperience: this.removeExperience,
             toggleHP: this.toggleHP,
@@ -51,7 +53,10 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
         context.tabs = super._getTabs(this.constructor.TABS);
-
+        context.systemFields.attack.fields = this.document.system.attack.schema.fields;
+        context.getEffectDetails = this.getEffectDetails.bind(this);
+        context.isNPC = true;
+        console.log(context)
         return context;
     }
 
@@ -77,26 +82,16 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         this.actor.diceRoll(config);
     }
 
+    getEffectDetails(id) {
+        return {};
+    }
+
     static async attackRoll(event) {
-        const { modifier, damage, name: attackName } = this.actor.system.attack,
-            config = {
-                event: event,
-                title: attackName,
-                roll: {
-                    modifier: modifier,
-                    type: 'action'
-                },
-                chatMessage: {
-                    type: 'adversaryRoll',
-                    template: 'systems/daggerheart/templates/chat/adversary-attack-roll.hbs'
-                },
-                damage: {
-                    value: damage.value,
-                    type: damage.type
-                },
-                checkTarget: true
-            };
-        this.actor.diceRoll(config);
+        this.actor.system.attack.use(event);
+    }
+
+    static async attackConfigure(event) {
+        await new DHActionConfig(this.document.system.attack).render(true);
     }
 
     static async addExperience() {

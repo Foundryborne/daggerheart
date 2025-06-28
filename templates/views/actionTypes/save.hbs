@@ -1,0 +1,10 @@
+<fieldset class="action-category">
+    <legend class="action-category-label" data-action="toggleSection" data-section="roll">
+        <div>Save</div>
+    </legend>
+    <div class="action-category-data open">
+        {{formField fields.trait label="Trait" name="save.trait" value=source.trait localize=true}}
+        {{formField fields.difficulty label="Difficulty" name="save.difficulty" value=source.difficulty disabled=(not source.trait)}}
+        {{formField fields.damageMod label="Damage on Save" name="save.damageMod" value=source.damageMod localize=true disabled=(not source.trait)}}
+    </div>
+</fieldset>

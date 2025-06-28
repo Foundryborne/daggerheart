@@ -35,6 +35,9 @@
         },
         {
             "name": "JimCanE"
+        },
+        {
+            "name": "Po0lp"
         }
     ],
     "scripts": ["build/daggerheart.js"],
@@ -252,7 +255,8 @@
             "dualityRoll": {},
             "adversaryRoll": {},
             "damageRoll": {},
-            "abilityUse": {}
+            "abilityUse": {},
+            "applyEffect": {}
         }
     },
     "primaryTokenAttribute": "resources.health",

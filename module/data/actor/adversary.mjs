@@ -1,3 +1,4 @@
+import ActionField from '../fields/actionField.mjs';
 import BaseDataActor from './base.mjs';
 
 const resourceField = () =>
@@ -39,30 +40,41 @@ export default class DhpAdversary extends BaseDataActor {
                 hitPoints: resourceField(),
                 stress: resourceField()
             }),
-            attack: new fields.SchemaField({
-                name: new fields.StringField({}),
-                modifier: new fields.NumberField({ required: true, integer: true, initial: 0 }),
-                range: new fields.StringField({
-                    required: true,
-                    choices: SYSTEM.GENERAL.range,
-                    initial: SYSTEM.GENERAL.range.melee.id
-                }),
-                damage: new fields.SchemaField({
-                    value: new fields.StringField(),
-                    type: new fields.StringField({
-                        required: true,
-                        choices: SYSTEM.GENERAL.damageTypes,
-                        initial: SYSTEM.GENERAL.damageTypes.physical.id
-                    })
-                })
+            attack: new ActionField({
+                initial: {
+                    name: 'Attack',
+                    _id: foundry.utils.randomID(),
+                    systemPath: 'attack',
+                    type: 'attack',
+                    range: 'melee',
+                    target: {
+                        type: 'any',
+                        amount: 1
+                    },
+                    roll: {
+                        type: 'weapon'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                multiplier: 'flat'
+                            }
+                        ]
+                    }
+                }
             }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
                     value: new fields.NumberField({ required: true, integer: true, initial: 1 })
                 })
-            )
-            /* Features waiting on pseudo-document data model addition */
+            ),
+            bonuses: new fields.SchemaField({
+                difficulty: new fields.SchemaField({
+                    all: new fields.NumberField({ integer: true, initial: 0 }),
+                    reaction: new fields.NumberField({ integer: true, initial: 0 })
+                })
+            })
         };
     }
 }

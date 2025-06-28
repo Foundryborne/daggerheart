@@ -21,4 +21,15 @@ export default class DhContextMenu extends ContextMenu {
         item?.callback(this.#jQuery ? $(this.target) : this.target, event);
         this.close();
     }
+
+    static triggerContextMenu(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const { clientX, clientY } = event;
+        const selector = "[data-item-id]";
+        const target = event.target.closest(selector) ?? event.currentTarget.closest(selector);
+        target?.dispatchEvent(new PointerEvent("contextmenu", {
+            view: window, bubbles: true, cancelable: true, clientX, clientY
+        }));
+    }
 }

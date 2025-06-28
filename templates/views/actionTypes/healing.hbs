@@ -6,16 +6,38 @@
     <div class="action-category-data open">
         <fieldset>
             {{formField fields.type value=source.type name="healing.type" localize=true}}
-            <div class="multi-display">
-                {{formField fields.value.fields.custom.fields.enabled value=source.value.custom.enabled name="healing.value.custom.enabled"}}
-                {{#if source.value.custom.enabled}}
-                    {{formField fields.value.fields.custom.fields.formula value=source.value.custom.formula name="healing.value.custom.formula" localize=true}}
-                {{else}}
-                    {{formField fields.value.fields.multiplier value=source.value.multiplier name="healing.value.multiplier" localize=true}}
-                    {{formField fields.value.fields.dice value=source.value.dice name="healing.value.dice"}}
-                    {{formField fields.value.fields.bonus value=source.value.bonus name="healing.value.bonus" localize=true}}
-                {{/if}}
-            </div>
+            {{#if (and (not @root.isNPC) @root.hasRoll)}}
+                {{formField fields.resultBased value=source.resultBased name="healing.resultBased" localize=true}}
+            {{/if}}
+            {{#if (and (not @root.isNPC) @root.hasRoll source.resultBased)}}
+                <fieldset>
+                    <legend>
+                        <div>With Hope</div>
+                    </legend>
+                    {{> formula fields=fields.value.fields source=source.value target="value"}}
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        <div>With Fear</div>
+                    </legend>
+                    {{> formula fields=fields.valueAlt.fields source=source.valueAlt target="valueAlt"}}
+                </fieldset>
+            {{else}}
+                {{> formula fields=fields.value.fields source=source.value target="value"}}
+            {{/if}}
         </fieldset>
     </div>
 </fieldset>
+
+{{#*inline "formula"}}
+    <div class="multi-display">
+        {{formField fields.custom.fields.enabled value=source.custom.enabled name=(concat "healing." target ".custom.enabled")}}
+        {{#if source.custom.enabled}}
+            {{formField fields.custom.fields.formula value=source.custom.formula name=(concat "healing." target ".custom.formula") localize=true}}
+        {{else}}
+            {{formField fields.multiplier value=source.multiplier name=(concat "healing." target ".multiplier") localize=true}}
+            {{formField fields.dice value=source.dice name=(concat "healing." target ".dice")}}
+            {{formField fields.bonus value=source.bonus name=(concat "healing." target ".bonus") localize=true}}
+        {{/if}}
+    </div>
+{{/inline}}

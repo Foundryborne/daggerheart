@@ -75,8 +75,8 @@
         <div class="hope-section">
             <h4>{{localize "DAGGERHEART.General.Hope"}}</h4>
             {{#times document.system.resources.hope.max}}
-                <span class='hope-value' data-action='toggleHope' data-value="{{this}}">
-                    {{#if (gte ../document.system.resources.hope.value this)}}
+                <span class='hope-value' data-action='toggleHope' data-value="{{add this 1}}">
+                    {{#if (gte ../document.system.resources.hope.value (add this 1))}}
                         <i class='fa-solid fa-diamond'></i>
                     {{else}}
                         <i class='fa-regular fa-circle'></i>

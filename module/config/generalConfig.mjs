@@ -68,8 +68,8 @@ export const damageTypes = {
 };
 
 export const healingTypes = {
-    health: {
-        id: 'health',
+    hitPoints: {
+        id: 'hitPoints',
         label: 'DAGGERHEART.HealingType.HitPoints.Name',
         abbreviation: 'DAGGERHEART.HealingType.HitPoints.Abbreviation'
     },
@@ -77,6 +77,16 @@ export const healingTypes = {
         id: 'stress',
         label: 'DAGGERHEART.HealingType.Stress.Name',
         abbreviation: 'DAGGERHEART.HealingType.Stress.Abbreviation'
+    },
+    hope: {
+        id: 'hope',
+        label: 'DAGGERHEART.HealingType.Hope.Name',
+        abbreviation: 'DAGGERHEART.HealingType.Hope.Abbreviation'
+    },
+    armorStack: {
+        id: 'armorStack',
+        label: 'DAGGERHEART.HealingType.ArmorStack.Name',
+        abbreviation: 'DAGGERHEART.HealingType.ArmorStack.Abbreviation'
     }
 };
 
@@ -153,13 +163,15 @@ export const defaultRestOptions = {
             id: 'repairArmor',
             name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.RepairArmor.Name'),
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.RepairArmor.Description')
+            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.RepairArmor.Description'),
+            actions: []
         },
         prepare: {
             id: 'prepare',
             name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.Prepare.Name'),
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.Prepare.Description')
+            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.Prepare.Description'),
+            actions: []
         }
     }),
     longRest: () => ({
@@ -167,31 +179,36 @@ export const defaultRestOptions = {
             id: 'tendToWounds',
             name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.TendToWounds.Name'),
             img: 'icons/magic/life/cross-worn-green.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.TendToWounds.Description')
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.TendToWounds.Description'),
+            actions: []
         },
         clearStress: {
             id: 'clearStress',
             name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.ClearStress.Name'),
             img: 'icons/magic/perception/eye-ringed-green.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.ClearStress.Description')
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.ClearStress.Description'),
+            actions: []
         },
         repairArmor: {
             id: 'repairArmor',
             name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.RepairArmor.Name'),
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.RepairArmor.Description')
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.RepairArmor.Description'),
+            actions: []
         },
         prepare: {
             id: 'prepare',
             name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.Prepare.Name'),
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.Prepare.Description')
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.Prepare.Description'),
+            actions: []
         },
         workOnAProject: {
             id: 'workOnAProject',
             name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.WorkOnAProject.Name'),
             img: 'icons/skills/social/thumbsup-approval-like.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.WorkOnAProject.Description')
+            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.WorkOnAProject.Description'),
+            actions: []
         }
     }),
     custom: {
@@ -290,13 +307,15 @@ export const diceTypes = {
     d4: 'd4',
     d6: 'd6',
     d8: 'd8',
+    d10: 'd10',
     d12: 'd12',
     d20: 'd20'
 };
 
 export const multiplierTypes = {
     proficiency: 'Proficiency',
-    spellcast: 'Spellcast'
+    spellcast: 'Spellcast',
+    flat: 'Flat'
 };
 
 export const getDiceSoNicePresets = () => {
@@ -360,7 +379,35 @@ export const abilityCosts = {
     },
     stress: {
         id: 'stress',
-        label: 'Stress'
+        label: 'DAGGERHEART.HealingType.Stress.Name'
+    },
+    armor: {
+        id: 'armor',
+        label: 'Armor Stack'
+    },
+    hp: {
+        id: 'hp',
+        label: 'DAGGERHEART.HealingType.HitPoints.Name'
+    },
+    prayer: {
+        id: 'prayer',
+        label: 'Prayer Dice'
+    },
+    favor: {
+        id: 'favor',
+        label: 'Favor Points'
+    },
+    slayer: {
+        id: 'slayer',
+        label: 'Slayer Dice'
+    },
+    tide: {
+        id: 'tide',
+        label: 'Tide'
+    },
+    chaos: {
+        id: 'chaos',
+        label: 'Chaos'
     }
 };
 

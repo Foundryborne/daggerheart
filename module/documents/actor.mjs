@@ -1,9 +1,6 @@
 import DamageSelectionDialog from '../applications/damageSelectionDialog.mjs';
-import NpcRollSelectionDialog from '../applications/npcRollSelectionDialog.mjs';
-import RollSelectionDialog from '../applications/rollSelectionDialog.mjs';
 import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
-import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
-import DHDualityRoll from '../data/chat-message/dualityRoll.mjs';
+import DamageReductionDialog from '../applications/damageReductionDialog.mjs';
 
 export default class DhpActor extends Actor {
     async _preCreate(data, options, user) {
@@ -260,150 +257,26 @@ export default class DhpActor extends Actor {
      * @param {boolean} [config.roll.simple=false]
      * @param {string} [config.roll.type]
      * @param {number} [config.roll.difficulty]
-     * @param {any} [config.damage]
+     * @param {boolean} [config.hasDamage]
+     * @param {boolean} [config.hasEffect]
      * @param {object} [config.chatMessage]
      * @param {string} config.chatMessage.template
      * @param {boolean} [config.chatMessage.mute]
-     * @param {boolean} [config.checkTarget]
+     * @param {object} [config.targets]
+     * @param {object} [config.costs]
      */
     async diceRoll(config) {
-        let hopeDice = 'd12',
-            fearDice = 'd12',
-            advantageDice = 'd6',
-            disadvantageDice = 'd6',
-            advantage = config.event.altKey ? true : config.event.ctrlKey ? false : null,
-            targets,
-            damage = config.damage,
-            modifiers = this.formatRollModifier(config.roll),
-            rollConfig,
-            formula,
-            hope,
-            fear;
+        config.source = {...(config.source ?? {}), actor: this.uuid};
+        config.data = this.getRollData();
+        return await this.rollClass.build(config);
+    }
 
-        if (!config.event.shiftKey && !config.event.altKey && !config.event.ctrlKey) {
-            const dialogClosed = new Promise((resolve, _) => {
-                this.type === 'character'
-                    ? new RollSelectionDialog(
-                          this.system.experiences,
-                          this.system.resources.hope.value,
-                          resolve
-                      ).render(true)
-                    : new NpcRollSelectionDialog(this.system.experiences, resolve).render(true);
-            });
-            rollConfig = await dialogClosed;
+    get rollClass() {
+        return CONFIG.Dice.daggerheart[this.type === 'character' ? 'DualityRoll' : 'D20Roll'];
+    }
 
-            advantage = rollConfig.advantage;
-            hopeDice = rollConfig.hope;
-            fearDice = rollConfig.fear;
-
-            rollConfig.experiences.forEach(x =>
-                modifiers.push({
-                    value: x.value,
-                    label: x.value >= 0 ? `+${x.value}` : `-${x.value}`,
-                    title: x.description
-                })
-            );
-
-            if (this.type === 'character') {
-                const automateHope = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation).hope;
-
-                if (automateHope && result.hopeUsed) {
-                    await this.update({
-                        'system.resources.hope.value': this.system.resources.hope.value - result.hopeUsed
-                    });
-                }
-            }
-        }
-
-        if (this.type === 'character') {
-            formula = `1${hopeDice} + 1${fearDice}${advantage === true ? ` + 1d6` : advantage === false ? ` - 1d6` : ''}`;
-        } else {
-            formula = `${advantage === true || advantage === false ? 2 : 1}d20${advantage === true ? 'kh' : advantage === false ? 'kl' : ''}`;
-        }
-        formula += ` ${modifiers.map(x => `+ ${x.value}`).join(' ')}`;
-        const roll = await Roll.create(formula).evaluate();
-        const dice = roll.dice.flatMap(dice => ({
-            denomination: dice.denomination,
-            number: dice.number,
-            total: dice.total,
-            results: dice.results.map(result => ({ result: result.result, discarded: !result.active }))
-        }));
-
-        if (this.type === 'character') {
-            setDiceSoNiceForDualityRoll(roll, advantage);
-            hope = roll.dice[0].results[0].result;
-            fear = roll.dice[1].results[0].result;
-            if (
-                game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation).hope &&
-                config.roll.type === 'action'
-            ) {
-                if (hope > fear) {
-                    await this.update({
-                        'system.resources.hope.value': Math.min(
-                            this.system.resources.hope.value + 1,
-                            this.system.resources.hope.max
-                        )
-                    });
-                } else if (hope === fear) {
-                    await this.update({
-                        'system.resources': {
-                            'hope.value': Math.min(
-                                this.system.resources.hope.value + 1,
-                                this.system.resources.hope.max
-                            ),
-                            'stress.value': Math.max(this.system.resources.stress.value - 1, 0)
-                        }
-                    });
-                }
-            }
-        }
-
-        if (config.checkTarget) {
-            targets = Array.from(game.user.targets).map(x => {
-                const target = {
-                    id: x.id,
-                    name: x.actor.name,
-                    img: x.actor.img,
-                    difficulty: x.actor.system.difficulty,
-                    evasion: x.actor.system.evasion?.value
-                };
-
-                target.hit = target.difficulty ? roll.total >= target.difficulty : roll.total >= target.evasion;
-
-                return target;
-            });
-        }
-
-        if (config.chatMessage) {
-            const configRoll = {
-                title: config.title,
-                origin: this.id,
-                dice,
-                roll,
-                modifiers: modifiers.filter(x => x.label),
-                advantageState: advantage
-            };
-            if (this.type === 'character') {
-                configRoll.hope = { dice: hopeDice, value: hope };
-                configRoll.fear = { dice: fearDice, value: fear };
-                configRoll.advantage = { dice: advantageDice, value: roll.dice[2]?.results[0].result ?? null };
-            }
-            if (damage) configRoll.damage = damage;
-            if (targets) configRoll.targets = targets;
-            const systemData =
-                    this.type === 'character' && !config.roll.simple ? new DHDualityRoll(configRoll) : configRoll,
-                cls = getDocumentClass('ChatMessage'),
-                msg = new cls({
-                    type: config.chatMessage.type ?? 'dualityRoll',
-                    sound: config.chatMessage.mute ? null : CONFIG.sounds.dice,
-                    system: systemData,
-                    content: config.chatMessage.template,
-                    rolls: [roll]
-                });
-
-            await cls.create(msg.toObject());
-        }
-        return roll;
+    getRollData() {
+        return this.system;
     }
 
     formatRollModifier(roll) {
@@ -499,124 +372,76 @@ export default class DhpActor extends Actor {
                     ? 1
                     : 0;
 
-        const update = {
-            'system.resources.hitPoints.value': Math.min(
-                this.system.resources.hitPoints.value + hpDamage,
-                this.system.resources.hitPoints.max
-            )
-        };
-
-        if (game.user.isGM) {
-            await this.update(update);
+        if (
+            this.type === 'character' &&
+            this.system.armor &&
+            this.system.armor.system.marks.value < this.system.armorScore
+        ) {
+            new Promise((resolve, reject) => {
+                new DamageReductionDialog(resolve, reject, this, hpDamage).render(true);
+            })
+                .then(async ({ modifiedDamage, armorSpent, stressSpent }) => {
+                    const resources = [
+                        { value: modifiedDamage, type: 'hitPoints' },
+                        ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : []),
+                        ...(stressSpent ? [{ value: stressSpent, type: 'stress' }] : [])
+                    ];
+                    await this.modifyResource(resources);
+                })
+                .catch(() => {
+                    const cls = getDocumentClass('ChatMessage');
+                    const msg = new cls({
+                        user: game.user.id,
+                        content: game.i18n.format('DAGGERHEART.DamageReduction.Notifications.DamageIgnore', {
+                            character: this.name
+                        })
+                    });
+                    cls.create(msg.toObject());
+                });
         } else {
-            await game.socket.emit(`system.${SYSTEM.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateDocument,
-                    uuid: this.uuid,
-                    update: update
-                }
-            });
+            await this.modifyResource([{ value: hpDamage, type: 'hitPoints' }]);
         }
     }
 
-    async takeHealing(healing, type) {
-        let update = {};
-        switch (type) {
-            case SYSTEM.GENERAL.healingTypes.health.id:
-                update = {
-                    'system.resources.hitPoints.value': Math.min(
-                        this.system.resources.hitPoints.value + healing,
-                        this.system.resources.hitPoints.max
-                    )
-                };
-                break;
-            case SYSTEM.GENERAL.healingTypes.stress.id:
-                update = {
-                    'system.resources.stress.value': Math.min(
-                        this.system.resources.stress.value + healing,
-                        this.system.resources.stress.max
-                    )
-                };
-                break;
-        }
-
-        if (game.user.isGM) {
-            await this.update(update);
-        } else {
-            await game.socket.emit(`system.${SYSTEM.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateDocument,
-                    uuid: this.uuid,
-                    update: update
-                }
-            });
-        }
+    async takeHealing(resources) {
+        resources.forEach(r => (r.value *= -1));
+        await this.modifyResource(resources);
     }
 
-    //Move to action-scope?
-    async useAction(action) {
-        const userTargets = Array.from(game.user.targets);
-        const otherTarget = action.target.type === SYSTEM.ACTIONS.targetTypes.other.id;
-        if (otherTarget && userTargets.length === 0) {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.ActionRequiresTarget'));
-            return;
-        }
-
-        if (action.cost.type != null && action.cost.value != null) {
-            if (
-                this.system.resources[action.cost.type].value - action.cost.value <=
-                this.system.resources[action.cost.type].min
-            ) {
-                ui.notifications.error(game.i18n.localize(`Insufficient ${action.cost.type} to use this ability`));
-                return;
+    async modifyResource(resources) {
+        if (!resources.length) return;
+        let updates = { actor: { target: this, resources: {} }, armor: { target: this.system.armor, resources: {} } };
+        resources.forEach(r => {
+            switch (r.type) {
+                case 'armorStack':
+                    updates.armor.resources['system.marks.value'] = Math.max(
+                        Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
+                        0
+                    );
+                    break;
+                default:
+                    updates.actor.resources[`system.resources.${r.type}.value`] = Math.max(
+                        Math.min(this.system.resources[r.type].value + r.value, this.system.resources[r.type].max),
+                        0
+                    );
+                    break;
             }
-        }
-
-        // const targets = otherTarget ? userTargets : [game.user.character];
-        if (action.damage.type) {
-            let roll = { formula: action.damage.value, result: action.damage.value };
-            if (Number.isNaN(Number.parseInt(action.damage.value))) {
-                roll = await new Roll(`1${action.damage.value}`).evaluate();
+        });
+        Object.values(updates).forEach(async u => {
+            if (Object.keys(u.resources).length > 0) {
+                if (game.user.isGM) {
+                    await u.target.update(u.resources);
+                } else {
+                    await game.socket.emit(`system.${SYSTEM.id}`, {
+                        action: socketEvent.GMUpdate,
+                        data: {
+                            action: GMUpdateEvent.UpdateDocument,
+                            uuid: u.target.uuid,
+                            update: u.resources
+                        }
+                    });
+                }
             }
-
-            const cls = getDocumentClass('ChatMessage');
-            const msg = new cls({
-                user: game.user.id,
-                content: await foundry.applications.handlebars.renderTemplate(
-                    'systems/daggerheart/templates/chat/damage-roll.hbs',
-                    {
-                        roll: roll.formula,
-                        total: roll.result,
-                        type: action.damage.type
-                    }
-                )
-            });
-
-            cls.create(msg.toObject());
-        }
-
-        if (action.healing.type) {
-            let roll = { formula: action.healing.value, result: action.healing.value };
-            if (Number.isNaN(Number.parseInt(action.healing.value))) {
-                roll = await new Roll(`1${action.healing.value}`).evaluate();
-            }
-
-            const cls = getDocumentClass('ChatMessage');
-            const msg = new cls({
-                user: game.user.id,
-                content: await foundry.applications.handlebars.renderTemplate(
-                    'systems/daggerheart/templates/chat/healing-roll.hbs',
-                    {
-                        roll: roll.formula,
-                        total: roll.result,
-                        type: action.healing.type
-                    }
-                )
-            });
-
-            cls.create(msg.toObject());
-        }
+        });
     }
 }

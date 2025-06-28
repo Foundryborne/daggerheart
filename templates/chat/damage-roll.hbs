@@ -1,21 +1,19 @@
 <div class="dice-roll daggerheart chat roll" data-action="expandRoll">
     <div class="dice-flavor">{{title}}</div>
     <div class="dice-result">
-        <div class="dice-formula">{{roll}}</div>
-
+        <div class="dice-formula">{{roll.formula}}</div>
         <div class="dice-tooltip">
             <div class="wrapper">
                 <section class="tooltip-part">
-                    {{#each dice}}
+                    {{#each roll.dice}}
                         <div class="dice">
                             <header class="part-header flexrow">
-                                <span class="part-formula">{{rolls.length}}{{type}}</span>
-                                
-                                <span class="part-total">{{this.total}}</span>
+                                <span class="part-formula">{{formula}}</span>                                
+                                <span class="part-total">{{total}}</span>
                             </header>
                             <ol class="dice-rolls">
-                                {{#each rolls}}
-                                    <li class="roll die {{../type}} min">{{this}}</li>
+                                {{#each results}}
+                                    <li class="roll die {{../denomination}} min">{{result}}</li>
                                 {{/each}}
                             </ol>
                         </div>
@@ -23,7 +21,12 @@
                 </section>
             </div>
         </div>
-        <div class="dice-total">{{damage.total}}</div>
+        <div class="dice-total">{{roll.total}}</div>
+    </div>
+</div>
+{{> 'systems/daggerheart/templates/chat/parts/target-chat.hbs'}}
+<div class="dice-roll daggerheart chat roll">
+    <div class="dice-result">
         <div class="dice-actions">
             <button class="damage-button" data-target-hit="true" {{#if (eq targets.length 0)}}disabled{{/if}}>{{localize "DAGGERHEART.Chat.DamageRoll.DealDamageToTargets"}}</button>  
             <button class="damage-button">{{localize "DAGGERHEART.Chat.DamageRoll.DealDamage"}}</button>  

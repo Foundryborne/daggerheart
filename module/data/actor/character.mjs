@@ -17,6 +17,12 @@ const resourceField = max =>
         max: new foundry.data.fields.NumberField({ initial: max, integer: true })
     });
 
+const stressDamageReductionRule = () =>
+    new foundry.data.fields.SchemaField({
+        enabled: new foundry.data.fields.BooleanField({ required: true, initial: false }),
+        cost: new foundry.data.fields.NumberField({ integer: true })
+    });
+
 export default class DhCharacter extends BaseDataActor {
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -35,7 +41,9 @@ export default class DhCharacter extends BaseDataActor {
                     bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true })
                 }),
                 stress: resourceField(6),
-                hope: resourceField(6)
+                hope: resourceField(6),
+                tokens: new fields.ObjectField(),
+                dice: new fields.ObjectField()
             }),
             traits: new fields.SchemaField({
                 agility: attributeField(),
@@ -90,9 +98,42 @@ export default class DhCharacter extends BaseDataActor {
             }),
             levelData: new fields.EmbeddedDataField(DhPCLevelData),
             bonuses: new fields.SchemaField({
-                attack: new fields.NumberField({ integer: true, initial: 0 }),
-                spellcast: new fields.NumberField({ integer: true, initial: 0 }),
-                armorScore: new fields.NumberField({ integer: true, initial: 0 })
+                armorScore: new fields.NumberField({ integer: true, initial: 0 }),
+                damageThresholds: new fields.SchemaField({
+                    severe: new fields.NumberField({ integer: true, initial: 0 }),
+                    major: new fields.NumberField({ integer: true, initial: 0 })
+                }),
+                roll: new fields.SchemaField({
+                    attack: new fields.NumberField({ integer: true, initial: 0 }),
+                    spellcast: new fields.NumberField({ integer: true, initial: 0 }),
+                    action: new fields.NumberField({ integer: true, initial: 0 }),
+                    hopeOrFear: new fields.NumberField({ integer: true, initial: 0 })
+                }),
+                damage: new fields.SchemaField({
+                    all: new fields.NumberField({ integer: true, initial: 0 }),
+                    physical: new fields.NumberField({ integer: true, initial: 0 }),
+                    magic: new fields.NumberField({ integer: true, initial: 0 })
+                })
+            }),
+            rules: new fields.SchemaField({
+                maxArmorMarked: new fields.SchemaField({
+                    value: new fields.NumberField({ required: true, integer: true, initial: 1 }),
+                    bonus: new fields.NumberField({ required: true, integer: true, initial: 0 }),
+                    stressExtra: new fields.NumberField({ required: true, integer: true, initial: 0 })
+                }),
+                stressDamageReduction: new fields.SchemaField({
+                    severe: stressDamageReductionRule(),
+                    major: stressDamageReductionRule(),
+                    minor: stressDamageReductionRule()
+                }),
+                strangePatterns: new fields.NumberField({
+                    integer: true,
+                    min: 1,
+                    max: 12,
+                    nullable: true,
+                    initial: null
+                }),
+                runeWard: new fields.BooleanField({ initial: false })
             })
         };
     }
@@ -246,6 +287,9 @@ export default class DhCharacter extends BaseDataActor {
             experience.total = experience.value + experience.bonus;
         }
 
+        this.rules.maxArmorMarked.total = this.rules.maxArmorMarked.value + this.rules.maxArmorMarked.bonus;
+
+        this.armorScore = this.armor ? this.armor.system.baseScore + (this.bonuses.armorScore ?? 0) : 0;
         this.resources.hitPoints.maxTotal = (this.class.value?.system?.hitPoints ?? 0) + this.resources.hitPoints.bonus;
         this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
         this.evasion.total = (this.class?.evasion ?? 0) + this.evasion.bonus;
@@ -256,7 +300,11 @@ export default class DhCharacter extends BaseDataActor {
         const data = super.getRollData();
         return {
             ...data,
-            tier: this.tier
+            ...this.resources.tokens,
+            ...this.resources.dice,
+            ...this.bonuses,
+            tier: this.tier,
+            level: this.levelData.level.current
         };
     }
 }

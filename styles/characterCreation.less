@@ -1,6 +1,7 @@
+@import './less/utils/colors.less';
+
 .theme-light .daggerheart.dh-style.dialog.character-creation {
     .tab-navigation nav a .descriptor {
-        background: red;
         background-image: url('../assets/parchments/dh-parchment-dark.png');
     }
     .main-selections-container {
@@ -15,6 +16,10 @@
 .daggerheart.dh-style.dialog.character-creation {
     .window-content {
         gap: 16px;
+
+        .tab {
+            overflow-y: auto;
+        }
     }
 
     .tab-navigation {

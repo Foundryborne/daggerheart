@@ -28,7 +28,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             toggleLoadoutView: this.toggleLoadoutView,
             attackRoll: this.attackRoll,
             useDomainCard: this.useDomainCard,
-            removeCard: this.removeDomainCard,
             selectClass: this.selectClass,
             selectSubclass: this.selectSubclass,
             selectAncestry: this.selectAncestry,
@@ -50,7 +49,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             toggleEquipItem: this.toggleEquipItem,
             toggleVault: this.toggleVault,
             levelManagement: this.levelManagement,
-            editImage: this._onEditImage
+            editImage: this._onEditImage,
+            triggerContextMenu: this.triggerContextMenu
         },
         window: {
             resizable: true
@@ -231,14 +231,18 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useItem: {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.UseItem',
                 icon: '<i class="fa-solid fa-burst"></i>',
-                callback: (element, event) => this.constructor.useItem.bind(this)(event, element)
+                condition: el => {
+                    const item = this.getItem(el);
+                    return !['class', 'subclass'].includes(item.type);
+                },
+                callback: (button, event) => this.constructor.useItem.bind(this)(event, button)
             },
             equip: {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.Equip',
                 icon: '<i class="fa-solid fa-hands"></i>',
                 condition: el => {
-                    const item = foundry.utils.fromUuidSync(el.dataset.uuid);
-                    return !item.system.equipped;
+                    const item = this.getItem(el);
+                    return ['weapon', 'armor'].includes(item.type) && !item.system.equipped;
                 },
                 callback: this.constructor.toggleEquipItem.bind(this)
             },
@@ -246,10 +250,33 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.Unequip',
                 icon: '<i class="fa-solid fa-hands"></i>',
                 condition: el => {
-                    const item = foundry.utils.fromUuidSync(el.dataset.uuid);
-                    return item.system.equipped;
+                    const item = this.getItem(el);
+                    return ['weapon', 'armor'].includes(item.type) && item.system.equipped;
                 },
                 callback: this.constructor.toggleEquipItem.bind(this)
+            },
+            sendToLoadout: {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToLoadout',
+                icon: '<i class="fa-solid fa-arrow-up"></i>',
+                condition: el => {
+                    const item = this.getItem(el);
+                    return ['domainCard'].includes(item.type) && item.system.inVault;
+                },
+                callback: this.constructor.toggleVault.bind(this)
+            },
+            sendToVault: {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToVault',
+                icon: '<i class="fa-solid fa-arrow-down"></i>',
+                condition: el => {
+                    const item = this.getItem(el);
+                    return ['domainCard'].includes(item.type) && !item.system.inVault;
+                },
+                callback: this.constructor.toggleVault.bind(this)
+            },
+            sendToChat: {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
+                icon: '<i class="fa-regular fa-message"></i>',
+                callback: this.constructor.toChat.bind(this)
             },
             edit: {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.Edit',
@@ -260,66 +287,12 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.Delete',
                 icon: '<i class="fa-solid fa-trash"></i>',
                 callback: this.constructor.deleteItem.bind(this)
-            },
-            sendToLoadout: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToLoadout',
-                icon: '<i class="fa-solid fa-arrow-up"></i>',
-                condition: el => {
-                    const item = foundry.utils.fromUuidSync(el.dataset.uuid);
-                    return item.system.inVault;
-                },
-                callback: this.constructor.toggleVault.bind(this)
-            },
-            sendToVault: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToVault',
-                icon: '<i class="fa-solid fa-arrow-down"></i>',
-                condition: el => {
-                    const item = foundry.utils.fromUuidSync(el.dataset.uuid);
-                    return !item.system.inVault;
-                },
-                callback: this.constructor.toggleVault.bind(this)
-            },
-            sendToChat: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
-                icon: '<i class="fa-regular fa-message"></i>',
-                callback: this.constructor.toChat.bind(this)
             }
         };
 
-        const getMenuOptions = type => () => {
-            let menuItems = ['class', 'subclass'].includes(type) ? [] : [allOptions.useItem];
-            switch (type) {
-                case 'weapon':
-                case 'armor':
-                    menuItems.push(...[allOptions.equip, allOptions.unequip]);
-                    break;
-                case 'domainCard':
-                    menuItems.push(...[allOptions.sendToLoadout, allOptions.sendToVault]);
-                    break;
-            }
-            menuItems.push(...[allOptions.sendToChat, allOptions.edit, allOptions.delete]);
-
-            return menuItems;
-        };
-
-        const menuConfigs = [
-            'armor',
-            'weapon',
-            'miscellaneous',
-            'consumable',
-            'domainCard',
-            'miscellaneous',
-            'ancestry',
-            'community',
-            'class',
-            'subclass'
-        ];
-        menuConfigs.forEach(type => {
-            this._createContextMenu(getMenuOptions(type), `.${type}-context-menu`, {
-                eventName: 'click',
-                parentClassHooks: false,
-                fixed: true
-            });
+        this._createContextMenu(() => Object.values(allOptions), `[data-item-id]`, {
+            parentClassHooks: false,
+            fixed: true
         });
     }
 
@@ -327,10 +300,16 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         super._attachPartListeners(partId, htmlElement, options);
 
         htmlElement.querySelector('.level-value')?.addEventListener('change', this.onLevelChange.bind(this));
-        // To Remove when ContextMenu Handler is made
-        htmlElement
-            .querySelectorAll('[data-item-id]')
-            .forEach(element => element.addEventListener('contextmenu', this.editItem.bind(this)));
+    }
+
+    getItem(element) {
+        const itemId = (element.target ?? element).closest('[data-item-id]').dataset.itemId,
+            item = this.document.items.get(itemId);
+        return item;
+    }
+
+    static triggerContextMenu(event, button) {
+        return CONFIG.ux.ContextMenu.triggerContextMenu(event);
     }
 
     static _onEditImage() {
@@ -410,53 +389,55 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             }))
         };
 
-        return context;
-    }
+        context.inventory = {
+            consumable: {
+                titles: {
+                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.ConsumableTitle'),
+                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
+                },
+                items: this.document.items.filter(x => x.type === 'consumable')
+            },
+            miscellaneous: {
+                titles: {
+                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.MiscellaneousTitle'),
+                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
+                },
+                items: this.document.items.filter(x => x.type === 'miscellaneous')
+            },
+            weapons: {
+                titles: {
+                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.WeaponsTitle'),
+                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
+                },
+                items: this.document.items.filter(x => x.type === 'weapon')
+            },
+            armor: {
+                titles: {
+                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.ArmorsTitle'),
+                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
+                },
+                items: this.document.items.filter(x => x.type === 'armor')
+            },
+            currency: {
+                title: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Title'),
+                coins: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Coins'),
+                handfulls: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Handfulls'),
+                bags: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Bags'),
+                chests: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Chests')
+            }
+        };
 
-    /**@inheritdoc */
-    async _preparePartContext(partId, context, options) {
-        context = await super._preparePartContext(partId, context, options);
+        const homebrewCurrency = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew).currency;
+        if (homebrewCurrency.enabled) {
+            context.inventory.currency = homebrewCurrency;
+        }
 
-        switch (partId) {
-            case "inventory":
-                context.inventory = this._prepareInventoryContext();
-                break;
+        if (context.inventory.length === 0) {
+            context.inventory = Array(1).fill(Array(5).fill([]));
         }
 
         return context;
     }
-
-    /**
-     * Prepare the inventory context, grouping items by type
-     * and providing localized titles for display in the inventory UI.
-     *
-     * @returns {Object}
-     */
-    _prepareInventoryContext() {
-        const items = this.document.itemTypes;
-        const quantityTitle = game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle');
-
-        const inventoryConfig = {
-            consumable: 'ConsumableTitle',
-            miscellaneous: 'MiscellaneousTitle',
-            weapons: 'WeaponsTitle',
-            armor: 'ArmorsTitle'
-        };
-
-        return Object.fromEntries(
-            Object.entries(inventoryConfig).map(([key, nameKey]) => [
-                key,
-                {
-                    titles: {
-                        name: game.i18n.localize(`DAGGERHEART.Sheets.PC.InventoryTab.${nameKey}`),
-                        quantity: quantityTitle
-                    },
-                    items: items[key]
-                }
-            ])
-        );
-    }
-
 
     /* -------------------------------------------- */
     /*  Search Filter                               */
@@ -474,13 +455,12 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
      */
     #filteredItems = {
         inventory: new Set(),
-        loadout: new Set(),
-    }
-
+        loadout: new Set()
+    };
 
     /**
      * Create and initialize search filter instances for the inventory and loadout sections.
-     * 
+     *
      * Sets up two {@link foundry.applications.ux.SearchFilter} instances:
      * - One for the inventory, which filters items in the inventory grid.
      * - One for the loadout, which filters items in the loadout/card grid.
@@ -490,13 +470,13 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         //Filters could be a application option if needed
         const filters = [
             {
-                key: "inventory",
+                key: 'inventory',
                 input: 'input[type="search"].search-inventory',
                 content: '[data-application-part="inventory"] .items-section',
                 callback: this._onSearchFilterInventory.bind(this)
             },
             {
-                key: "loadout",
+                key: 'loadout',
                 input: 'input[type="search"].search-loadout',
                 content: '[data-application-part="loadout"] .items-section',
                 callback: this._onSearchFilterCard.bind(this)
@@ -525,8 +505,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     _onSearchFilterInventory(event, query, rgx, html) {
         this.#filteredItems.inventory.clear();
 
-        for (const ul of html.querySelectorAll(".items-list")) {
-            for (const li of ul.querySelectorAll(".inventory-item")) {
+        for (const ul of html.querySelectorAll('.items-list')) {
+            for (const li of ul.querySelectorAll('.inventory-item')) {
                 const item = this.document.items.get(li.dataset.itemId);
                 const match = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
                 if (match) this.#filteredItems.inventory.add(item.id);
@@ -546,9 +526,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     _onSearchFilterCard(event, query, rgx, html) {
         this.#filteredItems.loadout.clear();
 
-        const elements = html.querySelectorAll(
-            ".items-list .inventory-item, .card-list .card-item"
-        );
+        const elements = html.querySelectorAll('.items-list .inventory-item, .card-list .card-item');
 
         for (const li of elements) {
             const item = this.document.items.get(li.dataset.itemId);
@@ -584,51 +562,12 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
         const config = {
             event: event,
-            title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
-                ability: abilityLabel
-            }),
+            title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', { ability: abilityLabel }),
             roll: {
-                label: abilityLabel,
-                modifier: button.dataset.value
-            },
-            chatMessage: {
-                template: 'systems/daggerheart/templates/chat/duality-roll.hbs'
+                trait: button.dataset.attribute
             }
         };
         this.document.diceRoll(config);
-
-        // Delete when new roll logic test done
-        /* const { roll, hope, fear, advantage, disadvantage, modifiers } = await this.document.dualityRoll(
-            { title: game.i18n.localize(abilities[button.dataset.attribute].label), value: button.dataset.value },
-            event.shiftKey
-        );
-    
-        const cls = getDocumentClass('ChatMessage');
-    
-        const systemContent = new DHDualityRoll({
-            title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
-                ability: game.i18n.localize(abilities[button.dataset.attribute].label)
-            }),
-            origin: this.document.id,
-            roll: roll._formula,
-            modifiers: modifiers,
-            hope: hope,
-            fear: fear,
-            advantage: advantage,
-            disadvantage: disadvantage
-        });
-    
-        await cls.create({
-            type: 'dualityRoll',
-            sound: CONFIG.sounds.dice,
-            system: systemContent,
-            user: game.user.id,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/duality-roll.hbs',
-                systemContent
-            ),
-            rolls: [roll]
-        }); */
     }
 
     static async toggleMarks(_, button) {
@@ -707,8 +646,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         new DhlevelUp(this.document).render(true);
     }
 
-    static async useDomainCard(_, button) {
-        const card = this.document.items.find(x => x.uuid === button.dataset.key);
+    static async useDomainCard(event, button) {
+        const card = this.getItem(event);
+        if (!card) return;
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
@@ -730,13 +670,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         });
 
         cls.create(msg.toObject());
-    }
-
-    static async removeDomainCard(_, button) {
-        if (button.dataset.type === 'domainCard') {
-            const card = this.document.items.find(x => x.uuid === button.dataset.key);
-            await card.delete();
-        }
     }
 
     static async selectClass() {
@@ -774,23 +707,22 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async useItem(event, button) {
-        const id = button.closest('a').id,
-            item = this.document.items.get(id);
+        const item = this.getItem(button);
+        if (!item) return;
         const wasUsed = await item.use(event);
         if (wasUsed && item.type === 'weapon') {
             Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
         }
     }
 
-    static async viewObject(element, button) {
-        const object = await fromUuid((button ?? element).dataset.uuid);
-
-        object.sheet.render(true);
+    static async viewObject(event, button) {
+        const item = this.getItem(event);
+        if (!item) return;
+        item.sheet.render(true);
     }
 
     editItem(event) {
-        const uuid = event.target.closest('[data-item-id]').dataset.itemId,
-            item = this.document.items.find(i => i.uuid === uuid);
+        const item = this.getItem(event);
         if (!item) return;
 
         if (item.sheet.editMode) item.sheet.editMode = false;
@@ -829,15 +761,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async makeDeathMove() {
-        if (this.document.system.resources.hitPoints.value === this.document.system.resources.hitPoints.max) {
+        if (this.document.system.resources.hitPoints.value >= this.document.system.resources.hitPoints.maxTotal) {
             await new DhpDeathMove(this.document).render(true);
         }
-    }
-
-    async itemUpdate(event) {
-        const name = event.currentTarget.dataset.item;
-        const item = await fromUuid($(event.currentTarget).closest('[data-item-id]')[0].dataset.itemId);
-        await item.update({ [name]: event.currentTarget.value });
     }
 
     async onLevelChange(event) {
@@ -845,18 +771,21 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    static async deleteItem(element, button) {
-        const item = await fromUuid((button ?? element).closest('a').dataset.uuid);
+    static async deleteItem(event, button) {
+        const item = this.getItem(event);
+        if (!item) return;
         await item.delete();
     }
 
     static async setItemQuantity(button, value) {
-        const item = await fromUuid($(button).closest('[data-item-id]')[0].dataset.itemId);
+        const item = this.getItem(button);
+        if (!item) return;
         await item.update({ 'system.quantity': Math.max(item.system.quantity + value, 1) });
     }
 
-    static async useFeature(_, button) {
-        const item = await fromUuid(button.dataset.id);
+    static async useFeature(event, button) {
+        const item = this.getItem(event);
+        if (!item) return;
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
@@ -880,14 +809,15 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         cls.create(msg.toObject());
     }
 
-    static async toChat(element, button) {
+    static async toChat(event, button) {
         if (button?.dataset?.type === 'experience') {
             const experience = this.document.system.experiences[button.dataset.uuid];
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
-                description: `${experience.description} ${experience.total < 0 ? experience.total : `+${experience.total}`
-                    }`
+                description: `${experience.description} ${
+                    experience.total < 0 ? experience.total : `+${experience.total}`
+                }`
             };
             const msg = new cls({
                 type: 'abilityUse',
@@ -901,7 +831,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
             cls.create(msg.toObject());
         } else {
-            const item = await fromUuid((button ?? element).dataset.uuid);
+            const item = this.getItem(event);
+            if (!item) return;
             item.toChat(this.document.id);
         }
     }
@@ -960,9 +891,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         cls.create(msg.toObject());
     }
 
-    static async toggleEquipItem(element, button) {
-        const id = (button ?? element).closest('a').id;
-        const item = this.document.items.get(id);
+    static async toggleEquipItem(event, button) {
+        const item = this.getItem(event);
+        if (!item) return;
         if (item.system.equipped) {
             await item.update({ 'system.equipped': false });
             return;
@@ -986,9 +917,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    static async toggleVault(element, button) {
-        const id = (button ?? element).closest('a').id;
-        const item = this.document.items.get(id);
+    static async toggleVault(event, button) {
+        const item = this.getItem(event);
+        if (!item) return;
         await item.update({ 'system.inVault': !item.system.inVault });
     }
 

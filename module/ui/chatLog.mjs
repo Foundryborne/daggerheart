@@ -16,8 +16,17 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     addChatListeners = async (app, html, data) => {
-        html.querySelectorAll('.duality-action').forEach(element =>
+        html.querySelectorAll('.duality-action-damage').forEach(element =>
             element.addEventListener('click', event => this.onRollDamage(event, data.message))
+        );
+        html.querySelectorAll('.duality-action-healing').forEach(element =>
+            element.addEventListener('click', event => this.onRollHealing(event, data.message))
+        );
+        html.querySelectorAll('.target-save-container').forEach(element =>
+            element.addEventListener('click', event => this.onRollSave(event, data.message))
+        );
+        html.querySelectorAll('.duality-action-effect').forEach(element =>
+            element.addEventListener('click', event => this.onApplyEffect(event, data.message))
         );
         html.querySelectorAll('.target-container').forEach(element => {
             element.addEventListener('mouseenter', this.hoverTarget);
@@ -27,7 +36,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.damage-button').forEach(element =>
             element.addEventListener('click', event => this.onDamage(event, data.message))
         );
-        html.querySelectorAll('.healing-button').forEach(element => element.addEventListener('click', this.onHealing));
+        html.querySelectorAll('.healing-button').forEach(element =>
+            element.addEventListener('click', event => this.onHealing(event, data.message))
+        );
         html.querySelectorAll('.target-indicator').forEach(element =>
             element.addEventListener('click', this.onToggleTargets)
         );
@@ -54,17 +65,65 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         super.close(options);
     }
 
+    async getActor(id) {
+        // return game.actors.get(id);
+        return await fromUuid(id);
+    }
+
+    getAction(actor, itemId, actionId) {
+        const item = actor.items.get(itemId),
+            action =
+                actor.system.attack?._id === actionId
+                    ? actor.system.attack
+                    : item?.system?.actions?.find(a => a._id === actionId);
+        return action;
+    }
+
     onRollDamage = async (event, message) => {
         event.stopPropagation();
-        const actor = game.actors.get(message.system.origin);
+        const actor = await this.getActor(message.system.source.actor);
         if (!actor || !game.user.isGM) return true;
+        if (message.system.source.item && message.system.source.action) {
+            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
+            if (!action || !action?.rollDamage) return;
+            await action.rollDamage(event, message);
+        }
+    };
 
-        await actor.damageRoll(
-            message.system.title,
-            message.system.damage,
-            message.system.targets.filter(x => x.hit).map(x => ({ id: x.id, name: x.name, img: x.img })),
-            event.shiftKey
-        );
+    onRollHealing = async (event, message) => {
+        event.stopPropagation();
+        const actor = await this.getActor(message.system.source.actor);
+        if (!actor || !game.user.isGM) return true;
+        if (message.system.source.item && message.system.source.action) {
+            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
+            if (!action || !action?.rollHealing) return;
+            await action.rollHealing(event, message);
+        }
+    };
+
+    onRollSave = async (event, message) => {
+        event.stopPropagation();
+        const actor = await this.getActor(message.system.source.actor),
+            tokenId = event.target.closest('[data-token]')?.dataset.token,
+            token = game.canvas.tokens.get(tokenId);
+        if (!token?.actor || !token.isOwner) return true;
+        console.log(token.actor.canUserModify(game.user, 'update'));
+        if (message.system.source.item && message.system.source.action) {
+            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
+            if (!action || !action?.hasSave) return;
+            action.rollSave(token, event, message);
+        }
+    };
+
+    onApplyEffect = async (event, message) => {
+        event.stopPropagation();
+        const actor = await this.getActor(message.system.source.actor);
+        if (!actor || !game.user.isGM) return true;
+        if (message.system.source.item && message.system.source.action) {
+            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
+            if (!action || !action?.applyEffects) return;
+            await action.applyEffects(event, message);
+        }
     };
 
     hoverTarget = event => {
@@ -95,24 +154,36 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             ? message.system.targets.map(target => game.canvas.tokens.get(target.id))
             : Array.from(game.user.targets);
 
+        if(message.system.onSave && event.currentTarget.dataset.targetHit) {
+            console.log(message.system.targets)
+            const pendingingSaves = message.system.targets.filter(target => target.hit && target.saved.success === null);
+            if(pendingingSaves.length) {
+                const confirm = await foundry.applications.api.DialogV2.confirm({
+                    window: {title: "Pending Reaction Rolls found"},
+                    content: `<p>Some Tokens still need to roll their Reaction Roll.</p><p>Are you sure you want to continue ?</p><p><i>Undone reaction rolls will be considered as failed</i></p>`
+                });
+                if ( !confirm ) return;
+            }
+        }
+
         if (targets.length === 0)
             ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
-
-        for (var target of targets) {
-            await target.actor.takeDamage(message.system.damage.total, message.system.damage.type);
+        for (let target of targets) {
+            let damage = message.system.roll.total;
+            if(message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true) damage = Math.ceil(damage * (SYSTEM.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
+            await target.actor.takeDamage(damage, message.system.roll.type);
         }
     };
 
-    onHealing = async event => {
+    onHealing = async (event, message) => {
         event.stopPropagation();
-        const healing = Number.parseInt(event.currentTarget.dataset.value);
         const targets = Array.from(game.user.targets);
 
         if (targets.length === 0)
             ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
-
+        
         for (var target of targets) {
-            await target.actor.takeHealing(healing, event.currentTarget.dataset.type);
+            await target.actor.takeHealing([{ value: message.system.roll.total, type: message.system.roll.type }]);
         }
     };
 
@@ -139,7 +210,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         event.stopPropagation();
 
         const action = message.system.actions[Number.parseInt(event.currentTarget.dataset.index)];
-        const actor = game.actors.get(message.system.origin);
+        const actor = game.actors.get(message.system.source.actor);
         await actor.useAction(action);
     };
 

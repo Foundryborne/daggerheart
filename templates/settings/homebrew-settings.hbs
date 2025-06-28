@@ -1,4 +1,4 @@
-<div>
+<div class="scrollable">
     {{formGroup settingFields.schema.fields.maxFear value=settingFields._source.maxFear localize=true}}
 
     <h4>{{localize "DAGGERHEART.Settings.Homebrew.FIELDS.traitArray.label"}}</h4>
@@ -9,7 +9,20 @@
                 <input type="text" data-dtype="Number" name="{{concat "traitArray." index}}" value="{{this}}" />
             </div>
         {{/each}}
-    </div>
+</div>   
+
+    <fieldset>
+        <legend>
+            {{localize "DAGGERHEART.Settings.Homebrew.Currency.title"}} 
+        </legend>
+        {{formGroup settingFields.schema.fields.currency.fields.enabled value=settingFields._source.currency.enabled localize=true}}
+        {{formGroup settingFields.schema.fields.currency.fields.title value=settingFields._source.currency.title localize=true}}
+        {{formGroup settingFields.schema.fields.currency.fields.coins value=settingFields._source.currency.coins localize=true}}
+        {{formGroup settingFields.schema.fields.currency.fields.handfulls value=settingFields._source.currency.handfulls localize=true}}
+        {{formGroup settingFields.schema.fields.currency.fields.bags value=settingFields._source.currency.bags localize=true}}
+        {{formGroup settingFields.schema.fields.currency.fields.chests value=settingFields._source.currency.chests localize=true}}
+        
+    </fieldset>
 
     <fieldset class="two-columns even">
         <legend>{{localize "DAGGERHEART.Settings.Homebrew.DowntimeMoves"}}</legend>

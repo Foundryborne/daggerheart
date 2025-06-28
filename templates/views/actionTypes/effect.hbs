@@ -4,15 +4,31 @@
     </legend>
     <div class="action-category-data open" data-key="effects">
         <div class="fas fa-plus icon-button" data-action="addEffect"></div>
-        {{#each @root.effects as | effect index | }}
+        {{!-- {{#each @root.effects as | effect index | }}
             <fieldset>
-                {{!-- <div class="multi-display"> --}}
+                <div class="multi-display">
                     <div class="form-group">
                         <img src="{{img}}">
                         <label data-action="editEffect">{{name}}</label>
                         <div class="fas fa-trash" data-action="removeEffect" data-index="{{index}}"></div>
                     </div>
-                {{!-- </div> --}}
+                    {{formfield }}
+                </div>
+            </fieldset>
+        {{/each}} --}}
+        {{#each source as | effect index |}}
+            <fieldset data-effect-id="{{effect._id}}">
+                <div class="multi-display">
+                    {{#with (@root.getEffectDetails effect._id) as | details |}}
+                        <div class="form-group" data-action="editEffect">
+                            <img src="{{img}}">
+                            <label>{{name}}</label>
+                            <div class="fas fa-trash" data-action="removeEffect" data-index="{{index}}"></div>
+                        </div>
+                    {{/with}}
+                    <input type="hidden" name="effects.{{index}}._id" value="{{effect._id}}">
+                    {{formField ../fields.onSave value=effect.onSave name=(concat "effects." index ".onSave")}}
+                </div>
             </fieldset>
         {{/each}}
     </div>

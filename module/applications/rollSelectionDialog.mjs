@@ -1,10 +1,12 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class RollSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(experiences, hopeResource, resolve) {
+    constructor(experiences, costs, action, resolve) {
         super({}, {});
-
+        
         this.experiences = experiences;
+        this.costs = costs;
+        this.action = action;
         this.resolve = resolve;
         this.isNpc;
         this.selectedExperiences = [];
@@ -15,8 +17,7 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
             ],
             hope: ['d12'],
             fear: ['d12'],
-            advantage: null,
-            hopeResource: hopeResource
+            advantage: null
         };
     }
 
@@ -42,6 +43,10 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
 
     /** @override */
     static PARTS = {
+        costSelection: {
+            id: 'costSelection',
+            template: 'systems/daggerheart/templates/views/costSelection.hbs'
+        },
         damageSelection: {
             id: 'damageSelection',
             template: 'systems/daggerheart/templates/views/rollSelection.hbs'
@@ -60,15 +65,19 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
         context.fear = this.data.fear;
         context.advantage = this.data.advantage;
         context.experiences = Object.keys(this.experiences).map(id => ({ id, ...this.experiences[id] }));
-        context.hopeResource = this.data.hopeResource + 1;
+        if(this.costs?.length) {
+            const updatedCosts = this.action.calcCosts(this.costs);
+            context.costs = updatedCosts
+            context.canRoll = this.action.getRealCosts(updatedCosts)?.hasCost;
+        } else context.canRoll = true;
 
         return context;
     }
 
     static updateSelection(event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
-
         this.data = foundry.utils.mergeObject(this.data, rest);
+        this.costs = foundry.utils.mergeObject(this.costs, rest.costs);
         this.render();
     }
 
@@ -90,10 +99,10 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
 
     static async finish() {
         const { diceOptions, ...rest } = this.data;
-
         this.resolve({
             ...rest,
-            experiences: this.selectedExperiences.map(x => ({ id: x, ...this.experiences[x] }))
+            experiences: this.selectedExperiences.map(x => ({ id: x, ...this.experiences[x] })),
+            costs: this.action.getRealCosts(this.costs)
         });
         this.close();
     }

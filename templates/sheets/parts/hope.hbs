@@ -6,7 +6,7 @@
         <div class="hope-container">
             {{#times 6}}
                 <span class="hope-inner-container">
-                    <input class="hope-value" type="checkbox" data-action="toggleHope" data-value="{{this}}" {{ checked (gte ../document.system.resources.hope.value this) }} {{#if (gte this ../document.system.resources.hope.max)}}disabled{{/if}} />
+                    <input class="hope-value" type="checkbox" data-action="toggleHope" data-value="{{add this 1}}" {{ checked (gte ../document.system.resources.hope.value (add this 1)) }} {{#if (gte this ../document.system.resources.hope.max)}}disabled{{/if}} />
                     {{#if (gte this ../document.system.resources.hope.max)}}<i class="fa-solid fa-droplet-slash hope-scar"></i>{{/if}}
                 </span>
             {{/times}}

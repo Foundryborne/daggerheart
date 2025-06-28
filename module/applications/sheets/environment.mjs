@@ -53,6 +53,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
         context.tabs = super._getTabs(this.constructor.TABS);
+        context.getEffectDetails = this.getEffectDetails.bind(this);
 
         return context;
     }
@@ -60,6 +61,10 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
     static async _updateForm(event, _, formData) {
         await this.document.update(formData.object);
         this.render();
+    }
+
+    getEffectDetails(id) {
+        return {};
     }
 
     static async addAdversary() {

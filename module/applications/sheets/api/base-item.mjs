@@ -139,9 +139,10 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      */
     static async #removeAction(event, button) {
         event.stopPropagation();
+        const actionIndex = button.closest('[data-index]').dataset.index;
         await this.document.update({
             'system.actions': this.document.system.actions.filter(
-                (_, index) => index !== Number.parseInt(button.dataset.index)
+                (_, index) => index !== Number.parseInt(actionIndex)
             )
         });
     }

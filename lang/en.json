@@ -99,6 +99,15 @@
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
                     "traitArray": { "label": "Initial Trait Modifiers" }
+                },
+                "Currency": {
+                    "enabled": "Enable Overrides",
+                    "title": "Currency Overrides",
+                    "currencyName": "Currency Name",
+                    "coinName": "Coin Name",
+                    "handfullName": "Handfull Name",
+                    "bagName": "Bag Name",
+                    "chestName": "Chest Name"
                 }
             },
             "Resources": {
@@ -207,6 +216,12 @@
                 "Session": "Session",
                 "Shortrest": "Short Rest",
                 "Longrest": "Long Rest"
+            },
+            "Damage": {
+                "Severe": "Severe",
+                "Major": "Major",
+                "Minor": "Minor",
+                "None": "None"
             }
         },
         "ActionType": {
@@ -617,6 +632,14 @@
             "Stress": {
                 "Name": "Stress",
                 "Stress": "STR"
+            },
+            "Hope": {
+                "Name": "Hope",
+                "Abbreviation": "HO"
+            },
+            "ArmorStack": {
+                "Name": "Armor Stack",
+                "Stress": "AS"
             }
         },
         "ArmorFeature": {
@@ -1004,14 +1027,20 @@
             },
             "AttackRoll": {
                 "Title": "Attack - {attack}",
-                "RollDamage": "Roll Damage"
+                "RollDamage": "Roll Damage",
+                "RollHealing": "Roll Healing",
+                "ApplyEffect": "Apply Effects"
             },
             "DamageRoll": {
                 "Title": "Damage - {damage}",
                 "DealDamageToTargets": "Damage Hit Targets",
                 "DealDamage": "Deal Damage"
             },
+            "ApplyEffect": {
+                "Title": "Apply Effects - {name}"
+            },
             "HealingRoll": {
+                "Title": "Heal - {healing}",
                 "Heal": "Heal"
             },
             "DeathMove": {
@@ -1069,6 +1098,21 @@
         "OwnershipSelection": {
             "Title": "Ownership Selection - {name}",
             "Default": "Default Ownership"
+        },
+        "DamageReduction": {
+            "Title": "Damage Reduction",
+            "ArmorMarks": "Armor Marks",
+            "UsedMarks": "Used Marks",
+            "Stress": "Stress",
+            "ArmorWithStress": "Spend 1 stress to use an extra mark",
+            "UnncessaryStress": "You don't need to expend stress",
+            "StressReduction": "Reduce By Stress",
+            "Notifications": {
+                "DamageAlreadyNone": "The damage has already been reduced to none",
+                "NoAvailableArmorMarks": "You have no more available armor marks",
+                "NotEnoughStress": "You don't have enough stress",
+                "DamageIgnore": "{character} did not take damage"
+            }
         },
         "Sheets": {
             "TABS": {
@@ -1505,6 +1549,11 @@
                 },
                 "Macro": {
                     "Name": "Macro"
+                }
+            },
+            "Settings": {
+                "ResultBased": {
+                    "label": "Formula based on Hope/Fear result."
                 }
             }
         },

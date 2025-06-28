@@ -24,14 +24,16 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             editItem: this.editItem,
             removeItem: this.removeItem,
             resetMoves: this.resetMoves,
-            save: this.save
+            save: this.save,
+            reset: this.reset
         },
         form: { handler: this.updateData, submitOnChange: true }
     };
 
     static PARTS = {
         main: {
-            template: 'systems/daggerheart/templates/settings/homebrew-settings.hbs'
+            template: 'systems/daggerheart/templates/settings/homebrew-settings.hbs',
+            scrollable: ['']
         }
     };
 
@@ -153,5 +155,28 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     static async save() {
         await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
         this.close();
+    }
+
+    static async reset() {
+        const resetSettings = new DhHomebrew();
+        let localizedSettings = this.localizeObject(resetSettings);
+        this.settings.updateSource(localizedSettings);
+        this.render();
+    }
+
+    localizeObject(obj) {
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                const value = obj[key];
+                if (typeof value === 'object' && value !== null) {
+                    obj[key] = this.localizeObject(value);
+                } else {
+                    if (typeof value === 'string' && value.startsWith('DAGGERHEART.')) {
+                        obj[key] = game.i18n.localize(value);
+                    }
+                }
+            }
+        }
+        return obj;
     }
 }

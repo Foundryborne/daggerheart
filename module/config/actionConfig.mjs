@@ -4,21 +4,21 @@ export const actionTypes = {
         name: 'DAGGERHEART.Actions.Types.Attack.Name',
         icon: 'fa-swords'
     },
-    spellcast: {
-        id: 'spellcast',
-        name: 'DAGGERHEART.Actions.Types.Spellcast.Name',
-        icon: 'fa-book-sparkles'
-    },
+    // spellcast: {
+    //     id: 'spellcast',
+    //     name: 'DAGGERHEART.Actions.Types.Spellcast.Name',
+    //     icon: 'fa-book-sparkles'
+    // },
     healing: {
         id: 'healing',
         name: 'DAGGERHEART.Actions.Types.Healing.Name',
         icon: 'fa-kit-medical'
     },
-    resource: {
-        id: 'resource',
-        name: 'DAGGERHEART.Actions.Types.Resource.Name',
-        icon: 'fa-honey-pot'
-    },
+    // resource: {
+    //     id: 'resource',
+    //     name: 'DAGGERHEART.Actions.Types.Resource.Name',
+    //     icon: 'fa-honey-pot'
+    // },
     damage: {
         id: 'damage',
         name: 'DAGGERHEART.Actions.Types.Damage.Name',
@@ -46,8 +46,34 @@ export const targetTypes = {
         id: 'self',
         label: 'Self'
     },
-    other: {
-        id: 'other',
-        label: 'Other'
+    friendly: {
+        id: 'friendly',
+        label: 'Friendly'
+    },
+    hostile: {
+        id: 'hostile',
+        label: 'Hostile'
+    },
+    any: {
+        id: 'any',
+        label: 'Any'
     }
 };
+
+export const damageOnSave = {
+    none: {
+        id: 'none',
+        label: 'None',
+        mod: 0
+    },
+    half: {
+        id: 'half',
+        label: 'Half Damage',
+        mod: 0.5
+    },
+    full: {
+        id: 'full',
+        label: 'Full damage',
+        mod: 1
+    }
+}

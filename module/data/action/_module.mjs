@@ -5,16 +5,16 @@ import {
     DHEffectAction,
     DHHealingAction,
     DHMacroAction,
-    DHResourceAction,
-    DHSpellCastAction,
+    // DHResourceAction,
+    // DHSpellCastAction,
     DHSummonAction
 } from './action.mjs';
 
 export const actionsTypes = {
     base: DHBaseAction,
     attack: DHAttackAction,
-    spellcast: DHSpellCastAction,
-    resource: DHResourceAction,
+    // spellcast: DHSpellCastAction,
+    // resource: DHResourceAction,
     damage: DHDamageAction,
     healing: DHHealingAction,
     summon: DHSummonAction,

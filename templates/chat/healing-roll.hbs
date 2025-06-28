@@ -1,19 +1,29 @@
-<div class="dice-roll daggerheart chat roll">
+<div class="dice-roll daggerheart chat roll" data-action="expandRoll">
+    <div class="dice-flavor">{{title}}</div>
     <div class="dice-result">
-        <div class="dice-formula">{{this.roll}}</div>
+        <div class="dice-formula">{{roll.formula}}</div>
         <div class="dice-tooltip">
-            <ol class="dice-rolls">
-                {{#each dice}}
-                    <li class="roll die {{this.type}}">{{this.value}}</li>
-                {{/each}}
-                {{#each modifiers}}
-                    <li class="modifier-value">{{this}}</li>
-                {{/each}}
-            </ol>
+            <div class="wrapper">
+                <section class="tooltip-part">
+                    {{#each roll.dice}}
+                        <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">{{formula}}</span>
+                                <span class="part-total">{{total}}</span>
+                            </header>
+                            <ol class="dice-rolls">
+                                {{#each results}}
+                                    <li class="roll die {{../denomination}} min">{{result}}</li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    {{/each}}
+                </section>
+            </div>
         </div>
-        <div class="dice-total">{{this.total}}</div>
+        <div class="dice-total">{{roll.total}}</div>
         <div class="flexrow">
-            <button class="healing-button" data-value="{{this.total}}" data-type="{{this.type}}"><span>{{localize "DAGGERHEART.Chat.HealingRoll.Heal"}}</span></button>  
+            <button class="healing-button"><span>{{localize "DAGGERHEART.Chat.HealingRoll.Heal"}}</span></button>  
         </div>
     </div>
 </div>

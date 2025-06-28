@@ -3,11 +3,16 @@
         <div>Range{{#if fields.target}} & Target{{/if}}</div>
     </legend>
     <div class="action-category-data open">
-        {{formField fields.range value=source.range label="Range" name="range" localize=true}}
+        {{formField fields.range value=source.range label="Range" name=(concat path "range") localize=true}}
     </div>
     {{#if fields.target}}
     <div class="action-category-data open">
-        {{formField fields.target.type value=source.target.type label="Target" name="target.type" localize=true}}
+        <div class="multi-display">
+            {{#if (and source.target.type (not (eq source.target.type 'self')))}}
+                {{ formField fields.target.amount value=source.target.amount label="Amount" name=(concat path "target.amount") }}
+            {{/if}}
+            {{ formField fields.target.type value=source.target.type label="Target" name=(concat path "target.type") localize=true }}
+        </div>
     </div>
     {{/if}}
 </fieldset>

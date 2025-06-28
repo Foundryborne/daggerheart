@@ -16,6 +16,7 @@ import Resources from './module/applications/resources.mjs';
 import { NarrativeCountdowns, registerCountdownApplicationHooks } from './module/applications/countdowns.mjs';
 import DHDualityRoll from './module/data/chat-message/dualityRoll.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
+import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/applications/roll.mjs';
 import { DhMeasuredTemplate } from './module/placeables/_module.mjs';
 import { renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
 import { renderMeasuredTemplate } from './module/enrichers/TemplateEnricher.mjs';
@@ -50,6 +51,15 @@ Hooks.once('init', () => {
         name: game.i18n.localize(x.name)
     }));
 
+    CONFIG.Dice.daggerheart = {
+        DualityDie: DualityDie,
+        DHRoll: DHRoll,
+        DualityRoll: DualityRoll,
+        D20Roll: D20Roll,
+        DamageRoll: DamageRoll
+    };
+
+    CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, ...[DHRoll, DualityRoll, D20Roll, DamageRoll]];
     CONFIG.MeasuredTemplate.objectClass = DhMeasuredTemplate;
 
     CONFIG.Item.documentClass = documents.DHItem;
@@ -307,9 +317,12 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/views/actionTypes/uuid.hbs',
         'systems/daggerheart/templates/views/actionTypes/uses.hbs',
         'systems/daggerheart/templates/views/actionTypes/roll.hbs',
+        'systems/daggerheart/templates/views/actionTypes/save.hbs',
         'systems/daggerheart/templates/views/actionTypes/cost.hbs',
         'systems/daggerheart/templates/views/actionTypes/range-target.hbs',
         'systems/daggerheart/templates/views/actionTypes/effect.hbs',
-        'systems/daggerheart/templates/settings/components/settings-item-line.hbs'
+        'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
+        
+        'systems/daggerheart/templates/chat/parts/target-chat.hbs'
     ]);
 };

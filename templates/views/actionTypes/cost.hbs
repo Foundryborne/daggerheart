@@ -7,7 +7,7 @@
         {{#each source as |cost index|}}
             <fieldset>
                 <div class="multi-display">
-                    {{formField ../fields.type label="Resource" value=cost.type name=(concat "cost." index ".type") localize=true}}
+                    {{formField ../fields.type choices=(@root.disableOption index ../fields.type.choices ../source) label="Resource" value=cost.type name=(concat "cost." index ".type") localize=true}}
                     {{formField ../fields.value label="Value" value=cost.value name=(concat "cost." index ".value")}}
                 </div>
                 <div class="multi-display">

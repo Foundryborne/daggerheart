@@ -1,0 +1,145 @@
+.daggerheart.views.damage-reduction {
+    .window-content {
+        padding: 8px 0;
+    }
+
+    .damage-reduction-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+
+        .section-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .padded {
+            padding: 0 8px;
+        }
+
+        .armor-title {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .resources-container {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+
+            .resource-container {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .mark-selection {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+
+            .mark-selection-inner {
+                display: flex;
+                gap: 2px;
+
+                &:not(:last-child) {
+                    margin-right: 8px;
+                }
+
+                .mark-container {
+                    cursor: pointer;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    height: 26px;
+                    padding: 0 1px;
+                    font-size: 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0.4;
+
+                    &.selected {
+                        opacity: 1;
+                    }
+
+                    &.inactive {
+                        cursor: initial;
+                        opacity: 0.2;
+                    }
+
+                    .fa-shield {
+                        position: relative;
+                        right: 0.5px;
+                    }
+                }
+            }
+        }
+
+        .stress-reduction-container {
+            margin: 0;
+            width: 100%;
+
+            .stress-reduction {
+                border: 1px solid light-dark(@dark-blue, @golden);
+                border-radius: 6px;
+                height: 26px;
+                padding: 0 4px;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                opacity: 0.4;
+
+                &.active {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+
+                &.selected {
+                    opacity: 1;
+                    background: var(--color-warm-2);
+                    color: white;
+                }
+
+                .stress-reduction-cost {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+
+        .markers-subtitle {
+            margin: -4px 0 0 0;
+
+            &.bold {
+                font-variant: all-small-caps;
+                font-weight: bold;
+            }
+        }
+
+        footer {
+            display: flex;
+            width: 100%;
+
+            button {
+                flex: 1;
+
+                .damage-value {
+                    font-weight: bold;
+
+                    &.reduced-value {
+                        opacity: 0.4;
+                        text-decoration: line-through;
+                    }
+                }
+            }
+        }
+    }
+}
