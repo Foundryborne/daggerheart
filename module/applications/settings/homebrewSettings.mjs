@@ -1,6 +1,5 @@
 import { DhHomebrew } from '../../data/settings/_module.mjs';
 import DhSettingsActionView from './components/settingsActionsView.mjs';
-import { defaultRestOptions } from '../../config/generalConfig.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -159,10 +158,9 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     }
 
     static async reset() {
-        //For some reason this doesn't seem to localize any of the strings, so calling a recursive call to localize all strings. ¯\_(ツ)_/¯
         const resetSettings = new DhHomebrew();
         let localizedSettings = this.localizeObject(resetSettings);
-        await this.settings.updateSource(localizedSettings);
+        this.settings.updateSource(localizedSettings);
         this.render();
     }
 
@@ -175,7 +173,6 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                 } else {
                     if (typeof value === 'string' && value.startsWith('DAGGERHEART.')) {
                         obj[key] = game.i18n.localize(value);
-                        console.log(obj[key]);
                     }
                 }
             }
