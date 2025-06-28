@@ -222,7 +222,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useItem: {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.UseItem',
                 icon: '<i class="fa-solid fa-burst"></i>',
-                callback: this.constructor.useItem.bind(this)
+                callback: (element, event) => this.constructor.useItem.bind(this)(event, element)
             },
             equip: {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.Equip',
@@ -640,10 +640,10 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         (await game.packs.get('daggerheart.communities'))?.render(true);
     }
 
-    static async useItem(element, button) {
-        const id = (button ?? element).closest('a').id,
+    static async useItem(event, button) {
+        const id = button.closest('a').id,
             item = this.document.items.get(id);
-        const wasUsed = await item.use({});
+        const wasUsed = await item.use(event);
         if (wasUsed && item.type === 'weapon') {
             Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
         }
