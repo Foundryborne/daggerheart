@@ -214,7 +214,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         if ( Hooks.call(`${SYSTEM.id}.preUseAction`, this, config) === false ) return;
 
         // Display configuration window if necessary
-        if ( config.dialog.configure && this.requireConfigurationDialog(config) ) {
+        if ( config.dialog?.configure && this.requireConfigurationDialog(config) ) {
             config = await D20RollDialog.configure(config);
             if (!config) return;
         }
@@ -280,11 +280,8 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             source: {
                 item: this.item._id,
                 action: this._id
-                // action: this
             },
-            dialog: {
-                configure: true
-            },
+            dialog: {},
             type: this.type,
             hasDamage: !!this.damage?.parts?.length,
             hasHealing: !!this.healing,
@@ -294,7 +291,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     requireConfigurationDialog(config) {
-        return !config.event.shiftkey && !this.hasRoll && (config.costs?.length || config.uses);
+        return !config.event.shiftKey && !this.hasRoll && (config.costs?.length || config.uses);
     }
 
     prepareCost() {
@@ -348,8 +345,9 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
     async consume(config) {
         const resources = config.costs.filter(c => c.enabled !== false).map(c => {
-            return { type: c.type, value: c.total * -1 };
+            return { type: c.type, value: (c.total ?? c.value) * -1 };
         });
+        
         await this.actor.modifyResource(resources);
         if(config.uses?.enabled) {
             const newActions = foundry.utils.getProperty(this.item.system, this.systemPath).map(x => x.toObject());

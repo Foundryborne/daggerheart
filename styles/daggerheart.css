@@ -2570,7 +2570,6 @@ div.daggerheart.views.multiclass {
   opacity: 1;
 }
 .theme-light .daggerheart.dh-style.dialog.character-creation .tab-navigation nav a .descriptor {
-  background: red;
   background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
 .theme-light .daggerheart.dh-style.dialog.character-creation .main-selections-container .traits-container .suggested-traits-container .suggested-trait-container,
@@ -2580,6 +2579,9 @@ div.daggerheart.views.multiclass {
 }
 .daggerheart.dh-style.dialog.character-creation .window-content {
   gap: 16px;
+}
+.daggerheart.dh-style.dialog.character-creation .window-content .tab {
+  overflow-y: auto;
 }
 .daggerheart.dh-style.dialog.character-creation .tab-navigation nav {
   flex: 1;

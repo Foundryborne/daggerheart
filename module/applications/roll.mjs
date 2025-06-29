@@ -29,16 +29,15 @@ export class DHRoll extends Roll {
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
         }
-
+        console.log(config)
         this.applyKeybindings(config);
 
         let roll = new this(config.roll.formula, config.data, config);
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;
-            config = await DialogClass.configure(roll, config, message);
-            if (!config) return;
-            roll.terms = Roll.parse(roll._formula);
+            const configDialog = await DialogClass.configure(roll, config, message);
+            if (!configDialog) return;
         }
         
         for (const hook of config.hooks) {
@@ -66,7 +65,7 @@ export class DHRoll extends Roll {
         }
     }
 
-    static async postEvaluate(roll, config = {}) {
+    static postEvaluate(roll, config = {}) {
         if(!config.roll) config.roll = {};
         config.roll.total = roll.total;
         config.roll.formula = roll.formula;
@@ -94,11 +93,13 @@ export class DHRoll extends Roll {
     }
 
     static applyKeybindings(config) {
-        config.dialog.configure ??= true;
+        config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
     }
 
     constructFormula(config) {
-        return (this._formula = Roll.replaceFormulaData(this.options.roll.formula, config.data));
+        // const formula = Roll.replaceFormulaData(this.options.roll.formula, config.data);
+        this.terms = Roll.parse(this.options.roll.formula, config.data)
+        return (this._formula = this.constructor.getFormula(this.terms));
     }
 }
 
@@ -230,7 +231,7 @@ export class D20Roll extends DHRoll {
         }];
     }
 
-    static async postEvaluate(roll, config = {}) {
+    static postEvaluate(roll, config = {}) {
         super.postEvaluate(roll, config);
         if (config.targets?.length) {
             config.targets.forEach(target => {
@@ -372,7 +373,7 @@ export class DualityRoll extends D20Roll {
         }];
     }
 
-    static async postEvaluate(roll, config = {}) {
+    static postEvaluate(roll, config = {}) {
         super.postEvaluate(roll, config);
         config.roll.hope = {
             dice: roll.dHope.denomination,
@@ -387,6 +388,7 @@ export class DualityRoll extends D20Roll {
             total: roll.dHope.total + roll.dFear.total,
             label: roll.totalLabel
         };
+        console.log(roll, config)
     }
 }
 
