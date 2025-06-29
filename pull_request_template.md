@@ -1,5 +1,3 @@
-# Pull Request Template
-
 ## Description
 
 Please include a summary of the change and which issue is fixed (if applicable). Also include relevant context or motivation for the change.
