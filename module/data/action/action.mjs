@@ -543,7 +543,8 @@ export class DHDamageAction extends DHBaseAction {
             roll: {formula},
             targets: (data.system?.targets.filter(t => t.hit) ?? data.targets),
             hasSave: this.hasSave,
-            source: data.system?.source
+            source: data.system?.source,
+            event
         };
         if(this.hasSave) config.onSave = this.save.damageMod;
         if(data.system) {
@@ -615,7 +616,8 @@ export class DHHealingAction extends DHBaseAction {
             roll: {formula},
             targets: (data.system?.targets ?? data.targets).filter(t => t.hit),
             messageType: 'healing',
-            type: this.healing.type
+            type: this.healing.type,
+            event
         };
 
         roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);

@@ -29,7 +29,7 @@ export class DHRoll extends Roll {
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
         }
-        console.log(config)
+        
         this.applyKeybindings(config);
 
         let roll = new this(config.roll.formula, config.data, config);
