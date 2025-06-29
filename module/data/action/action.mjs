@@ -490,7 +490,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             },
             data: target.actor.getRollData()
         }).then(async (result) => {
-            this.updateChatMessage(message, target.id, {result: result.roll.total, success: result.roll.success});
+            if(result) this.updateChatMessage(message, target.id, {result: result.roll.total, success: result.roll.success});
         })
     }
 
