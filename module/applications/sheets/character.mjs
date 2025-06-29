@@ -56,7 +56,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             resizable: true
         },
         form: {
-            handler: this.updateForm,
             submitOnChange: true,
             closeOnSubmit: false
         },
@@ -217,6 +216,15 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
         this._createContextMenues();
     }
+
+    /** @inheritDoc */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+
+        this._createSearchFilter();
+    }
+
+    /* -------------------------------------------- */
 
     _createContextMenues() {
         const allOptions = {
@@ -431,10 +439,104 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         return context;
     }
 
-    static async updateForm(event, _, formData) {
-        await this.document.update(formData.object);
-        this.render();
+    /* -------------------------------------------- */
+    /*  Search Filter                               */
+    /* -------------------------------------------- */
+
+    /**
+     * The currently active search filter.
+     * @type {foundry.applications.ux.SearchFilter}
+     */
+    #search = {};
+
+    /**
+     * Track which item IDs are currently displayed due to a search filter.
+     * @type {{ inventory: Set<string>, loadout: Set<string> }}
+     */
+    #filteredItems = {
+        inventory: new Set(),
+        loadout: new Set()
+    };
+
+    /**
+     * Create and initialize search filter instances for the inventory and loadout sections.
+     *
+     * Sets up two {@link foundry.applications.ux.SearchFilter} instances:
+     * - One for the inventory, which filters items in the inventory grid.
+     * - One for the loadout, which filters items in the loadout/card grid.
+     * @private
+     */
+    _createSearchFilter() {
+        //Filters could be a application option if needed
+        const filters = [
+            {
+                key: 'inventory',
+                input: 'input[type="search"].search-inventory',
+                content: '[data-application-part="inventory"] .items-section',
+                callback: this._onSearchFilterInventory.bind(this)
+            },
+            {
+                key: 'loadout',
+                input: 'input[type="search"].search-loadout',
+                content: '[data-application-part="loadout"] .items-section',
+                callback: this._onSearchFilterCard.bind(this)
+            }
+        ];
+
+        for (const { key, input, content, callback } of filters) {
+            const filter = new foundry.applications.ux.SearchFilter({
+                inputSelector: input,
+                contentSelector: content,
+                callback
+            });
+            filter.bind(this.element);
+            this.#search[key] = filter;
+        }
     }
+
+    /**
+     * Handle invetory items search and filtering.
+     * @param {KeyboardEvent} event  The keyboard input event.
+     * @param {string} query         The input search string.
+     * @param {RegExp} rgx           The regular expression query that should be matched against.
+     * @param {HTMLElement} html     The container to filter items from.
+     * @protected
+     */
+    _onSearchFilterInventory(event, query, rgx, html) {
+        this.#filteredItems.inventory.clear();
+
+        for (const ul of html.querySelectorAll('.items-list')) {
+            for (const li of ul.querySelectorAll('.inventory-item')) {
+                const item = this.document.items.get(li.dataset.itemId);
+                const match = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
+                if (match) this.#filteredItems.inventory.add(item.id);
+                li.hidden = !match;
+            }
+        }
+    }
+
+    /**
+     * Handle card items search and filtering.
+     * @param {KeyboardEvent} event  The keyboard input event.
+     * @param {string} query         The input search string.
+     * @param {RegExp} rgx           The regular expression query that should be matched against.
+     * @param {HTMLElement} html     The container to filter items from.
+     * @protected
+     */
+    _onSearchFilterCard(event, query, rgx, html) {
+        this.#filteredItems.loadout.clear();
+
+        const elements = html.querySelectorAll('.items-list .inventory-item, .card-list .card-item');
+
+        for (const li of elements) {
+            const item = this.document.items.get(li.dataset.itemId);
+            const match = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
+            if (match) this.#filteredItems.loadout.add(item.id);
+            li.hidden = !match;
+        }
+    }
+
+    /* -------------------------------------------- */
 
     async mapFeatureType(data, configType) {
         return await Promise.all(

@@ -4080,6 +4080,10 @@ div.daggerheart.views.multiclass {
 .application.sheet.daggerheart.actor.dh-style.character .tab.inventory .search-section .search-bar input:placeholder {
   color: light-dark(#18162e50, #efe6d850);
 }
+.application.sheet.daggerheart.actor.dh-style.character .tab.inventory .search-section .search-bar input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}
 .application.sheet.daggerheart.actor.dh-style.character .tab.inventory .search-section .search-bar .icon {
   align-content: center;
   height: 32px;

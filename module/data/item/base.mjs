@@ -7,6 +7,7 @@ import { actionsTypes } from '../action/_module.mjs';
  * @property {string} type - The system type that this data model represents.
  * @property {boolean} hasDescription - Indicates whether items of this type have description field
  * @property {boolean} isQuantifiable - Indicates whether items of this type have quantity field
+ * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
 const fields = foundry.data.fields;
@@ -18,7 +19,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             label: 'Base Item',
             type: 'base',
             hasDescription: false,
-            isQuantifiable: false
+            isQuantifiable: false,
+            isInventoryItem: false,
         };
     }
 

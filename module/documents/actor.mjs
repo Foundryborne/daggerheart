@@ -17,14 +17,6 @@ export default class DhpActor extends Actor {
         this.updateSource({ prototypeToken });
     }
 
-    prepareData() {
-        super.prepareData();
-    }
-
-    async _preUpdate(changed, options, user) {
-        super._preUpdate(changed, options, user);
-    }
-
     async updateLevel(newLevel) {
         if (this.type !== 'character' || newLevel === this.system.levelData.level.changed) return;
 

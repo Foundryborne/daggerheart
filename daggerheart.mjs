@@ -62,7 +62,7 @@ Hooks.once('init', () => {
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, ...[DHRoll, DualityRoll, D20Roll, DamageRoll]];
     CONFIG.MeasuredTemplate.objectClass = DhMeasuredTemplate;
 
-    CONFIG.Item.documentClass = documents.DhpItem;
+    CONFIG.Item.documentClass = documents.DHItem;
 
     //Registering the Item DataModel
     CONFIG.Item.dataModels = models.items.config;
