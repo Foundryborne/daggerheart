@@ -1,9 +1,10 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class D20RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(config = {}, options = {}) {
+    constructor(roll, config = {}, options = {}) {
         super(options);
 
+        this.roll = roll;
         this.config = config;
         this.config.experiences = [];
 
@@ -59,22 +60,26 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         context.advantage = this.config.advantage;
         /* context.diceOptions = this.diceOptions; */
         context.canRoll = true;
+        context.isLite = this.config.roll?.lite;
         if (this.config.costs?.length) {
             const updatedCosts = this.action.calcCosts(this.config.costs);
             context.costs = updatedCosts;
             context.canRoll = this.action.hasCost(updatedCosts);
+            this.config.data.scale = this.config.costs[0].total;
         }
         if (this.config.uses?.max) {
             context.uses = this.action.calcUses(this.config.uses);
             context.canRoll = context.canRoll && this.action.hasUses(context.uses);
         }
-        console.log(context, _options)
+        context.formula = this.roll.constructFormula(this.config);
         return context;
     }
 
     static updateRollConfiguration(event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
-        if (this.config.costs) this.config.costs = foundry.utils.mergeObject(this.config.costs, rest.costs);
+        if (this.config.costs) {
+            this.config.costs = foundry.utils.mergeObject(this.config.costs, rest.costs);
+        }
         if (this.config.uses) this.config.uses = foundry.utils.mergeObject(this.config.uses, rest.uses);
         this.render();
     }
@@ -86,11 +91,12 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static selectExperience(_, button) {
-        if (this.config.experiences.find(x => x === button.dataset.key)) {
+        /* if (this.config.experiences.find(x => x === button.dataset.key)) {
             this.config.experiences = this.config.experiences.filter(x => x !== button.dataset.key);
         } else {
             this.config.experiences = [...this.config.experiences, button.dataset.key];
-        }
+        } */
+        this.config.experiences = this.config.experiences.indexOf(button.dataset.key) > -1 ? this.config.experiences.filter(x => x !== button.dataset.key) : [...this.config.experiences, button.dataset.key];
         this.render();
     }
 
@@ -103,9 +109,9 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         if (!options.submitted) this.config = false;
     }
 
-    static async configure(config = {}, options={}) {
+    static async configure(roll, config = {}, options={}) {
         return new Promise(resolve => {
-            const app = new this(config, options);
+            const app = new this(roll, config, options);
             app.addEventListener('close', () => resolve(app.config), { once: true });
             app.render({ force: true });
         });

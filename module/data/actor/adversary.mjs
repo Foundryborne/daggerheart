@@ -77,4 +77,8 @@ export default class DhpAdversary extends BaseDataActor {
             })
         };
     }
+
+    get attackBonus() {
+        return this.attack.roll.bonus;
+    }
 }

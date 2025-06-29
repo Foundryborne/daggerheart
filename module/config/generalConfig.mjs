@@ -313,10 +313,19 @@ export const diceTypes = {
 };
 
 export const multiplierTypes = {
-    proficiency: 'Proficiency',
-    spellcast: 'Spellcast',
+    prof: 'Proficiency',
+    cast: 'Spellcast',
+    scale: 'Cost Scaling',
+    result: 'Roll Result',
     flat: 'Flat'
 };
+
+export const diceSetNumbers = {
+    prof: 'Proficiency',
+    cast: 'Spellcast',
+    scale: 'Cost Scaling',
+    flat: 'Flat'
+}
 
 export const getDiceSoNicePresets = () => {
     const { diceSoNice } = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
@@ -437,6 +446,10 @@ export const rollTypes = {
     ability: {
         id: 'ability',
         label: 'DAGGERHEART.RollTypes.ability.name'
+    },
+    diceSet: {
+        id: 'diceSet',
+        label: 'DAGGERHEART.RollTypes.diceSet.name'
     }
 };
 

@@ -2,11 +2,12 @@
     {{#if @root.hasRoll}}
     <div class="roll-dialog-container">
         <div class="flexcol">
+            {{#unless @root.isLite}}
             <div class="roll-dialog-experience-container">
                 {{#each experiences}}
-                    {{#if description}}
+                    {{#if name}}
                         <div class="roll-dialog-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}">
-                            <span>{{description}}</span>
+                            <span>{{name}}</span>
                             <span>+{{value}}</span>
                         </div>
                     {{/if}}
@@ -15,6 +16,10 @@
             <div class="flexrow">
                 <button class="disadvantage flex1 {{#if (eq advantage 1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="1">{{localize "DAGGERHEART.General.Advantage.Full"}}</button>
                 <button class="disadvantage flex1 {{#if (eq advantage -1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="-1">{{localize "DAGGERHEART.General.Disadvantage.Full"}}</button>
+            </div>
+            {{/unless}}
+            <div>
+                <input type="text" value="{{@root.formula}}" disabled>
             </div>
             {{!-- {{#if (not isNpc)}} --}}
                 {{!-- <div class="form-group">

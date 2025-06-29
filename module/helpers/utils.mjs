@@ -225,11 +225,10 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
 
 // Fix on Foundry native formula replacement for DH
 const nativeReplaceFormulaData = Roll.replaceFormulaData;
-Roll.replaceFormulaData = function (formula, data, { missing, warn = false } = {}) {
-    const terms = [
-        { term: 'prof', default: 1 },
-        { term: 'cast', default: 1 }
-    ];
+Roll.replaceFormulaData = function (formula, data={}, { missing, warn = false } = {}) {
+    const terms = Object.keys(SYSTEM.GENERAL.multiplierTypes).map(type => {
+        return { term: type, default: 1}
+    })
     formula = terms.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
     return nativeReplaceFormulaData(formula, data, { missing, warn });
 };

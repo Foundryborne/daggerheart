@@ -1566,6 +1566,9 @@
             },
             "spellcast": {
                 "name": "SpellCast"
+            },
+            "diceSet": {
+                "name": "Dice Set"
             }
         }
     }

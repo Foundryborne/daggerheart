@@ -73,23 +73,15 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             'systems/daggerheart/templates/views/actionType.hbs',
             { types: SYSTEM.ACTIONS.actionTypes }
         ),
-            title = 'Select Action Type', //useless var
-            type = 'form',
-            data = {}; //useless var
-        //TODO: use DialogV2
-        return Dialog.prompt({
-            title,
-            label: title,
+            title = 'Select Action Type'
+        
+        return foundry.applications.api.DialogV2.prompt({
+            window: { title },
             content,
-            type, //this prop is useless
-            callback: html => {
-                const form = html[0].querySelector('form'),
-                    fd = new foundry.applications.ux.FormDataExtended(form);
-                foundry.utils.mergeObject(data, fd.object, { inplace: true });
-                // if (!data.name?.trim()) data.name = game.i18n.localize(SYSTEM.ACTIONS.actionTypes[data.type].name);
-                return data;
-            },
-            rejectClose: false
+            ok: {
+                label: title,
+                callback: (event, button, dialog) => button.form.elements.type.value
+            }
         });
     }
 
@@ -100,13 +92,14 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      */
     static async #addAction(_event, _button) {
         const actionType = await DHBaseItemSheet.selectActionType();
+        if(!actionType) return;
         try {
-            const cls = actionsTypes[actionType?.type] ?? actionsTypes.attack,
+            const cls = actionsTypes[actionType] ?? actionsTypes.attack,
                 action = new cls(
                     {
                         _id: foundry.utils.randomID(),
-                        type: actionType.type,
-                        name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType.type].name),
+                        type: actionType,
+                        name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType].name),
                         ...cls.getSourceConfig(this.document)
                     },
                     {

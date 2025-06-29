@@ -62,7 +62,7 @@ export default class DhCharacter extends BaseDataActor {
             }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
-                    description: new fields.StringField({}),
+                    name: new fields.StringField(),
                     value: new fields.NumberField({ integer: true, initial: 0 }),
                     bonus: new fields.NumberField({ integer: true, initial: 0 })
                 })

@@ -1,9 +1,10 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(config={}, options={}) {
+    constructor(roll, config={}, options={}) {
         super(options);
 
+        this.roll = roll;
         this.config = config;
     }
 
@@ -36,7 +37,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.title = this.config.title;
-        context.formula = this.config.formula;
+        context.formula = this.config.roll.formula;
         return context;
     }
 
@@ -49,9 +50,9 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         if ( !options.submitted ) this.config = false;
     }
 
-    static async configure(config={}) {
+    static async configure(roll, config={}) {
         return new Promise(resolve => {
-            const app = new this(config);
+            const app = new this(roll, config);
             app.addEventListener("close", () => resolve(app.config), { once: true });
             app.render({ force: true });
         });

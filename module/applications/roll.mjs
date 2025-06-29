@@ -11,6 +11,10 @@ export class DHRoll extends Roll {
         super(formula, data, options);
     }
 
+    static messageType = 'adversaryRoll';
+
+    static DefaultDialog = D20RollDialog;
+
     static async build(config = {}, message = {}) {
         const roll = await this.buildConfigure(config, message);
         if (!roll) return;
@@ -28,19 +32,19 @@ export class DHRoll extends Roll {
 
         this.applyKeybindings(config);
 
+        let roll = new this(config.roll.formula, config.data, config);
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;
-            config = await DialogClass.configure(config, message);
+            config = await DialogClass.configure(roll, config, message);
             if (!config) return;
+            roll.terms = Roll.parse(roll._formula);
         }
-        let roll = new this(config.formula, config.data, config);
-
+        
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.post${hook.capitalize()}RollConfiguration`, roll, config, message) === false)
                 return [];
         }
-
         return roll;
     }
 
@@ -62,7 +66,20 @@ export class DHRoll extends Roll {
         }
     }
 
-    static async postEvaluate(roll, config = {}) {}
+    static async postEvaluate(roll, config = {}) {
+        if(!config.roll) config.roll = {};
+        config.roll.total = roll.total;
+        config.roll.formula = roll.formula;
+        config.roll.dice = [];
+        roll.dice.forEach(d => {
+            config.roll.dice.push({
+                dice: d.denomination,
+                total: d.total,
+                formula: d.formula,
+                results: d.results
+            });
+        });
+    }
 
     static async toMessage(roll, config) {
         const cls = getDocumentClass('ChatMessage'),
@@ -79,12 +96,11 @@ export class DHRoll extends Roll {
     static applyKeybindings(config) {
         config.dialog.configure ??= true;
     }
-}
 
-// DHopeDie
-// DFearDie
-// DualityDie
-// D20Die
+    constructFormula(config) {
+        return (this._formula = Roll.replaceFormulaData(this.options.roll.formula, config.data));
+    }
+}
 
 export class DualityDie extends foundry.dice.terms.Die {
     constructor({ number = 1, faces = 12, ...args } = {}) {
@@ -95,10 +111,11 @@ export class DualityDie extends foundry.dice.terms.Die {
 export class D20Roll extends DHRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
-        this.createBaseDice();
-        this.configureModifiers();
+        // this.createBaseDice();
+        // this.configureModifiers();
 
-        this._formula = this.resetFormula();
+        // this._formula = this.resetFormula();
+        this.constructFormula();
     }
 
     static ADV_MODE = {
@@ -165,7 +182,7 @@ export class D20Roll extends DHRoll {
 
     applyAdvantage() {
         this.d20.modifiers.findSplice(m => ['kh', 'kl'].includes(m));
-        if (!this.hasAdvantage && !this.hasAdvantage) this.number = 1;
+        if (!this.hasAdvantage && !this.hasDisadvantage) this.number = 1;
         else {
             this.d20.number = 2;
             this.d20.modifiers.push(this.hasAdvantage ? 'kh' : 'kl');
@@ -175,62 +192,62 @@ export class D20Roll extends DHRoll {
     // Trait bonus != Adversary
     configureModifiers() {
         this.applyAdvantage();
-
+        // this.options.roll.modifiers = [];
         this.applyBaseBonus();
-
+        
         this.options.experiences?.forEach(m => {
             if (this.options.data.experiences?.[m])
                 this.options.roll.modifiers.push({
-                    label: this.options.data.experiences[m].description,
-                    value: this.options.data.experiences[m].total
+                    label: this.options.data.experiences[m].name,
+                    value: this.options.data.experiences[m].total ?? this.options.data.experiences[m].value
                 });
         });
         this.options.roll.modifiers?.forEach(m => {
             this.terms.push(...this.formatModifier(m.value));
         });
 
-        if (this.options.extraFormula)
+        if (this.options.extraFormula) {
             this.terms.push(
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                 ...this.constructor.parse(this.options.extraFormula, this.getRollData())
             );
-
+        }
         // this.resetFormula();
     }
 
+    constructFormula(config) {
+        this.terms = [];
+        this.createBaseDice();
+        this.configureModifiers();
+        this.resetFormula();
+        return this._formula;
+    }
+
     applyBaseBonus() {
-        if (this.options.type === 'attack')
-            this.terms.push(...this.formatModifier(this.options.data.attack.roll.bonus));
+        this.options.roll.modifiers = [{
+            label : 'Bonus to Hit',
+            value: Roll.replaceFormulaData('@attackBonus', this.data)
+        }];
     }
 
     static async postEvaluate(roll, config = {}) {
+        super.postEvaluate(roll, config);
         if (config.targets?.length) {
             config.targets.forEach(target => {
                 const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
                 target.hit = this.isCritical || roll.total >= difficulty;
             });
         } else if (config.roll.difficulty) config.roll.success = roll.isCritical || roll.total >= config.roll.difficulty;
-        config.roll.total = roll.total;
-        config.roll.formula = roll.formula;
         config.roll.advantage = {
             type: config.advantage,
             dice: roll.dAdvantage?.denomination,
             value: roll.dAdvantage?.total
         };
-        config.roll.modifierTotal = config.roll.modifiers.reduce((a, c) => a + c.value, 0);
-        config.roll.dice = [];
-        roll.dice.forEach(d => {
-            config.roll.dice.push({
-                dice: d.denomination,
-                total: d.total,
-                formula: d.formula,
-                results: d.results
-            });
-        });
+        config.roll.modifierTotal = config.roll.modifiers.reduce((a, c) => a + Number(c.value), 0);
     }
 
     getRollData() {
-        return this.options.data();
+        return this.options.data;
     }
 
     formatModifier(modifier) {
@@ -332,7 +349,7 @@ export class DualityRoll extends D20Roll {
             bardRallyFaces = this.hasBarRally,
             advDie = new foundry.dice.terms.Die({ faces: dieFaces });
         if (this.hasAdvantage || this.hasDisadvantage || bardRallyFaces)
-            this.terms.push(new foundry.dice.terms.OperatorTerm({ operator: '+' }));
+            this.terms.push(new foundry.dice.terms.OperatorTerm({ operator: (this.hasDisadvantage ? '-' : '+') }));
         if (bardRallyFaces) {
             const rallyDie = new foundry.dice.terms.Die({ faces: bardRallyFaces });
             if (this.hasAdvantage) {
@@ -349,12 +366,10 @@ export class DualityRoll extends D20Roll {
     }
 
     applyBaseBonus() {
-        if (!this.options.roll.modifiers) this.options.roll.modifiers = [];
-        if (this.options.roll?.trait)
-            this.options.roll.modifiers.push({
-                label: `DAGGERHEART.Abilities.${this.options.roll.trait}.name`,
-                value: this.options.data.traits[this.options.roll.trait].total
-            });
+        this.options.roll.modifiers = [{
+            label : `DAGGERHEART.Abilities.${this.options.roll.trait}.name`,
+            value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.total`, this.data)
+        }];
     }
 
     static async postEvaluate(roll, config = {}) {
@@ -385,19 +400,7 @@ export class DamageRoll extends DHRoll {
     static DefaultDialog = DamageDialog;
 
     static async postEvaluate(roll, config = {}) {
-        config.roll = {
-            total: roll.total,
-            formula: roll.formula,
-            type: config.type
-        };
-        config.roll.dice = [];
-        roll.dice.forEach(d => {
-            config.roll.dice.push({
-                dice: d.denomination,
-                total: d.total,
-                formula: d.formula,
-                results: d.results
-            });
-        });
+        super.postEvaluate(roll, config);
+        config.roll.type = config.type;
     }
 }

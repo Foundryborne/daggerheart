@@ -276,7 +276,8 @@ export default class DhpActor extends Actor {
     async diceRoll(config) {
         config.source = {...(config.source ?? {}), actor: this.uuid};
         config.data = this.getRollData();
-        return await this.rollClass.build(config);
+        const rollClass = config.roll.lite ? CONFIG.Dice.daggerheart['DHRoll'] : this.rollClass;
+        return await rollClass.build(config);
     }
 
     get rollClass() {

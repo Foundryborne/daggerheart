@@ -77,3 +77,31 @@ export const damageOnSave = {
         mod: 1
     }
 }
+
+export const diceCompare = {
+    below: {
+        id: 'below',
+        label: 'Below',
+        operator: '<'
+    },
+    belowEqual: {
+        id: 'belowEqual',
+        label: 'Below or Equal',
+        operator: '<='
+    },
+    equal: {
+        id: 'equal',
+        label: 'Equal',
+        operator: '='
+    },
+    aboveEqual: {
+        id: 'aboveEqual',
+        label: 'Above or Equal',
+        operator: '>='
+    },
+    above: {
+        id: 'above',
+        label: 'Above',
+        operator: '>'
+    }
+}
