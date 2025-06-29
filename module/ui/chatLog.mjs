@@ -155,7 +155,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             : Array.from(game.user.targets);
 
         if(message.system.onSave && event.currentTarget.dataset.targetHit) {
-            console.log(message.system.targets)
             const pendingingSaves = message.system.targets.filter(target => target.hit && target.saved.success === null);
             if(pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
@@ -171,6 +170,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         for (let target of targets) {
             let damage = message.system.roll.total;
             if(message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true) damage = Math.ceil(damage * (SYSTEM.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
+            
             await target.actor.takeDamage(damage, message.system.roll.type);
         }
     };
