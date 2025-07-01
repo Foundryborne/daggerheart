@@ -1,5 +1,5 @@
 import BaseLevelUp from './levelup.mjs';
-import { defaultCompanionTier } from '../../data/levelTier.mjs';
+import { defaultCompanionTier, LevelOptionType } from '../../data/levelTier.mjs';
 import { DhLevelup } from '../../data/levelup.mjs';
 import { diceTypes, range } from '../../config/generalConfig.mjs';
 
@@ -108,6 +108,12 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                                         : actorKey;
                                     advancement[choiceKey][checkbox.data[0]] =
                                         options[keys[Math.min(currentIndex + 1, keys.length - 1)]];
+                                default:
+                                    if (!advancement.simple) advancement.simple = {};
+                                    advancement.simple[choiceKey] = game.i18n.localize(
+                                        LevelOptionType[checkbox.type].label
+                                    );
+                                    break;
                             }
                         }
                     }
@@ -140,7 +146,8 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                                   new: game.i18n.localize(advancement.vicious.range.label)
                               }
                             : null
-                    }
+                    },
+                    simple: advancement.simple ?? {}
                 };
 
                 context.advancements.statistics.stress.shown =

@@ -157,15 +157,12 @@ export default class DhCharacter extends BaseDataActor {
         return this.parent.items.find(x => x.type === 'community') ?? null;
     }
 
-    // get actions() {
-    //     const generalActions = []; // Add in things like Sprint etc
-    //     const levelupActions = this.levelData.actions.filter(x => !x.partner).map(x => x.value);
+    get features() {
+        return this.parent.items.filter(x => x.type === 'feature') ?? [];
+    }
 
-    //     return [...generalActions, ...levelupActions];
-    // }
-
-    get companionActions() {
-        return this.companion ? this.companion.system.actions : [];
+    get companionFeatures() {
+        return this.companion ? this.companion.items.filter(x => x.type === 'feature') : [];
     }
 
     get needsCharacterSetup() {

@@ -1,8 +1,8 @@
 import DamageSelectionDialog from '../applications/damageSelectionDialog.mjs';
 import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
 import DamageReductionDialog from '../applications/damageReductionDialog.mjs';
-import { actionsTypes } from '../data/_module.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
+import DHFeature from '../data/item/feature.mjs';
 
 export default class DhpActor extends Actor {
     async _preCreate(data, options, user) {
@@ -43,6 +43,7 @@ export default class DhpActor extends Actor {
                 return acc;
             }, {});
 
+            const featureIds = [];
             const domainCards = [];
             const experiences = [];
             const subclassFeatureState = { class: null, multiclass: null };
@@ -55,6 +56,7 @@ export default class DhpActor extends Actor {
                     const advancementCards = level.selections.filter(x => x.type === 'domainCard').map(x => x.itemUuid);
                     domainCards.push(...achievementCards, ...advancementCards);
                     experiences.push(...Object.keys(level.achievements.experiences));
+                    featureIds.push(...level.selections.flatMap(x => x.featureIds));
 
                     const subclass = level.selections.find(x => x.type === 'subclass');
                     if (subclass) {
@@ -67,6 +69,10 @@ export default class DhpActor extends Actor {
 
                     multiclass = level.selections.find(x => x.type === 'multiclass');
                 });
+
+            for (let featureId of featureIds) {
+                this.items.get(featureId).delete();
+            }
 
             if (experiences.length > 0) {
                 const getUpdate = () => ({
@@ -153,7 +159,7 @@ export default class DhpActor extends Actor {
             }
 
             let multiclass = null;
-            const actionIds = [];
+            const featureAdditions = [];
             const domainCards = [];
             const subclassFeatureState = { class: null, multiclass: null };
             const selections = [];
@@ -163,27 +169,17 @@ export default class DhpActor extends Actor {
                     const checkbox = selection[checkboxNr];
 
                     const tierOption = LevelOptionType[checkbox.type];
-                    for (var actionData of tierOption.actions ?? []) {
-                        const cls = actionsTypes[actionData.type];
-                        const actionId = foundry.utils.randomID();
-                        actionIds.push(actionId);
-                        actions.push(
-                            new cls(
-                                {
-                                    // ...cls.getSourceConfig(target),
-                                    ...actionData,
-                                    _id: actionId,
-                                    name: game.i18n.localize(actionData.name),
-                                    description: game.i18n.localize(actionData.description)
-                                },
-                                {
-                                    parent: this
-                                }
-                            )
-                        );
-                    }
-
-                    if (checkbox.type === 'multiclass') {
+                    if (tierOption.features?.length > 0) {
+                        featureAdditions.push({
+                            checkbox: {
+                                ...checkbox,
+                                level: Number(levelKey),
+                                optionKey: optionKey,
+                                checkboxNr: Number(checkboxNr)
+                            },
+                            features: tierOption.features
+                        });
+                    } else if (checkbox.type === 'multiclass') {
                         multiclass = {
                             ...checkbox,
                             level: Number(levelKey),
@@ -214,6 +210,28 @@ export default class DhpActor extends Actor {
                         });
                     }
                 }
+            }
+
+            for (var addition of featureAdditions) {
+                for (var featureData of addition.features) {
+                    const feature = new DHFeature({
+                        ...featureData,
+                        description: game.i18n.localize(featureData.description)
+                    });
+                    const embeddedItem = await this.createEmbeddedDocuments('Item', [
+                        {
+                            ...featureData,
+                            name: game.i18n.localize(featureData.name),
+                            type: 'feature',
+                            system: feature
+                        }
+                    ]);
+                    addition.checkbox.featureIds = !addition.checkbox.featureIds
+                        ? [embeddedItem[0].id]
+                        : [...addition.checkbox.featureIds, embeddedItem[0].id];
+                }
+
+                selections.push(addition.checkbox);
             }
 
             if (multiclass) {

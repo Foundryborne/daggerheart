@@ -43,7 +43,7 @@ export default class DhLevelData extends foundry.abstract.DataModel {
                             data: new fields.ArrayField(new fields.StringField({ required: true })),
                             secondaryData: new fields.TypedObjectField(new fields.StringField({ required: true })),
                             itemUuid: new fields.StringField({ required: true }),
-                            actionIds: new fields.ArrayField(new fields.StringField())
+                            featureIds: new fields.ArrayField(new fields.StringField())
                         })
                     )
                 })

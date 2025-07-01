@@ -1007,7 +1007,8 @@
                     "damageThresholds": "Damage Thresholds",
                     "vicious": "Vicious",
                     "damageIncreased": "Damage Increased: {damage}",
-                    "rangeIncreased": "Range Increased: {range}"
+                    "rangeIncreased": "Range Increased: {range}",
+                    "simpleFeature": "Feature: {feature}"
                 },
                 "notifications": {
                     "info": {
@@ -1160,8 +1161,8 @@
                 "CharacterSetup": "Character setup isn't done yet",
                 "Level": "Level",
                 "LevelUp": "You can level up",
-                "Actions": "Actions",
-                "CompanionActions": "Companion Actions",
+                "Features": "Features",
+                "CompanionFeatures": "Companion Features",
                 "Tabs": {
                     "Features": "Features",
                     "Inventory": "Inventory",
@@ -1205,9 +1206,6 @@
                 },
                 "Experience": {
                     "Title": "Experience"
-                },
-                "Features": {
-                    "Title": "Class Features"
                 },
                 "Gold": {
                     "Title": "Gold",

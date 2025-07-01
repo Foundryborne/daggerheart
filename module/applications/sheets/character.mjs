@@ -6,8 +6,6 @@ import DaggerheartSheet from './daggerheart-sheet.mjs';
 import { abilities } from '../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../characterCreation.mjs';
-import DHActionConfig from '../config/Action.mjs';
-import { DHBaseAction } from '../../data/action/action.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -53,7 +51,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             levelManagement: this.levelManagement,
             editImage: this._onEditImage,
             triggerContextMenu: this.triggerContextMenu
-            // editAction: this.editAction,
         },
         window: {
             resizable: true
@@ -307,18 +304,11 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     getItem(element) {
         const listElement = (element.target ?? element).closest('[data-item-id]');
-        if (listElement.dataset.isAction) return this.getAction(listElement);
+        const document = listElement.dataset.companion ? this.document.system.companion : this.document;
 
         const itemId = listElement.dataset.itemId,
-            item = this.document.items.get(itemId);
+            item = document.items.get(itemId);
         return item;
-    }
-
-    getAction(listElement) {
-        const target = listElement.dataset.partner === 'true' ? this.document.system.companion : this.document;
-        if (!target) return null;
-
-        return target.system.actions.find(x => x.id === listElement.dataset.itemId);
     }
 
     static triggerContextMenu(event, button) {
@@ -623,9 +613,15 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     static async useItem(event, button) {
         const item = this.getItem(button);
         if (!item) return;
-        const wasUsed = await item.use(event);
-        if (wasUsed && item.type === 'weapon') {
-            Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+
+        // Should dandle its actions. Or maybe they'll be separate buttons as per an Issue on the board
+        if (item.type === 'feature') {
+            item.toChat();
+        } else {
+            const wasUsed = await item.use(event);
+            if (wasUsed && item.type === 'weapon') {
+                Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+            }
         }
     }
 
@@ -633,11 +629,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const item = this.getItem(event);
         if (!item) return;
 
-        if (item instanceof DHBaseAction) {
-            new DHActionConfig(item).render({ force: true });
-        } else {
-            item.sheet.render(true);
-        }
+        item.sheet.render(true);
     }
 
     editItem(event) {
@@ -694,12 +686,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const item = this.getItem(event);
         if (!item) return;
 
-        if (item instanceof DHBaseAction) {
-            const newActions = item.parent.actions.filter(x => x.id !== item.id);
-            await item.parent.parent.update({ ['system.actions']: newActions });
-        } else {
-            await item.delete();
-        }
+        await item.delete();
     }
 
     static async setItemQuantity(button, value) {
@@ -735,30 +722,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async toChat(event, button) {
-        const item = event.dataset ? event : button.closest(['[data-item-id']);
-        if (item?.dataset.isAction) {
-            const action = this.getAction(item);
-            const cls = getDocumentClass('ChatMessage');
-            const systemData = {
-                title: action.name,
-                origin: this,
-                img: action.img,
-                name: action.name,
-                description: action.description,
-                actions: []
-            };
-            const msg = new cls({
-                type: 'abilityUse',
-                user: game.user.id,
-                system: systemData,
-                content: await foundry.applications.handlebars.renderTemplate(
-                    'systems/daggerheart/templates/chat/ability-use.hbs',
-                    systemData
-                )
-            });
-
-            cls.create(msg.toObject());
-        } else if (button?.dataset?.type === 'experience') {
+        if (button?.dataset?.type === 'experience') {
             const experience = this.document.system.experiences[button.dataset.uuid];
             const cls = getDocumentClass('ChatMessage');
             const systemData = {

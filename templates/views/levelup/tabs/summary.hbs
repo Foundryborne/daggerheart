@@ -169,6 +169,11 @@
                         {{this.advancements.vicious.range.new}}
                     </div>     
                 {{/if}}
+                {{#each this.advancements.simple}}
+                    <div class="summary-selection-container">
+                        <div class="summary-selection-container">{{localize "DAGGERHEART.Application.LevelUp.summary.simpleFeature" feature=this}}</div>
+                    </div>
+                {{/each}}
             </div>
         </fieldset>
 

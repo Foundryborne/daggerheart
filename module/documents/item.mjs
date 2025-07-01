@@ -117,7 +117,9 @@ export default class DHItem extends foundry.documents.Item {
                     ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.AncestryTitle')
                     : this.type === 'community'
                       ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.CommunityTitle')
-                      : game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+                      : this.type === 'feature'
+                        ? game.i18n.localize('TYPES.Item.feature')
+                        : game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
             origin: origin,
             img: this.img,
             name: this.name,

@@ -66,12 +66,10 @@ export const CompanionLevelOptionType = {
     creatureComfort: {
         id: 'creatureComfort',
         label: 'Creature Comfort',
-        actions: [
+        features: [
             {
                 name: 'DAGGERHEART.LevelUp.Actions.CreatureComfort.Name',
                 img: 'icons/magic/life/heart-cross-purple-orange.webp',
-                type: 'attack',
-                actionType: 'passive',
                 description: 'DAGGERHEART.LevelUp.Actions.CreatureComfort.Description'
             }
         ]
@@ -79,12 +77,10 @@ export const CompanionLevelOptionType = {
     armored: {
         id: 'armored',
         label: 'Armored',
-        actions: [
+        features: [
             {
                 name: 'DAGGERHEART.LevelUp.Actions.Armored.Name',
                 img: 'icons/equipment/shield/kite-wooden-oak-glow.webp',
-                type: 'attack',
-                actionType: 'passive',
                 description: 'DAGGERHEART.LevelUp.Actions.Armored.Description'
             }
         ]
@@ -100,12 +96,10 @@ export const CompanionLevelOptionType = {
     bonded: {
         id: 'bonded',
         label: 'Bonded',
-        actions: [
+        features: [
             {
                 name: 'DAGGERHEART.LevelUp.Actions.Bonded.Name',
                 img: 'icons/magic/life/heart-red-blue.webp',
-                type: 'attack',
-                actionType: 'passive',
                 description: 'DAGGERHEART.LevelUp.Actions.Bonded.Description'
             }
         ]
