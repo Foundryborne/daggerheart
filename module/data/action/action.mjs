@@ -308,14 +308,14 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     prepareTarget() {
         let targets;
         if (this.target?.type === SYSTEM.ACTIONS.targetTypes.self.id)
-            targets = this.formatTarget(this.actor.token ?? this.actor.prototypeToken);
+            targets = this.constructor.formatTarget(this.actor.token ?? this.actor.prototypeToken);
         targets = Array.from(game.user.targets);
         // foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY
         if (this.target?.type && this.target.type !== SYSTEM.ACTIONS.targetTypes.any.id) {
             targets = targets.filter(t => this.isTargetFriendly(t));
             if (this.target.amount && targets.length > this.target.amount) targets = [];
         }
-        targets = targets.map(t => this.formatTarget(t));
+        targets = targets.map(t => this.constructor.formatTarget(t));
         return targets;
 
     }
@@ -387,7 +387,12 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     hasCost(costs) {
-        const realCosts = this.getRealCosts(costs);
+        const realCosts = this.getRealCosts(costs),
+            hasFearCost = realCosts.findIndex(c => c.type === 'fear');
+        if(hasFearCost > -1) {
+            const fearCost = realCosts.splice(hasFearCost, 1);
+            if(!game.user.isGM || fearCost[0].total > game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear)) return false;
+        }
         return realCosts.reduce((a, c) => a && this.actor.system.resources[c.type]?.value >= (c.total ?? c.value), true);
     }
     /* COST */
@@ -419,7 +424,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         );
     }
 
-    formatTarget(actor) {
+    static formatTarget(actor) {
         return {
             id: actor.id,
             actorId: actor.actor.uuid,
@@ -436,10 +441,11 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     /* RANGE */
 
     /* EFFECTS */
-    async applyEffects(event, data, force = false) {
-        if (!this.effects?.length || !data.system.targets.length) return;
+    async applyEffects(event, data, targets) {
+        targets ??= data.system.targets;
+        if (!this.effects?.length || !targets.length) return;
         let effects = this.effects;
-        data.system.targets.forEach(async token => {
+        targets.forEach(async token => {
             if (!token.hit && !force) return;
             if(this.hasSave && token.saved.success === true) {
                 effects = this.effects.filter(e => e.onSave === true)
@@ -480,7 +486,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     /* SAVE */
     async rollSave(target, event, message) {
         if(!target?.actor) return;
-        target.actor.diceRoll({
+        return target.actor.diceRoll({
             event,
             title: 'Roll Save',
             roll: {
@@ -515,13 +521,6 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
 export class DHDamageAction extends DHBaseAction {
     static extraSchemas = ['damage', 'target', 'effects'];
-
-    /* async use(event, ...args) {
-        const config = await super.use(event, args);
-        if (!config || ['error', 'warning'].includes(config.type)) return;
-        if (!this.directDamage) return;
-        return await this.rollDamage(event, config);
-    } */
 
     getFormulaValue(part, data) {
         let formulaValue = part.value;

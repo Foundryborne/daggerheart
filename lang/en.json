@@ -1034,7 +1034,10 @@
             "DamageRoll": {
                 "Title": "Damage - {damage}",
                 "DealDamageToTargets": "Damage Hit Targets",
-                "DealDamage": "Deal Damage"
+                "DealDamage": "Deal Damage",
+                "RollDamage": "Roll Damage",
+                "HitTarget": "Hit Targets",
+                "SelectedTarget": "Selected"
             },
             "ApplyEffect": {
                 "Title": "Apply Effects - {name}"

@@ -384,39 +384,53 @@ export const refreshTypes = {
 export const abilityCosts = {
     hope: {
         id: 'hope',
-        label: 'Hope'
+        label: 'Hope',
+        group: 'TYPES.Actor.character'
     },
     stress: {
         id: 'stress',
-        label: 'DAGGERHEART.HealingType.Stress.Name'
+        label: 'DAGGERHEART.HealingType.Stress.Name',
+        group: 'TYPES.Actor.character'
     },
     armor: {
         id: 'armor',
-        label: 'Armor Stack'
+        label: 'Armor Stack',
+        group: 'TYPES.Actor.character'
     },
     hp: {
         id: 'hp',
-        label: 'DAGGERHEART.HealingType.HitPoints.Name'
+        label: 'DAGGERHEART.HealingType.HitPoints.Name',
+        group: 'TYPES.Actor.character'
     },
     prayer: {
         id: 'prayer',
-        label: 'Prayer Dice'
+        label: 'Prayer Dice',
+        group: 'TYPES.Actor.character'
     },
     favor: {
         id: 'favor',
-        label: 'Favor Points'
+        label: 'Favor Points',
+        group: 'TYPES.Actor.character'
     },
     slayer: {
         id: 'slayer',
-        label: 'Slayer Dice'
+        label: 'Slayer Dice',
+        group: 'TYPES.Actor.character'
     },
     tide: {
         id: 'tide',
-        label: 'Tide'
+        label: 'Tide',
+        group: 'TYPES.Actor.character'
     },
     chaos: {
         id: 'chaos',
-        label: 'Chaos'
+        label: 'Chaos',
+        group: 'TYPES.Actor.character'
+    },
+    fear: {
+        id: 'fear',
+        label: 'Fear',
+        group: 'TYPES.Actor.adversary'
     }
 };
 

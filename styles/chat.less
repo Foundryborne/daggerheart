@@ -11,6 +11,23 @@ fieldset.daggerheart.chat {
     border-left-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;
+    legend {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        &:before, &:after {
+            content: '\f0d8';
+            font-family: "Font Awesome 6 Pro";
+        }
+    }
+    &.expanded {
+        legend:before, legend:after {
+            content: '\f0d7';
+        }
+    }
+    .daggerheart.chat {
+        margin-top: 5px;
+    }
 }
 
 .daggerheart.chat {
@@ -209,6 +226,28 @@ fieldset.daggerheart.chat {
             margin: -@fullMargin 0;
         }
 
+        .target-selection {
+            display: flex;
+            justify-content: space-around;
+            input[type="radio"] {
+                display: none;
+                &:checked + label {
+                    text-shadow: 0px 0px 4px #CE5937;
+                }
+                &:not(:checked) + label {
+                    opacity: .75;
+                }
+            }
+            label {
+                cursor: pointer;
+                opacity: .75;
+                &.target-selected {
+                    text-shadow: 0px 0px 4px #CE5937;
+                    opacity: 1;
+                }
+            }
+        }
+
         .target-section {
             margin-top: 5px;
 
@@ -284,6 +323,10 @@ fieldset.daggerheart.chat {
                 margin-top: 5px;
             }
         }
+
+        &:not(.expanded) .dice-tooltip {
+            grid-template-rows: 0fr;
+        }
     }
 
     &.domain-card {
@@ -337,6 +380,17 @@ fieldset.daggerheart.chat {
             width: 80px;
         }
     }
+    button {
+        &.inner-button {
+            --button-size: 1.25rem;
+            --input-height: 1.25rem;
+            padding: 0 0.25rem;
+            margin: 5px 1px -4px auto;
+            &.inner-button-right {
+                margin-left: auto;
+            }
+        }
+    }
 
     [data-use-perm='false'] {
         pointer-events: none;
@@ -359,6 +413,11 @@ fieldset.daggerheart.chat {
         fieldset.daggerheart.chat {
             border-top-width: 0;
             display: contents;
+            legend {
+                &:before, &:after {
+                    display: none;
+                }
+            }
         }
         .message-header {
             color: var(--color-light-3);
@@ -434,7 +493,7 @@ fieldset.daggerheart.chat {
                             align-items: end;
                             gap: 0.25rem;
                             .dice {
-                                .dice-rolls {
+                                .dice-rolls.duality {
                                     margin-bottom: 0;
                                     li {
                                         display: flex;
@@ -455,6 +514,11 @@ fieldset.daggerheart.chat {
                                 font-size: var(--font-size-16);
                             }
                         }
+                    }
+                }
+                .target-selection {
+                    label {
+                        color: var(--color-light-1);
                     }
                 }
                 .target-section {
@@ -500,6 +564,31 @@ fieldset.daggerheart.chat {
                         margin-right: -8px;
                     }
                 }
+                .duality-result {
+                    display: flex;
+                    color: var(--color-light-1);
+                    text-shadow: 0 0 1px black;
+                    font-weight: bold;
+                    background: var(--color-dark-1);
+                    padding: 4px;
+                    border-color: black;
+                    min-height: unset;
+                    height: 26px;
+                    flex: unset;
+                    margin: 0;
+                    margin-left: auto;
+                    align-self: center;
+                    border-radius: 6px;
+                }
+            }
+        }
+        button {
+            &.inner-button {
+                color: var(--color-light-1);
+                text-shadow: 0 0 1px black;
+                font-weight: bold;
+                background: var(--color-dark-1);
+                border-color: black;
             }
         }
     }

@@ -1406,6 +1406,23 @@ fieldset.daggerheart.chat {
   border-right-width: 0;
   border-bottom-width: 0;
 }
+fieldset.daggerheart.chat legend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+fieldset.daggerheart.chat legend:before,
+fieldset.daggerheart.chat legend:after {
+  content: '\f0d8';
+  font-family: "Font Awesome 6 Pro";
+}
+fieldset.daggerheart.chat.expanded legend:before,
+fieldset.daggerheart.chat.expanded legend:after {
+  content: '\f0d7';
+}
+fieldset.daggerheart.chat .daggerheart.chat {
+  margin-top: 5px;
+}
 .daggerheart.chat.downtime {
   display: flex;
   flex-direction: column;
@@ -1538,6 +1555,27 @@ fieldset.daggerheart.chat {
   font-variant: all-small-caps;
   margin: -8px 0;
 }
+.daggerheart.chat.roll .target-selection {
+  display: flex;
+  justify-content: space-around;
+}
+.daggerheart.chat.roll .target-selection input[type="radio"] {
+  display: none;
+}
+.daggerheart.chat.roll .target-selection input[type="radio"]:checked + label {
+  text-shadow: 0px 0px 4px #CE5937;
+}
+.daggerheart.chat.roll .target-selection input[type="radio"]:not(:checked) + label {
+  opacity: 0.75;
+}
+.daggerheart.chat.roll .target-selection label {
+  cursor: pointer;
+  opacity: 0.75;
+}
+.daggerheart.chat.roll .target-selection label.target-selected {
+  text-shadow: 0px 0px 4px #CE5937;
+  opacity: 1;
+}
 .daggerheart.chat.roll .target-section {
   margin-top: 5px;
 }
@@ -1599,6 +1637,9 @@ fieldset.daggerheart.chat {
 .daggerheart.chat.roll .dice-result .duality-action {
   margin-top: 5px;
 }
+.daggerheart.chat.roll:not(.expanded) .dice-tooltip {
+  grid-template-rows: 0fr;
+}
 .daggerheart.chat.domain-card {
   display: flex;
   flex-direction: column;
@@ -1642,6 +1683,15 @@ fieldset.daggerheart.chat {
 .daggerheart.chat.domain-card img {
   width: 80px;
 }
+.daggerheart.chat button.inner-button {
+  --button-size: 1.25rem;
+  --input-height: 1.25rem;
+  padding: 0 0.25rem;
+  margin: 5px 1px -4px auto;
+}
+.daggerheart.chat button.inner-button.inner-button-right {
+  margin-left: auto;
+}
 .daggerheart.chat [data-use-perm='false'] {
   pointer-events: none;
   border-color: transparent;
@@ -1659,6 +1709,10 @@ fieldset.daggerheart.chat {
 .theme-colorful .chat-message.duality fieldset.daggerheart.chat {
   border-top-width: 0;
   display: contents;
+}
+.theme-colorful .chat-message.duality fieldset.daggerheart.chat legend:before,
+.theme-colorful .chat-message.duality fieldset.daggerheart.chat legend:after {
+  display: none;
 }
 .theme-colorful .chat-message.duality .message-header {
   color: var(--color-light-3);
@@ -1732,10 +1786,10 @@ fieldset.daggerheart.chat {
   align-items: end;
   gap: 0.25rem;
 }
-.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls.duality {
   margin-bottom: 0;
 }
-.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls li {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls.duality li {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1750,6 +1804,9 @@ fieldset.daggerheart.chat {
   color: var(--color-light-1);
   text-shadow: 0 0 1px black;
   font-size: var(--font-size-16);
+}
+.theme-colorful .chat-message.duality .message-content .dice-result .target-selection label {
+  color: var(--color-light-1);
 }
 .theme-colorful .chat-message.duality .message-content .dice-result .target-section {
   margin: 4px 0;
@@ -1793,6 +1850,29 @@ fieldset.daggerheart.chat {
 .theme-colorful .chat-message.duality .message-content .dice-result .dice-actions .duality-result {
   border-radius: 6px 0 0 0;
   margin-right: -8px;
+}
+.theme-colorful .chat-message.duality .message-content .dice-result .duality-result {
+  display: flex;
+  color: var(--color-light-1);
+  text-shadow: 0 0 1px black;
+  font-weight: bold;
+  background: var(--color-dark-1);
+  padding: 4px;
+  border-color: black;
+  min-height: unset;
+  height: 26px;
+  flex: unset;
+  margin: 0;
+  margin-left: auto;
+  align-self: center;
+  border-radius: 6px;
+}
+.theme-colorful .chat-message.duality button.inner-button {
+  color: var(--color-light-1);
+  text-shadow: 0 0 1px black;
+  font-weight: bold;
+  background: var(--color-dark-1);
+  border-color: black;
 }
 .daggerheart.sheet.feature .editable {
   display: flex;

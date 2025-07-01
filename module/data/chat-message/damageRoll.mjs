@@ -19,6 +19,7 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
                     })
                 })
             ),
+            targetSelection: new fields.BooleanField({ initial: true }),
             hasSave: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
             source: new fields.SchemaField({
@@ -33,5 +34,10 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
 
     get messageTemplate() {
         return `systems/daggerheart/templates/chat/${this.messageType}-roll.hbs`;
+    }
+
+    prepareDerivedData() {
+        this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
+        this.currentTargets = this.targetSelection !== true ? Array.from(game.user.targets).map(t => DHBaseAction.formatTarget(t)) : this.targets;
     }
 }
