@@ -130,7 +130,11 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     get actor() {
-        return this.item instanceof DhpActor ? this.item : this.item?.actor;
+        return this.item instanceof DhpActor
+            ? this.item
+            : this.item?.parent instanceof DhpActor
+              ? this.item.parent
+              : this.item?.actor;
     }
 
     get chatTemplate() {

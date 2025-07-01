@@ -85,6 +85,7 @@ Hooks.once('init', () => {
 
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
     Actors.registerSheet(SYSTEM.id, applications.DhCharacterSheet, { types: ['character'], makeDefault: true });
+    Actors.registerSheet(SYSTEM.id, applications.DhCompanionSheet, { types: ['companion'], makeDefault: true });
     Actors.registerSheet(SYSTEM.id, applications.DhpAdversarySheet, { types: ['adversary'], makeDefault: true });
     Actors.registerSheet(SYSTEM.id, applications.DhpEnvironment, { types: ['environment'], makeDefault: true });
 
@@ -285,6 +286,7 @@ const preloadHandlebarsTemplates = async function () {
     return foundry.applications.handlebars.loadTemplates([
         'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs',
         'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/action-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs',
 
@@ -322,7 +324,7 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/views/actionTypes/range-target.hbs',
         'systems/daggerheart/templates/views/actionTypes/effect.hbs',
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
-        
+
         'systems/daggerheart/templates/chat/parts/target-chat.hbs'
     ]);
 };

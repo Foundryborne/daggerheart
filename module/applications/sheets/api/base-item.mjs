@@ -46,18 +46,17 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
         switch (partId) {
             case 'description':
-                const value = foundry.utils.getProperty(this.document, "system.description") ?? "";
+                const value = foundry.utils.getProperty(this.document, 'system.description') ?? '';
                 context.enrichedDescription = await TextEditor.enrichHTML(value, {
                     relativeTo: this.item,
                     rollData: this.item.getRollData(),
                     secrets: this.item.isOwner
-                })
+                });
                 break;
         }
 
         return context;
     }
-
 
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
@@ -70,11 +69,11 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      */
     static async selectActionType() {
         const content = await foundry.applications.handlebars.renderTemplate(
-            'systems/daggerheart/templates/views/actionType.hbs',
-            { types: SYSTEM.ACTIONS.actionTypes }
-        ),
-            title = 'Select Action Type'
-        
+                'systems/daggerheart/templates/views/actionType.hbs',
+                { types: SYSTEM.ACTIONS.actionTypes }
+            ),
+            title = 'Select Action Type';
+
         return foundry.applications.api.DialogV2.prompt({
             window: { title },
             content,
@@ -92,7 +91,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      */
     static async #addAction(_event, _button) {
         const actionType = await DHBaseItemSheet.selectActionType();
-        if(!actionType) return;
+        if (!actionType) return;
         try {
             const cls = actionsTypes[actionType] ?? actionsTypes.attack,
                 action = new cls(
@@ -134,9 +133,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         event.stopPropagation();
         const actionIndex = button.closest('[data-index]').dataset.index;
         await this.document.update({
-            'system.actions': this.document.system.actions.filter(
-                (_, index) => index !== Number.parseInt(actionIndex)
-            )
+            'system.actions': this.document.system.actions.filter((_, index) => index !== Number.parseInt(actionIndex))
         });
     }
 }

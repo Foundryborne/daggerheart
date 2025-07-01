@@ -96,7 +96,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         } else {
             this.config.experiences = [...this.config.experiences, button.dataset.key];
         } */
-        this.config.experiences = this.config.experiences.indexOf(button.dataset.key) > -1 ? this.config.experiences.filter(x => x !== button.dataset.key) : [...this.config.experiences, button.dataset.key];
+        this.config.experiences =
+            this.config.experiences.indexOf(button.dataset.key) > -1
+                ? this.config.experiences.filter(x => x !== button.dataset.key)
+                : [...this.config.experiences, button.dataset.key];
         this.render();
     }
 
@@ -109,7 +112,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         if (!options.submitted) this.config = false;
     }
 
-    static async configure(roll, config = {}, options={}) {
+    static async configure(roll, config = {}, options = {}) {
         return new Promise(resolve => {
             const app = new this(roll, config, options);
             app.addEventListener('close', () => resolve(app.config), { once: true });

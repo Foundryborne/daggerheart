@@ -2935,6 +2935,7 @@ div.daggerheart.views.multiclass {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 8px;
 }
 .daggerheart.levelup .levelup-navigation-container {
   display: flex;
@@ -3095,6 +3096,13 @@ div.daggerheart.views.multiclass {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-radio-choices {
+  display: flex;
+  gap: 8px;
+}
+.daggerheart.levelup .levelup-selections-container .levelup-radio-choices label {
+  flex: 0;
 }
 .daggerheart.levelup .levelup-summary-container .level-achievements-container,
 .daggerheart.levelup .levelup-summary-container .level-advancements-container {
@@ -3886,6 +3894,7 @@ div.daggerheart.views.multiclass {
   border: 1px solid light-dark(#18162e, #f3c267);
   border-radius: 6px;
   z-index: 1;
+  background: #18162e;
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-bar {
   border: none;
@@ -3900,12 +3909,9 @@ div.daggerheart.views.multiclass {
   background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
   border-radius: 6px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-value,
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
-  border-radius: 6px;
-}
 .application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
   background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
+  border-radius: 6px;
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-moz-progress-bar {
   background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
@@ -4504,6 +4510,7 @@ div.daggerheart.views.multiclass {
   border: 1px solid light-dark(#18162e, #f3c267);
   border-radius: 6px;
   z-index: 1;
+  background: #18162e;
 }
 .application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-bar {
   border: none;
@@ -4518,12 +4525,9 @@ div.daggerheart.views.multiclass {
   background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
   border-radius: 6px;
 }
-.application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-value,
-.application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
-  border-radius: 6px;
-}
 .application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
   background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
+  border-radius: 6px;
 }
 .application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-moz-progress-bar {
   background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
@@ -4734,6 +4738,14 @@ div.daggerheart.views.multiclass {
 }
 .application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .controls a {
   text-align: center;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .profile {
+  height: 80px;
+  width: 80px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .temp-container {
+  position: relative;
+  top: 32px;
 }
 .application.sheet.daggerheart.actor.dh-style.adversary .window-content {
   overflow: auto;
@@ -5185,6 +5197,7 @@ div.daggerheart.views.multiclass {
 .application.dh-style .item-description {
   opacity: 1;
   transform: translateY(0);
+  grid-column: 1/-1;
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 .application.dh-style .item-description.invisible {

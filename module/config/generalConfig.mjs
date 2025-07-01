@@ -261,48 +261,6 @@ export const tiers = {
     }
 };
 
-export const objectTypes = {
-    character: {
-        name: 'TYPES.Actor.character'
-    },
-    npc: {
-        name: 'TYPES.Actor.npc'
-    },
-    adversary: {
-        name: 'TYPES.Actor.adversary'
-    },
-    ancestry: {
-        name: 'TYPES.Item.ancestry'
-    },
-    community: {
-        name: 'TYPES.Item.community'
-    },
-    class: {
-        name: 'TYPES.Item.class'
-    },
-    subclass: {
-        name: 'TYPES.Item.subclass'
-    },
-    feature: {
-        name: 'TYPES.Item.feature'
-    },
-    domainCard: {
-        name: 'TYPES.Item.domainCard'
-    },
-    consumable: {
-        name: 'TYPES.Item.consumable'
-    },
-    miscellaneous: {
-        name: 'TYPES.Item.miscellaneous'
-    },
-    weapon: {
-        name: 'TYPES.Item.weapon'
-    },
-    armor: {
-        name: 'TYPES.Item.armor'
-    }
-};
-
 export const diceTypes = {
     d4: 'd4',
     d6: 'd6',
@@ -325,7 +283,7 @@ export const diceSetNumbers = {
     cast: 'Spellcast',
     scale: 'Cost Scaling',
     flat: 'Flat'
-}
+};
 
 export const getDiceSoNicePresets = () => {
     const { diceSoNice } = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);

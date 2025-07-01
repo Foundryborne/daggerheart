@@ -1,19 +1,24 @@
 # Daggerheart
+
 ## Table of Contents
+
 - [Overview](#overview)
 - [User Install Guide](#user-install)
 - [Developer Setup](#developer-setup)
 - [Contribution Info](#contributing)
 
-## Overivew
+## Overview
+
 This is a community repo for a Foundry VTT implementation of Daggerheart. It is not associated with Critical Role or Darrington Press.
 
 ## User Install
+
 1. **(Not Yet Supported - No Releases Yet)** Pasting `https://raw.githubusercontent.com/Foundryborne/daggerheart/refs/heads/main/system.json` into the Install System dialog on the Setup menu of the application.
 2. **(Not Yet Supported - No Releases Yet)** Browsing the repository's Releases page, where you can copy any system.json link for use in the Install System dialog.
 3. **(Not Yet Supported - No Releases Yet)** Downloading one of the .zip archives from the Releases page and extracting it into your foundry Data folder, under Data/systems/daggerheart.
 
 ## Development Setup
+
 - Open a terminal in the directory with the repo `cd <path>/<to>/<repo>`
 - NOTE: The repo should be placed in the system files are or somewhere else and a link (if on linux) is placed in the system directory
 - NOTE: Linux link can be made using `ln -snf <path to development folder> daggerheart` inside the system folder
@@ -33,8 +38,8 @@ This is a community repo for a Foundry VTT implementation of Daggerheart. It is 
 Now you should be able to build the app using `npm start`
 [Foundry VTT Website][1]
 
-[1]: https://foundryvtt.com/  
+[1]: https://foundryvtt.com/
 
-## Contributing  
+## Contributing
 
 Looking to contribute to the project? Look no further, check out our [contributing guide](contributing.md), and keep the [Code of Conduct](coc.md) in mind when working on things.

@@ -160,7 +160,7 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
     static onEditImage(_, target) {
         const setting = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns)[this.basePath];
         const current = setting.countdowns[target.dataset.countdown].img;
-        const fp = new FilePicker({
+        const fp = new foundry.applications.apps.FilePicker.implementation({
             current,
             type: 'image',
             callback: async path => this.updateImage.bind(this)(path, target.dataset.countdown),

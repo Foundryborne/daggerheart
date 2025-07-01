@@ -1,4 +1,4 @@
-import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
+import { diceTypes, getDiceSoNicePresets, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
 export const loadCompendiumOptions = async compendiums => {
@@ -225,10 +225,10 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
 
 // Fix on Foundry native formula replacement for DH
 const nativeReplaceFormulaData = Roll.replaceFormulaData;
-Roll.replaceFormulaData = function (formula, data={}, { missing, warn = false } = {}) {
+Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
     const terms = Object.keys(SYSTEM.GENERAL.multiplierTypes).map(type => {
-        return { term: type, default: 1}
-    })
+        return { term: type, default: 1 };
+    });
     formula = terms.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
     return nativeReplaceFormulaData(formula, data, { missing, warn });
 };
@@ -257,4 +257,18 @@ export const damageKeyToNumber = key => {
         case 'none':
             return 0;
     }
+};
+
+export const adjustDice = (dice, decrease) => {
+    const diceKeys = Object.keys(diceTypes);
+    const index = diceKeys.indexOf(dice);
+    const newIndex = decrease ? Math.max(index - 1, 0) : Math.min(index + 1, diceKeys.length - 1);
+    return diceTypes[diceKeys[newIndex]];
+};
+
+export const adjustRange = (rangeVal, decrease) => {
+    const rangeKeys = Object.keys(range);
+    const index = rangeKeys.indexOf(rangeVal);
+    const newIndex = decrease ? Math.max(index - 1, 0) : Math.min(index + 1, rangeKeys.length - 1);
+    return range[rangeKeys[newIndex]];
 };

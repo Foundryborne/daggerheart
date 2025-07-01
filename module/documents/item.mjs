@@ -55,8 +55,8 @@ export default class DHItem extends foundry.documents.Item {
                     isInventoryItem === true
                         ? 'Inventory Items'
                         : isInventoryItem === false
-                            ? 'Character Items'
-                            : 'Other';
+                          ? 'Character Items'
+                          : 'Other';
 
                 return { value: type, label, group };
             }
@@ -83,13 +83,14 @@ export default class DHItem extends foundry.documents.Item {
                 { actions: this.system.actions }
             ),
             title = 'Select Action';
-        
+
         return foundry.applications.api.DialogV2.prompt({
             window: { title },
             content,
             ok: {
                 label: title,
-                callback: (event, button, dialog) => this.system.actions.find(a => a._id === button.form.elements.actionId.value)
+                callback: (event, button, dialog) =>
+                    this.system.actions.find(a => a._id === button.form.elements.actionId.value)
             }
         });
     }
@@ -115,7 +116,9 @@ export default class DHItem extends foundry.documents.Item {
                 this.type === 'ancestry'
                     ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.AncestryTitle')
                     : this.type === 'community'
-                        ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.CommunityTitle')
+                      ? game.i18n.localize('DAGGERHEART.Chat.FoundationCard.CommunityTitle')
+                      : this.type === 'feature'
+                        ? game.i18n.localize('TYPES.Item.feature')
                         : game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
             origin: origin,
             img: this.img,

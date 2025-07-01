@@ -209,6 +209,7 @@
             "character": {
                 "htmlFields": ["story", "description", "scars.*.description"]
             },
+            "companion": {},
             "adversary": {
                 "htmlFields": ["description", "motivesAndTactics"]
             },

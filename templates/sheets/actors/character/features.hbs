@@ -10,6 +10,12 @@
         {{#if document.system.class.subclass}}
             {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(concat (localize 'TYPES.Item.subclass') ' - ' document.system.class.subclass.name) type='subclass'}}
         {{/if}}
+        {{#if document.system.features}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize "DAGGERHEART.Sheets.PC.Features") type='features'}}
+        {{/if}}
+        {{#if document.system.companionFeatures}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize "DAGGERHEART.Sheets.PC.CompanionFeatures") type='companionFeatures'}}
+        {{/if}}
         {{#if document.system.community}}
             {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(concat (localize 'TYPES.Item.community') ' - ' document.system.community.name) type='community'}}
         {{/if}}
