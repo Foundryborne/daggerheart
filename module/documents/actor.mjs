@@ -1,12 +1,8 @@
 import DamageSelectionDialog from '../applications/damageSelectionDialog.mjs';
 import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
 import DamageReductionDialog from '../applications/damageReductionDialog.mjs';
-<<<<<<< HEAD
-import Resources from '../applications/resources.mjs';
-=======
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
->>>>>>> main
 
 export default class DhpActor extends Actor {
     async _preCreate(data, options, user) {

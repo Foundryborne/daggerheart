@@ -498,7 +498,6 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
     /* SAVE */
     async rollSave(target, event, message) {
-<<<<<<< HEAD
         if(!target?.actor) return;
         return target.actor.diceRoll({
             event,
@@ -512,27 +511,6 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         }).then(async (result) => {
             if(result) this.updateChatMessage(message, target.id, {result: result.roll.total, success: result.roll.success});
         })
-=======
-        if (!target?.actor) return;
-        target.actor
-            .diceRoll({
-                event,
-                title: 'Roll Save',
-                roll: {
-                    trait: this.save.trait,
-                    difficulty: this.save.difficulty,
-                    type: 'reaction'
-                },
-                data: target.actor.getRollData()
-            })
-            .then(async result => {
-                if (result)
-                    this.updateChatMessage(message, target.id, {
-                        result: result.roll.total,
-                        success: result.roll.success
-                    });
-            });
->>>>>>> main
     }
 
     async updateChatMessage(message, targetId, changes, chain = true) {
