@@ -81,7 +81,7 @@ export default class DhSettingsActionView extends HandlebarsApplicationMixin(App
     }
 
     static onEditImage() {
-        const fp = new FilePicker({
+        const fp = new foundry.applications.apps.FilePicker.implementation({
             current: this.img,
             type: 'image',
             callback: async path => {

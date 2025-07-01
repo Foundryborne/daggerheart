@@ -1,0 +1,27 @@
+<div class="dice-roll daggerheart chat roll" data-action="expandRoll">
+    {{#unless noTitle}}<div class="dice-flavor">{{damage.title}}</div>{{/unless}}
+    <div class="dice-result">
+        <div class="dice-formula">{{damage.roll.formula}}</div>
+        <div class="dice-tooltip">
+            <div class="wrapper">
+                <section class="tooltip-part">
+                    {{#each damage.roll.dice}}
+                        <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">{{formula}}</span>                                
+                                <span class="part-total">{{total}}</span>
+                            </header>
+                            <ol class="dice-rolls">
+                                {{#each results}}
+                                    <li class="roll die {{../dice}} min">{{result}}</li>
+                                {{/each}}
+                            </ol>
+                        </div>
+                    {{/each}}
+                    <div class="duality-result">Total: {{damage.roll.total}}</div>
+                </section>
+            </div>
+        </div>
+        <div class="dice-total">{{damage.roll.total}}</div>
+    </div>
+</div>

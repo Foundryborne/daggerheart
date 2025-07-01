@@ -1,3 +1,4 @@
+import DHDamageRoll from '../data/chat-message/damageRoll.mjs';
 import D20RollDialog from '../dialogs/d20RollDialog.mjs';
 import DamageDialog from '../dialogs/damageDialog.mjs';
 
@@ -29,7 +30,7 @@ export class DHRoll extends Roll {
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
         }
-        
+
         this.applyKeybindings(config);
 
         let roll = new this(config.roll.formula, config.data, config);
@@ -39,7 +40,7 @@ export class DHRoll extends Roll {
             const configDialog = await DialogClass.configure(roll, config, message);
             if (!configDialog) return;
         }
-        
+
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.post${hook.capitalize()}RollConfiguration`, roll, config, message) === false)
                 return [];
@@ -53,12 +54,13 @@ export class DHRoll extends Roll {
     }
 
     static async buildPost(roll, config, message) {
+        console.log(config);
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
         }
 
         // Create Chat Message
-        if (message.data) {
+        if (config.source?.message) {
         } else {
             const messageData = {};
             config.message = await this.toMessage(roll, config);
@@ -66,7 +68,7 @@ export class DHRoll extends Roll {
     }
 
     static postEvaluate(roll, config = {}) {
-        if(!config.roll) config.roll = {};
+        if (!config.roll) config.roll = {};
         config.roll.total = roll.total;
         config.roll.formula = roll.formula;
         config.roll.dice = [];
@@ -98,7 +100,7 @@ export class DHRoll extends Roll {
 
     constructFormula(config) {
         // const formula = Roll.replaceFormulaData(this.options.roll.formula, config.data);
-        this.terms = Roll.parse(this.options.roll.formula, config.data)
+        this.terms = Roll.parse(this.options.roll.formula, config.data);
         return (this._formula = this.constructor.getFormula(this.terms));
     }
 }
@@ -195,7 +197,7 @@ export class D20Roll extends DHRoll {
         this.applyAdvantage();
         // this.options.roll.modifiers = [];
         this.applyBaseBonus();
-        
+
         this.options.experiences?.forEach(m => {
             if (this.options.data.experiences?.[m])
                 this.options.roll.modifiers.push({
@@ -225,10 +227,12 @@ export class D20Roll extends DHRoll {
     }
 
     applyBaseBonus() {
-        this.options.roll.modifiers = [{
-            label : 'Bonus to Hit',
-            value: Roll.replaceFormulaData('@attackBonus', this.data)
-        }];
+        this.options.roll.modifiers = [
+            {
+                label: 'Bonus to Hit',
+                value: Roll.replaceFormulaData('@attackBonus', this.data)
+            }
+        ];
     }
 
     static postEvaluate(roll, config = {}) {
@@ -238,7 +242,8 @@ export class D20Roll extends DHRoll {
                 const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
                 target.hit = this.isCritical || roll.total >= difficulty;
             });
-        } else if (config.roll.difficulty) config.roll.success = roll.isCritical || roll.total >= config.roll.difficulty;
+        } else if (config.roll.difficulty)
+            config.roll.success = roll.isCritical || roll.total >= config.roll.difficulty;
         config.roll.advantage = {
             type: config.advantage,
             dice: roll.dAdvantage?.denomination,
@@ -350,7 +355,7 @@ export class DualityRoll extends D20Roll {
             bardRallyFaces = this.hasBarRally,
             advDie = new foundry.dice.terms.Die({ faces: dieFaces });
         if (this.hasAdvantage || this.hasDisadvantage || bardRallyFaces)
-            this.terms.push(new foundry.dice.terms.OperatorTerm({ operator: (this.hasDisadvantage ? '-' : '+') }));
+            this.terms.push(new foundry.dice.terms.OperatorTerm({ operator: this.hasDisadvantage ? '-' : '+' }));
         if (bardRallyFaces) {
             const rallyDie = new foundry.dice.terms.Die({ faces: bardRallyFaces });
             if (this.hasAdvantage) {
@@ -367,10 +372,12 @@ export class DualityRoll extends D20Roll {
     }
 
     applyBaseBonus() {
-        this.options.roll.modifiers = [{
-            label : `DAGGERHEART.Abilities.${this.options.roll.trait}.name`,
-            value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.total`, this.data)
-        }];
+        this.options.roll.modifiers = [
+            {
+                label: `DAGGERHEART.Abilities.${this.options.roll.trait}.name`,
+                value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.total`, this.data)
+            }
+        ];
     }
 
     static postEvaluate(roll, config = {}) {
@@ -388,7 +395,6 @@ export class DualityRoll extends D20Roll {
             total: roll.dHope.total + roll.dFear.total,
             label: roll.totalLabel
         };
-        console.log(roll, config)
     }
 }
 
@@ -404,5 +410,9 @@ export class DamageRoll extends DHRoll {
     static async postEvaluate(roll, config = {}) {
         super.postEvaluate(roll, config);
         config.roll.type = config.type;
+        if (config.source?.message) {
+            const chatMessage = ui.chat.collection.get(config.source.message);
+            chatMessage.update({ 'system.damage': config });
+        }
     }
 }

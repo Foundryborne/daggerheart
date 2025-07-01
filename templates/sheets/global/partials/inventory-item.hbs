@@ -1,4 +1,4 @@
-<li class="inventory-item" data-item-id="{{item.id}}">
+<li class="inventory-item" data-item-id="{{item.id}}" data-companion="{{companion}}">
     <img src="{{item.img}}" class="item-img" data-action="useItem"/>
     <div class="item-label">
         <div class="item-name">{{item.name}}</div>
@@ -127,4 +127,5 @@
         <a data-action="toChat" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToChat'}}"><i class="fa-regular fa-message"></i></a>
         <a data-action="triggerContextMenu" data-tooltip="{{localize 'DAGGERHEART.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
     </div>
+    <div class="item-description">{{#unless isSidebar}}{{{item.system.description}}}{{/unless}}</div>
 </li>

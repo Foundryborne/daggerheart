@@ -261,48 +261,6 @@ export const tiers = {
     }
 };
 
-export const objectTypes = {
-    character: {
-        name: 'TYPES.Actor.character'
-    },
-    npc: {
-        name: 'TYPES.Actor.npc'
-    },
-    adversary: {
-        name: 'TYPES.Actor.adversary'
-    },
-    ancestry: {
-        name: 'TYPES.Item.ancestry'
-    },
-    community: {
-        name: 'TYPES.Item.community'
-    },
-    class: {
-        name: 'TYPES.Item.class'
-    },
-    subclass: {
-        name: 'TYPES.Item.subclass'
-    },
-    feature: {
-        name: 'TYPES.Item.feature'
-    },
-    domainCard: {
-        name: 'TYPES.Item.domainCard'
-    },
-    consumable: {
-        name: 'TYPES.Item.consumable'
-    },
-    miscellaneous: {
-        name: 'TYPES.Item.miscellaneous'
-    },
-    weapon: {
-        name: 'TYPES.Item.weapon'
-    },
-    armor: {
-        name: 'TYPES.Item.armor'
-    }
-};
-
 export const diceTypes = {
     d4: 'd4',
     d6: 'd6',
@@ -325,7 +283,7 @@ export const diceSetNumbers = {
     cast: 'Spellcast',
     scale: 'Cost Scaling',
     flat: 'Flat'
-}
+};
 
 export const getDiceSoNicePresets = () => {
     const { diceSoNice } = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance);
@@ -384,39 +342,53 @@ export const refreshTypes = {
 export const abilityCosts = {
     hope: {
         id: 'hope',
-        label: 'Hope'
+        label: 'Hope',
+        group: 'TYPES.Actor.character'
     },
     stress: {
         id: 'stress',
-        label: 'DAGGERHEART.HealingType.Stress.Name'
+        label: 'DAGGERHEART.HealingType.Stress.Name',
+        group: 'TYPES.Actor.character'
     },
     armor: {
         id: 'armor',
-        label: 'Armor Stack'
+        label: 'Armor Stack',
+        group: 'TYPES.Actor.character'
     },
     hp: {
         id: 'hp',
-        label: 'DAGGERHEART.HealingType.HitPoints.Name'
+        label: 'DAGGERHEART.HealingType.HitPoints.Name',
+        group: 'TYPES.Actor.character'
     },
     prayer: {
         id: 'prayer',
-        label: 'Prayer Dice'
+        label: 'Prayer Dice',
+        group: 'TYPES.Actor.character'
     },
     favor: {
         id: 'favor',
-        label: 'Favor Points'
+        label: 'Favor Points',
+        group: 'TYPES.Actor.character'
     },
     slayer: {
         id: 'slayer',
-        label: 'Slayer Dice'
+        label: 'Slayer Dice',
+        group: 'TYPES.Actor.character'
     },
     tide: {
         id: 'tide',
-        label: 'Tide'
+        label: 'Tide',
+        group: 'TYPES.Actor.character'
     },
     chaos: {
         id: 'chaos',
-        label: 'Chaos'
+        label: 'Chaos',
+        group: 'TYPES.Actor.character'
+    },
+    fear: {
+        id: 'fear',
+        label: 'Fear',
+        group: 'TYPES.Actor.adversary'
     }
 };
 

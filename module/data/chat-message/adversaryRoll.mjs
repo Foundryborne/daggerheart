@@ -1,7 +1,9 @@
+import { DHBaseAction } from '../action/action.mjs';
+
+const fields = foundry.data.fields;
+
 export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
     static defineSchema() {
-        const fields = foundry.data.fields;
-
         return {
             title: new fields.StringField(),
             roll: new fields.DataField(),
@@ -20,6 +22,7 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
                     })
                 })
             ),
+            targetSelection: new fields.BooleanField({ initial: true }),
             hasDamage: new fields.BooleanField({ initial: false }),
             hasHealing: new fields.BooleanField({ initial: false }),
             hasEffect: new fields.BooleanField({ initial: false }),
@@ -28,11 +31,20 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
                 action: new fields.StringField()
-            })
+            }),
+            damage: new fields.ObjectField()
         };
     }
 
     get messageTemplate() {
         return 'systems/daggerheart/templates/chat/adversary-roll.hbs';
+    }
+
+    prepareDerivedData() {
+        this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
+        this.currentTargets =
+            this.targetSelection !== true
+                ? Array.from(game.user.targets).map(t => DHBaseAction.formatTarget(t))
+                : this.targets;
     }
 }

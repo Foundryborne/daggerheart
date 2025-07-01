@@ -94,12 +94,26 @@
         </div>
     </div>
 </div>
+<fieldset class="dice-roll daggerheart chat roll expanded{{#unless damage.roll}} hidden{{/unless}}" data-action="expandRoll">
+    <legend class="dice-flavor">Damage</legend>
+    <div class="dice-result">
+        <div class="dice-tooltip">
+            <div class="wrapper">
+                {{> 'systems/daggerheart/templates/chat/parts/damage-chat.hbs' damage=damage noTitle=true}}
+            </div>
+        </div>
+    </div>
+</fieldset>
 {{> 'systems/daggerheart/templates/chat/parts/target-chat.hbs'}}
 <div class="dice-roll daggerheart chat roll">
     <div class="dice-result">
         <div class="dice-actions{{#unless (or hasDamage hasHealing)}} duality-alone{{/unless}}">
             {{#if hasDamage}}
+                {{#if damage.roll}}
+                    <button class="duality-action damage-button" data-target-hit="true" data-value="{{roll.total}}"><span>Deal Damage</span></button>
+                {{else}}
                     <button class="duality-action duality-action-damage" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.Chat.AttackRoll.RollDamage"}}</span></button>
+                {{/if}}
             {{else}}
                 {{#if hasHealing}}
                     <button class="duality-action duality-action-healing" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.Chat.AttackRoll.RollHealing"}}</span></button>

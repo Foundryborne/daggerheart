@@ -1,4 +1,4 @@
-export default class DhContextMenu extends ContextMenu {
+export default class DhContextMenu extends foundry.applications.ux.ContextMenu.implementation {
     constructor(container, selector, menuItems, options) {
         super(container, selector, menuItems, options);
 
@@ -26,10 +26,16 @@ export default class DhContextMenu extends ContextMenu {
         event.preventDefault();
         event.stopPropagation();
         const { clientX, clientY } = event;
-        const selector = "[data-item-id]";
+        const selector = '[data-item-id]';
         const target = event.target.closest(selector) ?? event.currentTarget.closest(selector);
-        target?.dispatchEvent(new PointerEvent("contextmenu", {
-            view: window, bubbles: true, cancelable: true, clientX, clientY
-        }));
+        target?.dispatchEvent(
+            new PointerEvent('contextmenu', {
+                view: window,
+                bubbles: true,
+                cancelable: true,
+                clientX,
+                clientY
+            })
+        );
     }
 }

@@ -143,7 +143,7 @@ export default class AncestrySelectionDialog extends HandlebarsApplicationMixin(
     }
 
     static _onEditImage() {
-        const fp = new FilePicker({
+        const fp = new foundry.applications.apps.FilePicker.implementation({
             current: this.data.ancestryInfo.img,
             type: 'image',
             redirectToRoot: ['icons/svg/mystery-man.svg'],

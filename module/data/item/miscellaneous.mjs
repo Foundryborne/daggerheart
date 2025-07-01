@@ -9,7 +9,7 @@ export default class DHMiscellaneous extends BaseDataItem {
             type: 'miscellaneous',
             hasDescription: true,
             isQuantifiable: true,
-            isInventoryItem: true,
+            isInventoryItem: true
         });
     }
 

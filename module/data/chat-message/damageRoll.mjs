@@ -3,7 +3,7 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
         const fields = foundry.data.fields;
 
         return {
-            messageType: new fields.StringField({initial: 'damage'}),
+            messageType: new fields.StringField({ initial: 'damage' }),
             title: new fields.StringField(),
             roll: new fields.DataField({}),
             targets: new fields.ArrayField(
@@ -19,6 +19,7 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
                     })
                 })
             ),
+            targetSelection: new fields.BooleanField({ initial: true }),
             hasSave: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
             source: new fields.SchemaField({
@@ -27,11 +28,19 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
                 action: new fields.StringField(),
                 message: new fields.StringField()
             }),
-            directDamage: new fields.BooleanField({initial: true})
+            directDamage: new fields.BooleanField({ initial: true })
         };
     }
 
     get messageTemplate() {
         return `systems/daggerheart/templates/chat/${this.messageType}-roll.hbs`;
+    }
+
+    prepareDerivedData() {
+        this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
+        this.currentTargets =
+            this.targetSelection !== true
+                ? Array.from(game.user.targets).map(t => DHBaseAction.formatTarget(t))
+                : this.targets;
     }
 }

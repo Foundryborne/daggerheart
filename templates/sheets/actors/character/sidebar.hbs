@@ -1,5 +1,5 @@
 <aside class="character-sidebar-sheet">
-    <div class="portrait {{#if (gte document.system.resources.hitPoints.value document.system.resources.hitPoints.maxTotal)}}death-roll{{/if}}">
+    <div class="portrait {{#if document.system.deathMoveViable}}death-roll{{/if}}">
         <img src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
         <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.Sheets.PC.Health.DeathMoveTooltip"}}" data-action="makeDeathMove"><i class="fas fa-skull death-save" ></i></a>
     </div>
@@ -51,7 +51,7 @@
             <div class="status-number">
                 <div class='status-value armor-slots'>
                     {{#if document.system.armor.system.marks}}
-                        <p>{{document.system.armor.system.marks.value}}/{{document.system.armor.system.marks.max}}</p>
+                        <p>{{document.system.armor.system.marks.value}}/{{document.system.armorScore}}</p>
                     {{else}}
                         <p>-</p>
                     {{/if}}
@@ -113,7 +113,7 @@
                     <div class="experience-value">
                         +{{experience.total}}
                     </div>
-                    <input name="{{concat "system.experiences." id ".description"}}" data-experience={{id}} value="{{experience.description}}" type="text" />
+                    <input name="{{concat "system.experiences." id ".name"}}" data-experience={{id}} value="{{experience.name}}" type="text" />
                     <div class="controls">
                         <a data-action="toChat" data-type="experience" data-uuid="{{id}}"><i class="fa-regular fa-message"></i></a>
                     </div>

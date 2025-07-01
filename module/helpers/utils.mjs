@@ -1,4 +1,4 @@
-import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
+import { diceTypes, getDiceSoNicePresets, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
 export const loadCompendiumOptions = async compendiums => {
@@ -280,3 +280,17 @@ export default function constructHTMLButton({
 
     return button;
 }
+
+export const adjustDice = (dice, decrease) => {
+    const diceKeys = Object.keys(diceTypes);
+    const index = diceKeys.indexOf(dice);
+    const newIndex = decrease ? Math.max(index - 1, 0) : Math.min(index + 1, diceKeys.length - 1);
+    return diceTypes[diceKeys[newIndex]];
+};
+
+export const adjustRange = (rangeVal, decrease) => {
+    const rangeKeys = Object.keys(range);
+    const index = rangeKeys.indexOf(rangeVal);
+    const newIndex = decrease ? Math.max(index - 1, 0) : Math.min(index + 1, rangeKeys.length - 1);
+    return range[rangeKeys[newIndex]];
+};
