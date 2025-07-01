@@ -5768,6 +5768,25 @@ div.daggerheart.views.multiclass {
   gap: 10px;
   align-items: center;
 }
+.application prose-mirror {
+  height: 100% !important;
+}
+.application prose-mirror .editor-menu {
+  background-color: transparent;
+}
+.application prose-mirror .editor-content {
+  scrollbar-width: thin;
+  scrollbar-color: light-dark(#18162e, #f3c267) transparent;
+}
+.application prose-mirror .editor-content h1 {
+  font-size: 36px;
+}
+.application prose-mirror .editor-content h2 {
+  font-size: 32px;
+}
+.application prose-mirror .editor-content h3 {
+  font-size: 24px;
+}
 .daggerheart {
   /* Flex */
   /****/

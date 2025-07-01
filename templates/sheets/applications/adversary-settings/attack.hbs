@@ -19,6 +19,6 @@
                 {{ formField systemFields.attack.fields.target.fields.type value=document.system.target.type label="Target" name=(concat path "target.type") localize=true }}
             {{/if}}
     </fieldset>
-    {{> 'systems/daggerheart/templates/views/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields.parts.element.fields source=source.system.attack.damage path="system.attack."}}
-    {{> 'systems/daggerheart/templates/views/actionTypes/effect.hbs' fields=systemFields.attack.fields.effects.element.fields source=source.system.attack.effects}}
+    {{> 'systems/daggerheart/templates/views/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields.parts.element.fields source=document.system.attack.damage path="system.attack."}}
+    {{> 'systems/daggerheart/templates/views/actionTypes/effect.hbs' fields=systemFields.attack.fields.effects.element.fields source=document.system.attack.effects}}
 </section>
