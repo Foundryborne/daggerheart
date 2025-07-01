@@ -34,6 +34,11 @@
                     {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=effect type=../type}}
                 {{/if}}
             {{/each}}
+            {{#each document.system.actions as |action|}}
+                {{#if (or (eq ../type 'action'))}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=action type=../type}}
+                {{/if}}
+            {{/each}}
         {{/unless}}
         
     </ul>

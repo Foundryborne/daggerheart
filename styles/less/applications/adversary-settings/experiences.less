@@ -1,0 +1,28 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.daggerheart.dh-style.dialog {
+    .tab.experiences {
+        .add-experience-btn {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .experience-item {
+                display: grid;
+                grid-template-columns: 3fr 1fr 30px;
+                align-items: center;
+                gap: 5px;
+
+                a {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

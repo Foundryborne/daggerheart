@@ -43,6 +43,7 @@ export default class DhpAdversary extends BaseDataActor {
                 hitPoints: resourceField(),
                 stress: resourceField()
             }),
+            actions: new fields.ArrayField(new ActionField()),
             attack: new ActionField({
                 initial: {
                     name: 'Attack',

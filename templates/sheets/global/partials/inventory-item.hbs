@@ -100,6 +100,16 @@
                 {{/each}}
             </div>
         {{/if}}
+        {{#if  (eq type 'action')}}
+            <div class="item-tags">
+                <div class="tag">
+                    {{localize (concat 'DAGGERHEART.Actions.Types.' item.type '.name')}}
+                </div>
+                <div class="tag">
+                    {{localize (concat 'DAGGERHEART.ActionType.' item.actionType)}}
+                </div>
+            </div>
+        {{/if}}
     </div>
     <div class="controls">
         {{#if (eq type 'weapon')}}

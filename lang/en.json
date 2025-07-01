@@ -227,14 +227,15 @@
                 "details": "Details",
                 "attack": "Attack",
                 "experiences": "Experiences",
-                "features": "Features"
+                "features": "Features",
+                "actions": "Actions"
             },
             "basics": "Basics"
         },
         "ActionType": {
-            "Passive": "Passive",
-            "Action": "Action",
-            "Reaction": "Reaction"
+            "passive": "Passive",
+            "action": "Action",
+            "reaction": "Reaction"
         },
         "Abilities": {
             "agility": {
@@ -1530,6 +1531,7 @@
             "sendToChat": "Send to Chat",
             "moreOptions": "More Options",
             "equip": "Equip",
+            "edit": "Edit",
             "unequip": "Unequip",
             "delete": "Delete",
             "sendToVault": "Send to Vault",
@@ -1537,29 +1539,29 @@
         },
         "Actions": {
             "Types": {
-                "Attack": {
-                    "Name": "Attack"
+                "attack": {
+                    "name": "Attack"
                 },
-                "Spellcast": {
-                    "Name": "Spellcast"
+                "spellcast": {
+                    "name": "Spellcast"
                 },
-                "Resource": {
-                    "Name": "Resource"
+                "resource": {
+                    "name": "Resource"
                 },
-                "Damage": {
-                    "Name": "Damage"
+                "damage": {
+                    "name": "Damage"
                 },
-                "Healing": {
-                    "Name": "Healing"
+                "healing": {
+                    "name": "Healing"
                 },
-                "Summon": {
-                    "Name": "Summon"
+                "summon": {
+                    "name": "Summon"
                 },
-                "Effect": {
-                    "Name": "Effect"
+                "effect": {
+                    "name": "Effect"
                 },
-                "Macro": {
-                    "Name": "Macro"
+                "macro": {
+                    "name": "Macro"
                 }
             },
             "Settings": {

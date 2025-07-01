@@ -1,0 +1,20 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.adversary {
+    .tab.actions {
+        .action-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+            mask-image: linear-gradient(0deg, transparent 0%, black 5%, black 95%, transparent 100%);
+            padding: 20px 0;
+            padding-top: 10px;
+            height: 95%;
+
+            scrollbar-width: thin;
+            scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+        }
+    }
+}

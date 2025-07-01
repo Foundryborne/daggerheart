@@ -3,15 +3,21 @@
     data-tab='{{tabs.experiences.id}}'
     data-group='{{tabs.experiences.group}}'
 >
-    <button type="button" data-action="addExperience">
-        New Experience
+    <button class="add-experience-btn" type="button" data-action="addExperience">
+        <span>New Experience</span>
     </button>
 
-    {{#each document.system.experiences as |experience key|}}
-        <div class="experience-chip">
-            <input class="experience.value" type="text" name="system.experiences.{{key}}.name" value="{{experience.name}}" />
-            <input class="experience-value" type="text" name="system.experiences.{{key}}.modifier" value="{{experience.modifier}}" data-dtype="Number" />
-            <button type="button" class="experience-button" data-action="removeExperience" data-experience="{{key}}"><i class="fa-solid fa-x"></i></button>
-        </div>
-    {{/each}}
+    <fieldset>
+        <legend>{{localize tabs.experiences.label}}</legend>
+        <ul class="experience-list">
+            {{#each document.system.experiences as |experience key|}}
+                <li class="experience-item">
+                    <input class="name" type="text" name="system.experiences.{{key}}.name" value="{{experience.name}}" />
+                    <input class="modifier" type="text" name="system.experiences.{{key}}.modifier" value="{{experience.modifier}}" data-dtype="Number" />
+                    <a data-action="removeExperience" data-experience="{{key}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.delete'}}"><i class="fa-solid fa-trash"></i></a>
+                </li>
+            {{/each}}
+        </ul>
+    </fieldset>
+
 </section>

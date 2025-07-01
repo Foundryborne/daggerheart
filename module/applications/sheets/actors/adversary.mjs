@@ -28,19 +28,19 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
     static PARTS = {
         sidebar: { template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs' },
         header: { template: 'systems/daggerheart/templates/sheets/actors/adversary/header.hbs' },
-        features: { template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs' },
+        actions: { template: 'systems/daggerheart/templates/sheets/actors/adversary/actions.hbs' },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs' },
         effects: { template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs' }
     };
 
     static TABS = {
-        features: {
+        actions: {
             active: true,
             cssClass: '',
             group: 'primary',
-            id: 'features',
+            id: 'actions',
             icon: null,
-            label: 'DAGGERHEART.Sheets.Adversary.Tabs.features'
+            label: 'DAGGERHEART.General.tabs.actions'
         },
         notes: {
             active: false,

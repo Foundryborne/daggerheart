@@ -277,6 +277,8 @@
         }
 
         .experience-section {
+            margin-bottom: 20px;
+
             .title {
                 display: flex;
                 gap: 15px;
@@ -302,19 +304,12 @@
                     align-items: center;
                     justify-content: space-between;
 
-                    input[type='text'] {
-                        height: 32px;
+                    .experience-name {
                         width: 180px;
-                        border: 1px solid transparent;
-                        outline: 2px solid transparent;
+                        text-align: start;
                         font-size: 14px;
                         font-family: @font-body;
-                        transition: all 0.3s ease;
                         color: light-dark(@dark, @beige);
-
-                        &:hover {
-                            outline: 2px solid light-dark(@dark, @beige);
-                        }
                     }
                 }
 

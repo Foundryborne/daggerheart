@@ -712,14 +712,14 @@ export const valueTypes = {
 export const actionTypes = {
     passive: {
         id: 'passive',
-        label: 'DAGGERHEART.ActionType.Passive'
+        label: 'DAGGERHEART.ActionType.passive'
     },
     action: {
         id: 'action',
-        label: 'DAGGERHEART.ActionType.Action'
+        label: 'DAGGERHEART.ActionType.action'
     },
     reaction: {
         id: 'reaction',
-        label: 'DAGGERHEART.ActionType.Reaction'
+        label: 'DAGGERHEART.ActionType.reaction'
     }
 };

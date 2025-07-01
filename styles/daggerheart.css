@@ -4333,42 +4333,6 @@ div.daggerheart.views.multiclass {
   padding: 0;
   margin-bottom: 15px;
 }
-.application.sheet.daggerheart.actor.dh-style.adversary .adversary-header-sheet .character-traits {
-  display: flex;
-  justify-content: space-between;
-  padding: 0;
-  margin-bottom: 15px;
-}
-.application.sheet.daggerheart.actor.dh-style.adversary .adversary-header-sheet .character-traits .trait {
-  height: 60px;
-  width: 60px;
-  background: url(../assets/svg/trait-shield.svg) no-repeat;
-  cursor: pointer;
-}
-.theme-light .application.sheet.daggerheart.actor.dh-style.adversary .adversary-header-sheet .character-traits .trait {
-  background: url('../assets/svg/trait-shield-light.svg') no-repeat;
-}
-.application.sheet.daggerheart.actor.dh-style.adversary .adversary-header-sheet .character-traits .trait .trait-name {
-  display: flex;
-  padding-top: 5px;
-  color: light-dark(#18162e, #f3c267);
-  font-size: 14px;
-  font-weight: 600;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-}
-.application.sheet.daggerheart.actor.dh-style.adversary .adversary-header-sheet .character-traits .trait .trait-name i {
-  line-height: 17px;
-  font-size: 10px;
-}
-.application.sheet.daggerheart.actor.dh-style.adversary .adversary-header-sheet .character-traits .trait .trait-value {
-  font-family: 'Montserrat', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  text-align: center;
-}
 .application.sheet.daggerheart.actor.dh-style.adversary .window-content {
   display: grid;
   grid-template-columns: 275px 1fr;
@@ -4628,6 +4592,9 @@ div.daggerheart.views.multiclass {
   gap: 10px;
   align-items: center;
 }
+.application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .experience-section {
+  margin-bottom: 20px;
+}
 .application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .experience-section .title {
   display: flex;
   gap: 15px;
@@ -4651,18 +4618,12 @@ div.daggerheart.views.multiclass {
   align-items: center;
   justify-content: space-between;
 }
-.application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .experience-section .experience-list .experience-row input[type='text'] {
-  height: 32px;
+.application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .experience-section .experience-list .experience-row .experience-name {
   width: 180px;
-  border: 1px solid transparent;
-  outline: 2px solid transparent;
+  text-align: start;
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
-  transition: all 0.3s ease;
   color: light-dark(#222, #efe6d8);
-}
-.application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .experience-section .experience-list .experience-row input[type='text']:hover {
-  outline: 2px solid light-dark(#222, #efe6d8);
 }
 .application.sheet.daggerheart.actor.dh-style.adversary .adversary-sidebar-sheet .experience-section .experience-list .experience-value {
   height: 25px;
@@ -4708,6 +4669,71 @@ div.daggerheart.views.multiclass {
 .application.daggerheart.dh-style.dialog .tab .fieldsets-section {
   display: flex;
   gap: 16px;
+}
+.application.daggerheart.dh-style.dialog .tab.experiences .add-experience-btn {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.application.daggerheart.dh-style.dialog .tab.experiences .experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.application.daggerheart.dh-style.dialog .tab.experiences .experience-list .experience-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 30px;
+  align-items: center;
+  gap: 5px;
+}
+.application.daggerheart.dh-style.dialog .tab.experiences .experience-list .experience-item a {
+  text-align: center;
+}
+.application.daggerheart.dh-style.dialog .tab.actions .add-action-btn {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.application.daggerheart.dh-style.dialog .tab.actions .action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 5px;
+}
+.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .label {
+  font-family: 'Montserrat', sans-serif;
+}
+.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .label .tags {
+  display: flex;
+  gap: 10px;
+}
+.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .label .tags .tag {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  font-size: 12px;
+  background: light-dark(#22222215, #efe6d815);
+  border: 1px solid light-dark(#222, #efe6d8);
+  border-radius: 3px;
+}
+.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .label .tags .label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .controls {
+  display: flex;
+  gap: 5px;
+}
+.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .controls a {
+  text-align: center;
 }
 .application.sheet.daggerheart.actor.dh-style.adversary .window-content {
   overflow: auto;
@@ -5717,13 +5743,13 @@ div.daggerheart.views.multiclass {
   transition: all 0.3s ease;
   color: #efe6d8;
 }
-.application.sheet.daggerheart.actor.dh-style.character .items-list {
+.application.daggerheart.dh-style .items-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .card-list {
+.application.daggerheart.dh-style .card-list {
   display: flex;
   flex-direction: row;
   gap: 10px;
