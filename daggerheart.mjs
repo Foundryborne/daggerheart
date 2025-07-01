@@ -215,7 +215,10 @@ Hooks.on('chatMessage', (_, message) => {
                 const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
                 const advantageRoll = `${advantageState === true ? '+d6' : advantageState === false ? '-d6' : ''}`;
                 const attributeRoll = `${trait?.value ? `${trait.value > 0 ? `+${trait.value}` : `${trait.value}`}` : ''}`;
-                const roll = await Roll.create(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`).evaluate();
+                const roll = new DualityRoll(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`);
+                await roll.evaluate();
+
+                console.log('roll result', roll.result);
 
                 setDiceSoNiceForDualityRoll(roll, advantageState);
 

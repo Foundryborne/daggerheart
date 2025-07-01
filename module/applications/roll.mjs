@@ -54,7 +54,7 @@ export class DHRoll extends Roll {
     }
 
     static async buildPost(roll, config, message) {
-        console.log(config)
+        console.log(config);
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
         }
@@ -374,7 +374,7 @@ export class DualityRoll extends D20Roll {
     applyBaseBonus() {
         this.options.roll.modifiers = [
             {
-                label: `DAGGERHEART.Abilities.${this.options.roll.trait}.name`,
+                label: 'HI',
                 value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.total`, this.data)
             }
         ];
@@ -410,9 +410,9 @@ export class DamageRoll extends DHRoll {
     static async postEvaluate(roll, config = {}) {
         super.postEvaluate(roll, config);
         config.roll.type = config.type;
-        if(config.source?.message) {
+        if (config.source?.message) {
             const chatMessage = ui.chat.collection.get(config.source.message);
-            chatMessage.update({'system.damage': config});
+            chatMessage.update({ 'system.damage': config });
         }
     }
 }
