@@ -14,6 +14,7 @@
         },
         "Actor": {
             "character": "Character",
+            "companion": "Companion",
             "adversary": "Adversary",
             "environment": "Environment"
         }
@@ -490,7 +491,29 @@
                 "evasion": "Permanently gain a +1 bonus to your Evasion.",
                 "subclass": "Take an upgraded subclass card. Then cross out the multiclass option for this tier.",
                 "proficiency": "Increase your Proficiency by +1.",
-                "multiclass": "Multiclass: Choose an additional class for your character, then cross out an unused “Take an upgraded subclass card” and the other multiclass option on this sheet."
+                "multiclass": "Multiclass: Choose an additional class for your character, then cross out an unused “Take an upgraded subclass card” and the other multiclass option on this sheet.",
+                "intelligent": "Your companion gains a permanent +1 bonus to a Companion Experience of your choice.",
+                "lightInTheDark": "Gain an additional Hope slot for your character.",
+                "creatureComfort": "Once per rest, when you take time during a quiet moment to give your companion love and attention, you can gain a Hope or you can both clear a Stress.",
+                "armored": "When your companion takes damage, you can mark one of your Armor Slots instead of marking one of their Stress.",
+                "vicious": "Increase your companion's damage dice or range by one step (d6 to d8, Close to Far, etc.)",
+                "resilient": "Your companion gains an additional Stress slot.",
+                "bonded": "When you mark your last Hit Point, your companion rushes to your side to comfort you. Roll a number of d6s equal to the unmarked Stress slots they have and mark them. If any roll a 6, your companion helps you up. Clear your last Hit Point and return to the scene.",
+                "aware": "Your companion gains a permanent +2 bonus to their Evasion."
+            },
+            "Actions": {
+                "CreatureComfort": {
+                    "Name": "Creature Comfort",
+                    "Description": "Once per rest, when you take time during a quiet moment to give your companion love and attention, you can gain a Hope or you can both clear a Stress."
+                },
+                "Armored": {
+                    "Name": "Armored",
+                    "Description": "When your companion takes damage, you can mark one of your Armor Slots instead of marking one of their Stress."
+                },
+                "Bonded": {
+                    "Name": "Bonded",
+                    "Description": "When you mark your last Hit Point, your companion rushes to your side to comfort you. Roll a number of d6s equal to the unmarked Stress slots they have and mark them. If any roll a 6, your companion helps you up. Clear your last Hit Point and return to the scene."
+                }
             },
             "Tier2": {
                 "Label": "Levels 2-4",
@@ -961,7 +984,9 @@
                     "content": "Returning to the previous level selection will remove all selections made for this level. Do you want to proceed?"
                 },
                 "Selections": {
-                    "emptyDomainCardHint": "{domain} level {level} or below"
+                    "emptyDomainCardHint": "{domain} level {level} or below",
+                    "viciousDamage": "Damage",
+                    "viciousRange": "Range"
                 },
                 "summary": {
                     "levelAchievements": "Level Achievements",
@@ -979,7 +1004,11 @@
                     "multiclass": "Multiclass",
                     "traits": "Increased Traits",
                     "experienceIncreases": "Experience Increases",
-                    "damageThresholds": "Damage Thresholds"
+                    "damageThresholds": "Damage Thresholds",
+                    "vicious": "Vicious",
+                    "damageIncreased": "Damage Increased: {damage}",
+                    "rangeIncreased": "Range Increased: {range}",
+                    "simpleFeature": "Feature: {feature}"
                 },
                 "notifications": {
                     "info": {
@@ -1135,6 +1164,8 @@
                 "CharacterSetup": "Character setup isn't done yet",
                 "Level": "Level",
                 "LevelUp": "You can level up",
+                "Features": "Features",
+                "CompanionFeatures": "Companion Features",
                 "Tabs": {
                     "Features": "Features",
                     "Inventory": "Inventory",
@@ -1178,9 +1209,6 @@
                 },
                 "Experience": {
                     "Title": "Experience"
-                },
-                "Features": {
-                    "Title": "Class Features"
                 },
                 "Gold": {
                     "Title": "Gold",
@@ -1247,6 +1275,24 @@
                     "tooHighLevel": "You cannot raise the character level past the maximum",
                     "tooLowLevel": "You cannot lower the character level below starting level"
                 }
+            },
+            "Companion": {
+                "FIELDS": {
+                    "partner": { "label": "Partner" },
+                    "evasion": {
+                        "value": { "label": "Evasion" }
+                    },
+                    "resources": {
+                        "stress": {
+                            "value": { "label": "Stress" }
+                        }
+                    },
+                    "attack": {
+                        "name": { "label": "Attack Name" }
+                    }
+                },
+                "Experiences": "Experiences",
+                "Level": "Level"
             },
             "Adversary": {
                 "FIELDS": {

@@ -1,4 +1,5 @@
 export { default as DhCharacterSheet } from './sheets/character.mjs';
+export { default as DhCompanionSheet } from './sheets/companion.mjs';
 export { default as DhpAdversarySheet } from './sheets/adversary.mjs';
 export { default as DhpClassSheet } from './sheets/items/class.mjs';
 export { default as DhpSubclass } from './sheets/items/subclass.mjs';

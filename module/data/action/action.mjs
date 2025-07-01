@@ -73,7 +73,10 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                 save: new fields.SchemaField({
                     trait: new fields.StringField({ nullable: true, initial: null, choices: SYSTEM.ACTOR.abilities }),
                     difficulty: new fields.NumberField({ nullable: true, initial: 10, integer: true, min: 0 }),
-                    damageMod: new fields.StringField({ initial: SYSTEM.ACTIONS.damageOnSave.none.id, choices: SYSTEM.ACTIONS.damageOnSave })
+                    damageMod: new fields.StringField({
+                        initial: SYSTEM.ACTIONS.damageOnSave.none.id,
+                        choices: SYSTEM.ACTIONS.damageOnSave
+                    })
                 }),
                 target: new fields.SchemaField({
                     type: new fields.StringField({
@@ -98,9 +101,12 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                         initial: SYSTEM.GENERAL.healingTypes.hitPoints.id,
                         label: 'Healing'
                     }),
-                    resultBased: new fields.BooleanField({ initial: false, label: "DAGGERHEART.Actions.Settings.ResultBased.label" }),
+                    resultBased: new fields.BooleanField({
+                        initial: false,
+                        label: 'DAGGERHEART.Actions.Settings.ResultBased.label'
+                    }),
                     value: new fields.EmbeddedDataField(DHActionDiceData),
-                    valueAlt: new fields.EmbeddedDataField(DHActionDiceData),
+                    valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
                 })
             },
             extraSchemas = {};
@@ -124,7 +130,11 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     get actor() {
-        return this.item instanceof DhpActor ? this.item : this.item?.actor;
+        return this.item instanceof DhpActor
+            ? this.item
+            : this.item?.parent instanceof DhpActor
+              ? this.item.parent
+              : this.item?.actor;
     }
 
     get chatTemplate() {
@@ -153,7 +163,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         return updateSource;
     }
 
-    getRollData(data={}) {
+    getRollData(data = {}) {
         const actorData = this.actor.getRollData(false);
 
         // Remove when included directly in Actor getRollData
@@ -166,11 +176,11 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                       return a;
                   }, {})
                 : 1; */
-        actorData.scale = data.costs?.length                        // Right now only return the first scalable cost.
-                ? (data.costs.find(c => c.scalable)?.total ?? 1)
-                : 1;
+        actorData.scale = data.costs?.length // Right now only return the first scalable cost.
+            ? (data.costs.find(c => c.scalable)?.total ?? 1)
+            : 1;
         actorData.roll = {};
-        
+
         return actorData;
     }
 
@@ -191,12 +201,14 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
         // Prepare Costs
         const costsConfig = this.prepareCost();
-        if(isFastForward && !this.hasCost(costsConfig)) return ui.notifications.warn("You don't have the resources to use that action.");
+        if (isFastForward && !this.hasCost(costsConfig))
+            return ui.notifications.warn("You don't have the resources to use that action.");
         // config = this.prepareUseCost(config)
 
         // Prepare Uses
         const usesConfig = this.prepareUse();
-        if(isFastForward && !this.hasUses(usesConfig)) return ui.notifications.warn("That action doesn't have remaining uses.");
+        if (isFastForward && !this.hasUses(usesConfig))
+            return ui.notifications.warn("That action doesn't have remaining uses.");
         // config = this.prepareUseCost(config)
 
         // Prepare Roll Data
@@ -209,24 +221,24 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             costs: costsConfig,
             uses: usesConfig,
             data: actorData
-        }
-        
-        if ( Hooks.call(`${SYSTEM.id}.preUseAction`, this, config) === false ) return;
+        };
+
+        if (Hooks.call(`${SYSTEM.id}.preUseAction`, this, config) === false) return;
 
         // Display configuration window if necessary
-        if ( config.dialog?.configure && this.requireConfigurationDialog(config) ) {
+        if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
             config = await D20RollDialog.configure(config);
             if (!config) return;
         }
 
-        if ( this.hasRoll ) {
+        if (this.hasRoll) {
             const rollConfig = this.prepareRoll(config);
             config.roll = rollConfig;
             config = await this.actor.diceRoll(config);
             if (!config) return;
         }
 
-        if( this.hasSave ) {
+        if (this.hasSave) {
             /* config.targets.forEach((t) => {
                 if(t.hit) {
                     const target = game.canvas.tokens.get(t.id),
@@ -258,16 +270,16 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             }) */
         }
 
-        if ( this.doFollowUp() ) {
-            if(this.rollDamage) await this.rollDamage(event, config);
-            if(this.rollHealing) await this.rollHealing(event, config);
-            if(this.trigger) await this.trigger(event, config);
+        if (this.doFollowUp()) {
+            if (this.rollDamage) await this.rollDamage(event, config);
+            if (this.rollHealing) await this.rollHealing(event, config);
+            if (this.trigger) await this.trigger(event, config);
         }
 
         // Consume resources
         await this.consume(config);
-        
-        if ( Hooks.call(`${SYSTEM.id}.postUseAction`, this, config) === false ) return;
+
+        if (Hooks.call(`${SYSTEM.id}.postUseAction`, this, config) === false) return;
 
         return config;
     }
@@ -287,7 +299,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             hasHealing: !!this.healing,
             hasEffect: !!this.effects?.length,
             hasSave: this.hasSave
-        }
+        };
     }
 
     requireConfigurationDialog(config) {
@@ -317,7 +329,6 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         }
         targets = targets.map(t => this.constructor.formatTarget(t));
         return targets;
-
     }
 
     prepareRange() {
@@ -326,7 +337,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     prepareRoll() {
-       const roll = {
+        const roll = {
             modifiers: [],
             trait: this.roll?.trait,
             label: 'Attack',
@@ -334,8 +345,8 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             difficulty: this.roll?.difficulty,
             formula: this.roll.getFormula()
         };
-        if(this.roll?.type === 'diceSet') roll.lite = true; 
-        
+        if (this.roll?.type === 'diceSet') roll.lite = true;
+
         return roll;
     }
 
@@ -344,12 +355,14 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     async consume(config) {
-        const resources = config.costs.filter(c => c.enabled !== false).map(c => {
-            return { type: c.type, value: (c.total ?? c.value) * -1 };
-        });
-        
+        const resources = config.costs
+            .filter(c => c.enabled !== false)
+            .map(c => {
+                return { type: c.type, value: (c.total ?? c.value) * -1 };
+            });
+
         await this.actor.modifyResource(resources);
-        if(config.uses?.enabled) {
+        if (config.uses?.enabled) {
             const newActions = foundry.utils.getProperty(this.item.system, this.systemPath).map(x => x.toObject());
             newActions[this.index].uses.value++;
             await this.item.update({ [`system.${this.systemPath}`]: newActions });
@@ -399,7 +412,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
     /* USES */
     calcUses(uses) {
-        if(!uses) return null;
+        if (!uses) return null;
         return {
             ...uses,
             enabled: uses.hasOwnProperty('enabled') ? uses.enabled : true
@@ -407,7 +420,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     hasUses(uses) {
-        if(!uses) return true;
+        if (!uses) return true;
         return (uses.hasOwnProperty('enabled') && !uses.enabled) || uses.value + 1 <= uses.max;
     }
     /* USES */
@@ -437,7 +450,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     /* TARGET */
 
     /* RANGE */
-    
+
     /* RANGE */
 
     /* EFFECTS */
@@ -447,10 +460,10 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         let effects = this.effects;
         targets.forEach(async token => {
             if (!token.hit && !force) return;
-            if(this.hasSave && token.saved.success === true) {
-                effects = this.effects.filter(e => e.onSave === true)
+            if (this.hasSave && token.saved.success === true) {
+                effects = this.effects.filter(e => e.onSave === true);
             }
-            if(!effects.length) return;
+            if (!effects.length) return;
             effects.forEach(async e => {
                 const actor = canvas.tokens.get(token.id)?.actor,
                     effect = this.item.effects.get(e._id);
@@ -485,6 +498,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
     /* SAVE */
     async rollSave(target, event, message) {
+<<<<<<< HEAD
         if(!target?.actor) return;
         return target.actor.diceRoll({
             event,
@@ -498,22 +512,44 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         }).then(async (result) => {
             if(result) this.updateChatMessage(message, target.id, {result: result.roll.total, success: result.roll.success});
         })
+=======
+        if (!target?.actor) return;
+        target.actor
+            .diceRoll({
+                event,
+                title: 'Roll Save',
+                roll: {
+                    trait: this.save.trait,
+                    difficulty: this.save.difficulty,
+                    type: 'reaction'
+                },
+                data: target.actor.getRollData()
+            })
+            .then(async result => {
+                if (result)
+                    this.updateChatMessage(message, target.id, {
+                        result: result.roll.total,
+                        success: result.roll.success
+                    });
+            });
+>>>>>>> main
     }
 
-    async updateChatMessage(message, targetId, changes, chain=true) {
+    async updateChatMessage(message, targetId, changes, chain = true) {
         setTimeout(async () => {
             const chatMessage = ui.chat.collection.get(message._id),
                 msgTargets = chatMessage.system.targets,
                 msgTarget = msgTargets.find(mt => mt.id === targetId);
             msgTarget.saved = changes;
-            await chatMessage.update({'system.targets': msgTargets});
-        },100);
-        if(chain) {
-            if(message.system.source.message) this.updateChatMessage(ui.chat.collection.get(message.system.source.message), targetId, changes, false);
+            await chatMessage.update({ 'system.targets': msgTargets });
+        }, 100);
+        if (chain) {
+            if (message.system.source.message)
+                this.updateChatMessage(ui.chat.collection.get(message.system.source.message), targetId, changes, false);
             const relatedChatMessages = ui.chat.collection.filter(c => c.system.source.message === message._id);
             relatedChatMessages.forEach(c => {
                 this.updateChatMessage(c, targetId, changes, false);
-            })
+            });
         }
     }
     /* SAVE */
@@ -524,7 +560,7 @@ export class DHDamageAction extends DHBaseAction {
 
     getFormulaValue(part, data) {
         let formulaValue = part.value;
-        if(this.hasRoll && part.resultBased && data.system.roll.result.duality === -1) return part.valueAlt;
+        if (this.hasRoll && part.resultBased && data.system.roll.result.duality === -1) return part.valueAlt;
         return formulaValue;
     }
 
@@ -534,19 +570,19 @@ export class DHDamageAction extends DHBaseAction {
         if (!formula || formula == '') return;
         let roll = { formula: formula, total: formula },
             bonusDamage = [];
-        
-        if(isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(data.system ?? data));
+
+        if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(data.system ?? data));
 
         const config = {
             title: game.i18n.format('DAGGERHEART.Chat.DamageRoll.Title', { damage: this.name }),
-            roll: {formula},
-            targets: (data.system?.targets.filter(t => t.hit) ?? data.targets),
+            roll: { formula },
+            targets: data.system?.targets.filter(t => t.hit) ?? data.targets,
             hasSave: this.hasSave,
             source: data.system?.source,
             event
         };
-        if(this.hasSave) config.onSave = this.save.damageMod;
-        if(data.system) {
+        if (this.hasSave) config.onSave = this.save.damageMod;
+        if (data.system) {
             config.source.message = data._id;
             config.directDamage = false;
         }
@@ -596,7 +632,8 @@ export class DHHealingAction extends DHBaseAction {
 
     getFormulaValue(data) {
         let formulaValue = this.healing.value;
-        if(this.hasRoll && this.healing.resultBased && data.system.roll.result.duality === -1) return this.healing.valueAlt;
+        if (this.hasRoll && this.healing.resultBased && data.system.roll.result.duality === -1)
+            return this.healing.valueAlt;
         return formulaValue;
     }
 
@@ -607,12 +644,12 @@ export class DHHealingAction extends DHBaseAction {
         if (!formula || formula == '') return;
         let roll = { formula: formula, total: formula },
             bonusDamage = [];
-        
+
         const config = {
             title: game.i18n.format('DAGGERHEART.Chat.HealingRoll.Title', {
                 healing: game.i18n.localize(SYSTEM.GENERAL.healingTypes[this.healing.type].label)
             }),
-            roll: {formula},
+            roll: { formula },
             targets: (data.system?.targets ?? data.targets).filter(t => t.hit),
             messageType: 'healing',
             type: this.healing.type,

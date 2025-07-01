@@ -189,10 +189,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             const pendingingSaves = message.system.targets.filter(target => target.hit && target.saved.success === null);
             if(pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
-                    window: {title: "Pending Reaction Rolls found"},
+                    window: { title: 'Pending Reaction Rolls found' },
                     content: `<p>Some Tokens still need to roll their Reaction Roll.</p><p>Are you sure you want to continue ?</p><p><i>Undone reaction rolls will be considered as failed</i></p>`
                 });
-                if ( !confirm ) return;
+                if (!confirm) return;
             }
         }
 
@@ -200,8 +200,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
         for (let target of targets) {
             let damage = message.system.roll.total;
-            if(message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true) damage = Math.ceil(damage * (SYSTEM.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
-            
+            if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true)
+                damage = Math.ceil(damage * (SYSTEM.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
+
             await target.actor.takeDamage(damage, message.system.roll.type);
         }
     };
@@ -212,7 +213,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
         if (targets.length === 0)
             ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
-        
+
         for (var target of targets) {
             await target.actor.takeHealing([{ value: message.system.roll.total, type: message.system.roll.type }]);
         }

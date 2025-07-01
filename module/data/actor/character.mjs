@@ -1,6 +1,7 @@
 import { burden } from '../../config/generalConfig.mjs';
+import ActionField from '../fields/actionField.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
-import { LevelOptionType } from '../levelTier.mjs';
+import DhLevelData from '../levelData.mjs';
 import BaseDataActor from './base.mjs';
 
 const attributeField = () =>
@@ -96,7 +97,8 @@ export default class DhCharacter extends BaseDataActor {
                 value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
                 subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })
             }),
-            levelData: new fields.EmbeddedDataField(DhPCLevelData),
+            actions: new fields.ArrayField(new ActionField()),
+            levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
                 armorScore: new fields.NumberField({ integer: true, initial: 0 }),
                 damageThresholds: new fields.SchemaField({
@@ -115,6 +117,7 @@ export default class DhCharacter extends BaseDataActor {
                     magic: new fields.NumberField({ integer: true, initial: 0 })
                 })
             }),
+            companion: new ForeignDocumentUUIDField({ type: 'Actor', nullable: true, initial: null }),
             rules: new fields.SchemaField({
                 maxArmorMarked: new fields.SchemaField({
                     value: new fields.NumberField({ required: true, integer: true, initial: 1 }),
@@ -154,8 +157,23 @@ export default class DhCharacter extends BaseDataActor {
         return this.parent.items.find(x => x.type === 'community') ?? null;
     }
 
+    get features() {
+        return this.parent.items.filter(x => x.type === 'feature') ?? [];
+    }
+
+    get companionFeatures() {
+        return this.companion ? this.companion.items.filter(x => x.type === 'feature') : [];
+    }
+
     get needsCharacterSetup() {
         return !this.class.value || !this.class.subclass;
+    }
+
+    get spellcastingModifiers() {
+        return {
+            main: this.class.subclass?.system?.spellcastingTrait,
+            multiclass: this.multiclass.subclass?.system?.spellcastingTrait
+        };
     }
 
     get domains() {
@@ -195,6 +213,12 @@ export default class DhCharacter extends BaseDataActor {
             : this.primaryWeapon || this.secondaryWeapon
               ? burden.oneHanded.value
               : null;
+    }
+
+    get deathMoveViable() {
+        return (
+            this.resources.hitPoints.maxTotal > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.maxTotal
+        );
     }
 
     static async unequipBeforeEquip(itemToEquip) {
@@ -307,58 +331,10 @@ export default class DhCharacter extends BaseDataActor {
             level: this.levelData.level.current
         };
     }
-}
 
-class DhPCLevelData extends foundry.abstract.DataModel {
-    static defineSchema() {
-        const fields = foundry.data.fields;
-
-        return {
-            level: new fields.SchemaField({
-                current: new fields.NumberField({ required: true, integer: true, initial: 1 }),
-                changed: new fields.NumberField({ required: true, integer: true, initial: 1 })
-            }),
-            levelups: new fields.TypedObjectField(
-                new fields.SchemaField({
-                    achievements: new fields.SchemaField(
-                        {
-                            experiences: new fields.TypedObjectField(
-                                new fields.SchemaField({
-                                    name: new fields.StringField({ required: true }),
-                                    modifier: new fields.NumberField({ required: true, integer: true })
-                                })
-                            ),
-                            domainCards: new fields.ArrayField(
-                                new fields.SchemaField({
-                                    uuid: new fields.StringField({ required: true }),
-                                    itemUuid: new fields.StringField({ required: true })
-                                })
-                            ),
-                            proficiency: new fields.NumberField({ integer: true })
-                        },
-                        { nullable: true, initial: null }
-                    ),
-                    selections: new fields.ArrayField(
-                        new fields.SchemaField({
-                            tier: new fields.NumberField({ required: true, integer: true }),
-                            level: new fields.NumberField({ required: true, integer: true }),
-                            optionKey: new fields.StringField({ required: true }),
-                            type: new fields.StringField({ required: true, choices: LevelOptionType }),
-                            checkboxNr: new fields.NumberField({ required: true, integer: true }),
-                            value: new fields.NumberField({ integer: true }),
-                            minCost: new fields.NumberField({ integer: true }),
-                            amount: new fields.NumberField({ integer: true }),
-                            data: new fields.ArrayField(new fields.StringField({ required: true })),
-                            secondaryData: new fields.TypedObjectField(new fields.StringField({ required: true })),
-                            itemUuid: new fields.StringField({ required: true })
-                        })
-                    )
-                })
-            )
-        };
-    }
-
-    get canLevelUp() {
-        return this.level.current < this.level.changed;
+    async _preDelete() {
+        if (this.companion) {
+            this.companion.updateLevel(1);
+        }
     }
 }

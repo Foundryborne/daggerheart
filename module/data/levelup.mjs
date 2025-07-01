@@ -32,7 +32,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
                         return acc;
                     }, {});
 
-                    levels[i] = DhLevelupLevel.initializeData(pcLevelData.levelups[i], tier.availableOptions, {
+                    levels[i] = DhLevelupLevel.initializeData(pcLevelData.levelups[i], tier.maxSelections[i], {
                         ...initialAchievements,
                         experiences,
                         domainCards
@@ -46,7 +46,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
                 name: tier.name,
                 belongingLevels: belongingLevels,
                 options: Object.keys(tier.options).reduce((acc, key) => {
-                    acc[key] = tier.options[key].toObject();
+                    acc[key] = tier.options[key].toObject?.() ?? tier.options[key];
                     return acc;
                 }, {})
             };
@@ -98,6 +98,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
                     case 'experience':
                     case 'domainCard':
                     case 'subclass':
+                    case 'vicious':
                         return checkbox.data.length === (checkbox.amount ?? 1);
                     case 'multiclass':
                         const classSelected = checkbox.data.length === 1;

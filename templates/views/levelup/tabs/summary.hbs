@@ -4,55 +4,58 @@
     data-group='{{tabs.summary.group}}'
 >
     <div class="section-container levelup-summary-container">
-        <fieldset>
-            <legend>{{localize "DAGGERHEART.Application.LevelUp.summary.levelAchievements"}}</legend>
+        {{#if this.achievements}}
+            <fieldset>
+                <legend>{{localize "DAGGERHEART.Application.LevelUp.summary.levelAchievements"}}</legend>
 
-            <div class="level-achievements-container">
-                {{#if this.achievements.proficiency.shown}}
-                    <div>
-                        <div class="increase-container">
-                            {{localize "DAGGERHEART.Application.LevelUp.summary.proficiencyIncrease" proficiency=this.achievements.proficiency.old }}
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                            {{this.achievements.proficiency.new}}
+                <div class="level-achievements-container">
+                    {{#if this.achievements.proficiency.shown}}
+                        <div>
+                            <div class="increase-container">
+                                {{localize "DAGGERHEART.Application.LevelUp.summary.proficiencyIncrease" proficiency=this.achievements.proficiency.old }}
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                                {{this.achievements.proficiency.new}}
+                            </div>
                         </div>
-                    </div>
-                {{/if}}
-                <div>
-                    <h5 class="summary-section">{{localize "DAGGERHEART.Application.LevelUp.summary.damageThresholds"}}{{#if this.levelAchievements.damageThresholds.unarmored}}({{localize "DAGGERHEART.General.unarmored"}}){{/if}}</h5>
-                    <div class="increase-container">
-                        {{localize "DAGGERHEART.Application.LevelUp.summary.damageThresholdMajorIncrease" threshold=this.achievements.damageThresholds.major.old }}
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                        {{this.achievements.damageThresholds.major.new}}
-                    </div>
-                    <div class="increase-container">
-                        {{localize "DAGGERHEART.Application.LevelUp.summary.damageThresholdSevereIncrease" threshold=this.achievements.damageThresholds.severe.old }}
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                        {{this.achievements.damageThresholds.severe.new}}
-                    </div>
+                    {{/if}}
+                    {{#if this.achievements.damageThresholds}}
+                        <div>
+                            <h5 class="summary-section">{{localize "DAGGERHEART.Application.LevelUp.summary.damageThresholds"}}{{#if this.levelAchievements.damageThresholds.unarmored}}({{localize "DAGGERHEART.General.unarmored"}}){{/if}}</h5>
+                            <div class="increase-container">
+                                {{localize "DAGGERHEART.Application.LevelUp.summary.damageThresholdMajorIncrease" threshold=this.achievements.damageThresholds.major.old }}
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                                {{this.achievements.damageThresholds.major.new}}
+                            </div>
+                            <div class="increase-container">
+                                {{localize "DAGGERHEART.Application.LevelUp.summary.damageThresholdSevereIncrease" threshold=this.achievements.damageThresholds.severe.old }}
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                                {{this.achievements.damageThresholds.severe.new}}
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if this.achievements.domainCards.shown}}
+                        <div>
+                            <h5>{{localize "DAGGERHEART.Application.LevelUp.summary.domainCards"}}</h5>
+                            <div class="summary-selection-container">
+                                {{#each this.achievements.domainCards.values}}
+                                    <div class="summary-selection">{{this.name}}</div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if this.achievements.experiences.shown}}
+                        <div>
+                            <h5>{{localize "DAGGERHEART.Application.LevelUp.summary.newExperiences"}}</h5>
+                            <div class="summary-selection-container">
+                                {{#each this.achievements.experiences.values}}
+                                    <div class="summary-selection">{{this.name}} {{signedNumber this.modifier}}</div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{/if}}
                 </div>
-                {{#if this.achievements.domainCards.shown}}
-                    <div>
-                        <h5>{{localize "DAGGERHEART.Application.LevelUp.summary.domainCards"}}</h5>
-                        <div class="summary-selection-container">
-                            {{#each this.achievements.domainCards.values}}
-                                <div class="summary-selection">{{this.name}}</div>
-                            {{/each}}
-                        </div>
-                    </div>
-                {{/if}}
-                {{#if this.achievements.experiences.shown}}
-                    <div>
-                        <h5>{{localize "DAGGERHEART.Application.LevelUp.summary.newExperiences"}}</h5>
-                        <div class="summary-selection-container">
-                            {{#each this.achievements.experiences.values}}
-                                <div class="summary-selection">{{this.name}} {{signedNumber this.modifier}}</div>
-                            {{/each}}
-                        </div>
-                    </div>
-                {{/if}}
-            </div>
-        </fieldset>
-
+            </fieldset>
+        {{/if}}
         <fieldset>
             <legend>{{localize "DAGGERHEART.Application.LevelUp.summary.levelAdvancements"}}</legend>
 
@@ -151,6 +154,26 @@
                         </div>
                     {{/with}}
                 {{/if}}
+
+                {{#if this.advancements.vicious.damage}}
+                     <div class="increase-container">
+                        {{localize "DAGGERHEART.Application.LevelUp.summary.damageIncreased" damage=this.advancements.vicious.damage.old }}
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                        {{this.advancements.vicious.damage.new}}
+                    </div>     
+                {{/if}}
+                {{#if this.advancements.vicious.range}}
+                     <div class="increase-container">
+                        {{localize "DAGGERHEART.Application.LevelUp.summary.rangeIncreased" range=this.advancements.vicious.range.old }}
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                        {{this.advancements.vicious.range.new}}
+                    </div>     
+                {{/if}}
+                {{#each this.advancements.simple}}
+                    <div class="summary-selection-container">
+                        <div class="summary-selection">{{localize "DAGGERHEART.Application.LevelUp.summary.simpleFeature" feature=this}}</div>
+                    </div>
+                {{/each}}
             </div>
         </fieldset>
 

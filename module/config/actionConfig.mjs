@@ -76,7 +76,7 @@ export const damageOnSave = {
         label: 'Full damage',
         mod: 1
     }
-}
+};
 
 export const diceCompare = {
     below: {
@@ -104,4 +104,4 @@ export const diceCompare = {
         label: 'Above',
         operator: '>'
     }
-}
+};

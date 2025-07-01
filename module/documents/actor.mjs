@@ -1,7 +1,12 @@
 import DamageSelectionDialog from '../applications/damageSelectionDialog.mjs';
 import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
 import DamageReductionDialog from '../applications/damageReductionDialog.mjs';
+<<<<<<< HEAD
 import Resources from '../applications/resources.mjs';
+=======
+import { LevelOptionType } from '../data/levelTier.mjs';
+import DHFeature from '../data/item/feature.mjs';
+>>>>>>> main
 
 export default class DhpActor extends Actor {
     async _preCreate(data, options, user) {
@@ -9,7 +14,7 @@ export default class DhpActor extends Actor {
 
         // Configure prototype token settings
         const prototypeToken = {};
-        if (this.type === 'character')
+        if (['character', 'companion'].includes(this.type))
             Object.assign(prototypeToken, {
                 sight: { enabled: true },
                 actorLink: true,
@@ -19,7 +24,7 @@ export default class DhpActor extends Actor {
     }
 
     async updateLevel(newLevel) {
-        if (this.type !== 'character' || newLevel === this.system.levelData.level.changed) return;
+        if (!['character', 'companion'].includes(this.type) || newLevel === this.system.levelData.level.changed) return;
 
         if (newLevel > this.system.levelData.level.current) {
             const maxLevel = Object.values(
@@ -42,6 +47,7 @@ export default class DhpActor extends Actor {
                 return acc;
             }, {});
 
+            const featureIds = [];
             const domainCards = [];
             const experiences = [];
             const subclassFeatureState = { class: null, multiclass: null };
@@ -54,6 +60,7 @@ export default class DhpActor extends Actor {
                     const advancementCards = level.selections.filter(x => x.type === 'domainCard').map(x => x.itemUuid);
                     domainCards.push(...achievementCards, ...advancementCards);
                     experiences.push(...Object.keys(level.achievements.experiences));
+                    featureIds.push(...level.selections.flatMap(x => x.featureIds));
 
                     const subclass = level.selections.find(x => x.type === 'subclass');
                     if (subclass) {
@@ -67,13 +74,21 @@ export default class DhpActor extends Actor {
                     multiclass = level.selections.find(x => x.type === 'multiclass');
                 });
 
+            for (let featureId of featureIds) {
+                this.items.get(featureId).delete();
+            }
+
             if (experiences.length > 0) {
-                this.update({
+                const getUpdate = () => ({
                     'system.experiences': experiences.reduce((acc, key) => {
                         acc[`-=${key}`] = null;
                         return acc;
                     }, {})
                 });
+                this.update(getUpdate());
+                if (this.system.companion) {
+                    this.system.companion.update(getUpdate());
+                }
             }
 
             if (subclassFeatureState.class) {
@@ -115,10 +130,15 @@ export default class DhpActor extends Actor {
                     }
                 }
             });
+
+            if (this.system.companion) {
+                this.system.companion.updateLevel(newLevel);
+            }
         }
     }
 
     async levelUp(levelupData) {
+        const actions = [];
         const levelups = {};
         for (var levelKey of Object.keys(levelupData)) {
             const level = levelupData[levelKey];
@@ -127,13 +147,23 @@ export default class DhpActor extends Actor {
                 const experience = level.achievements.experiences[experienceKey];
                 await this.update({
                     [`system.experiences.${experienceKey}`]: {
-                        description: experience.name,
+                        name: experience.name,
                         value: experience.modifier
                     }
                 });
+
+                if (this.system.companion) {
+                    await this.system.companion.update({
+                        [`system.experiences.${experienceKey}`]: {
+                            name: '',
+                            value: experience.modifier
+                        }
+                    });
+                }
             }
 
             let multiclass = null;
+            const featureAdditions = [];
             const domainCards = [];
             const subclassFeatureState = { class: null, multiclass: null };
             const selections = [];
@@ -142,7 +172,18 @@ export default class DhpActor extends Actor {
                 for (var checkboxNr of Object.keys(selection)) {
                     const checkbox = selection[checkboxNr];
 
-                    if (checkbox.type === 'multiclass') {
+                    const tierOption = LevelOptionType[checkbox.type];
+                    if (tierOption.features?.length > 0) {
+                        featureAdditions.push({
+                            checkbox: {
+                                ...checkbox,
+                                level: Number(levelKey),
+                                optionKey: optionKey,
+                                checkboxNr: Number(checkboxNr)
+                            },
+                            features: tierOption.features
+                        });
+                    } else if (checkbox.type === 'multiclass') {
                         multiclass = {
                             ...checkbox,
                             level: Number(levelKey),
@@ -173,6 +214,28 @@ export default class DhpActor extends Actor {
                         });
                     }
                 }
+            }
+
+            for (var addition of featureAdditions) {
+                for (var featureData of addition.features) {
+                    const feature = new DHFeature({
+                        ...featureData,
+                        description: game.i18n.localize(featureData.description)
+                    });
+                    const embeddedItem = await this.createEmbeddedDocuments('Item', [
+                        {
+                            ...featureData,
+                            name: game.i18n.localize(featureData.name),
+                            type: 'feature',
+                            system: feature
+                        }
+                    ]);
+                    addition.checkbox.featureIds = !addition.checkbox.featureIds
+                        ? [embeddedItem[0].id]
+                        : [...addition.checkbox.featureIds, embeddedItem[0].id];
+                }
+
+                selections.push(addition.checkbox);
             }
 
             if (multiclass) {
@@ -239,6 +302,7 @@ export default class DhpActor extends Actor {
 
         await this.update({
             system: {
+                actions: [...this.system.actions, ...actions],
                 levelData: {
                     level: {
                         current: this.system.levelData.level.changed
@@ -247,6 +311,10 @@ export default class DhpActor extends Actor {
                 }
             }
         });
+
+        if (this.system.companion) {
+            this.system.companion.updateLevel(this.system.levelData.level.changed);
+        }
     }
 
     /**
@@ -267,7 +335,7 @@ export default class DhpActor extends Actor {
      * @param {object} [config.costs]
      */
     async diceRoll(config) {
-        config.source = {...(config.source ?? {}), actor: this.uuid};
+        config.source = { ...(config.source ?? {}), actor: this.uuid };
         config.data = this.getRollData();
         const rollClass = config.roll.lite ? CONFIG.Dice.daggerheart['DHRoll'] : this.rollClass;
         return await rollClass.build(config);
@@ -365,6 +433,11 @@ export default class DhpActor extends Actor {
     }
 
     async takeDamage(damage, type) {
+        if (this.type === 'companion') {
+            await this.modifyResource([{ value: 1, type: 'stress' }]);
+            return;
+        }
+
         const hpDamage =
             damage >= this.system.damageThresholds.severe
                 ? 3
@@ -426,7 +499,10 @@ export default class DhpActor extends Actor {
                     break;
                 default:
                     updates.actor.resources[`system.resources.${r.type}.value`] = Math.max(
-                        Math.min(this.system.resources[r.type].value + r.value, (this.system.resources[r.type].maxTotal ?? this.system.resources[r.type].max)),
+                        Math.min(
+                            this.system.resources[r.type].value + r.value,
+                            this.system.resources[r.type].maxTotal ?? this.system.resources[r.type].max
+                        ),
                         0
                     );
                     break;

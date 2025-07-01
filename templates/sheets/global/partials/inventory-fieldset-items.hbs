@@ -34,6 +34,16 @@
                     {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=effect type=../type}}
                 {{/if}}
             {{/each}}
+            {{#each document.system.features as |feature|}}
+                {{#if (or (eq ../type 'features'))}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=feature}}
+                {{/if}}
+            {{/each}}
+            {{#each document.system.companionFeatures as |feature|}}
+                {{#if (or (eq ../type 'companionFeatures'))}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=feature companion=true}}
+                {{/if}}
+            {{/each}}
         {{/unless}}
         
     </ul>

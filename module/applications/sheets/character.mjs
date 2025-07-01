@@ -4,7 +4,7 @@ import DhpDowntime from '../downtime.mjs';
 import AncestrySelectionDialog from '../ancestrySelectionDialog.mjs';
 import DaggerheartSheet from './daggerheart-sheet.mjs';
 import { abilities } from '../../config/actorConfig.mjs';
-import DhlevelUp from '../levelup.mjs';
+import DhCharacterlevelUp from '../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../characterCreation.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -303,8 +303,11 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     getItem(element) {
-        const itemId = (element.target ?? element).closest('[data-item-id]').dataset.itemId,
-            item = this.document.items.get(itemId);
+        const listElement = (element.target ?? element).closest('[data-item-id]');
+        const document = listElement.dataset.companion ? this.document.system.companion : this.document;
+
+        const itemId = listElement.dataset.itemId,
+            item = document.items.get(itemId);
         return item;
     }
 
@@ -313,7 +316,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static _onEditImage() {
-        const fp = new FilePicker({
+        const fp = new foundry.applications.apps.FilePicker.implementation({
             current: this.document.img,
             type: 'image',
             redirectToRoot: ['icons/svg/mystery-man.svg'],
@@ -328,24 +331,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
         context.tabs = super._getTabs(this.constructor.TABS);
-
         context.config = SYSTEM;
-
-        const selectedAttributes = Object.values(this.document.system.traits).map(x => x.base);
-        context.abilityScoreArray = await game.settings
-            .get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew)
-            .traitArray.reduce((acc, x) => {
-                const selectedIndex = selectedAttributes.indexOf(x);
-                if (selectedIndex !== -1) {
-                    selectedAttributes.splice(selectedIndex, 1);
-                } else {
-                    acc.push({ name: x, value: x });
-                }
-
-                return acc;
-            }, []);
-        if (!context.abilityScoreArray.includes(0)) context.abilityScoreArray.push({ name: 0, value: 0 });
-        context.abilityScoresFinished = context.abilityScoreArray.every(x => x.value === 0);
 
         context.attributes = Object.keys(this.document.system.traits).reduce((acc, key) => {
             acc[key] = {
@@ -357,67 +343,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             return acc;
         }, {});
 
-        const ancestry = await this.mapFeatureType(
-            this.document.system.ancestry ? [this.document.system.ancestry] : [],
-            SYSTEM.GENERAL.objectTypes
-        );
-        const community = await this.mapFeatureType(
-            this.document.system.community ? [this.document.system.community] : [],
-            SYSTEM.GENERAL.objectTypes
-        );
-        const foundation = {
-            ancestry: ancestry[0],
-            community: community[0],
-            advancement: {}
-        };
-
-        const nrLoadoutCards = this.document.system.domainCards.loadout.length;
-        const loadout = await this.mapFeatureType(this.document.system.domainCards.loadout, SYSTEM.DOMAIN.cardTypes);
-        const vault = await this.mapFeatureType(this.document.system.domainCards.vault, SYSTEM.DOMAIN.cardTypes);
-        context.abilities = {
-            foundation: foundation,
-            loadout: {
-                top: loadout.slice(0, Math.min(2, nrLoadoutCards)),
-                bottom: nrLoadoutCards > 2 ? loadout.slice(2, Math.min(5, nrLoadoutCards)) : [],
-                nrTotal: nrLoadoutCards,
-                listView: game.user.getFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList)
-            },
-            vault: vault.map(x => ({
-                ...x,
-                uuid: x.uuid,
-                sendToLoadoutDisabled: this.document.system.domainCards.loadout.length >= 5
-            }))
-        };
-
         context.inventory = {
-            consumable: {
-                titles: {
-                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.ConsumableTitle'),
-                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
-                },
-                items: this.document.items.filter(x => x.type === 'consumable')
-            },
-            miscellaneous: {
-                titles: {
-                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.MiscellaneousTitle'),
-                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
-                },
-                items: this.document.items.filter(x => x.type === 'miscellaneous')
-            },
-            weapons: {
-                titles: {
-                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.WeaponsTitle'),
-                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
-                },
-                items: this.document.items.filter(x => x.type === 'weapon')
-            },
-            armor: {
-                titles: {
-                    name: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.ArmorsTitle'),
-                    quantity: game.i18n.localize('DAGGERHEART.Sheets.PC.InventoryTab.QuantityTitle')
-                },
-                items: this.document.items.filter(x => x.type === 'armor')
-            },
             currency: {
                 title: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Title'),
                 coins: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Coins'),
@@ -536,28 +462,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         }
     }
 
-    /* -------------------------------------------- */
-
-    async mapFeatureType(data, configType) {
-        return await Promise.all(
-            data.map(async x => {
-                const abilities = x.system.abilities
-                    ? await Promise.all(x.system.abilities.map(async x => await fromUuid(x.uuid)))
-                    : [];
-
-                return {
-                    ...x,
-                    uuid: x.uuid,
-                    system: {
-                        ...x.system,
-                        abilities: abilities,
-                        type: game.i18n.localize(configType[x.system.type ?? x.type].label)
-                    }
-                };
-            })
-        );
-    }
-
     static async rollAttribute(event, button) {
         const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
         const config = {
@@ -643,7 +547,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             return;
         }
 
-        new DhlevelUp(this.document).render(true);
+        new DhCharacterlevelUp(this.document).render(true);
     }
 
     static async useDomainCard(event, button) {
@@ -709,15 +613,22 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     static async useItem(event, button) {
         const item = this.getItem(button);
         if (!item) return;
-        const wasUsed = await item.use(event);
-        if (wasUsed && item.type === 'weapon') {
-            Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+
+        // Should dandle its actions. Or maybe they'll be separate buttons as per an Issue on the board
+        if (item.type === 'feature') {
+            item.toChat();
+        } else {
+            const wasUsed = await item.use(event);
+            if (wasUsed && item.type === 'weapon') {
+                Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+            }
         }
     }
 
-    static async viewObject(event, button) {
+    static async viewObject(event) {
         const item = this.getItem(event);
         if (!item) return;
+
         item.sheet.render(true);
     }
 
@@ -771,9 +682,10 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    static async deleteItem(event, button) {
+    static async deleteItem(event) {
         const item = this.getItem(event);
         if (!item) return;
+
         await item.delete();
     }
 
