@@ -57,15 +57,18 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
 
     async _preFirstRender(context, options) {
         options.position =
-            game.user.getFlag(SYSTEM.id, SYSTEM.FLAGS.countdown.position) ?? Countdowns.DEFAULT_OPTIONS.position;
+            game.user.getFlag(SYSTEM.id, SYSTEM.FLAGS[`${this.basePath}Countdown`].position) ??
+            Countdowns.DEFAULT_OPTIONS.position;
 
-        const viewSetting = game.user.getFlag(SYSTEM.id, SYSTEM.FLAGS.countdown.simple) ?? !game.user.isGM;
+        const viewSetting =
+            game.user.getFlag(SYSTEM.id, SYSTEM.FLAGS[`${this.basePath}Countdown`].simple) ?? !game.user.isGM;
         this.simpleView =
             game.user.isGM || !this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER) ? viewSetting : true;
+        context.simple = this.simpleView;
     }
 
     _onPosition(position) {
-        game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS.countdown.position, position);
+        game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS[`${this.basePath}Countdown`].position, position);
     }
 
     async _renderFrame(options) {
@@ -228,9 +231,9 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
         });
     }
 
-    static toggleSimpleView() {
+    static async toggleSimpleView() {
         this.simpleView = !this.simpleView;
-        game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS.countdown.simple, this.simpleView);
+        await game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS[`${this.basePath}Countdown`].simple, this.simpleView);
         this.render();
     }
 

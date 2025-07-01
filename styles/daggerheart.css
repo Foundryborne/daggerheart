@@ -1414,7 +1414,7 @@ fieldset.daggerheart.chat legend {
 fieldset.daggerheart.chat legend:before,
 fieldset.daggerheart.chat legend:after {
   content: '\f0d8';
-  font-family: "Font Awesome 6 Pro";
+  font-family: 'Font Awesome 6 Pro';
 }
 fieldset.daggerheart.chat.expanded legend:before,
 fieldset.daggerheart.chat.expanded legend:after {
@@ -1559,13 +1559,13 @@ fieldset.daggerheart.chat .daggerheart.chat {
   display: flex;
   justify-content: space-around;
 }
-.daggerheart.chat.roll .target-selection input[type="radio"] {
+.daggerheart.chat.roll .target-selection input[type='radio'] {
   display: none;
 }
-.daggerheart.chat.roll .target-selection input[type="radio"]:checked + label {
-  text-shadow: 0px 0px 4px #CE5937;
+.daggerheart.chat.roll .target-selection input[type='radio']:checked + label {
+  text-shadow: 0px 0px 4px #ce5937;
 }
-.daggerheart.chat.roll .target-selection input[type="radio"]:not(:checked) + label {
+.daggerheart.chat.roll .target-selection input[type='radio']:not(:checked) + label {
   opacity: 0.75;
 }
 .daggerheart.chat.roll .target-selection label {
@@ -1573,7 +1573,7 @@ fieldset.daggerheart.chat .daggerheart.chat {
   opacity: 0.75;
 }
 .daggerheart.chat.roll .target-selection label.target-selected {
-  text-shadow: 0px 0px 4px #CE5937;
+  text-shadow: 0px 0px 4px #ce5937;
   opacity: 1;
 }
 .daggerheart.chat.roll .target-section {
@@ -1700,7 +1700,7 @@ fieldset.daggerheart.chat .daggerheart.chat {
   display: none;
 }
 .daggerheart.chat [data-view-perm='false']::after {
-  content: "??";
+  content: '??';
 }
 .theme-colorful .chat-message.duality {
   border-color: black;
