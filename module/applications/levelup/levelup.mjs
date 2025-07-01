@@ -429,20 +429,20 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     return;
                 }
 
-                if (
-                    Object.values(this.levelup.levels).some(level => {
-                        const achievementExists = Object.values(level.achievements.domainCards).some(
-                            card => card.uuid === item.uuid
-                        );
-                        const advancementExists = Object.keys(level.choices).some(choiceKey => {
-                            if (choiceKey !== 'domainCard') return false;
-                            const choice = level.choices[choiceKey];
-                            return Object.values(choice).some(checkbox => checkbox.data.includes(item.uuid));
-                        });
+                const cardExistsInCharacter = this.actor.items.find(x => x.name === item.name); // Any other way to check? The item is a copy so different ids
+                const cardExistsInLevelup = Object.values(this.levelup.levels).some(level => {
+                    const achievementExists = Object.values(level.achievements.domainCards).some(
+                        card => card.uuid === item.uuid
+                    );
+                    const advancementExists = Object.keys(level.choices).some(choiceKey => {
+                        if (choiceKey !== 'domainCard') return false;
+                        const choice = level.choices[choiceKey];
+                        return Object.values(choice).some(checkbox => checkbox.data.includes(item.uuid));
+                    });
 
-                        return achievementExists || advancementExists;
-                    })
-                ) {
+                    return achievementExists || advancementExists;
+                });
+                if (cardExistsInCharacter || cardExistsInLevelup) {
                     ui.notifications.error(
                         game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardDuplicate')
                     );
