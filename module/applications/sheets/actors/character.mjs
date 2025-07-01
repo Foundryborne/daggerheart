@@ -815,9 +815,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
-                description: `${experience.description} ${
-                    experience.total < 0 ? experience.total : `+${experience.total}`
-                }`
+                description: `${experience.name} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
             };
             const msg = new cls({
                 type: 'abilityUse',
