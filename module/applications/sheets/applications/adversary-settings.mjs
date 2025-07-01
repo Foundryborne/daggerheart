@@ -1,5 +1,4 @@
 import DHActionConfig from '../../config/Action.mjs';
-import DaggerheartSheet from '../daggerheart-sheet.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 import { actionsTypes } from '../../../data/_module.mjs';
 
@@ -18,7 +17,6 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-action',
         classes: ['daggerheart', 'dh-style', 'dialog', 'adversary-settings'],
         window: {
             icon: 'fa-solid fa-wrench',
@@ -104,9 +102,7 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
         context.tabs = this._getTabs(this.constructor.TABS);
         context.systemFields = this.actor.system.schema.fields;
         context.systemFields.attack.fields = this.actor.system.attack.schema.fields;
-        // context.getEffectDetails = this.getEffectDetails.bind(this);
-        // context.isNPC = true;
-        // console.log(context);
+
         return context;
     }
 
