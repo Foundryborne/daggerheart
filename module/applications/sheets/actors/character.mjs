@@ -1,11 +1,11 @@
-import { capitalize } from '../../helpers/utils.mjs';
-import DhpDeathMove from '../deathMove.mjs';
-import DhpDowntime from '../downtime.mjs';
-import AncestrySelectionDialog from '../ancestrySelectionDialog.mjs';
-import DaggerheartSheet from './daggerheart-sheet.mjs';
-import { abilities } from '../../config/actorConfig.mjs';
-import DhCharacterlevelUp from '../levelup/characterLevelup.mjs';
-import DhCharacterCreation from '../characterCreation.mjs';
+import { capitalize } from '../../../helpers/utils.mjs';
+import DhpDeathMove from '../../deathMove.mjs';
+import DhpDowntime from '../../downtime.mjs';
+import AncestrySelectionDialog from '../../ancestrySelectionDialog.mjs';
+import DaggerheartSheet from '.././daggerheart-sheet.mjs';
+import { abilities } from '../../../config/actorConfig.mjs';
+import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
+import DhCharacterCreation from '../../characterCreation.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
