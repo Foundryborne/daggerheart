@@ -51,8 +51,8 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     async onPartnerChange(event) {
-        const partner = game.actors.find(a => a.uuid === event.target.value);
         if (event.target.value) {
+            const partner = game.actors.find(a => a.uuid === event.target.value);
             await partner.update({ 'system.companion': this.document.uuid });
         } else {
             const update = { 'system.companion': null };
@@ -74,7 +74,6 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
         }
 
         await this.document.update({ 'system.partner': event.target.value });
-        await this.document.updateLevel(partner ? partner.system.levelData.level.current : 1);
     }
 
     static async attackRoll(event) {
