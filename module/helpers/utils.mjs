@@ -225,10 +225,10 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
 
 // Fix on Foundry native formula replacement for DH
 const nativeReplaceFormulaData = Roll.replaceFormulaData;
-Roll.replaceFormulaData = function (formula, data={}, { missing, warn = false } = {}) {
+Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
     const terms = Object.keys(SYSTEM.GENERAL.multiplierTypes).map(type => {
-        return { term: type, default: 1}
-    })
+        return { term: type, default: 1 };
+    });
     formula = terms.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
     return nativeReplaceFormulaData(formula, data, { missing, warn });
 };
@@ -258,3 +258,25 @@ export const damageKeyToNumber = key => {
             return 0;
     }
 };
+
+export default function constructHTMLButton({
+    label,
+    dataset = {},
+    classes = [],
+    icon = '',
+    type = 'button',
+    disabled = false
+}) {
+    const button = document.createElement('button');
+    button.type = type;
+
+    for (const [key, value] of Object.entries(dataset)) {
+        button.dataset[key] = value;
+    }
+    button.classList.add(...classes);
+    if (icon) icon = `<i class="${icon}"></i> `;
+    if (disabled) button.disabled = true;
+    button.innerHTML = `${icon}${label}`;
+
+    return button;
+}

@@ -1,6 +1,6 @@
 .theme-light {
     .daggerheart.dh-style.countdown {
-        &.minimized .minimized-view .mini-countdown-container {
+        .minimized-view .mini-countdown-container {
             background-image: url('../assets/parchments/dh-parchment-dark.png');
         }
     }
@@ -26,51 +26,38 @@
         }
     }
 
-    &.minimized {
-        height: auto !important;
-        max-height: unset !important;
-        max-width: 740px !important;
-        width: auto !important;
+    .minimized-view {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
 
-        .window-content {
+        .mini-countdown-container {
+            width: fit-content;
             display: flex;
-            padding: 4px 8px;
-            justify-content: center;
-        }
-
-        .minimized-view {
-            display: flex;
+            align-items: center;
             gap: 8px;
-            flex-wrap: wrap;
+            border: 2px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            padding: 0 4px 0 0;
+            background-image: url('../assets/parchments/dh-parchment-light.png');
+            color: light-dark(@beige, @dark);
+            cursor: pointer;
 
-            .mini-countdown-container {
-                width: fit-content;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                border: 2px solid light-dark(@dark-blue, @golden);
-                border-radius: 6px;
-                padding: 0 4px 0 0;
-                background-image: url('../assets/parchments/dh-parchment-light.png');
-                color: light-dark(@beige, @dark);
-                cursor: pointer;
+            &.disabled {
+                cursor: initial;
+            }
 
-                &.disabled {
-                    cursor: initial;
-                }
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 6px 0 0 6px;
+            }
 
-                img {
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 6px 0 0 6px;
-                }
+            .mini-countdown-name {
+                white-space: nowrap;
+            }
 
-                .mini-countdown-name {
-                    white-space: nowrap;
-                }
-
-                .mini-countdown-value {
-                }
+            .mini-countdown-value {
             }
         }
     }

@@ -3386,7 +3386,7 @@ div.daggerheart.views.multiclass {
 #resources:has(.fear-bar) {
   min-width: 200px;
 }
-.theme-light .daggerheart.dh-style.countdown.minimized .minimized-view .mini-countdown-container {
+.theme-light .daggerheart.dh-style.countdown .minimized-view .mini-countdown-container {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
 .daggerheart.dh-style.countdown {
@@ -3406,23 +3406,12 @@ div.daggerheart.views.multiclass {
 .daggerheart.dh-style.countdown fieldset legend a {
   text-shadow: none;
 }
-.daggerheart.dh-style.countdown.minimized {
-  height: auto !important;
-  max-height: unset !important;
-  max-width: 740px !important;
-  width: auto !important;
-}
-.daggerheart.dh-style.countdown.minimized .window-content {
-  display: flex;
-  padding: 4px 8px;
-  justify-content: center;
-}
-.daggerheart.dh-style.countdown.minimized .minimized-view {
+.daggerheart.dh-style.countdown .minimized-view {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
-.daggerheart.dh-style.countdown.minimized .minimized-view .mini-countdown-container {
+.daggerheart.dh-style.countdown .minimized-view .mini-countdown-container {
   width: fit-content;
   display: flex;
   align-items: center;
@@ -3434,15 +3423,15 @@ div.daggerheart.views.multiclass {
   color: light-dark(#efe6d8, #222);
   cursor: pointer;
 }
-.daggerheart.dh-style.countdown.minimized .minimized-view .mini-countdown-container.disabled {
+.daggerheart.dh-style.countdown .minimized-view .mini-countdown-container.disabled {
   cursor: initial;
 }
-.daggerheart.dh-style.countdown.minimized .minimized-view .mini-countdown-container img {
+.daggerheart.dh-style.countdown .minimized-view .mini-countdown-container img {
   width: 30px;
   height: 30px;
   border-radius: 6px 0 0 6px;
 }
-.daggerheart.dh-style.countdown.minimized .minimized-view .mini-countdown-container .mini-countdown-name {
+.daggerheart.dh-style.countdown .minimized-view .mini-countdown-container .mini-countdown-name {
   white-space: nowrap;
 }
 .daggerheart.dh-style.countdown .hidden {
