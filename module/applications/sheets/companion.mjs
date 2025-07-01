@@ -51,31 +51,27 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     async onPartnerChange(event) {
-        const partner = game.actors.find(a => a.uuid === event.target.value);
-        if (event.target.value) {
-            await partner.update({ 'system.companion': this.document.uuid });
+        const partnerDocument = event.target.value
+            ? await foundry.utils.fromUuid(event.target.value)
+            : this.document.system.partner;
+        const partnerUpdate = { 'system.companion': event.target.value ? this.document.uuid : null };
+
+        if (!partnerDocument.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) {
+            await game.socket.emit(`system.${SYSTEM.id}`, {
+                action: socketEvent.GMUpdate,
+                data: {
+                    action: GMUpdateEvent.UpdateDocument,
+                    uuid: partnerDocument.uuid,
+                    update: update
+                }
+            });
         } else {
-            const update = { 'system.companion': null };
-            if (
-                this.document.system.partner.ownership.default !== 3 &&
-                this.document.system.partner.ownership[game.user.id] !== 3
-            ) {
-                await game.socket.emit(`system.${SYSTEM.id}`, {
-                    action: socketEvent.GMUpdate,
-                    data: {
-                        action: GMUpdateEvent.UpdateDocument,
-                        uuid: this.document.system.partner.uuid,
-                        update: update
-                    }
-                });
-            } else {
-                await this.document.system.partner.update(update);
-            }
+            await partnerDocument.update(partnerUpdate);
         }
 
         await this.document.update({ 'system.partner': event.target.value });
 
-        if (!partner) {
+        if (!event.target.value) {
             await this.document.updateLevel(1);
         }
     }

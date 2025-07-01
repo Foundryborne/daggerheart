@@ -215,6 +215,12 @@ export default class DhCharacter extends BaseDataActor {
               : null;
     }
 
+    get deathMoveViable() {
+        return (
+            this.resources.hitPoints.maxTotal > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.maxTotal
+        );
+    }
+
     static async unequipBeforeEquip(itemToEquip) {
         const primary = this.primaryWeapon,
             secondary = this.secondaryWeapon;

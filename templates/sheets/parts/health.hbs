@@ -21,7 +21,7 @@
             <i class="fa-solid fa-caret-left"></i>
             <div class="health-category">{{localize "DAGGERHEART.Sheets.PC.Health.Severe"}}</div>
         </div>
-        <i data-action="makeDeathMove" class="fas fa-skull death-save {{#if (lt resources.hitPoints.value document.system.resources.hitPoints.maxTotal)}}disabled{{/if}}" title="{{localize "DAGGERHEART.Sheets.PC.Health.DeathMoveTooltip"}}"></i>
+        <i data-action="makeDeathMove" class="fas fa-skull death-save {{#if document.system.deathMoveViable}}disabled{{/if}}" title="{{localize "DAGGERHEART.Sheets.PC.Health.DeathMoveTooltip"}}"></i>
     </div>
     <div class="flexrow" style="flex-wrap: nowrap; align-items: center;">
         <div class="flexcol flex0">

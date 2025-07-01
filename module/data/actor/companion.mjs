@@ -131,13 +131,6 @@ export default class DhCompanion extends BaseDataActor {
         this.evasion.total = this.evasion.value + this.evasion.bonus;
     }
 
-    getRollData() {
-        const data = super.getRollData();
-        return {
-            ...data
-        };
-    }
-
     async _preDelete() {
         if (this.partner) {
             await this.partner.update({ 'system.companion': null });
