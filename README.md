@@ -5,7 +5,7 @@
 - [Developer Setup](#developer-setup)
 - [Contribution Info](#contributing)
 
-## Overivew
+## Overview
 This is a community repo for a Foundry VTT implementation of Daggerheart. It is not associated with Critical Role or Darrington Press.
 
 ## User Install
