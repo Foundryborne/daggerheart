@@ -1,6 +1,6 @@
 import CostSelectionDialog from '../../applications/costSelectionDialog.mjs';
 import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField } from './actionDice.mjs';
-//import DhpActor from '../../documents/actor.mjs';
+import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../dialogs/d20RollDialog.mjs';
 
 const fields = foundry.data.fields;
@@ -129,13 +129,13 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         return this.parent.parent;
     }
 
-    // get actor() {
-    //     return this.item instanceof DhpActor
-    //         ? this.item
-    //         : this.item?.parent instanceof DhpActor
-    //           ? this.item.parent
-    //           : this.item?.actor;
-    // }
+    get actor() {
+        return this.item instanceof DhpActor
+            ? this.item
+            : this.item?.parent instanceof DhpActor
+              ? this.item.parent
+              : this.item?.actor;
+    }
 
     get chatTemplate() {
         return 'systems/daggerheart/templates/chat/duality-roll.hbs';
