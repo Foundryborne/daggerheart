@@ -2,6 +2,7 @@ import CostSelectionDialog from '../../applications/costSelectionDialog.mjs';
 import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../dialogs/d20RollDialog.mjs';
+import BeastformDialog from '../../dialogs/beastformDialog.mjs';
 
 const fields = foundry.data.fields;
 
@@ -271,7 +272,8 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         }
 
         if (this instanceof DhBeastformAction) {
-            console.log('Test');
+            config = await BeastformDialog.configure(config);
+            if (!config) return;
         }
 
         if (this.doFollowUp()) {

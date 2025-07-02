@@ -79,6 +79,7 @@ Hooks.once('init', () => {
     Items.registerSheet(SYSTEM.id, applications.DhpConsumable, { types: ['consumable'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.DhpWeapon, { types: ['weapon'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.DhpArmor, { types: ['armor'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.DhBeastform, { types: ['beastform'], makeDefault: true });
 
     CONFIG.Actor.documentClass = documents.DhpActor;
     CONFIG.Actor.dataModels = models.actors.config;

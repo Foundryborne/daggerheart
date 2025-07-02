@@ -4996,6 +4996,53 @@ div.daggerheart.views.multiclass {
   color: light-dark(#18162e50, #efe6d850);
   font-family: 'Montserrat', sans-serif;
 }
+.theme-light .application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container .beastform-title {
+  background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4px;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container.disabled {
+  opacity: 0.4;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container img {
+  width: 100%;
+  border-radius: 6px;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container .beastform-title {
+  position: absolute;
+  top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 16px;
+  margin: 0 4px;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  color: light-dark(#efe6d8, #222);
+  background-image: url('../assets/parchments/dh-parchment-light.png');
+}
+.application.daggerheart.dh-style.views.beastform-selection footer {
+  margin-top: 8px;
+  display: flex;
+}
+.application.daggerheart.dh-style.views.beastform-selection footer button {
+  flex: 1;
+}
 .application.sheet.daggerheart.actor.dh-style.companion .profile {
   height: 80px;
   width: 80px;
@@ -5699,6 +5746,44 @@ div.daggerheart.views.multiclass {
   border: none;
 }
 .sheet.daggerheart.dh-style .tab.actions .actions-list .action-item .controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  gap: 5px;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 4fr 1fr;
+  cursor: pointer;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: lighter;
+  color: #efe6d8;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item .image {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: none;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item .controls {
   display: flex;
   justify-content: center;
   gap: 10px;

@@ -10,7 +10,8 @@
             "consumable": "Consumable",
             "miscellaneous": "Miscellaneous",
             "weapon": "Weapon",
-            "armor": "Armor"
+            "armor": "Armor",
+            "beastform": "Beastform"
         },
         "Actor": {
             "character": "Character",
@@ -1461,8 +1462,18 @@
                     }
                 }
             },
+            "Beastform": {
+                "DialogTitle": "Beastform Selection",
+                "FIELDS": {
+                    "tier": { "label": "Tier" },
+                    "examples": { "label": "Examples" },
+                    "advantageOn": { "label": "Gain Advantage On" }
+                },
+                "Transform": "Transform"
+            },
             "Global": {
                 "Actions": "Actions",
+                "Features": "Features",
                 "Effects": "Effects",
                 "activeEffects": "Active Effects",
                 "inativeEffects": "Inative Effects"

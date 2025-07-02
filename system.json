@@ -247,7 +247,8 @@
             },
             "armor": {
                 "htmlFields": ["description"]
-            }
+            },
+            "beastform": {}
         },
         "Combat": {
             "combat": {}

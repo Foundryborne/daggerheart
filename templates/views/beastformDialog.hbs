@@ -1,0 +1,18 @@
+<div>
+    <div class="beastforms-container">
+        {{#each beastformTiers as |tier tierKey|}}
+            <fieldset class="beastforms-tier">
+                <legend>{{tier.label}}</legend>
+                {{#each tier.values as |form uuid|}}
+                    <div class="beastform-container {{#if (and @root.canSubmit (not form.selected))}}disabled{{/if}}"> {{!-- data-tooltip="{{concat "#item#" uuid}}" --}}
+                        <img src="{{form.value.img}}" />
+                        <div class="beastform-title">{{form.value.name}}</div>
+                    </div>
+                {{/each}}
+            </fieldset>
+        {{/each}}
+    </div>
+    <footer>
+        <button data-action="submitBeastForm" {{#if (not canSubmit)}}disabled{{/if}}>{{localize "DAGGERHEART.Sheets.Beastform.Transform"}}</button>
+    </footer>
+</div>

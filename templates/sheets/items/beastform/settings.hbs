@@ -1,0 +1,16 @@
+<section
+    class='tab {{tabs.settings.cssClass}} {{tabs.settings.id}}'
+    data-tab='{{tabs.settings.id}}'
+    data-group='{{tabs.settings.group}}'
+>
+    <div class="two-columns">
+        {{formGroup systemFields.tier value=source.system.tier localize=true}}
+        {{formGroup systemFields.examples value=source.system.examples localize=true}}
+    </div>
+
+     <fieldset class="two-columns">
+        <legend>{{localize "DAGGERHEART.Sheets.Beastform.FIELDS.advantageOn.label"}}</legend>
+        
+        {{!-- {{formGroup systemFields.examples value=source.system.examples localize=true}} --}}
+    </fieldset>
+</section>
