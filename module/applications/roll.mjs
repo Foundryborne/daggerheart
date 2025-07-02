@@ -1,6 +1,7 @@
 import DHDamageRoll from '../data/chat-message/damageRoll.mjs';
 import D20RollDialog from '../dialogs/d20RollDialog.mjs';
 import DamageDialog from '../dialogs/damageDialog.mjs';
+import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 
 /*
     - Damage & other resources roll
@@ -54,7 +55,6 @@ export class DHRoll extends Roll {
     }
 
     static async buildPost(roll, config, message) {
-        console.log(config);
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
         }
@@ -95,7 +95,8 @@ export class DHRoll extends Roll {
     }
 
     static applyKeybindings(config) {
-        config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
+        if (config.event)
+            config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
     }
 
     constructFormula(config) {
@@ -161,11 +162,19 @@ export class D20Roll extends DHRoll {
     }
 
     static applyKeybindings(config) {
-        const keys = {
-            normal: config.event.shiftKey || config.event.altKey || config.event.ctrlKey,
-            advantage: config.event.altKey,
-            disadvantage: config.event.ctrlKey
+        let keys = {
+            normal: true,
+            advantage: false,
+            disadvantage: false
         };
+
+        if (config.event) {
+            keys = {
+                normal: config.event.shiftKey || config.event.altKey || config.event.ctrlKey,
+                advantage: config.event.altKey,
+                disadvantage: config.event.ctrlKey
+            };
+        }
 
         // Should the roll configuration dialog be displayed?
         config.dialog.configure ??= !Object.values(keys).some(k => k);
@@ -372,12 +381,23 @@ export class DualityRoll extends D20Roll {
     }
 
     applyBaseBonus() {
-        this.options.roll.modifiers = [
-            {
-                label: 'HI',
-                value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.total`, this.data)
-            }
-        ];
+        if (this.options.roll.trait) {
+            this.options.roll.modifiers = [
+                {
+                    label: `DAGGERHEART.Abilities.${this.options.roll.trait}.name`,
+                    value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.total`, this.data)
+                }
+            ];
+        } else {
+            this.options.roll.modifiers = [];
+        }
+    }
+
+    static async buildEvaluate(roll, config = {}, message = {}) {
+        if (config.evaluate !== false) await roll.evaluate();
+        const advantageState = this.hasAdvantage ? true : this.hasDisadvantage ? false : null;
+        setDiceSoNiceForDualityRoll(roll, advantageState);
+        this.postEvaluate(roll, config);
     }
 
     static postEvaluate(roll, config = {}) {

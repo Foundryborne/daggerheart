@@ -124,8 +124,8 @@ export const getCommandTarget = () => {
 
 export const setDiceSoNiceForDualityRoll = (rollResult, advantageState) => {
     const diceSoNicePresets = getDiceSoNicePresets();
-    rollResult.dice[0].options.appearance = diceSoNicePresets.hope;
-    rollResult.dice[1].options.appearance = diceSoNicePresets.fear;
+    rollResult.dice[0].options = { appearance: diceSoNicePresets.hope };
+    rollResult.dice[1].options = { appearance: diceSoNicePresets.fear }; //diceSoNicePresets.fear;
     if (rollResult.dice[2]) {
         if (advantageState === true) {
             rollResult.dice[2].options.appearance = diceSoNicePresets.advantage;
