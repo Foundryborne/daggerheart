@@ -54,7 +54,6 @@ export class DHRoll extends Roll {
     }
 
     static async buildPost(roll, config, message) {
-        console.log(config);
         for (const hook of config.hooks) {
             if (Hooks.call(`${SYSTEM.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
         }
