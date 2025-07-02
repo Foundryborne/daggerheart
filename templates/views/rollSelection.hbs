@@ -2,25 +2,58 @@
     {{#if @root.hasRoll}}
     <div class="roll-dialog-container">
         <div class="flexcol">
-            {{#unless @root.isLite}}
-            <div class="roll-dialog-experience-container">
-                {{#each experiences}}
-                    {{#if name}}
-                        <div class="roll-dialog-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}">
-                            <span>{{name}}</span>
-                            <span>+{{value}}</span>
-                        </div>
-                    {{/if}}
-                {{/each}}
-            </div>
-            <div class="flexrow">
-                <button class="disadvantage flex1 {{#if (eq advantage 1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="1">{{localize "DAGGERHEART.General.Advantage.Full"}}</button>
-                <button class="disadvantage flex1 {{#if (eq advantage -1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="-1">{{localize "DAGGERHEART.General.Disadvantage.Full"}}</button>
-            </div>
-            {{/unless}}
             <div>
-                <input type="text" value="{{@root.formula}}" disabled>
+                {{!-- <input type="text" value="{{@root.formula}}" disabled> --}}
+                <div>{{@root.formula}}</div>
             </div>
+            {{#unless @root.isLite}}
+                <div class="roll-dialog-experience-container">
+                    {{#each experiences}}
+                        {{#if name}}
+                            <div class="roll-dialog-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}">
+                                <span>{{name}}</span>
+                                <span>+{{value}}</span>
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+                <div class="flexrow">
+                    <button class="disadvantage flex1 {{#if (eq advantage 1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="1">{{localize "DAGGERHEART.General.Advantage.Full"}}</button>
+                    <button class="disadvantage flex1 {{#if (eq advantage -1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="-1">{{localize "DAGGERHEART.General.Disadvantage.Full"}}</button>
+                </div>
+                {{#if (eq @root.rollType 'D20Roll')}}
+                    <div class="flexrow">
+                        <select name="roll.dice.d20">
+                            {{selectOptions diceOptions selected=@root.roll.d20.denomination}}
+                        </select>
+                    </div>
+                {{/if}}
+                {{#if (eq @root.rollType 'DualityRoll')}}
+                    <div class="flexrow">
+                        <div>Hope Dice</div>
+                        <select name="roll.dice.dHope">
+                            {{selectOptions diceOptions selected=@root.roll.dHope.denomination}}
+                        </select>
+                    </div>
+                    <div class="flexrow">
+                        <div>Fear Dice</div>
+                        <select name="roll.dice.dFear">
+                            {{selectOptions diceOptions selected=@root.roll.dFear.denomination}}
+                        </select>
+                    </div>
+                    {{#if roll.advantage}}
+                    <div class="flexrow">
+                        <div>Adv/Disadv Dice</div>
+                        <select name="roll.dice.advantageFaces">
+                            {{selectOptions diceOptions selected=@root.roll.dAdvantage.denomination}}
+                        </select>
+                    </div>
+                    {{/if}}
+                {{/if}}
+                <div>
+                    <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="Situational Bonus">
+                </div>
+            {{/unless}}
             {{!-- {{#if (not isNpc)}} --}}
                 {{!-- <div class="form-group">
                     <label>Hope</label>

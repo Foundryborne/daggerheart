@@ -1,4 +1,3 @@
-import CostSelectionDialog from '../../applications/costSelectionDialog.mjs';
 import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../dialogs/d20RollDialog.mjs';
@@ -343,7 +342,9 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             label: 'Attack',
             type: this.actionType,
             difficulty: this.roll?.difficulty,
-            formula: this.roll.getFormula()
+            formula: this.roll.getFormula(),
+            bonus: this.roll.bonus,
+            advantage: SYSTEM.ACTIONS.advandtageState[this.roll.advState].value
         };
         if (this.roll?.type === 'diceSet') roll.lite = true;
 
@@ -372,7 +373,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
     /* ROLL */
     get hasRoll() {
-        return !!this.roll?.type;
+        return !!this.roll?.type || !!this.roll?.bonus;
     }
     /* ROLL */
 

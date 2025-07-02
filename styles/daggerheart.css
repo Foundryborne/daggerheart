@@ -1786,7 +1786,7 @@ fieldset.daggerheart.chat .daggerheart.chat {
   align-items: end;
   gap: 0.25rem;
 }
-.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls.duality {
+.theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls {
   margin-bottom: 0;
 }
 .theme-colorful .chat-message.duality .message-content .dice-result .dice-tooltip .wrapper .tooltip-part .dice .dice-rolls.duality li {
@@ -5197,6 +5197,18 @@ div.daggerheart.views.multiclass {
 }
 .application.dh-style fieldset.flex {
   display: flex;
+  gap: 20px;
+}
+.application.dh-style fieldset.flex.wrap {
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+.application.dh-style fieldset.flex .inline-child {
+  flex: 1;
+}
+.application.dh-style fieldset.flex .checkbox {
+  display: flex;
+  align-items: center;
   gap: 20px;
 }
 .application.dh-style fieldset.one-column {

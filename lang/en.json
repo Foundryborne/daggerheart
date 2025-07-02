@@ -192,6 +192,10 @@
                 "Full": "Disadvantage",
                 "Short": "Dis"
             },
+            "Neutral": {
+                "Full": "None",
+                "Short": "no"
+            },
             "OK": "OK",
             "Cancel": "Cancel",
             "Or": "Or",
