@@ -1,4 +1,4 @@
-import { actionsTypes } from '../action/_module.mjs';
+// import { actionsTypes } from '../action/_module.mjs';
 
 /**
  * Describes metadata about the item data model type
@@ -60,7 +60,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         const actionType = {
                 weapon: 'attack'
             }[this.constructor.metadata.type],
-            cls = actionsTypes.attack,
+            cls = game.system.api.models.actionsTypes[actionType],
+            // cls = actionsTypes.attack,
             action = new cls(
                 {
                     _id: foundry.utils.randomID(),

@@ -33,10 +33,8 @@
             </fieldset>
         </div>
         <div class="tab {{this.tabs.config.cssClass}}" data-group="primary" data-tab="config">
-            {{#unless isNPC}}
             {{> 'systems/daggerheart/templates/views/actionTypes/uses.hbs' fields=fields.uses.fields source=source.uses}}
             {{> 'systems/daggerheart/templates/views/actionTypes/cost.hbs' fields=fields.cost.element.fields source=source.cost}}
-            {{/unless}}
             {{#if fields.target}}{{> 'systems/daggerheart/templates/views/actionTypes/range-target.hbs' fields=(object range=fields.range target=fields.target.fields) source=(object target=source.target range=source.range)}}{{/if}}
         </div>
         <div class="tab {{this.tabs.effect.cssClass}}" data-group="primary" data-tab="effect">

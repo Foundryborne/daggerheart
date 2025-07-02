@@ -36,7 +36,8 @@ class DhCountdownData extends foundry.abstract.DataModel {
                         })
                     })
                 )
-            })
+            }),
+            window: new fields.SchemaField({})
         };
     }
 

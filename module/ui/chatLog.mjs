@@ -37,7 +37,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             element.addEventListener('click', this.clickTarget);
         });
         html.querySelectorAll('.button-target-selection').forEach(element => {
-            element.addEventListener('click', event => this.onTargetSelection(event, data.message))
+            element.addEventListener('click', event => this.onTargetSelection(event, data.message));
         });
         html.querySelectorAll('.damage-button').forEach(element =>
             element.addEventListener('click', event => this.onDamage(event, data.message))
@@ -122,11 +122,13 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     onRollAllSave = async (event, message) => {
         event.stopPropagation();
-        const targets = event.target.parentElement.querySelectorAll('.target-section > [data-token] .target-save-container');
-        targets.forEach((el) => {
-            el.dispatchEvent(new PointerEvent("click", { shiftKey: true}))
-        })
-    }
+        const targets = event.target.parentElement.querySelectorAll(
+            '.target-section > [data-token] .target-save-container'
+        );
+        targets.forEach(el => {
+            el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
+        });
+    };
 
     onApplyEffect = async (event, message) => {
         event.stopPropagation();
@@ -146,18 +148,26 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         event.stopPropagation();
         const targetSelection = Boolean(event.target.dataset.targetHit),
             msg = ui.chat.collection.get(message._id);
-        if(msg.system.targetSelection === targetSelection) return;
-        if(targetSelection !== true && !Array.from(game.user.targets).length) return ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
+        if (msg.system.targetSelection === targetSelection) return;
+        if (targetSelection !== true && !Array.from(game.user.targets).length)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
         msg.system.targetSelection = targetSelection;
         msg.system.prepareDerivedData();
         ui.chat.updateMessage(msg);
-    }
+    };
 
     getTargetList = (event, message) => {
-        const targetSelection = event.target.closest('.message-content').querySelector('.button-target-selection.target-selected'),
+        const targetSelection = event.target
+                .closest('.message-content')
+                .querySelector('.button-target-selection.target-selected'),
             isHit = Boolean(targetSelection.dataset.targetHit);
-        return {isHit, targets: isHit ? message.system.targets.filter(t => t.hit === true).map(target => game.canvas.tokens.get(target.id)) : Array.from(game.user.targets)};
-    }
+        return {
+            isHit,
+            targets: isHit
+                ? message.system.targets.filter(t => t.hit === true).map(target => game.canvas.tokens.get(target.id))
+                : Array.from(game.user.targets)
+        };
+    };
 
     hoverTarget = event => {
         event.stopPropagation();
@@ -185,9 +195,11 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         event.stopPropagation();
         const { isHit, targets } = this.getTargetList(event, message);
 
-        if(message.system.onSave && isHit) {
-            const pendingingSaves = message.system.targets.filter(target => target.hit && target.saved.success === null);
-            if(pendingingSaves.length) {
+        if (message.system.onSave && isHit) {
+            const pendingingSaves = message.system.targets.filter(
+                target => target.hit && target.saved.success === null
+            );
+            if (pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
                     window: { title: 'Pending Reaction Rolls found' },
                     content: `<p>Some Tokens still need to roll their Reaction Roll.</p><p>Are you sure you want to continue ?</p><p><i>Undone reaction rolls will be considered as failed</i></p>`

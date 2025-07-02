@@ -1,4 +1,4 @@
-import DHAdversaryRoll from "./adversaryRoll.mjs";
+import DHAdversaryRoll from './adversaryRoll.mjs';
 
 export default class DHDualityRoll extends DHAdversaryRoll {
     get messageTemplate() {

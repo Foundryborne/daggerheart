@@ -21,6 +21,11 @@
         }
     },
     "DAGGERHEART": {
+        "UI": {
+            "notifications": {
+                "adversaryMissing": "The linked adversary doesn't exist in the world."
+            }
+        },
         "Settings": {
             "Menu": {
                 "Automation": {
@@ -192,6 +197,10 @@
             "Disadvantage": {
                 "Full": "Disadvantage",
                 "Short": "Dis"
+            },
+            "Neutral": {
+                "Full": "None",
+                "Short": "no"
             },
             "OK": "OK",
             "Cancel": "Cancel",
@@ -1130,6 +1139,7 @@
             "RemoveCountdownText": "Are you sure you want to remove the countdown: {name}?",
             "OpenOwnership": "Edit Player Ownership",
             "Title": "{type} Countdowns",
+            "ToggleSimple": "Toggle Simple View",
             "Types": {
                 "narrative": "Narrative",
                 "encounter": "Encounter"

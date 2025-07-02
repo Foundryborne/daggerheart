@@ -181,13 +181,20 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
 
     static async #viewAdversary(_, button) {
         const adversary = await foundry.utils.fromUuid(button.dataset.adversary);
+        if (!adversary) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.adversaryMissing'));
+            return;
+        }
+
         adversary.sheet.render(true);
     }
 
     static async #deleteAdversary(event, target) {
         const adversaryKey = target.dataset.adversary;
         const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
-        const newAdversaries = foundry.utils.getProperty(this.actor, path).filter(x => x.uuid !== adversaryKey);
+        const newAdversaries = foundry.utils
+            .getProperty(this.actor, path)
+            .filter(x => x && (x?.uuid ?? x) !== adversaryKey);
         await this.actor.update({ [path]: newAdversaries });
         this.render();
     }

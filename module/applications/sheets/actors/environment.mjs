@@ -12,7 +12,6 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         actions: {
             addAdversary: this.addAdversary,
             deleteProperty: this.deleteProperty,
-            viewAdversary: this.viewAdversary,
             openSettings: this.openSettings,
             useItem: this.useItem,
             toChat: this.toChat
@@ -103,14 +102,24 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    static async viewAdversary(_, button) {
-        const adversary = await foundry.utils.fromUuid(button.dataset.adversary);
+    async viewAdversary(_, button) {
+        const target = button.closest('[data-item-uuid]');
+        const adversary = await foundry.utils.fromUuid(target.dataset.itemUuid);
+        if (!adversary) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.adversaryMissing'));
+            return;
+        }
+
         adversary.sheet.render(true);
     }
 
-    static async useItem(event) {
+    static async useItem(event, button) {
         const action = this.getAction(event);
-        action.use(event);
+        if (!action) {
+            await this.viewAdversary(event, button);
+        } else {
+            action.use(event);
+        }
     }
 
     static async toChat(event) {

@@ -15,13 +15,15 @@ fieldset.daggerheart.chat {
         display: flex;
         align-items: center;
         gap: 5px;
-        &:before, &:after {
+        &:before,
+        &:after {
             content: '\f0d8';
-            font-family: "Font Awesome 6 Pro";
+            font-family: 'Font Awesome 6 Pro';
         }
     }
     &.expanded {
-        legend:before, legend:after {
+        legend:before,
+        legend:after {
             content: '\f0d7';
         }
     }
@@ -229,20 +231,20 @@ fieldset.daggerheart.chat {
         .target-selection {
             display: flex;
             justify-content: space-around;
-            input[type="radio"] {
+            input[type='radio'] {
                 display: none;
                 &:checked + label {
-                    text-shadow: 0px 0px 4px #CE5937;
+                    text-shadow: 0px 0px 4px #ce5937;
                 }
                 &:not(:checked) + label {
-                    opacity: .75;
+                    opacity: 0.75;
                 }
             }
             label {
                 cursor: pointer;
-                opacity: .75;
+                opacity: 0.75;
                 &.target-selected {
-                    text-shadow: 0px 0px 4px #CE5937;
+                    text-shadow: 0px 0px 4px #ce5937;
                     opacity: 1;
                 }
             }
@@ -273,7 +275,8 @@ fieldset.daggerheart.chat {
                     background: @miss;
                 }
 
-                img, .target-save-container {
+                img,
+                .target-save-container {
                     width: 22px;
                     height: 22px;
                     align-self: center;
@@ -401,7 +404,7 @@ fieldset.daggerheart.chat {
             display: none;
         }
         &::after {
-            content: "??";
+            content: '??';
         }
     }
 }
@@ -414,7 +417,8 @@ fieldset.daggerheart.chat {
             border-top-width: 0;
             display: contents;
             legend {
-                &:before, &:after {
+                &:before,
+                &:after {
                     display: none;
                 }
             }
@@ -493,16 +497,18 @@ fieldset.daggerheart.chat {
                             align-items: end;
                             gap: 0.25rem;
                             .dice {
-                                .dice-rolls.duality {
+                                .dice-rolls {
                                     margin-bottom: 0;
-                                    li {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        position: relative;
-                                        background: unset;
-                                        line-height: unset;
-                                        font-weight: unset;
+                                    &.duality {
+                                        li {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            position: relative;
+                                            background: unset;
+                                            line-height: unset;
+                                            font-weight: unset;
+                                        }
                                     }
                                 }
                             }

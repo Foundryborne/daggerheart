@@ -1,4 +1,4 @@
-import { DHBaseAction } from "../action/action.mjs";
+import { DHBaseAction } from '../action/action.mjs';
 
 const fields = foundry.data.fields;
 
@@ -42,6 +42,9 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
 
     prepareDerivedData() {
         this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
-        this.currentTargets = this.targetSelection !== true ? Array.from(game.user.targets).map(t => DHBaseAction.formatTarget(t)) : this.targets;
+        this.currentTargets =
+            this.targetSelection !== true
+                ? Array.from(game.user.targets).map(t => DHBaseAction.formatTarget(t))
+                : this.targets;
     }
 }

@@ -485,7 +485,9 @@ export default class DhpActor extends Actor {
         resources.forEach(r => {
             switch (r.type) {
                 case 'fear':
-                    ui.resources.updateFear(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear) + r.value);
+                    ui.resources.updateFear(
+                        game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear) + r.value
+                    );
                     break;
                 case 'armorStack':
                     updates.armor.resources['system.marks.value'] = Math.max(

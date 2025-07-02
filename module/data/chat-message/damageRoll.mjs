@@ -3,7 +3,7 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
         const fields = foundry.data.fields;
 
         return {
-            messageType: new fields.StringField({initial: 'damage'}),
+            messageType: new fields.StringField({ initial: 'damage' }),
             title: new fields.StringField(),
             roll: new fields.DataField({}),
             targets: new fields.ArrayField(
@@ -28,7 +28,7 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
                 action: new fields.StringField(),
                 message: new fields.StringField()
             }),
-            directDamage: new fields.BooleanField({initial: true})
+            directDamage: new fields.BooleanField({ initial: true })
         };
     }
 
@@ -38,6 +38,9 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
 
     prepareDerivedData() {
         this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
-        this.currentTargets = this.targetSelection !== true ? Array.from(game.user.targets).map(t => DHBaseAction.formatTarget(t)) : this.targets;
+        this.currentTargets =
+            this.targetSelection !== true
+                ? Array.from(game.user.targets).map(t => DHBaseAction.formatTarget(t))
+                : this.targets;
     }
 }

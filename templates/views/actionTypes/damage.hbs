@@ -1,61 +1,57 @@
 
-<fieldset class="action-category">
-    <legend class="action-category-label" data-action="toggleSection" data-section="effects">
-        <div>Damage</div>
-    </legend>
-    <div class="action-category-data open">
-        {{#unless @root.isNPC}}
-            <div class="fas fa-plus icon-button" data-action="addDamage"></div>
-            {{#if @root.hasBaseDamage}}
-                <div>
-                    {{formField @root.fields.damage.fields.includeBase value=@root.source.damage.includeBase label="Include Item Damage" name="damage.includeBase" }}
-                </div>
-            {{/if}}
-        {{/unless}}
-        {{#each source.parts as |dmg index|}}
-            {{#if @root.isNPC}}
-                {{formField ../fields.value.fields.custom.fields.enabled value=dmg.value.custom.enabled name=(concat ../path "damage.parts." index ".value.custom.enabled")}}
-                <input type="hidden" name="{{../path}}damage.parts.{{index}}.value.multiplier" value="{{dmg.value.multiplier}}">
-                {{#if dmg.value.custom.enabled}}
-                    {{formField ../fields.value.fields.custom.fields.formula value=dmg.value.custom.formula name=(concat ../path "damage.parts." index ".value.custom.formula") localize=true}}
-                {{else}}
-                    <div class="multi-display">
-                        {{formField ../fields.value.fields.flatMultiplier value=dmg.value.flatMultiplier name=(concat ../path "damage.parts." index ".value.flatMultiplier") label="Multiplier" }}
-                        {{formField ../fields.value.fields.dice value=dmg.value.dice name=(concat ../path "damage.parts." index ".value.dice")}}
-                        {{formField ../fields.value.fields.bonus value=dmg.value.bonus name=(concat ../path "damage.parts." index ".value.bonus") localize=true}}
-                    </div>
-                {{/if}}
-                {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." index ".type") localize=true}}
+<fieldset class="flex wrap">
+    <legend>Damage</legend>
+    {{#unless (eq path 'system.attack.')}}
+    <div class="fas fa-plus icon-button" data-action="addDamage"></div>
+    {{/unless}}
+    {{#unless @root.isNPC}}
+        {{#if @root.hasBaseDamage}}
+            <div>
+                {{formField @root.fields.damage.fields.includeBase value=@root.source.damage.includeBase label="Include Item Damage" name="damage.includeBase" }}
+            </div>
+        {{/if}}
+    {{/unless}}
+    {{#each source.parts as |dmg index|}}
+        {{#if @root.isNPC}}
+            {{formField ../fields.value.fields.custom.fields.enabled value=dmg.value.custom.enabled name=(concat ../path "damage.parts." index ".value.custom.enabled") classes="checkbox"}}
+            <input type="hidden" name="{{../path}}damage.parts.{{index}}.value.multiplier" value="{{dmg.value.multiplier}}">
+            {{#if dmg.value.custom.enabled}}
+                {{formField ../fields.value.fields.custom.fields.formula value=dmg.value.custom.formula name=(concat ../path "damage.parts." index ".value.custom.formula") localize=true}}
             {{else}}
-                {{#with (@root.getRealIndex index) as | realIndex |}}
-                    <fieldset{{#if dmg.base}} disabled{{/if}}>
-                        {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base))}}
-                            {{formField ../../fields.resultBased value=dmg.resultBased name=(concat "damage.parts." realIndex ".resultBased") localize=true}}
-                        {{/if}}
-                        {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base) dmg.resultBased)}}
-                            <fieldset>
-                                <legend>
-                                    <div>With Hope</div>
-                                </legend>
-                                {{> formula fields=../../fields.value.fields type=../../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
-                            </fieldset>
-                            <fieldset>
-                                <legend>
-                                    <div>With Fear</div>
-                                </legend>
-                                {{> formula fields=../../fields.valueAlt.fields type=../../fields.type dmg=dmg source=dmg.valueAlt target="valueAlt" realIndex=realIndex}}
-                            </fieldset>
-                        {{else}}
-                            {{> formula fields=../../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
-                        {{/if}}
-                        {{formField ../../fields.type value=dmg.type name=(concat "damage.parts." realIndex ".type") localize=true}}
-                        <input type="hidden" name="damage.parts.{{realIndex}}.base" value="{{dmg.base}}">
-                        {{#unless dmg.base}}<div class="fas fa-trash" data-action="removeDamage" data-index="{{realIndex}}"></div>{{/unless}}
-                    </fieldset>
-                {{/with}}
+                {{formField ../fields.value.fields.flatMultiplier value=dmg.value.flatMultiplier name=(concat ../path "damage.parts." index ".value.flatMultiplier") label="Multiplier" classes="inline-child" }}
+                {{formField ../fields.value.fields.dice value=dmg.value.dice name=(concat ../path "damage.parts." index ".value.dice") classes="inline-child"}}
+                {{formField ../fields.value.fields.bonus value=dmg.value.bonus name=(concat ../path "damage.parts." index ".value.bonus") localize=true classes="inline-child"}}
             {{/if}}
-        {{/each}}
-    </div>
+            {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." index ".type") localize=true}}
+        {{else}}
+            {{#with (@root.getRealIndex index) as | realIndex |}}
+                <fieldset{{#if dmg.base}} disabled{{/if}}>
+                    {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base))}}
+                        {{formField ../../fields.resultBased value=dmg.resultBased name=(concat "damage.parts." realIndex ".resultBased") localize=true}}
+                    {{/if}}
+                    {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base) dmg.resultBased)}}
+                        <fieldset>
+                            <legend>
+                                <div>With Hope</div>
+                            </legend>
+                            {{> formula fields=../../fields.value.fields type=../../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+                                <div>With Fear</div>
+                            </legend>
+                            {{> formula fields=../../fields.valueAlt.fields type=../../fields.type dmg=dmg source=dmg.valueAlt target="valueAlt" realIndex=realIndex}}
+                        </fieldset>
+                    {{else}}
+                        {{> formula fields=../../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
+                    {{/if}}
+                    {{formField ../../fields.type value=dmg.type name=(concat "damage.parts." realIndex ".type") localize=true}}
+                    <input type="hidden" name="damage.parts.{{realIndex}}.base" value="{{dmg.base}}">
+                    {{#unless dmg.base}}<div class="fas fa-trash" data-action="removeDamage" data-index="{{realIndex}}"></div>{{/unless}}
+                </fieldset>
+            {{/with}}
+        {{/if}}
+    {{/each}}
 </fieldset>
 
 {{#*inline "formula"}}

@@ -87,7 +87,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             event: event,
             title: `${this.actor.name} - Reaction Roll`,
             roll: {
-                modifier: null,
+                // modifier: null,
                 type: 'reaction'
             },
             chatMessage: {

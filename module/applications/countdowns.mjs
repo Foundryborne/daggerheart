@@ -1,5 +1,6 @@
 import { countdownTypes } from '../config/generalConfig.mjs';
 import { GMUpdateEvent, RefreshType, socketEvent } from '../helpers/socket.mjs';
+import constructHTMLButton from '../helpers/utils.mjs';
 import OwnershipSelection from './ownershipSelection.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -25,14 +26,15 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
             frame: true,
             title: 'Countdowns',
             resizable: true,
-            minimizable: true
+            minimizable: false
         },
         actions: {
             addCountdown: this.addCountdown,
             removeCountdown: this.removeCountdown,
             editImage: this.onEditImage,
             openOwnership: this.openOwnership,
-            openCountdownOwnership: this.openCountdownOwnership
+            openCountdownOwnership: this.openCountdownOwnership,
+            toggleSimpleView: this.toggleSimpleView
         },
         form: { handler: this.updateData, submitOnChange: true }
     };
@@ -53,11 +55,47 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
         });
     }
 
-    async _onFirstRender(context, options) {
-        super._onFirstRender(context, options);
+    async _preFirstRender(context, options) {
+        options.position =
+            game.user.getFlag(SYSTEM.id, SYSTEM.FLAGS[`${this.basePath}Countdown`].position) ??
+            Countdowns.DEFAULT_OPTIONS.position;
 
-        this.element.querySelector('.expanded-view').classList.toggle('hidden');
-        this.element.querySelector('.minimized-view').classList.toggle('hidden');
+        const viewSetting =
+            game.user.getFlag(SYSTEM.id, SYSTEM.FLAGS[`${this.basePath}Countdown`].simple) ?? !game.user.isGM;
+        this.simpleView =
+            game.user.isGM || !this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER) ? viewSetting : true;
+        context.simple = this.simpleView;
+    }
+
+    _onPosition(position) {
+        game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS[`${this.basePath}Countdown`].position, position);
+    }
+
+    async _renderFrame(options) {
+        const frame = await super._renderFrame(options);
+
+        if (this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER)) {
+            const button = constructHTMLButton({
+                label: '',
+                classes: ['header-control', 'icon', 'fa-solid', 'fa-wrench'],
+                dataset: { action: 'toggleSimpleView', tooltip: 'DAGGERHEART.Countdown.ToggleSimple' }
+            });
+            this.window.controls.after(button);
+        }
+
+        return frame;
+    }
+
+    testUserPermission(level, exact, altSettings) {
+        if (game.user.isGM) return true;
+
+        const settings =
+            altSettings ?? game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns)[this.basePath];
+        const defaultAllowed = exact ? settings.ownership.default === level : settings.ownership.default >= level;
+        const userAllowed = exact
+            ? settings.playerOwnership[game.user.id]?.value === level
+            : settings.playerOwnership[game.user.id]?.value >= level;
+        return defaultAllowed || userAllowed;
     }
 
     async _prepareContext(_options) {
@@ -67,15 +105,17 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
         context.isGM = game.user.isGM;
         context.base = this.basePath;
 
-        context.canCreate = countdownData.playerOwnership[game.user.id].value === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+        context.canCreate = this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER, true);
         context.source = {
             ...countdownData,
             countdowns: Object.keys(countdownData.countdowns).reduce((acc, key) => {
                 const countdown = countdownData.countdowns[key];
 
-                const ownershipValue = countdown.playerOwnership[game.user.id].value;
-                if (ownershipValue > CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE) {
-                    acc[key] = { ...countdown, canEdit: ownershipValue === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER };
+                if (this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED, false, countdown)) {
+                    acc[key] = {
+                        ...countdown,
+                        canEdit: this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER, true, countdown)
+                    };
                 }
 
                 return acc;
@@ -83,7 +123,7 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
         };
         context.systemFields = countdownData.schema.fields;
         context.countdownFields = context.systemFields.countdowns.element.fields;
-        context.minimized = this.minimized || _options.isFirstRender;
+        context.simple = this.simpleView;
 
         return context;
     }
@@ -108,28 +148,6 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
                 }
             });
         }
-    }
-
-    async minimize() {
-        await super.minimize();
-
-        this.element.querySelector('.expanded-view').classList.toggle('hidden');
-        this.element.querySelector('.minimized-view').classList.toggle('hidden');
-    }
-
-    async maximize() {
-        if (this.minimized) {
-            const settings = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns)[this.basePath];
-            if (settings.playerOwnership[game.user.id].value <= CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED) {
-                ui.notifications.info(game.i18n.localize('DAGGERHEART.Countdown.Notifications.LimitedOwnership'));
-                return;
-            }
-
-            this.element.querySelector('.expanded-view').classList.toggle('hidden');
-            this.element.querySelector('.minimized-view').classList.toggle('hidden');
-        }
-
-        await super.maximize();
     }
 
     async updateSetting(update) {
@@ -213,11 +231,17 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
         });
     }
 
+    static async toggleSimpleView() {
+        this.simpleView = !this.simpleView;
+        await game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS[`${this.basePath}Countdown`].simple, this.simpleView);
+        this.render();
+    }
+
     async updateCountdownValue(event, increase) {
         const countdownSetting = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Countdowns);
         const countdown = countdownSetting[this.basePath].countdowns[event.currentTarget.dataset.countdown];
 
-        if (countdown.playerOwnership[game.user.id] < CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+        if (!this.testUserPermission(CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) {
             return;
         }
 

@@ -24,5 +24,8 @@
                 </div>
             {{/if}}
         {{/if}}
+        {{#unless (eq source.type "diceSet")}}
+            {{formField fields.advState label= "Advantage State" name="roll.advState" value=source.advState localize=true}}
+        {{/unless}}
     </div>
 </fieldset>
