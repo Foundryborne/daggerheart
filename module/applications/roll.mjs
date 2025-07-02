@@ -38,6 +38,7 @@ export class DHRoll extends Roll {
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;
+            console.log(roll, config)
             const configDialog = await DialogClass.configure(roll, config, message);
             if (!configDialog) return;
         }
@@ -246,13 +247,15 @@ export class D20Roll extends DHRoll {
     }
 
     applyBaseBonus() {
-        this.options.roll.modifiers = [
+        this.options.roll.modifiers = [];
+        if(!this.options.roll.bonus) return;
+        this.options.roll.modifiers.push(
             {
                 label: 'Bonus to Hit',
                 value: this.options.roll.bonus
                 // value: Roll.replaceFormulaData('@attackBonus', this.data)
             }
-        ];
+        );
     }
 
     static postEvaluate(roll, config = {}) {
@@ -398,12 +401,14 @@ export class DualityRoll extends D20Roll {
     }
 
     applyBaseBonus() {
-        this.options.roll.modifiers = [
+        this.options.roll.modifiers = [];
+        if(!this.options.roll.trait) return;
+        this.options.roll.modifiers.push(
             {
                 label: `DAGGERHEART.Abilities.${this.options.roll.trait}.name`,
                 value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.total`, this.data)
             }
-        ];
+        );
     }
 
     static postEvaluate(roll, config = {}) {
