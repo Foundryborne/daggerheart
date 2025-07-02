@@ -119,6 +119,18 @@
         &.flex {
             display: flex;
             gap: 20px;
+            &.wrap {
+                flex-wrap: wrap;
+                gap: 10px 20px;
+            }
+            .inline-child {
+                flex: 1;
+            }
+            .checkbox {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
         }
 
         &.one-column {

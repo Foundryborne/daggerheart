@@ -60,7 +60,7 @@ export default function DhpApplicationMixin(Base) {
                 //   drop: this._canDragDrop.bind(this)
                 // };
                 d.callbacks = {
-                    // dragstart: this._onDragStart.bind(this),
+                    dragstart: this._onDragStart.bind(this),
                     // dragover: this._onDragOver.bind(this),
                     drop: this._onDrop.bind(this)
                 };
@@ -68,6 +68,7 @@ export default function DhpApplicationMixin(Base) {
             });
         }
 
+        async _onDragStart(event) {}
         _onDrop(event) {}
 
         _getTabs(tabs) {

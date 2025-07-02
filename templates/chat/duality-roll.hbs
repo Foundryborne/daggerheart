@@ -82,6 +82,30 @@
                             </div>  
                         </div>
                     {{/if}}
+                    {{#each roll.extra as | extra | }}
+                        <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">
+                                    <span>1{{extra.dice}}</span>
+                                </span>
+                                <span class="part-total">{{extra.value}}</span>
+                            </header>
+                            <div class="flexrow">
+                                <ol class="dice-rolls">
+                                    <li class="roll die {{extra.dice}}">
+                                        <div class="dice-container">
+                                            <div class="dice-inner-container">
+                                                <div class="dice-wrapper">
+                                                    <img class="dice" src="../icons/svg/{{extra.dice}}-grey.svg"/>
+                                                </div>
+                                                <div class="dice-value">{{extra.value}}</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>  
+                        </div>
+                    {{/each}}
                     {{#if roll.modifierTotal}}<div class="duality-modifier">{{#if (gt roll.modifierTotal 0)}}+{{/if}}{{roll.modifierTotal}}</div>{{/if}}
                 </section>
             </div>

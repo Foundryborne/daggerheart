@@ -212,15 +212,9 @@ Hooks.on('chatMessage', (_, message) => {
                       })
                     : game.i18n.localize('DAGGERHEART.General.Duality');
 
-                const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
-                const advantageRoll = `${advantageState === true ? '+d6' : advantageState === false ? '-d6' : ''}`;
-                const attributeRoll = `${trait?.value ? `${trait.value > 0 ? `+${trait.value}` : `${trait.value}`}` : ''}`;
-                const formula = `${hopeAndFearRoll}${advantageRoll}${attributeRoll}`;
-
                 const config = {
                     title: title,
                     roll: {
-                        formula,
                         trait: traitValue
                     },
                     data: {
@@ -276,7 +270,6 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/global/partials/action-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs',
-
         'systems/daggerheart/templates/sheets/parts/attributes.hbs',
         'systems/daggerheart/templates/sheets/parts/defense.hbs',
         'systems/daggerheart/templates/sheets/parts/armor.hbs',
@@ -290,10 +283,6 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/parts/heritage.hbs',
         'systems/daggerheart/templates/sheets/parts/subclassFeature.hbs',
         'systems/daggerheart/templates/sheets/parts/effects.hbs',
-        'systems/daggerheart/templates/sheets/character/sections/inventory.hbs',
-        'systems/daggerheart/templates/sheets/character/sections/loadout.hbs',
-        'systems/daggerheart/templates/sheets/character/parts/heritageCard.hbs',
-        'systems/daggerheart/templates/sheets/character/parts/advancementCard.hbs',
         'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-features.hbs',
         'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-feature.hbs',
         'systems/daggerheart/templates/components/card-preview.hbs',

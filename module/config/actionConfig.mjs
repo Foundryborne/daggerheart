@@ -105,3 +105,18 @@ export const diceCompare = {
         operator: '>'
     }
 };
+
+export const advandtageState = {
+    disadvantage: {
+        label: 'DAGGERHEART.General.Disadvantage.Full',
+        value: -1
+    },
+    neutral: {
+        label: 'DAGGERHEART.General.Neutral.Full',
+        value: 0
+    },
+    advantage: {
+        label: 'DAGGERHEART.General.Advantage.Full',
+        value: 1
+    }
+}

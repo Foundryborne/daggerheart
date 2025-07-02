@@ -4,11 +4,12 @@ import { actionsTypes } from '../../../data/_module.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
-export default class DHAdversarySettings extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(actor) {
         super({});
 
         this.actor = actor;
+        this._dragDrop = this._createDragDropHandlers();
     }
 
     get title() {
@@ -17,47 +18,46 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'dh-style', 'dialog', 'adversary-settings'],
+        classes: ['daggerheart', 'dh-style', 'dialog', 'environment-settings'],
         window: {
             icon: 'fa-solid fa-wrench',
             resizable: false
         },
         position: { width: 455, height: 'auto' },
         actions: {
-            addExperience: this.#addExperience,
-            removeExperience: this.#removeExperience,
             addAction: this.#addAction,
             editAction: this.#editAction,
-            removeAction: this.#removeAction
+            removeAction: this.#removeAction,
+            addCategory: this.#addCategory,
+            deleteProperty: this.#deleteProperty,
+            viewAdversary: this.#viewAdversary,
+            deleteAdversary: this.#deleteAdversary
         },
         form: {
             handler: this.updateForm,
             submitOnChange: true,
             closeOnSubmit: false
-        }
+        },
+        dragDrop: [{ dragSelector: null, dropSelector: '.category-container' }]
     };
 
     static PARTS = {
         header: {
             id: 'header',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/header.hbs'
+            template: 'systems/daggerheart/templates/sheets/applications/environment-settings/header.hbs'
         },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         details: {
             id: 'details',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/details.hbs'
-        },
-        attack: {
-            id: 'attack',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/attack.hbs'
-        },
-        experiences: {
-            id: 'experiences',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/experiences.hbs'
+            template: 'systems/daggerheart/templates/sheets/applications/environment-settings/details.hbs'
         },
         actions: {
             id: 'actions',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/actions.hbs'
+            template: 'systems/daggerheart/templates/sheets/applications/environment-settings/actions.hbs'
+        },
+        adversaries: {
+            id: 'adversaries',
+            template: 'systems/daggerheart/templates/sheets/applications/environment-settings/adversaries.hbs'
         }
     };
 
@@ -70,22 +70,6 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             icon: null,
             label: 'DAGGERHEART.General.tabs.details'
         },
-        attack: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'attack',
-            icon: null,
-            label: 'DAGGERHEART.General.tabs.attack'
-        },
-        experiences: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'experiences',
-            icon: null,
-            label: 'DAGGERHEART.General.tabs.experiences'
-        },
         actions: {
             active: false,
             cssClass: '',
@@ -93,6 +77,14 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             id: 'actions',
             icon: null,
             label: 'DAGGERHEART.General.tabs.actions'
+        },
+        adversaries: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'adversaries',
+            icon: null,
+            label: 'DAGGERHEART.General.tabs.adversaries'
         }
     };
 
@@ -101,11 +93,24 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
         context.document = this.actor;
         context.tabs = this._getTabs(this.constructor.TABS);
         context.systemFields = this.actor.system.schema.fields;
-        context.systemFields.attack.fields = this.actor.system.attack.schema.fields;
         context.isNPC = true;
-        console.log(context)
 
         return context;
+    }
+
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        this._dragDrop.forEach(d => d.bind(htmlElement));
+    }
+
+    _createDragDropHandlers() {
+        return this.options.dragDrop.map(d => {
+            d.callbacks = {
+                drop: this._onDrop.bind(this)
+            };
+            return new foundry.applications.ux.DragDrop.implementation(d);
+        });
     }
 
     _getTabs(tabs) {
@@ -115,20 +120,6 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
         }
 
         return tabs;
-    }
-
-    static async #addExperience() {
-        const newExperience = {
-            name: 'Experience',
-            modifier: 0
-        };
-        await this.actor.update({ [`system.experiences.${foundry.utils.randomID()}`]: newExperience });
-        this.render();
-    }
-
-    static async #removeExperience(_, target) {
-        await this.actor.update({ [`system.experiences.-=${target.dataset.experience}`]: null });
-        this.render();
     }
 
     static async #addAction(_event, _button) {
@@ -172,6 +163,47 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             'system.actions': this.actor.system.actions.filter((_, index) => index !== Number.parseInt(actionIndex))
         });
         this.render();
+    }
+
+    static async #addCategory() {
+        await this.actor.update({
+            [`system.potentialAdversaries.${foundry.utils.randomID()}.label`]: game.i18n.localize(
+                'DAGGERHEART.Sheets.Environment.newAdversary'
+            )
+        });
+        this.render();
+    }
+
+    static async #deleteProperty(_, target) {
+        await this.actor.update({ [`${target.dataset.path}.-=${target.id}`]: null });
+        this.render();
+    }
+
+    static async #viewAdversary(_, button) {
+        const adversary = await foundry.utils.fromUuid(button.dataset.adversary);
+        adversary.sheet.render(true);
+    }
+
+    static async #deleteAdversary(event, target) {
+        const adversaryKey = target.dataset.adversary;
+        const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
+        const newAdversaries = foundry.utils.getProperty(this.actor, path).filter(x => x.uuid !== adversaryKey);
+        await this.actor.update({ [path]: newAdversaries });
+        this.render();
+    }
+
+    async _onDrop(event) {
+        const data = TextEditor.getDragEventData(event);
+        const item = await fromUuid(data.uuid);
+        if (item.type === 'adversary') {
+            const target = event.target.closest('.category-container');
+            const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
+            const current = foundry.utils.getProperty(this.actor, path).map(x => x.uuid);
+            await this.actor.update({
+                [path]: [...current, item.uuid]
+            });
+            this.render();
+        }
     }
 
     static async updateForm(event, _, formData) {

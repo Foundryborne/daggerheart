@@ -1,3 +1,5 @@
+/** NOT USED ANYMORE - TO BE DELETED **/
+
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class NpcRollSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {

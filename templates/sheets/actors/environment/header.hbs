@@ -1,9 +1,49 @@
-<header class='item-card-header'>
+<header class='environment-header-sheet'>
     <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
-    <div class='item-info'>
-        <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
-        <div class='item-description'>
-            <h3>{{localize 'TYPES.Actor.environment'}}</h3>
+    <div class='item-container'>
+        <div class="item-info">
+            <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
+            <div class="tags">
+                <div class="tag">
+                    <span>
+                        {{localize (concat 'DAGGERHEART.Tiers.' source.system.tier)}}
+                    </span>
+                </div>
+                {{#if source.system.type}}
+                    <div class="tag">
+                        <span>
+                            {{localize (concat 'DAGGERHEART.Environment.Type.' source.system.type '.label')}}
+                        </span>
+                    </div>
+                {{/if}}
+            </div>
         </div>
+        <div class="status-number">
+            <div class='status-value armor-slots'>
+                {{#if source.system.difficulty}}
+                    <p>{{source.system.difficulty}}</p>
+                {{else}}
+                    <p>-</p>
+                {{/if}}
+            </div>
+            <div class="status-label">
+                <h4>Difficulty</h4>
+            </div>
+        </div>
+    </div>
+    <line-div></line-div>
+    <div class="environment-info">
+        <div class="description">
+            <i>{{source.system.description}}</i>
+        </div>
+        <div class="impulses">
+            <b>{{localize 'DAGGERHEART.Sheets.Environment.FIELDS.impulses.label'}}: </b>{{{source.system.impulses}}}
+        </div>
+    </div>
+    <div class="environment-navigation">
+        {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+        <button data-action="openSettings">
+            <i class="fa-solid fa-wrench"></i>
+        </button>
     </div>
 </header>
