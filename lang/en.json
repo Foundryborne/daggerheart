@@ -1620,6 +1620,9 @@
                 },
                 "macro": {
                     "name": "Macro"
+                },
+                "beastform": {
+                    "name": "Beastform"
                 }
             },
             "Settings": {

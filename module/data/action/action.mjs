@@ -270,6 +270,10 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             }) */
         }
 
+        if (this instanceof DhBeastformAction) {
+            console.log('Test');
+        }
+
         if (this.doFollowUp()) {
             if (this.rollDamage) await this.rollDamage(event, config);
             if (this.rollHealing) await this.rollHealing(event, config);
@@ -402,11 +406,18 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     hasCost(costs) {
         const realCosts = this.getRealCosts(costs),
             hasFearCost = realCosts.findIndex(c => c.type === 'fear');
-        if(hasFearCost > -1) {
+        if (hasFearCost > -1) {
             const fearCost = realCosts.splice(hasFearCost, 1);
-            if(!game.user.isGM || fearCost[0].total > game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear)) return false;
+            if (
+                !game.user.isGM ||
+                fearCost[0].total > game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear)
+            )
+                return false;
         }
-        return realCosts.reduce((a, c) => a && this.actor.system.resources[c.type]?.value >= (c.total ?? c.value), true);
+        return realCosts.reduce(
+            (a, c) => a && this.actor.system.resources[c.type]?.value >= (c.total ?? c.value),
+            true
+        );
     }
     /* COST */
 
@@ -498,19 +509,25 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
     /* SAVE */
     async rollSave(target, event, message) {
-        if(!target?.actor) return;
-        return target.actor.diceRoll({
-            event,
-            title: 'Roll Save',
-            roll: {
-                trait: this.save.trait,
-                difficulty: this.save.difficulty,
-                type: "reaction"
-            },
-            data: target.actor.getRollData()
-        }).then(async (result) => {
-            if(result) this.updateChatMessage(message, target.id, {result: result.roll.total, success: result.roll.success});
-        })
+        if (!target?.actor) return;
+        return target.actor
+            .diceRoll({
+                event,
+                title: 'Roll Save',
+                roll: {
+                    trait: this.save.trait,
+                    difficulty: this.save.difficulty,
+                    type: 'reaction'
+                },
+                data: target.actor.getRollData()
+            })
+            .then(async result => {
+                if (result)
+                    this.updateChatMessage(message, target.id, {
+                        result: result.roll.total,
+                        success: result.roll.success
+                    });
+            });
     }
 
     async updateChatMessage(message, targetId, changes, chain = true) {
@@ -741,5 +758,17 @@ export class DHMacroAction extends DHBaseAction {
         } catch (error) {
             ui.notifications.error(error);
         }
+    }
+}
+
+export class DhBeastformAction extends DHBaseAction {
+    static defineSchema() {
+        return {
+            ...super.defineSchema(),
+            tierAccess: new fields.SchemaField({
+                exact: new fields.NumberField({ integer: true, nullable: true, initial: null }),
+                characterBased: new fields.BooleanField({ initial: true })
+            })
+        };
     }
 }

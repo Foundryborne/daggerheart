@@ -1,6 +1,7 @@
 import {
     DHAttackAction,
     DHBaseAction,
+    DhBeastformAction,
     DHDamageAction,
     DHEffectAction,
     DHHealingAction,
@@ -19,5 +20,6 @@ export const actionsTypes = {
     healing: DHHealingAction,
     summon: DHSummonAction,
     effect: DHEffectAction,
-    macro: DHMacroAction
+    macro: DHMacroAction,
+    beastform: DhBeastformAction
 };
