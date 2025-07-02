@@ -124,6 +124,7 @@ Hooks.once('init', () => {
 
     CONFIG.ui.resources = Resources;
     CONFIG.ux.ContextMenu = applications.DhContextMenu;
+    CONFIG.ux.TooltipManager = applications.DhTooltipManager;
 
     game.socket.on(`system.${SYSTEM.id}`, handleSocketEvent);
 

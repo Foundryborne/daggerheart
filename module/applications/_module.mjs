@@ -15,5 +15,6 @@ export { default as DhpChatMessage } from './chatMessage.mjs';
 export { default as DhpEnvironment } from './sheets/actors/environment.mjs';
 export { default as DhActiveEffectConfig } from './sheets/activeEffectConfig.mjs';
 export { default as DhContextMenu } from './contextMenu.mjs';
+export { default as DhTooltipManager } from './tooltipManager.mjs';
 
 export * as api from './sheets/api/_modules.mjs';
