@@ -11,7 +11,8 @@ export class DHActionRollData extends foundry.abstract.DataModel {
             type: new fields.StringField({ nullable: true, initial: null, choices: SYSTEM.GENERAL.rollTypes }),
             trait: new fields.StringField({ nullable: true, initial: null, choices: SYSTEM.ACTOR.abilities }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
-            bonus: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
+            bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
+            advState: new fields.StringField({ choices: SYSTEM.ACTIONS.advandtageState, initial: 'neutral' }),
             diceRolling: new fields.SchemaField({
                 multiplier: new fields.StringField({
                     choices: SYSTEM.GENERAL.diceSetNumbers,
@@ -62,7 +63,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
                 label: 'Multiplier'
             }),
             flatMultiplier: new fields.NumberField({ nullable: true, initial: 1, label: 'Flat Multiplier' }),
-            dice: new fields.StringField({ choices: SYSTEM.GENERAL.diceTypes, initial: 'd6', label: 'Formula' }),
+            dice: new fields.StringField({ choices: SYSTEM.GENERAL.diceTypes, initial: 'd6', label: 'Dice' }),
             bonus: new fields.NumberField({ nullable: true, initial: null, label: 'Bonus' }),
             custom: new fields.SchemaField({
                 enabled: new fields.BooleanField({ label: 'Custom Formula' }),

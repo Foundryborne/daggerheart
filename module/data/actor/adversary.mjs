@@ -30,8 +30,11 @@ export default class DhpAdversary extends BaseDataActor {
                 choices: SYSTEM.ACTOR.adversaryTypes,
                 initial: SYSTEM.ACTOR.adversaryTypes.standard.id
             }),
-            motivesAndTactics: new fields.HTMLField(),
+            description: new fields.StringField(),
+            motivesAndTactics: new fields.StringField(),
+            notes: new fields.HTMLField(),
             difficulty: new fields.NumberField({ required: true, initial: 1, integer: true }),
+            hordeHp: new fields.NumberField({ required: true, initial: 1, integer: true }),
             damageThresholds: new fields.SchemaField({
                 major: new fields.NumberField({ required: true, initial: 0, integer: true }),
                 severe: new fields.NumberField({ required: true, initial: 0, integer: true })
@@ -40,6 +43,7 @@ export default class DhpAdversary extends BaseDataActor {
                 hitPoints: resourceField(),
                 stress: resourceField()
             }),
+            actions: new fields.ArrayField(new ActionField()),
             attack: new ActionField({
                 initial: {
                     name: 'Attack',
@@ -66,7 +70,7 @@ export default class DhpAdversary extends BaseDataActor {
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
-                    value: new fields.NumberField({ required: true, integer: true, initial: 1 })
+                    modifier: new fields.NumberField({ required: true, integer: true, initial: 1 })
                 })
             ),
             bonuses: new fields.SchemaField({

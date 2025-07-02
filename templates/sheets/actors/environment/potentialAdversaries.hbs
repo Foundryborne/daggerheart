@@ -1,0 +1,11 @@
+<section
+    class='tab {{tabs.potentialAdversaries.cssClass}} {{tabs.potentialAdversaries.id}}'
+    data-tab='{{tabs.potentialAdversaries.id}}'
+    data-group='{{tabs.potentialAdversaries.group}}'
+>    
+    <div class="action-section">
+        {{#each document.system.potentialAdversaries}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=this.label type='adversary' isGlassy=true adversaries=this.adversaries}}
+        {{/each}}
+    </div>
+</section>

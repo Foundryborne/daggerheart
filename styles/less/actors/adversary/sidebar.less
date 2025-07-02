@@ -1,0 +1,341 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.adversary {
+    .adversary-sidebar-sheet {
+        width: 275px;
+        min-width: 275px;
+        border-right: 1px solid light-dark(@dark-blue, @golden);
+        background-image: url('../assets/parchments/dh-parchment-dark.png');
+
+        .theme-light & {
+            background: transparent;
+        }
+
+        .portrait {
+            position: relative;
+            border-bottom: 1px solid light-dark(@dark-blue, @golden);
+            cursor: pointer;
+
+            img {
+                height: 235px;
+                width: 275px;
+                object-fit: cover;
+            }
+
+            .death-roll-btn {
+                display: none;
+            }
+
+            &.death-roll {
+                filter: grayscale(1);
+
+                .death-roll-btn {
+                    display: flex;
+                    position: absolute;
+                    top: 30%;
+                    right: 30%;
+                    font-size: 6rem;
+                    color: @beige;
+
+                    &:hover {
+                        text-shadow: 0 0 8px @beige;
+                    }
+                }
+            }
+        }
+
+        .threshold-section {
+            position: relative;
+            display: flex;
+            gap: 10px;
+            background-color: light-dark(transparent, @dark-blue);
+            color: light-dark(@dark-blue, @golden);
+            padding: 5px 10px;
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            align-items: center;
+            width: fit-content;
+            height: 30px;
+            margin-top: 16px;
+
+            h4 {
+                font-size: 14px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: light-dark(@dark-blue, @golden);
+
+                &.threshold-value {
+                    color: light-dark(@dark, @beige);
+                }
+            }
+
+            .threshold-legend {
+                position: absolute;
+                bottom: -21px;
+                color: light-dark(@golden, @dark-blue);
+                background-color: light-dark(@dark-blue, @golden);
+                padding: 3px;
+                justify-self: anchor-center;
+                border-radius: 0 0 3px 3px;
+                text-transform: capitalize;
+            }
+
+            .hope-value {
+                display: flex;
+                cursor: pointer;
+            }
+        }
+
+        .info-section {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            top: -20px;
+            gap: 16px;
+            margin-bottom: -10px;
+
+            .resources-section {
+                display: flex;
+                justify-content: space-evenly;
+
+                .status-bar {
+                    position: relative;
+                    width: 100px;
+                    height: 40px;
+                    justify-items: center;
+
+                    .status-label {
+                        position: relative;
+                        top: 40px;
+                        height: 22px;
+                        width: 79px;
+                        clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
+                        background: light-dark(@dark-blue, @golden);
+
+                        h4 {
+                            font-weight: bold;
+                            text-align: center;
+                            line-height: 18px;
+                            color: light-dark(@beige, @dark-blue);
+                        }
+                    }
+                    .status-value {
+                        position: absolute;
+                        display: flex;
+                        padding: 0 6px;
+                        font-size: 1.5rem;
+                        align-items: center;
+                        width: 100px;
+                        height: 40px;
+                        justify-content: center;
+                        text-align: center;
+                        z-index: 2;
+                        color: @beige;
+
+                        input[type='number'] {
+                            background: transparent;
+                            font-size: 1.5rem;
+                            width: 40px;
+                            height: 30px;
+                            text-align: center;
+                            border: none;
+                            outline: 2px solid transparent;
+                            color: @beige;
+
+                            &.bar-input {
+                                padding: 0;
+                                color: @beige;
+                                backdrop-filter: none;
+                                background: transparent;
+                                transition: all 0.3s ease;
+
+                                &:hover,
+                                &:focus {
+                                    background: @semi-transparent-dark-blue;
+                                    backdrop-filter: blur(9.5px);
+                                }
+                            }
+                        }
+
+                        .bar-label {
+                            width: 40px;
+                        }
+                    }
+                    .progress-bar {
+                        position: absolute;
+                        appearance: none;
+                        width: 100px;
+                        height: 40px;
+                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border-radius: 6px;
+                        z-index: 1;
+                        background: @dark-blue;
+
+                        &::-webkit-progress-bar {
+                            border: none;
+                            background: @dark-blue;
+                            border-radius: 6px;
+                        }
+                        &::-webkit-progress-value {
+                            background: @gradient-hp;
+                            border-radius: 6px;
+                        }
+                        &.stress-color::-webkit-progress-value {
+                            background: @gradient-stress;
+                            border-radius: 6px;
+                        }
+                        &::-moz-progress-bar {
+                            background: @gradient-hp;
+                            border-radius: 6px;
+                        }
+                        &.stress-color::-moz-progress-bar {
+                            background: @gradient-stress;
+                            border-radius: 6px;
+                        }
+                    }
+                }
+            }
+
+            .status-section {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+
+                .status-number {
+                    justify-items: center;
+
+                    .status-value {
+                        position: relative;
+                        display: flex;
+                        width: 50px;
+                        height: 30px;
+                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border-bottom: none;
+                        border-radius: 6px 6px 0 0;
+                        padding: 0 6px;
+                        font-size: 1.2rem;
+                        align-items: center;
+                        justify-content: center;
+                        background: light-dark(transparent, @dark-blue);
+                        z-index: 2;
+
+                        &.armor-slots {
+                            width: 80px;
+                            height: 30px;
+                        }
+                    }
+
+                    .status-label {
+                        padding: 2px 10px;
+                        width: 100%;
+                        border-radius: 3px;
+                        background: light-dark(@dark-blue, @golden);
+
+                        h4 {
+                            font-weight: bold;
+                            text-align: center;
+                            line-height: 18px;
+                            font-size: 12px;
+                            color: light-dark(@beige, @dark-blue);
+                        }
+                    }
+                }
+            }
+        }
+
+        .items-sidebar-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .inventory-item {
+                padding: 0 10px;
+            }
+        }
+
+        .attack-section {
+            .title {
+                display: flex;
+                gap: 15px;
+                align-items: center;
+
+                h3 {
+                    font-size: 20px;
+                }
+            }
+            .items-list {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+        }
+
+        .experience-section {
+            margin-bottom: 20px;
+
+            .title {
+                display: flex;
+                gap: 15px;
+                align-items: center;
+
+                h3 {
+                    font-size: 20px;
+                }
+            }
+
+            .experience-list {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                width: 100%;
+                margin-top: 10px;
+                align-items: center;
+
+                .experience-row {
+                    display: flex;
+                    gap: 5px;
+                    width: 250px;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .experience-name {
+                        width: 180px;
+                        text-align: start;
+                        font-size: 14px;
+                        font-family: @font-body;
+                        color: light-dark(@dark, @beige);
+                    }
+                }
+
+                .experience-value {
+                    height: 25px;
+                    width: 35px;
+                    font-size: 14px;
+                    font-family: @font-body;
+                    color: light-dark(@dark, @beige);
+                    align-content: center;
+                    text-align: center;
+                    background: url(../assets/svg/experience-shield.svg) no-repeat;
+
+                    .theme-light & {
+                        background: url('../assets/svg/experience-shield-light.svg') no-repeat;
+                    }
+                }
+            }
+        }
+
+        .reaction-section {
+            display: flex;
+            padding: 0 10px;
+            margin-top: 20px;
+            width: 100%;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

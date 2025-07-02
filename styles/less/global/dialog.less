@@ -1,0 +1,45 @@
+@import '../utils/colors.less';
+@import '../utils/fonts.less';
+
+.theme-light {
+    .application.dialog.dh-style {
+        background-image: url('../assets/parchments/dh-parchment-light.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+.theme-dark {
+    .application.dialog.dh-style {
+        background-image: url('../assets/parchments/dh-parchment-dark.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+.application.dialog.dh-style {
+    border: none;
+
+    .window-header {
+        background: transparent;
+        border-bottom: none;
+        color: light-dark(@dark-blue, @beige);
+
+        h1 {
+            color: light-dark(@dark-blue, @beige);
+            font-family: @font-body;
+        }
+
+        button {
+            color: light-dark(@dark-blue, @beige);
+            background: light-dark(transparent, @deep-black);
+            border: 1px solid light-dark(@dark-blue, transparent);
+            padding: 0;
+
+            &:hover {
+                border: 1px solid light-dark(@dark-blue, @golden);
+                color: light-dark(@dark-blue, @golden);
+            }
+        }
+    }
+}

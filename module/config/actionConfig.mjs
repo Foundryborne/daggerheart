@@ -1,42 +1,42 @@
 export const actionTypes = {
     attack: {
         id: 'attack',
-        name: 'DAGGERHEART.Actions.Types.Attack.Name',
+        name: 'DAGGERHEART.Actions.Types.attack.name',
         icon: 'fa-swords'
     },
     // spellcast: {
     //     id: 'spellcast',
-    //     name: 'DAGGERHEART.Actions.Types.Spellcast.Name',
+    //     name: 'DAGGERHEART.Actions.Types.spellcast.name',
     //     icon: 'fa-book-sparkles'
     // },
     healing: {
         id: 'healing',
-        name: 'DAGGERHEART.Actions.Types.Healing.Name',
+        name: 'DAGGERHEART.Actions.Types.healing.name',
         icon: 'fa-kit-medical'
     },
     // resource: {
     //     id: 'resource',
-    //     name: 'DAGGERHEART.Actions.Types.Resource.Name',
+    //     name: 'DAGGERHEART.Actions.Types.resource.name',
     //     icon: 'fa-honey-pot'
     // },
     damage: {
         id: 'damage',
-        name: 'DAGGERHEART.Actions.Types.Damage.Name',
+        name: 'DAGGERHEART.Actions.Types.damage.name',
         icon: 'fa-bone-break'
     },
     summon: {
         id: 'summon',
-        name: 'DAGGERHEART.Actions.Types.Summon.Name',
+        name: 'DAGGERHEART.Actions.Types.summon.name',
         icon: 'fa-ghost'
     },
     effect: {
         id: 'effect',
-        name: 'DAGGERHEART.Actions.Types.Effect.Name',
+        name: 'DAGGERHEART.Actions.Types.effect.name',
         icon: 'fa-person-rays'
     },
     macro: {
         id: 'macro',
-        name: 'DAGGERHEART.Actions.Types.Macro.Name',
+        name: 'DAGGERHEART.Actions.Types.macro.name',
         icon: 'fa-scroll'
     }
 };
@@ -105,3 +105,18 @@ export const diceCompare = {
         operator: '>'
     }
 };
+
+export const advandtageState = {
+    disadvantage: {
+        label: 'DAGGERHEART.General.Disadvantage.Full',
+        value: -1
+    },
+    neutral: {
+        label: 'DAGGERHEART.General.Neutral.Full',
+        value: 0
+    },
+    advantage: {
+        label: 'DAGGERHEART.General.Advantage.Full',
+        value: 1
+    }
+}

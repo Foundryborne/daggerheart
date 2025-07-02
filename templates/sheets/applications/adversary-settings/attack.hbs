@@ -1,0 +1,23 @@
+<section
+    class="tab {{tabs.attack.cssClass}} {{tabs.attack.id}}"
+    data-tab="{{tabs.attack.id}}"
+    data-group="{{tabs.attack.group}}"
+>
+    <fieldset class="one-column">
+        <legend>{{localize "DAGGERHEART.General.basics"}}</legend>
+        {{formGroup systemFields.attack.fields.img value=document.system.attack.img label="Image Path" name="system.attack.img"}}
+        {{formGroup systemFields.attack.fields.name value=document.system.attack.name label="Attack Name" name="system.attack.name"}}
+    </fieldset>
+    <fieldset class="flex">
+        <legend>{{localize "DAGGERHEART.Sheets.Adversary.Attack"}}</legend>
+            {{formField systemFields.attack.fields.roll.fields.bonus value=document.system.attack.roll.bonus label="Attack Bonus" name="system.attack.roll.bonus"}}
+            {{formField systemFields.attack.fields.range value=document.system.attack.range label="Range" name="system.attack.range" localize=true}}
+            {{#if systemFields.attack.fields.target.fields}}
+                {{ formField systemFields.attack.fields.target.fields.type value=document.system.attack.target.type label="Target" name="system.attack.target.type" localize=true }}
+                {{#if (and document.system.attack.target.type (not (eq document.system.attack.target.type 'self')))}}
+                    {{ formField systemFields.attack.fields.target.fields.amount value=document.system.attack.target.amount label="Amount" name="system.attack.target.amount" }}
+                {{/if}}
+            {{/if}}
+    </fieldset>
+    {{> 'systems/daggerheart/templates/views/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields.parts.element.fields source=document.system.attack.damage path="system.attack."}}
+</section>

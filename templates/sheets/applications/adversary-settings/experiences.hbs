@@ -1,0 +1,23 @@
+<section
+    class='tab {{tabs.experiences.cssClass}} {{tabs.experiences.id}}'
+    data-tab='{{tabs.experiences.id}}'
+    data-group='{{tabs.experiences.group}}'
+>
+    <button class="add-experience-btn" type="button" data-action="addExperience">
+        <span>New Experience</span>
+    </button>
+
+    <fieldset>
+        <legend>{{localize tabs.experiences.label}}</legend>
+        <ul class="experience-list">
+            {{#each document.system.experiences as |experience key|}}
+                <li class="experience-item">
+                    <input class="name" type="text" name="system.experiences.{{key}}.name" value="{{experience.name}}" />
+                    <input class="modifier" type="text" name="system.experiences.{{key}}.modifier" value="{{experience.modifier}}" data-dtype="Number" />
+                    <a data-action="removeExperience" data-experience="{{key}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.delete'}}"><i class="fa-solid fa-trash"></i></a>
+                </li>
+            {{/each}}
+        </ul>
+    </fieldset>
+
+</section>

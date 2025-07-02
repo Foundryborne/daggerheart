@@ -1,7 +1,7 @@
 @import '../utils/colors.less';
 @import '../utils/fonts.less';
 
-.application.sheet.daggerheart.actor.dh-style.character {
+.application.daggerheart.dh-style {
     .inventory-item {
         display: grid;
         grid-template-columns: 40px 1fr 60px;
@@ -15,6 +15,10 @@
             border: none;
             cursor: pointer;
             object-fit: cover;
+
+            &.actor-img {
+                border-radius: 50%;
+            }
         }
 
         .item-label {

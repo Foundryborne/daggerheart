@@ -1,0 +1,80 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.adversary {
+    .adversary-header-sheet {
+        padding: 0 15px;
+        padding-top: 36px;
+        width: 100%;
+
+        .name-row {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+            padding-top: 5px;
+            padding-bottom: 8px;
+            flex: 1;
+
+            input[type='text'] {
+                font-size: 32px;
+                height: 42px;
+                text-align: start;
+                border: 1px solid transparent;
+                outline: 2px solid transparent;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    outline: 2px solid light-dark(@dark, @golden);
+                }
+            }
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            padding-bottom: 16px;
+
+            .tag {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 3px 5px;
+                font-size: 12px;
+                font: @font-body;
+
+                background: light-dark(@dark-15, @beige-15);
+                border: 1px solid light-dark(@dark, @beige);
+                border-radius: 3px;
+            }
+
+            .label {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                font-size: 12px;
+            }
+        }
+
+        .adversary-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 16px 0;
+
+            .description,
+            .motives-and-tatics {
+                font-family: @font-body;
+            }
+        }
+
+        .adversary-navigation {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+    }
+}

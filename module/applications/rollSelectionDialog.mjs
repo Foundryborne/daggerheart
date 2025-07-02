@@ -1,3 +1,5 @@
+/** NOT USED ANYMORE - TO BE DELETED **/
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class RollSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {

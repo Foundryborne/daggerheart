@@ -14,8 +14,6 @@
 
         .portrait {
             position: relative;
-            height: 235px;
-            width: 275px;
             border-bottom: 1px solid light-dark(@dark-blue, @golden);
             cursor: pointer;
 
@@ -130,6 +128,7 @@
                         border: 1px solid light-dark(@dark-blue, @golden);
                         border-radius: 6px;
                         z-index: 1;
+                        background: @dark-blue;
 
                         &::-webkit-progress-bar {
                             border: none;
@@ -144,13 +143,9 @@
                             background: @gradient-stress;
                             border-radius: 6px;
                         }
-                        &::-moz-progress-value,
-                        &::-moz-progress-bar {
-                            border-radius: 6px;
-                        }
-
                         &::-moz-progress-bar {
                             background: @gradient-hp;
+                            border-radius: 6px;
                         }
                         &.stress-color::-moz-progress-bar {
                             background: @gradient-stress;

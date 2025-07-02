@@ -1,11 +1,11 @@
-import { capitalize } from '../../helpers/utils.mjs';
-import DhpDeathMove from '../deathMove.mjs';
-import DhpDowntime from '../downtime.mjs';
-import AncestrySelectionDialog from '../ancestrySelectionDialog.mjs';
-import DaggerheartSheet from './daggerheart-sheet.mjs';
-import { abilities } from '../../config/actorConfig.mjs';
-import DhCharacterlevelUp from '../levelup/characterLevelup.mjs';
-import DhCharacterCreation from '../characterCreation.mjs';
+import { capitalize } from '../../../helpers/utils.mjs';
+import DhpDeathMove from '../../deathMove.mjs';
+import DhpDowntime from '../../downtime.mjs';
+import AncestrySelectionDialog from '../../ancestrySelectionDialog.mjs';
+import DaggerheartSheet from '.././daggerheart-sheet.mjs';
+import { abilities } from '../../../config/actorConfig.mjs';
+import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
+import DhCharacterCreation from '../../characterCreation.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -727,9 +727,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
-                description: `${experience.description} ${
-                    experience.total < 0 ? experience.total : `+${experience.total}`
-                }`
+                description: `${experience.name} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
             };
             const msg = new cls({
                 type: 'abilityUse',

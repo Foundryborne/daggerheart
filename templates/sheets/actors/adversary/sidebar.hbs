@@ -1,0 +1,111 @@
+<aside class="adversary-sidebar-sheet">
+    <div class="portrait {{#if (gte source.system.resources.hitPoints.value source.system.resources.hitPoints.maxTotal)}}death-roll{{/if}}">
+        <img src="{{source.img}}" alt="{{source.name}}" data-action='editImage' data-edit="img">
+        <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.Sheets.PC.Health.DeathMoveTooltip"}}" data-action="makeDeathMove"><i class="fas fa-skull death-save" ></i></a>
+    </div>
+    
+    <div class="info-section">
+        <div class="resources-section">
+            <div class="status-bar">
+                <div class='status-value'>
+                    <p><input class="bar-input" name="system.resources.hitPoints.value" value="{{source.system.resources.hitPoints.value}}" type="number"></p>
+                    <p>/</p>
+                    <p class="bar-label">{{source.system.resources.hitPoints.max}}</p>
+                </div>
+                <progress
+                    class='progress-bar'
+                    value='{{source.system.resources.hitPoints.value}}'
+                    max='{{source.system.resources.hitPoints.max}}'
+                ></progress>
+                <div class="status-label">
+                    <h4>HP</h4>
+                </div>
+                
+            </div>
+            <div class="status-bar">
+                <div class='status-value'>
+                    <p><input class="bar-input" name="system.resources.stress.value" value="{{source.system.resources.stress.value}}" type="number"></p>
+                    <p>/</p>
+                    <p class="bar-label">{{source.system.resources.stress.max}}</p>
+                </div>
+                <progress
+                    class='progress-bar stress-color'
+                    value='{{source.system.resources.stress.value}}'
+                    max='{{source.system.resources.stress.max}}'
+                ></progress>
+                <div class="status-label">
+                    <h4>Stress</h4>
+                </div>
+            </div>
+        </div>
+        <div class="status-section">
+            <div class="threshold-section">
+            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Minor"}}</h4>
+            <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Major"}}</h4>
+            <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Severe"}}</h4>
+        </div>
+        </div>
+        <div class="status-section">
+            <div class="status-number">
+                <div class='status-value armor-slots'>
+                    {{#if source.system.difficulty}}
+                        <p>{{source.system.difficulty}}</p>
+                    {{else}}
+                        <p>-</p>
+                    {{/if}}
+                </div>
+                <div class="status-label">
+                    <h4>Difficulty</h4>
+                </div>
+            </div>
+            <div class="status-number">
+                <div class='status-value armor-slots'>
+                    {{#if source.system.attack.target.amount}}
+                        <p>{{source.system.attack.target.amount}}</p>
+                    {{else}}
+                        <p>-</p>
+                    {{/if}}
+                </div>
+                <div class="status-label">
+                    <h4>Attack</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="attack-section">
+        <div class="title">
+            <side-line-div  class="invert"></side-line-div>
+            <h3>Attack</h3>
+            <side-line-div></side-line-div>
+        </div>
+        <ul class="items-sidebar-list">
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=source.system.attack type=source.system.attack.systemPath isSidebar=true}}
+        </ul>
+    </div>
+    <div class="experience-section">
+        <div class="title">
+            <side-line-div  class="invert"></side-line-div>
+            <h3>Experience</h3>
+            <side-line-div></side-line-div>
+        </div>
+        <div class="experience-list">
+            {{#each source.system.experiences as |experience id|}}
+                <div class="experience-row">
+                    <div class="experience-value">
+                        +{{experience.modifier}}
+                    </div>
+                    <span class="experience-name">{{experience.name}}</span>
+                    <div class="controls">
+                        <a data-action="toChat" data-type="experience" data-uuid="{{id}}"><i class="fa-regular fa-message"></i></a>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <line-div></line-div>
+    <div class="reaction-section">
+        <button data-action="reactionRoll">Reaction Test</button>
+    </div>
+</aside>

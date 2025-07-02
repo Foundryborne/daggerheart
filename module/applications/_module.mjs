@@ -1,6 +1,6 @@
-export { default as DhCharacterSheet } from './sheets/character.mjs';
+export { default as DhCharacterSheet } from './sheets/actors/character.mjs';
+export { default as DhpAdversarySheet } from './sheets/actors/adversary.mjs';
 export { default as DhCompanionSheet } from './sheets/companion.mjs';
-export { default as DhpAdversarySheet } from './sheets/adversary.mjs';
 export { default as DhpClassSheet } from './sheets/items/class.mjs';
 export { default as DhpSubclass } from './sheets/items/subclass.mjs';
 export { default as DhpFeatureSheet } from './sheets/items/feature.mjs';
@@ -12,8 +12,9 @@ export { default as DhpConsumable } from './sheets/items/consumable.mjs';
 export { default as DhpWeapon } from './sheets/items/weapon.mjs';
 export { default as DhpArmor } from './sheets/items/armor.mjs';
 export { default as DhpChatMessage } from './chatMessage.mjs';
-export { default as DhpEnvironment } from './sheets/environment.mjs';
+export { default as DhpEnvironment } from './sheets/actors/environment.mjs';
 export { default as DhActiveEffectConfig } from './sheets/activeEffectConfig.mjs';
 export { default as DhContextMenu } from './contextMenu.mjs';
+export { default as DhTooltipManager } from './tooltipManager.mjs';
 
 export * as api from './sheets/api/_modules.mjs';

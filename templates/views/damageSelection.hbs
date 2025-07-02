@@ -2,7 +2,11 @@
     <div class="form-group">
         <label><strong>{{title}}</strong></label>
         <div class="form-fields">
-            <input type="text" value="{{formula}}" disabled />
+            {{!-- <input type="text" value="{{formula}}" disabled /> --}}
+            <div>{{@root.formula}}</div>
+        </div>
+        <div>
+            <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="Situational Bonus">
         </div>
     </div>
     {{!-- {{#each bonusDamage as |damage index|}}

@@ -1,0 +1,38 @@
+<section
+    class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
+    data-tab='{{tabs.details.id}}'
+    data-group='{{tabs.details.group}}'
+>
+    <fieldset class="one-column">
+        <legend>{{localize 'DAGGERHEART.General.basics'}}</legend>
+        <div class="nest-inputs">
+            {{formGroup systemFields.tier value=document.system.tier localize=true}}
+            {{formGroup systemFields.type value=document.system.type localize=true}}
+            {{#if (eq document.system.type 'horde')}}
+                {{formGroup systemFields.hordeHp value=document.system.hordeHp label=(localize "DAGGERHEART.Sheets.Adversary.horderHp")}}
+            {{/if}}
+            {{formGroup systemFields.difficulty value=document.system.difficulty localize=true}}
+        </div>
+        {{formField systemFields.description value=document.system.description label=(localize "DAGGERHEART.Sheets.Adversary.FIELDS.description.label")}}
+        {{formField systemFields.motivesAndTactics value=document.system.motivesAndTactics label=(localize "DAGGERHEART.Sheets.Adversary.FIELDS.motivesAndTactics.label")}}
+    </fieldset>
+
+    <div class="fieldsets-section">
+        <fieldset class="flex">
+            <legend>{{localize "DAGGERHEART.Sheets.Adversary.HitPoints"}}</legend>
+            {{formGroup systemFields.resources.fields.hitPoints.fields.value value=document.system.resources.hitPoints.value}}
+            {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document.system.resources.hitPoints.max}}
+        </fieldset>
+        <fieldset class="flex">
+            <legend>{{localize "DAGGERHEART.Sheets.Adversary.Stress"}}</legend>
+            {{formGroup systemFields.resources.fields.stress.fields.value value=document.system.resources.stress.value}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=document.system.resources.stress.max}}
+        </fieldset>
+    </div>
+
+    <fieldset class="flex">
+        <legend>{{localize "DAGGERHEART.Sheets.Adversary.DamageThresholds"}}</legend>
+        {{formGroup systemFields.damageThresholds.fields.major value=document.system.damageThresholds.major}}
+        {{formGroup systemFields.damageThresholds.fields.severe value=document.system.damageThresholds.severe}}
+    </fieldset>
+</section>

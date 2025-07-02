@@ -37,8 +37,15 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.title = this.config.title;
-        context.formula = this.config.roll.formula;
+        context.extraFormula = this.config.extraFormula;
+        context.formula = this.roll.constructFormula(this.config);;
         return context;
+    }
+
+    static updateRollConfiguration(event, _, formData) {
+        const { ...rest } = foundry.utils.expandObject(formData.object);
+        this.config.extraFormula = rest.extraFormula;
+        this.render();
     }
 
     static async submitRoll() {

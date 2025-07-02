@@ -192,6 +192,10 @@
                 "Full": "Disadvantage",
                 "Short": "Dis"
             },
+            "Neutral": {
+                "Full": "None",
+                "Short": "no"
+            },
             "OK": "OK",
             "Cancel": "Cancel",
             "Or": "Or",
@@ -223,12 +227,22 @@
                 "Major": "Major",
                 "Minor": "Minor",
                 "None": "None"
-            }
+            },
+            "tabs": {
+                "details": "Details",
+                "attack": "Attack",
+                "experiences": "Experiences",
+                "features": "Features",
+                "actions": "Actions",
+                "potentialAdversaries": "Potential Adversaries",
+                "adversaries": "Adversaries"
+            },
+            "basics": "Basics"
         },
         "ActionType": {
-            "Passive": "Passive",
-            "Action": "Action",
-            "Reaction": "Reaction"
+            "passive": "Passive",
+            "action": "Action",
+            "reaction": "Reaction"
         },
         "Abilities": {
             "agility": {
@@ -312,45 +326,45 @@
         },
         "Adversary": {
             "Type": {
-                "Bruiser": {
+                "bruiser": {
                     "label": "Bruiser",
-                    "Description": "Tough adversaries with powerful attacks."
+                    "description": "Tough adversaries with powerful attacks."
                 },
-                "Horde": {
+                "horde": {
                     "label": "Horde",
-                    "Description": "A Horde represents a number of foes working in a group."
+                    "description": "A Horde represents a number of foes working in a group."
                 },
-                "Leader": {
+                "leader": {
                     "label": "Leader",
-                    "Description": "Adversaries that command and summon other adversaries."
+                    "description": "Adversaries that command and summon other adversaries."
                 },
-                "Minion": {
+                "minion": {
                     "label": "Minion",
-                    "Description": "Basic enemies that are easily dispatched but dangerous in numbers."
+                    "description": "Basic enemies that are easily dispatched but dangerous in numbers."
                 },
-                "Ranged": {
+                "ranged": {
                     "label": "Ranged",
-                    "Description": "Adversaries that attack from a distance."
+                    "description": "Adversaries that attack from a distance."
                 },
-                "Skulk": {
+                "skulk": {
                     "label": "Skulk",
-                    "Description": "Adversaries that maneuver and exploit opportunities to ambush their opponents."
+                    "description": "Adversaries that maneuver and exploit opportunities to ambush their opponents."
                 },
-                "Social": {
+                "social": {
                     "label": "Social",
-                    "Description": "Adversaries that are primarily interpersonal threats or challenges."
+                    "description": "Adversaries that are primarily interpersonal threats or challenges."
                 },
-                "Solo": {
+                "solo": {
                     "label": "Solo",
-                    "Description": "Designed to present a challenge to a whole party."
+                    "description": "Designed to present a challenge to a whole party."
                 },
-                "Standard": {
+                "standard": {
                     "label": "Standard",
-                    "Description": "Rank and File adversaries."
+                    "description": "Rank and File adversaries."
                 },
-                "Support": {
+                "support": {
                     "label": "Support",
-                    "Description": "Enemies that enhance their allies and/or disrupt their opponents."
+                    "description": "Enemies that enhance their allies and/or disrupt their opponents."
                 }
             },
             "Trait": {
@@ -373,19 +387,19 @@
         },
         "Environment": {
             "Type": {
-                "Exploration": {
+                "exploration": {
                     "label": "Exploration",
                     "description": ""
                 },
-                "Social": {
+                "social": {
                     "label": "Social",
                     "description": ""
                 },
-                "Traversal": {
+                "traversal": {
                     "label": "Traversal",
                     "description": ""
                 },
-                "Event": {
+                "event": {
                     "label": "Event",
                     "description": ""
                 }
@@ -1334,14 +1348,18 @@
                 },
                 "Tabs": {
                     "Main": "Data",
-                    "Information": "Information"
+                    "Information": "Information",
+                    "features": "Features",
+                    "notes": "Notes",
+                    "effects": "Effects"
                 },
                 "General": "General",
                 "DamageThresholds": "Damage Thresholds",
                 "HitPoints": "Hit Points",
                 "Stress": "Stress",
                 "Experiences": "Experiences",
-                "Attack": "Attack"
+                "Attack": "Attack",
+                "horderHp": "Horde/HP"
             },
             "Environment": {
                 "FIELDS": {
@@ -1353,6 +1371,12 @@
                     },
                     "difficulty": {
                         "label": "Difficulty"
+                    },
+                    "impulses": {
+                        "label": "Impulses"
+                    },
+                    "description": {
+                        "label": "Description"
                     }
                 },
                 "Tabs": {
@@ -1566,9 +1590,11 @@
         },
         "Tooltip": {
             "openItemWorld": "Open Item World",
+            "openActorWorld": "Open Actor World",
             "sendToChat": "Send to Chat",
             "moreOptions": "More Options",
             "equip": "Equip",
+            "edit": "Edit",
             "unequip": "Unequip",
             "delete": "Delete",
             "sendToVault": "Send to Vault",
@@ -1576,29 +1602,29 @@
         },
         "Actions": {
             "Types": {
-                "Attack": {
-                    "Name": "Attack"
+                "attack": {
+                    "name": "Attack"
                 },
-                "Spellcast": {
-                    "Name": "Spellcast"
+                "spellcast": {
+                    "name": "Spellcast"
                 },
-                "Resource": {
-                    "Name": "Resource"
+                "resource": {
+                    "name": "Resource"
                 },
-                "Damage": {
-                    "Name": "Damage"
+                "damage": {
+                    "name": "Damage"
                 },
-                "Healing": {
-                    "Name": "Healing"
+                "healing": {
+                    "name": "Healing"
                 },
-                "Summon": {
-                    "Name": "Summon"
+                "summon": {
+                    "name": "Summon"
                 },
-                "Effect": {
-                    "Name": "Effect"
+                "effect": {
+                    "name": "Effect"
                 },
-                "Macro": {
-                    "Name": "Macro"
+                "macro": {
+                    "name": "Macro"
                 }
             },
             "Settings": {

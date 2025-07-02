@@ -1,9 +1,43 @@
-<header class='item-card-header'>
-    <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
-    <div class='item-info'>
-        <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
-        <div class='item-description'>
-            <h3>{{localize 'TYPES.Actor.adversary'}}</h3>
+<header class='adversary-header-sheet'>
+    <line-div></line-div>
+    <div class="name-row">
+        <h1 class='actor-name'>
+            <input type='text' name='name' value='{{source.name}}' placeholder='Actor Name'
+            />
+        </h1>
+    </div>
+    <div class="tags">
+        <div class="tag">
+            <span>
+                {{localize (concat 'DAGGERHEART.Tiers.' source.system.tier)}}
+            </span>
         </div>
+        <div class="tag">
+            <span>
+                {{localize (concat 'DAGGERHEART.Adversary.Type.' source.system.type '.label')}}
+            </span>
+        </div>
+        {{#if (eq source.system.type 'horde')}}
+            <div class="tag">
+                <span>{{source.system.hordeHp}}</span>
+                <span>/HP</span>
+            </div>
+        {{/if}}
+    </div>
+    <line-div></line-div>
+    <div class="adversary-info">
+        <div class="description">
+            <i>{{source.system.description}}</i>
+        </div>
+        <div class="motives-and-tatics">
+            <b>{{localize 'DAGGERHEART.Sheets.Adversary.FIELDS.motivesAndTactics.label'}}: </b>{{{source.system.motivesAndTactics}}}
+        </div>
+    </div>
+
+    <div class="adversary-navigation">
+        {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+        <button data-action="openSettings">
+            <i class="fa-solid fa-wrench"></i>
+        </button>
     </div>
 </header>

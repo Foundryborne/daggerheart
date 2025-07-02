@@ -1,0 +1,74 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.daggerheart.dh-style.dialog {
+    .tab.actions {
+        max-height: 450px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+
+        .add-action-btn {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .action-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .action-item {
+                display: grid;
+                grid-template-columns: 40px 1fr auto;
+                align-items: center;
+                gap: 5px;
+                border-radius: 3px;
+
+                img {
+                    height: 40px;
+                    width: 40px;
+                    object-fit: cover;
+                }
+
+                .label {
+                    font-family: @font-body;
+
+                    .tags {
+                        display: flex;
+                        gap: 10px;
+
+                        .tag {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 3px 5px;
+                            font-size: 12px;
+
+                            background: light-dark(@dark-15, @beige-15);
+                            border: 1px solid light-dark(@dark, @beige);
+                            border-radius: 3px;
+                        }
+
+                        .label {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 12px;
+                        }
+                    }
+                }
+
+                .controls {
+                    display: flex;
+                    gap: 5px;
+                    a {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

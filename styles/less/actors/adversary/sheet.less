@@ -1,0 +1,28 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.adversary {
+    .window-content {
+        display: grid;
+        grid-template-columns: 275px 1fr;
+        grid-template-rows: 283px 1fr;
+        gap: 15px 0;
+        height: 100%;
+        width: 100%;
+
+        .adversary-sidebar-sheet {
+            grid-row: 1 / span 2;
+            grid-column: 1;
+        }
+
+        .adversary-header-sheet {
+            grid-row: 1;
+            grid-column: 2;
+        }
+
+        .tab {
+            grid-row: 2;
+            grid-column: 2;
+        }
+    }
+}
