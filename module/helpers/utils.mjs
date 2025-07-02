@@ -128,9 +128,9 @@ export const setDiceSoNiceForDualityRoll = (rollResult, advantageState) => {
     rollResult.dice[1].options = { appearance: diceSoNicePresets.fear }; //diceSoNicePresets.fear;
     if (rollResult.dice[2]) {
         if (advantageState === true) {
-            rollResult.dice[2].options.appearance = diceSoNicePresets.advantage;
+            rollResult.dice[2].options = { appearance: diceSoNicePresets.advantage };
         } else if (advantageState === false) {
-            rollResult.dice[2].options.appearance = diceSoNicePresets.disadvantage;
+            rollResult.dice[2].options = { appearance: diceSoNicePresets.disadvantage };
         }
     }
 };

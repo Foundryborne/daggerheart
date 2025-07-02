@@ -395,7 +395,12 @@ export class DualityRoll extends D20Roll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         if (config.evaluate !== false) await roll.evaluate();
-        const advantageState = this.hasAdvantage ? true : this.hasDisadvantage ? false : null;
+        const advantageState =
+            config.advantage == this.ADV_MODE.ADVANTAGE
+                ? true
+                : config.advantage == this.ADV_MODE.DISADVANTAGE
+                  ? false
+                  : null;
         setDiceSoNiceForDualityRoll(roll, advantageState);
         this.postEvaluate(roll, config);
     }

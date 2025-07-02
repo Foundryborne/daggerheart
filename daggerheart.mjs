@@ -219,11 +219,21 @@ Hooks.on('chatMessage', (_, message) => {
 
                 const config = {
                     title: title,
-                    roll: { formula },
-                    targets: target,
+                    roll: {
+                        formula,
+                        trait: traitValue
+                    },
+                    data: {
+                        traits: {
+                            [traitValue]: trait
+                        }
+                    },
+                    source: target,
                     hasSave: false,
                     dialog: { configure: false },
-                    evaluate: true
+                    evaluate: true,
+                    advantage: rollCommand.advantage == true,
+                    disadvantage: rollCommand.disadvantage == true
                 };
 
                 await CONFIG.Dice.daggerheart['DualityRoll'].build(config);
