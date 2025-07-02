@@ -289,7 +289,6 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/global/partials/action-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs',
-
         'systems/daggerheart/templates/sheets/parts/attributes.hbs',
         'systems/daggerheart/templates/sheets/parts/defense.hbs',
         'systems/daggerheart/templates/sheets/parts/armor.hbs',
@@ -303,10 +302,6 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/parts/heritage.hbs',
         'systems/daggerheart/templates/sheets/parts/subclassFeature.hbs',
         'systems/daggerheart/templates/sheets/parts/effects.hbs',
-        'systems/daggerheart/templates/sheets/character/sections/inventory.hbs',
-        'systems/daggerheart/templates/sheets/character/sections/loadout.hbs',
-        'systems/daggerheart/templates/sheets/character/parts/heritageCard.hbs',
-        'systems/daggerheart/templates/sheets/character/parts/advancementCard.hbs',
         'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-features.hbs',
         'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-feature.hbs',
         'systems/daggerheart/templates/components/card-preview.hbs',

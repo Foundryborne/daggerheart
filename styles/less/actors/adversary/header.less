@@ -29,44 +29,6 @@
                     outline: 2px solid light-dark(@dark, @golden);
                 }
             }
-
-            .level-div {
-                white-space: nowrap;
-                display: flex;
-                justify-content: end;
-
-                .label {
-                    display: flex;
-                    align-items: center;
-                    gap: 4px;
-                }
-
-                input {
-                    width: 40px;
-                    padding: 0;
-                    text-align: center;
-                }
-
-                .level-button {
-                    color: light-dark(@dark, @beige);
-                    font-size: 18px;
-                    line-height: 1;
-                    min-height: unset;
-                    height: min-content;
-                    padding: 4px;
-                    font-family: 'Cinzel', serif;
-                    margin: 0;
-                    font-weight: normal;
-                    border-color: light-dark(@dark-blue, @golden);
-                    background-color: light-dark(transparent, @deep-black);
-
-                    &:hover {
-                        background-image: none;
-                        background-color: var(--color-warm-2);
-                        filter: drop-shadow(0 0 3px lightgray);
-                    }
-                }
-            }
         }
 
         .tags {
@@ -113,40 +75,6 @@
             display: flex;
             gap: 8px;
             align-items: center;
-        }
-
-        .character-details {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-            margin-bottom: 10px;
-            font-size: 12px;
-            color: light-dark(@dark-blue, @golden);
-
-            span {
-                padding: 3px;
-                border-radius: 3px;
-                transition: all 0.3s ease;
-                cursor: pointer;
-
-                &:hover {
-                    background: light-dark(@dark-blue-40, @golden-40);
-                }
-
-                &.dot {
-                    background: transparent;
-                    cursor: default;
-                }
-            }
-        }
-
-        .character-row {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0;
-            margin-bottom: 15px;
         }
     }
 }

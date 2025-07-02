@@ -1,0 +1,18 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.environment {
+    .theme-light & {
+        background: url('../assets/parchments/dh-parchment-light.png');
+    }
+    .theme-dark & {
+        background-image: url('../assets/parchments/dh-parchment-dark.png');
+    }
+
+    .tab {
+        max-height: 300px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+    }
+}

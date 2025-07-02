@@ -1,5 +1,5 @@
 <li class="inventory-item" data-item-id="{{item.id}}" data-companion="{{companion}}">
-    <img src="{{item.img}}" class="item-img" data-action="useItem"/>
+    <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" data-action="useItem"/>
     <div class="item-label">
         <div class="item-name">{{item.name}}</div>
         {{#if  (eq type 'weapon')}}
@@ -111,31 +111,48 @@
             </div>
         {{/if}}
     </div>
-    <div class="controls">
-        {{#if (eq type 'weapon')}}
-            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.Tooltip.unequip'}}{{/unless}}">
-                <i class="fa-solid fa-hands"></i>
-            </a>
+    {{#unless hideControls}}
+        {{#if isActor}}
+            <div class="controls">
+                {{#if (eq type 'adversary')}}
+                    <a data-action="viewAdversary" data-potential-adversary="{{categoryAdversary}}" data-adversary="{{item.uuid}}" data-tooltip='{{localize "DAGGERHEART.Tooltip.openActorWorld"}}'>
+                        <i class="fa-solid fa-globe"></i>
+                    </a>
+                    <a data-action='deleteAdversary' data-potential-adversary="{{categoryAdversary}}" data-adversary="{{item.uuid}}" data-tooltip='{{localize "DAGGERHEART.Tooltip.delete"}}'>
+                        <i class='fas fa-trash'></i>
+                    </a>
+                {{/if}}
+            </div>
+        {{else}}
+            <div class="controls">
+                {{#if (eq type 'weapon')}}
+                    <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.Tooltip.unequip'}}{{/unless}}">
+                        <i class="fa-solid fa-hands"></i>
+                    </a>
+                {{/if}}
+                {{#if (eq type 'armor')}}
+                    <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.Tooltip.unequip'}}{{/unless}}">
+                    <i class="fa-solid fa-shield"></i>
+                    </a>
+                {{/if}}
+                {{#if (eq type 'domainCard')}}
+                    {{#unless item.system.inVault}}
+                        <a data-action="toggleVault" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                    {{else}}
+                        <a data-action="toggleVault" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </a>
+                    {{/unless}}
+                    
+                {{/if}}
+                <a data-action="toChat" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToChat'}}"><i class="fa-regular fa-message"></i></a>
+                <a data-action="triggerContextMenu" data-tooltip="{{localize 'DAGGERHEART.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+            </div>
         {{/if}}
-        {{#if (eq type 'armor')}}
-            <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.Tooltip.unequip'}}{{/unless}}">
-               <i class="fa-solid fa-shield"></i>
-            </a>
-        {{/if}}
-        {{#if (eq type 'domainCard')}}
-            {{#unless item.system.inVault}}
-                <a data-action="toggleVault" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToVault'}}">
-                    <i class="fa-solid fa-arrow-down"></i>
-                </a>
-            {{else}}
-                <a data-action="toggleVault" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToLoadout'}}">
-                    <i class="fa-solid fa-arrow-up"></i>
-                </a>
-            {{/unless}}
-            
-        {{/if}}
-        <a data-action="toChat" data-tooltip="{{localize 'DAGGERHEART.Tooltip.sendToChat'}}"><i class="fa-regular fa-message"></i></a>
-        <a data-action="triggerContextMenu" data-tooltip="{{localize 'DAGGERHEART.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
-    </div>
+    {{else}}
+        <span></span>
+    {{/unless}}
     <div class="item-description">{{#unless isSidebar}}{{{item.system.description}}}{{/unless}}</div>
 </li>
