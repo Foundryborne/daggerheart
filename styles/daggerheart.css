@@ -4786,7 +4786,7 @@ div.daggerheart.views.multiclass {
   padding: 0 20px;
 }
 .theme-light .application.sheet.daggerheart.actor.dh-style.environment {
-  background: url('../assets/svg/trait-shield-light.svg') no-repeat;
+  background: url('../assets/parchments/dh-parchment-light.png');
 }
 .theme-dark .application.sheet.daggerheart.actor.dh-style.environment {
   background-image: url('../assets/parchments/dh-parchment-dark.png');

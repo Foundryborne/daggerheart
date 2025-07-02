@@ -5,7 +5,7 @@
 >    
     <div class="action-section">
         {{#each document.system.potentialAdversaries}}
-            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=this.label type='adversary' isGlassy=true}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=this.label type='adversary' isGlassy=true adversaries=this.adversaries}}
         {{/each}}
     </div>
 </section>

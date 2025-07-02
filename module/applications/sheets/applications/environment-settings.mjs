@@ -180,17 +180,15 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     }
 
     static async #viewAdversary(_, button) {
-        const adversary = foundry.utils.getProperty(
-            this.actor.system.potentialAdversaries,
-            `${button.dataset.potentialAdversary}.adversaries.${button.dataset.adversary}`
-        );
-        adversary.uuid.sheet.render(true);
+        const adversary = await foundry.utils.fromUuid(button.dataset.adversary);
+        adversary.sheet.render(true);
     }
 
     static async #deleteAdversary(event, target) {
         const adversaryKey = target.dataset.adversary;
         const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
-        await this.actor.update({ [`${path}.-=${adversaryKey}`]: null });
+        const newAdversaries = foundry.utils.getProperty(this.actor, path).filter(x => x.uuid !== adversaryKey);
+        await this.actor.update({ [path]: newAdversaries });
         this.render();
     }
 
@@ -199,11 +197,10 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
         const item = await fromUuid(data.uuid);
         if (item.type === 'adversary') {
             const target = event.target.closest('.category-container');
-            const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries.${item.id}`;
+            const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
+            const current = foundry.utils.getProperty(this.actor, path).map(x => x.uuid);
             await this.actor.update({
-                [path]: {
-                    uuid: item.uuid
-                }
+                [path]: [...current, item.uuid]
             });
             this.render();
         }

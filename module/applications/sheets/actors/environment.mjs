@@ -11,7 +11,6 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         },
         actions: {
             addAdversary: this.addAdversary,
-            addFeature: this.addFeature,
             deleteProperty: this.deleteProperty,
             viewAdversary: this.viewAdversary,
             openSettings: this.openSettings
@@ -21,7 +20,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
             submitOnChange: true,
             closeOnSubmit: false
         },
-        dragDrop: [{ dragSelector: null, dropSelector: '.category-container' }]
+        dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]
     };
 
     static PARTS = {
@@ -91,32 +90,24 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    static async addFeature() {
-        ui.notifications.error('Not Implemented yet. Awaiting datamodel rework');
-    }
-
     static async deleteProperty(_, target) {
         await this.document.update({ [`${target.dataset.path}.-=${target.id}`]: null });
         this.render();
     }
 
     static async viewAdversary(_, button) {
-        const adversary = foundry.utils.getProperty(
-            this.document.system.potentialAdversaries,
-            `${button.dataset.potentialAdversary}.adversaries.${button.dataset.adversary}`
-        );
+        const adversary = await foundry.utils.fromUuid(button.dataset.adversary);
         adversary.sheet.render(true);
     }
 
-    async _onDrop(event) {
-        const data = TextEditor.getDragEventData(event);
-        const item = await fromUuid(data.uuid);
-        if (item.type === 'adversary') {
-            const target = event.target.closest('.category-container');
-            const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries.${item.id}`;
-            await this.document.update({
-                [path]: item.uuid
-            });
+    async _onDragStart(event) {
+        const item = event.currentTarget.closest('.inventory-item');
+
+        if (item) {
+            const adversary = game.actors.find(x => x.type === 'adversary' && x.id === item.dataset.itemId);
+            const adversaryData = { type: 'Actor', uuid: adversary.uuid };
+            event.dataTransfer.setData('text/plain', JSON.stringify(adversaryData));
+            event.dataTransfer.setDragImage(item, 60, 0);
         }
     }
 }

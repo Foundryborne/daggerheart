@@ -115,10 +115,10 @@
         {{#if isActor}}
             <div class="controls">
                 {{#if (eq type 'adversary')}}
-                    <a data-action="viewAdversary" data-potential-adversary="{{categoryAdversary}}" data-adversary="{{actorId}}" data-tooltip='{{localize "DAGGERHEART.Tooltip.openActorWorld"}}'>
+                    <a data-action="viewAdversary" data-potential-adversary="{{categoryAdversary}}" data-adversary="{{item.uuid}}" data-tooltip='{{localize "DAGGERHEART.Tooltip.openActorWorld"}}'>
                         <i class="fa-solid fa-globe"></i>
                     </a>
-                    <a data-action='deleteAdversary' data-potential-adversary="{{categoryAdversary}}" data-adversary="{{actorId}}" data-tooltip='{{localize "DAGGERHEART.Tooltip.delete"}}'>
+                    <a data-action='deleteAdversary' data-potential-adversary="{{categoryAdversary}}" data-adversary="{{item.uuid}}" data-tooltip='{{localize "DAGGERHEART.Tooltip.delete"}}'>
                         <i class='fas fa-trash'></i>
                     </a>
                 {{/if}}

@@ -9,11 +9,13 @@
                         {{localize (concat 'DAGGERHEART.Tiers.' source.system.tier)}}
                     </span>
                 </div>
-                <div class="tag">
-                    <span>
-                        {{localize (concat 'DAGGERHEART.Environment.Type.' source.system.type '.label')}}
-                    </span>
-                </div>
+                {{#if source.system.type}}
+                    <div class="tag">
+                        <span>
+                            {{localize (concat 'DAGGERHEART.Environment.Type.' source.system.type '.label')}}
+                        </span>
+                    </div>
+                {{/if}}
             </div>
         </div>
         <div class="status-number">

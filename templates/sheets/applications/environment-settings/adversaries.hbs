@@ -14,9 +14,9 @@
                 <a><i class="fa-solid fa-trash" data-action="deleteProperty" data-path="system.potentialAdversaries" id={{@key}} data-tooltip='{{localize "DAGGERHEART.Tooltip.delete"}}'></i></a>
             </div>
             <div class="adversaries-container">
-                {{#each this.adversaries as |adversary id|}}
+                {{#each this.adversaries as |adversary|}}
                     <div class="adversary-container">
-                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=adversary.uuid type='adversary' isActor=true categoryAdversary=@../key actorId=id}}
+                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=adversary type='adversary' isActor=true categoryAdversary=@../key}}
                     </div>
                 {{/each}}
             </div>
