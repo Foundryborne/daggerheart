@@ -135,20 +135,20 @@ export const adversaryTypes = {
 
 export const environmentTypes = {
     exploration: {
-        label: 'DAGGERHEART.Environment.Type.Exploration.label',
-        description: 'DAGGERHEART.Environment.Type.Exploration.description'
+        label: 'DAGGERHEART.Environment.Type.exploration.label',
+        description: 'DAGGERHEART.Environment.Type.exploration.description'
     },
     social: {
-        label: 'DAGGERHEART.Environment.Type.Social.label',
-        description: 'DAGGERHEART.Environment.Type.Social.description'
+        label: 'DAGGERHEART.Environment.Type.social.label',
+        description: 'DAGGERHEART.Environment.Type.social.description'
     },
     traversal: {
-        label: 'DAGGERHEART.Environment.Type.Traversal.label',
-        description: 'DAGGERHEART.Environment.Type.Traversal.description'
+        label: 'DAGGERHEART.Environment.Type.traversal.label',
+        description: 'DAGGERHEART.Environment.Type.traversal.description'
     },
     event: {
-        label: 'DAGGERHEART.Environment.Type.Event.label',
-        description: 'DAGGERHEART.Environment.Type.Event.description'
+        label: 'DAGGERHEART.Environment.Type.event.label',
+        description: 'DAGGERHEART.Environment.Type.event.description'
     }
 };
 

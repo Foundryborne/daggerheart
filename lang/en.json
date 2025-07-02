@@ -229,7 +229,9 @@
                 "attack": "Attack",
                 "experiences": "Experiences",
                 "features": "Features",
-                "actions": "Actions"
+                "actions": "Actions",
+                "potentialAdversaries": "Potential Adversaries",
+                "adversaries": "Adversaries"
             },
             "basics": "Basics"
         },
@@ -381,19 +383,19 @@
         },
         "Environment": {
             "Type": {
-                "Exploration": {
+                "exploration": {
                     "label": "Exploration",
                     "description": ""
                 },
-                "Social": {
+                "social": {
                     "label": "Social",
                     "description": ""
                 },
-                "Traversal": {
+                "traversal": {
                     "label": "Traversal",
                     "description": ""
                 },
-                "Event": {
+                "event": {
                     "label": "Event",
                     "description": ""
                 }
@@ -1364,6 +1366,12 @@
                     },
                     "difficulty": {
                         "label": "Difficulty"
+                    },
+                    "impulses": {
+                        "label": "Impulses"
+                    },
+                    "description": {
+                        "label": "Description"
                     }
                 },
                 "Tabs": {
@@ -1577,6 +1585,7 @@
         },
         "Tooltip": {
             "openItemWorld": "Open Item World",
+            "openActorWorld": "Open Actor World",
             "sendToChat": "Send to Chat",
             "moreOptions": "More Options",
             "equip": "Equip",

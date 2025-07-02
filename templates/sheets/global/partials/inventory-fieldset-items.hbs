@@ -49,6 +49,9 @@
                     {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=feature companion=true}}
                 {{/if}}
             {{/each}}
+            {{#each this.adversaries as |adversary id|}}
+                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=adversary.uuid type='adversary' hideControls=true isActor=true categoryAdversary=@../key actorId=id}}
+            {{/each}}
         {{/unless}}
         
     </ul>

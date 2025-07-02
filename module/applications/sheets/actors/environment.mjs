@@ -1,4 +1,5 @@
-import DaggerheartSheet from './daggerheart-sheet.mjs';
+import DaggerheartSheet from '../daggerheart-sheet.mjs';
+import DHEnvironmentSettings from '../applications/environment-settings.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
@@ -6,46 +7,56 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         tag: 'form',
         classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'environment'],
         position: {
-            width: 450,
-            height: 1000
+            width: 500
         },
         actions: {
             addAdversary: this.addAdversary,
             addFeature: this.addFeature,
             deleteProperty: this.deleteProperty,
-            viewAdversary: this.viewAdversary
+            viewAdversary: this.viewAdversary,
+            openSettings: this.openSettings
         },
         form: {
             handler: this._updateForm,
             submitOnChange: true,
             closeOnSubmit: false
         },
-        dragDrop: [{ dragSelector: null, dropSelector: '.adversary-container' }]
+        dragDrop: [{ dragSelector: null, dropSelector: '.category-container' }]
     };
 
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
-        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
-        main: { template: 'systems/daggerheart/templates/sheets/actors/environment/main.hbs' },
-        information: { template: 'systems/daggerheart/templates/sheets/actors/environment/information.hbs' }
+        actions: { template: 'systems/daggerheart/templates/sheets/actors/environment/actions.hbs' },
+        potentialAdversaries: {
+            template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs'
+        },
+        notes: { template: 'systems/daggerheart/templates/sheets/actors/environment/notes.hbs' }
     };
 
     static TABS = {
-        main: {
+        actions: {
             active: true,
             cssClass: '',
             group: 'primary',
-            id: 'main',
+            id: 'actions',
             icon: null,
-            label: 'DAGGERHEART.Sheets.Environment.Tabs.Main'
+            label: 'DAGGERHEART.General.tabs.actions'
         },
-        information: {
+        potentialAdversaries: {
             active: false,
             cssClass: '',
             group: 'primary',
-            id: 'information',
+            id: 'potentialAdversaries',
             icon: null,
-            label: 'DAGGERHEART.Sheets.Environment.Tabs.Information'
+            label: 'DAGGERHEART.General.tabs.potentialAdversaries'
+        },
+        notes: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'notes',
+            icon: null,
+            label: 'DAGGERHEART.Sheets.Adversary.Tabs.notes'
         }
     };
 
@@ -56,6 +67,10 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         context.getEffectDetails = this.getEffectDetails.bind(this);
 
         return context;
+    }
+
+    static async openSettings() {
+        await new DHEnvironmentSettings(this.document).render(true);
     }
 
     static async _updateForm(event, _, formData) {
@@ -97,7 +112,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
         if (item.type === 'adversary') {
-            const target = event.target.closest('.adversary-container');
+            const target = event.target.closest('.category-container');
             const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries.${item.id}`;
             await this.document.update({
                 [path]: item.uuid
