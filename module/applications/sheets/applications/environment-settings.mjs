@@ -182,7 +182,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     static async #viewAdversary(_, button) {
         const adversary = await foundry.utils.fromUuid(button.dataset.adversary);
         if (!adversary) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.Environment.Notifications.AdversaryMissing'));
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.adversaryMissing'));
             return;
         }
 
