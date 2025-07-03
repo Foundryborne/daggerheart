@@ -7,6 +7,8 @@ import { abilities } from '../../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
+import { DhBeastformAction } from '../../../data/action/action.mjs';
+import DHActionConfig from '../../config/Action.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -751,7 +753,11 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const item = this.getItem(event);
         if (!item) return;
 
-        item.sheet.render(true);
+        if (item.sheet) {
+            item.sheet.render(true);
+        } else {
+            await new DHActionConfig(item).render(true);
+        }
     }
 
     editItem(event) {

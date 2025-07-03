@@ -107,6 +107,11 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                     }),
                     value: new fields.EmbeddedDataField(DHActionDiceData),
                     valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
+                }),
+                beastform: new fields.SchemaField({
+                    tierAccess: new fields.SchemaField({
+                        exact: new fields.NumberField({ integer: true, nullable: true, initial: null })
+                    })
                 })
             },
             extraSchemas = {};
@@ -271,6 +276,8 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         }
 
         if (this instanceof DhBeastformAction) {
+            config.beastform = this.prepareBeastformConfig();
+
             const abort = await this.handleActiveTransformations();
             if (abort) return;
 
@@ -770,13 +777,18 @@ export class DHMacroAction extends DHBaseAction {
 }
 
 export class DhBeastformAction extends DHBaseAction {
-    static defineSchema() {
+    static extraSchemas = ['beastform'];
+
+    prepareBeastformConfig(config) {
+        const settingsTier = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers;
+        const actorLevel = this.actor.system.levelData.level.current;
+        const actorTier =
+            Object.values(settingsTier).find(
+                tier => actorLevel >= tier.levels.start && actorLevel <= tier.levels.end
+            ) ?? 1;
+
         return {
-            ...super.defineSchema(),
-            tierAccess: new fields.SchemaField({
-                exact: new fields.NumberField({ integer: true, nullable: true, initial: null }),
-                characterBased: new fields.BooleanField({ initial: true })
-            })
+            tierLimit: this.beastform.tierAccess.exact ?? actorTier
         };
     }
 

@@ -44,10 +44,9 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
         const context = await super._prepareContext(_options);
         context.configData = this.configData;
 
-        const tierLimit = 2;
         context.beastformTiers = game.items.reduce((acc, x) => {
             const tier = tiers[x.system.tier];
-            if (x.type !== 'beastform' || tier.value > tierLimit) return acc;
+            if (x.type !== 'beastform' || tier.value > context.configData.beastform.tierLimit) return acc;
 
             if (!acc[tier.value]) acc[tier.value] = { label: game.i18n.localize(tier.label), values: {} };
             acc[tier.value].values[x.uuid] = { selected: this.selected == x.uuid, value: x };

@@ -1662,6 +1662,13 @@
                 "ResultBased": {
                     "label": "Formula based on Hope/Fear result."
                 }
+            },
+            "Config": {
+                "Beastform": {
+                    "label": "Beastform",
+                    "exact": "Exact",
+                    "exactPlaceholder": "Character tier is used"
+                }
             }
         },
         "RollTypes": {

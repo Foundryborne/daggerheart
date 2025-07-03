@@ -303,6 +303,7 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/views/actionTypes/cost.hbs',
         'systems/daggerheart/templates/views/actionTypes/range-target.hbs',
         'systems/daggerheart/templates/views/actionTypes/effect.hbs',
+        'systems/daggerheart/templates/views/actionTypes/beastform.hbs',
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
         'systems/daggerheart/templates/chat/parts/damage-chat.hbs',
         'systems/daggerheart/templates/chat/parts/target-chat.hbs'

@@ -44,7 +44,8 @@
             {{#if fields.healing}}{{> 'systems/daggerheart/templates/views/actionTypes/healing.hbs' fields=fields.healing.fields source=source.healing}}{{/if}}
             {{#if fields.resource}}{{> 'systems/daggerheart/templates/views/actionTypes/resource.hbs' fields=fields.resource.fields source=source.resource}}{{/if}}
             {{#if fields.documentUUID}}{{> 'systems/daggerheart/templates/views/actionTypes/uuid.hbs' fields=fields.documentUUID source=source.documentUUID}}{{/if}}
-             {{#if fields.effects}}{{> 'systems/daggerheart/templates/views/actionTypes/effect.hbs' fields=fields.effects.element.fields source=source.effects}}{{/if}}
+            {{#if fields.effects}}{{> 'systems/daggerheart/templates/views/actionTypes/effect.hbs' fields=fields.effects.element.fields source=source.effects}}{{/if}}
+            {{#if fields.beastform}}{{> 'systems/daggerheart/templates/views/actionTypes/beastform.hbs' fields=fields.effects.element.fields source=source.beastform}}{{/if}}
         </div>
     </section>
 </div>
