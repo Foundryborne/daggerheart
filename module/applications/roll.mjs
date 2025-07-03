@@ -39,7 +39,6 @@ export class DHRoll extends Roll {
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;
-            console.log(roll, config);
             const configDialog = await DialogClass.configure(roll, config, message);
             if (!configDialog) return;
         }
@@ -465,9 +464,17 @@ export class DamageRoll extends DHRoll {
 
     static DefaultDialog = DamageDialog;
 
+    static async getDamageModifiers(roll) {
+        const modifierFormula = roll.formula.replace(/[\d]+d[\d]+([a-zA-Z0-9.<>!=]*)?/g, '').replace(/\s*\+\s*/, '');
+        const modifierRoll = new Roll(modifierFormula);
+        await modifierRoll.evaluate();
+        return modifierRoll.total;
+    }
+
     static async postEvaluate(roll, config = {}) {
         super.postEvaluate(roll, config);
         config.roll.type = config.type;
+        config.roll.modifierTotal = await this.getDamageModifiers(roll);
         if (config.source?.message) {
             const chatMessage = ui.chat.collection.get(config.source.message);
             chatMessage.update({ 'system.damage': config });

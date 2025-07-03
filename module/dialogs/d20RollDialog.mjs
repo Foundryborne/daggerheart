@@ -9,7 +9,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.config.experiences = [];
 
         if (config.source?.action) {
-            console.log(config)
             this.item = config.data.parent.items.get(config.source.item) ?? config.data.parent;
             this.action =
                 config.data.attack?._id == config.source.action
@@ -51,7 +50,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     };
 
     async _prepareContext(_options) {
-        console.log(this.config, this.roll)
         const context = await super._prepareContext(_options);
         context.hasRoll = !!this.config.roll;
         context.roll = this.roll;
@@ -77,7 +75,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }
         context.extraFormula = this.config.extraFormula;
         context.formula = this.roll.constructFormula(this.config);
-        
+
         return context;
     }
 
@@ -87,10 +85,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             this.config.costs = foundry.utils.mergeObject(this.config.costs, rest.costs);
         }
         if (this.config.uses) this.config.uses = foundry.utils.mergeObject(this.config.uses, rest.uses);
-        if(rest.roll?.dice) {
+        if (rest.roll?.dice) {
             Object.entries(rest.roll.dice).forEach(([key, value]) => {
                 this.roll[key] = value;
-            })
+            });
         }
         this.config.extraFormula = rest.extraFormula;
         this.render();
