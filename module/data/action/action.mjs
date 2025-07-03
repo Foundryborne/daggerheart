@@ -271,8 +271,13 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         }
 
         if (this instanceof DhBeastformAction) {
-            config = await BeastformDialog.configure(config);
-            if (!config) return;
+            const abort = await this.handleActiveTransformations();
+            if (abort) return;
+
+            const beastformUuid = await BeastformDialog.configure(config);
+            if (!beastformUuid) return;
+
+            await this.transform(beastformUuid);
         }
 
         if (this.doFollowUp()) {
@@ -773,5 +778,25 @@ export class DhBeastformAction extends DHBaseAction {
                 characterBased: new fields.BooleanField({ initial: true })
             })
         };
+    }
+
+    async transform(beastformUuid) {
+        const beastform = await foundry.utils.fromUuid(beastformUuid);
+        this.actor.createEmbeddedDocuments('Item', [beastform.toObject()]);
+    }
+
+    async handleActiveTransformations() {
+        const activeBeastforms = this.actor.items.filter(x => x.type === 'beastform');
+        if (activeBeastforms.length > 0) {
+            for (let form of activeBeastforms) {
+                await form.delete();
+            }
+
+            this.actor.effects.filter(x => x.type === 'beastform').forEach(x => x.delete());
+
+            return true;
+        }
+
+        return false;
     }
 }

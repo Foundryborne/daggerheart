@@ -91,6 +91,8 @@ Hooks.once('init', () => {
     Actors.registerSheet(SYSTEM.id, applications.DhpEnvironment, { types: ['environment'], makeDefault: true });
 
     CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
+    CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
+
     foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
         CONFIG.ActiveEffect.documentClass,
         'core',

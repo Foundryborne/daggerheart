@@ -304,11 +304,14 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     getItem(element) {
         const listElement = (element.target ?? element).closest('[data-item-id]');
-        const document = listElement.dataset.companion ? this.document.system.companion : this.document;
-
-        const itemId = listElement.dataset.itemId,
-            item = document.items.get(itemId);
-        return item;
+        const itemId = listElement.dataset.itemId;
+        if (listElement.dataset.type === 'effect') {
+            return this.document.effects.get(itemId);
+        } else if (listElement.dataset.type === 'features') {
+            return this.document.items.get(itemId);
+        } else {
+            return this.document.system[listElement.dataset.type].system.actions.find(x => x.id === itemId);
+        }
     }
 
     static triggerContextMenu(event, button) {
@@ -615,8 +618,8 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         if (!item) return;
 
         // Should dandle its actions. Or maybe they'll be separate buttons as per an Issue on the board
-        if (item.type === 'feature') {
-            item.toChat();
+        if (item.type === 'feature' || item instanceof ActiveEffect) {
+            item.toChat(this);
         } else {
             const wasUsed = await item.use(event);
             if (wasUsed && item.type === 'weapon') {

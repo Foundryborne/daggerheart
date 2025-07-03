@@ -19,6 +19,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
             height: 'auto'
         },
         actions: {
+            selectBeastform: this.selectBeastform,
             submitBeastform: this.submitBeastform
         },
         form: {
@@ -29,7 +30,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
     };
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Sheets.Beastform.DialogTitle');
+        return game.i18n.localize('DAGGERHEART.Sheets.Beastform.dialogTitle');
     }
 
     /** @override */
@@ -64,6 +65,11 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
         this.render();
     }
 
+    static selectBeastform(_, target) {
+        this.selected = this.selected === target.dataset.uuid ? null : target.dataset.uuid;
+        this.render();
+    }
+
     static async submitBeastform() {
         await this.close({ submitted: true });
     }
@@ -76,7 +82,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
     static async configure(configData) {
         return new Promise(resolve => {
             const app = new this(configData);
-            app.addEventListener('close', () => resolve(app.config), { once: true });
+            app.addEventListener('close', () => resolve(app.selected), { once: true });
             app.render({ force: true });
         });
     }

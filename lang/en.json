@@ -23,7 +23,9 @@
     "DAGGERHEART": {
         "UI": {
             "notifications": {
-                "adversaryMissing": "The linked adversary doesn't exist in the world."
+                "adversaryMissing": "The linked adversary doesn't exist in the world.",
+                "beastformInapplicable": "A beastform can only be applied to a Character.",
+                "beastformAlreadyApplied": "The character already has a beastform applied!"
             }
         },
         "Settings": {
@@ -1473,13 +1475,21 @@
                 }
             },
             "Beastform": {
-                "DialogTitle": "Beastform Selection",
                 "FIELDS": {
                     "tier": { "label": "Tier" },
                     "examples": { "label": "Examples" },
-                    "advantageOn": { "label": "Gain Advantage On" }
+                    "advantageOn": { "label": "Gain Advantage On" },
+                    "tokenImg": { "label": "Token Image" },
+                    "tokenSize": {
+                        "placeholder": "Using character dimensions",
+                        "height": { "label": "Height" },
+                        "width": { "label": "Width" }
+                    }
                 },
-                "Transform": "Transform"
+                "dialogTitle": "Beastform Selection",
+                "tokenTitle": "Beastform Token",
+                "transform": "Transform",
+                "beastformEffect": "Beastform Transformation"
             },
             "Global": {
                 "Actions": "Actions",

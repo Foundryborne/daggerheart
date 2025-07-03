@@ -5006,7 +5006,7 @@ div.daggerheart.views.multiclass {
   border-radius: 6px;
   cursor: pointer;
 }
-.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container.disabled {
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container.inactive {
   opacity: 0.4;
 }
 .application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container img {
