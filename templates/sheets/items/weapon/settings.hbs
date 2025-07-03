@@ -19,8 +19,10 @@
 
     <fieldset class="two-columns">
         <legend>{{localize "DAGGERHEART.Sheets.Weapon.Damage.Title"}}</legend>
-        <span>{{localize "DAGGERHEART.Sheets.Weapon.Damage.Value"}}</span>
-        {{formGroup systemFields.damage.fields.value value=source.system.damage.value}}
+        <span>{{localize "DAGGERHEART.Sheets.Weapon.Damage.Die"}}</span>
+        {{formGroup systemFields.damage.fields.dice value=source.system.damage.dice}}
+        <span>{{localize "DAGGERHEART.Sheets.Weapon.Damage.Bonus"}}</span>
+        {{formGroup systemFields.damage.fields.bonus value=source.system.damage.bonus}}
         <span>{{localize "DAGGERHEART.Sheets.Weapon.Damage.Type"}}</span>
         {{formGroup systemFields.damage.fields.type value=source.system.damage.type localize=true}}
     </fieldset>

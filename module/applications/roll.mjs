@@ -39,7 +39,6 @@ export class DHRoll extends Roll {
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
             const DialogClass = config.dialog?.class ?? this.DefaultDialog;
-            console.log(roll, config);
             const configDialog = await DialogClass.configure(roll, config, message);
             if (!configDialog) return;
         }
@@ -123,6 +122,18 @@ export class DHRoll extends Roll {
             );
         }
         return (this._formula = this.constructor.getFormula(this.terms));
+    }
+
+    static calculateTotalModifiers(roll, config) {
+        config.roll.modifierTotal = 0;
+        for (let i = 0; i < roll.terms.length; i++) {
+            if (
+                roll.terms[i] instanceof foundry.dice.terms.NumericTerm &&
+                !!roll.terms[i - 1] &&
+                roll.terms[i - 1] instanceof foundry.dice.terms.OperatorTerm
+            )
+                config.roll.modifierTotal += Number(`${roll.terms[i - 1].operator}${roll.terms[i].total}`);
+        }
     }
 }
 
@@ -299,15 +310,8 @@ export class D20Roll extends DHRoll {
                     value: d.total
                 };
             });
-        config.roll.modifierTotal = 0;
-        for (let i = 0; i < roll.terms.length; i++) {
-            if (
-                roll.terms[i] instanceof foundry.dice.terms.NumericTerm &&
-                !!roll.terms[i - 1] &&
-                roll.terms[i - 1] instanceof foundry.dice.terms.OperatorTerm
-            )
-                config.roll.modifierTotal += Number(`${roll.terms[i - 1].operator}${roll.terms[i].total}`);
-        }
+
+        this.calculateTotalModifiers(roll, config);
     }
 
     resetFormula() {
@@ -468,6 +472,7 @@ export class DamageRoll extends DHRoll {
     static async postEvaluate(roll, config = {}) {
         super.postEvaluate(roll, config);
         config.roll.type = config.type;
+        this.calculateTotalModifiers(roll, config);
         if (config.source?.message) {
             const chatMessage = ui.chat.collection.get(config.source.message);
             chatMessage.update({ 'system.damage': config });

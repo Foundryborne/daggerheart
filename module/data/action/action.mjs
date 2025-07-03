@@ -237,6 +237,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         }
 
         if (this.hasRoll) {
+            console.log(config);
             const rollConfig = this.prepareRoll(config);
             config.roll = rollConfig;
             config = await this.actor.diceRoll(config);
@@ -248,7 +249,6 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                 if(t.hit) {
                     const target = game.canvas.tokens.get(t.id),
                         actor = target?.actor;
-                    console.log(actor)
                     if(!actor) return;
                     actor.saveRoll({
                         event,
@@ -635,7 +635,7 @@ export class DHAttackAction extends DHDamageAction {
         return {
             value: {
                 multiplier: 'prof',
-                dice: this.item?.system?.damage.value,
+                dice: this.item?.system?.damage.dice,
                 bonus: this.item?.system?.damage.bonus ?? 0
             },
             type: this.item?.system?.damage.type,
