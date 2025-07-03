@@ -5157,6 +5157,12 @@ div.daggerheart.views.multiclass {
   align-items: center;
   width: 100%;
 }
+.application.sheet.daggerheart.actor.dh-style.companion .partner-section,
+.application.sheet.daggerheart.actor.dh-style.companion .attack-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .application.sheet.daggerheart.actor.dh-style.companion .partner-section .title,
 .application.sheet.daggerheart.actor.dh-style.companion .attack-section .title {
   display: flex;
@@ -5175,9 +5181,11 @@ div.daggerheart.views.multiclass {
   align-items: center;
 }
 .application.sheet.daggerheart.actor.dh-style.companion .partner-placeholder {
+  display: flex;
   opacity: 0.6;
   text-align: center;
   font-style: italic;
+  justify-content: center;
 }
 .application.sheet.daggerheart.actor.dh-style.companion .experience-list {
   display: flex;
@@ -5512,6 +5520,19 @@ div.daggerheart.views.multiclass {
   background: light-dark(rgba(0, 0, 0, 0.05), rgba(24, 22, 46, 0.33));
   box-shadow: none;
   outline: 2px solid light-dark(#222, #efe6d8);
+}
+.application.dh-style input[type='text']:disabled[type='text'],
+.application.dh-style input[type='number']:disabled[type='text'],
+.application.dh-style input[type='text']:disabled[type='number'],
+.application.dh-style input[type='number']:disabled[type='number'] {
+  outline: 2px solid transparent;
+  cursor: not-allowed;
+}
+.application.dh-style input[type='text']:disabled[type='text']:hover,
+.application.dh-style input[type='number']:disabled[type='text']:hover,
+.application.dh-style input[type='text']:disabled[type='number']:hover,
+.application.dh-style input[type='number']:disabled[type='number']:hover {
+  background: transparent;
 }
 .application.dh-style input[type='checkbox']:checked::after {
   color: light-dark(#222, #f3c267);
