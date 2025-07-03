@@ -5174,6 +5174,11 @@ div.daggerheart.views.multiclass {
   gap: 10px;
   align-items: center;
 }
+.application.sheet.daggerheart.actor.dh-style.companion .partner-placeholder {
+  opacity: 0.6;
+  text-align: center;
+  font-style: italic;
+}
 .application.sheet.daggerheart.actor.dh-style.companion .experience-list {
   display: flex;
   flex-direction: column;

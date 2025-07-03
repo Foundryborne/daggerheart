@@ -1,5 +1,3 @@
-import { GMUpdateEvent, socketEvent } from '../../../helpers/socket.mjs';
-import DhCompanionlevelUp from '../../levelup/companionLevelup.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
 import DHCompanionSettings from '../applications/companion-settings.mjs';
 
@@ -10,9 +8,10 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
         classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'companion'],
         position: { width: 300 },
         actions: {
-            attackRoll: this.attackRoll,
-            levelUp: this.levelUp,
-            openSettings: this.openSettings
+            viewActor: this.viewActor,
+            openSettings: this.openSettings,
+            useItem: this.useItem,
+            toChat: this.toChat
         },
         form: {
             handler: this.updateForm,
@@ -46,25 +45,10 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
         }
     };
 
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
-
-        htmlElement.querySelector('.partner-value')?.addEventListener('change', this.onPartnerChange.bind(this));
-    }
-
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
         context.tabs = super._getTabs(this.constructor.TABS);
-        context.playerCharacters = game.actors
-            .filter(
-                x =>
-                    x.type === 'character' &&
-                    (x.ownership.default === 3 ||
-                        x.ownership[game.user.id] === 3 ||
-                        this.document.system.partner?.uuid === x.uuid)
-            )
-            .map(x => ({ key: x.uuid, name: x.name }));
 
         return context;
     }
@@ -74,41 +58,51 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    async onPartnerChange(event) {
-        const partnerDocument = event.target.value
-            ? await foundry.utils.fromUuid(event.target.value)
-            : this.document.system.partner;
-        const partnerUpdate = { 'system.companion': event.target.value ? this.document.uuid : null };
+    static async viewActor(_, button) {
+        const target = button.closest('[data-item-uuid]');
+        const actor = await foundry.utils.fromUuid(target.dataset.itemUuid);
+        if (!actor) return;
 
-        if (!partnerDocument.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) {
-            await game.socket.emit(`system.${SYSTEM.id}`, {
-                action: socketEvent.GMUpdate,
-                data: {
-                    action: GMUpdateEvent.UpdateDocument,
-                    uuid: partnerDocument.uuid,
-                    update: update
-                }
-            });
-        } else {
-            await partnerDocument.update(partnerUpdate);
-        }
-
-        await this.document.update({ 'system.partner': event.target.value });
-
-        if (!event.target.value) {
-            await this.document.updateLevel(1);
-        }
+        actor.sheet.render(true);
     }
 
-    static async attackRoll(event) {
-        this.actor.system.attack.use(event);
+    getAction(element) {
+        const itemId = (element.target ?? element).closest('[data-item-id]').dataset.itemId,
+            item = this.document.system.actions.find(x => x.id === itemId);
+        return item;
+    }
+
+    static async useItem(event) {
+        const action = this.getAction(event) ?? this.actor.system.attack;
+        action.use(event);
+    }
+
+    static async toChat(event, button) {
+        if (button?.dataset?.type === 'experience') {
+            const experience = this.document.system.experiences[button.dataset.uuid];
+            const cls = getDocumentClass('ChatMessage');
+            const systemData = {
+                name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
+                description: `${experience.name} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
+            };
+            const msg = new cls({
+                type: 'abilityUse',
+                user: game.user.id,
+                system: systemData,
+                content: await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/chat/ability-use.hbs',
+                    systemData
+                )
+            });
+
+            cls.create(msg.toObject());
+        } else {
+            const item = this.getAction(event) ?? this.document.system.attack;
+            item.toChat(this.document.id);
+        }
     }
 
     static async openSettings() {
         await new DHCompanionSettings(this.document).render(true);
-    }
-
-    static async levelUp() {
-        new DhCompanionlevelUp(this.document).render(true);
     }
 }

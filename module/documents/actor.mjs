@@ -338,7 +338,7 @@ export default class DhpActor extends Actor {
     }
 
     get rollClass() {
-        return CONFIG.Dice.daggerheart[this.type === 'character' ? 'DualityRoll' : 'D20Roll'];
+        return CONFIG.Dice.daggerheart[['character', 'companion'].includes(this.type) ? 'DualityRoll' : 'D20Roll'];
     }
 
     getRollData() {

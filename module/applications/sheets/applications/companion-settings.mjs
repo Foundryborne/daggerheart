@@ -1,6 +1,5 @@
-import DHActionConfig from '../../config/Action.mjs';
-import DHBaseItemSheet from '../api/base-item.mjs';
-import { actionsTypes } from '../../../data/_module.mjs';
+import { GMUpdateEvent, socketEvent } from '../../../helpers/socket.mjs';
+import DhCompanionlevelUp from '../../levelup/companionLevelup.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -23,7 +22,9 @@ export default class DHCompanionSettings extends HandlebarsApplicationMixin(Appl
             resizable: false
         },
         position: { width: 455, height: 'auto' },
-        actions: {},
+        actions: {
+            levelUp: this.levelUp
+        },
         form: {
             handler: this.updateForm,
             submitOnChange: true,
@@ -78,6 +79,12 @@ export default class DHCompanionSettings extends HandlebarsApplicationMixin(Appl
         }
     };
 
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement.querySelector('.partner-value')?.addEventListener('change', this.onPartnerChange.bind(this));
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.document = this.actor;
@@ -89,8 +96,7 @@ export default class DHCompanionSettings extends HandlebarsApplicationMixin(Appl
             .filter(
                 x =>
                     x.type === 'character' &&
-                    (x.ownership.default === 3 ||
-                        x.ownership[game.user.id] === 3 ||
+                    (x.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) ||
                         this.document.system.partner?.uuid === x.uuid)
             )
             .map(x => ({ key: x.uuid, name: x.name }));
@@ -107,12 +113,44 @@ export default class DHCompanionSettings extends HandlebarsApplicationMixin(Appl
         return tabs;
     }
 
+    async onPartnerChange(event) {
+        const partnerDocument = event.target.value
+            ? await foundry.utils.fromUuid(event.target.value)
+            : this.actor.system.partner;
+        const partnerUpdate = { 'system.companion': event.target.value ? this.actor.uuid : null };
+
+        if (!partnerDocument.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) {
+            await game.socket.emit(`system.${SYSTEM.id}`, {
+                action: socketEvent.GMUpdate,
+                data: {
+                    action: GMUpdateEvent.UpdateDocument,
+                    uuid: partnerDocument.uuid,
+                    update: update
+                }
+            });
+        } else {
+            await partnerDocument.update(partnerUpdate);
+        }
+
+        await this.actor.update({ 'system.partner': event.target.value });
+
+        if (!event.target.value) {
+            await this.actor.updateLevel(1);
+        }
+
+        this.render();
+    }
+
     async viewActor(_, button) {
         const target = button.closest('[data-item-uuid]');
         const actor = await foundry.utils.fromUuid(target.dataset.itemUuid);
         if (!actor) return;
 
         actor.sheet.render(true);
+    }
+
+    static async levelUp() {
+        new DhCompanionlevelUp(this.actor).render(true);
     }
 
     static async updateForm(event, _, formData) {

@@ -9,9 +9,13 @@
             <h3>Partner</h3>
             <side-line-div></side-line-div>
         </div>
-        <ul class="item-list">
-            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=(getActor document.system.partner.uuid) type='actor' isSidebar=true isActor=true}}
-        </ul>
+        {{#if document.system.partner}}
+            <ul class="item-list">
+                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=document.system.partner type='actor' isSidebar=true isActor=true noTooltip=true}}
+            </ul>
+        {{else}}
+            <div class="partner-placeholder">{{localize "DAGGERHEART.Sheets.Companion.noPartner"}}</div>
+        {{/if}}
     </div>
     <div class="attack-section">
         <div class="title">
@@ -20,7 +24,7 @@
             <side-line-div></side-line-div>
         </div>
         <ul class="item-list">
-            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=source.system.attack type=source.system.attack.systemPath isSidebar=true isCompanion=true}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=source.system.attack type=source.system.attack.systemPath isSidebar=true isCompanion=true noTooltip=true}}
         </ul>
     </div>
     <div class="experience-list">
