@@ -123,6 +123,18 @@ export class DHRoll extends Roll {
         }
         return (this._formula = this.constructor.getFormula(this.terms));
     }
+
+    static calculateTotalModifiers(roll, config) {
+        config.roll.modifierTotal = 0;
+        for (let i = 0; i < roll.terms.length; i++) {
+            if (
+                roll.terms[i] instanceof foundry.dice.terms.NumericTerm &&
+                !!roll.terms[i - 1] &&
+                roll.terms[i - 1] instanceof foundry.dice.terms.OperatorTerm
+            )
+                config.roll.modifierTotal += Number(`${roll.terms[i - 1].operator}${roll.terms[i].total}`);
+        }
+    }
 }
 
 export class DualityDie extends foundry.dice.terms.Die {
@@ -298,15 +310,8 @@ export class D20Roll extends DHRoll {
                     value: d.total
                 };
             });
-        config.roll.modifierTotal = 0;
-        for (let i = 0; i < roll.terms.length; i++) {
-            if (
-                roll.terms[i] instanceof foundry.dice.terms.NumericTerm &&
-                !!roll.terms[i - 1] &&
-                roll.terms[i - 1] instanceof foundry.dice.terms.OperatorTerm
-            )
-                config.roll.modifierTotal += Number(`${roll.terms[i - 1].operator}${roll.terms[i].total}`);
-        }
+
+        this.calculateTotalModifiers(roll, config);
     }
 
     resetFormula() {
@@ -464,17 +469,10 @@ export class DamageRoll extends DHRoll {
 
     static DefaultDialog = DamageDialog;
 
-    static async getDamageModifiers(roll) {
-        const modifierFormula = roll.formula.replace(/[\d]+d[\d]+([a-zA-Z0-9.<>!=]*)?/g, '').replace(/\s*\+\s*/, '');
-        const modifierRoll = new Roll(modifierFormula);
-        await modifierRoll.evaluate();
-        return modifierRoll.total;
-    }
-
     static async postEvaluate(roll, config = {}) {
         super.postEvaluate(roll, config);
         config.roll.type = config.type;
-        config.roll.modifierTotal = await this.getDamageModifiers(roll);
+        this.calculateTotalModifiers(roll, config);
         if (config.source?.message) {
             const chatMessage = ui.chat.collection.get(config.source.message);
             chatMessage.update({ 'system.damage': config });

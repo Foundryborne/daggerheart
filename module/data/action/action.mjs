@@ -621,43 +621,15 @@ export class DHAttackAction extends DHDamageAction {
         super.prepareData();
         if (this.damage.includeBase && !!this.item?.system?.damage) {
             const baseDamage = this.getParentDamage();
-            this.cleanBaseDamage(baseDamage);
             this.damage.parts.unshift(new DHDamageData(baseDamage));
         }
-    }
-
-    cleanBaseDamage(baseDamage) {
-        let possibleRoll = new Roll(baseDamage.value.dice);
-        let die = 'd6';
-        let modifier = 0;
-        let nextOperator = '+';
-
-        possibleRoll.terms.forEach(term => {
-            if (term instanceof DiceTerm) {
-                die = `d${term._faces}`;
-            }
-            if (term instanceof OperatorTerm) {
-                nextOperator = term.operator;
-            }
-            if (term instanceof NumericTerm) {
-                if (nextOperator == '+') {
-                    modifier += term.number;
-                }
-
-                if (nextOperator == '-') {
-                    modifier -= term.number;
-                }
-            }
-        });
-
-        return (baseDamage.value = { ...baseDamage.value, dice: die, bonus: modifier });
     }
 
     getParentDamage() {
         return {
             value: {
                 multiplier: 'prof',
-                dice: this.item?.system?.damage.value,
+                dice: this.item?.system?.damage.dice,
                 bonus: this.item?.system?.damage.bonus ?? 0
             },
             type: this.item?.system?.damage.type,

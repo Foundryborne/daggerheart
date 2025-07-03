@@ -1546,7 +1546,8 @@
                 "Range": "Range",
                 "Damage": {
                     "Title": "Damage",
-                    "Value": "Value",
+                    "Die": "Die",
+                    "Bonus": "Bonus",
                     "Type": "Type"
                 },
                 "Burden": "Burden",
