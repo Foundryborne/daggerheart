@@ -21,7 +21,8 @@ export default class RegisterHandlebarsHelpers {
             lte: this.lte,
             gte: this.gte,
             and: this.and,
-            or: this.or
+            or: this.or,
+            getActor: this.getActor
         });
     }
 
@@ -136,5 +137,9 @@ export default class RegisterHandlebarsHelpers {
     static debug(a) {
         console.log(a);
         return a;
+    }
+
+    static getActor(actorUuid) {
+        return fromUuid(actorUuid);
     }
 }

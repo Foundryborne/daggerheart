@@ -52,6 +52,18 @@
         &.glow {
             animation: glow 0.75s infinite alternate;
         }
+
+        &:disabled {
+            background: light-dark(transparent, @golden);
+            color: light-dark(@dark-blue, @dark-blue);
+            opacity: 0.6;
+            cursor: not-allowed;
+
+            &:hover {
+                background: light-dark(transparent, @golden);
+                color: light-dark(@dark-blue, @dark-blue);
+            }
+        }
     }
 
     select {
