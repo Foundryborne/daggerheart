@@ -97,16 +97,16 @@ export default class DHItem extends foundry.documents.Item {
 
     async use(event) {
         const actions = this.system.actions;
-        let response;
         if (actions?.length) {
             let action = actions[0];
             if (actions.length > 1 && !event?.shiftKey) {
                 // Actions Choice Dialog
                 action = await this.selectActionDialog();
             }
-            if (action) response = action.use(event);
+            if (action) return action.use(event);
         }
-        return response;
+
+        return this.toChat();
     }
 
     async toChat(origin) {

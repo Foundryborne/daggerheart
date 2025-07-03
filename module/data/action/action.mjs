@@ -786,13 +786,11 @@ export class DhBeastformAction extends DHBaseAction {
     }
 
     async handleActiveTransformations() {
-        const activeBeastforms = this.actor.items.filter(x => x.type === 'beastform');
-        if (activeBeastforms.length > 0) {
-            for (let form of activeBeastforms) {
-                await form.delete();
+        const beastformEffects = this.actor.effects.filter(x => x.type === 'beastform');
+        if (beastformEffects.length > 0) {
+            for (let effect of beastformEffects) {
+                await effect.delete();
             }
-
-            this.actor.effects.filter(x => x.type === 'beastform').forEach(x => x.delete());
 
             return true;
         }

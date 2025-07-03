@@ -307,7 +307,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const itemId = listElement.dataset.itemId;
         if (listElement.dataset.type === 'effect') {
             return this.document.effects.get(itemId);
-        } else if (listElement.dataset.type === 'features') {
+        } else if (['armor', 'weapon', 'feature', 'consumable', 'miscellaneous'].includes(listElement.dataset.type)) {
             return this.document.items.get(itemId);
         } else {
             return this.document.system[listElement.dataset.type].system.actions.find(x => x.id === itemId);
@@ -618,7 +618,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         if (!item) return;
 
         // Should dandle its actions. Or maybe they'll be separate buttons as per an Issue on the board
-        if (item.type === 'feature' || item instanceof ActiveEffect) {
+        if (item.type === 'feature') {
+            item.use(event);
+        } else if (item instanceof ActiveEffect) {
             item.toChat(this);
         } else {
             const wasUsed = await item.use(event);

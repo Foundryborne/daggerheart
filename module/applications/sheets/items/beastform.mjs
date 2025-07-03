@@ -19,12 +19,16 @@ export default class BeastformSheet extends DHBaseItemSheet {
         features: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-features.hbs',
             scrollable: ['.features']
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
+            scrollable: ['.effects']
         }
     };
 
     static TABS = {
         primary: {
-            tabs: [{ id: 'settings' }, { id: 'features' }],
+            tabs: [{ id: 'settings' }, { id: 'features' }, { id: 'effects' }],
             initial: 'settings',
             labelPrefix: 'DAGGERHEART.Sheets.TABS'
         }

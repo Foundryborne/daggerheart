@@ -33,18 +33,6 @@ export default class DHBeastform extends BaseDataItem {
                 height: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true }),
                 width: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true })
             }),
-            characterTokenData: new fields.SchemaField({
-                tokenImg: new fields.FilePathField({
-                    categories: ['IMAGE'],
-                    base64: false,
-                    nullable: true,
-                    initial: null
-                }),
-                tokenSize: new fields.SchemaField({
-                    height: new fields.NumberField({ integer: true, initial: null, nullable: true }),
-                    width: new fields.NumberField({ integer: true, initial: null, nullable: true })
-                })
-            }),
             examples: new fields.StringField(),
             advantageOn: new fields.ArrayField(new fields.StringField()),
             features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
@@ -65,49 +53,44 @@ export default class DHBeastform extends BaseDataItem {
             return;
         }
 
-        await this.updateSource({
-            characterTokenData: {
-                tokenImg: this.parent.parent.prototypeToken.texture.src,
-                tokenSize: {
-                    height: this.parent.parent.prototypeToken.height,
-                    width: this.parent.parent.prototypeToken.width
-                }
-            }
-        });
-    }
+        const features = await this.parent.parent.createEmbeddedDocuments(
+            'Item',
+            this.features.map(x => x.toObject())
+        );
+        const effects = await this.parent.parent.createEmbeddedDocuments(
+            'ActiveEffect',
+            this.parent.effects.map(x => x.toObject())
+        );
 
-    _onCreate(data, options, userId) {
-        super._onCreate(data, options, userId);
-
-        const update = {
-            height: this.tokenSize.height,
-            width: this.tokenSize.width,
-            texture: {
-                src: this.tokenImg
-            }
-        };
-        updateActorTokens(this.parent.parent, update);
-
-        this.parent.parent.createEmbeddedDocuments('ActiveEffect', [
+        await this.parent.parent.createEmbeddedDocuments('ActiveEffect', [
             {
                 type: 'beastform',
                 name: game.i18n.localize('DAGGERHEART.Sheets.Beastform.beastformEffect'),
                 img: 'icons/creatures/abilities/paw-print-pair-purple.webp',
                 system: {
-                    isBeastform: true
+                    isBeastform: true,
+                    characterTokenData: {
+                        tokenImg: this.parent.parent.prototypeToken.texture.src,
+                        tokenSize: {
+                            height: this.parent.parent.prototypeToken.height,
+                            width: this.parent.parent.prototypeToken.width
+                        }
+                    },
+                    advantageOn: this.advantageOn,
+                    featureIds: features.map(x => x.id),
+                    effectIds: effects.map(x => x.id)
                 }
             }
         ]);
-    }
 
-    async _preDelete() {
-        const update = {
-            height: this.characterTokenData.tokenSize.height,
-            width: this.characterTokenData.tokenSize.width,
+        await updateActorTokens(this.parent.parent, {
+            height: this.tokenSize.height,
+            width: this.tokenSize.width,
             texture: {
-                src: this.characterTokenData.tokenImg
+                src: this.tokenImg
             }
-        };
-        await updateActorTokens(this.parent.parent, update);
+        });
+
+        return false;
     }
 }
