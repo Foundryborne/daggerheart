@@ -301,8 +301,8 @@ export const updateActorTokens = async (actor, update) => {
     /* Update the tokens in all scenes belonging to Actor */
     for (let scene of game.scenes) {
         for (let token of scene.tokens) {
-            const actor = token.baseActor ?? token.actor;
-            if (actor?.id === actor.id) {
+            const tokenActor = token.baseActor ?? token.actor;
+            if (tokenActor?.id === actor.id) {
                 await token.update(update);
             }
         }
