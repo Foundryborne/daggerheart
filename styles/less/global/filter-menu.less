@@ -1,0 +1,47 @@
+@import '../utils/colors.less';
+@import '../utils/fonts.less';
+
+.filter-menu {
+    width: auto;
+
+    fieldset.filter-section {
+        align-items: center;
+        margin: 5px;
+        border-radius: 6px;
+        border-color: light-dark(@dark-blue, @golden);
+        padding: 5px;
+
+        legend {
+            font-family: @font-body;
+            font-weight: bold;
+            color: light-dark(@dark-blue, @golden);
+            font-size: var(--font-size-12);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 5px;
+
+            button {
+                background: light-dark(@light-black, @dark-blue);
+                color: light-dark(@dark-blue, @golden);
+                outline: none;
+                box-shadow: none;
+                border: 1px solid light-dark(@dark-blue, @dark-blue);
+                padding: 0 0.2rem;
+                font-size: var(--font-size-12);
+
+                &:hover {
+                    background: light-dark(transparent, @golden);
+                    color: light-dark(@dark-blue, @dark-blue);
+                }
+
+                &.active {
+                    animation: glow 0.75s infinite alternate;
+                }
+            }
+        }
+    }
+}

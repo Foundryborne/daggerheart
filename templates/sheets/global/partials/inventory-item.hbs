@@ -1,7 +1,11 @@
-<li class="inventory-item" data-item-id="{{item.id}}" data-item-uuid="{{item.uuid}}" data-companion="{{companion}}" data-tooltip="{{concat "#item#" item.uuid}}">
+<li class="inventory-item" data-item-id="{{item.id}}" data-item-uuid="{{item.uuid}}" data-companion="{{companion}}" {{#if (not noTooltip)}}data-tooltip="{{concat "#item#" item.uuid}}"{{/if}}>
     <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" data-action="useItem"/>
     <div class="item-label">
-        <div class="item-name">{{item.name}}</div>
+        {{#if isCompanion}}
+            <a class="item-name" data-action="attackRoll">{{item.name}}</a>
+        {{else}}
+            <div class="item-name">{{item.name}}</div>
+        {{/if}}
         {{#if  (eq type 'weapon')}}
             <div class="item-tags">
                 {{#if isSidebar}}
@@ -114,6 +118,11 @@
     {{#unless hideControls}}
         {{#if isActor}}
             <div class="controls">
+                {{#if (eq type 'actor')}}
+                    <a data-action="viewActor" data-potential-adversary="{{categoryAdversary}}" data-adversary="{{item.uuid}}" data-tooltip='{{localize "DAGGERHEART.Tooltip.openActorWorld"}}'>
+                        <i class="fa-solid fa-globe"></i>
+                    </a>
+                {{/if}}
                 {{#if (eq type 'adversary')}}
                     <a data-action="viewAdversary" data-potential-adversary="{{categoryAdversary}}" data-adversary="{{item.uuid}}" data-tooltip='{{localize "DAGGERHEART.Tooltip.openActorWorld"}}'>
                         <i class="fa-solid fa-globe"></i>

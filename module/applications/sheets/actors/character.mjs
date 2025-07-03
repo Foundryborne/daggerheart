@@ -6,6 +6,7 @@ import DaggerheartSheet from '.././daggerheart-sheet.mjs';
 import { abilities } from '../../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation.mjs';
+import FilterMenu from '../../ux/filter-menu.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -215,6 +216,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         await super._onFirstRender(context, options);
 
         this._createContextMenues();
+        this._createFilterMenus();
     }
 
     /** @inheritDoc */
@@ -366,7 +368,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     /* -------------------------------------------- */
-    /*  Search Filter                               */
+    /*  Filter Tracking                             */
     /* -------------------------------------------- */
 
     /**
@@ -376,12 +378,33 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     #search = {};
 
     /**
-     * Track which item IDs are currently displayed due to a search filter.
-     * @type {{ inventory: Set<string>, loadout: Set<string> }}
+     * The currently active search filter.
+     * @type {FilterMenu}
+     */
+    #menu = {};
+
+    /**
+     * Tracks which item IDs are currently displayed, organized by filter type and section.
+     * @type {{
+     *   inventory: {
+     *     search: Set<string>,
+     *     menu: Set<string>
+     *   },
+     *   loadout: {
+     *     search: Set<string>,
+     *     menu: Set<string>
+     *   },
+     * }}
      */
     #filteredItems = {
-        inventory: new Set(),
-        loadout: new Set()
+        inventory: {
+            search: new Set(),
+            menu: new Set()
+        },
+        loadout: {
+            search: new Set(),
+            menu: new Set()
+        }
     };
 
     /**
@@ -429,15 +452,14 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
      * @protected
      */
     _onSearchFilterInventory(event, query, rgx, html) {
-        this.#filteredItems.inventory.clear();
+        this.#filteredItems.inventory.search.clear();
 
-        for (const ul of html.querySelectorAll('.items-list')) {
-            for (const li of ul.querySelectorAll('.inventory-item')) {
-                const item = this.document.items.get(li.dataset.itemId);
-                const match = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
-                if (match) this.#filteredItems.inventory.add(item.id);
-                li.hidden = !match;
-            }
+        for (const li of html.querySelectorAll('.inventory-item')) {
+            const item = this.document.items.get(li.dataset.itemId);
+            const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
+            if (matchesSearch) this.#filteredItems.inventory.search.add(item.id);
+            const { menu } = this.#filteredItems.inventory;
+            li.hidden = !(menu.has(item.id) && matchesSearch);
         }
     }
 
@@ -450,15 +472,14 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
      * @protected
      */
     _onSearchFilterCard(event, query, rgx, html) {
-        this.#filteredItems.loadout.clear();
+        this.#filteredItems.loadout.search.clear();
 
-        const elements = html.querySelectorAll('.items-list .inventory-item, .card-list .card-item');
-
-        for (const li of elements) {
+        for (const li of html.querySelectorAll('.items-list .inventory-item, .card-list .card-item')) {
             const item = this.document.items.get(li.dataset.itemId);
-            const match = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
-            if (match) this.#filteredItems.loadout.add(item.id);
-            li.hidden = !match;
+            const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
+            if (matchesSearch) this.#filteredItems.loadout.search.add(item.id);
+            const { menu } = this.#filteredItems.loadout;
+            li.hidden = !(menu.has(item.id) && matchesSearch);
         }
     }
 
@@ -472,6 +493,102 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             }
         };
         this.document.diceRoll(config);
+    }
+
+    /* -------------------------------------------- */
+    /*  Filter Menus                                */
+    /* -------------------------------------------- */
+
+    _createFilterMenus() {
+        //Menus could be a application option if needed
+        const menus = [
+            {
+                key: 'inventory',
+                container: '[data-application-part="inventory"]',
+                content: '.items-section',
+                callback: this._onMenuFilterInventory.bind(this),
+                target: '.filter-button',
+                filters: FilterMenu.invetoryFilters
+            },
+            {
+                key: 'loadout',
+                container: '[data-application-part="loadout"]',
+                content: '.items-section',
+                callback: this._onMenuFilterLoadout.bind(this),
+                target: '.filter-button',
+                filters: FilterMenu.cardsFilters
+            }
+        ];
+
+        menus.forEach(m => {
+            const container = this.element.querySelector(m.container);
+            this.#menu[m.key] = new FilterMenu(container, m.target, m.filters, m.callback, {
+                contentSelector: m.content
+            });
+        });
+    }
+
+    /**
+     * Callback when filters change
+     * @param {PointerEvent} event
+     * @param {HTMLElement} html
+     * @param {import('../ux/filter-menu.mjs').FilterItem[]} filters
+     */
+    _onMenuFilterInventory(event, html, filters) {
+        this.#filteredItems.inventory.menu.clear();
+
+        for (const li of html.querySelectorAll('.inventory-item')) {
+            const item = this.document.items.get(li.dataset.itemId);
+
+            const matchesMenu =
+                filters.length === 0 || filters.some(f => foundry.applications.ux.SearchFilter.evaluateFilter(item, f));
+            if (matchesMenu) this.#filteredItems.inventory.menu.add(item.id);
+
+            const { search } = this.#filteredItems.inventory;
+            li.hidden = !(search.has(item.id) && matchesMenu);
+        }
+    }
+
+    /**
+     * Callback when filters change
+     * @param {PointerEvent} event
+     * @param {HTMLElement} html
+     * @param {import('../ux/filter-menu.mjs').FilterItem[]} filters
+     */
+    _onMenuFilterLoadout(event, html, filters) {
+        this.#filteredItems.loadout.menu.clear();
+
+        for (const li of html.querySelectorAll('.items-list .inventory-item, .card-list .card-item')) {
+            const item = this.document.items.get(li.dataset.itemId);
+
+            const matchesMenu =
+                filters.length === 0 || filters.some(f => foundry.applications.ux.SearchFilter.evaluateFilter(item, f));
+            if (matchesMenu) this.#filteredItems.loadout.menu.add(item.id);
+
+            const { search } = this.#filteredItems.loadout;
+            li.hidden = !(search.has(item.id) && matchesMenu);
+        }
+    }
+    /* -------------------------------------------- */
+
+    async mapFeatureType(data, configType) {
+        return await Promise.all(
+            data.map(async x => {
+                const abilities = x.system.abilities
+                    ? await Promise.all(x.system.abilities.map(async x => await fromUuid(x.uuid)))
+                    : [];
+
+                return {
+                    ...x,
+                    uuid: x.uuid,
+                    system: {
+                        ...x.system,
+                        abilities: abilities,
+                        type: game.i18n.localize(configType[x.system.type ?? x.type].label)
+                    }
+                };
+            })
+        );
     }
 
     static async toggleMarks(_, button) {

@@ -1,0 +1,43 @@
+<section
+    class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
+    data-tab='{{tabs.details.id}}'
+    data-group='{{tabs.details.group}}'
+>
+    <div class="partner-section">
+        <div class="title">
+            <side-line-div  class="invert"></side-line-div>
+            <h3>Partner</h3>
+            <side-line-div></side-line-div>
+        </div>
+        {{#if document.system.partner}}
+            <ul class="item-list">
+                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=document.system.partner type='actor' isSidebar=true isActor=true noTooltip=true}}
+            </ul>
+        {{else}}
+            <span class="partner-placeholder">{{localize "DAGGERHEART.Sheets.Companion.noPartner"}}</span>
+        {{/if}}
+    </div>
+    <div class="attack-section">
+        <div class="title">
+            <side-line-div  class="invert"></side-line-div>
+            <h3>Attack</h3>
+            <side-line-div></side-line-div>
+        </div>
+        <ul class="item-list">
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=source.system.attack type=source.system.attack.systemPath isSidebar=true isCompanion=true noTooltip=true}}
+        </ul>
+    </div>
+    <div class="experience-list">
+        {{#each source.system.experiences as |experience id|}}
+            <div class="experience-row">
+                <div class="experience-value">
+                    +{{experience.value}}
+                </div>
+                <span class="experience-name">{{experience.name}}</span>
+                <div class="controls">
+                    <a data-action="toChat" data-type="experience" data-uuid="{{id}}"><i class="fa-regular fa-message"></i></a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</section>

@@ -1312,7 +1312,8 @@
                     }
                 },
                 "Experiences": "Experiences",
-                "Level": "Level"
+                "Level": "Level",
+                "noPartner": "No Partner selected"
             },
             "Adversary": {
                 "FIELDS": {

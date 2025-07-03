@@ -4206,6 +4206,10 @@ div.daggerheart.views.multiclass {
 .application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .search-bar input:placeholder {
   color: light-dark(#18162e50, #efe6d850);
 }
+.application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .search-bar input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}
 .application.sheet.daggerheart.actor.dh-style.character .tab.loadout .search-section .search-bar .icon {
   align-content: center;
   height: 32px;
@@ -4985,13 +4989,248 @@ div.daggerheart.views.multiclass {
   color: light-dark(#18162e50, #efe6d850);
   font-family: 'Montserrat', sans-serif;
 }
-.application.sheet.daggerheart.actor.dh-style.companion .profile {
-  height: 80px;
-  width: 80px;
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
-.application.sheet.daggerheart.actor.dh-style.companion .temp-container {
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .profile {
+  height: 235px;
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  mask-image: linear-gradient(0deg, transparent 0%, black 10%);
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .actor-name {
+  display: flex;
+  align-items: center;
   position: relative;
-  top: 32px;
+  top: -30px;
+  gap: 20px;
+  padding: 0 20px;
+  margin-bottom: -30px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .actor-name input[type='text'] {
+  font-size: 24px;
+  height: 32px;
+  text-align: center;
+  border: 1px solid transparent;
+  outline: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .actor-name input[type='text']:hover {
+  outline: 2px solid light-dark(#222, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-number {
+  justify-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-number .status-value {
+  position: relative;
+  display: flex;
+  width: 50px;
+  height: 40px;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  padding: 0 6px;
+  font-size: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  background: light-dark(transparent, #18162e);
+  z-index: 2;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-number .status-value.armor-slots {
+  width: 80px;
+  height: 30px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-number .status-label {
+  padding: 2px 10px;
+  width: 100%;
+  border-radius: 3px;
+  background: light-dark(#18162e, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-number .status-label h4 {
+  font-weight: bold;
+  text-align: center;
+  line-height: 18px;
+  font-size: 12px;
+  color: light-dark(#efe6d8, #18162e);
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  justify-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .status-label {
+  position: relative;
+  top: 40px;
+  height: 22px;
+  width: 79px;
+  clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
+  background: light-dark(#18162e, #f3c267);
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .status-label h4 {
+  font-weight: bold;
+  text-align: center;
+  line-height: 18px;
+  color: light-dark(#efe6d8, #18162e);
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .status-value {
+  position: absolute;
+  display: flex;
+  padding: 0 6px;
+  font-size: 1.5rem;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  color: #efe6d8;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .status-value input[type='number'] {
+  background: transparent;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  border: none;
+  outline: 2px solid transparent;
+  color: #efe6d8;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .status-value input[type='number'].bar-input {
+  padding: 0;
+  color: #efe6d8;
+  backdrop-filter: none;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .status-value input[type='number'].bar-input:hover,
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .status-value input[type='number'].bar-input:focus {
+  background: rgba(24, 22, 46, 0.33);
+  backdrop-filter: blur(9.5px);
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .status-value .bar-label {
+  width: 40px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .progress-bar {
+  position: absolute;
+  appearance: none;
+  width: 100px;
+  height: 40px;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  z-index: 1;
+  background: #18162e;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .progress-bar::-webkit-progress-bar {
+  border: none;
+  background: #18162e;
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .progress-bar::-webkit-progress-value {
+  background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .progress-bar.stress-color::-webkit-progress-value {
+  background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .progress-bar::-moz-progress-bar {
+  background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .status-bar .progress-bar.stress-color::-moz-progress-bar {
+  background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
+  border-radius: 6px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .status-section .level-up-label {
+  font-size: 24px;
+  padding-top: 8px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet .companion-navigation {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .partner-section,
+.application.sheet.daggerheart.actor.dh-style.companion .attack-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .partner-section .title,
+.application.sheet.daggerheart.actor.dh-style.companion .attack-section .title {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .partner-section .title h3,
+.application.sheet.daggerheart.actor.dh-style.companion .attack-section .title h3 {
+  font-size: 20px;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .partner-section .items-list,
+.application.sheet.daggerheart.actor.dh-style.companion .attack-section .items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .partner-placeholder {
+  display: flex;
+  opacity: 0.6;
+  text-align: center;
+  font-style: italic;
+  justify-content: center;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  margin-top: 10px;
+  align-items: center;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .experience-list .experience-row {
+  display: flex;
+  gap: 5px;
+  width: 250px;
+  align-items: center;
+  justify-content: space-between;
+}
+.application.sheet.daggerheart.actor.dh-style.companion .experience-list .experience-row .experience-name {
+  width: 180px;
+  text-align: start;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  color: light-dark(#222, #efe6d8);
+}
+.application.sheet.daggerheart.actor.dh-style.companion .experience-list .experience-value {
+  height: 25px;
+  width: 35px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  color: light-dark(#222, #efe6d8);
+  align-content: center;
+  text-align: center;
+  background: url(../assets/svg/experience-shield.svg) no-repeat;
+}
+.theme-light .application.sheet.daggerheart.actor.dh-style.companion .experience-list .experience-value {
+  background: url('../assets/svg/experience-shield-light.svg') no-repeat;
+}
+.theme-light .application.sheet.daggerheart.actor.dh-style.companion {
+  background: url('../assets/parchments/dh-parchment-light.png');
+}
+.theme-dark .application.sheet.daggerheart.actor.dh-style.companion {
+  background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
 .application.sheet.daggerheart.actor.dh-style.adversary .window-content {
   overflow: auto;
@@ -5286,6 +5525,19 @@ div.daggerheart.views.multiclass {
   box-shadow: none;
   outline: 2px solid light-dark(#222, #efe6d8);
 }
+.application.dh-style input[type='text']:disabled[type='text'],
+.application.dh-style input[type='number']:disabled[type='text'],
+.application.dh-style input[type='text']:disabled[type='number'],
+.application.dh-style input[type='number']:disabled[type='number'] {
+  outline: 2px solid transparent;
+  cursor: not-allowed;
+}
+.application.dh-style input[type='text']:disabled[type='text']:hover,
+.application.dh-style input[type='number']:disabled[type='text']:hover,
+.application.dh-style input[type='text']:disabled[type='number']:hover,
+.application.dh-style input[type='number']:disabled[type='number']:hover {
+  background: transparent;
+}
 .application.dh-style input[type='checkbox']:checked::after {
   color: light-dark(#222, #f3c267);
 }
@@ -5308,6 +5560,16 @@ div.daggerheart.views.multiclass {
 }
 .application.dh-style button.glow {
   animation: glow 0.75s infinite alternate;
+}
+.application.dh-style button:disabled {
+  background: light-dark(transparent, #f3c267);
+  color: light-dark(#18162e, #18162e);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.application.dh-style button:disabled:hover {
+  background: light-dark(transparent, #f3c267);
+  color: light-dark(#18162e, #18162e);
 }
 .application.dh-style select {
   background: light-dark(transparent, transparent);
@@ -6053,6 +6315,44 @@ div.daggerheart.views.multiclass {
 }
 .application prose-mirror .editor-content h3 {
   font-size: 24px;
+}
+.filter-menu {
+  width: auto;
+}
+.filter-menu fieldset.filter-section {
+  align-items: center;
+  margin: 5px;
+  border-radius: 6px;
+  border-color: light-dark(#18162e, #f3c267);
+  padding: 5px;
+}
+.filter-menu fieldset.filter-section legend {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: light-dark(#18162e, #f3c267);
+  font-size: var(--font-size-12);
+}
+.filter-menu fieldset.filter-section .filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 5px;
+}
+.filter-menu fieldset.filter-section .filter-buttons button {
+  background: light-dark(rgba(0, 0, 0, 0.3), #18162e);
+  color: light-dark(#18162e, #f3c267);
+  outline: none;
+  box-shadow: none;
+  border: 1px solid light-dark(#18162e, #18162e);
+  padding: 0 0.2rem;
+  font-size: var(--font-size-12);
+}
+.filter-menu fieldset.filter-section .filter-buttons button:hover {
+  background: light-dark(transparent, #f3c267);
+  color: light-dark(#18162e, #18162e);
+}
+.filter-menu fieldset.filter-section .filter-buttons button.active {
+  animation: glow 0.75s infinite alternate;
 }
 .daggerheart {
   /* Flex */

@@ -10,7 +10,9 @@
             </div>
             <input type="search" name="search" class="search-loadout" placeholder="Search...">
         </div>
-        <a><i class="fa-solid fa-filter"></i></a>
+        <a class="filter-button">
+            <i class="fa-solid fa-filter"></i>
+        </a>
         <button class="btn-toggle-view" data-action="toggleLoadoutView" data-value="{{this.abilities.loadout.listView}}">
             <span class="{{#if this.abilities.loadout.listView}}list-active{{/if}} list-icon">
                 <i class="fa-solid fa-bars"></i>
