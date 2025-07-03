@@ -43,14 +43,16 @@ export default class DHBeastform extends BaseDataItem {
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return;
 
-        if (this.actor?.type !== 'character') {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.beastformInapplicable'));
-            return;
+        if (!this.actor) return;
+
+        if (this.actor.type !== 'character') {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.notifications.beastformInapplicable'));
+            return false;
         }
 
         if (this.actor.items.find(x => x.type === 'beastform')) {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.beastformAlreadyApplied'));
-            return;
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.notifications.beastformAlreadyApplied'));
+            return false;
         }
 
         const features = await this.parent.parent.createEmbeddedDocuments(

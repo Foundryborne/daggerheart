@@ -4,7 +4,6 @@ export default class BeastformEffect extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            isBeastform: new fields.BooleanField({ initial: false }),
             characterTokenData: new fields.SchemaField({
                 tokenImg: new fields.FilePathField({
                     categories: ['IMAGE'],
@@ -34,13 +33,8 @@ export default class BeastformEffect extends foundry.abstract.TypeDataModel {
 
             await updateActorTokens(this.parent.parent, update);
 
-            for (var feature of this.parent.parent.items.filter(x => this.featureIds.includes(x.id))) {
-                await feature.delete();
-            }
-
-            for (var effect of this.parent.parent.effects.filter(x => this.effectIds.includes(x.id))) {
-                await effect.delete();
-            }
+            await this.parent.parent.deleteEmbeddedDocuments('Item', this.featureIds);
+            await this.parent.parent.deleteEmbeddedDocuments('ActiveEffect', this.effectIds);
         }
     }
 }

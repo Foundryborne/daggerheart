@@ -12,7 +12,6 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'beastform-selection',
         classes: ['daggerheart', 'views', 'dh-style', 'beastform-selection'],
         position: {
             width: 600,
@@ -42,11 +41,10 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.configData = this.configData;
 
         context.beastformTiers = game.items.reduce((acc, x) => {
             const tier = tiers[x.system.tier];
-            if (x.type !== 'beastform' || tier.value > context.configData.beastform.tierLimit) return acc;
+            if (x.type !== 'beastform' || tier.value > this.configData.tierLimit) return acc;
 
             if (!acc[tier.value]) acc[tier.value] = { label: game.i18n.localize(tier.label), values: {} };
             acc[tier.value].values[x.uuid] = { selected: this.selected == x.uuid, value: x };

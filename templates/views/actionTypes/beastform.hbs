@@ -4,9 +4,14 @@
     </legend>
 
     <div class="action-category-data open">
-        {{formGroup 
-            @root.fields.beastform.fields.tierAccess.fields.exact value=@root.source.beastform.tierAccess.exact name="beastform.tierAccess.exact" 
-            placeholder=(localize "DAGGERHEART.Actions.Config.Beastform.exactPlaceholder") label="DAGGERHEART.Actions.Config.Beastform.exact" localize=true
-        }}
+        <div class="hint-group">
+            <div class="form-fields">
+                <label>{{localize "DAGGERHEART.Actions.Config.Beastform.exact"}}</label>
+                <select name="beastform.tierAccess.exact" data-dtype="Number">
+                    {{selectOptions tierOptions selected=@root.source.beastform.tierAccess.exact  labelAttr="label" valueAttr="key" blank="" }}
+                </select>
+            </div>
+            <p class="hint">{{localize "DAGGERHEART.Actions.Config.Beastform.exactHint"}}</p>
+        </div>
     </div>
 </fieldset>

@@ -44,7 +44,7 @@ export default class BeastformSheet extends DHBaseItemSheet {
     static editFeature(event) {
         const target = event.target.closest('[data-action="editFeature"]');
         const feature = this.document.system.features[target.dataset.index];
-        feature.sheet.render(true);
+        feature.sheet.render({ force: true });
     }
 
     static async removeFeature(_, target) {
@@ -52,7 +52,6 @@ export default class BeastformSheet extends DHBaseItemSheet {
         await this.document.update({
             'system.features': current.filter((_, index) => index !== Number(target.dataset.index))
         });
-        this.render();
     }
 
     async _onDrop(event) {

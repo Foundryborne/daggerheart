@@ -1666,8 +1666,8 @@
             "Config": {
                 "Beastform": {
                     "label": "Beastform",
-                    "exact": "Exact",
-                    "exactPlaceholder": "Character tier is used"
+                    "exact": "Beastform Max Tier",
+                    "exactHint": "The Character's Tier is used if empty"
                 }
             }
         },

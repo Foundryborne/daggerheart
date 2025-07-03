@@ -38,7 +38,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         }
     };
 
-    static CLEAN_ARRAYS = ["damage.parts", "cost", "effects"];
+    static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects'];
 
     _getTabs() {
         const tabs = {
@@ -69,7 +69,13 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         context.disableOption = this.disableOption.bind(this);
         context.isNPC = this.action.actor && this.action.actor.type !== 'character';
         context.hasRoll = this.action.hasRoll;
-        console.log(context)
+
+        const settingsTiers = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers;
+        context.tierOptions = [
+            { key: 1, label: game.i18n.localize('DAGGERHEART.Tiers.tier1') },
+            ...Object.values(settingsTiers).map(x => ({ key: x.tier, label: x.name }))
+        ];
+
         return context;
     }
 
@@ -97,9 +103,9 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     _prepareSubmitData(event, formData) {
         const submitData = foundry.utils.expandObject(formData.object);
-        for ( const keyPath of this.constructor.CLEAN_ARRAYS ) {
+        for (const keyPath of this.constructor.CLEAN_ARRAYS) {
             const data = foundry.utils.getProperty(submitData, keyPath);
-            if ( data ) foundry.utils.setProperty(submitData, keyPath, Object.values(data));
+            if (data) foundry.utils.setProperty(submitData, keyPath, Object.values(data));
         }
         return submitData;
     }

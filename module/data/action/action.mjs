@@ -275,18 +275,6 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             }) */
         }
 
-        if (this instanceof DhBeastformAction) {
-            config.beastform = this.prepareBeastformConfig();
-
-            const abort = await this.handleActiveTransformations();
-            if (abort) return;
-
-            const beastformUuid = await BeastformDialog.configure(config);
-            if (!beastformUuid) return;
-
-            await this.transform(beastformUuid);
-        }
-
         if (this.doFollowUp()) {
             if (this.rollDamage) await this.rollDamage(event, config);
             if (this.rollHealing) await this.rollHealing(event, config);
@@ -779,11 +767,23 @@ export class DHMacroAction extends DHBaseAction {
 export class DhBeastformAction extends DHBaseAction {
     static extraSchemas = ['beastform'];
 
+    async use(event, ...args) {
+        const beastformConfig = this.prepareBeastformConfig();
+
+        const abort = await this.handleActiveTransformations();
+        if (abort) return;
+
+        const beastformUuid = await BeastformDialog.configure(beastformConfig);
+        if (!beastformUuid) return;
+
+        await this.transform(beastformUuid);
+    }
+
     prepareBeastformConfig(config) {
-        const settingsTier = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers;
+        const settingsTiers = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers;
         const actorLevel = this.actor.system.levelData.level.current;
         const actorTier =
-            Object.values(settingsTier).find(
+            Object.values(settingsTiers).find(
                 tier => actorLevel >= tier.levels.start && actorLevel <= tier.levels.end
             ) ?? 1;
 

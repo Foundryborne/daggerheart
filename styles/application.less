@@ -227,7 +227,7 @@ div.daggerheart.views.multiclass {
                 filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(21deg) brightness(17%) contrast(103%);
             }
         }
-        
+
         #roll-selection-costSelection footer {
             display: none;
         }
@@ -372,7 +372,6 @@ div.daggerheart.views.multiclass {
                 }
             }
 
-
             .roll-dialog-experience-container {
                 display: flex;
                 align-items: flex-start;
@@ -506,6 +505,34 @@ div.daggerheart.views.multiclass {
                     img {
                         width: 1.5rem;
                         height: 1.5rem;
+                    }
+                }
+
+                .hint-group {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+
+                    .form-fields {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+
+                        label {
+                            flex: 1;
+                        }
+
+                        input,
+                        select {
+                            flex: 3;
+                        }
+                    }
+
+                    .hint {
+                        margin: 4px 0 0 0;
+                        font-size: 12px;
+                        font-style: italic;
+                        opacity: 0.6;
                     }
                 }
 

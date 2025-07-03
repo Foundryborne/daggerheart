@@ -51,7 +51,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     };
 
     async _prepareContext(_options) {
-        console.log(this.config, this.roll);
         const context = await super._prepareContext(_options);
         context.hasRoll = !!this.config.roll;
         context.roll = this.roll;
