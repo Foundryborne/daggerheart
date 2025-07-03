@@ -3685,6 +3685,14 @@ div.daggerheart.views.multiclass {
 .daggerheart.dh-style.setting .trait-array-container .trait-array-item input {
   text-align: center;
 }
+.themed.theme-dark .application.sheet.dh-style .character-header-sheet .trait,
+.themed.theme-dark.application.sheet.dh-style .character-header-sheet .trait {
+  background: url(../assets/svg/trait-shield.svg) no-repeat;
+}
+.themed.theme-light .application.sheet.dh-style .character-header-sheet .trait,
+.themed.theme-light.application.sheet.dh-style .character-header-sheet .trait {
+  background: url('../assets/svg/trait-shield-light.svg') no-repeat;
+}
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet {
   padding: 0 15px;
   padding-top: 36px;
@@ -3822,11 +3830,7 @@ div.daggerheart.views.multiclass {
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-traits .trait {
   height: 60px;
   width: 60px;
-  background: url(../assets/svg/trait-shield.svg) no-repeat;
   cursor: pointer;
-}
-.theme-light .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-traits .trait {
-  background: url('../assets/svg/trait-shield-light.svg') no-repeat;
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet .character-traits .trait .trait-name {
   display: flex;
@@ -3849,32 +3853,44 @@ div.daggerheart.views.multiclass {
   font-size: 20px;
   text-align: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet {
+.themed.theme-dark .application.sheet.dh-style .character-sidebar-sheet,
+.themed.theme-dark.application.sheet.dh-style .character-sidebar-sheet {
+  background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.themed.theme-dark .application.sheet.dh-style .character-sidebar-sheet .experience-value,
+.themed.theme-dark.application.sheet.dh-style .character-sidebar-sheet .experience-value {
+  background: url(../assets/svg/experience-shield.svg) no-repeat;
+}
+.themed.theme-light .application.sheet.dh-style .character-sidebar-sheet,
+.themed.theme-light.application.sheet.dh-style .character-sidebar-sheet {
+  background: transparent;
+}
+.themed.theme-light .application.sheet.dh-style .character-sidebar-sheet .experience-value,
+.themed.theme-light.application.sheet.dh-style .character-sidebar-sheet .experience-value {
+  background: url('../assets/svg/experience-shield-light.svg') no-repeat;
+}
+.application.sheet.dh-style .character-sidebar-sheet {
   width: 275px;
   min-width: 275px;
   border-right: 1px solid light-dark(#18162e, #f3c267);
-  background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
-.theme-light .application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet {
-  background: transparent;
-}
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait {
+.application.sheet.dh-style .character-sidebar-sheet .portrait {
   position: relative;
   border-bottom: 1px solid light-dark(#18162e, #f3c267);
   cursor: pointer;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait img {
+.application.sheet.dh-style .character-sidebar-sheet .portrait img {
   height: 235px;
   width: 275px;
   object-fit: cover;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait .death-roll-btn {
+.application.sheet.dh-style .character-sidebar-sheet .portrait .death-roll-btn {
   display: none;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait.death-roll {
+.application.sheet.dh-style .character-sidebar-sheet .portrait.death-roll {
   filter: grayscale(1);
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait.death-roll .death-roll-btn {
+.application.sheet.dh-style .character-sidebar-sheet .portrait.death-roll .death-roll-btn {
   display: flex;
   position: absolute;
   top: 30%;
@@ -3882,10 +3898,10 @@ div.daggerheart.views.multiclass {
   font-size: 6rem;
   color: #efe6d8;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .portrait.death-roll .death-roll-btn:hover {
+.application.sheet.dh-style .character-sidebar-sheet .portrait.death-roll .death-roll-btn:hover {
   text-shadow: 0 0 8px #efe6d8;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section {
+.application.sheet.dh-style .character-sidebar-sheet .info-section {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -3893,17 +3909,17 @@ div.daggerheart.views.multiclass {
   gap: 30px;
   margin-bottom: -10px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section {
   display: flex;
   justify-content: space-evenly;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar {
   position: relative;
   width: 100px;
   height: 40px;
   justify-items: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-label {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-label {
   position: relative;
   top: 40px;
   height: 22px;
@@ -3911,13 +3927,13 @@ div.daggerheart.views.multiclass {
   clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
   background: light-dark(#18162e, #f3c267);
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-label h4 {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-label h4 {
   font-weight: bold;
   text-align: center;
   line-height: 18px;
   color: light-dark(#efe6d8, #18162e);
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value {
   position: absolute;
   display: flex;
   padding: 0 6px;
@@ -3930,7 +3946,7 @@ div.daggerheart.views.multiclass {
   z-index: 2;
   color: #efe6d8;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'] {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'] {
   background: transparent;
   font-size: 1.5rem;
   width: 40px;
@@ -3940,22 +3956,22 @@ div.daggerheart.views.multiclass {
   outline: 2px solid transparent;
   color: #efe6d8;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input {
   padding: 0;
   color: #efe6d8;
   backdrop-filter: none;
   background: transparent;
   transition: all 0.3s ease;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:hover,
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:focus {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:hover,
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:focus {
   background: rgba(24, 22, 46, 0.33);
   backdrop-filter: blur(9.5px);
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .status-value .bar-label {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value .bar-label {
   width: 40px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar {
   position: absolute;
   appearance: none;
   width: 100px;
@@ -3965,37 +3981,37 @@ div.daggerheart.views.multiclass {
   z-index: 1;
   background: #18162e;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-bar {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-bar {
   border: none;
   background: #18162e;
   border-radius: 6px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-value {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-value {
   background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
   border-radius: 6px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-webkit-progress-value {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-webkit-progress-value {
   background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
   border-radius: 6px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
   background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
   border-radius: 6px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-moz-progress-bar {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-moz-progress-bar {
   background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
   border-radius: 6px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   justify-content: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number {
   justify-items: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number .status-value {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-value {
   position: relative;
   display: flex;
   width: 50px;
@@ -4010,62 +4026,62 @@ div.daggerheart.views.multiclass {
   background: light-dark(transparent, #18162e);
   z-index: 2;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number .status-value.armor-slots {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-value.armor-slots {
   width: 80px;
   height: 30px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number .status-label {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-label {
   padding: 2px 10px;
   width: 100%;
   border-radius: 3px;
   background: light-dark(#18162e, #f3c267);
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .info-section .status-section .status-number .status-label h4 {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-label h4 {
   font-weight: bold;
   text-align: center;
   line-height: 18px;
   font-size: 12px;
   color: light-dark(#efe6d8, #18162e);
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .items-sidebar-list {
+.application.sheet.dh-style .character-sidebar-sheet .items-sidebar-list {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .items-sidebar-list .inventory-item {
+.application.sheet.dh-style .character-sidebar-sheet .items-sidebar-list .inventory-item {
   padding: 0 10px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .equipment-section .title {
+.application.sheet.dh-style .character-sidebar-sheet .equipment-section .title {
   display: flex;
   gap: 15px;
   align-items: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .equipment-section .title h3 {
+.application.sheet.dh-style .character-sidebar-sheet .equipment-section .title h3 {
   font-size: 20px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .equipment-section .items-list {
+.application.sheet.dh-style .character-sidebar-sheet .equipment-section .items-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .loadout-section .title {
+.application.sheet.dh-style .character-sidebar-sheet .loadout-section .title {
   display: flex;
   gap: 15px;
   align-items: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .loadout-section .title h3 {
+.application.sheet.dh-style .character-sidebar-sheet .loadout-section .title h3 {
   font-size: 20px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .title {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .title {
   display: flex;
   gap: 15px;
   align-items: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .title h3 {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .title h3 {
   font-size: 20px;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -4073,14 +4089,14 @@ div.daggerheart.views.multiclass {
   margin-top: 10px;
   align-items: center;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-row {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-row {
   display: flex;
   gap: 5px;
   width: 250px;
   align-items: center;
   justify-content: space-between;
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text'] {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text'] {
   height: 32px;
   width: 180px;
   border: 1px solid transparent;
@@ -4090,10 +4106,10 @@ div.daggerheart.views.multiclass {
   transition: all 0.3s ease;
   color: light-dark(#222, #efe6d8);
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text']:hover {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text']:hover {
   outline: 2px solid light-dark(#222, #efe6d8);
 }
-.application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-value {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-value {
   height: 25px;
   width: 35px;
   font-size: 14px;
@@ -4101,10 +4117,6 @@ div.daggerheart.views.multiclass {
   color: light-dark(#222, #efe6d8);
   align-content: center;
   text-align: center;
-  background: url(../assets/svg/experience-shield.svg) no-repeat;
-}
-.theme-light .application.sheet.daggerheart.actor.dh-style.character .character-sidebar-sheet .experience-section .experience-list .experience-value {
-  background: url('../assets/svg/experience-shield-light.svg') no-repeat;
 }
 .application.sheet.daggerheart.actor.dh-style.character .window-content {
   display: grid;
@@ -4778,11 +4790,13 @@ div.daggerheart.views.multiclass {
   align-items: center;
   padding: 0 20px;
 }
-.theme-light .application.sheet.daggerheart.actor.dh-style.environment {
-  background: url('../assets/parchments/dh-parchment-light.png');
-}
-.theme-dark .application.sheet.daggerheart.actor.dh-style.environment {
+.themed.theme-dark .application.sheet.dh-style.environment,
+.themed.theme-dark.application.sheet.dh-style.environment {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.themed.theme-light .application.sheet.dh-style.environment,
+.themed.theme-light.application.sheet.dh-style.environment {
+  background: url('../assets/parchments/dh-parchment-light.png');
 }
 .application.sheet.daggerheart.actor.dh-style.environment .tab {
   max-height: 300px;
@@ -5226,11 +5240,13 @@ div.daggerheart.views.multiclass {
 .theme-light .application.sheet.daggerheart.actor.dh-style.companion .experience-list .experience-value {
   background: url('../assets/svg/experience-shield-light.svg') no-repeat;
 }
-.theme-light .application.sheet.daggerheart.actor.dh-style.companion {
-  background: url('../assets/parchments/dh-parchment-light.png');
-}
-.theme-dark .application.sheet.daggerheart.actor.dh-style.companion {
+.themed.theme-dark .application.sheet.dh-style.companion,
+.themed.theme-dark.application.sheet.dh-style.companion {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.themed.theme-light .application.sheet.dh-style.companion,
+.themed.theme-light.application.sheet.dh-style.companion {
+  background: url('../assets/parchments/dh-parchment-light.png');
 }
 .application.sheet.daggerheart.actor.dh-style.adversary .window-content {
   overflow: auto;
@@ -5402,6 +5418,9 @@ div.daggerheart.views.multiclass {
   font-family: 'Montserrat', sans-serif;
   opacity: 0.8;
 }
+.application.sheet.dh-style {
+  border-radius: 10px;
+}
 .application.sheet.dh-style .window-header {
   background: transparent;
   border-bottom: none;
@@ -5418,8 +5437,22 @@ div.daggerheart.views.multiclass {
   padding: 0;
 }
 .application.sheet.dh-style .window-header button:hover {
-  border: 1px solid light-dark(#18162e, #f3c267);
+  border-color: light-dark(#18162e, #f3c267);
   color: light-dark(#18162e, #f3c267);
+}
+.application.sheet.dh-style .window-content {
+  padding: 0;
+  position: relative;
+  top: -36px;
+  min-height: -webkit-fill-available;
+  transition: opacity 0.3s ease;
+}
+.application.sheet.dh-style .window-content .tab {
+  padding: 0 10px;
+}
+.application.sheet.dh-style.minimized .window-content {
+  opacity: 0;
+  transition-duration: 0.1s;
 }
 .application.sheet.dh-style:not(.minimized) .window-title,
 .application.sheet.dh-style:not(.minimized) .window-icon {
@@ -5427,53 +5460,27 @@ div.daggerheart.views.multiclass {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.application.sheet.dh-style.minimized .window-content {
-  opacity: 0;
-  transition: opacity 0.1s ease;
-}
 .application.sheet.dh-style:not(.minimized) .window-content {
   opacity: 1;
-  transition: opacity 0.3s ease;
 }
-.theme-dark .application.sheet.dh-style {
+.themed.theme-dark .application.sheet.dh-style,
+.themed.theme-dark.application.sheet.dh-style {
   background: rgba(24, 22, 46, 0.33);
   backdrop-filter: blur(9px);
 }
-.theme-light .application.sheet.dh-style {
-  background-image: url('../assets/parchments/dh-parchment-light.png');
-  background-repeat: no-repeat;
-  background-position: center;
+.themed.theme-light .application.sheet.dh-style,
+.themed.theme-light.application.sheet.dh-style {
+  background: url('../assets/parchments/dh-parchment-light.png') no-repeat center;
 }
-.application.sheet.daggerheart.dh-style {
-  border-radius: 10px;
-}
-.application.sheet.daggerheart.dh-style .window-content {
-  padding: 0;
-  position: relative;
-  top: -36px;
-  min-height: -webkit-fill-available;
-}
-.application.sheet.daggerheart.dh-style .window-content .tab {
-  padding: 0 10px;
-}
-.application.sheet.daggerheart.character.dh-style {
-  border-radius: 10px;
-}
-.application.sheet.daggerheart.character.dh-style .window-content {
-  position: absolute;
-  top: 0;
-}
-.application.sheet.daggerheart.character.dh-style .window-content .tab {
-  padding: 0 15px;
-  overflow-y: hidden;
-}
-.theme-light .application.dialog.dh-style {
-  background-image: url('../assets/parchments/dh-parchment-light.png');
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.theme-dark .application.dialog.dh-style {
+.themed.theme-dark .application.sheet.dh-style.dialog,
+.themed.theme-dark.application.sheet.dh-style.dialog {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.themed.theme-light .application.sheet.dh-style.dialog,
+.themed.theme-light.application.sheet.dh-style.dialog {
+  background-image: url('../assets/parchments/dh-parchment-light.png');
   background-repeat: no-repeat;
   background-position: center;
 }

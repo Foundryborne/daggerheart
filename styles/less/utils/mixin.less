@@ -1,0 +1,18 @@
+/**
+ * Applies theme-specific styles.
+ * @param {Rules}    @darkRules  - Styles to apply when `.theme-dark` is present
+ * @param {Rules}    @lightRules - Styles to apply when `.theme-light` is present
+ */
+.appTheme(@darkRules, @lightRules) {
+  .themed {
+    &.theme-dark .application.sheet.dh-style,
+    &.theme-dark.application.sheet.dh-style {
+      @darkRules();
+    }
+
+    &.theme-light .application.sheet.dh-style,
+    &.theme-light.application.sheet.dh-style {
+      @lightRules();
+    }
+  }
+}

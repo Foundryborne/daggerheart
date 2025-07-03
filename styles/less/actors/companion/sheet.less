@@ -1,10 +1,17 @@
-.application.sheet.daggerheart.actor.dh-style.companion {
-    .theme-light & {
-        background: url('../assets/parchments/dh-parchment-light.png');
-    }
-    .theme-dark & {
+
+// Theme header backgrounds
+
+.appTheme({
+    &.companion {
         background-image: url('../assets/parchments/dh-parchment-dark.png');
     }
+}, {
+    &.companion {
+        background: url('../assets/parchments/dh-parchment-light.png');
+    }
+});
+
+.application.sheet.daggerheart.actor.dh-style.companion {
 
     // .profile {
     //     height: 80px;

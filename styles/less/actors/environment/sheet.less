@@ -1,13 +1,17 @@
 @import '../../utils/colors.less';
 @import '../../utils/fonts.less';
 
-.application.sheet.daggerheart.actor.dh-style.environment {
-    .theme-light & {
-        background: url('../assets/parchments/dh-parchment-light.png');
-    }
-    .theme-dark & {
+.appTheme({
+    &.environment {
         background-image: url('../assets/parchments/dh-parchment-dark.png');
     }
+}, {
+    &.environment {
+        background: url('../assets/parchments/dh-parchment-light.png');
+    }
+});
+
+.application.sheet.daggerheart.actor.dh-style.environment {
 
     .tab {
         max-height: 300px;

@@ -1,21 +1,19 @@
 @import '../utils/colors.less';
 @import '../utils/fonts.less';
 
-.theme-light {
-    .application.dialog.dh-style {
-        background-image: url('../assets/parchments/dh-parchment-light.png');
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-}
-
-.theme-dark {
-    .application.dialog.dh-style {
+.appTheme({
+    &.dialog {
         background-image: url('../assets/parchments/dh-parchment-dark.png');
         background-repeat: no-repeat;
         background-position: center;
     }
-}
+}, {
+    &.dialog {
+        background-image: url('../assets/parchments/dh-parchment-light.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+});
 
 .application.dialog.dh-style {
     border: none;
