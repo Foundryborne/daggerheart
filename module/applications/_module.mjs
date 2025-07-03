@@ -1,6 +1,6 @@
 export { default as DhCharacterSheet } from './sheets/actors/character.mjs';
 export { default as DhpAdversarySheet } from './sheets/actors/adversary.mjs';
-export { default as DhCompanionSheet } from './sheets/companion.mjs';
+export { default as DhCompanionSheet } from './sheets/actors/companion.mjs';
 export { default as DhpClassSheet } from './sheets/items/class.mjs';
 export { default as DhpSubclass } from './sheets/items/subclass.mjs';
 export { default as DhpFeatureSheet } from './sheets/items/feature.mjs';
@@ -19,3 +19,4 @@ export { default as DhBeastform } from './sheets/items/beastform.mjs';
 export { default as DhTooltipManager } from './tooltipManager.mjs';
 
 export * as api from './sheets/api/_modules.mjs';
+export * as ux from './ux/_module.mjs';

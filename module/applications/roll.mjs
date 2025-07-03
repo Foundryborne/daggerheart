@@ -1,6 +1,7 @@
 import DHDamageRoll from '../data/chat-message/damageRoll.mjs';
 import D20RollDialog from '../dialogs/d20RollDialog.mjs';
 import DamageDialog from '../dialogs/damageDialog.mjs';
+import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 
 /*
     - Damage & other resources roll
@@ -96,7 +97,8 @@ export class DHRoll extends Roll {
     }
 
     static applyKeybindings(config) {
-        config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
+        if (config.event)
+            config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
     }
 
     formatModifier(modifier) {
@@ -176,18 +178,27 @@ export class D20Roll extends DHRoll {
     }
 
     static applyKeybindings(config) {
-        const keys = {
-            normal: config.event.shiftKey || config.event.altKey || config.event.ctrlKey,
-            advantage: config.event.altKey,
-            disadvantage: config.event.ctrlKey
+        let keys = {
+            normal: true,
+            advantage: false,
+            disadvantage: false
         };
+
+        if (config.event) {
+            keys = {
+                normal: config.event.shiftKey || config.event.altKey || config.event.ctrlKey,
+                advantage: config.event.altKey,
+                disadvantage: config.event.ctrlKey
+            };
+        }
 
         // Should the roll configuration dialog be displayed?
         config.dialog.configure ??= !Object.values(keys).some(k => k);
 
         // Determine advantage mode
-        const advantage = config.roll.advantage === this.ADV_MODE.ADVANTAGE || keys.advantage;
-        const disadvantage = config.roll.advantage === this.ADV_MODE.DISADVANTAGE || keys.disadvantage;
+        const advantage = config.roll.advantage === this.ADV_MODE.ADVANTAGE || keys.advantage || config.advantage;
+        const disadvantage =
+            config.roll.advantage === this.ADV_MODE.DISADVANTAGE || keys.disadvantage || config.disadvantage;
         if (advantage && !disadvantage) config.roll.advantage = this.ADV_MODE.ADVANTAGE;
         else if (!advantage && disadvantage) config.roll.advantage = this.ADV_MODE.DISADVANTAGE;
         else config.roll.advantage = this.ADV_MODE.NORMAL;
@@ -252,6 +263,18 @@ export class D20Roll extends DHRoll {
             value: this.options.roll.bonus
             // value: Roll.replaceFormulaData('@attackBonus', this.data)
         });
+    }
+
+    static async buildEvaluate(roll, config = {}, message = {}) {
+        if (config.evaluate !== false) await roll.evaluate();
+        const advantageState =
+            config.roll.advantage == this.ADV_MODE.ADVANTAGE
+                ? true
+                : config.roll.advantage == this.ADV_MODE.DISADVANTAGE
+                  ? false
+                  : null;
+        setDiceSoNiceForDualityRoll(roll, advantageState);
+        this.postEvaluate(roll, config);
     }
 
     static postEvaluate(roll, config = {}) {

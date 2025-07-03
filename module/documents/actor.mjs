@@ -126,6 +126,7 @@ export default class DhpActor extends Actor {
                     }
                 }
             });
+            this.sheet.render();
 
             if (this.system.companion) {
                 this.system.companion.updateLevel(newLevel);
@@ -307,6 +308,7 @@ export default class DhpActor extends Actor {
                 }
             }
         });
+        this.sheet.render();
 
         if (this.system.companion) {
             this.system.companion.updateLevel(this.system.levelData.level.changed);
@@ -338,7 +340,7 @@ export default class DhpActor extends Actor {
     }
 
     get rollClass() {
-        return CONFIG.Dice.daggerheart[this.type === 'character' ? 'DualityRoll' : 'D20Roll'];
+        return CONFIG.Dice.daggerheart[['character', 'companion'].includes(this.type) ? 'DualityRoll' : 'D20Roll'];
     }
 
     getRollData() {

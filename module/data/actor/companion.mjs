@@ -47,6 +47,7 @@ export default class DhCompanion extends BaseDataActor {
             attack: new ActionField({
                 initial: {
                     name: 'Attack',
+                    img: 'icons/creatures/claws/claw-bear-paw-swipe-brown.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',
                     type: 'attack',
@@ -57,7 +58,8 @@ export default class DhCompanion extends BaseDataActor {
                     },
                     roll: {
                         type: 'weapon',
-                        bonus: 0
+                        bonus: 0,
+                        trait: 'instinct'
                     },
                     damage: {
                         parts: [
@@ -77,8 +79,10 @@ export default class DhCompanion extends BaseDataActor {
         };
     }
 
-    get attackBonus() {
-        return this.attack.roll.bonus ?? 0;
+    get traits() {
+        return {
+            instinct: { total: this.attack.roll.bonus }
+        };
     }
 
     prepareBaseData() {

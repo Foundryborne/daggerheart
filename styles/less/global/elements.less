@@ -23,6 +23,16 @@
             box-shadow: none;
             outline: 2px solid light-dark(@dark, @beige);
         }
+
+        &:disabled[type='text'],
+        &:disabled[type='number'] {
+            outline: 2px solid transparent;
+            cursor: not-allowed;
+
+            &:hover {
+                background: transparent;
+            }
+        }
     }
 
     input[type='checkbox'] {
@@ -51,6 +61,18 @@
 
         &.glow {
             animation: glow 0.75s infinite alternate;
+        }
+
+        &:disabled {
+            background: light-dark(transparent, @golden);
+            color: light-dark(@dark-blue, @dark-blue);
+            opacity: 0.6;
+            cursor: not-allowed;
+
+            &:hover {
+                background: light-dark(transparent, @golden);
+                color: light-dark(@dark-blue, @dark-blue);
+            }
         }
     }
 

@@ -216,46 +216,27 @@ Hooks.on('chatMessage', (_, message) => {
                       })
                     : game.i18n.localize('DAGGERHEART.General.Duality');
 
-                const hopeAndFearRoll = `1${rollCommand.hope ?? 'd12'}+1${rollCommand.fear ?? 'd12'}`;
-                const advantageRoll = `${advantageState === true ? '+d6' : advantageState === false ? '-d6' : ''}`;
-                const attributeRoll = `${trait?.value ? `${trait.value > 0 ? `+${trait.value}` : `${trait.value}`}` : ''}`;
-                const roll = await Roll.create(`${hopeAndFearRoll}${advantageRoll}${attributeRoll}`).evaluate();
-
-                setDiceSoNiceForDualityRoll(roll, advantageState);
-
-                resolve({
-                    roll,
-                    trait: trait
-                        ? {
-                              value: trait.value,
-                              label: `${game.i18n.localize(abilities[traitValue].label)} ${trait.value >= 0 ? `+` : ``}${trait.value}`
-                          }
-                        : undefined,
-                    title
-                });
-            }).then(async ({ roll, trait, title }) => {
-                const cls = getDocumentClass('ChatMessage');
-                const systemData = new DHDualityRoll({
+                const config = {
                     title: title,
-                    origin: target?.id,
-                    roll: roll,
-                    modifiers: trait ? [trait] : [],
-                    hope: { dice: rollCommand.hope ?? 'd12', value: roll.dice[0].total },
-                    fear: { dice: rollCommand.fear ?? 'd12', value: roll.dice[1].total },
-                    advantage: advantageState !== null ? { dice: 'd6', value: roll.dice[2].total } : undefined,
-                    advantageState
-                });
-
-                const msgData = {
-                    type: 'dualityRoll',
-                    sound: CONFIG.sounds.dice,
-                    system: systemData,
-                    user: game.user.id,
-                    content: 'systems/daggerheart/templates/chat/duality-roll.hbs',
-                    rolls: [roll]
+                    roll: {
+                        trait: traitValue
+                    },
+                    data: {
+                        traits: {
+                            [traitValue]: trait
+                        }
+                    },
+                    source: target,
+                    hasSave: false,
+                    dialog: { configure: false },
+                    evaluate: true,
+                    advantage: rollCommand.advantage == true,
+                    disadvantage: rollCommand.disadvantage == true
                 };
 
-                cls.create(msgData);
+                await CONFIG.Dice.daggerheart['DualityRoll'].build(config);
+
+                resolve();
             });
         }
 

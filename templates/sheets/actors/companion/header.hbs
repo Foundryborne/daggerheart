@@ -1,0 +1,46 @@
+<header class="companion-header-sheet">
+    <img class="profile" src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
+    <h1 class='actor-name'>
+        <input
+            type='text'
+            name='name'
+            value='{{document.name}}'
+            placeholder='Actor Name'
+        />
+    </h1>
+    <div class="status-section">
+        <div class="status-number">
+            <div class='status-value'>
+                <p>{{document.system.evasion.total}}</p>
+            </div>
+            <div class="status-label">
+                <h4>Evasion</h4>
+            </div>
+        </div>
+        <div class="status-bar">
+            <div class='status-value'>
+                <p><input class="bar-input" name="system.resources.stress.value" value="{{document.system.resources.stress.value}}" type="number"></p>
+                <p>/</p>
+                <p class="bar-label">{{document.system.resources.stress.maxTotal}}</p>
+            </div>
+            <progress
+                class='progress-bar stress-color'
+                value='{{document.system.resources.stress.value}}'
+                max='{{document.system.resources.stress.maxTotal}}'
+            ></progress>
+            <div class="status-label">
+                <h4>Stress</h4>
+            </div>
+        </div>
+        <h3 class="level-up-label">
+            {{localize "DAGGERHEART.Sheets.Companion.Level"}}
+            {{source.system.levelData.level.changed}}
+        </h3>
+    </div>
+    <div class="companion-navigation">
+        {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+        <button data-action="openSettings">
+            <i class="fa-solid fa-wrench"></i>
+        </button>
+    </div>
+</header>
