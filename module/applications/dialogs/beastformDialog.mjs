@@ -1,5 +1,3 @@
-import { tiers } from '../../config/generalConfig.mjs';
-
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class BeastformDialog extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -43,7 +41,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
         const context = await super._prepareContext(_options);
 
         context.beastformTiers = game.items.reduce((acc, x) => {
-            const tier = tiers[x.system.tier];
+            const tier = CONFIG.DH.GENERAL.tiers[x.system.tier];
             if (x.type !== 'beastform' || tier.value > this.configData.tierLimit) return acc;
 
             if (!acc[tier.value]) acc[tier.value] = { label: game.i18n.localize(tier.label), values: {} };
