@@ -40,7 +40,7 @@
             "name": "Po0lp"
         }
     ],
-    "scripts": ["daggerheart.js"],
+    "esmodules": ["build/daggerheart.js"],
     "styles": ["styles/daggerheart.css"],
     "packs": [
         {

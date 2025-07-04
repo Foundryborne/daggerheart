@@ -5,7 +5,7 @@ import resolve from '@rollup/plugin-node-resolve';
 export default {
     input: 'daggerheart.mjs',
     output: {
-        file: 'daggerheart.js',
+        file: 'build/daggerheart.js',
         format: 'cjs',
         sourcemap: true
     },
