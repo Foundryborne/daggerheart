@@ -1,4 +1,4 @@
-import { countdownTypes } from '../applications/config/generalConfig.mjs';
+import { countdownTypes } from '../config/generalConfig.mjs';
 import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhCountdowns extends foundry.abstract.DataModel {

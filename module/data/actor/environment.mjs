@@ -1,4 +1,4 @@
-import { environmentTypes } from '../../applications/config/actorConfig.mjs';
+import { environmentTypes } from '../../config/actorConfig.mjs';
 import BaseDataActor from './base.mjs';
 import ActionField from '../fields/actionField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';

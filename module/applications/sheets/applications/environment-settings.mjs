@@ -1,4 +1,4 @@
-import DHActionConfig from '../../config/Action.mjs';
+import DHActionConfig from '../../../config/Action.mjs';
 import DHBaseItemSheet from '../api/base-item.mjs';
 import { actionsTypes } from '../../../data/_module.mjs';
 

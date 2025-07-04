@@ -1,4 +1,4 @@
-import { abilities } from '../applications/config/actorConfig.mjs';
+import { abilities } from '../config/actorConfig.mjs';
 import { chunkify } from '../helpers/utils.mjs';
 import { LevelOptionType } from './levelTier.mjs';
 

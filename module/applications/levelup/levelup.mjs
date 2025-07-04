@@ -1,5 +1,5 @@
-import { abilities, subclassFeatureLabels } from '../../applications/config/actorConfig.mjs';
-import { domains } from '../../applications/config/domainConfig.mjs';
+import { abilities, subclassFeatureLabels } from '../../config/actorConfig.mjs';
+import { domains } from '../../config/domainConfig.mjs';
 import { getDeleteKeys, tagifyElement } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;

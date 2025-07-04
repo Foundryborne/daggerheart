@@ -1,5 +1,5 @@
-import { abilities } from '../config/actorConfig.mjs';
-import { burden } from '../config/generalConfig.mjs';
+import { abilities } from '../../config/actorConfig.mjs';
+import { burden } from '../../config/generalConfig.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 

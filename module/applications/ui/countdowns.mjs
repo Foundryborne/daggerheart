@@ -1,4 +1,4 @@
-import { countdownTypes } from '../config/generalConfig.mjs';
+import { countdownTypes } from '../../config/generalConfig.mjs';
 import { GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import constructHTMLButton from '../../helpers/utils.mjs';
 import OwnershipSelection from '../dialogs/ownershipSelection.mjs';

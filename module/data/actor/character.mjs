@@ -1,4 +1,4 @@
-import { burden } from '../../applications/config/generalConfig.mjs';
+import { burden } from '../../config/generalConfig.mjs';
 import ActionField from '../fields/actionField.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';

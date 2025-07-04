@@ -1,6 +1,6 @@
 import DHApplicationMixin from './application-mixin.mjs';
 import { actionsTypes } from '../../../data/_module.mjs';
-import DHActionConfig from '../../config/Action.mjs';
+import DHActionConfig from '../../../config/Action.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 

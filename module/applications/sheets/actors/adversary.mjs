@@ -1,4 +1,4 @@
-import DHActionConfig from '../../config/Action.mjs';
+import DHActionConfig from '../../../config/Action.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
 import DHAdversarySettings from '../applications/adversary-settings.mjs';
 

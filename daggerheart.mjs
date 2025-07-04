@@ -1,4 +1,4 @@
-import { SYSTEM } from './module/applications/config/system.mjs';
+import { SYSTEM } from './module/config/system.mjs';
 import * as applications from './module/applications/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';

@@ -1,7 +1,7 @@
 import LevelUpBase from './levelup.mjs';
 import { DhLevelup } from '../../data/levelup.mjs';
-import { domains } from '../../applications/config/domainConfig.mjs';
-import { abilities } from '../../applications/config/actorConfig.mjs';
+import { domains } from '../../config/domainConfig.mjs';
+import { abilities } from '../../config/actorConfig.mjs';
 
 export default class DhCharacterLevelUp extends LevelUpBase {
     constructor(actor) {

@@ -1,7 +1,7 @@
 import BaseLevelUp from './levelup.mjs';
 import { defaultCompanionTier, LevelOptionType } from '../../data/levelTier.mjs';
 import { DhLevelup } from '../../data/levelup.mjs';
-import { diceTypes, range } from '../../applications/config/generalConfig.mjs';
+import { diceTypes, range } from '../../config/generalConfig.mjs';
 
 export default class DhCompanionLevelUp extends BaseLevelUp {
     constructor(actor) {

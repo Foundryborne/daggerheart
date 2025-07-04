@@ -1,5 +1,5 @@
 import { actionsTypes } from '../../../data/_module.mjs';
-import DHActionConfig from '../../config/Action.mjs';
+import DHActionConfig from '../../../config/Action.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 

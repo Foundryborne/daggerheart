@@ -1,6 +1,6 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 import { actionsTypes } from '../../../data/_module.mjs';
-import DHActionConfig from '../../config/Action.mjs';
+import DHActionConfig from '../../../config/Action.mjs';
 
 export default class SubclassSheet extends DHBaseItemSheet {
     /**@inheritdoc */

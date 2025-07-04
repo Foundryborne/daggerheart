@@ -1,4 +1,4 @@
-import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
+import DaggerheartSheet from '../applications/sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
 export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {

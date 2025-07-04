@@ -1,4 +1,4 @@
-import { abilities } from '../applications/config/actorConfig.mjs';
+import { abilities } from '../config/actorConfig.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export default function DhDualityRollEnricher(match, _options) {

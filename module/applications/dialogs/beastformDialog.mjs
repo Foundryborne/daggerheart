@@ -1,4 +1,4 @@
-import { tiers } from '../config/generalConfig.mjs';
+import { tiers } from '../../config/generalConfig.mjs';
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 

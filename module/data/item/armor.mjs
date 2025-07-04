@@ -1,6 +1,6 @@
 import BaseDataItem from './base.mjs';
 import ActionField from '../fields/actionField.mjs';
-import { armorFeatures } from '../../applications/config/itemConfig.mjs';
+import { armorFeatures } from '../../config/itemConfig.mjs';
 
 export default class DHArmor extends BaseDataItem {
     /** @inheritDoc */

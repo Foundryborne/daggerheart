@@ -1,4 +1,4 @@
-import { fearDisplay } from '../../applications/config/generalConfig.mjs';
+import { fearDisplay } from '../../config/generalConfig.mjs';
 
 export default class DhAppearance extends foundry.abstract.DataModel {
     static defineSchema() {

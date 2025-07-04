@@ -1,4 +1,4 @@
-import { diceTypes, getDiceSoNicePresets, range } from '../applications/config/generalConfig.mjs';
+import { diceTypes, getDiceSoNicePresets, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
 export const loadCompendiumOptions = async compendiums => {

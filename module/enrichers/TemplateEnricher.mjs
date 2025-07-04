@@ -1,4 +1,4 @@
-import { range as configRange } from '../applications/config/generalConfig.mjs';
+import { range as configRange } from '../config/generalConfig.mjs';
 
 export default function DhTemplateEnricher(match, _options) {
     const parts = match[1].split('|').map(x => x.trim());
