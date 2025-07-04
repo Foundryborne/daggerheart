@@ -477,7 +477,6 @@ export default class DhpActor extends Actor {
     }
 
     async takeHealing(resources) {
-        resources.forEach(r => (r.value *= -1));
         await this.modifyResource(resources);
     }
 
