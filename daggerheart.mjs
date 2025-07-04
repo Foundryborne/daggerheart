@@ -7,7 +7,7 @@ import { DhDualityRollEnricher, DhTemplateEnricher } from './module/enrichers/_m
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { NarrativeCountdowns, registerCountdownApplicationHooks } from './module/applications/ui/countdowns.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
-import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/documents/roll.mjs';
+import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/dhRolls.mjs';
 import { renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
 import { renderMeasuredTemplate } from './module/enrichers/TemplateEnricher.mjs';
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
