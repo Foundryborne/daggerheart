@@ -599,6 +599,7 @@ export class DHDamageAction extends DHBaseAction {
             roll: { formula },
             targets: data.system?.targets.filter(t => t.hit) ?? data.targets,
             hasSave: this.hasSave,
+            isCritical: data.system?.roll?.isCritical ?? false,
             source: data.system?.source,
             event
         };

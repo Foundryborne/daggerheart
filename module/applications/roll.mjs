@@ -1,4 +1,3 @@
-import DHDamageRoll from '../data/chat-message/damageRoll.mjs';
 import D20RollDialog from '../dialogs/d20RollDialog.mjs';
 import DamageDialog from '../dialogs/damageDialog.mjs';
 import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
@@ -124,16 +123,17 @@ export class DHRoll extends Roll {
         return (this._formula = this.constructor.getFormula(this.terms));
     }
 
-    static calculateTotalModifiers(roll, config) {
-        config.roll.modifierTotal = 0;
+    static calculateTotalModifiers(roll) {
+        let modifierTotal = 0;
         for (let i = 0; i < roll.terms.length; i++) {
             if (
                 roll.terms[i] instanceof foundry.dice.terms.NumericTerm &&
                 !!roll.terms[i - 1] &&
                 roll.terms[i - 1] instanceof foundry.dice.terms.OperatorTerm
             )
-                config.roll.modifierTotal += Number(`${roll.terms[i - 1].operator}${roll.terms[i].total}`);
+                modifierTotal += Number(`${roll.terms[i - 1].operator}${roll.terms[i].total}`);
         }
+        return modifierTotal;
     }
 }
 
@@ -302,6 +302,7 @@ export class D20Roll extends DHRoll {
             dice: roll.dAdvantage?.denomination,
             value: roll.dAdvantage?.total
         };
+        config.roll.isCritical = roll.isCritical;
         config.roll.extra = roll.dice
             .filter(d => !roll.baseTerms.includes(d))
             .map(d => {
@@ -310,8 +311,7 @@ export class D20Roll extends DHRoll {
                     value: d.total
                 };
             });
-
-        this.calculateTotalModifiers(roll, config);
+        config.roll.modifierTotal = this.calculateTotalModifiers(roll);
     }
 
     resetFormula() {
@@ -472,10 +472,20 @@ export class DamageRoll extends DHRoll {
     static async postEvaluate(roll, config = {}) {
         super.postEvaluate(roll, config);
         config.roll.type = config.type;
-        this.calculateTotalModifiers(roll, config);
+        config.roll.modifierTotal = this.calculateTotalModifiers(roll);
         if (config.source?.message) {
             const chatMessage = ui.chat.collection.get(config.source.message);
             chatMessage.update({ 'system.damage': config });
         }
+    }
+    
+    constructFormula(config) {
+        super.constructFormula(config);
+        if(config.isCritical) {
+            const tmpRoll = new Roll(this._formula)._evaluateSync({maximize: true}),
+                criticalBonus = tmpRoll.total - this.constructor.calculateTotalModifiers(tmpRoll);
+            this.terms.push(...this.formatModifier(criticalBonus));
+        }
+        return (this._formula = this.constructor.getFormula(this.terms));
     }
 }
