@@ -1,0 +1,34 @@
+<section
+    class='tab {{tabs.actions.cssClass}} {{tabs.actions.id}}'
+    data-tab='{{tabs.actions.id}}'
+    data-group='{{tabs.actions.group}}'
+>
+    <button class="add-action-btn" data-action="addAction">
+        New Action
+    </button>
+    <fieldset>
+        <legend>{{localize tabs.actions.label}}</legend>
+        <ul class="action-list">
+            {{#each document.system.actions as |action index|}}
+                <li class="action-item">
+                    <img src="{{action.img}}" alt="">
+                    <div class="label">
+                        <span>{{action.name}}</span>
+                        <div class="tags">
+                            <div class="tag">
+                                {{localize (concat 'DAGGERHEART.Actions.Types.' action.type '.name')}}
+                            </div>
+                            <div class="tag">
+                                {{localize (concat 'DAGGERHEART.ActionType.' action.actionType)}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <a data-action="editAction" data-index="{{index}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.edit'}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-action="removeAction" data-index="{{index}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.delete'}}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    </fieldset>
+</section>

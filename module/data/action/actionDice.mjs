@@ -8,21 +8,25 @@ export class DHActionRollData extends foundry.abstract.DataModel {
     /** @override */
     static defineSchema() {
         return {
-            type: new fields.StringField({ nullable: true, initial: null, choices: SYSTEM.GENERAL.rollTypes }),
-            trait: new fields.StringField({ nullable: true, initial: null, choices: SYSTEM.ACTOR.abilities }),
+            type: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.GENERAL.rollTypes }),
+            trait: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.ACTOR.abilities }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
             bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
-            advState: new fields.StringField({ choices: SYSTEM.ACTIONS.advandtageState, initial: 'neutral' }),
+            advState: new fields.StringField({ choices: CONFIG.DH.ACTIONS.advandtageState, initial: 'neutral' }),
             diceRolling: new fields.SchemaField({
                 multiplier: new fields.StringField({
-                    choices: SYSTEM.GENERAL.diceSetNumbers,
+                    choices: CONFIG.DH.GENERAL.diceSetNumbers,
                     initial: 'prof',
                     label: 'Dice Number'
                 }),
                 flatMultiplier: new fields.NumberField({ nullable: true, initial: 1, label: 'Flat Multiplier' }),
-                dice: new fields.StringField({ choices: SYSTEM.GENERAL.diceTypes, initial: 'd6', label: 'Dice Type' }),
+                dice: new fields.StringField({
+                    choices: CONFIG.DH.GENERAL.diceTypes,
+                    initial: 'd6',
+                    label: 'Dice Type'
+                }),
                 compare: new fields.StringField({
-                    choices: SYSTEM.ACTIONS.diceCompare,
+                    choices: CONFIG.DH.ACTIONS.diceCompare,
                     initial: 'above',
                     label: 'Should be'
                 }),
@@ -40,7 +44,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                     this.diceRolling.multiplier === 'flat'
                         ? this.diceRolling.flatMultiplier
                         : `@${this.diceRolling.multiplier}`;
-                formula = `${multiplier}${this.diceRolling.dice}cs${SYSTEM.ACTIONS.diceCompare[this.diceRolling.compare].operator}${this.diceRolling.treshold}`;
+                formula = `${multiplier}${this.diceRolling.dice}cs${CONFIG.DH.ACTIONS.diceCompare[this.diceRolling.compare].operator}${this.diceRolling.treshold}`;
                 break;
             default:
                 // formula = `${(!!this.parent?.actor?.system?.attack ? `@attackBonus` : `@traits.${this.trait}.total`)}`;
@@ -58,12 +62,12 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
             multiplier: new fields.StringField({
-                choices: SYSTEM.GENERAL.multiplierTypes,
+                choices: CONFIG.DH.GENERAL.multiplierTypes,
                 initial: 'prof',
                 label: 'Multiplier'
             }),
             flatMultiplier: new fields.NumberField({ nullable: true, initial: 1, label: 'Flat Multiplier' }),
-            dice: new fields.StringField({ choices: SYSTEM.GENERAL.diceTypes, initial: 'd6', label: 'Dice' }),
+            dice: new fields.StringField({ choices: CONFIG.DH.GENERAL.diceTypes, initial: 'd6', label: 'Dice' }),
             bonus: new fields.NumberField({ nullable: true, initial: null, label: 'Bonus' }),
             custom: new fields.SchemaField({
                 enabled: new fields.BooleanField({ label: 'Custom Formula' }),
@@ -101,7 +105,7 @@ export class DHDamageData extends foundry.abstract.DataModel {
             // ...super.defineSchema(),
             base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
             type: new fields.StringField({
-                choices: SYSTEM.GENERAL.damageTypes,
+                choices: CONFIG.DH.GENERAL.damageTypes,
                 initial: 'physical',
                 label: 'Type',
                 nullable: false,

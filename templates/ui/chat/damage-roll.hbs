@@ -1,0 +1,10 @@
+{{> 'systems/daggerheart/templates/ui/chat/parts/damage-chat.hbs' damage=this}}
+{{> 'systems/daggerheart/templates/ui/chat/parts/target-chat.hbs'}}
+<div class="dice-roll daggerheart chat roll">
+    <div class="dice-result">
+        <div class="dice-actions">
+            <button class="damage-button" data-target-hit="true" {{#if (eq targets.length 0)}}disabled{{/if}}>{{localize "DAGGERHEART.Chat.DamageRoll.DealDamageToTargets"}}</button>  
+            <button class="damage-button">{{localize "DAGGERHEART.Chat.DamageRoll.DealDamage"}}</button>  
+        </div>
+    </div>
+</div>

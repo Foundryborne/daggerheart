@@ -11,12 +11,12 @@ export { default as DhpMiscellaneous } from './sheets/items/miscellaneous.mjs';
 export { default as DhpConsumable } from './sheets/items/consumable.mjs';
 export { default as DhpWeapon } from './sheets/items/weapon.mjs';
 export { default as DhpArmor } from './sheets/items/armor.mjs';
-export { default as DhpChatMessage } from './chatMessage.mjs';
 export { default as DhpEnvironment } from './sheets/actors/environment.mjs';
 export { default as DhActiveEffectConfig } from './sheets/activeEffectConfig.mjs';
-export { default as DhContextMenu } from './contextMenu.mjs';
+export { default as DhContextMenu } from './ux/contextMenu.mjs';
 export { default as DhBeastform } from './sheets/items/beastform.mjs';
-export { default as DhTooltipManager } from './tooltipManager.mjs';
 
+export * as config from './config/_module.mjs';
 export * as api from './sheets/api/_modules.mjs';
+export * as ui from './ui/_module.mjs';
 export * as ux from './ux/_module.mjs';

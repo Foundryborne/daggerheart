@@ -79,7 +79,7 @@ export default class DHItem extends foundry.documents.Item {
 
     async selectActionDialog() {
         const content = await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/views/actionSelect.hbs',
+                'systems/daggerheart/templates/dialogs/actionSelect.hbs',
                 { actions: this.system.actions }
             ),
             title = 'Select Action';
@@ -131,7 +131,7 @@ export default class DHItem extends foundry.documents.Item {
             user: game.user.id,
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/ability-use.hbs',
+                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
             )
         });

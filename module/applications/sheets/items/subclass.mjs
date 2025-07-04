@@ -58,8 +58,8 @@ export default class SubclassSheet extends DHBaseItemSheet {
 
     async #selectActionType() {
         const content = await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/views/actionType.hbs',
-                { types: SYSTEM.ACTIONS.actionTypes }
+                'systems/daggerheart/templates/actionTypes/actionType.hbs',
+                { types: CONFIG.DH.ACTIONS.actionTypes }
             ),
             title = 'Select Action Type',
             type = 'form',
@@ -87,7 +87,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
                     _id: foundry.utils.randomID(),
                     systemPath: `${level}.actions`,
                     type: actionType.type,
-                    name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType.type].name),
+                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType.type].name),
                     ...cls.getSourceConfig(this.document)
                 },
                 {

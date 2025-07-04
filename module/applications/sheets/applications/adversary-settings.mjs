@@ -40,24 +40,24 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
     static PARTS = {
         header: {
             id: 'header',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/header.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/header.hbs'
         },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         details: {
             id: 'details',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/details.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/details.hbs'
         },
         attack: {
             id: 'attack',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/attack.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/attack.hbs'
         },
         experiences: {
             id: 'experiences',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/experiences.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/experiences.hbs'
         },
         actions: {
             id: 'actions',
-            template: 'systems/daggerheart/templates/sheets/applications/adversary-settings/actions.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/actions.hbs'
         }
     };
 
@@ -139,7 +139,7 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
                     {
                         _id: foundry.utils.randomID(),
                         type: actionType,
-                        name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType].name),
+                        name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
                         ...cls.getSourceConfig(this.actor)
                     },
                     {

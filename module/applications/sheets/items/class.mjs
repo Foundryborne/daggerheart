@@ -20,7 +20,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         tagifyConfigs: [
             {
                 selector: '.domain-input',
-                options: () => CONFIG.daggerheart.DOMAIN.domains,
+                options: () => CONFIG.DH.DOMAIN.domains,
                 callback: ClassSheet.#onDomainSelect
             }
         ],
@@ -172,8 +172,8 @@ export default class ClassSheet extends DHBaseItemSheet {
     //TODO: redo this
     async selectActionType() {
         const content = await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/views/actionType.hbs',
-                { types: SYSTEM.ACTIONS.actionTypes }
+                'systems/daggerheart/templates/actionTypes/actionType.hbs',
+                { types: CONFIG.DH.ACTIONS.actionTypes }
             ),
             title = 'Select Action Type',
             type = 'form',
@@ -209,7 +209,7 @@ export default class ClassSheet extends DHBaseItemSheet {
                     _id: foundry.utils.randomID(),
                     systemPath: actionPath,
                     type: actionType.type,
-                    name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType.type].name),
+                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType.type].name),
                     ...cls.getSourceConfig(this.document)
                 },
                 {

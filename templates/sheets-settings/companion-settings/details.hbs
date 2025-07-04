@@ -1,0 +1,23 @@
+<section
+    class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
+    data-tab='{{tabs.details.id}}'
+    data-group='{{tabs.details.group}}'
+>
+    <fieldset class="one-column">
+        <legend>{{localize 'DAGGERHEART.General.basics'}}</legend>
+        <div class="nest-inputs">
+            {{formGroup systemFields.evasion.fields.value value=document.system.evasion.value localize=true}}
+            {{formGroup systemFields.resources.fields.stress.fields.value value=document.system.resources.stress.value label='Current Stress'}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=document.system.resources.stress.max label='Max Stress'}}
+        </div>
+        <div class="form-group">
+        <div class="form-fields">
+            <label>{{localize "DAGGERHEART.Sheets.Companion.FIELDS.partner.label"}}</label>
+            <select class="partner-value">
+                {{selectOptions playerCharacters selected=document.system.partner.uuid labelAttr="name" valueAttr="key" blank=""}}
+            </select>
+        </div>
+    </div>
+    </fieldset>
+    <button data-action="levelUp" {{#if (not document.system.levelData.canLevelUp)}}disabled{{/if}}>Level Up</button>
+</section>

@@ -1,0 +1,16 @@
+<section
+    class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
+    data-tab='{{tabs.details.id}}'
+    data-group='{{tabs.details.group}}'
+>
+    <fieldset class="one-column">
+        <legend>{{localize 'DAGGERHEART.General.basics'}}</legend>
+        <div class="nest-inputs">
+            {{formGroup systemFields.tier value=document.system.tier localize=true}}
+            {{formGroup systemFields.type value=document.system.type localize=true}}
+            {{formGroup systemFields.difficulty value=document.system.difficulty localize=true}}
+        </div>
+        {{formField systemFields.description value=document.system.description label=(localize "DAGGERHEART.Sheets.Environment.FIELDS.description.label")}}
+        {{formField systemFields.impulses value=document.system.impulses label=(localize "DAGGERHEART.Sheets.Environment.FIELDS.impulses.label")}}
+    </fieldset>
+</section>

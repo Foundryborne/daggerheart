@@ -1,4 +1,4 @@
-import { range as configRange } from '../config/generalConfig.mjs';
+import { range as configRange } from '../applications/config/generalConfig.mjs';
 
 export default function DhTemplateEnricher(match, _options) {
     const parts = match[1].split('|').map(x => x.trim());
@@ -45,7 +45,7 @@ export const renderMeasuredTemplate = async event => {
 
     if (!type || !range || !game.canvas.scene) return;
 
-    const distance = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.RangeMeasurement)[range];
+    const distance = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement)[range];
     const { width, height } = game.canvas.scene.dimensions;
     canvas.scene.createEmbeddedDocuments('MeasuredTemplate', [
         {

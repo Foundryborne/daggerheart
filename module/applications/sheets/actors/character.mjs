@@ -1,13 +1,11 @@
 import { capitalize } from '../../../helpers/utils.mjs';
-import DhpDeathMove from '../../deathMove.mjs';
-import DhpDowntime from '../../downtime.mjs';
-import AncestrySelectionDialog from '../../ancestrySelectionDialog.mjs';
+import DhpDeathMove from '../../dialogs/deathMove.mjs';
+import DhpDowntime from '../../dialogs/downtime.mjs';
 import DaggerheartSheet from '.././daggerheart-sheet.mjs';
-import { abilities } from '../../../config/actorConfig.mjs';
+import { abilities } from '../../../applications/config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
-import DhCharacterCreation from '../../characterCreation.mjs';
+import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { DhBeastformAction } from '../../../data/action/action.mjs';
 import DHActionConfig from '../../config/Action.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -33,7 +31,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useDomainCard: this.useDomainCard,
             selectClass: this.selectClass,
             selectSubclass: this.selectSubclass,
-            selectAncestry: this.selectAncestry,
             selectCommunity: this.selectCommunity,
             viewObject: this.viewObject,
             useItem: this.useItem,
@@ -338,13 +335,13 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const context = await super._prepareContext(_options);
         context.document = this.document;
         context.tabs = super._getTabs(this.constructor.TABS);
-        context.config = SYSTEM;
+        context.config = CONFIG.DH;
 
         context.attributes = Object.keys(this.document.system.traits).reduce((acc, key) => {
             acc[key] = {
                 ...this.document.system.traits[key],
-                name: game.i18n.localize(SYSTEM.ACTOR.abilities[key].name),
-                verbs: SYSTEM.ACTOR.abilities[key].verbs.map(x => game.i18n.localize(x))
+                name: game.i18n.localize(CONFIG.DH.ACTOR.abilities[key].name),
+                verbs: CONFIG.DH.ACTOR.abilities[key].verbs.map(x => game.i18n.localize(x))
             };
 
             return acc;
@@ -360,7 +357,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             }
         };
 
-        const homebrewCurrency = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew).currency;
+        const homebrewCurrency = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).currency;
         if (homebrewCurrency.enabled) {
             context.inventory.currency = homebrewCurrency;
         }
@@ -631,13 +628,13 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static async toggleLoadoutView(_, button) {
         const newAbilityView = !(button.dataset.value === 'true');
-        await game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList, newAbilityView);
+        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList, newAbilityView);
         this.render();
     }
 
     static async toggleLoadoutView(_, button) {
         const newAbilityView = !(button.dataset.value === 'true');
-        await game.user.setFlag(SYSTEM.id, SYSTEM.FLAGS.displayDomainCardsAsList, newAbilityView);
+        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList, newAbilityView);
         this.render();
     }
 
@@ -647,7 +644,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
         const wasUsed = await weapon.use(event);
         if (wasUsed) {
-            Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+            Hooks.callAll(CONFIG.DH.HOOKS.characterAttack, {});
         }
     }
 
@@ -689,7 +686,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             type: 'abilityUse',
             user: game.user.id,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/ability-use.hbs',
+                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
             ),
             system: systemData
@@ -704,28 +701,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     static async selectSubclass() {
         (await game.packs.get('daggerheart.subclasses'))?.render(true);
-    }
-
-    static async selectAncestry() {
-        const dialogClosed = new Promise((resolve, _) => {
-            new AncestrySelectionDialog(resolve).render(true);
-        });
-        const result = await dialogClosed;
-
-        for (var ancestry of this.document.items.filter(x => x => x.type === 'ancestry')) {
-            await ancestry.delete();
-        }
-
-        const createdItems = [];
-        for (var feature of this.document.items.filter(
-            x => x.type === 'feature' && x.system.type === SYSTEM.ITEM.featureTypes.ancestry.id
-        )) {
-            await feature.delete();
-        }
-
-        createdItems.push(result.data);
-
-        await this.document.createEmbeddedDocuments('Item', createdItems);
     }
 
     static async selectCommunity() {
@@ -744,7 +719,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         } else {
             const wasUsed = await item.use(event);
             if (wasUsed && item.type === 'weapon') {
-                Hooks.callAll(SYSTEM.HOOKS.characterAttack, {});
+                Hooks.callAll(CONFIG.DH.HOOKS.characterAttack, {});
             }
         }
     }
@@ -840,7 +815,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             type: 'abilityUse',
             user: game.user.id,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/ability-use.hbs',
+                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
             ),
             system: systemData
@@ -862,7 +837,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 user: game.user.id,
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(
-                    'systems/daggerheart/templates/chat/ability-use.hbs',
+                    'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                     systemData
                 )
             });
@@ -898,7 +873,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             user: game.user.id,
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/ability-use.hbs',
+                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
             )
         });
@@ -921,7 +896,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             user: game.user.id,
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/ability-use.hbs',
+                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
             )
         });

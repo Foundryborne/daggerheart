@@ -7,7 +7,9 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     constructor() {
         super({});
 
-        this.settings = new DhHomebrew(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew).toObject());
+        this.settings = new DhHomebrew(
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject()
+        );
     }
 
     get title() {
@@ -113,7 +115,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
 
         if (!confirmed) return;
 
-        const fields = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew).schema.fields;
+        const fields = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).schema.fields;
 
         const removeUpdate = Object.keys(this.settings.restMoves[target.dataset.type].moves).reduce((acc, key) => {
             acc[`-=${key}`] = null;
@@ -153,7 +155,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     }
 
     static async save() {
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew, this.settings.toObject());
         this.close();
     }
 

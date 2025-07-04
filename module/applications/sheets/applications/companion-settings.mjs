@@ -1,4 +1,4 @@
-import { GMUpdateEvent, socketEvent } from '../../../helpers/socket.mjs';
+import { GMUpdateEvent, socketEvent } from '../../../systemRegistration/socket.mjs';
 import DhCompanionlevelUp from '../../levelup/companionLevelup.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -35,20 +35,20 @@ export default class DHCompanionSettings extends HandlebarsApplicationMixin(Appl
     static PARTS = {
         header: {
             id: 'header',
-            template: 'systems/daggerheart/templates/sheets/applications/companion-settings/header.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/companion-settings/header.hbs'
         },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         details: {
             id: 'details',
-            template: 'systems/daggerheart/templates/sheets/applications/companion-settings/details.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/companion-settings/details.hbs'
         },
         experiences: {
             id: 'experiences',
-            template: 'systems/daggerheart/templates/sheets/applications/companion-settings/experiences.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/companion-settings/experiences.hbs'
         },
         attack: {
             id: 'attack',
-            template: 'systems/daggerheart/templates/sheets/applications/companion-settings/attack.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/companion-settings/attack.hbs'
         }
     };
 
@@ -120,7 +120,7 @@ export default class DHCompanionSettings extends HandlebarsApplicationMixin(Appl
         const partnerUpdate = { 'system.companion': event.target.value ? this.actor.uuid : null };
 
         if (!partnerDocument.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) {
-            await game.socket.emit(`system.${SYSTEM.id}`, {
+            await game.socket.emit(`system.${CONFIG.DH.id}`, {
                 action: socketEvent.GMUpdate,
                 data: {
                     action: GMUpdateEvent.UpdateDocument,

@@ -26,7 +26,7 @@ export default class DHSubclass extends BaseDataItem {
         return {
             ...super.defineSchema(),
             spellcastingTrait: new fields.StringField({
-                choices: SYSTEM.ACTOR.abilities,
+                choices: CONFIG.DH.ACTOR.abilities,
                 integer: false,
                 nullable: true,
                 initial: null

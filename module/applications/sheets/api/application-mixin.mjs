@@ -139,7 +139,7 @@ export default function DHApplicationMixin(Base) {
          * @param {DragEvent} event
          * @protected
          */
-        _onDrop(event) { }
+        _onDrop(event) {}
 
         /* -------------------------------------------- */
         /*  Prepare Context                             */
@@ -154,7 +154,7 @@ export default function DHApplicationMixin(Base) {
          */
         async _prepareContext(options, objectPath = 'document') {
             const context = await super._prepareContext(options);
-            context.config = CONFIG.daggerheart;
+            context.config = CONFIG.DH;
             context.source = this[objectPath];
             context.fields = this[objectPath].schema.fields;
             context.systemFields = this[objectPath].system ? this[objectPath].system.schema.fields : {};

@@ -1,4 +1,4 @@
-import { defaultRestOptions } from '../../config/generalConfig.mjs';
+import { defaultRestOptions } from '../../applications/config/generalConfig.mjs';
 
 export default class DhHomebrew extends foundry.abstract.DataModel {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.Settings.Homebrew']; // Doesn't work for some reason

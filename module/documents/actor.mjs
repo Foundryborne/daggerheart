@@ -1,6 +1,6 @@
-import DamageSelectionDialog from '../applications/damageSelectionDialog.mjs';
-import { GMUpdateEvent, socketEvent } from '../helpers/socket.mjs';
-import DamageReductionDialog from '../applications/damageReductionDialog.mjs';
+import DamageSelectionDialog from '../applications/dialogs/damageSelectionDialog.mjs';
+import { GMUpdateEvent, socketEvent } from '../systemRegistration/socket.mjs';
+import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 
@@ -24,7 +24,7 @@ export default class DhpActor extends Actor {
 
         if (newLevel > this.system.levelData.level.current) {
             const maxLevel = Object.values(
-                game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers
             ).reduce((acc, tier) => Math.max(acc, tier.levels.end), 0);
             if (newLevel > maxLevel) {
                 ui.notifications.warn(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.tooHighLevel'));
@@ -375,7 +375,7 @@ export default class DhpActor extends Actor {
             bonusDamage = result.bonusDamage;
             rollString = result.rollString;
 
-            const automateHope = await game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation.Hope);
+            const automateHope = await game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation.Hope);
             if (automateHope && result.hopeUsed) {
                 await this.update({
                     'system.resources.hope.value': this.system.resources.hope.value - result.hopeUsed
@@ -421,7 +421,7 @@ export default class DhpActor extends Actor {
             sound: CONFIG.sounds.dice,
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/damage-roll.hbs',
+                'systems/daggerheart/templates/ui/chat/damage-roll.hbs',
                 systemData
             ),
             rolls: [roll]
@@ -488,7 +488,7 @@ export default class DhpActor extends Actor {
             switch (r.type) {
                 case 'fear':
                     ui.resources.updateFear(
-                        game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear) + r.value
+                        game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear) + r.value
                     );
                     break;
                 case 'armorStack':
@@ -513,7 +513,7 @@ export default class DhpActor extends Actor {
                 if (game.user.isGM) {
                     await u.target.update(u.resources);
                 } else {
-                    await game.socket.emit(`system.${SYSTEM.id}`, {
+                    await game.socket.emit(`system.${CONFIG.DH.id}`, {
                         action: socketEvent.GMUpdate,
                         data: {
                             action: GMUpdateEvent.UpdateDocument,

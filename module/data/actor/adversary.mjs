@@ -22,13 +22,13 @@ export default class DhpAdversary extends BaseDataActor {
         return {
             tier: new fields.StringField({
                 required: true,
-                choices: SYSTEM.GENERAL.tiers,
-                initial: SYSTEM.GENERAL.tiers.tier1.id
+                choices: CONFIG.DH.GENERAL.tiers,
+                initial: CONFIG.DH.GENERAL.tiers.tier1.id
             }),
             type: new fields.StringField({
                 required: true,
-                choices: SYSTEM.ACTOR.adversaryTypes,
-                initial: SYSTEM.ACTOR.adversaryTypes.standard.id
+                choices: CONFIG.DH.ACTOR.adversaryTypes,
+                initial: CONFIG.DH.ACTOR.adversaryTypes.standard.id
             }),
             description: new fields.StringField(),
             motivesAndTactics: new fields.StringField(),
@@ -47,6 +47,7 @@ export default class DhpAdversary extends BaseDataActor {
             attack: new ActionField({
                 initial: {
                     name: 'Attack',
+                    img: 'icons/skills/melee/blood-slash-foam-red.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',
                     type: 'attack',

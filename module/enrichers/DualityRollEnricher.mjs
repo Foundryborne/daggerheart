@@ -1,4 +1,4 @@
-import { abilities } from '../config/actorConfig.mjs';
+import { abilities } from '../applications/config/actorConfig.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export default function DhDualityRollEnricher(match, _options) {
@@ -55,7 +55,7 @@ export const renderDualityButton = async event => {
             type: button.dataset.actionType ?? null // Need check
         },
         chatMessage: {
-            template: 'systems/daggerheart/templates/chat/duality-roll.hbs'
+            template: 'systems/daggerheart/templates/ui/chat/duality-roll.hbs'
         }
     };
     await target.diceRoll(config);

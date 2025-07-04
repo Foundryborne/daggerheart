@@ -44,20 +44,20 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     static PARTS = {
         header: {
             id: 'header',
-            template: 'systems/daggerheart/templates/sheets/applications/environment-settings/header.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/header.hbs'
         },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         details: {
             id: 'details',
-            template: 'systems/daggerheart/templates/sheets/applications/environment-settings/details.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/details.hbs'
         },
         actions: {
             id: 'actions',
-            template: 'systems/daggerheart/templates/sheets/applications/environment-settings/actions.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/actions.hbs'
         },
         adversaries: {
             id: 'adversaries',
-            template: 'systems/daggerheart/templates/sheets/applications/environment-settings/adversaries.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/environment-settings/adversaries.hbs'
         }
     };
 
@@ -131,7 +131,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
                     {
                         _id: foundry.utils.randomID(),
                         type: actionType,
-                        name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType].name),
+                        name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
                         ...cls.getSourceConfig(this.actor)
                     },
                     {
@@ -200,7 +200,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     }
 
     async _onDrop(event) {
-        const data = TextEditor.getDragEventData(event);
+        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const item = await fromUuid(data.uuid);
         if (item.type === 'adversary') {
             const target = event.target.closest('.category-container');

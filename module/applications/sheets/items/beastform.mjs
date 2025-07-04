@@ -55,7 +55,7 @@ export default class BeastformSheet extends DHBaseItemSheet {
     }
 
     async _onDrop(event) {
-        const data = TextEditor.getDragEventData(event);
+        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const item = await fromUuid(data.uuid);
         if (item.type === 'feature') {
             const current = this.document.system.features.map(x => x.uuid);

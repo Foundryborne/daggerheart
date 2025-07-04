@@ -34,7 +34,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     static PARTS = {
         form: {
             id: 'action',
-            template: 'systems/daggerheart/templates/views/action.hbs'
+            template: 'systems/daggerheart/templates/config/action.hbs'
         }
     };
 
@@ -60,7 +60,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         context.source = this.action.toObject(false);
         context.openSection = this.openSection;
         context.tabs = this._getTabs();
-        context.config = SYSTEM;
+        context.config = CONFIG.DH;
         if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
         if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack')
             context.hasBaseDamage = !!this.action.parent.damage;
@@ -70,7 +70,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         context.isNPC = this.action.actor && this.action.actor.type !== 'character';
         context.hasRoll = this.action.hasRoll;
 
-        const settingsTiers = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers;
+        const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         context.tierOptions = [
             { key: 1, label: game.i18n.localize('DAGGERHEART.Tiers.tier1') },
             ...Object.values(settingsTiers).map(x => ({ key: x.tier, label: x.name }))

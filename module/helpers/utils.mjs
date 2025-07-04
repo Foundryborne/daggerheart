@@ -1,4 +1,4 @@
-import { diceTypes, getDiceSoNicePresets, range } from '../config/generalConfig.mjs';
+import { diceTypes, getDiceSoNicePresets, range } from '../applications/config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
 export const loadCompendiumOptions = async compendiums => {
@@ -226,7 +226,7 @@ export const getDeleteKeys = (property, innerProperty, innerPropertyDefaultValue
 // Fix on Foundry native formula replacement for DH
 const nativeReplaceFormulaData = Roll.replaceFormulaData;
 Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false } = {}) {
-    const terms = Object.keys(SYSTEM.GENERAL.multiplierTypes).map(type => {
+    const terms = Object.keys(CONFIG.DH.GENERAL.multiplierTypes).map(type => {
         return { term: type, default: 1 };
     });
     formula = terms.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);

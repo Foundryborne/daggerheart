@@ -66,7 +66,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 {
                     _id: foundry.utils.randomID(),
                     type: actionType,
-                    name: game.i18n.localize(SYSTEM.ACTIONS.actionTypes[actionType].name),
+                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
                     ...cls.getSourceConfig(this.parent)
                 },
                 {

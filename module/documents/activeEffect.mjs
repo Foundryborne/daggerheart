@@ -44,7 +44,7 @@ export default class DhActiveEffect extends ActiveEffect {
             user: game.user.id,
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/ability-use.hbs',
+                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
             )
         });

@@ -1,0 +1,126 @@
+<section
+    class='tab {{tabs.selections.cssClass}} {{tabs.selections.id}}'
+    data-tab='{{tabs.selections.id}}'
+    data-group='{{tabs.selections.group}}'
+>
+    <div class="section-container levelup-selections-container">
+        {{#if (gt this.newExperiences.length 0)}}
+            <div>
+                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.newExperiences"}}</h3>
+                <div class="achievement-experience-cards">
+                    {{#each this.newExperiences}}
+                        <div class="achievement-experience-card">
+                            <div class="flexrow">
+                                <input type="text" name="{{concat "levelup.levels." this.level ".achievements.experiences." this.key ".name"}}" value="{{this.name}}" placeholder="{{localize "DAGGERHEART.Application.LevelUp.summary.experiencePlaceholder"}}" />
+                                <div class="flex0">{{signedNumber this.modifier}}</div>
+                            </div>
+                            <div class="achievement-experience-marker">
+                                {{#if this.name}}<i class="fa-solid fa-check"></i>{{/if}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if this.traits.active}}
+            <div>
+                <h3 class="levelup-selections-title">
+                    <div>{{localize "DAGGERHEART.Application.LevelUp.summary.traits"}}</div>
+                    <div>{{this.traits.progress.selected}}/{{this.traits.progress.max}}</div>
+                </h3>
+
+                <input type="text" class="levelup-trait-increases" value="{{this.traits.values}}" />
+            </div>
+        {{/if}}
+
+        {{#if this.experienceIncreases.active}}
+            <div>
+                <h3 class="levelup-selections-title">
+                    <div>{{localize "DAGGERHEART.Application.LevelUp.summary.experienceIncreases"}}</div>
+                    <div>{{this.experienceIncreases.progress.selected}}/{{this.experienceIncreases.progress.max}}</div>
+                </h3>
+
+                <input type="text" class="levelup-experience-increases" value="{{this.experienceIncreases.values}}" />
+            </div>
+        {{/if}}
+
+        {{#if (gt this.domainCards.length 0)}}
+            <div>
+                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.domainCards"}}</h3>
+
+                <div class="levelup-card-selection domain-cards">
+                    {{#each this.domainCards}}
+                        {{#> "systems/daggerheart/templates/components/card-preview.hbs" this }}
+                            {{#each this.emptySubtexts}}
+                                <div>{{this}}</div>
+                            {{/each}}
+                        {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if (gt this.subclassCards.length 0)}}
+            <div>
+                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.subclass"}}</h3>
+
+                <div class="levelup-card-selection subclass-cards">
+                    {{#each this.subclassCards}}
+                        {{> "systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs" img=this.img header=this.featureLabel name=this.name path=this.path selected=this.selected uuid=this.uuid isMulticlass=this.isMulticlass featureState=this.featureState disabled=this.disabled }}
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if this.multiclass}}
+            <div>
+                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.multiclass"}}</h3>
+
+                <div class="levelup-card-selection multiclass-cards" data-path="{{this.multiclass.path}}" data-tier="{{this.multiclass.tier}}" data-min-cost="{{this.multiclass.minCost}}" data-amount="{{this.multiclass.amount}}" data-value="{{this.multiclass.value}}" data-type="{{this.multiclass.type}}">
+                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" this.multiclass }}
+                        {{this.multiclass.emptySubtext}}
+                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                    <div class="levelup-domains-selection-container">
+                        {{#each this.multiclass.domains}}
+                            <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}" {{#if (not this.disabled)}}data-action="selectDomain" data-uuid="{{../multiclass.uuid}}" data-domain="{{this.id}}" data-path="{{../multiclass.path}}" {{/if}}>
+                                <div class="levelup-domain-label">{{localize this.label}}</div>
+                                <img src="{{this.src}}" />
+                                {{#if this.selected}}
+                                    <div class="levelup-domain-selected">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        {{/each}}
+                    </div>
+
+                    <div class="levelup-domains-selection-container">
+                        {{#each this.multiclass.subclasses}}
+                            <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}" {{#if (not this.disabled)}}data-action="selectSubclass" data-uuid="{{../multiclass.uuid}}" data-subclass="{{this.uuid}}" data-path="{{../multiclass.path}}" {{/if}}>
+                                <div class="levelup-domain-label">{{localize this.name}}</div>
+                                <img src="{{this.img}}" />
+                                {{#if this.selected}}
+                                    <div class="levelup-domain-selected">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if this.vicious}}
+            <div>
+                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.vicious"}}</h3>
+                {{#each this.vicious}}
+                    <div class="levelup-radio-choices">
+                        {{radioBoxes (concat "levelup." this.path ".data") @root.viciousChoices checked=(lookup this.data 0)}}
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+    </div>
+</section>

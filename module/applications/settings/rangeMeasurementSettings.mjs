@@ -7,7 +7,7 @@ export default class DhRangeMeasurementSettings extends HandlebarsApplicationMix
         super({});
 
         this.settings = new DhRangeMeasurement(
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.RangeMeasurement).toObject()
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement).toObject()
         );
     }
 
@@ -53,7 +53,11 @@ export default class DhRangeMeasurementSettings extends HandlebarsApplicationMix
     }
 
     static async save() {
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.RangeMeasurement, this.settings.toObject());
+        await game.settings.set(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement,
+            this.settings.toObject()
+        );
         this.close();
     }
 }

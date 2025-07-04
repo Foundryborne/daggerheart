@@ -21,8 +21,8 @@ export default class DHBeastform extends BaseDataItem {
             ...super.defineSchema(),
             tier: new fields.StringField({
                 required: true,
-                choices: SYSTEM.GENERAL.tiers,
-                initial: SYSTEM.GENERAL.tiers.tier1.id
+                choices: CONFIG.DH.GENERAL.tiers,
+                initial: CONFIG.DH.GENERAL.tiers.tier1.id
             }),
             tokenImg: new fields.FilePathField({
                 initial: 'icons/svg/mystery-man.svg',

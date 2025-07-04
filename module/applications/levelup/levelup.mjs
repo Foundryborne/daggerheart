@@ -1,5 +1,5 @@
-import { abilities, subclassFeatureLabels } from '../../config/actorConfig.mjs';
-import { domains } from '../../config/domainConfig.mjs';
+import { abilities, subclassFeatureLabels } from '../../applications/config/actorConfig.mjs';
+import { domains } from '../../applications/config/domainConfig.mjs';
 import { getDeleteKeys, tagifyElement } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -43,10 +43,10 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
     };
 
     static PARTS = {
-        tabs: { template: 'systems/daggerheart/templates/views/levelup/tabs/tab-navigation.hbs' },
-        advancements: { template: 'systems/daggerheart/templates/views/levelup/tabs/advancements.hbs' },
-        selections: { template: 'systems/daggerheart/templates/views/levelup/tabs/selections.hbs' },
-        summary: { template: 'systems/daggerheart/templates/views/levelup/tabs/summary.hbs' }
+        tabs: { template: 'systems/daggerheart/templates/levelup/tabs/tab-navigation.hbs' },
+        advancements: { template: 'systems/daggerheart/templates/levelup/tabs/advancements.hbs' },
+        selections: { template: 'systems/daggerheart/templates/levelup/tabs/selections.hbs' },
+        summary: { template: 'systems/daggerheart/templates/levelup/tabs/summary.hbs' }
     };
 
     static TABS = {

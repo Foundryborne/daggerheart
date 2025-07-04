@@ -1,0 +1,29 @@
+export const preloadHandlebarsTemplates = async function () {
+    return foundry.applications.handlebars.loadTemplates([
+        'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/action-item.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs',
+        'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-features.hbs',
+        'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-feature.hbs',
+        'systems/daggerheart/templates/components/card-preview.hbs',
+        'systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs',
+        'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',
+        'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs',
+        'systems/daggerheart/templates/actionTypes/damage.hbs',
+        'systems/daggerheart/templates/actionTypes/healing.hbs',
+        'systems/daggerheart/templates/actionTypes/resource.hbs',
+        'systems/daggerheart/templates/actionTypes/uuid.hbs',
+        'systems/daggerheart/templates/actionTypes/uses.hbs',
+        'systems/daggerheart/templates/actionTypes/roll.hbs',
+        'systems/daggerheart/templates/actionTypes/save.hbs',
+        'systems/daggerheart/templates/actionTypes/cost.hbs',
+        'systems/daggerheart/templates/actionTypes/range-target.hbs',
+        'systems/daggerheart/templates/actionTypes/effect.hbs',
+        'systems/daggerheart/templates/actionTypes/beastform.hbs',
+        'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
+        'systems/daggerheart/templates/ui/chat/parts/damage-chat.hbs',
+        'systems/daggerheart/templates/ui/chat/parts/target-chat.hbs'
+    ]);
+};

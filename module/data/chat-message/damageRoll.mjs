@@ -33,7 +33,7 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
     }
 
     get messageTemplate() {
-        return `systems/daggerheart/templates/chat/${this.messageType}-roll.hbs`;
+        return `systems/daggerheart/templates/ui/chat/${this.messageType}-roll.hbs`;
     }
 
     prepareDerivedData() {

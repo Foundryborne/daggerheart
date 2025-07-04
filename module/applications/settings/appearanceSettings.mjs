@@ -7,7 +7,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         super({});
 
         this.settings = new DhAppearance(
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).toObject()
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).toObject()
         );
     }
 
@@ -53,10 +53,10 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
     }
 
     static async save() {
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance, this.settings.toObject());
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance, this.settings.toObject());
         document.body.classList.toggle(
             'theme-colorful',
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).dualityColorScheme ===
                 DualityRollColor.colorful.value
         );
 

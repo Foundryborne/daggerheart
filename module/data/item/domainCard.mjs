@@ -17,16 +17,16 @@ export default class DHDomainCard extends BaseDataItem {
         return {
             ...super.defineSchema(),
             domain: new fields.StringField({
-                choices: SYSTEM.DOMAIN.domains,
+                choices: CONFIG.DH.DOMAIN.domains,
                 required: true,
-                initial: SYSTEM.DOMAIN.domains.arcana.id
+                initial: CONFIG.DH.DOMAIN.domains.arcana.id
             }),
             level: new fields.NumberField({ initial: 1, integer: true }),
             recallCost: new fields.NumberField({ initial: 0, integer: true }),
             type: new fields.StringField({
-                choices: SYSTEM.DOMAIN.cardTypes,
+                choices: CONFIG.DH.DOMAIN.cardTypes,
                 required: true,
-                initial: SYSTEM.DOMAIN.cardTypes.ability.id
+                initial: CONFIG.DH.DOMAIN.cardTypes.ability.id
             }),
             foundation: new fields.BooleanField({ initial: false }),
             inVault: new fields.BooleanField({ initial: false }),

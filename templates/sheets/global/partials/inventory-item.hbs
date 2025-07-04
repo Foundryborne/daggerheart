@@ -1,5 +1,5 @@
-<li class="inventory-item" data-item-id="{{item.id}}" data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-companion="{{companion}}" {{#if (not noTooltip)}}data-tooltip="{{concat "#item#" item.uuid}}"{{/if}}>
-    <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" data-action="useItem"/>
+<li class="inventory-item" data-item-id="{{item.id}}" data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-companion="{{companion}}">
+    <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" data-action="useItem" {{#if (not noTooltip)}}data-tooltip="{{concat "#item#" item.uuid}}"{{/if}} />
     <div class="item-label">
         {{#if isCompanion}}
             <a class="item-name" data-action="attackRoll">{{item.name}}</a>

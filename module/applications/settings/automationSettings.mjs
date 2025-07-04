@@ -7,7 +7,7 @@ export default class DhAutomationSettings extends HandlebarsApplicationMixin(App
         super({});
 
         this.settings = new DhAutomation(
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation).toObject()
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).toObject()
         );
     }
 
@@ -53,7 +53,7 @@ export default class DhAutomationSettings extends HandlebarsApplicationMixin(App
     }
 
     static async save() {
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Automation, this.settings.toObject());
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation, this.settings.toObject());
         this.close();
     }
 }

@@ -1,6 +1,6 @@
 import BaseDataItem from './base.mjs';
 import ActionField from '../fields/actionField.mjs';
-import { armorFeatures } from '../../config/itemConfig.mjs';
+import { armorFeatures } from '../../applications/config/itemConfig.mjs';
 
 export default class DHArmor extends BaseDataItem {
     /** @inheritDoc */
@@ -24,7 +24,11 @@ export default class DHArmor extends BaseDataItem {
             baseScore: new fields.NumberField({ integer: true, initial: 0 }),
             features: new fields.ArrayField(
                 new fields.SchemaField({
-                    value: new fields.StringField({ required: true, choices: SYSTEM.ITEM.armorFeatures, blank: true }),
+                    value: new fields.StringField({
+                        required: true,
+                        choices: CONFIG.DH.ITEM.armorFeatures,
+                        blank: true
+                    }),
                     effectIds: new fields.ArrayField(new fields.StringField({ required: true })),
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
@@ -41,7 +45,7 @@ export default class DHArmor extends BaseDataItem {
     }
 
     get featureInfo() {
-        return this.feature ? CONFIG.daggerheart.ITEM.armorFeatures[this.feature] : null;
+        return this.feature ? CONFIG.DH.ITEM.armorFeatures[this.feature] : null;
     }
 
     async _preUpdate(changes, options, user) {

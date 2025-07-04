@@ -8,7 +8,7 @@ export default class ArmorSheet extends DHBaseItemSheet {
         tagifyConfigs: [
             {
                 selector: '.features-input',
-                options: () => CONFIG.daggerheart.ITEM.armorFeatures,
+                options: () => CONFIG.DH.ITEM.armorFeatures,
                 callback: ArmorSheet.#onFeatureSelect
             }
         ]

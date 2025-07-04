@@ -7,7 +7,7 @@ export default class DHVariantRuleSettings extends HandlebarsApplicationMixin(Ap
         super({});
 
         this.settings = new DhVariantRules(
-            game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.variantRules).toObject()
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).toObject()
         );
     }
 
@@ -53,7 +53,7 @@ export default class DHVariantRuleSettings extends HandlebarsApplicationMixin(Ap
     }
 
     static async save() {
-        await game.settings.set(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.variantRules, this.settings.toObject());
+        await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules, this.settings.toObject());
         this.close();
     }
 }

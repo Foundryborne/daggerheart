@@ -19,7 +19,8 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
         const mergedOptions = {
             eventName: 'click',
             fixed: true,
-            ...options
+            ...options,
+            jQuery: false
         };
 
         super(container, selector, menuItems, mergedOptions);
@@ -176,7 +177,7 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
                 }
             }));
 
-        const burdenFilter = Object.values(CONFIG.daggerheart.GENERAL.burden).map(({ value, label }) => ({
+        const burdenFilter = Object.values(CONFIG.DH.GENERAL.burden).map(({ value, label }) => ({
             group: game.i18n.localize('DAGGERHEART.Sheets.Weapon.Burden'),
             name: game.i18n.localize(label),
             filter: {
@@ -186,7 +187,7 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
             }
         }));
 
-        const damageTypeFilter = Object.values(CONFIG.daggerheart.GENERAL.damageTypes).map(({ id, abbreviation }) => ({
+        const damageTypeFilter = Object.values(CONFIG.DH.GENERAL.damageTypes).map(({ id, abbreviation }) => ({
             group: 'Damage Type', //TODO localize
             name: game.i18n.localize(abbreviation),
             filter: {
@@ -210,7 +211,7 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
     static get cardsFilters() {
         const { OPERATORS } = foundry.applications.ux.SearchFilter;
 
-        const typesFilters = Object.values(CONFIG.daggerheart.DOMAIN.cardTypes).map(({ id, label }) => ({
+        const typesFilters = Object.values(CONFIG.DH.DOMAIN.cardTypes).map(({ id, label }) => ({
             group: game.i18n.localize('Type'),
             name: game.i18n.localize(label),
             filter: {
@@ -220,7 +221,7 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
             }
         }));
 
-        const domainFilter = Object.values(CONFIG.daggerheart.DOMAIN.domains).map(({ id, label }) => ({
+        const domainFilter = Object.values(CONFIG.DH.DOMAIN.domains).map(({ id, label }) => ({
             group: game.i18n.localize('DAGGERHEART.Sheets.DomainCard.Domain'),
             name: game.i18n.localize(label),
             filter: {

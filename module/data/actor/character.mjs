@@ -1,4 +1,4 @@
-import { burden } from '../../config/generalConfig.mjs';
+import { burden } from '../../applications/config/generalConfig.mjs';
 import ActionField from '../fields/actionField.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
@@ -144,7 +144,7 @@ export default class DhCharacter extends BaseDataActor {
     get tier() {
         return this.levelData.level.current === 1
             ? 1
-            : Object.values(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers).find(
+            : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
                   tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
               ).tier;
     }
@@ -225,7 +225,7 @@ export default class DhCharacter extends BaseDataActor {
         const primary = this.primaryWeapon,
             secondary = this.secondaryWeapon;
         if (itemToEquip.system.secondary) {
-            if (primary && primary.burden === SYSTEM.GENERAL.burden.twoHanded.value) {
+            if (primary && primary.burden === CONFIG.DH.GENERAL.burden.twoHanded.value) {
                 await primary.update({ 'system.equipped': false });
             }
 
@@ -233,7 +233,7 @@ export default class DhCharacter extends BaseDataActor {
                 await secondary.update({ 'system.equipped': false });
             }
         } else {
-            if (secondary && itemToEquip.system.burden === SYSTEM.GENERAL.burden.twoHanded.value) {
+            if (secondary && itemToEquip.system.burden === CONFIG.DH.GENERAL.burden.twoHanded.value) {
                 await secondary.update({ 'system.equipped': false });
             }
 
@@ -248,7 +248,7 @@ export default class DhCharacter extends BaseDataActor {
         const currentTier =
             currentLevel === 1
                 ? null
-                : Object.values(game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers).find(
+                : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
                       tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
                   ).tier;
         for (let levelKey in this.levelData.levelups) {

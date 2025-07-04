@@ -1,0 +1,28 @@
+<section
+    class='tab {{tabs.adversaries.cssClass}} {{tabs.adversaries.id}}'
+    data-tab='{{tabs.adversaries.id}}'
+    data-group='{{tabs.adversaries.group}}'
+>    
+    <button class="add-action-btn" data-action="addCategory">
+        New Category
+    </button>
+    {{#each document.system.potentialAdversaries}}
+        <fieldset class="category-container" data-potential-adversary="{{@key}}">
+            <legend>{{this.label}}</legend>
+            <div class="category-name">
+                <input type="text" name="{{concat "system.potentialAdversaries." @key ".label" }}" value="{{this.label}}" />
+                <a><i class="fa-solid fa-trash" data-action="deleteProperty" data-path="system.potentialAdversaries" id={{@key}} data-tooltip='{{localize "DAGGERHEART.Tooltip.delete"}}'></i></a>
+            </div>
+            <div class="adversaries-container">
+                {{#each this.adversaries as |adversary|}}
+                    <div class="adversary-container">
+                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=adversary type='adversary' isActor=true categoryAdversary=@../key}}
+                    </div>
+                {{/each}}
+            </div>
+            <div class="adversaries-dragger">
+                Drop Actors here
+            </div>
+        </fieldset>
+    {{/each}}
+</section>

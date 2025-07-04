@@ -1,7 +1,7 @@
 import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
-import D20RollDialog from '../../dialogs/d20RollDialog.mjs';
-import BeastformDialog from '../../dialogs/beastformDialog.mjs';
+import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
+import BeastformDialog from '../../applications/dialogs/beastformDialog.mjs';
 
 const fields = foundry.data.fields;
 
@@ -33,11 +33,15 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             description: new fields.HTMLField(),
             img: new fields.FilePathField({ initial: undefined, categories: ['IMAGE'], base64: false }),
             chatDisplay: new fields.BooleanField({ initial: true, label: 'Display in chat' }),
-            actionType: new fields.StringField({ choices: SYSTEM.ITEM.actionTypes, initial: 'action', nullable: true }),
+            actionType: new fields.StringField({
+                choices: CONFIG.DH.ITEM.actionTypes,
+                initial: 'action',
+                nullable: true
+            }),
             cost: new fields.ArrayField(
                 new fields.SchemaField({
                     type: new fields.StringField({
-                        choices: SYSTEM.GENERAL.abilityCosts,
+                        choices: CONFIG.DH.GENERAL.abilityCosts,
                         nullable: false,
                         required: true,
                         initial: 'hope'
@@ -51,13 +55,13 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                 value: new fields.NumberField({ nullable: true, initial: null }),
                 max: new fields.NumberField({ nullable: true, initial: null }),
                 recovery: new fields.StringField({
-                    choices: SYSTEM.GENERAL.refreshTypes,
+                    choices: CONFIG.DH.GENERAL.refreshTypes,
                     initial: null,
                     nullable: true
                 })
             }),
             range: new fields.StringField({
-                choices: SYSTEM.GENERAL.range,
+                choices: CONFIG.DH.GENERAL.range,
                 required: false,
                 blank: true
                 // initial: null
@@ -71,17 +75,21 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                 damage: new DHDamageField(),
                 roll: new fields.EmbeddedDataField(DHActionRollData),
                 save: new fields.SchemaField({
-                    trait: new fields.StringField({ nullable: true, initial: null, choices: SYSTEM.ACTOR.abilities }),
+                    trait: new fields.StringField({
+                        nullable: true,
+                        initial: null,
+                        choices: CONFIG.DH.ACTOR.abilities
+                    }),
                     difficulty: new fields.NumberField({ nullable: true, initial: 10, integer: true, min: 0 }),
                     damageMod: new fields.StringField({
-                        initial: SYSTEM.ACTIONS.damageOnSave.none.id,
-                        choices: SYSTEM.ACTIONS.damageOnSave
+                        initial: CONFIG.DH.ACTIONS.damageOnSave.none.id,
+                        choices: CONFIG.DH.ACTIONS.damageOnSave
                     })
                 }),
                 target: new fields.SchemaField({
                     type: new fields.StringField({
-                        choices: SYSTEM.ACTIONS.targetTypes,
-                        initial: SYSTEM.ACTIONS.targetTypes.any.id,
+                        choices: CONFIG.DH.ACTIONS.targetTypes,
+                        initial: CONFIG.DH.ACTIONS.targetTypes.any.id,
                         nullable: true,
                         initial: null
                     }),
@@ -95,10 +103,10 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                 ),
                 healing: new fields.SchemaField({
                     type: new fields.StringField({
-                        choices: SYSTEM.GENERAL.healingTypes,
+                        choices: CONFIG.DH.GENERAL.healingTypes,
                         required: true,
                         blank: false,
-                        initial: SYSTEM.GENERAL.healingTypes.hitPoints.id,
+                        initial: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
                         label: 'Healing'
                     }),
                     resultBased: new fields.BooleanField({
@@ -143,7 +151,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     get chatTemplate() {
-        return 'systems/daggerheart/templates/chat/duality-roll.hbs';
+        return 'systems/daggerheart/templates/ui/chat/duality-roll.hbs';
     }
 
     static getRollType(parent) {
@@ -228,7 +236,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             data: actorData
         };
 
-        if (Hooks.call(`${SYSTEM.id}.preUseAction`, this, config) === false) return;
+        if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
         // Display configuration window if necessary
         if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
@@ -284,7 +292,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         // Consume resources
         await this.consume(config);
 
-        if (Hooks.call(`${SYSTEM.id}.postUseAction`, this, config) === false) return;
+        if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
         return config;
     }
@@ -324,11 +332,11 @@ export class DHBaseAction extends foundry.abstract.DataModel {
 
     prepareTarget() {
         let targets;
-        if (this.target?.type === SYSTEM.ACTIONS.targetTypes.self.id)
+        if (this.target?.type === CONFIG.DH.ACTIONS.targetTypes.self.id)
             targets = this.constructor.formatTarget(this.actor.token ?? this.actor.prototypeToken);
         targets = Array.from(game.user.targets);
         // foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY
-        if (this.target?.type && this.target.type !== SYSTEM.ACTIONS.targetTypes.any.id) {
+        if (this.target?.type && this.target.type !== CONFIG.DH.ACTIONS.targetTypes.any.id) {
             targets = targets.filter(t => this.isTargetFriendly(t));
             if (this.target.amount && targets.length > this.target.amount) targets = [];
         }
@@ -350,7 +358,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             difficulty: this.roll?.difficulty,
             formula: this.roll.getFormula(),
             bonus: this.roll.bonus,
-            advantage: SYSTEM.ACTIONS.advandtageState[this.roll.advState].value
+            advantage: CONFIG.DH.ACTIONS.advandtageState[this.roll.advState].value
         };
         if (this.roll?.type === 'diceSet') roll.lite = true;
 
@@ -413,7 +421,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             const fearCost = realCosts.splice(hasFearCost, 1);
             if (
                 !game.user.isGM ||
-                fearCost[0].total > game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.Resources.Fear)
+                fearCost[0].total > game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
             )
                 return false;
         }
@@ -446,8 +454,10 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                 : this.actor.prototypeToken.disposition,
             targetDisposition = target.document.disposition;
         return (
-            (this.target.type === SYSTEM.ACTIONS.targetTypes.friendly.id && actorDisposition === targetDisposition) ||
-            (this.target.type === SYSTEM.ACTIONS.targetTypes.hostile.id && actorDisposition + targetDisposition === 0)
+            (this.target.type === CONFIG.DH.ACTIONS.targetTypes.friendly.id &&
+                actorDisposition === targetDisposition) ||
+            (this.target.type === CONFIG.DH.ACTIONS.targetTypes.hostile.id &&
+                actorDisposition + targetDisposition === 0)
         );
     }
 
@@ -567,7 +577,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
             user: game.user.id,
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/chat/ability-use.hbs',
+                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
             )
         });
@@ -621,7 +631,7 @@ export class DHAttackAction extends DHDamageAction {
     }
 
     get chatTemplate() {
-        return 'systems/daggerheart/templates/chat/duality-roll.hbs';
+        return 'systems/daggerheart/templates/ui/chat/duality-roll.hbs';
     }
 
     prepareData() {
@@ -669,7 +679,7 @@ export class DHHealingAction extends DHBaseAction {
 
         const config = {
             title: game.i18n.format('DAGGERHEART.Chat.HealingRoll.Title', {
-                healing: game.i18n.localize(SYSTEM.GENERAL.healingTypes[this.healing.type].label)
+                healing: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[this.healing.type].label)
             }),
             roll: { formula },
             targets: (data.system?.targets ?? data.targets).filter(t => t.hit),
@@ -682,7 +692,7 @@ export class DHHealingAction extends DHBaseAction {
     }
 
     get chatTemplate() {
-        return 'systems/daggerheart/templates/chat/healing-roll.hbs';
+        return 'systems/daggerheart/templates/ui/chat/healing-roll.hbs';
     }
 }
 
@@ -730,7 +740,7 @@ export class DHEffectAction extends DHBaseAction {
                 user: game.user.id,
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(
-                    'systems/daggerheart/templates/chat/apply-effects.hbs',
+                    'systems/daggerheart/templates/ui/chat/apply-effects.hbs',
                     systemData
                 )
             });
@@ -739,7 +749,7 @@ export class DHEffectAction extends DHBaseAction {
     }
 
     get chatTemplate() {
-        return 'systems/daggerheart/templates/chat/apply-effects.hbs';
+        return 'systems/daggerheart/templates/ui/chat/apply-effects.hbs';
     }
 }
 
@@ -781,7 +791,7 @@ export class DhBeastformAction extends DHBaseAction {
     }
 
     prepareBeastformConfig(config) {
-        const settingsTiers = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers;
+        const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         const actorLevel = this.actor.system.levelData.level.current;
         const actorTier =
             Object.values(settingsTiers).find(

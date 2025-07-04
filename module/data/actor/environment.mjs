@@ -1,6 +1,5 @@
-import { environmentTypes } from '../../config/actorConfig.mjs';
+import { environmentTypes } from '../../applications/config/actorConfig.mjs';
 import BaseDataActor from './base.mjs';
-import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ActionField from '../fields/actionField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
@@ -19,8 +18,8 @@ export default class DhEnvironment extends BaseDataActor {
         return {
             tier: new fields.StringField({
                 required: true,
-                choices: SYSTEM.GENERAL.tiers,
-                initial: SYSTEM.GENERAL.tiers.tier1.id
+                choices: CONFIG.DH.GENERAL.tiers,
+                initial: CONFIG.DH.GENERAL.tiers.tier1.id
             }),
             type: new fields.StringField({ choices: environmentTypes }),
             description: new fields.StringField(),
