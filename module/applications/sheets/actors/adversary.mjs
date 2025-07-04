@@ -1,6 +1,6 @@
-import DHActionConfig from '../../../config/Action.mjs';
+import DHActionConfig from '../../sheets-configs/action-config.mjs';
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
-import DHAdversarySettings from '../applications/adversary-settings.mjs';
+import DHAdversarySettings from '../../sheets-configs/adversary-settings.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {

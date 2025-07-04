@@ -1,6 +1,6 @@
-import DHActionConfig from '../../../config/Action.mjs';
-import DHBaseItemSheet from '../api/base-item.mjs';
-import { actionsTypes } from '../../../data/_module.mjs';
+import DHActionConfig from './action-config.mjs';
+import DHBaseItemSheet from '../sheets/api/base-item.mjs';
+import { actionsTypes } from '../../data/action/_module.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 

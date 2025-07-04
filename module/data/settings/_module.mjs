@@ -1,7 +1,5 @@
-import DhAppearance from './Appearance.mjs';
-import DhAutomation from './Automation.mjs';
-import DhHomebrew from './Homebrew.mjs';
-import DhRangeMeasurement from './RangeMeasurement.mjs';
-import DhVariantRules from './VariantRules.mjs';
-
-export { DhAppearance, DhAutomation, DhHomebrew, DhRangeMeasurement, DhVariantRules };
+export { default as DhAppearance } from './Appearance.mjs';
+export { default as DhAutomation } from './Automation.mjs';
+export { default as DhHomebrew } from './Homebrew.mjs';
+export { default as DhRangeMeasurement } from './RangeMeasurement.mjs';
+export { default as DhVariantRules } from './VariantRules.mjs';

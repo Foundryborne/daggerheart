@@ -1,4 +1,4 @@
-export default class DhTooltipManager extends foundry.helpers.interaction.TooltipManager.implementation {
+export default class DhTooltipManager extends foundry.helpers.interaction.TooltipManager {
     async activate(element, options = {}) {
         let html = options.html;
         if (element.dataset.tooltip.startsWith('#item#')) {

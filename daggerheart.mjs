@@ -7,7 +7,7 @@ import { DhDualityRollEnricher, DhTemplateEnricher } from './module/enrichers/_m
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { NarrativeCountdowns, registerCountdownApplicationHooks } from './module/applications/ui/countdowns.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
-import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/dhRolls.mjs';
+import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/_module.mjs';
 import { renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
 import { renderMeasuredTemplate } from './module/enrichers/TemplateEnricher.mjs';
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
@@ -16,7 +16,7 @@ import {
     settingsRegistration,
     socketRegistration
 } from './module/systemRegistration/_module.mjs';
-import { DhPlaceables } from './module/canvas/_module.mjs';
+import { placeables } from './module/canvas/_module.mjs';
 
 Hooks.once('init', () => {
     CONFIG.DH = SYSTEM;
@@ -53,7 +53,7 @@ Hooks.once('init', () => {
     };
 
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, ...[DHRoll, DualityRoll, D20Roll, DamageRoll]];
-    CONFIG.MeasuredTemplate.objectClass = DhPlaceables.DhMeasuredTemplate;
+    CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
     CONFIG.Item.documentClass = documents.DHItem;
 
@@ -62,26 +62,32 @@ Hooks.once('init', () => {
 
     const { Items, Actors } = foundry.documents.collections;
     Items.unregisterSheet('core', foundry.applications.sheets.ItemSheetV2);
-    Items.registerSheet(SYSTEM.id, applications.DhpAncestry, { types: ['ancestry'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhpCommunity, { types: ['community'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhpClassSheet, { types: ['class'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhpSubclass, { types: ['subclass'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhpFeatureSheet, { types: ['feature'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhpDomainCardSheet, { types: ['domainCard'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhpMiscellaneous, { types: ['miscellaneous'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhpConsumable, { types: ['consumable'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhpWeapon, { types: ['weapon'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhpArmor, { types: ['armor'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.DhBeastform, { types: ['beastform'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Ancestry, { types: ['ancestry'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Community, { types: ['community'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Class, { types: ['class'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Subclass, { types: ['subclass'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Feature, { types: ['feature'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.DomainCard, { types: ['domainCard'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Miscellaneous, {
+        types: ['miscellaneous'],
+        makeDefault: true
+    });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Consumable, { types: ['consumable'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Weapon, { types: ['weapon'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Armor, { types: ['armor'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Beastform, { types: ['beastform'], makeDefault: true });
 
     CONFIG.Actor.documentClass = documents.DhpActor;
     CONFIG.Actor.dataModels = models.actors.config;
 
     Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
-    Actors.registerSheet(SYSTEM.id, applications.DhCharacterSheet, { types: ['character'], makeDefault: true });
-    Actors.registerSheet(SYSTEM.id, applications.DhCompanionSheet, { types: ['companion'], makeDefault: true });
-    Actors.registerSheet(SYSTEM.id, applications.DhpAdversarySheet, { types: ['adversary'], makeDefault: true });
-    Actors.registerSheet(SYSTEM.id, applications.DhpEnvironment, { types: ['environment'], makeDefault: true });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Character, { types: ['character'], makeDefault: true });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Companion, { types: ['companion'], makeDefault: true });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Adversary, { types: ['adversary'], makeDefault: true });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Environment, {
+        types: ['environment'],
+        makeDefault: true
+    });
 
     CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
     CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
@@ -94,7 +100,7 @@ Hooks.once('init', () => {
     foundry.applications.apps.DocumentSheetConfig.registerSheet(
         CONFIG.ActiveEffect.documentClass,
         SYSTEM.id,
-        applications.DhActiveEffectConfig,
+        applications.sheetConfigs.ActiveEffectConfig,
         {
             makeDefault: true
         }
@@ -108,17 +114,17 @@ Hooks.once('init', () => {
         base: models.DhCombatant
     };
 
-    CONFIG.ChatMessage.dataModels = models.messages.config;
+    CONFIG.ChatMessage.dataModels = models.chatMessages.config;
     CONFIG.ChatMessage.documentClass = documents.DhChatMessage;
 
-    CONFIG.Canvas.rulerClass = DhPlaceables.DhRuler;
+    CONFIG.Canvas.rulerClass = placeables.DhRuler;
     CONFIG.Combat.documentClass = documents.DhpCombat;
     CONFIG.ui.combat = applications.ui.DhCombatTracker;
     CONFIG.ui.chat = applications.ui.DhChatLog;
-    CONFIG.Token.rulerClass = DhPlaceables.DhTokenRuler;
+    CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 
     CONFIG.ui.resources = applications.ui.DhFearTracker;
-    CONFIG.ux.ContextMenu = applications.DhContextMenu;
+    CONFIG.ux.ContextMenu = applications.ux.ContextMenu;
     CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 
     game.socket.on(`system.${SYSTEM.id}`, socketRegistration.handleSocketEvent);
@@ -204,7 +210,7 @@ Hooks.on('chatMessage', (_, message) => {
 
                 const title = traitValue
                     ? game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
-                          ability: game.i18n.localize(applications.config.actorConfig.abilities[traitValue].label)
+                          ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
                       })
                     : game.i18n.localize('DAGGERHEART.General.Duality');
 

@@ -1,5 +1,5 @@
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
-import DHEnvironmentSettings from '../applications/environment-settings.mjs';
+import DHEnvironmentSettings from '../../sheets-configs/environment-settings.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {

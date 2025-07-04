@@ -1,3 +1,1 @@
-import * as DhPlaceables from './placeables/_module.mjs';
-
-export { DhPlaceables };
+export * as placeables from './placeables/_module.mjs';

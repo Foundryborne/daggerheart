@@ -1,7 +1,5 @@
 import BaseDataItem from './base.mjs';
 import ActionField from '../fields/actionField.mjs';
-import { weaponFeatures } from '../../config/itemConfig.mjs';
-import { actionsTypes } from '../action/_module.mjs';
 
 export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
@@ -71,7 +69,7 @@ export default class DHWeapon extends BaseDataItem {
             }
 
             for (var feature of added) {
-                const featureData = weaponFeatures[feature.value];
+                const featureData = CONFIG.DH.ITEM.weaponFeatures[feature.value];
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments('ActiveEffect', [
                         {
@@ -84,7 +82,7 @@ export default class DHWeapon extends BaseDataItem {
                 }
                 if (featureData.actions?.length > 0) {
                     const newActions = featureData.actions.map(action => {
-                        const cls = actionsTypes[action.type];
+                        const cls = CONFIG.DH.ACTIONS.actionsTypes[action.type];
                         return new cls(
                             { ...action, _id: foundry.utils.randomID(), name: game.i18n.localize(action.name) },
                             { parent: this }

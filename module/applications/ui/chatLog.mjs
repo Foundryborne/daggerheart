@@ -1,5 +1,3 @@
-import { actionsTypes } from '../../data/_module.mjs';
-
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor() {
         super();
@@ -260,10 +258,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     actionUseButton = async (_, message) => {
         const parent = await foundry.utils.fromUuid(message.system.actor);
-        const testAction = Object.values(message.system.moves)[0].actions[0];
-        const cls = actionsTypes[testAction.type];
+        const actionType = Object.values(message.system.moves)[0].actions[0];
+        const cls = CONFIG.DH.ACTIONS.actionTypes[actionType.type];
         const action = new cls(
-            { ...testAction, _id: foundry.utils.randomID(), name: game.i18n.localize(testAction.name) },
+            { ...actionType, _id: foundry.utils.randomID(), name: game.i18n.localize(actionType.name) },
             { parent: parent }
         );
 

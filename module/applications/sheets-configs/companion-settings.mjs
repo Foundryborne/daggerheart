@@ -1,5 +1,5 @@
-import { GMUpdateEvent, socketEvent } from '../../../systemRegistration/socket.mjs';
-import DhCompanionlevelUp from '../../levelup/companionLevelup.mjs';
+import { GMUpdateEvent, socketEvent } from '../../systemRegistration/socket.mjs';
+import DhCompanionlevelUp from '../levelup/companionLevelup.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 

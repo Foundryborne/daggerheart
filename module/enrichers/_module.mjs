@@ -1,4 +1,2 @@
-import DhDualityRollEnricher from './DualityRollEnricher.mjs';
-import DhTemplateEnricher from './TemplateEnricher.mjs';
-
-export { DhDualityRollEnricher, DhTemplateEnricher };
+export { default as DhDualityRollEnricher } from './DualityRollEnricher.mjs';
+export { default as DhTemplateEnricher } from './TemplateEnricher.mjs';

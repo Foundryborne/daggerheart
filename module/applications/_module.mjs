@@ -1,22 +1,8 @@
-export { default as DhCharacterSheet } from './sheets/actors/character.mjs';
-export { default as DhpAdversarySheet } from './sheets/actors/adversary.mjs';
-export { default as DhCompanionSheet } from './sheets/actors/companion.mjs';
-export { default as DhpClassSheet } from './sheets/items/class.mjs';
-export { default as DhpSubclass } from './sheets/items/subclass.mjs';
-export { default as DhpFeatureSheet } from './sheets/items/feature.mjs';
-export { default as DhpDomainCardSheet } from './sheets/items/domainCard.mjs';
-export { default as DhpAncestry } from './sheets/items/ancestry.mjs';
-export { default as DhpCommunity } from './sheets/items/community.mjs';
-export { default as DhpMiscellaneous } from './sheets/items/miscellaneous.mjs';
-export { default as DhpConsumable } from './sheets/items/consumable.mjs';
-export { default as DhpWeapon } from './sheets/items/weapon.mjs';
-export { default as DhpArmor } from './sheets/items/armor.mjs';
-export { default as DhpEnvironment } from './sheets/actors/environment.mjs';
-export { default as DhActiveEffectConfig } from './sheets/activeEffectConfig.mjs';
-export { default as DhContextMenu } from './ux/contextMenu.mjs';
-export { default as DhBeastform } from './sheets/items/beastform.mjs';
-
-export * as config from '../config/_module.mjs';
-export * as api from './sheets/api/_modules.mjs';
+export * as characterCreation from './characterCreation/_module.mjs';
+export * as dialogs from './dialogs/_module.mjs';
+export * as levelup from './levelup/_module.mjs';
+export * as settings from './settings/_module.mjs';
+export * as sheets from './sheets/_module.mjs';
+export * as sheetConfigs from './sheets-configs/_module.mjs';
 export * as ui from './ui/_module.mjs';
 export * as ux from './ux/_module.mjs';

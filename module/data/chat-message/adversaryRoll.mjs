@@ -1,4 +1,4 @@
-import { DHBaseAction } from '../action/action.mjs';
+import DHBaseAction from '../../data/action/baseAction.mjs';
 
 const fields = foundry.data.fields;
 

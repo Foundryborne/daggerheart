@@ -1,4 +1,3 @@
-import { countdownTypes } from '../config/generalConfig.mjs';
 import { RefreshType, socketEvent } from '../systemRegistration/socket.mjs';
 
 export default class DhCountdowns extends foundry.abstract.DataModel {
@@ -102,8 +101,8 @@ class DhCountdown extends foundry.abstract.DataModel {
                 type: new fields.SchemaField({
                     value: new fields.StringField({
                         required: true,
-                        choices: countdownTypes,
-                        initial: countdownTypes.spotlight.id,
+                        choices: CONFIG.DH.GENERAL.countdownTypes,
+                        initial: CONFIG.DH.GENERAL.countdownTypes.spotlight.id,
                         label: 'DAGGERHEART.Countdown.FIELDS.countdowns.element.progress.type.value.label'
                     }),
                     label: new fields.StringField({

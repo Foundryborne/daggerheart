@@ -1,5 +1,3 @@
-import { actionsTypes } from '../../data/_module.mjs';
-
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV2) {

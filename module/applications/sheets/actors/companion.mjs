@@ -1,5 +1,5 @@
 import DaggerheartSheet from '../daggerheart-sheet.mjs';
-import DHCompanionSettings from '../applications/companion-settings.mjs';
+import DHCompanionSettings from '../../sheets-configs/companion-settings.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {

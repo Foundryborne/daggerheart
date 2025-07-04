@@ -1,7 +1,7 @@
-import beastformEffect from './beastformEffect.mjs';
+import BeastformEffect from './beastformEffect.mjs';
 
-export { beastformEffect };
+export { BeastformEffect };
 
 export const config = {
-    beastform: beastformEffect
+    beastform: BeastformEffect
 };
