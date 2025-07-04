@@ -5,7 +5,7 @@ import resolve from '@rollup/plugin-node-resolve';
 export default {
     input: 'daggerheart.mjs',
     output: {
-        file: 'build/daggerheart.js',
+        file: 'daggerheart.js',
         format: 'cjs',
         sourcemap: true
     },
@@ -14,10 +14,7 @@ export default {
             config: {
                 path: './postcss.config.js'
             },
-            use: {
-                less: { javascriptEnabled: true }
-            },
-            extensions: ['.less'],
+            extensions: ['.css'],
             extract: false
         }),
         commonjs({

@@ -2,6 +2,7 @@
 node_modules
 /packs
 Build
-/build
 foundry
 styles/daggerheart.css
+daggerheart.js
+daggerheart.js.map
