@@ -4,15 +4,19 @@
  * @param {Rules}    @lightRules - Styles to apply when `.theme-light` is present
  */
 .appTheme(@darkRules, @lightRules) {
-  .themed {
-    &.theme-dark .application.sheet.dh-style,
-    &.theme-dark.application.sheet.dh-style {
-      @darkRules();
+    // Dark theme selectors
+    .themed.theme-dark .application.sheet.dh-style,
+    .themed.theme-dark.application.sheet.dh-style,
+    body.theme-dark .application,
+    body.theme-dark.application {
+        @darkRules();
     }
 
-    &.theme-light .application.sheet.dh-style,
-    &.theme-light.application.sheet.dh-style {
-      @lightRules();
+    // Light theme selectors
+    .themed.theme-light .application.sheet.dh-style,
+    .themed.theme-light.application.sheet.dh-style,
+    body.theme-light .application,
+    body.theme-light.application {
+        @lightRules();
     }
-  }
 }
