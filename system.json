@@ -5,7 +5,7 @@
     "version": "0.0.1",
     "compatibility": {
         "minimum": "13",
-        "verified": "13.345",
+        "verified": "13.346",
         "maximum": "13"
     },
     "authors": [
@@ -247,7 +247,11 @@
             },
             "armor": {
                 "htmlFields": ["description"]
-            }
+            },
+            "beastform": {}
+        },
+        "ActiveEffect": {
+            "beastform": {}
         },
         "Combat": {
             "combat": {}

@@ -5,7 +5,7 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 export default class RollSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(experiences, costs, action, resolve) {
         super({}, {});
-        
+
         this.experiences = experiences;
         this.costs = costs;
         this.action = action;
@@ -67,9 +67,9 @@ export default class RollSelectionDialog extends HandlebarsApplicationMixin(Appl
         context.fear = this.data.fear;
         context.advantage = this.data.advantage;
         context.experiences = Object.keys(this.experiences).map(id => ({ id, ...this.experiences[id] }));
-        if(this.costs?.length) {
+        if (this.costs?.length) {
             const updatedCosts = this.action.calcCosts(this.costs);
-            context.costs = updatedCosts
+            context.costs = updatedCosts;
             context.canRoll = this.action.getRealCosts(updatedCosts)?.hasCost;
         } else context.canRoll = true;
 

@@ -8,6 +8,7 @@ import DHFeature from './feature.mjs';
 import DHMiscellaneous from './miscellaneous.mjs';
 import DHSubclass from './subclass.mjs';
 import DHWeapon from './weapon.mjs';
+import DHBeastform from './beastform.mjs';
 
 export {
     DHAncestry,
@@ -19,7 +20,8 @@ export {
     DHFeature,
     DHMiscellaneous,
     DHSubclass,
-    DHWeapon
+    DHWeapon,
+    DHBeastform
 };
 
 export const config = {
@@ -32,5 +34,6 @@ export const config = {
     feature: DHFeature,
     miscellaneous: DHMiscellaneous,
     subclass: DHSubclass,
-    weapon: DHWeapon
+    weapon: DHWeapon,
+    beastform: DHBeastform
 };

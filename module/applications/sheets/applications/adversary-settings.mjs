@@ -103,7 +103,6 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
         context.systemFields = this.actor.system.schema.fields;
         context.systemFields.attack.fields = this.actor.system.attack.schema.fields;
         context.isNPC = true;
-        console.log(context)
 
         return context;
     }

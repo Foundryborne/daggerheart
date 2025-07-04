@@ -10,7 +10,8 @@
             "consumable": "Consumable",
             "miscellaneous": "Miscellaneous",
             "weapon": "Weapon",
-            "armor": "Armor"
+            "armor": "Armor",
+            "beastform": "Beastform"
         },
         "Actor": {
             "character": "Character",
@@ -22,7 +23,9 @@
     "DAGGERHEART": {
         "UI": {
             "notifications": {
-                "adversaryMissing": "The linked adversary doesn't exist in the world."
+                "adversaryMissing": "The linked adversary doesn't exist in the world.",
+                "beastformInapplicable": "A beastform can only be applied to a Character.",
+                "beastformAlreadyApplied": "The character already has a beastform applied!"
             }
         },
         "Settings": {
@@ -1186,6 +1189,7 @@
                 "LevelUp": "You can level up",
                 "Features": "Features",
                 "CompanionFeatures": "Companion Features",
+                "beastformFeatures": "Beastform Features",
                 "Tabs": {
                     "Features": "Features",
                     "Inventory": "Inventory",
@@ -1472,8 +1476,26 @@
                     }
                 }
             },
+            "Beastform": {
+                "FIELDS": {
+                    "tier": { "label": "Tier" },
+                    "examples": { "label": "Examples" },
+                    "advantageOn": { "label": "Gain Advantage On" },
+                    "tokenImg": { "label": "Token Image" },
+                    "tokenSize": {
+                        "placeholder": "Using character dimensions",
+                        "height": { "label": "Height" },
+                        "width": { "label": "Width" }
+                    }
+                },
+                "dialogTitle": "Beastform Selection",
+                "tokenTitle": "Beastform Token",
+                "transform": "Transform",
+                "beastformEffect": "Beastform Transformation"
+            },
             "Global": {
                 "Actions": "Actions",
+                "Features": "Features",
                 "Effects": "Effects",
                 "activeEffects": "Active Effects",
                 "inativeEffects": "Inative Effects"
@@ -1546,7 +1568,8 @@
                 "Range": "Range",
                 "Damage": {
                     "Title": "Damage",
-                    "Value": "Value",
+                    "Die": "Die",
+                    "Bonus": "Bonus",
                     "Type": "Type"
                 },
                 "Burden": "Burden",
@@ -1631,11 +1654,21 @@
                 },
                 "macro": {
                     "name": "Macro"
+                },
+                "beastform": {
+                    "name": "Beastform"
                 }
             },
             "Settings": {
                 "ResultBased": {
                     "label": "Formula based on Hope/Fear result."
+                }
+            },
+            "Config": {
+                "Beastform": {
+                    "label": "Beastform",
+                    "exact": "Beastform Max Tier",
+                    "exactHint": "The Character's Tier is used if empty"
                 }
             }
         },

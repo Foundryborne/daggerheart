@@ -6,3 +6,4 @@ export * as items from './item/_module.mjs';
 export { actionsTypes } from './action/_module.mjs';
 export * as messages from './chat-message/_modules.mjs';
 export * as fields from './fields/_module.mjs';
+export * as activeEffects from './activeEffect/_module.mjs';

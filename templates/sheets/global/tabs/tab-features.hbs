@@ -1,0 +1,23 @@
+<section
+    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
+    data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'
+>
+    <fieldset class="one-column drop-section">
+        <legend>{{localize "DAGGERHEART.Sheets.Global.Features"}}</legend>
+        <div class="features-list">
+            {{#each document.system.features as |feature index|}}
+                <div class="feature-item"
+                    data-action="editFeature"
+                    data-index="{{index}}"
+                >
+                    <img class="image" src="{{feature.img}}" />
+                    <span>{{feature.name}}</span>
+                    <div class="controls">
+                        <a data-action="removeFeature" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div> 
+            {{/each}}
+        </div>
+    </fieldset>
+</section>

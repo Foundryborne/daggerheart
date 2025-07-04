@@ -17,7 +17,8 @@
                                 {{/each}}
                             </ol>
                         </div>
-                    {{/each}}
+                    {{/each}} 
+                    {{#if damage.roll.modifierTotal}}<div class="duality-modifier">{{#if (gt damage.roll.modifierTotal 0)}}+{{/if}}{{damage.roll.modifierTotal}}</div>{{/if}}
                     <div class="duality-result">Total: {{damage.roll.total}}</div>
                 </section>
             </div>

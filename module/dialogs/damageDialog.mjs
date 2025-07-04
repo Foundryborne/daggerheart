@@ -38,7 +38,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         const context = await super._prepareContext(_options);
         context.title = this.config.title;
         context.extraFormula = this.config.extraFormula;
-        context.formula = this.roll.constructFormula(this.config);;
+        context.formula = this.roll.constructFormula(this.config);
         return context;
     }
 

@@ -294,3 +294,15 @@ export const adjustRange = (rangeVal, decrease) => {
     const newIndex = decrease ? Math.max(index - 1, 0) : Math.min(index + 1, rangeKeys.length - 1);
     return range[rangeKeys[newIndex]];
 };
+
+export const updateActorTokens = async (actor, update) => {
+    await actor.prototypeToken.update(update);
+
+    /* Update the tokens in all scenes belonging to Actor */
+    for (let token of actor.getDependentTokens()) {
+        const tokenActor = token.baseActor ?? token.actor;
+        if (tokenActor?.id === actor.id) {
+            await token.update(update);
+        }
+    }
+};

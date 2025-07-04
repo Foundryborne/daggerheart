@@ -7,6 +7,8 @@ import { abilities } from '../../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
+import { DhBeastformAction } from '../../../data/action/action.mjs';
+import DHActionConfig from '../../config/Action.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -306,11 +308,14 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     getItem(element) {
         const listElement = (element.target ?? element).closest('[data-item-id]');
-        const document = listElement.dataset.companion ? this.document.system.companion : this.document;
-
-        const itemId = listElement.dataset.itemId,
-            item = document.items.get(itemId);
-        return item;
+        const itemId = listElement.dataset.itemId;
+        if (listElement.dataset.type === 'effect') {
+            return this.document.effects.get(itemId);
+        } else if (['armor', 'weapon', 'feature', 'consumable', 'miscellaneous'].includes(listElement.dataset.type)) {
+            return this.document.items.get(itemId);
+        } else {
+            return this.document.system[listElement.dataset.type].system.actions.find(x => x.id === itemId);
+        }
     }
 
     static triggerContextMenu(event, button) {
@@ -733,7 +738,9 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
         // Should dandle its actions. Or maybe they'll be separate buttons as per an Issue on the board
         if (item.type === 'feature') {
-            item.toChat();
+            item.use(event);
+        } else if (item instanceof ActiveEffect) {
+            item.toChat(this);
         } else {
             const wasUsed = await item.use(event);
             if (wasUsed && item.type === 'weapon') {
@@ -746,7 +753,11 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const item = this.getItem(event);
         if (!item) return;
 
-        item.sheet.render(true);
+        if (item.sheet) {
+            item.sheet.render(true);
+        } else {
+            await new DHActionConfig(item).render(true);
+        }
     }
 
     editItem(event) {

@@ -38,6 +38,11 @@ export const actionTypes = {
         id: 'macro',
         name: 'DAGGERHEART.Actions.Types.macro.name',
         icon: 'fa-scroll'
+    },
+    beastform: {
+        id: 'beastform',
+        name: 'DAGGERHEART.Actions.Types.beastform.name',
+        icon: 'fa-paw'
     }
 };
 
@@ -119,4 +124,4 @@ export const advandtageState = {
         label: 'DAGGERHEART.General.Advantage.Full',
         value: 1
     }
-}
+};

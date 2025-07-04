@@ -2329,6 +2329,29 @@ div.daggerheart.views.multiclass {
   width: 1.5rem;
   height: 1.5rem;
 }
+.daggerheart.views.action .action-category .action-category-data .hint-group {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.daggerheart.views.action .action-category .action-category-data .hint-group .form-fields {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.daggerheart.views.action .action-category .action-category-data .hint-group .form-fields label {
+  flex: 1;
+}
+.daggerheart.views.action .action-category .action-category-data .hint-group .form-fields input,
+.daggerheart.views.action .action-category .action-category-data .hint-group .form-fields select {
+  flex: 3;
+}
+.daggerheart.views.action .action-category .action-category-data .hint-group .hint {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  font-style: italic;
+  opacity: 0.6;
+}
 .daggerheart.views.action .action-category .action-category-data .data-form-array {
   border: 1px solid var(--color-fieldset-border);
   padding: 0.5rem;
@@ -3855,8 +3878,16 @@ div.daggerheart.views.multiclass {
 }
 .themed.theme-dark .application.sheet.dh-style .character-sidebar-sheet,
 .themed.theme-dark.application.sheet.dh-style .character-sidebar-sheet {
+.themed.theme-dark .application.sheet.dh-style .character-sidebar-sheet,
+.themed.theme-dark.application.sheet.dh-style .character-sidebar-sheet {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
+.themed.theme-dark .application.sheet.dh-style .character-sidebar-sheet .experience-value,
+.themed.theme-dark.application.sheet.dh-style .character-sidebar-sheet .experience-value {
+  background: url(../assets/svg/experience-shield.svg) no-repeat;
+}
+.themed.theme-light .application.sheet.dh-style .character-sidebar-sheet,
+.themed.theme-light.application.sheet.dh-style .character-sidebar-sheet {
 .themed.theme-dark .application.sheet.dh-style .character-sidebar-sheet .experience-value,
 .themed.theme-dark.application.sheet.dh-style .character-sidebar-sheet .experience-value {
   background: url(../assets/svg/experience-shield.svg) no-repeat;
@@ -3875,21 +3906,35 @@ div.daggerheart.views.multiclass {
   border-right: 1px solid light-dark(#18162e, #f3c267);
 }
 .application.sheet.dh-style .character-sidebar-sheet .portrait {
+.themed.theme-light .application.sheet.dh-style .character-sidebar-sheet .experience-value,
+.themed.theme-light.application.sheet.dh-style .character-sidebar-sheet .experience-value {
+  background: url('../assets/svg/experience-shield-light.svg') no-repeat;
+}
+.application.sheet.dh-style .character-sidebar-sheet {
+  width: 275px;
+  min-width: 275px;
+  border-right: 1px solid light-dark(#18162e, #f3c267);
+}
+.application.sheet.dh-style .character-sidebar-sheet .portrait {
   position: relative;
   border-bottom: 1px solid light-dark(#18162e, #f3c267);
   cursor: pointer;
 }
+.application.sheet.dh-style .character-sidebar-sheet .portrait img {
 .application.sheet.dh-style .character-sidebar-sheet .portrait img {
   height: 235px;
   width: 275px;
   object-fit: cover;
 }
 .application.sheet.dh-style .character-sidebar-sheet .portrait .death-roll-btn {
+.application.sheet.dh-style .character-sidebar-sheet .portrait .death-roll-btn {
   display: none;
 }
 .application.sheet.dh-style .character-sidebar-sheet .portrait.death-roll {
+.application.sheet.dh-style .character-sidebar-sheet .portrait.death-roll {
   filter: grayscale(1);
 }
+.application.sheet.dh-style .character-sidebar-sheet .portrait.death-roll .death-roll-btn {
 .application.sheet.dh-style .character-sidebar-sheet .portrait.death-roll .death-roll-btn {
   display: flex;
   position: absolute;
@@ -3899,8 +3944,10 @@ div.daggerheart.views.multiclass {
   color: #efe6d8;
 }
 .application.sheet.dh-style .character-sidebar-sheet .portrait.death-roll .death-roll-btn:hover {
+.application.sheet.dh-style .character-sidebar-sheet .portrait.death-roll .death-roll-btn:hover {
   text-shadow: 0 0 8px #efe6d8;
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section {
 .application.sheet.dh-style .character-sidebar-sheet .info-section {
   position: relative;
   display: flex;
@@ -3910,15 +3957,18 @@ div.daggerheart.views.multiclass {
   margin-bottom: -10px;
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section {
   display: flex;
   justify-content: space-evenly;
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar {
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar {
   position: relative;
   width: 100px;
   height: 40px;
   justify-items: center;
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-label {
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-label {
   position: relative;
   top: 40px;
@@ -3928,11 +3978,13 @@ div.daggerheart.views.multiclass {
   background: light-dark(#18162e, #f3c267);
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-label h4 {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-label h4 {
   font-weight: bold;
   text-align: center;
   line-height: 18px;
   color: light-dark(#efe6d8, #18162e);
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value {
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value {
   position: absolute;
   display: flex;
@@ -3947,6 +3999,7 @@ div.daggerheart.views.multiclass {
   color: #efe6d8;
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'] {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'] {
   background: transparent;
   font-size: 1.5rem;
   width: 40px;
@@ -3957,6 +4010,7 @@ div.daggerheart.views.multiclass {
   color: #efe6d8;
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input {
   padding: 0;
   color: #efe6d8;
   backdrop-filter: none;
@@ -3965,12 +4019,16 @@ div.daggerheart.views.multiclass {
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:hover,
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:focus {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:hover,
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value input[type='number'].bar-input:focus {
   background: rgba(24, 22, 46, 0.33);
   backdrop-filter: blur(9.5px);
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value .bar-label {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .status-value .bar-label {
   width: 40px;
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar {
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar {
   position: absolute;
   appearance: none;
@@ -3982,26 +4040,32 @@ div.daggerheart.views.multiclass {
   background: #18162e;
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-bar {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-bar {
   border: none;
   background: #18162e;
   border-radius: 6px;
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-value {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-webkit-progress-value {
   background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
   border-radius: 6px;
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-webkit-progress-value {
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-webkit-progress-value {
   background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
   border-radius: 6px;
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar::-moz-progress-bar {
   background: linear-gradient(15deg, #46140a 0%, #be0000 42%, #fcb045 100%);
   border-radius: 6px;
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-moz-progress-bar {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .resources-section .status-bar .progress-bar.stress-color::-moz-progress-bar {
   background: linear-gradient(15deg, #823b01 0%, #fc8e45 65%, #be0000 100%);
   border-radius: 6px;
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section {
 .application.sheet.dh-style .character-sidebar-sheet .info-section .status-section {
   display: flex;
   flex-wrap: wrap;
@@ -4009,8 +4073,10 @@ div.daggerheart.views.multiclass {
   justify-content: center;
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number {
   justify-items: center;
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-value {
 .application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-value {
   position: relative;
   display: flex;
@@ -4027,15 +4093,18 @@ div.daggerheart.views.multiclass {
   z-index: 2;
 }
 .application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-value.armor-slots {
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-value.armor-slots {
   width: 80px;
   height: 30px;
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-label {
 .application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-label {
   padding: 2px 10px;
   width: 100%;
   border-radius: 3px;
   background: light-dark(#18162e, #f3c267);
 }
+.application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-label h4 {
 .application.sheet.dh-style .character-sidebar-sheet .info-section .status-section .status-number .status-label h4 {
   font-weight: bold;
   text-align: center;
@@ -4044,21 +4113,26 @@ div.daggerheart.views.multiclass {
   color: light-dark(#efe6d8, #18162e);
 }
 .application.sheet.dh-style .character-sidebar-sheet .items-sidebar-list {
+.application.sheet.dh-style .character-sidebar-sheet .items-sidebar-list {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 .application.sheet.dh-style .character-sidebar-sheet .items-sidebar-list .inventory-item {
+.application.sheet.dh-style .character-sidebar-sheet .items-sidebar-list .inventory-item {
   padding: 0 10px;
 }
+.application.sheet.dh-style .character-sidebar-sheet .equipment-section .title {
 .application.sheet.dh-style .character-sidebar-sheet .equipment-section .title {
   display: flex;
   gap: 15px;
   align-items: center;
 }
 .application.sheet.dh-style .character-sidebar-sheet .equipment-section .title h3 {
+.application.sheet.dh-style .character-sidebar-sheet .equipment-section .title h3 {
   font-size: 20px;
 }
+.application.sheet.dh-style .character-sidebar-sheet .equipment-section .items-list {
 .application.sheet.dh-style .character-sidebar-sheet .equipment-section .items-list {
   display: flex;
   flex-direction: column;
@@ -4066,21 +4140,26 @@ div.daggerheart.views.multiclass {
   align-items: center;
 }
 .application.sheet.dh-style .character-sidebar-sheet .loadout-section .title {
+.application.sheet.dh-style .character-sidebar-sheet .loadout-section .title {
   display: flex;
   gap: 15px;
   align-items: center;
 }
 .application.sheet.dh-style .character-sidebar-sheet .loadout-section .title h3 {
+.application.sheet.dh-style .character-sidebar-sheet .loadout-section .title h3 {
   font-size: 20px;
 }
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .title {
 .application.sheet.dh-style .character-sidebar-sheet .experience-section .title {
   display: flex;
   gap: 15px;
   align-items: center;
 }
 .application.sheet.dh-style .character-sidebar-sheet .experience-section .title h3 {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .title h3 {
   font-size: 20px;
 }
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list {
 .application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list {
   display: flex;
   flex-direction: column;
@@ -4090,12 +4169,14 @@ div.daggerheart.views.multiclass {
   align-items: center;
 }
 .application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-row {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-row {
   display: flex;
   gap: 5px;
   width: 250px;
   align-items: center;
   justify-content: space-between;
 }
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text'] {
 .application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text'] {
   height: 32px;
   width: 180px;
@@ -4107,8 +4188,10 @@ div.daggerheart.views.multiclass {
   color: light-dark(#222, #efe6d8);
 }
 .application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text']:hover {
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-row input[type='text']:hover {
   outline: 2px solid light-dark(#222, #efe6d8);
 }
+.application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-value {
 .application.sheet.dh-style .character-sidebar-sheet .experience-section .experience-list .experience-value {
   height: 25px;
   width: 35px;
@@ -4792,7 +4875,13 @@ div.daggerheart.views.multiclass {
 }
 .themed.theme-dark .application.sheet.dh-style.environment,
 .themed.theme-dark.application.sheet.dh-style.environment {
+.themed.theme-dark .application.sheet.dh-style.environment,
+.themed.theme-dark.application.sheet.dh-style.environment {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.themed.theme-light .application.sheet.dh-style.environment,
+.themed.theme-light.application.sheet.dh-style.environment {
+  background: url('../assets/parchments/dh-parchment-light.png');
 }
 .themed.theme-light .application.sheet.dh-style.environment,
 .themed.theme-light.application.sheet.dh-style.environment {
@@ -5002,6 +5091,53 @@ div.daggerheart.views.multiclass {
   border-radius: 3px;
   color: light-dark(#18162e50, #efe6d850);
   font-family: 'Montserrat', sans-serif;
+}
+.theme-light .application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container .beastform-title {
+  background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4px;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container.inactive {
+  opacity: 0.4;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container img {
+  width: 100%;
+  border-radius: 6px;
+}
+.application.daggerheart.dh-style.views.beastform-selection .beastforms-container .beastforms-tier .beastform-container .beastform-title {
+  position: absolute;
+  top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 16px;
+  margin: 0 4px;
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 6px;
+  color: light-dark(#efe6d8, #222);
+  background-image: url('../assets/parchments/dh-parchment-light.png');
+}
+.application.daggerheart.dh-style.views.beastform-selection footer {
+  margin-top: 8px;
+  display: flex;
+}
+.application.daggerheart.dh-style.views.beastform-selection footer button {
+  flex: 1;
 }
 .application.sheet.daggerheart.actor.dh-style.companion .companion-header-sheet {
   display: flex;
@@ -5242,7 +5378,13 @@ div.daggerheart.views.multiclass {
 }
 .themed.theme-dark .application.sheet.dh-style.companion,
 .themed.theme-dark.application.sheet.dh-style.companion {
+.themed.theme-dark .application.sheet.dh-style.companion,
+.themed.theme-dark.application.sheet.dh-style.companion {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+.themed.theme-light .application.sheet.dh-style.companion,
+.themed.theme-light.application.sheet.dh-style.companion {
+  background: url('../assets/parchments/dh-parchment-light.png');
 }
 .themed.theme-light .application.sheet.dh-style.companion,
 .themed.theme-light.application.sheet.dh-style.companion {
@@ -5438,7 +5580,22 @@ div.daggerheart.views.multiclass {
 }
 .application.sheet.dh-style .window-header button:hover {
   border-color: light-dark(#18162e, #f3c267);
+  border-color: light-dark(#18162e, #f3c267);
   color: light-dark(#18162e, #f3c267);
+}
+.application.sheet.dh-style .window-content {
+  padding: 0;
+  position: relative;
+  top: -36px;
+  min-height: -webkit-fill-available;
+  transition: opacity 0.3s ease;
+}
+.application.sheet.dh-style .window-content .tab {
+  padding: 0 10px;
+}
+.application.sheet.dh-style.minimized .window-content {
+  opacity: 0;
+  transition-duration: 0.1s;
 }
 .application.sheet.dh-style .window-content {
   padding: 0;
@@ -5478,6 +5635,8 @@ div.daggerheart.views.multiclass {
   background-repeat: no-repeat;
   background-position: center;
 }
+.themed.theme-light .application.sheet.dh-style.dialog,
+.themed.theme-light.application.sheet.dh-style.dialog {
 .themed.theme-light .application.sheet.dh-style.dialog,
 .themed.theme-light.application.sheet.dh-style.dialog {
   background-image: url('../assets/parchments/dh-parchment-light.png');
@@ -5969,6 +6128,44 @@ div.daggerheart.views.multiclass {
   border: none;
 }
 .sheet.daggerheart.dh-style .tab.actions .actions-list .action-item .controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  gap: 5px;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 4fr 1fr;
+  cursor: pointer;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: lighter;
+  color: #efe6d8;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item .image {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: none;
+}
+.sheet.daggerheart.dh-style .tab.features .features-list .feature-item .controls {
   display: flex;
   justify-content: center;
   gap: 10px;

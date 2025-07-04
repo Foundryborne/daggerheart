@@ -32,7 +32,8 @@ export default class DHWeapon extends BaseDataItem {
             burden: new fields.StringField({ required: true, choices: SYSTEM.GENERAL.burden, initial: 'oneHanded' }),
             //DAMAGE
             damage: new fields.SchemaField({
-                value: new FormulaField({ initial: 'd6' }),
+                dice: new fields.StringField({ choices: SYSTEM.GENERAL.diceTypes, initial: 'd6' }),
+                bonus: new fields.NumberField({ nullable: true, initial: null }),
                 type: new fields.StringField({
                     required: true,
                     choices: SYSTEM.GENERAL.damageTypes,

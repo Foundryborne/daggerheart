@@ -1,6 +1,7 @@
 import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../dialogs/d20RollDialog.mjs';
+import BeastformDialog from '../../dialogs/beastformDialog.mjs';
 
 const fields = foundry.data.fields;
 
@@ -106,6 +107,11 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                     }),
                     value: new fields.EmbeddedDataField(DHActionDiceData),
                     valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
+                }),
+                beastform: new fields.SchemaField({
+                    tierAccess: new fields.SchemaField({
+                        exact: new fields.NumberField({ integer: true, nullable: true, initial: null })
+                    })
                 })
             },
             extraSchemas = {};
@@ -231,6 +237,7 @@ export class DHBaseAction extends foundry.abstract.DataModel {
         }
 
         if (this.hasRoll) {
+            console.log(config);
             const rollConfig = this.prepareRoll(config);
             config.roll = rollConfig;
             config = await this.actor.diceRoll(config);
@@ -242,7 +249,6 @@ export class DHBaseAction extends foundry.abstract.DataModel {
                 if(t.hit) {
                     const target = game.canvas.tokens.get(t.id),
                         actor = target?.actor;
-                    console.log(actor)
                     if(!actor) return;
                     actor.saveRoll({
                         event,
@@ -629,7 +635,7 @@ export class DHAttackAction extends DHDamageAction {
         return {
             value: {
                 multiplier: 'prof',
-                dice: this.item?.system?.damage.value,
+                dice: this.item?.system?.damage.dice,
                 bonus: this.item?.system?.damage.bonus ?? 0
             },
             type: this.item?.system?.damage.type,
@@ -755,5 +761,52 @@ export class DHMacroAction extends DHBaseAction {
         } catch (error) {
             ui.notifications.error(error);
         }
+    }
+}
+
+export class DhBeastformAction extends DHBaseAction {
+    static extraSchemas = ['beastform'];
+
+    async use(event, ...args) {
+        const beastformConfig = this.prepareBeastformConfig();
+
+        const abort = await this.handleActiveTransformations();
+        if (abort) return;
+
+        const beastformUuid = await BeastformDialog.configure(beastformConfig);
+        if (!beastformUuid) return;
+
+        await this.transform(beastformUuid);
+    }
+
+    prepareBeastformConfig(config) {
+        const settingsTiers = game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.LevelTiers).tiers;
+        const actorLevel = this.actor.system.levelData.level.current;
+        const actorTier =
+            Object.values(settingsTiers).find(
+                tier => actorLevel >= tier.levels.start && actorLevel <= tier.levels.end
+            ) ?? 1;
+
+        return {
+            tierLimit: this.beastform.tierAccess.exact ?? actorTier
+        };
+    }
+
+    async transform(beastformUuid) {
+        const beastform = await foundry.utils.fromUuid(beastformUuid);
+        this.actor.createEmbeddedDocuments('Item', [beastform.toObject()]);
+    }
+
+    async handleActiveTransformations() {
+        const beastformEffects = this.actor.effects.filter(x => x.type === 'beastform');
+        if (beastformEffects.length > 0) {
+            for (let effect of beastformEffects) {
+                await effect.delete();
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

@@ -14,11 +14,6 @@
                     {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=action type=../type}}
                 {{/if}}
             {{/each}}
-            {{#each document.system.ancestry.system.actions as |action|}}
-                {{#if (or (eq ../type 'ancestry'))}}
-                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=action type=../type}}
-                {{/if}}
-            {{/each}}
             {{#each document.system.class.value.system.classFeatures as |classFeature|}}
                 {{#if (or (eq ../type 'class'))}}
                     {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=classFeature type=../type}}

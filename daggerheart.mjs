@@ -79,6 +79,7 @@ Hooks.once('init', () => {
     Items.registerSheet(SYSTEM.id, applications.DhpConsumable, { types: ['consumable'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.DhpWeapon, { types: ['weapon'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.DhpArmor, { types: ['armor'], makeDefault: true });
+    Items.registerSheet(SYSTEM.id, applications.DhBeastform, { types: ['beastform'], makeDefault: true });
 
     CONFIG.Actor.documentClass = documents.DhpActor;
     CONFIG.Actor.dataModels = models.actors.config;
@@ -90,6 +91,8 @@ Hooks.once('init', () => {
     Actors.registerSheet(SYSTEM.id, applications.DhpEnvironment, { types: ['environment'], makeDefault: true });
 
     CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
+    CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
+
     foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
         CONFIG.ActiveEffect.documentClass,
         'core',
@@ -300,6 +303,7 @@ const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/views/actionTypes/cost.hbs',
         'systems/daggerheart/templates/views/actionTypes/range-target.hbs',
         'systems/daggerheart/templates/views/actionTypes/effect.hbs',
+        'systems/daggerheart/templates/views/actionTypes/beastform.hbs',
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
         'systems/daggerheart/templates/chat/parts/damage-chat.hbs',
         'systems/daggerheart/templates/chat/parts/target-chat.hbs'
