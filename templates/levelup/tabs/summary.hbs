@@ -48,7 +48,7 @@
                             <h5>{{localize "DAGGERHEART.Application.LevelUp.summary.newExperiences"}}</h5>
                             <div class="summary-selection-container">
                                 {{#each this.achievements.experiences.values}}
-                                    <div class="summary-selection">{{this.name}} {{signedNumber this.modifier}}</div>
+                                    <div class="summary-selection">{{this.name}} {{numberFormat this.modifier sign=true}}</div>
                                 {{/each}}
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                         <h5>{{localize "DAGGERHEART.Application.LevelUp.summary.experienceIncreases"}}</h5>
                         <div class="summary-selection-container">
                             {{#each this.advancements.experiences}}
-                                <div class="summary-selection">{{this.name}} {{signedNumber this.modifier}}</div>
+                                <div class="summary-selection">{{this.name}} {{numberFormat this.modifier sign=true}}</div>
                             {{/each}}
                         </div>
                     </div>

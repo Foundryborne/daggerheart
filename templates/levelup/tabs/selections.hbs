@@ -12,7 +12,7 @@
                         <div class="achievement-experience-card">
                             <div class="flexrow">
                                 <input type="text" name="{{concat "levelup.levels." this.level ".achievements.experiences." this.key ".name"}}" value="{{this.name}}" placeholder="{{localize "DAGGERHEART.Application.LevelUp.summary.experiencePlaceholder"}}" />
-                                <div class="flex0">{{signedNumber this.modifier}}</div>
+                                <div class="flex0">{{numberFormat this.modifier sign=true}}</div>
                             </div>
                             <div class="achievement-experience-marker">
                                 {{#if this.name}}<i class="fa-solid fa-check"></i>{{/if}}

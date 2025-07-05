@@ -17,7 +17,7 @@
         {{#each source.system.experiences as |experience key|}}
             <div class="flexrow">
                 <input type="text" name="{{concat "system.experiences." key ".name"}}" value="{{experience.name}}" />
-                <div>{{signedNumber experience.value}}</div>
+                <div>{{numberFormat experience.value sign=true}}</div>
             </div>
         {{/each}}
     </div>

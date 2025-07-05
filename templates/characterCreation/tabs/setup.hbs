@@ -74,7 +74,7 @@
                     {{#each experience.values as |experience id|}}
                         <div class="experience-container">
                             <input class="experience-description" type="text" name="{{concat "experiences." id ".description" }}" value="{{experience.description}}" placeholder="{{localize "DAGGERHEART.CharacterCreation.NewExperience"}}" />
-                            <div class="experience-value">{{signedNumber this.value}}</div>
+                            <div class="experience-value">{{numberFormat this.value sign=true}}</div>
                         </div>
                     {{/each}}
                 </div>
