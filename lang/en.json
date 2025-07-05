@@ -245,7 +245,8 @@
                 "potentialAdversaries": "Potential Adversaries",
                 "adversaries": "Adversaries"
             },
-            "basics": "Basics"
+            "basics": "Basics",
+            "dualityRoll": "Duality Roll"
         },
         "ActionType": {
             "passive": "Passive",

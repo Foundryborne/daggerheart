@@ -2,8 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 
-console.log('Reforging Symlinks');
-
 const askQuestion = question => {
     const rl = readline.createInterface({
         input: process.stdin,

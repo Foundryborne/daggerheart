@@ -30,7 +30,7 @@ export default class CostSelectionDialog extends HandlebarsApplicationMixin(Appl
     static PARTS = {
         costSelection: {
             id: 'costSelection',
-            template: 'systems/daggerheart/templates/dialogs/costSelection.hbs'
+            template: 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'
         }
     };
 
