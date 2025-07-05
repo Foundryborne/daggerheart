@@ -1,0 +1,26 @@
+<section
+    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
+    data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'
+>
+    <button class="add-feature-btn" data-action="addFeature">
+        {{localize "DAGGERHEART.General.newFeature"}}
+    </button>
+    <fieldset>
+        <legend>{{localize tabs.features.label}}</legend>
+        <ul class="feature-list">
+            {{#each document.system.features as |feature|}}
+                <li class="feature-item">
+                    <img src="{{feature.img}}" alt="">
+                    <div class="label">
+                        <span>{{feature.name}}</span>
+                    </div>
+                    <div class="controls">
+                        <a data-action="editFeature" id="{{feature.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.edit'}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-action="removeFeature" id="{{feature.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.delete'}}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    </fieldset>
+</section>

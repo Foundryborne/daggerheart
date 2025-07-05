@@ -43,7 +43,6 @@ export default class DhpAdversary extends BaseDataActor {
                 hitPoints: resourceField(),
                 stress: resourceField()
             }),
-            actions: new fields.ArrayField(new ActionField()),
             attack: new ActionField({
                 initial: {
                     name: 'Attack',
@@ -85,5 +84,9 @@ export default class DhpAdversary extends BaseDataActor {
 
     get attackBonus() {
         return this.attack.roll.bonus;
+    }
+
+    get features() {
+        return this.parent.items.filter(x => x.type === 'feature');
     }
 }

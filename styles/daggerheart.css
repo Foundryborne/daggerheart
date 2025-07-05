@@ -4884,122 +4884,78 @@ body.theme-light.application.environment {
 .application.daggerheart.dh-style.dialog .tab.experiences .experience-list .experience-item a {
   text-align: center;
 }
-.application.daggerheart.dh-style.dialog .tab.actions {
+.application.daggerheart.dh-style.dialog .tab.features {
   max-height: 450px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: light-dark(#18162e, #f3c267) transparent;
 }
-.application.daggerheart.dh-style.dialog .tab.actions .add-action-btn {
+.application.daggerheart.dh-style.dialog .tab.features .add-feature-btn {
   width: 100%;
   margin-bottom: 12px;
 }
-.application.daggerheart.dh-style.dialog .tab.actions .action-list {
+.application.daggerheart.dh-style.dialog .tab.features .feature-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item {
+.application.daggerheart.dh-style.dialog .tab.features .feature-list .feature-item {
   display: grid;
   grid-template-columns: 40px 1fr auto;
   align-items: center;
   gap: 5px;
   border-radius: 3px;
 }
-.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item img {
+.application.daggerheart.dh-style.dialog .tab.features .feature-list .feature-item img {
   height: 40px;
   width: 40px;
   object-fit: cover;
 }
-.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .label {
+.application.daggerheart.dh-style.dialog .tab.features .feature-list .feature-item .label {
   font-family: 'Montserrat', sans-serif;
 }
-.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .label .tags {
-  display: flex;
-  gap: 10px;
-}
-.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .label .tags .tag {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 3px 5px;
-  font-size: 12px;
-  background: light-dark(#22222215, #efe6d815);
-  border: 1px solid light-dark(#222, #efe6d8);
-  border-radius: 3px;
-}
-.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .label .tags .label {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-}
-.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .controls {
+.application.daggerheart.dh-style.dialog .tab.features .feature-list .feature-item .controls {
   display: flex;
   gap: 5px;
 }
-.application.daggerheart.dh-style.dialog .tab.actions .action-list .action-item .controls a {
+.application.daggerheart.dh-style.dialog .tab.features .feature-list .feature-item .controls a {
   text-align: center;
 }
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions {
+.application.daggerheart.dh-style.dialog.environment-settings .tab.features {
   max-height: 450px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: light-dark(#18162e, #f3c267) transparent;
 }
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .add-action-btn {
+.application.daggerheart.dh-style.dialog.environment-settings .tab.features .add-feature-btn {
   width: 100%;
   margin-bottom: 12px;
 }
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .action-list {
+.application.daggerheart.dh-style.dialog.environment-settings .tab.features .feature-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .action-list .action-item {
+.application.daggerheart.dh-style.dialog.environment-settings .tab.features .feature-list .feature-item {
   display: grid;
   grid-template-columns: 40px 1fr auto;
   align-items: center;
   gap: 5px;
 }
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .action-list .action-item img {
+.application.daggerheart.dh-style.dialog.environment-settings .tab.features .feature-list .feature-item img {
   height: 40px;
   width: 40px;
   object-fit: cover;
   border-radius: 3px;
 }
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .action-list .action-item .label {
+.application.daggerheart.dh-style.dialog.environment-settings .tab.features .feature-list .feature-item .label {
   font-family: 'Montserrat', sans-serif;
 }
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .action-list .action-item .label .tags {
-  display: flex;
-  gap: 10px;
-}
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .action-list .action-item .label .tags .tag {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 3px 5px;
-  font-size: 12px;
-  background: light-dark(#22222215, #efe6d815);
-  border: 1px solid light-dark(#222, #efe6d8);
-  border-radius: 3px;
-}
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .action-list .action-item .label .tags .label {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-}
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .action-list .action-item .controls {
+.application.daggerheart.dh-style.dialog.environment-settings .tab.features .feature-list .feature-item .controls {
   display: flex;
   gap: 5px;
 }
-.application.daggerheart.dh-style.dialog.environment-settings .tab.actions .action-list .action-item .controls a {
+.application.daggerheart.dh-style.dialog.environment-settings .tab.features .feature-list .feature-item .controls a {
   text-align: center;
 }
 .application.daggerheart.dh-style.dialog .tab.adversaries {

@@ -26,7 +26,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
 
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
-        actions: { template: 'systems/daggerheart/templates/sheets/actors/environment/actions.hbs' },
+        features: { template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs' },
         potentialAdversaries: {
             template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs'
         },
@@ -34,13 +34,13 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
     };
 
     static TABS = {
-        actions: {
+        features: {
             active: true,
             cssClass: '',
             group: 'primary',
-            id: 'actions',
+            id: 'features',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.actions'
+            label: 'DAGGERHEART.General.tabs.features'
         },
         potentialAdversaries: {
             active: false,
@@ -69,9 +69,9 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         return context;
     }
 
-    getAction(element) {
+    getItem(element) {
         const itemId = (element.target ?? element).closest('[data-item-id]').dataset.itemId,
-            item = this.document.system.actions.find(x => x.id === itemId);
+            item = this.document.items.get(itemId);
         return item;
     }
 
@@ -114,7 +114,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async useItem(event, button) {
-        const action = this.getAction(event);
+        const action = this.getItem(event);
         if (!action) {
             await this.viewAdversary(event, button);
         } else {
@@ -123,7 +123,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async toChat(event) {
-        const item = this.getAction(event);
+        const item = this.getItem(event);
         item.toChat(this.document.id);
     }
 

@@ -30,8 +30,11 @@ export default class DhEnvironment extends BaseDataActor {
                     adversaries: new ForeignDocumentUUIDArrayField({ type: 'Actor' })
                 })
             ),
-            actions: new fields.ArrayField(new ActionField()),
             notes: new fields.HTMLField()
         };
+    }
+
+    get features() {
+        return this.parent.items.filter(x => x.type === 'feature');
     }
 }

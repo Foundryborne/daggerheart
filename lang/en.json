@@ -213,6 +213,7 @@
             "Features": "Features",
             "proficiency": "Proficiency",
             "unarmored": "Unarmored",
+            "newFeature": "New Feature",
             "Experience": {
                 "Single": "Experience",
                 "plural": "Experiences"

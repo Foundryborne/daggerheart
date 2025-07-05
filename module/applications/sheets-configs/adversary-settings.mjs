@@ -1,7 +1,3 @@
-import DHActionConfig from './action-config.mjs';
-import DHBaseItemSheet from '../sheets/api/base-item.mjs';
-import { actionsTypes } from '../../data/action/_module.mjs';
-
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DHAdversarySettings extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -26,9 +22,9 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
         actions: {
             addExperience: this.#addExperience,
             removeExperience: this.#removeExperience,
-            addAction: this.#addAction,
-            editAction: this.#editAction,
-            removeAction: this.#removeAction
+            addFeature: this.#addFeature,
+            editFeature: this.#editFeature,
+            removeFeature: this.#removeFeature
         },
         form: {
             handler: this.updateForm,
@@ -55,9 +51,9 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             id: 'experiences',
             template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/experiences.hbs'
         },
-        actions: {
-            id: 'actions',
-            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/actions.hbs'
+        features: {
+            id: 'features',
+            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/features.hbs'
         }
     };
 
@@ -86,13 +82,13 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             icon: null,
             label: 'DAGGERHEART.General.tabs.experiences'
         },
-        actions: {
+        features: {
             active: false,
             cssClass: '',
             group: 'primary',
-            id: 'actions',
+            id: 'features',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.actions'
+            label: 'DAGGERHEART.General.tabs.features'
         }
     };
 
@@ -130,46 +126,25 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
         this.render();
     }
 
-    static async #addAction(_event, _button) {
-        const actionType = await DHBaseItemSheet.selectActionType();
-        if (!actionType) return;
-        try {
-            const cls = actionsTypes[actionType] ?? actionsTypes.attack,
-                action = new cls(
-                    {
-                        _id: foundry.utils.randomID(),
-                        type: actionType,
-                        name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
-                        ...cls.getSourceConfig(this.actor)
-                    },
-                    {
-                        parent: this.actor
-                    }
-                );
-            await this.actor.update({ 'system.actions': [...this.actor.system.actions, action] });
-            await new DHActionConfig(this.actor.system.actions[this.actor.system.actions.length - 1]).render({
-                force: true
-            });
-            this.render();
-        } catch (error) {
-            console.log(error);
-        }
+    static async #addFeature(_, _button) {
+        await this.actor.createEmbeddedDocuments('Item', [
+            {
+                type: 'feature',
+                name: game.i18n.localize('DAGGERHEART.General.newFeature'),
+                img: 'icons/skills/melee/weapons-crossed-swords-black.webp'
+            }
+        ]);
+        this.render();
     }
 
-    static async #editAction(event, target) {
+    static async #editFeature(event, target) {
         event.stopPropagation();
-        const actionIndex = target.dataset.index;
-        await new DHActionConfig(this.actor.system.actions[actionIndex]).render({
-            force: true
-        });
+        this.actor.items.get(target.id).sheet.render(true);
     }
 
-    static async #removeAction(event, target) {
+    static async #removeFeature(event, target) {
         event.stopPropagation();
-        const actionIndex = target.dataset.index;
-        await this.actor.update({
-            'system.actions': this.actor.system.actions.filter((_, index) => index !== Number.parseInt(actionIndex))
-        });
+        await this.actor.deleteEmbeddedDocuments('Item', [target.id]);
         this.render();
     }
 

@@ -1,0 +1,48 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.daggerheart.dh-style.dialog {
+    .tab.features {
+        max-height: 450px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+
+        .add-feature-btn {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .feature-item {
+                display: grid;
+                grid-template-columns: 40px 1fr auto;
+                align-items: center;
+                gap: 5px;
+                border-radius: 3px;
+
+                img {
+                    height: 40px;
+                    width: 40px;
+                    object-fit: cover;
+                }
+
+                .label {
+                    font-family: @font-body;
+                }
+
+                .controls {
+                    display: flex;
+                    gap: 5px;
+                    a {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

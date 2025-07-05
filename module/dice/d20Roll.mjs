@@ -143,7 +143,6 @@ export default class D20Roll extends DHRoll {
                 : config.roll.advantage == this.ADV_MODE.DISADVANTAGE
                   ? false
                   : null;
-        setDiceSoNiceForDualityRoll(roll, advantageState);
         this.postEvaluate(roll, config);
     }
 

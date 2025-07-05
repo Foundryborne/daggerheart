@@ -1,0 +1,11 @@
+<section
+    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
+    data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'
+>    
+    <div class="feature-section">
+        {{#if document.system.features}}
+            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize tabs.features.label) type='feature'}}
+        {{/if}}
+    </div>
+</section>

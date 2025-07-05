@@ -29,19 +29,19 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
     static PARTS = {
         sidebar: { template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs' },
         header: { template: 'systems/daggerheart/templates/sheets/actors/adversary/header.hbs' },
-        actions: { template: 'systems/daggerheart/templates/sheets/actors/adversary/actions.hbs' },
+        features: { template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs' },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs' },
         effects: { template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs' }
     };
 
     static TABS = {
-        actions: {
+        features: {
             active: true,
             cssClass: '',
             group: 'primary',
-            id: 'actions',
+            id: 'features',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.actions'
+            label: 'DAGGERHEART.General.tabs.features'
         },
         notes: {
             active: false,
@@ -71,9 +71,9 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         return context;
     }
 
-    getAction(element) {
+    getItem(element) {
         const itemId = (element.target ?? element).closest('[data-item-id]').dataset.itemId,
-            item = this.document.system.actions.find(x => x.id === itemId);
+            item = this.document.items.get(itemId);
         return item;
     }
 
@@ -108,7 +108,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
     }
 
     static async useItem(event) {
-        const action = this.getAction(event) ?? this.actor.system.attack;
+        const action = this.getItem(event) ?? this.actor.system.attack;
         action.use(event);
     }
 
@@ -134,7 +134,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
 
             cls.create(msg.toObject());
         } else {
-            const item = this.getAction(event) ?? this.document.system.attack;
+            const item = this.getItem(event) ?? this.document.system.attack;
             item.toChat(this.document.id);
         }
     }
