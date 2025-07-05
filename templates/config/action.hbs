@@ -34,7 +34,7 @@
         <div class="tab {{this.tabs.config.cssClass}}" data-group="primary" data-tab="config">
             {{> 'systems/daggerheart/templates/actionTypes/uses.hbs' fields=fields.uses.fields source=source.uses}}
             {{> 'systems/daggerheart/templates/actionTypes/cost.hbs' fields=fields.cost.element.fields source=source.cost}}
-            {{#if fields.target}}{{> 'systems/daggerheart/templates/actionTypes/range-target.hbs' fields=(object range=fields.range target=fields.target.fields) source=(object target=source.target range=source.range)}}{{/if}}
+            {{#if (or fields.target fields.range)}}{{> 'systems/daggerheart/templates/actionTypes/range-target.hbs' fields=(object range=fields.range target=fields.target.fields) source=(object target=source.target range=source.range)}}{{/if}}
         </div>
         <div class="tab {{this.tabs.effect.cssClass}}" data-group="primary" data-tab="effect">
             {{#if fields.roll}}{{> 'systems/daggerheart/templates/actionTypes/roll.hbs' fields=fields.roll.fields source=source.roll}}{{/if}}
