@@ -1,4 +1,4 @@
-import ActionField from '../fields/actionField.mjs';
+import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHAncestry extends BaseDataItem {
@@ -13,10 +13,9 @@ export default class DHAncestry extends BaseDataItem {
 
     /** @inheritDoc */
     static defineSchema() {
-        const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            actions: new fields.ArrayField(new ActionField())
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
         };
     }
 }

@@ -1,5 +1,5 @@
 import BaseDataItem from './base.mjs';
-import ActionField from '../fields/actionField.mjs';
+import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
 export default class DHConsumable extends BaseDataItem {
     /** @inheritDoc */
@@ -19,7 +19,7 @@ export default class DHConsumable extends BaseDataItem {
         return {
             ...super.defineSchema(),
             consumeOnUse: new fields.BooleanField({ initial: false }),
-            actions: new fields.ArrayField(new ActionField())
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
         };
     }
 }

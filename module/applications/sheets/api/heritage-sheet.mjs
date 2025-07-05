@@ -10,9 +10,9 @@ export default class DHHeritageSheet extends DHBaseItemSheet {
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
-        actions: {
-            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
-            scrollable: ['.actions']
+        feature: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-features.hbs',
+            scrollable: ['.feature']
         },
         effects: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
@@ -23,7 +23,7 @@ export default class DHHeritageSheet extends DHBaseItemSheet {
     /** @override*/
     static TABS = {
         primary: {
-            tabs: [{ id: 'description' }, { id: 'actions' }, { id: 'effects' }],
+            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'effects' }],
             initial: 'description',
             labelPrefix: 'DAGGERHEART.Sheets.TABS'
         }

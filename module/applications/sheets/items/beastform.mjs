@@ -3,12 +3,7 @@ import DHBaseItemSheet from '../api/base-item.mjs';
 export default class BeastformSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
-        classes: ['beastform'],
-        dragDrop: [{ dragSelector: null, dropSelector: '.drop-section' }],
-        actions: {
-            editFeature: this.editFeature,
-            removeFeature: this.removeFeature
-        }
+        classes: ['beastform']
     };
 
     /**@override */
@@ -39,27 +34,5 @@ export default class BeastformSheet extends DHBaseItemSheet {
         await super._preparePartContext(partId, context);
 
         return context;
-    }
-
-    static editFeature(event) {
-        const target = event.target.closest('[data-action="editFeature"]');
-        const feature = this.document.system.features[target.dataset.index];
-        feature.sheet.render({ force: true });
-    }
-
-    static async removeFeature(_, target) {
-        const current = this.document.system.features.map(x => x.uuid);
-        await this.document.update({
-            'system.features': current.filter((_, index) => index !== Number(target.dataset.index))
-        });
-    }
-
-    async _onDrop(event) {
-        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        const item = await fromUuid(data.uuid);
-        if (item.type === 'feature') {
-            const current = this.document.system.features.map(x => x.uuid);
-            await this.document.update({ 'system.features': [...current, item.uuid] });
-        }
     }
 }

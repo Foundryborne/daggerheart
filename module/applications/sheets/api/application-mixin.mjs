@@ -128,11 +128,19 @@ export default function DHApplicationMixin(Base) {
         _createDragDropHandlers() {
             return this.options.dragDrop.map(d => {
                 d.callbacks = {
+                    dragstart: this._onDragStart.bind(this),
                     drop: this._onDrop.bind(this)
                 };
                 return new foundry.applications.ux.DragDrop.implementation(d);
             });
         }
+
+        /**
+         * Handle dragStart event.
+         * @param {DragEvent} event
+         * @protected
+         */
+        _onDragStart(event) {}
 
         /**
          * Handle drop event.

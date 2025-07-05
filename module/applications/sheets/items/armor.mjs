@@ -9,7 +9,7 @@ export default class ArmorSheet extends DHBaseItemSheet {
             {
                 selector: '.features-input',
                 options: () => CONFIG.DH.ITEM.armorFeatures,
-                callback: ArmorSheet.#onFeatureSelect
+                callback: ArmorSheet.#onArmorFeatureSelect
             }
         ]
     };
@@ -19,9 +19,9 @@ export default class ArmorSheet extends DHBaseItemSheet {
         header: { template: 'systems/daggerheart/templates/sheets/items/armor/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
-        actions: {
-            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
-            scrollable: ['.actions']
+        features: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-features.hbs',
+            scrollable: ['.features']
         },
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/armor/settings.hbs',
@@ -35,7 +35,7 @@ export default class ArmorSheet extends DHBaseItemSheet {
 
         switch (partId) {
             case 'settings':
-                context.features = this.document.system.features.map(x => x.value);
+                context.armorFeatures = this.document.system.armorFeatures.map(x => x.value);
                 break;
         }
 
@@ -46,7 +46,7 @@ export default class ArmorSheet extends DHBaseItemSheet {
      * Callback function used by `tagifyElement`.
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
-    static async #onFeatureSelect(selectedOptions) {
-        await this.document.update({ 'system.features': selectedOptions.map(x => ({ value: x.value })) });
+    static async #onArmorFeatureSelect(selectedOptions) {
+        await this.document.update({ 'system.armorFeatures': selectedOptions.map(x => ({ value: x.value })) });
     }
 }

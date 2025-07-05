@@ -8,7 +8,7 @@ export default class WeaponSheet extends DHBaseItemSheet {
             {
                 selector: '.features-input',
                 options: () => CONFIG.DH.ITEM.weaponFeatures,
-                callback: WeaponSheet.#onFeatureSelect
+                callback: WeaponSheet.#onWeaponFeatureSelect
             }
         ]
     };
@@ -18,9 +18,9 @@ export default class WeaponSheet extends DHBaseItemSheet {
         header: { template: 'systems/daggerheart/templates/sheets/items/weapon/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
-        actions: {
-            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
-            scrollable: ['.actions']
+        features: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-features.hbs',
+            scrollable: ['.features']
         },
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/weapon/settings.hbs',
@@ -34,7 +34,7 @@ export default class WeaponSheet extends DHBaseItemSheet {
 
         switch (partId) {
             case 'settings':
-                context.features = this.document.system.features.map(x => x.value);
+                context.weaponFeatures = this.document.system.weaponFeatures.map(x => x.value);
                 break;
         }
 
@@ -45,7 +45,7 @@ export default class WeaponSheet extends DHBaseItemSheet {
      * Callback function used by `tagifyElement`.
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
-    static async #onFeatureSelect(selectedOptions) {
-        await this.document.update({ 'system.features': selectedOptions.map(x => ({ value: x.value })) });
+    static async #onWeaponFeatureSelect(selectedOptions) {
+        await this.document.update({ 'system.weaponFeatures': selectedOptions.map(x => ({ value: x.value })) });
     }
 }

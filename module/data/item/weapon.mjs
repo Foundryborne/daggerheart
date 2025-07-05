@@ -1,5 +1,6 @@
 import BaseDataItem from './base.mjs';
-import ActionField from '../fields/actionField.mjs';
+import { actionsTypes } from '../action/_module.mjs';
+import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
 export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
@@ -37,7 +38,7 @@ export default class DHWeapon extends BaseDataItem {
                     initial: 'physical'
                 })
             }),
-            features: new fields.ArrayField(
+            weaponFeatures: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
                         required: true,
@@ -48,7 +49,7 @@ export default class DHWeapon extends BaseDataItem {
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
             ),
-            actions: new fields.ArrayField(new ActionField())
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
         };
     }
 
@@ -56,20 +57,20 @@ export default class DHWeapon extends BaseDataItem {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
-        if (changes.system.features) {
-            const removed = this.features.filter(x => !changes.system.features.includes(x));
-            const added = changes.system.features.filter(x => !this.features.includes(x));
+        if (changes.system?.weaponFeatures) {
+            const removed = this.weaponFeatures.filter(x => !changes.system.weaponFeatures.includes(x));
+            const added = changes.system.weaponFeatures.filter(x => !this.weaponFeatures.includes(x));
 
-            for (var feature of removed) {
-                for (var effectId of feature.effectIds) {
+            for (var weaponFeature of removed) {
+                for (var effectId of weaponFeature.effectIds) {
                     await this.parent.effects.get(effectId).delete();
                 }
 
-                changes.system.actions = this.actions.filter(x => !feature.actionIds.includes(x._id));
+                changes.system.actions = this.actions.filter(x => !weaponFeature.actionIds.includes(x._id));
             }
 
-            for (var feature of added) {
-                const featureData = CONFIG.DH.ITEM.weaponFeatures[feature.value];
+            for (var weaponFeature of added) {
+                const featureData = CONFIG.DH.ITEM.weaponFeatures[weaponFeature.value];
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments('ActiveEffect', [
                         {
@@ -78,18 +79,18 @@ export default class DHWeapon extends BaseDataItem {
                             changes: featureData.effects.flatMap(x => x.changes)
                         }
                     ]);
-                    feature.effectIds = embeddedItems.map(x => x.id);
+                    weaponFeature.effectIds = embeddedItems.map(x => x.id);
                 }
                 if (featureData.actions?.length > 0) {
                     const newActions = featureData.actions.map(action => {
-                        const cls = CONFIG.DH.ACTIONS.actionsTypes[action.type];
+                        const cls = actionsTypes[action.type];
                         return new cls(
                             { ...action, _id: foundry.utils.randomID(), name: game.i18n.localize(action.name) },
                             { parent: this }
                         );
                     });
                     changes.system.actions = [...this.actions, ...newActions];
-                    feature.actionIds = newActions.map(x => x._id);
+                    weaponFeature.actionIds = newActions.map(x => x._id);
                 }
             }
         }
