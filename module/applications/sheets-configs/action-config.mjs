@@ -16,7 +16,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'dh-style', 'dialog'],
-        // classes: ['daggerheart', 'views', 'action'],
         window: {
             icon: 'fa-solid fa-wrench',
             resizable: false
