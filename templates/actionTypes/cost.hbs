@@ -5,13 +5,11 @@
     </legend>
     {{#each source as |cost index|}}
         <div class="nest-inputs">
-            <fieldset class="flex">
-                {{formField ../fields.type choices=(@root.disableOption index ../fields.type.choices ../source) label="Resource" value=cost.type name=(concat "cost." index ".type") localize=true}}
-                {{formField ../fields.value label="Amount" value=cost.value name=(concat "cost." index ".value")}}
-                {{formField ../fields.scalable label="Scalable" value=cost.scalable name=(concat "cost." index ".scalable") classes="checkbox"}}
-                {{formField ../fields.step label="Step" value=cost.step name=(concat "cost." index ".step") disabled=(not cost.scalable)}}
-            </fieldset>
-            <div class="fas fa-trash" data-action="removeElement" data-index="{{index}}"></div>
+            {{formField ../fields.scalable label="Scalable" value=cost.scalable name=(concat "cost." index ".scalable") classes="checkbox"}}
+            {{formField ../fields.type choices=(@root.disableOption index ../fields.type.choices ../source) label="Resource" value=cost.type name=(concat "cost." index ".type") localize=true}}
+            {{formField ../fields.value label="Amount" value=cost.value name=(concat "cost." index ".value")}}
+            {{formField ../fields.step label="Step" value=cost.step name=(concat "cost." index ".step") disabled=(not cost.scalable)}}
+            <a class="btn" data-tooltip="{{localize "DAGGERHEART.Tooltip.delete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
         </div>
     {{/each}}
 </fieldset>

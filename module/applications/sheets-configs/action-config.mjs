@@ -40,6 +40,10 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     };
 
     static PARTS = {
+        header: {
+            id: 'header',
+            template: 'systems/daggerheart/templates/sheets-settings/action-settings/header.hbs'
+        },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         base: {
             id: 'base',
@@ -84,7 +88,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             icon: null,
             label: 'Effect'
         }
-    }
+    };
 
     static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects'];
 
