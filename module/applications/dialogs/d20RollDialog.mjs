@@ -107,14 +107,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     static updateIsAdvantage(_, button) {
         const advantage = Number(button.dataset.advantage);
-        if (advantage === 1) {
-            this.advantage = true;
-            this.disadvantage = false;
-        }
-        if (advantage === -1) {
-            this.advantage = false;
-            this.disadvantage = true;
-        }
+        this.advantage = advantage === 1;
+        this.disadvantage = advantage === -1;
 
         this.config.roll.advantage = this.config.roll.advantage === advantage ? 0 : advantage;
         this.render();
