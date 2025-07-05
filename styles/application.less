@@ -233,81 +233,6 @@ div.daggerheart.views.multiclass {
         }
 
         .roll-dialog-container {
-            .disadvantage,
-            .advantage {
-                border: 2px solid @secondaryAccent;
-                border-radius: 6px;
-                display: flex;
-                align-items: center;
-                padding: 4px;
-                margin-bottom: 6px;
-
-                &.selected {
-                    filter: drop-shadow(0px 0px 3px @mainShadow);
-                }
-
-                input {
-                    border: 0;
-                }
-
-                button {
-                    flex: 0;
-                    border-radius: 50%;
-                    height: 20px;
-                    width: 20px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin: 2px 0 2px 4px;
-                    padding: 12px;
-
-                    i {
-                        margin: 0;
-                    }
-                }
-            }
-
-            .roll-dialog-experience-container {
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                gap: @halfMargin;
-
-                .roll-dialog-chip {
-                    border: @thinBorder solid black;
-                    border-radius: 6px;
-                    min-width: calc(33% - 2px);
-                    flex: 1;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: @halfMargin;
-                    cursor: pointer;
-                    padding: @fullPadding;
-                    background: grey;
-                    overflow: hidden;
-                    font-weight: bold;
-
-                    &.hover {
-                        filter: drop-shadow(0 0 3px @mainShadow);
-                    }
-
-                    span {
-                        overflow: hidden;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
-                    }
-
-                    &.selected {
-                        background: green;
-
-                        span {
-                            filter: drop-shadow(0 0 3px @secondaryShadow);
-                        }
-                    }
-                }
-            }
-
             .hope-container {
                 display: flex;
                 gap: @fullMargin;
@@ -368,28 +293,6 @@ div.daggerheart.views.multiclass {
                                 background: var(--button-hover-background-color);
                             }
                         }
-                    }
-                }
-            }
-
-            .roll-dialog-experience-container {
-                display: flex;
-                align-items: flex-start;
-                flex-wrap: wrap;
-                gap: @halfMargin;
-                flex: 1;
-                height: 100%;
-
-                .experience-chip {
-                    opacity: 0.6;
-                    border-radius: 16px;
-                    width: calc(50% - 4px);
-                    white-space: nowrap;
-
-                    &.active,
-                    &:hover {
-                        opacity: 1;
-                        background: var(--button-hover-background-color);
                     }
                 }
             }

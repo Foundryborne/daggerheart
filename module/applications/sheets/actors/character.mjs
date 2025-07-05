@@ -490,6 +490,19 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         }
     }
 
+    static async rollAttribute(event, button) {
+        const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
+        const config = {
+            event: event,
+            title: `${game.i18n.localize('DAGGERHEART.General.dualityRoll')}: ${this.actor.name}`,
+            headerTitle: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', { ability: abilityLabel }),
+            roll: {
+                trait: button.dataset.attribute
+            }
+        };
+        this.document.diceRoll(config);
+    }
+
     /* -------------------------------------------- */
     /*  Filter Menus                                */
     /* -------------------------------------------- */

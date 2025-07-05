@@ -197,11 +197,9 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
             }
         }));
 
-        return [
-            ...game.i18n.sortObjects(typesFilters, 'name'),
-            ...game.i18n.sortObjects(burdenFilter, 'name'),
-            ...game.i18n.sortObjects(damageTypeFilter, 'name')
-        ];
+        const sort = arr => game.i18n.sortObjects(arr, 'name');
+
+        return [...sort(typesFilters, 'name'), ...sort(burdenFilter, 'name'), ...sort(damageTypeFilter, 'name')];
     }
 
     /**

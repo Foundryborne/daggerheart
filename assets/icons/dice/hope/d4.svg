@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="5 0 64 74" width="64" height="64">
+    <defs>
+        <linearGradient id="gold-gradient" gradientUnits="userSpaceOnUse" x1="20%" y1="20%" x2="100%" y2="100%">
+            <stop offset="3.51%" stop-color="#F3C267"/>
+            <stop offset="96.49%" stop-color="#4C3407"/>
+        </linearGradient>
+    </defs>
+
+  <polygon points="36.421875,0.2080078 0.2910156,62.7871094 36.421875,41.8974609" fill="url(#gold-gradient)"/>
+  <polygon points="37.5771484,0.2094727 37.5771484,41.8984375 73.7089844,62.7871094" fill="url(#gold-gradient)"/>
+  <polygon points="36.9990234,42.8984375 0.8603516,63.7919922 73.1376953,63.7919922" fill="url(#gold-gradient)"/>
+</svg>

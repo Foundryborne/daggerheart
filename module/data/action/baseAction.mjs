@@ -244,7 +244,6 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         }
 
         if (this.hasRoll) {
-            console.log(config);
             const rollConfig = this.prepareRoll(config);
             config.roll = rollConfig;
             config = await this.actor.diceRoll(config);

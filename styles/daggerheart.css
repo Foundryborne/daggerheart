@@ -2099,74 +2099,6 @@ div.daggerheart.views.multiclass {
 .daggerheart.views.roll-selection #roll-selection-costSelection footer {
   display: none;
 }
-.daggerheart.views.roll-selection .roll-dialog-container .disadvantage,
-.daggerheart.views.roll-selection .roll-dialog-container .advantage {
-  border: 2px solid #708090;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  padding: 4px;
-  margin-bottom: 6px;
-}
-.daggerheart.views.roll-selection .roll-dialog-container .disadvantage.selected,
-.daggerheart.views.roll-selection .roll-dialog-container .advantage.selected {
-  filter: drop-shadow(0px 0px 3px red);
-}
-.daggerheart.views.roll-selection .roll-dialog-container .disadvantage input,
-.daggerheart.views.roll-selection .roll-dialog-container .advantage input {
-  border: 0;
-}
-.daggerheart.views.roll-selection .roll-dialog-container .disadvantage button,
-.daggerheart.views.roll-selection .roll-dialog-container .advantage button {
-  flex: 0;
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 2px 0 2px 4px;
-  padding: 12px;
-}
-.daggerheart.views.roll-selection .roll-dialog-container .disadvantage button i,
-.daggerheart.views.roll-selection .roll-dialog-container .advantage button i {
-  margin: 0;
-}
-.daggerheart.views.roll-selection .roll-dialog-container .roll-dialog-experience-container {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-.daggerheart.views.roll-selection .roll-dialog-container .roll-dialog-experience-container .roll-dialog-chip {
-  border: 1px solid black;
-  border-radius: 6px;
-  min-width: calc(33% - 2px);
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  cursor: pointer;
-  padding: 4px;
-  background: grey;
-  overflow: hidden;
-  font-weight: bold;
-}
-.daggerheart.views.roll-selection .roll-dialog-container .roll-dialog-experience-container .roll-dialog-chip.hover {
-  filter: drop-shadow(0 0 3px red);
-}
-.daggerheart.views.roll-selection .roll-dialog-container .roll-dialog-experience-container .roll-dialog-chip span {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.daggerheart.views.roll-selection .roll-dialog-container .roll-dialog-experience-container .roll-dialog-chip.selected {
-  background: green;
-}
-.daggerheart.views.roll-selection .roll-dialog-container .roll-dialog-experience-container .roll-dialog-chip.selected span {
-  filter: drop-shadow(0 0 3px gold);
-}
 .daggerheart.views.roll-selection .roll-dialog-container .hope-container {
   display: flex;
   gap: 8px;
@@ -2215,25 +2147,6 @@ div.daggerheart.views.multiclass {
 }
 .daggerheart.views.npc-roll-selection .npc-roll-dialog-container .selection-container .dice-container .advantage-container .advantage-button.active,
 .daggerheart.views.npc-roll-selection .npc-roll-dialog-container .selection-container .dice-container .advantage-container .advantage-button:hover {
-  background: var(--button-hover-background-color);
-}
-.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 4px;
-  flex: 1;
-  height: 100%;
-}
-.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .experience-chip {
-  opacity: 0.6;
-  border-radius: 16px;
-  width: calc(50% - 4px);
-  white-space: nowrap;
-}
-.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .experience-chip.active,
-.daggerheart.views.npc-roll-selection .npc-roll-dialog-container .roll-dialog-experience-container .experience-chip:hover {
-  opacity: 1;
   background: var(--button-hover-background-color);
 }
 .daggerheart.views.multiclass .multiclass-container {
@@ -3708,16 +3621,16 @@ div.daggerheart.views.multiclass {
 .daggerheart.dh-style.setting .trait-array-container .trait-array-item input {
   text-align: center;
 }
-.themed.theme-dark .application.sheet.dh-style .character-header-sheet .trait,
-.themed.theme-dark.application.sheet.dh-style .character-header-sheet .trait,
-body.theme-dark .application .character-header-sheet .trait,
-body.theme-dark.application .character-header-sheet .trait {
+.themed.theme-dark .application.daggerheart.sheet.dh-style .character-header-sheet .trait,
+.themed.theme-dark.application.daggerheart.sheet.dh-style .character-header-sheet .trait,
+body.theme-dark .application.daggerheart .character-header-sheet .trait,
+body.theme-dark.application.daggerheart .character-header-sheet .trait {
   background: url(../assets/svg/trait-shield.svg) no-repeat;
 }
-.themed.theme-light .application.sheet.dh-style .character-header-sheet .trait,
-.themed.theme-light.application.sheet.dh-style .character-header-sheet .trait,
-body.theme-light .application .character-header-sheet .trait,
-body.theme-light.application .character-header-sheet .trait {
+.themed.theme-light .application.daggerheart.sheet.dh-style .character-header-sheet .trait,
+.themed.theme-light.application.daggerheart.sheet.dh-style .character-header-sheet .trait,
+body.theme-light .application.daggerheart .character-header-sheet .trait,
+body.theme-light.application.daggerheart .character-header-sheet .trait {
   background: url('../assets/svg/trait-shield-light.svg') no-repeat;
 }
 .application.sheet.daggerheart.actor.dh-style.character .character-header-sheet {
@@ -3880,28 +3793,28 @@ body.theme-light.application .character-header-sheet .trait {
   font-size: 20px;
   text-align: center;
 }
-.themed.theme-dark .application.sheet.dh-style .character-sidebar-sheet,
-.themed.theme-dark.application.sheet.dh-style .character-sidebar-sheet,
-body.theme-dark .application .character-sidebar-sheet,
-body.theme-dark.application .character-sidebar-sheet {
+.themed.theme-dark .application.daggerheart.sheet.dh-style .character-sidebar-sheet,
+.themed.theme-dark.application.daggerheart.sheet.dh-style .character-sidebar-sheet,
+body.theme-dark .application.daggerheart .character-sidebar-sheet,
+body.theme-dark.application.daggerheart .character-sidebar-sheet {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
-.themed.theme-dark .application.sheet.dh-style .character-sidebar-sheet .experience-value,
-.themed.theme-dark.application.sheet.dh-style .character-sidebar-sheet .experience-value,
-body.theme-dark .application .character-sidebar-sheet .experience-value,
-body.theme-dark.application .character-sidebar-sheet .experience-value {
+.themed.theme-dark .application.daggerheart.sheet.dh-style .character-sidebar-sheet .experience-value,
+.themed.theme-dark.application.daggerheart.sheet.dh-style .character-sidebar-sheet .experience-value,
+body.theme-dark .application.daggerheart .character-sidebar-sheet .experience-value,
+body.theme-dark.application.daggerheart .character-sidebar-sheet .experience-value {
   background: url(../assets/svg/experience-shield.svg) no-repeat;
 }
-.themed.theme-light .application.sheet.dh-style .character-sidebar-sheet,
-.themed.theme-light.application.sheet.dh-style .character-sidebar-sheet,
-body.theme-light .application .character-sidebar-sheet,
-body.theme-light.application .character-sidebar-sheet {
+.themed.theme-light .application.daggerheart.sheet.dh-style .character-sidebar-sheet,
+.themed.theme-light.application.daggerheart.sheet.dh-style .character-sidebar-sheet,
+body.theme-light .application.daggerheart .character-sidebar-sheet,
+body.theme-light.application.daggerheart .character-sidebar-sheet {
   background: transparent;
 }
-.themed.theme-light .application.sheet.dh-style .character-sidebar-sheet .experience-value,
-.themed.theme-light.application.sheet.dh-style .character-sidebar-sheet .experience-value,
-body.theme-light .application .character-sidebar-sheet .experience-value,
-body.theme-light.application .character-sidebar-sheet .experience-value {
+.themed.theme-light .application.daggerheart.sheet.dh-style .character-sidebar-sheet .experience-value,
+.themed.theme-light.application.daggerheart.sheet.dh-style .character-sidebar-sheet .experience-value,
+body.theme-light .application.daggerheart .character-sidebar-sheet .experience-value,
+body.theme-light.application.daggerheart .character-sidebar-sheet .experience-value {
   background: url('../assets/svg/experience-shield-light.svg') no-repeat;
 }
 .application.sheet.dh-style .character-sidebar-sheet {
@@ -4825,16 +4738,16 @@ body.theme-light.application .character-sidebar-sheet .experience-value {
   align-items: center;
   padding: 0 20px;
 }
-.themed.theme-dark .application.sheet.dh-style.environment,
-.themed.theme-dark.application.sheet.dh-style.environment,
-body.theme-dark .application.environment,
-body.theme-dark.application.environment {
+.themed.theme-dark .application.daggerheart.sheet.dh-style.environment,
+.themed.theme-dark.application.daggerheart.sheet.dh-style.environment,
+body.theme-dark .application.daggerheart.environment,
+body.theme-dark.application.daggerheart.environment {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
-.themed.theme-light .application.sheet.dh-style.environment,
-.themed.theme-light.application.sheet.dh-style.environment,
-body.theme-light .application.environment,
-body.theme-light.application.environment {
+.themed.theme-light .application.daggerheart.sheet.dh-style.environment,
+.themed.theme-light.application.daggerheart.sheet.dh-style.environment,
+body.theme-light .application.daggerheart.environment,
+body.theme-light.application.daggerheart.environment {
   background: url('../assets/parchments/dh-parchment-light.png');
 }
 .application.sheet.daggerheart.actor.dh-style.environment .tab {
@@ -5282,16 +5195,16 @@ body.theme-light.application.environment {
 .theme-light .application.sheet.daggerheart.actor.dh-style.companion .experience-list .experience-value {
   background: url('../assets/svg/experience-shield-light.svg') no-repeat;
 }
-.themed.theme-dark .application.sheet.dh-style.companion,
-.themed.theme-dark.application.sheet.dh-style.companion,
-body.theme-dark .application.companion,
-body.theme-dark.application.companion {
+.themed.theme-dark .application.daggerheart.sheet.dh-style.companion,
+.themed.theme-dark.application.daggerheart.sheet.dh-style.companion,
+body.theme-dark .application.daggerheart.companion,
+body.theme-dark.application.daggerheart.companion {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
 }
-.themed.theme-light .application.sheet.dh-style.companion,
-.themed.theme-light.application.sheet.dh-style.companion,
-body.theme-light .application.companion,
-body.theme-light.application.companion {
+.themed.theme-light .application.daggerheart.sheet.dh-style.companion,
+.themed.theme-light.application.daggerheart.sheet.dh-style.companion,
+body.theme-light .application.daggerheart.companion,
+body.theme-light.application.daggerheart.companion {
   background: url('../assets/parchments/dh-parchment-light.png');
 }
 .application.sheet.daggerheart.actor.dh-style.adversary .window-content {
@@ -5375,6 +5288,111 @@ body.theme-light.application.companion {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .dices-section {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .dices-section .dice-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .dices-section .dice-option .dice-icon {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .dices-section .dice-option .dice-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .dices-section .dice-option .dice-select .label {
+  font-family: 'Cinzel', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: light-dark(#222, #efe6d8);
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .experience-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .experience-container .experience-chip {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  width: fit-content;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  background: light-dark(#18162e10, #f3c26710);
+  color: light-dark(#18162e, #f3c267);
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .experience-container .experience-chip .label {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .experience-container .experience-chip.selected {
+  background: light-dark(#18162e40, #f3c26740);
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .modifier-container .advantage-chip,
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .modifier-container .disadvantage-chip {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  width: fit-content;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.3s ease;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .modifier-container .advantage-chip .label,
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .modifier-container .disadvantage-chip .label {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .modifier-container .advantage-chip {
+  background: #40a64010;
+  color: #40a640;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .modifier-container .advantage-chip.selected {
+  color: #efe6d8;
+  background: linear-gradient(151.21deg, #40a640 7.21%, #011b01 92.79%);
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .modifier-container .disadvantage-chip {
+  background: #e54e4e10;
+  color: #e54e4e;
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .modifier-container .disadvantage-chip.selected {
+  color: #efe6d8;
+  background: linear-gradient(151.21deg, #e54e4e 7.21%, #3c0000 92.79%);
+}
+.application.daggerheart.dialog.dh-style.views.roll-selection .roll-dialog-container .formula-label {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: light-dark(#222, #efe6d8);
 }
 @keyframes glow {
   0% {
@@ -5469,17 +5487,17 @@ body.theme-light.application.companion {
  * @param {Rules}    @darkRules  - Styles to apply when `.theme-dark` is present
  * @param {Rules}    @lightRules - Styles to apply when `.theme-light` is present
  */
-.themed.theme-dark .application.sheet.dh-style,
-.themed.theme-dark.application.sheet.dh-style,
-body.theme-dark .application,
-body.theme-dark.application {
+.themed.theme-dark .application.daggerheart.sheet.dh-style,
+.themed.theme-dark.application.daggerheart.sheet.dh-style,
+body.theme-dark .application.daggerheart,
+body.theme-dark.application.daggerheart {
   background: rgba(24, 22, 46, 0.33);
   backdrop-filter: blur(9px);
 }
-.themed.theme-light .application.sheet.dh-style,
-.themed.theme-light.application.sheet.dh-style,
-body.theme-light .application,
-body.theme-light.application {
+.themed.theme-light .application.daggerheart.sheet.dh-style,
+.themed.theme-light.application.daggerheart.sheet.dh-style,
+body.theme-light .application.daggerheart,
+body.theme-light.application.daggerheart {
   background: url('../assets/parchments/dh-parchment-light.png') no-repeat center;
 }
 .application.sheet.dh-style {
@@ -5527,18 +5545,18 @@ body.theme-light.application {
 .application.sheet.dh-style:not(.minimized) .window-content {
   opacity: 1;
 }
-.themed.theme-dark .application.sheet.dh-style.dialog,
-.themed.theme-dark.application.sheet.dh-style.dialog,
-body.theme-dark .application.dialog,
-body.theme-dark.application.dialog {
+.themed.theme-dark .application.daggerheart.sheet.dh-style.dialog,
+.themed.theme-dark.application.daggerheart.sheet.dh-style.dialog,
+body.theme-dark .application.daggerheart.dialog,
+body.theme-dark.application.daggerheart.dialog {
   background-image: url('../assets/parchments/dh-parchment-dark.png');
   background-repeat: no-repeat;
   background-position: center;
 }
-.themed.theme-light .application.sheet.dh-style.dialog,
-.themed.theme-light.application.sheet.dh-style.dialog,
-body.theme-light .application.dialog,
-body.theme-light.application.dialog {
+.themed.theme-light .application.daggerheart.sheet.dh-style.dialog,
+.themed.theme-light.application.daggerheart.sheet.dh-style.dialog,
+body.theme-light .application.daggerheart.dialog,
+body.theme-light.application.daggerheart.dialog {
   background-image: url('../assets/parchments/dh-parchment-light.png');
   background-repeat: no-repeat;
   background-position: center;
