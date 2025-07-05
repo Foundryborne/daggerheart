@@ -71,7 +71,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      */
     static async #addFeature(_event, _button) {
         const feature = await game.items.documentClass.create({
-            id: foundry.utils.randomID(),
             type: 'feature',
             name: game.i18n.localize('DAGGERHEART.General.newFeature')
         });

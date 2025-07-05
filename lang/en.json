@@ -26,7 +26,8 @@
                 "adversaryMissing": "The linked adversary doesn't exist in the world.",
                 "beastformInapplicable": "A beastform can only be applied to a Character.",
                 "beastformAlreadyApplied": "The character already has a beastform applied!",
-                "featureIsMissing": "The feature doesn't exist. You should remove it."
+                "featureIsMissing": "The feature doesn't exist. You should remove it.",
+                "featureIsFull": "You can only have 1 entry of this feature"
             }
         },
         "Settings": {

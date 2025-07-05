@@ -5,8 +5,6 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/sheets/global/partials/action-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/domain-card-item.hbs',
         'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs',
-        'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-features.hbs',
-        'systems/daggerheart/templates/sheets/items/subclass/parts/subclass-feature.hbs',
         'systems/daggerheart/templates/components/card-preview.hbs',
         'systems/daggerheart/templates/levelup/parts/selectable-card-preview.hbs',
         'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs',

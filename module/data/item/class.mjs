@@ -1,7 +1,6 @@
 import BaseDataItem from './base.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
-import ActionField from '../fields/actionField.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -28,8 +27,8 @@ export default class DHClass extends BaseDataItem {
                 label: 'DAGGERHEART.Sheets.Class.HitPoints'
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.Sheets.Class.Evasion' }),
-            hopeFeatures: new foundry.data.fields.ArrayField(new ActionField()),
-            classFeatures: new foundry.data.fields.ArrayField(new ActionField()),
+            hopeFeatures: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            classFeatures: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
             inventory: new fields.SchemaField({
                 take: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),

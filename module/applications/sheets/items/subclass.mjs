@@ -1,6 +1,4 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
-import DHActionConfig from '../../sheets-configs/action-config.mjs';
-import { actionsTypes } from '../../../data/action/_module.mjs';
 
 export default class SubclassSheet extends DHBaseItemSheet {
     /**@inheritdoc */
@@ -39,101 +37,63 @@ export default class SubclassSheet extends DHBaseItemSheet {
         }
     };
 
-    //TODO redo everything below this message
-
-    static addFeature(_, target) {
-        if (target.dataset.type === 'action') this.addAction(target.dataset.level);
-        else this.addEffect(target.dataset.level);
-    }
-
-    static async editFeature(_, target) {
-        if (target.dataset.type === 'action') this.editAction(target.dataset.level, target.dataset.feature);
-        else this.editEffect(target.dataset.feature);
-    }
-
-    static async deleteFeature(_, target) {
-        if (target.dataset.type === 'action') this.removeAction(target.dataset.level, target.dataset.feature);
-        else this.removeEffect(target.dataset.level, target.dataset.feature);
-    }
-
-    async #selectActionType() {
-        const content = await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                { types: CONFIG.DH.ACTIONS.actionTypes }
-            ),
-            title = 'Select Action Type',
-            type = 'form',
-            data = {};
-        return Dialog.prompt({
-            title,
-            label: title,
-            content,
-            type,
-            callback: html => {
-                const form = html[0].querySelector('form'),
-                    fd = new foundry.applications.ux.FormDataExtended(form);
-                foundry.utils.mergeObject(data, fd.object, { inplace: true });
-                return data;
-            },
-            rejectClose: false
+    static async addFeature(_, target) {
+        const feature = await game.items.documentClass.create({
+            type: 'feature',
+            name: game.i18n.localize('DAGGERHEART.General.newFeature')
         });
-    }
-
-    async addAction(level) {
-        const actionType = await this.#selectActionType();
-        const cls = actionsTypes[actionType?.type] ?? actionsTypes.attack,
-            action = new cls(
-                {
-                    _id: foundry.utils.randomID(),
-                    systemPath: `${level}.actions`,
-                    type: actionType.type,
-                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType.type].name),
-                    ...cls.getSourceConfig(this.document)
-                },
-                {
-                    parent: this.document
-                }
-            );
-        await this.document.update({ [`system.${level}.actions`]: [...this.document.system[level].actions, action] });
-        await new DHActionConfig(
-            this.document.system[level].actions[this.document.system[level].actions.length - 1]
-        ).render(true);
-    }
-
-    async addEffect(level) {
-        const embeddedItems = await this.document.createEmbeddedDocuments('ActiveEffect', [
-            { name: game.i18n.localize('DAGGERHEART.Feature.NewEffect') }
-        ]);
         await this.document.update({
-            [`system.${level}.effects`]: [
-                ...this.document.system[level].effects.map(x => x.uuid),
-                embeddedItems[0].uuid
-            ]
+            [`system.${target.dataset.type}`]: feature.uuid
         });
     }
 
-    async editAction(level, id) {
-        const action = this.document.system[level].actions.find(x => x._id === id);
-        await new DHActionConfig(action).render(true);
+    static async editFeature(_, button) {
+        const feature = this.document.system[button.dataset.type];
+        if (!feature) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+            return;
+        }
+
+        feature.sheet.render(true);
     }
 
-    async editEffect(id) {
-        const effect = this.document.effects.get(id);
-        effect.sheet.render(true);
-    }
+    static async deleteFeature(event, button) {
+        event.stopPropagation();
 
-    async removeAction(level, id) {
         await this.document.update({
-            [`system.${level}.actions`]: this.document.system[level].actions.filter(action => action._id !== id)
+            [`system.${button.dataset.type}`]: null
         });
     }
 
-    async removeEffect(level, id) {
-        await this.document.effects.get(id).delete();
-        await this.document.update({
-            [`system.${level}.effects`]: this.document.system[level].effects
-                .filter(x => x && x.id !== id)
-                .map(effect => effect.uuid)
-        });
+    async _onDragStart(event) {
+        const featureItem = event.currentTarget.closest('.drop-section');
+
+        if (featureItem) {
+            const feature = this.document.system[featureItem.dataset.type];
+            if (!feature) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+                return;
+            }
+
+            const featureData = { type: 'Item', data: { ...feature.toObject(), _id: null }, fromInternal: true };
+            event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
+            event.dataTransfer.setDragImage(featureItem.querySelector('img'), 60, 0);
+        }
+    }
+
+    async _onDrop(event) {
+        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        if (data.fromInternal) return;
+
+        const item = await fromUuid(data.uuid);
+        if (item?.type === 'feature') {
+            const dropSection = event.target.closest('.drop-section');
+            if (this.document.system[dropSection.dataset.type]) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsFull'));
+                return;
+            }
+
+            await this.document.update({ [`system.${dropSection.dataset.type}`]: item.uuid });
+        }
     }
 }

@@ -1,6 +1,4 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
-import DHActionConfig from '../../sheets-configs/action-config.mjs';
-import { actionsTypes } from '../../../data/action/_module.mjs';
 
 const { TextEditor } = foundry.applications.ux;
 
@@ -169,71 +167,45 @@ export default class ClassSheet extends DHBaseItemSheet {
         doc.sheet.render({ force: true });
     }
 
-    //TODO: redo this
-    async selectActionType() {
-        const content = await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                { types: CONFIG.DH.ACTIONS.actionTypes }
-            ),
-            title = 'Select Action Type',
-            type = 'form',
-            data = {};
-        return Dialog.prompt({
-            title,
-            label: title,
-            content,
-            type,
-            callback: html => {
-                const form = html[0].querySelector('form'),
-                    fd = new foundry.applications.ux.FormDataExtended(form);
-                foundry.utils.mergeObject(data, fd.object, { inplace: true });
-
-                return data;
-            },
-            rejectClose: false
-        });
-    }
-
-    //TODO: redo this
     getActionPath(type) {
         return type === 'hope' ? 'hopeFeatures' : 'classFeatures';
     }
 
-    //TODO: redo this
     static async addFeature(_, target) {
         const actionPath = this.getActionPath(target.dataset.type);
-        const actionType = await this.selectActionType();
-        const cls = actionsTypes[actionType?.type] ?? actionsTypes.attack,
-            action = new cls(
-                {
-                    _id: foundry.utils.randomID(),
-                    systemPath: actionPath,
-                    type: actionType.type,
-                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType.type].name),
-                    ...cls.getSourceConfig(this.document)
-                },
-                {
-                    parent: this.document
-                }
-            );
-        await this.document.update({ [`system.${actionPath}`]: [...this.document.system[actionPath], action] });
-    }
-
-    //TODO: redo this
-    static async editFeature(_, target) {
-        const action = this.document.system[this.getActionPath(target.dataset.type)].find(
-            x => x._id === target.dataset.feature
-        );
-        await new DHActionConfig(action).render(true);
-    }
-
-    //TODO: redo this
-    static async deleteFeature(_, target) {
-        const actionPath = this.getActionPath(target.dataset.type);
+        const feature = await game.items.documentClass.create({
+            type: 'feature',
+            name: game.i18n.localize('DAGGERHEART.General.newFeature')
+        });
         await this.document.update({
-            [`system.${actionPath}`]: this.document.system[actionPath].filter(
-                action => action._id !== target.dataset.feature
-            )
+            [`system.${actionPath}`]: [
+                ...this.document.system[actionPath].filter(x => x).map(x => x.uuid),
+                feature.uuid
+            ]
+        });
+    }
+
+    static async editFeature(_, button) {
+        const target = button.closest('.feature-item');
+        const actionPath = this.getActionPath(button.dataset.type);
+        const feature = this.document.system[actionPath].find(x => x?.id === target.dataset.featureId);
+        if (!feature) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+            return;
+        }
+
+        feature.sheet.render(true);
+    }
+
+    static async deleteFeature(event, button) {
+        event.stopPropagation();
+        const target = button.closest('.feature-item');
+        const actionPath = this.getActionPath(button.dataset.type);
+
+        await this.document.update({
+            [`system.${actionPath}`]: this.document.system[actionPath]
+                .filter(feature => feature && feature.id !== target.dataset.featureId)
+                .map(x => x.uuid)
         });
     }
 }
