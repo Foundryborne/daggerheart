@@ -211,17 +211,18 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         return { primary: primaryTabs, secondary: secondaryTabs };
     }
 
+    /**@inheritdoc */
     async _onFirstRender(context, options) {
         await super._onFirstRender(context, options);
 
         this._createContextMenues();
-        this._createFilterMenus();
     }
 
     /** @inheritDoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
 
+        this._createFilterMenus();
         this._createSearchFilter();
     }
 
@@ -409,6 +410,10 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         }
     };
 
+    /* -------------------------------------------- */
+    /*  Search Inputs                               */
+    /* -------------------------------------------- */
+
     /**
      * Create and initialize search filter instances for the inventory and loadout sections.
      *
@@ -485,18 +490,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         }
     }
 
-    static async rollAttribute(event, button) {
-        const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
-        const config = {
-            event: event,
-            title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', { ability: abilityLabel }),
-            roll: {
-                trait: button.dataset.attribute
-            }
-        };
-        this.document.diceRoll(config);
-    }
-
     /* -------------------------------------------- */
     /*  Filter Menus                                */
     /* -------------------------------------------- */
@@ -571,6 +564,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             li.hidden = !(search.has(item.id) && matchesMenu);
         }
     }
+
     /* -------------------------------------------- */
 
     async mapFeatureType(data, configType) {
@@ -591,6 +585,18 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 };
             })
         );
+    }
+
+    static async rollAttribute(event, button) {
+        const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
+        const config = {
+            event: event,
+            title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', { ability: abilityLabel }),
+            roll: {
+                trait: button.dataset.attribute
+            }
+        };
+        this.document.diceRoll(config);
     }
 
     static async toggleMarks(_, button) {
