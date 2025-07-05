@@ -10,7 +10,7 @@
         <legend>{{localize tabs.features.label}}</legend>
         <ul class="feature-list">
             {{#each document.system.features as |feature|}}
-                <li class="feature-item">
+                <li class="feature-item" id="{{feature.id}}">
                     <img src="{{feature.img}}" alt="">
                     <div class="label">
                         <span>{{feature.name}}</span>

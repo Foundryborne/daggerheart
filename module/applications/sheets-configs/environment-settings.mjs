@@ -36,7 +36,8 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.category-container' },
-            { dragSelector: null, dropSelector: '.tab.features' }
+            { dragSelector: null, dropSelector: '.tab.features' },
+            { dragSelector: '.feature-item', dropSelector: null }
         ]
     };
 
@@ -106,6 +107,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     _createDragDropHandlers() {
         return this.options.dragDrop.map(d => {
             d.callbacks = {
+                dragstart: this._onDragStart.bind(this),
                 drop: this._onDrop.bind(this)
             };
             return new foundry.applications.ux.DragDrop.implementation(d);
@@ -175,8 +177,21 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
         this.render();
     }
 
+    async _onDragStart(event) {
+        const featureItem = event.currentTarget.closest('.feature-item');
+
+        if (featureItem) {
+            const feature = this.actor.items.get(featureItem.id);
+            const featureData = { type: 'Item', uuid: feature.uuid, fromInternal: true };
+            event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
+            event.dataTransfer.setDragImage(featureItem.querySelector('img'), 60, 0);
+        }
+    }
+
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        if (data.fromInternal) return;
+
         const item = await fromUuid(data.uuid);
         if (item.type === 'adversary' && event.target.closest('.category-container')) {
             const target = event.target.closest('.category-container');

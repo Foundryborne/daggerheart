@@ -32,7 +32,10 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             submitOnChange: true,
             closeOnSubmit: false
         },
-        dragDrop: [{ dragSelector: null, dropSelector: '.tab.features' }]
+        dragDrop: [
+            { dragSelector: null, dropSelector: '.tab.features' },
+            { dragSelector: '.feature-item', dropSelector: null }
+        ]
     };
 
     static PARTS = {
@@ -114,6 +117,7 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
     _createDragDropHandlers() {
         return this.options.dragDrop.map(d => {
             d.callbacks = {
+                dragstart: this._onDragStart.bind(this),
                 drop: this._onDrop.bind(this)
             };
             return new foundry.applications.ux.DragDrop.implementation(d);
@@ -170,8 +174,21 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
         this.render();
     }
 
+    async _onDragStart(event) {
+        const featureItem = event.currentTarget.closest('.feature-item');
+
+        if (featureItem) {
+            const feature = this.actor.items.get(featureItem.id);
+            const featureData = { type: 'Item', uuid: feature.uuid, fromInternal: true };
+            event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
+            event.dataTransfer.setDragImage(featureItem.querySelector('img'), 60, 0);
+        }
+    }
+
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        if (data.fromInternal) return;
+
         const item = await fromUuid(data.uuid);
         if (item.type === 'feature') {
             await this.actor.createEmbeddedDocuments('Item', [item]);
