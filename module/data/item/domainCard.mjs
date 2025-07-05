@@ -1,5 +1,5 @@
 import BaseDataItem from './base.mjs';
-import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
+import ActionField from '../fields/actionField.mjs';
 
 export default class DHDomainCard extends BaseDataItem {
     /** @inheritDoc */
@@ -30,7 +30,7 @@ export default class DHDomainCard extends BaseDataItem {
             }),
             foundation: new fields.BooleanField({ initial: false }),
             inVault: new fields.BooleanField({ initial: false }),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
+            actions: new fields.ArrayField(new ActionField())
         };
     }
 

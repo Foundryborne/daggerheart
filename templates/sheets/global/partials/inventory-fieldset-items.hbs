@@ -2,7 +2,7 @@
     <legend>{{title}}</legend>
     <ul class="items-list">
         {{#unless (eq cardView 'card') }}
-            {{#if (eq type 'domainCard')}}
+            {{#if (or (eq type 'domainCard') (eq type 'armor') (eq type 'consumable') (eq type 'miscellaneous') (eq type 'weapon'))}}
                 {{#each document.items as |item|}}
                     {{#if (eq item.type ../type)}}
                         {{#unless (and (eq ../type 'domainCard') (or (and item.system.inVault (not ../isVault)) (and (not item.system.inVault) ../isVault)))}}

@@ -1478,7 +1478,7 @@
                 "Features": "Features",
                 "Effects": "Effects",
                 "activeEffects": "Active Effects",
-                "inativeEffects": "Inative Effects"
+                "inactiveEffects": "Inactive Effects"
             },
             "DomainCard": {
                 "Type": "Type",

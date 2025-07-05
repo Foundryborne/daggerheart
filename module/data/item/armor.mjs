@@ -1,6 +1,6 @@
 import BaseDataItem from './base.mjs';
+import ActionField from '../fields/actionField.mjs';
 import { armorFeatures } from '../../config/itemConfig.mjs';
-import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
 export default class DHArmor extends BaseDataItem {
     /** @inheritDoc */
@@ -22,7 +22,7 @@ export default class DHArmor extends BaseDataItem {
             tier: new fields.NumberField({ required: true, integer: true, initial: 1, min: 1 }),
             equipped: new fields.BooleanField({ initial: false }),
             baseScore: new fields.NumberField({ integer: true, initial: 0 }),
-            armorFeatures: new fields.ArrayField(
+            features: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
                         required: true,
@@ -40,28 +40,32 @@ export default class DHArmor extends BaseDataItem {
                 major: new fields.NumberField({ integer: true, initial: 0 }),
                 severe: new fields.NumberField({ integer: true, initial: 0 })
             }),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
+            actions: new fields.ArrayField(new ActionField())
         };
+    }
+
+    get featureInfo() {
+        return this.feature ? CONFIG.DH.ITEM.armorFeatures[this.feature] : null;
     }
 
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
-        if (changes.system?.armorFeatures) {
-            const removed = this.armorFeatures.filter(x => !changes.system.armorFeatures.includes(x));
-            const added = changes.system.armorFeatures.filter(x => !this.armorFeatures.includes(x));
+        if (changes.system.features) {
+            const removed = this.features.filter(x => !changes.system.features.includes(x));
+            const added = changes.system.features.filter(x => !this.features.includes(x));
 
-            for (var armorFeature of removed) {
-                for (var effectId of armorFeature.effectIds) {
+            for (var feature of removed) {
+                for (var effectId of feature.effectIds) {
                     await this.parent.effects.get(effectId).delete();
                 }
 
-                changes.system.actions = this.actions.filter(x => !armorFeature.actionIds.includes(x._id));
+                changes.system.actions = this.actions.filter(x => !feature.actionIds.includes(x._id));
             }
 
-            for (var armorFeature of added) {
-                const featureData = armorFeatures[armorFeature.value];
+            for (var feature of added) {
+                const featureData = armorFeatures[feature.value];
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments('ActiveEffect', [
                         {
@@ -70,7 +74,7 @@ export default class DHArmor extends BaseDataItem {
                             changes: featureData.effects.flatMap(x => x.changes)
                         }
                     ]);
-                    armorFeature.effectIds = embeddedItems.map(x => x.id);
+                    feature.effectIds = embeddedItems.map(x => x.id);
                 }
                 if (featureData.actions?.length > 0) {
                     const newActions = featureData.actions.map(action => {
@@ -81,7 +85,7 @@ export default class DHArmor extends BaseDataItem {
                         );
                     });
                     changes.system.actions = [...this.actions, ...newActions];
-                    armorFeature.actionIds = newActions.map(x => x._id);
+                    feature.actionIds = newActions.map(x => x._id);
                 }
             }
         }

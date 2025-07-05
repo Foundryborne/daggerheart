@@ -1,5 +1,5 @@
 import BaseDataItem from './base.mjs';
-import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
+import ActionField from '../fields/actionField.mjs';
 
 export default class DHMiscellaneous extends BaseDataItem {
     /** @inheritDoc */
@@ -15,9 +15,10 @@ export default class DHMiscellaneous extends BaseDataItem {
 
     /** @inheritDoc */
     static defineSchema() {
+        const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
+            actions: new fields.ArrayField(new ActionField())
         };
     }
 }

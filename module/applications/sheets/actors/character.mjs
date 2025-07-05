@@ -307,9 +307,13 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     getItem(element) {
         const listElement = (element.target ?? element).closest('[data-item-id]');
         const itemId = listElement.dataset.itemId;
-        return listElement.dataset.type === 'effect'
-            ? this.document.effects.get(itemId)
-            : this.document.items.get(itemId);
+
+        switch (listElement.dataset.type) {
+            case 'effect':
+                return this.document.effects.get(itemId);
+            default:
+                return this.document.items.get(itemId);
+        }
     }
 
     static triggerContextMenu(event, button) {

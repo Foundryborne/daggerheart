@@ -12,9 +12,9 @@ export default class MiscellaneousSheet extends DHBaseItemSheet {
         header: { template: 'systems/daggerheart/templates/sheets/items/miscellaneous/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
-        features: {
-            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-features.hbs',
-            scrollable: ['.features']
+        actions: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-actions.hbs',
+            scrollable: ['.actions']
         },
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/miscellaneous/settings.hbs',

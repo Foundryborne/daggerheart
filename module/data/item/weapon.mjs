@@ -1,6 +1,6 @@
 import BaseDataItem from './base.mjs';
 import { actionsTypes } from '../action/_module.mjs';
-import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
+import ActionField from '../fields/actionField.mjs';
 
 export default class DHWeapon extends BaseDataItem {
     /** @inheritDoc */
@@ -38,7 +38,7 @@ export default class DHWeapon extends BaseDataItem {
                     initial: 'physical'
                 })
             }),
-            weaponFeatures: new fields.ArrayField(
+            features: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
                         required: true,
@@ -49,7 +49,7 @@ export default class DHWeapon extends BaseDataItem {
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
             ),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
+            actions: new fields.ArrayField(new ActionField())
         };
     }
 
@@ -57,9 +57,9 @@ export default class DHWeapon extends BaseDataItem {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
-        if (changes.system?.weaponFeatures) {
-            const removed = this.weaponFeatures.filter(x => !changes.system.weaponFeatures.includes(x));
-            const added = changes.system.weaponFeatures.filter(x => !this.weaponFeatures.includes(x));
+        if (changes.system?.features) {
+            const removed = this.features.filter(x => !changes.system.features.includes(x));
+            const added = changes.system.features.filter(x => !this.features.includes(x));
 
             for (var weaponFeature of removed) {
                 for (var effectId of weaponFeature.effectIds) {
