@@ -44,7 +44,7 @@ export default class DamageSelectionDialog extends HandlebarsApplicationMixin(Ap
     static PARTS = {
         damageSelection: {
             id: 'damageSelection',
-            template: 'systems/daggerheart/templates/dialogs/damageSelection.hbs'
+            template: 'systems/daggerheart/templates/dialogs/dice-roll/damageSelection.hbs'
         }
     };
 

@@ -85,7 +85,8 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
     static async reactionRoll(event) {
         const config = {
             event: event,
-            title: `${this.actor.name} - Reaction Roll`,
+            title: `Reaction Roll: ${this.actor.name}`,
+            headerTitle: 'Adversary Reaction Roll',
             roll: {
                 // modifier: null,
                 type: 'reaction'

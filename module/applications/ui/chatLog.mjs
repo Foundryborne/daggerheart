@@ -50,13 +50,13 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             element.addEventListener('mouseenter', this.hoverAdvantage)
         );
         html.querySelectorAll('.advantage').forEach(element =>
-            element.addEventListener('click', event => this.selectAdvantage.bind(this)(event, data.message))
+            element.addEventListener('click', event => this.selectAdvantage.call(this, event, data.message))
         );
         html.querySelectorAll('.ability-use-button').forEach(element =>
-            element.addEventListener('click', event => this.abilityUseButton.bind(this)(event, data.message))
+            element.addEventListener('click', event => this.abilityUseButton.call(this, event, data.message))
         );
         html.querySelectorAll('.action-use-button').forEach(element =>
-            element.addEventListener('click', event => this.actionUseButton.bind(this)(event, data.message))
+            element.addEventListener('click', event => this.actionUseButton.call(this, event, data.message))
         );
     };
 
@@ -156,8 +156,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     getTargetList = (event, message) => {
         const targetSelection = event.target
-                .closest('.message-content')
-                .querySelector('.button-target-selection.target-selected'),
+            .closest('.message-content')
+            .querySelector('.button-target-selection.target-selected'),
             isHit = Boolean(targetSelection.dataset.targetHit);
         return {
             isHit,
@@ -229,24 +229,54 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
     };
 
-    onToggleTargets = async event => {
+    /**
+     * Toggle visibility of target containers.
+     * @param {MouseEvent} event
+     */
+    onToggleTargets(event) {
         event.stopPropagation();
-        $($(event.currentTarget).parent()).find('.target-container').toggleClass('hidden');
-    };
+        event.currentTarget.parentElement
+            ?.querySelectorAll('.target-container')
+            .forEach(el => el.classList.toggle('hidden'));
+    }
 
-    hoverAdvantage = event => {
-        $(event.currentTarget).siblings('.advantage').toggleClass('unused');
-    };
+    /**
+     * Highlight advantage icons on hover.
+     * @param {MouseEvent} event
+     */
+    hoverAdvantage(event) {
+        const parent = event.currentTarget.parentElement;
+        if (!parent) return;
 
-    selectAdvantage = async (event, message) => {
+        parent.querySelectorAll('.advantage').forEach(el => {
+            if (el !== event.currentTarget) {
+                el.classList.toggle('unused');
+            }
+        });
+    }
+
+
+    /**
+     * Handle selecting an advantage and disable further selection.
+     * @param {MouseEvent} event
+     * @param {object} message
+     */
+    async selectAdvantage(event, message) {
         event.stopPropagation();
 
         const updateMessage = game.messages.get(message._id);
-        await updateMessage.update({ system: { advantageSelected: event.currentTarget.id === 'hope' ? 1 : 2 } });
+        await updateMessage?.update({
+            system: { advantageSelected: event.currentTarget.id === 'hope' ? 1 : 2 }
+        });
 
-        $(event.currentTarget).siblings('.advantage').off('click');
-        $(event.currentTarget).off('click');
-    };
+        const parent = event.currentTarget.parentElement;
+        if (!parent) return;
+
+        parent.querySelectorAll('.advantage').forEach(el => {
+            el.replaceWith(el.cloneNode(true));
+        });
+    }
+
 
     abilityUseButton = async (event, message) => {
         event.stopPropagation();

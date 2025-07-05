@@ -1,4 +1,4 @@
-// import { actionsTypes } from '../action/_module.mjs';
+import { actionsTypes } from '../action/_module.mjs';
 
 /**
  * Describes metadata about the item data model type
@@ -55,24 +55,28 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return data;
     }
 
+    /**@inheritdoc */
     async _preCreate(data, options, user) {
+        // Skip if no initial action is required or actions already exist
         if (!this.constructor.metadata.hasInitialAction || !foundry.utils.isEmpty(this.actions)) return;
-        const actionType = {
-                weapon: 'attack'
-            }[this.constructor.metadata.type],
-            cls = game.system.api.models.actionsTypes[actionType],
-            // cls = actionsTypes.attack,
-            action = new cls(
-                {
-                    _id: foundry.utils.randomID(),
-                    type: actionType,
-                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
-                    ...cls.getSourceConfig(this.parent)
-                },
-                {
-                    parent: this.parent
-                }
-            );
+
+        const metadataType = this.constructor.metadata.type;
+        const actionType = { weapon: "attack" }[metadataType];
+        const ActionClass = actionsTypes[actionType];
+
+        const action = new ActionClass(
+            {
+                _id: foundry.utils.randomID(),
+                type: actionType,
+                name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
+                ...ActionClass.getSourceConfig(this.parent)
+            },
+            {
+                parent: this.parent
+            }
+        );
+
         this.updateSource({ actions: [action] });
     }
+
 }

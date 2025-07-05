@@ -1,0 +1,128 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.daggerheart.dialog.dh-style.views.roll-selection {
+    .roll-dialog-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .dices-section {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+
+            .dice-option {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                width: 120px;
+
+                .dice-icon {
+                    width: 70px;
+                    height: 70px;
+                    object-fit: contain;
+                }
+                .dice-select {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    height: 32px;
+
+                    .label {
+                        font-family: @font-subtitle;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 19px;
+
+                        color: light-dark(@dark, @beige);
+                    }
+                }
+            }
+        }
+
+        .experience-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+
+            .experience-chip {
+                display: flex;
+                align-items: center;
+                border-radius: 5px;
+                width: fit-content;
+                gap: 5px;
+                cursor: pointer;
+                padding: 5px;
+                background: light-dark(@dark-blue-10, @golden-10);
+                color: light-dark(@dark-blue, @golden);
+
+                .label {
+                    font-family: @font-body;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 17px;
+                }
+
+                &.selected {
+                    background: light-dark(@dark-blue-40, @golden-40);
+                }
+            }
+        }
+
+        .modifier-container {
+            .advantage-chip,
+            .disadvantage-chip {
+                display: flex;
+                align-items: center;
+                border-radius: 5px;
+                width: fit-content;
+                gap: 5px;
+                cursor: pointer;
+                padding: 5px;
+                transition: all 0.3s ease;
+
+                .label {
+                    font-family: @font-body;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 17px;
+                }
+            }
+
+            .advantage-chip {
+                background: @green-10;
+                color: @green;
+
+                &.selected {
+                    color: @beige;
+                    background: @gradient-green;
+                }
+            }
+
+            .disadvantage-chip {
+                background: @red-10;
+                color: @red;
+
+                &.selected {
+                    color: @beige;
+                    background: @gradient-red;
+                }
+            }
+        }
+
+        .formula-label {
+            font-family: @font-body;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+
+            color: light-dark(@dark, @beige);
+        }
+    }
+}

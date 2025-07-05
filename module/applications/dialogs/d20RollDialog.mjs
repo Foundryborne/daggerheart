@@ -20,10 +20,12 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     static DEFAULT_OPTIONS = {
         tag: 'form',
         id: 'roll-selection',
-        classes: ['daggerheart', 'views', 'roll-selection'],
+        classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'roll-selection'],
         position: {
-            width: 400,
-            height: 'auto'
+            width: 550
+        },
+        window: {
+            icon: 'fa-solid fa-dice'
         },
         actions: {
             updateIsAdvantage: this.updateIsAdvantage,
@@ -37,20 +39,29 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }
     };
 
+    get title() {
+        return this.config.title;
+    }
+
     /** @override */
     static PARTS = {
-        costSelection: {
-            id: 'costSelection',
-            template: 'systems/daggerheart/templates/dialogs/costSelection.hbs'
+        header: {
+            id: 'header',
+            template: 'systems/daggerheart/templates/dialogs/dice-roll/header.hbs'
         },
         rollSelection: {
             id: 'rollSelection',
-            template: 'systems/daggerheart/templates/dialogs/rollSelection.hbs'
+            template: 'systems/daggerheart/templates/dialogs/dice-roll/rollSelection.hbs'
+        },
+        costSelection: {
+            id: 'costSelection',
+            template: 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'
         }
     };
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
+        context.rollConfig = this.config;
         context.hasRoll = !!this.config.roll;
         context.roll = this.roll;
         context.rollType = this.roll?.constructor.name;
@@ -60,6 +71,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }));
         context.selectedExperiences = this.config.experiences;
         context.advantage = this.config.roll?.advantage;
+        context.disadvantage = this.config.roll?.disadvantage;
         context.diceOptions = CONFIG.DH.GENERAL.diceTypes;
         context.canRoll = true;
         context.isLite = this.config.roll?.lite;
@@ -75,7 +87,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }
         context.extraFormula = this.config.extraFormula;
         context.formula = this.roll.constructFormula(this.config);
-
         return context;
     }
 
@@ -96,6 +107,9 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     static updateIsAdvantage(_, button) {
         const advantage = Number(button.dataset.advantage);
+        this.advantage = advantage === 1;
+        this.disadvantage = advantage === -1;
+
         this.config.roll.advantage = this.config.roll.advantage === advantage ? 0 : advantage;
         this.render();
     }
