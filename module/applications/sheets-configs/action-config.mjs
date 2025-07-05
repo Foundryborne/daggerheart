@@ -9,10 +9,18 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         this.openSection = null;
     }
 
+    get title() {
+        return `${game.i18n.localize('DAGGERHEART.Sheets.TABS.settings')}: ${this.action.name}`;
+    }
+
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'daggerheart-action',
-        classes: ['daggerheart', 'views', 'action'],
+        classes: ['daggerheart', 'dh-style', 'dialog'],
+        // classes: ['daggerheart', 'views', 'action'],
+        window: {
+            icon: 'fa-solid fa-wrench',
+            resizable: false
+        },
         position: { width: 600, height: 'auto' },
         actions: {
             toggleSection: this.toggleSection,
@@ -32,21 +40,55 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     };
 
     static PARTS = {
-        form: {
+        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
+        base: {
+            id: 'base',
+            template: 'systems/daggerheart/templates/sheets-settings/action-settings/base.hbs'
+        },
+        configuration: {
+            id: 'configuration',
+            template: 'systems/daggerheart/templates/sheets-settings/action-settings/configuration.hbs'
+        },
+        effect: {
+            id: 'effect',
+            template: 'systems/daggerheart/templates/sheets-settings/action-settings/effect.hbs'
+        }
+        /* form: {
             id: 'action',
             template: 'systems/daggerheart/templates/config/action.hbs'
-        }
+        } */
     };
+
+    static TABS = {
+        base: {
+            active: true,
+            cssClass: '',
+            group: 'primary',
+            id: 'base',
+            icon: null,
+            label: 'Base'
+        },
+        config: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'config',
+            icon: null,
+            label: 'Configuration'
+        },
+        effect: {
+            active: false,
+            cssClass: '',
+            group: 'primary',
+            id: 'effect',
+            icon: null,
+            label: 'Effect'
+        }
+    }
 
     static CLEAN_ARRAYS = ['damage.parts', 'cost', 'effects'];
 
-    _getTabs() {
-        const tabs = {
-            base: { active: true, cssClass: '', group: 'primary', id: 'base', icon: null, label: 'Base' },
-            config: { active: false, cssClass: '', group: 'primary', id: 'config', icon: null, label: 'Configuration' },
-            effect: { active: false, cssClass: '', group: 'primary', id: 'effect', icon: null, label: 'Effect' }
-        };
-
+    _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
             v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
             v.cssClass = v.active ? 'active' : '';
@@ -59,7 +101,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         const context = await super._prepareContext(_options, 'action');
         context.source = this.action.toObject(false);
         context.openSection = this.openSection;
-        context.tabs = this._getTabs();
+        context.tabs = this._getTabs(this.constructor.TABS);
         context.config = CONFIG.DH;
         if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
         if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack')
@@ -130,7 +172,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     static addElement(event) {
         const data = this.action.toObject(),
-            key = event.target.closest('.action-category-data').dataset.key;
+            key = event.target.closest('[data-key]').dataset.key;
         if (!this.action[key]) return;
         data[key].push({});
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
@@ -139,7 +181,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     static removeElement(event) {
         event.stopPropagation();
         const data = this.action.toObject(),
-            key = event.target.closest('.action-category-data').dataset.key,
+            key = event.target.closest('[data-key]').dataset.key,
             index = event.target.dataset.index;
         data[key].splice(index, 1);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });

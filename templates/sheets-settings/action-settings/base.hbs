@@ -1,0 +1,17 @@
+<section 
+    class="tab {{this.tabs.base.cssClass}}"
+    data-group="primary"
+    data-tab="base"
+>
+    <fieldset class="one-column">
+        <legend>Identity</legend>
+        {{formField fields.name value=source.name label="Name" name="name"}}
+        {{formField fields.img value=source.img label="Icon" name="img"}}
+        {{formField fields.actionType value=source.actionType label="Type" name="actionType" localize=true}}
+        {{formField fields.chatDisplay value=source.chatDisplay name="chatDisplay" classes="checkbox"}}
+    </fieldset>
+    <fieldset class="action-category">
+        <legend>Description</legend>
+        {{formInput fields.description value=source.description name="description" }}
+    </fieldset>
+</section>

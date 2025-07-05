@@ -1,0 +1,14 @@
+<section 
+    class="tab {{this.tabs.effect.cssClass}}"
+    data-group="primary"
+    data-tab="effect"
+>
+    {{#if fields.roll}}{{> 'systems/daggerheart/templates/actionTypes/roll.hbs' fields=fields.roll.fields source=source.roll}}{{/if}}
+    {{#if fields.save}}{{> 'systems/daggerheart/templates/actionTypes/save.hbs' fields=fields.save.fields source=source.save}}{{/if}}
+    {{#if fields.damage}}{{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=fields.damage.fields.parts.element.fields source=source.damage}}{{/if}}
+    {{#if fields.healing}}{{> 'systems/daggerheart/templates/actionTypes/healing.hbs' fields=fields.healing.fields source=source.healing}}{{/if}}
+    {{#if fields.resource}}{{> 'systems/daggerheart/templates/actionTypes/resource.hbs' fields=fields.resource.fields source=source.resource}}{{/if}}
+    {{#if fields.documentUUID}}{{> 'systems/daggerheart/templates/actionTypes/uuid.hbs' fields=fields.documentUUID source=source.documentUUID}}{{/if}}
+    {{#if fields.effects}}{{> 'systems/daggerheart/templates/actionTypes/effect.hbs' fields=fields.effects.element.fields source=source.effects}}{{/if}}
+    {{#if fields.beastform}}{{> 'systems/daggerheart/templates/actionTypes/beastform.hbs' fields=fields.effects.element.fields source=source.beastform}}{{/if}}
+</section>
