@@ -205,7 +205,7 @@ export default class DhCharacter extends BaseDataActor {
             companionFeatures = [],
             features = [];
 
-        for (var item of this.parent.items) {
+        for (let item of this.parent.items) {
             if (item.system.type === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
                 ancestryFeatures.push(item);
             } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.community.id) {

@@ -127,7 +127,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
         await this.actor.createEmbeddedDocuments('Item', [
             {
                 type: 'feature',
-                name: game.i18n.localize('DAGGERHEART.General.newFeature'),
+                name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') }),
                 img: 'icons/magic/perception/orb-crystal-ball-scrying-blue.webp'
             }
         ]);

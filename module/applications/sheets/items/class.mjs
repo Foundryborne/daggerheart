@@ -175,7 +175,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         const actionPath = this.getActionPath(target.dataset.type);
         const feature = await game.items.documentClass.create({
             type: 'feature',
-            name: game.i18n.localize('DAGGERHEART.General.newFeature')
+            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') })
         });
         await this.document.update({
             [`system.${actionPath}`]: [

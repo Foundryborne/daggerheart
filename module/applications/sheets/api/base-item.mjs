@@ -153,7 +153,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static async #addFeature(_event, _button) {
         const feature = await game.items.documentClass.create({
             type: 'feature',
-            name: game.i18n.localize('DAGGERHEART.General.newFeature')
+            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') })
         });
         await this.document.update({
             'system.features': [...this.document.system.features.filter(x => x).map(x => x.uuid), feature.uuid]

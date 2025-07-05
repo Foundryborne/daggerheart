@@ -40,7 +40,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
     static async addFeature(_, target) {
         const feature = await game.items.documentClass.create({
             type: 'feature',
-            name: game.i18n.localize('DAGGERHEART.General.newFeature')
+            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') })
         });
         await this.document.update({
             [`system.${target.dataset.type}`]: feature.uuid
