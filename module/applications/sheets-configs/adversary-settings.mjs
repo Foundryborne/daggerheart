@@ -5,6 +5,7 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
         super({});
 
         this.actor = actor;
+        this._dragDrop = this._createDragDropHandlers();
     }
 
     get title() {
@@ -30,7 +31,8 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             handler: this.updateForm,
             submitOnChange: true,
             closeOnSubmit: false
-        }
+        },
+        dragDrop: [{ dragSelector: null, dropSelector: '.tab.features' }]
     };
 
     static PARTS = {
@@ -103,6 +105,21 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
         return context;
     }
 
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        this._dragDrop.forEach(d => d.bind(htmlElement));
+    }
+
+    _createDragDropHandlers() {
+        return this.options.dragDrop.map(d => {
+            d.callbacks = {
+                drop: this._onDrop.bind(this)
+            };
+            return new foundry.applications.ux.DragDrop.implementation(d);
+        });
+    }
+
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
             v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
@@ -151,5 +168,14 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
     static async updateForm(event, _, formData) {
         await this.actor.update(formData.object);
         this.render();
+    }
+
+    async _onDrop(event) {
+        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        const item = await fromUuid(data.uuid);
+        if (item.type === 'feature') {
+            await this.actor.createEmbeddedDocuments('Item', [item]);
+            this.render();
+        }
     }
 }

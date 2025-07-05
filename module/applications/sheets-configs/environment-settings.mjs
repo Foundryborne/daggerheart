@@ -34,7 +34,10 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
             submitOnChange: true,
             closeOnSubmit: false
         },
-        dragDrop: [{ dragSelector: null, dropSelector: '.category-container' }]
+        dragDrop: [
+            { dragSelector: null, dropSelector: '.category-container' },
+            { dragSelector: null, dropSelector: '.tab.features' }
+        ]
     };
 
     static PARTS = {
@@ -175,13 +178,16 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const item = await fromUuid(data.uuid);
-        if (item.type === 'adversary') {
+        if (item.type === 'adversary' && event.target.closest('.category-container')) {
             const target = event.target.closest('.category-container');
             const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
             const current = foundry.utils.getProperty(this.actor, path).map(x => x.uuid);
             await this.actor.update({
                 [path]: [...current, item.uuid]
             });
+            this.render();
+        } else if (item.type === 'feature' && event.target.closest('.tab.features')) {
+            await this.actor.createEmbeddedDocuments('Item', [item]);
             this.render();
         }
     }
