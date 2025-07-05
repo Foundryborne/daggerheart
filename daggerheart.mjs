@@ -124,7 +124,7 @@ Hooks.once('init', () => {
     CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 
     CONFIG.ui.resources = applications.ui.DhFearTracker;
-    CONFIG.ux.ContextMenu = applications.ux.ContextMenu;
+    CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
     CONFIG.ux.TooltipManager = documents.DhTooltipManager;
 
     game.socket.on(`system.${SYSTEM.id}`, socketRegistration.handleSocketEvent);
