@@ -132,7 +132,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     disableOption(index, options, choices) {
         const filtered = foundry.utils.deepClone(options);
         Object.keys(filtered).forEach(o => {
-            if (choices.find((c, idx) => c.type === o && index !== idx)) delete filtered[o];
+            if (choices.find((c, idx) => c.type === o && index !== idx)) filtered[o].disabled = true;
         });
         return filtered;
     }
@@ -181,11 +181,11 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-    static removeElement(event) {
+    static removeElement(event, button) {
         event.stopPropagation();
         const data = this.action.toObject(),
             key = event.target.closest('[data-key]').dataset.key,
-            index = event.target.dataset.index;
+            index = button.dataset.index;
         data[key].splice(index, 1);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
@@ -197,10 +197,10 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 
-    static removeDamage(event) {
+    static removeDamage(event, button) {
         if (!this.action.damage.parts) return;
         const data = this.action.toObject(),
-            index = event.target.dataset.index;
+            index = button.dataset.index;
         data.damage.parts.splice(index, 1);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
@@ -229,9 +229,9 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         };
     }
 
-    static removeEffect(event) {
+    static removeEffect(event, button) {
         if (!this.action.effects) return;
-        const index = event.target.dataset.index,
+        const index = button.dataset.index,
             effectId = this.action.effects[index]._id;
         this.constructor.removeElement.bind(this)(event);
         this.action.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);

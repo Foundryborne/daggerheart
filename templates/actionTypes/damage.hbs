@@ -32,17 +32,17 @@
                         {{/if}}
                         {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base) dmg.resultBased)}}
                             <div class="nest-inputs">
-                                <fieldset>
+                                <fieldset class="one-column">
                                     <legend>With Hope</legend>
                                     {{> formula fields=../../fields.value.fields type=../../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
                                 </fieldset>
-                                <fieldset>
+                                <fieldset class="one-column">
                                     <legend>With Fear</legend>
                                     {{> formula fields=../../fields.valueAlt.fields type=../../fields.type dmg=dmg source=dmg.valueAlt target="valueAlt" realIndex=realIndex}}
                                 </fieldset>
                             </div>
                         {{else}}
-                            <fieldset{{#if dmg.base}} disabled{{/if}}>
+                            <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column">
                                 {{> formula fields=../../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
                             </fieldset>
                         {{/if}}
