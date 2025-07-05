@@ -966,29 +966,6 @@
                 "Description": "This weapon can also be used with these statistics—{characterTrait}, {range}, {damage}."
             }
         },
-        "Feature": {
-            "Type": {
-                "ancestry": "Ancestry",
-                "community": "Community",
-                "class": "Class",
-                "subclass": "Subclass",
-                "classHope": "Class Hope",
-                "domainCard": "Domain Card",
-                "equipment": "Equipment"
-            },
-            "ValueType": {
-                "Normal": "Normal",
-                "Input": "Input",
-                "Dice": "Dice"
-            },
-            "Max": "Max",
-            "NewEffect": "New Effect"
-        },
-        "FeatureType": {
-            "Normal": "Normal",
-            "Input": "Input",
-            "Ticks": "Ticks"
-        },
         "Application": {
             "Downtime": {
                 "TakeDowntime": "Take Downtime"

@@ -656,31 +656,47 @@ export const weaponFeatures = {
 export const featureTypes = {
     ancestry: {
         id: 'ancestry',
-        label: 'DAGGERHEART.Feature.Type.ancestry'
+        label: 'TYPES.Item.ancestry'
     },
     community: {
         id: 'community',
-        label: 'DAGGERHEART.Feature.Type.community'
+        label: 'TYPES.Item.community'
+    },
+    companion: {
+        id: 'companion',
+        label: 'TYPES.Actor.companion'
     },
     class: {
         id: 'class',
-        label: 'DAGGERHEART.Feature.Type.class'
+        label: 'TYPES.Item.class'
     },
     subclass: {
         id: 'subclass',
-        label: 'DAGGERHEART.Feature.Type.subclass'
-    },
-    classHope: {
-        id: 'classHope',
-        label: 'DAGGERHEART.Feature.Type.classHope'
+        label: 'TYPES.Item.subclass'
     },
     domainCard: {
         id: 'domainCard',
-        label: 'DAGGERHEART.Feature.Type.domainCard'
+        label: 'TYPES.Item.domainCard'
     },
-    equipment: {
-        id: 'equipment',
-        label: 'DAGGERHEART.Feature.Type.equipment'
+    armor: {
+        id: 'armor',
+        label: 'TYPES.Item.armor'
+    },
+    weapon: {
+        id: 'weapon',
+        label: 'TYPES.Item.weapon'
+    },
+    consumable: {
+        id: 'consumable',
+        label: 'TYPES.Item.consumable'
+    },
+    miscellaneous: {
+        id: 'miscellaneous',
+        label: 'TYPES.Item.miscellaneous'
+    },
+    beastform: {
+        if: 'beastform',
+        label: 'TYPES.Item.beastform'
     }
 };
 

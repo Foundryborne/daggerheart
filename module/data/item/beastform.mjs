@@ -39,10 +39,7 @@ export default class DHBeastform extends BaseDataItem {
         };
     }
 
-    async _preCreate(data, options, user) {
-        const allowed = await super._preCreate(data, options, user);
-        if (allowed === false) return;
-
+    async _preCreate() {
         if (!this.actor) return;
 
         if (this.actor.type !== 'character') {

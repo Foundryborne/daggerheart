@@ -349,8 +349,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     }
 
     static async finish() {
-        const embeddedAncestries = await this.character.createEmbeddedDocuments('Item', [this.setup.ancestry]);
-        const embeddedCommunities = await this.character.createEmbeddedDocuments('Item', [this.setup.community]);
+        await this.character.createEmbeddedDocuments('Item', [this.setup.ancestry]);
+        await this.character.createEmbeddedDocuments('Item', [this.setup.community]);
         await this.character.createEmbeddedDocuments('Item', [this.setup.class]);
         await this.character.createEmbeddedDocuments('Item', [this.setup.subclass]);
         await this.character.createEmbeddedDocuments('Item', Object.values(this.setup.domainCards));
@@ -379,9 +379,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         await this.character.update({
             system: {
                 traits: this.setup.traits,
-                experiences: this.setup.experiences,
-                ancestry: embeddedAncestries[0].uuid,
-                community: embeddedCommunities[0].uuid
+                experiences: this.setup.experiences
             }
         });
 

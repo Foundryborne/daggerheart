@@ -4,7 +4,12 @@
     data-group='{{tabs.features.group}}'
 >
     <div class="features-sections">
-        {{#if document.system.class.value}}
+        {{#each document.system.sheetLists}}
+            {{#if this.values}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=this.title values=this.values}}
+            {{/if}}
+        {{/each}}
+        {{!-- {{#if document.system.class.value}}
             {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(concat (localize 'TYPES.Item.class') ' - ' document.system.class.value.name) type='class'}}
         {{/if}}
         {{#if document.system.class.subclass}}
@@ -21,6 +26,6 @@
         {{/if}}
         {{#if document.system.ancestry}}
             {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(concat (localize 'TYPES.Item.ancestry') ' - ' document.system.ancestry.name) type='ancestry'}}
-        {{/if}}
+        {{/if}} --}}
     </div>
 </section>

@@ -31,11 +31,11 @@ export default class DHSubclass extends BaseDataItem {
     }
 
     get features() {
-        return {
-            foundation: this.foundationFeature,
-            specialization: this.featureState >= 2 ? this.specializationFeature : null,
-            mastery: this.featureState === 3 ? this.masteryFeature : null
-        };
+        return [
+            { ...this.foundationFeature.toObject(), identifier: 'foundationFeature' },
+            { ...this.specializationFeature.toObject(), identifier: 'specializationFeature' },
+            { ...this.masteryFeature.toObject(), identifier: 'masteryFeature' }
+        ];
     }
 
     async _preCreate(data, options, user) {

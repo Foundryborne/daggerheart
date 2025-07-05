@@ -56,6 +56,10 @@ export default class DHClass extends BaseDataItem {
         return this.hopeFeatures.length > 0 ? this.hopeFeatures[0] : null;
     }
 
+    get features() {
+        return [...this.hopeFeatures.filter(x => x), ...this.classFeatures.filter(x => x)];
+    }
+
     async _preCreate(data, options, user) {
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return;

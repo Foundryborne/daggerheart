@@ -16,6 +16,9 @@ export default class DHFeature extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
+            type: new fields.StringField({ choices: CONFIG.DH.ITEM.featureTypes, nullable: true, initial: null }),
+            originId: new fields.StringField({ nullable: true, initial: null }),
+            identifier: new fields.StringField(),
             actions: new fields.ArrayField(new ActionField())
         };
     }

@@ -2,51 +2,29 @@
     <legend>{{title}}</legend>
     <ul class="items-list">
         {{#unless (eq cardView 'card') }}
-            {{#each document.items as |item|}}
-                {{#if (eq item.type ../type)}}
-                    {{#unless (or (eq ../type 'ancestry') (eq item.type 'class') (eq item.type 'subclass') (and (eq ../type 'domainCard') (or (and item.system.inVault (not ../isVault)) (and (not item.system.inVault) ../isVault))))}}
-                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=item type=../type}}
-                    {{/unless}}
+            {{#if (eq type 'domainCard')}}
+                {{#each document.items as |item|}}
+                    {{#if (eq item.type ../type)}}
+                        {{#unless (and (eq ../type 'domainCard') (or (and item.system.inVault (not ../isVault)) (and (not item.system.inVault) ../isVault)))}}
+                            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=item type=../type}}
+                        {{/unless}}
+                    {{/if}}
+                {{/each}}
+            {{else}}
+                {{#if (eq type 'effect')}}
+                    {{#each document.effects as |effect|}}
+                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=effect type=../type}}
+                    {{/each}}
+                {{else}}
+                    {{#each values}}
+                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=this type=../type }}
+                    {{/each}}
+                    
+                    {{#each adversaries as |adversary|}}
+                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=adversary type='adversary' hideControls=true isActor=true categoryAdversary=@../key}}
+                    {{/each}}
                 {{/if}}
-            {{/each}}
-            {{#each document.system.ancestry.system.actions as |action|}}
-                {{#if (or (eq ../type 'ancestry'))}}
-                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=action type=../type}}
-                {{/if}}
-            {{/each}}
-            {{#each document.system.class.value.system.classFeatures as |classFeature|}}
-                {{#if (or (eq ../type 'class'))}}
-                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=classFeature type=../type}}
-                {{/if}}
-            {{/each}}
-            {{#each document.system.class.value.system.classFeatures as |classFeature|}}
-                {{#if (or (eq ../type 'class'))}}
-                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=classFeature type=../type}}
-                {{/if}}
-            {{/each}}
-            {{#each document.appliedEffects as |effect|}}
-                {{#if (or (eq ../type 'effect'))}}
-                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=effect type=../type}}
-                {{/if}}
-            {{/each}}
-            {{#each document.system.actions as |action|}}
-                {{#if (or (eq ../type 'action'))}}
-                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=action type=../type}}
-                {{/if}}
-            {{/each}}
-            {{#each document.system.features as |feature|}}
-                {{#if (or (eq ../type 'features'))}}
-                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=feature}}
-                {{/if}}
-            {{/each}}
-            {{#each document.system.companionFeatures as |feature|}}
-                {{#if (or (eq ../type 'companionFeatures'))}}
-                    {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=feature companion=true}}
-                {{/if}}
-            {{/each}}
-            {{#each adversaries as |adversary|}}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=adversary type='adversary' hideControls=true isActor=true categoryAdversary=@../key}}
-            {{/each}}
+            {{/if}}
         {{/unless}}
         
     </ul>
