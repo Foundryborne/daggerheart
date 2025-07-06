@@ -137,37 +137,30 @@ export default class DHRoll extends Roll {
 }
 
 export const registerRollDiceHooks = () => {
-    Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async(config, message) => {
-        if(!game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hope || config.roll.type !== 'action') return;
+    Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async (config, message) => {
+        if (
+            !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hope ||
+            config.roll.type === 'reaction'
+        )
+            return;
 
         const actor = await fromUuid(config.source.actor),
             updates = [];
-        if(!actor) return;
-        if(config.roll.isCritical || config.roll.result.duality === 1)
-            updates.push(
-                { type: 'hope', value: 1 }
-            );
-        if(config.roll.isCritical)
-            updates.push(
-                { type: 'stress', value: -1 }
-            );
-        if(config.roll.result.duality === -1)
-            updates.push(
-                { type: 'fear', value: 1 }
-            );
-        
-        if(updates.length)
-            actor.modifyResource(updates);
+        if (!actor) return;
+        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ type: 'hope', value: 1 });
+        if (config.roll.isCritical) updates.push({ type: 'stress', value: -1 });
+        if (config.roll.result.duality === -1) updates.push({ type: 'fear', value: 1 });
 
-        if(!config.roll.hasOwnProperty('success') && !config.targets.length) return;
+        if (updates.length) actor.modifyResource(updates);
+
+        if (!config.roll.hasOwnProperty('success') && !config.targets.length) return;
 
         const rollResult = config.roll.success || config.targets.some(t => t.hit),
             looseSpotlight = !rollResult || config.roll.result.duality === -1;
-        
-        if(looseSpotlight && game.combat?.active) {
+
+        if (looseSpotlight && game.combat?.active) {
             const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
-            if(currentCombatant?.actorId == actor.id)
-                ui.combat.setCombatantSpotlight(currentCombatant.id);
+            if (currentCombatant?.actorId == actor.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
         }
     });
 };
