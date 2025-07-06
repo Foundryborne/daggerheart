@@ -8,6 +8,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         tag: 'form',
         classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'adversary'],
         position: { width: 660, height: 766 },
+        window: { resizable: true },
         actions: {
             reactionRoll: this.reactionRoll,
             useItem: this.useItem,
