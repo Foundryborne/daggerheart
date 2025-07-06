@@ -49,6 +49,30 @@ export default class DHWeapon extends BaseDataItem {
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
             ),
+            attack: new ActionField({
+                initial: {
+                    name: 'Attack',
+                    img: 'icons/skills/melee/blood-slash-foam-red.webp',
+                    _id: foundry.utils.randomID(),
+                    systemPath: 'attack',
+                    type: 'attack',
+                    range: 'melee',
+                    target: {
+                        type: 'any',
+                        amount: 1
+                    },
+                    roll: {
+                        type: 'weapon'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                multiplier: 'prof'
+                            }
+                        ]
+                    }
+                }
+            }),
             actions: new fields.ArrayField(new ActionField())
         };
     }

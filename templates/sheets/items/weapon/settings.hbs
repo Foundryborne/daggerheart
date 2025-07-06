@@ -31,4 +31,22 @@
         <span>{{localize "TYPES.Item.feature"}}</span>
         <input type="text" class="features-input" value="{{features}}" />
     </fieldset>
+    <fieldset class="two-columns">
+        <legend>{{localize "DAGGERHEART.GENERAL.attack"}}</legend>
+        {{formField systemFields.attack.fields.roll.fields.trait value=document.system.attack.roll.trait name="system.attack.roll.trait" label="DAGGERHEART.GENERAL.Trait.single" localize=true }}
+        {{formField systemFields.attack.fields.range value=document.system.attack.range label="Range" name="system.attack.range" localize=true}}
+        {{#if systemFields.attack.fields.target.fields}}
+            {{ formField systemFields.attack.fields.target.fields.type value=document.system.attack.target.type label="Target" name="system.attack.target.type" localize=true }}
+            {{#if (and document.system.attack.target.type (not (eq document.system.attack.target.type 'self')))}}
+                {{ formField systemFields.attack.fields.target.fields.amount value=document.system.attack.target.amount label="Amount" name="system.attack.target.amount" }}
+            {{/if}}
+        {{/if}}
+    </fieldset>
+    {{!-- <fieldset class="two-columns">
+        <legend>{{localize "DAGGERHEART.GENERAL.attack"}}</legend>
+        {{formField systemFields.attack.fields.damage.dice value=source.dice name=(concat "damage.parts." realIndex "." target ".dice")}}
+        {{formField systemFields.attack.fields.damage.bonus value=source.bonus name=(concat "damage.parts." realIndex "." target ".bonus") localize=true}}
+        {{formField ../../fields.type value=dmg.type name=(concat "damage.parts." realIndex ".type") localize=true}}
+    </fieldset> --}}
+    {{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=systemFields.attack.fields.damage.fields.parts.element.fields source=document.system.attack.damage path="system.attack."}}
 </section>

@@ -4069,10 +4069,11 @@ body.theme-light.application.daggerheart .character-sidebar-sheet .experience-va
 .application.sheet.daggerheart.actor.dh-style.character .window-content {
   display: grid;
   grid-template-columns: 275px 1fr;
-  grid-template-rows: 283px 1fr;
+  grid-template-rows: auto 1fr;
   gap: 15px 0;
   height: 100%;
   width: 100%;
+  overflow: auto;
 }
 .application.sheet.daggerheart.actor.dh-style.character .window-content .character-sidebar-sheet {
   grid-row: 1 / span 2;
@@ -4313,7 +4314,7 @@ body.theme-light.application.daggerheart .character-sidebar-sheet .experience-va
 .application.sheet.daggerheart.actor.dh-style.adversary .window-content {
   display: grid;
   grid-template-columns: 275px 1fr;
-  grid-template-rows: 283px 1fr;
+  grid-template-rows: auto 1fr;
   gap: 15px 0;
   height: 100%;
   width: 100%;

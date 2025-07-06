@@ -35,7 +35,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'description' }, { id: 'actions' }, { id: 'settings' }],
+            tabs: [{ id: 'description' }, { id: 'settings' }, { id: 'actions' }],
             initial: 'description',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
