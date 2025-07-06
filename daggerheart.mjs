@@ -264,3 +264,7 @@ Hooks.on('renderJournalDirectory', async (tab, html, _, options) => {
         };
     }
 });
+
+Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async(roll, config, message) => {
+    console.log(roll, config, message)
+});

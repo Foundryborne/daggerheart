@@ -19,7 +19,7 @@ export default class DHRoll extends Roll {
     }
 
     static async buildConfigure(config = {}, message = {}) {
-        config.hooks = [...(config.hooks ?? []), ''];
+        config.hooks = [...this.getHooks(), ''];
         config.dialog ??= {};
         for (const hook of config.hooks) {
             if (Hooks.call(`${CONFIG.DH.id}.preRoll${hook.capitalize()}`, config, message) === false) return null;
@@ -92,6 +92,10 @@ export default class DHRoll extends Roll {
     static applyKeybindings(config) {
         if (config.event)
             config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
+    }
+
+    static getHooks(hooks) {
+        return hooks ?? [];
     }
 
     formatModifier(modifier) {
