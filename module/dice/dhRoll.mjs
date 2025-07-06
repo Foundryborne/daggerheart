@@ -138,12 +138,10 @@ export default class DHRoll extends Roll {
 
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async(config, message) => {
-        if(!game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hope || config.roll.type !== 'action' || (!config.roll.hasOwnProperty('success') && !config.targets.length)) return;
+        if(!game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hope || config.roll.type !== 'action') return;
 
         const actor = await fromUuid(config.source.actor),
-            rollResult = config.roll.success || config.targets.some(t => t.hit),
             updates = [];
-        let looseSpotlight = false;
         if(!actor) return;
         if(config.roll.isCritical || config.roll.result.duality === 1)
             updates.push(
@@ -157,10 +155,15 @@ export const registerRollDiceHooks = () => {
             updates.push(
                 { type: 'fear', value: 1 }
             );
-        if(!rollResult || config.roll.result.duality === -1) looseSpotlight = true;
         
         if(updates.length)
             actor.modifyResource(updates);
+
+        if(!config.roll.hasOwnProperty('success') && !config.targets.length) return;
+
+        const rollResult = config.roll.success || config.targets.some(t => t.hit),
+            looseSpotlight = !rollResult || config.roll.result.duality === -1;
+        
         if(looseSpotlight && game.combat?.active) {
             const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
             if(currentCombatant?.actorId == actor.id)
