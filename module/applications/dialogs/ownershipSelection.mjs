@@ -27,7 +27,7 @@ export default class OwnershipSelection extends HandlebarsApplicationMixin(Appli
     };
 
     get title() {
-        return game.i18n.format('DAGGERHEART.OwnershipSelection.Title', { name: this.name });
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.OwnershipSelection.title', { name: this.name });
     }
 
     async _prepareContext(_options) {

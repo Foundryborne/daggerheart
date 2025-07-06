@@ -9,7 +9,7 @@ export default class DhpDeathMove extends HandlebarsApplicationMixin(Application
     }
 
     get title() {
-        return game.i18n.format('DAGGERHEART.Application.DeathMove.Title', { actor: this.actor.name });
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.DeathMove.title', { actor: this.actor.name });
     }
 
     static DEFAULT_OPTIONS = {

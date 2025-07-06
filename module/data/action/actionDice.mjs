@@ -113,7 +113,7 @@ export class DHDamageData extends foundry.abstract.DataModel {
             }),
             resultBased: new fields.BooleanField({
                 initial: false,
-                label: 'DAGGERHEART.Actions.Settings.ResultBased.label'
+                label: 'DAGGERHEART.ACTIONS.Settings.resultBased.label'
             }),
             value: new fields.EmbeddedDataField(DHActionDiceData),
             valueAlt: new fields.EmbeddedDataField(DHActionDiceData)

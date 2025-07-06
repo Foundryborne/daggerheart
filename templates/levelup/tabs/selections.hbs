@@ -6,12 +6,12 @@
     <div class="section-container levelup-selections-container">
         {{#if (gt this.newExperiences.length 0)}}
             <div>
-                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.newExperiences"}}</h3>
+                <h3>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.newExperiences"}}</h3>
                 <div class="achievement-experience-cards">
                     {{#each this.newExperiences}}
                         <div class="achievement-experience-card">
                             <div class="flexrow">
-                                <input type="text" name="{{concat "levelup.levels." this.level ".achievements.experiences." this.key ".name"}}" value="{{this.name}}" placeholder="{{localize "DAGGERHEART.Application.LevelUp.summary.experiencePlaceholder"}}" />
+                                <input type="text" name="{{concat "levelup.levels." this.level ".achievements.experiences." this.key ".name"}}" value="{{this.name}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.experiencePlaceholder"}}" />
                                 <div class="flex0">{{numberFormat this.modifier sign=true}}</div>
                             </div>
                             <div class="achievement-experience-marker">
@@ -26,7 +26,7 @@
         {{#if this.traits.active}}
             <div>
                 <h3 class="levelup-selections-title">
-                    <div>{{localize "DAGGERHEART.Application.LevelUp.summary.traits"}}</div>
+                    <div>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.traits"}}</div>
                     <div>{{this.traits.progress.selected}}/{{this.traits.progress.max}}</div>
                 </h3>
 
@@ -37,7 +37,7 @@
         {{#if this.experienceIncreases.active}}
             <div>
                 <h3 class="levelup-selections-title">
-                    <div>{{localize "DAGGERHEART.Application.LevelUp.summary.experienceIncreases"}}</div>
+                    <div>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.experienceIncreases"}}</div>
                     <div>{{this.experienceIncreases.progress.selected}}/{{this.experienceIncreases.progress.max}}</div>
                 </h3>
 
@@ -47,7 +47,7 @@
 
         {{#if (gt this.domainCards.length 0)}}
             <div>
-                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.domainCards"}}</h3>
+                <h3>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCards"}}</h3>
 
                 <div class="levelup-card-selection domain-cards">
                     {{#each this.domainCards}}
@@ -63,7 +63,7 @@
 
         {{#if (gt this.subclassCards.length 0)}}
             <div>
-                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.subclass"}}</h3>
+                <h3>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.subclass"}}</h3>
 
                 <div class="levelup-card-selection subclass-cards">
                     {{#each this.subclassCards}}
@@ -75,7 +75,7 @@
 
         {{#if this.multiclass}}
             <div>
-                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.multiclass"}}</h3>
+                <h3>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.multiclass"}}</h3>
 
                 <div class="levelup-card-selection multiclass-cards" data-path="{{this.multiclass.path}}" data-tier="{{this.multiclass.tier}}" data-min-cost="{{this.multiclass.minCost}}" data-amount="{{this.multiclass.amount}}" data-value="{{this.multiclass.value}}" data-type="{{this.multiclass.type}}">
                     {{#> "systems/daggerheart/templates/components/card-preview.hbs" this.multiclass }}
@@ -114,7 +114,7 @@
 
         {{#if this.vicious}}
             <div>
-                <h3>{{localize "DAGGERHEART.Application.LevelUp.summary.vicious"}}</h3>
+                <h3>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.vicious"}}</h3>
                 {{#each this.vicious}}
                     <div class="levelup-radio-choices">
                         {{radioBoxes (concat "levelup." this.path ".data") @root.viciousChoices checked=(lookup this.data 0)}}

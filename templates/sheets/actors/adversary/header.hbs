@@ -9,12 +9,12 @@
     <div class="tags">
         <div class="tag">
             <span>
-                {{localize (concat 'DAGGERHEART.Tiers.' source.system.tier)}}
+                {{localize (concat 'DAGGERHEART.GENERAL.Tiers.' source.system.tier)}}
             </span>
         </div>
         <div class="tag">
             <span>
-                {{localize (concat 'DAGGERHEART.Adversary.Type.' source.system.type '.label')}}
+                {{localize (concat 'DAGGERHEART.CONFIG.AdversaryType.' source.system.type '.label')}}
             </span>
         </div>
         {{#if (eq source.system.type 'horde')}}
@@ -30,7 +30,7 @@
             <i>{{source.system.description}}</i>
         </div>
         <div class="motives-and-tatics">
-            <b>{{localize 'DAGGERHEART.Sheets.Adversary.FIELDS.motivesAndTactics.label'}}: </b>{{{source.system.motivesAndTactics}}}
+            <b>{{localize 'DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label'}}: </b>{{{source.system.motivesAndTactics}}}
         </div>
     </div>
 

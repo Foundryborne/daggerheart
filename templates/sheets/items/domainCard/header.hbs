@@ -2,7 +2,7 @@
     <img class='profile' src='{{source.img}}' data-action='editImage' data-edit='img' />
     <div class="item-icons-list">
         <span class="item-icon">
-            <span class="recall-label">{{localize "DAGGERHEART.Sheets.DomainCard.RecallCost"}}</span>
+            <span class="recall-label">{{localize "DAGGERHEART.ITEMS.DomainCard.recallCost"}}</span>
             <span class="recall-value">{{source.system.recallCost}}</span>
             <i class="fa-solid fa-bolt"></i>
         </span>
@@ -12,11 +12,11 @@
         <div class='item-description'>
             <h3>{{localize 'TYPES.Item.domainCard'}}</h3>
             <h3>
-                {{localize (concat 'DAGGERHEART.Domain.CardTypes.' source.system.type)}}
+                {{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' source.system.type)}}
                 <span>-</span>
-                {{localize (concat 'DAGGERHEART.Domains.' source.system.domain '.label')}}
+                {{localize (concat 'DAGGERHEART.GENERAL.Domain.' source.system.domain '.label')}}
                 <span>-</span>
-                {{localize "DAGGERHEART.Sheets.DomainCard.Level"}}:
+                {{localize "DAGGERHEART.GENERAL.level"}}:
                 {{source.system.level}}
             </h3>
         </div>

@@ -40,7 +40,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'features',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.features'
+            label: 'DAGGERHEART.GENERAL.Tabs.features'
         },
         potentialAdversaries: {
             active: false,
@@ -48,7 +48,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'potentialAdversaries',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.potentialAdversaries'
+            label: 'DAGGERHEART.GENERAL.Tabs.potentialAdversaries'
         },
         notes: {
             active: false,
@@ -56,7 +56,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'notes',
             icon: null,
-            label: 'DAGGERHEART.Sheets.Adversary.Tabs.notes'
+            label: 'DAGGERHEART.GENERAL.Tabs.notes'
         }
     };
 
@@ -91,7 +91,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
     static async addAdversary() {
         await this.document.update({
             [`system.potentialAdversaries.${foundry.utils.randomID()}.label`]: game.i18n.localize(
-                'DAGGERHEART.Sheets.Environment.newAdversary'
+                'DAGGERHEART.ACTORS.Environment.newAdversary'
             )
         });
         this.render();
@@ -106,7 +106,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         const target = button.closest('[data-item-uuid]');
         const adversary = await foundry.utils.fromUuid(target.dataset.itemUuid);
         if (!adversary) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.adversaryMissing'));
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.adversaryMissing'));
             return;
         }
 

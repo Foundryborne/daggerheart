@@ -137,7 +137,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (!action || !action?.applyEffects) return;
             const { isHit, targets } = this.getTargetList(event, message);
             if (targets.length === 0)
-                ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
+                ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
             await action.applyEffects(event, message, targets);
         }
     };
@@ -148,7 +148,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             msg = ui.chat.collection.get(message._id);
         if (msg.system.targetSelection === targetSelection) return;
         if (targetSelection !== true && !Array.from(game.user.targets).length)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
         msg.system.targetSelection = targetSelection;
         msg.system.prepareDerivedData();
         ui.chat.updateMessage(msg);
@@ -182,7 +182,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         event.stopPropagation();
         const token = canvas.tokens.get(event.currentTarget.dataset.token);
         if (!token) {
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.AttackTargetDoesNotExist'));
+            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
             return;
         }
 
@@ -207,7 +207,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
 
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
+            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
         for (let target of targets) {
             let damage = message.system.roll.total;
             if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true)
@@ -222,7 +222,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const targets = Array.from(game.user.targets);
 
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.Notification.Info.NoTargetsSelected'));
+            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         for (var target of targets) {
             await target.actor.takeHealing([{ value: message.system.roll.total, type: message.system.roll.type }]);

@@ -251,11 +251,11 @@ export default class DhCharacter extends BaseDataActor {
                 values: subclassFeatures
             },
             companionFeatures: {
-                title: game.i18n.localize('DAGGERHEART.Sheets.PC.CompanionFeatures'),
+                title: game.i18n.localize('DAGGERHEART.ACTORS.Character.companionFeatures'),
                 type: 'companion',
                 values: companionFeatures
             },
-            features: { title: game.i18n.localize('DAGGERHEART.Sheets.PC.Features'), type: 'feature', values: features }
+            features: { title: game.i18n.localize('DAGGERHEART.GENERAL.features'), type: 'feature', values: features }
         };
     }
 

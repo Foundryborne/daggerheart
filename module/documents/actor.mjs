@@ -27,14 +27,14 @@ export default class DhpActor extends Actor {
                 game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers
             ).reduce((acc, tier) => Math.max(acc, tier.levels.end), 0);
             if (newLevel > maxLevel) {
-                ui.notifications.warn(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.tooHighLevel'));
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.tooHighLevel'));
             }
 
             await this.update({ 'system.levelData.level.changed': Math.min(newLevel, maxLevel) });
         } else {
             const usedLevel = Math.max(newLevel, 1);
             if (newLevel < 1) {
-                ui.notifications.warn(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.tooLowLevel'));
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.tooLowLevel'));
             }
 
             const updatedLevelups = Object.keys(this.system.levelData.levelups).reduce((acc, level) => {
@@ -405,7 +405,7 @@ export default class DhpActor extends Actor {
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: game.i18n.format('DAGGERHEART.Chat.DamageRoll.Title', { damage: title }),
+            title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: title }),
             roll: rollString,
             damage: {
                 total: rollResult.total,
@@ -465,7 +465,7 @@ export default class DhpActor extends Actor {
                     const cls = getDocumentClass('ChatMessage');
                     const msg = new cls({
                         user: game.user.id,
-                        content: game.i18n.format('DAGGERHEART.DamageReduction.Notifications.DamageIgnore', {
+                        content: game.i18n.format('DAGGERHEART.UI.Notifications.damageIgnore', {
                             character: this.name
                         })
                     });

@@ -14,7 +14,7 @@ export default class DhCountdowns extends foundry.abstract.DataModel {
 }
 
 class DhCountdownData extends foundry.abstract.DataModel {
-    static LOCALIZATION_PREFIXES = ['DAGGERHEART.Countdown']; // Nots ure why this won't work. Setting labels manually for now
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.APPLICATIONS.Countdown']; // Nots ure why this won't work. Setting labels manually for now
 
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -62,7 +62,7 @@ class DhCountdown extends foundry.abstract.DataModel {
         return {
             name: new fields.StringField({
                 required: true,
-                label: 'DAGGERHEART.Countdown.FIELDS.countdowns.element.name.label'
+                label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.name.label'
             }),
             img: new fields.FilePathField({
                 categories: ['IMAGE'],
@@ -90,23 +90,23 @@ class DhCountdown extends foundry.abstract.DataModel {
                     required: true,
                     integer: true,
                     initial: 1,
-                    label: 'DAGGERHEART.Countdown.FIELDS.countdowns.element.progress.current.label'
+                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.current.label'
                 }),
                 max: new fields.NumberField({
                     required: true,
                     integer: true,
                     initial: 1,
-                    label: 'DAGGERHEART.Countdown.FIELDS.countdowns.element.progress.max.label'
+                    label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.max.label'
                 }),
                 type: new fields.SchemaField({
                     value: new fields.StringField({
                         required: true,
                         choices: CONFIG.DH.GENERAL.countdownTypes,
                         initial: CONFIG.DH.GENERAL.countdownTypes.spotlight.id,
-                        label: 'DAGGERHEART.Countdown.FIELDS.countdowns.element.progress.type.value.label'
+                        label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.type.value.label'
                     }),
                     label: new fields.StringField({
-                        label: 'DAGGERHEART.Countdown.FIELDS.countdowns.element.progress.type.label.label'
+                        label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.type.label.label'
                     })
                 })
             })

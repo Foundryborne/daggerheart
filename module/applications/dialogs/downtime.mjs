@@ -54,7 +54,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
     static selectMove(_, button) {
         const nrSelected = Object.values(this.moveData.moves).reduce((acc, x) => acc + (x.selected ?? 0), 0);
         if (nrSelected === this.moveData.nrChoices) {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.Downtime.Notifications.NoMoreMoves'));
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noMoreMoves'));
             return;
         }
 
@@ -88,7 +88,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/downtime.hbs',
                 {
-                    title: `${this.actor.name} - ${game.i18n.localize(`DAGGERHEART.Downtime.${this.shortRest ? 'ShortRest' : 'LongRest'}.title`)}`,
+                    title: `${this.actor.name} - ${game.i18n.localize(`DAGGERHEART.APPLICATIONS.Downtime.${this.shortRest ? 'shortRest' : 'longRest'}.title`)}`,
                     moves: moves
                 }
             )

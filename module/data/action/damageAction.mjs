@@ -19,7 +19,7 @@ export default class DHDamageAction extends DHBaseAction {
         if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(data.system ?? data));
 
         const config = {
-            title: game.i18n.format('DAGGERHEART.Chat.DamageRoll.Title', { damage: this.name }),
+            title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: this.name }),
             roll: { formula },
             targets: data.system?.targets.filter(t => t.hit) ?? data.targets,
             hasSave: this.hasSave,

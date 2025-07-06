@@ -15,7 +15,7 @@
                 <input type="hidden" name="effects.{{index}}._id" value="{{effect._id}}">
                 {{#if @root.source.save.trait}}{{formInput ../fields.onSave value=effect.onSave name=(concat "effects." index ".onSave") dataset=(object tooltip="Applied even if save succeeded" tooltipDirection="UP")}}{{/if}}
                 <div class="controls">
-                    <a data-tooltip="{{localize "DAGGERHEART.Tooltip.delete"}}" data-action="removeEffect" data-index="{{index}}"><i class="fas fa-trash"></i></a>
+                    <a data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeEffect" data-index="{{index}}"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
         {{/each}}

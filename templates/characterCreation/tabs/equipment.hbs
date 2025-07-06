@@ -6,11 +6,11 @@
     <div class="main-selections-container">
         <div class="main-equipment-selection">
             <fieldset class="equipment-selection">
-                <legend>{{localize "DAGGERHEART.CharacterCreation.SuggestedArmor"}}</legend>
+                <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.suggestedArmor"}}</legend>
 
                 <div class="selections-container armor-card">
                     {{#> "systems/daggerheart/templates/components/card-preview.hbs" armor }}
-                        {{localize "DAGGERHEART.CharacterCreation.SelectArmor"}}
+                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectArmor"}}
                     {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                 </div>
                 {{#if armor.suggestion}}
@@ -24,13 +24,13 @@
             </fieldset>
 
             <fieldset class="equipment-selection">
-                <legend>{{localize "DAGGERHEART.CharacterCreation.SuggestedWeapons"}}</legend>
+                <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.suggestedWeapons"}}</legend>
 
                 <div class="equipment-subsection">
                     <div class="equipment-wrapper">
                         <div class="selections-container primary-weapon-card">
                             {{#> "systems/daggerheart/templates/components/card-preview.hbs" primaryWeapon }}
-                                {{localize "DAGGERHEART.CharacterCreation.SelectPrimaryWeapon"}}
+                                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectPrimaryWeapon"}}
                             {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                         </div>
                         {{#if primaryWeapon.suggestion}}
@@ -45,7 +45,7 @@
                     <div class="equipment-wrapper">
                         <div class="selections-container secondary-weapon-card">
                             {{#> "systems/daggerheart/templates/components/card-preview.hbs" secondaryWeapon }}
-                                {{localize "DAGGERHEART.CharacterCreation.SelectSecondaryWeapon"}}
+                                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectSecondaryWeapon"}}
                             {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                         </div>
                         {{#if secondaryWeapon.suggestion}}
@@ -65,7 +65,7 @@
         </div>
         <div class="main-equipment-selection triple">
             <fieldset class="equipment-selection">
-                <legend>{{localize "DAGGERHEART.CharacterCreation.StartingItems"}}</legend>
+                <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.startingItems"}}</legend>
 
                 <div class="simple-equipment-container">
                     {{#each inventory.take}}
@@ -78,7 +78,7 @@
             </fieldset>
 
             <fieldset class="equipment-selection">
-                <legend>{{localize "DAGGERHEART.CharacterCreation.Choice"}}</legend>
+                <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.choice"}}</legend>
 
                 <div class="simple-equipment-container">
                     {{#each inventory.choiceA.suggestions}}
@@ -91,7 +91,7 @@
             </fieldset>
 
             <fieldset class="equipment-selection">
-                <legend>{{localize "DAGGERHEART.CharacterCreation.Choice"}}</legend>
+                <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.choice"}}</legend>
 
                 <div class="simple-equipment-container">
                     {{#each inventory.choiceB.suggestions}}

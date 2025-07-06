@@ -1,5 +1,5 @@
 <div class="dice-roll daggerheart chat roll" data-action="expandRoll">
-    <div class="dice-flavor">{{localize "DAGGERHEART.Chat.AttackRoll.Title" attack=this.title}}</div>
+    <div class="dice-flavor">{{localize "DAGGERHEART.UI.Chat.attackRoll.title" attack=this.title}}</div>
     <div class="dice-result">
         <div class="dice-formula">{{roll.formula}}</div>
         <div class="dice-tooltip">
@@ -17,7 +17,7 @@
                                         <li class="roll die {{../denomination}}{{#if discarded}} discarded{{/if}} min">{{result}}</li>
                                     {{/each}}
                                 </ol>
-                                <div class="attack-roll-advantage-container">{{#if ../advantageState}}{{localize "DAGGERHEART.General.Advantage.Full"}}{{/if}}{{#if (eq ../advantageState false)}}{{localize "DAGGERHEART.General.Disadvantage.Full"}}{{/if}}</div>
+                                <div class="attack-roll-advantage-container">{{#if ../advantageState}}{{localize "DAGGERHEART.GENERAL.Advantage.full"}}{{/if}}{{#if (eq ../advantageState false)}}{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}{{/if}}</div>
                             </div>
                         {{/each}}
                     </div>

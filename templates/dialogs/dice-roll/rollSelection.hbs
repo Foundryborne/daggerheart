@@ -97,7 +97,7 @@
                             {{else}}
                                 <span><i class="fa-regular fa-circle"></i></span>
                             {{/if}}
-                            <span class="label">{{localize "DAGGERHEART.General.Advantage.Full"}}</span>
+                            <span class="label">{{localize "DAGGERHEART.GENERAL.Advantage.full"}}</span>
                         </button>
                         <button class="disadvantage-chip flex1 {{#if (eq advantage -1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="-1">
                             {{#if (eq advantage -1)}}
@@ -105,7 +105,7 @@
                             {{else}}
                                 <span><i class="fa-regular fa-circle"></i></span>
                             {{/if}}
-                            <span class="label">{{localize "DAGGERHEART.General.Disadvantage.Full"}}</span>
+                            <span class="label">{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}</span>
                         </button>
                         {{#unless (eq @root.rollType 'D20Roll')}}
                             <select name="roll.dice.advantageFaces">

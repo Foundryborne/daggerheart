@@ -8,7 +8,7 @@ const resourceField = () =>
     });
 
 export default class DhpAdversary extends BaseDataActor {
-    static LOCALIZATION_PREFIXES = ['DAGGERHEART.Sheets.Adversary'];
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Adversary'];
 
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {

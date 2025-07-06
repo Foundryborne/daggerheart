@@ -27,7 +27,7 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
     };
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Sheets.Beastform.dialogTitle');
+        return game.i18n.localize('DAGGERHEART.ITEMS.Beastform.dialogTitle');
     }
 
     /** @override */

@@ -11,15 +11,15 @@ export default function DhDualityRollEnricher(match, _options) {
 export function getDualityMessage(roll) {
     const traitLabel =
         roll.trait && abilities[roll.trait]
-            ? game.i18n.format('DAGGERHEART.General.Check', {
+            ? game.i18n.format('DAGGERHEART.GENERAL.check', {
                   check: game.i18n.localize(abilities[roll.trait].label)
               })
             : null;
 
-    const label = traitLabel ?? game.i18n.localize('DAGGERHEART.General.Duality');
+    const label = traitLabel ?? game.i18n.localize('DAGGERHEART.GENERAL.duality');
     const dataLabel = traitLabel
         ? game.i18n.localize(abilities[roll.trait].label)
-        : game.i18n.localize('DAGGERHEART.General.Duality');
+        : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
     const dualityElement = document.createElement('span');
     dualityElement.innerHTML = `

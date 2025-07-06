@@ -68,43 +68,43 @@ const registerMenuSettings = () => {
 
 const registerMenus = () => {
     game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.Automation.Name, {
-        name: game.i18n.localize('DAGGERHEART.Settings.Menu.Automation.Name'),
-        label: game.i18n.localize('DAGGERHEART.Settings.Menu.Automation.Label'),
-        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.Automation.Hint'),
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.automation.name'),
+        label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.automation.label'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.automation.hint'),
         icon: CONFIG.DH.SETTINGS.menu.Automation.Icon,
         type: DhAutomationSettings,
         restricted: true
     });
     game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.Homebrew.Name, {
-        name: game.i18n.localize('DAGGERHEART.Settings.Menu.Homebrew.Name'),
-        label: game.i18n.localize('DAGGERHEART.Settings.Menu.Homebrew.Label'),
-        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.Homebrew.Hint'),
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.name'),
+        label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.label'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.hint'),
         icon: CONFIG.DH.SETTINGS.menu.Homebrew.Icon,
         type: DhHomebrewSettings,
         restricted: true
     });
     game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.Range.Name, {
-        name: game.i18n.localize('DAGGERHEART.Settings.Menu.Range.Name'),
-        label: game.i18n.localize('DAGGERHEART.Settings.Menu.Range.Label'),
-        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.Range.Hint'),
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.range.name'),
+        label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.range.label'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.range.hint'),
         icon: CONFIG.DH.SETTINGS.menu.Range.Icon,
         type: DhRangeMeasurementSettings,
         restricted: true
     });
 
     game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance, {
-        name: game.i18n.localize('DAGGERHEART.Settings.Menu.Appearance.title'),
-        label: game.i18n.localize('DAGGERHEART.Settings.Menu.Appearance.label'),
-        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.Appearance.hint'),
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.appearance.title'),
+        label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.appearance.label'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.appearance.hint'),
         icon: 'fa-solid fa-palette',
         type: DhAppearanceSettings,
         restricted: false
     });
 
     game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.VariantRules.Name, {
-        name: game.i18n.localize('DAGGERHEART.Settings.Menu.VariantRules.title'),
-        label: game.i18n.localize('DAGGERHEART.Settings.Menu.VariantRules.label'),
-        hint: game.i18n.localize('DAGGERHEART.Settings.Menu.VariantRules.hint'),
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.variantRules.title'),
+        label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.variantRules.label'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.variantRules.hint'),
         icon: CONFIG.DH.SETTINGS.menu.VariantRules.Icon,
         type: DhVariantRuleSettings,
         restricted: false
@@ -120,8 +120,8 @@ const registerNonConfigSettings = () => {
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear, {
-        name: game.i18n.localize('DAGGERHEART.Settings.Resources.Fear.Name'),
-        hint: game.i18n.localize('DAGGERHEART.Settings.Resources.Fear.Hint'),
+        name: game.i18n.localize('DAGGERHEART.SETTINGS.Resources.fear.name'),
+        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Resources.fear.hint'),
         scope: 'world',
         config: false,
         type: Number,

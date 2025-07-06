@@ -8,7 +8,7 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 required: true,
                 choices: fearDisplay,
                 initial: fearDisplay.token.value,
-                label: 'DAGGERHEART.Settings.Appearance.FIELDS.displayFear.label'
+                label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.displayFear.label'
             }),
             dualityColorScheme: new fields.StringField({
                 required: true,
@@ -48,10 +48,10 @@ export default class DhAppearance extends foundry.abstract.DataModel {
 export const DualityRollColor = {
     colorful: {
         value: 'colorful',
-        label: 'DAGGERHEART.Settings.DualityRollColor.Options.Colorful'
+        label: 'DAGGERHEART.SETTINGS.DualityRollColor.options.colorful'
     },
     normal: {
         value: 'normal',
-        label: 'DAGGERHEART.Settings.DualityRollColor.Options.Normal'
+        label: 'DAGGERHEART.SETTINGS.DualityRollColor.options.normal'
     }
 };

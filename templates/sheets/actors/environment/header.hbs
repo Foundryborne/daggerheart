@@ -6,13 +6,13 @@
             <div class="tags">
                 <div class="tag">
                     <span>
-                        {{localize (concat 'DAGGERHEART.Tiers.' source.system.tier)}}
+                        {{localize (concat 'DAGGERHEART.GENERAL.Tiers.' source.system.tier)}}
                     </span>
                 </div>
                 {{#if source.system.type}}
                     <div class="tag">
                         <span>
-                            {{localize (concat 'DAGGERHEART.Environment.Type.' source.system.type '.label')}}
+                            {{localize (concat 'DAGGERHEART.CONFIG.EnvironmentType.' source.system.type '.label')}}
                         </span>
                     </div>
                 {{/if}}
@@ -37,7 +37,7 @@
             <i>{{source.system.description}}</i>
         </div>
         <div class="impulses">
-            <b>{{localize 'DAGGERHEART.Sheets.Environment.FIELDS.impulses.label'}}: </b>{{{source.system.impulses}}}
+            <b>{{localize 'DAGGERHEART.ACTORS.Environment.FIELDS.impulses.label'}}: </b>{{{source.system.impulses}}}
         </div>
     </div>
     <div class="environment-navigation">

@@ -5,30 +5,30 @@
 >
     <fieldset class="two-columns">
         <legend>{{localize tabs.settings.label}}</legend>
-        <span>{{localize "DAGGERHEART.Tiers.singular"}}</span>
+        <span>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</span>
         {{formField systemFields.tier value=source.system.tier}}
-        <span>{{localize "DAGGERHEART.Sheets.Weapon.SecondaryWeapon"}}</span>
+        <span>{{localize "DAGGERHEART.ITEMS.Weapon.secondaryWeapon"}}</span>
         {{formField systemFields.secondary value=source.system.secondary}}
-        <span>{{localize "DAGGERHEART.Sheets.Weapon.Trait"}}</span>
+        <span>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</span>
         {{formField systemFields.trait value=source.system.trait localize=true}}
-        <span>{{localize "DAGGERHEART.Sheets.Weapon.Range"}}</span>
+        <span>{{localize "DAGGERHEART.GENERAL.range"}}</span>
         {{formField systemFields.range value=source.system.range localize=true}}
-        <span>{{localize "DAGGERHEART.Sheets.Weapon.Burden"}}</span>
+        <span>{{localize "DAGGERHEART.GENERAL.burden"}}</span>
         {{formField systemFields.burden value=source.system.burden localize=true}}
     </fieldset>
 
     <fieldset class="two-columns">
-        <legend>{{localize "DAGGERHEART.Sheets.Weapon.Damage.Title"}}</legend>
-        <span>{{localize "DAGGERHEART.Sheets.Weapon.Damage.Die"}}</span>
+        <legend>{{localize "DAGGERHEART.GENERAL.title"}}</legend>
+        <span>{{localize "DAGGERHEART.GENERAL.Dice.single"}}</span>
         {{formGroup systemFields.damage.fields.dice value=source.system.damage.dice}}
-        <span>{{localize "DAGGERHEART.Sheets.Weapon.Damage.Bonus"}}</span>
+        <span>{{localize "DAGGERHEART.GENERAL.bonus"}}</span>
         {{formGroup systemFields.damage.fields.bonus value=source.system.damage.bonus}}
-        <span>{{localize "DAGGERHEART.Sheets.Weapon.Damage.Type"}}</span>
+        <span>{{localize "DAGGERHEART.GENERAL.type"}}</span>
         {{formGroup systemFields.damage.fields.type value=source.system.damage.type localize=true}}
     </fieldset>
     <fieldset class="two-columns">
-        <legend>{{localize "DAGGERHEART.Sheets.Weapon.Feature"}}</legend>
-        <span>{{localize "DAGGERHEART.Sheets.Weapon.Feature"}}</span>
+        <legend>{{localize "TYPES.Item.feature"}}</legend>
+        <span>{{localize "TYPES.Item.feature"}}</span>
         <input type="text" class="features-input" value="{{features}}" />
     </fieldset>
 </section>

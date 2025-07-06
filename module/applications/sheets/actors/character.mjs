@@ -38,7 +38,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             takeShortRest: this.takeShortRest,
             takeLongRest: this.takeLongRest,
             deleteItem: this.deleteItem,
-            addScar: this.addScar,
             deleteScar: this.deleteScar,
             makeDeathMove: this.makeDeathMove,
             itemQuantityDecrease: (_, button) => this.setItemQuantity(button, -1),
@@ -100,7 +99,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'features',
             icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.Features'
+            label: 'DAGGERHEART.GENERAL.Tabs.features'
         },
         loadout: {
             active: false,
@@ -108,7 +107,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'loadout',
             icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.Loadout'
+            label: 'DAGGERHEART.GENERAL.Tabs.loadout'
         },
         inventory: {
             active: false,
@@ -116,7 +115,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'inventory',
             icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.Inventory'
+            label: 'DAGGERHEART.GENERAL.Tabs.inventory'
         },
         biography: {
             active: false,
@@ -124,7 +123,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'biography',
             icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.biography'
+            label: 'DAGGERHEART.GENERAL.Tabs.biography'
         },
         effects: {
             active: false,
@@ -132,7 +131,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'effects',
             icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.effects'
+            label: 'DAGGERHEART.GENERAL.Tabs.effects'
         }
     };
 
@@ -151,7 +150,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 group: 'primary',
                 id: 'features',
                 icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Features')
+                label: game.i18n.localize('DAGGERHEART.GENERAL.Tabs.features')
             },
             loadout: {
                 active: false,
@@ -159,7 +158,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 group: 'primary',
                 id: 'loadout',
                 icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Loadout')
+                label: game.i18n.localize('DAGGERHEART.GENERAL.Tabs.loadout')
             },
             inventory: {
                 active: false,
@@ -167,7 +166,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 group: 'primary',
                 id: 'inventory',
                 icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Inventory')
+                label: game.i18n.localize('DAGGERHEART.GENERAL.Tabs.inventory')
             },
             story: {
                 active: false,
@@ -175,7 +174,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 group: 'primary',
                 id: 'story',
                 icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Story')
+                label: game.i18n.localize('DAGGERHEART.GENERAL.Tabs.story')
             }
         };
         const secondaryTabs = {
@@ -185,7 +184,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 group: 'secondary',
                 id: 'foundation',
                 icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Foundation')
+                label: game.i18n.localize('DAGGERHEART.GENERAL.Tabs.foundation')
             },
             loadout: {
                 active: false,
@@ -193,7 +192,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 group: 'secondary',
                 id: 'loadout',
                 icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Loadout')
+                label: game.i18n.localize('DAGGERHEART.GENERAL.Tabs.loadout')
             },
             vault: {
                 active: false,
@@ -201,7 +200,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 group: 'secondary',
                 id: 'vault',
                 icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Vault')
+                label: game.i18n.localize('DAGGERHEART.GENERAL.Tabs.vault')
             }
         };
 
@@ -231,7 +230,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     _createContextMenues() {
         const allOptions = {
             useItem: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.UseItem',
+                name: 'DAGGERHEART.GENERAL.use',
                 icon: '<i class="fa-solid fa-burst"></i>',
                 condition: el => {
                     const item = this.getItem(el);
@@ -240,7 +239,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 callback: (button, event) => this.constructor.useItem.bind(this)(event, button)
             },
             equip: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Equip',
+                name: 'DAGGERHEART.ACTORS.Character.contextMenu.equip',
                 icon: '<i class="fa-solid fa-hands"></i>',
                 condition: el => {
                     const item = this.getItem(el);
@@ -249,7 +248,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 callback: this.constructor.toggleEquipItem.bind(this)
             },
             unequip: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Unequip',
+                name: 'DAGGERHEART.ACTORS.Character.contextMenu.unequip',
                 icon: '<i class="fa-solid fa-hands"></i>',
                 condition: el => {
                     const item = this.getItem(el);
@@ -258,7 +257,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 callback: this.constructor.toggleEquipItem.bind(this)
             },
             sendToLoadout: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToLoadout',
+                name: 'DAGGERHEART.ACTORS.Character.contextMenu.toLoadout',
                 icon: '<i class="fa-solid fa-arrow-up"></i>',
                 condition: el => {
                     const item = this.getItem(el);
@@ -267,7 +266,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 callback: this.constructor.toggleVault.bind(this)
             },
             sendToVault: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToVault',
+                name: 'DAGGERHEART.ACTORS.Character.contextMenu.toVault',
                 icon: '<i class="fa-solid fa-arrow-down"></i>',
                 condition: el => {
                     const item = this.getItem(el);
@@ -276,17 +275,17 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 callback: this.constructor.toggleVault.bind(this)
             },
             sendToChat: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
+                name: 'DAGGERHEART.ACTORS.Character.contextMenu.sendToChat',
                 icon: '<i class="fa-regular fa-message"></i>',
                 callback: this.constructor.toChat.bind(this)
             },
             edit: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Edit',
+                name: 'CONTROLS.CommonEdit',
                 icon: '<i class="fa-solid fa-pen-to-square"></i>',
                 callback: this.constructor.viewObject.bind(this)
             },
             delete: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Delete',
+                name: 'CONTROLS.CommonDelete',
                 icon: '<i class="fa-solid fa-trash"></i>',
                 callback: this.constructor.deleteItem.bind(this)
             }
@@ -350,11 +349,11 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
         context.inventory = {
             currency: {
-                title: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Title'),
-                coins: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Coins'),
-                handfulls: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Handfulls'),
-                bags: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Bags'),
-                chests: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Chests')
+                title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
+                coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
+                handfulls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfulls'),
+                bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
+                chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
             }
         };
 
@@ -494,8 +493,10 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
         const config = {
             event: event,
-            title: `${game.i18n.localize('DAGGERHEART.General.dualityRoll')}: ${this.actor.name}`,
-            headerTitle: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', { ability: abilityLabel }),
+            title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
+            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', {
+                ability: abilityLabel
+            }),
             roll: {
                 trait: button.dataset.attribute
             }
@@ -604,7 +605,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
         const config = {
             event: event,
-            title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', { ability: abilityLabel }),
+            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', { ability: abilityLabel }),
             roll: {
                 trait: button.dataset.attribute
             }
@@ -681,7 +682,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     openLevelUp() {
         if (!this.document.system.class.value || !this.document.system.class.subclass) {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.missingClassOrSubclass'));
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClassOrSubclass'));
             return;
         }
 
@@ -694,7 +695,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: `${game.i18n.localize('DAGGERHEART.Chat.DomainCard.Title')} - ${capitalize(button.dataset.domain)}`,
+            title: `${game.i18n.localize('DAGGERHEART.UI.Chat.domainCard.title')} - ${capitalize(button.dataset.domain)}`,
             origin: this.document.id,
             img: card.img,
             name: card.name,
@@ -773,17 +774,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         await this.minimize();
     }
 
-    static async addScar() {
-        if (this.document.system.story.scars.length === 5) return;
-
-        await this.document.update({
-            'system.story.scars': [
-                ...this.document.system.story.scars,
-                { name: game.i18n.localize('DAGGERHEART.Sheets.PC.NewScar'), description: '' }
-            ]
-        });
-    }
-
     static async deleteScar(event, button) {
         event.stopPropagation();
         await this.document.update({
@@ -823,7 +813,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: game.i18n.localize('DAGGERHEART.Chat.FeatureTitle'),
+            title: game.i18n.localize('DAGGERHEART.UI.Chat.featureTitle'),
             origin: this.document.id,
             img: item.img,
             name: item.name,
@@ -848,7 +838,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             const experience = this.document.system.experiences[button.dataset.uuid];
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
-                name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
+                name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
                 description: `${experience.name} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
             };
             const msg = new cls({
@@ -876,12 +866,12 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 : this.document.system.class.subclass;
         const ability = item.system[`${button.dataset.key}Feature`];
         const title = `${item.name} - ${game.i18n.localize(
-            `DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`
+            `DAGGERHEART.ITEMS.DomainCard.${capitalize(button.dataset.key)}Title`
         )}`;
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+            title: game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: this.document.id,
             name: title,
             img: item.img,
@@ -905,7 +895,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+            title: game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: this.document.id,
             name: item.name,
             img: item.img,

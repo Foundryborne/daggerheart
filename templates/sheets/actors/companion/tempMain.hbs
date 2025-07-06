@@ -2,7 +2,7 @@
     <img class="profile" src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
     <div class="form-group">
         <div class="form-fields">
-            <label>{{localize "DAGGERHEART.Sheets.Companion.FIELDS.partner.label"}}</label>
+            <label>{{localize "DAGGERHEART.ACTORS.Companion.FIELDS.partner.label"}}</label>
             <select class="partner-value">
                 {{selectOptions playerCharacters selected=source.system.partner.uuid labelAttr="name" valueAttr="key" blank=""}}
             </select>
@@ -12,7 +12,7 @@
     {{formGroup systemFields.resources.fields.stress.fields.value value=source.system.resources.stress.value localize=true }}
     {{formGroup systemFields.evasion.fields.value value=source.system.evasion.value localize=true }}
     
-    <div>{{localize "DAGGERHEART.Sheets.Companion.Experiences"}}</div>
+    <div>{{localize "DAGGERHEART.GENERAL.Experience.plural"}}</div>
     <div class="flexcol">
         {{#each source.system.experiences as |experience key|}}
             <div class="flexrow">
@@ -25,7 +25,7 @@
     <div class="flexrow">
         <div class="form-group">
             <div class="form-fields">
-                <label>{{localize "DAGGERHEART.Sheets.Companion.FIELDS.attack.name.label"}}</label>
+                <label>{{localize "DAGGERHEART.ACTORS.Companion.FIELDS.attack.name.label"}}</label>
                 <input type="text" name="system.attack.name" value="{{source.system.attack.name}}" />
                 <button data-action="attackRoll">Attack</button>
             </div>
@@ -35,7 +35,7 @@
     <div class="flexrow">
         <div class="form-group">
             <div class="form-fields">
-                <label>{{localize "DAGGERHEART.Sheets.Companion.Level"}}</label>
+                <label>{{localize "DAGGERHEART.GENERAL.level"}}</label>
                 <div>{{source.system.levelData.level.changed}}</div>
                 <button data-action="levelUp" {{#if (not source.system.levelData.canLevelUp)}}disabled{{/if}}>Level Up</button>
             </div>

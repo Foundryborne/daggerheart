@@ -43,12 +43,12 @@ export default class DHBeastform extends BaseDataItem {
         if (!this.actor) return;
 
         if (this.actor.type !== 'character') {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.notifications.beastformInapplicable'));
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.beastformInapplicable'));
             return false;
         }
 
         if (this.actor.items.find(x => x.type === 'beastform')) {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.notifications.beastformAlreadyApplied'));
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.beastformAlreadyApplied'));
             return false;
         }
 
@@ -64,7 +64,7 @@ export default class DHBeastform extends BaseDataItem {
         await this.parent.parent.createEmbeddedDocuments('ActiveEffect', [
             {
                 type: 'beastform',
-                name: game.i18n.localize('DAGGERHEART.Sheets.Beastform.beastformEffect'),
+                name: game.i18n.localize('DAGGERHEART.ITEMS.Beastform.beastformEffect'),
                 img: 'icons/creatures/abilities/paw-print-pair-purple.webp',
                 system: {
                     isBeastform: true,

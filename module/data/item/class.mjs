@@ -24,9 +24,9 @@ export default class DHClass extends BaseDataItem {
                 integer: true,
                 min: 1,
                 initial: 5,
-                label: 'DAGGERHEART.Sheets.Class.HitPoints'
+                label: 'DAGGERHEART.GENERAL.hitPoints'
             }),
-            evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.Sheets.Class.Evasion' }),
+            evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
             hopeFeatures: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             classFeatures: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
@@ -67,7 +67,7 @@ export default class DHClass extends BaseDataItem {
         if (this.actor?.type === 'character') {
             const path = data.system.isMulticlass ? 'system.multiclass.value' : 'system.class.value';
             if (foundry.utils.getProperty(this.actor, path)) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.ClassAlreadySelected'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.classAlreadySelected'));
                 return false;
             }
         }

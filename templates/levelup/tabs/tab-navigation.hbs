@@ -19,7 +19,7 @@
         {{/if}}
         <div class="levelup-navigation-actions {{#if (not this.showTabs)}}test{{/if}}">       
             {{#if this.navigate.previous.fromSummary}}
-                <button data-action="activatePart" data-part="advancements">{{localize "DAGGERHEART.Application.LevelUp.navigateToLevelup"}}</button>
+                <button data-action="activatePart" data-part="advancements">{{localize "DAGGERHEART.APPLICATIONS.Levelup.navigateToLevelup"}}</button>
             {{else}}
                 {{#if (not this.navigate.previous.disabled)}}
                     <button data-action="updateCurrentLevel" >{{this.navigate.previous.label}}</button>
@@ -27,7 +27,7 @@
             {{/if}}
             {{#if this.navigate.next.show}}
                 {{#if this.navigate.next.toSummary}}
-                    <button data-action="activatePart" data-part="summary"  {{#if this.navigate.next.disabled}}disabled{{/if}}>{{localize "DAGGERHEART.Application.LevelUp.navigateToSummary"}}</button>
+                    <button data-action="activatePart" data-part="summary"  {{#if this.navigate.next.disabled}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.Levelup.navigateToSummary"}}</button>
                 {{else}}
                     <button data-action="updateCurrentLevel" data-forward="true" {{#if this.navigate.next.disabled}}disabled{{/if}}>{{this.navigate.next.label}}</button>
                 {{/if}}

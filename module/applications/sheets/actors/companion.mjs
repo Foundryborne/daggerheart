@@ -33,7 +33,7 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'details',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.details'
+            label: 'DAGGERHEART.GENERAL.Tabs.details'
         },
         effects: {
             active: false,
@@ -41,7 +41,7 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'effects',
             icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.effects'
+            label: 'DAGGERHEART.GENERAL.Tabs.effects'
         }
     };
 
@@ -82,7 +82,7 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
             const experience = this.document.system.experiences[button.dataset.uuid];
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
-                name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
+                name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
                 description: `${experience.name} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
             };
             const msg = new cls({

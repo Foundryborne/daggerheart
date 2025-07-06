@@ -54,7 +54,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         primary: {
             tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }],
             initial: 'description',
-            labelPrefix: 'DAGGERHEART.Sheets.TABS'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 

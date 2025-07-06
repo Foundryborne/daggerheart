@@ -25,7 +25,7 @@ export default class BeastformSheet extends DHBaseItemSheet {
         primary: {
             tabs: [{ id: 'settings' }, { id: 'features' }, { id: 'effects' }],
             initial: 'settings',
-            labelPrefix: 'DAGGERHEART.Sheets.TABS'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 

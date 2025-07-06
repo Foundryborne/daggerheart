@@ -68,9 +68,9 @@ export const CompanionLevelOptionType = {
         label: 'Creature Comfort',
         features: [
             {
-                name: 'DAGGERHEART.LevelUp.Actions.CreatureComfort.Name',
+                name: 'DAGGERHEART.APPLICATIONS.Levelup.actions.creatureComfort.name',
                 img: 'icons/magic/life/heart-cross-purple-orange.webp',
-                description: 'DAGGERHEART.LevelUp.Actions.CreatureComfort.Description'
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.actions.creatureComfort.description'
             }
         ]
     },
@@ -79,9 +79,9 @@ export const CompanionLevelOptionType = {
         label: 'Armored',
         features: [
             {
-                name: 'DAGGERHEART.LevelUp.Actions.Armored.Name',
+                name: 'DAGGERHEART.APPLICATIONS.Levelup.actions.armored.name',
                 img: 'icons/equipment/shield/kite-wooden-oak-glow.webp',
-                description: 'DAGGERHEART.LevelUp.Actions.Armored.Description'
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.actions.armored.description'
             }
         ]
     },
@@ -98,9 +98,9 @@ export const CompanionLevelOptionType = {
         label: 'Bonded',
         features: [
             {
-                name: 'DAGGERHEART.LevelUp.Actions.Bonded.Name',
+                name: 'DAGGERHEART.APPLICATIONS.Levelup.actions.bonded.name',
                 img: 'icons/magic/life/heart-red-blue.webp',
-                description: 'DAGGERHEART.LevelUp.Actions.Bonded.Description'
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.actions.bonded.description'
             }
         ]
     },
@@ -182,14 +182,14 @@ export const defaultLevelTiers = {
             domainCardByLevel: 1,
             options: {
                 trait: {
-                    label: 'DAGGERHEART.LevelUp.Options.trait',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.trait',
                     checkboxSelections: 3,
                     minCost: 1,
                     type: LevelOptionType.trait.id,
                     amount: 2
                 },
                 hitPoint: {
-                    label: 'DAGGERHEART.LevelUp.Options.hitPoint',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.hitPoint',
                     checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.hitPoint.id,
@@ -197,14 +197,14 @@ export const defaultLevelTiers = {
                     value: 1
                 },
                 stress: {
-                    label: 'DAGGERHEART.LevelUp.Options.stress',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.stress',
                     checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.stress.id,
                     value: 1
                 },
                 experience: {
-                    label: 'DAGGERHEART.LevelUp.Options.experience',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.experience',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.experience.id,
@@ -212,14 +212,14 @@ export const defaultLevelTiers = {
                     amount: 2
                 },
                 domainCard: {
-                    label: 'DAGGERHEART.LevelUp.Options.domainCard',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.domainCard',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.domainCard.id,
                     amount: 1
                 },
                 evasion: {
-                    label: 'DAGGERHEART.LevelUp.Options.evasion',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.evasion',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.evasion.id,
@@ -245,28 +245,28 @@ export const defaultLevelTiers = {
             domainCardByLevel: 1,
             options: {
                 trait: {
-                    label: 'DAGGERHEART.LevelUp.Options.trait',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.trait',
                     checkboxSelections: 3,
                     minCost: 1,
                     type: LevelOptionType.trait.id,
                     amount: 2
                 },
                 hitPoint: {
-                    label: 'DAGGERHEART.LevelUp.Options.hitPoint',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.hitPoint',
                     checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.hitPoint.id,
                     value: 1
                 },
                 stress: {
-                    label: 'DAGGERHEART.LevelUp.Options.stress',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.stress',
                     checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.stress.id,
                     value: 1
                 },
                 experience: {
-                    label: 'DAGGERHEART.LevelUp.Options.experience',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.experience',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.experience.id,
@@ -274,34 +274,34 @@ export const defaultLevelTiers = {
                     amount: 2
                 },
                 domainCard: {
-                    label: 'DAGGERHEART.LevelUp.Options.domainCard',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.domainCard',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.domainCard.id,
                     amount: 1
                 },
                 evasion: {
-                    label: 'DAGGERHEART.LevelUp.Options.evasion',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.evasion',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.evasion.id,
                     value: 1
                 },
                 subclass: {
-                    label: 'DAGGERHEART.LevelUp.Options.subclass',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.subclass',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.subclass.id
                 },
                 proficiency: {
-                    label: 'DAGGERHEART.LevelUp.Options.proficiency',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.proficiency',
                     checkboxSelections: 2,
                     minCost: 2,
                     type: LevelOptionType.proficiency.id,
                     value: 1
                 },
                 multiclass: {
-                    label: 'DAGGERHEART.LevelUp.Options.multiclass',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.multiclass',
                     checkboxSelections: 2,
                     minCost: 2,
                     type: LevelOptionType.multiclass.id
@@ -326,28 +326,28 @@ export const defaultLevelTiers = {
             domainCardByLevel: 1,
             options: {
                 trait: {
-                    label: 'DAGGERHEART.LevelUp.Options.trait',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.trait',
                     checkboxSelections: 3,
                     minCost: 1,
                     type: LevelOptionType.trait.id,
                     amount: 2
                 },
                 hitPoint: {
-                    label: 'DAGGERHEART.LevelUp.Options.hitPoint',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.hitPoint',
                     checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.hitPoint.id,
                     value: 1
                 },
                 stress: {
-                    label: 'DAGGERHEART.LevelUp.Options.stress',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.stress',
                     checkboxSelections: 2,
                     minCost: 1,
                     type: LevelOptionType.stress.id,
                     value: 1
                 },
                 experience: {
-                    label: 'DAGGERHEART.LevelUp.Options.experience',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.experience',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.experience.id,
@@ -355,34 +355,34 @@ export const defaultLevelTiers = {
                     amount: 2
                 },
                 domainCard: {
-                    label: 'DAGGERHEART.LevelUp.Options.domainCard',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.domainCard',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.domainCard.id,
                     amount: 1
                 },
                 evasion: {
-                    label: 'DAGGERHEART.LevelUp.Options.evasion',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.evasion',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.evasion.id,
                     value: 1
                 },
                 subclass: {
-                    label: 'DAGGERHEART.LevelUp.Options.subclass',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.subclass',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: LevelOptionType.subclass.id
                 },
                 proficiency: {
-                    label: 'DAGGERHEART.LevelUp.Options.proficiency',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.proficiency',
                     checkboxSelections: 2,
                     minCost: 2,
                     type: LevelOptionType.proficiency.id,
                     value: 1
                 },
                 multiclass: {
-                    label: 'DAGGERHEART.LevelUp.Options.multiclass',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.multiclass',
                     checkboxSelections: 2,
                     minCost: 2,
                     type: LevelOptionType.multiclass.id
@@ -406,7 +406,7 @@ export const defaultCompanionTier = {
             domainCardByLevel: 0,
             options: {
                 experience: {
-                    label: 'DAGGERHEART.LevelUp.Options.intelligent',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.intelligent',
                     checkboxSelections: 3,
                     minCost: 1,
                     type: LevelOptionType.experience.id,
@@ -414,28 +414,28 @@ export const defaultCompanionTier = {
                     amount: 1
                 },
                 hope: {
-                    label: 'DAGGERHEART.LevelUp.Options.lightInTheDark',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.lightInTheDark',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: CompanionLevelOptionType.hope.id,
                     value: 1
                 },
                 creatureComfort: {
-                    label: 'DAGGERHEART.LevelUp.Options.creatureComfort',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.creatureComfort',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: CompanionLevelOptionType.creatureComfort.id,
                     value: 1
                 },
                 armored: {
-                    label: 'DAGGERHEART.LevelUp.Options.armored',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.armored',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: CompanionLevelOptionType.armored.id,
                     value: 1
                 },
                 vicious: {
-                    label: 'DAGGERHEART.LevelUp.Options.vicious',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.vicious',
                     checkboxSelections: 3,
                     minCost: 1,
                     type: CompanionLevelOptionType.vicious.id,
@@ -443,21 +443,21 @@ export const defaultCompanionTier = {
                     amount: 1
                 },
                 stress: {
-                    label: 'DAGGERHEART.LevelUp.Options.resilient',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.resilient',
                     checkboxSelections: 3,
                     minCost: 1,
                     type: LevelOptionType.stress.id,
                     value: 1
                 },
                 bonded: {
-                    label: 'DAGGERHEART.LevelUp.Options.bonded',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.bonded',
                     checkboxSelections: 1,
                     minCost: 1,
                     type: CompanionLevelOptionType.bonded.id,
                     value: 1
                 },
                 evasion: {
-                    label: 'DAGGERHEART.LevelUp.Options.aware',
+                    label: 'DAGGERHEART.APPLICATIONS.Levelup.options.aware',
                     checkboxSelections: 3,
                     minCost: 1,
                     type: LevelOptionType.evasion.id,

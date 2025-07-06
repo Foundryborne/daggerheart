@@ -4,7 +4,7 @@
         <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
         <div class='item-description'>
             <h3>{{localize 'TYPES.Item.subclass'}}</h3>
-            {{#if source.system.spellcastingTrait}}<h3>{{localize (concat 'DAGGERHEART.Abilities.' source.system.spellcastingTrait '.name')}}</h3>{{/if}}
+            {{#if source.system.spellcastingTrait}}<h3>{{localize (concat 'DAGGERHEART.CONFIG.Traits.' source.system.spellcastingTrait '.name')}}</h3>{{/if}}
         </div>
     </div>
 </header>

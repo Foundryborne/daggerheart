@@ -1,7 +1,7 @@
 <aside class="adversary-sidebar-sheet">
     <div class="portrait {{#if (gte source.system.resources.hitPoints.value source.system.resources.hitPoints.maxTotal)}}death-roll{{/if}}">
         <img src="{{source.img}}" alt="{{source.name}}" data-action='editImage' data-edit="img">
-        <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.Sheets.PC.Health.DeathMoveTooltip"}}" data-action="makeDeathMove"><i class="fas fa-skull death-save" ></i></a>
+        <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.makeDeathMove"}}" data-action="makeDeathMove"><i class="fas fa-skull death-save" ></i></a>
     </div>
     
     <div class="info-section">
@@ -40,11 +40,11 @@
         </div>
         <div class="status-section">
             <div class="threshold-section">
-            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Minor"}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
             <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
-            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Major"}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
             <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
-            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Severe"}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
         </div>
         </div>
         <div class="status-section">

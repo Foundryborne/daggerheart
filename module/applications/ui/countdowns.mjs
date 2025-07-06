@@ -13,8 +13,8 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     get title() {
-        return game.i18n.format('DAGGERHEART.Countdown.Title', {
-            type: game.i18n.localize(`DAGGERHEART.Countdown.Types.${this.basePath}`)
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.Title', {
+            type: game.i18n.localize(`DAGGERHEART.APPLICATIONS.Countdown.types.${this.basePath}`)
         });
     }
 
@@ -78,7 +78,7 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
             const button = constructHTMLButton({
                 label: '',
                 classes: ['header-control', 'icon', 'fa-solid', 'fa-wrench'],
-                dataset: { action: 'toggleSimpleView', tooltip: 'DAGGERHEART.Countdown.ToggleSimple' }
+                dataset: { action: 'toggleSimpleView', tooltip: 'DAGGERHEART.APPLICATIONS.Countdown.toggleSimple' }
             });
             this.window.controls.after(button);
         }
@@ -265,7 +265,7 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
         const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
         await countdownSetting.updateSource({
             [`${this.basePath}.countdowns.${foundry.utils.randomID()}`]: {
-                name: game.i18n.localize('DAGGERHEART.Countdown.NewCountdown'),
+                name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.newCountdown'),
                 ownership: game.user.isGM
                     ? {}
                     : {
@@ -285,9 +285,9 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
 
         const confirmed = await foundry.applications.api.DialogV2.confirm({
             window: {
-                title: game.i18n.localize('DAGGERHEART.Countdown.RemoveCountdownTitle')
+                title: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.removeCountdownTitle')
             },
-            content: game.i18n.format('DAGGERHEART.Countdown.RemoveCountdownText', { name: countdownName })
+            content: game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.removeCountdownText', { name: countdownName })
         });
         if (!confirmed) return;
 

@@ -12,7 +12,7 @@ export default class DHVariantRuleSettings extends HandlebarsApplicationMixin(Ap
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Settings.Menu.VariantRules.name');
+        return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.variantRules.name');
     }
 
     static DEFAULT_OPTIONS = {

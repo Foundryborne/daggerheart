@@ -25,7 +25,7 @@ export default class DHHeritageSheet extends DHBaseItemSheet {
         primary: {
             tabs: [{ id: 'description' }, { id: 'features' }, { id: 'effects' }],
             initial: 'description',
-            labelPrefix: 'DAGGERHEART.Sheets.TABS'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 }

@@ -32,7 +32,7 @@ export default class DhActiveEffect extends ActiveEffect {
     async toChat(origin) {
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: game.i18n.localize('DAGGERHEART.ActionType.action'),
+            title: game.i18n.localize('DAGGERHEART.CONFIG.ActionType.action'),
             origin: origin,
             img: this.img,
             name: this.name,
