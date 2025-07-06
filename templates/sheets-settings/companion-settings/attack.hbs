@@ -9,7 +9,7 @@
         {{formGroup systemFields.attack.fields.name value=document.system.attack.name label="Attack Name" name="system.attack.name"}}
     </fieldset>
     <fieldset class="flex">
-        <legend>{{localize "DAGGERHEART.Sheets.Adversary.Attack"}}</legend>
+        <legend>{{localize "DAGGERHEART.General.attack"}}</legend>
             {{formField systemFields.attack.fields.range value=document.system.attack.range label="Range" name="system.attack.range" localize=true}}
             {{#if systemFields.attack.fields.target.fields}}
                 {{ formField systemFields.attack.fields.target.fields.type value=document.system.attack.target.type label="Target" name="system.attack.target.type" localize=true }}

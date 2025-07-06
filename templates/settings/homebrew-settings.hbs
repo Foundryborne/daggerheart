@@ -5,7 +5,7 @@
     <div class="trait-array-container">
         {{#each settingFields._source.traitArray as |trait index|}}
             <div class="trait-array-item">
-                <label>{{localize "DAGGERHEART.General.Modifier"}} {{add index 1}}</label>
+                <label>{{localize "DAGGERHEART.General.modifier"}} {{add index 1}}</label>
                 <input type="text" data-dtype="Number" name="{{concat "traitArray." index}}" value="{{this}}" />
             </div>
         {{/each}}
@@ -13,7 +13,7 @@
 
     <fieldset>
         <legend>
-            {{localize "DAGGERHEART.Settings.Homebrew.Currency.title"}} 
+            {{localize "DAGGERHEART.Settings.Homebrew.currency.title"}} 
         </legend>
         {{formGroup settingFields.schema.fields.currency.fields.enabled value=settingFields._source.currency.enabled localize=true}}
         {{formGroup settingFields.schema.fields.currency.fields.title value=settingFields._source.currency.title localize=true}}
@@ -25,17 +25,17 @@
     </fieldset>
 
     <fieldset class="two-columns even">
-        <legend>{{localize "DAGGERHEART.Settings.Homebrew.DowntimeMoves"}}</legend>
+        <legend>{{localize "DAGGERHEART.Settings.Homebrew.downtimeMoves"}}</legend>
 
         <fieldset>
             <legend>
-                {{localize "DAGGERHEART.Downtime.LongRest.title"}} 
+                {{localize "DAGGERHEART.Applications.Downtime.longRest.title"}} 
                 <a data-action="addItem" data-type="longRest"><i class="fa-solid fa-plus"></i></a>
                 <a data-action="resetMoves" data-type="longRest"><i class="fa-solid fa-arrow-rotate-left"></i></a>
             </legend>
 
             <div class="form-group setting-group-field">
-                <label>{{localize "DAGGERHEART.Settings.Homebrew.NrChoices"}}</label>
+                <label>{{localize "DAGGERHEART.Settings.Homebrew.nrChoices"}}</label>
                 <div class="form-fields">
                     <input type="text" name="restMoves.longRest.nrChoices" value="{{settingFields._source.restMoves.longRest.nrChoices}}" />
                 </div>
@@ -50,13 +50,13 @@
 
         <fieldset>
             <legend>
-                {{localize "DAGGERHEART.Downtime.ShortRest.title"}}
+                {{localize "DAGGERHEART.Applications.Downtime.shortRest.title"}}
                 <a data-action="addItem" data-type="shortRest"><i class="fa-solid fa-plus"></i></a>
                 <a data-action="resetMoves" data-type="shortRest"><i class="fa-solid fa-arrow-rotate-left"></i></a>
             </legend>
 
             <div class="form-group setting-group-field">
-                <label>{{localize "DAGGERHEART.Settings.Homebrew.NrChoices"}}</label>
+                <label>{{localize "DAGGERHEART.Settings.Homebrew.nrChoices"}}</label>
                 <div class="form-fields">
                     <input type="text" name="restMoves.shortRest.nrChoices" value="{{settingFields._source.restMoves.shortRest.nrChoices}}" />
                 </div>

@@ -4,21 +4,11 @@ export const actionTypes = {
         name: 'DAGGERHEART.Actions.Types.attack.name',
         icon: 'fa-swords'
     },
-    // spellcast: {
-    //     id: 'spellcast',
-    //     name: 'DAGGERHEART.Actions.Types.spellcast.name',
-    //     icon: 'fa-book-sparkles'
-    // },
     healing: {
         id: 'healing',
         name: 'DAGGERHEART.Actions.Types.healing.name',
         icon: 'fa-kit-medical'
     },
-    // resource: {
-    //     id: 'resource',
-    //     name: 'DAGGERHEART.Actions.Types.resource.name',
-    //     icon: 'fa-honey-pot'
-    // },
     damage: {
         id: 'damage',
         name: 'DAGGERHEART.Actions.Types.damage.name',
@@ -113,15 +103,15 @@ export const diceCompare = {
 
 export const advandtageState = {
     disadvantage: {
-        label: 'DAGGERHEART.General.Disadvantage.Full',
+        label: 'DAGGERHEART.General.Disadvantage.full',
         value: -1
     },
     neutral: {
-        label: 'DAGGERHEART.General.Neutral.Full',
+        label: 'DAGGERHEART.General.Neutral.full',
         value: 0
     },
     advantage: {
-        label: 'DAGGERHEART.General.Advantage.Full',
+        label: 'DAGGERHEART.General.Advantage.full',
         value: 1
     }
 };

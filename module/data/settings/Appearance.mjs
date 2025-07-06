@@ -48,10 +48,10 @@ export default class DhAppearance extends foundry.abstract.DataModel {
 export const DualityRollColor = {
     colorful: {
         value: 'colorful',
-        label: 'DAGGERHEART.Settings.DualityRollColor.Options.Colorful'
+        label: 'DAGGERHEART.Settings.DualityRollColor.options.colorful'
     },
     normal: {
         value: 'normal',
-        label: 'DAGGERHEART.Settings.DualityRollColor.Options.Normal'
+        label: 'DAGGERHEART.Settings.DualityRollColor.options.normal'
     }
 };

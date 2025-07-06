@@ -41,7 +41,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'features',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.features'
+            label: 'DAGGERHEART.General.Tabs.features'
         },
         notes: {
             active: false,
@@ -49,7 +49,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'notes',
             icon: null,
-            label: 'DAGGERHEART.Sheets.Adversary.Tabs.notes'
+            label: 'DAGGERHEART.General.Tabs.notes'
         },
         effects: {
             active: false,
@@ -57,7 +57,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'effects',
             icon: null,
-            label: 'DAGGERHEART.Sheets.Adversary.Tabs.effects'
+            label: 'DAGGERHEART.General.Tabs.effects'
         }
     };
 
@@ -118,7 +118,7 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             const experience = this.document.system.experiences[button.dataset.uuid];
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
-                name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
+                name: game.i18n.localize('DAGGERHEART.General.Experience.single'),
                 description: `${experience.name} ${
                     experience.modifier < 0 ? experience.modifier : `+${experience.modifier}`
                 }`

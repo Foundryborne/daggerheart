@@ -5,8 +5,8 @@
         <div class="dice-tooltip">
             <div class="wrapper">
                 <div class="target-selection">
-                    <label class="button-target-selection{{#if @root.targetSelection}} target-selected{{/if}}" data-target-hit="true">{{localize "DAGGERHEART.Chat.DamageRoll.HitTarget"}}</label>
-                    <label class="button-target-selection{{#unless @root.targetSelection}} target-selected{{/unless}}">{{localize "DAGGERHEART.Chat.DamageRoll.SelectedTarget"}}</label>
+                    <label class="button-target-selection{{#if @root.targetSelection}} target-selected{{/if}}" data-target-hit="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.hitTarget"}}</label>
+                    <label class="button-target-selection{{#unless @root.targetSelection}} target-selected{{/unless}}">{{localize "DAGGERHEART.UI.Chat.damageRoll.selectedTarget"}}</label>
                 </div>
                 {{#if (and hasSave @root.targetSelection @root.hasHitTarget)}}
                     <button class="inner-button inner-button-right roll-all-save-button">Roll All <i class="fa-solid fa-shield"></i></button>

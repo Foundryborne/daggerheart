@@ -20,32 +20,32 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                 enabled: new fields.BooleanField({
                     required: true,
                     initial: false,
-                    label: 'DAGGERHEART.Settings.Homebrew.Currency.enabled'
+                    label: 'DAGGERHEART.Settings.Homebrew.currency.enabled'
                 }),
                 title: new fields.StringField({
                     required: true,
                     initial: 'Gold',
-                    label: 'DAGGERHEART.Settings.Homebrew.Currency.currencyName'
+                    label: 'DAGGERHEART.Settings.Homebrew.currency.currencyName'
                 }),
                 coins: new fields.StringField({
                     required: true,
                     initial: 'Coins',
-                    label: 'DAGGERHEART.Settings.Homebrew.Currency.coinName'
+                    label: 'DAGGERHEART.Settings.Homebrew.currency.coinName'
                 }),
                 handfulls: new fields.StringField({
                     required: true,
                     initial: 'Handfulls',
-                    label: 'DAGGERHEART.Settings.Homebrew.Currency.handfullName'
+                    label: 'DAGGERHEART.Settings.Homebrew.currency.handfullName'
                 }),
                 bags: new fields.StringField({
                     required: true,
                     initial: 'Bags',
-                    label: 'DAGGERHEART.Settings.Homebrew.Currency.bagName'
+                    label: 'DAGGERHEART.Settings.Homebrew.currency.bagName'
                 }),
                 chests: new fields.StringField({
                     required: true,
                     initial: 'Chests',
-                    label: 'DAGGERHEART.Settings.Homebrew.Currency.chestName'
+                    label: 'DAGGERHEART.Settings.Homebrew.currency.chestName'
                 })
             }),
             restMoves: new fields.SchemaField({

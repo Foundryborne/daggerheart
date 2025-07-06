@@ -23,7 +23,7 @@ export default class DHHealingAction extends DHBaseAction {
             bonusDamage = [];
 
         const config = {
-            title: game.i18n.format('DAGGERHEART.Chat.HealingRoll.Title', {
+            title: game.i18n.format('DAGGERHEART.UI.Chat.healingRoll.title', {
                 healing: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[this.healing.type].label)
             }),
             roll: { formula },

@@ -1,11 +1,11 @@
 export const armorFeatures = {
     burning: {
-        label: 'DAGGERHEART.ArmorFeature.Burning.Name',
-        description: 'DAGGERHEART.ArmorFeature.Burning.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.burning.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.burning.description'
     },
     channeling: {
-        label: 'DAGGERHEART.ArmorFeature.Channeling.Name',
-        description: 'DAGGERHEART.ArmorFeature.Channeling.Description',
+        label: 'DAGGERHEART.Config.ArmorFeature.channeling.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.channeling.description',
         effects: [
             {
                 changes: [
@@ -19,8 +19,8 @@ export const armorFeatures = {
         ]
     },
     difficult: {
-        label: 'DAGGERHEART.ArmorFeature.Difficult.Name',
-        description: 'DAGGERHEART.ArmorFeature.Difficult.Description',
+        label: 'DAGGERHEART.Config.ArmorFeature.difficult.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.difficult.description',
         effects: [
             {
                 changes: [
@@ -64,8 +64,8 @@ export const armorFeatures = {
         ]
     },
     flexible: {
-        label: 'DAGGERHEART.ArmorFeature.Flexible.Name',
-        description: 'DAGGERHEART.ArmorFeature.Flexible.Description',
+        label: 'DAGGERHEART.Config.ArmorFeature.flexible.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.flexible.description',
         effects: [
             {
                 changes: [
@@ -79,12 +79,12 @@ export const armorFeatures = {
         ]
     },
     fortified: {
-        label: 'DAGGERHEART.ArmorFeature.Fortified.Name',
-        description: 'DAGGERHEART.ArmorFeature.Fortified.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.fortified.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.fortified.description'
     },
     gilded: {
-        label: 'DAGGERHEART.ArmorFeature.Gilded.Name',
-        description: 'DAGGERHEART.ArmorFeature.Gilded.Description',
+        label: 'DAGGERHEART.Config.ArmorFeature.gilded.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.gilded.description',
         effects: [
             {
                 changes: [
@@ -98,8 +98,8 @@ export const armorFeatures = {
         ]
     },
     heavy: {
-        label: 'DAGGERHEART.ArmorFeature.Heavy.Name',
-        description: 'DAGGERHEART.ArmorFeature.Heavy.Description',
+        label: 'DAGGERHEART.Config.ArmorFeature.heavy.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.heavy.description',
         effects: [
             {
                 changes: [
@@ -113,56 +113,56 @@ export const armorFeatures = {
         ]
     },
     hopeful: {
-        label: 'DAGGERHEART.ArmorFeature.Hopeful.Name',
-        description: 'DAGGERHEART.ArmorFeature.Hopeful.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.hopeful.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.hopeful.description'
     },
     impenetrable: {
-        label: 'DAGGERHEART.ArmorFeature.Impenetrable.Name',
-        description: 'DAGGERHEART.ArmorFeature.Impenetrable.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.impenetrable.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.impenetrable.description'
     },
     magic: {
-        label: 'DAGGERHEART.ArmorFeature.Magic.Name',
-        description: 'DAGGERHEART.ArmorFeature.Magic.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.magic.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.magic.description'
     },
     painful: {
-        label: 'DAGGERHEART.ArmorFeature.Painful.Name',
-        description: 'DAGGERHEART.ArmorFeature.Painful.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.painful.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.painful.description'
     },
     physical: {
-        label: 'DAGGERHEART.ArmorFeature.Physical.Name',
-        description: 'DAGGERHEART.ArmorFeature.Physical.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.physical.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.physical.description'
     },
     quiet: {
-        label: 'DAGGERHEART.ArmorFeature.Quiet.Name',
-        description: 'DAGGERHEART.ArmorFeature.Quiet.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.quiet.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.quiet.description'
     },
     reinforced: {
-        label: 'DAGGERHEART.ArmorFeature.Reinforced.Name',
-        description: 'DAGGERHEART.ArmorFeature.Reinforced.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.reinforced.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.reinforced.description'
     },
     resilient: {
-        label: 'DAGGERHEART.ArmorFeature.Resilient.Name',
-        description: 'DAGGERHEART.ArmorFeature.Resilient.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.resilient.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.resilient.description'
     },
     sharp: {
-        label: 'DAGGERHEART.ArmorFeature.Sharp.Name',
-        description: 'DAGGERHEART.ArmorFeature.Sharp.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.sharp.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.sharp.description'
     },
     shifting: {
-        label: 'DAGGERHEART.ArmorFeature.Shifting.Name',
-        description: 'DAGGERHEART.ArmorFeature.Shifting.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.shifting.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.shifting.description'
     },
     timeslowing: {
-        label: 'DAGGERHEART.ArmorFeature.Timeslowing.Name',
-        description: 'DAGGERHEART.ArmorFeature.Timeslowing.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.timeslowing.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.timeslowing.description'
     },
     truthseeking: {
-        label: 'DAGGERHEART.ArmorFeature.Truthseeking.Name',
-        description: 'DAGGERHEART.ArmorFeature.Truthseeking.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.truthseeking.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.truthseeking.description'
     },
     veryheavy: {
-        label: 'DAGGERHEART.ArmorFeature.VeryHeavy.Name',
-        description: 'DAGGERHEART.ArmorFeature.VeryHeavy.Description',
+        label: 'DAGGERHEART.Config.ArmorFeature.veryHeavy.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.veryHeavy.description',
         effects: [
             {
                 changes: [
@@ -181,15 +181,15 @@ export const armorFeatures = {
         ]
     },
     warded: {
-        label: 'DAGGERHEART.ArmorFeature.Warded.Name',
-        description: 'DAGGERHEART.ArmorFeature.Warded.Description'
+        label: 'DAGGERHEART.Config.ArmorFeature.warded.name',
+        description: 'DAGGERHEART.Config.ArmorFeature.warded.description'
     }
 };
 
 export const weaponFeatures = {
     barrier: {
-        label: 'DAGGERHEART.WeaponFeature.Barrier.Name',
-        description: 'DAGGERHEART.WeaponFeature.Barrier.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.barrier.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.barrier.description',
         effects: [
             {
                 changes: [
@@ -212,8 +212,8 @@ export const weaponFeatures = {
         ]
     },
     bonded: {
-        label: 'DAGGERHEART.WeaponFeature.Bonded.Name',
-        description: 'DAGGERHEART.WeaponFeature.Bonded.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.bonded.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.bonded.description',
         effects: [
             {
                 changes: [
@@ -227,12 +227,12 @@ export const weaponFeatures = {
         ]
     },
     bouncing: {
-        label: 'DAGGERHEART.WeaponFeature.Bouncing.Name',
-        description: 'DAGGERHEART.WeaponFeature.Bouncing.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.bouncing.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.bouncing.description'
     },
     brave: {
-        label: 'DAGGERHEART.WeaponFeature.Brave.Name',
-        description: 'DAGGERHEART.WeaponFeature.Brave.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.brave.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.brave.description',
         effects: [
             {
                 changes: [
@@ -255,16 +255,16 @@ export const weaponFeatures = {
         ]
     },
     brutal: {
-        label: 'DAGGERHEART.WeaponFeature.Brutal.Name',
-        description: 'DAGGERHEART.WeaponFeature.Brutal.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.brutal.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.brutal.description'
     },
     charged: {
-        label: 'DAGGERHEART.WeaponFeature.Charged.Name',
-        description: 'DAGGERHEART.WeaponFeature.Charged.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.charged.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.charged.description',
         actions: [
             {
                 type: 'effect',
-                name: 'DAGGERHEART.WeaponFeature.Concussive.Name',
+                name: 'DAGGERHEART.Config.WeaponFeature.concussive.name',
                 img: 'icons/skills/melee/shield-damaged-broken-brown.webp',
                 actionType: 'action',
                 cost: [
@@ -278,12 +278,12 @@ export const weaponFeatures = {
         ]
     },
     concussive: {
-        label: 'DAGGERHEART.WeaponFeature.Concussive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Concussive.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.concussive.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.concussive.description',
         actions: [
             {
                 type: 'resource',
-                name: 'DAGGERHEART.WeaponFeature.Concussive.Name',
+                name: 'DAGGERHEART.Config.WeaponFeature.concussive.name',
                 img: 'icons/skills/melee/shield-damaged-broken-brown.webp',
                 actionType: 'action',
                 cost: [
@@ -296,8 +296,8 @@ export const weaponFeatures = {
         ]
     },
     cumbersome: {
-        label: 'DAGGERHEART.WeaponFeature.Cumbersome.Name',
-        description: 'DAGGERHEART.WeaponFeature.Cumbersome.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.cumbersome.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.cumbersome.description',
         effects: [
             {
                 changes: [
@@ -311,15 +311,15 @@ export const weaponFeatures = {
         ]
     },
     deadly: {
-        label: 'DAGGERHEART.WeaponFeature.Deadly.Name',
-        description: 'DAGGERHEART.WeaponFeature.Deadly.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.deadly.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.deadly.description'
     },
     deflecting: {
-        label: 'DAGGERHEART.WeaponFeature.Deflecting.Name',
-        description: 'DAGGERHEART.WeaponFeature.Deflecting.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.deflecting.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.deflecting.description'
         // actions: [{
         //     type: 'effect',
-        //     name: 'DAGGERHEART.WeaponFeature.Deflecting.Name',
+        //     name: 'DAGGERHEART.Config.WeaponFeature.Deflecting.Name',
         //     img: 'icons/skills/melee/strike-flail-destructive-yellow.webp',
         //     actionType: 'reaction',
         //     cost: [{
@@ -329,8 +329,8 @@ export const weaponFeatures = {
         // }],
     },
     destructive: {
-        label: 'DAGGERHEART.WeaponFeature.Destructive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Destructive.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.destructive.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.destructive.description',
         effects: [
             {
                 changes: [
@@ -344,12 +344,12 @@ export const weaponFeatures = {
         ]
     },
     devastating: {
-        label: 'DAGGERHEART.WeaponFeature.Devastating.Name',
-        description: 'DAGGERHEART.WeaponFeature.Devastating.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.devastating.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.devastating.description',
         actions: [
             {
                 type: 'resource',
-                name: 'DAGGERHEART.WeaponFeature.Devastating.Name',
+                name: 'DAGGERHEART.Config.WeaponFeature.devastating.name',
                 img: 'icons/skills/melee/strike-flail-destructive-yellow.webp',
                 actionType: 'action',
                 cost: [
@@ -362,8 +362,8 @@ export const weaponFeatures = {
         ]
     },
     doubleduty: {
-        label: 'DAGGERHEART.WeaponFeature.DoubleDuty.Name',
-        description: 'DAGGERHEART.WeaponFeature.DoubleDuty.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.doubleDuty.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.doubleDuty.description',
         effects: [
             {
                 changes: [
@@ -377,24 +377,24 @@ export const weaponFeatures = {
         ]
     },
     doubledup: {
-        label: 'DAGGERHEART.WeaponFeature.DoubledUp.Name',
-        description: 'DAGGERHEART.WeaponFeature.DoubledUp.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.doubledUp.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.doubledUp.description'
     },
     dueling: {
-        label: 'DAGGERHEART.WeaponFeature.Dueling.Name',
-        description: 'DAGGERHEART.WeaponFeature.Dueling.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.dueling.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.dueling.description'
     },
     eruptive: {
-        label: 'DAGGERHEART.WeaponFeature.Eruptive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Eruptive.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.eruptive.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.eruptive.description'
     },
     grappling: {
-        label: 'DAGGERHEART.WeaponFeature.Grappling.Name',
-        description: 'DAGGERHEART.WeaponFeature.Grappling.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.grappling.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.grappling.description',
         actions: [
             {
                 type: 'resource',
-                name: 'DAGGERHEART.WeaponFeature.Grappling.Name',
+                name: 'DAGGERHEART.Config.WeaponFeature.grappling.name',
                 img: 'icons/magic/control/debuff-chains-ropes-net-white.webp',
                 actionType: 'action',
                 cost: [
@@ -407,16 +407,16 @@ export const weaponFeatures = {
         ]
     },
     greedy: {
-        label: 'DAGGERHEART.WeaponFeature.Greedy.Name',
-        description: 'DAGGERHEART.WeaponFeature.Greedy.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.greedy.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.greedy.description'
     },
     healing: {
-        label: 'DAGGERHEART.WeaponFeature.Healing.Name',
-        description: 'DAGGERHEART.WeaponFeature.Healing.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.healing.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.healing.description',
         actions: [
             {
                 type: 'healing',
-                name: 'DAGGERHEART.WeaponFeature.Healing.Name',
+                name: 'DAGGERHEART.Config.WeaponFeature.healing.name',
                 img: 'icons/magic/life/cross-beam-green.webp',
                 actionType: 'action',
                 healing: {
@@ -432,8 +432,8 @@ export const weaponFeatures = {
         ]
     },
     heavy: {
-        label: 'DAGGERHEART.WeaponFeature.Heavy.Name',
-        description: 'DAGGERHEART.WeaponFeature.Heavy.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.heavy.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.heavy.description',
         effects: [
             {
                 changes: [
@@ -447,36 +447,36 @@ export const weaponFeatures = {
         ]
     },
     hooked: {
-        label: 'DAGGERHEART.WeaponFeature.Hooked.Name',
-        description: 'DAGGERHEART.WeaponFeature.Hooked.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.hooked.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.hooked.description'
     },
     hot: {
-        label: 'DAGGERHEART.WeaponFeature.Hot.Name',
-        description: 'DAGGERHEART.WeaponFeature.Hot.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.hot.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.hot.description'
     },
     invigorating: {
-        label: 'DAGGERHEART.WeaponFeature.Invigorating.Name',
-        description: 'DAGGERHEART.WeaponFeature.Invigorating.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.invigorating.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.invigorating.description'
     },
     lifestealing: {
-        label: 'DAGGERHEART.WeaponFeature.Lifestealing.Name',
-        description: 'DAGGERHEART.WeaponFeature.Lifestealing.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.lifestealing.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.lifestealing.description'
     },
     lockedon: {
-        label: 'DAGGERHEART.WeaponFeature.LockedOn.Name',
-        description: 'DAGGERHEART.WeaponFeature.LockedOn.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.lockedOn.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.lockedOn.description'
     },
     long: {
-        label: 'DAGGERHEART.WeaponFeature.Long.Name',
-        description: 'DAGGERHEART.WeaponFeature.Long.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.long.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.long.description'
     },
     lucky: {
-        label: 'DAGGERHEART.WeaponFeature.Lucky.Name',
-        description: 'DAGGERHEART.WeaponFeature.Lucky.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.lucky.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.lucky.description',
         actions: [
             {
                 type: 'resource',
-                name: 'DAGGERHEART.WeaponFeature.Lucky.Name',
+                name: 'DAGGERHEART.Config.WeaponFeature.lucky.name',
                 img: 'icons/magic/control/buff-luck-fortune-green.webp',
                 actionType: 'action',
                 cost: [
@@ -489,8 +489,8 @@ export const weaponFeatures = {
         ]
     },
     massive: {
-        label: 'DAGGERHEART.WeaponFeature.Massive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Massive.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.massive.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.massive.description',
         effects: [
             {
                 changes: [
@@ -504,12 +504,12 @@ export const weaponFeatures = {
         ]
     },
     painful: {
-        label: 'DAGGERHEART.WeaponFeature.Painful.Name',
-        description: 'DAGGERHEART.WeaponFeature.Painful.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.painful.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.painful.description',
         actions: [
             {
                 type: 'resource',
-                name: 'DAGGERHEART.WeaponFeature.Painful.Name',
+                name: 'DAGGERHEART.Config.WeaponFeature.painful.name',
                 img: 'icons/skills/wounds/injury-face-impact-orange.webp',
                 actionType: 'action',
                 cost: [
@@ -522,31 +522,31 @@ export const weaponFeatures = {
         ]
     },
     paired: {
-        label: 'DAGGERHEART.WeaponFeature.Paired.Name',
-        description: 'DAGGERHEART.WeaponFeature.Paired.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.paired.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.paired.description',
         override: {
             bonusDamage: 1
         }
     },
     parry: {
-        label: 'DAGGERHEART.WeaponFeature.Parry.Name',
-        description: 'DAGGERHEART.WeaponFeature.Parry.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.parry.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.parry.description'
     },
     persuasive: {
-        label: 'DAGGERHEART.WeaponFeature.Persuasive.Name',
-        description: 'DAGGERHEART.WeaponFeature.Persuasive.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.persuasive.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.persuasive.description'
     },
     pompous: {
-        label: 'DAGGERHEART.WeaponFeature.Pompous.Name',
-        description: 'DAGGERHEART.WeaponFeature.Pompous.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.pompous.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.pompous.description'
     },
     powerful: {
-        label: 'DAGGERHEART.WeaponFeature.Powerful.Name',
-        description: 'DAGGERHEART.WeaponFeature.Powerful.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.powerful.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.powerful.description'
     },
     protective: {
-        label: 'DAGGERHEART.WeaponFeature.Protective.Name',
-        description: 'DAGGERHEART.WeaponFeature.Protective.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.protective.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.protective.description',
         effects: [
             {
                 changes: [
@@ -560,12 +560,12 @@ export const weaponFeatures = {
         ]
     },
     quick: {
-        label: 'DAGGERHEART.WeaponFeature.Quick.Name',
-        description: 'DAGGERHEART.WeaponFeature.Quick.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.quick.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.quick.description',
         actions: [
             {
                 type: 'resource',
-                name: 'DAGGERHEART.WeaponFeature.Quick.Name',
+                name: 'DAGGERHEART.Config.WeaponFeature.quick.name',
                 img: 'icons/skills/movement/arrow-upward-yellow.webp',
                 actionType: 'action',
                 cost: [
@@ -578,8 +578,8 @@ export const weaponFeatures = {
         ]
     },
     reliable: {
-        label: 'DAGGERHEART.WeaponFeature.Reliable.Name',
-        description: 'DAGGERHEART.WeaponFeature.Reliable.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.reliable.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.reliable.description',
         effects: [
             {
                 changes: [
@@ -593,40 +593,40 @@ export const weaponFeatures = {
         ]
     },
     reloading: {
-        label: 'DAGGERHEART.WeaponFeature.Reloading.Name',
-        description: 'DAGGERHEART.WeaponFeature.Reloading.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.reloading.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.reloading.description'
     },
     retractable: {
-        label: 'DAGGERHEART.WeaponFeature.Retractable.Name',
-        description: 'DAGGERHEART.WeaponFeature.Retractable.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.retractable.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.retractable.description'
     },
     returning: {
-        label: 'DAGGERHEART.WeaponFeature.Returning.Name',
-        description: 'DAGGERHEART.WeaponFeature.Returning.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.returning.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.returning.description'
     },
     scary: {
-        label: 'DAGGERHEART.WeaponFeature.Scary.Name',
-        description: 'DAGGERHEART.WeaponFeature.Scary.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.scary.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.scary.description'
     },
     serrated: {
-        label: 'DAGGERHEART.WeaponFeature.Serrated.Name',
-        description: 'DAGGERHEART.WeaponFeature.Serrated.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.serrated.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.serrated.description'
     },
     sharpwing: {
-        label: 'DAGGERHEART.WeaponFeature.Sharpwing.Name',
-        description: 'DAGGERHEART.WeaponFeature.Sharpwing.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.sharpwing.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.sharpwing.description'
     },
     sheltering: {
-        label: 'DAGGERHEART.WeaponFeature.Sheltering.Name',
-        description: 'DAGGERHEART.WeaponFeature.Sheltering.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.sheltering.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.sheltering.description'
     },
     startling: {
-        label: 'DAGGERHEART.WeaponFeature.Startling.Name',
-        description: 'DAGGERHEART.WeaponFeature.Startling.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.startling.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.startling.description',
         actions: [
             {
                 type: 'resource',
-                name: 'DAGGERHEART.WeaponFeature.Startling.Name',
+                name: 'DAGGERHEART.Config.WeaponFeature.startling.name',
                 img: 'icons/magic/control/fear-fright-mask-orange.webp',
                 actionType: 'action',
                 cost: [
@@ -639,12 +639,12 @@ export const weaponFeatures = {
         ]
     },
     timebending: {
-        label: 'DAGGERHEART.WeaponFeature.Timebending.Name',
-        description: 'DAGGERHEART.WeaponFeature.Timebending.Description'
+        label: 'DAGGERHEART.Config.WeaponFeature.timebending.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.timebending.description'
     },
     versatile: {
-        label: 'DAGGERHEART.WeaponFeature.Versatile.Name',
-        description: 'DAGGERHEART.WeaponFeature.Versatile.Description',
+        label: 'DAGGERHEART.Config.WeaponFeature.versatile.name',
+        description: 'DAGGERHEART.Config.WeaponFeature.versatile.description',
         versatile: {
             characterTrait: '',
             range: '',
@@ -700,42 +700,17 @@ export const featureTypes = {
     }
 };
 
-export const valueTypes = {
-    normal: {
-        id: 'normal',
-        name: 'DAGGERHEART.Feature.ValueType.Normal',
-        data: {
-            value: 0,
-            max: 0
-        }
-    },
-    input: {
-        id: 'input',
-        name: 'DAGGERHEART.Feature.ValueType.Input',
-        data: {
-            value: null
-        }
-    },
-    dice: {
-        id: 'dice',
-        name: 'DAGGERHEART.Feature.ValueType.Dice',
-        data: {
-            value: null
-        }
-    }
-};
-
 export const actionTypes = {
     passive: {
         id: 'passive',
-        label: 'DAGGERHEART.ActionType.passive'
+        label: 'DAGGERHEART.Config.ActionType.passive'
     },
     action: {
         id: 'action',
-        label: 'DAGGERHEART.ActionType.action'
+        label: 'DAGGERHEART.Config.ActionType.action'
     },
     reaction: {
         id: 'reaction',
-        label: 'DAGGERHEART.ActionType.reaction'
+        label: 'DAGGERHEART.Config.ActionType.reaction'
     }
 };

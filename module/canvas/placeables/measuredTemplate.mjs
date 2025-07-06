@@ -18,19 +18,19 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
 
     static getDistanceLabel(distance, settings) {
         if (distance <= settings.melee) {
-            return game.i18n.localize('DAGGERHEART.Range.melee.name');
+            return game.i18n.localize('DAGGERHEART.Config.Range.melee.name');
         }
         if (distance <= settings.veryClose) {
-            return game.i18n.localize('DAGGERHEART.Range.veryClose.name');
+            return game.i18n.localize('DAGGERHEART.Config.Range.veryClose.name');
         }
         if (distance <= settings.close) {
-            return game.i18n.localize('DAGGERHEART.Range.close.name');
+            return game.i18n.localize('DAGGERHEART.Config.Range.close.name');
         }
         if (distance <= settings.far) {
-            return game.i18n.localize('DAGGERHEART.Range.far.name');
+            return game.i18n.localize('DAGGERHEART.Config.Range.far.name');
         }
         if (distance <= settings.veryFar) {
-            return game.i18n.localize('DAGGERHEART.Range.veryFar.name');
+            return game.i18n.localize('DAGGERHEART.Config.Range.veryFar.name');
         }
 
         return '';
