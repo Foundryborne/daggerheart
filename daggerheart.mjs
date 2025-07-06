@@ -265,6 +265,40 @@ Hooks.on('renderJournalDirectory', async (tab, html, _, options) => {
     }
 });
 
-Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async(roll, config, message) => {
-    console.log(roll, config, message)
+Hooks.on(`daggerheart.postRollDuality`, async(config, message) => {
+    if(config.roll.type !== 'action') return;
+    /* const actor = fromUuid(config.source.actor),
+        rollResult = config.roll.result || config.targets.some(t => t.hit),
+        actorResources = {},
+        looseSpotlight = false;
+    if(config.roll.isCritical || config.roll.result.duality === 1)
+        actorResources.resources.hope.value += 1;
+    if(config.roll.isCritical)
+        actorResources.resources.stress.value -= 1;
+    if(config.roll.result.duality === -1) fear.value += 1;
+    if(!rollResult || config.roll.result.duality === -1) looseSpotlight = true;
+
+    if(Object.keys(actorResources).length) actor.update();
+    if(looseSpotlight)
+        looseSpotlight();
+
+    if(config.roll.isCritical) {
+        // Gain Hope
+        // Clear Stress
+    } else if(rollResult) {
+        if(config.roll.result.duality === 1) {
+            // Gain Hope
+        } else {
+            // GM Gain Fear
+            // Loose Spotlight
+        }
+    } else {
+        if(config.roll.result.duality === 1) {
+            // Gain Hope
+            // Loose Spotlight
+        } else {
+            // GM Gain Fear
+            // Loose Spotlight
+        }
+    } */
 });
