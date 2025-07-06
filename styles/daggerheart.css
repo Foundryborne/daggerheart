@@ -5795,6 +5795,9 @@ body.theme-light.application.daggerheart.dialog {
   border-radius: 6px;
   border: none;
 }
+.application.dh-style fieldset .nest-inputs > .checkbox {
+  align-self: end;
+}
 .application.dh-style fieldset .form-group {
   width: 100%;
 }
@@ -5805,6 +5808,8 @@ body.theme-light.application.daggerheart.dialog {
 }
 .application.dh-style fieldset .form-group.checkbox {
   width: fit-content;
+  display: flex;
+  align-items: center;
 }
 .application.dh-style fieldset .form-group.checkbox .form-fields {
   height: 32px;
