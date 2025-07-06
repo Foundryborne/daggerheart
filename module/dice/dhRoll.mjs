@@ -51,7 +51,6 @@ export default class DHRoll extends Roll {
 
     static async buildPost(roll, config, message) {
         for (const hook of config.hooks) {
-            console.log(hook)
             if (Hooks.call(`${CONFIG.DH.id}.postRoll${hook.capitalize()}`, config, message) === false) return null;
         }
 
@@ -136,3 +135,36 @@ export default class DHRoll extends Roll {
         return modifierTotal;
     }
 }
+
+export const registerRollDiceHooks = () => {
+    Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async(config, message) => {
+        if(config.roll.type !== 'action') return;
+
+        const actor = await fromUuid(config.source.actor),
+            rollResult = config.roll.result || config.targets.some(t => t.hit),
+            updates = [];
+        let looseSpotlight = false;
+        if(!actor) return;
+        if(config.roll.isCritical || config.roll.result.duality === 1)
+            updates.push(
+                { type: 'hope', value: 1 }
+            );
+        if(config.roll.isCritical)
+            updates.push(
+                { type: 'stress', value: -1 }
+            );
+        if(config.roll.result.duality === -1)
+            updates.push(
+                { type: 'fear', value: 1 }
+            );
+        if(!rollResult || config.roll.result.duality === -1) looseSpotlight = true;
+        
+        if(updates.length)
+            actor.modifyResource(updates);
+        if(looseSpotlight && game.combat?.active) {
+            const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
+            if(currentCombatant?.actorId == actor.id)
+                ui.combat.setCombatantSpotlight(currentCombatant.id);
+        }
+    });
+};

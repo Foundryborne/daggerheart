@@ -3,13 +3,13 @@ import DHBaseAction from './baseAction.mjs';
 export default class DHEffectAction extends DHBaseAction {
     static extraSchemas = ['effects', 'target'];
 
-    async use(event, ...args) {
+    /* async use(event, ...args) {
         const config = await super.use(event, args);
         if (['error', 'warning'].includes(config.type)) return;
         return await this.chatApplyEffects(event, config);
-    }
+    } */
 
-    async chatApplyEffects(event, data) {
+    async trigger(event, data) {
         const cls = getDocumentClass('ChatMessage'),
             systemData = {
                 title: game.i18n.format('DAGGERHEART.Chat.ApplyEffect.Title', { name: this.name }),

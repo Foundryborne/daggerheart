@@ -227,7 +227,8 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
         // Display configuration window if necessary
-        if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
+        // if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
+        if (this.requireConfigurationDialog(config)) {
             config = await D20RollDialog.configure(config);
             if (!config) return;
         }

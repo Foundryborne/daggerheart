@@ -65,6 +65,20 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         ];
     }
 
+    async setCombatantSpotlight(combatantId) {
+        const combatant = this.viewed.combatants.get(combatantId);
+
+        const toggleTurn = this.viewed.combatants.contents
+            .sort(this.viewed._sortCombatants)
+            .map(x => x.id)
+            .indexOf(combatantId);
+
+        if (this.viewed.turn !== toggleTurn) Hooks.callAll(CONFIG.DH.HOOKS.spotlight, {});
+
+        await this.viewed.update({ turn: this.viewed.turn === toggleTurn ? null : toggleTurn });
+        await combatant.update({ 'system.spotlight.requesting': false });
+    }
+
     static async requestSpotlight(_, target) {
         const { combatantId } = target.closest('[data-combatant-id]')?.dataset ?? {};
         const combatant = this.viewed.combatants.get(combatantId);
@@ -79,17 +93,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
 
     static async toggleSpotlight(_, target) {
         const { combatantId } = target.closest('[data-combatant-id]')?.dataset ?? {};
-        const combatant = this.viewed.combatants.get(combatantId);
-
-        const toggleTurn = this.viewed.combatants.contents
-            .sort(this.viewed._sortCombatants)
-            .map(x => x.id)
-            .indexOf(combatantId);
-
-        if (this.viewed.turn !== toggleTurn) Hooks.callAll(CONFIG.DH.HOOKS.spotlight, {});
-
-        await this.viewed.update({ turn: this.viewed.turn === toggleTurn ? null : toggleTurn });
-        await combatant.update({ 'system.spotlight.requesting': false });
+        await this.setCombatantSpotlight(combatantId);
     }
 
     static async setActionTokens(_, target) {
