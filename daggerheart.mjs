@@ -211,7 +211,7 @@ Hooks.on('chatMessage', (_, message) => {
                 }
 
                 const title = traitValue
-                    ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', {
+                    ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                           ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
                       })
                     : game.i18n.localize('DAGGERHEART.GENERAL.duality');
