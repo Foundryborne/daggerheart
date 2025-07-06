@@ -158,34 +158,35 @@
         },
         "Applications": {
             "CharacterCreation": {
-                "title": "{actor} - Character Setup",
-                "traitIncreases": "Trait Increases",
-                "suggestedTraits": "Suggested Traits",
-                "initialExperiences": "Initial Experiences",
+                "choice": "Choice",
+                "finishCreation": "Finish Character Setup",
                 "heritage": "Heritage",
+                "initialExperiences": "Initial Experiences",
+                "newExperience": "New Experience..",
                 "selectAncestry": "Select Ancestry",
-                "selectCommunity": "Select Community",
-                "selectClass": "Select Class",
-                "selectSubclass": "Select Subclass",
                 "selectArmor": "Select Armor",
+                "selectClass": "Select Class",
+                "selectCommunity": "Select Community",
                 "selectPrimaryWeapon": "Select Primary Weapon",
                 "selectSecondaryWeapon": "Select Secondary Weapon",
+                "selectSubclass": "Select Subclass",
+                "startingItems": "Starting Items",
                 "suggestedArmor": "Suggested Armor",
-                "suggestedWeapons": "Suggested Weapon",
                 "suggestedPrimaryWeapon": "Suggested Primary Weapon",
                 "suggestedSecondaryWeapon": "Suggested Secondary Weapon",
-                "startingItems": "Starting Items",
-                "choice": "Choice",
-                "newExperience": "New Experience..",
-                "finishCreation": "Finish Character Setup"
+                "suggestedTraits": "Suggested Traits",
+                "suggestedWeapons": "Suggested Weapon",
+                "title": "{actor} - Character Setup",
+                "traitIncreases": "Trait Increases"
             },
             "CombatTracker": {
+                "combatStarted": "Active",
                 "giveSpotlight": "Give The Spotlight",
-                "requestSpotlight": "Request The Spotlight",
                 "requestingSpotlight": "Requesting The Spotlight",
-                "combatStarted": "Active"
+                "requestSpotlight": "Request The Spotlight"
             },
             "Countdown": {
+                "addCountdown": "Add Countdown",
                 "FIELDS": {
                     "countdowns": {
                         "element": {
@@ -194,18 +195,17 @@
                                 "current": { "label": "Current" },
                                 "max": { "label": "Max" },
                                 "type": {
-                                    "value": { "label": "Value" },
-                                    "label": { "label": "Label", "hint": "Used for custom" }
+                                    "label": { "label": "Label", "hint": "Used for custom" },
+                                    "value": { "label": "Value" }
                                 }
                             }
                         }
                     }
                 },
                 "newCountdown": "New Countdown",
-                "addCountdown": "Add Countdown",
-                "removeCountdownTitle": "Remove Countdown",
-                "removeCountdownText": "Are you sure you want to remove the countdown: {name}?",
                 "openOwnership": "Edit Player Ownership",
+                "removeCountdownText": "Are you sure you want to remove the countdown: {name}?",
+                "removeCountdownTitle": "Remove Countdown",
                 "title": "{type} Countdowns",
                 "toggleSimple": "Toggle Simple View",
                 "types": {
@@ -214,20 +214,43 @@
                 }
             },
             "DamageReduction": {
-                "title": "Damage Reduction",
                 "armorMarks": "Armor Marks",
-                "usedMarks": "Used Marks",
-                "stress": "Stress",
                 "armorWithStress": "Spend 1 stress to use an extra mark",
+                "stress": "Stress",
+                "stressReduction": "Reduce By Stress",
+                "title": "Damage Reduction",
                 "unncessaryStress": "You don't need to expend stress",
-                "stressReduction": "Reduce By Stress"
+                "usedMarks": "Used Marks"
             },
             "DeathMove": {
-                "title": "{actor} - Death Move",
-                "takeMove": "Take Death Move"
+                "takeMove": "Take Death Move",
+                "title": "{actor} - Death Move"
             },
             "Downtime": {
                 "downtimeHeader": "Downtime Moves ({current}/{max})",
+                "longRest": {
+                    "clearStress": {
+                        "description": "Describe how you blow off steam or pull yourself together, and clear all marked Stress.",
+                        "name": "Clear Stress"
+                    },
+                    "prepare": {
+                        "description": "Describe how you are preparing for the next day's adventure, then gain a Hope. If you choose to Prepare with one or more members of your party, you may each take two Hope.",
+                        "name": "Prepare"
+                    },
+                    "repairArmor": {
+                        "description": "Describe how you spend time repairing your armor and clear all of its Armor Slots. You may also do this to an ally's armor instead.",
+                        "name": "Repair Armor"
+                    },
+                    "tendToWounds": {
+                        "description": "Describe how you patch yourself up and remove all marked Hit Points. You may also do this on an ally instead.",
+                        "name": "Tend to Wounds"
+                    },
+                    "title": "Long Rest",
+                    "workOnAProject": {
+                        "description": "Establish or continue work on a project.",
+                        "name": "Work on a Project"
+                    }
+                },
                 "shortRest": {
                     "title": "Short Rest",
                     "tendToWounds": {
@@ -246,40 +269,59 @@
                         "name": "Prepare",
                         "description": "Describe how you prepare yourself for the path ahead, then gain a Hope. If you choose to Prepare with one or more members of your party, you each gain 2 Hope."
                     }
-                },
-                "longRest": {
-                    "title": "Long Rest",
-                    "tendToWounds": {
-                        "name": "Tend to Wounds",
-                        "description": "Describe how you patch yourself up and remove all marked Hit Points. You may also do this on an ally instead."
-                    },
-                    "clearStress": {
-                        "name": "Clear Stress",
-                        "description": "Describe how you blow off steam or pull yourself together, and clear all marked Stress."
-                    },
-                    "repairArmor": {
-                        "name": "Repair Armor",
-                        "description": "Describe how you spend time repairing your armor and clear all of its Armor Slots. You may also do this to an ally's armor instead."
-                    },
-                    "prepare": {
-                        "name": "Prepare",
-                        "description": "Describe how you are preparing for the next day's adventure, then gain a Hope. If you choose to Prepare with one or more members of your party, you may each take two Hope."
-                    },
-                    "workOnAProject": {
-                        "name": "Work on a Project",
-                        "description": "Establish or continue work on a project."
-                    }
                 }
             },
             "Levelup": {
-                "title": "{actor} Level Up",
+                "actions": {
+                    "creatureComfort": {
+                        "name": "Creature Comfort",
+                        "description": "Once per rest, when you take time during a quiet moment to give your companion love and attention, you can gain a Hope or you can both clear a Stress."
+                    },
+                    "armored": {
+                        "name": "Armored",
+                        "description": "When your companion takes damage, you can mark one of your Armor Slots instead of marking one of their Stress."
+                    },
+                    "bonded": {
+                        "name": "Bonded",
+                        "description": "When you mark your last Hit Point, your companion rushes to your side to comfort you. Roll a number of d6s equal to the unmarked Stress slots they have and mark them. If any roll a 6, your companion helps you up. Clear your last Hit Point and return to the scene."
+                    }
+                },
+                "choiceDescriptions": {
+                    "attributes": "Gain a +1 bonus to two unmarked character traits and mark them.",
+                    "hitPointSlots": "Permanently gain one Hit Point slot.",
+                    "stressSlots": "Permanently gain one Stress slot.",
+                    "experiences": "Permanently gain a +1 bonus to two experiences.",
+                    "domainCard": "Choose an additional domain card of your level or lower from a domain you have access to (up to level {maxLevel})",
+                    "evasion": "Permanently gain a +1 bonus to your Evasion.",
+                    "proficiency": "Increase your Proficiency by +1.",
+                    "subclass": "Take an upgraded subclass card. Then cross out the multiclass option for this tier.",
+                    "multiclass": "Multiclass: Choose an additional class for your character, then cross out an unused “Take an upgraded subclass card” and the other multiclass option on this sheet."
+                },
+                "delevel": {
+                    "content": "Returning to the previous level selection will remove all selections made for this level. Do you want to proceed?",
+                    "title": "Go back to previous level"
+                },
                 "navigateLevel": "To Level {level}",
                 "navigateToLevelup": "Return To Levelup",
                 "navigateToSummary": "To Summary",
-                "takeLevelUp": "Finish Level Up",
-                "delevel": {
-                    "title": "Go back to previous level",
-                    "content": "Returning to the previous level selection will remove all selections made for this level. Do you want to proceed?"
+                "options": {
+                    "trait": "Gain a +1 bonus to two unmarked character traits and mark them.",
+                    "hitPoint": "Permanently gain one Hit Point slot.",
+                    "stress": "Permanently gain one Stress slot.",
+                    "experience": "Permanently gain a +1 bonus to two experiences.",
+                    "domainCard": "Choose an additional domain card of your level or lower from a domain you have access to (up to level {maxLevel})",
+                    "evasion": "Permanently gain a +1 bonus to your Evasion.",
+                    "subclass": "Take an upgraded subclass card. Then cross out the multiclass option for this tier.",
+                    "proficiency": "Increase your Proficiency by +1.",
+                    "multiclass": "Multiclass: Choose an additional class for your character, then cross out an unused “Take an upgraded subclass card” and the other multiclass option on this sheet.",
+                    "intelligent": "Your companion gains a permanent +1 bonus to a Companion Experience of your choice.",
+                    "lightInTheDark": "Gain an additional Hope slot for your character.",
+                    "creatureComfort": "Once per rest, when you take time during a quiet moment to give your companion love and attention, you can gain a Hope or you can both clear a Stress.",
+                    "armored": "When your companion takes damage, you can mark one of your Armor Slots instead of marking one of their Stress.",
+                    "vicious": "Increase your companion's damage dice or range by one step (d6 to d8, Close to Far, etc.)",
+                    "resilient": "Your companion gains an additional Stress slot.",
+                    "bonded": "When you mark your last Hit Point, your companion rushes to your side to comfort you. Roll a number of d6s equal to the unmarked Stress slots they have and mark them. If any roll a 6, your companion helps you up. Clear your last Hit Point and return to the scene.",
+                    "aware": "Your companion gains a permanent +2 bonus to their Evasion."
                 },
                 "selections": {
                     "emptyDomainCardHint": "{domain} level {level} or below",
@@ -308,39 +350,7 @@
                     "rangeIncreased": "Range Increased: {range}",
                     "simpleFeature": "Feature: {feature}"
                 },
-                "options": {
-                    "trait": "Gain a +1 bonus to two unmarked character traits and mark them.",
-                    "hitPoint": "Permanently gain one Hit Point slot.",
-                    "stress": "Permanently gain one Stress slot.",
-                    "experience": "Permanently gain a +1 bonus to two experiences.",
-                    "domainCard": "Choose an additional domain card of your level or lower from a domain you have access to (up to level {maxLevel})",
-                    "evasion": "Permanently gain a +1 bonus to your Evasion.",
-                    "subclass": "Take an upgraded subclass card. Then cross out the multiclass option for this tier.",
-                    "proficiency": "Increase your Proficiency by +1.",
-                    "multiclass": "Multiclass: Choose an additional class for your character, then cross out an unused “Take an upgraded subclass card” and the other multiclass option on this sheet.",
-                    "intelligent": "Your companion gains a permanent +1 bonus to a Companion Experience of your choice.",
-                    "lightInTheDark": "Gain an additional Hope slot for your character.",
-                    "creatureComfort": "Once per rest, when you take time during a quiet moment to give your companion love and attention, you can gain a Hope or you can both clear a Stress.",
-                    "armored": "When your companion takes damage, you can mark one of your Armor Slots instead of marking one of their Stress.",
-                    "vicious": "Increase your companion's damage dice or range by one step (d6 to d8, Close to Far, etc.)",
-                    "resilient": "Your companion gains an additional Stress slot.",
-                    "bonded": "When you mark your last Hit Point, your companion rushes to your side to comfort you. Roll a number of d6s equal to the unmarked Stress slots they have and mark them. If any roll a 6, your companion helps you up. Clear your last Hit Point and return to the scene.",
-                    "aware": "Your companion gains a permanent +2 bonus to their Evasion."
-                },
-                "actions": {
-                    "creatureComfort": {
-                        "name": "Creature Comfort",
-                        "description": "Once per rest, when you take time during a quiet moment to give your companion love and attention, you can gain a Hope or you can both clear a Stress."
-                    },
-                    "armored": {
-                        "name": "Armored",
-                        "description": "When your companion takes damage, you can mark one of your Armor Slots instead of marking one of their Stress."
-                    },
-                    "bonded": {
-                        "name": "Bonded",
-                        "description": "When you mark your last Hit Point, your companion rushes to your side to comfort you. Roll a number of d6s equal to the unmarked Stress slots they have and mark them. If any roll a 6, your companion helps you up. Clear your last Hit Point and return to the scene."
-                    }
-                },
+                "takeLevelUp": "Finish Level Up",
                 "tier2": {
                     "label": "Levels 2-4",
                     "infoLabel": "At Level 2, gain an additional Experience at +2 and gain a +1 bonus to your Proficiency.",
@@ -359,17 +369,7 @@
                     "pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
-                "choiceDescriptions": {
-                    "attributes": "Gain a +1 bonus to two unmarked character traits and mark them.",
-                    "hitPointSlots": "Permanently gain one Hit Point slot.",
-                    "stressSlots": "Permanently gain one Stress slot.",
-                    "experiences": "Permanently gain a +1 bonus to two experiences.",
-                    "domainCard": "Choose an additional domain card of your level or lower from a domain you have access to (up to level {maxLevel})",
-                    "evasion": "Permanently gain a +1 bonus to your Evasion.",
-                    "proficiency": "Increase your Proficiency by +1.",
-                    "subclass": "Take an upgraded subclass card. Then cross out the multiclass option for this tier.",
-                    "multiclass": "Multiclass: Choose an additional class for your character, then cross out an unused “Take an upgraded subclass card” and the other multiclass option on this sheet."
-                }
+                "title": "{actor} Level Up"
             },
             "OwnershipSelection": {
                 "title": "Ownership Selection - {name}",
