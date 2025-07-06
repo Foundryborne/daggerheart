@@ -1,7 +1,7 @@
 <aside class="character-sidebar-sheet">
-    <div class="portrait {{#if document.system.deathMoveViable}}death-roll{{/if}}">
+    <div class="portrait {{#if isDeath}}death-roll{{/if}}">
         <img src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
-        <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.makeDeathMove"}}" data-action="makeDeathMove"><i class="fas fa-skull death-save" ></i></a>
+        <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.makeDeathMove"}}" {{#if isDeath}}data-action="makeDeathMove"{{/if}}><i class="fas fa-skull death-save" ></i></a>
     </div>
     
     <div class="info-section">

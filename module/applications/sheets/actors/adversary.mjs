@@ -13,9 +13,10 @@ export default class AdversarySheet extends DHBaseActorSheet {
             attackConfigure: this.attackConfigure,
             addExperience: this.addExperience,
             removeExperience: this.removeExperience,
-            toggleHP: this.toggleHP,
-            toggleStress: this.toggleStress,
             openSettings: this.openSettings
+        },
+        window: {
+            resizable: true
         },
     };
 
@@ -28,10 +29,10 @@ export default class AdversarySheet extends DHBaseActorSheet {
     };
 
 
-        /** @inheritdoc */
+    /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'features' }, { id: 'notes'}, { id: 'effects'}],
+            tabs: [{ id: 'features' }, { id: 'notes' }, { id: 'effects' }],
             initial: 'features',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -56,7 +57,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
             title: `Reaction Roll: ${this.actor.name}`,
             headerTitle: 'Adversary Reaction Roll',
             roll: {
-                // modifier: null,
                 type: 'reaction'
             },
             chatMessage: {
@@ -83,9 +83,8 @@ export default class AdversarySheet extends DHBaseActorSheet {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
-                description: `${experience.name} ${
-                    experience.modifier < 0 ? experience.modifier : `+${experience.modifier}`
-                }`
+                description: `${experience.name} ${experience.modifier < 0 ? experience.modifier : `+${experience.modifier}`
+                    }`
             };
             const msg = new cls({
                 type: 'abilityUse',
@@ -121,15 +120,4 @@ export default class AdversarySheet extends DHBaseActorSheet {
         });
     }
 
-    static async toggleHP(_, button) {
-        const index = Number.parseInt(button.dataset.index);
-        const newHP = index < this.document.system.resources.health.value ? index : index + 1;
-        await this.document.update({ 'system.resources.health.value': newHP });
-    }
-
-    static async toggleStress(_, button) {
-        const index = Number.parseInt(button.dataset.index);
-        const newStress = index < this.document.system.resources.stress.value ? index : index + 1;
-        await this.document.update({ 'system.resources.stress.value': newStress });
-    }
 }

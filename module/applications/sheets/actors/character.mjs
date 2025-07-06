@@ -1,47 +1,30 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import DhpDeathMove from '../../dialogs/deathMove.mjs';
-import DhpDowntime from '../../dialogs/downtime.mjs';
 import { abilities } from '../../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import DHActionConfig from '../../sheets-configs/action-config.mjs';
+
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
 const { TextEditor } = foundry.applications.ux;
 export default class CharacterSheet extends DHBaseActorSheet {
+    /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['character'],
         position: { width: 850, height: 800 },
         actions: {
             triggerContextMenu: CharacterSheet.#triggerContextMenu,
-            attributeRoll: this.rollAttribute,
-            toggleMarks: this.toggleMarks,
-            toggleHP: this.toggleHP,
-            toggleStress: this.toggleStress,
-            toggleHope: this.toggleHope,
-            toggleGold: this.toggleGold,
-            toggleLoadoutView: this.toggleLoadoutView,
-            attackRoll: this.attackRoll,
-            useDomainCard: this.useDomainCard,
-            selectClass: this.selectClass,
-            selectSubclass: this.selectSubclass,
-            selectCommunity: this.selectCommunity,
-            viewObject: this.viewObject,
-            useItem: this.useItem,
-            useFeature: this.useFeature,
-            takeShortRest: this.takeShortRest,
-            takeLongRest: this.takeLongRest,
-            deleteScar: this.deleteScar,
-            makeDeathMove: this.makeDeathMove,
-            itemQuantityDecrease: (_, button) => this.setItemQuantity(button, -1),
-            itemQuantityIncrease: (_, button) => this.setItemQuantity(button, 1),
+            toggleVault: CharacterSheet.#toggleVault,
+            rollAttribute: CharacterSheet.#rollAttribute,
+            toggleHope: CharacterSheet.#toggleHope,
+            toggleLoadoutView: CharacterSheet.#toggleLoadoutView,
+            openPack: CharacterSheet.#openPack,
+            makeDeathMove: CharacterSheet.#makeDeathMove,
+            levelManagement: CharacterSheet.#levelManagement,
+            toggleEquipItem: CharacterSheet.#toggleEquipItem,
+            useItem: this.useItem, //TODO Fix this
             toChat: this.toChat,
-            useAdvancementCard: this.useAdvancementCard,
-            useAdvancementAbility: this.useAdvancementAbility,
-            toggleEquipItem: this.toggleEquipItem,
-            toggleVault: this.toggleVault,
-            levelManagement: this.levelManagement,
-            editImage: this._onEditImage,
         },
         window: {
             resizable: true
@@ -57,9 +40,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 }
             }
         ]
-
     };
 
+    /**@override */
     static PARTS = {
         sidebar: {
             id: 'sidebar',
@@ -91,6 +74,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
     };
 
+    /* -------------------------------------------- */
 
     /** @inheritdoc */
     static TABS = {
@@ -105,7 +89,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _onRender(context, options) {
         await super._onRender(context, options);
 
-        this.element.querySelector('.level-value')?.addEventListener('change', this.onLevelChange.bind(this));
+        this.element.querySelector('.level-value')?.addEventListener('change', (event) => this.document.updateLevel(Number(event.currentTarget.value)));
 
         this._createFilterMenus();
         this._createSearchFilter();
@@ -125,17 +109,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
     }
 
-    static _onEditImage() {
-        const fp = new foundry.applications.apps.FilePicker.implementation({
-            current: this.document.img,
-            type: 'image',
-            redirectToRoot: ['icons/svg/mystery-man.svg'],
-            callback: async path => this._updateImage.bind(this)(path),
-            top: this.position.top + 40,
-            left: this.position.left + 10
-        });
-        return fp.browse();
-    }
+    /* -------------------------------------------- */
+    /*  Prepare Context                             */
+    /* -------------------------------------------- */
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
@@ -170,6 +146,24 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
 
         return context;
+    }
+
+    /**@inheritdoc */
+    async _preparePartContext(partId, context, options) {
+        context = await super._preparePartContext(partId, context, options);
+        switch (partId) {
+            case "loadout": await this._prepareLoadoutContext(context, options); break;
+            case "sidebar": await this._prepareSidebarContext(context, options); break;
+        }
+        return context;
+    }
+
+    async _prepareLoadoutContext(context, _options) {
+        context.listView = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList);
+    }
+
+    async _prepareSidebarContext(context, _options) {
+        context.isDeath = this.document.system.deathMoveViable;
     }
 
     /* -------------------------------------------- */
@@ -221,7 +215,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 const item = getItem(el);
                 return ['domainCard'].includes(item.type) && item.system.inVault;
             },
-            callback: CharacterSheet.toggleVault.bind(this)
+            callback: (target) => getItem(target).update({ 'system.inVault': false })
         }, {
             name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToVault',
             icon: '<i class="fa-solid fa-arrow-down"></i>',
@@ -229,7 +223,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 const item = getItem(el);
                 return ['domainCard'].includes(item.type) && !item.system.inVault;
             },
-            callback: CharacterSheet.toggleVault.bind(this)
+            callback: (target) => getItem(target).update({ 'system.inVault': true })
         }, {
             name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
             icon: '<i class="fa-regular fa-message"></i>',
@@ -237,7 +231,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }, {
             name: 'DAGGERHEART.Sheets.PC.ContextMenu.Edit',
             icon: '<i class="fa-solid fa-pen-to-square"></i>',
-            callback: CharacterSheet.viewObject.bind(this)
+            callback: (target) => getItem(target).sheet.render({ force: true }),
         }, {
             name: 'DAGGERHEART.Sheets.PC.ContextMenu.Delete',
             icon: '<i class="fa-solid fa-trash"></i>',
@@ -364,20 +358,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
     }
 
-    static async rollAttribute(event, button) {
-        const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
-        const config = {
-            event: event,
-            title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
-            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', {
-                ability: abilityLabel
-            }),
-            roll: {
-                trait: button.dataset.attribute
-            }
-        };
-        this.document.diceRoll(config);
-    }
 
     /* -------------------------------------------- */
     /*  Filter Menus                                */
@@ -455,32 +435,54 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
 
-    async mapFeatureType(data, configType) {
-        return await Promise.all(
-            data.map(async x => {
-                const abilities = x.system.abilities
-                    ? await Promise.all(x.system.abilities.map(async x => await fromUuid(x.uuid)))
-                    : [];
+    /**
+     * Opens the character level management window.
+     * If the character requires setup, opens the character creation interface.
+     * If class or subclass is missing, shows an error notification.
+     * @type {ApplicationClickAction}
+     */
+    static #levelManagement() {
+        if (this.document.system.needsCharacterSetup)
+            return new DhCharacterCreation(this.document).render({ force: true });
 
-                return {
-                    ...x,
-                    uuid: x.uuid,
-                    system: {
-                        ...x.system,
-                        abilities: abilities,
-                        type: game.i18n.localize(configType[x.system.type ?? x.type].label)
-                    }
-                };
-            })
-        );
+        const { value, subclass } = this.document.system.class;
+        if (!value || !subclass) return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClassOrSubclass'));
+
+        new DhCharacterlevelUp(this.document).render({ force: true });
     }
 
-    static async rollAttribute(event, button) {
+    /**
+     * Opens the Death Move interface for the character.
+     * @type {ApplicationClickAction}
+     */
+    static async #makeDeathMove() {
+        await new DhpDeathMove(this.document).render({ force: true });
+    }
+
+    /**
+     * Opens a compendium pack given its dataset key.
+     * @type {ApplicationClickAction}
+     */
+    static async #openPack(_event, button) {
+        const { key } = button.dataset;
+        game.packs.get(key)?.render(true);
+    }
+
+    /**
+     * Rolls an attribute check based on the clicked button's dataset attribute.
+     * @type {ApplicationClickAction}
+     */
+    static async #rollAttribute(event, button) {
         const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
         const config = {
             event: event,
-            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', { ability: abilityLabel }),
+            title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
+            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', {
+                ability: abilityLabel
+            }),
             roll: {
                 trait: button.dataset.attribute
             }
@@ -488,120 +490,78 @@ export default class CharacterSheet extends DHBaseActorSheet {
         this.document.diceRoll(config);
     }
 
-    static async toggleMarks(_, button) {
-        const markValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.armor.system.marks.value >= markValue ? markValue - 1 : markValue;
-        await this.document.system.armor.update({ 'system.marks.value': newValue });
+    /**
+     * Toggles the equipped state of an item (armor or weapon).
+     * @type {ApplicationClickAction} 
+     */
+    static async #toggleEquipItem(_event, button) {
+        //TODO: redo this
+        const item = this.actor.items.get(button.closest('[data-item-id]')?.dataset.itemId);
+        if (!item) return;
+        if (item.system.equipped) {
+            await item.update({ 'system.equipped': false });
+            return;
+        }
+
+        switch (item.type) {
+            case 'armor':
+                const currentArmor = this.document.system.armor;
+                if (currentArmor) {
+                    await currentArmor.update({ 'system.equipped': false });
+                }
+
+                await item.update({ 'system.equipped': true });
+                break;
+            case 'weapon':
+                await this.document.system.constructor.unequipBeforeEquip.bind(this.document.system)(item);
+
+                await item.update({ 'system.equipped': true });
+                break;
+        }
     }
 
-    static async toggleHP(_, button) {
-        const healthValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.resources.hitPoints.value >= healthValue ? healthValue - 1 : healthValue;
-        await this.document.update({ 'system.resources.hitPoints.value': newValue });
+    /**
+     * Toggles the current view of the character's loadout display.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleLoadoutView(_, button) {
+        const newAbilityView = button.dataset.value !== 'true';
+        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList, newAbilityView);
+        this.render();
     }
 
-    static async toggleStress(_, button) {
-        const healthValue = Number.parseInt(button.dataset.value);
-        const newValue = this.document.system.resources.stress.value >= healthValue ? healthValue - 1 : healthValue;
-        await this.document.update({ 'system.resources.stress.value': newValue });
-    }
-
-    static async toggleHope(_, button) {
+    /**
+     * Toggles a hope resource value.
+     * @type {ApplicationClickAction}
+     */
+    static async #toggleHope(_, button) {
         const hopeValue = Number.parseInt(button.dataset.value);
         const newValue = this.document.system.resources.hope.value >= hopeValue ? hopeValue - 1 : hopeValue;
         await this.document.update({ 'system.resources.hope.value': newValue });
     }
 
-    static async toggleGold(_, button) {
-        const goldValue = Number.parseInt(button.dataset.value);
-        const goldType = button.dataset.type;
-        const newValue = this.document.system.gold[goldType] >= goldValue ? goldValue - 1 : goldValue;
-
-        const update = `system.gold.${goldType}`;
-        await this.document.update({ [update]: newValue });
+    /**
+     * Toggles whether an item is stored in the vault.
+     * @type {ApplicationClickAction} 
+     */
+    static async #toggleVault(event, button) {
+        const docId = button.closest('[data-item-id]')?.dataset.itemId;
+        const doc = this.document.items.get(docId);
+        await doc?.update({ 'system.inVault': !doc.system.inVault })
     }
 
-    static async toggleLoadoutView(_, button) {
-        const newAbilityView = !(button.dataset.value === 'true');
-        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList, newAbilityView);
-        this.render();
+    /**
+     * Trigger the context menu.
+     * @type {ApplicationClickAction}
+     */
+    static #triggerContextMenu(event, _) {
+        return CONFIG.ux.ContextMenu.triggerContextMenu(event);
     }
 
-    static async toggleLoadoutView(_, button) {
-        const newAbilityView = !(button.dataset.value === 'true');
-        await game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList, newAbilityView);
-        this.render();
-    }
-
-    static async attackRoll(event, button) {
-        const weapon = await fromUuid(button.dataset.weapon);
-        if (!weapon) return;
-
-        const wasUsed = await weapon.use(event);
-        if (wasUsed) {
-            Hooks.callAll(CONFIG.DH.HOOKS.characterAttack, {});
-        }
-    }
-
-    static levelManagement() {
-        if (this.document.system.needsCharacterSetup) {
-            this.characterSetup();
-        } else {
-            this.openLevelUp();
-        }
-    }
-
-    characterSetup() {
-        new DhCharacterCreation(this.document).render(true);
-    }
-
-    openLevelUp() {
-        if (!this.document.system.class.value || !this.document.system.class.subclass) {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClassOrSubclass'));
-            return;
-        }
-
-        new DhCharacterlevelUp(this.document).render(true);
-    }
-
-    static async useDomainCard(event, button) {
-        const card = this.getItem(event);
-        if (!card) return;
-
-        const cls = getDocumentClass('ChatMessage');
-        const systemData = {
-            title: `${game.i18n.localize('DAGGERHEART.UI.Chat.domainCard.title')} - ${capitalize(button.dataset.domain)}`,
-            origin: this.document.id,
-            img: card.img,
-            name: card.name,
-            description: card.system.effect,
-            actions: card.system.actions
-        };
-        const msg = new cls({
-            type: 'abilityUse',
-            user: game.user.id,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
-                systemData
-            ),
-            system: systemData
-        });
-
-        cls.create(msg.toObject());
-    }
-
-    static async selectClass() {
-        (await game.packs.get('daggerheart.classes'))?.render(true);
-    }
-
-    static async selectSubclass() {
-        (await game.packs.get('daggerheart.subclasses'))?.render(true);
-    }
-
-    static async selectCommunity() {
-        (await game.packs.get('daggerheart.communities'))?.render(true);
-    }
-
+    /**
+     * 
+     * @type {ApplicationClickAction}
+     */
     static async useItem(event, button) {
         const item = this.getItem(button);
         if (!item) return;
@@ -619,88 +579,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
     }
 
-    static async viewObject(event) {
-        const item = this.getItem(event);
-        if (!item) return;
-
-        if (item.sheet) {
-            item.sheet.render(true);
-        } else {
-            await new DHActionConfig(item).render(true);
-        }
-    }
-
-    editItem(event) {
-        const item = this.getItem(event);
-        if (!item) return;
-
-        if (item.sheet.editMode) item.sheet.editMode = false;
-
-        item.sheet.render(true);
-    }
-
-    static async takeShortRest() {
-        await new DhpDowntime(this.document, true).render(true);
-        await this.minimize();
-    }
-
-    static async takeLongRest() {
-        await new DhpDowntime(this.document, false).render(true);
-        await this.minimize();
-    }
-
-    static async deleteScar(event, button) {
-        event.stopPropagation();
-        await this.document.update({
-            'system.story.scars': this.document.system.story.scars.filter(
-                (_, index) => index !== Number.parseInt(button.currentTarget.dataset.scar)
-            )
-        });
-    }
-
-    static async makeDeathMove() {
-        if (this.document.system.resources.hitPoints.value >= this.document.system.resources.hitPoints.maxTotal) {
-            await new DhpDeathMove(this.document).render(true);
-        }
-    }
-
-    async onLevelChange(event) {
-        await this.document.updateLevel(Number(event.currentTarget.value));
-        this.render();
-    }
-
-    static async setItemQuantity(button, value) {
-        const item = this.getItem(button);
-        if (!item) return;
-        await item.update({ 'system.quantity': Math.max(item.system.quantity + value, 1) });
-    }
-
-    static async useFeature(event, button) {
-        const item = this.getItem(event);
-        if (!item) return;
-
-        const cls = getDocumentClass('ChatMessage');
-        const systemData = {
-            title: game.i18n.localize('DAGGERHEART.UI.Chat.featureTitle'),
-            origin: this.document.id,
-            img: item.img,
-            name: item.name,
-            description: item.system.description,
-            actions: item.system.actions
-        };
-        const msg = new cls({
-            type: 'abilityUse',
-            user: game.user.id,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
-                systemData
-            ),
-            system: systemData
-        });
-
-        cls.create(msg.toObject());
-    }
-
+    /**
+     * 
+     * @type {ApplicationClickAction}
+     */
     static async toChat(event, button) {
         if (button?.dataset?.type === 'experience') {
             const experience = this.document.system.experiences[button.dataset.uuid];
@@ -725,92 +607,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
             if (!item) return;
             item.toChat(this.document.id);
         }
-    }
-
-    static async useAdvancementCard(_, button) {
-        const item =
-            button.dataset.multiclass === 'true'
-                ? this.document.system.multiclass.subclass
-                : this.document.system.class.subclass;
-        const ability = item.system[`${button.dataset.key}Feature`];
-        const title = `${item.name} - ${game.i18n.localize(
-            `DAGGERHEART.ITEMS.DomainCard.${button.dataset.key.capitalize()}Title`
-        )}`;
-
-        const cls = getDocumentClass('ChatMessage');
-        const systemData = {
-            title: game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
-            origin: this.document.id,
-            name: title,
-            img: item.img,
-            description: ability.description
-        };
-        const msg = new cls({
-            type: 'abilityUse',
-            user: game.user.id,
-            system: systemData,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
-                systemData
-            )
-        });
-
-        cls.create(msg.toObject());
-    }
-
-    static async useAdvancementAbility(_, button) {
-        const item = this.document.items.find(x => x.uuid === button.dataset.id);
-
-        const cls = getDocumentClass('ChatMessage');
-        const systemData = {
-            title: game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
-            origin: this.document.id,
-            name: item.name,
-            img: item.img,
-            description: item.system.description
-        };
-        const msg = new cls({
-            user: game.user.id,
-            system: systemData,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
-                systemData
-            )
-        });
-
-        cls.create(msg.toObject());
-    }
-
-    static async toggleEquipItem(event, button) {
-        const item = this.getItem(event);
-        if (!item) return;
-        if (item.system.equipped) {
-            await item.update({ 'system.equipped': false });
-            return;
-        }
-
-        switch (item.type) {
-            case 'armor':
-                const currentArmor = this.document.system.armor;
-                if (currentArmor) {
-                    await currentArmor.update({ 'system.equipped': false });
-                }
-
-                await item.update({ 'system.equipped': true });
-                break;
-            case 'weapon':
-                await this.document.system.constructor.unequipBeforeEquip.bind(this.document.system)(item);
-
-                await item.update({ 'system.equipped': true });
-                break;
-        }
-        this.render();
-    }
-
-    static async toggleVault(event, button) {
-        const item = this.getItem(event);
-        if (!item) return;
-        await item.update({ 'system.inVault': !item.system.inVault });
     }
 
     async _onDragStart(_, event) {
@@ -841,13 +637,4 @@ export default class CharacterSheet extends DHBaseActorSheet {
         return this.document.createEmbeddedDocuments('Item', itemData);
     }
 
-    /**
-     * Trigger the context menu.
-     * @param {PointerEvent} event - 
-     * @param {HTMLElement} _ -
-     * @returns 
-     */
-    static #triggerContextMenu(event, _) {
-        return CONFIG.ux.ContextMenu.triggerContextMenu(event);
-    }
 }

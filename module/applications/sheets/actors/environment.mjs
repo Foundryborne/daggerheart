@@ -35,12 +35,6 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         }
     };
 
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-
-        return context;
-    }
-
     getItem(element) {
         const itemId = (element.target ?? element).closest('[data-item-id]').dataset.itemId,
             item = this.document.items.get(itemId);

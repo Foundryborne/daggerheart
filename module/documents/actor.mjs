@@ -4,7 +4,7 @@ import DamageReductionDialog from '../applications/dialogs/damageReductionDialog
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 
-export default class DhpActor extends Actor {
+export default class DhpActor extends foundry.documents.Actor {
 
     /**
      * Whether this actor is an NPC.
@@ -13,7 +13,6 @@ export default class DhpActor extends Actor {
     get isNPC() {
         return this.system.constructor.metadata.isNPC;
     }
-
 
     async _preCreate(data, options, user) {
         if ((await super._preCreate(data, options, user)) === false) return false;
