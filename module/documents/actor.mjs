@@ -5,6 +5,16 @@ import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 
 export default class DhpActor extends Actor {
+
+    /**
+     * Whether this actor is an NPC.
+     * @returns {boolean}
+     */
+    get isNPC() {
+        return this.system.constructor.metadata.isNPC;
+    }
+
+
     async _preCreate(data, options, user) {
         if ((await super._preCreate(data, options, user)) === false) return false;
 
@@ -351,16 +361,16 @@ export default class DhpActor extends Actor {
         const modifier = roll.modifier !== null ? Number.parseInt(roll.modifier) : null;
         return modifier !== null
             ? [
-                  {
-                      value: modifier,
-                      label: roll.label
-                          ? modifier >= 0
-                              ? `${roll.label} +${modifier}`
-                              : `${roll.label} ${modifier}`
-                          : null,
-                      title: roll.label
-                  }
-              ]
+                {
+                    value: modifier,
+                    label: roll.label
+                        ? modifier >= 0
+                            ? `${roll.label} +${modifier}`
+                            : `${roll.label} ${modifier}`
+                        : null,
+                    title: roll.label
+                }
+            ]
             : [];
     }
 
@@ -440,10 +450,10 @@ export default class DhpActor extends Actor {
             damage >= this.system.damageThresholds.severe
                 ? 3
                 : damage >= this.system.damageThresholds.major
-                  ? 2
-                  : damage >= this.system.damageThresholds.minor
-                    ? 1
-                    : 0;
+                    ? 2
+                    : damage >= this.system.damageThresholds.minor
+                        ? 1
+                        : 0;
 
         if (
             this.type === 'character' &&

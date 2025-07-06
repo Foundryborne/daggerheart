@@ -1,25 +1,19 @@
-import { capitalize } from '../../../helpers/utils.mjs';
+import DHBaseActorSheet from '../api/base-actor.mjs';
 import DhpDeathMove from '../../dialogs/deathMove.mjs';
 import DhpDowntime from '../../dialogs/downtime.mjs';
-import DaggerheartSheet from '.././daggerheart-sheet.mjs';
 import { abilities } from '../../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import DHActionConfig from '../../sheets-configs/action-config.mjs';
 
-const { ActorSheetV2 } = foundry.applications.sheets;
 const { TextEditor } = foundry.applications.ux;
-export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
-    constructor(options = {}) {
-        super(options);
-    }
-
+export default class CharacterSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
-        tag: 'form',
-        classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'daggerheart', 'character'],
+        classes: ['character'],
         position: { width: 850, height: 800 },
         actions: {
+            triggerContextMenu: CharacterSheet.#triggerContextMenu,
             attributeRoll: this.rollAttribute,
             toggleMarks: this.toggleMarks,
             toggleHP: this.toggleHP,
@@ -37,7 +31,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             useFeature: this.useFeature,
             takeShortRest: this.takeShortRest,
             takeLongRest: this.takeLongRest,
-            deleteItem: this.deleteItem,
             addScar: this.addScar,
             deleteScar: this.deleteScar,
             makeDeathMove: this.makeDeathMove,
@@ -50,16 +43,22 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             toggleVault: this.toggleVault,
             levelManagement: this.levelManagement,
             editImage: this._onEditImage,
-            triggerContextMenu: this.triggerContextMenu
         },
         window: {
             resizable: true
         },
-        form: {
-            submitOnChange: true,
-            closeOnSubmit: false
-        },
-        dragDrop: []
+        dragDrop: [],
+        contextMenus: [
+            {
+                handler: CharacterSheet._getContextMenuOptions,
+                selector: '[data-item-id]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            }
+        ]
+
     };
 
     static PARTS = {
@@ -93,216 +92,41 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         }
     };
 
+
+    /** @inheritdoc */
     static TABS = {
-        features: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'features',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.Features'
-        },
-        loadout: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'loadout',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.Loadout'
-        },
-        inventory: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'inventory',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.Inventory'
-        },
-        biography: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'biography',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.biography'
-        },
-        effects: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'effects',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.effects'
+        primary: {
+            tabs: [{
+                id: 'features',
+                label: "DAGGERHEART.Sheets.PC.Tabs.Features"
+            }, {
+                id: 'loadout',
+                label: "DAGGERHEART.Sheets.PC.Tabs.Loadout"
+            }, {
+                id: 'inventory',
+                label: "DAGGERHEART.Sheets.PC.Tabs.Inventory"
+            }, {
+                id: 'biography',
+                label: "DAGGERHEART.Sheets.PC.Tabs.biography"
+            }, {
+                id: 'effects',
+                label: "DAGGERHEART.Sheets.PC.Tabs.effects"
+            }],
+            initial: 'features',
         }
     };
-
-    _getTabs() {
-        const setActive = tabs => {
-            for (const v of Object.values(tabs)) {
-                v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
-                v.cssClass = v.active ? 'active' : '';
-            }
-        };
-
-        const primaryTabs = {
-            features: {
-                active: true,
-                cssClass: '',
-                group: 'primary',
-                id: 'features',
-                icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Features')
-            },
-            loadout: {
-                active: false,
-                cssClass: '',
-                group: 'primary',
-                id: 'loadout',
-                icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Loadout')
-            },
-            inventory: {
-                active: false,
-                cssClass: '',
-                group: 'primary',
-                id: 'inventory',
-                icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Inventory')
-            },
-            story: {
-                active: false,
-                cssClass: '',
-                group: 'primary',
-                id: 'story',
-                icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Story')
-            }
-        };
-        const secondaryTabs = {
-            foundation: {
-                active: true,
-                cssClass: '',
-                group: 'secondary',
-                id: 'foundation',
-                icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Foundation')
-            },
-            loadout: {
-                active: false,
-                cssClass: '',
-                group: 'secondary',
-                id: 'loadout',
-                icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Loadout')
-            },
-            vault: {
-                active: false,
-                cssClass: '',
-                group: 'secondary',
-                id: 'vault',
-                icon: null,
-                label: game.i18n.localize('DAGGERHEART.Sheets.PC.Tabs.Vault')
-            }
-        };
-
-        setActive(primaryTabs);
-        setActive(secondaryTabs);
-
-        return { primary: primaryTabs, secondary: secondaryTabs };
-    }
-
-    /**@inheritdoc */
-    async _onFirstRender(context, options) {
-        await super._onFirstRender(context, options);
-
-        this._createContextMenues();
-    }
 
     /** @inheritDoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
+
+        this.element.querySelector('.level-value')?.addEventListener('change', this.onLevelChange.bind(this));
 
         this._createFilterMenus();
         this._createSearchFilter();
     }
 
     /* -------------------------------------------- */
-
-    _createContextMenues() {
-        const allOptions = {
-            useItem: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.UseItem',
-                icon: '<i class="fa-solid fa-burst"></i>',
-                condition: el => {
-                    const item = this.getItem(el);
-                    return !['class', 'subclass'].includes(item.type);
-                },
-                callback: (button, event) => this.constructor.useItem.bind(this)(event, button)
-            },
-            equip: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Equip',
-                icon: '<i class="fa-solid fa-hands"></i>',
-                condition: el => {
-                    const item = this.getItem(el);
-                    return ['weapon', 'armor'].includes(item.type) && !item.system.equipped;
-                },
-                callback: this.constructor.toggleEquipItem.bind(this)
-            },
-            unequip: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Unequip',
-                icon: '<i class="fa-solid fa-hands"></i>',
-                condition: el => {
-                    const item = this.getItem(el);
-                    return ['weapon', 'armor'].includes(item.type) && item.system.equipped;
-                },
-                callback: this.constructor.toggleEquipItem.bind(this)
-            },
-            sendToLoadout: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToLoadout',
-                icon: '<i class="fa-solid fa-arrow-up"></i>',
-                condition: el => {
-                    const item = this.getItem(el);
-                    return ['domainCard'].includes(item.type) && item.system.inVault;
-                },
-                callback: this.constructor.toggleVault.bind(this)
-            },
-            sendToVault: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToVault',
-                icon: '<i class="fa-solid fa-arrow-down"></i>',
-                condition: el => {
-                    const item = this.getItem(el);
-                    return ['domainCard'].includes(item.type) && !item.system.inVault;
-                },
-                callback: this.constructor.toggleVault.bind(this)
-            },
-            sendToChat: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
-                icon: '<i class="fa-regular fa-message"></i>',
-                callback: this.constructor.toChat.bind(this)
-            },
-            edit: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Edit',
-                icon: '<i class="fa-solid fa-pen-to-square"></i>',
-                callback: this.constructor.viewObject.bind(this)
-            },
-            delete: {
-                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Delete',
-                icon: '<i class="fa-solid fa-trash"></i>',
-                callback: this.constructor.deleteItem.bind(this)
-            }
-        };
-
-        this._createContextMenu(() => Object.values(allOptions), `[data-item-id]`, {
-            parentClassHooks: false,
-            fixed: true
-        });
-    }
-
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
-
-        htmlElement.querySelector('.level-value')?.addEventListener('change', this.onLevelChange.bind(this));
-    }
 
     getItem(element) {
         const listElement = (element.target ?? element).closest('[data-item-id]');
@@ -314,10 +138,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
             default:
                 return this.document.items.get(itemId);
         }
-    }
-
-    static triggerContextMenu(event, button) {
-        return CONFIG.ux.ContextMenu.triggerContextMenu(event);
     }
 
     static _onEditImage() {
@@ -334,9 +154,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.document = this.document;
-        context.tabs = super._getTabs(this.constructor.TABS);
-        context.config = CONFIG.DH;
 
         context.attributes = Object.keys(this.document.system.traits).reduce((acc, key) => {
             acc[key] = {
@@ -370,6 +187,78 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         return context;
     }
 
+    /* -------------------------------------------- */
+    /*  Context Menu                                */
+    /* -------------------------------------------- */
+
+    /**
+     * Get the set of ContextMenu options.
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]}   The Array of context options passed to the ContextMenu instance
+     * @protected
+     */
+    static _getContextMenuOptions() {
+
+        /**
+         * Get the item from the element.
+         * @param {HTMLElement} el
+         * @returns {foundry.documents.Item?}
+         */
+        const getItem = (el) => this.actor.items.get(el.closest('[data-item-id]')?.dataset.itemId);
+
+        return [{
+            name: 'DAGGERHEART.Sheets.PC.ContextMenu.UseItem',
+            icon: '<i class="fa-solid fa-burst"></i>',
+            condition: el => {
+                const item = getItem(el);
+                return !['class', 'subclass'].includes(item.type);
+            },
+            callback: (button, event) => CharacterSheet.useItem.call(this, event, button)
+        }, {
+            name: 'DAGGERHEART.Sheets.PC.ContextMenu.Equip',
+            icon: '<i class="fa-solid fa-hands"></i>',
+            condition: el => {
+                const item = getItem(el);
+                return ['weapon', 'armor'].includes(item.type) && !item.system.equipped;
+            },
+            callback: CharacterSheet.toggleEquipItem.bind(this)
+        }, {
+            name: 'DAGGERHEART.Sheets.PC.ContextMenu.Unequip',
+            icon: '<i class="fa-solid fa-hands"></i>',
+            condition: el => {
+                const item = getItem(el);
+                return ['weapon', 'armor'].includes(item.type) && item.system.equipped;
+            },
+            callback: CharacterSheet.toggleEquipItem.bind(this)
+        }, {
+            name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToLoadout',
+            icon: '<i class="fa-solid fa-arrow-up"></i>',
+            condition: (el) => {
+                const item = getItem(el);
+                return ['domainCard'].includes(item.type) && item.system.inVault;
+            },
+            callback: CharacterSheet.toggleVault.bind(this)
+        }, {
+            name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToVault',
+            icon: '<i class="fa-solid fa-arrow-down"></i>',
+            condition: el => {
+                const item = getItem(el);
+                return ['domainCard'].includes(item.type) && !item.system.inVault;
+            },
+            callback: CharacterSheet.toggleVault.bind(this)
+        }, {
+            name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
+            icon: '<i class="fa-regular fa-message"></i>',
+            callback: CharacterSheet.toChat.bind(this)
+        }, {
+            name: 'DAGGERHEART.Sheets.PC.ContextMenu.Edit',
+            icon: '<i class="fa-solid fa-pen-to-square"></i>',
+            callback: CharacterSheet.viewObject.bind(this)
+        }, {
+            name: 'DAGGERHEART.Sheets.PC.ContextMenu.Delete',
+            icon: '<i class="fa-solid fa-trash"></i>',
+            callback: (el) => getItem(el).delete()
+        }];
+    }
     /* -------------------------------------------- */
     /*  Filter Tracking                             */
     /* -------------------------------------------- */
@@ -804,13 +693,6 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
         this.render();
     }
 
-    static async deleteItem(event) {
-        const item = this.getItem(event);
-        if (!item) return;
-
-        await item.delete();
-    }
-
     static async setItemQuantity(button, value) {
         const item = this.getItem(button);
         if (!item) return;
@@ -876,7 +758,7 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
                 : this.document.system.class.subclass;
         const ability = item.system[`${button.dataset.key}Feature`];
         const title = `${item.name} - ${game.i18n.localize(
-            `DAGGERHEART.Sheets.PC.DomainCard.${capitalize(button.dataset.key)}Title`
+            `DAGGERHEART.Sheets.PC.DomainCard.${button.dataset.key.capitalize()}Title`
         )}`;
 
         const cls = getDocumentClass('ChatMessage');
@@ -981,5 +863,15 @@ export default class CharacterSheet extends DaggerheartSheet(ActorSheetV2) {
     async _onDropItemCreate(itemData, event) {
         itemData = itemData instanceof Array ? itemData : [itemData];
         return this.document.createEmbeddedDocuments('Item', itemData);
+    }
+
+    /**
+     * Trigger the context menu.
+     * @param {PointerEvent} event - 
+     * @param {HTMLElement} _ -
+     * @returns 
+     */
+    static #triggerContextMenu(event, _) {
+        return CONFIG.ux.ContextMenu.triggerContextMenu(event);
     }
 }

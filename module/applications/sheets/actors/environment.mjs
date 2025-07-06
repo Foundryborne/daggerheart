@@ -1,11 +1,9 @@
-import DaggerheartSheet from '../daggerheart-sheet.mjs';
+import DHBaseActorSheet from '../api/base-actor.mjs';
 import DHEnvironmentSettings from '../../sheets-configs/environment-settings.mjs';
 
-const { ActorSheetV2 } = foundry.applications.sheets;
-export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
+export default class DhpEnvironment extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
-        tag: 'form',
-        classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'environment'],
+        classes: ['environment'],
         position: {
             width: 500
         },
@@ -15,11 +13,6 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
             openSettings: this.openSettings,
             useItem: this.useItem,
             toChat: this.toChat
-        },
-        form: {
-            handler: this._updateForm,
-            submitOnChange: true,
-            closeOnSubmit: false
         },
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]
     };
@@ -33,38 +26,17 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         notes: { template: 'systems/daggerheart/templates/sheets/actors/environment/notes.hbs' }
     };
 
+    /** @inheritdoc */
     static TABS = {
-        features: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'features',
-            icon: null,
-            label: 'DAGGERHEART.General.tabs.features'
-        },
-        potentialAdversaries: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'potentialAdversaries',
-            icon: null,
-            label: 'DAGGERHEART.General.tabs.potentialAdversaries'
-        },
-        notes: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'notes',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.Adversary.Tabs.notes'
+        primary: {
+            tabs: [{ id: 'features' }, { id: 'potentialAdversaries' }, { id: 'notes', label: "DAGGERHEART.Sheets.Adversary.Tabs.notes" }],
+            initial: 'features',
+            labelPrefix: 'DAGGERHEART.General.tabs'
         }
     };
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.document = this.document;
-        context.tabs = super._getTabs(this.constructor.TABS);
-        context.getEffectDetails = this.getEffectDetails.bind(this);
 
         return context;
     }
@@ -77,15 +49,6 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
 
     static async openSettings() {
         await new DHEnvironmentSettings(this.document).render(true);
-    }
-
-    static async _updateForm(event, _, formData) {
-        await this.document.update(formData.object);
-        this.render();
-    }
-
-    getEffectDetails(id) {
-        return {};
     }
 
     static async addAdversary() {

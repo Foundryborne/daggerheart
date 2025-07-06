@@ -4,15 +4,16 @@
     data-group='{{tabs.effects.group}}'
 >
     <fieldset class="one-column">
-            <legend>{{localize "DAGGERHEART.Sheets.Global.Effects"}} <a><i class="fa-solid fa-plus icon-button" data-action="addEffect"></i></a></legend>
+            <legend>{{localize "DAGGERHEART.Sheets.Global.Effects"}} 
+                <a data-action="createDoc" data-type="ActiveEffect"><i class="fa-solid fa-plus icon-button"></i></a></legend>
         <div class="effects-list">
             {{#each document.effects as |effect|}}
                 <div class="effect-item">
                     <img class="image" src="{{effect.img}}" />
                     <span>{{effect.name}}</span>
                     <div class="controls">
-                        <a data-action="editEffect" data-effect="{{effect.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a data-action="removeEffect" data-effect="{{effect.id}}"><i class="fa-solid fa-trash"></i></a>
+                        <a data-action="editDoc" data-type="ActiveEffect" data-doc-id="{{effect.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-action="deleteDoc" data-type="ActiveEffect" data-doc-id="{{effect.id}}"><i class="fa-solid fa-trash"></i></a>
                     </div>
                 </div> 
             {{/each}}

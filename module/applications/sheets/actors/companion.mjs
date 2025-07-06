@@ -1,11 +1,9 @@
-import DaggerheartSheet from '../daggerheart-sheet.mjs';
+import DHBaseActorSheet from '../api/base-actor.mjs';
 import DHCompanionSettings from '../../sheets-configs/companion-settings.mjs';
 
-const { ActorSheetV2 } = foundry.applications.sheets;
-export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
+export default class DhCompanionSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
-        tag: 'form',
-        classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'companion'],
+        classes: ['actor', 'companion'],
         position: { width: 300 },
         actions: {
             viewActor: this.viewActor,
@@ -13,11 +11,6 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
             useItem: this.useItem,
             toChat: this.toChat
         },
-        form: {
-            handler: this.updateForm,
-            submitOnChange: true,
-            closeOnSubmit: false
-        }
     };
 
     static PARTS = {
@@ -26,37 +19,16 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
         effects: { template: 'systems/daggerheart/templates/sheets/actors/companion/effects.hbs' }
     };
 
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
     static TABS = {
-        details: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'details',
-            icon: null,
-            label: 'DAGGERHEART.General.tabs.details'
-        },
-        effects: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'effects',
-            icon: null,
-            label: 'DAGGERHEART.Sheets.PC.Tabs.effects'
+        primary: {
+            tabs: [{ id: 'details' }, { id: 'effects', label: 'DAGGERHEART.Sheets.TABS.effects' }],
+            initial: 'details',
+            labelPrefix: 'DAGGERHEART.General.tabs'
         }
     };
-
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-        context.document = this.document;
-        context.tabs = super._getTabs(this.constructor.TABS);
-
-        return context;
-    }
-
-    static async updateForm(event, _, formData) {
-        await this.document.update(formData.object);
-        this.render();
-    }
 
     static async viewActor(_, button) {
         const target = button.closest('[data-item-uuid]');
