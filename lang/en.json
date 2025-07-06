@@ -61,15 +61,28 @@
         "Actors": {
             "Adversary": {
                 "FIELDS": {
-                    "tier": { "label": "Tier" },
-                    "type": { "label": "Type" },
-                    "description": { "label": "Description" },
-                    "motivesAndTactics": { "label": "Motives & Tactics" },
-                    "difficulty": { "label": "Difficulty" },
+                    "attack": {
+                        "name": { "label": "Name" },
+                        "modifier": { "label": "Modifier" },
+                        "range": { "label": "Range" },
+                        "damage": {
+                            "value": { "label": "Damage" },
+                            "type": { "label": "Damage Type" }
+                        }
+                    },
                     "damageThresholds": {
                         "major": { "label": "Major" },
                         "severe": { "label": "Severe" }
                     },
+                    "description": { "label": "Description" },
+                    "difficulty": { "label": "Difficulty" },
+                    "experiences": {
+                        "element": {
+                            "name": { "label": "Name" },
+                            "value": { "label": "Modifier" }
+                        }
+                    },
+                    "motivesAndTactics": { "label": "Motives & Tactics" },
                     "resources": {
                         "hitPoints": {
                             "value": { "label": "Current" },
@@ -80,68 +93,52 @@
                             "max": { "label": "Max" }
                         }
                     },
-                    "experiences": {
-                        "element": {
-                            "name": { "label": "Name" },
-                            "value": { "label": "Modifier" }
-                        }
-                    },
-                    "attack": {
-                        "name": { "label": "Name" },
-                        "modifier": { "label": "Modifier" },
-                        "range": { "label": "Range" },
-                        "damage": {
-                            "value": { "label": "Damage" },
-                            "type": { "label": "Damage Type" }
-                        }
-                    }
+                    "tier": { "label": "Tier" },
+                    "type": { "label": "Type" }
                 },
                 "horderHp": "Horde/HP"
             },
             "Character": {
-                "pronouns": "Pronouns",
                 "age": "Age",
-                "faith": "Faith",
-                "levelUp": "You can level up",
                 "companionFeatures": "Companion Features",
                 "contextMenu": {
+                    "consume": "Consume Item",
                     "equip": "Equip",
-                    "unequip": "Unequip",
+                    "sendToChat": "Send To Chat",
                     "toLoadout": "Send to Loadout",
                     "toVault": "Send to Vault",
-                    "consume": "Consume Item",
-                    "sendToChat": "Send To Chat"
+                    "unequip": "Unequip"
                 },
+                "faith": "Faith",
+                "levelUp": "You can level up",
+                "pronouns": "Pronouns",
                 "story": {
                     "backgroundTitle": "Background",
-                    "connectionsTitle": "Connections",
-                    "characteristics": "Characteristics"
+                    "characteristics": "Characteristics",
+                    "connectionsTitle": "Connections"
                 }
             },
             "Companion": {
                 "FIELDS": {
-                    "partner": { "label": "Partner" },
+                    "attack": {
+                        "name": { "label": "Attack Name" }
+                    },
                     "evasion": {
                         "value": { "label": "Evasion" }
                     },
+                    "partner": { "label": "Partner" },
                     "resources": {
                         "stress": {
                             "value": { "label": "Stress" }
                         }
-                    },
-                    "attack": {
-                        "name": { "label": "Attack Name" }
                     }
                 },
                 "noPartner": "No Partner selected"
             },
             "Environment": {
                 "FIELDS": {
-                    "tier": {
-                        "label": "Tier"
-                    },
-                    "type": {
-                        "label": "Type"
+                    "description": {
+                        "label": "Description"
                     },
                     "difficulty": {
                         "label": "Difficulty"
@@ -149,8 +146,11 @@
                     "impulses": {
                         "label": "Impulses"
                     },
-                    "description": {
-                        "label": "Description"
+                    "tier": {
+                        "label": "Tier"
+                    },
+                    "type": {
+                        "label": "Type"
                     }
                 },
                 "newAdversary": "New Adversary"
