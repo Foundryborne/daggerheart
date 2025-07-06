@@ -31,7 +31,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
             useFeature: this.useFeature,
             takeShortRest: this.takeShortRest,
             takeLongRest: this.takeLongRest,
-            addScar: this.addScar,
             deleteScar: this.deleteScar,
             makeDeathMove: this.makeDeathMove,
             itemQuantityDecrease: (_, button) => this.setItemQuantity(button, -1),
@@ -96,23 +95,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{
-                id: 'features',
-                label: "DAGGERHEART.Sheets.PC.Tabs.Features"
-            }, {
-                id: 'loadout',
-                label: "DAGGERHEART.Sheets.PC.Tabs.Loadout"
-            }, {
-                id: 'inventory',
-                label: "DAGGERHEART.Sheets.PC.Tabs.Inventory"
-            }, {
-                id: 'biography',
-                label: "DAGGERHEART.Sheets.PC.Tabs.biography"
-            }, {
-                id: 'effects',
-                label: "DAGGERHEART.Sheets.PC.Tabs.effects"
-            }],
+            tabs: [{ id: 'features' }, { id: 'loadout' }, { id: 'inventory' }, { id: 'biography' }, { id: 'effects' }],
             initial: 'features',
+            labelPrefix: 'DAGGERHEART.General.Tabs'
         }
     };
 
@@ -167,11 +152,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         context.inventory = {
             currency: {
-                title: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Title'),
-                coins: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Coins'),
-                handfulls: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Handfulls'),
-                bags: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Bags'),
-                chests: game.i18n.localize('DAGGERHEART.Sheets.PC.Gold.Chests')
+                title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
+                coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
+                handfulls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfulls'),
+                bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
+                chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
             }
         };
 
@@ -383,8 +368,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
         const config = {
             event: event,
-            title: `${game.i18n.localize('DAGGERHEART.General.dualityRoll')}: ${this.actor.name}`,
-            headerTitle: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', { ability: abilityLabel }),
+            title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
+            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', {
+                ability: abilityLabel
+            }),
             roll: {
                 trait: button.dataset.attribute
             }
@@ -493,7 +480,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const abilityLabel = game.i18n.localize(abilities[button.dataset.attribute].label);
         const config = {
             event: event,
-            title: game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', { ability: abilityLabel }),
+            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', { ability: abilityLabel }),
             roll: {
                 trait: button.dataset.attribute
             }
@@ -570,7 +557,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     openLevelUp() {
         if (!this.document.system.class.value || !this.document.system.class.subclass) {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.Sheets.PC.Errors.missingClassOrSubclass'));
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClassOrSubclass'));
             return;
         }
 
@@ -583,7 +570,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: `${game.i18n.localize('DAGGERHEART.Chat.DomainCard.Title')} - ${capitalize(button.dataset.domain)}`,
+            title: `${game.i18n.localize('DAGGERHEART.UI.Chat.domainCard.title')} - ${capitalize(button.dataset.domain)}`,
             origin: this.document.id,
             img: card.img,
             name: card.name,
@@ -662,17 +649,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         await this.minimize();
     }
 
-    static async addScar() {
-        if (this.document.system.story.scars.length === 5) return;
-
-        await this.document.update({
-            'system.story.scars': [
-                ...this.document.system.story.scars,
-                { name: game.i18n.localize('DAGGERHEART.Sheets.PC.NewScar'), description: '' }
-            ]
-        });
-    }
-
     static async deleteScar(event, button) {
         event.stopPropagation();
         await this.document.update({
@@ -705,7 +681,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: game.i18n.localize('DAGGERHEART.Chat.FeatureTitle'),
+            title: game.i18n.localize('DAGGERHEART.UI.Chat.featureTitle'),
             origin: this.document.id,
             img: item.img,
             name: item.name,
@@ -730,7 +706,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             const experience = this.document.system.experiences[button.dataset.uuid];
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
-                name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
+                name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
                 description: `${experience.name} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
             };
             const msg = new cls({
@@ -758,12 +734,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 : this.document.system.class.subclass;
         const ability = item.system[`${button.dataset.key}Feature`];
         const title = `${item.name} - ${game.i18n.localize(
-            `DAGGERHEART.Sheets.PC.DomainCard.${button.dataset.key.capitalize()}Title`
+            `DAGGERHEART.ITEMS.DomainCard.${button.dataset.key.capitalize()}Title`
         )}`;
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+            title: game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: this.document.id,
             name: title,
             img: item.img,
@@ -787,7 +763,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: game.i18n.localize('DAGGERHEART.Chat.FoundationCard.SubclassFeatureTitle'),
+            title: game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: this.document.id,
             name: item.name,
             img: item.img,

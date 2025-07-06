@@ -5,18 +5,18 @@
 >
     <fieldset class="two-columns">
         <legend>{{localize tabs.settings.label}}</legend>
-        <span>{{localize "DAGGERHEART.Tiers.singular"}}</span>
+        <span>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</span>
         {{formField systemFields.tier value=source.system.tier}}
-        <span>{{localize "DAGGERHEART.Sheets.Armor.baseScore"}}</span>
+        <span>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</span>
         {{formField systemFields.baseScore value=source.system.baseScore}}
 
-        <span>{{localize "DAGGERHEART.Sheets.Armor.feature"}}</span>
+        <span>{{localize "TYPES.Item.feature"}}</span>
         <input type="text" class="features-input" value="{{features}}" />
 
-        <span>{{localize "DAGGERHEART.Sheets.Armor.baseThresholds.base"}}</span>
+        <span>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.base"}}</span>
         <div class="nest-inputs">
-            {{ formField systemFields.baseThresholds.fields.major value=source.system.baseThresholds.major label=(localize "DAGGERHEART.Sheets.Armor.baseThresholds.major") }}
-            {{ formField systemFields.baseThresholds.fields.severe value=source.system.baseThresholds.severe label=(localize "DAGGERHEART.Sheets.Armor.baseThresholds.severe") }}
+            {{ formField systemFields.baseThresholds.fields.major value=source.system.baseThresholds.major label=(localize "DAGGERHEART.ITEMS.Armor.baseThresholds.major") }}
+            {{ formField systemFields.baseThresholds.fields.severe value=source.system.baseThresholds.severe label=(localize "DAGGERHEART.ITEMS.Armor.baseThresholds.severe") }}
         </div>
     </fieldset>
 </section>

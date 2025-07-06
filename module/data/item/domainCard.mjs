@@ -40,17 +40,17 @@ export default class DHDomainCard extends BaseDataItem {
 
         if (this.actor?.type === 'character') {
             if (!this.actor.system.class.value) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.NoClassSelected'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noClassSelected'));
                 return false;
             }
 
             if (!this.actor.system.domains.find(x => x === this.domain)) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.LacksDomain'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.lacksDomain'));
                 return false;
             }
 
             if (this.actor.system.domainCards.total.find(x => x.name === this.parent.name)) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.DuplicateDomainCard'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateDomainCard'));
                 return false;
             }
         }

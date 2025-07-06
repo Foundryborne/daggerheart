@@ -112,7 +112,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                 ? Math.min(domainCard.secondaryData.limit, levelBase)
                                 : levelBase;
 
-                            return game.i18n.format('DAGGERHEART.Application.LevelUp.Selections.emptyDomainCardHint', {
+                            return game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.selections.emptyDomainCardHint', {
                                 domain: game.i18n.localize(domains[domain.domain].label),
                                 level: levelMax
                             });

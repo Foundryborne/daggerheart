@@ -1,47 +1,37 @@
 export const actionTypes = {
     attack: {
         id: 'attack',
-        name: 'DAGGERHEART.Actions.Types.attack.name',
+        name: 'DAGGERHEART.ACTIONS.TYPES.attack.name',
         icon: 'fa-swords'
     },
-    // spellcast: {
-    //     id: 'spellcast',
-    //     name: 'DAGGERHEART.Actions.Types.spellcast.name',
-    //     icon: 'fa-book-sparkles'
-    // },
     healing: {
         id: 'healing',
-        name: 'DAGGERHEART.Actions.Types.healing.name',
+        name: 'DAGGERHEART.ACTIONS.TYPES.healing.name',
         icon: 'fa-kit-medical'
     },
-    // resource: {
-    //     id: 'resource',
-    //     name: 'DAGGERHEART.Actions.Types.resource.name',
-    //     icon: 'fa-honey-pot'
-    // },
     damage: {
         id: 'damage',
-        name: 'DAGGERHEART.Actions.Types.damage.name',
+        name: 'DAGGERHEART.ACTIONS.TYPES.damage.name',
         icon: 'fa-bone-break'
     },
     summon: {
         id: 'summon',
-        name: 'DAGGERHEART.Actions.Types.summon.name',
+        name: 'DAGGERHEART.ACTIONS.TYPES.summon.name',
         icon: 'fa-ghost'
     },
     effect: {
         id: 'effect',
-        name: 'DAGGERHEART.Actions.Types.effect.name',
+        name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',
         icon: 'fa-person-rays'
     },
     macro: {
         id: 'macro',
-        name: 'DAGGERHEART.Actions.Types.macro.name',
+        name: 'DAGGERHEART.ACTIONS.TYPES.macro.name',
         icon: 'fa-scroll'
     },
     beastform: {
         id: 'beastform',
-        name: 'DAGGERHEART.Actions.Types.beastform.name',
+        name: 'DAGGERHEART.ACTIONS.TYPES.beastform.name',
         icon: 'fa-paw'
     }
 };
@@ -113,15 +103,15 @@ export const diceCompare = {
 
 export const advandtageState = {
     disadvantage: {
-        label: 'DAGGERHEART.General.Disadvantage.Full',
+        label: 'DAGGERHEART.GENERAL.Disadvantage.full',
         value: -1
     },
     neutral: {
-        label: 'DAGGERHEART.General.Neutral.Full',
+        label: 'DAGGERHEART.GENERAL.Neutral.full',
         value: 0
     },
     advantage: {
-        label: 'DAGGERHEART.General.Advantage.Full',
+        label: 'DAGGERHEART.GENERAL.Advantage.full',
         value: 1
     }
 };

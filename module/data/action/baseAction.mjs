@@ -110,7 +110,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                     }),
                     resultBased: new fields.BooleanField({
                         initial: false,
-                        label: 'DAGGERHEART.Actions.Settings.ResultBased.label'
+                        label: 'DAGGERHEART.ACTIONS.Settings.resultBased.label'
                     }),
                     value: new fields.EmbeddedDataField(DHActionDiceData),
                     valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
@@ -563,7 +563,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     async toChat(origin) {
         const cls = getDocumentClass('ChatMessage');
         const systemData = {
-            title: game.i18n.localize('DAGGERHEART.ActionType.action'),
+            title: game.i18n.localize('DAGGERHEART.CONFIG.ActionType.action'),
             origin: origin,
             img: this.img,
             name: this.name,

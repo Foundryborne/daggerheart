@@ -60,7 +60,7 @@
                     </div>
                     <div>{{fear}}</div>
                 </div>
-                <a class="encounter-countdowns" data-tooltip="{{localize "DAGGERHEART.Countdown.Title" type=(localize "DAGGERHEART.Countdown.Types.combat")}}" data-action="openCountdowns"><i class="fa-solid fa-stopwatch"></i></a>
+                <a class="encounter-countdowns" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Countdown.Title" type=(localize "DAGGERHEART.APPLICATIONS.Countdown.types.encounter")}}" data-action="openCountdowns"><i class="fa-solid fa-stopwatch"></i></a>
             </div>
         {{/if}}
 
@@ -68,7 +68,7 @@
         <strong class="encounter-title">
             {{#if combats.length}}
             {{#if combat.round}}
-            {{ localize "DAGGERHEART.Combat.combatStarted" }}
+            {{ localize "DAGGERHEART.APPLICATIONS.CombatTracker.combatStarted" }}
             {{else}}
             {{ localize "COMBAT.NotStarted" }}
             {{/if}}

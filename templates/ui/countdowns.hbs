@@ -12,8 +12,8 @@
     {{else}}
         <div class="expanded-view">
             <div class="countdowns-menu">
-                {{#if canCreate}}<button class="flex" data-action="addCountdown">{{localize "DAGGERHEART.Countdown.AddCountdown"}}</button>{{/if}}
-                {{#if isGM}}<button data-action="openOwnership" data-tooltip="{{localize "DAGGERHEART.Countdown.OpenOwnership"}}"><i class="fa-solid fa-users"></i></button>{{/if}}
+                {{#if canCreate}}<button class="flex" data-action="addCountdown">{{localize "DAGGERHEART.APPLICATIONS.Countdown.addCountdown"}}</button>{{/if}}
+                {{#if isGM}}<button data-action="openOwnership" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Countdown.openOwnership"}}"><i class="fa-solid fa-users"></i></button>{{/if}}
             </div>
 
             <div class="countdowns-container">
@@ -22,7 +22,7 @@
                         <legend>
                             {{this.name}} 
                             {{#if this.canEdit}}<a><i class="fa-solid fa-trash icon-button" data-action="removeCountdown" data-countdown="{{@key}}"></i></a>{{/if}}
-                            {{#if @root.isGM}}<a><i class="fa-solid fa-users icon-button" data-action="openCountdownOwnership" data-countdown="{{@key}}" data-tooltip="{{localize "DAGGERHEART.Countdown.OpenOwnership"}}"></i></a>{{/if}}
+                            {{#if @root.isGM}}<a><i class="fa-solid fa-users icon-button" data-action="openCountdownOwnership" data-countdown="{{@key}}" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Countdown.openOwnership"}}"></i></a>{{/if}}
                         </legend>
 
                         

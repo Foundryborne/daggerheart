@@ -5,7 +5,7 @@
 >
     <div class="two-columns even">
         <fieldset>
-            <legend>{{localize "DAGGERHEART.Sheets.Class.HopeFeatures"}} <a><i class="fa-solid fa-plus icon-button" data-type="hope" data-action="addFeature"></i></a></legend>
+            <legend>{{localize "DAGGERHEART.ITEMS.Class.hopeFeatures"}} <a><i class="fa-solid fa-plus icon-button" data-type="hope" data-action="addFeature"></i></a></legend>
             <div class="feature-list">
                 {{#each source.system.hopeFeatures as |feature|}}
                     {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='hope' feature=feature}}
@@ -14,7 +14,7 @@
         </fieldset>
 
         <fieldset>
-            <legend>{{localize "DAGGERHEART.Sheets.Class.ClassFeatures"}} <a><i class="fa-solid fa-plus icon-button" data-type="class" data-action="addFeature"></i></a></legend>
+            <legend>{{localize "DAGGERHEART.ITEMS.Class.classFeatures"}} <a><i class="fa-solid fa-plus icon-button" data-type="class" data-action="addFeature"></i></a></legend>
             <div class="feature-list">
                 {{#each source.system.classFeatures as |feature|}}
                     {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='class' feature=feature}}
@@ -38,7 +38,7 @@
                                 class='effect-control'
                                 data-action='viewDoc'
                                 data-uuid={{subclass.uuid}}
-                                data-tooltip='{{localize "DAGGERHEART.Tooltip.openItemWorld"}}'
+                                data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
                             >
                                 <i class="fa-solid fa-globe"></i>
                             </a>
@@ -47,7 +47,7 @@
                                 data-action='removeItemFromCollection'
                                 data-target="subclasses"
                                 data-uuid={{subclass.uuid}}
-                                data-tooltip='{{localize "DAGGERHEART.Tooltip.delete"}}'
+                                data-tooltip='{{localize "CONTROLS.CommonDelete"}}'
                             >
                                 <i class='fas fa-trash'></i>
                             </a>

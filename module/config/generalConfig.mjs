@@ -2,43 +2,43 @@ export const range = {
     self: {
         id: 'self',
         short: 's',
-        label: 'DAGGERHEART.Range.self.name',
-        description: 'DAGGERHEART.Range.self.description',
+        label: 'DAGGERHEART.CONFIG.Range.self.name',
+        description: 'DAGGERHEART.CONFIG.Range.self.description',
         distance: 0
     },
     melee: {
         id: 'melee',
         short: 'm',
-        label: 'DAGGERHEART.Range.melee.name',
-        description: 'DAGGERHEART.Range.melee.description',
+        label: 'DAGGERHEART.CONFIG.Range.melee.name',
+        description: 'DAGGERHEART.CONFIG.Range.melee.description',
         distance: 1
     },
     veryClose: {
         id: 'veryClose',
         short: 'vc',
-        label: 'DAGGERHEART.Range.veryClose.name',
-        description: 'DAGGERHEART.Range.veryClose.description',
+        label: 'DAGGERHEART.CONFIG.Range.veryClose.name',
+        description: 'DAGGERHEART.CONFIG.Range.veryClose.description',
         distance: 3
     },
     close: {
         id: 'close',
         short: 'c',
-        label: 'DAGGERHEART.Range.close.name',
-        description: 'DAGGERHEART.Range.close.description',
+        label: 'DAGGERHEART.CONFIG.Range.close.name',
+        description: 'DAGGERHEART.CONFIG.Range.close.description',
         distance: 10
     },
     far: {
         id: 'far',
         short: 'f',
-        label: 'DAGGERHEART.Range.far.name',
-        description: 'DAGGERHEART.Range.far.description',
+        label: 'DAGGERHEART.CONFIG.Range.far.name',
+        description: 'DAGGERHEART.CONFIG.Range.far.description',
         distance: 20
     },
     veryFar: {
         id: 'veryFar',
         short: 'vf',
-        label: 'DAGGERHEART.Range.veryFar.name',
-        description: 'DAGGERHEART.Range.veryFar.description',
+        label: 'DAGGERHEART.CONFIG.Range.veryFar.name',
+        description: 'DAGGERHEART.CONFIG.Range.veryFar.description',
         distance: 30
     }
 };
@@ -46,68 +46,68 @@ export const range = {
 export const burden = {
     oneHanded: {
         value: 'oneHanded',
-        label: 'DAGGERHEART.Burden.oneHanded'
+        label: 'DAGGERHEART.CONFIG.Burden.oneHanded'
     },
     twoHanded: {
         value: 'twoHanded',
-        label: 'DAGGERHEART.Burden.twoHanded'
+        label: 'DAGGERHEART.CONFIG.Burden.twoHanded'
     }
 };
 
 export const damageTypes = {
     physical: {
         id: 'physical',
-        label: 'DAGGERHEART.DamageType.physical.name',
-        abbreviation: 'DAGGERHEART.DamageType.physical.abbreviation'
+        label: 'DAGGERHEART.CONFIG.DamageType.physical.name',
+        abbreviation: 'DAGGERHEART.CONFIG.DamageType.physical.abbreviation'
     },
     magical: {
         id: 'magical',
-        label: 'DAGGERHEART.DamageType.magical.name',
-        abbreviation: 'DAGGERHEART.DamageType.magical.abbreviation'
+        label: 'DAGGERHEART.CONFIG.DamageType.magical.name',
+        abbreviation: 'DAGGERHEART.CONFIG.DamageType.magical.abbreviation'
     }
 };
 
 export const healingTypes = {
     hitPoints: {
         id: 'hitPoints',
-        label: 'DAGGERHEART.HealingType.HitPoints.Name',
-        abbreviation: 'DAGGERHEART.HealingType.HitPoints.Abbreviation'
+        label: 'DAGGERHEART.CONFIG.HealingType.hitPoints.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.hitPoints.abbreviation'
     },
     stress: {
         id: 'stress',
-        label: 'DAGGERHEART.HealingType.Stress.Name',
-        abbreviation: 'DAGGERHEART.HealingType.Stress.Abbreviation'
+        label: 'DAGGERHEART.CONFIG.HealingType.stress.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.stress.abbreviation'
     },
     hope: {
         id: 'hope',
-        label: 'DAGGERHEART.HealingType.Hope.Name',
-        abbreviation: 'DAGGERHEART.HealingType.Hope.Abbreviation'
+        label: 'DAGGERHEART.CONFIG.HealingType.hope.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.hope.abbreviation'
     },
     armorStack: {
         id: 'armorStack',
-        label: 'DAGGERHEART.HealingType.ArmorStack.Name',
-        abbreviation: 'DAGGERHEART.HealingType.ArmorStack.Abbreviation'
+        label: 'DAGGERHEART.CONFIG.HealingType.armorStack.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.armorStack.abbreviation'
     }
 };
 
 export const conditions = {
     vulnerable: {
         id: 'vulnerable',
-        name: 'DAGGERHEART.Condition.vulnerable.name',
+        name: 'DAGGERHEART.CONFIG.Condition.vulnerable.name',
         icon: 'icons/magic/control/silhouette-fall-slip-prone.webp',
-        description: 'DAGGERHEART.Condition.vulnerable.description'
+        description: 'DAGGERHEART.CONFIG.Condition.vulnerable.description'
     },
     hidden: {
         id: 'hidden',
-        name: 'DAGGERHEART.Condition.hidden.name',
+        name: 'DAGGERHEART.CONFIG.Condition.hidden.name',
         icon: 'icons/magic/perception/silhouette-stealth-shadow.webp',
-        description: 'DAGGERHEART.Condition.hidden.description'
+        description: 'DAGGERHEART.CONFIG.Condition.hidden.description'
     },
     restrained: {
         id: 'restrained',
-        name: 'DAGGERHEART.Condition.restrained.name',
+        name: 'DAGGERHEART.CONFIG.Condition.restrained.name',
         icon: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
-        description: 'DAGGERHEART.Condition.restrained.description'
+        description: 'DAGGERHEART.CONFIG.Condition.restrained.description'
     }
 };
 
@@ -115,13 +115,13 @@ export const defaultRestOptions = {
     shortRest: () => ({
         tendToWounds: {
             id: 'tendToWounds',
-            name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.TendToWounds.Name'),
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.name'),
             img: 'icons/magic/life/cross-worn-green.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.TendToWounds.Description'),
+            description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.description'),
             actions: [
                 {
                     type: 'healing',
-                    name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.TendToWounds.Name'),
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.name'),
                     img: 'icons/magic/life/cross-worn-green.webp',
                     actionType: 'action',
                     healing: {
@@ -138,13 +138,13 @@ export const defaultRestOptions = {
         },
         clearStress: {
             id: 'clearStress',
-            name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.ClearStress.Name'),
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.name'),
             img: 'icons/magic/perception/eye-ringed-green.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.ClearStress.Description'),
+            description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.description'),
             actions: [
                 {
                     type: 'healing',
-                    name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.ClearStress.Name'),
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.name'),
                     img: 'icons/magic/perception/eye-ringed-green.webp',
                     actionType: 'action',
                     healing: {
@@ -161,53 +161,53 @@ export const defaultRestOptions = {
         },
         repairArmor: {
             id: 'repairArmor',
-            name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.RepairArmor.Name'),
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.name'),
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.RepairArmor.Description'),
+            description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.description'),
             actions: []
         },
         prepare: {
             id: 'prepare',
-            name: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.Prepare.Name'),
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.name'),
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.ShortRest.Prepare.Description'),
+            description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.description'),
             actions: []
         }
     }),
     longRest: () => ({
         tendToWounds: {
             id: 'tendToWounds',
-            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.TendToWounds.Name'),
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.name'),
             img: 'icons/magic/life/cross-worn-green.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.TendToWounds.Description'),
+            description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.description'),
             actions: []
         },
         clearStress: {
             id: 'clearStress',
-            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.ClearStress.Name'),
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.name'),
             img: 'icons/magic/perception/eye-ringed-green.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.ClearStress.Description'),
+            description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.description'),
             actions: []
         },
         repairArmor: {
             id: 'repairArmor',
-            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.RepairArmor.Name'),
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.name'),
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.RepairArmor.Description'),
+            description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.description'),
             actions: []
         },
         prepare: {
             id: 'prepare',
-            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.Prepare.Name'),
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.name'),
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.Prepare.Description'),
+            description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.description'),
             actions: []
         },
         workOnAProject: {
             id: 'workOnAProject',
-            name: game.i18n.localize('DAGGERHEART.Downtime.LongRest.WorkOnAProject.Name'),
+            name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.workOnAProject.name'),
             img: 'icons/skills/social/thumbsup-approval-like.webp',
-            description: game.i18n.localize('DAGGERHEART.Downtime.LongRest.WorkOnAProject.Description'),
+            description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.workOnAProject.description'),
             actions: []
         }
     }),
@@ -216,51 +216,51 @@ export const defaultRestOptions = {
         name: '',
         img: 'icons/skills/trades/academics-investigation-puzzles.webp',
         description: '',
-        namePlaceholder: 'DAGGERHEART.Downtime.Custom.NamePlaceholder',
-        placeholder: 'DAGGERHEART.Downtime.Custom.Placeholder'
+        namePlaceholder: 'DAGGERHEART.APPLICATIONS.Downtime.custom.namePlaceholder',
+        placeholder: 'DAGGERHEART.APPLICATIONS.Downtime.custom.placeholder'
     }
 };
 
 export const deathMoves = {
     avoidDeath: {
         id: 'avoidDeath',
-        name: 'DAGGERHEART.DeathMoves.AvoidDeath.Name',
+        name: 'DAGGERHEART.CONFIG.DeathMoves.avoidDeath.name',
         img: 'icons/magic/time/hourglass-yellow-green.webp',
-        description: 'DAGGERHEART.DeathMoves.AvoidDeath.Description'
+        description: 'DAGGERHEART.CONFIG.DeathMoves.avoidDeath.description'
     },
     riskItAll: {
         id: 'riskItAll',
-        name: 'DAGGERHEART.DeathMoves.RiskItAll.Name',
+        name: 'DAGGERHEART.CONFIG.DeathMoves.riskItAll.name',
         img: 'icons/sundries/gaming/dice-pair-white-green.webp',
-        description: 'DAGGERHEART.DeathMoves.RiskItAll.Description'
+        description: 'DAGGERHEART.CONFIG.DeathMoves.riskItAll.description'
     },
     blazeOfGlory: {
         id: 'blazeOfGlory',
-        name: 'DAGGERHEART.DeathMoves.BlazeOfGlory.Name',
+        name: 'DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.name',
         img: 'icons/magic/life/heart-cross-strong-flame-purple-orange.webp',
-        description: 'DAGGERHEART.DeathMoves.BlazeOfGlory.Description'
+        description: 'DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.description'
     }
 };
 
 export const tiers = {
     tier1: {
         id: 'tier1',
-        label: 'DAGGERHEART.Tiers.tier1',
+        label: 'DAGGERHEART.GENERAL.Tiers.tier1',
         value: 1
     },
     tier2: {
         id: 'tier2',
-        label: 'DAGGERHEART.Tiers.tier2',
+        label: 'DAGGERHEART.GENERAL.Tiers.tier2',
         value: 2
     },
     tier3: {
         id: 'tier3',
-        label: 'DAGGERHEART.Tiers.tier3',
+        label: 'DAGGERHEART.GENERAL.Tiers.tier3',
         value: 3
     },
     tier4: {
         id: 'tier4',
-        label: 'DAGGERHEART.Tiers.tier4',
+        label: 'DAGGERHEART.GENERAL.Tiers.tier4',
         value: 4
     }
 };
@@ -331,15 +331,15 @@ export const getDiceSoNicePresets = () => {
 export const refreshTypes = {
     session: {
         id: 'session',
-        label: 'DAGGERHEART.General.RefreshType.Session'
+        label: 'DAGGERHEART.GENERAL.RefreshType.session'
     },
     shortRest: {
         id: 'shortRest',
-        label: 'DAGGERHEART.General.RefreshType.Shortrest'
+        label: 'DAGGERHEART.GENERAL.RefreshType.shortrest'
     },
     longRest: {
         id: 'longRest',
-        label: 'DAGGERHEART.General.RefreshType.Longrest'
+        label: 'DAGGERHEART.GENERAL.RefreshType.longrest'
     }
 };
 
@@ -351,7 +351,7 @@ export const abilityCosts = {
     },
     stress: {
         id: 'stress',
-        label: 'DAGGERHEART.HealingType.Stress.Name',
+        label: 'DAGGERHEART.CONFIG.HealingType.Stress.Name',
         group: 'TYPES.Actor.character'
     },
     armor: {
@@ -361,7 +361,7 @@ export const abilityCosts = {
     },
     hp: {
         id: 'hp',
-        label: 'DAGGERHEART.HealingType.HitPoints.Name',
+        label: 'DAGGERHEART.CONFIG.HealingType.HitPoints.Name',
         group: 'TYPES.Actor.character'
     },
     prayer: {
@@ -399,38 +399,38 @@ export const abilityCosts = {
 export const countdownTypes = {
     spotlight: {
         id: 'spotlight',
-        label: 'DAGGERHEART.Countdown.Type.Spotlight'
+        label: 'DAGGERHEART.CONFIG.CountdownTypes.Spotlight'
     },
     characterAttack: {
         id: 'characterAttack',
-        label: 'DAGGERHEART.Countdown.Type.CharacterAttack'
+        label: 'DAGGERHEART.CONFIG.CountdownTypes.CharacterAttack'
     },
     custom: {
         id: 'custom',
-        label: 'DAGGERHEART.Countdown.Type.Custom'
+        label: 'DAGGERHEART.CONFIG.CountdownTypes.Custom'
     }
 };
 export const rollTypes = {
     weapon: {
         id: 'weapon',
-        label: 'DAGGERHEART.RollTypes.weapon.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.weapon.name'
     },
     spellcast: {
         id: 'spellcast',
-        label: 'DAGGERHEART.RollTypes.spellcast.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.spellcast.name'
     },
     ability: {
         id: 'ability',
-        label: 'DAGGERHEART.RollTypes.ability.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.ability.name'
     },
     diceSet: {
         id: 'diceSet',
-        label: 'DAGGERHEART.RollTypes.diceSet.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.diceSet.name'
     }
 };
 
 export const fearDisplay = {
-    token: { value: 'token', label: 'DAGGERHEART.Settings.Appearance.FearDisplay.Token' },
-    bar: { value: 'bar', label: 'DAGGERHEART.Settings.Appearance.FearDisplay.Bar' },
-    hide: { value: 'hide', label: 'DAGGERHEART.Settings.Appearance.FearDisplay.Hide' }
+    token: { value: 'token', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.token' },
+    bar: { value: 'bar', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.bar' },
+    hide: { value: 'hide', label: 'DAGGERHEART.SETTINGS.Appearance.fearDisplay.hide' }
 };

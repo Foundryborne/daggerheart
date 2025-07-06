@@ -33,7 +33,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
         primary: {
             tabs: [{ id: 'features' }, { id: 'notes'}, { id: 'effects'}],
             initial: 'features',
-            labelPrefix: 'DAGGERHEART.Sheets.Adversary.Tabs'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 
@@ -82,7 +82,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
             const experience = this.document.system.experiences[button.dataset.uuid];
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
-                name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
+                name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
                 description: `${experience.name} ${
                     experience.modifier < 0 ? experience.modifier : `+${experience.modifier}`
                 }`

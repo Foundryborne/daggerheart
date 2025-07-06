@@ -11,7 +11,7 @@
             <legend>{{this.label}}</legend>
             <div class="category-name">
                 <input type="text" name="{{concat "system.potentialAdversaries." @key ".label" }}" value="{{this.label}}" />
-                <a><i class="fa-solid fa-trash" data-action="deleteProperty" data-path="system.potentialAdversaries" id={{@key}} data-tooltip='{{localize "DAGGERHEART.Tooltip.delete"}}'></i></a>
+                <a><i class="fa-solid fa-trash" data-action="deleteProperty" data-path="system.potentialAdversaries" id={{@key}} data-tooltip='{{localize "CONTROLS.CommonDelete"}}'></i></a>
             </div>
             <div class="adversaries-container">
                 {{#each this.adversaries as |adversary|}}

@@ -118,7 +118,7 @@ export default class D20Roll extends DHRoll {
 
     applyAdvantage() {
         this.d20.modifiers.findSplice(m => ['kh', 'kl'].includes(m));
-        if (!this.hasAdvantage && !this.hasDisadvantage) this.number = 1;
+        if (!this.hasAdvantage && !this.hasDisadvantage) this.d20.number = 1;
         else {
             this.d20.number = 2;
             this.d20.modifiers.push(this.hasAdvantage ? 'kh' : 'kl');

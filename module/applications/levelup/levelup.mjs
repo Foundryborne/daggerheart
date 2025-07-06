@@ -15,7 +15,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
     }
 
     get title() {
-        return game.i18n.format('DAGGERHEART.Application.LevelUp.Title', { actor: this.actor.name });
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.title', { actor: this.actor.name });
     }
 
     static DEFAULT_OPTIONS = {
@@ -56,7 +56,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             group: 'primary',
             id: 'advancements',
             icon: null,
-            label: 'DAGGERHEART.Application.LevelUp.Tabs.advancement'
+            label: 'DAGGERHEART.GENERAL.Tabs.advancement'
         },
         selections: {
             active: false,
@@ -64,7 +64,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             group: 'primary',
             id: 'selections',
             icon: null,
-            label: 'DAGGERHEART.Application.LevelUp.Tabs.selections'
+            label: 'DAGGERHEART.GENERAL.Tabs.selections'
         },
         summary: {
             active: false,
@@ -72,7 +72,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             group: 'primary',
             id: 'summary',
             icon: null,
-            label: 'DAGGERHEART.Application.LevelUp.Tabs.summary'
+            label: 'DAGGERHEART.GENERAL.Tabs.summary'
         }
     };
 
@@ -110,14 +110,14 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     previous: {
                         disabled: !previous,
                         label: previous
-                            ? game.i18n.format('DAGGERHEART.Application.LevelUp.navigateLevel', { level: previous })
+                            ? game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.navigateLevel', { level: previous })
                             : '',
                         fromSummary: this.tabGroups.primary === 'summary'
                     },
                     next: {
                         disabled: !this.levelup.currentLevelFinished,
                         label: next
-                            ? game.i18n.format('DAGGERHEART.Application.LevelUp.navigateLevel', { level: next })
+                            ? game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.navigateLevel', { level: next })
                             : '',
                         toSummary: !next,
                         show: this.tabGroups.primary !== 'summary'
@@ -384,9 +384,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             );
 
             if (!updatePath) {
-                ui.notifications.error(
-                    game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.noSelectionsLeft')
-                );
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noSelectionsLeft'));
                 return;
             }
 
@@ -414,18 +412,14 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     !this.actor.system.domains.includes(item.system.domain) &&
                     this.levelup.classUpgradeChoices?.multiclass?.domain !== item.system.domain
                 ) {
-                    ui.notifications.error(
-                        game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardWrongDomain')
-                    );
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.domainCardWrongDomain'));
                     return;
                 }
 
                 const levelBase = isMulticlass ? Math.ceil(this.levelup.currentLevel / 2) : this.levelup.currentLevel;
                 const levelMax = target.dataset.limit ? Math.min(Number(target.dataset.limit), levelBase) : levelBase;
                 if (levelMax < item.system.level) {
-                    ui.notifications.error(
-                        game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardToHighLevel')
-                    );
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.domainCardToHighLevel'));
                     return;
                 }
 
@@ -443,9 +437,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     return achievementExists || advancementExists;
                 });
                 if (cardExistsInCharacter || cardExistsInLevelup) {
-                    ui.notifications.error(
-                        game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.domainCardDuplicate')
-                    );
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.domainCardDuplicate'));
                     return;
                 }
 
@@ -456,9 +448,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             const target = event.target.closest('.multiclass-cards');
             if (item.type === 'class') {
                 if (item.name === this.actor.system.class.value.name) {
-                    ui.notifications.error(
-                        game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.error.alreadySelectedClass')
-                    );
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.alreadySelectedClass'));
                     return;
                 }
 
@@ -498,9 +488,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             }
         } else {
             if (this.levelup.levels[this.levelup.currentLevel].nrSelections.available < Number(button.dataset.cost)) {
-                ui.notifications.info(
-                    game.i18n.localize('DAGGERHEART.Application.LevelUp.notifications.info.insufficentAdvancements')
-                );
+                ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficentAdvancements'));
                 this.render();
                 return;
             }
@@ -571,9 +559,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         if (!button.dataset.forward) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
-                    title: game.i18n.localize('DAGGERHEART.Application.LevelUp.Delevel.title')
+                    title: game.i18n.localize('DAGGERHEART.APPLICATIONS.Levelup.delevel.title')
                 },
-                content: game.i18n.format('DAGGERHEART.Application.LevelUp.Delevel.content')
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.delevel.content')
             });
 
             if (!confirmed) return;

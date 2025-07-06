@@ -50,13 +50,13 @@ export default class DHSubclass extends BaseDataItem {
                 x => x.type === 'subclass' && x.system.isMulticlass === data.system.isMulticlass
             );
             if (!classData) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.MissingClass'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClass'));
                 return false;
             } else if (subclassData) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.SubclassAlreadySelected'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassAlreadySelected'));
                 return false;
             } else if (classData.system.subclasses.every(x => x.uuid !== (data.uuid ?? `Item.${data._id}`))) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.Item.Errors.SubclassNotInClass'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInClass'));
                 return false;
             }
         }

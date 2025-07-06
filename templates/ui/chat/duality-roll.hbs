@@ -8,12 +8,12 @@
         {{/each}}
         {{#if (eq roll.advantage.type 1)}}
             <div class="duality-modifier">
-                {{localize "DAGGERHEART.General.Advantage.Full"}}
+                {{localize "DAGGERHEART.GENERAL.Advantage.full"}}
             </div>
         {{/if}}
         {{#if (eq roll.advantage.type -1)}}
             <div class="duality-modifier">
-                {{localize "DAGGERHEART.General.Disadvantage.Full"}}
+                {{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}
             </div>
         {{/if}}
     </div>
@@ -33,10 +33,10 @@
                         </header>
                         <div class="flexrow">
                             <ol class="dice-rolls duality">
-                                <li class="roll die {{roll.hope.dice}}" title="{{localize "DAGGERHEART.General.Hope"}}">
+                                <li class="roll die {{roll.hope.dice}}" title="{{localize "DAGGERHEART.GENERAL.hope"}}">
                                     <div class="dice-container">
-                                        <div class="dice-title">{{localize "DAGGERHEART.General.Hope"}}</div>
-                                        <div class="dice-inner-container hope" title="{{localize "DAGGERHEART.General.Hope"}}">
+                                        <div class="dice-title">{{localize "DAGGERHEART.GENERAL.hope"}}</div>
+                                        <div class="dice-inner-container hope" title="{{localize "DAGGERHEART.GENERAL.hope"}}">
                                             <div class="dice-wrapper">
                                                 <img class="dice" src="../icons/svg/d12-grey.svg"/>
                                             </div>
@@ -44,10 +44,10 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="roll die {{roll.fear.dice}}" title="{{localize "DAGGERHEART.General.Fear"}}">
+                                <li class="roll die {{roll.fear.dice}}" title="{{localize "DAGGERHEART.GENERAL.fear"}}">
                                     <div class="dice-container">
-                                        <div class="dice-title">{{localize "DAGGERHEART.General.Fear"}}</div>
-                                        <div class="dice-inner-container fear" title="{{localize "DAGGERHEART.General.Fear"}}">
+                                        <div class="dice-title">{{localize "DAGGERHEART.GENERAL.fear"}}</div>
+                                        <div class="dice-inner-container fear" title="{{localize "DAGGERHEART.GENERAL.fear"}}">
                                             <div class="dice-wrapper">
                                                 <img class="dice" src="../icons/svg/d12-grey.svg"/>
                                             </div>
@@ -136,15 +136,15 @@
                 {{#if damage.roll}}
                     <button class="duality-action damage-button" data-target-hit="true" data-value="{{roll.total}}"><span>Deal Damage</span></button>
                 {{else}}
-                    <button class="duality-action duality-action-damage" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.Chat.AttackRoll.RollDamage"}}</span></button>
+                    <button class="duality-action duality-action-damage" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.rollDamage"}}</span></button>
                 {{/if}}
             {{else}}
                 {{#if hasHealing}}
-                    <button class="duality-action duality-action-healing" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.Chat.AttackRoll.RollHealing"}}</span></button>
+                    <button class="duality-action duality-action-healing" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.rollHealing"}}</span></button>
                 {{/if}}
             {{/if}}
             {{#if hasEffect}}
-                    <button class="duality-action{{#if (or hasDamage hasHealing)}} duality-action-effect{{/if}}" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.Chat.AttackRoll.ApplyEffect"}}</span></button>
+                    <button class="duality-action{{#if (or hasDamage hasHealing)}} duality-action-effect{{/if}}" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</span></button>
             {{/if}}
             <div class="duality-result">
                 <div>{{roll.total}} {{#if (eq roll.result.duality 1)}}With Hope{{else}}{{#if (eq roll.result.duality -1)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>

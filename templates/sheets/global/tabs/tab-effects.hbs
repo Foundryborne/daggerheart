@@ -4,8 +4,12 @@
     data-group='{{tabs.effects.group}}'
 >
     <fieldset class="one-column">
-            <legend>{{localize "DAGGERHEART.Sheets.Global.Effects"}} 
-                <a data-action="createDoc" data-type="ActiveEffect"><i class="fa-solid fa-plus icon-button"></i></a></legend>
+            <legend>
+                {{localize "DAGGERHEART.GENERAL.Effect.plural"}} 
+                <a data-action="createDoc" data-type="ActiveEffect">
+                    <i class="fa-solid fa-plus icon-button"></i>
+                </a>
+            </legend>
         <div class="effects-list">
             {{#each document.effects as |effect|}}
                 <div class="effect-item">

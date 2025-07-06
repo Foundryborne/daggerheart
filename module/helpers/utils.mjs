@@ -106,16 +106,16 @@ export const getCommandTarget = () => {
     if (!game.user.isGM) {
         target = game.user.character;
         if (!target) {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.NoAssignedPlayerCharacter'));
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noAssignedPlayerCharacter'));
             return null;
         }
     }
     if (!target) {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.NoSelectedToken'));
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noSelectedToken'));
         return null;
     }
     if (target.type !== 'character') {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.OnlyUseableByPC'));
+        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyUseableByPC'));
         return null;
     }
 
@@ -236,13 +236,13 @@ Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false 
 export const getDamageLabel = damage => {
     switch (damage) {
         case 3:
-            return game.i18n.localize('DAGGERHEART.General.Damage.Severe');
+            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.severe');
         case 2:
-            return game.i18n.localize('DAGGERHEART.General.Damage.Major');
+            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.major');
         case 1:
-            return game.i18n.localize('DAGGERHEART.General.Damage.Minor');
+            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.minor');
         case 0:
-            return game.i18n.localize('DAGGERHEART.General.Damage.None');
+            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.none');
     }
 };
 

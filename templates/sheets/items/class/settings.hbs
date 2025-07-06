@@ -11,31 +11,31 @@
 
     <div class="fieldsets-section">
         <fieldset class="drop-section two-columns">
-            <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Suggestions.Traits.Title"}}</legend>
+            <legend>{{localize "DAGGERHEART.GENERAL.Trait.plural"}}</legend>
 
-            <span>{{localize "DAGGERHEART.Abilities.agility.name"}}</span>
+            <span>{{localize "DAGGERHEART.CONFIG.Traits.agility.name"}}</span>
             <input type="text" name="system.characterGuide.suggestedTraits.agility" value="{{source.system.characterGuide.suggestedTraits.agility}}" />
 
-            <span>{{localize "DAGGERHEART.Abilities.strength.name"}}</span>
+            <span>{{localize "DAGGERHEART.CONFIG.Traits.strength.name"}}</span>
             <input type="text" name="system.characterGuide.suggestedTraits.strength" value="{{source.system.characterGuide.suggestedTraits.strength}}" />
 
-            <span>{{localize "DAGGERHEART.Abilities.finesse.name"}}</span>
+            <span>{{localize "DAGGERHEART.CONFIG.Traits.finesse.name"}}</span>
             <input type="text" name="system.characterGuide.suggestedTraits.finesse" value="{{source.system.characterGuide.suggestedTraits.finesse}}" />
 
-            <span>{{localize "DAGGERHEART.Abilities.instinct.name"}}</span>
+            <span>{{localize "DAGGERHEART.CONFIG.Traits.instinct.name"}}</span>
             <input type="text" name="system.characterGuide.suggestedTraits.instinct" value="{{source.system.characterGuide.suggestedTraits.instinct}}" />
 
-            <span>{{localize "DAGGERHEART.Abilities.presence.name"}}</span>
+            <span>{{localize "DAGGERHEART.CONFIG.Traits.presence.name"}}</span>
             <input type="text" name="system.characterGuide.suggestedTraits.presence" value="{{source.system.characterGuide.suggestedTraits.presence}}" />
 
-            <span>{{localize "DAGGERHEART.Abilities.knowledge.name"}}</span>
+            <span>{{localize "DAGGERHEART.CONFIG.Traits.knowledge.name"}}</span>
             <input type="text" name="system.characterGuide.suggestedTraits.knowledge" value="{{source.system.characterGuide.suggestedTraits.knowledge}}" />
         </fieldset>
 
         <fieldset class="one-column">
-            <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Suggestions.Title"}}</legend>
+            <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedEquipment"}}</legend>
             <fieldset class="one-column drop-section primary-weapon-section">
-                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.SuggestedPrimaryWeaponTitle"}}</legend>
+                <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedPrimaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#if document.system.characterGuide.suggestedPrimaryWeapon}}
                         <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{document.system.characterGuide.suggestedPrimaryWeapon.uuid}}">
@@ -50,7 +50,7 @@
             </fieldset>
 
             <fieldset class="one-column drop-section secondary-weapon-section">
-                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.SuggestedSecondaryWeaponTitle"}}</legend>
+                <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedSecondaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#if document.system.characterGuide.suggestedSecondaryWeapon}}
                         <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{system.system.characterGuide.suggestedSecondaryWeapon.uuid}}">
@@ -65,7 +65,7 @@
             </fieldset>
 
             <fieldset class="one-column drop-section armor-section">
-                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.SuggestedArmorTitle"}}</legend>
+                <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedArmorTitle"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#if document.system.characterGuide.suggestedArmor}}
                         <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{document.system.characterGuide.suggestedArmor.uuid}}">
@@ -81,9 +81,9 @@
         </fieldset>
 
         <fieldset class="one-column">
-            <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Inventory.Title"}}</legend>
+            <legend>{{localize "DAGGERHEART.GENERAL.inventory"}}</legend>
             <fieldset class="one-column drop-section take-section">
-                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Inventory.Take"}}</legend>
+                <legend>{{localize "DAGGERHEART.GENERAL.take"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#each source.system.inventory.take}}
                         <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{this.uuid}}">
@@ -98,7 +98,7 @@
             </fieldset>
 
             <fieldset class="one-column drop-section choice-a-section">
-                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Inventory.ThenChoose"}}</legend>
+                <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.thenChoose"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#each source.system.inventory.choiceA}}
                         <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{this.uuid}}">
@@ -113,7 +113,7 @@
             </fieldset>
 
             <fieldset class="one-column drop-section choice-b-section">
-                <legend>{{localize "DAGGERHEART.Sheets.Class.Guide.Inventory.AndEither"}}</legend>
+                <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.andEither"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#each source.system.inventory.choiceB}}
                         <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{this.uuid}}">

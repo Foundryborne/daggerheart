@@ -9,7 +9,7 @@
             {{formField ../fields.type choices=(@root.disableOption index ../fields.type.choices ../source) label="Resource" value=cost.type name=(concat "cost." index ".type") localize=true}}
             {{formField ../fields.value label="Amount" value=cost.value name=(concat "cost." index ".value")}}
             {{formField ../fields.step label="Step" value=cost.step name=(concat "cost." index ".step") disabled=(not cost.scalable)}}
-            <a class="btn" data-tooltip="{{localize "DAGGERHEART.Tooltip.delete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
+            <a class="btn" data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeElement" data-index="{{index}}"><i class="fas fa-trash"></i></a>
         </div>
     {{/each}}
 </fieldset>

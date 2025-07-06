@@ -12,7 +12,7 @@ export default class DHEffectAction extends DHBaseAction {
     async chatApplyEffects(event, data) {
         const cls = getDocumentClass('ChatMessage'),
             systemData = {
-                title: game.i18n.format('DAGGERHEART.Chat.ApplyEffect.Title', { name: this.name }),
+                title: game.i18n.format('DAGGERHEART.UI.Chat.applyEffect.title', { name: this.name }),
                 origin: this.actor._id,
                 description: '',
                 targets: data.targets.map(x => ({ id: x.id, name: x.name, img: x.img, hit: true })),

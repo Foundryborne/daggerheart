@@ -9,7 +9,7 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
     }
 
     get title() {
-        return `${game.i18n.localize('DAGGERHEART.Sheets.TABS.settings')}`;
+        return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}`;
     }
 
     static DEFAULT_OPTIONS = {
@@ -69,7 +69,7 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             group: 'primary',
             id: 'details',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.details'
+            label: 'DAGGERHEART.GENERAL.Tabs.details'
         },
         attack: {
             active: false,
@@ -77,7 +77,7 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             group: 'primary',
             id: 'attack',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.attack'
+            label: 'DAGGERHEART.GENERAL.Tabs.attack'
         },
         experiences: {
             active: false,
@@ -85,7 +85,7 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             group: 'primary',
             id: 'experiences',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.experiences'
+            label: 'DAGGERHEART.GENERAL.Tabs.experiences'
         },
         features: {
             active: false,
@@ -93,7 +93,7 @@ export default class DHAdversarySettings extends HandlebarsApplicationMixin(Appl
             group: 'primary',
             id: 'features',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.features'
+            label: 'DAGGERHEART.GENERAL.Tabs.features'
         }
     };
 

@@ -37,7 +37,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         primary: {
             tabs: [{ id: 'description' }, { id: 'actions' }, { id: 'settings' }],
             initial: 'description',
-            labelPrefix: 'DAGGERHEART.Sheets.TABS'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 

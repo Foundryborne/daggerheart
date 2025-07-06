@@ -14,13 +14,13 @@
             <h3 class='label'>
                 {{#if (or document.system.needsCharacterSetup document.system.levelData.canLevelUp)}}
                     <button 
-                        class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.Sheets.PC.CharacterSetup"}}{{else}}{{localize "DAGGERHEART.Sheets.PC.LevelUp"}}{{/if}}"
+                        class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.Sheets.PC.CharacterSetup"}}{{else}}{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}{{/if}}"
                         data-action="levelManagement"
                     >
                         <i class="fa-solid fa-triangle-exclamation"></i>
                     </button>
                 {{/if}}
-                {{localize 'DAGGERHEART.Sheets.PC.Level'}}
+                {{localize 'DAGGERHEART.GENERAL.level'}}
                 <input type="text" data-dtype="Number" class="level-value" value={{#if document.system.needsCharacterSetup}}0{{else}}{{document.system.levelData.level.changed}}{{/if}} {{#if document.system.needsCharacterSetup}}disabled{{/if}} />
             </h3>
         </div>
@@ -57,7 +57,7 @@
                 {{#if document.system.multiclass.value}}
                     <span data-action="viewObject" data-value="{{document.system.multiclass.value.uuid}}">{{document.system.multiclass.value.name}}</span>
                 {{else}}
-                    <span>{{localize 'DAGGERHEART.Sheets.PC.Heritage.Multiclass'}}</span>
+                    <span>{{localize 'DAGGERHEART.GENERAL.multiclass'}}</span>
                 {{/if}}
                 <span class="dot">•</span>
                 {{#if document.system.multiclass.subclass}}
@@ -73,7 +73,7 @@
 
     <div class="character-row">
         <div class="hope-section">
-            <h4>{{localize "DAGGERHEART.General.Hope"}}</h4>
+            <h4>{{localize "DAGGERHEART.GENERAL.hope"}}</h4>
             {{#times document.system.resources.hope.max}}
                 <span class='hope-value' data-action='toggleHope' data-value="{{add this 1}}">
                     {{#if (gte ../document.system.resources.hope.value (add this 1))}}
@@ -85,11 +85,11 @@
             {{/times}}
         </div>
         <div class="threshold-section">
-            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Minor"}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
             <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
-            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Major"}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
             <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
-            <h4 class="threshold-label">{{localize "DAGGERHEART.Sheets.PC.Health.Severe"}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
         </div>
     </div>
 
@@ -97,7 +97,7 @@
         {{#each this.attributes as |attribute key|}}
             <div class="trait" data-tooltip="{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="attributeRoll" data-attribute="{{key}}" data-value="{{attribute.total}}">
                 <div class="trait-name">
-                    <span>{{localize (concat 'DAGGERHEART.Abilities.' key '.short')}}</span>
+                    <span>{{localize (concat 'DAGGERHEART.CONFIG.Traits.' key '.short')}}</span>
                     {{#if attribute.tierMarked}}
                         <i class='fa-solid fa-circle'></i>
                     {{else}}

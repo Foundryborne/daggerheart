@@ -12,7 +12,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Settings.Menu.Appearance.name');
+        return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.appearance.name');
     }
 
     static DEFAULT_OPTIONS = {

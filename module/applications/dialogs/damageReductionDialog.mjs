@@ -45,7 +45,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.DamageReduction.Title');
+        return game.i18n.localize('DAGGERHEART.APPLICATIONS.DamageReduction.title');
     }
 
     static DEFAULT_OPTIONS = {
@@ -79,7 +79,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
     /** @inheritDoc */
     get title() {
-        return game.i18n.localize('DAGGERHEART.DamageReduction.Title');
+        return game.i18n.localize('DAGGERHEART.APPLICATIONS.DamageReduction.title');
     }
 
     async _prepareContext(_options) {
@@ -136,14 +136,12 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         const currentMark = this.marks[target.dataset.type][target.dataset.key];
         const { selectedStressMarks, stressReductions, currentMarks, currentDamage } = this.getDamageInfo();
         if (!currentMark.selected && currentDamage === 0) {
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.DamageReduction.Notifications.DamageAlreadyNone'));
+            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.damageAlreadyNone'));
             return;
         }
 
         if (!currentMark.selected && currentMarks === this.actor.system.armorScore) {
-            ui.notifications.info(
-                game.i18n.localize('DAGGERHEART.DamageReduction.Notifications.NoAvailableArmorMarks')
-            );
+            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noAvailableArmorMarks'));
             return;
         }
 
@@ -187,7 +185,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             const currentStress =
                 this.actor.system.resources.stress.value + selectedStressMarks.length + stressReductionStress;
             if (currentStress + stressReduction.cost > this.actor.system.resources.stress.maxTotal) {
-                ui.notifications.info(game.i18n.localize('DAGGERHEART.DamageReduction.Notifications.NotEnoughStress'));
+                ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.notEnoughStress'));
                 return;
             }
 

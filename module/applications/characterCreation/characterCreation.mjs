@@ -41,7 +41,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     }
 
     get title() {
-        return game.i18n.format('DAGGERHEART.CharacterCreation.Title', { actor: this.character.name });
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.CharacterCreation.title', { actor: this.character.name });
     }
 
     static DEFAULT_OPTIONS = {
@@ -87,14 +87,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             cssClass: '',
             group: 'primary',
             id: 'setup',
-            label: 'DAGGERHEART.CharacterCreation.Tabs.Setup'
+            label: 'DAGGERHEART.GENERAL.Tabs.setup'
         },
         equipment: {
             active: false,
             cssClass: '',
             group: 'primary',
             id: 'equipment',
-            label: 'DAGGERHEART.CharacterCreation.Tabs.Equipment',
+            label: 'DAGGERHEART.GENERAL.Tabs.equipment',
             optional: true
         }
         // story: {
@@ -102,7 +102,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         //     cssClass: '',
         //     group: 'primary',
         //     id: 'story',
-        //     label: 'DAGGERHEART.CharacterCreation.Tabs.Story',
+        //     label: 'DAGGERHEART.GENERAL.Tabs.story',
         //     optional: true
         // }
     };
@@ -188,7 +188,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 context.suggestedTraits = this.setup.class.system
                     ? Object.keys(this.setup.class.system.characterGuide.suggestedTraits).map(traitKey => {
                           const trait = this.setup.class.system.characterGuide.suggestedTraits[traitKey];
-                          return `${game.i18n.localize(`DAGGERHEART.Abilities.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
+                          return `${game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
                       })
                     : [];
                 context.traits = {
@@ -417,9 +417,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             };
         } else if (item.type === 'subclass' && event.target.closest('.subclass-card')) {
             if (this.setup.class.system.subclasses.every(subclass => subclass.uuid !== item.uuid)) {
-                ui.notifications.error(
-                    game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.SubclassNotInClass')
-                );
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInClass'));
                 return;
             }
 
@@ -430,68 +428,58 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             };
         } else if (item.type === 'domainCard' && event.target.closest('.domain-card')) {
             if (!this.setup.class.uuid) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.MissingClass'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClass'));
                 return;
             }
 
             if (!this.setup.class.system.domains.includes(item.system.domain)) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.WrongDomain'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.wrongDomain'));
                 return;
             }
 
             if (item.system.level > 1) {
-                ui.notifications.error(
-                    game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.CardTooHighLevel')
-                );
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.cardTooHighLevel'));
                 return;
             }
 
             if (Object.values(this.setup.domainCards).some(card => card.uuid === item.uuid)) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.DuplicateCard'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.duplicateCard'));
                 return;
             }
 
             this.setup.domainCards[event.target.closest('.domain-card').dataset.card] = { ...item, uuid: item.uuid };
         } else if (item.type === 'armor' && event.target.closest('.armor-card')) {
             if (item.system.tier > 1) {
-                ui.notifications.error(
-                    game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.ItemTooHighTier')
-                );
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.itemTooHighTier'));
                 return;
             }
 
             this.equipment.armor = { ...item, uuid: item.uuid };
         } else if (item.type === 'weapon' && event.target.closest('.primary-weapon-card')) {
             if (item.system.secondary) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.NotPrimary'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.notPrimary'));
                 return;
             }
 
             if (item.system.tier > 1) {
-                ui.notifications.error(
-                    game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.ItemTooHighTier')
-                );
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.itemTooHighTier'));
                 return;
             }
 
             this.equipment.primaryWeapon = { ...item, uuid: item.uuid };
         } else if (item.type === 'weapon' && event.target.closest('.secondary-weapon-card')) {
             if (this.equipment.primaryWeapon?.system?.burden === burden.twoHanded.value) {
-                ui.notifications.error(
-                    game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.PrimaryIsTwoHanded')
-                );
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.primaryIsTwoHanded'));
                 return;
             }
 
             if (!item.system.secondary) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.NotSecondary'));
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.notSecondary'));
                 return;
             }
 
             if (item.system.tier > 1) {
-                ui.notifications.error(
-                    game.i18n.localize('DAGGERHEART.CharacterCreation.Notifications.ItemTooHighTier')
-                );
+                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.itemTooHighTier'));
                 return;
             }
 

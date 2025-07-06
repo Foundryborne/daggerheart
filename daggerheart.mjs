@@ -190,7 +190,7 @@ Hooks.on('chatMessage', (_, message) => {
     if (message.startsWith('/dr')) {
         const rollCommand = rollCommandToJSON(message.replace(/\/dr\s?/, ''));
         if (!rollCommand) {
-            ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.DualityParsing'));
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.dualityParsing'));
             return false;
         }
 
@@ -203,16 +203,16 @@ Hooks.on('chatMessage', (_, message) => {
             new Promise(async (resolve, reject) => {
                 const trait = target ? target.system.traits[traitValue] : undefined;
                 if (traitValue && !trait) {
-                    ui.notifications.error(game.i18n.localize('DAGGERHEART.Notification.Error.AttributeFaulty'));
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.attributeFaulty'));
                     reject();
                     return;
                 }
 
                 const title = traitValue
-                    ? game.i18n.format('DAGGERHEART.Chat.DualityRoll.AbilityCheckTitle', {
+                    ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', {
                           ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
                       })
-                    : game.i18n.localize('DAGGERHEART.General.Duality');
+                    : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
                 const config = {
                     title: title,
@@ -247,8 +247,8 @@ Hooks.on('renderJournalDirectory', async (tab, html, _, options) => {
         if (options.parts && !options.parts.includes('footer')) return;
 
         const buttons = tab.element.querySelector('.directory-footer.action-buttons');
-        const title = game.i18n.format('DAGGERHEART.Countdown.Title', {
-            type: game.i18n.localize('DAGGERHEART.Countdown.Types.narrative')
+        const title = game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.title', {
+            type: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.types.narrative')
         });
         buttons.insertAdjacentHTML(
             'afterbegin',

@@ -19,7 +19,7 @@
                                 </ol>
                                 {{#if (eq index 0)}}
                                 <div class="attack-roll-advantage-container">
-                                    {{#if (eq ../roll.advantage.type 1)}}{{localize "DAGGERHEART.General.Advantage.Full"}}{{/if}}{{#if (eq ../roll.advantage.type -1)}}{{localize "DAGGERHEART.General.Disadvantage.Full"}}{{/if}}
+                                    {{#if (eq ../roll.advantage.type 1)}}{{localize "DAGGERHEART.GENERAL.Advantage.full"}}{{/if}}{{#if (eq ../roll.advantage.type -1)}}{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}{{/if}}
                                 </div>
                                 {{/if}}
                             </div>
@@ -49,12 +49,11 @@
     <div class="dice-result">
         {{#if damage.roll}}
         <div class="dice-actions">
-            {{!-- <button class="damage-button" data-target-hit="true" {{#if (eq targets.length 0)}}disabled{{/if}}>{{localize "DAGGERHEART.Chat.DamageRoll.DealDamageToTargets"}}</button>   --}}
-            <button class="damage-button">{{localize "DAGGERHEART.Chat.DamageRoll.DealDamage"}}</button>  
+            <button class="damage-button">{{localize "DAGGERHEART.UI.Chat.DamageRoll.dealDamage"}}</button>  
         </div>
         {{else}}
         <div class="flexrow">
-            <button class="duality-action duality-action-damage" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.Chat.DamageRoll.RollDamage"}}</span></button>  
+            <button class="duality-action duality-action-damage" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.damageRoll.rollDamage"}}</span></button>  
         </div>
         {{/if}}
     </div>

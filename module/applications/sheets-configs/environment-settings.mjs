@@ -9,7 +9,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     }
 
     get title() {
-        return `${game.i18n.localize('DAGGERHEART.Sheets.TABS.settings')}`;
+        return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}`;
     }
 
     static DEFAULT_OPTIONS = {
@@ -68,7 +68,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
             group: 'primary',
             id: 'details',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.details'
+            label: 'DAGGERHEART.GENERAL.Tabs.details'
         },
         features: {
             active: false,
@@ -76,7 +76,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
             group: 'primary',
             id: 'features',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.features'
+            label: 'DAGGERHEART.GENERAL.Tabs.features'
         },
         adversaries: {
             active: false,
@@ -84,7 +84,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
             group: 'primary',
             id: 'adversaries',
             icon: null,
-            label: 'DAGGERHEART.General.tabs.adversaries'
+            label: 'DAGGERHEART.GENERAL.Tabs.adversaries'
         }
     };
 
@@ -146,7 +146,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     static async #addCategory() {
         await this.actor.update({
             [`system.potentialAdversaries.${foundry.utils.randomID()}.label`]: game.i18n.localize(
-                'DAGGERHEART.Sheets.Environment.newAdversary'
+                'DAGGERHEART.ACTORS.Environment.newAdversary'
             )
         });
         this.render();
@@ -160,7 +160,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     static async #viewAdversary(_, button) {
         const adversary = await foundry.utils.fromUuid(button.dataset.adversary);
         if (!adversary) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.adversaryMissing'));
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.adversaryMissing'));
             return;
         }
 

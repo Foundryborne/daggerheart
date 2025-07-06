@@ -1,57 +1,57 @@
 export const domains = {
     arcana: {
         id: 'arcana',
-        label: 'DAGGERHEART.Domains.arcana.label',
+        label: 'DAGGERHEART.GENERAL.Domain.arcana.label',
         src: 'systems/daggerheart/assets/icons/domains/arcana.svg',
-        description: 'DAGGERHEART.Domains.Arcana'
+        description: 'DAGGERHEART.GENERAL.Domain.Arcana'
     },
     blade: {
         id: 'blade',
-        label: 'DAGGERHEART.Domains.blade.label',
+        label: 'DAGGERHEART.GENERAL.Domain.blade.label',
         src: 'systems/daggerheart/assets/icons/domains/blade.svg',
-        description: 'DAGGERHEART.Domains.Blade'
+        description: 'DAGGERHEART.GENERAL.Domain.Blade'
     },
     bone: {
         id: 'bone',
-        label: 'DAGGERHEART.Domains.bone.label',
+        label: 'DAGGERHEART.GENERAL.Domain.bone.label',
         src: 'systems/daggerheart/assets/icons/domains/bone.svg',
-        description: 'DAGGERHEART.Domains.Bone'
+        description: 'DAGGERHEART.GENERAL.Domain.Bone'
     },
     codex: {
         id: 'codex',
-        label: 'DAGGERHEART.Domains.codex.label',
+        label: 'DAGGERHEART.GENERAL.Domain.codex.label',
         src: 'systems/daggerheart/assets/icons/domains/codex.svg',
-        description: 'DAGGERHEART.Domains.Codex'
+        description: 'DAGGERHEART.GENERAL.Domain.Codex'
     },
     grace: {
         id: 'grace',
-        label: 'DAGGERHEART.Domains.grace.label',
+        label: 'DAGGERHEART.GENERAL.Domain.grace.label',
         src: 'systems/daggerheart/assets/icons/domains/grace.svg',
-        description: 'DAGGERHEART.Domains.Grace'
+        description: 'DAGGERHEART.GENERAL.Domain.Grace'
     },
     midnight: {
         id: 'midnight',
-        label: 'DAGGERHEART.Domains.midnight.label',
+        label: 'DAGGERHEART.GENERAL.Domain.midnight.label',
         src: 'systems/daggerheart/assets/icons/domains/midnight.svg',
-        description: 'DAGGERHEART.Domains.Midnight'
+        description: 'DAGGERHEART.GENERAL.Domain.Midnight'
     },
     sage: {
         id: 'sage',
-        label: 'DAGGERHEART.Domains.sage.label',
+        label: 'DAGGERHEART.GENERAL.Domain.sage.label',
         src: 'systems/daggerheart/assets/icons/domains/sage.svg',
-        description: 'DAGGERHEART.Domains.Sage'
+        description: 'DAGGERHEART.GENERAL.Domain.Sage'
     },
     splendor: {
         id: 'splendor',
-        label: 'DAGGERHEART.Domains.splendor.label',
+        label: 'DAGGERHEART.GENERAL.Domain.splendor.label',
         src: 'systems/daggerheart/assets/icons/domains/splendor.svg',
-        description: 'DAGGERHEART.Domains.Splendor'
+        description: 'DAGGERHEART.GENERAL.Domain.Splendor'
     },
     valor: {
         id: 'valor',
-        label: 'DAGGERHEART.Domains.valor.label',
+        label: 'DAGGERHEART.GENERAL.Domain.valor.label',
         src: 'systems/daggerheart/assets/icons/domains/valor.svg',
-        description: 'DAGGERHEART.Domains.Valor'
+        description: 'DAGGERHEART.GENERAL.Domain.Valor'
     }
 };
 
@@ -84,17 +84,17 @@ export const classMap = {
 export const cardTypes = {
     ability: {
         id: 'ability',
-        label: 'DAGGERHEART.Domain.CardTypes.ability',
+        label: 'DAGGERHEART.CONFIG.DomainCardTypes.ability',
         img: ''
     },
     spell: {
         id: 'spell',
-        label: 'DAGGERHEART.Domain.CardTypes.spell',
+        label: 'DAGGERHEART.CONFIG.DomainCardTypes.spell',
         img: ''
     },
     grimoire: {
         id: 'grimoire',
-        label: 'DAGGERHEART.Domain.CardTypes.grimoire',
+        label: 'DAGGERHEART.CONFIG.DomainCardTypes.grimoire',
         img: ''
     }
 };

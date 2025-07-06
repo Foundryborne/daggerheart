@@ -2,12 +2,12 @@
     <div class="section-container padded">
         <div class="resources-container">
             <div class="resource-container">
-                <h4 class="armor-title">{{localize "DAGGERHEART.DamageReduction.ArmorMarks"}}</h4>
+                <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.armorMarks"}}</h4>
                 <div class="markers-subtitle">{{armorMarks}}/{{armorScore}}</div>
             </div>
             {{#if this.stress}}
                 <div class="resource-container">
-                    <h4 class="armor-title">{{localize "DAGGERHEART.DamageReduction.Stress"}}</h4>
+                    <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.stress"}}</h4>
                     <div class="markers-subtitle">{{this.stress.value}}/{{this.stress.maxTotal}}</div>
                 </div>
             {{/if}}
@@ -30,19 +30,19 @@
                 {{#each marks.stress}}
                     <div 
                         class="mark-container {{#if this.selected}}selected{{/if}} {{#if (not @root.basicMarksUsed)}}inactive{{/if}}" 
-                        {{#if @root.basicMarksUsed}}data-action="setMarks"{{/if}} data-key="{{@key}}" data-type="stress" data-tooltip="{{#if @root.basicMarksUsed}}{{localize "DAGGERHEART.DamageReduction.ArmorWithStress"}}{{else}}{{localize "DAGGERHEART.DamageReduction.UnncessaryStress"}}{{/if}}"
+                        {{#if @root.basicMarksUsed}}data-action="setMarks"{{/if}} data-key="{{@key}}" data-type="stress" data-tooltip="{{#if @root.basicMarksUsed}}{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.armorWithStress"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.unncessaryStress"}}{{/if}}"
                     >
                         <i class="fa-solid fa-bolt"></i>
                     </div>
                 {{/each}}
             </div>
         </h4>
-        <div class="markers-subtitle bold">{{localize "DAGGERHEART.DamageReduction.UsedMarks"}}</div>
+        <div class="markers-subtitle bold">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.usedMarks"}}</div>
     </div>
 
     <div class="resources-container">
         <div class="resource-container">
-            <h4 class="armor-title">{{localize "DAGGERHEART.DamageReduction.StressReduction"}}</h4>
+            <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.stressReduction"}}</h4>
         </div>
     </div>
 

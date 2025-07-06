@@ -26,7 +26,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         primary: {
             tabs: [{ id: 'details' }, { id: 'effects', label: 'DAGGERHEART.Sheets.TABS.effects' }],
             initial: 'details',
-            labelPrefix: 'DAGGERHEART.General.tabs'
+            labelPrefix: 'DAGGERHEART.General.Tabs'
         }
     };
 
@@ -54,7 +54,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
             const experience = this.document.system.experiences[button.dataset.uuid];
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
-                name: game.i18n.localize('DAGGERHEART.General.Experience.Single'),
+                name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
                 description: `${experience.name} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
             };
             const msg = new cls({

@@ -50,12 +50,12 @@
                 {{#if @root.user.isGM}}
                     <button 
                         type="button" class="inline-control spotlight-control discrete icon fa-solid {{#if system.spotlight.requesting}}fa-hand-sparkles requesting{{else}}fa-hand{{/if}}" 
-                        data-action="toggleSpotlight" data-combatant-id="{{id}}" data-tooltip aria-label="{{localize "DAGGERHEART.Combat.giveSpotlight"}}"
+                        data-action="toggleSpotlight" data-combatant-id="{{id}}" data-tooltip aria-label="{{localize "DAGGERHEART.APPLICATIONS.CombatTracker.giveSpotlight"}}"
                     ></button>
                 {{else}}
                     <button 
                         type="button" class="inline-control spotlight-control discrete icon fa-solid {{#if system.spotlight.requesting}}fa-hand-sparkles requesting{{else}}fa-hand{{/if}}" 
-                        data-action="requestSpotlight" data-combatant-id="{{id}}" data-tooltip aria-label="{{#if system.spotlight.requesting}}{{localize "DAGGERHEART.Combat.requestingSpotlight"}}{{else}}{{localize "DAGGERHEART.Combat.requestSpotlight"}}{{/if}}"
+                        data-action="requestSpotlight" data-combatant-id="{{id}}" data-tooltip aria-label="{{#if system.spotlight.requesting}}{{localize "DAGGERHEART.APPLICATIONS.CombatTracker.requestingSpotlight"}}{{else}}{{localize "DAGGERHEART.APPLICATIONS.CombatTracker.requestSpotlight"}}{{/if}}"
                     ></button>
                 {{/if}}
             </li>

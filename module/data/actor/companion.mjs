@@ -5,7 +5,7 @@ import ActionField from '../fields/actionField.mjs';
 import { adjustDice, adjustRange } from '../../helpers/utils.mjs';
 
 export default class DhCompanion extends BaseDataActor {
-    static LOCALIZATION_PREFIXES = ['DAGGERHEART.Sheets.Companion'];
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Companion'];
 
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {

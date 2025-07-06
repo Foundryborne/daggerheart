@@ -178,7 +178,7 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
             }));
 
         const burdenFilter = Object.values(CONFIG.DH.GENERAL.burden).map(({ value, label }) => ({
-            group: game.i18n.localize('DAGGERHEART.Sheets.Weapon.Burden'),
+            group: game.i18n.localize('DAGGERHEART.GENERAL.burden'),
             name: game.i18n.localize(label),
             filter: {
                 field: 'system.burden',
@@ -220,7 +220,7 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
         }));
 
         const domainFilter = Object.values(CONFIG.DH.DOMAIN.domains).map(({ id, label }) => ({
-            group: game.i18n.localize('DAGGERHEART.Sheets.DomainCard.Domain'),
+            group: game.i18n.localize('DAGGERHEART.GENERAL.Domain.single'),
             name: game.i18n.localize(label),
             filter: {
                 field: 'system.domain',
