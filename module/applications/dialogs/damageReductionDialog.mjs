@@ -45,7 +45,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Applications.DamageReduction.title');
+        return game.i18n.localize('DAGGERHEART.APPLICATIONS.DamageReduction.title');
     }
 
     static DEFAULT_OPTIONS = {
@@ -79,7 +79,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
     /** @inheritDoc */
     get title() {
-        return game.i18n.localize('DAGGERHEART.Applications.DamageReduction.title');
+        return game.i18n.localize('DAGGERHEART.APPLICATIONS.DamageReduction.title');
     }
 
     async _prepareContext(_options) {

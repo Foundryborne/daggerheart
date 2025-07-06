@@ -15,7 +15,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
     }
 
     get title() {
-        return game.i18n.format('DAGGERHEART.Applications.Levelup.title', { actor: this.actor.name });
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.title', { actor: this.actor.name });
     }
 
     static DEFAULT_OPTIONS = {
@@ -56,7 +56,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             group: 'primary',
             id: 'advancements',
             icon: null,
-            label: 'DAGGERHEART.General.Tabs.advancement'
+            label: 'DAGGERHEART.GENERAL.Tabs.advancement'
         },
         selections: {
             active: false,
@@ -64,7 +64,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             group: 'primary',
             id: 'selections',
             icon: null,
-            label: 'DAGGERHEART.General.Tabs.selections'
+            label: 'DAGGERHEART.GENERAL.Tabs.selections'
         },
         summary: {
             active: false,
@@ -72,7 +72,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             group: 'primary',
             id: 'summary',
             icon: null,
-            label: 'DAGGERHEART.General.Tabs.summary'
+            label: 'DAGGERHEART.GENERAL.Tabs.summary'
         }
     };
 
@@ -110,14 +110,14 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     previous: {
                         disabled: !previous,
                         label: previous
-                            ? game.i18n.format('DAGGERHEART.Applications.Levelup.navigateLevel', { level: previous })
+                            ? game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.navigateLevel', { level: previous })
                             : '',
                         fromSummary: this.tabGroups.primary === 'summary'
                     },
                     next: {
                         disabled: !this.levelup.currentLevelFinished,
                         label: next
-                            ? game.i18n.format('DAGGERHEART.Applications.Levelup.navigateLevel', { level: next })
+                            ? game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.navigateLevel', { level: next })
                             : '',
                         toSummary: !next,
                         show: this.tabGroups.primary !== 'summary'
@@ -559,9 +559,9 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         if (!button.dataset.forward) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
-                    title: game.i18n.localize('DAGGERHEART.Applications.Levelup.delevel.title')
+                    title: game.i18n.localize('DAGGERHEART.APPLICATIONS.Levelup.delevel.title')
                 },
-                content: game.i18n.format('DAGGERHEART.Applications.Levelup.delevel.content')
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.delevel.content')
             });
 
             if (!confirmed) return;

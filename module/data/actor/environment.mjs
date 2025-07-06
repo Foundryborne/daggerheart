@@ -2,7 +2,7 @@ import BaseDataActor from './base.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
 export default class DhEnvironment extends BaseDataActor {
-    static LOCALIZATION_PREFIXES = ['DAGGERHEART.Actors.Environment'];
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Environment'];
 
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {

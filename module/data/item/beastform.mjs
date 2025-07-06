@@ -64,7 +64,7 @@ export default class DHBeastform extends BaseDataItem {
         await this.parent.parent.createEmbeddedDocuments('ActiveEffect', [
             {
                 type: 'beastform',
-                name: game.i18n.localize('DAGGERHEART.Items.Beastform.beastformEffect'),
+                name: game.i18n.localize('DAGGERHEART.ITEMS.Beastform.beastformEffect'),
                 img: 'icons/creatures/abilities/paw-print-pair-purple.webp',
                 system: {
                     isBeastform: true,

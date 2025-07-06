@@ -12,7 +12,7 @@ export default class DhRangeMeasurementSettings extends HandlebarsApplicationMix
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Settings.Menu.automation.name');
+        return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.automation.name');
     }
 
     static DEFAULT_OPTIONS = {

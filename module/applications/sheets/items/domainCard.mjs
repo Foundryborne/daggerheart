@@ -12,7 +12,7 @@ export default class DomainCardSheet extends DHBaseItemSheet {
         primary: {
             tabs: [{ id: 'description' }, { id: 'actions' }, { id: 'settings' }, { id: 'effects' }],
             initial: 'description',
-            labelPrefix: 'DAGGERHEART.General.Tabs'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 

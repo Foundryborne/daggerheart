@@ -9,7 +9,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     }
 
     get title() {
-        return `${game.i18n.localize('DAGGERHEART.General.Tabs.settings')}`;
+        return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}`;
     }
 
     static DEFAULT_OPTIONS = {
@@ -68,7 +68,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
             group: 'primary',
             id: 'details',
             icon: null,
-            label: 'DAGGERHEART.General.Tabs.details'
+            label: 'DAGGERHEART.GENERAL.Tabs.details'
         },
         features: {
             active: false,
@@ -76,7 +76,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
             group: 'primary',
             id: 'features',
             icon: null,
-            label: 'DAGGERHEART.General.Tabs.features'
+            label: 'DAGGERHEART.GENERAL.Tabs.features'
         },
         adversaries: {
             active: false,
@@ -84,7 +84,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
             group: 'primary',
             id: 'adversaries',
             icon: null,
-            label: 'DAGGERHEART.General.Tabs.adversaries'
+            label: 'DAGGERHEART.GENERAL.Tabs.adversaries'
         }
     };
 
@@ -146,7 +146,7 @@ export default class DHEnvironmentSettings extends HandlebarsApplicationMixin(Ap
     static async #addCategory() {
         await this.actor.update({
             [`system.potentialAdversaries.${foundry.utils.randomID()}.label`]: game.i18n.localize(
-                'DAGGERHEART.Actors.Environment.newAdversary'
+                'DAGGERHEART.ACTORS.Environment.newAdversary'
             )
         });
         this.render();

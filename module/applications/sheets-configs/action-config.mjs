@@ -10,7 +10,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
     }
 
     get title() {
-        return `${game.i18n.localize('DAGGERHEART.General.Tabs.settings')}: ${this.action.name}`;
+        return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}: ${this.action.name}`;
     }
 
     static DEFAULT_OPTIONS = {
@@ -117,7 +117,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         context.tierOptions = [
-            { key: 1, label: game.i18n.localize('DAGGERHEART.General.Tiers.tier1') },
+            { key: 1, label: game.i18n.localize('DAGGERHEART.GENERAL.Tiers.tier1') },
             ...Object.values(settingsTiers).map(x => ({ key: x.tier, label: x.name }))
         ];
 

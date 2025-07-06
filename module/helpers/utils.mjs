@@ -236,13 +236,13 @@ Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false 
 export const getDamageLabel = damage => {
     switch (damage) {
         case 3:
-            return game.i18n.localize('DAGGERHEART.General.Damage.severe');
+            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.severe');
         case 2:
-            return game.i18n.localize('DAGGERHEART.General.Damage.major');
+            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.major');
         case 1:
-            return game.i18n.localize('DAGGERHEART.General.Damage.minor');
+            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.minor');
         case 0:
-            return game.i18n.localize('DAGGERHEART.General.Damage.none');
+            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.none');
     }
 };
 

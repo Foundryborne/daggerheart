@@ -13,7 +13,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Settings.Menu.homebrew.name');
+        return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.name');
     }
 
     static DEFAULT_OPTIONS = {
@@ -59,7 +59,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     static async addItem(_, target) {
         await this.settings.updateSource({
             [`restMoves.${target.dataset.type}.moves.${foundry.utils.randomID()}`]: {
-                name: game.i18n.localize('DAGGERHEART.Settings.Homebrew.newDowntimeMove'),
+                name: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.newDowntimeMove'),
                 img: 'icons/magic/life/cross-worn-green.webp',
                 description: '',
                 actions: []
@@ -74,7 +74,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             new DhSettingsActionView(
                 resolve,
                 reject,
-                game.i18n.localize('DAGGERHEART.Settings.Homebrew.downtimeMoves'),
+                game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.downtimeMoves'),
                 move.name,
                 move.img,
                 move.description,
@@ -104,13 +104,13 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     static async resetMoves(_, target) {
         const confirmed = await foundry.applications.api.DialogV2.confirm({
             window: {
-                title: game.i18n.format('DAGGERHEART.Settings.Homebrew.resetMovesTitle', {
+                title: game.i18n.format('DAGGERHEART.SETTINGS.Homebrew.resetMovesTitle', {
                     type: game.i18n.localize(
-                        `DAGGERHEART.Applications.Downtime.${target.dataset.type === 'shortRest' ? 'shortRest' : 'longRest'}.title`
+                        `DAGGERHEART.APPLICATIONS.Downtime.${target.dataset.type === 'shortRest' ? 'shortRest' : 'longRest'}.title`
                     )
                 })
             },
-            content: game.i18n.localize('DAGGERHEART.Settings.Homebrew.resetMovesText')
+            content: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.resetMovesText')
         });
 
         if (!confirmed) return;

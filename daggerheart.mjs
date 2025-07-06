@@ -212,7 +212,7 @@ Hooks.on('chatMessage', (_, message) => {
                     ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', {
                           ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
                       })
-                    : game.i18n.localize('DAGGERHEART.General.duality');
+                    : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
                 const config = {
                     title: title,
@@ -247,8 +247,8 @@ Hooks.on('renderJournalDirectory', async (tab, html, _, options) => {
         if (options.parts && !options.parts.includes('footer')) return;
 
         const buttons = tab.element.querySelector('.directory-footer.action-buttons');
-        const title = game.i18n.format('DAGGERHEART.Applications.Countdown.title', {
-            type: game.i18n.localize('DAGGERHEART.Applications.Countdown.types.narrative')
+        const title = game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.title', {
+            type: game.i18n.localize('DAGGERHEART.APPLICATIONS.Countdown.types.narrative')
         });
         buttons.insertAdjacentHTML(
             'afterbegin',

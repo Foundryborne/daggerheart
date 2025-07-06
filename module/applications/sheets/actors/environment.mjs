@@ -40,7 +40,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'features',
             icon: null,
-            label: 'DAGGERHEART.General.Tabs.features'
+            label: 'DAGGERHEART.GENERAL.Tabs.features'
         },
         potentialAdversaries: {
             active: false,
@@ -48,7 +48,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'potentialAdversaries',
             icon: null,
-            label: 'DAGGERHEART.General.Tabs.potentialAdversaries'
+            label: 'DAGGERHEART.GENERAL.Tabs.potentialAdversaries'
         },
         notes: {
             active: false,
@@ -56,7 +56,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
             group: 'primary',
             id: 'notes',
             icon: null,
-            label: 'DAGGERHEART.General.Tabs.notes'
+            label: 'DAGGERHEART.GENERAL.Tabs.notes'
         }
     };
 
@@ -91,7 +91,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
     static async addAdversary() {
         await this.document.update({
             [`system.potentialAdversaries.${foundry.utils.randomID()}.label`]: game.i18n.localize(
-                'DAGGERHEART.Actors.Environment.newAdversary'
+                'DAGGERHEART.ACTORS.Environment.newAdversary'
             )
         });
         this.render();

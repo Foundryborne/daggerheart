@@ -71,10 +71,10 @@ export default class DualityRoll extends D20Roll {
 
     get totalLabel() {
         const label = this.withHope
-            ? 'DAGGERHEART.General.hope'
+            ? 'DAGGERHEART.GENERAL.hope'
             : this.withFear
-              ? 'DAGGERHEART.General.fear'
-              : 'DAGGERHEART.General.criticalSuccess';
+              ? 'DAGGERHEART.GENERAL.fear'
+              : 'DAGGERHEART.GENERAL.criticalSuccess';
 
         return game.i18n.localize(label);
     }
@@ -119,7 +119,7 @@ export default class DualityRoll extends D20Roll {
         this.options.roll.modifiers = [];
         if (!this.options.roll.trait) return;
         this.options.roll.modifiers.push({
-            label: `DAGGERHEART.Config.Traits.${this.options.roll.trait}.name`,
+            label: `DAGGERHEART.CONFIG.Traits.${this.options.roll.trait}.name`,
             value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.total`, this.data)
         });
     }

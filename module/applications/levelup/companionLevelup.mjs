@@ -63,8 +63,8 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
 
                 context.vicious = advancementChoices.vicious ? Object.values(advancementChoices.vicious) : null;
                 context.viciousChoices = {
-                    damage: game.i18n.localize('DAGGERHEART.Applications.Levelup.selections.viciousDamage'),
-                    range: game.i18n.localize('DAGGERHEART.Applications.Levelup.selections.viciousRange')
+                    damage: game.i18n.localize('DAGGERHEART.APPLICATIONS.Levelup.selections.viciousDamage'),
+                    range: game.i18n.localize('DAGGERHEART.APPLICATIONS.Levelup.selections.viciousRange')
                 };
 
                 break;
@@ -142,7 +142,7 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                             : null,
                         range: advancement.vicious?.range
                             ? {
-                                  old: game.i18n.localize(`DAGGERHEART.Config.Range.${actorRange}.name`),
+                                  old: game.i18n.localize(`DAGGERHEART.CONFIG.Range.${actorRange}.name`),
                                   new: game.i18n.localize(advancement.vicious.range.label)
                               }
                             : null

@@ -21,7 +21,7 @@
         }
     },
     "DAGGERHEART": {
-        "Actions": {
+        "ACTIONS": {
             "Config": {
                 "beastform": {
                     "exact": "Beastform Max Tier",
@@ -34,7 +34,7 @@
                     "label": "Formula based on Hope/Fear result."
                 }
             },
-            "Types": {
+            "TYPES": {
                 "attack": {
                     "name": "Attack"
                 },
@@ -58,7 +58,7 @@
                 }
             }
         },
-        "Actors": {
+        "ACTORS": {
             "Adversary": {
                 "FIELDS": {
                     "attack": {
@@ -156,7 +156,7 @@
                 "newAdversary": "New Adversary"
             }
         },
-        "Applications": {
+        "APPLICATIONS": {
             "CharacterCreation": {
                 "choice": "Choice",
                 "finishCreation": "Finish Character Setup",
@@ -376,7 +376,7 @@
                 "default": "Default Ownership"
             }
         },
-        "Config": {
+        "CONFIG": {
             "ActionType": {
                 "passive": "Passive",
                 "action": "Action",
@@ -909,7 +909,7 @@
                 }
             }
         },
-        "Effects": {
+        "EFFECTS": {
             "ApplyLocations": {
                 "attackRoll": {
                     "name": "Attack Roll"
@@ -937,7 +937,7 @@
                 }
             }
         },
-        "General": {
+        "GENERAL": {
             "Action": {
                 "single": "Action",
                 "plural": "Actions"
@@ -1103,7 +1103,7 @@
             "unarmored": "Unarmored",
             "use": "Use"
         },
-        "Items": {
+        "ITEMS": {
             "Armor": {
                 "baseScore": "Base Score",
                 "baseThresholds": {
@@ -1161,7 +1161,7 @@
                 "secondaryWeapon": "Secondary Weapon"
             }
         },
-        "Settings": {
+        "SETTINGS": {
             "Appearance": {
                 "FIELDS": {
                     "displayFear": { "label": "Fear Display" }

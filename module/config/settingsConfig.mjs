@@ -33,10 +33,10 @@ export const gameSettings = {
 export const DualityRollColor = {
     colorful: {
         value: 0,
-        label: 'DAGGERHEART.Settings.DualityRollColor.options.colorful'
+        label: 'DAGGERHEART.SETTINGS.DualityRollColor.options.colorful'
     },
     normal: {
         value: 1,
-        label: 'DAGGERHEART.Settings.DualityRollColor.options.normal'
+        label: 'DAGGERHEART.SETTINGS.DualityRollColor.options.normal'
     }
 };

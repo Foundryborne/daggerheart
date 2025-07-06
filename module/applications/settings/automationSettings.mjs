@@ -12,7 +12,7 @@ export default class DhAutomationSettings extends HandlebarsApplicationMixin(App
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.Settings.Menu.automation.name');
+        return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.automation.name');
     }
 
     static DEFAULT_OPTIONS = {

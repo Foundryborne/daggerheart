@@ -33,7 +33,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
         primary: {
             tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }],
             initial: 'description',
-            labelPrefix: 'DAGGERHEART.General.Tabs'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 

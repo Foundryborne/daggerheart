@@ -24,9 +24,9 @@ export default class DHClass extends BaseDataItem {
                 integer: true,
                 min: 1,
                 initial: 5,
-                label: 'DAGGERHEART.General.hitPoints'
+                label: 'DAGGERHEART.GENERAL.hitPoints'
             }),
-            evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.General.evasion' }),
+            evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
             hopeFeatures: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             classFeatures: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),

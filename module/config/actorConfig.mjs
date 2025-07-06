@@ -1,77 +1,77 @@
 export const abilities = {
     agility: {
-        label: 'DAGGERHEART.Config.Traits.agility.name',
+        label: 'DAGGERHEART.CONFIG.Traits.agility.name',
         verbs: [
-            'DAGGERHEART.Config.Traits.agility.verb.sprint',
-            'DAGGERHEART.Config.Traits.agility.verb.leap',
-            'DAGGERHEART.Config.Traits.agility.verb.maneuver'
+            'DAGGERHEART.CONFIG.Traits.agility.verb.sprint',
+            'DAGGERHEART.CONFIG.Traits.agility.verb.leap',
+            'DAGGERHEART.CONFIG.Traits.agility.verb.maneuver'
         ]
     },
     strength: {
-        label: 'DAGGERHEART.Config.Traits.strength.name',
+        label: 'DAGGERHEART.CONFIG.Traits.strength.name',
         verbs: [
-            'DAGGERHEART.Config.Traits.strength.verb.lift',
-            'DAGGERHEART.Config.Traits.strength.verb.smash',
-            'DAGGERHEART.Config.Traits.strength.verb.grapple'
+            'DAGGERHEART.CONFIG.Traits.strength.verb.lift',
+            'DAGGERHEART.CONFIG.Traits.strength.verb.smash',
+            'DAGGERHEART.CONFIG.Traits.strength.verb.grapple'
         ]
     },
     finesse: {
-        label: 'DAGGERHEART.Config.Traits.finesse.name',
+        label: 'DAGGERHEART.CONFIG.Traits.finesse.name',
         verbs: [
-            'DAGGERHEART.Config.Traits.finesse.verb.control',
-            'DAGGERHEART.Config.Traits.finesse.verb.hide',
-            'DAGGERHEART.Config.Traits.finesse.verb.tinker'
+            'DAGGERHEART.CONFIG.Traits.finesse.verb.control',
+            'DAGGERHEART.CONFIG.Traits.finesse.verb.hide',
+            'DAGGERHEART.CONFIG.Traits.finesse.verb.tinker'
         ]
     },
     instinct: {
-        label: 'DAGGERHEART.Config.Traits.instinct.name',
+        label: 'DAGGERHEART.CONFIG.Traits.instinct.name',
         verbs: [
-            'DAGGERHEART.Config.Traits.instinct.verb.perceive',
-            'DAGGERHEART.Config.Traits.instinct.verb.sense',
-            'DAGGERHEART.Config.Traits.instinct.verb.navigate'
+            'DAGGERHEART.CONFIG.Traits.instinct.verb.perceive',
+            'DAGGERHEART.CONFIG.Traits.instinct.verb.sense',
+            'DAGGERHEART.CONFIG.Traits.instinct.verb.navigate'
         ]
     },
     presence: {
-        label: 'DAGGERHEART.Config.Traits.presence.name',
+        label: 'DAGGERHEART.CONFIG.Traits.presence.name',
         verbs: [
-            'DAGGERHEART.Config.Traits.presence.verb.charm',
-            'DAGGERHEART.Config.Traits.presence.verb.perform',
-            'DAGGERHEART.Config.Traits.presence.verb.deceive'
+            'DAGGERHEART.CONFIG.Traits.presence.verb.charm',
+            'DAGGERHEART.CONFIG.Traits.presence.verb.perform',
+            'DAGGERHEART.CONFIG.Traits.presence.verb.deceive'
         ]
     },
     knowledge: {
-        label: 'DAGGERHEART.Config.Traits.knowledge.name',
+        label: 'DAGGERHEART.CONFIG.Traits.knowledge.name',
         verbs: [
-            'DAGGERHEART.Config.Traits.knowledge.verb.recall',
-            'DAGGERHEART.Config.Traits.knowledge.verb.analyze',
-            'DAGGERHEART.Config.Traits.knowledge.verb.comprehend'
+            'DAGGERHEART.CONFIG.Traits.knowledge.verb.recall',
+            'DAGGERHEART.CONFIG.Traits.knowledge.verb.analyze',
+            'DAGGERHEART.CONFIG.Traits.knowledge.verb.comprehend'
         ]
     }
 };
 
 export const featureProperties = {
     agility: {
-        name: 'DAGGERHEART.Config.Traits.agility.name',
+        name: 'DAGGERHEART.CONFIG.Traits.agility.name',
         path: actor => actor.system.traits.agility.data.value
     },
     strength: {
-        name: 'DAGGERHEART.Config.Traits.strength.name',
+        name: 'DAGGERHEART.CONFIG.Traits.strength.name',
         path: actor => actor.system.traits.strength.data.value
     },
     finesse: {
-        name: 'DAGGERHEART.Config.Traits.finesse.name',
+        name: 'DAGGERHEART.CONFIG.Traits.finesse.name',
         path: actor => actor.system.traits.finesse.data.value
     },
     instinct: {
-        name: 'DAGGERHEART.Config.Traits.instinct.name',
+        name: 'DAGGERHEART.CONFIG.Traits.instinct.name',
         path: actor => actor.system.traits.instinct.data.value
     },
     presence: {
-        name: 'DAGGERHEART.Config.Traits.presence.name',
+        name: 'DAGGERHEART.CONFIG.Traits.presence.name',
         path: actor => actor.system.traits.presence.data.value
     },
     knowledge: {
-        name: 'DAGGERHEART.Config.Traits.knowledge.name',
+        name: 'DAGGERHEART.CONFIG.Traits.knowledge.name',
         path: actor => actor.system.traits.knowledge.data.value
     },
     spellcastingTrait: {
@@ -83,90 +83,90 @@ export const featureProperties = {
 export const adversaryTypes = {
     bruiser: {
         id: 'bruiser',
-        label: 'DAGGERHEART.Config.AdversaryType.bruiser.label',
-        description: 'DAGGERHEART.Actors.Adversary.bruiser.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryType.bruiser.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.bruiser.description'
     },
     horde: {
         id: 'horde',
-        label: 'DAGGERHEART.Config.AdversaryType.horde.label',
-        description: 'DAGGERHEART.Actors.Adversary.horde.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryType.horde.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.horde.description'
     },
     leader: {
         id: 'leader',
-        label: 'DAGGERHEART.Config.AdversaryType.leader.label',
-        description: 'DAGGERHEART.Actors.Adversary.leader.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryType.leader.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.leader.description'
     },
     minion: {
         id: 'minion',
-        label: 'DAGGERHEART.Config.AdversaryType.minion.label',
-        description: 'DAGGERHEART.Actors.Adversary.minion.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryType.minion.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.minion.description'
     },
     ranged: {
         id: 'ranged',
-        label: 'DAGGERHEART.Config.AdversaryType.ranged.label',
-        description: 'DAGGERHEART.Actors.Adversary.ranged.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryType.ranged.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.ranged.description'
     },
     skulk: {
         id: 'skulk',
-        label: 'DAGGERHEART.Config.AdversaryType.skulk.label',
-        description: 'DAGGERHEART.Actors.Adversary.skulk.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryType.skulk.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.skulk.description'
     },
     social: {
         id: 'social',
-        label: 'DAGGERHEART.Config.AdversaryTypee.social.label',
-        description: 'DAGGERHEART.Actors.Adversary.social.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryTypee.social.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.social.description'
     },
     solo: {
         id: 'solo',
-        label: 'DAGGERHEART.Config.AdversaryType.solo.label',
-        description: 'DAGGERHEART.Actors.Adversary.solo.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryType.solo.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.solo.description'
     },
     standard: {
         id: 'standard',
-        label: 'DAGGERHEART.Config.AdversaryType.standard.label',
-        description: 'DAGGERHEART.Actors.Adversary.standard.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryType.standard.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.standard.description'
     },
     support: {
         id: 'support',
-        label: 'DAGGERHEART.Config.AdversaryType.support.label',
-        description: 'DAGGERHEART.Actors.Adversary.support.description'
+        label: 'DAGGERHEART.CONFIG.AdversaryType.support.label',
+        description: 'DAGGERHEART.ACTORS.Adversary.support.description'
     }
 };
 
 export const environmentTypes = {
     exploration: {
-        label: 'Daggerheart.Config.EnvironmentType.exploration.label',
-        description: 'Daggerheart.Config.EnvironmentType.exploration.description'
+        label: 'DAGGERHEART.CONFIG.EnvironmentType.exploration.label',
+        description: 'DAGGERHEART.CONFIG.EnvironmentType.exploration.description'
     },
     social: {
-        label: 'Daggerheart.Config.EnvironmentType.social.label',
-        description: 'Daggerheart.Config.EnvironmentType.social.description'
+        label: 'DAGGERHEART.CONFIG.EnvironmentType.social.label',
+        description: 'DAGGERHEART.CONFIG.EnvironmentType.social.description'
     },
     traversal: {
-        label: 'Daggerheart.Config.EnvironmentType.traversal.label',
-        description: 'Daggerheart.Config.EnvironmentType.traversal.description'
+        label: 'DAGGERHEART.CONFIG.EnvironmentType.traversal.label',
+        description: 'DAGGERHEART.CONFIG.EnvironmentType.traversal.description'
     },
     event: {
-        label: 'Daggerheart.Config.EnvironmentType.event.label',
-        description: 'Daggerheart.Config.EnvironmentType.event.description'
+        label: 'DAGGERHEART.CONFIG.EnvironmentType.event.label',
+        description: 'DAGGERHEART.CONFIG.EnvironmentType.event.description'
     }
 };
 
 export const adversaryTraits = {
     relentless: {
-        name: 'DAGGERHEART.Config.AdversaryTrait.relentless.name',
-        description: 'DAGGERHEART.Config.AdversaryTrait.relentless.description',
-        tip: 'DAGGERHEART.Config.AdversaryTrait.relentless.tip'
+        name: 'DAGGERHEART.CONFIG.AdversaryTrait.relentless.name',
+        description: 'DAGGERHEART.CONFIG.AdversaryTrait.relentless.description',
+        tip: 'DAGGERHEART.CONFIG.AdversaryTrait.relentless.tip'
     },
     slow: {
-        name: 'DAGGERHEART.Config.AdversaryTrait.slow.name',
-        description: 'DAGGERHEART.Config.AdversaryTrait.slow.description',
-        tip: 'DAGGERHEART.Config.AdversaryTrait.slow.tip'
+        name: 'DAGGERHEART.CONFIG.AdversaryTrait.slow.name',
+        description: 'DAGGERHEART.CONFIG.AdversaryTrait.slow.description',
+        tip: 'DAGGERHEART.CONFIG.AdversaryTrait.slow.tip'
     },
     minion: {
-        name: 'DAGGERHEART.Config.AdversaryTrait.slow.name',
-        description: 'DAGGERHEART.Config.AdversaryTrait.slow.description',
-        tip: 'DAGGERHEART.Config.AdversaryTrait.slow.tip'
+        name: 'DAGGERHEART.CONFIG.AdversaryTrait.slow.name',
+        description: 'DAGGERHEART.CONFIG.AdversaryTrait.slow.description',
+        tip: 'DAGGERHEART.CONFIG.AdversaryTrait.slow.tip'
     }
 };
 
@@ -265,41 +265,41 @@ export const levelupData = {
         id: '2_4',
         tier: 1,
         levels: [2, 3, 4],
-        label: 'DAGGERHEART.Applications.Levelup.tier1.Label',
-        info: 'DAGGERHEART.Applications.Levelup.tier1.InfoLabel',
-        pretext: 'DAGGERHEART.Applications.Levelup.tier1.Pretext',
-        posttext: 'DAGGERHEART.Applications.Levelup.tier1.Posttext',
+        label: 'DAGGERHEART.APPLICATIONS.Levelup.tier1.Label',
+        info: 'DAGGERHEART.APPLICATIONS.Levelup.tier1.InfoLabel',
+        pretext: 'DAGGERHEART.APPLICATIONS.Levelup.tier1.Pretext',
+        posttext: 'DAGGERHEART.APPLICATIONS.Levelup.tier1.Posttext',
         choices: {
             [levelChoices.attributes.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.attributes',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.attributes',
                 maxChoices: 3
             },
             [levelChoices.hitPointSlots.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.hitPointSlots',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.hitPointSlots',
                 maxChoices: 1
             },
             [levelChoices.stressSlots.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.stressSlots',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.stressSlots',
                 maxChoices: 1
             },
             [levelChoices.experiences.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.experiences',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.experiences',
                 maxChoices: 1
             },
             [levelChoices.proficiency.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.proficiency',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.proficiency',
                 maxChoices: 1
             },
             [levelChoices.armorOrEvasionSlot.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.armorOrEvasionSlot',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.armorOrEvasionSlot',
                 maxChoices: 1
             },
             [levelChoices.majorDamageThreshold2.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.majorDamageThreshold2',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.majorDamageThreshold2',
                 maxChoices: 1
             },
             [levelChoices.severeDamageThreshold2.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.severeDamageThreshold2',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.severeDamageThreshold2',
                 maxChoices: 1
             }
         }
@@ -308,49 +308,49 @@ export const levelupData = {
         id: '5_7',
         tier: 2,
         levels: [5, 6, 7],
-        label: 'DAGGERHEART.Applications.Levelup.tier2.Label',
-        info: 'DAGGERHEART.Applications.Levelup.tier2.InfoLabel',
-        pretext: 'DAGGERHEART.Applications.Levelup.tier2.Pretext',
-        posttext: 'DAGGERHEART.Applications.Levelup.tier2.Posttext',
+        label: 'DAGGERHEART.APPLICATIONS.Levelup.tier2.Label',
+        info: 'DAGGERHEART.APPLICATIONS.Levelup.tier2.InfoLabel',
+        pretext: 'DAGGERHEART.APPLICATIONS.Levelup.tier2.Pretext',
+        posttext: 'DAGGERHEART.APPLICATIONS.Levelup.tier2.Posttext',
         choices: {
             [levelChoices.attributes.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.attributes',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.attributes',
                 maxChoices: 3
             },
             [levelChoices.hitPointSlots.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.hitPointSlots',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.hitPointSlots',
                 maxChoices: 2
             },
             [levelChoices.stressSlots.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.stressSlots',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.stressSlots',
                 maxChoices: 2
             },
             [levelChoices.experiences.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.experiences',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.experiences',
                 maxChoices: 1
             },
             [levelChoices.proficiency.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.proficiency',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.proficiency',
                 maxChoices: 2
             },
             [levelChoices.armorOrEvasionSlot.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.armorOrEvasionSlot',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.armorOrEvasionSlot',
                 maxChoices: 2
             },
             [levelChoices.majorDamageThreshold2.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.majorDamageThreshold2',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.majorDamageThreshold2',
                 maxChoices: 1
             },
             [levelChoices.severeDamageThreshold3.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.severeDamageThreshold3',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.severeDamageThreshold3',
                 maxChoices: 1
             },
             [levelChoices.subclass.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.subclass',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.subclass',
                 maxChoices: 1
             },
             [levelChoices.multiclass.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.multiclass',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.multiclass',
                 maxChoices: 1,
                 cost: 2
             }
@@ -360,49 +360,49 @@ export const levelupData = {
         id: '8_10',
         tier: 3,
         levels: [8, 9, 10],
-        label: 'DAGGERHEART.Applications.Levelup.tier3.Label',
-        info: 'DAGGERHEART.Applications.Levelup.tier3.InfoLabel',
-        pretext: 'DAGGERHEART.Applications.Levelup.tier3.Pretext',
-        posttext: 'DAGGERHEART.Applications.Levelup.tier3.Posttext',
+        label: 'DAGGERHEART.APPLICATIONS.Levelup.tier3.Label',
+        info: 'DAGGERHEART.APPLICATIONS.Levelup.tier3.InfoLabel',
+        pretext: 'DAGGERHEART.APPLICATIONS.Levelup.tier3.Pretext',
+        posttext: 'DAGGERHEART.APPLICATIONS.Levelup.tier3.Posttext',
         choices: {
             [levelChoices.attributes.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.attributes',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.attributes',
                 maxChoices: 3
             },
             [levelChoices.hitPointSlots.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.hitPointSlots',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.hitPointSlots',
                 maxChoices: 2
             },
             [levelChoices.stressSlots.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.stressSlots',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.stressSlots',
                 maxChoices: 2
             },
             [levelChoices.experiences.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.experiences',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.experiences',
                 maxChoices: 1
             },
             [levelChoices.proficiency.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.proficiency',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.proficiency',
                 maxChoices: 2
             },
             [levelChoices.armorOrEvasionSlot.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.armorOrEvasionSlot',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.armorOrEvasionSlot',
                 maxChoices: 2
             },
             [levelChoices.majorDamageThreshold2.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.majorDamageThreshold2',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.majorDamageThreshold2',
                 maxChoices: 1
             },
             [levelChoices.severeDamageThreshold4.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.severeDamageThreshold4',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.severeDamageThreshold4',
                 maxChoices: 1
             },
             [levelChoices.subclass.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.subclass',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.subclass',
                 maxChoices: 1
             },
             [levelChoices.multiclass.name]: {
-                description: 'DAGGERHEART.Applications.Levelup.choiceDescriptions.multiclass',
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.choiceDescriptions.multiclass',
                 maxChoices: 1,
                 cost: 2
             }
@@ -411,7 +411,7 @@ export const levelupData = {
 };
 
 export const subclassFeatureLabels = {
-    1: 'DAGGERHEART.Items.DomainCard.foundation',
-    2: 'DAGGERHEART.Items.DomainCard.specializationTitle',
-    3: 'DAGGERHEART.Items.DomainCard.masteryTitle'
+    1: 'DAGGERHEART.ITEMS.DomainCard.foundation',
+    2: 'DAGGERHEART.ITEMS.DomainCard.specializationTitle',
+    3: 'DAGGERHEART.ITEMS.DomainCard.masteryTitle'
 };

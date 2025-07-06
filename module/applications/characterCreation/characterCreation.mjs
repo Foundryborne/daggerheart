@@ -41,7 +41,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     }
 
     get title() {
-        return game.i18n.format('DAGGERHEART.Applications.CharacterCreation.title', { actor: this.character.name });
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.CharacterCreation.title', { actor: this.character.name });
     }
 
     static DEFAULT_OPTIONS = {
@@ -87,14 +87,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             cssClass: '',
             group: 'primary',
             id: 'setup',
-            label: 'DAGGERHEART.General.Tabs.setup'
+            label: 'DAGGERHEART.GENERAL.Tabs.setup'
         },
         equipment: {
             active: false,
             cssClass: '',
             group: 'primary',
             id: 'equipment',
-            label: 'DAGGERHEART.General.Tabs.equipment',
+            label: 'DAGGERHEART.GENERAL.Tabs.equipment',
             optional: true
         }
         // story: {
@@ -102,7 +102,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         //     cssClass: '',
         //     group: 'primary',
         //     id: 'story',
-        //     label: 'DAGGERHEART.General.Tabs.story',
+        //     label: 'DAGGERHEART.GENERAL.Tabs.story',
         //     optional: true
         // }
     };
@@ -188,7 +188,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 context.suggestedTraits = this.setup.class.system
                     ? Object.keys(this.setup.class.system.characterGuide.suggestedTraits).map(traitKey => {
                           const trait = this.setup.class.system.characterGuide.suggestedTraits[traitKey];
-                          return `${game.i18n.localize(`DAGGERHEART.Config.Traits.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
+                          return `${game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
                       })
                     : [];
                 context.traits = {
