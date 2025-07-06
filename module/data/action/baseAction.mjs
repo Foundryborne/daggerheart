@@ -123,6 +123,8 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         return extraSchemas;
     }
 
+    prepareData() {}
+
     get index() {
         return foundry.utils.getProperty(this.parent, this.systemPath).indexOf(this);
     }
@@ -229,7 +231,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         // Display configuration window if necessary
         // if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
         if (this.requireConfigurationDialog(config)) {
-            config = await D20RollDialog.configure(config);
+            config = await D20RollDialog.configure(null, config);
             if (!config) return;
         }
 
@@ -288,11 +290,12 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     prepareTarget() {
+        if(!this.target?.type) return [];
         let targets;
         if (this.target?.type === CONFIG.DH.ACTIONS.targetTypes.self.id)
             targets = this.constructor.formatTarget(this.actor.token ?? this.actor.prototypeToken);
         targets = Array.from(game.user.targets);
-        if (this.target?.type && this.target.type !== CONFIG.DH.ACTIONS.targetTypes.any.id) {
+        if (this.target.type !== CONFIG.DH.ACTIONS.targetTypes.any.id) {
             targets = targets.filter(t => this.isTargetFriendly(t));
             if (this.target.amount && targets.length > this.target.amount) targets = [];
         }

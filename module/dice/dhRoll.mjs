@@ -138,10 +138,10 @@ export default class DHRoll extends Roll {
 
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async(config, message) => {
-        if(config.roll.type !== 'action') return;
+        if(!game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hope || config.roll.type !== 'action' || (!config.roll.hasOwnProperty('success') && !config.targets.length)) return;
 
         const actor = await fromUuid(config.source.actor),
-            rollResult = config.roll.result || config.targets.some(t => t.hit),
+            rollResult = config.roll.success || config.targets.some(t => t.hit),
             updates = [];
         let looseSpotlight = false;
         if(!actor) return;
