@@ -24,9 +24,9 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'details' }, { id: 'effects', label: 'DAGGERHEART.Sheets.TABS.effects' }],
+            tabs: [{ id: 'details' }, { id: 'effects' }],
             initial: 'details',
-            labelPrefix: 'DAGGERHEART.General.Tabs'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 

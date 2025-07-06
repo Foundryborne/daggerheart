@@ -29,9 +29,9 @@ export default class DhpEnvironment extends DHBaseActorSheet {
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'features' }, { id: 'potentialAdversaries' }, { id: 'notes', label: "DAGGERHEART.Sheets.Adversary.Tabs.notes" }],
+            tabs: [{ id: 'features' }, { id: 'potentialAdversaries' }, { id: 'notes' }],
             initial: 'features',
-            labelPrefix: 'DAGGERHEART.General.Tabs'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 

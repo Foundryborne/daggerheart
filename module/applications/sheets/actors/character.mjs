@@ -97,7 +97,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         primary: {
             tabs: [{ id: 'features' }, { id: 'loadout' }, { id: 'inventory' }, { id: 'biography' }, { id: 'effects' }],
             initial: 'features',
-            labelPrefix: 'DAGGERHEART.General.Tabs'
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 
