@@ -13,35 +13,41 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
         const maxArmorMarks = Math.min(
             actor.system.armorScore - actor.system.armor.system.marks.value,
-            actor.system.rules.maxArmorMarked.total
+            actor.system.rules.damageReduction.maxArmorMarked.total
         );
 
         const armor = [...Array(maxArmorMarks).keys()].reduce((acc, _) => {
             acc[foundry.utils.randomID()] = { selected: false };
             return acc;
         }, {});
-        const stress = [...Array(actor.system.rules.maxArmorMarked.stressExtra ?? 0).keys()].reduce((acc, _) => {
-            acc[foundry.utils.randomID()] = { selected: false };
-            return acc;
-        }, {});
+        const stress = [...Array(actor.system.rules.damageReduction.maxArmorMarked.stressExtra ?? 0).keys()].reduce(
+            (acc, _) => {
+                acc[foundry.utils.randomID()] = { selected: false };
+                return acc;
+            },
+            {}
+        );
         this.marks = { armor, stress };
 
-        this.availableStressReductions = Object.keys(actor.system.rules.stressDamageReduction).reduce((acc, key) => {
-            const dr = actor.system.rules.stressDamageReduction[key];
-            if (dr.enabled) {
-                if (acc === null) acc = {};
+        this.availableStressReductions = Object.keys(actor.system.rules.damageReduction.stressDamageReduction).reduce(
+            (acc, key) => {
+                const dr = actor.system.rules.damageReduction.stressDamageReduction[key];
+                if (dr.enabled) {
+                    if (acc === null) acc = {};
 
-                const damage = damageKeyToNumber(key);
-                acc[damage] = {
-                    cost: dr.cost,
-                    selected: false,
-                    from: getDamageLabel(damage),
-                    to: getDamageLabel(damage - 1)
-                };
-            }
+                    const damage = damageKeyToNumber(key);
+                    acc[damage] = {
+                        cost: dr.cost,
+                        selected: false,
+                        from: getDamageLabel(damage),
+                        to: getDamageLabel(damage - 1)
+                    };
+                }
 
-            return acc;
-        }, null);
+                return acc;
+            },
+            null
+        );
     }
 
     get title() {
@@ -90,7 +96,8 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
         context.armorScore = this.actor.system.armorScore;
         context.armorMarks = currentMarks;
-        context.basicMarksUsed = selectedArmorMarks.length === this.actor.system.rules.maxArmorMarked.total;
+        context.basicMarksUsed =
+            selectedArmorMarks.length === this.actor.system.rules.damageReduction.maxArmorMarked.total;
 
         const stressReductionStress = this.availableStressReductions
             ? stressReductions.reduce((acc, red) => acc + red.cost, 0)

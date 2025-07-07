@@ -482,10 +482,6 @@
                     "name": "Magic",
                     "description": "You can't mark an Armor Slot to reduce physical damage."
                 },
-                "painful": {
-                    "name": "Painful",
-                    "description": "Each time you mark an Armor Slot, you must mark a Stress."
-                },
                 "physical": {
                     "name": "Physical",
                     "description": "You can't mark an Armor Slot to reduce magic damage."
@@ -882,6 +878,10 @@
                 "scary": {
                     "name": "Scary",
                     "description": "On a successful attack, the target must mark a Stress."
+                },
+                "selfCorrecting": {
+                    "name": "Self Correcting",
+                    "description": "When you roll a 1 on a damage die, it deals 6 damage instead."
                 },
                 "serrated": {
                     "name": "Serrated",

@@ -34,7 +34,7 @@ export default class WeaponSheet extends DHBaseItemSheet {
 
         switch (partId) {
             case 'settings':
-                context.features = this.document.system.features.map(x => x.value);
+                context.features = this.document.system.weaponFeatures.map(x => x.value);
                 break;
         }
 
@@ -46,6 +46,6 @@ export default class WeaponSheet extends DHBaseItemSheet {
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
     static async #onFeatureSelect(selectedOptions) {
-        await this.document.update({ 'system.features': selectedOptions.map(x => ({ value: x.value })) });
+        await this.document.update({ 'system.weaponFeatures': selectedOptions.map(x => ({ value: x.value })) });
     }
 }

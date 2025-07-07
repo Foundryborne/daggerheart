@@ -106,6 +106,9 @@ export default class DhCharacter extends BaseDataActor {
                 }),
                 roll: new fields.SchemaField({
                     attack: new fields.NumberField({ integer: true, initial: 0 }),
+                    primaryWeapon: new fields.SchemaField({
+                        attack: new fields.NumberField({ integer: true, initial: 0 })
+                    }),
                     spellcast: new fields.NumberField({ integer: true, initial: 0 }),
                     action: new fields.NumberField({ integer: true, initial: 0 }),
                     hopeOrFear: new fields.NumberField({ integer: true, initial: 0 })
@@ -113,20 +116,29 @@ export default class DhCharacter extends BaseDataActor {
                 damage: new fields.SchemaField({
                     all: new fields.NumberField({ integer: true, initial: 0 }),
                     physical: new fields.NumberField({ integer: true, initial: 0 }),
-                    magic: new fields.NumberField({ integer: true, initial: 0 })
+                    magic: new fields.NumberField({ integer: true, initial: 0 }),
+                    primaryWeapon: new fields.SchemaField({
+                        bonus: new fields.NumberField({ integer: true }),
+                        extraDice: new fields.NumberField({ integer: true })
+                    })
                 })
             }),
             companion: new ForeignDocumentUUIDField({ type: 'Actor', nullable: true, initial: null }),
             rules: new fields.SchemaField({
-                maxArmorMarked: new fields.SchemaField({
-                    value: new fields.NumberField({ required: true, integer: true, initial: 1 }),
-                    bonus: new fields.NumberField({ required: true, integer: true, initial: 0 }),
-                    stressExtra: new fields.NumberField({ required: true, integer: true, initial: 0 })
-                }),
-                stressDamageReduction: new fields.SchemaField({
-                    severe: stressDamageReductionRule(),
-                    major: stressDamageReductionRule(),
-                    minor: stressDamageReductionRule()
+                damageReduction: new fields.SchemaField({
+                    maxArmorMarked: new fields.SchemaField({
+                        value: new fields.NumberField({ required: true, integer: true, initial: 1 }),
+                        bonus: new fields.NumberField({ required: true, integer: true, initial: 0 }),
+                        stressExtra: new fields.NumberField({ required: true, integer: true, initial: 0 })
+                    }),
+                    stressDamageReduction: new fields.SchemaField({
+                        severe: stressDamageReductionRule(),
+                        major: stressDamageReductionRule(),
+                        minor: stressDamageReductionRule()
+                    }),
+                    increasePerArmorMark: new fields.NumberField({ integer: true, initial: 1 }),
+                    magical: new fields.BooleanField({ initial: false }),
+                    physical: new fields.BooleanField({ initial: false })
                 }),
                 strangePatterns: new fields.NumberField({
                     integer: true,
@@ -134,6 +146,10 @@ export default class DhCharacter extends BaseDataActor {
                     max: 12,
                     nullable: true,
                     initial: null
+                }),
+                weapon: new fields.SchemaField({
+                    dropLowestDamageDice: new fields.BooleanField({ initial: false }),
+                    flipMinDiceValue: new fields.BooleanField({ intial: false })
                 }),
                 runeWard: new fields.BooleanField({ initial: false })
             })
@@ -372,7 +388,8 @@ export default class DhCharacter extends BaseDataActor {
             experience.total = experience.value + experience.bonus;
         }
 
-        this.rules.maxArmorMarked.total = this.rules.maxArmorMarked.value + this.rules.maxArmorMarked.bonus;
+        this.rules.damageReduction.maxArmorMarked.total =
+            this.rules.damageReduction.maxArmorMarked.value + this.rules.damageReduction.maxArmorMarked.bonus;
 
         this.armorScore = this.armor ? this.armor.system.baseScore + (this.bonuses.armorScore ?? 0) : 0;
         this.resources.hitPoints.maxTotal = (this.class.value?.system?.hitPoints ?? 0) + this.resources.hitPoints.bonus;

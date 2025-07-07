@@ -351,7 +351,7 @@ export const abilityCosts = {
     },
     stress: {
         id: 'stress',
-        label: 'DAGGERHEART.CONFIG.HealingType.Stress.Name',
+        label: 'DAGGERHEART.CONFIG.HealingType.stress.name',
         group: 'TYPES.Actor.character'
     },
     armor: {
@@ -361,7 +361,7 @@ export const abilityCosts = {
     },
     hp: {
         id: 'hp',
-        label: 'DAGGERHEART.CONFIG.HealingType.HitPoints.Name',
+        label: 'DAGGERHEART.CONFIG.HealingType.hitPoints.name',
         group: 'TYPES.Actor.character'
     },
     prayer: {

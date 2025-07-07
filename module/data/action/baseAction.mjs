@@ -290,7 +290,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     prepareTarget() {
-        if(!this.target?.type) return [];
+        if (!this.target?.type) return [];
         let targets;
         if (this.target?.type === CONFIG.DH.ACTIONS.targetTypes.self.id)
             targets = this.constructor.formatTarget(this.actor.token ?? this.actor.prototypeToken);
@@ -332,7 +332,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         const resources = config.costs
             .filter(c => c.enabled !== false)
             .map(c => {
-                return { type: c.type, value: (c.total ?? c.value) * -1 };
+                return { type: c.type, value: c.total ?? c.value };
             });
 
         await this.actor.modifyResource(resources);
@@ -384,8 +384,15 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             )
                 return false;
         }
+
+        const resources = this.actor.system.resources;
         return realCosts.reduce(
-            (a, c) => a && this.actor.system.resources[c.type]?.value >= (c.total ?? c.value),
+            (a, c) =>
+                a &&
+                !(
+                    resources[c.type]?.value + (c.total ?? c.value) >
+                    (resources[c.type]?.maxTotal ?? resources[c.type]?.total)
+                ),
             true
         );
     }
