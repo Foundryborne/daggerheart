@@ -478,8 +478,8 @@
                     "name": "Impenetrable",
                     "description": "Once per short rest, when you would mark your last Hit Point, you can instead mark a Stress."
                 },
-                "magic": {
-                    "name": "Magic",
+                "magical": {
+                    "name": "Magical",
                     "description": "You can't mark an Armor Slot to reduce physical damage."
                 },
                 "physical": {

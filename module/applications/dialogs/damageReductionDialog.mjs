@@ -3,7 +3,7 @@ import { damageKeyToNumber, getDamageLabel } from '../../helpers/utils.mjs';
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageReductionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(resolve, reject, actor, damage) {
+    constructor(resolve, reject, actor, damage, damageType) {
         super({});
 
         this.resolve = resolve;
@@ -11,10 +11,13 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.actor = actor;
         this.damage = damage;
 
-        const maxArmorMarks = Math.min(
-            actor.system.armorScore - actor.system.armor.system.marks.value,
-            actor.system.rules.damageReduction.maxArmorMarked.total
-        );
+        const canApplyArmor = actor.system.armorApplicableDamageTypes[damageType];
+        const maxArmorMarks = canApplyArmor
+            ? Math.min(
+                  actor.system.armorScore - actor.system.armor.system.marks.value,
+                  actor.system.rules.damageReduction.maxArmorMarked.total
+              )
+            : 0;
 
         const armor = [...Array(maxArmorMarks).keys()].reduce((acc, _) => {
             acc[foundry.utils.randomID()] = { selected: false };
@@ -129,12 +132,15 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     getDamageInfo = () => {
         const selectedArmorMarks = Object.values(this.marks.armor).filter(x => x.selected);
         const selectedStressMarks = Object.values(this.marks.stress).filter(x => x.selected);
-        const stressReductions = Object.values(this.availableStressReductions).filter(red => red.selected);
+        const stressReductions = this.availableStressReductions
+            ? Object.values(this.availableStressReductions).filter(red => red.selected)
+            : [];
         const currentMarks =
             this.actor.system.armor.system.marks.value + selectedArmorMarks.length + selectedStressMarks.length;
 
-        const currentDamage =
-            this.damage - selectedArmorMarks.length - selectedStressMarks.length - stressReductions.length;
+        const armorMarkReduction =
+            selectedArmorMarks.length * this.actor.system.rules.damageReduction.increasePerArmorMark;
+        const currentDamage = this.damage - armorMarkReduction - selectedStressMarks.length - stressReductions.length;
 
         return { selectedArmorMarks, selectedStressMarks, stressReductions, currentMarks, currentDamage };
     };

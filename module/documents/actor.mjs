@@ -3,6 +3,7 @@ import { GMUpdateEvent, socketEvent } from '../systemRegistration/socket.mjs';
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
+import { damageKeyToNumber, getDamageKey } from '../helpers/utils.mjs';
 
 export default class DhpActor extends Actor {
     async _preCreate(data, options, user) {
@@ -430,11 +431,30 @@ export default class DhpActor extends Actor {
         cls.create(msg.toObject());
     }
 
-    async takeDamage(damage, type) {
+    #canReduceDamage(hpDamage, type) {
+        const availableStress = this.system.resources.stress.maxTotal - this.system.resources.stress.value;
+
+        const canUseArmor =
+            this.system.armor &&
+            this.system.armor.system.marks.value < this.system.armorScore &&
+            this.system.armorApplicableDamageTypes[type];
+        const canUseStress = Object.keys(this.system.rules.damageReduction.stressDamageReduction).reduce((acc, x) => {
+            const rule = this.system.rules.damageReduction.stressDamageReduction[x];
+            if (damageKeyToNumber(x) <= hpDamage) return acc || (rule.enabled && availableStress >= rule.cost);
+            return acc;
+        }, false);
+
+        return canUseArmor || canUseStress;
+    }
+
+    async takeDamage(baseDamage, type) {
         if (this.type === 'companion') {
             await this.modifyResource([{ value: 1, type: 'stress' }]);
             return;
         }
+
+        const flatReduction = this.system.bonuses.damageReduction[type];
+        const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
 
         const hpDamage =
             damage >= this.system.damageThresholds.severe
@@ -445,13 +465,9 @@ export default class DhpActor extends Actor {
                     ? 1
                     : 0;
 
-        if (
-            this.type === 'character' &&
-            this.system.armor &&
-            this.system.armor.system.marks.value < this.system.armorScore
-        ) {
+        if (hpDamage && this.type === 'character' && this.#canReduceDamage(hpDamage, type)) {
             new Promise((resolve, reject) => {
-                new DamageReductionDialog(resolve, reject, this, hpDamage).render(true);
+                new DamageReductionDialog(resolve, reject, this, hpDamage, type).render(true);
             })
                 .then(async ({ modifiedDamage, armorSpent, stressSpent }) => {
                     const resources = [

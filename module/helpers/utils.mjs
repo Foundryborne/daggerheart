@@ -190,6 +190,8 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
     });
 
     tagifyElement.on('add', event => {
+        if (event.detail.data.__isValid === 'not allowed') return;
+
         const input = event.detail.tagify.DOM.originalInput;
         const currentList = input.value ? JSON.parse(input.value) : [];
         onChange([...currentList, event.detail.data], { option: event.detail.data.value, removed: false }, input);
@@ -233,17 +235,21 @@ Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false 
     return nativeReplaceFormulaData(formula, data, { missing, warn });
 };
 
-export const getDamageLabel = damage => {
+export const getDamageKey = damage => {
     switch (damage) {
         case 3:
-            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.severe');
+            return 'severe';
         case 2:
-            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.major');
+            return 'major';
         case 1:
-            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.minor');
+            return 'minor';
         case 0:
-            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.none');
+            return 'none';
     }
+};
+
+export const getDamageLabel = damage => {
+    return game.i18n.localize(`DAGGERHEART.GENERAL.Damage.${getDamageKey(damage)}`);
 };
 
 export const damageKeyToNumber = key => {

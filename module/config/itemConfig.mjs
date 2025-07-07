@@ -190,19 +190,19 @@ export const armorFeatures = {
             }
         ]
     },
-    magic: {
-        label: 'DAGGERHEART.CONFIG.ArmorFeature.magic.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.magic.description',
+    magical: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.magical.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.magical.description',
         effects: [
             {
-                name: 'DAGGERHEART.CONFIG.ArmorFeature.magic.name',
-                description: 'DAGGERHEART.CONFIG.ArmorFeature.magic.description',
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.magical.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.magical.description',
                 img: 'icons/magic/defensive/barrier-shield-dome-blue-purple.webp',
                 changes: [
                     {
-                        key: 'system.rules.damageReduction.magic',
+                        key: 'system.rules.damageReduction.magical',
                         mode: 5,
-                        value: '1'
+                        value: 1
                     }
                 ]
             }
@@ -220,7 +220,7 @@ export const armorFeatures = {
                     {
                         key: 'system.rules.damageReduction.physical',
                         mode: 5,
-                        value: '1'
+                        value: 1
                     }
                 ]
             }

@@ -35,7 +35,7 @@ export default class ArmorSheet extends DHBaseItemSheet {
 
         switch (partId) {
             case 'settings':
-                context.features = this.document.system.features.map(x => x.value);
+                context.features = this.document.system.armorFeatures.map(x => x.value);
                 break;
         }
 
@@ -47,6 +47,6 @@ export default class ArmorSheet extends DHBaseItemSheet {
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
     static async #onFeatureSelect(selectedOptions) {
-        await this.document.update({ 'system.features': selectedOptions.map(x => ({ value: x.value })) });
+        await this.document.update({ 'system.armorFeatures': selectedOptions.map(x => ({ value: x.value })) });
     }
 }

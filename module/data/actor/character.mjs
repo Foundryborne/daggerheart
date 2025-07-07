@@ -152,7 +152,15 @@ export default class DhCharacter extends BaseDataActor {
                     initial: null
                 }),
                 weapon: new fields.SchemaField({
+                    /*  Unimplemented 
+                        -> Should remove the lowest damage dice from weapon damage 
+                        -> Reflect this in the chat message somehow so players get feedback that their choice is helping them.
+                    */
                     dropLowestDamageDice: new fields.BooleanField({ initial: false }),
+                    /*  Unimplemented 
+                        -> Should flip any lowest possible dice rolls for weapon damage to highest
+                        -> Reflect this in the chat message somehow so players get feedback that their choice is helping them.
+                    */
                     flipMinDiceValue: new fields.BooleanField({ intial: false })
                 }),
                 runeWard: new fields.BooleanField({ initial: false })
@@ -302,6 +310,13 @@ export default class DhCharacter extends BaseDataActor {
         );
     }
 
+    get armorApplicableDamageTypes() {
+        return {
+            physical: !this.rules.damageReduction.magical,
+            magical: !this.rules.damageReduction.physical
+        };
+    }
+
     static async unequipBeforeEquip(itemToEquip) {
         const primary = this.primaryWeapon,
             secondary = this.secondaryWeapon;
@@ -368,6 +383,7 @@ export default class DhCharacter extends BaseDataActor {
         }
 
         const armor = this.armor;
+        this.armorScore = this.armor ? this.armor.system.baseScore + (this.bonuses.armorScore ?? 0) : 0; // Bonuses to armorScore won't have been applied yet. Need to solve in documentPreparation somehow
         this.damageThresholds = {
             major: armor
                 ? armor.system.baseThresholds.major + this.levelData.level.current
@@ -395,7 +411,6 @@ export default class DhCharacter extends BaseDataActor {
         this.rules.damageReduction.maxArmorMarked.total =
             this.rules.damageReduction.maxArmorMarked.value + this.rules.damageReduction.maxArmorMarked.bonus;
 
-        this.armorScore = this.armor ? this.armor.system.baseScore + (this.bonuses.armorScore ?? 0) : 0;
         this.resources.hitPoints.maxTotal = (this.class.value?.system?.hitPoints ?? 0) + this.resources.hitPoints.bonus;
         this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
         this.evasion.total = (this.class?.evasion ?? 0) + this.evasion.bonus;
