@@ -11,7 +11,7 @@ export default class DHWeapon extends BaseDataItem {
             hasDescription: true,
             isQuantifiable: true,
             isInventoryItem: true,
-            hasInitialAction: true
+            // hasInitialAction: true
         });
     }
 
@@ -25,19 +25,8 @@ export default class DHWeapon extends BaseDataItem {
 
             //SETTINGS
             secondary: new fields.BooleanField({ initial: false }),
-            trait: new fields.StringField({ required: true, choices: CONFIG.DH.ACTOR.abilities, initial: 'agility' }),
-            range: new fields.StringField({ required: true, choices: CONFIG.DH.GENERAL.range, initial: 'melee' }),
             burden: new fields.StringField({ required: true, choices: CONFIG.DH.GENERAL.burden, initial: 'oneHanded' }),
-            //DAMAGE
-            damage: new fields.SchemaField({
-                dice: new fields.StringField({ choices: CONFIG.DH.GENERAL.diceTypes, initial: 'd6' }),
-                bonus: new fields.NumberField({ nullable: true, initial: null }),
-                type: new fields.StringField({
-                    required: true,
-                    choices: CONFIG.DH.GENERAL.damageTypes,
-                    initial: 'physical'
-                })
-            }),
+            
             features: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
@@ -49,8 +38,40 @@ export default class DHWeapon extends BaseDataItem {
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
             ),
+            attack: new ActionField({
+                initial: {
+                    name: 'Attack',
+                    img: 'icons/skills/melee/blood-slash-foam-red.webp',
+                    _id: foundry.utils.randomID(),
+                    systemPath: 'attack',
+                    type: 'attack',
+                    range: 'melee',
+                    target: {
+                        type: 'any',
+                        amount: 1
+                    },
+                    roll: {
+                        trait: 'agility',
+                        type: 'weapon'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                value: {
+                                    multiplier: 'prof',
+                                    dice: "d8"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }),
             actions: new fields.ArrayField(new ActionField())
         };
+    }
+
+    get actionsList() {
+        return [this.attack, ...this.actions];
     }
 
     async _preUpdate(changes, options, user) {

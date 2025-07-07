@@ -63,18 +63,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         const context = await super._prepareContext(_options);
         context.rollConfig = this.config;
         context.hasRoll = !!this.config.roll;
-        context.roll = this.roll;
-        context.rollType = this.roll?.constructor.name;
-        context.experiences = Object.keys(this.config.data.experiences).map(id => ({
-            id,
-            ...this.config.data.experiences[id]
-        }));
-        context.selectedExperiences = this.config.experiences;
-        context.advantage = this.config.roll?.advantage;
-        context.disadvantage = this.config.roll?.disadvantage;
-        context.diceOptions = CONFIG.DH.GENERAL.diceTypes;
-        context.canRoll = true;
-        context.isLite = this.config.roll?.lite;
         if (this.config.costs?.length) {
             const updatedCosts = this.action.calcCosts(this.config.costs);
             context.costs = updatedCosts;
@@ -85,8 +73,22 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.uses = this.action.calcUses(this.config.uses);
             context.canRoll = context.canRoll && this.action.hasUses(context.uses);
         }
-        context.extraFormula = this.config.extraFormula;
-        context.formula = this.roll.constructFormula(this.config);
+        if(this.roll) {
+            context.roll = this.roll;
+            context.rollType = this.roll?.constructor.name;
+            context.experiences = Object.keys(this.config.data.experiences).map(id => ({
+                id,
+                ...this.config.data.experiences[id]
+            }));
+            context.selectedExperiences = this.config.experiences;
+            context.advantage = this.config.roll?.advantage;
+            context.disadvantage = this.config.roll?.disadvantage;
+            context.diceOptions = CONFIG.DH.GENERAL.diceTypes;
+            context.canRoll = true;
+            context.isLite = this.config.roll?.lite;
+            context.extraFormula = this.config.extraFormula;
+            context.formula = this.roll.constructFormula(this.config);
+        }
         return context;
     }
 

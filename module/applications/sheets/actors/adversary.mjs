@@ -6,6 +6,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['adversary'],
         position: { width: 660, height: 766 },
+        window: { resizable: true },
         actions: {
             reactionRoll: AdversarySheet.#reactionRoll,
             useItem: this.useItem,

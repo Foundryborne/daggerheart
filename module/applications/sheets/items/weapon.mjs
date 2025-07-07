@@ -31,13 +31,12 @@ export default class WeaponSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     async _preparePartContext(partId, context) {
         super._preparePartContext(partId, context);
-
         switch (partId) {
             case 'settings':
                 context.features = this.document.system.features.map(x => x.value);
+                context.systemFields.attack.fields = this.document.system.attack.schema.fields;
                 break;
         }
-
         return context;
     }
 

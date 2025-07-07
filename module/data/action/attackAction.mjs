@@ -14,9 +14,15 @@ export default class DHAttackAction extends DHDamageAction {
 
     prepareData() {
         super.prepareData();
-        if (this.damage.includeBase && !!this.item?.system?.damage) {
-            const baseDamage = this.getParentDamage();
-            this.damage.parts.unshift(new DHDamageData(baseDamage));
+        if(!!this.item?.system?.attack) {
+            if (this.damage.includeBase) {
+                const baseDamage = this.getParentDamage();
+                this.damage.parts.unshift(new DHDamageData(baseDamage));
+            }
+            if(this.roll.useDefault) {
+                this.roll.trait = this.item.system.attack.roll.trait;
+                this.roll.type = 'weapon';
+            }
         }
     }
 
@@ -24,10 +30,10 @@ export default class DHAttackAction extends DHDamageAction {
         return {
             value: {
                 multiplier: 'prof',
-                dice: this.item?.system?.damage.dice,
-                bonus: this.item?.system?.damage.bonus ?? 0
+                dice: this.item?.system?.attack.damage.parts[0].value.dice,
+                bonus: this.item?.system?.attack.damage.parts[0].value.bonus ?? 0
             },
-            type: this.item?.system?.damage.type,
+            type: this.item?.system?.attack.damage.parts[0].type,
             base: true
         };
     }

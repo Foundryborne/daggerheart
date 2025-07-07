@@ -1,22 +1,7 @@
 <div>
-    <div class="form-group">
-        <label>{{localize "DAGGERHEART.SETTINGS.Automation.FIELDS.hope.label"}}</label>
-        <div class="form-fields">
-            {{formInput settingFields.schema.fields.hope value=settingFields._source.hope }}
-        </div>
-    </div>
-    <div class="form-group">
-        <label>{{localize "DAGGERHEART.SETTINGS.Automation.FIELDS.actionPoints.label"}}</label>
-        <div class="form-fields">
-            {{formInput settingFields.schema.fields.actionPoints value=settingFields._source.actionPoints }}
-        </div>
-    </div>
-    <div class="form-group">
-        <label>{{localize "DAGGERHEART.SETTINGS.Automation.FIELDS.countdowns.label"}}</label>
-        <div class="form-fields">
-            {{formInput settingFields.schema.fields.countdowns value=settingFields._source.countdowns }}
-        </div>
-    </div>
+    {{formGroup settingFields.schema.fields.hope value=settingFields._source.hope localize=true}}
+    {{formGroup settingFields.schema.fields.actionPoints value=settingFields._source.actionPoints localize=true}}
+    {{formGroup settingFields.schema.fields.countdowns value=settingFields._source.countdowns localize=true}}
     
     <footer class="form-footer">
         <button data-action="reset">

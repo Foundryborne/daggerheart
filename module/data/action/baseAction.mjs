@@ -10,14 +10,10 @@ const fields = foundry.data.fields;
 
 /*
     ToDo
-    - Add setting and/or checkbox for cost and damage like
     - Target Check / Target Picker
     - Range Check
     - Area of effect and measurement placement
     - Summon Action create method
-
-    Other
-    - Auto use action   <= Into Roll
 */
 
 export default class DHBaseAction extends foundry.abstract.DataModel {
@@ -160,17 +156,22 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     static getSourceConfig(parent) {
         const updateSource = {};
         updateSource.img ??= parent?.img ?? parent?.system?.img;
-        if (parent?.system?.trait) {
-            updateSource['roll'] = {
-                type: this.getRollType(parent),
-                trait: parent.system.trait
-            };
-        }
-        if (parent?.type === 'weapon' && !!this.schema.fields.damage) {
+        if (parent?.type === 'weapon') {
             updateSource['damage'] = { includeBase: true };
-        }
-        if (parent?.system?.range) {
-            updateSource['range'] = parent?.system?.range;
+            updateSource['range'] = parent?.system?.attack?.range;
+            updateSource['roll'] = {
+                useDefault: true
+            }
+        } else {
+            if (parent?.system?.trait) {
+                updateSource['roll'] = {
+                    type: this.getRollType(parent),
+                    trait: parent.system.trait
+                };
+            }
+            if (parent?.system?.range) {
+                updateSource['range'] = parent?.system?.range;
+            }
         }
         return updateSource;
     }
@@ -200,28 +201,23 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         const isFastForward = event.shiftKey || (!this.hasRoll && !this.hasSave);
         // Prepare base Config
         const initConfig = this.initActionConfig(event);
-        // let config = this.initActionConfig(event);
 
         // Prepare Targets
         const targetConfig = this.prepareTarget();
         if (isFastForward && !targetConfig) return ui.notifications.warn('Too many targets selected for that actions.');
-        // config = this.prepareTarget(config);
 
         // Prepare Range
         const rangeConfig = this.prepareRange();
-        // config = this.prepareRange(config);
 
         // Prepare Costs
         const costsConfig = this.prepareCost();
         if (isFastForward && !this.hasCost(costsConfig))
             return ui.notifications.warn("You don't have the resources to use that action.");
-        // config = this.prepareUseCost(config)
 
         // Prepare Uses
         const usesConfig = this.prepareUse();
         if (isFastForward && !this.hasUses(usesConfig))
             return ui.notifications.warn("That action doesn't have remaining uses.");
-        // config = this.prepareUseCost(config)
 
         // Prepare Roll Data
         const actorData = this.getRollData();
@@ -238,8 +234,9 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
         // Display configuration window if necessary
-        if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
-            config = await D20RollDialog.configure(config);
+        // if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
+        if (this.requireConfigurationDialog(config)) {
+            config = await D20RollDialog.configure(null, config);
             if (!config) return;
         }
 
@@ -248,37 +245,6 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             config.roll = rollConfig;
             config = await this.actor.diceRoll(config);
             if (!config) return;
-        }
-
-        if (this.hasSave) {
-            /* config.targets.forEach((t) => {
-                if(t.hit) {
-                    const target = game.canvas.tokens.get(t.id),
-                        actor = target?.actor;
-                    if(!actor) return;
-                    actor.saveRoll({
-                        event,
-                        title: 'Roll Save',
-                        roll: {
-                            trait: this.save.trait,
-                            difficulty: this.save.difficulty
-                        },
-                        dialog: {
-                            configure: false
-                        },
-                        data: actor.getRollData()
-                    }).then(async (result) => {
-                        t.saved = result;
-                        setTimeout(async () => {
-                            const message = ui.chat.collection.get(config.message.id),
-                                msgTargets = message.system.targets,
-                                msgTarget = msgTargets.find(mt => mt.id === t.id);
-                            msgTarget.saved = result;
-                            await message.update({'system.targets': msgTargets});
-                        },100)
-                    })
-                }
-            }) */
         }
 
         if (this.doFollowUp()) {
@@ -329,12 +295,12 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     prepareTarget() {
+        if(!this.target?.type) return [];
         let targets;
         if (this.target?.type === CONFIG.DH.ACTIONS.targetTypes.self.id)
             targets = this.constructor.formatTarget(this.actor.token ?? this.actor.prototypeToken);
         targets = Array.from(game.user.targets);
-        // foundry.CONST.TOKEN_DISPOSITIONS.FRIENDLY
-        if (this.target?.type && this.target.type !== CONFIG.DH.ACTIONS.targetTypes.any.id) {
+        if (this.target.type !== CONFIG.DH.ACTIONS.targetTypes.any.id) {
             targets = targets.filter(t => this.isTargetFriendly(t));
             if (this.target.amount && targets.length > this.target.amount) targets = [];
         }
@@ -540,6 +506,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                     });
             });
     }
+    /* SAVE */
 
     async updateChatMessage(message, targetId, changes, chain = true) {
         setTimeout(async () => {
@@ -558,7 +525,6 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             });
         }
     }
-    /* SAVE */
 
     async toChat(origin) {
         const cls = getDocumentClass('ChatMessage');

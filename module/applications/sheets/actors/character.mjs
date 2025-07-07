@@ -372,7 +372,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             li.hidden = !(menu.has(item.id) && matchesSearch);
         }
     }
-
+  
     /* -------------------------------------------- */
     /*  Filter Menus                                */
     /* -------------------------------------------- */

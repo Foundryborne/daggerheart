@@ -13,7 +13,7 @@ class Countdowns extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     get title() {
-        return game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.Title', {
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.Countdown.title', {
             type: game.i18n.localize(`DAGGERHEART.APPLICATIONS.Countdown.types.${this.basePath}`)
         });
     }

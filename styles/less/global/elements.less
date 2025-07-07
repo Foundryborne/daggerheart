@@ -214,9 +214,14 @@
         }
 
         &[disabled],
+        &.child-disabled .form-group,
         select[disabled],
         input[disabled] {
             opacity: 0.5;
+        }
+
+        &.child-disabled .form-group {
+            pointer-events: none;
         }
 
         .nest-inputs {
