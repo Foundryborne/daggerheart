@@ -61,7 +61,9 @@ export default class DhpAdversary extends BaseDataActor {
                     damage: {
                         parts: [
                             {
-                                multiplier: 'flat'
+                                value: {
+                                    multiplier: 'flat'
+                                }
                             }
                         ]
                     }

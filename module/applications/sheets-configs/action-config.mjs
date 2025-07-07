@@ -108,7 +108,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         context.config = CONFIG.DH;
         if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
         if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack')
-            context.hasBaseDamage = !!this.action.parent.damage;
+            context.hasBaseDamage = !!this.action.parent.attack;
         context.getRealIndex = this.getRealIndex.bind(this);
         context.getEffectDetails = this.getEffectDetails.bind(this);
         context.disableOption = this.disableOption.bind(this);

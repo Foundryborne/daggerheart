@@ -11,21 +11,28 @@
                 {{#if isSidebar}}
                     <div class="item-labels">
                         <div class="label">
-                            {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.trait '.name')}}
-                            {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.range '.name')}}
+                            {{!-- {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.short')}} --}}
+                            {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.attack.range '.short')}}
                             <span> - </span>
-                            {{item.system.damage.value}}
-                            ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.damage.type '.abbreviation')}})
+                            {{item.system.attack.damage.parts.0.value.dice}}{{#if item.system.attack.damage.parts.0.value.bonus}} + {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
+                            {{!-- ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.attack.damage.parts.0.type '.abbreviation')}}) --}}
+                            {{#with (lookup @root.config.GENERAL.damageTypes item.system.attack.damage.parts.0.type)}}
+                                {{#each icon}}
+                                    <i class="fa-solid {{this}}"></i>
+                                {{/each}}
+                            {{/with}}
                         </div>
                     </div>
                 {{else}}
                     <div class="tag">
-                        {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.trait '.name')}}
-                        {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.range '.name')}}
+                        {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.name')}}
                     </div>
                     <div class="tag">
-                        {{item.system.damage.value}}
-                        ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.damage.type '.abbreviation')}})
+                        {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.attack.range '.name')}}
+                    </div>
+                    <div class="tag">
+                        {{item.system.attack.damage.parts.0.value.dice}}{{#if item.system.attack.damage.parts.0.value.bonus}} + {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
+                        ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.attack.damage.parts.0.type '.abbreviation')}})
                     </div>
                     <div class="tag">
                         {{localize (concat 'DAGGERHEART.CONFIG.Burden.' item.system.burden)}}

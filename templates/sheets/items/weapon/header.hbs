@@ -10,13 +10,12 @@
                 <h3>{{localize "DAGGERHEART.ITEMS.Weapon.primaryWeapon"}}</h3>
             {{/if}}
             <h3>
-                {{localize (concat 'DAGGERHEART.CONFIG.Traits.' source.system.trait '.short')}}
+                {{localize (concat 'DAGGERHEART.CONFIG.Traits.' source.system.attack.roll.trait '.short')}}
                 <span>-</span>
-                {{localize (concat 'DAGGERHEART.CONFIG.Range.' source.system.range '.name')}}
+                {{localize (concat 'DAGGERHEART.CONFIG.Range.' source.system.attack.range '.name')}}
                 <span>-</span>
-                {{log this}}
-                {{source.system.damage.dice}} + {{source.system.damage.bonus}}
-                ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' source.system.damage.type '.abbreviation')}})
+                {{source.system.attack.damage.parts.0.value.dice}}{{#if source.system.attack.damage.parts.0.value.bonus}} + {{source.system.attack.damage.parts.0.value.bonus}}{{/if}}
+                ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' source.system.attack.damage.parts.0.type '.abbreviation')}})
                 <span>-</span>
                 {{localize (concat 'DAGGERHEART.CONFIG.Burden.' source.system.burden)}}
             </h3>

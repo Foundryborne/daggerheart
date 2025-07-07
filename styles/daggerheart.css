@@ -5776,9 +5776,13 @@ body.theme-light.application.daggerheart.dialog {
   outline: 2px solid light-dark(#222, #efe6d8);
 }
 .application.dh-style fieldset[disabled],
+.application.dh-style fieldset.child-disabled .form-group,
 .application.dh-style fieldset select[disabled],
 .application.dh-style fieldset input[disabled] {
   opacity: 0.5;
+}
+.application.dh-style fieldset.child-disabled .form-group {
+  pointer-events: none;
 }
 .application.dh-style fieldset .nest-inputs {
   display: flex;
@@ -6384,6 +6388,7 @@ body.theme-light.application.daggerheart.dialog {
   justify-content: center;
   align-items: center;
   font-size: 12px;
+  gap: 4px;
 }
 .application.daggerheart.dh-style .inventory-item .controls {
   display: flex;
