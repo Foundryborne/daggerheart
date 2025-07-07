@@ -13,7 +13,8 @@
         <div class='level-div'>
             <h3 class='label'>
                 {{#if (or document.system.needsCharacterSetup document.system.levelData.canLevelUp)}}
-                    <button 
+                    <button
+                        type="button"
                         class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.Sheets.PC.CharacterSetup"}}{{else}}{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}{{/if}}"
                         data-action="levelManagement"
                     >

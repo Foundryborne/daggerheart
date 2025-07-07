@@ -221,17 +221,15 @@ export default function DHApplicationMixin(Base) {
          * @param {HTMLElement} button - The capturing HTML element which defines the [data-action="removeAction"]
          */
         static async #createDoc(event, button) {
-            const { type } = button.dataset;
-            const operation = {
-                parent: this.document,
-                pack: this.document.pack,
-                renderSheet: !event.shiftKey,
-            }
+            const { documentClass, type } = button.dataset;
+            console.log(documentClass, type);
+            const parent = this.document;
 
-            const cls = getDocumentClass(type);
+            const cls = getDocumentClass(documentClass);
             return await cls.createDocuments([{
-                name: cls.defaultName(operation)
-            }], operation);
+                name: cls.defaultName({ type, parent }),
+                type,
+            }], { parent, renderSheet: !event.shiftKey });
         }
 
         /**

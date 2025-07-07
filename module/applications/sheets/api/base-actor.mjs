@@ -1,3 +1,4 @@
+import DHBaseActorSettings from './actor-setting.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -25,14 +26,13 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     dragDrop: [],
   };
 
-  /**
-   * 
-   */
+  /**@type {typeof DHBaseActorSettings}*/
   #settingSheet;
 
+  /**@returns {DHBaseActorSettings|null} */
   get settingSheet() {
     const SheetClass = this.document.system.metadata.settingSheet;
-    return this.#settingSheet ??= SheetClass ? new SheetClass(this.document): null;
+    return this.#settingSheet ??= SheetClass ? new SheetClass({document: this.document}): null;
   }
 
   /**@inheritdoc */
@@ -43,7 +43,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
   }
 
   /**
-   * 
+   * Open the Actor Setting Sheet
    * @type {ApplicationClickAction}
    */
   static async #openSettings() {

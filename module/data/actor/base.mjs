@@ -1,10 +1,12 @@
+import DHBaseActorSettings from "../../applications/sheets/api/actor-setting.mjs";
+
 /**
  * Describes metadata about the actor data model type
  * @typedef {Object} ActorDataModelMetadata
  * @property {string} label - A localizable label used on application.
  * @property {string} type - The system type that this data model represents.
  * @property {Boolean} isNPC - This data model represents a NPC?
- * @property {typeof foundry.applications.api.DocumentSheetV2} settingSheet - The sheet class used to render the settings UI for this actor type.
+ * @property {typeof DHBaseActorSettings} settingSheet - The sheet class used to render the settings UI for this actor type.
  */
 export default class BaseDataActor extends foundry.abstract.TypeDataModel {
     /** @returns {ActorDataModelMetadata}*/
