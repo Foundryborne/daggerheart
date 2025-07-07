@@ -1,22 +1,22 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import DHEnvironmentSettings from '../../sheets-configs/environment-settings.mjs';
+
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
 export default class DhpEnvironment extends DHBaseActorSheet {
+    /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['environment'],
         position: {
             width: 500
         },
         actions: {
-            addAdversary: this.addAdversary,
-            deleteProperty: this.deleteProperty,
-            openSettings: this.openSettings,
             useItem: this.useItem,
             toChat: this.toChat
         },
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]
     };
 
+    /**@override */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
         features: { template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs' },
@@ -35,30 +35,22 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         }
     };
 
+    /* -------------------------------------------- */
+
     getItem(element) {
         const itemId = (element.target ?? element).closest('[data-item-id]').dataset.itemId,
             item = this.document.items.get(itemId);
         return item;
     }
 
-    static async openSettings() {
-        await new DHEnvironmentSettings(this.document).render(true);
-    }
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
 
-    static async addAdversary() {
-        await this.document.update({
-            [`system.potentialAdversaries.${foundry.utils.randomID()}.label`]: game.i18n.localize(
-                'DAGGERHEART.ACTORS.Environment.newAdversary'
-            )
-        });
-        this.render();
-    }
-
-    static async deleteProperty(_, target) {
-        await this.document.update({ [`${target.dataset.path}.-=${target.id}`]: null });
-        this.render();
-    }
-
+    /**
+     * 
+     * @type {ApplicationClickAction}
+     */
     async viewAdversary(_, button) {
         const target = button.closest('[data-item-uuid]');
         const adversary = await foundry.utils.fromUuid(target.dataset.itemUuid);
@@ -67,7 +59,7 @@ export default class DhpEnvironment extends DHBaseActorSheet {
             return;
         }
 
-        adversary.sheet.render(true);
+        adversary.sheet.render({ force: true });
     }
 
     static async useItem(event, button) {

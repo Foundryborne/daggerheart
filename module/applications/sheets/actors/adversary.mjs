@@ -1,19 +1,15 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import DHActionConfig from '../../sheets-configs/action-config.mjs';
-import DHAdversarySettings from '../../sheets-configs/adversary-settings.mjs';
+
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
 export default class AdversarySheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['adversary'],
         position: { width: 660, height: 766 },
         actions: {
-            reactionRoll: this.reactionRoll,
+            reactionRoll: AdversarySheet.#reactionRoll,
             useItem: this.useItem,
             toChat: this.toChat,
-            attackConfigure: this.attackConfigure,
-            addExperience: this.addExperience,
-            removeExperience: this.removeExperience,
-            openSettings: this.openSettings
         },
         window: {
             resizable: true
@@ -51,7 +47,15 @@ export default class AdversarySheet extends DHBaseActorSheet {
         return item;
     }
 
-    static async reactionRoll(event) {
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
+
+    /**
+     * Performs a reaction roll for an Adversary.
+     * @type {ApplicationClickAction}
+     */
+    static #reactionRoll(event) {
         const config = {
             event: event,
             title: `Reaction Roll: ${this.actor.name}`,
@@ -65,18 +69,23 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 mute: true
             }
         };
+
         this.actor.diceRoll(config);
     }
 
-    static async openSettings() {
-        await new DHAdversarySettings(this.document).render(true);
-    }
-
+    /**
+     * 
+     * @type {ApplicationClickAction}
+     */
     static async useItem(event) {
         const action = this.getItem(event) ?? this.actor.system.attack;
         action.use(event);
     }
 
+    /**
+     * 
+     * @type {ApplicationClickAction}
+     */
     static async toChat(event, button) {
         if (button?.dataset?.type === 'experience') {
             const experience = this.document.system.experiences[button.dataset.uuid];
@@ -101,23 +110,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
             const item = this.getItem(event) ?? this.document.system.attack;
             item.toChat(this.document.id);
         }
-    }
-
-    static async attackConfigure(event) {
-        await new DHActionConfig(this.document.system.attack).render(true);
-    }
-
-    static async addExperience() {
-        const experienceId = foundry.utils.randomID();
-        await this.document.update({
-            [`system.experiences.${experienceId}`]: { id: experienceId, name: 'Experience', value: 1 }
-        });
-    }
-
-    static async removeExperience(_, button) {
-        await this.document.update({
-            [`system.experiences.-=${button.dataset.experience}`]: null
-        });
     }
 
 }

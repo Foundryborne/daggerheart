@@ -172,7 +172,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     /**
      * Get the set of ContextMenu options.
-     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]}   The Array of context options passed to the ContextMenu instance
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
+     * @this {CharacterSheet}
      * @protected
      */
     static _getContextMenuOptions() {
@@ -199,7 +200,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 const item = getItem(el);
                 return ['weapon', 'armor'].includes(item.type) && !item.system.equipped;
             },
-            callback: CharacterSheet.toggleEquipItem.bind(this)
+            callback: CharacterSheet.#toggleEquipItem.bind(this)
         }, {
             name: 'DAGGERHEART.Sheets.PC.ContextMenu.Unequip',
             icon: '<i class="fa-solid fa-hands"></i>',
@@ -207,7 +208,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 const item = getItem(el);
                 return ['weapon', 'armor'].includes(item.type) && item.system.equipped;
             },
-            callback: CharacterSheet.toggleEquipItem.bind(this)
+            callback: CharacterSheet.#toggleEquipItem.bind(this)
         }, {
             name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToLoadout',
             icon: '<i class="fa-solid fa-arrow-up"></i>',

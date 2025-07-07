@@ -1,5 +1,7 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
-import DHCompanionSettings from '../../sheets-configs/companion-settings.mjs';
+
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+
 
 export default class DhCompanionSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
@@ -7,9 +9,8 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         position: { width: 300 },
         actions: {
             viewActor: this.viewActor,
-            openSettings: this.openSettings,
             useItem: this.useItem,
-            toChat: this.toChat
+            toChat: this.toChat,
         },
     };
 
@@ -30,6 +31,10 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         }
     };
 
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
+    
     static async viewActor(_, button) {
         const target = button.closest('[data-item-uuid]');
         const actor = await foundry.utils.fromUuid(target.dataset.itemUuid);
@@ -72,9 +77,5 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
             const item = this.getAction(event) ?? this.document.system.attack;
             item.toChat(this.document.id);
         }
-    }
-
-    static async openSettings() {
-        await new DHCompanionSettings(this.document).render(true);
     }
 }

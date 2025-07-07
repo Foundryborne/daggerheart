@@ -11,7 +11,7 @@ export default class DhpActor extends foundry.documents.Actor {
      * @returns {boolean}
      */
     get isNPC() {
-        return this.system.constructor.metadata.isNPC;
+        return this.system.metadata.isNPC;
     }
 
     async _preCreate(data, options, user) {
