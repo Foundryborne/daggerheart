@@ -560,7 +560,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /**
-     * 
+     * Use a item
      * @type {ApplicationClickAction}
      */
     static async useItem(event, button) {
@@ -581,7 +581,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /**
-     * 
+     * Send item to Chat
      * @type {ApplicationClickAction}
      */
     static async toChat(event, button) {
