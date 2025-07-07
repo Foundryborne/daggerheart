@@ -58,12 +58,14 @@ export const damageTypes = {
     physical: {
         id: 'physical',
         label: 'DAGGERHEART.CONFIG.DamageType.physical.name',
-        abbreviation: 'DAGGERHEART.CONFIG.DamageType.physical.abbreviation'
+        abbreviation: 'DAGGERHEART.CONFIG.DamageType.physical.abbreviation',
+        icon: ["fa-hand-fist"]
     },
     magical: {
         id: 'magical',
         label: 'DAGGERHEART.CONFIG.DamageType.magical.name',
-        abbreviation: 'DAGGERHEART.CONFIG.DamageType.magical.abbreviation'
+        abbreviation: 'DAGGERHEART.CONFIG.DamageType.magical.abbreviation',
+        icon: ["fa-wand-sparkles"]
     }
 };
 
@@ -344,24 +346,24 @@ export const refreshTypes = {
 };
 
 export const abilityCosts = {
+    hp: {
+        id: 'hp',
+        label: 'DAGGERHEART.CONFIG.HealingType.hitPoints.name',
+        group: 'Global'
+    },
+    stress: {
+        id: 'stress',
+        label: 'DAGGERHEART.CONFIG.HealingType.stress.name',
+        group: 'Global'
+    },
     hope: {
         id: 'hope',
         label: 'Hope',
         group: 'TYPES.Actor.character'
     },
-    stress: {
-        id: 'stress',
-        label: 'DAGGERHEART.CONFIG.HealingType.Stress.Name',
-        group: 'TYPES.Actor.character'
-    },
     armor: {
         id: 'armor',
         label: 'Armor Stack',
-        group: 'TYPES.Actor.character'
-    },
-    hp: {
-        id: 'hp',
-        label: 'DAGGERHEART.CONFIG.HealingType.HitPoints.Name',
         group: 'TYPES.Actor.character'
     },
     prayer: {

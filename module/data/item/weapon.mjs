@@ -11,7 +11,7 @@ export default class DHWeapon extends BaseDataItem {
             hasDescription: true,
             isQuantifiable: true,
             isInventoryItem: true,
-            hasInitialAction: true
+            // hasInitialAction: true
         });
     }
 
@@ -25,19 +25,8 @@ export default class DHWeapon extends BaseDataItem {
 
             //SETTINGS
             secondary: new fields.BooleanField({ initial: false }),
-            trait: new fields.StringField({ required: true, choices: CONFIG.DH.ACTOR.abilities, initial: 'agility' }),
-            range: new fields.StringField({ required: true, choices: CONFIG.DH.GENERAL.range, initial: 'melee' }),
             burden: new fields.StringField({ required: true, choices: CONFIG.DH.GENERAL.burden, initial: 'oneHanded' }),
-            //DAMAGE
-            damage: new fields.SchemaField({
-                dice: new fields.StringField({ choices: CONFIG.DH.GENERAL.diceTypes, initial: 'd6' }),
-                bonus: new fields.NumberField({ nullable: true, initial: null }),
-                type: new fields.StringField({
-                    required: true,
-                    choices: CONFIG.DH.GENERAL.damageTypes,
-                    initial: 'physical'
-                })
-            }),
+            
             features: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
@@ -62,12 +51,16 @@ export default class DHWeapon extends BaseDataItem {
                         amount: 1
                     },
                     roll: {
+                        trait: 'agility',
                         type: 'weapon'
                     },
                     damage: {
                         parts: [
                             {
-                                multiplier: 'prof'
+                                value: {
+                                    multiplier: 'prof',
+                                    dice: "d8"
+                                }
                             }
                         ]
                     }
@@ -75,6 +68,10 @@ export default class DHWeapon extends BaseDataItem {
             }),
             actions: new fields.ArrayField(new ActionField())
         };
+    }
+
+    get actionsList() {
+        return [this.attack, ...this.actions];
     }
 
     async _preUpdate(changes, options, user) {

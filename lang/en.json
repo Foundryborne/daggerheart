@@ -611,7 +611,7 @@
                 },
                 "stress": {
                     "name": "Stress",
-                    "stress": "STR"
+                    "abbreviation": "STR"
                 },
                 "hope": {
                     "name": "Hope",
@@ -619,33 +619,39 @@
                 },
                 "armorStack": {
                     "name": "Armor Stack",
-                    "stress": "AS"
+                    "abbreviation": "AS"
                 }
             },
             "Range": {
                 "self": {
                     "name": "Self",
-                    "description": "means yourself."
+                    "description": "means yourself.",
+                    "short": "Self"
                 },
                 "melee": {
                     "name": "Melee",
-                    "description": "means a character is within touching distance of the target. PCs can generally touch targets up to a few feet away from them, but melee range may be greater for especially large NPCs."
+                    "description": "means a character is within touching distance of the target. PCs can generally touch targets up to a few feet away from them, but melee range may be greater for especially large NPCs.",
+                    "short": "Melee"
                 },
                 "veryClose": {
                     "name": "Very Close",
-                    "description": "means a distance where one can see fine details of a target- within moments of reaching, if need be. This is usually anywhere from about 5-10 feet away. While in danger, a PC can usually get to anything that’s very close as part of any other action they take. Anything on a battle map that is within the shortest length of a game card (~2-3 inches) can usually be considered very close."
+                    "description": "means a distance where one can see fine details of a target- within moments of reaching, if need be. This is usually anywhere from about 5-10 feet away. While in danger, a PC can usually get to anything that’s very close as part of any other action they take. Anything on a battle map that is within the shortest length of a game card (~2-3 inches) can usually be considered very close.",
+                    "short": "V. Close"
                 },
                 "close": {
                     "name": "Close",
-                    "description": "means a distance where one can see prominent details of a target-- across a room or to a neighboring market stall, generally about 10-30 feet away. While in danger, a PC can usually get to anything that’s close as part of any other action they take. Anything on a battle map that is within the length of a standard pen or pencil (~5-6 inches) can usually be considered close."
+                    "description": "means a distance where one can see prominent details of a target-- across a room or to a neighboring market stall, generally about 10-30 feet away. While in danger, a PC can usually get to anything that’s close as part of any other action they take. Anything on a battle map that is within the length of a standard pen or pencil (~5-6 inches) can usually be considered close.",
+                    "short": "Close"
                 },
                 "far": {
                     "name": "Far",
-                    "description": "means a distance where one can see the appearance of a person or object, but probably not in great detail-- across a small battlefield or down a large corridor. This is usually about 30-100 feet away. While under danger, a PC will likely have to make an Agility check to get here safely. Anything on a battle map that is within the length of a standard piece of paper (~10-11 inches) can usually be considered far."
+                    "description": "means a distance where one can see the appearance of a person or object, but probably not in great detail-- across a small battlefield or down a large corridor. This is usually about 30-100 feet away. While under danger, a PC will likely have to make an Agility check to get here safely. Anything on a battle map that is within the length of a standard piece of paper (~10-11 inches) can usually be considered far.",
+                    "short": "Far"
                 },
                 "veryFar": {
                     "name": "Very Far",
-                    "description": "means a distance where you can see the shape of a person or object, but probably not make outany details-- across a large battlefield or down a long street, generally about 100-300 feet away. While under danger, a PC likely has to make an Agility check to get here safely. Anything on a battle map that is beyond far distance, but still within sight of the characters can usually be considered very far."
+                    "description": "means a distance where you can see the shape of a person or object, but probably not make outany details-- across a large battlefield or down a long street, generally about 100-300 feet away. While under danger, a PC likely has to make an Agility check to get here safely. Anything on a battle map that is beyond far distance, but still within sight of the characters can usually be considered very far.",
+                    "short": "V. Far"
                 }
             },
             "RollTypes": {
@@ -1098,6 +1104,7 @@
             "range": "Range",
             "stress": "Stress",
             "take": "Take",
+            "target": "Target",
             "title": "Title",
             "type": "Type",
             "unarmored": "Unarmored",

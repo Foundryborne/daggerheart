@@ -156,17 +156,22 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     static getSourceConfig(parent) {
         const updateSource = {};
         updateSource.img ??= parent?.img ?? parent?.system?.img;
-        if (parent?.system?.trait) {
-            updateSource['roll'] = {
-                type: this.getRollType(parent),
-                trait: parent.system.trait
-            };
-        }
-        if (parent?.type === 'weapon' && !!this.schema.fields.damage) {
+        if (parent?.type === 'weapon') {
             updateSource['damage'] = { includeBase: true };
-        }
-        if (parent?.system?.range) {
-            updateSource['range'] = parent?.system?.range;
+            updateSource['range'] = parent?.system?.attack?.range;
+            updateSource['roll'] = {
+                useDefault: true
+            }
+        } else {
+            if (parent?.system?.trait) {
+                updateSource['roll'] = {
+                    type: this.getRollType(parent),
+                    trait: parent.system.trait
+                };
+            }
+            if (parent?.system?.range) {
+                updateSource['range'] = parent?.system?.range;
+            }
         }
         return updateSource;
     }

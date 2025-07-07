@@ -1,5 +1,8 @@
-<fieldset class="one-column">
-    <legend>Roll</legend>
+<fieldset class="one-column{{#if source.useDefault}} child-disabled{{/if}}">
+    <legend>
+        Roll
+        {{#if @root.hasBaseDamage}}{{formInput fields.useDefault name="roll.useDefault" value=source.useDefault dataset=(object tooltip="Use default Item values" tooltipDirection="UP")}}{{/if}}
+    </legend>
     {{#if @root.isNPC}}
         {{formField fields.bonus label="Bonus" name="roll.bonus" value=source.bonus}}
         {{formField fields.advState label= "Advantage State" name="roll.advState" value=source.advState localize=true}}

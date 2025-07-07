@@ -31,7 +31,8 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                     label: 'Should be'
                 }),
                 treshold: new fields.NumberField({ initial: 1, integer: true, min: 1, label: 'Treshold' })
-            })
+            }),
+            useDefault: new fields.BooleanField({ initial: false })
         };
     }
 
@@ -47,7 +48,6 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                 formula = `${multiplier}${this.diceRolling.dice}cs${CONFIG.DH.ACTIONS.diceCompare[this.diceRolling.compare].operator}${this.diceRolling.treshold}`;
                 break;
             default:
-                // formula = `${(!!this.parent?.actor?.system?.attack ? `@attackBonus` : `@traits.${this.trait}.total`)}`;
                 formula = '';
                 break;
         }

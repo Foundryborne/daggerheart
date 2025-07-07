@@ -79,7 +79,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             action =
                 actor.system.attack?._id === actionId
                     ? actor.system.attack
-                    : item?.system?.actions?.find(a => a._id === actionId);
+                    : item.system.attack?._id === actionId
+                        ? item.system.attack
+                        : item?.system?.actions?.find(a => a._id === actionId);
         return action;
     }
 

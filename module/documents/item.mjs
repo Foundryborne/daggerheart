@@ -77,10 +77,10 @@ export default class DHItem extends foundry.documents.Item {
         });
     }
 
-    async selectActionDialog() {
+    async selectActionDialog(prevEvent) {
         const content = await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/dialogs/actionSelect.hbs',
-                { actions: this.system.actions }
+                { actions: this.system.actionsList }
             ),
             title = 'Select Action';
 
@@ -89,19 +89,23 @@ export default class DHItem extends foundry.documents.Item {
             content,
             ok: {
                 label: title,
-                callback: (event, button, dialog) =>
-                    this.system.actions.find(a => a._id === button.form.elements.actionId.value)
+                callback: (event, button, dialog) => {
+                    Object.defineProperty(prevEvent, "shiftKey", {
+                        get() { return event.shiftKey; },
+                    });
+                    return this.system.actionsList.find(a => a._id === button.form.elements.actionId.value)
+                }
             }
         });
     }
 
     async use(event) {
-        const actions = this.system.actions;
+        const actions = this.system.actionsList;
         if (actions?.length) {
             let action = actions[0];
             if (actions.length > 1 && !event?.shiftKey) {
                 // Actions Choice Dialog
-                action = await this.selectActionDialog();
+                action = await this.selectActionDialog(event);
             }
             if (action) return action.use(event);
         }
