@@ -1,29 +1,19 @@
-import DHActionConfig from '../../sheets-configs/action-config.mjs';
-import DaggerheartSheet from '../daggerheart-sheet.mjs';
-import DHAdversarySettings from '../../sheets-configs/adversary-settings.mjs';
+import DHBaseActorSheet from '../api/base-actor.mjs';
 
-const { ActorSheetV2 } = foundry.applications.sheets;
-export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+
+export default class AdversarySheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
-        tag: 'form',
-        classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'adversary'],
+        classes: ['adversary'],
         position: { width: 660, height: 766 },
         window: { resizable: true },
         actions: {
-            reactionRoll: this.reactionRoll,
+            reactionRoll: AdversarySheet.#reactionRoll,
             useItem: this.useItem,
-            toChat: this.toChat,
-            attackConfigure: this.attackConfigure,
-            addExperience: this.addExperience,
-            removeExperience: this.removeExperience,
-            toggleHP: this.toggleHP,
-            toggleStress: this.toggleStress,
-            openSettings: this.openSettings
+            toChat: this.toChat
         },
-        form: {
-            handler: this.updateForm,
-            submitOnChange: true,
-            closeOnSubmit: false
+        window: {
+            resizable: true
         }
     };
 
@@ -35,40 +25,19 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         effects: { template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs' }
     };
 
+    /** @inheritdoc */
     static TABS = {
-        features: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'features',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.features'
-        },
-        notes: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'notes',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.notes'
-        },
-        effects: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'effects',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.effects'
+        primary: {
+            tabs: [{ id: 'features' }, { id: 'notes' }, { id: 'effects' }],
+            initial: 'features',
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-        context.document = this.document;
-        context.tabs = super._getTabs(this.constructor.TABS);
+    /**@inheritdoc */
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
         context.systemFields.attack.fields = this.document.system.attack.schema.fields;
-        context.getEffectDetails = this.getEffectDetails.bind(this);
-        context.isNPC = true;
         return context;
     }
 
@@ -78,18 +47,20 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
         return item;
     }
 
-    static async updateForm(event, _, formData) {
-        await this.document.update(formData.object);
-        this.render();
-    }
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
 
-    static async reactionRoll(event) {
+    /**
+     * Performs a reaction roll for an Adversary.
+     * @type {ApplicationClickAction}
+     */
+    static #reactionRoll(event) {
         const config = {
             event: event,
             title: `Reaction Roll: ${this.actor.name}`,
             headerTitle: 'Adversary Reaction Roll',
             roll: {
-                // modifier: null,
                 type: 'reaction'
             },
             chatMessage: {
@@ -98,22 +69,23 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
                 mute: true
             }
         };
+
         this.actor.diceRoll(config);
     }
 
-    getEffectDetails(id) {
-        return {};
-    }
-
-    static async openSettings() {
-        await new DHAdversarySettings(this.document).render(true);
-    }
-
+    /**
+     *
+     * @type {ApplicationClickAction}
+     */
     static async useItem(event) {
         const action = this.getItem(event) ?? this.actor.system.attack;
         action.use(event);
     }
 
+    /**
+     *
+     * @type {ApplicationClickAction}
+     */
     static async toChat(event, button) {
         if (button?.dataset?.type === 'experience') {
             const experience = this.document.system.experiences[button.dataset.uuid];
@@ -139,34 +111,5 @@ export default class AdversarySheet extends DaggerheartSheet(ActorSheetV2) {
             const item = this.getItem(event) ?? this.document.system.attack;
             item.toChat(this.document.id);
         }
-    }
-
-    static async attackConfigure(event) {
-        await new DHActionConfig(this.document.system.attack).render(true);
-    }
-
-    static async addExperience() {
-        const experienceId = foundry.utils.randomID();
-        await this.document.update({
-            [`system.experiences.${experienceId}`]: { id: experienceId, name: 'Experience', value: 1 }
-        });
-    }
-
-    static async removeExperience(_, button) {
-        await this.document.update({
-            [`system.experiences.-=${button.dataset.experience}`]: null
-        });
-    }
-
-    static async toggleHP(_, button) {
-        const index = Number.parseInt(button.dataset.index);
-        const newHP = index < this.document.system.resources.health.value ? index : index + 1;
-        await this.document.update({ 'system.resources.health.value': newHP });
-    }
-
-    static async toggleStress(_, button) {
-        const index = Number.parseInt(button.dataset.index);
-        const newStress = index < this.document.system.resources.stress.value ? index : index + 1;
-        await this.document.update({ 'system.resources.stress.value': newStress });
     }
 }

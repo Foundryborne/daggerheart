@@ -3,7 +3,7 @@
     data-tab='{{tabs.features.id}}'
     data-group='{{tabs.features.group}}'
 >
-    <button class="add-feature-btn" data-action="addFeature">
+    <button type="button" class="add-feature-btn" data-action="createDoc" data-document-class="Item" data-type="feature">
         {{localize "DOCUMENT.New" type=(localize "TYPES.Item.feature")}}
     </button>
     <fieldset>
@@ -16,8 +16,8 @@
                         <span>{{feature.name}}</span>
                     </div>
                     <div class="controls">
-                        <a data-action="editFeature" id="{{feature.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.edit'}}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a data-action="removeFeature" id="{{feature.id}}" data-tooltip="{{localize 'CONTROLS.CommonDelete'}}"><i class="fa-solid fa-trash"></i></a>
+                        <a data-action="editDoc" data-type="Item" data-doc-id="{{feature.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.edit'}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-action="deleteDoc"  data-type="Item" data-doc-id="{{feature.id}}" data-tooltip="{{localize 'CONTROLS.CommonDelete'}}"><i class="fa-solid fa-trash"></i></a>
                     </div>
                 </li>
             {{/each}}

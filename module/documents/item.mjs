@@ -34,7 +34,7 @@ export default class DHItem extends foundry.documents.Item {
      * @returns {boolean} Returns `true` if the item is an inventory item.
      */
     get isInventoryItem() {
-        return this.system.constructor.metadata.isInventoryItem ?? false;
+        return this.system.metadata.isInventoryItem ?? false;
     }
 
     /** @inheritdoc */
@@ -53,17 +53,17 @@ export default class DHItem extends foundry.documents.Item {
                 const isInventoryItem = CONFIG.Item.dataModels[type]?.metadata?.isInventoryItem;
                 const group =
                     isInventoryItem === true
-                        ? 'Inventory Items'
+                        ? 'Inventory Items' //TODO localize
                         : isInventoryItem === false
-                          ? 'Character Items'
-                          : 'Other';
+                          ? 'Character Items' //TODO localize
+                          : 'Other'; //TODO localize
 
                 return { value: type, label, group };
             }
         );
 
         if (!documentTypes.length) {
-            throw new Error('No document types were permitted to be created.');
+            throw new Error('No document types were permitted to be created.'); //TODO localize
         }
 
         const sortedTypes = documentTypes.sort((a, b) => a.label.localeCompare(b.label, game.i18n.lang));

@@ -1,37 +1,20 @@
 import { GMUpdateEvent, socketEvent } from '../../systemRegistration/socket.mjs';
 import DhCompanionlevelUp from '../levelup/companionLevelup.mjs';
+import DHBaseActorSettings from '../sheets/api/actor-setting.mjs';
 
-const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
-export default class DHCompanionSettings extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(actor) {
-        super({});
-
-        this.actor = actor;
-    }
-
-    get title() {
-        return `${game.i18n.localize('DAGGERHEART.GENERAL.Tabs.settings')}`;
-    }
-
+export default class DHCompanionSettings extends DHBaseActorSettings {
+    /**@inheritdoc */
     static DEFAULT_OPTIONS = {
-        tag: 'form',
-        classes: ['daggerheart', 'dh-style', 'dialog', 'companion-settings'],
-        window: {
-            icon: 'fa-solid fa-wrench',
-            resizable: false
-        },
+        classes: ['companion-settings'],
         position: { width: 455, height: 'auto' },
         actions: {
-            levelUp: this.levelUp
-        },
-        form: {
-            handler: this.updateForm,
-            submitOnChange: true,
-            closeOnSubmit: false
+            levelUp: DHCompanionSettings.#levelUp
         }
     };
 
+    /**@inheritdoc */
     static PARTS = {
         header: {
             id: 'header',
@@ -52,109 +35,64 @@ export default class DHCompanionSettings extends HandlebarsApplicationMixin(Appl
         }
     };
 
+    /** @inheritdoc */
     static TABS = {
-        details: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'details',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.details'
-        },
-        experiences: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'experiences',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.experiences'
-        },
-        attack: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'attack',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.attack'
+        primary: {
+            tabs: [{ id: 'details' }, { id: 'attack' }, { id: 'experiences' }],
+            initial: 'details',
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 
-    _attachPartListeners(partId, htmlElement, options) {
-        super._attachPartListeners(partId, htmlElement, options);
-
-        htmlElement.querySelector('.partner-value')?.addEventListener('change', this.onPartnerChange.bind(this));
+    /**@inheritdoc */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        this.element.querySelector('.partner-value')?.addEventListener('change', this.onPartnerChange.bind(this));
     }
 
+    /**@inheritdoc */
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.document = this.actor;
-        context.tabs = this._getTabs(this.constructor.TABS);
-        context.systemFields = this.actor.system.schema.fields;
-        context.systemFields.attack.fields = this.actor.system.attack.schema.fields;
-        context.isNPC = true;
+
         context.playerCharacters = game.actors
-            .filter(
-                x =>
-                    x.type === 'character' &&
-                    (x.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) ||
-                        this.document.system.partner?.uuid === x.uuid)
-            )
+            .filter(x => x.type === 'character' && (x.isOwner || this.document.system.partner?.uuid === x.uuid))
             .map(x => ({ key: x.uuid, name: x.name }));
 
         return context;
     }
 
-    _getTabs(tabs) {
-        for (const v of Object.values(tabs)) {
-            v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
-            v.cssClass = v.active ? 'active' : '';
-        }
-
-        return tabs;
-    }
-
+    /**
+     * Handles changes to the actor's partner selection.
+     * @param {Event} event - The change event triggered by the partner input element.
+     */
     async onPartnerChange(event) {
-        const partnerDocument = event.target.value
-            ? await foundry.utils.fromUuid(event.target.value)
-            : this.actor.system.partner;
-        const partnerUpdate = { 'system.companion': event.target.value ? this.actor.uuid : null };
+        const value = event.target.value;
+        const partnerDocument = value ? await foundry.utils.fromUuid(value) : this.actor.system.partner;
+        const partnerUpdate = { 'system.companion': value ? this.actor.uuid : null };
 
-        if (!partnerDocument.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) {
+        if (!partnerDocument.isOwner) {
             await game.socket.emit(`system.${CONFIG.DH.id}`, {
                 action: socketEvent.GMUpdate,
                 data: {
                     action: GMUpdateEvent.UpdateDocument,
                     uuid: partnerDocument.uuid,
-                    update: update
+                    update: partnerUpdate
                 }
             });
         } else {
             await partnerDocument.update(partnerUpdate);
         }
 
-        await this.actor.update({ 'system.partner': event.target.value });
+        await this.actor.update({ 'system.partner': value });
 
-        if (!event.target.value) {
-            await this.actor.updateLevel(1);
-        }
-
-        this.render();
+        if (!value) await this.actor.updateLevel(1);
     }
 
-    async viewActor(_, button) {
-        const target = button.closest('[data-item-uuid]');
-        const actor = await foundry.utils.fromUuid(target.dataset.itemUuid);
-        if (!actor) return;
-
-        actor.sheet.render(true);
-    }
-
-    static async levelUp() {
-        new DhCompanionlevelUp(this.actor).render(true);
-    }
-
-    static async updateForm(event, _, formData) {
-        await this.actor.update(formData.object);
-        this.render();
+    /**
+     * Opens the companion level-up dialog for the associated actor.
+     * @type {ApplicationClickAction}
+     */
+    static async #levelUp() {
+        new DhCompanionlevelUp(this.actor).render({ force: true });
     }
 }

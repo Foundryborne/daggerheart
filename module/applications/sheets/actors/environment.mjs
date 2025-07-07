@@ -1,29 +1,22 @@
-import DaggerheartSheet from '../daggerheart-sheet.mjs';
-import DHEnvironmentSettings from '../../sheets-configs/environment-settings.mjs';
+import DHBaseActorSheet from '../api/base-actor.mjs';
 
-const { ActorSheetV2 } = foundry.applications.sheets;
-export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+
+export default class DhpEnvironment extends DHBaseActorSheet {
+    /**@inheritdoc */
     static DEFAULT_OPTIONS = {
-        tag: 'form',
-        classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'environment'],
+        classes: ['environment'],
         position: {
             width: 500
         },
         actions: {
-            addAdversary: this.addAdversary,
-            deleteProperty: this.deleteProperty,
-            openSettings: this.openSettings,
             useItem: this.useItem,
             toChat: this.toChat
-        },
-        form: {
-            handler: this._updateForm,
-            submitOnChange: true,
-            closeOnSubmit: false
         },
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]
     };
 
+    /**@override */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
         features: { template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs' },
@@ -33,41 +26,16 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         notes: { template: 'systems/daggerheart/templates/sheets/actors/environment/notes.hbs' }
     };
 
+    /** @inheritdoc */
     static TABS = {
-        features: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'features',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.features'
-        },
-        potentialAdversaries: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'potentialAdversaries',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.potentialAdversaries'
-        },
-        notes: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'notes',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.notes'
+        primary: {
+            tabs: [{ id: 'features' }, { id: 'potentialAdversaries' }, { id: 'notes' }],
+            initial: 'features',
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-        context.document = this.document;
-        context.tabs = super._getTabs(this.constructor.TABS);
-        context.getEffectDetails = this.getEffectDetails.bind(this);
-
-        return context;
-    }
+    /* -------------------------------------------- */
 
     getItem(element) {
         const itemId = (element.target ?? element).closest('[data-item-id]').dataset.itemId,
@@ -75,33 +43,14 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
         return item;
     }
 
-    static async openSettings() {
-        await new DHEnvironmentSettings(this.document).render(true);
-    }
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
 
-    static async _updateForm(event, _, formData) {
-        await this.document.update(formData.object);
-        this.render();
-    }
-
-    getEffectDetails(id) {
-        return {};
-    }
-
-    static async addAdversary() {
-        await this.document.update({
-            [`system.potentialAdversaries.${foundry.utils.randomID()}.label`]: game.i18n.localize(
-                'DAGGERHEART.ACTORS.Environment.newAdversary'
-            )
-        });
-        this.render();
-    }
-
-    static async deleteProperty(_, target) {
-        await this.document.update({ [`${target.dataset.path}.-=${target.id}`]: null });
-        this.render();
-    }
-
+    /**
+     *
+     * @type {ApplicationClickAction}
+     */
     async viewAdversary(_, button) {
         const target = button.closest('[data-item-uuid]');
         const adversary = await foundry.utils.fromUuid(target.dataset.itemUuid);
@@ -110,7 +59,7 @@ export default class DhpEnvironment extends DaggerheartSheet(ActorSheetV2) {
             return;
         }
 
-        adversary.sheet.render(true);
+        adversary.sheet.render({ force: true });
     }
 
     static async useItem(event, button) {

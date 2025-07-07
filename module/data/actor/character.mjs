@@ -28,7 +28,8 @@ export default class DhCharacter extends BaseDataActor {
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.character',
-            type: 'character'
+            type: 'character',
+            isNPC: false,
         });
     }
 

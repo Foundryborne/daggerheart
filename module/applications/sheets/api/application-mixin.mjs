@@ -6,6 +6,14 @@ import { tagifyElement } from '../../../helpers/utils.mjs';
  * @property {string} [dragSelector] - A CSS selector that identifies draggable elements.
  * @property {string} [dropSelector] - A CSS selector that identifies drop targets.
  *
+ * @typedef {object} ContextMenuConfig
+ * @property {() => ContextMenuEntry[]} handler - A handler function that provides initial context options
+ * @property {string} selector - A CSS selector to which the ContextMenu will be bound
+ * @property {object} [options] - Additional options which affect ContextMenu construction
+ * @property {HTMLElement} [options.container] - A parent HTMLElement which contains the selector target
+ * @property {string} [options.hookName] - The hook name
+ * @property {boolean} [options.parentClassHooks=true] - Whether to call hooks for the parent classes in the inheritance chain.
+ *
  * @typedef {Object} TagOption
  * @property {string} label
  * @property {string} [src]
@@ -24,9 +32,17 @@ import { tagifyElement } from '../../../helpers/utils.mjs';
  *
  * @typedef {Object} TagifyOptions
  * @property {number} [maxTags] - Maximum number of allowed tags
- *
+ */
+
+/**
  * @typedef {import("@client/applications/api/handlebars-application.mjs").HandlebarsRenderOptions} HandlebarsRenderOptions
- * @typedef {foundry.applications.types.ApplicationConfiguration & HandlebarsRenderOptions & { dragDrop?: DragDropConfig[], tagifyConfigs?: TagifyConfig[]  }} DHSheetV2Configuration
+ * @typedef {foundry.applications.types.ApplicationConfiguration} FoundryAppConfig
+ *
+ * @typedef {FoundryAppConfig & HandlebarsRenderOptions & {
+ *   dragDrop?: DragDropConfig[],
+ *   tagifyConfigs?: TagifyConfig[],
+ *   contextMenus?: ContextMenuConfig[],
+ * }} DHSheetV2Configuration
  */
 
 /**
@@ -54,15 +70,12 @@ export default function DHApplicationMixin(Base) {
          */
         static DEFAULT_OPTIONS = {
             classes: ['daggerheart', 'sheet', 'dh-style'],
-            position: {
-                width: 480,
-                height: 'auto'
-            },
             actions: {
-                addEffect: DHSheetV2.#addEffect,
-                editEffect: DHSheetV2.#editEffect,
-                removeEffect: DHSheetV2.#removeEffect
+                createDoc: DHSheetV2.#createDoc,
+                editDoc: DHSheetV2.#editDoc,
+                deleteDoc: DHSheetV2.#deleteDoc
             },
+            contextMenus: [],
             dragDrop: [],
             tagifyConfigs: []
         };
@@ -74,12 +87,21 @@ export default function DHApplicationMixin(Base) {
             super._attachPartListeners(partId, htmlElement, options);
             this._dragDrop.forEach(d => d.bind(htmlElement));
         }
+        /**@inheritdoc */
+        async _onFirstRender(context, options) {
+            await super._onFirstRender(context, options);
+            if (!!this.options.contextMenus.length) this._createContextMenus();
+        }
 
         /**@inheritdoc */
         async _onRender(context, options) {
             await super._onRender(context, options);
             this._createTagifyElements(this.options.tagifyConfigs);
         }
+
+        /* -------------------------------------------- */
+        /*  Tags                                        */
+        /* -------------------------------------------- */
 
         /**
          * Creates Tagify elements from configuration objects
@@ -150,22 +172,38 @@ export default function DHApplicationMixin(Base) {
         _onDrop(event) {}
 
         /* -------------------------------------------- */
-        /*  Prepare Context                             */
+        /*  Context Menu                                */
+        /* -------------------------------------------- */
+
+        _createContextMenus() {
+            for (const config of this.options.contextMenus) {
+                const { handler, selector, options } = config;
+                this._createContextMenu(handler.bind(this), selector, options);
+            }
+        }
+
         /* -------------------------------------------- */
 
         /**
-         * Prepare the template context.
-         * @param {object} options
-         * @param {string} [objectPath='document']
-         * @returns {Promise<object>}
-         * @inheritdoc
+         * Get the set of ContextMenu options which should be used for journal entry pages in the sidebar.
+         * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]}
+         * @protected
          */
-        async _prepareContext(options, objectPath = 'document') {
+        _getEntryContextOptions() {
+            return [];
+        }
+
+        /* -------------------------------------------- */
+        /*  Prepare Context                             */
+        /* -------------------------------------------- */
+
+        /**@inheritdoc*/
+        async _prepareContext(options) {
             const context = await super._prepareContext(options);
             context.config = CONFIG.DH;
-            context.source = this[objectPath];
-            context.fields = this[objectPath].schema.fields;
-            context.systemFields = this[objectPath].system ? this[objectPath].system.schema.fields : {};
+            context.source = this.document;
+            context.fields = this.document.schema.fields;
+            context.systemFields = this.document.system.schema.fields;
             return context;
         }
 
@@ -174,37 +212,45 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
 
         /**
-         * Renders an ActiveEffect's sheet sheet.
+         * Create an embedded document.
          * @param {PointerEvent} event - The originating click event
          * @param {HTMLElement} button - The capturing HTML element which defines the [data-action="removeAction"]
          */
-        static async #addEffect() {
-            const cls = foundry.documents.ActiveEffect;
-            await cls.create(
-                {
-                    name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize(cls.metadata.label) })
-                },
-                { parent: this.document }
+        static async #createDoc(event, button) {
+            const { documentClass, type } = button.dataset;
+            console.log(documentClass, type);
+            const parent = this.document;
+
+            const cls = getDocumentClass(documentClass);
+            return await cls.createDocuments(
+                [
+                    {
+                        name: cls.defaultName({ type, parent }),
+                        type
+                    }
+                ],
+                { parent, renderSheet: !event.shiftKey }
             );
         }
 
         /**
-         * Renders an ActiveEffect's sheet sheet.
+         * Renders an embedded document.
          * @param {PointerEvent} event - The originating click event
          * @param {HTMLElement} button - The capturing HTML element which defines the [data-action="removeAction"]
          */
-        static async #editEffect(_event, button) {
-            const effect = this.document.effects.get(button.dataset.effect);
-            effect.sheet.render({ force: true });
+        static #editDoc(_event, button) {
+            const { type, docId } = button.dataset;
+            this.document.getEmbeddedDocument(type, docId, { strict: true }).sheet.render({ force: true });
         }
 
         /**
-         * Delete an ActiveEffect from the item.
+         * Delete an embedded document.
          * @param {PointerEvent} _event - The originating click event
          * @param {HTMLElement} button - The capturing HTML element which defines the [data-action="removeAction"]
          */
-        static async #removeEffect(_event, button) {
-            await this.document.effects.get(button.dataset.effect).delete();
+        static async #deleteDoc(_event, button) {
+            const { type, docId } = button.dataset;
+            await this.document.getEmbeddedDocument(type, docId, { strict: true }).delete();
         }
     }
 

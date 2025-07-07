@@ -3,18 +3,20 @@
     data-tab='{{tabs.adversaries.id}}'
     data-group='{{tabs.adversaries.group}}'
 >    
-    <button class="add-action-btn" data-action="addCategory">
+    <button type="button" class="add-action-btn" data-action="addCategory">
         New Category
     </button>
-    {{#each document.system.potentialAdversaries}}
-        <fieldset class="category-container" data-potential-adversary="{{@key}}">
-            <legend>{{this.label}}</legend>
+    {{#each document.system.potentialAdversaries as |category id|}}
+        <fieldset class="category-container" data-potential-adversary="{{id}}">
+            <legend>{{category.label}}</legend>
             <div class="category-name">
-                <input type="text" name="{{concat "system.potentialAdversaries." @key ".label" }}" value="{{this.label}}" />
-                <a><i class="fa-solid fa-trash" data-action="deleteProperty" data-path="system.potentialAdversaries" id={{@key}} data-tooltip='{{localize "CONTROLS.CommonDelete"}}'></i></a>
+                <input type="text" name="{{concat "system.potentialAdversaries." @key ".label" }}" value="{{category.label}}" />
+                <a data-action="removeCategory" data-category-id={{id}} data-tooltip='{{localize "CONTROLS.CommonDelete"}}'>
+                    <i class="fa-solid fa-trash"></i>
+                </a>
             </div>
             <div class="adversaries-container">
-                {{#each this.adversaries as |adversary|}}
+                {{#each category.adversaries as |adversary|}}
                     <div class="adversary-container">
                         {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=adversary type='adversary' isActor=true categoryAdversary=@../key}}
                     </div>

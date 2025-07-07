@@ -22,6 +22,11 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         };
     }
 
+    /**@returns {ItemDataModelMetadata}*/
+    get metadata() {
+        return this.constructor.metadata;
+    }
+
     /** @inheritDoc */
     static defineSchema() {
         const schema = {};
@@ -60,9 +65,9 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     /**@inheritdoc */
     async _preCreate(data, options, user) {
         // Skip if no initial action is required or actions already exist
-        if (!this.constructor.metadata.hasInitialAction || !foundry.utils.isEmpty(this.actions)) return;
+        if (!this.metadata.hasInitialAction || !foundry.utils.isEmpty(this.actions)) return;
 
-        const metadataType = this.constructor.metadata.type;
+        const metadataType = this.metadata.type;
         const actionType = { weapon: 'attack' }[metadataType];
         const ActionClass = game.system.api.models.actions.actionsTypes[actionType];
 

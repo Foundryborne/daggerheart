@@ -1,3 +1,4 @@
+import DHAdversarySettings from '../../applications/sheets-configs/adversary-settings.mjs';
 import ActionField from '../fields/actionField.mjs';
 import BaseDataActor from './base.mjs';
 
@@ -13,7 +14,8 @@ export default class DhpAdversary extends BaseDataActor {
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.adversary',
-            type: 'adversary'
+            type: 'adversary',
+            settingSheet: DHAdversarySettings,
         });
     }
 
