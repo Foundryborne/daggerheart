@@ -1,11 +1,11 @@
+import DHBaseAction from "../action/baseAction.mjs";
+
 export default class DHApplyEffect extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
 
         return {
             title: new fields.StringField(),
-            origin: new fields.StringField({}),
-            description: new fields.StringField({}),
             targets: new fields.ArrayField(
                 new fields.SchemaField({
                     id: new fields.StringField({ required: true }),
@@ -14,10 +14,24 @@ export default class DHApplyEffect extends foundry.abstract.TypeDataModel {
                     hit: new fields.BooleanField({ initial: false })
                 })
             ),
-            action: new fields.SchemaField({
-                itemId: new fields.StringField(),
-                actionId: new fields.StringField()
+            targetSelection: new fields.BooleanField({ initial: true }),
+            source: new fields.SchemaField({
+                actor: new fields.StringField(),
+                item: new fields.StringField(),
+                action: new fields.StringField()
             })
         };
+    }
+
+    prepareDerivedData() {
+        this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
+        this.currentTargets =
+            this.targetSelection !== true
+                ? Array.from(game.user.targets).map(t => DHBaseAction.formatTarget(t))
+                : this.targets;
+    }
+
+    get messageTemplate() {
+        return 'systems/daggerheart/templates/ui/chat/apply-effects.hbs';
     }
 }

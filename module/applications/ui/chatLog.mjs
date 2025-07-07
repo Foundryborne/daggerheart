@@ -158,7 +158,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const targetSelection = event.target
                 .closest('.message-content')
                 .querySelector('.button-target-selection.target-selected'),
-            isHit = Boolean(targetSelection.dataset.targetHit);
+            isHit = Boolean(targetSelection?.dataset?.targetHit) ?? false;
         return {
             isHit,
             targets: isHit

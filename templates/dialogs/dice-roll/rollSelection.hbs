@@ -1,6 +1,6 @@
 <div>
-    {{#if @root.hasRoll}}
         <div class="roll-dialog-container">
+    {{#if @root.hasRoll}}
             {{#unless @root.isLite}}
                 <div class="dices-section">
                     {{#if (eq @root.rollType 'D20Roll')}}
@@ -121,6 +121,10 @@
                 <i class="fa-solid fa-dice"></i>
                 <span class="label">Roll</span>
             </button>
-        </div>
+    {{else}}
+        <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
+            <span class="label">Continue</span>
+        </button>
     {{/if}}
+        </div>
 </div>

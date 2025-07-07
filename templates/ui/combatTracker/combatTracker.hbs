@@ -1,8 +1,8 @@
 <div class="combat-tracker">
     {{#if (gt this.characters.length 0)}}
-        {{> 'systems/daggerheart/templates/ui/combat/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.GENERAL.Character.plural") turns=this.characters}}
+        {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.GENERAL.Character.plural") turns=this.characters}}
     {{/if}}
     {{#if (gt this.adversaries.length 0)}}
-        {{> 'systems/daggerheart/templates/ui/combat/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.GENERAL.Adversary.plural") turns=this.adversaries}}
+        {{> 'systems/daggerheart/templates/ui/combatTracker/combatTrackerSection.hbs' this title=(localize "DAGGERHEART.GENERAL.Adversary.plural") turns=this.adversaries}}
     {{/if}}
 </div>

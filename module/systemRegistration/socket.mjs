@@ -39,20 +39,16 @@ export const registerSocketHooks = () => {
                     }
                     break;
                 case GMUpdateEvent.UpdateSetting:
-                    if (game.user.isGM) {
-                        await game.settings.set(CONFIG.DH.id, data.uuid, data.update);
-                    }
+                    await game.settings.set(CONFIG.DH.id, data.uuid, data.update);
                     break;
                 case GMUpdateEvent.UpdateFear:
-                    if (game.user.isGM) {
-                        await game.settings.set(
-                            CONFIG.DH.id,
-                            CONFIG.DH.SETTINGS.gameSettings.Resources.Fear,
-                            Math.max(Math.min(data.update, 6), 0)
-                        );
-                        Hooks.callAll(socketEvent.DhpFearUpdate);
-                        await game.socket.emit(`system.${CONFIG.DH.id}`, { action: socketEvent.DhpFearUpdate });
-                    }
+                    await game.settings.set(
+                        CONFIG.DH.id,
+                        CONFIG.DH.SETTINGS.gameSettings.Resources.Fear,
+                        Math.max(0, Math.min(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear, data.update))
+                    );
+                    /* Hooks.callAll(socketEvent.DhpFearUpdate);
+                    await game.socket.emit(`system.${CONFIG.DH.id}`, { action: socketEvent.DhpFearUpdate }); */
                     break;
             }
 
@@ -66,3 +62,22 @@ export const registerSocketHooks = () => {
         }
     });
 };
+
+export const emitAsGM = async (eventName, callback, args) => {
+    if(!game.user.isGM) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await game.socket.emit(`system.${CONFIG.DH.id}`, {
+                    action: socketEvent.GMUpdate,
+                    data: {
+                        action: eventName,
+                        update: args
+                    }
+                });
+                resolve(response);
+            } catch (error) {
+                reject(error);
+            }
+        })
+    } else return callback(args);
+}

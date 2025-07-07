@@ -79,7 +79,10 @@ export default class DualityRoll extends D20Roll {
         return game.i18n.localize(label);
     }
 
-    updateFormula() {}
+    static getHooks(hooks) {
+        
+        return [...(hooks ?? []), 'Duality'];
+    }
 
     createBaseDice() {
         if (

@@ -1,9 +1,6 @@
-import { actionsTypes } from '../action/_module.mjs';
-
-// Temporary Solution
 export default class ActionField extends foundry.data.fields.ObjectField {
     getModel(value) {
-        return actionsTypes[value.type] ?? actionsTypes.attack;
+        return game.system.api.models.actions.actionsTypes[value.type] ?? game.system.api.models.actions.actionsTypes.attack;
     }
 
     /* -------------------------------------------- */
