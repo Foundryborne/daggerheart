@@ -15,7 +15,7 @@ export default class DhpAdversary extends BaseDataActor {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.adversary',
             type: 'adversary',
-            settingSheet: DHAdversarySettings,
+            settingSheet: DHAdversarySettings
         });
     }
 
@@ -74,7 +74,7 @@ export default class DhpAdversary extends BaseDataActor {
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
-                    modifier: new fields.NumberField({ required: true, integer: true, initial: 1 })
+                    total: new fields.NumberField({ required: true, integer: true, initial: 1 })
                 })
             ),
             bonuses: new fields.SchemaField({
