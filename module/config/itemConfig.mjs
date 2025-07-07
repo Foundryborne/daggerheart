@@ -108,7 +108,7 @@ export const armorFeatures = {
                 changes: [
                     {
                         key: 'system.rules.damageReduction.increasePerArmorMark',
-                        mode: 3,
+                        mode: 5,
                         value: '2'
                     }
                 ]
@@ -201,7 +201,7 @@ export const armorFeatures = {
                 changes: [
                     {
                         key: 'system.rules.damageReduction.magic',
-                        mode: 3,
+                        mode: 5,
                         value: '1'
                     }
                 ]
@@ -210,41 +210,166 @@ export const armorFeatures = {
     },
     physical: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.physical.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.physical.description'
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.physical.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.physical.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.physical.description',
+                img: 'icons/commodities/stone/ore-pile-tan.webp',
+                changes: [
+                    {
+                        key: 'system.rules.damageReduction.physical',
+                        mode: 5,
+                        value: '1'
+                    }
+                ]
+            }
+        ]
     },
     quiet: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.quiet.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.quiet.description'
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.quiet.description',
+        actions: [
+            {
+                type: 'effect',
+                actionType: 'action',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.quiet.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.quiet.description',
+                img: 'icons/magic/perception/silhouette-stealth-shadow.webp'
+            }
+        ]
     },
     reinforced: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.description'
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.description',
+        actions: [
+            {
+                type: 'effect',
+                actionType: 'action',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.description',
+                img: 'icons/magic/defensive/shield-barrier-glowing-triangle-green.webp',
+                effects: [
+                    {
+                        name: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.name',
+                        description: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.description',
+                        img: 'icons/magic/defensive/shield-barrier-glowing-triangle-green.webp',
+                        changes: [
+                            {
+                                key: 'system.bunuses.damageThresholds.major',
+                                mode: 2,
+                                value: '2'
+                            },
+                            {
+                                key: 'system.bunuses.damageThresholds.severe',
+                                mode: 2,
+                                value: '2'
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     resilient: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.description'
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.description',
+        actions: [
+            {
+                type: 'effect',
+                actionType: 'action',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.description',
+                img: 'icons/magic/life/heart-cross-purple-orange.webp'
+            }
+        ]
     },
     sharp: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.description'
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.description',
+        actions: [
+            {
+                type: 'damage',
+                actionType: 'action',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.description',
+                img: 'icons/skills/melee/blade-tips-triple-bent-white.webp',
+                damage: {
+                    parts: [
+                        {
+                            type: 'physical',
+                            value: {
+                                custom: {
+                                    enabled: true,
+                                    formula: '1d4'
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
     },
     shifting: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.shifting.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.shifting.description'
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.shifting.description',
+        actions: [
+            {
+                type: 'effect',
+                actionType: 'action',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.shifting.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.shifting.description',
+                img: 'icons/magic/defensive/illusion-evasion-echo-purple.webp',
+                cost: [
+                    {
+                        type: 'stress',
+                        value: 1
+                    }
+                ]
+            }
+        ]
     },
     timeslowing: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.description'
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.description',
+        actions: [
+            {
+                type: 'effect',
+                actionType: 'action',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.description',
+                img: 'icons/magic/time/hourglass-brown-orange.webp'
+            }
+        ]
     },
     truthseeking: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.truthseeking.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.truthseeking.description'
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.truthseeking.description',
+        actions: [
+            {
+                type: 'effect',
+                actionType: 'action',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.truthseeking.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.truthseeking.description',
+                img: 'icons/magic/perception/orb-crystal-ball-scrying-blue.webp'
+            }
+        ]
     },
     veryheavy: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.veryHeavy.name',
         description: 'DAGGERHEART.CONFIG.ArmorFeature.veryHeavy.description',
         effects: [
             {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.veryHeavy.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.veryHeavy.description',
+                img: 'icons/commodities/metal/ingot-stamped-steel.webp',
                 changes: [
                     {
                         key: 'system.evasion.bonus',
@@ -262,7 +387,21 @@ export const armorFeatures = {
     },
     warded: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.warded.name',
-        description: 'DAGGERHEART.CONFIG.ArmorFeature.warded.description'
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.warded.description',
+        effects: [
+            {
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.warded.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.warded.description',
+                img: 'icons/magic/defensive/barrier-shield-dome-pink.webp',
+                changes: [
+                    {
+                        key: 'system.bonuses.damageReduction.magical',
+                        mode: 2,
+                        value: '@system.armorScore'
+                    }
+                ]
+            }
+        ]
     }
 };
 
@@ -813,7 +952,7 @@ export const weaponFeatures = {
                     },
                     {
                         key: 'system.rules.weapon.dropLowestDamageDice',
-                        mode: 3,
+                        mode: 5,
                         value: '1'
                     }
                 ]
@@ -930,7 +1069,7 @@ export const weaponFeatures = {
                             },
                             {
                                 key: 'system.rules.weapon.dropLowestDamageDice',
-                                mode: 3,
+                                mode: 5,
                                 value: '1'
                             }
                         ]
@@ -1028,7 +1167,7 @@ export const weaponFeatures = {
                 changes: [
                     {
                         key: 'system.rules.damage.flipMinDiceValue',
-                        mode: 3,
+                        mode: 5,
                         value: 1
                     }
                 ]
@@ -1060,7 +1199,7 @@ export const weaponFeatures = {
                 changes: [
                     {
                         key: 'system.rules.damage.flipMinDiceValue',
-                        mode: 3,
+                        mode: 5,
                         value: 1
                     }
                 ]
