@@ -11,7 +11,7 @@ export default class DHCompanionSettings extends DHBaseActorSettings {
         position: { width: 455, height: 'auto' },
         actions: {
             levelUp: DHCompanionSettings.#levelUp
-        },
+        }
     };
 
     /**@inheritdoc */
@@ -34,7 +34,6 @@ export default class DHCompanionSettings extends DHBaseActorSettings {
             template: 'systems/daggerheart/templates/sheets-settings/companion-settings/attack.hbs'
         }
     };
-
 
     /** @inheritdoc */
     static TABS = {
@@ -68,9 +67,7 @@ export default class DHCompanionSettings extends DHBaseActorSettings {
      */
     async onPartnerChange(event) {
         const value = event.target.value;
-        const partnerDocument = value
-            ? await foundry.utils.fromUuid(value)
-            : this.actor.system.partner;
+        const partnerDocument = value ? await foundry.utils.fromUuid(value) : this.actor.system.partner;
         const partnerUpdate = { 'system.companion': value ? this.actor.uuid : null };
 
         if (!partnerDocument.isOwner) {

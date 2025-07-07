@@ -2,7 +2,6 @@ import DHBaseActorSheet from '../api/base-actor.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
-
 export default class DhCompanionSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['actor', 'companion'],
@@ -10,8 +9,8 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
         actions: {
             viewActor: this.viewActor,
             useItem: this.useItem,
-            toChat: this.toChat,
-        },
+            toChat: this.toChat
+        }
     };
 
     static PARTS = {
@@ -34,7 +33,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
-    
+
     static async viewActor(_, button) {
         const target = button.closest('[data-item-uuid]');
         const actor = await foundry.utils.fromUuid(target.dataset.itemUuid);

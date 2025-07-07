@@ -5,7 +5,7 @@ import { tagifyElement } from '../../../helpers/utils.mjs';
  * @typedef {object} DragDropConfig
  * @property {string} [dragSelector] - A CSS selector that identifies draggable elements.
  * @property {string} [dropSelector] - A CSS selector that identifies drop targets.
- * 
+ *
  * @typedef {object} ContextMenuConfig
  * @property {() => ContextMenuEntry[]} handler - A handler function that provides initial context options
  * @property {string} selector - A CSS selector to which the ContextMenu will be bound
@@ -37,15 +37,13 @@ import { tagifyElement } from '../../../helpers/utils.mjs';
 /**
  * @typedef {import("@client/applications/api/handlebars-application.mjs").HandlebarsRenderOptions} HandlebarsRenderOptions
  * @typedef {foundry.applications.types.ApplicationConfiguration} FoundryAppConfig
- * 
+ *
  * @typedef {FoundryAppConfig & HandlebarsRenderOptions & {
  *   dragDrop?: DragDropConfig[],
  *   tagifyConfigs?: TagifyConfig[],
  *   contextMenus?: ContextMenuConfig[],
  * }} DHSheetV2Configuration
  */
-
-
 
 /**
  * @template {Constructor<foundry.applications.api.DocumentSheet>} BaseDocumentSheet
@@ -164,15 +162,14 @@ export default function DHApplicationMixin(Base) {
          * @param {DragEvent} event
          * @protected
          */
-        _onDragStart(event) { }
+        _onDragStart(event) {}
 
         /**
          * Handle drop event.
          * @param {DragEvent} event
          * @protected
          */
-        _onDrop(event) { }
-
+        _onDrop(event) {}
 
         /* -------------------------------------------- */
         /*  Context Menu                                */
@@ -186,7 +183,6 @@ export default function DHApplicationMixin(Base) {
         }
 
         /* -------------------------------------------- */
-
 
         /**
          * Get the set of ContextMenu options which should be used for journal entry pages in the sidebar.
@@ -226,10 +222,15 @@ export default function DHApplicationMixin(Base) {
             const parent = this.document;
 
             const cls = getDocumentClass(documentClass);
-            return await cls.createDocuments([{
-                name: cls.defaultName({ type, parent }),
-                type,
-            }], { parent, renderSheet: !event.shiftKey });
+            return await cls.createDocuments(
+                [
+                    {
+                        name: cls.defaultName({ type, parent }),
+                        type
+                    }
+                ],
+                { parent, renderSheet: !event.shiftKey }
+            );
         }
 
         /**
@@ -251,7 +252,6 @@ export default function DHApplicationMixin(Base) {
             const { type, docId } = button.dataset;
             await this.document.getEmbeddedDocument(type, docId, { strict: true }).delete();
         }
-
     }
 
     return DHSheetV2;

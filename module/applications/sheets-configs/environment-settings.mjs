@@ -1,4 +1,4 @@
-import DHBaseActorSettings from "../sheets/api/actor-setting.mjs";
+import DHBaseActorSettings from '../sheets/api/actor-setting.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -48,7 +48,6 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
-
 
     /**
      *  Adds a new category entry to the actor.

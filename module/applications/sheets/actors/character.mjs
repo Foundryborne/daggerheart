@@ -24,7 +24,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             levelManagement: CharacterSheet.#levelManagement,
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             useItem: this.useItem, //TODO Fix this
-            toChat: this.toChat,
+            toChat: this.toChat
         },
         window: {
             resizable: true
@@ -89,7 +89,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _onRender(context, options) {
         await super._onRender(context, options);
 
-        this.element.querySelector('.level-value')?.addEventListener('change', (event) => this.document.updateLevel(Number(event.currentTarget.value)));
+        this.element
+            .querySelector('.level-value')
+            ?.addEventListener('change', event => this.document.updateLevel(Number(event.currentTarget.value)));
 
         this._createFilterMenus();
         this._createSearchFilter();
@@ -152,8 +154,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
-            case "loadout": await this._prepareLoadoutContext(context, options); break;
-            case "sidebar": await this._prepareSidebarContext(context, options); break;
+            case 'loadout':
+                await this._prepareLoadoutContext(context, options);
+                break;
+            case 'sidebar':
+                await this._prepareSidebarContext(context, options);
+                break;
         }
         return context;
     }
@@ -177,67 +183,75 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @protected
      */
     static _getContextMenuOptions() {
-
         /**
          * Get the item from the element.
          * @param {HTMLElement} el
          * @returns {foundry.documents.Item?}
          */
-        const getItem = (el) => this.actor.items.get(el.closest('[data-item-id]')?.dataset.itemId);
+        const getItem = el => this.actor.items.get(el.closest('[data-item-id]')?.dataset.itemId);
 
-        return [{
-            name: 'DAGGERHEART.Sheets.PC.ContextMenu.UseItem',
-            icon: '<i class="fa-solid fa-burst"></i>',
-            condition: el => {
-                const item = getItem(el);
-                return !['class', 'subclass'].includes(item.type);
+        return [
+            {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.UseItem',
+                icon: '<i class="fa-solid fa-burst"></i>',
+                condition: el => {
+                    const item = getItem(el);
+                    return !['class', 'subclass'].includes(item.type);
+                },
+                callback: (button, event) => CharacterSheet.useItem.call(this, event, button)
             },
-            callback: (button, event) => CharacterSheet.useItem.call(this, event, button)
-        }, {
-            name: 'DAGGERHEART.Sheets.PC.ContextMenu.Equip',
-            icon: '<i class="fa-solid fa-hands"></i>',
-            condition: el => {
-                const item = getItem(el);
-                return ['weapon', 'armor'].includes(item.type) && !item.system.equipped;
+            {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Equip',
+                icon: '<i class="fa-solid fa-hands"></i>',
+                condition: el => {
+                    const item = getItem(el);
+                    return ['weapon', 'armor'].includes(item.type) && !item.system.equipped;
+                },
+                callback: CharacterSheet.#toggleEquipItem.bind(this)
             },
-            callback: CharacterSheet.#toggleEquipItem.bind(this)
-        }, {
-            name: 'DAGGERHEART.Sheets.PC.ContextMenu.Unequip',
-            icon: '<i class="fa-solid fa-hands"></i>',
-            condition: el => {
-                const item = getItem(el);
-                return ['weapon', 'armor'].includes(item.type) && item.system.equipped;
+            {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Unequip',
+                icon: '<i class="fa-solid fa-hands"></i>',
+                condition: el => {
+                    const item = getItem(el);
+                    return ['weapon', 'armor'].includes(item.type) && item.system.equipped;
+                },
+                callback: CharacterSheet.#toggleEquipItem.bind(this)
             },
-            callback: CharacterSheet.#toggleEquipItem.bind(this)
-        }, {
-            name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToLoadout',
-            icon: '<i class="fa-solid fa-arrow-up"></i>',
-            condition: (el) => {
-                const item = getItem(el);
-                return ['domainCard'].includes(item.type) && item.system.inVault;
+            {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToLoadout',
+                icon: '<i class="fa-solid fa-arrow-up"></i>',
+                condition: el => {
+                    const item = getItem(el);
+                    return ['domainCard'].includes(item.type) && item.system.inVault;
+                },
+                callback: target => getItem(target).update({ 'system.inVault': false })
             },
-            callback: (target) => getItem(target).update({ 'system.inVault': false })
-        }, {
-            name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToVault',
-            icon: '<i class="fa-solid fa-arrow-down"></i>',
-            condition: el => {
-                const item = getItem(el);
-                return ['domainCard'].includes(item.type) && !item.system.inVault;
+            {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.ToVault',
+                icon: '<i class="fa-solid fa-arrow-down"></i>',
+                condition: el => {
+                    const item = getItem(el);
+                    return ['domainCard'].includes(item.type) && !item.system.inVault;
+                },
+                callback: target => getItem(target).update({ 'system.inVault': true })
             },
-            callback: (target) => getItem(target).update({ 'system.inVault': true })
-        }, {
-            name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
-            icon: '<i class="fa-regular fa-message"></i>',
-            callback: CharacterSheet.toChat.bind(this)
-        }, {
-            name: 'DAGGERHEART.Sheets.PC.ContextMenu.Edit',
-            icon: '<i class="fa-solid fa-pen-to-square"></i>',
-            callback: (target) => getItem(target).sheet.render({ force: true }),
-        }, {
-            name: 'DAGGERHEART.Sheets.PC.ContextMenu.Delete',
-            icon: '<i class="fa-solid fa-trash"></i>',
-            callback: (el) => getItem(el).delete()
-        }];
+            {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.SendToChat',
+                icon: '<i class="fa-regular fa-message"></i>',
+                callback: CharacterSheet.toChat.bind(this)
+            },
+            {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Edit',
+                icon: '<i class="fa-solid fa-pen-to-square"></i>',
+                callback: target => getItem(target).sheet.render({ force: true })
+            },
+            {
+                name: 'DAGGERHEART.Sheets.PC.ContextMenu.Delete',
+                icon: '<i class="fa-solid fa-trash"></i>',
+                callback: el => getItem(el).delete()
+            }
+        ];
     }
     /* -------------------------------------------- */
     /*  Filter Tracking                             */
@@ -359,7 +373,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
     }
 
-
     /* -------------------------------------------- */
     /*  Filter Menus                                */
     /* -------------------------------------------- */
@@ -450,7 +463,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             return new DhCharacterCreation(this.document).render({ force: true });
 
         const { value, subclass } = this.document.system.class;
-        if (!value || !subclass) return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClassOrSubclass'));
+        if (!value || !subclass)
+            return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClassOrSubclass'));
 
         new DhCharacterlevelUp(this.document).render({ force: true });
     }
@@ -493,7 +507,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     /**
      * Toggles the equipped state of an item (armor or weapon).
-     * @type {ApplicationClickAction} 
+     * @type {ApplicationClickAction}
      */
     static async #toggleEquipItem(_event, button) {
         //TODO: redo this
@@ -543,12 +557,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     /**
      * Toggles whether an item is stored in the vault.
-     * @type {ApplicationClickAction} 
+     * @type {ApplicationClickAction}
      */
     static async #toggleVault(event, button) {
         const docId = button.closest('[data-item-id]')?.dataset.itemId;
         const doc = this.document.items.get(docId);
-        await doc?.update({ 'system.inVault': !doc.system.inVault })
+        await doc?.update({ 'system.inVault': !doc.system.inVault });
     }
 
     /**
@@ -637,5 +651,4 @@ export default class CharacterSheet extends DHBaseActorSheet {
         itemData = itemData instanceof Array ? itemData : [itemData];
         return this.document.createEmbeddedDocuments('Item', itemData);
     }
-
 }

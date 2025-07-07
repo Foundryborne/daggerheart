@@ -1,4 +1,4 @@
-import DHBaseActorSettings from "../sheets/api/actor-setting.mjs";
+import DHBaseActorSettings from '../sheets/api/actor-setting.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -9,7 +9,7 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
         position: { width: 455, height: 'auto' },
         actions: {
             addExperience: DHAdversarySettings.#addExperience,
-            removeExperience: DHAdversarySettings.#removeExperience,
+            removeExperience: DHAdversarySettings.#removeExperience
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.tab.features' },
@@ -41,7 +41,6 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
             template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/features.hbs'
         }
     };
-
 
     /** @override */
     static TABS = {

@@ -11,44 +11,42 @@ const { ActorSheetV2 } = foundry.applications.sheets;
  * @mixes DHSheetV2
  */
 export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
-  /** @inheritDoc */
-  static DEFAULT_OPTIONS = {
-    classes: ['actor'],
-    position: {
-      width: 480,
-    },
-    form: {
-      submitOnChange: true
-    },
-    actions: {
-      openSettings: DHBaseActorSheet.#openSettings
-    },
-    dragDrop: [],
-  };
+    /** @inheritDoc */
+    static DEFAULT_OPTIONS = {
+        classes: ['actor'],
+        position: {
+            width: 480
+        },
+        form: {
+            submitOnChange: true
+        },
+        actions: {
+            openSettings: DHBaseActorSheet.#openSettings
+        },
+        dragDrop: []
+    };
 
-  /**@type {typeof DHBaseActorSettings}*/
-  #settingSheet;
+    /**@type {typeof DHBaseActorSettings}*/
+    #settingSheet;
 
-  /**@returns {DHBaseActorSettings|null} */
-  get settingSheet() {
-    const SheetClass = this.document.system.metadata.settingSheet;
-    return this.#settingSheet ??= SheetClass ? new SheetClass({document: this.document}): null;
-  }
+    /**@returns {DHBaseActorSettings|null} */
+    get settingSheet() {
+        const SheetClass = this.document.system.metadata.settingSheet;
+        return (this.#settingSheet ??= SheetClass ? new SheetClass({ document: this.document }) : null);
+    }
 
-  /**@inheritdoc */
-  async _prepareContext(_options) {
-    const context = await super._prepareContext(_options);
-    context.isNPC = this.document.isNPC;
-    return context;
-  }
+    /**@inheritdoc */
+    async _prepareContext(_options) {
+        const context = await super._prepareContext(_options);
+        context.isNPC = this.document.isNPC;
+        return context;
+    }
 
-  /**
-   * Open the Actor Setting Sheet
-   * @type {ApplicationClickAction}
-   */
-  static async #openSettings() {
-    await this.settingSheet.render({ force: true });
-  }
-
-
+    /**
+     * Open the Actor Setting Sheet
+     * @type {ApplicationClickAction}
+     */
+    static async #openSettings() {
+        await this.settingSheet.render({ force: true });
+    }
 }

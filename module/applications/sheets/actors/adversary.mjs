@@ -9,11 +9,11 @@ export default class AdversarySheet extends DHBaseActorSheet {
         actions: {
             reactionRoll: AdversarySheet.#reactionRoll,
             useItem: this.useItem,
-            toChat: this.toChat,
+            toChat: this.toChat
         },
         window: {
             resizable: true
-        },
+        }
     };
 
     static PARTS = {
@@ -23,7 +23,6 @@ export default class AdversarySheet extends DHBaseActorSheet {
         notes: { template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs' },
         effects: { template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs' }
     };
-
 
     /** @inheritdoc */
     static TABS = {
@@ -74,7 +73,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     }
 
     /**
-     * 
+     *
      * @type {ApplicationClickAction}
      */
     static async useItem(event) {
@@ -83,7 +82,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     }
 
     /**
-     * 
+     *
      * @type {ApplicationClickAction}
      */
     static async toChat(event, button) {
@@ -92,8 +91,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
-                description: `${experience.name} ${experience.modifier < 0 ? experience.modifier : `+${experience.modifier}`
-                    }`
+                description: `${experience.name} ${
+                    experience.modifier < 0 ? experience.modifier : `+${experience.modifier}`
+                }`
             };
             const msg = new cls({
                 type: 'abilityUse',
@@ -111,5 +111,4 @@ export default class AdversarySheet extends DHBaseActorSheet {
             item.toChat(this.document.id);
         }
     }
-
 }

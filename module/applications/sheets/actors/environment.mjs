@@ -48,7 +48,7 @@ export default class DhpEnvironment extends DHBaseActorSheet {
     /* -------------------------------------------- */
 
     /**
-     * 
+     *
      * @type {ApplicationClickAction}
      */
     async viewAdversary(_, button) {
