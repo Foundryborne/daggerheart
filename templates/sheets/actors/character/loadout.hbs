@@ -1,8 +1,5 @@
-<section
-    class='tab {{tabs.loadout.cssClass}} {{tabs.loadout.id}}'
-    data-tab='{{tabs.loadout.id}}'
-    data-group='{{tabs.loadout.group}}'
->
+<section class='tab {{tabs.loadout.cssClass}} {{tabs.loadout.id}}' data-tab='{{tabs.loadout.id}}'
+    data-group='{{tabs.loadout.group}}'>
     <div class="search-section">
         <div class="search-bar">
             <div class="icon">
@@ -13,29 +10,28 @@
         <a class="filter-button">
             <i class="fa-solid fa-filter"></i>
         </a>
-        <button class="btn-toggle-view" data-action="toggleLoadoutView" data-value="{{this.abilities.loadout.listView}}">
-            <span class="{{#if this.abilities.loadout.listView}}list-active{{/if}} list-icon">
+        <button type="button" class="btn-toggle-view" data-action="toggleLoadoutView" data-value="{{listView}}">
+            <span class="{{ifThen listView 'list-active' ''}} list-icon">
                 <i class="fa-solid fa-bars"></i>
             </span>
-            <span class="{{#unless this.abilities.loadout.listView}}grid-active{{/unless}} grid-icon">
+            <span class="{{ifThen listView '' 'grid-active'}} grid-icon">
                 <i class="fa-solid fa-grip"></i>
             </span>
         </button>
     </div>
 
     <div class="items-section">
-        {{#if this.abilities.loadout.listView}}
-        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.GENERAL.Tabs.loadout') type='domainCard' isGlassy=true cardView='list'}}
-        {{else}}
-        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.GENERAL.Tabs.loadout') type='domainCard' isGlassy=true cardView='card'}}
-        {{/if}}
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs'
+        title=(localize 'DAGGERHEART.GENERAL.Tabs.loadout')
+        type='domainCard'
+        isGlassy=true
+        cardView=(ifThen listView "list" "card")}}
 
-        {{#if this.abilities.loadout.listView}}
-        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.GENERAL.Tabs.vault') type='domainCard' isVault=true isGlassy=true cardView='list'}}
-        {{else}}
-        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize 'DAGGERHEART.GENERAL.Tabs.vault') type='domainCard' isVault=true isGlassy=true cardView='card'}}
-        {{/if}}
-        
-        
+        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs'
+        title=(localize 'DAGGERHEART.GENERAL.Tabs.vault')
+        type='domainCard'
+        isVault=true
+        isGlassy=true
+        cardView=(ifThen listView "list" "card")}}
     </div>
 </section>

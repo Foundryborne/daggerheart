@@ -1,22 +1,15 @@
-import DaggerheartSheet from '../daggerheart-sheet.mjs';
-import DHCompanionSettings from '../../sheets-configs/companion-settings.mjs';
+import DHBaseActorSheet from '../api/base-actor.mjs';
 
-const { ActorSheetV2 } = foundry.applications.sheets;
-export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+
+export default class DhCompanionSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
-        tag: 'form',
-        classes: ['daggerheart', 'sheet', 'actor', 'dh-style', 'companion'],
+        classes: ['actor', 'companion'],
         position: { width: 300 },
         actions: {
             viewActor: this.viewActor,
-            openSettings: this.openSettings,
             useItem: this.useItem,
             toChat: this.toChat
-        },
-        form: {
-            handler: this.updateForm,
-            submitOnChange: true,
-            closeOnSubmit: false
         }
     };
 
@@ -26,37 +19,20 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
         effects: { template: 'systems/daggerheart/templates/sheets/actors/companion/effects.hbs' }
     };
 
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
     static TABS = {
-        details: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'details',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.details'
-        },
-        effects: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'effects',
-            icon: null,
-            label: 'DAGGERHEART.GENERAL.Tabs.effects'
+        primary: {
+            tabs: [{ id: 'details' }, { id: 'effects' }],
+            initial: 'details',
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-        context.document = this.document;
-        context.tabs = super._getTabs(this.constructor.TABS);
-
-        return context;
-    }
-
-    static async updateForm(event, _, formData) {
-        await this.document.update(formData.object);
-        this.render();
-    }
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
 
     static async viewActor(_, button) {
         const target = button.closest('[data-item-uuid]');
@@ -100,9 +76,5 @@ export default class DhCompanionSheet extends DaggerheartSheet(ActorSheetV2) {
             const item = this.getAction(event) ?? this.document.system.attack;
             item.toChat(this.document.id);
         }
-    }
-
-    static async openSettings() {
-        await new DHCompanionSettings(this.document).render(true);
     }
 }

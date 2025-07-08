@@ -1,5 +1,7 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
+//Just used by action config
+
 export default function DhpApplicationMixin(Base) {
     return class DhpSheetV2 extends HandlebarsApplicationMixin(Base) {
         constructor(options = {}) {

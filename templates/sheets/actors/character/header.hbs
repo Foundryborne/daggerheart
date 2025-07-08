@@ -13,7 +13,8 @@
         <div class='level-div'>
             <h3 class='label'>
                 {{#if (or document.system.needsCharacterSetup document.system.levelData.canLevelUp)}}
-                    <button 
+                    <button
+                        type="button"
                         class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.Sheets.PC.CharacterSetup"}}{{else}}{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}{{/if}}"
                         data-action="levelManagement"
                     >
@@ -28,42 +29,42 @@
     <div class="character-details">
         <div>
             {{#if document.system.class.value}}
-                <span data-action="viewObject" data-value="{{document.system.class.value.uuid}}">{{document.system.class.value.name}}</span>
+                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.class.value.id}}">{{document.system.class.value.name}}</span>
             {{else}}
-                <span>{{localize 'TYPES.Item.class'}}</span>
+                <span data-action="openPack" data-key="daggerheart.classes">{{localize 'TYPES.Item.class'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.class.subclass}}
-                <span data-action="viewObject" data-value="{{document.system.class.subclass.uuid}}">{{document.system.class.subclass.name}}</span>
+                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.class.subclass.id}}">{{document.system.class.subclass.name}}</span>
             {{else}}
-                <span data-action="selectSubclass">{{localize 'TYPES.Item.subclass'}}</span>
+                <span data-action="openPack" data-key="daggerheart.subclass">{{localize 'TYPES.Item.subclass'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.community}}
-                <span data-action="viewObject" data-value="{{document.system.community.uuid}}">{{document.system.community.name}}</span>
+                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.community.id}}">{{document.system.community.name}}</span>
             {{else}}
-                <span data-action="selectCommunity">{{localize 'TYPES.Item.community'}}</span>
+                <span data-action="openPack" data-key="daggerheart.community">{{localize 'TYPES.Item.community'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.ancestry}}
-                <span data-action="viewObject" data-value="{{document.system.ancestry.uuid}}">{{document.system.ancestry.name}}</span>
+                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.ancestry.id}}">{{document.system.ancestry.name}}</span>
             {{else}}
-                <span data-action="selectAncestry">{{localize 'TYPES.Item.ancestry'}}</span>
+                <span data-action="openPack" data-key="daggerheart.ancestry">{{localize 'TYPES.Item.ancestry'}}</span>
             {{/if}}
         </div>
 
         {{#if document.system.multiclass.value}}
             <div class="multiclass">
                 {{#if document.system.multiclass.value}}
-                    <span data-action="viewObject" data-value="{{document.system.multiclass.value.uuid}}">{{document.system.multiclass.value.name}}</span>
+                    <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.multiclass.value.id}}">{{document.system.multiclass.value.name}}</span>
                 {{else}}
-                    <span>{{localize 'DAGGERHEART.GENERAL.multiclass'}}</span>
+                    <span data-action="openPack" data-key="daggerheart.classes">{{localize 'DAGGERHEART.GENERAL.multiclass'}}</span>
                 {{/if}}
                 <span class="dot">•</span>
                 {{#if document.system.multiclass.subclass}}
-                    <span data-action="viewObject" data-value="{{document.system.multiclass.subclass.uuid}}">{{document.system.multiclass.subclass.name}}</span>
+                    <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.multiclass.subclass.id}}">{{document.system.multiclass.subclass.name}}</span>
                 {{else}}
-                    <span data-action="selectSubclass">{{localize 'TYPES.Item.subclass'}}</span>
+                    <span data-action="openPack" data-key="daggerheart.subclass">{{localize 'TYPES.Item.subclass'}}</span>
                 {{/if}}
             </div>
         {{/if}}
@@ -95,7 +96,7 @@
 
     <div class="character-traits">
         {{#each this.attributes as |attribute key|}}
-            <div class="trait" data-tooltip="{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="attributeRoll" data-attribute="{{key}}" data-value="{{attribute.total}}">
+            <div class="trait" data-tooltip="{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.total}}">
                 <div class="trait-name">
                     <span>{{localize (concat 'DAGGERHEART.CONFIG.Traits.' key '.short')}}</span>
                     {{#if attribute.tierMarked}}

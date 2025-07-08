@@ -3,12 +3,12 @@
     <div class="card-label">
         <div class="controls">
             {{#if (eq type 'weapon')}}
-                <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" id="{{item.id}}" data-tooltip="{{#unless item.system.equipped}}{{localize 'CONTROLS.CommonEdit'}}{{else}}{{localize 'DAGGERHEART.UI.Tooltip.unequip'}}{{/unless}}">
+                <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.UI.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.UI.Tooltip.unequip'}}{{/unless}}">
                     <i class="fa-solid fa-hands"></i>
                 </a>
             {{/if}}
             {{#if (eq type 'armor')}}
-                <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" id="{{item.id}}" data-tooltip="{{#unless item.system.equipped}}{{localize 'CONTROLS.CommonEdit'}}{{else}}{{localize 'DAGGERHEART.UI.Tooltip.unequip'}}{{/unless}}">
+                <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.UI.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.UI.Tooltip.unequip'}}{{/unless}}">
                 <i class="fa-solid fa-shield"></i>
                 </a>
             {{/if}}

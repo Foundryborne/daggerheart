@@ -3,6 +3,8 @@ import DHApplicationMixin from './application-mixin.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
 
+/**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
+
 /**
  * A base item sheet extending {@link ItemSheetV2} via {@link DHApplicationMixin}
  * @extends ItemSheetV2
@@ -92,8 +94,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**
      * Add a new action to the item, prompting the user for its type.
-     * @param {PointerEvent} _event - The originating click event
-     * @param {HTMLElement} _button - The capturing HTML element which defines the [data-action="addAction"]
+     * @type {ApplicationClickAction}
      */
     static async #addAction(_event, _button) {
         const actionType = await DHBaseItemSheet.selectActionType();
@@ -124,8 +125,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**
      * Edit an existing action on the item
-     * @param {PointerEvent} _event - The originating click event
-     * @param {HTMLElement} button - The capturing HTML element which defines the [data-action="editAction"]
+     * @type {ApplicationClickAction}
      */
     static async #editAction(_event, button) {
         const action = this.document.system.actions[button.dataset.index];
@@ -134,8 +134,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**
      * Remove an action from the item.
-     * @param {PointerEvent} event - The originating click event
-     * @param {HTMLElement} button - The capturing HTML element which defines the [data-action="removeAction"]
+     * @type {ApplicationClickAction}
      */
     static async #removeAction(event, button) {
         event.stopPropagation();
@@ -147,8 +146,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**
      * Add a new feature to the item, prompting the user for its type.
-     * @param {PointerEvent} _event - The originating click event
-     * @param {HTMLElement} _button - The capturing HTML element which defines the [data-action="addFeature"]
+     * @type {ApplicationClickAction}
      */
     static async #addFeature(_event, _button) {
         const feature = await game.items.documentClass.create({
@@ -162,8 +160,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**
      * Edit an existing feature on the item
-     * @param {PointerEvent} _event - The originating click event
-     * @param {HTMLElement} button - The capturing HTML element which defines the [data-action="editFeature"]
+     * @type {ApplicationClickAction}
      */
     static async #editFeature(_event, button) {
         const target = button.closest('.feature-item');
@@ -178,8 +175,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
     /**
      * Remove a feature from the item.
-     * @param {PointerEvent} event - The originating click event
-     * @param {HTMLElement} button - The capturing HTML element which defines the [data-action="removeFeature"]
+     * @type {ApplicationClickAction}
      */
     static async #removeFeature(event, button) {
         event.stopPropagation();

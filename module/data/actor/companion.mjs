@@ -3,6 +3,7 @@ import DhLevelData from '../levelData.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ActionField from '../fields/actionField.mjs';
 import { adjustDice, adjustRange } from '../../helpers/utils.mjs';
+import DHCompanionSettings from '../../applications/sheets-configs/companion-settings.mjs';
 
 export default class DhCompanion extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Companion'];
@@ -10,7 +11,8 @@ export default class DhCompanion extends BaseDataActor {
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.companion',
-            type: 'companion'
+            type: 'companion',
+            settingSheet: DHCompanionSettings
         });
     }
 

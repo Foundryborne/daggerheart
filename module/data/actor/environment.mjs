@@ -1,5 +1,6 @@
 import BaseDataActor from './base.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
+import DHEnvironmentSettings from '../../applications/sheets-configs/environment-settings.mjs';
 
 export default class DhEnvironment extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Environment'];
@@ -7,7 +8,8 @@ export default class DhEnvironment extends BaseDataActor {
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.environment',
-            type: 'environment'
+            type: 'environment',
+            settingSheet: DHEnvironmentSettings
         });
     }
 
