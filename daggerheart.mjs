@@ -56,7 +56,6 @@ Hooks.once('init', () => {
 
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, ...[DHRoll, DualityRoll, D20Roll, DamageRoll]];
     CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
-    CONFIG.MeasuredTemplate.defaults.angle = 180;
 
     CONFIG.Item.documentClass = documents.DHItem;
 

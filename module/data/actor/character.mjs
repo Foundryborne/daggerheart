@@ -1,5 +1,4 @@
 import { burden } from '../../config/generalConfig.mjs';
-import ActionField from '../fields/actionField.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
 import BaseDataActor from './base.mjs';
@@ -29,7 +28,7 @@ export default class DhCharacter extends BaseDataActor {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.character',
             type: 'character',
-            isNPC: false,
+            isNPC: false
         });
     }
 

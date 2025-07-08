@@ -5,13 +5,13 @@ import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 
 export default class DhpActor extends Actor {
-
     /**
      * Return the first Actor active owner.
      */
     get owner() {
-        const user = this.hasPlayerOwner && game.users.players.find(u => this.testUserPermission(u, "OWNER") && u.active);;
-        if(!user) return game.user.isGM ? game.user : null;
+        const user =
+            this.hasPlayerOwner && game.users.players.find(u => this.testUserPermission(u, 'OWNER') && u.active);
+        if (!user) return game.user.isGM ? game.user : null;
         return user;
     }
 
@@ -153,7 +153,6 @@ export default class DhpActor extends Actor {
     }
 
     async levelUp(levelupData) {
-        const actions = [];
         const levelups = {};
         for (var levelKey of Object.keys(levelupData)) {
             const level = levelupData[levelKey];
@@ -317,7 +316,6 @@ export default class DhpActor extends Actor {
 
         await this.update({
             system: {
-                actions: [...this.system.actions, ...actions],
                 levelData: {
                     level: {
                         current: this.system.levelData.level.changed
@@ -369,16 +367,16 @@ export default class DhpActor extends Actor {
         const modifier = roll.modifier !== null ? Number.parseInt(roll.modifier) : null;
         return modifier !== null
             ? [
-                {
-                    value: modifier,
-                    label: roll.label
-                        ? modifier >= 0
-                            ? `${roll.label} +${modifier}`
-                            : `${roll.label} ${modifier}`
-                        : null,
-                    title: roll.label
-                }
-            ]
+                  {
+                      value: modifier,
+                      label: roll.label
+                          ? modifier >= 0
+                              ? `${roll.label} +${modifier}`
+                              : `${roll.label} ${modifier}`
+                          : null,
+                      title: roll.label
+                  }
+              ]
             : [];
     }
 
@@ -460,7 +458,7 @@ export default class DhpActor extends Actor {
 
         if (Hooks.call(`${CONFIG.DH.id}.postDamageTreshold`, this, hpDamage, damage, type) === false) return null;
 
-        if(!hpDamage) return;
+        if (!hpDamage) return;
 
         const updates = [{ value: hpDamage, type: 'hitPoints' }];
 
@@ -469,8 +467,8 @@ export default class DhpActor extends Actor {
             this.system.armor &&
             this.system.armor.system.marks.value < this.system.armorScore
         ) {
-            const armorStackResult = await this.owner.query('armorStack', {actorId: this.uuid, damage: hpDamage});
-            if(armorStackResult) {
+            const armorStackResult = await this.owner.query('armorStack', { actorId: this.uuid, damage: hpDamage });
+            if (armorStackResult) {
                 const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
                 updates.find(u => u.type === 'hitPoints').value = modifiedDamage;
                 updates.push(
@@ -479,7 +477,7 @@ export default class DhpActor extends Actor {
                 );
             }
         }
-        
+
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damage, type) === false) return null;
@@ -493,7 +491,7 @@ export default class DhpActor extends Actor {
     async modifyResource(resources) {
         if (!resources.length) return;
 
-        if(resources.find(r => r.type === 'stress')) this.convertStressDamageToHP(resources);
+        if (resources.find(r => r.type === 'stress')) this.convertStressDamageToHP(resources);
         let updates = { actor: { target: this, resources: {} }, armor: { target: this.system.armor, resources: {} } };
         resources.forEach(r => {
             switch (r.type) {
@@ -521,7 +519,12 @@ export default class DhpActor extends Actor {
         });
         Object.values(updates).forEach(async u => {
             if (Object.keys(u.resources).length > 0) {
-                await emitAsGM(GMUpdateEvent.UpdateDocument, u.target.update.bind(u.target), u.resources, u.target.uuid);
+                await emitAsGM(
+                    GMUpdateEvent.UpdateDocument,
+                    u.target.update.bind(u.target),
+                    u.resources,
+                    u.target.uuid
+                );
                 /* if (game.user.isGM) {
                     await u.target.update(u.resources);
                 } else {
@@ -540,27 +543,28 @@ export default class DhpActor extends Actor {
 
     convertDamageToThreshold(damage) {
         return damage >= this.system.damageThresholds.severe
-                ? 3
-                : damage >= this.system.damageThresholds.major
-                  ? 2
-                  : damage >= this.system.damageThresholds.minor
-                    ? 1
-                    : 0;
+            ? 3
+            : damage >= this.system.damageThresholds.major
+              ? 2
+              : damage >= this.system.damageThresholds.minor
+                ? 1
+                : 0;
     }
 
     convertStressDamageToHP(resources) {
         const stressDamage = resources.find(r => r.type === 'stress'),
             newValue = this.system.resources.stress.value + stressDamage.value;
-        if(newValue <= this.system.resources.stress.maxTotal) return;
+        if (newValue <= this.system.resources.stress.maxTotal) return;
         const hpDamage = resources.find(r => r.type === 'hitPoints');
-        if(hpDamage) hpDamage.value++;
-        else resources.push({
-            type: 'hitPoints',
-            value: 1
-        })
+        if (hpDamage) hpDamage.value++;
+        else
+            resources.push({
+                type: 'hitPoints',
+                value: 1
+            });
     }
 }
 
 export const registerDHActorHooks = () => {
     CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
-}
+};
