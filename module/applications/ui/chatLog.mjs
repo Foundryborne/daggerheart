@@ -215,7 +215,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true)
                 damage = Math.ceil(damage * (CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
 
-            await target.actor.takeDamage(damage, message.system.roll.type);
+            target.actor.takeDamage(damage, message.system.roll.type);
         }
     };
 
@@ -227,7 +227,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         for (var target of targets) {
-            await target.actor.takeHealing([{ value: message.system.roll.total, type: message.system.roll.type }]);
+            target.actor.takeHealing([{ value: message.system.roll.total, type: message.system.roll.type }]);
         }
     };
 
