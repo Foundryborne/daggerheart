@@ -511,7 +511,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const config = {
             event: event,
             title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
-            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', {
+            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             }),
             roll: {
