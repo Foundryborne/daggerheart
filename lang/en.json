@@ -1125,6 +1125,7 @@
                     "examples": { "label": "Examples" },
                     "advantageOn": { "label": "Gain Advantage On" },
                     "tokenImg": { "label": "Token Image" },
+                    "tokenRingImg": { "label": "Subject Texture" },
                     "tokenSize": {
                         "placeholder": "Using character dimensions",
                         "height": { "label": "Height" },
