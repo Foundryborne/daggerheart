@@ -219,8 +219,8 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     static async armorStackQuery({actorId, damage}) {
         return new Promise(async (resolve, reject) => {
             const actor = await fromUuid(actorId);
-            if(!actor || !actor?.testUserPermission(game.user, CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)) reject();
-            new DamageReductionDialog(resolve, reject, actor, damage).render(true);
+            if(!actor || !actor?.isOwner) reject();
+            new DamageReductionDialog(resolve, reject, actor, damage).render({ force: true });
         })
     }
 }

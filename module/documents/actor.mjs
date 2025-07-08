@@ -4,15 +4,16 @@ import DamageReductionDialog from '../applications/dialogs/damageReductionDialog
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 
-<<<<<<< HEAD
 export default class DhpActor extends Actor {
-    // Return the first active player with the ownership
+
+    /**
+     * Return the first Actor active owner.
+     */
     get owner() {
-        const user = this.hasPlayerOwner && game.users?.players.find(p => p.active && this.ownership[p.id ?? ""] === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER);
+        const user = this.hasPlayerOwner && game.users.players.find(u => this.testUserPermission(u, "OWNER") && u.active);;
         if(!user) return game.user.isGM ? game.user : null;
         return user;
-=======
-export default class DhpActor extends foundry.documents.Actor {
+    }
 
     /**
      * Whether this actor is an NPC.
@@ -20,7 +21,6 @@ export default class DhpActor extends foundry.documents.Actor {
      */
     get isNPC() {
         return this.system.metadata.isNPC;
->>>>>>> main
     }
 
     async _preCreate(data, options, user) {
