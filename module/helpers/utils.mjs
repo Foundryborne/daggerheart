@@ -159,7 +159,8 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
             return {
                 value: key,
                 name: game.i18n.localize(option.label),
-                src: option.src
+                src: option.src,
+                description: option.description
             };
         }),
         maxTags: maxTags,
@@ -173,11 +174,12 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
         },
         templates: {
             tag(tagData) {
-                return `<tag title="${tagData.title || tagData.value}"
+                return `<tag
                             contenteditable='false'
                             spellcheck='false'
                             tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
                             class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
+                            data-tooltip="${tagData.description || tagData.name}"
                             ${this.getAttributes(tagData)}> 
                     <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
                     <div>
