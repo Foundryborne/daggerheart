@@ -134,7 +134,7 @@
         <div class="dice-actions{{#unless (or hasDamage hasHealing)}} duality-alone{{/unless}}">
             {{#if hasDamage}}
                 {{#if damage.roll}}
-                    <button class="duality-action damage-button" data-target-hit="true" data-value="{{roll.total}}"><span>Deal Damage</span></button>
+                    <button class="duality-action damage-button" data-target-hit="true" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.damageRoll.dealDamage"}}</span></button>
                 {{else}}
                     <button class="duality-action duality-action-damage" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.rollDamage"}}</span></button>
                 {{/if}}

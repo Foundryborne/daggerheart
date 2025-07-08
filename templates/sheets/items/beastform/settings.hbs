@@ -8,17 +8,17 @@
         {{formGroup systemFields.examples value=source.system.examples localize=true}}
     </div>
 
-     <fieldset class="two-columns">
-        <legend>{{localize "DAGGERHEART.ITEMS.Beastform.FIELDS.advantageOn.label"}}</legend>
-        
-        {{!-- {{formGroup systemFields.examples value=source.system.examples localize=true}} --}}
-    </fieldset>
+    {{formGroup systemFields.advantageOn value=source.system.advantageOn localize=true}}
 
     <fieldset class="two-columns even">
         <legend>{{localize "DAGGERHEART.ITEMS.Beastform.tokenTitle"}}</legend>
 
         <div class="full-width">
             {{formGroup systemFields.tokenImg value=source.system.tokenImg localize=true}}
+        </div>
+
+        <div class="full-width">
+            {{formGroup systemFields.tokenRingImg value=source.system.tokenRingImg localize=true}}
         </div>
 
         {{formGroup systemFields.tokenSize.fields.height value=source.system.tokenSize.height localize=true placeholder=(localize "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.placeholder") }}

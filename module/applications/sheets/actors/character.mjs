@@ -188,7 +188,17 @@ export default class CharacterSheet extends DHBaseActorSheet {
          * @param {HTMLElement} el
          * @returns {foundry.documents.Item?}
          */
-        const getItem = el => this.actor.items.get(el.closest('[data-item-id]')?.dataset.itemId);
+        const getItem = element => {
+            const listElement = (element.target ?? element).closest('[data-item-id]');
+            const itemId = listElement.dataset.itemId;
+
+            switch (listElement.dataset.type) {
+                case 'effect':
+                    return this.document.effects.get(itemId);
+                default:
+                    return this.document.items.get(itemId);
+            }
+        };
 
         return [
             {

@@ -1,10 +1,19 @@
 import DamageSelectionDialog from '../applications/dialogs/damageSelectionDialog.mjs';
-import { GMUpdateEvent, socketEvent } from '../systemRegistration/socket.mjs';
+import { emitAsGM, emitAsOwner, GMUpdateEvent, socketEvent } from '../systemRegistration/socket.mjs';
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 
-export default class DhpActor extends foundry.documents.Actor {
+export default class DhpActor extends Actor {
+
+    /**
+     * Return the first Actor active owner.
+     */
+    get owner() {
+        const user = this.hasPlayerOwner && game.users.players.find(u => this.testUserPermission(u, "OWNER") && u.active);;
+        if(!user) return game.user.isGM ? game.user : null;
+        return user;
+    }
 
     /**
      * Whether this actor is an NPC.
@@ -440,49 +449,40 @@ export default class DhpActor extends foundry.documents.Actor {
     }
 
     async takeDamage(damage, type) {
+        if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, damage, type) === false) return null;
+
         if (this.type === 'companion') {
             await this.modifyResource([{ value: 1, type: 'stress' }]);
             return;
         }
 
-        const hpDamage =
-            damage >= this.system.damageThresholds.severe
-                ? 3
-                : damage >= this.system.damageThresholds.major
-                    ? 2
-                    : damage >= this.system.damageThresholds.minor
-                        ? 1
-                        : 0;
+        const hpDamage = this.convertDamageToThreshold(damage);
+
+        if (Hooks.call(`${CONFIG.DH.id}.postDamageTreshold`, this, hpDamage, damage, type) === false) return null;
+
+        if(!hpDamage) return;
+
+        const updates = [{ value: hpDamage, type: 'hitPoints' }];
 
         if (
             this.type === 'character' &&
             this.system.armor &&
             this.system.armor.system.marks.value < this.system.armorScore
         ) {
-            new Promise((resolve, reject) => {
-                new DamageReductionDialog(resolve, reject, this, hpDamage).render(true);
-            })
-                .then(async ({ modifiedDamage, armorSpent, stressSpent }) => {
-                    const resources = [
-                        { value: modifiedDamage, type: 'hitPoints' },
-                        ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : []),
-                        ...(stressSpent ? [{ value: stressSpent, type: 'stress' }] : [])
-                    ];
-                    await this.modifyResource(resources);
-                })
-                .catch(() => {
-                    const cls = getDocumentClass('ChatMessage');
-                    const msg = new cls({
-                        user: game.user.id,
-                        content: game.i18n.format('DAGGERHEART.UI.Notifications.damageIgnore', {
-                            character: this.name
-                        })
-                    });
-                    cls.create(msg.toObject());
-                });
-        } else {
-            await this.modifyResource([{ value: hpDamage, type: 'hitPoints' }]);
+            const armorStackResult = await this.owner.query('armorStack', {actorId: this.uuid, damage: hpDamage});
+            if(armorStackResult) {
+                const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
+                updates.find(u => u.type === 'hitPoints').value = modifiedDamage;
+                updates.push(
+                    ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : []),
+                    ...(stressSpent ? [{ value: stressSpent, type: 'stress' }] : [])
+                );
+            }
         }
+        
+        await this.modifyResource(updates);
+
+        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damage, type) === false) return null;
     }
 
     async takeHealing(resources) {
@@ -492,6 +492,8 @@ export default class DhpActor extends foundry.documents.Actor {
 
     async modifyResource(resources) {
         if (!resources.length) return;
+
+        if(resources.find(r => r.type === 'stress')) this.convertStressDamageToHP(resources);
         let updates = { actor: { target: this, resources: {} }, armor: { target: this.system.armor, resources: {} } };
         resources.forEach(r => {
             switch (r.type) {
@@ -519,7 +521,8 @@ export default class DhpActor extends foundry.documents.Actor {
         });
         Object.values(updates).forEach(async u => {
             if (Object.keys(u.resources).length > 0) {
-                if (game.user.isGM) {
+                await emitAsGM(GMUpdateEvent.UpdateDocument, u.target.update.bind(u.target), u.resources, u.target.uuid);
+                /* if (game.user.isGM) {
                     await u.target.update(u.resources);
                 } else {
                     await game.socket.emit(`system.${CONFIG.DH.id}`, {
@@ -530,8 +533,34 @@ export default class DhpActor extends foundry.documents.Actor {
                             update: u.resources
                         }
                     });
-                }
+                } */
             }
         });
     }
+
+    convertDamageToThreshold(damage) {
+        return damage >= this.system.damageThresholds.severe
+                ? 3
+                : damage >= this.system.damageThresholds.major
+                  ? 2
+                  : damage >= this.system.damageThresholds.minor
+                    ? 1
+                    : 0;
+    }
+
+    convertStressDamageToHP(resources) {
+        const stressDamage = resources.find(r => r.type === 'stress'),
+            newValue = this.system.resources.stress.value + stressDamage.value;
+        if(newValue <= this.system.resources.stress.maxTotal) return;
+        const hpDamage = resources.find(r => r.type === 'hitPoints');
+        if(hpDamage) hpDamage.value++;
+        else resources.push({
+            type: 'hitPoints',
+            value: 1
+        })
+    }
+}
+
+export const registerDHActorHooks = () => {
+    CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
 }

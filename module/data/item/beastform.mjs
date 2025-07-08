@@ -3,7 +3,7 @@ import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayFie
 import BaseDataItem from './base.mjs';
 
 export default class DHBeastform extends BaseDataItem {
-    static LOCALIZATION_PREFIXES = ['DAGGERHEART.Sheets.Beastform'];
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.ITEMS.Beastform'];
 
     /** @inheritDoc */
     static get metadata() {
@@ -29,12 +29,17 @@ export default class DHBeastform extends BaseDataItem {
                 categories: ['IMAGE'],
                 base64: false
             }),
+            tokenRingImg: new fields.FilePathField({
+                initial: 'icons/svg/mystery-man.svg',
+                categories: ['IMAGE'],
+                base64: false
+            }),
             tokenSize: new fields.SchemaField({
                 height: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true }),
                 width: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true })
             }),
             examples: new fields.StringField(),
-            advantageOn: new fields.ArrayField(new fields.StringField()),
+            advantageOn: new fields.StringField(),
             features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
         };
     }
@@ -56,40 +61,54 @@ export default class DHBeastform extends BaseDataItem {
             'Item',
             this.features.map(x => x.toObject())
         );
-        const effects = await this.parent.parent.createEmbeddedDocuments(
+
+        const extraEffects = await this.parent.parent.createEmbeddedDocuments(
             'ActiveEffect',
-            this.parent.effects.map(x => x.toObject())
+            this.parent.effects.filter(x => x.type !== 'beastform').map(x => x.toObject())
         );
 
-        await this.parent.parent.createEmbeddedDocuments('ActiveEffect', [
-            {
-                type: 'beastform',
-                name: game.i18n.localize('DAGGERHEART.ITEMS.Beastform.beastformEffect'),
-                img: 'icons/creatures/abilities/paw-print-pair-purple.webp',
-                system: {
-                    isBeastform: true,
-                    characterTokenData: {
-                        tokenImg: this.parent.parent.prototypeToken.texture.src,
-                        tokenSize: {
-                            height: this.parent.parent.prototypeToken.height,
-                            width: this.parent.parent.prototypeToken.width
-                        }
-                    },
-                    advantageOn: this.advantageOn,
-                    featureIds: features.map(x => x.id),
-                    effectIds: effects.map(x => x.id)
-                }
+        const beastformEffect = this.parent.effects.find(x => x.type === 'beastform');
+        await beastformEffect.updateSource({
+            system: {
+                characterTokenData: {
+                    tokenImg: this.parent.parent.prototypeToken.texture.src,
+                    tokenRingImg: this.parent.parent.prototypeToken.ring.subject.texture,
+                    tokenSize: {
+                        height: this.parent.parent.prototypeToken.height,
+                        width: this.parent.parent.prototypeToken.width
+                    }
+                },
+                advantageOn: this.advantageOn,
+                featureIds: features.map(x => x.id),
+                effectIds: extraEffects.map(x => x.id)
             }
-        ]);
+        });
+
+        await this.parent.parent.createEmbeddedDocuments('ActiveEffect', [beastformEffect.toObject()]);
 
         await updateActorTokens(this.parent.parent, {
             height: this.tokenSize.height,
             width: this.tokenSize.width,
             texture: {
                 src: this.tokenImg
+            },
+            ring: {
+                subject: {
+                    texture: this.tokenRingImg
+                }
             }
         });
 
         return false;
+    }
+
+    _onCreate() {
+        this.parent.createEmbeddedDocuments('ActiveEffect', [
+            {
+                type: 'beastform',
+                name: game.i18n.localize('DAGGERHEART.ITEMS.Beastform.beastformEffect'),
+                img: 'icons/creatures/abilities/paw-print-pair-purple.webp'
+            }
+        ]);
     }
 }

@@ -1,6 +1,6 @@
 import { damageKeyToNumber, getDamageLabel } from '../../helpers/utils.mjs';
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+const { DialogV2, ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageReductionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(resolve, reject, actor, damage) {
@@ -122,7 +122,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     getDamageInfo = () => {
         const selectedArmorMarks = Object.values(this.marks.armor).filter(x => x.selected);
         const selectedStressMarks = Object.values(this.marks.stress).filter(x => x.selected);
-        const stressReductions = Object.values(this.availableStressReductions).filter(red => red.selected);
+        const stressReductions = Object.values(this.availableStressReductions ?? {}).filter(red => red.selected);
         const currentMarks =
             this.actor.system.armor.system.marks.value + selectedArmorMarks.length + selectedStressMarks.length;
 
@@ -210,9 +210,17 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
     async close(fromSave) {
         if (!fromSave) {
-            this.reject();
+            this.resolve();
         }
 
         await super.close({});
+    }
+
+    static async armorStackQuery({actorId, damage}) {
+        return new Promise(async (resolve, reject) => {
+            const actor = await fromUuid(actorId);
+            if(!actor || !actor?.isOwner) reject();
+            new DamageReductionDialog(resolve, reject, actor, damage).render({ force: true });
+        })
     }
 }
