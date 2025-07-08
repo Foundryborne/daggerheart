@@ -139,6 +139,19 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static async #removeAction(event, button) {
         event.stopPropagation();
         const actionIndex = button.closest('[data-index]').dataset.index;
+        const action = this.document.system.actions[actionIndex];
+
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                    type: game.i18n.localize(`DAGGERHEART.GENERAL.Action.single`),
+                    name: action.name
+                })
+            },
+            content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: action.name })
+        });
+        if (!confirmed) return;
+
         await this.document.update({
             'system.actions': this.document.system.actions.filter((_, index) => index !== Number.parseInt(actionIndex))
         });
@@ -180,6 +193,20 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static async #removeFeature(event, button) {
         event.stopPropagation();
         const target = button.closest('.feature-item');
+        const feature = this.document.system.features.find(x => x && x.id === target.id);
+
+        if (feature) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                        type: game.i18n.localize(`TYPES.Item.feature`),
+                        name: feature.name
+                    })
+                },
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: feature.name })
+            });
+            if (!confirmed) return;
+        }
 
         await this.document.update({
             'system.features': this.document.system.features

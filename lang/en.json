@@ -213,6 +213,10 @@
                     "encounter": "Encounter"
                 }
             },
+            "DeleteConfirmation": {
+                "title": "Delete {type} - {name}",
+                "text": "Are you sure you want to delete {name}?"
+            },
             "DamageReduction": {
                 "armorMarks": "Armor Marks",
                 "armorWithStress": "Spend 1 stress to use an extra mark",

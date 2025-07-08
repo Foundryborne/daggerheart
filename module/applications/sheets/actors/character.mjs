@@ -249,7 +249,23 @@ export default class CharacterSheet extends DHBaseActorSheet {
             {
                 name: 'DAGGERHEART.Sheets.PC.ContextMenu.Delete',
                 icon: '<i class="fa-solid fa-trash"></i>',
-                callback: el => getItem(el).delete()
+                callback: async el => {
+                    const item = getItem(el);
+                    const confirmed = await foundry.applications.api.DialogV2.confirm({
+                        window: {
+                            title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                                type: game.i18n.localize(`TYPES.${item.documentName}.${item.type}`),
+                                name: item.name
+                            })
+                        },
+                        content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', {
+                            name: item.name
+                        })
+                    });
+                    if (!confirmed) return;
+
+                    item.delete();
+                }
             }
         ];
     }
@@ -372,7 +388,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             li.hidden = !(menu.has(item.id) && matchesSearch);
         }
     }
-  
+
     /* -------------------------------------------- */
     /*  Filter Menus                                */
     /* -------------------------------------------- */
