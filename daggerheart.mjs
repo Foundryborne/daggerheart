@@ -18,6 +18,7 @@ import {
 } from './module/systemRegistration/_module.mjs';
 import { placeables } from './module/canvas/_module.mjs';
 import { registerRollDiceHooks } from './module/dice/dhRoll.mjs';
+import { registerDHActorHooks } from './module/documents/actor.mjs';
 
 Hooks.once('init', () => {
     CONFIG.DH = SYSTEM;
@@ -154,6 +155,7 @@ Hooks.on('ready', () => {
     socketRegistration.registerSocketHooks();
     registerCountdownApplicationHooks();
     registerRollDiceHooks();
+    registerDHActorHooks();
 });
 
 Hooks.once('dicesoniceready', () => {});

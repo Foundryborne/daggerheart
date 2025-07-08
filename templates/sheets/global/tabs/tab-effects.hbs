@@ -17,7 +17,7 @@
                     <span>{{effect.name}}</span>
                     <div class="controls">
                         <a data-action="editDoc" data-type="ActiveEffect" data-doc-id="{{effect.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a data-action="deleteDoc" data-type="ActiveEffect" data-doc-id="{{effect.id}}"><i class="fa-solid fa-trash"></i></a>
+                        <a data-action="deleteDoc" data-type="ActiveEffect" data-doc-id="{{effect.id}}" {{disabled effect.mandatory}}><i class="fa-solid fa-trash icon-button {{disabled effect.mandatory}}"></i></a>
                     </div>
                 </div> 
             {{/each}}

@@ -1,6 +1,6 @@
 import { damageKeyToNumber, getDamageLabel } from '../../helpers/utils.mjs';
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+const { DialogV2, ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageReductionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(resolve, reject, actor, damage, damageType) {
@@ -223,9 +223,17 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
     async close(fromSave) {
         if (!fromSave) {
-            this.reject();
+            this.resolve();
         }
 
         await super.close({});
+    }
+
+    static async armorStackQuery({ actorId, damage, type }) {
+        return new Promise(async (resolve, reject) => {
+            const actor = await fromUuid(actorId);
+            if (!actor || !actor?.isOwner) reject();
+            new DamageReductionDialog(resolve, reject, actor, damage, type).render({ force: true });
+        });
     }
 }

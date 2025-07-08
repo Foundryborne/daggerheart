@@ -92,9 +92,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
-                description: `${experience.name} ${
-                    experience.modifier < 0 ? experience.modifier : `+${experience.modifier}`
-                }`
+                description: `${experience.name} ${experience.total.signedString()}`
             };
             const msg = new cls({
                 type: 'abilityUse',

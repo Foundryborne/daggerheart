@@ -45,7 +45,13 @@ export const registerSocketHooks = () => {
                     await game.settings.set(
                         CONFIG.DH.id,
                         CONFIG.DH.SETTINGS.gameSettings.Resources.Fear,
-                        Math.max(0, Math.min(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear, data.update))
+                        Math.max(
+                            0,
+                            Math.min(
+                                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
+                                data.update
+                            )
+                        )
                     );
                     /* Hooks.callAll(socketEvent.DhpFearUpdate);
                     await game.socket.emit(`system.${CONFIG.DH.id}`, { action: socketEvent.DhpFearUpdate }); */
@@ -63,21 +69,28 @@ export const registerSocketHooks = () => {
     });
 };
 
-export const emitAsGM = async (eventName, callback, args) => {
-    if(!game.user.isGM) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const response = await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                    action: socketEvent.GMUpdate,
-                    data: {
-                        action: eventName,
-                        update: args
-                    }
-                });
-                resolve(response);
-            } catch (error) {
-                reject(error);
+export const emitAsGM = async (eventName, callback, update, uuid = null) => {
+    if (!game.user.isGM) {
+        return await game.socket.emit(`system.${CONFIG.DH.id}`, {
+            action: socketEvent.GMUpdate,
+            data: {
+                action: eventName,
+                uuid,
+                update
             }
-        })
-    } else return callback(args);
-}
+        });
+    } else return callback(update);
+};
+
+export const emitAsOwner = (eventName, userId, args) => {
+    if (userId === game.user.id) return;
+    if (!eventName || !userId) return false;
+    game.socket.emit(`system.${CONFIG.DH.id}`, {
+        action: eventName,
+        data: {
+            userId,
+            ...args
+        }
+    });
+    return false;
+};

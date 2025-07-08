@@ -82,10 +82,24 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
     static async #deleteAdversary(event, target) {
         const adversaryKey = target.dataset.adversary;
         const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
-        console.log(target.dataset.potentialAdversar);
-        const newAdversaries = foundry.utils
-            .getProperty(this.actor, path)
-            .filter(x => x && (x?.uuid ?? x) !== adversaryKey);
+        const property = foundry.utils.getProperty(this.actor, path);
+        const adversary = property.find(x => (x?.uuid ?? x) === adversaryKey);
+
+        if (adversary) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                        type: game.i18n.localize('TYPES.Actor.adversary'),
+                        name: adversary.name
+                    })
+                },
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: adversary.name })
+            });
+
+            if (!confirmed) return;
+        }
+
+        const newAdversaries = property.filter(x => x && (x?.uuid ?? x) !== adversaryKey);
         await this.actor.update({ [path]: newAdversaries });
     }
 

@@ -218,7 +218,6 @@ export default function DHApplicationMixin(Base) {
          */
         static async #createDoc(event, button) {
             const { documentClass, type } = button.dataset;
-            console.log(documentClass, type);
             const parent = this.document;
 
             const cls = getDocumentClass(documentClass);
@@ -250,7 +249,23 @@ export default function DHApplicationMixin(Base) {
          */
         static async #deleteDoc(_event, button) {
             const { type, docId } = button.dataset;
-            await this.document.getEmbeddedDocument(type, docId, { strict: true }).delete();
+            const document = this.document.getEmbeddedDocument(type, docId, { strict: true });
+            const typeName = game.i18n.localize(
+                document.type === 'base' ? `DOCUMENT.${type}` : `TYPES.${type}.${document.type}`
+            );
+
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                        type: typeName,
+                        name: document.name
+                    })
+                },
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: document.name })
+            });
+            if (!confirmed) return;
+
+            await document.delete();
         }
     }
 

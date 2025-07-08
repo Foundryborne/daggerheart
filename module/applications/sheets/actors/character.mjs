@@ -188,7 +188,17 @@ export default class CharacterSheet extends DHBaseActorSheet {
          * @param {HTMLElement} el
          * @returns {foundry.documents.Item?}
          */
-        const getItem = el => this.actor.items.get(el.closest('[data-item-id]')?.dataset.itemId);
+        const getItem = element => {
+            const listElement = (element.target ?? element).closest('[data-item-id]');
+            const itemId = listElement.dataset.itemId;
+
+            switch (listElement.dataset.type) {
+                case 'effect':
+                    return this.document.effects.get(itemId);
+                default:
+                    return this.document.items.get(itemId);
+            }
+        };
 
         return [
             {
@@ -249,7 +259,23 @@ export default class CharacterSheet extends DHBaseActorSheet {
             {
                 name: 'CONTROLS.CommonDelete',
                 icon: '<i class="fa-solid fa-trash"></i>',
-                callback: el => getItem(el).delete()
+                callback: async el => {
+                    const item = getItem(el);
+                    const confirmed = await foundry.applications.api.DialogV2.confirm({
+                        window: {
+                            title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                                type: game.i18n.localize(`TYPES.${item.documentName}.${item.type}`),
+                                name: item.name
+                            })
+                        },
+                        content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', {
+                            name: item.name
+                        })
+                    });
+                    if (!confirmed) return;
+
+                    item.delete();
+                }
             }
         ];
     }
@@ -495,7 +521,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const config = {
             event: event,
             title: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
-            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilitychecktitle', {
+            headerTitle: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             }),
             roll: {
