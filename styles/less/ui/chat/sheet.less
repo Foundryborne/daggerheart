@@ -1,0 +1,33 @@
+.chat-message {
+    .duality-modifiers,
+    .duality-result,
+    .dice-title {
+        display: none;
+    }
+}
+
+fieldset.daggerheart.chat {
+    padding: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    legend {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        &:before,
+        &:after {
+            content: '\f0d8';
+            font-family: 'Font Awesome 6 Pro';
+        }
+    }
+    &.expanded {
+        legend:before,
+        legend:after {
+            content: '\f0d7';
+        }
+    }
+    .daggerheart.chat {
+        margin-top: 5px;
+    }
+}

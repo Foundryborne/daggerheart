@@ -1,0 +1,88 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+@import '../../utils/mixin.less';
+
+.appTheme({}, {
+    &.countdown {
+        .minimized-view .mini-countdown-container {
+            background-image: url('../assets/parchments/dh-parchment-dark.png');
+        }
+    }
+});
+
+.daggerheart.dh-style.countdown {
+    overflow: hidden;
+
+    .window-content {
+        > div {
+            height: 100%;
+
+            .expanded-view {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+
+                .countdowns-menu {
+                    display: flex;
+                    gap: 8px;
+
+                    .flex {
+                        flex: 1;
+                    }
+                }
+
+                .countdowns-container {
+                    display: flex;
+                    gap: 8px;
+                    flex-wrap: wrap;
+                    overflow: auto;
+                    max-height: 100%;
+
+                    .countdown-fieldset {
+                        width: 340px;
+                        height: min-content;
+                        position: relative;
+
+                        .ownership-button {
+                            position: absolute;
+                            top: 8px;
+                            right: 8px;
+                            font-size: 18px;
+                        }
+
+                        .countdown-container {
+                            display: flex;
+                            align-items: center;
+                            gap: 16px;
+
+                            img {
+                                width: 150px;
+                                height: 150px;
+                                cursor: pointer;
+
+                                &.disabled {
+                                    cursor: initial;
+                                }
+                            }
+
+                            .countdown-inner-container {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 4px;
+
+                                .countdown-value-container {
+                                    display: flex;
+                                    gap: 4px;
+
+                                    input {
+                                        max-width: 80px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

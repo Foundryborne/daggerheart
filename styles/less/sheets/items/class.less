@@ -1,0 +1,47 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.sheet.daggerheart.dh-style.class {
+    .tab.settings {
+        .fieldsets-section {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: 1fr 1.5fr 1.5fr;
+
+            .drop-section {
+                width: 100%;
+            }
+        }
+
+        .list-items {
+            margin-bottom: 10px;
+            width: 100%;
+            &:last-child {
+                margin-bottom: 0px;
+            }
+            .item-line {
+                display: grid;
+                align-items: center;
+                gap: 10px;
+                grid-template-columns: 1fr 3fr 1fr;
+                h4 {
+                    font-family: @font-body;
+                    font-weight: lighter;
+                    color: light-dark(@dark, @beige);
+                }
+                .image {
+                    height: 40px;
+                    width: 40px;
+                    object-fit: cover;
+                    border-radius: 6px;
+                    border: none;
+                }
+                .controls {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                }
+            }
+        }
+    }
+}

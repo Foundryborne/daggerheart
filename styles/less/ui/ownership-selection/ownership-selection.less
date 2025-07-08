@@ -1,0 +1,28 @@
+@import '../../utils/colors.less';
+
+.daggerheart.views.ownership-selection {
+    .ownership-outer-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .ownership-container {
+            display: flex;
+            border: 2px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            padding: 0 4px 0 0;
+            align-items: center;
+            gap: 8px;
+
+            img {
+                height: 40px;
+                width: 40px;
+                border-radius: 6px 0 0 6px;
+            }
+
+            select {
+                margin: 4px 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+.combat-sidebar {
+    .spotlight-control {
+        font-size: 26px;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &.discrete:hover {
+            background: inherit;
+        }
+
+        &.requesting {
+            filter: drop-shadow(0 0 3px gold);
+            color: var(--button-hover-text-color);
+        }
+    }
+}

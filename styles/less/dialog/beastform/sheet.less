@@ -1,0 +1,21 @@
+@import '../../utils/colors.less';
+@import '../../utils/mixin.less';
+
+.appTheme({
+    &.beastform-selection {
+        .beastforms-container .beastforms-tier .beastform-container .beastform-title {
+            background-image: url('../assets/parchments/dh-parchment-dark.png');
+        }
+    }
+}, {});
+
+.application.daggerheart.dh-style.views.beastform-selection {
+    footer {
+        margin-top: 8px;
+        display: flex;
+
+        button {
+            flex: 1;
+        }
+    }
+}
