@@ -107,7 +107,8 @@
                     "sendToChat": "Send To Chat",
                     "toLoadout": "Send to Loadout",
                     "toVault": "Send to Vault",
-                    "unequip": "Unequip"
+                    "unequip": "Unequip",
+                    "useItem": "Use Item"
                 },
                 "faith": "Faith",
                 "levelUp": "You can level up",
