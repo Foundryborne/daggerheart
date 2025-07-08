@@ -1,4 +1,4 @@
-export function handleSocketEvent({ action = null, data = {} } = {}, ...args) {
+export function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
         case socketEvent.GMUpdate:
             Hooks.callAll(socketEvent.GMUpdate, data);
