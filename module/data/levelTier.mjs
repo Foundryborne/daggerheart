@@ -70,7 +70,8 @@ export const CompanionLevelOptionType = {
             {
                 name: 'DAGGERHEART.APPLICATIONS.Levelup.actions.creatureComfort.name',
                 img: 'icons/magic/life/heart-cross-purple-orange.webp',
-                description: 'DAGGERHEART.APPLICATIONS.Levelup.actions.creatureComfort.description'
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.actions.creatureComfort.description',
+                toPartner: true
             }
         ]
     },
@@ -81,7 +82,8 @@ export const CompanionLevelOptionType = {
             {
                 name: 'DAGGERHEART.APPLICATIONS.Levelup.actions.armored.name',
                 img: 'icons/equipment/shield/kite-wooden-oak-glow.webp',
-                description: 'DAGGERHEART.APPLICATIONS.Levelup.actions.armored.description'
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.actions.armored.description',
+                toPartner: true
             }
         ]
     },
@@ -100,7 +102,8 @@ export const CompanionLevelOptionType = {
             {
                 name: 'DAGGERHEART.APPLICATIONS.Levelup.actions.bonded.name',
                 img: 'icons/magic/life/heart-red-blue.webp',
-                description: 'DAGGERHEART.APPLICATIONS.Levelup.actions.bonded.description'
+                description: 'DAGGERHEART.APPLICATIONS.Levelup.actions.bonded.description',
+                toPartner: true
             }
         ]
     },

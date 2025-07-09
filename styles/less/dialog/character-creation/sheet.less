@@ -1,0 +1,27 @@
+@import '../../utils/colors.less';
+@import '../../utils/mixin.less';
+
+.appTheme({
+    .character-creation {
+    .tab-navigation nav a .descriptor {
+        background-image: url('../assets/parchments/dh-parchment-dark.png');
+    }
+    .main-selections-container {
+        .traits-container .suggested-traits-container .suggested-trait-container,
+        .creation-action-footer .footer-section nav a .descriptor,
+        .equipment-selection .simple-equipment-container .simple-equipment label {
+            background-image: url('../assets/parchments/dh-parchment-dark.png');
+        }
+    }
+}
+}, {});
+
+.daggerheart.dh-style.dialog.character-creation {
+    .window-content {
+        gap: 16px;
+
+        .tab {
+            overflow-y: auto;
+        }
+    }
+}

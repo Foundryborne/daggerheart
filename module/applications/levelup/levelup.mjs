@@ -128,7 +128,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 context.tabs.advancements.progress = { selected: selections, max: currentLevel.maxSelections };
                 context.showTabs = this.tabGroups.primary !== 'summary';
                 break;
-                const { current: currentActorLevel, changed: changedActorLevel } = this.actor.system.levelData.level;
+
                 const actorArmor = this.actor.system.armor;
                 const levelKeys = Object.keys(this.levelup.levels);
                 let achivementProficiency = 0;

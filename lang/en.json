@@ -20,6 +20,9 @@
             "environment": "Environment"
         }
     },
+    "CONTROLS": {
+        "inFront": "In Front"
+    },
     "DAGGERHEART": {
         "ACTIONS": {
             "Config": {

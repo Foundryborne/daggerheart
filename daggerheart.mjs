@@ -120,6 +120,7 @@ Hooks.once('init', () => {
     CONFIG.ChatMessage.documentClass = documents.DhChatMessage;
 
     CONFIG.Canvas.rulerClass = placeables.DhRuler;
+    CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
     CONFIG.Combat.documentClass = documents.DhpCombat;
     CONFIG.ui.combat = applications.ui.DhCombatTracker;
     CONFIG.ui.chat = applications.ui.DhChatLog;

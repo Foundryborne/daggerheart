@@ -1,0 +1,108 @@
+.daggerheart.levelup {
+    .levelup-selections-container {
+        .achievement-experience-cards {
+            display: flex;
+            gap: 8px;
+
+            .achievement-experience-card {
+                border: 1px solid;
+                border-radius: 4px;
+                padding-right: 4px;
+                font-size: 18px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 4px;
+
+                .achievement-experience-marker {
+                    border: 1px solid;
+                    border-radius: 50%;
+                    height: 18px;
+                    width: 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .levelup-card-selection {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+
+            .card-preview-container {
+                width: calc(100% * (1 / 5));
+            }
+
+            .levelup-domains-selection-container {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                .levelup-domain-selection-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    flex: 1;
+                    position: relative;
+                    cursor: pointer;
+
+                    &.disabled {
+                        pointer-events: none;
+                        opacity: 0.4;
+                    }
+
+                    .levelup-domain-label {
+                        position: absolute;
+                        text-align: center;
+                        top: 4px;
+                        background: grey;
+                        padding: 0 12px;
+                        border-radius: 6px;
+                    }
+
+                    img {
+                        height: 124px;
+                    }
+
+                    .levelup-domain-selected {
+                        position: absolute;
+                        height: 54px;
+                        width: 54px;
+                        border-radius: 50%;
+                        border: 2px solid;
+                        font-size: 48px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-image: url(../assets/parchments/dh-parchment-light.png);
+                        color: var(--color-dark-5);
+                        top: calc(50% - 29px);
+
+                        i {
+                            position: relative;
+                            right: 2px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .levelup-selections-title {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .levelup-radio-choices {
+            display: flex;
+            gap: 8px;
+
+            label {
+                flex: 0;
+            }
+        }
+    }
+}

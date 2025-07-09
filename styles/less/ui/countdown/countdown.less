@@ -1,0 +1,61 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.daggerheart.dh-style.countdown {
+    fieldset {
+        align-items: center;
+        margin-top: 5px;
+        border-radius: 6px;
+        border-color: light-dark(@dark-blue, @golden);
+
+        legend {
+            font-family: @font-body;
+            font-weight: bold;
+            color: light-dark(@dark-blue, @golden);
+
+            a {
+                text-shadow: none;
+            }
+        }
+    }
+
+    .minimized-view {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        .mini-countdown-container {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            padding: 0 4px 0 0;
+            background-image: url('../assets/parchments/dh-parchment-light.png');
+            color: light-dark(@beige, @dark);
+            cursor: pointer;
+
+            &.disabled {
+                cursor: initial;
+            }
+
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 6px 0 0 6px;
+            }
+
+            .mini-countdown-name {
+                white-space: nowrap;
+            }
+
+            .mini-countdown-value {
+            }
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+}

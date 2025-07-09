@@ -1,0 +1,75 @@
+@import '../../../utils/colors.less';
+@import '../../../utils/fonts.less';
+
+.application.sheet.daggerheart.actor.dh-style.companion {
+    .partner-section,
+    .attack-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+
+            h3 {
+                font-size: 20px;
+            }
+        }
+        .items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+    }
+
+    .partner-placeholder {
+        display: flex;
+        opacity: 0.6;
+        text-align: center;
+        font-style: italic;
+        justify-content: center;
+    }
+
+    .experience-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+        margin-top: 10px;
+        align-items: center;
+
+        .experience-row {
+            display: flex;
+            gap: 5px;
+            width: 250px;
+            align-items: center;
+            justify-content: space-between;
+
+            .experience-name {
+                width: 180px;
+                text-align: start;
+                font-size: 14px;
+                font-family: @font-body;
+                color: light-dark(@dark, @beige);
+            }
+        }
+
+        .experience-value {
+            height: 25px;
+            width: 35px;
+            font-size: 14px;
+            font-family: @font-body;
+            color: light-dark(@dark, @beige);
+            align-content: center;
+            text-align: center;
+            background: url(../assets/svg/experience-shield.svg) no-repeat;
+
+            .theme-light & {
+                background: url('../assets/svg/experience-shield-light.svg') no-repeat;
+            }
+        }
+    }
+}

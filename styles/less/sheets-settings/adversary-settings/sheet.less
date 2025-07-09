@@ -1,0 +1,18 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.application.daggerheart.dh-style.dialog {
+    .tab {
+        &.details.active,
+        &.attack.active {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .fieldsets-section {
+            display: flex;
+            gap: 16px;
+        }
+    }
+}

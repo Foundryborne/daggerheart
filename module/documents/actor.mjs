@@ -62,7 +62,7 @@ export default class DhpActor extends Actor {
                 return acc;
             }, {});
 
-            const featureIds = [];
+            const features = [];
             const domainCards = [];
             const experiences = [];
             const subclassFeatureState = { class: null, multiclass: null };
@@ -75,7 +75,7 @@ export default class DhpActor extends Actor {
                     const advancementCards = level.selections.filter(x => x.type === 'domainCard').map(x => x.itemUuid);
                     domainCards.push(...achievementCards, ...advancementCards);
                     experiences.push(...Object.keys(level.achievements.experiences));
-                    featureIds.push(...level.selections.flatMap(x => x.featureIds));
+                    features.push(...level.selections.flatMap(x => x.features));
 
                     const subclass = level.selections.find(x => x.type === 'subclass');
                     if (subclass) {
@@ -89,8 +89,11 @@ export default class DhpActor extends Actor {
                     multiclass = level.selections.find(x => x.type === 'multiclass');
                 });
 
-            for (let featureId of featureIds) {
-                this.items.get(featureId).delete();
+            for (let feature of features) {
+                if (feature.onPartner && !this.system.partner) continue;
+
+                const document = feature.onPartner ? this.system.partner : this;
+                document.items.get(feature.id)?.delete();
             }
 
             if (experiences.length > 0) {
@@ -154,7 +157,6 @@ export default class DhpActor extends Actor {
     }
 
     async levelUp(levelupData) {
-        const actions = [];
         const levelups = {};
         for (var levelKey of Object.keys(levelupData)) {
             const level = levelupData[levelKey];
@@ -238,7 +240,9 @@ export default class DhpActor extends Actor {
                         ...featureData,
                         description: game.i18n.localize(featureData.description)
                     });
-                    const embeddedItem = await this.createEmbeddedDocuments('Item', [
+
+                    const document = featureData.toPartner && this.system.partner ? this.system.partner : this;
+                    const embeddedItem = await document.createEmbeddedDocuments('Item', [
                         {
                             ...featureData,
                             name: game.i18n.localize(featureData.name),
@@ -246,9 +250,13 @@ export default class DhpActor extends Actor {
                             system: feature
                         }
                     ]);
-                    addition.checkbox.featureIds = !addition.checkbox.featureIds
-                        ? [embeddedItem[0].id]
-                        : [...addition.checkbox.featureIds, embeddedItem[0].id];
+                    const newFeature = {
+                        onPartner: Boolean(featureData.toPartner && this.system.partner),
+                        id: embeddedItem[0].id
+                    };
+                    addition.checkbox.features = !addition.checkbox.features
+                        ? [newFeature]
+                        : [...addition.checkbox.features, newFeature];
                 }
 
                 selections.push(addition.checkbox);
@@ -318,7 +326,6 @@ export default class DhpActor extends Actor {
 
         await this.update({
             system: {
-                actions: [...this.system.actions, ...actions],
                 levelData: {
                     level: {
                         current: this.system.levelData.level.changed
