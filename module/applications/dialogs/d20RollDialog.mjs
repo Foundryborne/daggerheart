@@ -63,6 +63,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         const context = await super._prepareContext(_options);
         context.rollConfig = this.config;
         context.hasRoll = !!this.config.roll;
+        context.canRoll = true;
         if (this.config.costs?.length) {
             const updatedCosts = this.action.calcCosts(this.config.costs);
             context.costs = updatedCosts;
@@ -84,7 +85,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.advantage = this.config.roll?.advantage;
             context.disadvantage = this.config.roll?.disadvantage;
             context.diceOptions = CONFIG.DH.GENERAL.diceTypes;
-            context.canRoll = true;
             context.isLite = this.config.roll?.lite;
             context.extraFormula = this.config.extraFormula;
             context.formula = this.roll.constructFormula(this.config);
