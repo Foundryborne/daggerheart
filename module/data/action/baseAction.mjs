@@ -337,7 +337,8 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         const resources = config.costs
             .filter(c => c.enabled !== false)
             .map(c => {
-                return { type: c.type, value: c.total ?? c.value };
+                const resource = this.actor.system.resources[c.type];
+                return { type: c.type, value: (c.total ?? c.value) * (resource.hasOwnProperty('maxTotal') ? 1 : -1) };
             });
 
         await this.actor.modifyResource(resources);
@@ -382,22 +383,21 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         const realCosts = this.getRealCosts(costs),
             hasFearCost = realCosts.findIndex(c => c.type === 'fear');
         if (hasFearCost > -1) {
-            const fearCost = realCosts.splice(hasFearCost, 1);
+            const fearCost = realCosts.splice(hasFearCost, 1)[0];
             if (
                 !game.user.isGM ||
-                fearCost[0].total > game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
+                fearCost.total > game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
             )
                 return false;
         }
 
+        /* maxTotal is a sign that the resource is inverted, IE it counts upwards instead of down */
         const resources = this.actor.system.resources;
         return realCosts.reduce(
             (a, c) =>
-                a &&
-                !(
-                    resources[c.type]?.value + (c.total ?? c.value) >
-                    (resources[c.type]?.maxTotal ?? resources[c.type]?.total)
-                ),
+                a && resources[c.type].hasOwnProperty('maxTotal')
+                    ? resources[c.type].value + (c.total ?? c.value) <= resources[c.type].maxTotal
+                    : resources[c.type]?.value >= (c.total ?? c.value),
             true
         );
     }
