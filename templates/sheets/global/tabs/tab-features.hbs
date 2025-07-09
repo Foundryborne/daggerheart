@@ -11,7 +11,7 @@
                     data-action="editFeature"
                     id="{{feature.id}}"
                 >
-                    <img class="image" src="{{feature.img}}" />
+                    <img class="image" src="{{feature.img}}" data-tooltip="{{concat "#item#" feature.uuid}}" />
                     <span>{{feature.name}}</span>
                     <div class="controls">
                         <a data-action="removeFeature" id="{{feature.id}}"><i class="fa-solid fa-trash"></i></a>

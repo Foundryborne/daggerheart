@@ -968,6 +968,10 @@
                 "singular": "Character",
                 "plural": "Characters"
             },
+            "Cost": {
+                "single": "Cost",
+                "plural": "Costs"
+            },
             "Damage": {
                 "severe": "Severe",
                 "major": "Major",
@@ -1073,6 +1077,7 @@
                 "specialization": "Specialization",
                 "mastery": "Mastery",
                 "optional": "Optional",
+                "recovery": "Recovery",
                 "setup": "Setup",
                 "equipment": "Equipment"
             },
@@ -1094,6 +1099,8 @@
             "burden": "Burden",
             "check": "{check} Check",
             "criticalSuccess": "Critical Success",
+            "damage": "Damage",
+            "damageType": "Damage Type",
             "description": "Description",
             "duality": "Duality",
             "dualityRoll": "Duality Roll",
@@ -1106,17 +1113,25 @@
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "level": "Level",
+            "max": "Max",
             "modifier": "Modifier",
             "multiclass": "Multiclass",
+            "none": "None",
             "quantity": "Quantity",
             "range": "Range",
+            "recovery": "Recovery",
+            "scalable": "Scalable",
             "stress": "Stress",
             "take": "Take",
             "target": "Target",
             "title": "Title",
+            "true": "True",
             "type": "Type",
             "unarmored": "Unarmored",
-            "use": "Use"
+            "use": "Use",
+            "used": "Used",
+            "uses": "Uses",
+            "value": "Value"
         },
         "ITEMS": {
             "Armor": {
@@ -1173,6 +1188,7 @@
                 "spellcastingTrait": "Spellcasting Trait"
             },
             "Weapon": {
+                "weaponType": "Weapon Type",
                 "primaryWeapon": "Primary Weapon",
                 "secondaryWeapon": "Secondary Weapon"
             }
@@ -1380,7 +1396,8 @@
                 "unequip": "Unequip",
                 "sendToVault": "Send to Vault",
                 "sendToLoadout": "Send to Loadout",
-                "makeDeathMove": "Make a Death Move"
+                "makeDeathMove": "Make a Death Move",
+                "rangeAndTarget": "Range & Target"
             }
         }
     }

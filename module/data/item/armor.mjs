@@ -44,6 +44,12 @@ export default class DHArmor extends BaseDataItem {
         };
     }
 
+    get customActions() {
+        return this.actions.filter(
+            action => !this.armorFeatures.some(feature => feature.actionIds.includes(action.id))
+        );
+    }
+
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
