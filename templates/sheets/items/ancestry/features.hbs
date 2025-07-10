@@ -6,13 +6,13 @@
     <fieldset class="one-column drop-section primary-feature">
         <legend>{{localize "DAGGERHEART.ITEMS.Ancestry.primaryFeature"}} <a><i data-action="addFeature" data-type="primary" class="fa-solid fa-plus icon-button"></i></a></legend>
         <div class="features-list">
-            {{#if primaryFeature}}
+            {{#if document.system.primaryFeature}}
                 <div class="feature-item"
                     data-action="editFeature"
                     data-type="primary"
                 >
-                    <img class="image" src="{{primaryFeature.img}}" />
-                    <span>{{primaryFeature.name}}</span>
+                    <img class="image" src="{{document.system.primaryFeature.img}}" />
+                    <span>{{document.system.primaryFeature.name}}</span>
                     <div class="controls">
                         <a data-action="removeFeature" data-type="primary"><i class="fa-solid fa-trash"></i></a>
                     </div>
@@ -24,13 +24,13 @@
     <fieldset class="one-column drop-section secondary-feature">
         <legend>{{localize "DAGGERHEART.ITEMS.Ancestry.secondaryFeature"}} <a><i data-action="addFeature" data-type="secondary" class="fa-solid fa-plus icon-button"></i></a></legend>
         <div class="features-list">
-            {{#if secondaryFeature}}
+            {{#if document.system.secondaryFeature}}
                 <div class="feature-item"
                     data-action="editFeature"
                     data-type="secondary"
                 >
-                    <img class="image" src="{{secondaryFeature.img}}" />
-                    <span>{{secondaryFeature.name}}</span>
+                    <img class="image" src="{{document.system.secondaryFeature.img}}" />
+                    <span>{{document.system.secondaryFeature.name}}</span>
                     <div class="controls">
                         <a data-action="removeFeature" data-type="secondary"><i class="fa-solid fa-trash"></i></a>
                     </div>

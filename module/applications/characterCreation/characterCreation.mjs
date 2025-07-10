@@ -50,7 +50,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'dialog', 'dh-style', 'character-creation'],
-        position: { width: 640, height: 'auto' },
+        position: { width: 700, height: 'auto' },
         actions: {
             viewCompendium: this.viewCompendium,
             viewItem: this.viewItem,
@@ -511,6 +511,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             name: this.setup.ancestryName ?? this.setup.primaryAncestry.name,
             system: {
                 ...this.setup.primaryAncestry.system,
+                features: [primaryAncestryFeature.uuid, secondaryAncestryFeature.uuid],
                 primaryFeature: primaryAncestryFeature.uuid,
                 secondaryFeature: secondaryAncestryFeature.uuid
             }
