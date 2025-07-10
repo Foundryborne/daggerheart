@@ -122,16 +122,14 @@ export const getCommandTarget = () => {
     return target;
 };
 
-export const setDiceSoNiceForDualityRoll = (rollResult, advantage) => {
+export const setDiceSoNiceForDualityRoll = (rollResult, advantageState) => {
     const diceSoNicePresets = getDiceSoNicePresets();
     rollResult.dice[0].options = { appearance: diceSoNicePresets.hope };
     rollResult.dice[1].options = { appearance: diceSoNicePresets.fear }; //diceSoNicePresets.fear;
-    if (rollResult.dice[2]) {
-        if (advantage.type === 1) {
-            rollResult.dice[2].options = { appearance: diceSoNicePresets.advantage };
-        } else if (advantage.type === -1) {
-            rollResult.dice[2].options = { appearance: diceSoNicePresets.disadvantage };
-        }
+    if (rollResult.dice[2] && advantageState) {
+        rollResult.dice[2].options = {
+            appearance: advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage
+        };
     }
 };
 

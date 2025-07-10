@@ -143,6 +143,6 @@ export default class DualityRoll extends D20Roll {
             label: roll.totalLabel
         };
 
-        setDiceSoNiceForDualityRoll(roll, config.roll.advantage);
+        setDiceSoNiceForDualityRoll(roll, config.roll.advantage.type);
     }
 }
