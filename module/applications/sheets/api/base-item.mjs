@@ -179,7 +179,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const target = button.closest('.feature-item');
         const feature = this.document.system.features.find(x => x?.id === target.id);
         if (!feature) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
             return;
         }
 

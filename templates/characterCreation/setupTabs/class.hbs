@@ -1,0 +1,24 @@
+<section
+    class='tab {{setupTabs.class.cssClass}} {{setupTabs.class.id}}'
+    data-tab='{{setupTabs.class.id}}'
+    data-group='{{setupTabs.class.group}}'
+>
+    <div class="main-selections-container">
+        <fieldset class="section-container">
+            <legend>{{localize "TYPES.Item.class"}}</legend>
+            <div class="selections-outer-container">
+                <div class="selections-container class-card">
+                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" class }}
+                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectClass"}}
+                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                </div>
+
+                <div class="selections-container subclass-card">
+                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" subclass disabled=(not class.img) }}
+                        {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectSubclass"}}
+                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</section>
