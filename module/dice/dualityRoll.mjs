@@ -1,5 +1,6 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
+import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 
 export default class DualityRoll extends D20Roll {
     _advantageFaces = 6;
@@ -80,7 +81,6 @@ export default class DualityRoll extends D20Roll {
     }
 
     static getHooks(hooks) {
-        
         return [...(hooks ?? []), 'Duality'];
     }
 
@@ -142,5 +142,13 @@ export default class DualityRoll extends D20Roll {
             total: roll.dHope.total + roll.dFear.total,
             label: roll.totalLabel
         };
+
+        const advantageState =
+            config.roll.advantage == this.ADV_MODE.ADVANTAGE
+                ? true
+                : config.roll.advantage == this.ADV_MODE.DISADVANTAGE
+                  ? false
+                  : null;
+        setDiceSoNiceForDualityRoll(roll, advantageState);
     }
 }

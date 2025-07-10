@@ -1,5 +1,4 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
-import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class D20Roll extends DHRoll {
@@ -137,12 +136,7 @@ export default class D20Roll extends DHRoll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         if (config.evaluate !== false) await roll.evaluate();
-        const advantageState =
-            config.roll.advantage == this.ADV_MODE.ADVANTAGE
-                ? true
-                : config.roll.advantage == this.ADV_MODE.DISADVANTAGE
-                  ? false
-                  : null;
+
         this.postEvaluate(roll, config);
     }
 

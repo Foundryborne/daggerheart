@@ -154,7 +154,7 @@ export const registerRollDiceHooks = () => {
 
         if (updates.length) actor.modifyResource(updates);
 
-        if (!config.roll.hasOwnProperty('success') && !config.targets.length) return;
+        if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
 
         const rollResult = config.roll.success || config.targets.some(t => t.hit),
             looseSpotlight = !rollResult || config.roll.result.duality === -1;
