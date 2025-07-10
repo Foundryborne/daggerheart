@@ -101,10 +101,6 @@ export default class DhCharacter extends BaseDataActor {
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
                 armorScore: new fields.NumberField({ integer: true, initial: 0 }),
-                damageReduction: new fields.SchemaField({
-                    physical: new fields.NumberField({ integer: true, initial: 0 }),
-                    magical: new fields.NumberField({ integer: true, initial: 0 })
-                }),
                 damageThresholds: new fields.SchemaField({
                     severe: new fields.NumberField({ integer: true, initial: 0 }),
                     major: new fields.NumberField({ integer: true, initial: 0 })

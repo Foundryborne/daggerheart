@@ -510,10 +510,10 @@ export default class DhpActor extends Actor {
     calculateDamage(baseDamage, type) {
         if (Hooks.call(`${CONFIG.DH.id}.preCalculateDamage`, this, baseDamage, type) === false) return null;
 
-        if(this.system.resistance[type].immunity) return 0;
-        if(this.system.resistance[type].resistance) baseDamage = Math.ceil(baseDamage / 2);
+        if(this.system.resistance[type]?.immunity) return 0;
+        if(this.system.resistance[type]?.resistance) baseDamage = Math.ceil(baseDamage / 2);
 
-        const flatReduction = this.system.bonuses.damageReduction[type];
+        const flatReduction = this.system.resistance[type].reduction;
         const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
         const hpDamage = this.convertDamageToThreshold(damage);
 

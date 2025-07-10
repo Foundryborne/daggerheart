@@ -41,7 +41,8 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         if(this.metadata.hasResistances)
             schema.resistance = new fields.SchemaField({
                 physical: resistanceField(),
-                magical: resistanceField()
+                magical: resistanceField(),
+                resistance: new fields.NumberField({ integer: true, initial: 0 })
             })
         return schema;
     }
