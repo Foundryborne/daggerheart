@@ -76,11 +76,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
         };
     }
 
-    getFormula(actor) {
-        /* const multiplier = this.multiplier === 'flat' ? this.flatMultiplier : actor.system[this.multiplier]?.total;
-        return this.custom.enabled
-            ? this.custom.formula
-            : `${multiplier ?? 1}${this.dice}${this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : ''}`; */
+    getFormula() {
         const multiplier = this.multiplier === 'flat' ? this.flatMultiplier : `@${this.multiplier}`,
             bonus = this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : '';
         return this.custom.enabled ? this.custom.formula : `${multiplier ?? 1}${this.dice}${bonus}`;
@@ -93,7 +89,6 @@ export class DHDamageField extends fields.SchemaField {
             parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData)),
             includeBase: new fields.BooleanField({ initial: false })
         };
-        // if (hasBase) damageFields.includeBase = new fields.BooleanField({ initial: true });
         super(damageFields, options, context);
     }
 }

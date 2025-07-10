@@ -974,6 +974,11 @@
                 "minor": "Minor",
                 "none": "None"
             },
+            "DamageResistance": {
+                "none": "None",
+                "resistance": "Resistance",
+                "immunity": "Immunity"
+            },
             "DamageThresholds": {
                 "title": "Damage Thresholds",
                 "minor": "Minor",

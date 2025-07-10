@@ -20,6 +20,7 @@ export default class DhCompanion extends BaseDataActor {
         const fields = foundry.data.fields;
 
         return {
+            ...super.defineSchema(),
             partner: new ForeignDocumentUUIDField({ type: 'Actor' }),
             resources: new fields.SchemaField({
                 stress: new fields.SchemaField({

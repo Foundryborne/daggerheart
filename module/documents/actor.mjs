@@ -480,11 +480,7 @@ export default class DhpActor extends Actor {
             return;
         }
 
-        const flatReduction = this.system.bonuses.damageReduction[type];
-        const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
-        const hpDamage = this.convertDamageToThreshold(damage);
-
-        if (Hooks.call(`${CONFIG.DH.id}.postDamageTreshold`, this, hpDamage, damage, type) === false) return null;
+        const hpDamage = this.calculateDamage(baseDamage, type);
 
         if (!hpDamage) return;
 
@@ -509,6 +505,21 @@ export default class DhpActor extends Actor {
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damage, type) === false) return null;
+    }
+
+    calculateDamage(baseDamage, type) {
+        if (Hooks.call(`${CONFIG.DH.id}.preCalculateDamage`, this, baseDamage, type) === false) return null;
+
+        if(this.system.resistance[type].immunity) return 0;
+        if(this.system.resistance[type].resistance) baseDamage = Math.ceil(baseDamage / 2);
+
+        const flatReduction = this.system.bonuses.damageReduction[type];
+        const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
+        const hpDamage = this.convertDamageToThreshold(damage);
+
+        if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, baseDamage, type) === false) return null;
+
+        return hpDamage;
     }
 
     async takeHealing(resources) {
@@ -553,18 +564,6 @@ export default class DhpActor extends Actor {
                     u.resources,
                     u.target.uuid
                 );
-                /* if (game.user.isGM) {
-                    await u.target.update(u.resources);
-                } else {
-                    await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                        action: socketEvent.GMUpdate,
-                        data: {
-                            action: GMUpdateEvent.UpdateDocument,
-                            uuid: u.target.uuid,
-                            update: u.resources
-                        }
-                    });
-                } */
             }
         });
     }

@@ -36,6 +36,7 @@ export default class DhCharacter extends BaseDataActor {
         const fields = foundry.data.fields;
 
         return {
+            ...super.defineSchema(),
             resources: new fields.SchemaField({
                 hitPoints: new fields.SchemaField({
                     value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),

@@ -1,5 +1,11 @@
 import DHBaseActorSettings from "../../applications/sheets/api/actor-setting.mjs";
 
+const resistanceField = () =>
+    new foundry.data.fields.SchemaField({
+        resistance: new foundry.data.fields.BooleanField({ initial: false }),
+        immunity: new foundry.data.fields.BooleanField({ initial: false })
+    });
+
 /**
  * Describes metadata about the actor data model type
  * @typedef {Object} ActorDataModelMetadata
@@ -16,6 +22,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             type: 'base',
             isNPC: true,
             settingSheet: null,
+            hasResistances: true
         };
     }
 
@@ -27,10 +34,16 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
+        const schema = {};
 
-        return {
-            description: new fields.HTMLField({ required: true, nullable: true })
-        };
+        if(this.metadata.isNPC)
+            schema.description = new fields.HTMLField({ required: true, nullable: true });
+        if(this.metadata.hasResistances)
+            schema.resistance = new fields.SchemaField({
+                physical: resistanceField(),
+                magical: resistanceField()
+            })
+        return schema;
     }
 
     /**

@@ -236,16 +236,7 @@ Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false 
 };
 
 export const getDamageKey = damage => {
-    switch (damage) {
-        case 3:
-            return 'severe';
-        case 2:
-            return 'major';
-        case 1:
-            return 'minor';
-        case 0:
-            return 'none';
-    }
+    return ['none', 'minor', 'major', 'severe'][damage];
 };
 
 export const getDamageLabel = damage => {
@@ -253,16 +244,12 @@ export const getDamageLabel = damage => {
 };
 
 export const damageKeyToNumber = key => {
-    switch (key) {
-        case 'severe':
-            return 3;
-        case 'major':
-            return 2;
-        case 'minor':
-            return 1;
-        case 'none':
-            return 0;
-    }
+    return {
+        'none': 0,
+        'minor': 1,
+        'major': 2,
+        'severe': 3
+    }[key];
 };
 
 export default function constructHTMLButton({
