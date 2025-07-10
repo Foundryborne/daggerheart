@@ -1,3 +1,4 @@
+import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import BaseDataItem from './base.mjs';
 
@@ -13,15 +14,11 @@ export default class DHAncestry extends BaseDataItem {
 
     /** @inheritDoc */
     static defineSchema() {
-        const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            features: new fields.ArrayField(
-                new fields.SchemaField({
-                    primary: new fields.BooleanField(),
-                    value: new ForeignDocumentUUIDField({ type: 'Item' })
-                })
-            )
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            primaryFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
+            secondaryFeature: new ForeignDocumentUUIDField({ type: 'Item' })
         };
     }
 }
