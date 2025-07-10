@@ -19,6 +19,19 @@ export default class AncestrySheet extends DHHeritageSheet {
         features: { template: 'systems/daggerheart/templates/sheets/items/ancestry/features.hbs' }
     };
 
+    async _preparePartContext(partId, context) {
+        await super._preparePartContext(partId, context);
+
+        switch (partId) {
+            case 'features':
+                context.primaryFeature = this.document.system.features.find(x => x.primary)?.value;
+                context.secondaryFeature = this.document.system.features.find(x => !x.primary)?.value;
+                break;
+        }
+
+        return context;
+    }
+
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
@@ -32,10 +45,13 @@ export default class AncestrySheet extends DHHeritageSheet {
             type: 'feature',
             name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') })
         });
+
         await this.document.update({
             system: {
-                features: [...this.document.system.features.map(x => x.uuid), feature.uuid],
-                [`${button.dataset.type}Feature`]: feature.uuid
+                features: [
+                    ...this.document.system.features.map(x => ({ ...x, value: x.value.uuid })),
+                    { primary: button.dataset.type === 'primary', value: feature.uuid }
+                ]
             }
         });
     }
@@ -46,7 +62,9 @@ export default class AncestrySheet extends DHHeritageSheet {
      */
     static async #editFeature(_event, button) {
         const target = button.closest('.feature-item');
-        const feature = this.document.system[`${target.dataset.type}Feature`];
+        const feature = this.document.system.features.find(x =>
+            target.dataset.type === 'primary' ? x.primary : !x.primary
+        )?.value;
         if (!feature) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
             return;
@@ -62,7 +80,9 @@ export default class AncestrySheet extends DHHeritageSheet {
     static async #removeFeature(event, button) {
         event.stopPropagation();
         const target = button.closest('.feature-item');
-        const feature = this.document.system[`${target.dataset.type}Feature`];
+        const feature = this.document.system.features.find(x =>
+            target.dataset.type === 'primary' ? x.primary : !x.primary
+        )?.value;
 
         if (feature) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
@@ -78,10 +98,9 @@ export default class AncestrySheet extends DHHeritageSheet {
         }
 
         await this.document.update({
-            system: {
-                features: this.document.system.features.filter(x => x.uuid !== feature.uuid).map(x => x.uuid),
-                [`${target.dataset.type}Feature`]: null
-            }
+            'system.features': this.document.system.features
+                .filter(x => x.value.uuid !== feature.uuid)
+                .map(x => ({ ...x, value: x.value.uuid }))
         });
     }
 
@@ -101,19 +120,12 @@ export default class AncestrySheet extends DHHeritageSheet {
 
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
-            const update = {
-                system: {
-                    features: [...this.document.system.features.map(x => x.uuid), item.uuid]
-                }
-            };
-
-            if (event.target.closest('.primary-feature')) {
-                update.system.primaryFeature = item.uuid;
-            } else if (event.target.closest('.secondary-feature')) {
-                update.system.secondaryFeature = item.uuid;
-            }
-
-            await this.document.update(update);
+            await this.document.update({
+                'system.features': [
+                    ...this.document.system.features.map(x => ({ ...x, value: x.value.uuid })),
+                    { primary: Boolean(event.target.closest('.primary-feature')), value: item.uuid }
+                ]
+            });
         }
     }
 }
