@@ -143,12 +143,6 @@ export default class DualityRoll extends D20Roll {
             label: roll.totalLabel
         };
 
-        const advantageState =
-            config.roll.advantage == this.ADV_MODE.ADVANTAGE
-                ? true
-                : config.roll.advantage == this.ADV_MODE.DISADVANTAGE
-                  ? false
-                  : null;
-        setDiceSoNiceForDualityRoll(roll, advantageState);
+        setDiceSoNiceForDualityRoll(roll, config.roll.advantage);
     }
 }
