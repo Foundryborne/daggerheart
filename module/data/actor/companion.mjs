@@ -67,7 +67,7 @@ export default class DhCompanion extends BaseDataActor {
                     damage: {
                         parts: [
                             {
-                                multiplier: 'flat',
+                                type: ['physical'],
                                 value: {
                                     dice: 'd6',
                                     multiplier: 'flat'

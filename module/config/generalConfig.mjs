@@ -59,13 +59,13 @@ export const damageTypes = {
         id: 'physical',
         label: 'DAGGERHEART.CONFIG.DamageType.physical.name',
         abbreviation: 'DAGGERHEART.CONFIG.DamageType.physical.abbreviation',
-        icon: ['fa-hand-fist']
+        icon: 'fa-hand-fist'
     },
     magical: {
         id: 'magical',
         label: 'DAGGERHEART.CONFIG.DamageType.magical.name',
         abbreviation: 'DAGGERHEART.CONFIG.DamageType.magical.abbreviation',
-        icon: ['fa-wand-sparkles']
+        icon: 'fa-wand-sparkles'
     }
 };
 

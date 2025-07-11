@@ -56,6 +56,7 @@ export default class DHWeapon extends BaseDataItem {
                     damage: {
                         parts: [
                             {
+                                type: ['physical'],
                                 value: {
                                     multiplier: 'prof',
                                     dice: 'd8'

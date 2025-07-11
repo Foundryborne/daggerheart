@@ -10,8 +10,9 @@ export default class DHDamageAction extends DHBaseAction {
     }
 
     async rollDamage(event, data) {
-        let formula = this.damage.parts.map(p => this.getFormulaValue(p, data).getFormula(this.actor)).join(' + ');
-
+        let formula = this.damage.parts.map(p => this.getFormulaValue(p, data).getFormula(this.actor)).join(' + '),
+            damageTypes = [...new Set(this.damage.parts.reduce((a,c) => a.concat([...c.type]), []))];
+        
         if (!formula || formula == '') return;
         let roll = { formula: formula, total: formula },
             bonusDamage = [];
@@ -25,6 +26,7 @@ export default class DHDamageAction extends DHBaseAction {
             hasSave: this.hasSave,
             isCritical: data.system?.roll?.isCritical ?? false,
             source: data.system?.source,
+            damageTypes,
             event
         };
         if (this.hasSave) config.onSave = this.save.damageMod;
@@ -32,7 +34,7 @@ export default class DHDamageAction extends DHBaseAction {
             config.source.message = data._id;
             config.directDamage = false;
         }
-
+        
         roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);
     }
 }

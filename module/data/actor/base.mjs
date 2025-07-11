@@ -3,7 +3,8 @@ import DHBaseActorSettings from "../../applications/sheets/api/actor-setting.mjs
 const resistanceField = () =>
     new foundry.data.fields.SchemaField({
         resistance: new foundry.data.fields.BooleanField({ initial: false }),
-        immunity: new foundry.data.fields.BooleanField({ initial: false })
+        immunity: new foundry.data.fields.BooleanField({ initial: false }),
+        reduction: new foundry.data.fields.NumberField({ integer: true, initial: 0 })
     });
 
 /**
@@ -41,8 +42,7 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         if(this.metadata.hasResistances)
             schema.resistance = new fields.SchemaField({
                 physical: resistanceField(),
-                magical: resistanceField(),
-                resistance: new fields.NumberField({ integer: true, initial: 0 })
+                magical: resistanceField()
             })
         return schema;
     }

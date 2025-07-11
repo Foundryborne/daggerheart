@@ -6,7 +6,7 @@
         {{else}}
             <div class="item-name">{{item.name}}</div>
         {{/if}}
-        {{#if  (eq type 'weapon')}}
+        {{#if  (eq type 'weapon')}} 
             <div class="item-tags">
                 {{#if isSidebar}}
                     <div class="item-labels">
@@ -16,11 +16,11 @@
                             <span> - </span>
                             {{item.system.attack.damage.parts.0.value.dice}}{{#if item.system.attack.damage.parts.0.value.bonus}} + {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
                             {{!-- ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.attack.damage.parts.0.type '.abbreviation')}}) --}}
-                            {{#with (lookup @root.config.GENERAL.damageTypes item.system.attack.damage.parts.0.type)}}
-                                {{#each icon}}
-                                    <i class="fa-solid {{this}}"></i>
-                                {{/each}}
-                            {{/with}}
+                            {{#each item.system.attack.damage.parts.0.type as | type | }}
+                                {{#with (lookup @root.config.GENERAL.damageTypes type)}}
+                                    <i class="fa-solid {{icon}}"></i>
+                                {{/with}}
+                            {{/each}}
                         </div>
                     </div>
                 {{else}}
@@ -32,7 +32,11 @@
                     </div>
                     <div class="tag">
                         {{item.system.attack.damage.parts.0.value.dice}}{{#if item.system.attack.damage.parts.0.value.bonus}} + {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
-                        ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.attack.damage.parts.0.type '.abbreviation')}})
+                        (
+                            {{#each item.system.attack.damage.parts.0.type}}
+                                {{localize (concat 'DAGGERHEART.CONFIG.DamageType.' this '.abbreviation')}}
+                            {{/each}}
+                        )
                     </div>
                     <div class="tag">
                         {{localize (concat 'DAGGERHEART.CONFIG.Burden.' item.system.burden)}}

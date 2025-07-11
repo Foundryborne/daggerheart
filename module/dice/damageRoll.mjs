@@ -14,6 +14,10 @@ export default class DamageRoll extends DHRoll {
         super.postEvaluate(roll, config);
         config.roll.type = config.type;
         config.roll.modifierTotal = this.calculateTotalModifiers(roll);
+    }
+
+    static async buildPost(roll, config, message) {
+        await super.buildPost(roll, config, message);
         if (config.source?.message) {
             const chatMessage = ui.chat.collection.get(config.source.message);
             chatMessage.update({ 'system.damage': config });

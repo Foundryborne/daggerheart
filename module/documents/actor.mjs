@@ -462,7 +462,7 @@ export default class DhpActor extends Actor {
         const canUseArmor =
             this.system.armor &&
             this.system.armor.system.marks.value < this.system.armorScore &&
-            this.system.armorApplicableDamageTypes[type];
+            type.every(t => this.system.armorApplicableDamageTypes[t] === true);
         const canUseStress = Object.keys(this.system.rules.damageReduction.stressDamageReduction).reduce((acc, x) => {
             const rule = this.system.rules.damageReduction.stressDamageReduction[x];
             if (damageKeyToNumber(x) <= hpDamage) return acc || (rule.enabled && availableStress >= rule.cost);
@@ -479,6 +479,8 @@ export default class DhpActor extends Actor {
             await this.modifyResource([{ value: 1, type: 'stress' }]);
             return;
         }
+
+        type = !Array.isArray(type) ? [type] : type;
 
         const hpDamage = this.calculateDamage(baseDamage, type);
 
@@ -510,16 +512,30 @@ export default class DhpActor extends Actor {
     calculateDamage(baseDamage, type) {
         if (Hooks.call(`${CONFIG.DH.id}.preCalculateDamage`, this, baseDamage, type) === false) return null;
 
-        if(this.system.resistance[type]?.immunity) return 0;
-        if(this.system.resistance[type]?.resistance) baseDamage = Math.ceil(baseDamage / 2);
+        /* if(this.system.resistance[type]?.immunity) return 0;
+        if(this.system.resistance[type]?.resistance) baseDamage = Math.ceil(baseDamage / 2); */
+        if(this.canResist(type, 'immunity')) return 0;
+        if(this.canResist(type, 'resistance')) baseDamage = Math.ceil(baseDamage / 2);
 
-        const flatReduction = this.system.resistance[type].reduction;
+        // const flatReduction = this.system.resistance[type].reduction;
+        const flatReduction = this.getDamageTypeReduction(type);
         const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
         const hpDamage = this.convertDamageToThreshold(damage);
 
         if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, baseDamage, type) === false) return null;
 
         return hpDamage;
+    }
+
+    canResist(type, resistance) {
+        if(!type) return 0;
+        return type.every(t => this.system.resistance[t]?.[resistance] === true);
+    }
+
+    getDamageTypeReduction(type) {
+        if(!type) return 0;
+        const reduction = Object.entries(this.system.resistance).reduce((a, [index, value]) => type.includes(index) ? Math.min(value.reduction, a) : a, Infinity);
+        return reduction === Infinity ? 0 : reduction;
     }
 
     async takeHealing(resources) {

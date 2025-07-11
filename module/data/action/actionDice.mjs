@@ -99,13 +99,24 @@ export class DHDamageData extends foundry.abstract.DataModel {
         return {
             // ...super.defineSchema(),
             base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
-            type: new fields.StringField({
+            /* type: new fields.StringField({
                 choices: CONFIG.DH.GENERAL.damageTypes,
                 initial: 'physical',
                 label: 'Type',
                 nullable: false,
                 required: true
-            }),
+            }), */
+            type: new fields.SetField(
+                new fields.StringField({
+                    choices: CONFIG.DH.GENERAL.damageTypes,
+                    initial: 'physical',
+                    nullable: false,
+                    required: true
+                }),
+                {
+                    label: 'Type'
+                }
+            ),
             resultBased: new fields.BooleanField({
                 initial: false,
                 label: 'DAGGERHEART.ACTIONS.Settings.resultBased.label'
