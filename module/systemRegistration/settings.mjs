@@ -60,7 +60,7 @@ const registerMenuSettings = () => {
     });
 
     game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement, {
-        scope: 'client',
+        scope: 'world',
         config: false,
         type: DhRangeMeasurement
     });
