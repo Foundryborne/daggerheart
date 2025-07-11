@@ -21,9 +21,18 @@
             }
         }
 
+        .item-label-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 60px;
+        }
+
         .item-label {
             font-family: @font-body;
             align-self: center;
+
+            &.fullWidth {
+                grid-column: span 2;
+            }
 
             .item-name {
                 font-size: 14px;
@@ -54,6 +63,31 @@
                     align-items: center;
                     font-size: 12px;
                     gap: 4px;
+                }
+            }
+        }
+
+        .item-tokens {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .item-token {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                i {
+                    flex: none;
+                    font-size: 14px;
+                }
+
+                input {
+                    flex: 1;
+
+                    &::-webkit-outer-spin-button {
+                        opacity: 1;
+                    }
                 }
             }
         }

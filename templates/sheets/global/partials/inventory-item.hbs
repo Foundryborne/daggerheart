@@ -1,126 +1,138 @@
 <li class="inventory-item" data-item-id="{{item.id}}" data-item-uuid="{{item.uuid}}" data-type="{{type}}">
     <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" data-action="useItem" {{#if (not noTooltip)}}data-tooltip="{{concat "#item#" item.uuid}}"{{/if}} />
-    <div class="item-label">
-        {{#if isCompanion}}
-            <a class="item-name" data-action="attackRoll">{{item.name}}</a>
-        {{else}}
-            <div class="item-name">{{item.name}}</div>
-        {{/if}}
-        {{#if  (eq type 'weapon')}}
-            <div class="item-tags">
+    <div class="item-label-wrapper">
+        <div class="item-label {{#if (emptyObject item.system.tokens)}}fullWidth{{/if}}">
+            {{#if isCompanion}}
+                <a class="item-name" data-action="attackRoll">{{item.name}}</a>
+            {{else}}
+                <div class="item-name">{{item.name}}</div>
+            {{/if}}
+            {{#if  (eq type 'weapon')}}
+                <div class="item-tags">
+                    {{#if isSidebar}}
+                        <div class="item-labels">
+                            <div class="label">
+                                {{!-- {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.short')}} --}}
+                                {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.attack.range '.short')}}
+                                <span> - </span>
+                                {{item.system.attack.damage.parts.0.value.dice}}{{#if item.system.attack.damage.parts.0.value.bonus}} + {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
+                                {{!-- ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.attack.damage.parts.0.type '.abbreviation')}}) --}}
+                                {{#with (lookup @root.config.GENERAL.damageTypes item.system.attack.damage.parts.0.type)}}
+                                    {{#each icon}}
+                                        <i class="fa-solid {{this}}"></i>
+                                    {{/each}}
+                                {{/with}}
+                            </div>
+                        </div>
+                    {{else}}
+                        <div class="tag">
+                            {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.name')}}
+                        </div>
+                        <div class="tag">
+                            {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.attack.range '.name')}}
+                        </div>
+                        <div class="tag">
+                            {{item.system.attack.damage.parts.0.value.dice}}{{#if item.system.attack.damage.parts.0.value.bonus}} + {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
+                            ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.attack.damage.parts.0.type '.abbreviation')}})
+                        </div>
+                        <div class="tag">
+                            {{localize (concat 'DAGGERHEART.CONFIG.Burden.' item.system.burden)}}
+                        </div>
+                    {{/if}}
+                </div>
+            {{/if}}
+            {{#if  (eq type 'armor')}}
                 {{#if isSidebar}}
                     <div class="item-labels">
                         <div class="label">
-                            {{!-- {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.short')}} --}}
-                            {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.attack.range '.short')}}
-                            <span> - </span>
-                            {{item.system.attack.damage.parts.0.value.dice}}{{#if item.system.attack.damage.parts.0.value.bonus}} + {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
-                            {{!-- ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.attack.damage.parts.0.type '.abbreviation')}}) --}}
-                            {{#with (lookup @root.config.GENERAL.damageTypes item.system.attack.damage.parts.0.type)}}
-                                {{#each icon}}
-                                    <i class="fa-solid {{this}}"></i>
-                                {{/each}}
-                            {{/with}}
+                            {{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}:
+                            {{item.system.baseScore}}
                         </div>
                     </div>
                 {{else}}
-                    <div class="tag">
-                        {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.name')}}
-                    </div>
-                    <div class="tag">
-                        {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.attack.range '.name')}}
-                    </div>
-                    <div class="tag">
-                        {{item.system.attack.damage.parts.0.value.dice}}{{#if item.system.attack.damage.parts.0.value.bonus}} + {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
-                        ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.attack.damage.parts.0.type '.abbreviation')}})
-                    </div>
-                    <div class="tag">
-                        {{localize (concat 'DAGGERHEART.CONFIG.Burden.' item.system.burden)}}
+                    <div class="item-tags">
+                        <div class="tag">
+                            {{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}:
+                            {{item.system.baseScore}}
+                        </div>
+                        <div class="tag">
+                            {{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.base"}}:
+                            {{item.system.baseThresholds.major}}
+                            <span>/</span>
+                            {{item.system.baseThresholds.severe}}
+                        </div>
                     </div>
                 {{/if}}
-            </div>
-        {{/if}}
-        {{#if  (eq type 'armor')}}
-            {{#if isSidebar}}
-                <div class="item-labels">
-                    <div class="label">
-                        {{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}:
-                        {{item.system.baseScore}}
+            {{/if}}
+            {{#if  (eq type 'domainCard')}}
+                {{#if isSidebar}}
+                    <div class="item-labels">
+                        <div class="label">
+                            {{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' item.system.type)}}
+                            <span> - </span>
+                            {{localize (concat 'DAGGERHEART.GENERAL.Domain.' item.system.domain '.label')}}
+                            <span> - </span>
+                            <span class="recall-value">{{item.system.recallCost}}</span>
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
                     </div>
-                </div>
-            {{else}}
+                {{else}}
+                    <div class="item-tags">
+                        <div class="tag">
+                            {{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' item.system.type)}}
+                        </div>
+                        <div class="tag">
+                            {{localize (concat 'DAGGERHEART.GENERAL.Domain.' item.system.domain '.label')}}
+                        </div>
+                        <div class="tag">
+                            <span class="recall-label">{{localize "DAGGERHEART.ITEMS.DomainCard.recallCost"}}: </span>
+                            <span class="recall-value">{{item.system.recallCost}}</span>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/if}}
+            {{#if  (eq type 'effect')}}
                 <div class="item-tags">
                     <div class="tag">
-                        {{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}:
-                        {{item.system.baseScore}}
+                        {{localize (concat 'TYPES.Item.' item.parent.type)}}
+                        <span>: </span>
+                        {{item.parent.name}}
                     </div>
                     <div class="tag">
-                        {{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.base"}}:
-                        {{item.system.baseThresholds.major}}
-                        <span>/</span>
-                        {{item.system.baseThresholds.severe}}
+                        {{#if item.duration.duration}}
+                            {{localize 'DAGGERHEART.EFFECTS.Duration.temporary'}}
+                        {{else}}
+                            {{localize 'DAGGERHEART.EFFECTS.Duration.passive'}}
+                        {{/if}}
+                    </div>
+                    {{#each item.statuses as |status|}}
+                        <div class="tag">
+                            {{localize (concat 'DAGGERHEART.CONFIG.Condition.' status '.name')}}
+                        </div>
+                    {{/each}}
+                </div>
+            {{/if}}
+            {{#if  (eq type 'action')}}
+                <div class="item-tags">
+                    <div class="tag">
+                        {{localize (concat 'DAGGERHEART.ACTIONS.TYPES.' item.type '.name')}}
+                    </div>
+                    <div class="tag">
+                        {{localize (concat 'DAGGERHEART.CONFIG.ActionType.' item.actionType)}}
                     </div>
                 </div>
             {{/if}}
-        {{/if}}
-        {{#if  (eq type 'domainCard')}}
-            {{#if isSidebar}}
-                <div class="item-labels">
-                    <div class="label">
-                        {{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' item.system.type)}}
-                        <span> - </span>
-                        {{localize (concat 'DAGGERHEART.GENERAL.Domain.' item.system.domain '.label')}}
-                        <span> - </span>
-                        <span class="recall-value">{{item.system.recallCost}}</span>
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
-                </div>
-            {{else}}
-                <div class="item-tags">
-                    <div class="tag">
-                        {{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' item.system.type)}}
-                    </div>
-                    <div class="tag">
-                        {{localize (concat 'DAGGERHEART.GENERAL.Domain.' item.system.domain '.label')}}
-                    </div>
-                    <div class="tag">
-                        <span class="recall-label">{{localize "DAGGERHEART.ITEMS.DomainCard.recallCost"}}: </span>
-                        <span class="recall-value">{{item.system.recallCost}}</span>
-                    </div>
-                </div>
-            {{/if}}
-        {{/if}}
-        {{#if  (eq type 'effect')}}
-            <div class="item-tags">
-                <div class="tag">
-                    {{localize (concat 'TYPES.Item.' item.parent.type)}}
-                    <span>: </span>
-                    {{item.parent.name}}
-                </div>
-                <div class="tag">
-                    {{#if item.duration.duration}}
-                        {{localize 'DAGGERHEART.EFFECTS.Duration.temporary'}}
-                    {{else}}
-                        {{localize 'DAGGERHEART.EFFECTS.Duration.passive'}}
-                    {{/if}}
-                </div>
-                {{#each item.statuses as |status|}}
-                    <div class="tag">
-                        {{localize (concat 'DAGGERHEART.CONFIG.Condition.' status '.name')}}
+        </div>
+        {{#unless (emptyObject item.system.tokens)}}
+            <div class="item-tokens">
+                {{#each item.system.tokens as | token |}}
+                    <div class="item-token">
+                        <i class="fa-solid fa-hashtag"></i>
+                        <input type="number" value="{{token.value}}" step="1" min="0" max="10" />
                     </div>
                 {{/each}}
             </div>
-        {{/if}}
-        {{#if  (eq type 'action')}}
-            <div class="item-tags">
-                <div class="tag">
-                    {{localize (concat 'DAGGERHEART.ACTIONS.TYPES.' item.type '.name')}}
-                </div>
-                <div class="tag">
-                    {{localize (concat 'DAGGERHEART.CONFIG.ActionType.' item.actionType)}}
-                </div>
-            </div>
-        {{/if}}
+        {{/unless}}
     </div>
     {{#unless hideControls}}
         {{#if isActor}}

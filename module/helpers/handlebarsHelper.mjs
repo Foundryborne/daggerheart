@@ -1,14 +1,18 @@
 export default class RegisterHandlebarsHelpers {
     static registerHelpers() {
         Handlebars.registerHelper({
+            emptyObject: this.emptyObject,
             add: this.add,
             includes: this.includes,
             times: this.times,
             damageFormula: this.damageFormula,
             damageSymbols: this.damageSymbols,
-            tertiary: this.tertiary,
-            signedNumber: this.signedNumber
+            tertiary: this.tertiary
         });
+    }
+
+    static emptyObject(a) {
+        return !a || typeof a !== 'object' || Object.keys(a).length === 0;
     }
 
     static add(a, b) {

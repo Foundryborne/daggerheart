@@ -29,7 +29,18 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /** @inheritDoc */
     static defineSchema() {
-        const schema = {};
+        const schema = {
+            uses: new fields.SchemaField({
+                value: new fields.NumberField({ nullable: true, initial: null }),
+                max: new fields.NumberField({ nullable: true, initial: null }),
+                icon: new fields.StringField({ initial: 'fa-solid fa-hashtag' }),
+                recovery: new fields.StringField({
+                    choices: CONFIG.DH.GENERAL.refreshTypes,
+                    initial: null,
+                    nullable: true
+                })
+            })
+        };
 
         if (this.metadata.hasDescription) schema.description = new fields.HTMLField({ required: true, nullable: true });
 
