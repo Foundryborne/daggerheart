@@ -66,10 +66,9 @@ export default class DhCompanion extends BaseDataActor {
                     damage: {
                         parts: [
                             {
-                                multiplier: 'flat',
                                 value: {
                                     dice: 'd6',
-                                    multiplier: 'flat'
+                                    multiplier: 'prof'
                                 }
                             }
                         ]
@@ -84,6 +83,12 @@ export default class DhCompanion extends BaseDataActor {
     get traits() {
         return {
             instinct: { total: this.attack.roll.bonus }
+        };
+    }
+
+    get proficiency() {
+        return {
+            total: this.partner?.system?.proficiency?.total ?? 1
         };
     }
 

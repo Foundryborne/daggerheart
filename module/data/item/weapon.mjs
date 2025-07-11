@@ -73,6 +73,12 @@ export default class DHWeapon extends BaseDataItem {
         return [this.attack, ...this.actions];
     }
 
+    get customActions() {
+        return this.actions.filter(
+            action => !this.weaponFeatures.some(feature => feature.actionIds.includes(action.id))
+        );
+    }
+
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;

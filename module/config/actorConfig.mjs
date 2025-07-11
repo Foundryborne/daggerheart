@@ -113,7 +113,7 @@ export const adversaryTypes = {
     },
     social: {
         id: 'social',
-        label: 'DAGGERHEART.CONFIG.AdversaryTypee.social.label',
+        label: 'DAGGERHEART.CONFIG.AdversaryType.social.label',
         description: 'DAGGERHEART.ACTORS.Adversary.social.description'
     },
     solo: {

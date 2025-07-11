@@ -171,4 +171,12 @@
         <span></span>
     {{/unless}}
     <div class="item-description">{{#unless isSidebar}}{{{item.system.description}}}{{/unless}}</div>
+
+    {{#if featureType}}
+        <div class="item-buttons">
+            {{#each item.system.actions as | action |}}
+                <button type="button" data-action="useAction" data-action-id="{{action.id}}">{{action.name}}</button>
+            {{/each}}
+        </div>
+    {{/if}}
 </li>

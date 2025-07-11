@@ -1,5 +1,37 @@
-<div>
-    <div>{{name}}</div>
-    <img src="{{img}}" />
-    <div>{{{system.description}}}</div>
+<div class="daggerheart dh-style tooltip">
+    <h2 class="tooltip-title">{{item.name}}</h2>
+    <img class="tooltip-image" src="{{item.img}}" />
+    <div class="tooltip-description">{{{item.system.description}}}</div>
+
+    <div class="tooltip-information-section">
+        <div class="tooltip-information full-width">
+            <label>{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}</label>
+            <div>{{item.system.baseScore}}</div>
+        </div>
+        
+        <div class="tooltip-information">
+            <label>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.major"}}</label>
+            <div>{{item.system.baseThresholds.major}}</div>
+        </div>
+        <div class="tooltip-information">
+            <label>{{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.severe"}}</label>
+            <div>{{item.system.baseThresholds.severe}}</div>
+        </div>
+    </div>
+
+    {{#if (gt item.system.armorFeatures.length 0)}}<h4 class="tooltip-sub-title">{{localize "DAGGERHEART.GENERAL.features"}}</h4>{{/if}}
+    <div class="tooltip-tags">
+        {{#each item.system.armorFeatures}}
+            {{#with (lookup ../config.ITEM.armorFeatures this.value) as | feature | }}
+                <div class="tooltip-tag">
+                    <div class="tooltip-tag-label-container">
+                        <div class="tooltip-tag-label">{{localize feature.label}}</div>
+                    </div>
+                    <div class="tooltip-tag-description">{{{localize feature.description}}}</div>
+                </div>
+            {{/with}}
+        {{/each}}
+    </div>
+
+    {{> "systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs" features=item.system.customActions label=(localize "DAGGERHEART.GENERAL.Action.plural")}}
 </div>

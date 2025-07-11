@@ -10,6 +10,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
         actions: {
             reactionRoll: AdversarySheet.#reactionRoll,
             useItem: this.useItem,
+            useAction: this.useItem,
             toChat: this.toChat
         },
         window: {

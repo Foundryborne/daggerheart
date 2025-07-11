@@ -1,0 +1,106 @@
+.daggerheart.dh-style.tooltip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    .tooltip-title {
+        margin: 0;
+        text-align: center;
+    }
+
+    .tooltip-image {
+        height: 180px;
+        width: 180px;
+    }
+
+    .tooltip-description {
+        font-style: italic;
+    }
+
+    .tooltip-sub-title {
+        margin: 0;
+        color: light-dark(@dark-blue, @beige);
+    }
+
+    .tooltip-information-section {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+
+        &.triple {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        &.border {
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            padding: 2px;
+        }
+
+        .tooltip-information {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+
+            &.full-width {
+                grid-column: span 2;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            label,
+            div {
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .tooltip-tags {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .tooltip-tag {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            align-items: start;
+            gap: 8px;
+            padding: 4px;
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+
+            .tooltip-tag-label-container {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 2px;
+
+                .tooltip-tag-image {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+
+            .tooltip-tag-label {
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .tooltip-tag-description {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    }
+
+    .spaced {
+        margin-bottom: 4px;
+    }
+}
