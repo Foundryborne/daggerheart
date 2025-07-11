@@ -1,5 +1,4 @@
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
-import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHAncestry extends BaseDataItem {
@@ -16,9 +15,15 @@ export default class DHAncestry extends BaseDataItem {
     static defineSchema() {
         return {
             ...super.defineSchema(),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
-            primaryFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
-            secondaryFeature: new ForeignDocumentUUIDField({ type: 'Item' })
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
         };
+    }
+
+    get primaryFeature() {
+        return this.features.find(x => x?.system?.primary) ?? (this.features.length > 0 ? {} : null);
+    }
+
+    get secondaryFeature() {
+        return this.features.find(x => !x?.system?.primary);
     }
 }

@@ -190,7 +190,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         const actionPath = this.getActionPath(button.dataset.type);
         const feature = this.document.system[actionPath].find(x => x?.id === target.dataset.featureId);
         if (!feature) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
             return;
         }
 

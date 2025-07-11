@@ -30,13 +30,13 @@ export default class AncestrySheet extends DHHeritageSheet {
     static async #addFeature(_event, button) {
         const feature = await game.items.documentClass.create({
             type: 'feature',
-            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') })
+            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') }),
+            system: {
+                primary: button.dataset.type === 'primary'
+            }
         });
         await this.document.update({
-            system: {
-                features: [...this.document.system.features.map(x => x.uuid), feature.uuid],
-                [`${button.dataset.type}Feature`]: feature.uuid
-            }
+            'system.features': [...this.document.system.features.map(x => x.uuid), feature.uuid]
         });
     }
 
@@ -47,7 +47,7 @@ export default class AncestrySheet extends DHHeritageSheet {
     static async #editFeature(_event, button) {
         const target = button.closest('.feature-item');
         const feature = this.document.system[`${target.dataset.type}Feature`];
-        if (!feature) {
+        if (!feature || Object.keys(feature).length === 0) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
             return;
         }
@@ -63,8 +63,9 @@ export default class AncestrySheet extends DHHeritageSheet {
         event.stopPropagation();
         const target = button.closest('.feature-item');
         const feature = this.document.system[`${target.dataset.type}Feature`];
+        const featureExists = feature && Object.keys(feature).length > 0;
 
-        if (feature) {
+        if (featureExists) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
                     title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
@@ -77,11 +78,9 @@ export default class AncestrySheet extends DHHeritageSheet {
             if (!confirmed) return;
         }
 
+        if (featureExists && target.dataset.type === 'primary') await feature.update({ 'system.primary': null });
         await this.document.update({
-            system: {
-                features: this.document.system.features.filter(x => x.uuid !== feature.uuid).map(x => x.uuid),
-                [`${target.dataset.type}Feature`]: null
-            }
+            'system.features': this.document.system.features.filter(x => x && x.uuid !== feature.uuid).map(x => x.uuid)
         });
     }
 
@@ -101,19 +100,13 @@ export default class AncestrySheet extends DHHeritageSheet {
 
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
-            const update = {
-                system: {
-                    features: [...this.document.system.features.map(x => x.uuid), item.uuid]
-                }
-            };
-
             if (event.target.closest('.primary-feature')) {
-                update.system.primaryFeature = item.uuid;
-            } else if (event.target.closest('.secondary-feature')) {
-                update.system.secondaryFeature = item.uuid;
+                await item.update({ 'system.primary': true });
             }
 
-            await this.document.update(update);
+            await this.document.update({
+                'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
+            });
         }
     }
 }

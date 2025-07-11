@@ -503,8 +503,6 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         const secondaryAncestryFeature = this.setup.secondaryAncestry?.uuid
             ? this.setup.secondaryAncestry.system.secondaryFeature
             : this.setup.primaryAncestry.system.secondaryFeature;
-        // const primaryFeature = await this.character.createEmbeddedDocuments('Item', [primaryAncestryFeature]);
-        // const secondaryFeature = await this.character.createEmbeddedDocuments('Item', [secondaryAncestryFeature]);
 
         const ancestry = {
             ...this.setup.primaryAncestry,
