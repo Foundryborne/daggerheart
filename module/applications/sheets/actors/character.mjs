@@ -24,6 +24,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             levelManagement: CharacterSheet.#levelManagement,
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             useItem: this.useItem, //TODO Fix this
+            useAction: this.useAction,
             toChat: this.toChat
         },
         window: {
@@ -618,6 +619,20 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 Hooks.callAll(CONFIG.DH.HOOKS.characterAttack, {});
             }
         }
+    }
+
+    /**
+     * Use an action
+     * @type {ApplicationClickAction}
+     */
+    static async useAction(event, button) {
+        const item = this.getItem(button);
+        if (!item) return;
+
+        const action = item.system.actions.find(x => x.id === button.dataset.actionId);
+        if (!action) return;
+
+        action.use(event);
     }
 
     /**
