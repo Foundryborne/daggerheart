@@ -32,7 +32,7 @@ export default class AncestrySheet extends DHHeritageSheet {
             type: 'feature',
             name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') }),
             system: {
-                primary: button.dataset.type === 'primary'
+                subType: button.dataset.type
             }
         });
         await this.document.update({
@@ -100,9 +100,8 @@ export default class AncestrySheet extends DHHeritageSheet {
 
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
-            if (event.target.closest('.primary-feature')) {
-                await item.update({ 'system.primary': true });
-            }
+            const subType = event.target.closest('.primary-feature') ? 'primary' : 'secondary';
+            await item.update({ 'system.subType': subType });
 
             await this.document.update({
                 'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]

@@ -1320,6 +1320,11 @@ export const featureTypes = {
     }
 };
 
+export const featureSubTypes = {
+    primary: 'primary',
+    secondary: 'secondary'
+};
+
 export const actionTypes = {
     passive: {
         id: 'passive',
