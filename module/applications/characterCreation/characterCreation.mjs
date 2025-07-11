@@ -19,8 +19,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             class: this.character.system.class?.value ?? {},
             subclass: this.character.system.class?.subclass ?? {},
             experiences: {
-                [foundry.utils.randomID()]: { description: '', value: 2 },
-                [foundry.utils.randomID()]: { description: '', value: 2 }
+                [foundry.utils.randomID()]: { name: '', value: 2 },
+                [foundry.utils.randomID()]: { name: '', value: 2 }
             },
             domainCards: {
                 [foundry.utils.randomID()]: {},
@@ -173,7 +173,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     const communityFinished = this.setup.community.uuid;
                     const classFinished = this.setup.class.uuid && this.setup.subclass.uuid;
                     const traitsFinished = Object.values(this.setup.traits).every(x => x.value !== null);
-                    const experiencesFinished = Object.values(this.setup.experiences).every(x => x.description);
+                    const experiencesFinished = Object.values(this.setup.experiences).every(x => x.name);
                     const domainCardsFinished = Object.values(this.setup.domainCards).every(x => x.uuid);
                     v.finished =
                         ancestryFinished &&
@@ -329,10 +329,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 context.experience = {
                     values: this.setup.experiences,
                     nrTotal: Object.keys(this.setup.experiences).length,
-                    nrSelected: Object.values(this.setup.experiences).reduce(
-                        (acc, exp) => acc + (exp.description ? 1 : 0),
-                        0
-                    )
+                    nrSelected: Object.values(this.setup.experiences).reduce((acc, exp) => acc + (exp.name ? 1 : 0), 0)
                 };
 
                 context.mixedAncestry = Number(this.setup.mixedAncestry);
@@ -409,7 +406,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             case 6:
                 return 6;
             case 5:
-                return Object.values(this.setup.experiences).every(x => x.description) ? 6 : 5;
+                return Object.values(this.setup.experiences).every(x => x.name) ? 6 : 5;
             case 4:
                 return Object.values(this.setup.traits).every(x => x.value !== null) ? 5 : 4;
             case 3:

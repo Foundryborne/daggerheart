@@ -413,7 +413,7 @@ export default class DhCharacter extends BaseDataActor {
 
         this.resources.hitPoints.maxTotal = (this.class.value?.system?.hitPoints ?? 0) + this.resources.hitPoints.bonus;
         this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
-        this.evasion.total = (this.class?.evasion ?? 0) + this.evasion.bonus;
+        this.evasion.total = (this.class.value?.system?.evasion ?? 0) + this.evasion.bonus;
         this.proficiency.total = this.proficiency.value + this.proficiency.bonus;
     }
 
