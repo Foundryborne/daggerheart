@@ -40,6 +40,10 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                     outline: new fields.ColorField({ required: true, initial: '#ffffff' }),
                     edge: new fields.ColorField({ required: true, initial: '#000000' })
                 })
+            }),
+            showGenericStatusEffects: new fields.BooleanField({
+                initial: true,
+                label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.showGenericStatusEffects.label'
             })
         };
     }

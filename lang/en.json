@@ -279,6 +279,11 @@
                     }
                 }
             },
+            "HUD": {
+                "tokenHUD": {
+                    "genericEffects": "Foundry Effects"
+                }
+            },
             "Levelup": {
                 "actions": {
                     "creatureComfort": {
@@ -1180,7 +1185,8 @@
         "SETTINGS": {
             "Appearance": {
                 "FIELDS": {
-                    "displayFear": { "label": "Fear Display" }
+                    "displayFear": { "label": "Fear Display" },
+                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
