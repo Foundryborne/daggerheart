@@ -11,7 +11,7 @@ export default class CostSelectionDialog extends HandlebarsApplicationMixin(Appl
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'views', 'damage-selection'],
+        classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'damage-selection'],
         position: {
             width: 400,
             height: 'auto'

@@ -1,13 +1,12 @@
 <form id="action-type-select">
-    <ul class="unlist list-select">
+    <header class="dialog-header">
+        <h1>{{itemName}}</h1>
+    </header>
+    <ul class="actions-list">
     {{#each types}}
-        <li>
-            <label>
-                {{! TODO: remove dh-icon}}
-                <dh-icon class="dh-icon fas {{icon}}"></dh-icon>
-                <span>{{localize name}}</span>
-                <input type="radio" name="type" value="{{id}}" {{#if (eq @index 0)}}checked{{/if}}>
-            </label>
+        <li class="action-item">
+            <input type="radio" name="type" value="{{id}}" {{#if (eq @index 0)}}checked{{/if}}>
+            <span class="label">{{localize name}}</span>
         </li>
     {{/each}}
     </ul>

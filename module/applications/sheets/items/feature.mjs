@@ -61,12 +61,17 @@ export default class FeatureSheet extends DHBaseItemSheet {
     static async selectActionType() {
         const content = await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                { types: CONFIG.DH.ACTIONS.actionTypes }
+                {
+                    types: CONFIG.DH.ACTIONS.actionTypes,
+                    itemName: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType')
+                }
             ),
-            title = 'Select Action Type';
+            title = game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType');
+        console.log(this.document);
 
         return foundry.applications.api.DialogV2.prompt({
             window: { title },
+            classes: ['daggerheart', 'dh-style'],
             content,
             ok: {
                 label: title,
