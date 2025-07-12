@@ -23,7 +23,7 @@ export default class DamageSelectionDialog extends HandlebarsApplicationMixin(Ap
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'views', 'damage-selection'],
+        classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'damage-selection'],
         position: {
             width: 400,
             height: 'auto'

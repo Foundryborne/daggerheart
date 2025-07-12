@@ -677,6 +677,10 @@
                     "name": "Dice Set"
                 }
             },
+            "SelectAction": {
+                "selectType": "Select Action Type",
+                "selectAction": "Select Action"
+            },
             "Traits": {
                 "agility": {
                     "name": "Agility",

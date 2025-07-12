@@ -35,15 +35,16 @@
         }
     }
 
-    input[type='checkbox'] {
+    input[type='checkbox'],
+    input[type='radio'] {
         &:checked::after {
-            color: light-dark(@dark, @golden);
+            color: light-dark(@dark-40, @golden);
         }
         &:checked::before {
-            color: light-dark(transparent, @dark-blue);
+            color: light-dark(@dark-40, @golden-40);
         }
         &::before {
-            color: light-dark(@dark, @beige);
+            color: light-dark(@dark-40, @golden-40);
         }
     }
 
