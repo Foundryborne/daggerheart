@@ -179,16 +179,9 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     getRollData(data = {}) {
         const actorData = this.actor.getRollData(false);
 
-        // Remove when included directly in Actor getRollData
-        actorData.prof = actorData.proficiency?.total ?? 1;
-        actorData.cast = actorData.spellcast?.total ?? 1;
+        // Add Roll results to RollDatas
         actorData.result = data.roll?.total ?? 1;
-        /* actorData.scale = data.costs?.length
-                ? data.costs.reduce((a, c) => {
-                      a[c.type] = c.value;
-                      return a;
-                  }, {})
-                : 1; */
+        
         actorData.scale = data.costs?.length // Right now only return the first scalable cost.
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
             : 1;

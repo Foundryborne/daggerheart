@@ -13,6 +13,8 @@ export default class DHDamageAction extends DHBaseAction {
         let formula = this.damage.parts.map(p => this.getFormulaValue(p, data).getFormula(this.actor)).join(' + '),
             damageTypes = [...new Set(this.damage.parts.reduce((a,c) => a.concat([...c.type]), []))];
         
+        damageTypes = !damageTypes.length ? ['physical'] : damageTypes;
+
         if (!formula || formula == '') return;
         let roll = { formula: formula, total: formula },
             bonusDamage = [];
