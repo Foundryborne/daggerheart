@@ -370,7 +370,10 @@ export default class DhpActor extends Actor {
     }
 
     getRollData() {
-        return this.system;
+        const rollData = super.getRollData();
+        rollData.prof = this.system.proficiency?.total ?? 1;
+        rollData.cast = this.system.spellcast?.total ?? 1;
+        return rollData;
     }
 
     formatRollModifier(roll) {
