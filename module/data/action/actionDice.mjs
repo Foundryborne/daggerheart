@@ -97,15 +97,7 @@ export class DHDamageData extends foundry.abstract.DataModel {
     /** @override */
     static defineSchema() {
         return {
-            // ...super.defineSchema(),
             base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
-            /* type: new fields.StringField({
-                choices: CONFIG.DH.GENERAL.damageTypes,
-                initial: 'physical',
-                label: 'Type',
-                nullable: false,
-                required: true
-            }), */
             type: new fields.SetField(
                 new fields.StringField({
                     choices: CONFIG.DH.GENERAL.damageTypes,

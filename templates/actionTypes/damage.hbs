@@ -48,10 +48,6 @@
                         {{/if}}
                         {{formField ../../fields.type value=dmg.type name=(concat "damage.parts." realIndex ".type") localize=true}} 
                         <input type="hidden" name="damage.parts.{{realIndex}}.base" value="{{dmg.base}}">
-                        {{!-- <input{{#if dmg.base}} disabled{{/if}} type="text" class="damage-types-input" value="{{dmg.type}}" name={{concat "damage.parts." realIndex ".type"}} /> --}}
-                        {{!-- <multi-select name={{concat "damage.parts." realIndex ".type"}}>
-
-                        </multi-select> --}}
                     </fieldset>
                     {{#unless dmg.base}}<div class="fas fa-trash" data-action="removeDamage" data-index="{{realIndex}}"></div>{{/unless}}
                 </div>

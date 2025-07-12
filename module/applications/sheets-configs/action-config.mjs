@@ -144,7 +144,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     _prepareSubmitData(event, formData) {
         const submitData = foundry.utils.expandObject(formData.object);
-        console.log(formData, submitData)
         for (const keyPath of this.constructor.CLEAN_ARRAYS) {
             const data = foundry.utils.getProperty(submitData, keyPath);
             if (data) foundry.utils.setProperty(submitData, keyPath, Object.values(data));
