@@ -548,10 +548,10 @@ export default class DhpActor extends Actor {
                         );
                         break;
                     default:
-                        updates.actor.resources[`system.resources.${r.type}.value`] = Math.max(
+                        updates.actor.resources[`system.resources.${r.key}.value`] = Math.max(
                             Math.min(
-                                this.system.resources[r.type].value + r.value,
-                                this.system.resources[r.type].maxTotal ?? this.system.resources[r.type].max
+                                this.system.resources[r.key].value + r.value,
+                                this.system.resources[r.key].maxTotal ?? this.system.resources[r.key].max
                             ),
                             0
                         );
