@@ -1,0 +1,12 @@
+{{#if (gt features.length 0)}}<h4 class="tooltip-sub-title">{{label}}</h4>{{/if}}
+<div class="tooltip-tags">
+    {{#each features as | feature |}}
+        <div class="tooltip-tag">
+            <div class="tooltip-tag-label-container">
+                    <div class="tooltip-tag-label">{{localize feature.name}}</div>
+                    {{#if feature.img}}<img class="tooltip-tag-image" src="{{feature.img}}" />{{/if}}
+                </div>
+            <div class="tooltip-tag-description">{{{localize (tertiary feature.description feature.system.description)}}}</div>
+        </div>
+    {{/each}}
+</div>

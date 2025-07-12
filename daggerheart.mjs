@@ -41,10 +41,14 @@ Hooks.once('init', () => {
         ]
     );
 
-    CONFIG.statusEffects = Object.values(SYSTEM.GENERAL.conditions).map(x => ({
-        ...x,
-        name: game.i18n.localize(x.name)
-    }));
+    CONFIG.statusEffects = [
+        ...CONFIG.statusEffects,
+        ...Object.values(SYSTEM.GENERAL.conditions).map(x => ({
+            ...x,
+            name: game.i18n.localize(x.name),
+            systemEffect: true
+        }))
+    ];
 
     CONFIG.Dice.daggerheart = {
         DualityDie: DualityDie,
@@ -107,6 +111,8 @@ Hooks.once('init', () => {
             makeDefault: true
         }
     );
+
+    CONFIG.Token.hudClass = applications.hud.DHTokenHUD;
 
     CONFIG.Combat.dataModels = {
         base: models.DhCombat

@@ -11,10 +11,13 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     static DEFAULT_OPTIONS = {
         tag: 'form',
         id: 'roll-selection',
-        classes: ['daggerheart', 'views', 'damage-selection'],
+        classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'damage-selection'],
         position: {
             width: 400,
             height: 'auto'
+        },
+        window: {
+            icon: 'fa-solid fa-dice'
         },
         actions: {
             submitRoll: this.submitRoll
@@ -34,9 +37,15 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
         }
     };
 
+    get title() {
+        return game.i18n.localize('DAGGERHEART.EFFECTS.ApplyLocations.damageRoll.name');
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.title = this.config.title;
+        context.title = this.config.title
+            ? this.config.title
+            : game.i18n.localize('DAGGERHEART.EFFECTS.ApplyLocations.damageRoll.name');
         context.extraFormula = this.config.extraFormula;
         context.formula = this.roll.constructFormula(this.config);
         return context;

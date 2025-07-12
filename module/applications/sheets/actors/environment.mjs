@@ -11,6 +11,7 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         },
         actions: {
             useItem: this.useItem,
+            useAction: this.useItem,
             toChat: this.toChat
         },
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]

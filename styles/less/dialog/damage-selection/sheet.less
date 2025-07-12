@@ -1,0 +1,20 @@
+@import '../../utils/colors.less';
+
+.daggerheart.dialog.dh-style.views.damage-selection {
+    .damage-section-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        input[type='text'],
+        input[type='number'] {
+            color: light-dark(@dark, @beige);
+            outline: 2px solid transparent;
+            transition: all 0.3s ease;
+
+            &:hover {
+                outline: 2px solid light-dark(@dark, @beige);
+            }
+        }
+    }
+}

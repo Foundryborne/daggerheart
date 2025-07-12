@@ -1,33 +1,13 @@
-<div>
+<section class="damage-section-container">
+    <header class="dialog-header">
+        <h1>{{title}}</h1>
+    </header>
+    <span class="formula-label"><b>Formula:</b> {{@root.formula}}</span>
     <div class="form-group">
-        <label><strong>{{title}}</strong></label>
-        <div class="form-fields">
-            {{!-- <input type="text" value="{{formula}}" disabled /> --}}
-            <div>{{@root.formula}}</div>
-        </div>
-        <div>
-            <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="Situational Bonus">
-        </div>
+        <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="Situational Bonus">
     </div>
-    {{!-- {{#each bonusDamage as |damage index|}}
-        <div class="form-group">
-            <label><strong>{{damage.description}}</strong></label>
-            <div class="form-fields">
-                <label>Enabled</label>
-                <input style="align-self: baseline;" type="checkbox" name="bonusDamage.{{index}}.initiallySelected" {{checked damage.initiallySelected}} />
-                {{#if (and damage.initiallySelected damage.hopeIncrease)}}
-
-                    <label>Hope</label>
-                    <div class="hope-container">
-                        <i data-action="decreaseHopeUse" data-index="{{index}}" class="fa-solid fa-caret-left icon-button {{#if (eq damage.hopeUses 0)}}disabled{{/if}}"></i>
-                        <div>{{damage.hopeUses}}</div>
-                        <i data-action="increaseHopeUse" data-index="{{index}}" class="fa-solid fa-caret-right icon-button {{#if (eq ../hopeUsed ../hope)}}disabled{{/if}}"></i>
-                    </div>
-                {{/if}}
-            </div>
-        </div>
-    {{/each}} --}}
-    <footer>
-        <button data-action="submitRoll">Roll</button>
-    </footer>
-</div>
+    <button class="submit-btn" data-action="submitRoll">
+        <i class="fa-solid fa-dice"></i>
+        <span class="label">Roll</span>
+    </button>
+</section>

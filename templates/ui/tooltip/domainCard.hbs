@@ -1,5 +1,31 @@
-<div>
-    <div>{{name}}</div>
-    <img src="{{img}}" />
-    <div>{{{system.description}}}</div>
+<div class="daggerheart dh-style tooltip">
+    <h2 class="tooltip-title">{{item.name}}</h2>
+    <img class="tooltip-image" src="{{item.img}}" />
+    <div class="tooltip-description">{{{item.system.description}}}</div>
+
+    <div class="tooltip-information-section">
+        <div class="tooltip-information">
+            <label>{{localize "DAGGERHEART.GENERAL.Domain.single"}}</label>
+            {{#with (lookup config.DOMAIN.domains item.system.domain) as | domain |}}
+                <div>{{localize domain.label}}</div>
+            {{/with}}
+        </div>
+        
+        <div class="tooltip-information">
+            <label>{{localize "Type"}}</label>
+            {{#with (lookup config.DOMAIN.cardTypes item.system.type) as | type |}}
+                <div>{{localize type.label}}</div>
+            {{/with}}
+        </div>
+        <div class="tooltip-information">
+            <label>{{localize "DAGGERHEART.GENERAL.level"}}</label>
+            <div>{{item.system.level}}</div>
+        </div>
+        <div class="tooltip-information">
+            <label>{{localize "DAGGERHEART.ITEMS.DomainCard.recallCost"}}</label>
+            <div>{{item.system.recallCost}}</div>
+        </div>
+    </div>
+
+    {{> "systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs" features=item.system.actions label=(localize "DAGGERHEART.GENERAL.Action.plural") }}
 </div>

@@ -17,7 +17,7 @@
                     {{/each}}
                 {{else}}
                     {{#each values}}
-                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=this type=../type hideControls=../hideControls }}
+                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=this type=../type hideControls=../hideControls featureType=true }}
                     {{/each}}
                     
                     {{#each adversaries as |adversary|}}
