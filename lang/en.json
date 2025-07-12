@@ -1054,6 +1054,10 @@
                 "shortrest": "Short Rest",
                 "longrest": "Long Rest"
             },
+            "Resource": {
+                "single": "Resource",
+                "plural": "Resources"
+            },
             "Tabs": {
                 "details": "Details",
                 "attack": "Attack",
@@ -1139,6 +1143,14 @@
             "value": "Value"
         },
         "ITEMS": {
+            "FIELDS": {
+                "resource": {
+                    "value": { "label": "Value" },
+                    "max": { "label": "Max" },
+                    "icon": { "label": "Icon" },
+                    "recovery": { "label": "Recovery" }
+                }
+            },
             "Armor": {
                 "baseScore": "Base Score",
                 "baseThresholds": {

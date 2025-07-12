@@ -1,7 +1,6 @@
 export default class RegisterHandlebarsHelpers {
     static registerHelpers() {
         Handlebars.registerHelper({
-            emptyObject: this.emptyObject,
             add: this.add,
             includes: this.includes,
             times: this.times,
@@ -9,10 +8,6 @@ export default class RegisterHandlebarsHelpers {
             damageSymbols: this.damageSymbols,
             tertiary: this.tertiary
         });
-    }
-
-    static emptyObject(a) {
-        return !a || typeof a !== 'object' || Object.keys(a).length === 0;
     }
 
     static add(a, b) {

@@ -1,0 +1,10 @@
+<fieldset>
+    <legend>{{localize "DAGGERHEART.GENERAL.Resource.single"}}</legend>
+
+    <div class="two-columns even">
+        {{formGroup systemFields.resource.fields.value value=source.system.resource.value localize=true}}
+        {{formGroup systemFields.resource.fields.max value=source.system.resource.max localize=true}}
+        {{formGroup systemFields.resource.fields.icon value=source.system.resource.icon localize=true placeholder="fa-solid fa-hashtag"}}
+        {{formGroup systemFields.resource.fields.recovery value=source.system.resource.recovery localize=true}}
+    </div>
+</fieldset>

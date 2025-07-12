@@ -86,6 +86,17 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
     };
 
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
+            element.addEventListener('change', this.updateItemResource.bind(this));
+        });
+        htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
+            element.addEventListener('change', this.updateItemQuantity.bind(this));
+        });
+    }
+
     /** @inheritDoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
@@ -473,6 +484,28 @@ export default class CharacterSheet extends DHBaseActorSheet {
             const { search } = this.#filteredItems.loadout;
             li.hidden = !(search.has(item.id) && matchesMenu);
         }
+    }
+
+    /* -------------------------------------------- */
+    /*  Application Listener Actions                */
+    /* -------------------------------------------- */
+    async updateItemResource(event) {
+        const item = this.getItem(event.currentTarget);
+        if (!item) return;
+
+        const value = item.system.resource.max
+            ? Math.min(Number(event.currentTarget.value), item.system.resource.max)
+            : event.currentTarget.value;
+        await item.update({ 'system.resource.value': value });
+        this.render();
+    }
+
+    async updateItemQuantity(event) {
+        const item = this.getItem(event.currentTarget);
+        if (!item) return;
+
+        await item.update({ 'system.quantity': event.currentTarget.value });
+        this.render();
     }
 
     /* -------------------------------------------- */

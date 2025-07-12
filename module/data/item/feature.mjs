@@ -7,7 +7,8 @@ export default class DHFeature extends BaseDataItem {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Item.feature',
             type: 'feature',
-            hasDescription: true
+            hasDescription: true,
+            hasResource: true
         });
     }
 

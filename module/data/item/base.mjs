@@ -11,12 +11,15 @@
 const fields = foundry.data.fields;
 
 export default class BaseDataItem extends foundry.abstract.TypeDataModel {
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.ITEMS'];
+
     /** @returns {ItemDataModelMetadata}*/
     static get metadata() {
         return {
             label: 'Base Item',
             type: 'base',
             hasDescription: false,
+            hasResource: false,
             isQuantifiable: false,
             isInventoryItem: false
         };
@@ -29,20 +32,22 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /** @inheritDoc */
     static defineSchema() {
-        const schema = {
-            uses: new fields.SchemaField({
-                value: new fields.NumberField({ nullable: true, initial: null }),
+        const schema = {};
+
+        if (this.metadata.hasDescription) schema.description = new fields.HTMLField({ required: true, nullable: true });
+
+        if (this.metadata.hasResource) {
+            schema.resource = new fields.SchemaField({
+                value: new fields.NumberField({ integer: true, min: 0, nullable: true, initial: null }),
                 max: new fields.NumberField({ nullable: true, initial: null }),
-                icon: new fields.StringField({ initial: 'fa-solid fa-hashtag' }),
+                icon: new fields.StringField(),
                 recovery: new fields.StringField({
                     choices: CONFIG.DH.GENERAL.refreshTypes,
                     initial: null,
                     nullable: true
                 })
-            })
-        };
-
-        if (this.metadata.hasDescription) schema.description = new fields.HTMLField({ required: true, nullable: true });
+            });
+        }
 
         if (this.metadata.isQuantifiable)
             schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
