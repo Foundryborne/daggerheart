@@ -37,16 +37,19 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         if (this.metadata.hasDescription) schema.description = new fields.HTMLField({ required: true, nullable: true });
 
         if (this.metadata.hasResource) {
-            schema.resource = new fields.SchemaField({
-                value: new fields.NumberField({ integer: true, min: 0, nullable: true, initial: null }),
-                max: new fields.NumberField({ nullable: true, initial: null }),
-                icon: new fields.StringField(),
-                recovery: new fields.StringField({
-                    choices: CONFIG.DH.GENERAL.refreshTypes,
-                    initial: null,
-                    nullable: true
-                })
-            });
+            schema.resource = new fields.SchemaField(
+                {
+                    value: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
+                    max: new fields.NumberField({ nullable: true, initial: null }),
+                    icon: new fields.StringField(),
+                    recovery: new fields.StringField({
+                        choices: CONFIG.DH.GENERAL.refreshTypes,
+                        initial: null,
+                        nullable: true
+                    })
+                },
+                { nullable: true, initial: null }
+            );
         }
 
         if (this.metadata.isQuantifiable)

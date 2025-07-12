@@ -41,7 +41,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                         required: true,
                         initial: 'hope'
                     }),
-                    keyIsUUID: new fields.BooleanField(),
+                    keyIsID: new fields.BooleanField(),
                     value: new fields.NumberField({ nullable: true, initial: 1 }),
                     scalable: new fields.BooleanField({ initial: false }),
                     step: new fields.NumberField({ nullable: true, initial: null })
@@ -337,12 +337,11 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     async consume(config) {
         const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
         for (var cost of config.costs) {
-            if (cost.keyIsUUID) {
-                const item = await foundry.utils.fromUuid(cost.key);
+            if (cost.keyIsID) {
                 usefulResources[cost.key] = {
-                    value: item.system.resource.value,
-                    target: item,
-                    keyIsUUID: true
+                    value: cost.value,
+                    target: this.parent.parent,
+                    keyIsID: true
                 };
             }
         }
@@ -354,7 +353,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                     key: c.key,
                     value: (c.total ?? c.value) * (resource.hasOwnProperty('maxTotal') ? 1 : -1),
                     target: resource.target,
-                    keyIsUUID: resource.keyIsUUID
+                    keyIsID: resource.keyIsID
                 };
             });
 
@@ -400,10 +399,9 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         const actorResources = this.actor.system.resources;
         const itemResources = {};
         for (var itemResource of costs) {
-            if (itemResource.keyIsUUID) {
-                const item = await foundry.utils.fromUuid(itemResource.key);
+            if (itemResource.keyIsID) {
                 itemResources[itemResource.key] = {
-                    value: item?.system?.resource?.value ?? 0
+                    value: this.parent.resource.value ?? 0
                 };
             }
         }
@@ -414,6 +412,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         };
     }
 
+    /* COST */
     async hasCost(costs) {
         const realCosts = this.getRealCosts(costs),
             hasFearCost = realCosts.findIndex(c => c.key === 'fear');
@@ -436,7 +435,6 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             true
         );
     }
-    /* COST */
 
     /* USES */
     calcUses(uses) {
@@ -451,7 +449,6 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         if (!uses) return true;
         return (uses.hasOwnProperty('enabled') && !uses.enabled) || uses.value + 1 <= uses.max;
     }
-    /* USES */
 
     /* TARGET */
     isTargetFriendly(target) {

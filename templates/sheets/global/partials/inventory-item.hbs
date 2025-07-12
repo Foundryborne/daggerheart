@@ -1,7 +1,7 @@
 <li class="inventory-item" data-item-id="{{item.id}}" data-item-uuid="{{item.uuid}}" data-type="{{type}}">
     <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" data-action="useItem" {{#if (not noTooltip)}}data-tooltip="{{concat "#item#" item.uuid}}"{{/if}} />
     <div class="item-label-wrapper">
-        <div class="item-label {{#unless (and (not isSidebar) (or item.system.resource.max item.system.quantity))}}fullWidth{{/unless}}">
+        <div class="item-label {{#unless (and (not isSidebar) (or item.system.resource item.system.quantity))}}fullWidth{{/unless}}">
             {{#if isCompanion}}
                 <a class="item-name" data-action="attackRoll">{{item.name}}</a>
             {{else}}
@@ -123,7 +123,7 @@
                 </div>
             {{/if}}
         </div>
-        {{#if (and (not isSidebar) item.system.resource.max)}}
+        {{#if (and (not isSidebar) item.system.resource)}}
             <div class="item-resource">
                 <i class="{{#if item.system.resource.icon}}{{item.system.resource.icon}}{{else}}fa-solid fa-hashtag{{/if}}"></i>
                 <input type="number" class="inventory-item-resource" value="{{item.system.resource.value}}" step="1" />

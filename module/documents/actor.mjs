@@ -526,9 +526,8 @@ export default class DhpActor extends Actor {
             items: {}
         };
         resources.forEach(r => {
-            if (r.keyIsUUID) {
+            if (r.keyIsID) {
                 updates.items[r.key] = {
-                    uuid: r.key,
                     target: r.target,
                     resources: {
                         'system.resource.value': r.target.system.resource.value + r.value
