@@ -111,6 +111,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             context.hasBaseDamage = !!this.action.parent.attack;
         context.getRealIndex = this.getRealIndex.bind(this);
         context.getEffectDetails = this.getEffectDetails.bind(this);
+        context.costOptions = await this.getCostOptions();
         context.disableOption = this.disableOption.bind(this);
         context.isNPC = this.action.actor && this.action.actor.type !== 'character';
         context.hasRoll = this.action.hasRoll;
@@ -129,8 +130,46 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         this.render(true);
     }
 
-    disableOption(index, options, choices) {
-        const filtered = foundry.utils.deepClone(options);
+    async getCostOptions() {
+        const worldItems = this.action.actor ? this.action.actor.items : game.items;
+        const compendiumItems = this.action.actor
+            ? []
+            : Array.from(game.packs).flatMap(x =>
+                  x.index.map(x => ({
+                      id: x._id,
+                      uuid: x.uuid,
+                      name: x.name
+                  }))
+              );
+
+        const resourceOptions = [...worldItems, ...compendiumItems].reduce((acc, x) => {
+            if (['feature', 'domainCard'].includes(x.type) && x.system.resource?.max) {
+                acc.push({
+                    id: x.id,
+                    uuid: x.uuid,
+                    label: x.name,
+                    group: 'TYPES.Actor.character'
+                });
+            }
+
+            return acc;
+        }, []);
+
+        const abilityCosts = Object.values(CONFIG.DH.GENERAL.abilityCosts);
+        const sortedOptions = [...abilityCosts, ...resourceOptions].sort((a, b) => {
+            const groupSort = game.i18n.localize(a.group).localeCompare(game.i18n.localize(b.group));
+            return groupSort ? groupSort : game.i18n.localize(a.label).localeCompare(game.i18n.localize(b.label));
+        });
+
+        return sortedOptions.reduce((acc, x) => {
+            acc[x.uuid ?? x.id] = x;
+
+            return acc;
+        }, {});
+    }
+
+    disableOption(index, costOptions, choices) {
+        const filtered = foundry.utils.deepClone(costOptions);
         Object.keys(filtered).forEach(o => {
             if (choices.find((c, idx) => c.type === o && index !== idx)) filtered[o].disabled = true;
         });
@@ -146,17 +185,25 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         return this.action.item.effects.get(id);
     }
 
-    _prepareSubmitData(event, formData) {
+    async _prepareSubmitData(_event, formData) {
         const submitData = foundry.utils.expandObject(formData.object);
         for (const keyPath of this.constructor.CLEAN_ARRAYS) {
             const data = foundry.utils.getProperty(submitData, keyPath);
-            if (data) foundry.utils.setProperty(submitData, keyPath, Object.values(data));
+            const dataValues = data ? Object.values(data) : [];
+            if (keyPath === 'cost') {
+                for (var value of dataValues) {
+                    const item = await foundry.utils.fromUuid(value.key ?? '');
+                    value.keyIsUUID = Boolean(item);
+                }
+            }
+
+            if (data) foundry.utils.setProperty(submitData, keyPath, dataValues);
         }
         return submitData;
     }
 
     static async updateForm(event, _, formData) {
-        const submitData = this._prepareSubmitData(event, formData),
+        const submitData = await this._prepareSubmitData(event, formData),
             data = foundry.utils.mergeObject(this.action.toObject(), submitData),
             container = foundry.utils.getProperty(this.action.parent, this.action.systemPath);
         let newActions;

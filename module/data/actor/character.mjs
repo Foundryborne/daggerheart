@@ -42,9 +42,7 @@ export default class DhCharacter extends BaseDataActor {
                     bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true })
                 }),
                 stress: resourceField(6),
-                hope: resourceField(6),
-                tokens: new fields.ObjectField(),
-                dice: new fields.ObjectField()
+                hope: resourceField(6)
             }),
             traits: new fields.SchemaField({
                 agility: attributeField(),

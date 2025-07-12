@@ -1,6 +1,7 @@
-import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField } from './actionDice.mjs';
+import { DHActionDiceData, DHActionRollData, DHDamageField } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
+import { getResources } from '../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
@@ -35,12 +36,12 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             }),
             cost: new fields.ArrayField(
                 new fields.SchemaField({
-                    type: new fields.StringField({
-                        choices: CONFIG.DH.GENERAL.abilityCosts,
+                    key: new fields.StringField({
                         nullable: false,
                         required: true,
                         initial: 'hope'
                     }),
+                    keyIsUUID: new fields.BooleanField(),
                     value: new fields.NumberField({ nullable: true, initial: 1 }),
                     scalable: new fields.BooleanField({ initial: false }),
                     step: new fields.NumberField({ nullable: true, initial: null })
@@ -211,7 +212,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
 
         // Prepare Costs
         const costsConfig = this.prepareCost();
-        if (isFastForward && !this.hasCost(costsConfig))
+        if (isFastForward && !(await this.hasCost(costsConfig)))
             return ui.notifications.warn("You don't have the resources to use that action.");
 
         // Prepare Uses
@@ -285,7 +286,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
 
     prepareCost() {
         const costs = this.cost?.length ? foundry.utils.deepClone(this.cost) : [];
-        return costs;
+        return this.calcCosts(costs);
     }
 
     prepareUse() {
@@ -334,11 +335,27 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     async consume(config) {
+        const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
+        for (var cost of config.costs) {
+            if (cost.keyIsUUID) {
+                const item = await foundry.utils.fromUuid(cost.key);
+                usefulResources[cost.key] = {
+                    value: item.system.resource.value,
+                    target: item,
+                    keyIsUUID: true
+                };
+            }
+        }
         const resources = config.costs
             .filter(c => c.enabled !== false)
             .map(c => {
-                const resource = this.actor.system.resources[c.type];
-                return { type: c.type, value: (c.total ?? c.value) * (resource.hasOwnProperty('maxTotal') ? 1 : -1) };
+                const resource = usefulResources[c.key];
+                return {
+                    key: c.key,
+                    value: (c.total ?? c.value) * (resource.hasOwnProperty('maxTotal') ? 1 : -1),
+                    target: resource.target,
+                    keyIsUUID: resource.keyIsUUID
+                };
             });
 
         await this.actor.modifyResource(resources);
@@ -379,9 +396,27 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         });
     }
 
-    hasCost(costs) {
+    async getResources(costs) {
+        const actorResources = this.actor.system.resources;
+        const itemResources = {};
+        for (var itemResource of costs) {
+            if (itemResource.keyIsUUID) {
+                const item = await foundry.utils.fromUuid(itemResource.key);
+                itemResources[itemResource.key] = {
+                    value: item?.system?.resource?.value ?? 0
+                };
+            }
+        }
+
+        return {
+            ...actorResources,
+            ...itemResources
+        };
+    }
+
+    async hasCost(costs) {
         const realCosts = this.getRealCosts(costs),
-            hasFearCost = realCosts.findIndex(c => c.type === 'fear');
+            hasFearCost = realCosts.findIndex(c => c.key === 'fear');
         if (hasFearCost > -1) {
             const fearCost = realCosts.splice(hasFearCost, 1)[0];
             if (
@@ -392,12 +427,12 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         }
 
         /* maxTotal is a sign that the resource is inverted, IE it counts upwards instead of down */
-        const resources = this.actor.system.resources;
+        const resources = await this.getResources(realCosts);
         return realCosts.reduce(
             (a, c) =>
-                a && resources[c.type].hasOwnProperty('maxTotal')
-                    ? resources[c.type].value + (c.total ?? c.value) <= resources[c.type].maxTotal
-                    : resources[c.type]?.value >= (c.total ?? c.value),
+                a && resources[c.key].hasOwnProperty('maxTotal')
+                    ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].maxTotal
+                    : resources[c.key]?.value >= (c.total ?? c.value),
             true
         );
     }
