@@ -1,6 +1,17 @@
 @import '../utils/colors.less';
 @import '../utils/fonts.less';
 
+.theme-light .application.daggerheart.dh-style {
+    .inventory-item,
+    .card-item {
+        .item-resource .item-dice-resource {
+            img {
+                filter: brightness(0) saturate(100%);
+            }
+        }
+    }
+}
+
 .application.daggerheart.dh-style {
     .inventory-item {
         display: grid;
@@ -213,7 +224,7 @@
                 label {
                     position: absolute;
                     color: light-dark(white, black);
-                    filter: drop-shadow(0 0 1px @golden);
+                    filter: drop-shadow(0 0 1px light-dark(@dark-blue, @golden));
                     z-index: 2;
                     font-size: 18px;
                     cursor: pointer;

@@ -4,16 +4,11 @@
             {{#with (ifThen (lookup ../diceStates this) (lookup ../diceStates this) this) as | state |}}
                 <div class="resource-item" data-dice="{{#if ../../this}}{{../this}}{{else}}{{state}}{{/if}}">
                     <input type="number" data-dtype="Number" name={{concat "diceStates." (ifThen ../../this ../this state) ".value" }} value="{{state.value}}" />
-                    {{!-- <label>{{ifThen state.value state.value '?'}}</label> --}}
                     <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/d" (ifThen ../../resource.dieFaces ../../resource.dieFaces ../resource.dieFaces) ".svg"}}" />
                 </div>
             {{/with}}
         {{/times}}
     </div>
-    {{!-- <div class="reroll-confirmation">
-        <div>{{localize 'DAGGERHEART.APPLICATIONS.ResourceDice.rerollRecoveryInfo' name=name recovery=recovery }}</div>
-        <div>{{localize 'DAGGERHEART.APPLICATIONS.ResourceDice.rerollConfirmation' name=name }}</div>
-    </div> --}}
     <footer>
         <button data-action="save">{{localize 'Save'}}</button>
         <button data-action="rerollDice">{{localize "DAGGERHEART.APPLICATIONS.ResourceDice.rerollDice"}}</button>
