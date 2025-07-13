@@ -1,10 +1,11 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class ResourceDiceDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(name, actorName, resource, options = {}) {
+    constructor(name, recovery, actorName, resource, options = {}) {
         super(options);
 
         this.name = name;
+        this.recovery = recovery;
         this.actorName = actorName;
         this.resource = resource;
     }
@@ -39,7 +40,8 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.resource = this.resource;
+        context.name = this.name;
+        context.recovery = game.i18n.localize(CONFIG.DH.GENERAL.refreshTypes[this.recovery].label);
 
         return context;
     }
@@ -66,9 +68,9 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
         this.close();
     }
 
-    static async create(name, actorName, resource, options = {}) {
+    static async create(name, recovery, actorName, resource, options = {}) {
         return new Promise(resolve => {
-            const app = new this(name, actorName, resource, options);
+            const app = new this(name, recovery, actorName, resource, options);
             app.addEventListener('close', () => resolve(app.rollValues), { once: true });
             app.render({ force: true });
         });

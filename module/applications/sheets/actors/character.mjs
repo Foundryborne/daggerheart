@@ -700,6 +700,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(
             item.name,
+            item.system.resource.recovery,
             this.document.name,
             item.system.resource
         );
