@@ -96,7 +96,7 @@
 
     <div class="character-traits">
         {{#each this.attributes as |attribute key|}}
-            <div class="trait" data-tooltip="{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.total}}">
+            <div class="trait" data-tooltip="{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.value}}">
                 <div class="trait-name">
                     <span>{{localize (concat 'DAGGERHEART.CONFIG.Traits.' key '.short')}}</span>
                     {{#if attribute.tierMarked}}
@@ -106,10 +106,10 @@
                     {{/if}}
                 </div>
                 <div class="trait-value">
-                    {{#if (gt attribute.total 0)}}
-                        <span>+{{attribute.total}}</span>
+                    {{#if (gt attribute.value 0)}}
+                        <span>+{{attribute.value}}</span>
                     {{else}}
-                        <span>{{attribute.total}}</span>
+                        <span>{{attribute.value}}</span>
                     {{/if}}
                 </div>
             </div>

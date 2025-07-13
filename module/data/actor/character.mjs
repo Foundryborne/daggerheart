@@ -5,16 +5,15 @@ import BaseDataActor from './base.mjs';
 
 const attributeField = () =>
     new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: null, integer: true }),
-        bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
+        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
         tierMarked: new foundry.data.fields.BooleanField({ initial: false })
     });
 
-const resourceField = max =>
+const resourceField = (max, reverse = false) =>
     new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        max: new foundry.data.fields.NumberField({ initial: max, integer: true })
+        max: new foundry.data.fields.NumberField({ initial: max, integer: true }),
+        isReversed: new foundry.data.fields.BooleanField({ initial: reverse })
     });
 
 const stressDamageReductionRule = () =>
@@ -38,11 +37,8 @@ export default class DhCharacter extends BaseDataActor {
         return {
             ...super.defineSchema(),
             resources: new fields.SchemaField({
-                hitPoints: new fields.SchemaField({
-                    value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-                    bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true })
-                }),
-                stress: resourceField(6),
+                hitPoints: resourceField(0, true),
+                stress: resourceField(6, true),
                 hope: resourceField(6),
                 tokens: new fields.ObjectField(),
                 dice: new fields.ObjectField()
@@ -55,18 +51,17 @@ export default class DhCharacter extends BaseDataActor {
                 presence: attributeField(),
                 knowledge: attributeField()
             }),
-            proficiency: new fields.SchemaField({
-                value: new fields.NumberField({ initial: 1, integer: true }),
-                bonus: new fields.NumberField({ initial: 0, integer: true })
-            }),
-            evasion: new fields.SchemaField({
-                bonus: new fields.NumberField({ initial: 0, integer: true })
+            proficiency: new fields.NumberField({ initial: 1, integer: true }),
+            evasion: new fields.NumberField({ initial: 0, integer: true }),
+            armorScore: new fields.NumberField({ integer: true, initial: 0 }),
+            damageThresholds: new fields.SchemaField({
+                severe: new fields.NumberField({ integer: true, initial: 0 }),
+                major: new fields.NumberField({ integer: true, initial: 0 })
             }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
-                    value: new fields.NumberField({ integer: true, initial: 0 }),
-                    bonus: new fields.NumberField({ integer: true, initial: 0 })
+                    value: new fields.NumberField({ integer: true, initial: 0 })
                 })
             ),
             gold: new fields.SchemaField({
@@ -100,11 +95,6 @@ export default class DhCharacter extends BaseDataActor {
             }),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
-                armorScore: new fields.NumberField({ integer: true, initial: 0 }),
-                damageThresholds: new fields.SchemaField({
-                    severe: new fields.NumberField({ integer: true, initial: 0 }),
-                    major: new fields.NumberField({ integer: true, initial: 0 })
-                }),
                 roll: new fields.SchemaField({
                     attack: new fields.NumberField({ integer: true, initial: 0 }),
                     primaryWeapon: new fields.SchemaField({
@@ -303,7 +293,7 @@ export default class DhCharacter extends BaseDataActor {
 
     get deathMoveViable() {
         return (
-            this.resources.hitPoints.maxTotal > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.maxTotal
+            this.resources.hitPoints.max > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.max
         );
     }
 
@@ -347,32 +337,32 @@ export default class DhCharacter extends BaseDataActor {
         for (let levelKey in this.levelData.levelups) {
             const level = this.levelData.levelups[levelKey];
 
-            this.proficiency.bonus += level.achievements.proficiency;
+            this.proficiency += level.achievements.proficiency;
 
             for (let selection of level.selections) {
                 switch (selection.type) {
                     case 'trait':
                         selection.data.forEach(data => {
-                            this.traits[data].bonus += 1;
+                            this.traits[data].value += 1;
                             this.traits[data].tierMarked = selection.tier === currentTier;
                         });
                         break;
                     case 'hitPoint':
-                        this.resources.hitPoints.bonus += selection.value;
+                        this.resources.hitPoints.max += selection.value;
                         break;
                     case 'stress':
-                        this.resources.stress.bonus += selection.value;
+                        this.resources.stress.max += selection.value;
                         break;
                     case 'evasion':
-                        this.evasion.bonus += selection.value;
+                        this.evasion += selection.value;
                         break;
                     case 'proficiency':
-                        this.proficiency.bonus = selection.value;
+                        this.proficiency = selection.value;
                         break;
                     case 'experience':
                         Object.keys(this.experiences).forEach(key => {
                             const experience = this.experiences[key];
-                            experience.bonus += selection.value;
+                            experience.value += selection.value;
                         });
                         break;
                 }
@@ -380,7 +370,7 @@ export default class DhCharacter extends BaseDataActor {
         }
 
         const armor = this.armor;
-        this.armorScore = this.armor ? this.armor.system.baseScore + (this.bonuses.armorScore ?? 0) : 0; // Bonuses to armorScore won't have been applied yet. Need to solve in documentPreparation somehow
+        this.armorScore = armor ? armor.system.baseScore : 0;
         this.damageThresholds = {
             major: armor
                 ? armor.system.baseThresholds.major + this.levelData.level.current
@@ -389,29 +379,12 @@ export default class DhCharacter extends BaseDataActor {
                 ? armor.system.baseThresholds.severe + this.levelData.level.current
                 : this.levelData.level.current * 2
         };
+        this.resources.hope.max -= Object.keys(this.scars).length;
+        this.resources.hitPoints.max = this.class.value?.system?.hitPoints ?? 0;
     }
 
     prepareDerivedData() {
-        this.resources.hope.max -= Object.keys(this.scars).length;
         this.resources.hope.value = Math.min(this.resources.hope.value, this.resources.hope.max);
-
-        for (var traitKey in this.traits) {
-            var trait = this.traits[traitKey];
-            trait.total = (trait.value ?? 0) + trait.bonus;
-        }
-
-        for (var experienceKey in this.experiences) {
-            var experience = this.experiences[experienceKey];
-            experience.total = experience.value + experience.bonus;
-        }
-
-        this.rules.damageReduction.maxArmorMarked.total =
-            this.rules.damageReduction.maxArmorMarked.value + this.rules.damageReduction.maxArmorMarked.bonus;
-
-        this.resources.hitPoints.maxTotal = (this.class.value?.system?.hitPoints ?? 0) + this.resources.hitPoints.bonus;
-        this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
-        this.evasion.total = (this.class?.evasion ?? 0) + this.evasion.bonus;
-        this.proficiency.total = this.proficiency.value + this.proficiency.bonus;
     }
 
     getRollData() {

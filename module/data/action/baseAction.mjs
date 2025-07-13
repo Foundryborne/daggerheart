@@ -331,7 +331,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             .filter(c => c.enabled !== false)
             .map(c => {
                 const resource = this.actor.system.resources[c.type];
-                return { type: c.type, value: (c.total ?? c.value) * (resource.hasOwnProperty('maxTotal') ? 1 : -1) };
+                return { type: c.type, value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1) };
             });
 
         await this.actor.modifyResource(resources);
@@ -384,12 +384,12 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                 return false;
         }
 
-        /* maxTotal is a sign that the resource is inverted, IE it counts upwards instead of down */
+        /* isReversed is a sign that the resource is inverted, IE it counts upwards instead of down */
         const resources = this.actor.system.resources;
         return realCosts.reduce(
             (a, c) =>
-                a && resources[c.type].hasOwnProperty('maxTotal')
-                    ? resources[c.type].value + (c.total ?? c.value) <= resources[c.type].maxTotal
+                a && resources[c.type].isReversed
+                    ? resources[c.type].value + (c.total ?? c.value) <= resources[c.type].max
                     : resources[c.type]?.value >= (c.total ?? c.value),
             true
         );
@@ -432,7 +432,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             name: actor.actor.name,
             img: actor.actor.img,
             difficulty: actor.actor.system.difficulty,
-            evasion: actor.actor.system.evasion?.total
+            evasion: actor.actor.system.evasion
         };
     }
     /* TARGET */

@@ -41,37 +41,37 @@ export const armorFeatures = {
                 img: 'icons/magic/control/buff-flight-wings-red.webp',
                 changes: [
                     {
-                        key: 'system.traits.agility.bonus',
+                        key: 'system.traits.agility.value',
                         mode: 2,
                         value: '-1'
                     },
                     {
-                        key: 'system.traits.strength.bonus',
+                        key: 'system.traits.strength.value',
                         mode: 2,
                         value: '-1'
                     },
                     {
-                        key: 'system.traits.finesse.bonus',
+                        key: 'system.traits.finesse.value',
                         mode: 2,
                         value: '-1'
                     },
                     {
-                        key: 'system.traits.instinct.bonus',
+                        key: 'system.traits.instinct.value',
                         mode: 2,
                         value: '-1'
                     },
                     {
-                        key: 'system.traits.presence.bonus',
+                        key: 'system.traits.presence.value',
                         mode: 2,
                         value: '-1'
                     },
                     {
-                        key: 'system.traits.knowledge.bonus',
+                        key: 'system.traits.knowledge.value',
                         mode: 2,
                         value: '-1'
                     },
                     {
-                        key: 'system.evasion.bonus',
+                        key: 'system.evasion',
                         mode: 2,
                         value: '-1'
                     }
@@ -89,7 +89,7 @@ export const armorFeatures = {
                 img: 'icons/magic/movement/abstract-ribbons-red-orange.webp',
                 changes: [
                     {
-                        key: 'system.evasion.bonus',
+                        key: 'system.evasion',
                         mode: 2,
                         value: '1'
                     }
@@ -125,7 +125,7 @@ export const armorFeatures = {
                 img: 'icons/magic/control/control-influence-crown-gold.webp',
                 changes: [
                     {
-                        key: 'system.traits.presence.bonus',
+                        key: 'system.traits.presence.value',
                         mode: 2,
                         value: '1'
                     }
@@ -143,7 +143,7 @@ export const armorFeatures = {
                 img: 'icons/commodities/metal/ingot-worn-iron.webp',
                 changes: [
                     {
-                        key: 'system.evasion.bonus',
+                        key: 'system.evasion',
                         mode: 2,
                         value: '-1'
                     }
@@ -372,12 +372,12 @@ export const armorFeatures = {
                 img: 'icons/commodities/metal/ingot-stamped-steel.webp',
                 changes: [
                     {
-                        key: 'system.evasion.bonus',
+                        key: 'system.evasion',
                         mode: 2,
                         value: '-2'
                     },
                     {
-                        key: 'system.traits.agility.bonus',
+                        key: 'system.traits.agility.value',
                         mode: 2,
                         value: '-1'
                     }
@@ -413,7 +413,7 @@ export const weaponFeatures = {
             {
                 changes: [
                     {
-                        key: 'system.bonuses.armorScore',
+                        key: 'system.armorScore',
                         mode: 2,
                         value: 'ITEM.@system.tier + 1'
                     }
@@ -422,7 +422,7 @@ export const weaponFeatures = {
             {
                 changes: [
                     {
-                        key: 'system.evasion.bonus',
+                        key: 'system.evasion',
                         mode: 2,
                         value: '-1'
                     }
@@ -474,7 +474,7 @@ export const weaponFeatures = {
             {
                 changes: [
                     {
-                        key: 'system.evasion.bonus',
+                        key: 'system.evasion',
                         mode: 2,
                         value: '-1'
                     }
@@ -529,7 +529,7 @@ export const weaponFeatures = {
                         img: 'icons/magic/lightning/claws-unarmed-strike-teal.webp',
                         changes: [
                             {
-                                key: 'system.proficiency.bonus',
+                                key: 'system.proficiency',
                                 mode: 2,
                                 value: '1'
                             }
@@ -569,7 +569,7 @@ export const weaponFeatures = {
                 img: 'icons/commodities/metal/mail-plate-steel.webp',
                 changes: [
                     {
-                        key: 'system.traits.finesse.bonus',
+                        key: 'system.traits.finesse.value',
                         mode: 2,
                         value: '-1'
                     }
@@ -615,7 +615,7 @@ export const weaponFeatures = {
                         img: 'icons/skills/melee/hand-grip-sword-strike-orange.webp',
                         changes: [
                             {
-                                key: 'system.evasion.bonus',
+                                key: 'system.evasion',
                                 mode: 2,
                                 value: '@system.armorScore'
                             }
@@ -645,7 +645,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/strike-flail-spiked-pink.webp',
                 changes: [
                     {
-                        key: 'system.traits.agility.bonus',
+                        key: 'system.traits.agility.value',
                         mode: 2,
                         value: '-1'
                     }
@@ -683,7 +683,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/sword-shield-stylized-white.webp',
                 changes: [
                     {
-                        key: 'system.bonuses.armorScore',
+                        key: 'system.armorScore',
                         mode: 2,
                         value: '1'
                     },
@@ -777,7 +777,7 @@ export const weaponFeatures = {
                         img: 'icons/commodities/currency/coins-crown-stack-gold.webp',
                         changes: [
                             {
-                                key: 'system.proficiency.bonus',
+                                key: 'system.proficiency',
                                 mode: 2,
                                 value: '1'
                             }
@@ -819,7 +819,7 @@ export const weaponFeatures = {
                 img: 'icons/commodities/metal/ingot-worn-iron.webp',
                 changes: [
                     {
-                        key: 'system.evasion.bonus',
+                        key: 'system.evasion',
                         mode: 2,
                         value: '-1'
                     }
@@ -941,7 +941,7 @@ export const weaponFeatures = {
                 img: '',
                 changes: [
                     {
-                        key: 'system.evasion.bonus',
+                        key: 'system.evasion',
                         mode: 2,
                         value: '-1'
                     },
@@ -1031,7 +1031,7 @@ export const weaponFeatures = {
                         img: 'icons/magic/control/hypnosis-mesmerism-eye.webp',
                         changes: [
                             {
-                                key: 'system.traits.presence.bonus',
+                                key: 'system.traits.presence.value',
                                 mode: 2,
                                 value: '2'
                             }
@@ -1088,7 +1088,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/shield-block-gray-orange.webp',
                 changes: [
                     {
-                        key: 'system.bonuses.armorScore',
+                        key: 'system.armorScore',
                         mode: 2,
                         value: '1'
                     }
@@ -1218,7 +1218,7 @@ export const weaponFeatures = {
                     {
                         key: 'system.bonuses.damage.primaryWeapon.bonus',
                         mode: 2,
-                        value: '@system.traits.agility.total'
+                        value: '@system.traits.agility.value'
                     }
                 ]
             }

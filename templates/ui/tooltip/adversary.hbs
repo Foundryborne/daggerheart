@@ -50,7 +50,7 @@
 
     <strong>{{localize "DAGGERHEART.GENERAL.Experience.plural"}}</strong>
     {{#each item.system.experiences as | experience |}}
-        <div>{{experience.name}} {{numberFormat experience.total sign=true}}</div>
+        <div>{{experience.name}} {{numberFormat experience.value sign=true}}</div>
     {{/each}}
 
     <div class="tooltip-information-section">

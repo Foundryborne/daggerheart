@@ -10,12 +10,12 @@
                 <div class='status-value'>
                     <p><input class="bar-input" name="system.resources.hitPoints.value" value="{{document.system.resources.hitPoints.value}}" type="number"></p>
                     <p>/</p>
-                    <p class="bar-label">{{document.system.resources.hitPoints.maxTotal}}</p>
+                    <p class="bar-label">{{document.system.resources.hitPoints.max}}</p>
                 </div>
                 <progress
                     class='progress-bar'
                     value='{{document.system.resources.hitPoints.value}}'
-                    max='{{document.system.resources.hitPoints.maxTotal}}'
+                    max='{{document.system.resources.hitPoints.max}}'
                 ></progress>
                 <div class="status-label">
                     <h4>HP</h4>
@@ -26,12 +26,12 @@
                 <div class='status-value'>
                     <p><input class="bar-input" name="system.resources.stress.value" value="{{document.system.resources.stress.value}}" type="number"></p>
                     <p>/</p>
-                    <p class="bar-label">{{document.system.resources.stress.maxTotal}}</p>
+                    <p class="bar-label">{{document.system.resources.stress.max}}</p>
                 </div>
                 <progress
                     class='progress-bar stress-color'
                     value='{{document.system.resources.stress.value}}'
-                    max='{{document.system.resources.stress.maxTotal}}'
+                    max='{{document.system.resources.stress.max}}'
                 ></progress>
                 <div class="status-label">
                     <h4>Stress</h4>
@@ -41,7 +41,7 @@
         <div class="status-section">
             <div class="status-number">
                 <div class='status-value'>
-                    <p>{{document.system.proficiency.total}}</p>
+                    <p>{{document.system.proficiency}}</p>
                 </div>
                 <div class="status-label">
                     <h4>Proficiency</h4>
@@ -63,7 +63,7 @@
 
             <div class="status-number">
                 <div class='status-value'>
-                    <p>{{document.system.evasion.total}}</p>
+                    <p>{{document.system.evasion}}</p>
                 </div>
                 <div class="status-label">
                     <h4>Evasion</h4>
@@ -111,7 +111,7 @@
             {{#each document.system.experiences as |experience id|}}
                 <div class="experience-row">
                     <div class="experience-value">
-                        +{{experience.total}}
+                        +{{experience.value}}
                     </div>
                     <input name="{{concat "system.experiences." id ".name"}}" data-experience={{id}} value="{{experience.name}}" type="text" />
                     <div class="controls">

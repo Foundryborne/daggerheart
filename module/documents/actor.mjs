@@ -371,96 +371,13 @@ export default class DhpActor extends Actor {
 
     getRollData() {
         const rollData = super.getRollData();
-        rollData.prof = this.system.proficiency?.total ?? 1;
-        rollData.cast = this.system.spellcast?.total ?? 1;
+        rollData.prof = this.system.proficiency ?? 1;
+        rollData.cast = this.system.spellcast ?? 1;
         return rollData;
     }
 
-    formatRollModifier(roll) {
-        const modifier = roll.modifier !== null ? Number.parseInt(roll.modifier) : null;
-        return modifier !== null
-            ? [
-                  {
-                      value: modifier,
-                      label: roll.label
-                          ? modifier >= 0
-                              ? `${roll.label} +${modifier}`
-                              : `${roll.label} ${modifier}`
-                          : null,
-                      title: roll.label
-                  }
-              ]
-            : [];
-    }
-
-    async damageRoll(title, damage, targets, shiftKey) {
-        let rollString = damage.value;
-        let bonusDamage = damage.bonusDamage?.filter(x => x.initiallySelected) ?? [];
-        if (!shiftKey) {
-            const dialogClosed = new Promise((resolve, _) => {
-                new DamageSelectionDialog(rollString, bonusDamage, resolve).render(true);
-            });
-            const result = await dialogClosed;
-            bonusDamage = result.bonusDamage;
-            rollString = result.rollString;
-
-            const automateHope = await game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation.Hope);
-            if (automateHope && result.hopeUsed) {
-                await this.update({
-                    'system.resources.hope.value': this.system.resources.hope.value - result.hopeUsed
-                });
-            }
-        }
-
-        const roll = new Roll(rollString);
-        let rollResult = await roll.evaluate();
-
-        const dice = [];
-        const modifiers = [];
-        for (var i = 0; i < rollResult.terms.length; i++) {
-            const term = rollResult.terms[i];
-            if (term.faces) {
-                dice.push({
-                    type: `d${term.faces}`,
-                    rolls: term.results.map(x => x.result),
-                    total: term.results.reduce((acc, x) => acc + x.result, 0)
-                });
-            } else if (term.operator) {
-            } else if (term.number) {
-                const operator = i === 0 ? '' : rollResult.terms[i - 1].operator;
-                modifiers.push({ value: term.number, operator: operator });
-            }
-        }
-
-        const cls = getDocumentClass('ChatMessage');
-        const systemData = {
-            title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: title }),
-            roll: rollString,
-            damage: {
-                total: rollResult.total,
-                type: damage.type
-            },
-            dice: dice,
-            modifiers: modifiers,
-            targets: targets
-        };
-        const msg = new cls({
-            type: 'damageRoll',
-            user: game.user.id,
-            sound: CONFIG.sounds.dice,
-            system: systemData,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/damage-roll.hbs',
-                systemData
-            ),
-            rolls: [roll]
-        });
-
-        cls.create(msg.toObject());
-    }
-
     #canReduceDamage(hpDamage, type) {
-        const availableStress = this.system.resources.stress.maxTotal - this.system.resources.stress.value;
+        const availableStress = this.system.resources.stress.max - this.system.resources.stress.value;
 
         const canUseArmor =
             this.system.armor &&
@@ -568,7 +485,7 @@ export default class DhpActor extends Actor {
                     updates.actor.resources[`system.resources.${r.type}.value`] = Math.max(
                         Math.min(
                             this.system.resources[r.type].value + r.value,
-                            this.system.resources[r.type].maxTotal ?? this.system.resources[r.type].max
+                            this.system.resources[r.type].max
                         ),
                         0
                     );
@@ -600,7 +517,7 @@ export default class DhpActor extends Actor {
     convertStressDamageToHP(resources) {
         const stressDamage = resources.find(r => r.type === 'stress'),
             newValue = this.system.resources.stress.value + stressDamage.value;
-        if (newValue <= this.system.resources.stress.maxTotal) return;
+        if (newValue <= this.system.resources.stress.max) return;
         const hpDamage = resources.find(r => r.type === 'hitPoints');
         if (hpDamage) hpDamage.value++;
         else
