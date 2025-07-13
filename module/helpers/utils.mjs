@@ -245,10 +245,10 @@ export const getDamageLabel = damage => {
 
 export const damageKeyToNumber = key => {
     return {
-        'none': 0,
-        'minor': 1,
-        'major': 2,
-        'severe': 3
+        none: 0,
+        minor: 1,
+        major: 2,
+        severe: 3
     }[key];
 };
 
@@ -297,5 +297,17 @@ export const updateActorTokens = async (actor, update) => {
         if (tokenActor?.id === actor.id) {
             await token.update(update);
         }
+    }
+};
+
+export const itemAbleRollParse = (value, actor, item) => {
+    if (!value) return value;
+
+    const isItemTarget = value.toLowerCase().startsWith('item.');
+    const slicedValue = isItemTarget ? value.slice(5) : value;
+    try {
+        return Roll.safeEval(Roll.replaceFormulaData(slicedValue, isItemTarget ? item : actor));
+    } catch (_) {
+        return '';
     }
 };

@@ -1339,3 +1339,14 @@ export const actionTypes = {
         label: 'DAGGERHEART.CONFIG.ActionType.reaction'
     }
 };
+
+export const itemResourceTypes = {
+    simple: {
+        id: 'simple',
+        label: 'DAGGERHEART.CONFIG.ItemResourceType.simple'
+    },
+    diceValue: {
+        id: 'diceValue',
+        label: 'DAGGERHEART.CONFIG.ItemResourceType.diceValue'
+    }
+};

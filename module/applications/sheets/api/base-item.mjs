@@ -24,7 +24,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             removeAction: DHBaseItemSheet.#removeAction,
             addFeature: DHBaseItemSheet.#addFeature,
             editFeature: DHBaseItemSheet.#editFeature,
-            removeFeature: DHBaseItemSheet.#removeFeature
+            removeFeature: DHBaseItemSheet.#removeFeature,
+            addResource: DHBaseItemSheet.#addResource,
+            removeResource: DHBaseItemSheet.#removeResource
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.tab.features .drop-section' },
@@ -212,6 +214,26 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             'system.features': this.document.system.features
                 .filter(feature => feature && feature.id !== target.id)
                 .map(x => x.uuid)
+        });
+    }
+
+    /**
+     * Add a resource to the item.
+     * @type {ApplicationClickAction}
+     */
+    static async #addResource() {
+        await this.document.update({
+            'system.resource': { type: 'simple', value: 0 }
+        });
+    }
+
+    /**
+     * Remove the resource from the item.
+     * @type {ApplicationClickAction}
+     */
+    static async #removeResource() {
+        await this.document.update({
+            'system.resource': null
         });
     }
 

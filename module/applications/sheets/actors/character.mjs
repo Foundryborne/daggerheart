@@ -4,6 +4,7 @@ import { abilities } from '../../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
+import { itemAbleRollParse } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -25,6 +26,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             useItem: this.useItem, //TODO Fix this
             useAction: this.useAction,
+            toggleResourceDice: this.toggleResourceDice,
+            handleResourceDice: this.handleResourceDice,
             toChat: this.toChat
         },
         window: {
@@ -90,6 +93,17 @@ export default class CharacterSheet extends DHBaseActorSheet {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
+            element.addEventListener('change', this.updateItemResource.bind(this));
+        });
+        htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
+            element.addEventListener('change', this.updateItemQuantity.bind(this));
+        });
+    }
 
     /** @inheritDoc */
     async _onRender(context, options) {
@@ -481,6 +495,27 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /* -------------------------------------------- */
+    /*  Application Listener Actions                */
+    /* -------------------------------------------- */
+    async updateItemResource(event) {
+        const item = this.getItem(event.currentTarget);
+        if (!item) return;
+
+        const max = item.system.resource.max ? itemAbleRollParse(item.system.resource.max, this.document, item) : null;
+        const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
+        await item.update({ 'system.resource.value': value });
+        this.render();
+    }
+
+    async updateItemQuantity(event) {
+        const item = this.getItem(event.currentTarget);
+        if (!item) return;
+
+        await item.update({ 'system.quantity': event.currentTarget.value });
+        this.render();
+    }
+
+    /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
 
@@ -638,6 +673,41 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!action) return;
 
         action.use(event);
+    }
+
+    /**
+     * Toggle the used state of a resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async toggleResourceDice(event) {
+        const target = event.target.closest('.item-resource');
+        const item = this.getItem(event);
+        if (!item) return;
+
+        const diceState = item.system.resource.diceStates[target.dataset.dice];
+        await item.update({
+            [`system.resource.diceStates.${target.dataset.dice}.used`]: diceState?.used ? !diceState.used : true
+        });
+    }
+
+    /**
+     * Handle the roll values of resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async handleResourceDice(event) {
+        const item = this.getItem(event);
+        if (!item) return;
+
+        const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(item, this.document);
+        if (!rollValues) return;
+
+        await item.update({
+            'system.resource.diceStates': rollValues.reduce((acc, state, index) => {
+                acc[index] = { value: state.value, used: state.used };
+                return acc;
+            }, {})
+        });
+        this.render();
     }
 
     /**

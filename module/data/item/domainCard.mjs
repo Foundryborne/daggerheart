@@ -7,7 +7,8 @@ export default class DHDomainCard extends BaseDataItem {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Item.domainCard',
             type: 'domainCard',
-            hasDescription: true
+            hasDescription: true,
+            hasResource: true
         });
     }
 

@@ -39,9 +39,7 @@ export default class DhCharacter extends BaseDataActor {
             resources: new fields.SchemaField({
                 hitPoints: resourceField(0, true),
                 stress: resourceField(6, true),
-                hope: resourceField(6),
-                tokens: new fields.ObjectField(),
-                dice: new fields.ObjectField()
+                hope: resourceField(6)
             }),
             traits: new fields.SchemaField({
                 agility: attributeField(),

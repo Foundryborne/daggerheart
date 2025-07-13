@@ -11,8 +11,8 @@ export default class DHDamageAction extends DHBaseAction {
 
     async rollDamage(event, data) {
         let formula = this.damage.parts.map(p => this.getFormulaValue(p, data).getFormula(this.actor)).join(' + '),
-            damageTypes = [...new Set(this.damage.parts.reduce((a,c) => a.concat([...c.type]), []))];
-        
+            damageTypes = [...new Set(this.damage.parts.reduce((a, c) => a.concat([...c.type]), []))];
+
         damageTypes = !damageTypes.length ? ['physical'] : damageTypes;
 
         if (!formula || formula == '') return;
@@ -36,7 +36,7 @@ export default class DHDamageAction extends DHBaseAction {
             config.source.message = data._id;
             config.directDamage = false;
         }
-        
+
         roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);
     }
 }

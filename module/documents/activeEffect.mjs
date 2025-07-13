@@ -1,3 +1,5 @@
+import { itemAbleRollParse } from '../helpers/utils.mjs';
+
 export default class DhActiveEffect extends ActiveEffect {
     get isSuppressed() {
         // If this is a copied effect from an attachment, never suppress it
@@ -24,16 +26,18 @@ export default class DhActiveEffect extends ActiveEffect {
      */
     get isAttached() {
         if (!this.parent || !this.parent.parent) return false;
-        
+
         // Check if this item's UUID is in any actor's armor or weapon attachment lists
         const actor = this.parent.parent;
         if (!actor || !actor.items) return false;
-        
+
         return actor.items.some(item => {
-            return (item.type === 'armor' || item.type === 'weapon') && 
-                   item.system?.attached && 
-                   Array.isArray(item.system.attached) &&
-                   item.system.attached.includes(this.parent.uuid);
+            return (
+                (item.type === 'armor' || item.type === 'weapon') &&
+                item.system?.attached &&
+                Array.isArray(item.system.attached) &&
+                item.system.attached.includes(this.parent.uuid)
+            );
         });
     }
 
@@ -51,11 +55,7 @@ export default class DhActiveEffect extends ActiveEffect {
     }
 
     static applyField(model, change, field) {
-        const isItemTarget = change.value.toLowerCase().startsWith('item.');
-        change.value = isItemTarget ? change.value.slice(5) : change.value;
-        change.value = Roll.safeEval(
-            Roll.replaceFormulaData(change.value, isItemTarget ? change.effect.parent : model)
-        );
+        change.value = itemAbleRollParse(change.value, model, change.effect.parent);
         super.applyField(model, change, field);
     }
 

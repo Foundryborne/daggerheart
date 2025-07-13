@@ -1,4 +1,4 @@
-import DHBaseActorSettings from "../../applications/sheets/api/actor-setting.mjs";
+import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
 
 const resistanceField = () =>
     new foundry.data.fields.SchemaField({
@@ -37,13 +37,12 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         const fields = foundry.data.fields;
         const schema = {};
 
-        if(this.metadata.isNPC)
-            schema.description = new fields.HTMLField({ required: true, nullable: true });
-        if(this.metadata.hasResistances)
+        if (this.metadata.isNPC) schema.description = new fields.HTMLField({ required: true, nullable: true });
+        if (this.metadata.hasResistances)
             schema.resistance = new fields.SchemaField({
                 physical: resistanceField(),
                 magical: resistanceField()
-            })
+            });
         return schema;
     }
 

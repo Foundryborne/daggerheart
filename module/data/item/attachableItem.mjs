@@ -5,7 +5,7 @@ export default class AttachableItem extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            attached: new fields.ArrayField(new fields.DocumentUUIDField({ type: "Item", nullable: true }))
+            attached: new fields.ArrayField(new fields.DocumentUUIDField({ type: 'Item', nullable: true }))
         };
     }
 
@@ -90,7 +90,10 @@ export default class AttachableItem extends BaseDataItem {
         });
 
         if (effectsToRemove.length > 0) {
-            await actor.deleteEmbeddedDocuments('ActiveEffect', effectsToRemove.map(e => e.id));
+            await actor.deleteEmbeddedDocuments(
+                'ActiveEffect',
+                effectsToRemove.map(e => e.id)
+            );
         }
     }
 
@@ -140,13 +143,18 @@ export default class AttachableItem extends BaseDataItem {
         const parentUuidProperty = `${parentType}Uuid`;
         const effectsToRemove = actor.effects.filter(effect => {
             const attachmentSource = effect.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.itemAttachmentSource);
-            return attachmentSource &&
+            return (
+                attachmentSource &&
                 attachmentSource[parentUuidProperty] === this.parent.uuid &&
-                attachmentSource.itemUuid === attachedUuid;
+                attachmentSource.itemUuid === attachedUuid
+            );
         });
 
         if (effectsToRemove.length > 0) {
-            await actor.deleteEmbeddedDocuments('ActiveEffect', effectsToRemove.map(e => e.id));
+            await actor.deleteEmbeddedDocuments(
+                'ActiveEffect',
+                effectsToRemove.map(e => e.id)
+            );
         }
     }
 }

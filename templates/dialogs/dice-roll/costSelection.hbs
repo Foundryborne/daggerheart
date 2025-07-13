@@ -10,7 +10,7 @@
     {{#each costs as | cost index |}}
         <div class="form-group">
             <div class="form-fields">
-                <label for="{{type}}">{{type}}: {{total}}</label>
+                <label>{{label}}: {{total}}</label>
                 <input name="costs.{{index}}.enabled" type="checkbox"{{#if enabled}} checked{{/if}}>
                 {{#if scalable}}
                     <input type="range" value="{{scale}}" min="1" max="10" step="{{step}}" name="costs.{{index}}.scale">

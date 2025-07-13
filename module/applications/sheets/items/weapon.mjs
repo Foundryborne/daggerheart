@@ -27,7 +27,7 @@ export default class WeaponSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
             template: 'systems/daggerheart/templates/sheets/items/weapon/settings.hbs',
             scrollable: ['.settings']
         },
-        ...super.PARTS,
+        ...super.PARTS
     };
 
     /**@inheritdoc */

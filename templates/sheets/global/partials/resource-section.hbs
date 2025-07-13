@@ -1,0 +1,29 @@
+<fieldset>
+    <legend>
+        {{localize "DAGGERHEART.GENERAL.Resource.single"}} 
+        {{#unless source.system.resource}}
+            <a data-action="addResource"><i class="fa-solid fa-plus icon-button"></i></a>
+        {{else}}
+            <a data-action="removeResource"><i class="fa-solid fa-trash"></i></a>
+        {{/unless}}
+    </legend>
+
+    {{#if source.system.resource}}
+        <div class="two-columns even">
+            {{formGroup systemFields.resource.fields.type value=source.system.resource.type localize=true blank=false}}
+            {{formGroup systemFields.resource.fields.recovery value=source.system.resource.recovery localize=true}}
+        </div>
+
+            <div class="two-columns even">
+                {{#if (eq source.system.resource.type 'simple')}}
+                    {{formGroup systemFields.resource.fields.value value=source.system.resource.value localize=true}}
+                    {{formGroup systemFields.resource.fields.max value=source.system.resource.max localize=true}}
+                {{else}}
+                    {{formGroup systemFields.resource.fields.dieFaces value=source.system.resource.dieFaces localize=true}}
+                    {{formGroup systemFields.resource.fields.max value=source.system.resource.max label="DAGGERHEART.ITEMS.FIELDS.resource.amount.label" localize=true}}
+                {{/if}}
+            </div>
+
+        {{#if (eq source.system.resource.type 'simple')}}{{formGroup systemFields.resource.fields.icon value=source.system.resource.icon localize=true placeholder="fa-solid fa-hashtag"}}{{/if}}
+    {{/if}}
+</fieldset>

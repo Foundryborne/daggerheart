@@ -107,7 +107,7 @@ export class DHDamageData extends foundry.abstract.DataModel {
                 }),
                 {
                     label: 'Type',
-                    initial: 'physical',
+                    initial: 'physical'
                 }
             ),
             resultBased: new fields.BooleanField({

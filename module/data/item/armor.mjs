@@ -10,7 +10,6 @@ export default class DHArmor extends AttachableItem {
             label: 'TYPES.Item.armor',
             type: 'armor',
             hasDescription: true,
-            isQuantifiable: true,
             isInventoryItem: true
         });
     }

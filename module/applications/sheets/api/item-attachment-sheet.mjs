@@ -1,4 +1,3 @@
-
 export default function ItemAttachmentSheet(Base) {
     return class extends Base {
         static DEFAULT_OPTIONS = {
@@ -25,10 +24,7 @@ export default function ItemAttachmentSheet(Base) {
             ...super.TABS,
             primary: {
                 ...super.TABS?.primary,
-                tabs: [
-                    ...(super.TABS?.primary?.tabs || []),
-                    { id: 'attachments' }
-                ],
+                tabs: [...(super.TABS?.primary?.tabs || []), { id: 'attachments' }],
                 initial: super.TABS?.primary?.initial || 'description',
                 labelPrefix: super.TABS?.primary?.labelPrefix || 'DAGGERHEART.GENERAL.Tabs'
             }
@@ -46,29 +42,28 @@ export default function ItemAttachmentSheet(Base) {
 
         async _onDrop(event) {
             const data = TextEditor.getDragEventData(event);
-            
+
             const attachmentsSection = event.target.closest('.attachments-section');
             if (!attachmentsSection) return super._onDrop(event);
-            
+
             event.preventDefault();
             event.stopPropagation();
-            
+
             const item = await Item.implementation.fromDropData(data);
             if (!item) return;
-            
+
             // Call the data model's public method
             await this.document.system.addAttachment(item);
         }
 
-
         static async #removeAttachment(event, target) {
             // Call the data model's public method
             await this.document.system.removeAttachment(target.dataset.uuid);
-}
+        }
 
         async _preparePartContext(partId, context) {
             await super._preparePartContext(partId, context);
-            
+
             if (partId === 'attachments') {
                 // Keep this simple UI preparation in the mixin
                 const attachedUUIDs = this.document.system.attached;
@@ -83,7 +78,7 @@ export default function ItemAttachmentSheet(Base) {
                     })
                 );
             }
-            
+
             return context;
         }
     };

@@ -9,7 +9,6 @@ export default class DHWeapon extends AttachableItem {
             label: 'TYPES.Item.weapon',
             type: 'weapon',
             hasDescription: true,
-            isQuantifiable: true,
             isInventoryItem: true
             // hasInitialAction: true
         });
@@ -37,7 +36,7 @@ export default class DHWeapon extends AttachableItem {
                     actionIds: new fields.ArrayField(new fields.StringField({ required: true }))
                 })
             ),
-                        attack: new ActionField({
+            attack: new ActionField({
                 initial: {
                     name: 'Attack',
                     img: 'icons/skills/melee/blood-slash-foam-red.webp',
