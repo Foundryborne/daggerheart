@@ -500,9 +500,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const item = this.getItem(event.currentTarget);
         if (!item) return;
 
-        const value = item.system.resource.max
-            ? Math.min(Number(event.currentTarget.value), item.system.resource.max)
-            : event.currentTarget.value;
+        const max = item.system.resource.max ? Roll.replaceFormulaData(item.system.resource.max, this.document) : null;
+        const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
         await item.update({ 'system.resource.value': value });
         this.render();
     }

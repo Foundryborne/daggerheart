@@ -5,15 +5,17 @@
     </div>
 {{else}}
     <div class="item-resources">
-        {{#each item.system.resource.diceStates as | state key |}}
-            <a class="item-resource" data-action="toggleResourceDice" data-dice="{{key}}">
-                <div class="item-dice-resource">
-                    <label>{{tertiary state.value '?'}}</label>
-                    <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/d" ../item.system.resource.dieFaces ".svg"}}" />
-                    {{#if state.used}}<i class="fa-solid fa-x"></i>{{/if}}
-                </div>
-            </a>
-        {{/each}}
+        {{#times (rollParsed item.system.resource.max item.parent)}}
+            {{#with (ifThen (lookup ../item.system.resource.diceStates this) (lookup ../item.system.resource.diceStates this) this) as | state |}}
+                <a class="item-resource" data-action="toggleResourceDice" data-dice="{{#if ../../this}}{{../this}}{{else}}{{state}}{{/if}}">
+                    <div class="item-dice-resource">
+                        <label>{{ifThen state.value state.value '?'}}</label>
+                        <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/d" (ifThen ../../item.system.resource.dieFaces ../../item.system.resource.dieFaces ../item.system.resource.dieFaces) ".svg"}}" />
+                        {{#if state.used}}<i class="fa-solid fa-x"></i>{{/if}}
+                    </div>
+                </a>
+            {{/with}}
+        {{/times}}
         <a data-action="handleResourceDice" data-tooltip="DAGGERHEART.APPLICATIONS.ResourceDice.rerollDice"><i class="fa-solid fa-dice resource-edit"></i></a>
     </div>
 {{/if}}

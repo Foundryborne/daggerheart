@@ -44,7 +44,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                         initial: CONFIG.DH.ITEM.itemResourceTypes.simple
                     }),
                     value: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
-                    max: new fields.NumberField({ nullable: true, initial: null }),
+                    max: new fields.StringField({ nullable: true, initial: null }),
                     icon: new fields.StringField(),
                     recovery: new fields.StringField({
                         choices: CONFIG.DH.GENERAL.refreshTypes,
@@ -94,25 +94,25 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     async _preCreate(data, options, user) {
         // Skip if no initial action is required or actions already exist
-        if (!this.metadata.hasInitialAction || !foundry.utils.isEmpty(this.actions)) return;
+        if (this.metadata.hasInitialAction && foundry.utils.isEmpty(this.actions)) {
+            const metadataType = this.metadata.type;
+            const actionType = { weapon: 'attack' }[metadataType];
+            const ActionClass = game.system.api.models.actions.actionsTypes[actionType];
 
-        const metadataType = this.metadata.type;
-        const actionType = { weapon: 'attack' }[metadataType];
-        const ActionClass = game.system.api.models.actions.actionsTypes[actionType];
+            const action = new ActionClass(
+                {
+                    _id: foundry.utils.randomID(),
+                    type: actionType,
+                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
+                    ...ActionClass.getSourceConfig(this.parent)
+                },
+                {
+                    parent: this.parent
+                }
+            );
 
-        const action = new ActionClass(
-            {
-                _id: foundry.utils.randomID(),
-                type: actionType,
-                name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
-                ...ActionClass.getSourceConfig(this.parent)
-            },
-            {
-                parent: this.parent
-            }
-        );
-
-        this.updateSource({ actions: [action] });
+            this.updateSource({ actions: [action] });
+        }
     }
 
     _onCreate(data) {
@@ -130,23 +130,6 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 }
             }))
         );
-    }
-
-    async _preUpdate(data) {
-        if (data.system?.resource?.max) {
-            const diceStatesKeys = Object.keys(this.resource.diceStates);
-            const resourceDiff = Math.abs(data.system.resource.max - diceStatesKeys.length);
-            if (!resourceDiff) return;
-
-            const diceStates = {};
-            const deleting = data.system.resource.max < diceStatesKeys.length;
-            [...Array(resourceDiff).keys()].forEach(nr => {
-                const key = deleting ? diceStatesKeys.length - 1 - nr : diceStatesKeys.length + nr;
-                diceStates[`${deleting ? '-=' : ''}${key}`] = deleting ? null : { value: null };
-            });
-
-            foundry.utils.setProperty(data, 'system.resource.diceStates', diceStates);
-        }
     }
 
     async _preDelete() {

@@ -6,7 +6,7 @@ export default class RegisterHandlebarsHelpers {
             times: this.times,
             damageFormula: this.damageFormula,
             damageSymbols: this.damageSymbols,
-            tertiary: this.tertiary
+            rollParsed: this.rollParsed
         });
     }
 
@@ -42,7 +42,7 @@ export default class RegisterHandlebarsHelpers {
         return new Handlebars.SafeString(Array.from(symbols).map(symbol => `<i class="fa-solid ${symbol}"></i>`));
     }
 
-    static tertiary(a, b) {
-        return a ?? b;
+    static rollParsed(value, actor) {
+        return Roll.replaceFormulaData(value, actor);
     }
 }
