@@ -114,7 +114,6 @@
                     "useItem": "Use Item"
                 },
                 "faith": "Faith",
-                "CharacterSetup": "Edit your Character",
                 "levelUp": "You can level up",
                 "pronouns": "Pronouns",
                 "story": {
@@ -390,7 +389,7 @@
                 "default": "Default Ownership"
             }
         },
-        
+
         "CONFIG": {
             "ActionType": {
                 "passive": "Passive",
