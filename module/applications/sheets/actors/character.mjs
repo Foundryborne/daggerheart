@@ -700,14 +700,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(
             item.name,
             item.system.resource.recovery,
-            this.document.name,
+            this.document,
             item.system.resource
         );
         if (!rollValues) return;
 
         await item.update({
-            'system.resource.diceStates': rollValues.reduce((acc, value, index) => {
-                acc[index] = { value, used: false };
+            'system.resource.diceStates': rollValues.reduce((acc, state, index) => {
+                acc[index] = { value: state.value, used: state.used };
                 return acc;
             }, {})
         });

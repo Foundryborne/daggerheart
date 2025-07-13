@@ -1,6 +1,42 @@
+.theme-light .daggerheart.dialog.dh-style.views.resource-dice {
+    .resource-items input {
+        background-image: url('../assets/parchments/dh-parchment-light.png');
+    }
+}
+
 .daggerheart.dialog.dh-style.views.resource-dice {
     .reroll-confirmation {
         margin-bottom: 8px;
+    }
+
+    .resource-items {
+        display: flex;
+        gap: 8px;
+
+        .resource-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            input {
+                position: absolute;
+                border-color: light-dark(@dark-blue, @golden);
+                color: light-dark(black, white);
+                background-image: url('../assets/parchments/dh-parchment-dark.png');
+                z-index: 2;
+                line-height: 22px;
+                height: unset;
+                text-align: center;
+            }
+
+            img {
+                width: 48px;
+                height: 48px;
+                filter: brightness(0) saturate(100%) invert(97%) sepia(7%) saturate(580%) hue-rotate(332deg)
+                    brightness(96%) contrast(95%);
+            }
+        }
     }
 
     footer {

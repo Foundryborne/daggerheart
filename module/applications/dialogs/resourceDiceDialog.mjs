@@ -1,13 +1,14 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class ResourceDiceDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(name, recovery, actorName, resource, options = {}) {
+    constructor(name, recovery, actor, resource, options = {}) {
         super(options);
 
         this.name = name;
         this.recovery = recovery;
-        this.actorName = actorName;
+        this.actor = actor;
         this.resource = resource;
+        this.diceStates = foundry.utils.deepClone(resource.diceStates);
     }
 
     static DEFAULT_OPTIONS = {
@@ -17,7 +18,8 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
             icon: 'fa-solid fa-dice'
         },
         actions: {
-            rerollDice: this.rerollDice
+            rerollDice: this.rerollDice,
+            save: this.save
         },
         form: {
             handler: this.updateResourceDice,
@@ -42,15 +44,35 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
         const context = await super._prepareContext(_options);
         context.name = this.name;
         context.recovery = game.i18n.localize(CONFIG.DH.GENERAL.refreshTypes[this.recovery].label);
+        context.resource = this.resource;
+        context.diceStates = this.diceStates;
+        context.actor = this.actor;
 
         return context;
+    }
+
+    static async updateResourceDice(event, _, formData) {
+        const { diceStates } = foundry.utils.expandObject(formData.object);
+        this.diceStates = Object.keys(diceStates).reduce((acc, key) => {
+            const resourceState = this.resource.diceStates[key];
+            acc[key] = { ...diceStates[key], used: Boolean(resourceState?.used) };
+            return acc;
+        }, {});
+
+        this.render();
+    }
+
+    static async save() {
+        this.rollValues = Object.values(this.diceStates);
+        this.close();
     }
 
     static async rerollDice() {
         const diceFormula = `${this.resource.max}d${this.resource.dieFaces}`;
         const roll = await new Roll(diceFormula).evaluate();
         if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
-        this.rollValues = roll.terms[0].results.map(x => x.result);
+        this.rollValues = roll.terms[0].results.map(x => ({ value: x.result, used: false }));
+        this.resetUsed = true;
 
         const cls = getDocumentClass('ChatMessage');
         const msg = new cls({
@@ -58,7 +80,7 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/resource-roll.hbs',
                 {
-                    user: this.actorName,
+                    user: this.actor.name,
                     name: this.name
                 }
             )
@@ -68,9 +90,9 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
         this.close();
     }
 
-    static async create(name, recovery, actorName, resource, options = {}) {
+    static async create(name, recovery, actor, resource, options = {}) {
         return new Promise(resolve => {
-            const app = new this(name, recovery, actorName, resource, options);
+            const app = new this(name, recovery, actor, resource, options);
             app.addEventListener('close', () => resolve(app.rollValues), { once: true });
             app.render({ force: true });
         });

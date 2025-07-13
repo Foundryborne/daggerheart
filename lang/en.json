@@ -390,9 +390,7 @@
             },
             "ResourceDice": {
                 "title": "{name} Resource",
-                "rerollDice": "Reroll Dice",
-                "rerollRecoveryInfo": "{name} refresh on {recovery}.",
-                "rerollConfirmation": "Are you sure you want to reroll your {name} dice?"
+                "rerollDice": "Reroll Dice"
             }
         },
 
