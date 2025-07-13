@@ -32,9 +32,9 @@ export default class DHSubclass extends BaseDataItem {
 
     get features() {
         return [
-            { ...this.foundationFeature.toObject(), identifier: 'foundationFeature' },
-            { ...this.specializationFeature.toObject(), identifier: 'specializationFeature' },
-            { ...this.masteryFeature.toObject(), identifier: 'masteryFeature' }
+            { ...this.foundationFeature?.toObject(), identifier: 'foundationFeature' },
+            { ...this.specializationFeature?.toObject(), identifier: 'specializationFeature' },
+            { ...this.masteryFeature?.toObject(), identifier: 'masteryFeature' }
         ];
     }
 

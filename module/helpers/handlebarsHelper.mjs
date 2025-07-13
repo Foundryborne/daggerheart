@@ -28,7 +28,7 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static damageFormula(attack, actor) {
-        const traitTotal = actor.system.traits?.[attack.roll.trait]?.total;
+        const traitTotal = actor.system.traits?.[attack.roll.trait]?.value;
         const instances = [
             attack.damage.parts.map(x => Roll.replaceFormulaData(x.value.getFormula(), actor)).join(' + '),
             traitTotal

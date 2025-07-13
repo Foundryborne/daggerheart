@@ -123,7 +123,7 @@ export default class DualityRoll extends D20Roll {
         if (!this.options.roll.trait) return;
         this.options.roll.modifiers.push({
             label: `DAGGERHEART.CONFIG.Traits.${this.options.roll.trait}.name`,
-            value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.total`, this.data)
+            value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.value`, this.data)
         });
     }
 

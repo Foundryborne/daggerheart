@@ -402,7 +402,7 @@
                 "default": "Default Ownership"
             }
         },
-        
+
         "CONFIG": {
             "ActionType": {
                 "passive": "Passive",

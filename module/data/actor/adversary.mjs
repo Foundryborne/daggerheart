@@ -5,8 +5,8 @@ import BaseDataActor from './base.mjs';
 const resourceField = () =>
     new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        max: new foundry.data.fields.NumberField({ initial: 0, integer: true })
+        max: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
+        isReversed: new foundry.data.fields.BooleanField({ initial: true })
     });
 
 export default class DhpAdversary extends BaseDataActor {
@@ -76,7 +76,7 @@ export default class DhpAdversary extends BaseDataActor {
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
-                    total: new fields.NumberField({ required: true, integer: true, initial: 1 })
+                    value: new fields.NumberField({ required: true, integer: true, initial: 1 })
                 })
             ),
             bonuses: new fields.SchemaField({
@@ -94,10 +94,5 @@ export default class DhpAdversary extends BaseDataActor {
 
     get features() {
         return this.parent.items.filter(x => x.type === 'feature');
-    }
-    
-    prepareDerivedData() {
-        this.resources.hitPoints.maxTotal = this.resources.hitPoints.max + this.resources.hitPoints.bonus;
-        this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
     }
 }

@@ -650,7 +650,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
-                description: `${experience.name} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
+                description: `${experience.name} ${experience.value.signedString()}`
             };
             const msg = new cls({
                 type: 'abilityUse',
@@ -672,14 +672,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
     async _onDragStart(event) {
         const item = this.getItem(event);
-        
+
         const dragData = {
             type: item.documentName,
             uuid: item.uuid
         };
-        
+
         event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-        
+
         super._onDragStart(event);
     }
 
@@ -687,7 +687,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         // Prevent event bubbling to avoid duplicate handling
         event.preventDefault();
         event.stopPropagation();
-        
+
         super._onDrop(event);
         this._onDropItem(event, TextEditor.getDragEventData(event));
     }
