@@ -25,6 +25,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             useItem: this.useItem, //TODO Fix this
             useAction: this.useAction,
+            toggleResourceDice: this.toggleResourceDice,
+            handleResourceDice: this.handleResourceDice,
             toChat: this.toChat
         },
         window: {
@@ -666,6 +668,45 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!action) return;
 
         action.use(event);
+    }
+
+    /**
+     * Toggle the used state of a resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async toggleResourceDice(event) {
+        const target = event.target.closest('.item-resource');
+        const item = this.getItem(event);
+        if (!item) return;
+
+        const diceState = item.system.resource.diceStates[target.dataset.dice];
+        await item.update({
+            [`system.resource.diceStates.${target.dataset.dice}.used`]: diceState?.used ? !diceState.used : true
+        });
+    }
+
+    /**
+     * Handle the roll values of resource dice.
+     * @type {ApplicationClickAction}
+     */
+    static async handleResourceDice(event) {
+        const item = this.getItem(event);
+        if (!item) return;
+
+        const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(
+            item.name,
+            this.document.name,
+            item.system.resource
+        );
+        if (!rollValues) return;
+
+        await item.update({
+            'system.resource.diceStates': rollValues.reduce((acc, value, index) => {
+                acc[index] = { value, used: false };
+                return acc;
+            }, {})
+        });
+        this.render();
     }
 
     /**

@@ -1,0 +1,39 @@
+.daggerheart.dialog.dh-style.views.resource-dice {
+    .item-resources {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        .item-resource {
+            width: 38px;
+            height: 38px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            label {
+                position: absolute;
+                color: light-dark(white, black);
+                filter: drop-shadow(0 0 1px @golden);
+                font-size: 24px;
+                z-index: 2;
+            }
+
+            img {
+                filter: brightness(0) saturate(100%) invert(97%) sepia(7%) saturate(580%) hue-rotate(332deg)
+                    brightness(96%) contrast(95%);
+            }
+        }
+    }
+
+    footer {
+        display: flex;
+        gap: 8px;
+
+        button {
+            flex: 1;
+        }
+    }
+}

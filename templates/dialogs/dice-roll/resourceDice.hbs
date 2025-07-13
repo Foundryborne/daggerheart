@@ -1,0 +1,13 @@
+<div>
+    <div class="item-resources">
+        {{#each resource.diceStates as | state key |}}
+            <div class="item-resource">
+                <label>{{ifThen state.value state.value '?'}}</label>
+                <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/d" ../resource.dieFaces ".svg"}}" />
+            </div>
+        {{/each}}
+    </div>
+    <footer>
+        <button data-action="rerollDice">{{localize "DAGGERHEART.APPLICATIONS.ResourceDice.rerollDice"}}</button>
+    </footer>
+</div>

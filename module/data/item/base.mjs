@@ -39,6 +39,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         if (this.metadata.hasResource) {
             schema.resource = new fields.SchemaField(
                 {
+                    type: new fields.StringField({
+                        choices: CONFIG.DH.ITEM.itemResourceTypes,
+                        initial: CONFIG.DH.ITEM.itemResourceTypes.simple
+                    }),
                     value: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
                     max: new fields.NumberField({ nullable: true, initial: null }),
                     icon: new fields.StringField(),
@@ -46,7 +50,14 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                         choices: CONFIG.DH.GENERAL.refreshTypes,
                         initial: null,
                         nullable: true
-                    })
+                    }),
+                    diceStates: new fields.TypedObjectField(
+                        new fields.SchemaField({
+                            value: new fields.NumberField({ integer: true, nullable: true, initial: null }),
+                            used: new fields.BooleanField({ initial: false })
+                        })
+                    ),
+                    dieFaces: new fields.StringField({ initial: '4' })
                 },
                 { nullable: true, initial: null }
             );
@@ -81,7 +92,6 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return data;
     }
 
-    /**@inheritdoc */
     async _preCreate(data, options, user) {
         // Skip if no initial action is required or actions already exist
         if (!this.metadata.hasInitialAction || !foundry.utils.isEmpty(this.actions)) return;
@@ -120,6 +130,23 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 }
             }))
         );
+    }
+
+    async _preUpdate(data) {
+        if (data.system?.resource?.max) {
+            const diceStatesKeys = Object.keys(this.resource.diceStates);
+            const resourceDiff = Math.abs(data.system.resource.max - diceStatesKeys.length);
+            if (!resourceDiff) return;
+
+            const diceStates = {};
+            const deleting = data.system.resource.max < diceStatesKeys.length;
+            [...Array(resourceDiff).keys()].forEach(nr => {
+                const key = deleting ? diceStatesKeys.length - 1 - nr : diceStatesKeys.length + nr;
+                diceStates[`${deleting ? '-=' : ''}${key}`] = deleting ? null : { value: null };
+            });
+
+            foundry.utils.setProperty(data, 'system.resource.diceStates', diceStates);
+        }
     }
 
     async _preDelete() {

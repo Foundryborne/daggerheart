@@ -223,7 +223,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      */
     static async #addResource() {
         await this.document.update({
-            'system.resource': { value: 0 }
+            'system.resource': { type: 'simple', value: 0 }
         });
     }
 

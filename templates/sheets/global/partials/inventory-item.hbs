@@ -124,10 +124,7 @@
             {{/if}}
         </div>
         {{#if (and (not isSidebar) item.system.resource)}}
-            <div class="item-resource">
-                <i class="{{#if item.system.resource.icon}}{{item.system.resource.icon}}{{else}}fa-solid fa-hashtag{{/if}}"></i>
-                <input type="number" class="inventory-item-resource" value="{{item.system.resource.value}}" step="1" />
-            </div>
+            {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
         {{/if}}
         {{#if (and (not isSidebar) item.system.quantity)}}
             <div class="item-resource">
