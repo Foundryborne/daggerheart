@@ -1,3 +1,5 @@
+import { itemAbleRollParse } from '../../helpers/utils.mjs';
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class ResourceDiceDialog extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -50,7 +52,7 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
     static async updateResourceDice(event, _, formData) {
         const { diceStates } = foundry.utils.expandObject(formData.object);
         this.diceStates = Object.keys(diceStates).reduce((acc, key) => {
-            const resourceState = this.resource.diceStates[key];
+            const resourceState = this.item.system.resource.diceStates[key];
             acc[key] = { ...diceStates[key], used: Boolean(resourceState?.used) };
             return acc;
         }, {});
@@ -64,7 +66,8 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
     }
 
     static async rerollDice() {
-        const diceFormula = `${this.resource.max}d${this.resource.dieFaces}`;
+        const max = itemAbleRollParse(this.item.system.resource.max, this.actor, this.item);
+        const diceFormula = `${max}d${this.item.system.resource.dieFaces}`;
         const roll = await new Roll(diceFormula).evaluate();
         if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
         this.rollValues = roll.terms[0].results.map(x => ({ value: x.result, used: false }));
@@ -77,7 +80,7 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
                 'systems/daggerheart/templates/ui/chat/resource-roll.hbs',
                 {
                     user: this.actor.name,
-                    name: this.name
+                    name: this.item.name
                 }
             )
         });
