@@ -56,10 +56,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             id: 'effect',
             template: 'systems/daggerheart/templates/sheets-settings/action-settings/effect.hbs'
         }
-        /* form: {
-            id: 'action',
-            template: 'systems/daggerheart/templates/config/action.hbs'
-        } */
     };
 
     static TABS = {
@@ -161,7 +157,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             container = foundry.utils.getProperty(this.action.parent, this.action.systemPath);
         let newActions;
         if (Array.isArray(container)) {
-            newActions = foundry.utils.getProperty(this.action.parent, this.action.systemPath).map(x => x.toObject()); // Find better way
+            newActions = foundry.utils.getProperty(this.action.parent, this.action.systemPath).map(x => x.toObject());
             if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
         } else newActions = data;
 

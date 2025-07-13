@@ -1,0 +1,29 @@
+<section
+    class='tab {{tabs.attachments.cssClass}} {{tabs.attachments.id}}'
+    data-tab='{{tabs.attachments.id}}'
+    data-group='{{tabs.attachments.group}}'
+>
+    <fieldset class="one-column drop-section attachments-section">
+        <legend>{{localize tabs.attachments.label}}</legend>
+        
+        {{#if attachedItems}}
+            <div class="attached-items">
+                {{#each attachedItems as |item|}}
+                    <div class="inventory-item attached-item" data-uuid="{{item.uuid}}">
+                        <img src="{{item.img}}" alt="{{item.name}}" class="item-img">
+                        <div class="item-label">
+                            <div class="item-name">{{item.name}}</div>
+                        </div>
+                        <div class="controls">
+                            <a data-action="removeAttachment" data-uuid="{{item.uuid}}"><i class="fa-solid fa-trash remove-attachment"></i></a>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+        
+        <div class="drop-area" data-drop-type="Item" style="width: 100%;">
+            <span>{{localize "DAGGERHEART.EFFECTS.Attachments.attachHint"}}</span>
+        </div>
+    </fieldset>
+</section>

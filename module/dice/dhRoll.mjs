@@ -56,8 +56,8 @@ export default class DHRoll extends Roll {
 
         // Create Chat Message
         if (config.source?.message) {
+            if(game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
         } else {
-            const messageData = {};
             config.message = await this.toMessage(roll, config);
         }
     }

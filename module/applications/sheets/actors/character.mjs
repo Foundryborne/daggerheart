@@ -30,7 +30,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
         window: {
             resizable: true
         },
-        dragDrop: [],
+        dragDrop: [
+            {
+                dragSelector: '[data-item-id][draggable="true"]',
+                dropSelector: null
+            }
+        ],
         contextMenus: [
             {
                 handler: CharacterSheet._getContextMenuOptions,
@@ -665,11 +670,24 @@ export default class CharacterSheet extends DHBaseActorSheet {
         }
     }
 
-    async _onDragStart(_, event) {
+    async _onDragStart(event) {
+        const item = this.getItem(event);
+        
+        const dragData = {
+            type: item.documentName,
+            uuid: item.uuid
+        };
+        
+        event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+        
         super._onDragStart(event);
     }
 
     async _onDrop(event) {
+        // Prevent event bubbling to avoid duplicate handling
+        event.preventDefault();
+        event.stopPropagation();
+        
         super._onDrop(event);
         this._onDropItem(event, TextEditor.getDragEventData(event));
     }

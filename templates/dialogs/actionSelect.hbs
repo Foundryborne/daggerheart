@@ -1,12 +1,12 @@
 <form id="item-action-select">
-    <ul class="unlist list-select">
+    <header class="dialog-header">
+        <h1>{{itemName}}</h1>
+    </header>
+    <ul class="actions-list">
     {{#each actions}}
-        <li>
-            <label>
-                <dh-icon><img src="{{ img }}"></dh-icon>
-                <span>{{ name }}</span>
-                <input type="radio" name="actionId" value="{{_id}}" {{#if (eq @index 0)}}checked{{/if}}>
-            </label>
+        <li class="action-item">
+            <input type="radio" name="actionId" value="{{_id}}" {{#if (eq @index 0)}}checked{{/if}}>
+            <span class="label">{{ name }}</span>
         </li>
     {{/each}}
     </ul>

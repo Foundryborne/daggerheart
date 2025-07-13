@@ -1,14 +1,40 @@
 export default class DhActiveEffect extends ActiveEffect {
     get isSuppressed() {
-        if (['weapon', 'armor'].includes(this.parent.type)) {
+        // If this is a copied effect from an attachment, never suppress it
+        // (These effects have attachmentSource metadata)
+        if (this.flags?.daggerheart?.attachmentSource) {
+            return false;
+        }
+
+        // Then apply the standard suppression rules
+        if (['weapon', 'armor'].includes(this.parent?.type)) {
             return !this.parent.system.equipped;
         }
 
-        if (this.parent.type === 'domainCard') {
+        if (this.parent?.type === 'domainCard') {
             return this.parent.system.inVault;
         }
 
         return super.isSuppressed;
+    }
+
+    /**
+     * Check if the parent item is currently attached to another item
+     * @returns {boolean}
+     */
+    get isAttached() {
+        if (!this.parent || !this.parent.parent) return false;
+        
+        // Check if this item's UUID is in any actor's armor or weapon attachment lists
+        const actor = this.parent.parent;
+        if (!actor || !actor.items) return false;
+        
+        return actor.items.some(item => {
+            return (item.type === 'armor' || item.type === 'weapon') && 
+                   item.system?.attached && 
+                   Array.isArray(item.system.attached) &&
+                   item.system.attached.includes(this.parent.uuid);
+        });
     }
 
     async _preCreate(data, options, user) {

@@ -215,7 +215,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true)
                 damage = Math.ceil(damage * (CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
 
-            target.actor.takeDamage(damage, message.system.roll.type);
+            target.actor.takeDamage(damage, message.system.damage.damageType);
         }
     };
 

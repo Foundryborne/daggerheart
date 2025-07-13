@@ -1,10 +1,10 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
+import ItemAttachmentSheet from '../api/item-attachment-sheet.mjs';
 
-export default class ArmorSheet extends DHBaseItemSheet {
+export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['armor'],
-        dragDrop: [{ dragSelector: null, dropSelector: null }],
         tagifyConfigs: [
             {
                 selector: '.features-input',
@@ -26,7 +26,8 @@ export default class ArmorSheet extends DHBaseItemSheet {
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/armor/settings.hbs',
             scrollable: ['.settings']
-        }
+        },
+        ...super.PARTS,
     };
 
     /**@inheritdoc */

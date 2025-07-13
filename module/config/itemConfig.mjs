@@ -395,7 +395,7 @@ export const armorFeatures = {
                 img: 'icons/magic/defensive/barrier-shield-dome-pink.webp',
                 changes: [
                     {
-                        key: 'system.bonuses.damageReduction.magical',
+                        key: 'system.resistance.magical.reduction',
                         mode: 2,
                         value: '@system.armorScore'
                     }

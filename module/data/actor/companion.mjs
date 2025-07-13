@@ -20,6 +20,7 @@ export default class DhCompanion extends BaseDataActor {
         const fields = foundry.data.fields;
 
         return {
+            ...super.defineSchema(),
             partner: new ForeignDocumentUUIDField({ type: 'Actor' }),
             resources: new fields.SchemaField({
                 stress: new fields.SchemaField({
@@ -66,6 +67,7 @@ export default class DhCompanion extends BaseDataActor {
                     damage: {
                         parts: [
                             {
+                                type: ['physical'],
                                 value: {
                                     dice: 'd6',
                                     multiplier: 'prof'
