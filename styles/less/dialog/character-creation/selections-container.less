@@ -1,18 +1,29 @@
 @import '../../utils/colors.less';
 
-.theme-light .daggerheart.dh-style.dialog.character-creation {
-    .setup-tabs button {
-        background-image: url(../assets/parchments/dh-parchment-dark.png);
-    }
+.appTheme({}, {
+    &.daggerheart.dh-style.dialog.character-creation {
+        .setup-tabs button {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
+        }
 
-    .main-selections-container
-        .selections-container
-        .ancestry-preview-info-container
-        .ancestry-preview-features
-        .ancestry-preview-feature {
-        background-image: url(../assets/parchments/dh-parchment-light.png);
+        nav a .descriptor {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
+        }
+
+        .main-selections-container {
+            .ancestry-mixed-controller label {
+                background-image: url(../assets/parchments/dh-parchment-dark.png);
+            }
+
+            .selections-container
+            .ancestry-preview-info-container
+            .ancestry-preview-features
+            .ancestry-preview-feature {
+                background-image: url(../assets/parchments/dh-parchment-light.png);
+            }
+        }  
     }
-}
+});
 
 .daggerheart.dh-style.dialog.character-creation {
     .setup-tabs {
