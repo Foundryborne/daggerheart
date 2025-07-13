@@ -17,10 +17,32 @@ export default class DHFeature extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            type: new fields.StringField({ choices: CONFIG.DH.ITEM.featureTypes, nullable: true, initial: null }),
+            originItemType: new fields.StringField({
+                choices: CONFIG.DH.ITEM.featureTypes,
+                nullable: true,
+                initial: null
+            }),
             originId: new fields.StringField({ nullable: true, initial: null }),
             identifier: new fields.StringField(),
             actions: new fields.ArrayField(new ActionField())
         };
+    }
+
+    get spellcastingModifier() {
+        let traitValue = 0;
+        if (this.actor && this.originId && ['class', 'subclass'].includes(this.originItemType)) {
+            if (this.originItemType === 'subclass') {
+                traitValue =
+                    this.actor.system.traits[this.actor.items.get(this.originId).system.spellcastingTrait]?.value ?? 0;
+            } else {
+                const subclass =
+                    this.actor.system.multiclass.value?.id === this.originId
+                        ? this.actor.system.multiclass.subclass
+                        : this.actor.system.class.subclass;
+                traitValue = this.actor.system.traits[subclass.system.spellcastingTrait]?.value ?? 0;
+            }
+        }
+
+        return traitValue;
     }
 }

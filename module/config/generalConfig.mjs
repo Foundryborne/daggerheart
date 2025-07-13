@@ -371,8 +371,6 @@ export const abilityCosts = {
         label: 'Fear',
         group: 'TYPES.Actor.adversary'
     }
-    // ...featureTokenTypes,
-    // ...featureDiceTypes
 };
 
 export const countdownTypes = {

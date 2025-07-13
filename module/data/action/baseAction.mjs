@@ -1,7 +1,6 @@
 import { DHActionDiceData, DHActionRollData, DHDamageField } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
-import { getResources } from '../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 

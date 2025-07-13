@@ -68,7 +68,6 @@ export default class FeatureSheet extends DHBaseItemSheet {
                 }
             ),
             title = game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType');
-        console.log(this.document);
 
         return foundry.applications.api.DialogV2.prompt({
             window: { title },

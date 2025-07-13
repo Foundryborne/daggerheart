@@ -5,7 +5,7 @@
     </div>
 {{else}}
     <div class="item-resources">
-        {{#times (rollParsed item.system.resource.max item.parent)}}
+        {{#times (rollParsed item.system.resource.max item.parent item numerical=true)}}
             {{#with (ifThen (lookup ../item.system.resource.diceStates this) (lookup ../item.system.resource.diceStates this) this) as | state |}}
                 <a class="item-resource" data-action="toggleResourceDice" data-dice="{{#if ../../this}}{{../this}}{{else}}{{state}}{{/if}}">
                     <div class="item-dice-resource">

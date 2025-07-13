@@ -697,12 +697,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const item = this.getItem(event);
         if (!item) return;
 
-        const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(
-            item.name,
-            item.system.resource.recovery,
-            this.document,
-            item.system.resource
-        );
+        const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(item, this.document);
         if (!rollValues) return;
 
         await item.update({

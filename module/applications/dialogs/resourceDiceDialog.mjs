@@ -1,14 +1,12 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class ResourceDiceDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(name, recovery, actor, resource, options = {}) {
+    constructor(item, actor, options = {}) {
         super(options);
 
-        this.name = name;
-        this.recovery = recovery;
+        this.item = item;
         this.actor = actor;
-        this.resource = resource;
-        this.diceStates = foundry.utils.deepClone(resource.diceStates);
+        this.diceStates = foundry.utils.deepClone(item.system.resource.diceStates);
     }
 
     static DEFAULT_OPTIONS = {
@@ -37,16 +35,14 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
     };
 
     get title() {
-        return game.i18n.format('DAGGERHEART.APPLICATIONS.ResourceDice.title', { name: this.name });
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.ResourceDice.title', { name: this.item.name });
     }
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
-        context.name = this.name;
-        context.recovery = game.i18n.localize(CONFIG.DH.GENERAL.refreshTypes[this.recovery].label);
-        context.resource = this.resource;
-        context.diceStates = this.diceStates;
+        context.item = this.item;
         context.actor = this.actor;
+        context.diceStates = this.diceStates;
 
         return context;
     }
@@ -90,9 +86,9 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
         this.close();
     }
 
-    static async create(name, recovery, actor, resource, options = {}) {
+    static async create(item, actor, options = {}) {
         return new Promise(resolve => {
-            const app = new this(name, recovery, actor, resource, options);
+            const app = new this(item, actor, options);
             app.addEventListener('close', () => resolve(app.rollValues), { once: true });
             app.render({ force: true });
         });

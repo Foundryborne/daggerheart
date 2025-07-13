@@ -1,10 +1,10 @@
 <div>
     <div class="resource-items">
-        {{#times (rollParsed resource.max actor)}}
+        {{#times (rollParsed item.resource.max actor item numerical=true)}}
             {{#with (ifThen (lookup ../diceStates this) (lookup ../diceStates this) this) as | state |}}
                 <div class="resource-item" data-dice="{{#if ../../this}}{{../this}}{{else}}{{state}}{{/if}}">
                     <input type="number" data-dtype="Number" name={{concat "diceStates." (ifThen ../../this ../this state) ".value" }} value="{{state.value}}" />
-                    <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/d" (ifThen ../../resource.dieFaces ../../resource.dieFaces ../resource.dieFaces) ".svg"}}" />
+                    <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/d" (ifThen ../../item.resource.dieFaces ../../item.resource.dieFaces ../item.resource.dieFaces) ".svg"}}" />
                 </div>
             {{/with}}
         {{/times}}

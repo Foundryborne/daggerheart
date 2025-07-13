@@ -124,7 +124,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 ...feature,
                 system: {
                     ...feature.system,
-                    type: this.parent.type,
+                    originItemType: this.parent.type,
                     originId: data._id,
                     identifier: feature.identifier
                 }

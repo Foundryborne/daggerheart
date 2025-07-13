@@ -1,3 +1,5 @@
+import { itemAbleRollParse } from '../helpers/utils.mjs';
+
 export default class DhActiveEffect extends ActiveEffect {
     get isSuppressed() {
         // If this is a copied effect from an attachment, never suppress it
@@ -53,11 +55,7 @@ export default class DhActiveEffect extends ActiveEffect {
     }
 
     static applyField(model, change, field) {
-        const isItemTarget = change.value.toLowerCase().startsWith('item.');
-        change.value = isItemTarget ? change.value.slice(5) : change.value;
-        change.value = Roll.safeEval(
-            Roll.replaceFormulaData(change.value, isItemTarget ? change.effect.parent : model)
-        );
+        change.value = itemAbleRollParse(change.value, model, change.effect.parent);
         super.applyField(model, change, field);
     }
 
