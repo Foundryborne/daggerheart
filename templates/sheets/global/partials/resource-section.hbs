@@ -24,6 +24,6 @@
                 {{/if}}
             </div>
 
-        {{formGroup systemFields.resource.fields.icon value=source.system.resource.icon localize=true placeholder="fa-solid fa-hashtag"}}
+        {{#if (eq source.system.resource.type 'simple')}}{{formGroup systemFields.resource.fields.icon value=source.system.resource.icon localize=true placeholder="fa-solid fa-hashtag"}}{{/if}}
     {{/if}}
 </fieldset>
