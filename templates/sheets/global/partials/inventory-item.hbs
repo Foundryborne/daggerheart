@@ -12,11 +12,10 @@
                     {{#if isSidebar}}
                         <div class="item-labels">
                             <div class="label">
-                                {{!-- {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.short')}} --}}
+                                {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.short')}}
                                 {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.attack.range '.short')}}
                                 <span> - </span>
                                 {{item.system.attack.damage.parts.0.value.dice}}{{#if item.system.attack.damage.parts.0.value.bonus}} + {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
-                                {{!-- ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' item.system.attack.damage.parts.0.type '.abbreviation')}}) --}}
                                 {{#each item.system.attack.damage.parts.0.type as | type | }}
                                     {{#with (lookup @root.config.GENERAL.damageTypes type)}}
                                         <i class="fa-solid {{icon}}"></i>

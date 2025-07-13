@@ -1,4 +1,4 @@
-<div>
+<section>
     <div class="resource-items">
         {{#times (rollParsed item.system.resource.max actor item numerical=true)}}
             {{#with (ifThen (lookup ../diceStates this) (lookup ../diceStates this) this) as | state |}}
@@ -13,4 +13,4 @@
         <button data-action="save">{{localize 'Save'}}</button>
         <button data-action="rerollDice">{{localize "DAGGERHEART.APPLICATIONS.ResourceDice.rerollDice"}}</button>
     </footer>
-</div>
+</section>
