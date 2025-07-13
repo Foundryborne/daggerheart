@@ -66,10 +66,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         Hooks.on('renderChatMessageHTML', this.addChatListeners.bind());
     }
 
-    // close(options) {
-    //     Hooks.off('renderChatMessageHTML', this.addChatListeners);
-    //     super.close(options);
-    // }
+    close(options) {
+        Hooks.off('renderChatMessageHTML', this.addChatListeners);
+        super.close(options);
+    }
 
     async getActor(id) {
         // return game.actors.get(id);
