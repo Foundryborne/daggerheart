@@ -1,8 +1,8 @@
-import BaseDataItem from './base.mjs';
+import AttachableItem from './attachableItem.mjs';
 import { actionsTypes } from '../action/_module.mjs';
 import ActionField from '../fields/actionField.mjs';
 
-export default class DHWeapon extends BaseDataItem {
+export default class DHWeapon extends AttachableItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
@@ -56,6 +56,7 @@ export default class DHWeapon extends BaseDataItem {
                     damage: {
                         parts: [
                             {
+                                type: ['physical'],
                                 value: {
                                     multiplier: 'prof',
                                     dice: 'd8'

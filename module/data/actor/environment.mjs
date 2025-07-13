@@ -9,20 +9,21 @@ export default class DhEnvironment extends BaseDataActor {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.environment',
             type: 'environment',
-            settingSheet: DHEnvironmentSettings
+            settingSheet: DHEnvironmentSettings,
+            hasResistances: false
         });
     }
 
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            ...super.defineSchema(),
             tier: new fields.StringField({
                 required: true,
                 choices: CONFIG.DH.GENERAL.tiers,
                 initial: CONFIG.DH.GENERAL.tiers.tier1.id
             }),
             type: new fields.StringField({ choices: CONFIG.DH.ACTOR.environmentTypes }),
-            description: new fields.StringField(),
             impulses: new fields.StringField(),
             difficulty: new fields.NumberField({ required: true, initial: 11, integer: true }),
             potentialAdversaries: new fields.TypedObjectField(

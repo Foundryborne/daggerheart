@@ -393,6 +393,7 @@
                 "rerollDice": "Reroll Dice"
             }
         },
+
         "CONFIG": {
             "ActionType": {
                 "passive": "Passive",
@@ -966,6 +967,10 @@
                 "stress": {
                     "name": "Stress"
                 }
+            },
+            "Attachments": {
+                "attachHint": "Drop items here to attach them",
+                "transferHint": "If checked, this effect will be applied to any actor that owns this Effect's parent Item. The effect is always applied if this Item is attached to another one."
             }
         },
         "GENERAL": {
@@ -994,6 +999,11 @@
                 "major": "Major",
                 "minor": "Minor",
                 "none": "None"
+            },
+            "DamageResistance": {
+                "none": "None",
+                "resistance": "Resistance",
+                "immunity": "Immunity"
             },
             "DamageThresholds": {
                 "title": "Damage Thresholds",
@@ -1100,7 +1110,8 @@
                 "optional": "Optional",
                 "recovery": "Recovery",
                 "setup": "Setup",
-                "equipment": "Equipment"
+                "equipment": "Equipment",
+                "attachments": "Attachments"
             },
             "Tiers": {
                 "singular": "Tier",
