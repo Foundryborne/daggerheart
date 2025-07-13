@@ -4,6 +4,7 @@ import { abilities } from '../../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
+import { itemAbleRollParse } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -500,7 +501,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const item = this.getItem(event.currentTarget);
         if (!item) return;
 
-        const max = item.system.resource.max ? Roll.replaceFormulaData(item.system.resource.max, this.document) : null;
+        const max = item.system.resource.max ? itemAbleRollParse(item.system.resource.max, this.document, item) : null;
         const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
         await item.update({ 'system.resource.value': value });
         this.render();
