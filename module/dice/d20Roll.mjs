@@ -97,7 +97,7 @@ export default class D20Roll extends DHRoll {
             if (this.options.data.experiences?.[m])
                 this.options.roll.modifiers.push({
                     label: this.options.data.experiences[m].name,
-                    value: this.options.data.experiences[m].total ?? this.options.data.experiences[m].value
+                    value: this.options.data.experiences[m].value
                 });
         });
 

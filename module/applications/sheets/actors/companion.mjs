@@ -59,7 +59,7 @@ export default class DhCompanionSheet extends DHBaseActorSheet {
             const cls = getDocumentClass('ChatMessage');
             const systemData = {
                 name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
-                description: `${experience.name} ${experience.total < 0 ? experience.total : `+${experience.total}`}`
+                description: `${experience.name} ${experience.value.signedString()}`
             };
             const msg = new cls({
                 type: 'abilityUse',

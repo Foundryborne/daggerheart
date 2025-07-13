@@ -6,7 +6,7 @@
     <fieldset class="one-column">
         <legend>{{localize 'DAGGERHEART.GENERAL.basics'}}</legend>
         <div class="nest-inputs">
-            {{formGroup systemFields.evasion.fields.value value=document.system.evasion.value localize=true}}
+            {{formGroup systemFields.evasion value=document.system.evasion localize=true}}
             {{formGroup systemFields.resources.fields.stress.fields.value value=document.system.resources.stress.value label='Current Stress'}}
             {{formGroup systemFields.resources.fields.stress.fields.max value=document.system.resources.stress.max label='Max Stress'}}
         </div>

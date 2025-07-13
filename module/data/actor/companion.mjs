@@ -25,20 +25,16 @@ export default class DhCompanion extends BaseDataActor {
             resources: new fields.SchemaField({
                 stress: new fields.SchemaField({
                     value: new fields.NumberField({ initial: 0, integer: true }),
-                    bonus: new fields.NumberField({ initial: 0, integer: true }),
-                    max: new fields.NumberField({ initial: 3, integer: true })
+                    max: new fields.NumberField({ initial: 3, integer: true }),
+                    isReversed: new foundry.data.fields.BooleanField({ initial: true })
                 }),
                 hope: new fields.NumberField({ initial: 0, integer: true })
             }),
-            evasion: new fields.SchemaField({
-                value: new fields.NumberField({ required: true, min: 1, initial: 10, integer: true }),
-                bonus: new fields.NumberField({ initial: 0, integer: true })
-            }),
+            evasion: new fields.NumberField({ required: true, min: 1, initial: 10, integer: true }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField({}),
-                    value: new fields.NumberField({ integer: true, initial: 0 }),
-                    bonus: new fields.NumberField({ integer: true, initial: 0 })
+                    value: new fields.NumberField({ integer: true, initial: 0 })
                 }),
                 {
                     initial: {
@@ -84,19 +80,17 @@ export default class DhCompanion extends BaseDataActor {
 
     get traits() {
         return {
-            instinct: { total: this.attack.roll.bonus }
+            instinct: { value: this.attack.roll.bonus }
         };
     }
 
     get proficiency() {
-        return {
-            total: this.partner?.system?.proficiency?.total ?? 1
-        };
+        return this.partner?.system?.proficiency ?? 1;
     }
 
     prepareBaseData() {
         const partnerSpellcastingModifier = this.partner?.system?.spellcastingModifiers?.main;
-        const spellcastingModifier = this.partner?.system?.traits?.[partnerSpellcastingModifier]?.total;
+        const spellcastingModifier = this.partner?.system?.traits?.[partnerSpellcastingModifier]?.value;
         this.attack.roll.bonus = spellcastingModifier ?? 0; // Needs to expand on which modifier it is that should be used because of multiclassing;
 
         for (let levelKey in this.levelData.levelups) {
@@ -114,15 +108,15 @@ export default class DhCompanion extends BaseDataActor {
                         }
                         break;
                     case 'stress':
-                        this.resources.stress.bonus += selection.value;
+                        this.resources.stress.max += selection.value;
                         break;
                     case 'evasion':
-                        this.evasion.bonus += selection.value;
+                        this.evasion += selection.value;
                         break;
                     case 'experience':
                         Object.keys(this.experiences).forEach(key => {
                             const experience = this.experiences[key];
-                            experience.bonus += selection.value;
+                            experience.value += selection.value;
                         });
                         break;
                 }
@@ -131,17 +125,9 @@ export default class DhCompanion extends BaseDataActor {
     }
 
     prepareDerivedData() {
-        for (var experienceKey in this.experiences) {
-            var experience = this.experiences[experienceKey];
-            experience.total = experience.value + experience.bonus;
-        }
-
         if (this.partner) {
             this.partner.system.resources.hope.max += this.resources.hope;
         }
-
-        this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
-        this.evasion.total = this.evasion.value + this.evasion.bonus;
     }
 
     async _preDelete() {

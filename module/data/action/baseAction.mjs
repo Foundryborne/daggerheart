@@ -344,7 +344,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                 const resource = usefulResources[c.key];
                 return {
                     key: c.key,
-                    value: (c.total ?? c.value) * (resource.hasOwnProperty('maxTotal') ? 1 : -1),
+                    value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
                     target: resource.target,
                     keyIsID: resource.keyIsID
                 };
@@ -418,12 +418,12 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                 return false;
         }
 
-        /* maxTotal is a sign that the resource is inverted, IE it counts upwards instead of down */
+        /* isReversed is a sign that the resource is inverted, IE it counts upwards instead of down */
         const resources = await this.getResources(realCosts);
         return realCosts.reduce(
             (a, c) =>
-                a && resources[c.key].hasOwnProperty('maxTotal')
-                    ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].maxTotal
+                a && resources[c.key].isReversed
+                    ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
                     : resources[c.key]?.value >= (c.total ?? c.value),
             true
         );
@@ -464,7 +464,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             name: actor.actor.name,
             img: actor.actor.img,
             difficulty: actor.actor.system.difficulty,
-            evasion: actor.actor.system.evasion?.total
+            evasion: actor.actor.system.evasion
         };
     }
     /* TARGET */

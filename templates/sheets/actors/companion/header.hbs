@@ -11,7 +11,7 @@
     <div class="status-section">
         <div class="status-number">
             <div class='status-value'>
-                <p>{{document.system.evasion.total}}</p>
+                <p>{{document.system.evasion}}</p>
             </div>
             <div class="status-label">
                 <h4>Evasion</h4>
@@ -21,12 +21,12 @@
             <div class='status-value'>
                 <p><input class="bar-input" name="system.resources.stress.value" value="{{document.system.resources.stress.value}}" type="number"></p>
                 <p>/</p>
-                <p class="bar-label">{{document.system.resources.stress.maxTotal}}</p>
+                <p class="bar-label">{{document.system.resources.stress.max}}</p>
             </div>
             <progress
                 class='progress-bar stress-color'
                 value='{{document.system.resources.stress.value}}'
-                max='{{document.system.resources.stress.maxTotal}}'
+                max='{{document.system.resources.stress.max}}'
             ></progress>
             <div class="status-label">
                 <h4>Stress</h4>

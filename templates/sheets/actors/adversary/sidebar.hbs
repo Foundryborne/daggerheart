@@ -1,5 +1,5 @@
 <aside class="adversary-sidebar-sheet">
-    <div class="portrait {{#if (gte source.system.resources.hitPoints.value source.system.resources.hitPoints.maxTotal)}}death-roll{{/if}}">
+    <div class="portrait {{#if (gte source.system.resources.hitPoints.value source.system.resources.hitPoints.max)}}death-roll{{/if}}">
         <img src="{{source.img}}" alt="{{source.name}}" data-action='editImage' data-edit="img">
         <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.makeDeathMove"}}" data-action="makeDeathMove"><i class="fas fa-skull death-save" ></i></a>
     </div>
@@ -10,12 +10,12 @@
                 <div class='status-value'>
                     <p><input class="bar-input" name="system.resources.hitPoints.value" value="{{source.system.resources.hitPoints.value}}" type="number"></p>
                     <p>/</p>
-                    <p class="bar-label">{{source.system.resources.hitPoints.maxTotal}}</p>
+                    <p class="bar-label">{{source.system.resources.hitPoints.max}}</p>
                 </div>
                 <progress
                     class='progress-bar'
                     value='{{source.system.resources.hitPoints.value}}'
-                    max='{{source.system.resources.hitPoints.maxTotal}}'
+                    max='{{source.system.resources.hitPoints.max}}'
                 ></progress>
                 <div class="status-label">
                     <h4>HP</h4>
@@ -26,12 +26,12 @@
                 <div class='status-value'>
                     <p><input class="bar-input" name="system.resources.stress.value" value="{{source.system.resources.stress.value}}" type="number"></p>
                     <p>/</p>
-                    <p class="bar-label">{{source.system.resources.stress.maxTotal}}</p>
+                    <p class="bar-label">{{source.system.resources.stress.max}}</p>
                 </div>
                 <progress
                     class='progress-bar stress-color'
                     value='{{source.system.resources.stress.value}}'
-                    max='{{source.system.resources.stress.maxTotal}}'
+                    max='{{source.system.resources.stress.max}}'
                 ></progress>
                 <div class="status-label">
                     <h4>Stress</h4>
@@ -94,7 +94,7 @@
             {{#each source.system.experiences as |experience id|}}
                 <div class="experience-row">
                     <div class="experience-value">
-                        +{{experience.total}}
+                        +{{experience.value}}
                     </div>
                     <span class="experience-name">{{experience.name}}</span>
                     <div class="controls">
