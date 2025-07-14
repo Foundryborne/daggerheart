@@ -2,9 +2,9 @@ import DHAdversarySettings from '../../applications/sheets-configs/adversary-set
 import ActionField from '../fields/actionField.mjs';
 import BaseDataActor from './base.mjs';
 
-const resourceField = () =>
+const resourceField = label =>
     new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
+        value: new foundry.data.fields.NumberField({ initial: 0, integer: true, label }),
         max: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
         isReversed: new foundry.data.fields.BooleanField({ initial: true })
     });
@@ -37,14 +37,29 @@ export default class DhpAdversary extends BaseDataActor {
             motivesAndTactics: new fields.StringField(),
             notes: new fields.HTMLField(),
             difficulty: new fields.NumberField({ required: true, initial: 1, integer: true }),
-            hordeHp: new fields.NumberField({ required: true, initial: 1, integer: true }),
+            hordeHp: new fields.NumberField({
+                required: true,
+                initial: 1,
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.hordeHp'
+            }),
             damageThresholds: new fields.SchemaField({
-                major: new fields.NumberField({ required: true, initial: 0, integer: true }),
-                severe: new fields.NumberField({ required: true, initial: 0, integer: true })
+                major: new fields.NumberField({
+                    required: true,
+                    initial: 0,
+                    integer: true,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                }),
+                severe: new fields.NumberField({
+                    required: true,
+                    initial: 0,
+                    integer: true,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                })
             }),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(),
-                stress: resourceField()
+                hitPoints: resourceField('DAGGERHEART.GENERAL.hitPoints'),
+                stress: resourceField('DAGGERHEART.GENERAL.stress')
             }),
             attack: new ActionField({
                 initial: {
@@ -81,8 +96,16 @@ export default class DhpAdversary extends BaseDataActor {
             ),
             bonuses: new fields.SchemaField({
                 difficulty: new fields.SchemaField({
-                    all: new fields.NumberField({ integer: true, initial: 0 }),
-                    reaction: new fields.NumberField({ integer: true, initial: 0 })
+                    all: new fields.NumberField({
+                        integer: true,
+                        initial: 0,
+                        label: 'DAGGERHEART.GENERAL.Difficulty.all'
+                    }),
+                    reaction: new fields.NumberField({
+                        integer: true,
+                        initial: 0,
+                        label: 'DAGGERHEART.GENERAL.Difficulty.reaction'
+                    })
                 })
             })
         };

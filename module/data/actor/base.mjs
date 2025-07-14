@@ -1,10 +1,10 @@
 import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
 
-const resistanceField = () =>
+const resistanceField = reductionLabel =>
     new foundry.data.fields.SchemaField({
         resistance: new foundry.data.fields.BooleanField({ initial: false }),
         immunity: new foundry.data.fields.BooleanField({ initial: false }),
-        reduction: new foundry.data.fields.NumberField({ integer: true, initial: 0 })
+        reduction: new foundry.data.fields.NumberField({ integer: true, initial: 0, label: reductionLabel })
     });
 
 /**
@@ -40,8 +40,8 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         if (this.metadata.isNPC) schema.description = new fields.HTMLField({ required: true, nullable: true });
         if (this.metadata.hasResistances)
             schema.resistance = new fields.SchemaField({
-                physical: resistanceField(),
-                magical: resistanceField()
+                physical: resistanceField('DAGGERHEART.GENERAL.DamageResistance.physicalReduction'),
+                magical: resistanceField('DAGGERHEART.GENERAL.DamageResistance.magicalReduction')
             });
         return schema;
     }

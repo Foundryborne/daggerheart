@@ -264,7 +264,7 @@
             "applyEffect": {}
         }
     },
-    "primaryTokenAttribute": "resources.health",
+    "primaryTokenAttribute": "resources.hitPoints",
     "secondaryTokenAttribute": "resources.stress",
     "url": "https://your/hosted/system/repo/",
     "manifest": "https://your/hosted/system/repo/system.json",

@@ -1011,22 +1011,35 @@
                 "severe": "Severe",
                 "major": "Major",
                 "minor": "Minor",
-                "none": "None"
+                "none": "None",
+                "allDamage": "All Damage",
+                "physicalDamage": "Physical Damage",
+                "magicalDamage": "Magical Damage",
+                "primaryDamageBonus": "Primary Weapon Damage",
+                "primaryDamageDice": "Primary Weapon Extra Dice"
             },
             "DamageResistance": {
                 "none": "None",
                 "resistance": "Resistance",
-                "immunity": "Immunity"
+                "immunity": "Immunity",
+                "physicalReduction": "Physical Damage Reduction",
+                "magicalReduction": "Magical Damage Reduction"
             },
             "DamageThresholds": {
                 "title": "Damage Thresholds",
                 "minor": "Minor",
                 "major": "Major",
-                "severe": "Severe"
+                "severe": "Severe",
+                "majorThreshold": "Major Damage Threshold",
+                "severeThreshold": "Severe Damage Threshold"
             },
             "Dice": {
                 "single": "Die",
                 "plural": "Dice"
+            },
+            "Difficulty": {
+                "all": "Difficulty: all",
+                "reaction": "Difficulty: reaction"
             },
             "Disadvantage": {
                 "full": "Disadvantage",
@@ -1093,6 +1106,25 @@
                 "single": "Resource",
                 "plural": "Resources"
             },
+            "Roll": {
+                "attack": "Attack Roll",
+                "primaryWeaponAttack": "Primary Weapon Attack Roll",
+                "spellcast": "Spellcast Roll",
+                "action": "Action Roll",
+                "hopeOrFear": "Hope Or Fear Roll"
+            },
+            "Rules": {
+                "damageReduction": {
+                    "increasePerArmorMark": "Armor Block Per Mark",
+                    "maxArmorMarkedBonus": "Max Armor Used",
+                    "maxArmorMarkedStress": "Max Armor Used With Stress",
+                    "stress": {
+                        "severe": "Stress Damage Reduction: Severe",
+                        "major": "Stress Damage Reduction: Major",
+                        "minor": "Stress Damage Reduction: Minor"
+                    }
+                }
+            },
             "Tabs": {
                 "details": "Details",
                 "attack": "Attack",
@@ -1137,6 +1169,7 @@
                 "single": "Trait",
                 "plural": "Traits"
             },
+            "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "attack": "Attack",
             "basics": "Basics",
@@ -1155,6 +1188,7 @@
             "features": "Features",
             "hitPoints": "Hit Points",
             "hope": "Hope",
+            "hordeHp": "Horde HP",
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "level": "Level",
@@ -1162,6 +1196,7 @@
             "modifier": "Modifier",
             "multiclass": "Multiclass",
             "none": "None",
+            "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
             "recovery": "Recovery",

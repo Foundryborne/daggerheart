@@ -61,6 +61,14 @@ Hooks.once('init', () => {
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, ...[DHRoll, DualityRoll, D20Roll, DamageRoll]];
     CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
+    const { DocumentSheetConfig } = foundry.applications.apps;
+    CONFIG.Token.documentClass = documents.DhToken;
+    CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
+    DocumentSheetConfig.unregisterSheet(TokenDocument, 'core', foundry.applications.sheets.TokenConfig);
+    DocumentSheetConfig.registerSheet(TokenDocument, 'dnd5e', applications.sheetConfigs.DhTokenConfig, {
+        makeDefault: true
+    });
+
     CONFIG.Item.documentClass = documents.DHItem;
 
     //Registering the Item DataModel
@@ -98,12 +106,12 @@ Hooks.once('init', () => {
     CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
     CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
 
-    foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
+    DocumentSheetConfig.unregisterSheet(
         CONFIG.ActiveEffect.documentClass,
         'core',
         foundry.applications.sheets.ActiveEffectConfig
     );
-    foundry.applications.apps.DocumentSheetConfig.registerSheet(
+    DocumentSheetConfig.registerSheet(
         CONFIG.ActiveEffect.documentClass,
         SYSTEM.id,
         applications.sheetConfigs.ActiveEffectConfig,

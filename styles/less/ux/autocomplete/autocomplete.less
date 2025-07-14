@@ -1,0 +1,39 @@
+.theme-light .autocomplete {
+    background-image: url('../assets/parchments/dh-parchment-dark.png');
+}
+
+.autocomplete {
+    padding: 2px;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: light-dark(@dark-blue, @beige);
+    border-radius: 6px;
+    color: light-dark(@beige, @dark);
+    background-image: url('../assets/parchments/dh-parchment-light.png');
+    z-index: 200;
+
+    .group {
+        font-weight: bold;
+        font-size: 14px;
+        padding-left: 8px;
+    }
+
+    div[role='option'] {
+        font-size: 14;
+        padding-left: 16px;
+        cursor: pointer;
+        display: flex;
+
+        &:hover {
+            background: light-dark(@beige-50, @dark-blue);
+            color: light-dark(@dark, @beige);
+        }
+
+        .matched {
+            font-weight: bold;
+        }
+
+        &.selected {
+        }
+    }
+}
