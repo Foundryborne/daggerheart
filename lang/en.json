@@ -1115,7 +1115,7 @@
             },
             "Rules": {
                 "damageReduction": {
-                    "increasePerArmorMark": "Armor Block Per Mark",
+                    "increasePerArmorMark": "Damage Reduction per Armor Slot",
                     "maxArmorMarkedBonus": "Max Armor Used",
                     "maxArmorMarkedStress": "Max Armor Used With Stress",
                     "stress": {

@@ -5,38 +5,18 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         super(options);
 
         const ignoredActorKeys = ['config', 'DhEnvironment'];
-        const actorAttributes = Object.keys(game.system.api.models.actors).reduce((acc, key) => {
+        this.changeChoices = Object.keys(game.system.api.models.actors).reduce((acc, key) => {
             if (!ignoredActorKeys.includes(key)) {
                 const model = game.system.api.models.actors[key];
                 const attributes = CONFIG.Token.documentClass.getTrackedAttributes(model);
-                acc[game.i18n.localize(model.metadata.label)] = CONFIG.Token.documentClass.getTrackedAttributeChoices(
-                    attributes,
-                    model
-                );
+                const group = game.i18n.localize(model.metadata.label);
+                const choices = CONFIG.Token.documentClass
+                    .getTrackedAttributeChoices(attributes, model)
+                    .map(x => ({ ...x, group: group }));
+                acc.push(...choices);
             }
             return acc;
-        }, {});
-        console.log(actorAttributes);
-
-        // const allowedItemKeys = ['DHArmor'];
-        // const itemAttributes = Object.keys(game.system.api.models.items).reduce((acc, key) => {
-        //     if(allowedItemKeys.includes(key)) {
-        //         const model = game.system.api.models.items[key];
-        //         acc[game.i18n.localize(model.metadata.label)] = CONFIG.Token.documentClass.getTrackedAttributes(model);
-        //     }
-        //     return acc;
-        // }, {});
-
-        // this.selectChoices = [
-        //     ...Object.keys(actorAttributes).flatMap(name => {
-        //         const attribute = actorAttributes[name];
-        //         return { group: name, label: attribute, value: attribute };
-        //     }),
-        //     ...Object.keys(itemAttributes).flatMap(name => {
-        //         const attribute = itemAttributes[name];
-        //         return { group: name, label: attribute, value: attribute };
-        //     })
-        // ];
+        }, []);
     }
 
     static DEFAULT_OPTIONS = {
@@ -69,17 +49,17 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
-        const selectChoices = this.selectChoices;
+        const changeChoices = this.changeChoices;
 
         htmlElement.querySelectorAll('.effect-change-input').forEach(element => {
             autocomplete({
                 input: element,
                 fetch: function (text, update) {
                     if (!text) {
-                        update(selectChoices);
+                        update(changeChoices);
                     } else {
                         text = text.toLowerCase();
-                        var suggestions = selectChoices.filter(n => n.label.toLowerCase().includes(text));
+                        var suggestions = changeChoices.filter(n => n.label.toLowerCase().includes(text));
                         update(suggestions);
                     }
                 },
@@ -87,19 +67,14 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     const label = game.i18n.localize(item.label);
                     const matchIndex = label.toLowerCase().indexOf(search);
 
-                    const base = document.createElement('div');
-                    base.textContent = label.slice(0, matchIndex);
+                    const beforeText = label.slice(0, matchIndex);
+                    const matchText = label.slice(matchIndex, matchIndex + search.length);
+                    const after = label.slice(matchIndex + search.length, label.length);
 
-                    const matchText = document.createElement('div');
-                    matchText.textContent = label.slice(matchIndex, matchIndex + search.length);
-                    matchText.classList.add('matched');
+                    const element = document.createElement('li');
+                    element.innerHTML = `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`;
 
-                    const after = document.createElement('div');
-                    after.textContent = label.slice(matchIndex + search.length, label.length);
-
-                    base.insertAdjacentElement('beforeend', matchText);
-                    base.insertAdjacentElement('beforeend', after);
-                    return base;
+                    return element;
                 },
                 renderGroup: function (label) {
                     const itemElement = document.createElement('div');
@@ -107,7 +82,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     return itemElement;
                 },
                 onSelect: function (item) {
-                    element.value = item.value;
+                    element.value = `system.${item.value}`;
                 },
                 click: e => e.fetch(),
                 minLength: 0
