@@ -16,10 +16,14 @@ const resourceField = (max, label, reverse = false) =>
         isReversed: new foundry.data.fields.BooleanField({ initial: reverse })
     });
 
-const stressDamageReductionRule = label =>
+const stressDamageReductionRule = localizationPath =>
     new foundry.data.fields.SchemaField({
         enabled: new foundry.data.fields.BooleanField({ required: true, initial: false }),
-        cost: new foundry.data.fields.NumberField({ integer: true, label })
+        cost: new foundry.data.fields.NumberField({
+            integer: true,
+            label: `${localizationPath}.label`,
+            hint: `${localizationPath}.hint`
+        })
     });
 
 export default class DhCharacter extends BaseDataActor {
