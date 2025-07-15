@@ -178,7 +178,7 @@
                 display: flex;
                 justify-content: center;
                 position: relative;
-                width: 80px;
+                width: 95px;
                 height: 30px;
 
                 .status-label {
@@ -186,7 +186,8 @@
                     position: relative;
                     top: 30px;
                     height: 22px;
-                    width: 100%;
+                    width: 94px;
+                    border-radius: 3px;
                     background: light-dark(@dark-blue, @golden);
 
                     h4 {
@@ -197,7 +198,6 @@
                         font-size: 12px;
                     }
                 }
-
                 .status-value {
                     position: absolute;
                     display: flex;
@@ -210,6 +210,9 @@
                     text-align: center;
                     z-index: 2;
                     color: light-dark(@dark-blue, @beige);
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-bottom: none;
+                    border-radius: 6px 6px 0 0;
 
                     input[type='number'] {
                         background: transparent;
@@ -250,6 +253,8 @@
                     border-radius: 6px;
                     z-index: 1;
                     background: light-dark(transparent, @dark-blue);
+                    border-bottom: none;
+                    border-radius: 6px 6px 0 0;
 
                     &::-webkit-progress-bar {
                         border: none;
@@ -262,7 +267,8 @@
                     }
                     &.stress-color::-webkit-progress-value {
                         background: @gradient-stress;
-                        border-radius: 6px;
+                        border-bottom: none;
+                    border-radius: 6px 6px 0 0;
                     }
                     &::-moz-progress-bar {
                         background: @gradient-stress;
