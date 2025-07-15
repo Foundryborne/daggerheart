@@ -70,7 +70,7 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
                     case 'subclass':
                         return true;
                     default:
-                        this.createItemMacro(data, slot);
+                        this.createItemMacro(item, slot);
                         return false;
                 }
             } else if (data.type === 'Action') {
@@ -101,7 +101,7 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
         const macro = await Macro.implementation.create({
             name: `${game.i18n.localize('Display')} ${name}`,
             type: CONST.MACRO_TYPES.SCRIPT,
-            img: 'icons/svg/book.svg',
+            img: data.img,
             command: `await game.system.api.applications.ui.DhHotbar.useItem("${data.uuid}");`
         });
         await game.user.assignHotbarMacro(macro, slot);
@@ -111,7 +111,7 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
         const macro = await Macro.implementation.create({
             name: `${game.i18n.localize('Display')} ${name}`,
             type: CONST.MACRO_TYPES.SCRIPT,
-            img: 'icons/svg/book.svg',
+            img: data.data.img,
             command: `await game.system.api.applications.ui.DhHotbar.useAction("${data.data.itemUuid}", "${data.data.id}");`
         });
         await game.user.assignHotbarMacro(macro, slot);
@@ -121,7 +121,7 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
         const macro = await Macro.implementation.create({
             name: `${game.i18n.localize('Display')} ${name}`,
             type: CONST.MACRO_TYPES.SCRIPT,
-            img: 'icons/svg/book.svg',
+            img: data.img,
             command: `await game.system.api.applications.ui.DhHotbar.useAttack("${data.actorUuid}");`
         });
         await game.user.assignHotbarMacro(macro, slot);
