@@ -21,9 +21,9 @@ export default class DhHotbar extends Hotbar {
 
     setupHooks() {
         Hooks.on('hotbarDrop', (bar, data, slot) => {
-            if (['Item'].includes(data.type)) {
+            if (data.type === 'Item') {
                 const item = foundry.utils.fromUuidSync(data.uuid);
-                if (typeof item === 'string') return true;
+                if (item.uuid.startsWith('Compendium') || !item.isOwned || !item.isOwner) return true;
 
                 switch (item.type) {
                     case 'ancestry':
