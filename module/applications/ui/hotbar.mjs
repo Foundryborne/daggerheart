@@ -1,4 +1,4 @@
-export default class DhHotbar extends Hotbar {
+export default class DhHotbar extends foundry.applications.ui.Hotbar {
     constructor(options) {
         super(options);
 
@@ -19,6 +19,25 @@ export default class DhHotbar extends Hotbar {
         await item.use({});
     }
 
+    static async useAction(itemUuid, actionId) {
+        const item = await foundry.utils.fromUuid(itemUuid);
+        if (!item) {
+            return ui.notifications.warn('WARNING.ObjectDoesNotExist', {
+                format: {
+                    name: game.i18n.localize('Document'),
+                    identifier: itemUuid
+                }
+            });
+        }
+
+        const action = item.system.actions.find(x => x.id === actionId);
+        if (!action) {
+            return ui.notifications.warn('DAGGERHEART.UI.Notifications.actionIsMissing');
+        }
+
+        await action.use({});
+    }
+
     setupHooks() {
         Hooks.on('hotbarDrop', (bar, data, slot) => {
             if (data.type === 'Item') {
@@ -35,6 +54,16 @@ export default class DhHotbar extends Hotbar {
                         this.createItemMacro(data, slot);
                         return false;
                 }
+            } else if (data.type === 'Action') {
+                const item = foundry.utils.fromUuidSync(data.data.itemUuid);
+                if (item.uuid.startsWith('Compendium')) return true;
+                if (!item.isOwned || !item.isOwner) {
+                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.unownedActionMacro'));
+                    return false;
+                }
+
+                this.createActionMacro(data, slot);
+                return false;
             }
         });
     }
@@ -45,6 +74,17 @@ export default class DhHotbar extends Hotbar {
             type: CONST.MACRO_TYPES.SCRIPT,
             img: 'icons/svg/book.svg',
             command: `await game.system.api.applications.ui.DhHotbar.useItem("${data.uuid}");`
+        });
+        await game.user.assignHotbarMacro(macro, slot);
+        return false;
+    }
+
+    async createActionMacro(data, slot) {
+        const macro = await Macro.implementation.create({
+            name: `${game.i18n.localize('Display')} ${name}`,
+            type: CONST.MACRO_TYPES.SCRIPT,
+            img: 'icons/svg/book.svg',
+            command: `await game.system.api.applications.ui.DhHotbar.useAction("${data.data.itemUuid}", "${data.data.id}");`
         });
         await game.user.assignHotbarMacro(macro, slot);
         return false;

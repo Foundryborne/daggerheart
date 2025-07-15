@@ -1518,7 +1518,9 @@
                 "noAvailableArmorMarks": "You have no more available armor marks",
                 "notEnoughStress": "You don't have enough stress",
                 "damageIgnore": "{character} did not take damage",
-                "featureIsMissing": "Feature is missing"
+                "featureIsMissing": "Feature is missing",
+                "actionIsMissing": "Action is missing",
+                "unownedActionMacro": "Cannot make a Use macro for an Action not on your character"
             },
             "Tooltip": {
                 "openItemWorld": "Open Item World",
