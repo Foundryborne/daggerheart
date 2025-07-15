@@ -61,7 +61,16 @@
                         max='{{document.system.armorScore}}'
                     ></progress>
                     <div class="status-label">
-                        <h4>Armor Slots</h4>
+                        <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>
+                    </div>
+                </div>
+            {{else}}
+                <div class="status-number armor-slots">
+                    <div class='status-value'>
+                        <p>-</p>
+                    </div>
+                    <div class="status-label">
+                        <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>
                     </div>
                 </div>
             {{/if}}

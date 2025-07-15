@@ -186,7 +186,7 @@
                     position: relative;
                     top: 30px;
                     height: 22px;
-                    width: 94px;
+                    width: 95px;
                     border-radius: 3px;
                     background: light-dark(@dark-blue, @golden);
 
@@ -259,29 +259,28 @@
                     &::-webkit-progress-bar {
                         border: none;
                         background: light-dark(transparent, @dark-blue);
-                        
                     }
                     &::-webkit-progress-value {
                         background: @gradient-stress;
-                        
                     }
                     &.stress-color::-webkit-progress-value {
                         background: @gradient-stress;
-                        
                     }
                     &::-moz-progress-bar {
                         background: @gradient-stress;
-                        
                     }
                     &.stress-color::-moz-progress-bar {
                         background: @gradient-stress;
-                        
                     }
                 }
             }
 
             .status-number {
                 justify-items: center;
+
+                &.armor-slots {
+                    width: 95px;
+                }
 
                 .status-value {
                     position: relative;
