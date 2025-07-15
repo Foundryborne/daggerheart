@@ -15,7 +15,7 @@ export default {
                 path: './postcss.config.js'
             },
             extensions: ['.css'],
-            extract: false
+            extract: 'tagify.css'
         }),
         commonjs({
             include: /node_modules/,
