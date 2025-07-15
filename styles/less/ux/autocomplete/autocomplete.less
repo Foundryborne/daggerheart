@@ -12,11 +12,14 @@
     background-image: url('../assets/parchments/dh-parchment-dark.png');
     z-index: 200;
     max-height: 400px !important;
+    width: fit-content !important;
     overflow-y: auto;
-    font-style: @font-body;
+    font-family: @font-body;
     display: flex;
     flex-direction: column;
     gap: 2px;
+
+    scrollbar-color: light-dark(@dark-blue, @golden) transparent;
 
     .group {
         font-weight: bold;
