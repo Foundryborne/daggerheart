@@ -51,7 +51,9 @@
             <div class="status-number">
                 <div class='status-value armor-slots'>
                     {{#if document.system.armor.system.marks}}
-                        <p>{{document.system.armor.system.marks.value}}/{{document.system.armorScore}}</p>
+                        <p><input class="bar-input" name="system.armor.system.marks.value" value="{{document.system.armor.system.marks.value}}" type="number"></p>
+                        <p>/</p>
+                        <p class="bar-label">{{document.system.armorScore}}</p>
                     {{else}}
                         <p>-</p>
                     {{/if}}
