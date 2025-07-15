@@ -148,9 +148,9 @@ export const registerRollDiceHooks = () => {
         const actor = await fromUuid(config.source.actor),
             updates = [];
         if (!actor) return;
-        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ type: 'hope', value: 1 });
-        if (config.roll.isCritical) updates.push({ type: 'stress', value: -1 });
-        if (config.roll.result.duality === -1) updates.push({ type: 'fear', value: 1 });
+        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ key: 'hope', value: 1 });
+        if (config.roll.isCritical) updates.push({ key: 'stress', value: -1 });
+        if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1 });
 
         if (updates.length) actor.modifyResource(updates);
 

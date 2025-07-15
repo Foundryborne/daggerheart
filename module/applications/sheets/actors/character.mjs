@@ -654,10 +654,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         } else if (item instanceof ActiveEffect) {
             item.toChat(this);
         } else {
-            const wasUsed = await item.use(event);
-            if (wasUsed && item.type === 'weapon') {
-                Hooks.callAll(CONFIG.DH.HOOKS.characterAttack, {});
-            }
+            item.use(event);
         }
     }
 

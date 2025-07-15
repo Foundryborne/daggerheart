@@ -40,7 +40,9 @@ export default class RegisterHandlebarsHelpers {
 
     static damageSymbols(damageParts) {
         const symbols = new Set();
-        damageParts.forEach(part => symbols.add(...CONFIG.DH.GENERAL.damageTypes[part.type].icon));
+        damageParts.forEach(part =>
+            part.type.values().forEach(type => symbols.add(CONFIG.DH.GENERAL.damageTypes[type].icon))
+        );
         return new Handlebars.SafeString(Array.from(symbols).map(symbol => `<i class="fa-solid ${symbol}"></i>`));
     }
 

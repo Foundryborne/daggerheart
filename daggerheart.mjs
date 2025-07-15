@@ -5,7 +5,7 @@ import * as documents from './module/documents/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { DhDualityRollEnricher, DhTemplateEnricher } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
-import { NarrativeCountdowns, registerCountdownApplicationHooks } from './module/applications/ui/countdowns.mjs';
+import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
 import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/_module.mjs';
 import { renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
@@ -160,7 +160,6 @@ Hooks.on('ready', () => {
 
     registerCountdownHooks();
     socketRegistration.registerSocketHooks();
-    registerCountdownApplicationHooks();
     registerRollDiceHooks();
     registerDHActorHooks();
 });

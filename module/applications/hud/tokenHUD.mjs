@@ -1,4 +1,4 @@
-export default class DHTokenHUD extends TokenHUD {
+export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
     static DEFAULT_OPTIONS = {
         classes: ['daggerheart']
     };

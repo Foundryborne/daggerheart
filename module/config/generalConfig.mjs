@@ -376,15 +376,15 @@ export const abilityCosts = {
 export const countdownTypes = {
     spotlight: {
         id: 'spotlight',
-        label: 'DAGGERHEART.CONFIG.CountdownTypes.Spotlight'
+        label: 'DAGGERHEART.CONFIG.CountdownType.spotlight'
     },
     characterAttack: {
         id: 'characterAttack',
-        label: 'DAGGERHEART.CONFIG.CountdownTypes.CharacterAttack'
+        label: 'DAGGERHEART.CONFIG.CountdownType.characterAttack'
     },
     custom: {
         id: 'custom',
-        label: 'DAGGERHEART.CONFIG.CountdownTypes.Custom'
+        label: 'DAGGERHEART.CONFIG.CountdownType.custom'
     }
 };
 export const rollTypes = {
