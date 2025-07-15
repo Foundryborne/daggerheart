@@ -191,7 +191,7 @@ export const registerRollDiceHooks = () => {
         if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1 });
 
         if (updates.length) {
-            const target = actor.system.partner ? actor.system.partner : actor;
+            const target = actor.system.partner ?? actor;
             target.modifyResource(updates);
         }
 
