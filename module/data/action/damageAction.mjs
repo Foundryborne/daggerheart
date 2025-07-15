@@ -17,8 +17,7 @@ export default class DHDamageAction extends DHBaseAction {
         damageTypes = !damageTypes.length ? ['physical'] : damageTypes;
 
         if (!formula || formula == '') return;
-        let roll = { formula: formula, total: formula },
-            bonusDamage = [];
+        let roll = { formula: formula, total: formula };
 
         if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(systemData));
         
@@ -43,8 +42,4 @@ export default class DHDamageAction extends DHBaseAction {
 
         roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);
     }
-
-    // get modifiers() {
-    //     return [];
-    // }
 }

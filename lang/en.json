@@ -35,6 +35,9 @@
             "Settings": {
                 "resultBased": {
                     "label": "Formula based on Hope/Fear result."
+                },
+                "applyTo": {
+                    "label": "Targeted Resource"
                 }
             },
             "TYPES": {
@@ -647,6 +650,10 @@
                 "armorStack": {
                     "name": "Armor Stack",
                     "abbreviation": "AS"
+                },
+                "fear": {
+                    "name": "Fear",
+                    "abbreviation": "FR"
                 }
             },
             "ItemResourceType": {

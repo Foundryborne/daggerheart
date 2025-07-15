@@ -1,4 +1,4 @@
-import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField } from './actionDice.mjs';
+import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField, DHResourceData } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 
@@ -67,7 +67,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
 
     static defineExtraSchema() {
         const extraFields = {
-                damage: new DHDamageField({isDamage: true}),
+                damage: new DHDamageField(),
                 roll: new fields.EmbeddedDataField(DHActionRollData),
                 save: new fields.SchemaField({
                     trait: new fields.StringField({
@@ -96,7 +96,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                         onSave: new fields.BooleanField({ initial: false })
                     })
                 ),
-                healing: new fields.EmbeddedDataField(DHDamageData),
+                healing: new fields.EmbeddedDataField(DHResourceData),
                 beastform: new fields.SchemaField({
                     tierAccess: new fields.SchemaField({
                         exact: new fields.NumberField({ integer: true, nullable: true, initial: null })
