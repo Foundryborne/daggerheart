@@ -184,22 +184,16 @@ export const registerRollDiceHooks = () => {
             return;
 
         const actor = await fromUuid(config.source.actor),
-            updates = [],
-            hopeUpdates = [];
+            updates = [];
         if (!actor) return;
-        if (config.roll.isCritical || config.roll.result.duality === 1) hopeUpdates.push({ key: 'hope', value: 1 });
+        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ key: 'hope', value: 1 });
         if (config.roll.isCritical) updates.push({ key: 'stress', value: -1 });
         if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1 });
 
-        if (hopeUpdates.length) {
-            if (actor.system.partner) {
-                actor.system.partner.modifyResource(hopeUpdates);
-            } else {
-                updates.push(...hopeUpdates);
-            }
+        if (updates.length) {
+            const target = actor.system.partner ? actor.system.partner : actor;
+            target.modifyResource(updates);
         }
-
-        if (updates.length) actor.modifyResource(updates);
 
         if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
 
