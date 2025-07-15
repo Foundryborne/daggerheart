@@ -27,6 +27,13 @@ export default class DhCompanion extends BaseDataActor {
                 stress: resourceField(3, 'DAGGERHEART.GENERAL.stress', true),
                 hope: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.hope' })
             }),
+            evasion: new fields.NumberField({
+                required: true,
+                min: 1,
+                initial: 10,
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.evasion'
+            }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField({}),

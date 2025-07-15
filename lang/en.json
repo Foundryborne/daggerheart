@@ -1210,6 +1210,10 @@
             "dualityRoll": "Duality Roll",
             "enabled": "Enabled",
             "evasion": "Evasion",
+            "experience": {
+                "single": "Experience",
+                "plural": "Experiences"
+            },
             "fear": "Fear",
             "features": "Features",
             "hitPoints": "Hit Points",
@@ -1222,6 +1226,7 @@
             "modifier": "Modifier",
             "multiclass": "Multiclass",
             "none": "None",
+            "partner": "Partner",
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
