@@ -124,12 +124,6 @@ export default class DhCompanion extends BaseDataActor {
         }
     }
 
-    prepareDerivedData() {
-        if (this.partner) {
-            this.partner.system.resources.hope.max += this.resources.hope;
-        }
-    }
-
     async _preDelete() {
         if (this.partner) {
             await this.partner.update({ 'system.companion': null });

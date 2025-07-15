@@ -407,7 +407,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareDerivedData() {
-        this.resources.hope.value = Math.min(this.resources.hope.value, this.resources.hope.max);
+        const baseHope = this.resources.hope.value + (this.companion?.system?.resources?.hope ?? 0);
+        this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
     }
 
     getRollData() {
