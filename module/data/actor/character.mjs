@@ -323,6 +323,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareBaseData() {
+        this.evasion = this.class.value?.system?.evasion ?? 0;
+
         const currentLevel = this.levelData.level.current;
         const currentTier =
             currentLevel === 1
