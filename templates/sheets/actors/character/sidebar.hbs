@@ -48,18 +48,32 @@
                 </div>
             </div>
 
-            <div class="status-number">
-                <div class='status-value armor-slots'>
-                    {{#if document.system.armor.system.marks}}
-                        <p>{{document.system.armor.system.marks.value}}/{{document.system.armorScore}}</p>
-                    {{else}}
+            {{#if document.system.armor.system.marks}}
+                <div class="status-bar armor-slots">
+                    <div class='status-value'>
+                        <p><input class="bar-input armor-marks-input" value="{{document.system.armor.system.marks.value}}" type="number"></p>
+                        <p>/</p>
+                        <p class="bar-label">{{document.system.armorScore}}</p>
+                    </div>
+                    <progress
+                        class='progress-bar stress-color'
+                        value='{{document.system.armor.system.marks.value}}'
+                        max='{{document.system.armorScore}}'
+                    ></progress>
+                    <div class="status-label">
+                        <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>
+                    </div>
+                </div>
+            {{else}}
+                <div class="status-number armor-slots">
+                    <div class='status-value'>
                         <p>-</p>
-                    {{/if}}
+                    </div>
+                    <div class="status-label">
+                        <h4>{{localize "DAGGERHEART.GENERAL.armorSlots"}}</h4>
+                    </div>
                 </div>
-                <div class="status-label">
-                    <h4>Armor Slots</h4>
-                </div>
-            </div>
+            {{/if}}
 
             <div class="status-number">
                 <div class='status-value'>

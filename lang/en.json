@@ -686,11 +686,11 @@
                 }
             },
             "RollTypes": {
-                "ability": {
-                    "name": "Ability"
+                "trait": {
+                    "name": "Trait"
                 },
-                "weapon": {
-                    "name": "Weapon"
+                "attack": {
+                    "name": "Attack"
                 },
                 "spellcast": {
                     "name": "SpellCast"
@@ -1015,8 +1015,8 @@
                 "allDamage": "All Damage",
                 "physicalDamage": "Physical Damage",
                 "magicalDamage": "Magical Damage",
-                "primaryDamageBonus": "Primary Weapon Damage",
-                "primaryDamageDice": "Primary Weapon Extra Damage Dice"
+                "primaryWeapon": "Primary Weapon Damage",
+                "secondaryWeapon": "Secondary Weapon Damage"
             },
             "DamageResistance": {
                 "none": "None",
@@ -1093,9 +1093,17 @@
                 "single": "Experience",
                 "plural": "Experiences"
             },
+            "Healing": {
+                "healingAmount": "Healing Amount"
+            },
             "Neutral": {
                 "full": "None",
                 "short": "no"
+            },
+            "Range": {
+                "other": "Range Increase: Other",
+                "spell": "Range Increase: Spell",
+                "weapon": "Range Increase: Weapon"
             },
             "RefreshType": {
                 "session": "Session",
@@ -1109,9 +1117,11 @@
             "Roll": {
                 "attack": "Attack Roll",
                 "primaryWeaponAttack": "Primary Weapon Attack Roll",
+                "secondaryWeaponAttack": "Secondary Weapon Attack Roll",
                 "spellcast": "Spellcast Roll",
+                "trait": "Trait Roll",
                 "action": "Action Roll",
-                "hopeOrFear": "Hope Or Fear Roll"
+                "reaction": "Reaction Roll"
             },
             "Rules": {
                 "damageReduction": {
@@ -1186,6 +1196,7 @@
             },
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
+            "armorSlots": "Armor Slots",
             "attack": "Attack",
             "basics": "Basics",
             "bonus": "Bonus",

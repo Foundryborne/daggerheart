@@ -1,13 +1,7 @@
 import DHAdversarySettings from '../../applications/sheets-configs/adversary-settings.mjs';
 import ActionField from '../fields/actionField.mjs';
 import BaseDataActor from './base.mjs';
-
-const resourceField = label =>
-    new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: 0, integer: true, label }),
-        max: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        isReversed: new foundry.data.fields.BooleanField({ initial: true })
-    });
+import { resourceField, bonusField } from '../fields/actorField.mjs';
 
 export default class DhpAdversary extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Adversary'];
@@ -58,8 +52,8 @@ export default class DhpAdversary extends BaseDataActor {
                 })
             }),
             resources: new fields.SchemaField({
-                hitPoints: resourceField('DAGGERHEART.GENERAL.hitPoints'),
-                stress: resourceField('DAGGERHEART.GENERAL.stress')
+                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.hitPoints', true),
+                stress: resourceField(0, 'DAGGERHEART.GENERAL.stress', true)
             }),
             attack: new ActionField({
                 initial: {
@@ -74,7 +68,7 @@ export default class DhpAdversary extends BaseDataActor {
                         amount: 1
                     },
                     roll: {
-                        type: 'weapon'
+                        type: 'attack'
                     },
                     damage: {
                         parts: [
@@ -95,17 +89,14 @@ export default class DhpAdversary extends BaseDataActor {
                 })
             ),
             bonuses: new fields.SchemaField({
-                difficulty: new fields.SchemaField({
-                    all: new fields.NumberField({
-                        integer: true,
-                        initial: 0,
-                        label: 'DAGGERHEART.GENERAL.Difficulty.all'
-                    }),
-                    reaction: new fields.NumberField({
-                        integer: true,
-                        initial: 0,
-                        label: 'DAGGERHEART.GENERAL.Difficulty.reaction'
-                    })
+                roll: new fields.SchemaField({
+                    attack: bonusField('DAGGERHEART.GENERAL.Roll.attack'),
+                    action: bonusField('DAGGERHEART.GENERAL.Roll.action'),
+                    reaction: bonusField('DAGGERHEART.GENERAL.Roll.reaction')
+                }),
+                damage: new fields.SchemaField({
+                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
+                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
                 })
             })
         };

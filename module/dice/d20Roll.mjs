@@ -74,7 +74,6 @@ export default class D20Roll extends DHRoll {
     }
 
     constructFormula(config) {
-        // this.terms = [];
         this.createBaseDice();
         this.configureModifiers();
         this.resetFormula();
@@ -91,7 +90,10 @@ export default class D20Roll extends DHRoll {
 
     configureModifiers() {
         this.applyAdvantage();
-        this.applyBaseBonus();
+
+        this.baseTerms = foundry.utils.deepClone(this.terms);
+
+        this.options.roll.modifiers = this.applyBaseBonus();
 
         this.options.experiences?.forEach(m => {
             if (this.options.data.experiences?.[m])
@@ -101,12 +103,7 @@ export default class D20Roll extends DHRoll {
                 });
         });
 
-        this.options.roll.modifiers?.forEach(m => {
-            this.terms.push(...this.formatModifier(m.value));
-        });
-
-        this.baseTerms = foundry.utils.deepClone(this.terms);
-
+        this.addModifiers();
         if (this.options.extraFormula) {
             this.terms.push(
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
@@ -125,13 +122,20 @@ export default class D20Roll extends DHRoll {
     }
 
     applyBaseBonus() {
-        this.options.roll.modifiers = [];
-        if (!this.options.roll.bonus) return;
-        this.options.roll.modifiers.push({
-            label: 'Bonus to Hit',
-            value: this.options.roll.bonus
-            // value: Roll.replaceFormulaData('@attackBonus', this.data)
-        });
+        const modifiers = [];
+
+        if (this.options.roll.bonus)
+            modifiers.push({
+                label: 'Bonus to Hit',
+                value: this.options.roll.bonus
+            });
+
+        modifiers.push(...this.getBonus(`roll.${this.options.type}`, `${this.options.type.capitalize()} Bonus`));
+        modifiers.push(
+            ...this.getBonus(`roll.${this.options.roll.type}`, `${this.options.roll.type.capitalize()} Bonus`)
+        );
+
+        return modifiers;
     }
 
     static async buildEvaluate(roll, config = {}, message = {}) {

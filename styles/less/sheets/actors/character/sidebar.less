@@ -174,8 +174,115 @@
             gap: 5px;
             justify-content: center;
 
+            .status-bar.armor-slots {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                width: 95px;
+                height: 30px;
+
+                .status-label {
+                    padding: 2px 10px;
+                    position: relative;
+                    top: 30px;
+                    height: 22px;
+                    width: 95px;
+                    border-radius: 3px;
+                    background: light-dark(@dark-blue, @golden);
+
+                    h4 {
+                        font-weight: bold;
+                        text-align: center;
+                        line-height: 18px;
+                        color: light-dark(@beige, @dark-blue);
+                        font-size: 12px;
+                    }
+                }
+                .status-value {
+                    position: absolute;
+                    display: flex;
+                    padding: 0 6px;
+                    font-size: 1.2rem;
+                    align-items: center;
+                    width: 80px;
+                    height: 30px;
+                    justify-content: center;
+                    text-align: center;
+                    z-index: 2;
+                    color: light-dark(@dark-blue, @beige);
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-bottom: none;
+                    border-radius: 6px 6px 0 0;
+
+                    input[type='number'] {
+                        background: transparent;
+                        font-size: 1.2rem;
+                        width: 30px;
+                        height: 20px;
+                        text-align: center;
+                        border: none;
+                        outline: 2px solid transparent;
+                        color: light-dark(@dark-blue, @beige);
+
+                        &.bar-input {
+                            padding: 0;
+                            color: light-dark(@dark-blue, @beige);
+                            backdrop-filter: none;
+                            background: transparent;
+                            transition: all 0.3s ease;
+
+                            &:hover,
+                            &:focus {
+                                background: @semi-transparent-dark-blue;
+                                backdrop-filter: blur(9.5px);
+                            }
+                        }
+                    }
+
+                    .bar-label {
+                        width: 30px;
+                    }
+                }
+
+                .progress-bar {
+                    position: absolute;
+                    appearance: none;
+                    width: 80px;
+                    height: 30px;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    z-index: 1;
+                    background: light-dark(transparent, @dark-blue);
+                    border-bottom: none;
+                    border-radius: 6px 6px 0 0;
+
+                    &::-webkit-progress-bar {
+                        border: none;
+                        background: light-dark(transparent, @dark-blue);
+                    }
+                    &::-webkit-progress-value {
+                        background: @gradient-stress;
+                    }
+                    &.stress-color::-webkit-progress-value {
+                        background: @gradient-stress;
+                    }
+                    &::-moz-progress-bar {
+                        background: @gradient-stress;
+                    }
+                    &.stress-color::-moz-progress-bar {
+                        background: @gradient-stress;
+                    }
+                }
+            }
+
             .status-number {
-                justify-items: center;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+
+                &.armor-slots {
+                    width: 95px;
+                }
 
                 .status-value {
                     position: relative;
@@ -192,9 +299,33 @@
                     background: light-dark(transparent, @dark-blue);
                     z-index: 2;
 
-                    &.armor-slots {
-                        width: 80px;
-                        height: 30px;
+                    input[type='number'] {
+                        background: transparent;
+                        font-size: 1.2rem;
+                        width: 30px;
+                        height: 20px;
+                        text-align: center;
+                        border: none;
+                        outline: 2px solid transparent;
+                        color: light-dark(@dark-blue, @beige);
+
+                        &.bar-input {
+                            padding: 0;
+                            color: light-dark(@dark-blue, @beige);
+                            backdrop-filter: none;
+                            background: transparent;
+                            transition: all 0.3s ease;
+
+                            &:hover,
+                            &:focus {
+                                background: @semi-transparent-dark-blue;
+                                backdrop-filter: blur(9.5px);
+                            }
+                        }
+                    }
+
+                    .bar-label {
+                        width: 30px;
                     }
                 }
 
