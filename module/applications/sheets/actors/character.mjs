@@ -103,7 +103,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
             element.addEventListener('change', this.updateItemQuantity.bind(this));
         });
-        
+
         // Add listener for armor marks input
         htmlElement.querySelectorAll('.armor-marks-input').forEach(element => {
             element.addEventListener('change', this.updateArmorMarks.bind(this));

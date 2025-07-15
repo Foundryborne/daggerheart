@@ -306,7 +306,7 @@ export const itemAbleRollParse = (value, actor, item) => {
     const isItemTarget = value.toLowerCase().startsWith('item.');
     const slicedValue = isItemTarget ? value.slice(5) : value;
     try {
-        return Roll.safeEval(Roll.replaceFormulaData(slicedValue, isItemTarget ? item : actor));
+        return Roll.replaceFormulaData(slicedValue, isItemTarget ? item : actor);
     } catch (_) {
         return '';
     }
