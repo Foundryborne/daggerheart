@@ -8,12 +8,12 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 gm: new fields.BooleanField({
                     required: true,
                     initial: false,
-                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hope.label'
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hopeFear.gm.label'
                 }),
                 players: new fields.BooleanField({
                     required: true,
                     initial: false,
-                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hope.label'
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hopeFear.players.label'
                 })
             }),
             actionPoints: new fields.BooleanField({

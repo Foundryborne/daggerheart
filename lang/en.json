@@ -1271,9 +1271,10 @@
                     "hint": "Automatically increase the GM's fear pool on a fear duality roll result."
                 },
                 "FIELDS": {
-                    "hope": {
-                        "label": "Hope",
-                        "hint": "Automatically increase a character's hope on a hope duality roll result."
+                    "hopeFear": {
+                        "label": "Hope & Fear",
+                        "gm": { "label": "GM" },
+                        "players": { "label": "Players" }
                     },
                     "actionPoints": {
                         "label": "Action Points",

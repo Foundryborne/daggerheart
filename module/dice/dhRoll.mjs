@@ -138,9 +138,10 @@ export default class DHRoll extends Roll {
 
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async (config, message) => {
+        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;
         if (
             !config.source?.actor ||
-            !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hope ||
+            (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
             config.roll.type === 'reaction'
         )
             return;
