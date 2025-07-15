@@ -60,8 +60,7 @@ export default class DhCompanion extends BaseDataActor {
                     },
                     roll: {
                         type: 'attack',
-                        bonus: 0,
-                        trait: 'instinct'
+                        bonus: 0
                     },
                     damage: {
                         parts: [
@@ -84,12 +83,6 @@ export default class DhCompanion extends BaseDataActor {
                     magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
                 })
             })
-        };
-    }
-
-    get traits() {
-        return {
-            instinct: { value: this.attack.roll.bonus }
         };
     }
 
