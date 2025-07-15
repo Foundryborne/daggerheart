@@ -35,6 +35,8 @@ export default class DHDamageAction extends DHBaseAction {
         if (data.system) {
             config.source.message = data._id;
             config.directDamage = false;
+        } else {
+            config.directDamage = true;
         }
 
         roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);

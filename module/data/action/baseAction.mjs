@@ -268,7 +268,8 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             hasDamage: !!this.damage?.parts?.length,
             hasHealing: !!this.healing,
             hasEffect: !!this.effects?.length,
-            hasSave: this.hasSave
+            hasSave: this.hasSave,
+            selectedRollMode: game.settings.get('core', 'rollMode')
         };
     }
 

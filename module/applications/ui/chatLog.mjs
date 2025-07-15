@@ -14,8 +14,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     addChatListeners = async (app, html, data) => {
-        super.addChatListeners(app, html, data);
-
         html.querySelectorAll('.duality-action-damage').forEach(element =>
             element.addEventListener('click', event => this.onRollDamage(event, data.message))
         );
@@ -90,7 +88,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     onRollDamage = async (event, message) => {
         event.stopPropagation();
         const actor = await this.getActor(message.system.source.actor);
-        if (!actor || !game.user.isGM) return true;
+        if (game.user.character?.id !== actor.id && !game.user.isGM) return true;
         if (message.system.source.item && message.system.source.action) {
             const action = this.getAction(actor, message.system.source.item, message.system.source.action);
             if (!action || !action?.rollDamage) return;
