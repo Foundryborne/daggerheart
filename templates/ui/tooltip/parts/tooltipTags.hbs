@@ -6,7 +6,7 @@
                     <div class="tooltip-tag-label">{{localize feature.name}}</div>
                     {{#if feature.img}}<img class="tooltip-tag-image" src="{{feature.img}}" />{{/if}}
                 </div>
-            <div class="tooltip-tag-description">{{{localize (tertiary feature.description feature.system.description)}}}</div>
+            <div class="tooltip-tag-description">{{{localize (ifThen feature.description feature.description feature.system.description)}}}</div>
         </div>
     {{/each}}
 </div>

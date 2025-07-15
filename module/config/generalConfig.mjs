@@ -366,31 +366,6 @@ export const abilityCosts = {
         label: 'Armor Stack',
         group: 'TYPES.Actor.character'
     },
-    prayer: {
-        id: 'prayer',
-        label: 'Prayer Dice',
-        group: 'TYPES.Actor.character'
-    },
-    favor: {
-        id: 'favor',
-        label: 'Favor Points',
-        group: 'TYPES.Actor.character'
-    },
-    slayer: {
-        id: 'slayer',
-        label: 'Slayer Dice',
-        group: 'TYPES.Actor.character'
-    },
-    tide: {
-        id: 'tide',
-        label: 'Tide',
-        group: 'TYPES.Actor.character'
-    },
-    chaos: {
-        id: 'chaos',
-        label: 'Chaos',
-        group: 'TYPES.Actor.character'
-    },
     fear: {
         id: 'fear',
         label: 'Fear',

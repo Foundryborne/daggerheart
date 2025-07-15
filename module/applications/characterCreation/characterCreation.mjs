@@ -11,13 +11,16 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         this.setup = {
             traits: this.character.system.traits,
-            ancestry: this.character.system.ancestry ?? {},
+            ancestryName: '',
+            mixedAncestry: false,
+            primaryAncestry: this.character.system.ancestry ?? {},
+            secondaryAncestry: {},
             community: this.character.system.community ?? {},
             class: this.character.system.class?.value ?? {},
             subclass: this.character.system.class?.subclass ?? {},
             experiences: {
-                [foundry.utils.randomID()]: { description: '', value: 2 },
-                [foundry.utils.randomID()]: { description: '', value: 2 }
+                [foundry.utils.randomID()]: { name: '', value: 2 },
+                [foundry.utils.randomID()]: { name: '', value: 2 }
             },
             domainCards: {
                 [foundry.utils.randomID()]: {},
@@ -47,12 +50,13 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'dialog', 'dh-style', 'character-creation'],
-        position: { width: 800, height: 'auto' },
+        position: { width: 700, height: 'auto' },
         actions: {
             viewCompendium: this.viewCompendium,
             viewItem: this.viewItem,
             useSuggestedTraits: this.useSuggestedTraits,
             equipmentChoice: this.equipmentChoice,
+            setupGoNext: this.setupGoNext,
             finish: this.finish
         },
         form: {
@@ -76,6 +80,12 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/characterCreation/tabs.hbs' },
         setup: { template: 'systems/daggerheart/templates/characterCreation/tabs/setup.hbs' },
+        ancestry: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/ancestry.hbs' },
+        community: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/community.hbs' },
+        class: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/class.hbs' },
+        traits: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/traits.hbs' },
+        experience: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/experience.hbs' },
+        domainCards: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/domainCards.hbs' },
         equipment: { template: 'systems/daggerheart/templates/characterCreation/tabs/equipment.hbs' },
         // story: { template: 'systems/daggerheart/templates/characterCreation/tabs/story.hbs' },
         footer: { template: 'systems/daggerheart/templates/characterCreation/footer.hbs' }
@@ -107,6 +117,51 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         // }
     };
 
+    static SETUPTABS = {
+        ancestry: {
+            active: true,
+            cssClass: '',
+            group: 'setup',
+            id: 'ancestry',
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.ancestry'
+        },
+        community: {
+            active: false,
+            cssClass: '',
+            group: 'setup',
+            id: 'community',
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.community'
+        },
+        class: {
+            active: false,
+            cssClass: '',
+            group: 'setup',
+            id: 'class',
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.class'
+        },
+        traits: {
+            active: false,
+            cssClass: '',
+            group: 'setup',
+            id: 'traits',
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.traits'
+        },
+        experience: {
+            active: false,
+            cssClass: '',
+            group: 'setup',
+            id: 'experience',
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.experience'
+        },
+        domainCards: {
+            active: false,
+            cssClass: '',
+            group: 'setup',
+            id: 'domainCards',
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.domainCards'
+        }
+    };
+
     _getTabs(tabs) {
         for (const v of Object.values(tabs)) {
             v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
@@ -114,14 +169,16 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
             switch (v.id) {
                 case 'setup':
+                    const ancestryFinished = this.setup.primaryAncestry.uuid;
+                    const communityFinished = this.setup.community.uuid;
                     const classFinished = this.setup.class.uuid && this.setup.subclass.uuid;
-                    const heritageFinished = this.setup.ancestry.uuid && this.setup.community.uuid;
                     const traitsFinished = Object.values(this.setup.traits).every(x => x.value !== null);
-                    const experiencesFinished = Object.values(this.setup.experiences).every(x => x.description);
+                    const experiencesFinished = Object.values(this.setup.experiences).every(x => x.name);
                     const domainCardsFinished = Object.values(this.setup.domainCards).every(x => x.uuid);
                     v.finished =
+                        ancestryFinished &&
+                        communityFinished &&
                         classFinished &&
-                        heritageFinished &&
                         traitsFinished &&
                         experiencesFinished &&
                         domainCardsFinished;
@@ -146,15 +203,44 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         return tabs;
     }
 
+    _getSetupTabs(tabs) {
+        for (const v of Object.values(tabs)) {
+            v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
+            v.cssClass = v.active ? 'active' : '';
+
+            switch (v.id) {
+                case 'community':
+                    v.disabled = this.setup.visibility < 2;
+                    break;
+                case 'class':
+                    v.disabled = this.setup.visibility < 3;
+                    break;
+                case 'traits':
+                    v.disabled = this.setup.visibility < 4;
+                    break;
+                case 'experience':
+                    v.disabled = this.setup.visibility < 5;
+                    break;
+                case 'domainCards':
+                    v.disabled = this.setup.visibility < 6;
+                    break;
+            }
+        }
+
+        return tabs;
+    }
+
     changeTab(tab, group, options) {
         super.changeTab(tab, group, options);
 
-        for (var listTab of Object.keys(this.constructor.TABS)) {
-            const marker = options.navElement.querySelector(`a[data-action="tab"].${listTab} .finish-marker`);
-            if (listTab === tab) {
-                marker.classList.add('active');
-            } else {
-                marker.classList.remove('active');
+        if (group === 'primary') {
+            for (var listTab of Object.keys(this.constructor.TABS)) {
+                const marker = options.navElement.querySelector(`a[data-action="tab"].${listTab} .finish-marker`);
+                if (listTab === tab) {
+                    marker.classList.add('active');
+                } else {
+                    marker.classList.remove('active');
+                }
             }
         }
     }
@@ -163,6 +249,11 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         super._attachPartListeners(partId, htmlElement, options);
 
         this._dragDrop.forEach(d => d.bind(htmlElement));
+
+        htmlElement.querySelectorAll('.mixed-ancestry-slider').forEach(element => {
+            element.addEventListener('input', this.mixedAncestryToggle.bind(this));
+            element.addEventListener('click', this.mixedAncestryToggle.bind(this));
+        });
     }
 
     async _prepareContext(_options) {
@@ -174,7 +265,30 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
     async _preparePartContext(partId, context) {
         switch (partId) {
+            case 'footer':
+                context.isLastTab = this.tabGroups.setup === 'domainCards';
+                switch (this.tabGroups.setup) {
+                    case null:
+                    case 'ancestry':
+                        context.nextDisabled = this.setup.visibility === 1;
+                        break;
+                    case 'community':
+                        context.nextDisabled = this.setup.visibility === 2;
+                        break;
+                    case 'class':
+                        context.nextDisabled = this.setup.visibility === 3;
+                        break;
+                    case 'traits':
+                        context.nextDisabled = this.setup.visibility === 4;
+                        break;
+                    case 'experience':
+                        context.nextDisabled = this.setup.visibility === 5;
+                        break;
+                }
+
+                break;
             case 'setup':
+                context.setupTabs = this._getSetupTabs(this.constructor.SETUPTABS);
                 const availableTraitModifiers = game.settings
                     .get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
                     .traitArray.map(trait => ({ key: trait, name: trait }));
@@ -215,13 +329,13 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 context.experience = {
                     values: this.setup.experiences,
                     nrTotal: Object.keys(this.setup.experiences).length,
-                    nrSelected: Object.values(this.setup.experiences).reduce(
-                        (acc, exp) => acc + (exp.description ? 1 : 0),
-                        0
-                    )
+                    nrSelected: Object.values(this.setup.experiences).reduce((acc, exp) => acc + (exp.name ? 1 : 0), 0)
                 };
 
-                context.ancestry = { ...this.setup.ancestry, compendium: 'ancestries' };
+                context.mixedAncestry = Number(this.setup.mixedAncestry);
+                context.ancestryName = this.setup.ancestryName;
+                context.primaryAncestry = { ...this.setup.primaryAncestry, compendium: 'ancestries' };
+                context.secondaryAncestry = { ...this.setup.secondaryAncestry, compendium: 'ancestries' };
                 context.community = { ...this.setup.community, compendium: 'communities' };
                 context.class = { ...this.setup.class, compendium: 'classes' };
                 context.subclass = { ...this.setup.subclass, compendium: 'subclasses' };
@@ -278,18 +392,29 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.render();
     }
 
+    mixedAncestryToggle(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.setup.mixedAncestry = !this.setup.mixedAncestry;
+        if (!this.setup.mixedAncestry) this.setup.secondaryAncestry = {};
+
+        this.render();
+    }
+
     getUpdateVisibility() {
         switch (this.setup.visibility) {
+            case 6:
+                return 6;
             case 5:
-                return 5;
+                return Object.values(this.setup.experiences).every(x => x.name) ? 6 : 5;
             case 4:
-                return Object.values(this.setup.experiences).every(x => x.description) ? 5 : 4;
+                return Object.values(this.setup.traits).every(x => x.value !== null) ? 5 : 4;
             case 3:
-                return Object.values(this.setup.traits).every(x => x.value !== null) ? 4 : 3;
+                return this.setup.class.uuid && this.setup.subclass.uuid ? 4 : 3;
             case 2:
-                return this.setup.ancestry.uuid && this.setup.community.uuid ? 3 : 2;
+                return this.setup.community.uuid ? 3 : 2;
             case 1:
-                return this.setup.class.uuid && this.setup.subclass.uuid ? 2 : 1;
+                return this.setup.primaryAncestry.uuid ? 2 : 1;
         }
     }
 
@@ -348,8 +473,46 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.render();
     }
 
+    static setupGoNext() {
+        switch (this.setup.visibility) {
+            case 2:
+                this.tabGroups.setup = 'community';
+                break;
+            case 3:
+                this.tabGroups.setup = 'class';
+                break;
+            case 4:
+                this.tabGroups.setup = 'traits';
+                break;
+            case 5:
+                this.tabGroups.setup = 'experience';
+                break;
+            case 6:
+                this.tabGroups.setup = 'domainCards';
+                break;
+        }
+
+        this.render();
+    }
+
     static async finish() {
-        await this.character.createEmbeddedDocuments('Item', [this.setup.ancestry]);
+        const primaryAncestryFeature = this.setup.primaryAncestry.system.primaryFeature;
+        const secondaryAncestryFeature = this.setup.secondaryAncestry?.uuid
+            ? this.setup.secondaryAncestry.system.secondaryFeature
+            : this.setup.primaryAncestry.system.secondaryFeature;
+
+        const ancestry = {
+            ...this.setup.primaryAncestry,
+            name: this.setup.ancestryName ?? this.setup.primaryAncestry.name,
+            system: {
+                ...this.setup.primaryAncestry.system,
+                features: [primaryAncestryFeature.uuid, secondaryAncestryFeature.uuid],
+                primaryFeature: primaryAncestryFeature.uuid,
+                secondaryFeature: secondaryAncestryFeature.uuid
+            }
+        };
+
+        await this.character.createEmbeddedDocuments('Item', [ancestry]);
         await this.character.createEmbeddedDocuments('Item', [this.setup.community]);
         await this.character.createEmbeddedDocuments('Item', [this.setup.class]);
         await this.character.createEmbeddedDocuments('Item', [this.setup.subclass]);
@@ -396,8 +559,15 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const item = await foundry.utils.fromUuid(data.uuid);
-        if (item.type === 'ancestry' && event.target.closest('.ancestry-card')) {
-            this.setup.ancestry = {
+        if (item.type === 'ancestry' && event.target.closest('.primary-ancestry-card')) {
+            this.setup.ancestryName = item.name;
+            this.setup.primaryAncestry = {
+                ...item,
+                effects: Array.from(item.effects).map(x => x.toObject()),
+                uuid: item.uuid
+            };
+        } else if (item.type === 'ancestry' && event.target.closest('.secondary-ancestry-card')) {
+            this.setup.secondaryAncestry = {
                 ...item,
                 effects: Array.from(item.effects).map(x => x.toObject()),
                 uuid: item.uuid

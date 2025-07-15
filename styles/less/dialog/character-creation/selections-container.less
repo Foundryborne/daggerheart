@@ -1,10 +1,110 @@
 @import '../../utils/colors.less';
 
+.appTheme({}, {
+    &.daggerheart.dh-style.dialog.character-creation {
+        .setup-tabs button {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
+        }
+
+        nav a .descriptor {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
+        }
+
+        .main-selections-container {
+            .ancestry-mixed-controller label {
+                background-image: url(../assets/parchments/dh-parchment-dark.png);
+            }
+
+            .selections-container
+            .ancestry-preview-info-container
+            .ancestry-preview-features
+            .ancestry-preview-feature {
+                background-image: url(../assets/parchments/dh-parchment-light.png);
+            }
+
+            .traits-container {
+                .suggested-traits-container .suggested-trait-container {
+                    background-image: url('../assets/parchments/dh-parchment-dark.png');
+                }
+
+                .traits-inner-container .trait-container {
+                    background: url('../assets/svg/trait-shield-light.svg') no-repeat;
+                    
+                    div {
+                        filter: none;
+                        text-shadow: none;
+                    }
+                }
+            }
+        }  
+    }
+});
+
 .daggerheart.dh-style.dialog.character-creation {
+    .setup-tabs {
+        display: flex;
+        justify-content: center;
+
+        button {
+            background-image: url(../assets/parchments/dh-parchment-light.png);
+            border-radius: 6px;
+            border-color: light-dark(@dark-blue, @golden);
+            color: light-dark(@beige, @dark);
+        }
+    }
+
     .main-selections-container {
         display: flex;
         flex-direction: column;
         gap: 4px;
+
+        .ancestry-mixed-controller {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 4px;
+            margin-bottom: 8px;
+
+            &.active {
+                label {
+                    opacity: 1;
+                }
+            }
+
+            label {
+                position: absolute;
+                font-size: 18px;
+                font-weight: bold;
+                padding: 0 2px;
+                background-image: url(../assets/parchments/dh-parchment-light.png);
+                border: 1px solid light-dark(@dark-blue, @golden);
+                border-radius: 6px;
+                color: light-dark(@beige, @dark);
+                opacity: 0.4;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+
+            input {
+                width: 50%;
+            }
+        }
+
+        .ancestry-name {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 8px;
+
+            input {
+                width: 50%;
+                text-align: center;
+            }
+        }
 
         .selections-container {
             width: 140px;
@@ -14,6 +114,43 @@
 
             .card-preview-container {
                 border-color: light-dark(@dark-blue, @golden);
+            }
+
+            .ancestry-preview-info-container {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                width: 100%;
+
+                .ancestry-preview-label {
+                    text-align: center;
+                    font-weight: bold;
+                }
+
+                .ancestry-preview-features {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: end;
+                    gap: 2px;
+                    width: 100%;
+                    padding: 0 2px 2px 2px;
+
+                    .ancestry-preview-feature {
+                        flex: 1;
+                        font-size: 14px;
+                        white-space: wrap;
+                        padding: 0 2px;
+                        border: 1px solid light-dark(@golden, @dark-blue);
+                        border-radius: 6px;
+                        background-image: url(../assets/parchments/dh-parchment-dark.png);
+                        color: light-dark(@dark, @beige);
+                        height: min-content;
+
+                        &.inactive {
+                            opacity: 0.2;
+                        }
+                    }
+                }
             }
         }
 
@@ -26,6 +163,10 @@
         .section-container {
             border-radius: 8px;
             border-color: light-dark(@dark-blue, @golden);
+
+            &.inactive {
+                opacity: 0.2;
+            }
 
             legend {
                 margin-left: auto;
@@ -44,6 +185,7 @@
 
                 legend {
                     font-size: 20px;
+                    white-space: nowrap;
                 }
 
                 .action-button {
@@ -87,21 +229,38 @@
             }
 
             .traits-inner-container {
+                width: 100%;
                 display: flex;
+                align-items: center;
                 justify-content: space-evenly;
                 gap: 8px;
 
                 .trait-container {
-                    border: 1px solid light-dark(@dark-blue, @golden);
-                    padding: 0 4px;
+                    width: 60px;
+                    height: 60px;
+                    background: url(../assets/svg/trait-shield.svg) no-repeat;
+
+                    div {
+                        filter: drop-shadow(0 0 3px black);
+                        text-shadow: 0 0 3px black;
+                    }
+
+                    select {
+                        text-align: center;
+                        width: 32px;
+                        height: 24px;
+                        position: relative;
+                        top: 2px;
+                        padding: 0;
+                    }
                 }
             }
         }
 
         .experiences-inner-container {
             display: flex;
-            justify-content: space-evenly;
-            text-align: center;
+            flex-direction: column;
+            gap: 8px;
 
             .experience-container {
                 position: relative;

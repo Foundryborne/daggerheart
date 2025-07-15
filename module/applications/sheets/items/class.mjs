@@ -85,6 +85,16 @@ export default class ClassSheet extends DHBaseItemSheet {
             await this.document.update({
                 'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
             });
+        } else if (item.type === 'feature') {
+            if (target.classList.contains('hope-feature')) {
+                await this.document.update({
+                    'system.hopeFeatures': [...this.document.system.hopeFeatures.map(x => x.uuid), item.uuid]
+                });
+            } else if (target.classList.contains('class-feature')) {
+                await this.document.update({
+                    'system.classFeatures': [...this.document.system.classFeatures.map(x => x.uuid), item.uuid]
+                });
+            }
         } else if (item.type === 'weapon') {
             if (target.classList.contains('primary-weapon-section')) {
                 if (!this.document.system.characterGuide.suggestedPrimaryWeapon && !item.system.secondary)
@@ -144,7 +154,7 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeItemFromCollection(_event, element) {
         const { uuid, target } = element.dataset;
         const prop = foundry.utils.getProperty(this.document.system, target);
-        await this.document.update({ [target]: prop.filter(i => i.uuid !== uuid) });
+        await this.document.update({ [`system.${target}`]: prop.filter(i => i.uuid !== uuid) });
     }
 
     /**
@@ -190,7 +200,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         const actionPath = this.getActionPath(button.dataset.type);
         const feature = this.document.system[actionPath].find(x => x?.id === target.dataset.featureId);
         if (!feature) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
             return;
         }
 

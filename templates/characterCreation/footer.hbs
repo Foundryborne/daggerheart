@@ -1,4 +1,8 @@
 <section class="creation-action-footer">
     <button data-action="close">{{localize "Cancel"}}</button>
-    <button {{#if tabs.setup.finished}}data-action="finish"{{else}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.finishCreation"}}</button>
+    {{#if isLastTab}}
+        <button data-action="finish" {{disabled (not tabs.setup.finished)}}>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.finishCreation"}}</button>
+    {{else}}
+        <button data-action="setupGoNext" {{disabled nextDisabled}}>{{localize "Next"}}</button>
+    {{/if}}
 </section>

@@ -1,3 +1,5 @@
+import { itemAbleRollParse } from './utils.mjs';
+
 export default class RegisterHandlebarsHelpers {
     static registerHelpers() {
         Handlebars.registerHelper({
@@ -6,8 +8,7 @@ export default class RegisterHandlebarsHelpers {
             times: this.times,
             damageFormula: this.damageFormula,
             damageSymbols: this.damageSymbols,
-            tertiary: this.tertiary,
-            signedNumber: this.signedNumber
+            rollParsed: this.rollParsed
         });
     }
 
@@ -43,7 +44,9 @@ export default class RegisterHandlebarsHelpers {
         return new Handlebars.SafeString(Array.from(symbols).map(symbol => `<i class="fa-solid ${symbol}"></i>`));
     }
 
-    static tertiary(a, b) {
-        return a ?? b;
+    static rollParsed(value, actor, item, numerical) {
+        const isNumerical = typeof numerical === 'boolean' ? numerical : false;
+        const result = itemAbleRollParse(value, actor, item);
+        return isNumerical && !result ? 0 : result;
     }
 }

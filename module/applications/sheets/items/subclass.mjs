@@ -50,7 +50,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
     static async editFeature(_, button) {
         const feature = this.document.system[button.dataset.type];
         if (!feature) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
             return;
         }
 
@@ -71,7 +71,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
         if (featureItem) {
             const feature = this.document.system[featureItem.dataset.type];
             if (!feature) {
-                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
                 return;
             }
 

@@ -21,9 +21,7 @@ export default class DhCharacter extends BaseDataActor {
             resources: new fields.SchemaField({
                 hitPoints: resourceField(0, true),
                 stress: resourceField(6, true),
-                hope: resourceField(6),
-                tokens: new fields.ObjectField(),
-                dice: new fields.ObjectField()
+                hope: resourceField(6)
             }),
             traits: new fields.SchemaField({
                 agility: attributeField(),
@@ -282,9 +280,7 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get deathMoveViable() {
-        return (
-            this.resources.hitPoints.max > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.max
-        );
+        return this.resources.hitPoints.max > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.max;
     }
 
     get armorApplicableDamageTypes() {
@@ -317,6 +313,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareBaseData() {
+        this.evasion = this.class.value?.system?.evasion ?? 0;
+
         const currentLevel = this.levelData.level.current;
         const currentTier =
             currentLevel === 1

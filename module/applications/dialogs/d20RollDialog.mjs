@@ -66,7 +66,12 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         context.canRoll = true;
         if (this.config.costs?.length) {
             const updatedCosts = this.action.calcCosts(this.config.costs);
-            context.costs = updatedCosts;
+            context.costs = updatedCosts.map(x => ({
+                ...x,
+                label: x.keyIsID
+                    ? this.action.parent.parent.name
+                    : game.i18n.localize(CONFIG.DH.GENERAL.abilityCosts[x.key].label)
+            }));
             context.canRoll = this.action.hasCost(updatedCosts);
             this.config.data.scale = this.config.costs[0].total;
         }
@@ -74,7 +79,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.uses = this.action.calcUses(this.config.uses);
             context.canRoll = context.canRoll && this.action.hasUses(context.uses);
         }
-        if(this.roll) {
+        if (this.roll) {
             context.roll = this.roll;
             context.rollType = this.roll?.constructor.name;
             context.experiences = Object.keys(this.config.data.experiences).map(id => ({

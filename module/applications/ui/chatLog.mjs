@@ -1,6 +1,6 @@
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
-    constructor() {
-        super();
+    constructor(options) {
+        super(options);
 
         this.targetTemplate = {
             activeLayer: undefined,
@@ -14,6 +14,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     addChatListeners = async (app, html, data) => {
+        super.addChatListeners(app, html, data);
+
         html.querySelectorAll('.duality-action-damage').forEach(element =>
             element.addEventListener('click', event => this.onRollDamage(event, data.message))
         );

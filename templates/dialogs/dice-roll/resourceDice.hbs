@@ -1,0 +1,16 @@
+<section>
+    <div class="resource-items">
+        {{#times (rollParsed item.system.resource.max actor item numerical=true)}}
+            {{#with (ifThen (lookup ../diceStates this) (lookup ../diceStates this) this) as | state |}}
+                <div class="resource-item" data-dice="{{#if ../../this}}{{../this}}{{else}}{{state}}{{/if}}">
+                    <input type="number" data-dtype="Number" name={{concat "diceStates." (ifThen ../../this ../this state) ".value" }} value="{{state.value}}" />
+                    <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/d" (ifThen ../../item.system.resource.dieFaces ../../item.system.resource.dieFaces ../item.system.resource.dieFaces) ".svg"}}" />
+                </div>
+            {{/with}}
+        {{/times}}
+    </div>
+    <footer>
+        <button data-action="save">{{localize 'Save'}}</button>
+        <button data-action="rerollDice">{{localize "DAGGERHEART.APPLICATIONS.ResourceDice.rerollDice"}}</button>
+    </footer>
+</section>

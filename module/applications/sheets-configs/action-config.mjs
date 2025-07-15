@@ -107,6 +107,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             context.hasBaseDamage = !!this.action.parent.attack;
         context.getRealIndex = this.getRealIndex.bind(this);
         context.getEffectDetails = this.getEffectDetails.bind(this);
+        context.costOptions = this.getCostOptions();
         context.disableOption = this.disableOption.bind(this);
         context.isNPC = this.action.actor && this.action.actor.type !== 'character';
         context.hasRoll = this.action.hasRoll;
@@ -125,8 +126,21 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         this.render(true);
     }
 
-    disableOption(index, options, choices) {
-        const filtered = foundry.utils.deepClone(options);
+    getCostOptions() {
+        const options = foundry.utils.deepClone(CONFIG.DH.GENERAL.abilityCosts);
+        const resource = this.action.parent.resource;
+        if (resource) {
+            options[this.action.parent.parent.id] = {
+                label: this.action.parent.parent.name,
+                group: 'TYPES.Actor.character'
+            };
+        }
+
+        return options;
+    }
+
+    disableOption(index, costOptions, choices) {
+        const filtered = foundry.utils.deepClone(costOptions);
         Object.keys(filtered).forEach(o => {
             if (choices.find((c, idx) => c.type === o && index !== idx)) filtered[o].disabled = true;
         });
@@ -142,11 +156,19 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         return this.action.item.effects.get(id);
     }
 
-    _prepareSubmitData(event, formData) {
+    _prepareSubmitData(_event, formData) {
         const submitData = foundry.utils.expandObject(formData.object);
         for (const keyPath of this.constructor.CLEAN_ARRAYS) {
             const data = foundry.utils.getProperty(submitData, keyPath);
-            if (data) foundry.utils.setProperty(submitData, keyPath, Object.values(data));
+            const dataValues = data ? Object.values(data) : [];
+            if (keyPath === 'cost') {
+                for (var value of dataValues) {
+                    const item = this.action.parent.parent.id === value.key;
+                    value.keyIsID = Boolean(item);
+                }
+            }
+
+            if (data) foundry.utils.setProperty(submitData, keyPath, dataValues);
         }
         return submitData;
     }

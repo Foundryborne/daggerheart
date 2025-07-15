@@ -162,12 +162,25 @@
         },
         "APPLICATIONS": {
             "CharacterCreation": {
+                "setupTabs": {
+                    "ancestry": "Ancestry",
+                    "community": "Community",
+                    "class": "Class",
+                    "experience": "Experience",
+                    "traits": "Traits",
+                    "domainCards": "Domain Cards"
+                },
+                "ancestryNamePlaceholder": "Your ancestry's name",
+                "buttonTitle": "Character Setup",
                 "choice": "Choice",
                 "finishCreation": "Finish Character Setup",
                 "heritage": "Heritage",
                 "initialExperiences": "Initial Experiences",
+                "mixedAncestry": "Mixed Ancestry",
                 "newExperience": "New Experience..",
                 "selectAncestry": "Select Ancestry",
+                "selectPrimaryAncestry": "Select Primary Ancestry",
+                "selectSecondaryAncestry": "Select Secondary Ancestry",
                 "selectArmor": "Select Armor",
                 "selectClass": "Select Class",
                 "selectCommunity": "Select Community",
@@ -387,6 +400,10 @@
             "OwnershipSelection": {
                 "title": "Ownership Selection - {name}",
                 "default": "Default Ownership"
+            },
+            "ResourceDice": {
+                "title": "{name} Resource",
+                "rerollDice": "Reroll Dice"
             }
         },
 
@@ -631,6 +648,10 @@
                     "name": "Armor Stack",
                     "abbreviation": "AS"
                 }
+            },
+            "ItemResourceType": {
+                "simple": "Simple",
+                "diceValue": "Dice Value"
             },
             "Range": {
                 "self": {
@@ -1068,6 +1089,10 @@
                 "shortrest": "Short Rest",
                 "longrest": "Long Rest"
             },
+            "Resource": {
+                "single": "Resource",
+                "plural": "Resources"
+            },
             "Tabs": {
                 "details": "Details",
                 "attack": "Attack",
@@ -1113,6 +1138,7 @@
                 "plural": "Traits"
             },
             "activeEffects": "Active Effects",
+            "armorSlots": "Armor Slots",
             "attack": "Attack",
             "basics": "Basics",
             "bonus": "Bonus",
@@ -1154,6 +1180,21 @@
             "value": "Value"
         },
         "ITEMS": {
+            "FIELDS": {
+                "resource": {
+                    "amount": { "label": "Amount" },
+                    "dieFaces": { "label": "Die Faces" },
+                    "icon": { "label": "Icon" },
+                    "max": { "label": "Max" },
+                    "recovery": { "label": "Recovery" },
+                    "type": { "label": "Type" },
+                    "value": { "label": "Value" }
+                }
+            },
+            "Ancestry": {
+                "primaryFeature": "Primary Feature",
+                "secondaryFeature": "Secondary Feature"
+            },
             "Armor": {
                 "baseScore": "Base Score",
                 "baseThresholds": {
@@ -1331,8 +1372,8 @@
         },
         "UI": {
             "Chat": {
-                "dualityRoll": {
-                    "abilityCheckTitle": "{ability} Check"
+                "applyEffect": {
+                    "title": "Apply Effects - {name}"
                 },
                 "attackRoll": {
                     "title": "Attack - {attack}",
@@ -1348,25 +1389,28 @@
                     "hitTarget": "Hit Targets",
                     "selectedTarget": "Selected"
                 },
-                "applyEffect": {
-                    "title": "Apply Effects - {name}"
-                },
-                "healingRoll": {
-                    "title": "Heal - {healing}",
-                    "heal": "Heal"
-                },
                 "deathMove": {
                     "title": "Death Move"
                 },
                 "domainCard": {
                     "title": "Domain Card"
                 },
+                "dualityRoll": {
+                    "abilityCheckTitle": "{ability} Check"
+                },
+                "featureTitle": "Class Feature",
                 "foundationCard": {
                     "ancestryTitle": "Ancestry Card",
                     "communityTitle": "Community Card",
                     "subclassFeatureTitle": "Subclass Feature"
                 },
-                "featureTitle": "Class Feature"
+                "healingRoll": {
+                    "title": "Heal - {healing}",
+                    "heal": "Heal"
+                },
+                "resourceRoll": {
+                    "playerMessage": "{user} rerolled their {name}"
+                }
             },
             "Notifications": {
                 "adversaryMissing": "The linked adversary doesn't exist in the world.",
@@ -1406,7 +1450,8 @@
                 "damageAlreadyNone": "The damage has already been reduced to none",
                 "noAvailableArmorMarks": "You have no more available armor marks",
                 "notEnoughStress": "You don't have enough stress",
-                "damageIgnore": "{character} did not take damage"
+                "damageIgnore": "{character} did not take damage",
+                "featureIsMissing": "Feature is missing"
             },
             "Tooltip": {
                 "openItemWorld": "Open Item World",

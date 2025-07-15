@@ -1,0 +1,32 @@
+<section
+    class='tab {{setupTabs.traits.cssClass}} {{setupTabs.traits.id}}'
+    data-tab='{{setupTabs.traits.id}}'
+    data-group='{{setupTabs.traits.group}}'
+>
+   <div class="main-selections-container">
+        <fieldset class="section-container">
+            <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.traitIncreases"}} {{traits.nrSelected}}/{{traits.nrTotal}}</legend>
+            <div class="traits-container">
+                <fieldset class="section-inner-container">
+                    <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.suggestedTraits"}}</legend>
+                    <div class="suggested-traits-container">
+                        {{#each suggestedTraits}}
+                            <div class="suggested-trait-container">{{this}}</div>
+                        {{/each}}
+                    </div>
+                    <button class="action-button" data-action="useSuggestedTraits">{{localize "Use"}}</button>
+                </fieldset>
+                <div class="traits-inner-container">
+                    {{#each traits.values}}
+                        <div class="trait-container">
+                            <div>{{this.name}}</div>
+                            <select name="{{concat "traits." this.key ".value"}}" data-dtype="Number">
+                                {{selectOptions this.options selected=this.value valueAttr="key" labelAttr="value" blank=""}}
+                            </select>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </fieldset>
+   </div>
+</section>

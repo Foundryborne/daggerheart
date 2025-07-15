@@ -24,7 +24,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             removeAction: DHBaseItemSheet.#removeAction,
             addFeature: DHBaseItemSheet.#addFeature,
             editFeature: DHBaseItemSheet.#editFeature,
-            removeFeature: DHBaseItemSheet.#removeFeature
+            removeFeature: DHBaseItemSheet.#removeFeature,
+            addResource: DHBaseItemSheet.#addResource,
+            removeResource: DHBaseItemSheet.#removeResource
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.tab.features .drop-section' },
@@ -179,7 +181,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const target = button.closest('.feature-item');
         const feature = this.document.system.features.find(x => x?.id === target.id);
         if (!feature) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
             return;
         }
 
@@ -215,6 +217,26 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         });
     }
 
+    /**
+     * Add a resource to the item.
+     * @type {ApplicationClickAction}
+     */
+    static async #addResource() {
+        await this.document.update({
+            'system.resource': { type: 'simple', value: 0 }
+        });
+    }
+
+    /**
+     * Remove the resource from the item.
+     * @type {ApplicationClickAction}
+     */
+    static async #removeResource() {
+        await this.document.update({
+            'system.resource': null
+        });
+    }
+
     /* -------------------------------------------- */
     /*  Application Drag/Drop                       */
     /* -------------------------------------------- */
@@ -229,7 +251,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         if (featureItem) {
             const feature = this.document.system.features.find(x => x?.id === featureItem.id);
             if (!feature) {
-                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
                 return;
             }
 

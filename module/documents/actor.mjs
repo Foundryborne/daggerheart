@@ -1,9 +1,8 @@
-import DamageSelectionDialog from '../applications/dialogs/damageSelectionDialog.mjs';
-import { emitAsGM, emitAsOwner, GMUpdateEvent, socketEvent } from '../systemRegistration/socket.mjs';
+import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { damageKeyToNumber, getDamageKey } from '../helpers/utils.mjs';
+import { damageKeyToNumber } from '../helpers/utils.mjs';
 
 export default class DhpActor extends Actor {
     /**
@@ -396,7 +395,7 @@ export default class DhpActor extends Actor {
         if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, baseDamage, type) === false) return null;
 
         if (this.type === 'companion') {
-            await this.modifyResource([{ value: 1, type: 'stress' }]);
+            await this.modifyResource([{ value: 1, key: 'stress' }]);
             return;
         }
 
@@ -418,8 +417,8 @@ export default class DhpActor extends Actor {
                 const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
                 updates.find(u => u.type === 'hitPoints').value = modifiedDamage;
                 updates.push(
-                    ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : []),
-                    ...(stressSpent ? [{ value: stressSpent, type: 'stress' }] : [])
+                    ...(armorSpent ? [{ value: armorSpent, key: 'armorStack' }] : []),
+                    ...(stressSpent ? [{ value: stressSpent, key: 'stress' }] : [])
                 );
             }
         }
@@ -434,8 +433,8 @@ export default class DhpActor extends Actor {
 
         /* if(this.system.resistance[type]?.immunity) return 0;
         if(this.system.resistance[type]?.resistance) baseDamage = Math.ceil(baseDamage / 2); */
-        if(this.canResist(type, 'immunity')) return 0;
-        if(this.canResist(type, 'resistance')) baseDamage = Math.ceil(baseDamage / 2);
+        if (this.canResist(type, 'immunity')) return 0;
+        if (this.canResist(type, 'resistance')) baseDamage = Math.ceil(baseDamage / 2);
 
         // const flatReduction = this.system.resistance[type].reduction;
         const flatReduction = this.getDamageTypeReduction(type);
@@ -448,13 +447,16 @@ export default class DhpActor extends Actor {
     }
 
     canResist(type, resistance) {
-        if(!type) return 0;
+        if (!type) return 0;
         return type.every(t => this.system.resistance[t]?.[resistance] === true);
     }
 
     getDamageTypeReduction(type) {
-        if(!type) return 0;
-        const reduction = Object.entries(this.system.resistance).reduce((a, [index, value]) => type.includes(index) ? Math.min(value.reduction, a) : a, Infinity);
+        if (!type) return 0;
+        const reduction = Object.entries(this.system.resistance).reduce(
+            (a, [index, value]) => (type.includes(index) ? Math.min(value.reduction, a) : a),
+            Infinity
+        );
         return reduction === Infinity ? 0 : reduction;
     }
 
@@ -467,39 +469,61 @@ export default class DhpActor extends Actor {
         if (!resources.length) return;
 
         if (resources.find(r => r.type === 'stress')) this.convertStressDamageToHP(resources);
-        let updates = { actor: { target: this, resources: {} }, armor: { target: this.system.armor, resources: {} } };
+        let updates = {
+            actor: { target: this, resources: {} },
+            armor: { target: this.system.armor, resources: {} },
+            items: {}
+        };
         resources.forEach(r => {
-            switch (r.type) {
-                case 'fear':
-                    ui.resources.updateFear(
-                        game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear) + r.value
-                    );
-                    break;
-                case 'armorStack':
-                    updates.armor.resources['system.marks.value'] = Math.max(
-                        Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
-                        0
-                    );
-                    break;
-                default:
-                    updates.actor.resources[`system.resources.${r.type}.value`] = Math.max(
-                        Math.min(
-                            this.system.resources[r.type].value + r.value,
-                            this.system.resources[r.type].max
-                        ),
-                        0
-                    );
-                    break;
+            if (r.keyIsID) {
+                updates.items[r.key] = {
+                    target: r.target,
+                    resources: {
+                        'system.resource.value': r.target.system.resource.value + r.value
+                    }
+                };
+            } else {
+                switch (r.key) {
+                    case 'fear':
+                        ui.resources.updateFear(
+                            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear) + r.value
+                        );
+                        break;
+                    case 'armorStack':
+                        updates.armor.resources['system.marks.value'] = Math.max(
+                            Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
+                            0
+                        );
+                        break;
+                    default:
+                        updates.actor.resources[`system.resources.${r.key}.value`] = Math.max(
+                            Math.min(this.system.resources[r.key].value + r.value, this.system.resources[r.key].max),
+                            0
+                        );
+                        break;
+                }
             }
         });
-        Object.values(updates).forEach(async u => {
-            if (Object.keys(u.resources).length > 0) {
-                await emitAsGM(
-                    GMUpdateEvent.UpdateDocument,
-                    u.target.update.bind(u.target),
-                    u.resources,
-                    u.target.uuid
-                );
+        Object.keys(updates).forEach(async key => {
+            const u = updates[key];
+            if (key === 'items') {
+                Object.values(u).forEach(async item => {
+                    await emitAsGM(
+                        GMUpdateEvent.UpdateDocument,
+                        item.target.update.bind(item.target),
+                        item.resources,
+                        item.target.uuid
+                    );
+                });
+            } else {
+                if (Object.keys(u.resources).length > 0) {
+                    await emitAsGM(
+                        GMUpdateEvent.UpdateDocument,
+                        u.target.update.bind(u.target),
+                        u.resources,
+                        u.target.uuid
+                    );
+                }
             }
         });
     }

@@ -11,12 +11,15 @@
 const fields = foundry.data.fields;
 
 export default class BaseDataItem extends foundry.abstract.TypeDataModel {
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.ITEMS'];
+
     /** @returns {ItemDataModelMetadata}*/
     static get metadata() {
         return {
             label: 'Base Item',
             type: 'base',
             hasDescription: false,
+            hasResource: false,
             isQuantifiable: false,
             isInventoryItem: false
         };
@@ -32,6 +35,33 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         const schema = {};
 
         if (this.metadata.hasDescription) schema.description = new fields.HTMLField({ required: true, nullable: true });
+
+        if (this.metadata.hasResource) {
+            schema.resource = new fields.SchemaField(
+                {
+                    type: new fields.StringField({
+                        choices: CONFIG.DH.ITEM.itemResourceTypes,
+                        initial: CONFIG.DH.ITEM.itemResourceTypes.simple
+                    }),
+                    value: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
+                    max: new fields.StringField({ nullable: true, initial: null }),
+                    icon: new fields.StringField(),
+                    recovery: new fields.StringField({
+                        choices: CONFIG.DH.GENERAL.refreshTypes,
+                        initial: null,
+                        nullable: true
+                    }),
+                    diceStates: new fields.TypedObjectField(
+                        new fields.SchemaField({
+                            value: new fields.NumberField({ integer: true, nullable: true, initial: null }),
+                            used: new fields.BooleanField({ initial: false })
+                        })
+                    ),
+                    dieFaces: new fields.StringField({ initial: '4' })
+                },
+                { nullable: true, initial: null }
+            );
+        }
 
         if (this.metadata.isQuantifiable)
             schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
@@ -62,28 +92,27 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return data;
     }
 
-    /**@inheritdoc */
     async _preCreate(data, options, user) {
         // Skip if no initial action is required or actions already exist
-        if (!this.metadata.hasInitialAction || !foundry.utils.isEmpty(this.actions)) return;
+        if (this.metadata.hasInitialAction && foundry.utils.isEmpty(this.actions)) {
+            const metadataType = this.metadata.type;
+            const actionType = { weapon: 'attack' }[metadataType];
+            const ActionClass = game.system.api.models.actions.actionsTypes[actionType];
 
-        const metadataType = this.metadata.type;
-        const actionType = { weapon: 'attack' }[metadataType];
-        const ActionClass = game.system.api.models.actions.actionsTypes[actionType];
+            const action = new ActionClass(
+                {
+                    _id: foundry.utils.randomID(),
+                    type: actionType,
+                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
+                    ...ActionClass.getSourceConfig(this.parent)
+                },
+                {
+                    parent: this.parent
+                }
+            );
 
-        const action = new ActionClass(
-            {
-                _id: foundry.utils.randomID(),
-                type: actionType,
-                name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
-                ...ActionClass.getSourceConfig(this.parent)
-            },
-            {
-                parent: this.parent
-            }
-        );
-
-        this.updateSource({ actions: [action] });
+            this.updateSource({ actions: [action] });
+        }
     }
 
     _onCreate(data) {
@@ -95,7 +124,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 ...feature,
                 system: {
                     ...feature.system,
-                    type: this.parent.type,
+                    originItemType: this.parent.type,
                     originId: data._id,
                     identifier: feature.identifier
                 }

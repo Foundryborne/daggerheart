@@ -1,0 +1,63 @@
+<section
+    class='tab {{setupTabs.ancestry.cssClass}} {{setupTabs.ancestry.id}}'
+    data-tab='{{setupTabs.ancestry.id}}'
+    data-group='{{setupTabs.ancestry.group}}'
+>
+    <div class="main-selections-container">
+        <fieldset class="section-container">
+            <legend>{{localize "TYPES.Item.ancestry"}}</legend>
+
+            <div class="ancestry-name">
+                <input type="text" name="ancestryName" value="{{ancestryName}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.ancestryNamePlaceholder"}}" {{disabled (not primaryAncestry.uuid)}} />
+            </div>
+
+            <div class="ancestry-mixed-controller {{#if mixedAncestry}}active{{/if}}">
+                <label class="mixed-ancestry-slider">
+                    {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.mixedAncestry"}}
+                    <i class="fa-solid {{#if mixedAncestry}}fa-circle-check{{else}}fa-circle{{/if}}"></i>
+                </label>
+                <input type="range" id="volume" class="mixed-ancestry-slider" value="{{mixedAncestry}}" min="0" max="1" />
+            </div>
+
+            <div class="selections-outer-container">
+                <div class="selections-container primary-ancestry-card">
+                    {{#> "systems/daggerheart/templates/components/card-preview.hbs" primaryAncestry altPartialBlock=true secondaryDisabled=secondaryAncestry.uuid mixedAncestry=mixedAncestry }}
+                        {{#if uuid}} 
+                            <div class="ancestry-preview-info-container">
+                                <div class="ancestry-preview-label">{{name}}</div>
+                                <div class="ancestry-preview-features">
+                                    <div class="ancestry-preview-feature" data-tooltip="{{concat "#item#" system.primaryFeature.uuid}}">{{system.primaryFeature.name}}</div>
+                                    <div class="ancestry-preview-feature {{#if secondaryDisabled}}inactive{{/if}}" data-tooltip="{{concat "#item#" system.secondaryFeature.uuid}}">{{system.secondaryFeature.name}}</div>
+                                </div>
+                            </div>
+                        {{else}}
+                            {{#if mixedAncestry}}
+                                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectPrimaryAncestry"}}
+                            {{else}}
+                                {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectAncestry"}}
+                            {{/if}}
+                        {{/if}}
+                    {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                </div>
+
+                {{#if mixedAncestry}}
+                    <div class="selections-container secondary-ancestry-card">
+                            {{#> "systems/daggerheart/templates/components/card-preview.hbs" secondaryAncestry altPartialBlock=true }}
+                                {{#if uuid}}
+                                    <div class="ancestry-preview-info-container">
+                                        <div class="ancestry-preview-label">{{name}}</div>
+                                        <div class="ancestry-preview-features">
+                                            <div class="ancestry-preview-feature inactive" data-tooltip="{{concat "#item#" system.primaryFeature.uuid}}">{{system.primaryFeature.name}}</div>
+                                            <div class="ancestry-preview-feature" data-tooltip="{{concat "#item#" system.secondaryFeature.uuid}}">{{system.secondaryFeature.name}}</div>
+                                        </div>
+                                    </div>
+                                {{else}}
+                                    {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectSecondaryAncestry"}}
+                                {{/if}}
+                            {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                    </div>
+                {{/if}}
+            </div>
+        </fieldset>
+    </div>
+</section>

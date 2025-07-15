@@ -1320,6 +1320,11 @@ export const featureTypes = {
     }
 };
 
+export const featureSubTypes = {
+    primary: 'primary',
+    secondary: 'secondary'
+};
+
 export const actionTypes = {
     passive: {
         id: 'passive',
@@ -1332,5 +1337,16 @@ export const actionTypes = {
     reaction: {
         id: 'reaction',
         label: 'DAGGERHEART.CONFIG.ActionType.reaction'
+    }
+};
+
+export const itemResourceTypes = {
+    simple: {
+        id: 'simple',
+        label: 'DAGGERHEART.CONFIG.ItemResourceType.simple'
+    },
+    diceValue: {
+        id: 'diceValue',
+        label: 'DAGGERHEART.CONFIG.ItemResourceType.diceValue'
     }
 };

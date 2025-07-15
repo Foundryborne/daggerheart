@@ -18,4 +18,20 @@ export default class DHAncestry extends BaseDataItem {
             features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
         };
     }
+
+    get primaryFeature() {
+        return (
+            this.features.find(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.primary) ??
+            (this.features.filter(x => !x).length > 0 ? {} : null)
+        );
+    }
+
+    get secondaryFeature() {
+        return (
+            this.features.find(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.secondary) ??
+            (this.features.filter(x => !x || x.system.subType === CONFIG.DH.ITEM.featureSubTypes.primary).length > 1
+                ? {}
+                : null)
+        );
+    }
 }
