@@ -91,9 +91,7 @@ export default class DhCompanion extends BaseDataActor {
     }
 
     prepareBaseData() {
-        const partnerSpellcastingModifier = this.partner?.system?.spellcastModifier;
-        const spellcastingModifier = this.partner?.system?.traits?.[partnerSpellcastingModifier]?.value;
-        this.attack.roll.bonus = spellcastingModifier ?? 0; // Needs to expand on which modifier it is that should be used because of multiclassing;
+        this.attack.roll.bonus = this.partner?.system?.spellcastModifier ?? 0;
 
         for (let levelKey in this.levelData.levelups) {
             const level = this.levelData.levelups[levelKey];
