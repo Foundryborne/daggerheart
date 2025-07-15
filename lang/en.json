@@ -1016,7 +1016,7 @@
                 "physicalDamage": "Physical Damage",
                 "magicalDamage": "Magical Damage",
                 "primaryDamageBonus": "Primary Weapon Damage",
-                "primaryDamageDice": "Primary Weapon Extra Dice"
+                "primaryDamageDice": "Primary Weapon Extra Damage Dice"
             },
             "DamageResistance": {
                 "none": "None",
@@ -1115,13 +1115,28 @@
             },
             "Rules": {
                 "damageReduction": {
-                    "increasePerArmorMark": "Damage Reduction per Armor Slot",
+                    "increasePerArmorMark": {
+                        "label": "Damage Reduction per Armor Slot",
+                        "hint": "A used armor slot normally reduces damage by one step. This value increases the number of steps damage is reduced by."
+                    },
                     "maxArmorMarkedBonus": "Max Armor Used",
-                    "maxArmorMarkedStress": "Max Armor Used With Stress",
+                    "maxArmorMarkedStress": {
+                        "label": "Max Armor Used With Stress",
+                        "hint": "If this value is set you can use up to that much stress to spend additional Armor Marks beyond your normal maximum."
+                    },
                     "stress": {
-                        "severe": "Stress Damage Reduction: Severe",
-                        "major": "Stress Damage Reduction: Major",
-                        "minor": "Stress Damage Reduction: Minor"
+                        "severe": {
+                            "label": "Stress Damage Reduction: Severe",
+                            "hint": "The cost in stress you can pay to reduce severe damage down to major."
+                        },
+                        "major": {
+                            "label": "Stress Damage Reduction: Major",
+                            "hint": "The cost in stress you can pay to reduce major damage down to minor."
+                        },
+                        "minor": {
+                            "label": "Stress Damage Reduction: Minor",
+                            "hint": "The cost in stress you can pay to reduce minor damage to none."
+                        }
                     }
                 }
             },

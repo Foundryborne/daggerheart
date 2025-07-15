@@ -73,6 +73,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
 
                     const element = document.createElement('li');
                     element.innerHTML = `${beforeText}${matchText ? `<strong>${matchText}</strong>` : ''}${after}`;
+                    if (item.hint) {
+                        element.dataset.tooltip = game.i18n.localize(item.hint);
+                    }
 
                     return element;
                 },
