@@ -37,4 +37,15 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             e.setAttribute('data-use-perm', document.testUserPermission(game.user, 'OWNER'));
         });
     }
+
+    async _preCreate(data, options, user) {
+        options.speaker = ChatMessage.getSpeaker();
+        const rollActorOwner = data.rolls?.[0]?.data?.parent?.owner;
+        if (rollActorOwner) {
+            data.author = rollActorOwner ? rollActorOwner.id : data.author;
+            await this.updateSource({ author: rollActorOwner ?? user });
+        }
+
+        return super._preCreate(data, options, rollActorOwner ?? user);
+    }
 }

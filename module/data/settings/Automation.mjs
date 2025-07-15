@@ -4,20 +4,22 @@ export default class DhAutomation extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            hope: new fields.BooleanField({
-                required: true,
-                initial: false,
-                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hope.label'
-            }), // Label need to be updated into something like "Duality Roll Auto Gain" + a hint
+            hopeFear: new fields.SchemaField({
+                gm: new fields.BooleanField({
+                    required: true,
+                    initial: false,
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hopeFear.gm.label'
+                }),
+                players: new fields.BooleanField({
+                    required: true,
+                    initial: false,
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hopeFear.players.label'
+                })
+            }),
             actionPoints: new fields.BooleanField({
                 required: true,
                 initial: false,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.actionPoints.label'
-            }),
-            countdowns: new fields.BooleanField({
-                requireD: true,
-                initial: false,
-                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.countdowns.label'
             })
         };
     }

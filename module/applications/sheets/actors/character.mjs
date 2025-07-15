@@ -103,7 +103,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
             element.addEventListener('change', this.updateItemQuantity.bind(this));
         });
-        
+
         // Add listener for armor marks input
         htmlElement.querySelectorAll('.armor-marks-input').forEach(element => {
             element.addEventListener('change', this.updateArmorMarks.bind(this));
@@ -669,10 +669,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         } else if (item instanceof ActiveEffect) {
             item.toChat(this);
         } else {
-            const wasUsed = await item.use(event);
-            if (wasUsed && item.type === 'weapon') {
-                Hooks.callAll(CONFIG.DH.HOOKS.characterAttack, {});
-            }
+            item.use(event);
         }
     }
 

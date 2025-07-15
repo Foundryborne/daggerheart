@@ -34,16 +34,16 @@ export default class DamageRoll extends DHRoll {
         });
         const weapons = ['primaryWeapon', 'secondaryWeapon'];
         weapons.forEach(w => {
-            if(this.options.source.item && this.options.source.item === this.data[w]?.id)
+            if (this.options.source.item && this.options.source.item === this.data[w]?.id)
                 modifiers.push(...this.getBonus(`${type}.${w}`, 'Weapon Bonus'));
         });
-        
+
         return modifiers;
     }
 
     constructFormula(config) {
         super.constructFormula(config);
-        
+
         if (config.isCritical) {
             const tmpRoll = new Roll(this._formula)._evaluateSync({ maximize: true }),
                 criticalBonus = tmpRoll.total - this.constructor.calculateTotalModifiers(tmpRoll);

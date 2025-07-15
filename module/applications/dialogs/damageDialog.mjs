@@ -48,12 +48,22 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
             : game.i18n.localize('DAGGERHEART.EFFECTS.ApplyLocations.damageRoll.name');
         context.extraFormula = this.config.extraFormula;
         context.formula = this.roll.constructFormula(this.config);
+        context.directDamage = this.config.directDamage;
+        context.selectedRollMode = this.config.selectedRollMode;
+        context.rollModes = Object.entries(CONFIG.Dice.rollModes).map(([action, { label, icon }]) => ({
+            action,
+            label,
+            icon
+        }));
+
         return context;
     }
 
-    static updateRollConfiguration(event, _, formData) {
+    static updateRollConfiguration(_event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
         this.config.extraFormula = rest.extraFormula;
+        this.config.selectedRollMode = rest.selectedRollMode;
+
         this.render();
     }
 

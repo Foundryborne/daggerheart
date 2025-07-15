@@ -31,14 +31,29 @@ export default class DhpAdversary extends BaseDataActor {
             motivesAndTactics: new fields.StringField(),
             notes: new fields.HTMLField(),
             difficulty: new fields.NumberField({ required: true, initial: 1, integer: true }),
-            hordeHp: new fields.NumberField({ required: true, initial: 1, integer: true }),
+            hordeHp: new fields.NumberField({
+                required: true,
+                initial: 1,
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.hordeHp'
+            }),
             damageThresholds: new fields.SchemaField({
-                major: new fields.NumberField({ required: true, initial: 0, integer: true }),
-                severe: new fields.NumberField({ required: true, initial: 0, integer: true })
+                major: new fields.NumberField({
+                    required: true,
+                    initial: 0,
+                    integer: true,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                }),
+                severe: new fields.NumberField({
+                    required: true,
+                    initial: 0,
+                    integer: true,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                })
             }),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(0, true),
-                stress: resourceField(0, true)
+                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.hitPoints', true),
+                stress: resourceField(0, 'DAGGERHEART.GENERAL.stress', true)
             }),
             attack: new ActionField({
                 initial: {
@@ -75,13 +90,13 @@ export default class DhpAdversary extends BaseDataActor {
             ),
             bonuses: new fields.SchemaField({
                 roll: new fields.SchemaField({
-                    attack: bonusField(),
-                    action: bonusField(),
-                    reaction: bonusField()
+                    attack: bonusField('DAGGERHEART.GENERAL.Roll.attack'),
+                    action: bonusField('DAGGERHEART.GENERAL.Roll.action'),
+                    reaction: bonusField('DAGGERHEART.GENERAL.Roll.reaction')
                 }),
                 damage: new fields.SchemaField({
-                    physical: bonusField(),
-                    magical: bonusField()
+                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
+                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
                 })
             })
         };

@@ -38,7 +38,7 @@
     input[type='checkbox'],
     input[type='radio'] {
         &:checked::after {
-            color: light-dark(@dark-40, @golden);
+            color: light-dark(@dark, @golden);
         }
         &:checked::before {
             color: light-dark(@dark-40, @golden-40);
@@ -112,22 +112,17 @@
             margin: 5px;
             height: inherit;
             .tag {
-                box-shadow: 0 0 0 1.1em @beige inset;
-                vertical-align: top;
-                box-sizing: border-box;
-                max-width: 100%;
-                padding: 0.3em 0 0.3em 0.5em;
-                color: black;
+                padding: 0.3rem 0.5rem;
+                color: light-dark(@dark-blue, @golden);
+                background-color: light-dark(@dark-blue-10, @golden-40);
+                font-family: @font-body;
                 border-radius: 3px;
-                white-space: nowrap;
                 transition: 0.13s ease-out;
-                height: 22px;
-                font-size: 0.9rem;
-                gap: 0.5em;
+                gap: 0.5rem;
                 z-index: 1;
+
                 .remove {
                     font-size: 10px;
-                    margin-inline: auto 4.6666666667px;
                 }
             }
         }
@@ -434,6 +429,34 @@
         border: 1px solid light-dark(@dark, @beige);
         height: 34px;
 
+        // tagify rule styles
+        --tags-disabled-bg: none;
+        --tags-border-color: none;
+        --tags-hover-border-color: none;
+        --tags-focus-border-color: none;
+        --tag-border-radius: 3px;
+        --tag-bg: light-dark(@dark-blue, @golden);
+        --tag-remove-btn-color: light-dark(@dark-blue, @golden);
+        --tag-hover: light-dark(@dark-blue, @golden);
+        --tag-text-color: light-dark(@beige, @dark);
+        --tag-text-color--edit: light-dark(@beige, @dark);
+        --tag-pad: 0.3em 0.5em;
+        --tag-inset-shadow-size: 1.2em;
+        --tag-invalid-color: #d39494;
+        --tag-invalid-bg: rgba(211, 148, 148, 0.5);
+        --tag--min-width: 1ch;
+        --tag--max-width: 100%;
+        --tag-hide-transition: 0.3s;
+        --tag-remove-bg: light-dark(@dark-blue-40, @golden-40);
+        --tag-remove-btn-color: light-dark(@beige, @dark);
+        --tag-remove-btn-bg: none;
+        --tag-remove-btn-bg--hover: light-dark(@beige, @dark);
+        --input-color: inherit;
+        --placeholder-color: light-dark(@beige-15, @dark-15);
+        --placeholder-color-focus: light-dark(@beige-15, @dark-15);
+        --loader-size: 0.8em;
+        --readonly-striped: 1;
+
         border-radius: 3px;
         margin-right: 1px;
 
@@ -459,29 +482,26 @@
 
     .tagify__dropdown {
         border: 1px solid light-dark(@dark, @beige) !important;
+        font-family: @font-body;
+        color: light-dark(@dark, @beige);
 
         .tagify__dropdown__wrapper {
             background-image: url(../assets/parchments/dh-parchment-dark.png);
             background-color: transparent;
             border: 0;
+            color: light-dark(@dark, @beige);
 
             .tagify__dropdown__item--active {
                 background-color: light-dark(@dark, @beige);
-                color: var(--color-dark-3);
+                color: light-dark(@beige, @dark);
             }
         }
     }
 
     &.theme-light {
         .tagify__dropdown {
-            color: black;
-
             .tagify__dropdown__wrapper {
                 background-image: url(../assets/parchments/dh-parchment-light.png);
-            }
-
-            .tagify__dropdown__item--active {
-                color: @beige;
             }
         }
     }

@@ -117,10 +117,15 @@
                 </fieldset>
             {{/unless}}
             <span class="formula-label"><b>Formula:</b> {{@root.formula}}</span>
-            <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
-                <i class="fa-solid fa-dice"></i>
-                <span class="label">Roll</span>
-            </button>
+            <div class="roll-dialog-controls">
+                <select class="roll-mode-select" name="selectedRollMode">
+                    {{selectOptions rollModes selected=selectedRollMode valueAttr="action" labelAttr="label" localize=true}}
+                </select>
+                <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
+                    <i class="fa-solid fa-dice"></i>
+                    <span class="label">Roll</span>
+                </button>
+            </div>
     {{else}}
         <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
             <span class="label">Continue</span>

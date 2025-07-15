@@ -4,7 +4,7 @@ export default class DHRoll extends Roll {
     baseTerms = [];
     constructor(formula, data, options) {
         super(formula, data, options);
-        if(!this.data || !Object.keys(this.data).length) this.data = options.data;
+        if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
     static messageType = 'adversaryRoll';
@@ -87,7 +87,7 @@ export default class DHRoll extends Roll {
                 system: config,
                 rolls: [roll]
             };
-        return await cls.create(msg);
+        return await cls.create(msg, { rollMode: config.selectedRollMode });
     }
 
     static applyKeybindings(config) {
@@ -100,7 +100,7 @@ export default class DHRoll extends Roll {
     }
 
     formatModifier(modifier) {
-        if(Array.isArray(modifier)) {
+        if (Array.isArray(modifier)) {
             return [
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
                 ...this.constructor.parse(modifier.join(' + '), this.options.data)
@@ -127,12 +127,12 @@ export default class DHRoll extends Roll {
     getBonus(path, label) {
         const bonus = foundry.utils.getProperty(this.data.bonuses, path),
             modifiers = [];
-        if(bonus?.bonus)
+        if (bonus?.bonus)
             modifiers.push({
                 label: label,
                 value: bonus?.bonus
             });
-        if(bonus?.dice?.length)
+        if (bonus?.dice?.length)
             modifiers.push({
                 label: label,
                 value: bonus?.dice
@@ -175,9 +175,10 @@ export default class DHRoll extends Roll {
 
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async (config, message) => {
+        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;
         if (
             !config.source?.actor ||
-            !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hope ||
+            (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
             config.roll.type === 'reaction'
         )
             return;
@@ -185,9 +186,9 @@ export const registerRollDiceHooks = () => {
         const actor = await fromUuid(config.source.actor),
             updates = [];
         if (!actor) return;
-        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ type: 'hope', value: 1 });
-        if (config.roll.isCritical) updates.push({ type: 'stress', value: -1 });
-        if (config.roll.result.duality === -1) updates.push({ type: 'fear', value: 1 });
+        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ key: 'hope', value: 1 });
+        if (config.roll.isCritical) updates.push({ key: 'stress', value: -1 });
+        if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1 });
 
         if (updates.length) actor.modifyResource(updates);
 

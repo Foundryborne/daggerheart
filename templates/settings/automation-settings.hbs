@@ -1,5 +1,10 @@
 <div>
-    {{formGroup settingFields.schema.fields.hope value=settingFields._source.hope localize=true}}
+    <div class="form-group">
+        <label>{{localize "DAGGERHEART.SETTINGS.Automation.FIELDS.hopeFear.label"}}</label>
+        {{formGroup settingFields.schema.fields.hopeFear.fields.gm value=settingFields._source.hopeFear.gm localize=true}}
+        {{formGroup settingFields.schema.fields.hopeFear.fields.players value=settingFields._source.hopeFear.players localize=true}}
+
+    </div>
     {{formGroup settingFields.schema.fields.actionPoints value=settingFields._source.actionPoints localize=true}}
     {{formGroup settingFields.schema.fields.countdowns value=settingFields._source.countdowns localize=true}}
     

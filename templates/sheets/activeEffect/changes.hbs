@@ -11,12 +11,7 @@
         {{#with ../fields.changes.element.fields as |changeFields|}}
             <li data-index="{{i}}">
                 <div class="key">
-                    <input type="text" name="{{concat "changes." i ".key"}}" value="{{change.key}}" list="change-fields" />
-                    <datalist id="change-fields">
-                        {{#each @root.fieldPaths}}
-                            <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                    </datalist>
+                    <input type="text" class="effect-change-input" name="{{concat "changes." i ".key"}}" value="{{change.key}}" />
                 </div>
                 <div class="mode">
                     {{formInput changeFields.mode name=(concat "changes." i ".mode") value=change.mode choices=@root.modes}}

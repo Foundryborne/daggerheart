@@ -1011,22 +1011,35 @@
                 "severe": "Severe",
                 "major": "Major",
                 "minor": "Minor",
-                "none": "None"
+                "none": "None",
+                "allDamage": "All Damage",
+                "physicalDamage": "Physical Damage",
+                "magicalDamage": "Magical Damage",
+                "primaryWeapon": "Primary Weapon Damage",
+                "secondaryWeapon": "Secondary Weapon Damage"
             },
             "DamageResistance": {
                 "none": "None",
                 "resistance": "Resistance",
-                "immunity": "Immunity"
+                "immunity": "Immunity",
+                "physicalReduction": "Physical Damage Reduction",
+                "magicalReduction": "Magical Damage Reduction"
             },
             "DamageThresholds": {
                 "title": "Damage Thresholds",
                 "minor": "Minor",
                 "major": "Major",
-                "severe": "Severe"
+                "severe": "Severe",
+                "majorThreshold": "Major Damage Threshold",
+                "severeThreshold": "Severe Damage Threshold"
             },
             "Dice": {
                 "single": "Die",
                 "plural": "Dice"
+            },
+            "Difficulty": {
+                "all": "Difficulty: all",
+                "reaction": "Difficulty: reaction"
             },
             "Disadvantage": {
                 "full": "Disadvantage",
@@ -1037,39 +1050,39 @@
                 "plural": "Domains",
                 "arcana": {
                     "label": "Arcana",
-                    "Description": "This is the domain of the innate or instinctual use of magic. Those who walk this path tap into the raw, enigmatic forces of the realms to manipulate both the elements and their own energy. Arcana offers wielders a volatile power, but it is incredibly potent when correctly channeled."
+                    "description": "This is the domain of the innate or instinctual use of magic. Those who walk this path tap into the raw, enigmatic forces of the realms to manipulate both the elements and their own energy. Arcana offers wielders a volatile power, but it is incredibly potent when correctly channeled."
                 },
                 "blade": {
                     "label": "Blade",
-                    "Description": "This is the domain of those who dedicate their lives to the mastery of weapons. Whether by blade, bow, or perhaps a more specialized arm, those who follow this path have the skill to cut short the lives of others. Blade requires study and dedication from its followers, in exchange for inexorable power over death."
+                    "description": "This is the domain of those who dedicate their lives to the mastery of weapons. Whether by blade, bow, or perhaps a more specialized arm, those who follow this path have the skill to cut short the lives of others. Blade requires study and dedication from its followers, in exchange for inexorable power over death."
                 },
                 "bone": {
                     "label": "Bone",
-                    "Description": "This is the domain of mastery of swiftness and tactical mastery. Practitioners of this domain have an uncanny control over their own physical abilities, and an eye for predicting the behaviors of others in combat. Bone grants its adherents unparalleled understanding of bodies and their movements in exchange for diligent training."
+                    "description": "This is the domain of mastery of swiftness and tactical mastery. Practitioners of this domain have an uncanny control over their own physical abilities, and an eye for predicting the behaviors of others in combat. Bone grants its adherents unparalleled understanding of bodies and their movements in exchange for diligent training."
                 },
                 "codex": {
                     "label": "Codex",
-                    "Description": "This is the domain of intensive magical study. Those who seek magical knowledge turn to the recipes of power recorded in books, on scrolls, etched into walls, or tattooed on bodies. Codex offers a commanding and versatile understanding of magic to those devotees who are willing to seek beyond the common knowledge."
+                    "description": "This is the domain of intensive magical study. Those who seek magical knowledge turn to the recipes of power recorded in books, on scrolls, etched into walls, or tattooed on bodies. Codex offers a commanding and versatile understanding of magic to those devotees who are willing to seek beyond the common knowledge."
                 },
                 "grace": {
                     "label": "Grace",
-                    "Description": "This is the domain of charisma. Through rapturous storytelling, clever charm, or a shroud of lies, those who channel this power define the realities of their adversaries, bending perception to their will. Grace offers its wielders raw magnetism and mastery over language."
+                    "description": "This is the domain of charisma. Through rapturous storytelling, clever charm, or a shroud of lies, those who channel this power define the realities of their adversaries, bending perception to their will. Grace offers its wielders raw magnetism and mastery over language."
                 },
                 "midnight": {
                     "label": "Midnight",
-                    "Description": "This is the domain of shadows and secrecy. Whether by clever tricks, or cloak of night those who channel these forces are practiced in that art of obscurity and there is nothing hidden they cannot reach. Midnight offers practitioners the incredible power to control and create enigmas."
+                    "description": "This is the domain of shadows and secrecy. Whether by clever tricks, or cloak of night those who channel these forces are practiced in that art of obscurity and there is nothing hidden they cannot reach. Midnight offers practitioners the incredible power to control and create enigmas."
                 },
                 "sage": {
                     "label": "Sage",
-                    "Description": "This is the domain of the natural world. Those who walk this path tap into the unfettered power of the earth and its creatures to unleash raw magic. Sage grants its adherents the vitality of a blooming flower and ferocity of a hungry predator."
+                    "description": "This is the domain of the natural world. Those who walk this path tap into the unfettered power of the earth and its creatures to unleash raw magic. Sage grants its adherents the vitality of a blooming flower and ferocity of a hungry predator."
                 },
                 "splendor": {
                     "label": "Splendor",
-                    "Description": "This is the domain of life. Through this magic, followers gain the ability to heal, though such power also grants the wielder some control over death. Splendor offers its disciples the magnificent ability to both give and end life."
+                    "description": "This is the domain of life. Through this magic, followers gain the ability to heal, though such power also grants the wielder some control over death. Splendor offers its disciples the magnificent ability to both give and end life."
                 },
                 "valor": {
                     "label": "Valor",
-                    "Description": "This is the domain of protection. Whether through attack or defense, those who choose this discipline channel formidable strength to protect their allies in battle. Valor offers great power to those who raise their shield in defense of others."
+                    "description": "This is the domain of protection. Whether through attack or defense, those who choose this discipline channel formidable strength to protect their allies in battle. Valor offers great power to those who raise their shield in defense of others."
                 }
             },
             "Effect": {
@@ -1080,9 +1093,17 @@
                 "single": "Experience",
                 "plural": "Experiences"
             },
+            "Healing": {
+                "healingAmount": "Healing Amount"
+            },
             "Neutral": {
                 "full": "None",
                 "short": "no"
+            },
+            "Range": {
+                "other": "Range Increase: Other",
+                "spell": "Range Increase: Spell",
+                "weapon": "Range Increase: Weapon"
             },
             "RefreshType": {
                 "session": "Session",
@@ -1092,6 +1113,42 @@
             "Resource": {
                 "single": "Resource",
                 "plural": "Resources"
+            },
+            "Roll": {
+                "attack": "Attack Roll",
+                "primaryWeaponAttack": "Primary Weapon Attack Roll",
+                "secondaryWeaponAttack": "Secondary Weapon Attack Roll",
+                "spellcast": "Spellcast Roll",
+                "trait": "Trait Roll",
+                "action": "Action Roll",
+                "reaction": "Reaction Roll"
+            },
+            "Rules": {
+                "damageReduction": {
+                    "increasePerArmorMark": {
+                        "label": "Damage Reduction per Armor Slot",
+                        "hint": "A used armor slot normally reduces damage by one step. This value increases the number of steps damage is reduced by."
+                    },
+                    "maxArmorMarkedBonus": "Max Armor Used",
+                    "maxArmorMarkedStress": {
+                        "label": "Max Armor Used With Stress",
+                        "hint": "If this value is set you can use up to that much stress to spend additional Armor Marks beyond your normal maximum."
+                    },
+                    "stress": {
+                        "severe": {
+                            "label": "Stress Damage Reduction: Severe",
+                            "hint": "The cost in stress you can pay to reduce severe damage down to major."
+                        },
+                        "major": {
+                            "label": "Stress Damage Reduction: Major",
+                            "hint": "The cost in stress you can pay to reduce major damage down to minor."
+                        },
+                        "minor": {
+                            "label": "Stress Damage Reduction: Minor",
+                            "hint": "The cost in stress you can pay to reduce minor damage to none."
+                        }
+                    }
+                }
             },
             "Tabs": {
                 "details": "Details",
@@ -1137,6 +1194,7 @@
                 "single": "Trait",
                 "plural": "Traits"
             },
+            "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
             "attack": "Attack",
@@ -1152,10 +1210,15 @@
             "dualityRoll": "Duality Roll",
             "enabled": "Enabled",
             "evasion": "Evasion",
+            "experience": {
+                "single": "Experience",
+                "plural": "Experiences"
+            },
             "fear": "Fear",
             "features": "Features",
             "hitPoints": "Hit Points",
             "hope": "Hope",
+            "hordeHp": "Horde HP",
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "level": "Level",
@@ -1163,9 +1226,12 @@
             "modifier": "Modifier",
             "multiclass": "Multiclass",
             "none": "None",
+            "partner": "Partner",
+            "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
             "recovery": "Recovery",
+            "roll": "Roll",
             "scalable": "Scalable",
             "stress": "Stress",
             "take": "Take",
@@ -1272,9 +1338,10 @@
                     "hint": "Automatically increase the GM's fear pool on a fear duality roll result."
                 },
                 "FIELDS": {
-                    "hope": {
-                        "label": "Hope",
-                        "hint": "Automatically increase a character's hope on a hope duality roll result."
+                    "hopeFear": {
+                        "label": "Hope & Fear",
+                        "gm": { "label": "GM" },
+                        "players": { "label": "Players" }
                     },
                     "actionPoints": {
                         "label": "Action Points",

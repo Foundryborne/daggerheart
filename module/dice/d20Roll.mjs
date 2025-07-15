@@ -102,7 +102,7 @@ export default class D20Roll extends DHRoll {
                     value: this.options.data.experiences[m].value
                 });
         });
-        
+
         this.addModifiers();
         if (this.options.extraFormula) {
             this.terms.push(
@@ -123,15 +123,17 @@ export default class D20Roll extends DHRoll {
 
     applyBaseBonus() {
         const modifiers = [];
-        
-        if(this.options.roll.bonus)
+
+        if (this.options.roll.bonus)
             modifiers.push({
                 label: 'Bonus to Hit',
                 value: this.options.roll.bonus
             });
 
         modifiers.push(...this.getBonus(`roll.${this.options.type}`, `${this.options.type.capitalize()} Bonus`));
-        modifiers.push(...this.getBonus(`roll.${this.options.roll.type}`, `${this.options.roll.type.capitalize()} Bonus`));
+        modifiers.push(
+            ...this.getBonus(`roll.${this.options.roll.type}`, `${this.options.roll.type.capitalize()} Bonus`)
+        );
 
         return modifiers;
     }

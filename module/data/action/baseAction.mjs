@@ -254,7 +254,8 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             hasDamage: !!this.damage?.parts?.length,
             hasHealing: !!this.healing,
             hasEffect: !!this.effects?.length,
-            hasSave: this.hasSave
+            hasSave: this.hasSave,
+            selectedRollMode: game.settings.get('core', 'rollMode')
         };
     }
 
@@ -350,7 +351,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     get modifiers() {
-        if(!this.actor) return [];
+        if (!this.actor) return [];
         const modifiers = [];
         /** Placeholder for specific bonuses **/
         return modifiers;

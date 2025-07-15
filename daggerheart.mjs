@@ -5,7 +5,7 @@ import * as documents from './module/documents/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { DhDualityRollEnricher, DhTemplateEnricher } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
-import { NarrativeCountdowns, registerCountdownApplicationHooks } from './module/applications/ui/countdowns.mjs';
+import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
 import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/_module.mjs';
 import { renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
@@ -61,6 +61,14 @@ Hooks.once('init', () => {
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, ...[DHRoll, DualityRoll, D20Roll, DamageRoll]];
     CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
+    const { DocumentSheetConfig } = foundry.applications.apps;
+    CONFIG.Token.documentClass = documents.DhToken;
+    CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
+    DocumentSheetConfig.unregisterSheet(TokenDocument, 'core', foundry.applications.sheets.TokenConfig);
+    DocumentSheetConfig.registerSheet(TokenDocument, 'dnd5e', applications.sheetConfigs.DhTokenConfig, {
+        makeDefault: true
+    });
+
     CONFIG.Item.documentClass = documents.DHItem;
 
     //Registering the Item DataModel
@@ -98,12 +106,12 @@ Hooks.once('init', () => {
     CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
     CONFIG.ActiveEffect.dataModels = models.activeEffects.config;
 
-    foundry.applications.apps.DocumentSheetConfig.unregisterSheet(
+    DocumentSheetConfig.unregisterSheet(
         CONFIG.ActiveEffect.documentClass,
         'core',
         foundry.applications.sheets.ActiveEffectConfig
     );
-    foundry.applications.apps.DocumentSheetConfig.registerSheet(
+    DocumentSheetConfig.registerSheet(
         CONFIG.ActiveEffect.documentClass,
         SYSTEM.id,
         applications.sheetConfigs.ActiveEffectConfig,
@@ -160,7 +168,6 @@ Hooks.on('ready', () => {
 
     registerCountdownHooks();
     socketRegistration.registerSocketHooks();
-    registerCountdownApplicationHooks();
     registerRollDiceHooks();
     registerDHActorHooks();
 });

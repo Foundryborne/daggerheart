@@ -6,8 +6,15 @@
     <div class="form-group">
         <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="Situational Bonus">
     </div>
-    <button class="submit-btn" data-action="submitRoll">
-        <i class="fa-solid fa-dice"></i>
-        <span class="label">Roll</span>
-    </button>
+    <div class="damage-section-controls">
+        {{#if directDamage}}
+            <select class="roll-mode-select" name="selectedRollMode">
+                {{selectOptions rollModes selected=selectedRollMode valueAttr="action" labelAttr="label" localize=true}}
+            </select>
+        {{/if}}
+        <button class="submit-btn" data-action="submitRoll">
+            <i class="fa-solid fa-dice"></i>
+            <span class="label">{{localize "DAGGERHEART.GENERAL.roll"}}</span>
+        </button>
+    </div>
 </section>

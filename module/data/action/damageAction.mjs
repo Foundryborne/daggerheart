@@ -10,6 +10,7 @@ export default class DHDamageAction extends DHBaseAction {
     }
 
     async rollDamage(event, data) {
+        const systemData = data.system ?? data;
         let formula = this.damage.parts.map(p => this.getFormulaValue(p, data).getFormula(this.actor)).join(' + '),
             damageTypes = [...new Set(this.damage.parts.reduce((a, c) => a.concat([...c.type]), []))];
 
@@ -19,15 +20,15 @@ export default class DHDamageAction extends DHBaseAction {
         let roll = { formula: formula, total: formula },
             bonusDamage = [];
 
-        if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(data.system ?? data));
-
+        if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(systemData));
+        
         const config = {
             title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: this.name }),
             roll: { formula },
-            targets: data.system?.targets.filter(t => t.hit) ?? data.targets,
+            targets: systemData.targets.filter(t => t.hit) ?? data.targets,
             hasSave: this.hasSave,
-            isCritical: data.system?.roll?.isCritical ?? false,
-            source: data.system?.source,
+            isCritical: systemData.roll?.isCritical ?? false,
+            source: systemData.source,
             data: this.getRollData(),
             damageTypes,
             event
@@ -36,6 +37,8 @@ export default class DHDamageAction extends DHBaseAction {
         if (data.system) {
             config.source.message = data._id;
             config.directDamage = false;
+        } else {
+            config.directDamage = true;
         }
 
         roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);

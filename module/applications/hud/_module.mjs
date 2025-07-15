@@ -1,1 +1,1 @@
-export { default as DHTokenHUD } from './tokenHud.mjs';
+export { default as DHTokenHUD } from './tokenHUD.mjs';

@@ -24,10 +24,16 @@ export default class DhCompanion extends BaseDataActor {
             ...super.defineSchema(),
             partner: new ForeignDocumentUUIDField({ type: 'Actor' }),
             resources: new fields.SchemaField({
-                stress: resourceField(3, true),
-                hope: new fields.NumberField({ initial: 0, integer: true })
+                stress: resourceField(3, 'DAGGERHEART.GENERAL.stress', true),
+                hope: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.hope' })
             }),
-            evasion: new fields.NumberField({ required: true, min: 1, initial: 10, integer: true }),
+            evasion: new fields.NumberField({
+                required: true,
+                min: 1,
+                initial: 10,
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.evasion'
+            }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField({}),
@@ -74,8 +80,8 @@ export default class DhCompanion extends BaseDataActor {
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
                 damage: new fields.SchemaField({
-                    physical: bonusField(),
-                    magical: bonusField()
+                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
+                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
                 })
             })
         };
