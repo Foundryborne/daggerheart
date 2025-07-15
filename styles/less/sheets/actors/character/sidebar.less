@@ -174,6 +174,107 @@
             gap: 5px;
             justify-content: center;
 
+            .status-bar.armor-slots {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                width: 80px;
+                height: 30px;
+
+                .status-label {
+                    position: relative;
+                    top: 30px;
+                    height: 22px;
+                    width: 79px;
+                    clip-path: path('M0 0H79L74 16.5L39 22L4 16.5L0 0Z');
+                    background: light-dark(@dark-blue, @golden);
+
+                    h4 {
+                        font-weight: bold;
+                        text-align: center;
+                        line-height: 18px;
+                        color: light-dark(@beige, @dark-blue);
+                        font-size: 12px;
+                    }
+                }
+
+                .status-value {
+                    position: absolute;
+                    display: flex;
+                    padding: 0 6px;
+                    font-size: 1.2rem;
+                    align-items: center;
+                    width: 80px;
+                    height: 30px;
+                    justify-content: center;
+                    text-align: center;
+                    z-index: 2;
+                    color: light-dark(@dark-blue, @beige);
+
+                    input[type='number'] {
+                        background: transparent;
+                        font-size: 1.2rem;
+                        width: 30px;
+                        height: 20px;
+                        text-align: center;
+                        border: none;
+                        outline: 2px solid transparent;
+                        color: light-dark(@dark-blue, @beige);
+
+                        &.bar-input {
+                            padding: 0;
+                            color: light-dark(@dark-blue, @beige);
+                            backdrop-filter: none;
+                            background: transparent;
+                            transition: all 0.3s ease;
+
+                            &:hover,
+                            &:focus {
+                                background: @semi-transparent-dark-blue;
+                                backdrop-filter: blur(9.5px);
+                            }
+                        }
+                    }
+
+                    .bar-label {
+                        width: 30px;
+                    }
+                }
+
+                .progress-bar {
+                    position: absolute;
+                    appearance: none;
+                    width: 80px;
+                    height: 30px;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    z-index: 1;
+                    background: light-dark(transparent, @dark-blue);
+
+                    &::-webkit-progress-bar {
+                        border: none;
+                        background: light-dark(transparent, @dark-blue);
+                        border-radius: 6px;
+                    }
+                    &::-webkit-progress-value {
+                        background: @gradient-stress;
+                        border-radius: 6px;
+                    }
+                    &.stress-color::-webkit-progress-value {
+                        background: @gradient-stress;
+                        border-radius: 6px;
+                    }
+                    &::-moz-progress-bar {
+                        background: @gradient-stress;
+                        border-radius: 6px;
+                    }
+                    &.stress-color::-moz-progress-bar {
+                        background: @gradient-stress;
+                        border-radius: 6px;
+                    }
+                }
+            }
+
             .status-number {
                 justify-items: center;
 
@@ -191,11 +292,6 @@
                     justify-content: center;
                     background: light-dark(transparent, @dark-blue);
                     z-index: 2;
-
-                    &.armor-slots {
-                        width: 80px;
-                        height: 30px;
-                    }
 
                     input[type='number'] {
                         background: transparent;
