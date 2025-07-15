@@ -388,17 +388,17 @@ export const countdownTypes = {
     }
 };
 export const rollTypes = {
-    weapon: {
-        id: 'weapon',
-        label: 'DAGGERHEART.CONFIG.RollTypes.weapon.name'
+    attack: {
+        id: 'attack',
+        label: 'DAGGERHEART.CONFIG.RollTypes.attack.name'
     },
     spellcast: {
         id: 'spellcast',
         label: 'DAGGERHEART.CONFIG.RollTypes.spellcast.name'
     },
-    ability: {
-        id: 'ability',
-        label: 'DAGGERHEART.CONFIG.RollTypes.ability.name'
+    trait: {
+        id: 'trait',
+        label: 'DAGGERHEART.CONFIG.RollTypes.trait.name'
     },
     diceSet: {
         id: 'diceSet',

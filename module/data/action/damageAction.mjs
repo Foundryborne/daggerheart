@@ -28,6 +28,7 @@ export default class DHDamageAction extends DHBaseAction {
             hasSave: this.hasSave,
             isCritical: data.system?.roll?.isCritical ?? false,
             source: data.system?.source,
+            data: this.getRollData(),
             damageTypes,
             event
         };
@@ -39,4 +40,8 @@ export default class DHDamageAction extends DHBaseAction {
 
         roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);
     }
+
+    // get modifiers() {
+    //     return [];
+    // }
 }

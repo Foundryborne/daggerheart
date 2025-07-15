@@ -39,4 +39,8 @@ export default class DHHealingAction extends DHBaseAction {
     get chatTemplate() {
         return 'systems/daggerheart/templates/ui/chat/healing-roll.hbs';
     }
+
+    get modifiers() {
+        return [];
+    }
 }

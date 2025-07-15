@@ -2,27 +2,11 @@ import { burden } from '../../config/generalConfig.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
 import BaseDataActor from './base.mjs';
-
-const attributeField = () =>
-    new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        tierMarked: new foundry.data.fields.BooleanField({ initial: false })
-    });
-
-const resourceField = (max, reverse = false) =>
-    new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        max: new foundry.data.fields.NumberField({ initial: max, integer: true }),
-        isReversed: new foundry.data.fields.BooleanField({ initial: reverse })
-    });
-
-const stressDamageReductionRule = () =>
-    new foundry.data.fields.SchemaField({
-        enabled: new foundry.data.fields.BooleanField({ required: true, initial: false }),
-        cost: new foundry.data.fields.NumberField({ integer: true })
-    });
+import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 
 export default class DhCharacter extends BaseDataActor {
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
+
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.character',
@@ -37,24 +21,36 @@ export default class DhCharacter extends BaseDataActor {
         return {
             ...super.defineSchema(),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(0, true),
-                stress: resourceField(6, true),
-                hope: resourceField(6)
+                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.hitPoints', true),
+                stress: resourceField(6, 'DAGGERHEART.GENERAL.stress', true),
+                hope: resourceField(6, 'DAGGERHEART.GENERAL.hope')
             }),
             traits: new fields.SchemaField({
-                agility: attributeField(),
-                strength: attributeField(),
-                finesse: attributeField(),
-                instinct: attributeField(),
-                presence: attributeField(),
-                knowledge: attributeField()
+                agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
+                strength: attributeField('DAGGERHEART.CONFIG.Traits.strength.name'),
+                finesse: attributeField('DAGGERHEART.CONFIG.Traits.finesse.name'),
+                instinct: attributeField('DAGGERHEART.CONFIG.Traits.instinct.name'),
+                presence: attributeField('DAGGERHEART.CONFIG.Traits.presence.name'),
+                knowledge: attributeField('DAGGERHEART.CONFIG.Traits.knowledge.name')
             }),
-            proficiency: new fields.NumberField({ initial: 1, integer: true }),
-            evasion: new fields.NumberField({ initial: 0, integer: true }),
-            armorScore: new fields.NumberField({ integer: true, initial: 0 }),
+            proficiency: new fields.NumberField({
+                initial: 1,
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.proficiency'
+            }),
+            evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
+            armorScore: new fields.NumberField({ integer: true, initial: 0, label: 'DAGGERHEART.GENERAL.armorScore' }),
             damageThresholds: new fields.SchemaField({
-                severe: new fields.NumberField({ integer: true, initial: 0 }),
-                major: new fields.NumberField({ integer: true, initial: 0 })
+                severe: new fields.NumberField({
+                    integer: true,
+                    initial: 0,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                }),
+                major: new fields.NumberField({
+                    integer: true,
+                    initial: 0,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                })
             }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
@@ -94,21 +90,36 @@ export default class DhCharacter extends BaseDataActor {
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
                 roll: new fields.SchemaField({
-                    attack: new fields.NumberField({ integer: true, initial: 0 }),
-                    primaryWeapon: new fields.SchemaField({
-                        attack: new fields.NumberField({ integer: true, initial: 0 })
-                    }),
-                    spellcast: new fields.NumberField({ integer: true, initial: 0 }),
-                    action: new fields.NumberField({ integer: true, initial: 0 }),
-                    hopeOrFear: new fields.NumberField({ integer: true, initial: 0 })
+                    attack: bonusField('DAGGERHEART.GENERAL.Roll.attack'),
+                    spellcast: bonusField('DAGGERHEART.GENERAL.Roll.spellcast'),
+                    trait: bonusField('DAGGERHEART.GENERAL.Roll.trait'),
+                    action: bonusField('DAGGERHEART.GENERAL.Roll.action'),
+                    reaction: bonusField('DAGGERHEART.GENERAL.Roll.reaction'),
+                    primaryWeapon: bonusField('DAGGERHEART.GENERAL.Roll.primaryWeaponAttack'),
+                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Roll.secondaryWeaponAttack')
                 }),
                 damage: new fields.SchemaField({
-                    all: new fields.NumberField({ integer: true, initial: 0 }),
-                    physical: new fields.NumberField({ integer: true, initial: 0 }),
-                    magic: new fields.NumberField({ integer: true, initial: 0 }),
-                    primaryWeapon: new fields.SchemaField({
-                        bonus: new fields.NumberField({ integer: true }),
-                        extraDice: new fields.NumberField({ integer: true })
+                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
+                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage'),
+                    primaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.primaryWeapon'),
+                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.primaryWeapon')
+                }),
+                healing: bonusField('DAGGERHEART.GENERAL.Healing.healingAmount'),
+                range: new fields.SchemaField({
+                    weapon: new fields.NumberField({
+                        integer: true,
+                        initial: 0,
+                        label: 'DAGGERHEART.GENERAL.Range.weapon'
+                    }),
+                    spell: new fields.NumberField({
+                        integer: true,
+                        initial: 0,
+                        label: 'DAGGERHEART.GENERAL.Range.spell'
+                    }),
+                    other: new fields.NumberField({
+                        integer: true,
+                        initial: 0,
+                        label: 'DAGGERHEART.GENERAL.Range.other'
                     })
                 })
             }),
@@ -117,24 +128,33 @@ export default class DhCharacter extends BaseDataActor {
                 damageReduction: new fields.SchemaField({
                     maxArmorMarked: new fields.SchemaField({
                         value: new fields.NumberField({ required: true, integer: true, initial: 1 }),
-                        bonus: new fields.NumberField({ required: true, integer: true, initial: 0 }),
-                        stressExtra: new fields.NumberField({ required: true, integer: true, initial: 0 })
+                        bonus: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedBonus'
+                        }),
+                        stressExtra: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.hint'
+                        })
                     }),
                     stressDamageReduction: new fields.SchemaField({
-                        severe: stressDamageReductionRule(),
-                        major: stressDamageReductionRule(),
-                        minor: stressDamageReductionRule()
+                        severe: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.severe'),
+                        major: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.major'),
+                        minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor')
                     }),
-                    increasePerArmorMark: new fields.NumberField({ integer: true, initial: 1 }),
+                    increasePerArmorMark: new fields.NumberField({
+                        integer: true,
+                        initial: 1,
+                        label: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.label',
+                        hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
+                    }),
                     magical: new fields.BooleanField({ initial: false }),
                     physical: new fields.BooleanField({ initial: false })
-                }),
-                strangePatterns: new fields.NumberField({
-                    integer: true,
-                    min: 1,
-                    max: 12,
-                    nullable: true,
-                    initial: null
                 }),
                 weapon: new fields.SchemaField({
                     /*  Unimplemented 
@@ -179,6 +199,11 @@ export default class DhCharacter extends BaseDataActor {
 
     get needsCharacterSetup() {
         return !this.class.value || !this.class.subclass;
+    }
+
+    get spellcastModifier() {
+        const subClasses = this.parent.items.filter(x => x.type === 'subclass') ?? [];
+        return Math.max(subClasses?.map(sc => this.traits[sc.system.spellcastingTrait]?.value));
     }
 
     get spellcastingModifiers() {
@@ -323,6 +348,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareBaseData() {
+        this.evasion = this.class.value?.system?.evasion ?? 0;
+
         const currentLevel = this.levelData.level.current;
         const currentTier =
             currentLevel === 1

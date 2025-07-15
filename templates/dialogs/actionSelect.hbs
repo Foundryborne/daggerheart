@@ -5,8 +5,8 @@
     <ul class="actions-list">
     {{#each actions}}
         <li class="action-item">
-            <input type="radio" name="actionId" value="{{_id}}" {{#if (eq @index 0)}}checked{{/if}}>
-            <span class="label">{{ name }}</span>
+            <input type="radio" id="action-{{_id}}" name="actionId" value="{{_id}}" {{#if (eq @index 0)}}checked{{/if}}>
+            <label class="label" for="action-{{_id}}">{{ name }}</label>
         </li>
     {{/each}}
     </ul>

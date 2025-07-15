@@ -6,7 +6,7 @@
     <div class="partner-section">
         <div class="title">
             <side-line-div  class="invert"></side-line-div>
-            <h3>Partner</h3>
+            <h3>{{localize "DAGGERHEART.GENERAL.partner"}}</h3>
             <side-line-div></side-line-div>
         </div>
         {{#if document.system.partner}}
@@ -20,7 +20,7 @@
     <div class="attack-section">
         <div class="title">
             <side-line-div  class="invert"></side-line-div>
-            <h3>Attack</h3>
+            <h3>{{localize "DAGGERHEART.GENERAL.attack"}}</h3>
             <side-line-div></side-line-div>
         </div>
         <ul class="item-list">
@@ -28,6 +28,11 @@
         </ul>
     </div>
     <div class="experience-list">
+        <div class="title">
+            <side-line-div  class="invert"></side-line-div>
+            <h3>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</h3>
+            <side-line-div></side-line-div>
+        </div>
         {{#each source.system.experiences as |experience id|}}
             <div class="experience-row">
                 <div class="experience-value">
