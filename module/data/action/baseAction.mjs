@@ -1,4 +1,4 @@
-import { DHActionDiceData, DHActionRollData, DHDamageField } from './actionDice.mjs';
+import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 
@@ -67,7 +67,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
 
     static defineExtraSchema() {
         const extraFields = {
-                damage: new DHDamageField(),
+                damage: new DHDamageField({isDamage: true}),
                 roll: new fields.EmbeddedDataField(DHActionRollData),
                 save: new fields.SchemaField({
                     trait: new fields.StringField({
@@ -96,21 +96,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                         onSave: new fields.BooleanField({ initial: false })
                     })
                 ),
-                healing: new fields.SchemaField({
-                    type: new fields.StringField({
-                        choices: CONFIG.DH.GENERAL.healingTypes,
-                        required: true,
-                        blank: false,
-                        initial: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
-                        label: 'Healing'
-                    }),
-                    resultBased: new fields.BooleanField({
-                        initial: false,
-                        label: 'DAGGERHEART.ACTIONS.Settings.resultBased.label'
-                    }),
-                    value: new fields.EmbeddedDataField(DHActionDiceData),
-                    valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
-                }),
+                healing: new fields.EmbeddedDataField(DHDamageData),
                 beastform: new fields.SchemaField({
                     tierAccess: new fields.SchemaField({
                         exact: new fields.NumberField({ integer: true, nullable: true, initial: null })
