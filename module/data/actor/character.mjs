@@ -179,7 +179,8 @@ export default class DhCharacter extends BaseDataActor {
                             required: true,
                             integer: true,
                             initial: 0,
-                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress'
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.hint'
                         })
                     }),
                     stressDamageReduction: new fields.SchemaField({
@@ -190,7 +191,8 @@ export default class DhCharacter extends BaseDataActor {
                     increasePerArmorMark: new fields.NumberField({
                         integer: true,
                         initial: 1,
-                        label: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark'
+                        label: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.label',
+                        hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
                     }),
                     magical: new fields.BooleanField({ initial: false }),
                     physical: new fields.BooleanField({ initial: false })

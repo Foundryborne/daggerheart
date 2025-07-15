@@ -21,8 +21,10 @@ export default class DHToken extends TokenDocument {
             const a = v.join('.');
             if (invalidAttributes.some(x => a.startsWith(x))) return acc;
 
-            const modelLabel = model ? game.i18n.localize(model.schema.getField(a).label) : null;
-            acc.push({ group: valueGroup, value: a, label: modelLabel ? modelLabel : a });
+            const field = model ? model.schema.getField(a) : null;
+            const modelLabel = field ? game.i18n.localize(field.label) : null;
+            const hint = field ? game.i18n.localize(field.hint) : null;
+            acc.push({ group: valueGroup, value: a, label: modelLabel ? modelLabel : a, hint: hint });
 
             return acc;
         }, []);
