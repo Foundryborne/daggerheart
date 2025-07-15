@@ -110,6 +110,18 @@ export const conditions = {
         name: 'DAGGERHEART.CONFIG.Condition.restrained.name',
         icon: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
         description: 'DAGGERHEART.CONFIG.Condition.restrained.description'
+    },
+    unconcious: {
+        id: 'unconcious',
+        name: 'DAGGERHEART.CONFIG.Condition.unconcious.name',
+        icon: 'icons/magic/control/sleep-bubble-purple.webp',
+        description: 'DAGGERHEART.CONFIG.Condition.unconcious.description'
+    },
+    dead: {
+        id: 'dead',
+        name: 'DAGGERHEART.CONFIG.Condition.dead.name',
+        icon: 'icons/magic/death/grave-tombstone-glow-teal.webp',
+        description: 'DAGGERHEART.CONFIG.Condition.dead.description'
     }
 };
 

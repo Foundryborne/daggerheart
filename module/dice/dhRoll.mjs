@@ -192,7 +192,9 @@ export const registerRollDiceHooks = () => {
 
         if (updates.length) {
             const target = actor.system.partner ?? actor;
-            target.modifyResource(updates);
+            if (!['dead', 'unconcious'].some(x => actor.statuses.has(x))) {
+                target.modifyResource(updates);
+            }
         }
 
         if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;

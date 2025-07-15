@@ -559,9 +559,9 @@
                 "twoHanded": "Two-Handed"
             },
             "Condition": {
-                "vulnerable": {
-                    "name": "Vulnerable",
-                    "description": "While a creature is Vulnerable, all rolls targeting them have advantage.\nA creature who is already Vulnerable can’t be made to take the condition again."
+                "dead": {
+                    "name": "Dead",
+                    "description": "The character is dead"
                 },
                 "hidden": {
                     "name": "Hidden",
@@ -570,6 +570,14 @@
                 "restrained": {
                     "name": "Restrained",
                     "description": "When an effect makes a creature Restrained, it means they cannot move until this condition is cleared.\nThey can still take actions from their current position."
+                },
+                "unconcious": {
+                    "name": "Unconcious",
+                    "description": "Your character can’t move or act while unconscious, they can’t be targeted by an attack."
+                },
+                "vulnerable": {
+                    "name": "Vulnerable",
+                    "description": "While a creature is Vulnerable, all rolls targeting them have advantage.\nA creature who is already Vulnerable can’t be made to take the condition again."
                 }
             },
             "CountdownType": {

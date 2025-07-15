@@ -43,7 +43,7 @@ Hooks.once('init', () => {
     );
 
     CONFIG.statusEffects = [
-        ...CONFIG.statusEffects,
+        ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
         ...Object.values(SYSTEM.GENERAL.conditions).map(x => ({
             ...x,
             name: game.i18n.localize(x.name),
