@@ -66,6 +66,11 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
     }
 
     async setCombatantSpotlight(combatantId) {
+        const update = {
+            system: {
+                'spotlight.requesting': false
+            }
+        };
         const combatant = this.viewed.combatants.get(combatantId);
 
         const toggleTurn = this.viewed.combatants.contents
@@ -76,10 +81,15 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         if (this.viewed.turn !== toggleTurn) {
             const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
             await updateCountdowns(CONFIG.DH.GENERAL.countdownTypes.spotlight.id);
+
+            const autoPoints = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).actionPoints;
+            if (autoPoints) {
+                update.system.actionTokens = Math.max(combatant.system.actionTokens - 1, 0);
+            }
         }
 
         await this.viewed.update({ turn: this.viewed.turn === toggleTurn ? null : toggleTurn });
-        await combatant.update({ 'system.spotlight.requesting': false });
+        await combatant.update(update);
     }
 
     static async requestSpotlight(_, target) {
