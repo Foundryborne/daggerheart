@@ -20,7 +20,6 @@ export default class DHDamageAction extends DHBaseAction {
             bonusDamage = [];
 
         if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(data.system ?? data));
-        console.log(this)
 
         const config = {
             title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: this.name }),
