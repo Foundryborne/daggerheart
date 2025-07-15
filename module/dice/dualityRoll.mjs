@@ -119,12 +119,21 @@ export default class DualityRoll extends D20Roll {
     }
 
     applyBaseBonus() {
-        this.options.roll.modifiers = [];
-        if (!this.options.roll.trait) return;
-        this.options.roll.modifiers.push({
-            label: `DAGGERHEART.CONFIG.Traits.${this.options.roll.trait}.name`,
-            value: Roll.replaceFormulaData(`@traits.${this.options.roll.trait}.value`, this.data)
+        const modifiers = super.applyBaseBonus();
+
+        if(this.options.roll.trait && this.data.traits[this.options.roll.trait])
+            modifiers.unshift({
+                label: `DAGGERHEART.CONFIG.Traits.${this.options.roll.trait}.name`,
+                value: this.data.traits[this.options.roll.trait].value
+            });
+
+        const weapons = ['primaryWeapon', 'secondaryWeapon'];
+        weapons.forEach(w => {
+            if(this.options.source.item && this.options.source.item === this.data[w]?.id)
+                modifiers.push(...this.getBonus(`roll.${w}`, 'Weapon Bonus'));
         });
+
+        return modifiers;
     }
 
     static postEvaluate(roll, config = {}) {

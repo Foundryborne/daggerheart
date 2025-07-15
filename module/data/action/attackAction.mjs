@@ -5,7 +5,7 @@ export default class DHAttackAction extends DHDamageAction {
     static extraSchemas = [...super.extraSchemas, ...['roll', 'save']];
 
     static getRollType(parent) {
-        return parent.type === 'weapon' ? 'weapon' : 'spellcast';
+        return parent.type === 'weapon' ? 'attack' : 'spellcast';
     }
 
     get chatTemplate() {
@@ -21,7 +21,7 @@ export default class DHAttackAction extends DHDamageAction {
             }
             if (this.roll.useDefault) {
                 this.roll.trait = this.item.system.attack.roll.trait;
-                this.roll.type = 'weapon';
+                this.roll.type = 'attack';
             }
         }
     }
@@ -37,4 +37,8 @@ export default class DHAttackAction extends DHDamageAction {
             base: true
         };
     }
+
+    // get modifiers() {
+    //     return [];
+    // }
 }

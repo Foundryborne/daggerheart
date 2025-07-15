@@ -150,7 +150,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     static getRollType(parent) {
-        return 'ability';
+        return 'trait';
     }
 
     static getSourceConfig(parent) {
@@ -308,7 +308,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
 
     prepareRoll() {
         const roll = {
-            modifiers: [],
+            modifiers: this.modifiers,
             trait: this.roll?.trait,
             label: 'Attack',
             type: this.actionType,
@@ -346,6 +346,13 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     /* ROLL */
     get hasRoll() {
         return !!this.roll?.type || !!this.roll?.bonus;
+    }
+
+    get modifiers() {
+        if(!this.actor) return [];
+        const modifiers = [];
+        /** Placeholder for specific bonuses **/
+        return modifiers;
     }
     /* ROLL */
 

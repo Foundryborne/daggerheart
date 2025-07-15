@@ -4,6 +4,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ActionField from '../fields/actionField.mjs';
 import { adjustDice, adjustRange } from '../../helpers/utils.mjs';
 import DHCompanionSettings from '../../applications/sheets-configs/companion-settings.mjs';
+import { resourceField, bonusField } from '../fields/actorField.mjs';
 
 export default class DhCompanion extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Companion'];
@@ -23,11 +24,7 @@ export default class DhCompanion extends BaseDataActor {
             ...super.defineSchema(),
             partner: new ForeignDocumentUUIDField({ type: 'Actor' }),
             resources: new fields.SchemaField({
-                stress: new fields.SchemaField({
-                    value: new fields.NumberField({ initial: 0, integer: true }),
-                    max: new fields.NumberField({ initial: 3, integer: true }),
-                    isReversed: new foundry.data.fields.BooleanField({ initial: true })
-                }),
+                stress: resourceField(3, true),
                 hope: new fields.NumberField({ initial: 0, integer: true })
             }),
             evasion: new fields.NumberField({ required: true, min: 1, initial: 10, integer: true }),
@@ -56,7 +53,7 @@ export default class DhCompanion extends BaseDataActor {
                         amount: 1
                     },
                     roll: {
-                        type: 'weapon',
+                        type: 'attack',
                         bonus: 0,
                         trait: 'instinct'
                     },
@@ -74,7 +71,13 @@ export default class DhCompanion extends BaseDataActor {
                 }
             }),
             actions: new fields.ArrayField(new ActionField()),
-            levelData: new fields.EmbeddedDataField(DhLevelData)
+            levelData: new fields.EmbeddedDataField(DhLevelData),
+            bonuses: new fields.SchemaField({
+                damage: new fields.SchemaField({
+                    physical: bonusField(),
+                    magical: bonusField()
+                })
+            })
         };
     }
 
@@ -89,7 +92,7 @@ export default class DhCompanion extends BaseDataActor {
     }
 
     prepareBaseData() {
-        const partnerSpellcastingModifier = this.partner?.system?.spellcastingModifiers?.main;
+        const partnerSpellcastingModifier = this.partner?.system?.spellcastModifier;
         const spellcastingModifier = this.partner?.system?.traits?.[partnerSpellcastingModifier]?.value;
         this.attack.roll.bonus = spellcastingModifier ?? 0; // Needs to expand on which modifier it is that should be used because of multiclassing;
 

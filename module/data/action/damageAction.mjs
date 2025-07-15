@@ -20,6 +20,7 @@ export default class DHDamageAction extends DHBaseAction {
             bonusDamage = [];
 
         if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(data.system ?? data));
+        console.log(this)
 
         const config = {
             title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: this.name }),
@@ -28,6 +29,7 @@ export default class DHDamageAction extends DHBaseAction {
             hasSave: this.hasSave,
             isCritical: data.system?.roll?.isCritical ?? false,
             source: data.system?.source,
+            data: this.getRollData(),
             damageTypes,
             event
         };
@@ -39,4 +41,8 @@ export default class DHDamageAction extends DHBaseAction {
         
         roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);
     }
+
+    // get modifiers() {
+    //     return [];
+    // }
 }

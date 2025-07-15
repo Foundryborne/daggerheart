@@ -51,7 +51,7 @@ export default class DHWeapon extends AttachableItem {
                     },
                     roll: {
                         trait: 'agility',
-                        type: 'weapon'
+                        type: 'attack'
                     },
                     damage: {
                         parts: [

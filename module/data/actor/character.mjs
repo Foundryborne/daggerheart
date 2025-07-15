@@ -2,25 +2,7 @@ import { burden } from '../../config/generalConfig.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
 import BaseDataActor from './base.mjs';
-
-const attributeField = () =>
-    new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        tierMarked: new foundry.data.fields.BooleanField({ initial: false })
-    });
-
-const resourceField = (max, reverse = false) =>
-    new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        max: new foundry.data.fields.NumberField({ initial: max, integer: true }),
-        isReversed: new foundry.data.fields.BooleanField({ initial: reverse })
-    });
-
-const stressDamageReductionRule = () =>
-    new foundry.data.fields.SchemaField({
-        enabled: new foundry.data.fields.BooleanField({ required: true, initial: false }),
-        cost: new foundry.data.fields.NumberField({ integer: true })
-    });
+import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 
 export default class DhCharacter extends BaseDataActor {
     static get metadata() {
@@ -96,22 +78,25 @@ export default class DhCharacter extends BaseDataActor {
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
                 roll: new fields.SchemaField({
-                    attack: new fields.NumberField({ integer: true, initial: 0 }),
-                    primaryWeapon: new fields.SchemaField({
-                        attack: new fields.NumberField({ integer: true, initial: 0 })
-                    }),
-                    spellcast: new fields.NumberField({ integer: true, initial: 0 }),
-                    action: new fields.NumberField({ integer: true, initial: 0 }),
-                    hopeOrFear: new fields.NumberField({ integer: true, initial: 0 })
+                    attack: bonusField(),
+                    spellcast: bonusField(),
+                    trait: bonusField(),
+                    action: bonusField(),
+                    reaction: bonusField(),
+                    primaryWeapon: bonusField(),
+                    secondaryWeapon: bonusField()
                 }),
                 damage: new fields.SchemaField({
-                    all: new fields.NumberField({ integer: true, initial: 0 }),
-                    physical: new fields.NumberField({ integer: true, initial: 0 }),
-                    magic: new fields.NumberField({ integer: true, initial: 0 }),
-                    primaryWeapon: new fields.SchemaField({
-                        bonus: new fields.NumberField({ integer: true }),
-                        extraDice: new fields.NumberField({ integer: true })
-                    })
+                    physical: bonusField(),
+                    magical: bonusField(),
+                    primaryWeapon: bonusField(),
+                    secondaryWeapon: bonusField()
+                }),
+                healing: bonusField(),
+                range: new fields.SchemaField({
+                    weapon: new fields.NumberField({ integer: true, initial: 0 }),
+                    spell: new fields.NumberField({ integer: true, initial: 0 }),
+                    other: new fields.NumberField({ integer: true, initial: 0 })
                 })
             }),
             companion: new ForeignDocumentUUIDField({ type: 'Actor', nullable: true, initial: null }),
@@ -181,6 +166,11 @@ export default class DhCharacter extends BaseDataActor {
 
     get needsCharacterSetup() {
         return !this.class.value || !this.class.subclass;
+    }
+
+    get spellcastModifier() {
+        const subClasses = this.parent.items.filter(x => x.type === 'subclass') ?? [];
+        return Math.max(subClasses?.map(sc => this.traits[sc.system.spellcastingTrait]?.value));
     }
 
     get spellcastingModifiers() {

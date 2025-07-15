@@ -665,11 +665,11 @@
                 }
             },
             "RollTypes": {
-                "ability": {
-                    "name": "Ability"
+                "trait": {
+                    "name": "Trait"
                 },
-                "weapon": {
-                    "name": "Weapon"
+                "attack": {
+                    "name": "Attack"
                 },
                 "spellcast": {
                     "name": "SpellCast"

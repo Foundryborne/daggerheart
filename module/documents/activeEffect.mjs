@@ -53,9 +53,10 @@ export default class DhActiveEffect extends ActiveEffect {
     static applyField(model, change, field) {
         const isItemTarget = change.value.toLowerCase().startsWith('item.');
         change.value = isItemTarget ? change.value.slice(5) : change.value;
-        change.value = Roll.safeEval(
+        /* change.value = Roll.safeEval(
             Roll.replaceFormulaData(change.value, isItemTarget ? change.effect.parent : model)
-        );
+        ); */
+        change.value = Roll.replaceFormulaData(change.value, isItemTarget ? change.effect.parent : model);
         super.applyField(model, change, field);
     }
 

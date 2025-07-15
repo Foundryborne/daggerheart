@@ -4,6 +4,7 @@ export default class DHRoll extends Roll {
     baseTerms = [];
     constructor(formula, data, options) {
         super(formula, data, options);
+        if(!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
     static messageType = 'adversaryRoll';
@@ -99,11 +100,44 @@ export default class DHRoll extends Roll {
     }
 
     formatModifier(modifier) {
-        const numTerm = modifier < 0 ? '-' : '+';
-        return [
-            new foundry.dice.terms.OperatorTerm({ operator: numTerm }),
-            new foundry.dice.terms.NumericTerm({ number: Math.abs(modifier) })
-        ];
+        if(Array.isArray(modifier)) {
+            return [
+                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                ...this.constructor.parse(modifier.join(' + '), this.options.data)
+            ];
+        } else {
+            const numTerm = modifier < 0 ? '-' : '+';
+            return [
+                new foundry.dice.terms.OperatorTerm({ operator: numTerm }),
+                new foundry.dice.terms.NumericTerm({ number: Math.abs(modifier) })
+            ];
+        }
+    }
+
+    applyBaseBonus() {
+        return [];
+    }
+
+    addModifiers() {
+        this.options.roll.modifiers?.forEach(m => {
+            this.terms.push(...this.formatModifier(m.value));
+        });
+    }
+
+    getBonus(path, label) {
+        const bonus = foundry.utils.getProperty(this.data.bonuses, path),
+            modifiers = [];
+        if(bonus?.bonus)
+            modifiers.push({
+                label: label,
+                value: bonus?.bonus
+            });
+        if(bonus?.dice?.length)
+            modifiers.push({
+                label: label,
+                value: bonus?.dice
+            });
+        return modifiers;
     }
 
     getFaces(faces) {
@@ -112,6 +146,9 @@ export default class DHRoll extends Roll {
 
     constructFormula(config) {
         this.terms = Roll.parse(this.options.roll.formula, config.data);
+
+        this.options.roll.modifiers = this.applyBaseBonus();
+        this.addModifiers();
 
         if (this.options.extraFormula) {
             this.terms.push(
