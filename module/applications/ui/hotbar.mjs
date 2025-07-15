@@ -38,6 +38,25 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
         await action.use({});
     }
 
+    static async useAttack(actorUuid) {
+        const actor = await foundry.utils.fromUuid(actorUuid);
+        if (!actor) {
+            return ui.notifications.warn('WARNING.ObjectDoesNotExist', {
+                format: {
+                    name: game.i18n.localize('Document'),
+                    identifier: actorUuid
+                }
+            });
+        }
+
+        const attack = actor.system.attack;
+        if (!attack) {
+            return ui.notifications.warn('DAGGERHEART.UI.Notifications.attackIsMissing');
+        }
+
+        await attack.use({});
+    }
+
     setupHooks() {
         Hooks.on('hotbarDrop', (bar, data, slot) => {
             if (data.type === 'Item') {
@@ -64,6 +83,16 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
 
                 this.createActionMacro(data, slot);
                 return false;
+            } else if (data.type === 'Attack') {
+                const actor = foundry.utils.fromUuidSync(data.actorUuid);
+                if (actor.uuid.startsWith('Compendium')) return true;
+                if (!actor.isOwner) {
+                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.unownedAttackMacro'));
+                    return false;
+                }
+
+                this.createAttackMacro(data, slot);
+                return false;
             }
         });
     }
@@ -76,7 +105,6 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
             command: `await game.system.api.applications.ui.DhHotbar.useItem("${data.uuid}");`
         });
         await game.user.assignHotbarMacro(macro, slot);
-        return false;
     }
 
     async createActionMacro(data, slot) {
@@ -87,6 +115,15 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
             command: `await game.system.api.applications.ui.DhHotbar.useAction("${data.data.itemUuid}", "${data.data.id}");`
         });
         await game.user.assignHotbarMacro(macro, slot);
-        return false;
+    }
+
+    async createAttackMacro(data, slot) {
+        const macro = await Macro.implementation.create({
+            name: `${game.i18n.localize('Display')} ${name}`,
+            type: CONST.MACRO_TYPES.SCRIPT,
+            img: 'icons/svg/book.svg',
+            command: `await game.system.api.applications.ui.DhHotbar.useAttack("${data.actorUuid}");`
+        });
+        await game.user.assignHotbarMacro(macro, slot);
     }
 }

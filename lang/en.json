@@ -1520,7 +1520,9 @@
                 "damageIgnore": "{character} did not take damage",
                 "featureIsMissing": "Feature is missing",
                 "actionIsMissing": "Action is missing",
-                "unownedActionMacro": "Cannot make a Use macro for an Action not on your character"
+                "attackIsMissing": "Attack is missing",
+                "unownedActionMacro": "Cannot make a Use macro for an Action not on your character",
+                "unownedAttackMacro": "Cannot make a Use macro for an Attack that doesn't belong to one of your characters"
             },
             "Tooltip": {
                 "openItemWorld": "Open Item World",
