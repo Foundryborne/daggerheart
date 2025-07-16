@@ -3,7 +3,7 @@
   "folder": null,
   "name": "Codex",
   "color": "#1a315b",
-  "sorting": "a",
+  "sorting": "m",
   "_id": "q9VsNwg9r0bTn2ll",
   "description": "",
   "sort": 400000,
@@ -12,12 +12,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1748717109630,
-    "modifiedTime": 1748717766758,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1752681430282,
+    "lastModifiedBy": "YNJ4HgHtFrTI89mx"
   },
   "_key": "!folders!q9VsNwg9r0bTn2ll"
 }

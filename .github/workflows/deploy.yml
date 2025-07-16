@@ -37,7 +37,7 @@ jobs:
         download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip
 
     # Create a zip file with all files required by the module to add to the release
-    - run: zip -r ./system.zip system.json README.md LICENSE build/daggerheart.js assets/ templates/ styles/daggerheart.css packs/ lang/
+    - run: zip -r ./system.zip system.json README.md LICENSE build/daggerheart.js build/tagify.css styles/daggerheart.css assets/ templates/ packs/ lang/
 
     # Create a release for this specific version
     - name: Update Release with Files

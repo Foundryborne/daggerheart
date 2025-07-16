@@ -190,7 +190,12 @@ export const registerRollDiceHooks = () => {
         if (config.roll.isCritical) updates.push({ key: 'stress', value: -1 });
         if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1 });
 
-        if (updates.length) actor.modifyResource(updates);
+        if (updates.length) {
+            const target = actor.system.partner ?? actor;
+            if (!['dead', 'unconcious'].some(x => actor.statuses.has(x))) {
+                target.modifyResource(updates);
+            }
+        }
 
         if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
 

@@ -19,6 +19,7 @@ import {
 import { placeables } from './module/canvas/_module.mjs';
 import { registerRollDiceHooks } from './module/dice/dhRoll.mjs';
 import { registerDHActorHooks } from './module/documents/actor.mjs';
+import './node_modules/@yaireo/tagify/dist/tagify.css';
 
 Hooks.once('init', () => {
     CONFIG.DH = SYSTEM;
@@ -42,7 +43,7 @@ Hooks.once('init', () => {
     );
 
     CONFIG.statusEffects = [
-        ...CONFIG.statusEffects,
+        ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
         ...Object.values(SYSTEM.GENERAL.conditions).map(x => ({
             ...x,
             name: game.i18n.localize(x.name),
@@ -135,6 +136,7 @@ Hooks.once('init', () => {
 
     CONFIG.Canvas.rulerClass = placeables.DhRuler;
     CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
+    CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
     CONFIG.Combat.documentClass = documents.DhpCombat;
     CONFIG.ui.combat = applications.ui.DhCombatTracker;
     CONFIG.ui.chat = applications.ui.DhChatLog;

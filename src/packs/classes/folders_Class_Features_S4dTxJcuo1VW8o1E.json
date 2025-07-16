@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Class Features",
+  "color": null,
+  "sorting": "a",
+  "_id": "S4dTxJcuo1VW8o1E",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1752680679705,
+    "modifiedTime": 1752680679705,
+    "lastModifiedBy": "binNpU8lWev6geDj"
+  },
+  "_key": "!folders!S4dTxJcuo1VW8o1E"
+}

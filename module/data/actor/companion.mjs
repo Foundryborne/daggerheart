@@ -60,8 +60,7 @@ export default class DhCompanion extends BaseDataActor {
                     },
                     roll: {
                         type: 'attack',
-                        bonus: 0,
-                        trait: 'instinct'
+                        bonus: 0
                     },
                     damage: {
                         parts: [
@@ -87,20 +86,12 @@ export default class DhCompanion extends BaseDataActor {
         };
     }
 
-    get traits() {
-        return {
-            instinct: { value: this.attack.roll.bonus }
-        };
-    }
-
     get proficiency() {
         return this.partner?.system?.proficiency ?? 1;
     }
 
     prepareBaseData() {
-        const partnerSpellcastingModifier = this.partner?.system?.spellcastModifier;
-        const spellcastingModifier = this.partner?.system?.traits?.[partnerSpellcastingModifier]?.value;
-        this.attack.roll.bonus = spellcastingModifier ?? 0; // Needs to expand on which modifier it is that should be used because of multiclassing;
+        this.attack.roll.bonus = this.partner?.system?.spellcastModifier ?? 0;
 
         for (let levelKey in this.levelData.levelups) {
             const level = this.levelData.levelups[levelKey];
@@ -130,12 +121,6 @@ export default class DhCompanion extends BaseDataActor {
                         break;
                 }
             }
-        }
-    }
-
-    prepareDerivedData() {
-        if (this.partner) {
-            this.partner.system.resources.hope.max += this.resources.hope;
         }
     }
 
