@@ -3,7 +3,7 @@
   "folder": null,
   "name": "Arcana",
   "color": "#562d6c",
-  "sorting": "a",
+  "sorting": "m",
   "_id": "jc1HbSpJmjAsq9GX",
   "description": "",
   "sort": 100000,
@@ -12,12 +12,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1748717088692,
-    "modifiedTime": 1748717766758,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1752681421845,
+    "lastModifiedBy": "YNJ4HgHtFrTI89mx"
   },
   "_key": "!folders!jc1HbSpJmjAsq9GX"
 }

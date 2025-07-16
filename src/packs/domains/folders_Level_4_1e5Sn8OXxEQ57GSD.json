@@ -6,16 +6,17 @@
   "sorting": "a",
   "_id": "1e5Sn8OXxEQ57GSD",
   "description": "",
-  "sort": 0,
+  "sort": 400000,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "lastModifiedBy": null
+    "lastModifiedBy": "YNJ4HgHtFrTI89mx",
+    "modifiedTime": 1752681455565
   },
   "_key": "!folders!1e5Sn8OXxEQ57GSD"
 }
