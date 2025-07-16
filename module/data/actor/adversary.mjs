@@ -125,7 +125,9 @@ export default class DhpAdversary extends BaseDataActor {
                     await this.parent.createEmbeddedDocuments('ActiveEffect', [
                         {
                             name: game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
-                            img: 'icons/magic/movement/chevrons-down-yellow.webp'
+                            img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                            disabled: !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation)
+                                .hordeDamage
                         }
                     ]);
                 } else if (raisedAboveHalf) {

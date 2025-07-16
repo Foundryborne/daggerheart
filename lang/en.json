@@ -1362,9 +1362,9 @@
                         "label": "Action Points",
                         "hint": "Automatically give and take Action Points as combatants take their turns."
                     },
-                    "countdowns": {
-                        "label": "Countdowns",
-                        "hint": "Automatically progress non-custom countdowns"
+                    "hordeDamage": {
+                        "label": "Automatic Horde Damage",
+                        "hint": "Automatically active horde effect to lower damage when reaching half or lower HP."
                     }
                 }
             },

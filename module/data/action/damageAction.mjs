@@ -9,8 +9,10 @@ export default class DHDamageAction extends DHBaseAction {
 
         const isAdversary = this.actor.type === 'adversary';
         if (isAdversary && this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
-            const halfHP = Math.ceil(this.actor.system.resources.hitPoints.max / 2);
-            if (this.actor.system.resources.hitPoints.value >= halfHP) return part.valueAlt;
+            const hasHordeDamage = this.actor.effects.find(
+                x => x.name === game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label')
+            );
+            if (hasHordeDamage) return part.valueAlt;
         }
 
         return formulaValue;
