@@ -99,6 +99,7 @@
                     "tier": { "label": "Tier" },
                     "type": { "label": "Type" }
                 },
+                "hordeDamage": "Horde Damage",
                 "horderHp": "Horde/HP"
             },
             "Character": {
@@ -1214,6 +1215,7 @@
             "damage": "Damage",
             "damageType": "Damage Type",
             "description": "Description",
+            "difficulty": "Difficulty",
             "duality": "Duality",
             "dualityRoll": "Duality Roll",
             "enabled": "Enabled",
@@ -1224,7 +1226,11 @@
             },
             "fear": "Fear",
             "features": "Features",
-            "hitPoints": "Hit Points",
+            "hitPoints": {
+                "single": "Hit Point",
+                "plural": "Hit Points",
+                "short": "HP"
+            },
             "hope": "Hope",
             "hordeHp": "Horde HP",
             "inactiveEffects": "Inactive Effects",
@@ -1251,7 +1257,8 @@
             "use": "Use",
             "used": "Used",
             "uses": "Uses",
-            "value": "Value"
+            "value": "Value",
+            "withThing": "With {thing}"
         },
         "ITEMS": {
             "FIELDS": {

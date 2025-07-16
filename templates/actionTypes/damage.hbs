@@ -1,7 +1,7 @@
 
 <fieldset class="one-column">
     <legend>
-        Damage
+        {{localize "DAGGERHEART.GENERAL.damage"}}
         {{#unless (eq path 'system.attack.')}}<a><i class="fa-solid fa-plus icon-button" data-action="addDamage"></i></a>{{/unless}}
     </legend>
     {{#unless (or @root.isNPC path)}}
@@ -23,6 +23,16 @@
                 </div>
             {{/if}}
             {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." index ".type") localize=true}}
+            {{#if ../horde}}
+                <fieldset class="one-column">
+                    <legend>{{localize "DAGGERHEART.ACTORS.Adversary.hordeDamage"}}</legend>
+                    <div class="nest-inputs">
+                        {{formField ../fields.valueAlt.fields.flatMultiplier value=dmg.valueAlt.flatMultiplier name=(concat ../path "damage.parts." index ".valueAlt.flatMultiplier") label="Multiplier" classes="inline-child" }}
+                        {{formField ../fields.valueAlt.fields.dice value=dmg.valueAlt.dice name=(concat ../path "damage.parts." index ".valueAlt.dice") classes="inline-child"}}
+                        {{formField ../fields.valueAlt.fields.bonus value=dmg.valueAlt.bonus name=(concat ../path "damage.parts." index ".valueAlt.bonus") localize=true classes="inline-child"}}
+                    </div>
+                </fieldset>
+            {{/if}}
         {{else}}
             {{#with (@root.getRealIndex index) as | realIndex |}}
                 <div class="nest-inputs">
@@ -33,11 +43,11 @@
                         {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base) dmg.resultBased)}}
                             <div class="nest-inputs">
                                 <fieldset class="one-column">
-                                    <legend>With Hope</legend>
+                                    <legend>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}</legend>
                                     {{> formula fields=../../fields.value.fields type=../../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
                                 </fieldset>
                                 <fieldset class="one-column">
-                                    <legend>With Fear</legend>
+                                    <legend>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}</legend>
                                     {{> formula fields=../../fields.valueAlt.fields type=../../fields.type dmg=dmg source=dmg.valueAlt target="valueAlt" realIndex=realIndex}}
                                 </fieldset>
                             </div>

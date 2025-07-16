@@ -21,7 +21,7 @@ export default class DhCharacter extends BaseDataActor {
         return {
             ...super.defineSchema(),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.hitPoints', true),
+                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.hitPoints.plural', true),
                 stress: resourceField(6, 'DAGGERHEART.GENERAL.stress', true),
                 hope: resourceField(6, 'DAGGERHEART.GENERAL.hope')
             }),

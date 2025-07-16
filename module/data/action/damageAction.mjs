@@ -6,6 +6,13 @@ export default class DHDamageAction extends DHBaseAction {
     getFormulaValue(part, data) {
         let formulaValue = part.value;
         if (this.hasRoll && part.resultBased && data.system.roll.result.duality === -1) return part.valueAlt;
+
+        const isAdversary = this.actor.type === 'adversary';
+        if (isAdversary && this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+            const halfHP = Math.ceil(this.actor.system.resources.hitPoints.max / 2);
+            if (this.actor.system.resources.hitPoints.value >= halfHP) return part.valueAlt;
+        }
+
         return formulaValue;
     }
 
@@ -21,7 +28,7 @@ export default class DHDamageAction extends DHBaseAction {
             bonusDamage = [];
 
         if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(systemData));
-        
+
         const config = {
             title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: this.name }),
             roll: { formula },

@@ -20,14 +20,14 @@
         {{#if (eq source.system.type 'horde')}}
             <div class="tag">
                 <span>{{source.system.hordeHp}}</span>
-                <span>/HP</span>
+                <span>/{{localize "DAGGERHEART.GENERAL.hitPoints.short"}}</span>
             </div>
         {{/if}}
     </div>
     <line-div></line-div>
     <div class="adversary-info">
         <div class="description">
-            <i>{{source.system.description}}</i>
+            <i>{{{source.system.description}}}</i>
         </div>
         <div class="motives-and-tatics">
             <b>{{localize 'DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label'}}: </b>{{{source.system.motivesAndTactics}}}
