@@ -244,13 +244,13 @@ export default class DhCharacter extends BaseDataActor {
             features = [];
 
         for (let item of this.parent.items) {
-            if (item.system.type === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
+            if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
                 ancestryFeatures.push(item);
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.community.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
                 communityFeatures.push(item);
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.class.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
                 classFeatures.push(item);
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.subclass.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
                 const subclassState = this.class.subclass.system.featureState;
                 const identifier = item.system.identifier;
                 if (
@@ -260,7 +260,7 @@ export default class DhCharacter extends BaseDataActor {
                 ) {
                     subclassFeatures.push(item);
                 }
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.companion.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
                 companionFeatures.push(item);
             } else if (item.type === 'feature' && !item.system.type) {
                 features.push(item);

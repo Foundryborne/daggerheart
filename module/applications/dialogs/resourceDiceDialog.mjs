@@ -67,7 +67,7 @@ export default class ResourceDiceDialog extends HandlebarsApplicationMixin(Appli
 
     static async rerollDice() {
         const max = itemAbleRollParse(this.item.system.resource.max, this.actor, this.item);
-        const diceFormula = `${max}d${this.item.system.resource.dieFaces}`;
+        const diceFormula = `${max}${this.item.system.resource.dieFaces}`;
         const roll = await new Roll(diceFormula).evaluate();
         if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
         this.rollValues = roll.terms[0].results.map(x => ({ value: x.result, used: false }));

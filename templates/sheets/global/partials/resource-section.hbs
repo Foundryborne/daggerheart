@@ -19,7 +19,7 @@
                     {{formGroup systemFields.resource.fields.value value=source.system.resource.value localize=true}}
                     {{formGroup systemFields.resource.fields.max value=source.system.resource.max localize=true}}
                 {{else}}
-                    {{formGroup systemFields.resource.fields.dieFaces value=source.system.resource.dieFaces localize=true}}
+                    {{formGroup systemFields.resource.fields.dieFaces value=source.system.resource.dieFaces localize=true blank=false}}
                     {{formGroup systemFields.resource.fields.max value=source.system.resource.max label="DAGGERHEART.ITEMS.FIELDS.resource.amount.label" localize=true}}
                 {{/if}}
             </div>
