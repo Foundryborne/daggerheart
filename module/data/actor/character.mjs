@@ -87,6 +87,8 @@ export default class DhCharacter extends BaseDataActor {
                 value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
                 subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })
             }),
+            advantageSources: new fields.ArrayField(new fields.StringField()),
+            disadvantageSources: new fields.ArrayField(new fields.StringField()),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
                 roll: new fields.SchemaField({

@@ -21,6 +21,24 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 this.tooltip.innerHTML = html;
                 options.direction = this._determineItemTooltipDirection(element);
             }
+        } else {
+            const isAdvantage = element.dataset.tooltip?.startsWith('#advantage#');
+            const isDisadvantage = element.dataset.tooltip?.startsWith('#disadvantage#');
+            if (isAdvantage || isDisadvantage) {
+                const actorUuid = element.dataset.tooltip.slice(isAdvantage ? 11 : 14);
+                const actor = await foundry.utils.fromUuid(actorUuid);
+
+                if (actor) {
+                    html = await foundry.applications.handlebars.renderTemplate(
+                        `systems/daggerheart/templates/ui/tooltip/advantage.hbs`,
+                        {
+                            sources: isAdvantage ? actor.system.advantageSources : actor.system.disadvantageSources
+                        }
+                    );
+
+                    this.tooltip.innerHTML = html;
+                }
+            }
         }
 
         super.activate(element, { ...options, html: html });
