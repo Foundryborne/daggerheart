@@ -136,6 +136,7 @@ Hooks.once('init', () => {
 
     CONFIG.Canvas.rulerClass = placeables.DhRuler;
     CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
+    CONFIG.Token.objectClass = placeables.DhTokenPlaceable;
     CONFIG.Combat.documentClass = documents.DhpCombat;
     CONFIG.ui.combat = applications.ui.DhCombatTracker;
     CONFIG.ui.chat = applications.ui.DhChatLog;
