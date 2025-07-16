@@ -21,7 +21,7 @@ export default class DhCharacter extends BaseDataActor {
         return {
             ...super.defineSchema(),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.hitPoints', true),
+                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.hitPoints.plural', true),
                 stress: resourceField(6, 'DAGGERHEART.GENERAL.stress', true),
                 hope: resourceField(6, 'DAGGERHEART.GENERAL.hope')
             }),
@@ -413,7 +413,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareDerivedData() {
-        this.resources.hope.value = Math.min(this.resources.hope.value, this.resources.hope.max);
+        const baseHope = this.resources.hope.value + (this.companion?.system?.resources?.hope ?? 0);
+        this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
     }
 
     getRollData() {

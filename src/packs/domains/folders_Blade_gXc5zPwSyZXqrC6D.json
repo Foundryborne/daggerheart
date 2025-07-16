@@ -3,7 +3,7 @@
   "folder": null,
   "name": "Blade",
   "color": "#923628",
-  "sorting": "a",
+  "sorting": "m",
   "_id": "gXc5zPwSyZXqrC6D",
   "description": "",
   "sort": 200000,
@@ -12,12 +12,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1748717097962,
-    "modifiedTime": 1748717766758,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1752681424426,
+    "lastModifiedBy": "YNJ4HgHtFrTI89mx"
   },
   "_key": "!folders!gXc5zPwSyZXqrC6D"
 }

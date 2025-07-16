@@ -1,6 +1,4 @@
 export default class DhAutomation extends foundry.abstract.DataModel {
-    static LOCALIZATION_PREFIXES = ['DAGGERHEART.SETTINGS.Automation']; // Doesn't work for some reason
-
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
@@ -20,6 +18,11 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 required: true,
                 initial: false,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.actionPoints.label'
+            }),
+            hordeDamage: new fields.BooleanField({
+                required: true,
+                initial: true,
+                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hordeDamage.label'
             })
         };
     }

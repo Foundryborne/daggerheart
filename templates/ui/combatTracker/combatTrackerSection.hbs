@@ -31,16 +31,17 @@
                         </div>
 
                         {{#if ../combat.round}}
-                            <div class="token-actions">
-                                {{#if isOwner}}
-                                    {{#if (and (not isNPC) ../actionTokens.enabled)}}
-                                        <div class="action-tokens">
-                                            {{#times ../actionTokens.tokens}}
-                                                <button type="button" class="inline-control main icon fa-solid fa-bolt-lightning action-token {{#if (lte ../system/actionTokens this)}}used{{/if}}" data-action="setActionTokens" data-combatant-id="{{../id}}" data-token-index="{{this}}">
-                                                </button>
-                                            {{/times}}
-                                        </div>
-                                    {{/if}}
+                            <div class="token-actions"> 
+                                {{#if (and (not isNPC) ../actionTokens.enabled)}}
+                                    <div class="action-tokens">
+                                        {{#times ../actionTokens.tokens}}
+                                            <button 
+                                                type="button" class="inline-control main icon fa-solid fa-bolt-lightning action-token {{#unless ../isOwner}}inactive{{/unless}} {{#if (lte ../system/actionTokens this)}}used{{/if}}" {{#if ../isOwner}}
+                                                data-action="setActionTokens"{{/if}} data-combatant-id="{{../id}}" data-token-index="{{this}}" {{#unless ../isOwner}}disabled{{/unless}}
+                                            >
+                                            </button>
+                                        {{/times}}
+                                    </div>
                                 {{/if}}
                             </div>
                         {{/if}}

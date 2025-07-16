@@ -2,7 +2,6 @@
     .token-actions {
         align-self: stretch;
         display: flex;
-        align-items: top;
         justify-content: center;
         gap: 16px;
 
@@ -25,6 +24,16 @@
                 &.used {
                     opacity: 0.5;
                     background: transparent;
+                }
+
+                &.inactive {
+                    background: var(--color-warm-2);
+                    color: var(--color-light-1);
+                    cursor: default;
+
+                    &:hover {
+                        filter: none;
+                    }
                 }
             }
         }

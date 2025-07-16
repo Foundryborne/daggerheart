@@ -10,9 +10,6 @@
     },
     "authors": [
         {
-            "name": "Darrington Press LLC"
-        },
-        {
             "name": "WBHarry"
         },
         {
@@ -48,15 +45,6 @@
             "label": "Classes",
             "system": "daggerheart",
             "path": "packs/classes.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
-            "name": "class-features",
-            "label": "Class Features",
-            "system": "daggerheart",
-            "path": "packs/class-features.db",
             "type": "Item",
             "private": false,
             "flags": {}
@@ -98,15 +86,6 @@
             "flags": {}
         },
         {
-            "name": "community-features",
-            "label": "Community Features",
-            "system": "daggerheart",
-            "path": "packs/community-features.db",
-            "type": "Item",
-            "private": false,
-            "flags": {}
-        },
-        {
             "name": "weapons",
             "label": "Weapons",
             "system": "daggerheart",
@@ -134,10 +113,10 @@
             "flags": {}
         },
         {
-            "name": "general-items",
-            "label": "General Items",
+            "name": "miscellaneous",
+            "label": "Miscellaneous",
             "system": "daggerheart",
-            "path": "packs/items/general.db",
+            "path": "packs/items/miscellaneous.db",
             "type": "Item",
             "private": false,
             "flags": {}
@@ -172,21 +151,13 @@
                     "name": "Character Options",
                     "sorting": "m",
                     "color": "#000000",
-                    "packs": [
-                        "classes",
-                        "class-features",
-                        "subclasses",
-                        "domains",
-                        "ancestries",
-                        "communities",
-                        "community-features"
-                    ]
+                    "packs": ["ancestries", "communities", "classes", "subclasses", "domains"]
                 },
                 {
                     "name": "Items",
                     "sorting": "m",
                     "color": "#000000",
-                    "packs": ["weapons", "armors", "consumables", "general-items"]
+                    "packs": ["armors", "weapons", "consumables", "miscellaneous"]
                 }
             ]
         }

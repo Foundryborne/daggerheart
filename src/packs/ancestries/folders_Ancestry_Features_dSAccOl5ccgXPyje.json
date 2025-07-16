@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Ancestry Features",
+  "color": null,
+  "sorting": "a",
+  "_id": "dSAccOl5ccgXPyje",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1752680699271,
+    "modifiedTime": 1752680699271,
+    "lastModifiedBy": "binNpU8lWev6geDj"
+  },
+  "_key": "!folders!dSAccOl5ccgXPyje"
+}

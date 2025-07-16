@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Community Features",
+  "color": null,
+  "sorting": "a",
+  "_id": "KA1VSGslxkbvVeMp",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1752680707054,
+    "modifiedTime": 1752680707054,
+    "lastModifiedBy": "binNpU8lWev6geDj"
+  },
+  "_key": "!folders!KA1VSGslxkbvVeMp"
+}

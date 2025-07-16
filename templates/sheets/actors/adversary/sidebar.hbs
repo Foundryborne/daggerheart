@@ -1,5 +1,5 @@
 <aside class="adversary-sidebar-sheet">
-    <div class="portrait {{#if (gte source.system.resources.hitPoints.value source.system.resources.hitPoints.max)}}death-roll{{/if}}">
+    <div class="portrait {{#if (and source.system.resources.hitPoints.max (gte source.system.resources.hitPoints.value source.system.resources.hitPoints.max))}}death-roll{{/if}}">
         <img src="{{source.img}}" alt="{{source.name}}" data-action='editImage' data-edit="img">
         <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.makeDeathMove"}}" data-action="makeDeathMove"><i class="fas fa-skull death-save" ></i></a>
     </div>

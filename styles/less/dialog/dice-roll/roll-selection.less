@@ -1,6 +1,13 @@
 @import '../../utils/colors.less';
 @import '../../utils/fonts.less';
 
+.theme-light .application.daggerheart.dialog.dh-style.views.roll-selection {
+    .roll-dialog-container .dices-section .dice-option .dice-icon.normal {
+        filter: brightness(0) saturate(100%) invert(13%) sepia(1%) saturate(0%) hue-rotate(10deg) brightness(98%)
+            contrast(100%);
+    }
+}
+
 .application.daggerheart.dialog.dh-style.views.roll-selection {
     .roll-dialog-container {
         display: flex;
@@ -24,6 +31,7 @@
                     height: 70px;
                     object-fit: contain;
                 }
+
                 .dice-select {
                     display: flex;
                     align-items: center;

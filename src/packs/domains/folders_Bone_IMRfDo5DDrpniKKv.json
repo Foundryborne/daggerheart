@@ -3,7 +3,7 @@
   "folder": null,
   "name": "Bone",
   "color": "#656768",
-  "sorting": "a",
+  "sorting": "m",
   "_id": "IMRfDo5DDrpniKKv",
   "description": "",
   "sort": 300000,
@@ -12,12 +12,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1748717103209,
-    "modifiedTime": 1748717766758,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1752681427007,
+    "lastModifiedBy": "YNJ4HgHtFrTI89mx"
   },
   "_key": "!folders!IMRfDo5DDrpniKKv"
 }

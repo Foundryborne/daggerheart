@@ -52,7 +52,7 @@ export default class DhpAdversary extends BaseDataActor {
                 })
             }),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.hitPoints', true),
+                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.hitPoints.plural', true),
                 stress: resourceField(0, 'DAGGERHEART.GENERAL.stress', true)
             }),
             attack: new ActionField({
@@ -108,5 +108,38 @@ export default class DhpAdversary extends BaseDataActor {
 
     get features() {
         return this.parent.items.filter(x => x.type === 'feature');
+    }
+
+    async _preUpdate(changes, options, user) {
+        const allowed = await super._preUpdate(changes, options, user);
+        if (allowed === false) return false;
+
+        if (this.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+            if (changes.system?.resources?.hitPoints?.value) {
+                const halfHP = Math.ceil(this.resources.hitPoints.max / 2);
+                const newHitPoints = changes.system.resources.hitPoints.value;
+                const previouslyAboveHalf = this.resources.hitPoints.value < halfHP;
+                const loweredBelowHalf = previouslyAboveHalf && newHitPoints >= halfHP;
+                const raisedAboveHalf = !previouslyAboveHalf && newHitPoints < halfHP;
+                if (loweredBelowHalf) {
+                    await this.parent.createEmbeddedDocuments('ActiveEffect', [
+                        {
+                            name: game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                            img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                            disabled: !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation)
+                                .hordeDamage
+                        }
+                    ]);
+                } else if (raisedAboveHalf) {
+                    const hordeEffects = this.parent.effects.filter(
+                        x => x.name === game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label')
+                    );
+                    await this.parent.deleteEmbeddedDocuments(
+                        'ActiveEffect',
+                        hordeEffects.map(x => x.id)
+                    );
+                }
+            }
+        }
     }
 }
