@@ -88,7 +88,7 @@
                         {{/if}}
                     {{/each}}
                 </fieldset>
-                <fieldset class="modifier-container one-column">
+                <fieldset class="modifier-container {{#if (eq @root.rollType 'DualityRoll')}}two-columns{{else}}one-column{{/if}}">
                     <legend>Modifiers</legend>
                     <div class="nest-inputs">
                         <button class="advantage-chip flex1 {{#if (eq advantage 1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="1">
@@ -107,13 +107,27 @@
                             {{/if}}
                             <span class="label">{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}</span>
                         </button>
-                        {{#unless (eq @root.rollType 'D20Roll')}}
-                            <select name="roll.dice.advantageFaces">
+                    </div>
+                    {{#unless (eq @root.rollType 'D20Roll')}}
+                        <div class="nest-inputs">
+                            <select name="roll.dice.advantageNumber"{{#unless advantage}} disabled{{/unless}}>
+                                {{#times 10}}
+                                    <option value="{{add this 1}}" {{#if (eq @root.roll.advantageNumber (add this 1))}} selected{{/if}}>{{add this 1}}</option>
+                                {{/times}}
+                            </select>
+                            <select name="roll.dice.advantageFaces"{{#unless advantage}} disabled{{/unless}}>
                                 {{selectOptions diceOptions selected=@root.roll.dAdvantage.denomination}}
                             </select>
-                        {{/unless}}
-                    </div>
-                    <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="Situational Bonus">
+                        </div>
+                    {{/unless}}
+                    {{#if @root.rallyDie.length}}
+                        <span class="formula-label">{{localize "DAGGERHEART.CLASS.Feature.rallyDice"}}</span>
+                        <select name="roll.dice._rallyIndex">
+                            {{selectOptions @root.rallyDie blank="" selected=@root.roll._rallyIndex}}
+                        </select>
+                    {{/if}}
+                    {{#if (eq @root.rollType 'DualityRoll')}}<span class="formula-label">Situational Bonus</span>{{/if}}
+                    <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="{{#if (eq @root.rollType 'DualityRoll')}}Ex: 1d6 + 5{{else}}Situational Bonus{{/if}}">
                 </fieldset>
             {{/unless}}
             <span class="formula-label"><b>Formula:</b> {{@root.formula}}</span>

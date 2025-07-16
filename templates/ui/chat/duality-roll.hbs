@@ -16,6 +16,11 @@
                 {{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}
             </div>
         {{/if}}
+        {{#if roll.rally.dice}}
+            <div class="duality-modifier">
+                {{localize "DAGGERHEART.CLASS.Feature.rallyDice"}} {{roll.rally.dice}}
+            </div>
+        {{/if}}
     </div>
     <div class="dice-result">
         <div class="dice-formula">{{roll.formula}}</div>
@@ -38,7 +43,7 @@
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.hope"}}</div>
                                         <div class="dice-inner-container hope" title="{{localize "DAGGERHEART.GENERAL.hope"}}">
                                             <div class="dice-wrapper">
-                                                <img class="dice" src="../icons/svg/d12-grey.svg"/>
+                                                <img class="dice" src="../icons/svg/{{roll.hope.dice}}-grey.svg"/>
                                             </div>
                                             <div class="dice-value">{{roll.hope.value}}</div>
                                         </div>
@@ -49,7 +54,7 @@
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.fear"}}</div>
                                         <div class="dice-inner-container fear" title="{{localize "DAGGERHEART.GENERAL.fear"}}">
                                             <div class="dice-wrapper">
-                                                <img class="dice" src="../icons/svg/d12-grey.svg"/>
+                                                <img class="dice" src="../icons/svg/{{roll.fear.dice}}-grey.svg"/>
                                             </div>
                                             <div class="dice-value">{{roll.fear.value}}</div>
                                         </div>
@@ -72,9 +77,33 @@
                                         <div class="dice-container">
                                             <div class="dice-inner-container {{#if (eq roll.advantage.type 1)}}advantage{{else}}disadvantage{{/if}}">
                                                 <div class="dice-wrapper">
-                                                    <img class="dice" src="../icons/svg/d6-grey.svg"/>
+                                                    <img class="dice" src="../icons/svg/{{roll.advantage.dice}}-grey.svg"/>
                                                 </div>
                                                 <div class="dice-value">{{roll.advantage.value}}</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>  
+                        </div>
+                    {{/if}}
+                    {{#if roll.rally.dice}}
+                        <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">
+                                    <span>1{{roll.rally.dice}}</span>
+                                </span>
+                                <span class="part-total">{{roll.rally.value}}</span>
+                            </header>
+                            <div class="flexrow">
+                                <ol class="dice-rolls">
+                                    <li class="roll die {{roll.rally.dice}}">
+                                        <div class="dice-container">
+                                            <div class="dice-inner-container">
+                                                <div class="dice-wrapper">
+                                                    <img class="dice" src="../icons/svg/{{roll.rally.dice}}-grey.svg"/>
+                                                </div>
+                                                <div class="dice-value">{{roll.rally.value}}</div>
                                             </div>
                                         </div>
                                     </li>

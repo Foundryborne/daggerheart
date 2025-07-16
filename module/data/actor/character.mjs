@@ -123,10 +123,7 @@ export default class DhCharacter extends BaseDataActor {
                     })
                 }),
                 rally: new fields.ArrayField(
-                    new fields.NumberField({
-                        integer: true,
-                        initial: 6
-                    }),
+                    new fields.StringField(),
                     {
                         label: 'DAGGERHEART.CLASS.Feature.rallyDice'
                     }
