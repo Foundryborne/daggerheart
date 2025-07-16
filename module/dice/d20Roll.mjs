@@ -130,9 +130,9 @@ export default class D20Roll extends DHRoll {
                 value: this.options.roll.bonus
             });
 
-        modifiers.push(...this.getBonus(`roll.${this.options.type}`, `${this.options.type.capitalize()} Bonus`));
+        modifiers.push(...this.getBonus(`roll.${this.options.type}`, `${this.options.type?.capitalize()} Bonus`));
         modifiers.push(
-            ...this.getBonus(`roll.${this.options.roll.type}`, `${this.options.roll.type.capitalize()} Bonus`)
+            ...this.getBonus(`roll.${this.options.roll.type}`, `${this.options.roll.type?.capitalize()} Bonus`)
         );
 
         return modifiers;

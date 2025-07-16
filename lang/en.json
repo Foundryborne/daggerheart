@@ -406,7 +406,11 @@
                 "rerollDice": "Reroll Dice"
             }
         },
-
+        "CLASS": {
+            "Feature": {
+                "rallyDice": "Bardic Rally Dice"
+            }
+        },
         "CONFIG": {
             "ActionType": {
                 "passive": "Passive",

@@ -102,7 +102,7 @@ export default class DhCharacter extends BaseDataActor {
                     physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
                     magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage'),
                     primaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.primaryWeapon'),
-                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.primaryWeapon')
+                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.secondaryWeapon')
                 }),
                 healing: bonusField('DAGGERHEART.GENERAL.Healing.healingAmount'),
                 range: new fields.SchemaField({
@@ -121,7 +121,16 @@ export default class DhCharacter extends BaseDataActor {
                         initial: 0,
                         label: 'DAGGERHEART.GENERAL.Range.other'
                     })
-                })
+                }),
+                rally: new fields.ArrayField(
+                    new fields.NumberField({
+                        integer: true,
+                        initial: 6
+                    }),
+                    {
+                        label: 'DAGGERHEART.CLASS.Feature.rallyDice'
+                    }
+                )
             }),
             companion: new ForeignDocumentUUIDField({ type: 'Actor', nullable: true, initial: null }),
             rules: new fields.SchemaField({
