@@ -5,7 +5,7 @@
                 <div class="dices-section">
                     {{#if (eq @root.rollType 'D20Roll')}}
                         <div class="dice-option">
-                            <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/default/' @root.roll.d20.denomination '.svg'}}" alt="">
+                            <img class="dice-icon normal" src="{{concat 'systems/daggerheart/assets/icons/dice/default/' @root.roll.d20.denomination '.svg'}}" alt="">
                             <div class="dice-select">
                                 <select name="roll.dice.d20">
                                     {{selectOptions diceOptions selected=@root.roll.d20.denomination}}
