@@ -249,10 +249,9 @@
                 "title": "{actor} - Death Move"
             },
             "Downtime": {
-                "downtimeHeader": "Downtime Activities",
                 "longRest": {
                     "title": "Long Rest",
-                    "moves": "Long Rest ({current}/{max})",
+                    "moves": "Long Rest Moves ({current}/{max})",
                     "clearStress": {
                         "description": "Describe how you blow off steam or pull yourself together, and clear all marked Stress.",
                         "name": "Clear Stress"
@@ -276,7 +275,7 @@
                 },
                 "shortRest": {
                     "title": "Short Rest",
-                    "moves": "Short Rest ({current}/{max})",
+                    "moves": "Short Rest Moves ({current}/{max})",
                     "tendToWounds": {
                         "name": "Tend to Wounds",
                         "description": "Describe how you hastily patch yourself up, then clear a number of Hit Points equal to 1d4 + your tier. You can do this to an ally instead."

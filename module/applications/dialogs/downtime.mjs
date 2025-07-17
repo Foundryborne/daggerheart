@@ -51,6 +51,9 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
+        context.title = game.i18n.localize(
+            `DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`
+        );
         context.selectedActivity = this.selectedActivity;
         context.moveData = this.moveData;
         context.nrCurrentChoices = Object.values(this.moveData).reduce((acc, category) => {
