@@ -775,7 +775,7 @@
             "WeaponFeature": {
                 "barrier": {
                     "name": "Barrier",
-                    "description": "+{armorScore} to Armor Score; -1 to Evasion"
+                    "description": "Gain your character's Tier + 1 to Armor Score; -1 to Evasion"
                 },
                 "bonded": {
                     "name": "Bonded",
@@ -891,7 +891,7 @@
                 },
                 "paired": {
                     "name": "Paired",
-                    "description": "+{bonusDamage} to primary weapon damage to targets within Melee range"
+                    "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range"
                 },
                 "parry": {
                     "name": "Parry",
@@ -911,7 +911,7 @@
                 },
                 "protective": {
                     "name": "Protective",
-                    "description": "+{tier} to Armor Score"
+                    "description": "Add your character's Tier to your Armor Score"
                 },
                 "quick": {
                     "name": "Quick",
@@ -960,10 +960,6 @@
                 "timebending": {
                     "name": "Timebending",
                     "description": "You can choose the target of your attack after making your attack roll."
-                },
-                "versatile": {
-                    "name": "Versatile",
-                    "description": "This weapon can also be used with these statistics—{characterTrait}, {range}, {damage}."
                 }
             }
         },

@@ -55,8 +55,22 @@ export default class DhActiveEffect extends ActiveEffect {
     }
 
     static applyField(model, change, field) {
-        change.value = itemAbleRollParse(change.value, model, change.effect.parent);
+        change.value = this.effectSafeEval(itemAbleRollParse(change.value, model, change.effect.parent));
         super.applyField(model, change, field);
+    }
+
+    /* Altered Foundry safeEval to allow non-numeric returns */
+    static effectSafeEval(expression) {
+        let result;
+        try {
+            // eslint-disable-next-line no-new-func
+            const evl = new Function('sandbox', `with (sandbox) { return ${expression}}`);
+            result = evl(Roll.MATH_PROXY);
+        } catch (err) {
+            return expression;
+        }
+
+        return result;
     }
 
     async toChat(origin) {
