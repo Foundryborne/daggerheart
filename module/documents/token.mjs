@@ -16,7 +16,7 @@ export default class DHToken extends TokenDocument {
         });
         bars.sort((a, b) => a.label.compare(b.label));
 
-        const invalidAttributes = ['gold', 'levelData', 'rules.damageReduction.maxArmorMarked.value'];
+        const invalidAttributes = ['gold', 'levelData', 'actions', 'rules.damageReduction.maxArmorMarked.value'];
         const values = attributes.value.reduce((acc, v) => {
             const a = v.join('.');
             if (invalidAttributes.some(x => a.startsWith(x))) return acc;
@@ -32,19 +32,19 @@ export default class DHToken extends TokenDocument {
 
         return bars.concat(values);
     }
-    
-    static _getTrackedAttributesFromSchema(schema, _path=[]) {
-        const attributes = {bar: [], value: []};
-        for ( const [name, field] of Object.entries(schema.fields) ) {
+
+    static _getTrackedAttributesFromSchema(schema, _path = []) {
+        const attributes = { bar: [], value: [] };
+        for (const [name, field] of Object.entries(schema.fields)) {
             const p = _path.concat([name]);
-            if ( field instanceof foundry.data.fields.NumberField ) attributes.value.push(p);
-            if ( field instanceof foundry.data.fields.ArrayField ) attributes.value.push(p);
+            if (field instanceof foundry.data.fields.NumberField) attributes.value.push(p);
+            if (field instanceof foundry.data.fields.ArrayField) attributes.value.push(p);
             const isSchema = field instanceof foundry.data.fields.SchemaField;
             const isModel = field instanceof foundry.data.fields.EmbeddedDataField;
-            if ( isSchema || isModel ) {
+            if (isSchema || isModel) {
                 const schema = isModel ? field.model.schema : field;
-                const isBar = schema.has && schema.has("value") && schema.has("max");
-                if ( isBar ) attributes.bar.push(p);
+                const isBar = schema.has && schema.has('value') && schema.has('max');
+                if (isBar) attributes.bar.push(p);
                 else {
                     const inner = this.getTrackedAttributes(schema, p);
                     attributes.bar.push(...inner.bar);

@@ -88,6 +88,9 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
                     element.value = `system.${item.value}`;
                 },
                 click: e => e.fetch(),
+                customize: function (_input, _inputRect, container) {
+                    container.style.zIndex = foundry.applications.api.ApplicationV2._maxZ;
+                },
                 minLength: 0
             });
         });
