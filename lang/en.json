@@ -1537,7 +1537,11 @@
                 "noAvailableArmorMarks": "You have no more available armor marks",
                 "notEnoughStress": "You don't have enough stress",
                 "damageIgnore": "{character} did not take damage",
-                "featureIsMissing": "Feature is missing"
+                "featureIsMissing": "Feature is missing",
+                "featureNotHope": "This feature is used as something else than a Hope feature and cannot be used here.",
+                "featureNotClass": "This feature is used as something else than a Class feature and cannot be used here.",
+                "featureNotPrimary": "This feature is used as something else than a Primary feature and cannot be used here.",
+                "featureNotSecondary": "This feature is used as something else than a Secondary feature and cannot be used here."
             },
             "Tooltip": {
                 "openItemWorld": "Open Item World",

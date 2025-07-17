@@ -78,6 +78,7 @@ export default class ClassSheet extends DHBaseItemSheet {
     /* -------------------------------------------- */
 
     async _onDrop(event) {
+        event.stopPropagation();
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
         const target = event.target.closest('fieldset.drop-section');
@@ -87,12 +88,24 @@ export default class ClassSheet extends DHBaseItemSheet {
             });
         } else if (item.type === 'feature') {
             if (target.classList.contains('hope-feature')) {
+                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.hope) {
+                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotHope'));
+                    return;
+                }
+
+                await item.update({ 'system.subType': CONFIG.DH.ITEM.featureSubTypes.hope });
                 await this.document.update({
-                    'system.hopeFeatures': [...this.document.system.hopeFeatures.map(x => x.uuid), item.uuid]
+                    'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
                 });
             } else if (target.classList.contains('class-feature')) {
+                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.class) {
+                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotClass'));
+                    return;
+                }
+
+                await item.update({ 'system.subType': CONFIG.DH.ITEM.featureSubTypes.class });
                 await this.document.update({
-                    'system.classFeatures': [...this.document.system.classFeatures.map(x => x.uuid), item.uuid]
+                    'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
                 });
             }
         } else if (item.type === 'weapon') {
@@ -177,28 +190,25 @@ export default class ClassSheet extends DHBaseItemSheet {
         doc.sheet.render({ force: true });
     }
 
-    getActionPath(type) {
-        return type === 'hope' ? 'hopeFeatures' : 'classFeatures';
-    }
-
     static async addFeature(_, target) {
-        const actionPath = this.getActionPath(target.dataset.type);
         const feature = await game.items.documentClass.create({
             type: 'feature',
-            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') })
+            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') }),
+            system: {
+                subType:
+                    target.dataset.type === 'hope'
+                        ? CONFIG.DH.ITEM.featureSubTypes.hope
+                        : CONFIG.DH.ITEM.featureSubTypes.class
+            }
         });
         await this.document.update({
-            [`system.${actionPath}`]: [
-                ...this.document.system[actionPath].filter(x => x).map(x => x.uuid),
-                feature.uuid
-            ]
+            [`system.features`]: [...this.document.system.features.filter(x => x).map(x => x.uuid), feature.uuid]
         });
     }
 
     static async editFeature(_, button) {
         const target = button.closest('.feature-item');
-        const actionPath = this.getActionPath(button.dataset.type);
-        const feature = this.document.system[actionPath].find(x => x?.id === target.dataset.featureId);
+        const feature = this.document.system.features.find(x => x?.id === target.dataset.featureId);
         if (!feature) {
             ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
             return;
@@ -210,10 +220,16 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async deleteFeature(event, button) {
         event.stopPropagation();
         const target = button.closest('.feature-item');
-        const actionPath = this.getActionPath(button.dataset.type);
+
+        const feature = this.document.system.features.find(
+            feature => feature && feature.id === target.dataset.featureId
+        );
+        if (feature) {
+            await feature.update({ 'system.subType': null });
+        }
 
         await this.document.update({
-            [`system.${actionPath}`]: this.document.system[actionPath]
+            [`system.features`]: this.document.system.features
                 .filter(feature => feature && feature.id !== target.dataset.featureId)
                 .map(x => x.uuid)
         });

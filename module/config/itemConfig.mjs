@@ -1322,7 +1322,9 @@ export const featureTypes = {
 
 export const featureSubTypes = {
     primary: 'primary',
-    secondary: 'secondary'
+    secondary: 'secondary',
+    hope: 'hope',
+    class: 'class'
 };
 
 export const actionTypes = {
