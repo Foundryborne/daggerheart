@@ -98,6 +98,9 @@
                                 <span><i class="fa-regular fa-circle"></i></span>
                             {{/if}}
                             <span class="label">{{localize "DAGGERHEART.GENERAL.Advantage.full"}}</span>
+                            {{#if @root.rollConfig.data.advantageSources.length}}
+                                <span class="advantage-chip-tooltip" data-tooltip="{{concat "#advantage#" @root.rollConfig.source.actor}}"><i class="fa-solid fa-circle-info"></i></span>
+                            {{/if}}
                         </button>
                         <button class="disadvantage-chip flex1 {{#if (eq advantage -1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="-1">
                             {{#if (eq advantage -1)}}
@@ -106,6 +109,9 @@
                                 <span><i class="fa-regular fa-circle"></i></span>
                             {{/if}}
                             <span class="label">{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}</span>
+                            {{#if @root.rollConfig.data.disadvantageSources.length}}
+                                <span class="advantage-chip-tooltip" data-tooltip="{{concat "#disadvantage#" @root.rollConfig.source.actor}}"><i class="fa-solid fa-circle-info"></i></span>
+                            {{/if}}
                         </button>
                     </div>
                     {{#unless (eq @root.rollType 'D20Roll')}}

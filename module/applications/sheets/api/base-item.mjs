@@ -30,7 +30,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.tab.features .drop-section' },
-            { dragSelector: '.feature-item', dropSelector: null }
+            { dragSelector: '.feature-item', dropSelector: null },
+            { dragSelector: '.action-item', dropSelector: null }
         ]
     };
 
@@ -258,6 +259,23 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             const featureData = { type: 'Item', data: { ...feature.toObject(), _id: null }, fromInternal: true };
             event.dataTransfer.setData('text/plain', JSON.stringify(featureData));
             event.dataTransfer.setDragImage(featureItem.querySelector('img'), 60, 0);
+        } else {
+            const actionItem = event.currentTarget.closest('.action-item');
+            if (actionItem) {
+                const action = this.document.system.actions[actionItem.dataset.index];
+                if (!action) {
+                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.actionIsMissing'));
+                    return;
+                }
+
+                const actionData = {
+                    type: 'Action',
+                    data: { ...action.toObject(), id: action.id, itemUuid: this.document.uuid },
+                    fromInternal: true
+                };
+                event.dataTransfer.setData('text/plain', JSON.stringify(actionData));
+                event.dataTransfer.setDragImage(actionItem.querySelector('img'), 60, 0);
+            }
         }
     }
 
