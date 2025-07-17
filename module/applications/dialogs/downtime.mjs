@@ -25,8 +25,8 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'views', 'dh-style', 'downtime'],
-        position: { width: 680, height: 'auto' },
+        classes: ['daggerheart', 'views', 'dh-style', 'dialog', 'downtime'],
+        position: { width: 600, height: 'auto' },
         actions: {
             selectMove: this.selectMove,
             takeDowntime: this.takeDowntime

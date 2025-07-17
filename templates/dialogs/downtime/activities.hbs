@@ -5,13 +5,13 @@
         {{#each moves as |move key|}}
             <div class="activity-container">
                 <div class="activity-inner-container">
-                    <i class="fa-solid fa-circle activity-marker"></i>
-                    <a class="activity-select-section" data-action="selectMove" data-category="{{../category}}" data-move="{{key}}">
-                        <i class="fa-solid fa-hammer activtiy-icon"></i>
-                        <div>{{move.name}}{{#if move.selected}} ({{move.selected}}){{/if}}</div>
+                    <i class="{{#if move.selected}}fa-solid{{else}}fa-regular{{/if}} fa-circle activity-marker"></i>
+                    <a class="activity-select-section" data-action="selectMove" data-category="{{../category}}" data-move="{{key}}" data-tooltip="{{concat "#" ../category "#" key}}">
+                        <i class="{{move.icon}} activity-icon"></i>
+                        <div>{{move.name}}</div>
                     </a>
                 </div>
-                <a><i class="fa-solid fa-chevron-up expand-icon"></i></a>
+                {{#if move.selected}}<div class="activity-selected-marker">{{move.selected}}</div>{{/if}}
             </div>
         {{/each}}
     </div>
