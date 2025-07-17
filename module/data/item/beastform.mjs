@@ -69,6 +69,7 @@ export default class DHBeastform extends BaseDataItem {
 
         const beastformEffect = this.parent.effects.find(x => x.type === 'beastform');
         await beastformEffect.updateSource({
+            changes: [...beastformEffect.changes, { key: 'system.advantageSources', mode: 2, value: this.advantageOn }],
             system: {
                 characterTokenData: {
                     tokenImg: this.parent.parent.prototypeToken.texture.src,

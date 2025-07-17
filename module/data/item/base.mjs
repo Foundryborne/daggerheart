@@ -53,11 +53,14 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                     }),
                     diceStates: new fields.TypedObjectField(
                         new fields.SchemaField({
-                            value: new fields.NumberField({ integer: true, nullable: true, initial: null }),
+                            value: new fields.NumberField({ integer: true, initial: 1, min: 1 }),
                             used: new fields.BooleanField({ initial: false })
                         })
                     ),
-                    dieFaces: new fields.StringField({ initial: '4' })
+                    dieFaces: new fields.StringField({
+                        choices: CONFIG.DH.GENERAL.diceTypes,
+                        initial: CONFIG.DH.GENERAL.diceTypes.d4
+                    })
                 },
                 { nullable: true, initial: null }
             );

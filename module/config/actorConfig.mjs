@@ -411,7 +411,7 @@ export const levelupData = {
 };
 
 export const subclassFeatureLabels = {
-    1: 'DAGGERHEART.ITEMS.DomainCard.foundation',
+    1: 'DAGGERHEART.ITEMS.DomainCard.foundationTitle',
     2: 'DAGGERHEART.ITEMS.DomainCard.specializationTitle',
     3: 'DAGGERHEART.ITEMS.DomainCard.masteryTitle'
 };

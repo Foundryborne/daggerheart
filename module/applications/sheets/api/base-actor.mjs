@@ -23,7 +23,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         actions: {
             openSettings: DHBaseActorSheet.#openSettings
         },
-        dragDrop: []
+        dragDrop: [{ dragSelector: '.inventory-item[data-type="attack"]', dropSelector: null }]
     };
 
     /**@type {typeof DHBaseActorSettings}*/
@@ -48,5 +48,28 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
      */
     static async #openSettings() {
         await this.settingSheet.render({ force: true });
+    }
+
+    /* -------------------------------------------- */
+    /*  Application Drag/Drop                       */
+    /* -------------------------------------------- */
+
+    /**
+     * On dragStart on the item.
+     * @param {DragEvent} event - The drag event
+     */
+    async _onDragStart(event) {
+        const attackItem = event.currentTarget.closest('.inventory-item[data-type="attack"]');
+
+        if (attackItem) {
+            const attackData = {
+                type: 'Attack',
+                actorUuid: this.document.uuid,
+                img: this.document.system.attack.img,
+                fromInternal: true
+            };
+            event.dataTransfer.setData('text/plain', JSON.stringify(attackData));
+            event.dataTransfer.setDragImage(attackItem.querySelector('img'), 60, 0);
+        }
     }
 }

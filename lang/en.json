@@ -1350,8 +1350,8 @@
             },
             "DomainCard": {
                 "type": "Type",
-                "foundation": "Foundation",
                 "recallCost": "Recall Cost",
+                "foundationTitle": "Foundation",
                 "specializationTitle": "Specialization",
                 "masteryTitle": "Mastery"
             },
@@ -1562,7 +1562,18 @@
                 "noAvailableArmorMarks": "You have no more available armor marks",
                 "notEnoughStress": "You don't have enough stress",
                 "damageIgnore": "{character} did not take damage",
-                "featureIsMissing": "Feature is missing"
+                "featureIsMissing": "Feature is missing",
+                "actionIsMissing": "Action is missing",
+                "attackIsMissing": "Attack is missing",
+                "unownedActionMacro": "Cannot make a Use macro for an Action not on your character",
+                "unownedAttackMacro": "Cannot make a Use macro for an Attack that doesn't belong to one of your characters",
+                "featureNotHope": "This feature is used as something else than a Hope feature and cannot be used here.",
+                "featureNotClass": "This feature is used as something else than a Class feature and cannot be used here.",
+                "featureNotPrimary": "This feature is used as something else than a Primary feature and cannot be used here.",
+                "featureNotSecondary": "This feature is used as something else than a Secondary feature and cannot be used here.",
+                "featureNotFoundation": "This feature is used as something else than a Foundation feature and cannot be used here.",
+                "featureNotSpecialization": "This feature is used as something else than a Specialization feature and cannot be used here.",
+                "featureNotMastery": "This feature is used as something else than a Mastery feature and cannot be used here."
             },
             "Tooltip": {
                 "openItemWorld": "Open Item World",

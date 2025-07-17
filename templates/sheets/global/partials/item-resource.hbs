@@ -10,7 +10,7 @@
                 <a class="item-resource" data-action="toggleResourceDice" data-dice="{{#if ../../this}}{{../this}}{{else}}{{state}}{{/if}}">
                     <div class="item-dice-resource">
                         <label>{{ifThen state.value state.value '?'}}</label>
-                        <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/d" (ifThen ../../item.system.resource.dieFaces ../../item.system.resource.dieFaces ../item.system.resource.dieFaces) ".svg"}}" />
+                        <img src="{{concat "systems/daggerheart/assets/icons/dice/hope/" (ifThen ../../item.system.resource.dieFaces ../../item.system.resource.dieFaces ../item.system.resource.dieFaces) ".svg"}}" />
                         {{#if state.used}}<i class="fa-solid fa-x"></i>{{/if}}
                     </div>
                 </a>

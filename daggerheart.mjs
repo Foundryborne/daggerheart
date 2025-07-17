@@ -140,6 +140,7 @@ Hooks.once('init', () => {
     CONFIG.Combat.documentClass = documents.DhpCombat;
     CONFIG.ui.combat = applications.ui.DhCombatTracker;
     CONFIG.ui.chat = applications.ui.DhChatLog;
+    CONFIG.ui.hotbar = applications.ui.DhHotbar;
     CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 
     CONFIG.ui.resources = applications.ui.DhFearTracker;

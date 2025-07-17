@@ -506,9 +506,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             name: this.setup.ancestryName ?? this.setup.primaryAncestry.name,
             system: {
                 ...this.setup.primaryAncestry.system,
-                features: [primaryAncestryFeature.uuid, secondaryAncestryFeature.uuid],
-                primaryFeature: primaryAncestryFeature.uuid,
-                secondaryFeature: secondaryAncestryFeature.uuid
+                features: [primaryAncestryFeature.uuid, secondaryAncestryFeature.uuid]
             }
         };
 

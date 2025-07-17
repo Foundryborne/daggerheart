@@ -1,4 +1,4 @@
-import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
+import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHSubclass extends BaseDataItem {
@@ -22,20 +22,22 @@ export default class DHSubclass extends BaseDataItem {
                 nullable: true,
                 initial: null
             }),
-            foundationFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
-            specializationFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
-            masteryFeature: new ForeignDocumentUUIDField({ type: 'Item' }),
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),
             isMulticlass: new fields.BooleanField({ initial: false })
         };
     }
 
-    get features() {
-        return [
-            { ...this.foundationFeature?.toObject(), identifier: 'foundationFeature' },
-            { ...this.specializationFeature?.toObject(), identifier: 'specializationFeature' },
-            { ...this.masteryFeature?.toObject(), identifier: 'masteryFeature' }
-        ];
+    get foundationFeatures() {
+        return this.features.filter(x => x.system.subType === CONFIG.DH.ITEM.featureSubTypes.foundation);
+    }
+
+    get specializationFeatures() {
+        return this.features.filter(x => x.system.subType === CONFIG.DH.ITEM.featureSubTypes.specialization);
+    }
+
+    get masteryFeatures() {
+        return this.features.filter(x => x.system.subType === CONFIG.DH.ITEM.featureSubTypes.mastery);
     }
 
     async _preCreate(data, options, user) {
