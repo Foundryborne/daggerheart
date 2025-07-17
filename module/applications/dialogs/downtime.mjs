@@ -7,13 +7,19 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         this.actor = actor;
         this.shortrest = shortrest;
 
-        this.moveData = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves;
+        this.moveData = foundry.utils.deepClone(
+            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves
+        );
         this.nrChoices = {
             shortRest: {
-                max: actor.system.rules.rest[`${shortrest ? 'short' : 'long'}Rest`].shortMoves
+                max:
+                    (shortrest ? this.moveData.shortRest.nrChoices : 0) +
+                    actor.system.bonuses.rest[`${shortrest ? 'short' : 'long'}Rest`].shortMoves
             },
             longRest: {
-                max: actor.system.rules.rest[`${shortrest ? 'short' : 'long'}Rest`].longMoves
+                max:
+                    (!shortrest ? this.moveData.longRest.nrChoices : 0) +
+                    actor.system.bonuses.rest[`${shortrest ? 'short' : 'long'}Rest`].longMoves
             }
         };
         this.nrChoices.total = { max: this.nrChoices.shortRest.max + this.nrChoices.longRest.max };
@@ -45,7 +51,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         super._attachPartListeners(partId, htmlElement, options);
 
         htmlElement
-            .querySelectorAll('.activity-select-section')
+            .querySelectorAll('.activity-container')
             .forEach(element => element.addEventListener('contextmenu', this.deselectMove.bind(this)));
     }
 
@@ -106,7 +112,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
     }
 
     deselectMove(event) {
-        const button = event.target.closest('.activity-select-section');
+        const button = event.target.closest('.activity-container');
         const move = button.dataset.move;
         this.moveData[button.dataset.category].moves[move].selected = this.moveData[button.dataset.category].moves[move]
             .selected
@@ -118,7 +124,9 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
 
     static async takeDowntime() {
         const moves = Object.values(this.moveData).flatMap(category => {
-            return Object.values(category.moves).filter(x => x.selected);
+            return Object.values(category.moves)
+                .filter(x => x.selected)
+                .flatMap(move => [...Array(move.selected).keys()].map(_ => move));
         });
 
         const cls = getDocumentClass('ChatMessage');

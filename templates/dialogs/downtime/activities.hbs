@@ -3,16 +3,16 @@
 
     <div class="activities-container">   
         {{#each moves as |move key|}}
-            <div class="activity-container">
+            <a class="activity-container" data-action="selectMove" data-category="{{../category}}" data-move="{{key}}" data-tooltip="{{concat "#" ../category "#" key}}">
                 <div class="activity-inner-container">
                     <i class="{{#if move.selected}}fa-solid{{else}}fa-regular{{/if}} fa-circle activity-marker"></i>
-                    <a class="activity-select-section" data-action="selectMove" data-category="{{../category}}" data-move="{{key}}" data-tooltip="{{concat "#" ../category "#" key}}">
+                    <div class="activity-select-section">
                         <i class="{{move.icon}} activity-icon"></i>
                         <div>{{move.name}}</div>
-                    </a>
+                    </div> 
                 </div>
                 {{#if move.selected}}<div class="activity-selected-marker">{{move.selected}}</div>{{/if}}
-            </div>
+            </a>
         {{/each}}
     </div>
 </fieldset>

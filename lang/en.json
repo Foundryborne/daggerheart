@@ -1014,6 +1014,30 @@
                 "singular": "Adversary",
                 "plural": "Adversaries"
             },
+            "Bonuses": {
+                "rest": {
+                    "shortRest": {
+                        "shortRestMoves": {
+                            "label": "Short Rest: Bonus Short Rest Moves",
+                            "hint": "The number of extra Short Rest Moves the character can take during a Short Rest."
+                        },
+                        "longRestMoves": {
+                            "label": "Short Rest: Bonus Long Rest Moves",
+                            "hint": "The number of extra Long Rest Moves the character can take during a Short Rest."
+                        }
+                    },
+                    "longRest": {
+                        "shortRestMoves": {
+                            "label": "Long Rest: Bonus Short Rest Moves",
+                            "hint": "The number of extra Short Rest Moves the character can take during a Long Rest."
+                        },
+                        "longRestMoves": {
+                            "label": "Long Rest: Bonus Long Rest Moves",
+                            "hint": "The number of extra Long Rest Moves the character can take during a Long Rest."
+                        }
+                    }
+                }
+            },
             "Character": {
                 "singular": "Character",
                 "plural": "Characters"
@@ -1161,28 +1185,6 @@
                         "minor": {
                             "label": "Stress Damage Reduction: Minor",
                             "hint": "The cost in stress you can pay to reduce minor damage to none."
-                        }
-                    }
-                },
-                "rest": {
-                    "shortRest": {
-                        "shortRestMoves": {
-                            "label": "Short Rest: Short Rest Moves",
-                            "hint": "The number of Short Rest Moves the character can take during a Short Rest."
-                        },
-                        "longRestMoves": {
-                            "label": "Short Rest: Long Rest Moves",
-                            "hint": "The number of Long Rest Moves the character can take during a Short Rest."
-                        }
-                    },
-                    "longRest": {
-                        "shortRestMoves": {
-                            "label": "Long Rest: Short Rest Moves",
-                            "hint": "The number of Short Rest Moves the character can take during a Long Rest."
-                        },
-                        "longRestMoves": {
-                            "label": "Long Rest: Long Rest Moves",
-                            "hint": "The number of Long Rest Moves the character can take during a Long Rest."
                         }
                     }
                 }
