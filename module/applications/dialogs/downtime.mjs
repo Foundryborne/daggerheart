@@ -45,7 +45,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         super._attachPartListeners(partId, htmlElement, options);
 
         htmlElement
-            .querySelectorAll('.activity-image')
+            .querySelectorAll('.activity-select-section')
             .forEach(element => element.addEventListener('contextmenu', this.deselectMove.bind(this)));
     }
 
@@ -103,7 +103,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
     }
 
     deselectMove(event) {
-        const button = event.target.closest('.activity-image');
+        const button = event.target.closest('.activity-select-section');
         const move = button.dataset.move;
         this.moveData[button.dataset.category].moves[move].selected = this.moveData[button.dataset.category].moves[move]
             .selected

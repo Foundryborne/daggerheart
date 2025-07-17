@@ -1,7 +1,8 @@
 <div>
-    <div class="downtime-container">
+    <h2 class="downtime-header">{{localize "DAGGERHEART.APPLICATIONS.Downtime.downtimeHeader"}}</h2>
+    <div class="downtime-container two-columns even">
         {{#if shortRestMoves.moves}}{{> "systems/daggerheart/templates/dialogs/downtime/activities.hbs" moves=shortRestMoves.moves category='shortRest' nrChoices=nrChoices.shortRest}}{{/if}}
-            {{#if longRestMoves.moves}}{{> "systems/daggerheart/templates/dialogs/downtime/activities.hbs" moves=longRestMoves.moves category='longRest' nrChoices=nrChoices.longRest}}{{/if}}
+        {{#if longRestMoves.moves}}{{> "systems/daggerheart/templates/dialogs/downtime/activities.hbs" moves=longRestMoves.moves category='longRest' nrChoices=nrChoices.longRest}}{{/if}}
     </div>
     <footer class="flexrow">
         <button type="button" data-action="close">{{localize "Cancel"}}</button>
