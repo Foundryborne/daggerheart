@@ -1,0 +1,19 @@
+<fieldset class="one-column">
+    <legend>{{localize (concat "DAGGERHEART.APPLICATIONS.Downtime." category ".moves") max=nrChoices.max current=nrChoices.current}}</legend>
+    
+    {{#each moves as |move key|}}
+        <div class="activity-container">
+            <div class="activity-title">
+                <div class="activity-image {{#if move.selected}}selected{{/if}}" data-action="selectMove" data-category="{{../category}}" data-move="{{key}}">
+                    {{#if move.selected}}<div class="activity-select-label">{{move.selected}}</div>{{/if}}
+                    <img src="{{move.img}}" />
+                </div>
+
+                <span class="activity-title-text">{{localize move.name}}</span>
+            </div>
+            <div class="activity-body">
+                {{localize move.description}}
+            </div>
+        </div>
+    {{/each}}
+</fieldset>

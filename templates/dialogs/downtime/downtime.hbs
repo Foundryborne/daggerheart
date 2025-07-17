@@ -1,0 +1,10 @@
+<div>
+    <div class="downtime-container">
+        {{#if shortRestMoves.moves}}{{> "systems/daggerheart/templates/dialogs/downtime/activities.hbs" moves=shortRestMoves.moves category='shortRest' nrChoices=nrChoices.shortRest}}{{/if}}
+            {{#if longRestMoves.moves}}{{> "systems/daggerheart/templates/dialogs/downtime/activities.hbs" moves=longRestMoves.moves category='longRest' nrChoices=nrChoices.longRest}}{{/if}}
+    </div>
+    <footer class="flexrow">
+        <button type="button" data-action="close">{{localize "Cancel"}}</button>
+        <button type="button" data-action="takeDowntime" {{#if disabledDowntime}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.Downtime.takeDowntime"}}</button>
+    </footer>
+</div>
