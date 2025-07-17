@@ -122,12 +122,9 @@ export default class DhCharacter extends BaseDataActor {
                         label: 'DAGGERHEART.GENERAL.Range.other'
                     })
                 }),
-                rally: new fields.ArrayField(
-                    new fields.StringField(),
-                    {
-                        label: 'DAGGERHEART.CLASS.Feature.rallyDice'
-                    }
-                )
+                rally: new fields.ArrayField(new fields.StringField(), {
+                    label: 'DAGGERHEART.CLASS.Feature.rallyDice'
+                })
             }),
             companion: new ForeignDocumentUUIDField({ type: 'Actor', nullable: true, initial: null }),
             rules: new fields.SchemaField({
@@ -258,11 +255,11 @@ export default class DhCharacter extends BaseDataActor {
                 classFeatures.push(item);
             } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.subclass.id) {
                 const subclassState = this.class.subclass.system.featureState;
-                const identifier = item.system.identifier;
+                const subType = item.system.subType;
                 if (
-                    identifier === 'foundationFeature' ||
-                    (identifier === 'specializationFeature' && subclassState >= 2) ||
-                    (identifier === 'masterFeature' && subclassState >= 3)
+                    subType === CONFIG.DH.ITEM.featureSubTypes.foundation ||
+                    (subType === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
+                    (subType === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
                 ) {
                     subclassFeatures.push(item);
                 }
