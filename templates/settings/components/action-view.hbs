@@ -1,18 +1,17 @@
 <div>
+    <div class="form-group">
+        <label>{{localize "Icon"}}</label>
+
+        <div class="form-field">
+            <input type="text" name="icon" value="{{icon}}" />
+        </div>
+    </div>
+
     <fieldset>
         <legend>{{localize "Description"}}</legend>
         
-        <prose-mirror name="description" value="{{description}}" toggled=true>
+        <prose-mirror name="description" value="{{description}}">
             {{{ enrichedDescription }}}
         </prose-mirror>
     </fieldset>
-    {{!-- <fieldset>
-        <legend>{{localize "Actions"}} <a data-action="addItem"><i class="fa-solid fa-plus"></i></a></legend>
-
-        <div class="settings-items">
-            {{#each this.actions as |action index|}}
-                {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" action type="actions" id=index }}
-            {{/each}}
-        </div>
-    </fieldset> --}}
 </div>
