@@ -39,11 +39,13 @@ export default class D20Roll extends DHRoll {
     }
 
     get hasAdvantage() {
-        return this.options.roll.advantage === this.constructor.ADV_MODE.ADVANTAGE;
+        const adv = this.options.roll.advantage.type ?? this.options.roll.advantage;
+        return adv === this.constructor.ADV_MODE.ADVANTAGE;
     }
 
     get hasDisadvantage() {
-        return this.options.roll.advantage === this.constructor.ADV_MODE.DISADVANTAGE;
+        const adv = this.options.roll.advantage.type ?? this.options.roll.advantage;
+        return adv === this.constructor.ADV_MODE.DISADVANTAGE;
     }
 
     static applyKeybindings(config) {
@@ -90,8 +92,8 @@ export default class D20Roll extends DHRoll {
 
     configureModifiers() {
         this.applyAdvantage();
-
-        this.baseTerms = foundry.utils.deepClone(this.terms);
+        
+        this.baseTerms = foundry.utils.deepClone(this.dice);
 
         this.options.roll.modifiers = this.applyBaseBonus();
 

@@ -25,6 +25,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
         'systems/daggerheart/templates/ui/chat/parts/damage-chat.hbs',
         'systems/daggerheart/templates/ui/chat/parts/target-chat.hbs',
-        'systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs'
+        'systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs',
+        'systems/daggerheart/templates/dialogs/downtime/activities.hbs'
     ]);
 };

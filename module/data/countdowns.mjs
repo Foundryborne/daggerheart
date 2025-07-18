@@ -135,8 +135,8 @@ export const registerCountdownHooks = () => {
             if (application) {
                 foundry.applications.instances.get(application)?.render();
             } else {
-                foundry.applications.instances.get('narrative-countdowns').render();
-                foundry.applications.instances.get('encounter-countdowns').render();
+                foundry.applications.instances.get('narrative-countdowns')?.render();
+                foundry.applications.instances.get('encounter-countdowns')?.render();
             }
 
             return false;

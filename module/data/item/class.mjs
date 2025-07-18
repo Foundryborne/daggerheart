@@ -27,8 +27,7 @@ export default class DHClass extends BaseDataItem {
                 label: 'DAGGERHEART.GENERAL.hitPoints.plural'
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
-            hopeFeatures: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
-            classFeatures: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
             inventory: new fields.SchemaField({
                 take: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
@@ -52,12 +51,18 @@ export default class DHClass extends BaseDataItem {
         };
     }
 
-    get hopeFeature() {
-        return this.hopeFeatures.length > 0 ? this.hopeFeatures[0] : null;
+    get hopeFeatures() {
+        return (
+            this.features.filter(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.hope) ??
+            (this.features.filter(x => !x).length > 0 ? {} : null)
+        );
     }
 
-    get features() {
-        return [...this.hopeFeatures.filter(x => x), ...this.classFeatures.filter(x => x)];
+    get classFeatures() {
+        return (
+            this.features.filter(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.class) ??
+            (this.features.filter(x => !x).length > 0 ? {} : null)
+        );
     }
 
     async _preCreate(data, options, user) {

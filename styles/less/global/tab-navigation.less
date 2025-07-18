@@ -7,12 +7,22 @@
         height: 40px;
         width: 100%;
 
-        .feature-tab {
-            border: none;
+        .navigation-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
 
-            a {
-                color: light-dark(@dark-blue, @golden);
-                font-family: @font-body;
+            .navigation-inner-container {
+                flex: 1;
+
+                .feature-tab {
+                    border: none;
+
+                    a {
+                        color: light-dark(@dark-blue, @golden);
+                        font-family: @font-body;
+                    }
+                }
             }
         }
     }

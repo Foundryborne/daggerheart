@@ -3,42 +3,42 @@
     data-tab='{{tabs.features.id}}'
     data-group='{{tabs.features.group}}'
 >
-    <fieldset class="drop-section" data-type="foundationFeature">
+    <fieldset class="drop-section" data-type="foundation">
         <legend>
             {{localize "DAGGERHEART.GENERAL.Tabs.foundation"}} 
-            <a {{#if source.system.foundationFeature}}disabled{{/if}}><i data-action="addFeature" data-type="foundationFeature" class="fa-solid fa-plus icon-button {{#if source.system.foundationFeature}}disabled{{/if}}"></i></a>
+            <a><i data-action="addFeature" data-type="foundation" class="fa-solid fa-plus icon-button"></i></a>
         </legend>
 
         <div class="feature-list">
-            {{#if source.system.foundationFeature}}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='foundationFeature' feature=source.system.foundationFeature}}
-            {{/if}}
+            {{#each source.system.foundationFeatures as | feature | }}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='foundation' feature=feature}}
+            {{/each}}
         </div>
     </fieldset>
 
-    <fieldset class="drop-section" data-type="specializationFeature">
+    <fieldset class="drop-section" data-type="specialization">
         <legend>
             {{localize "DAGGERHEART.GENERAL.Tabs.specialization"}} 
-            <a {{#if source.system.specializationFeature}}disabled{{/if}}><i data-action="addFeature" data-type="specializationFeature" class="fa-solid fa-plus icon-button {{#if source.system.specializationFeature}}disabled{{/if}}"></i></a>
+            <a><i data-action="addFeature" data-type="specialization" class="fa-solid fa-plus icon-button"></i></a>
         </legend>
 
         <div class="feature-list">
-            {{#if source.system.specializationFeature}}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='specializationFeature' feature=source.system.specializationFeature}}
-            {{/if}}
+            {{#each source.system.specializationFeatures as | feature |}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='specialization' feature=feature}}
+            {{/each}}
         </div>
     </fieldset>
 
-    <fieldset class="drop-section" data-type="masteryFeature">
+    <fieldset class="drop-section" data-type="mastery">
         <legend>
             {{localize "DAGGERHEART.GENERAL.Tabs.mastery"}} 
-            <a {{#if source.system.masteryFeature}}disabled{{/if}}><i data-action="addFeature" data-type="masteryFeature" class="fa-solid fa-plus icon-button {{#if source.system.masteryFeature}}disabled{{/if}}"></i></a>
+            <a><i data-action="addFeature" data-type="mastery" class="fa-solid fa-plus icon-button"></i></a>
         </legend>
 
         <div class="feature-list">
-            {{#if source.system.masteryFeature}}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='masteryFeature' feature=source.system.masteryFeature}}
-            {{/if}}
+            {{#each source.system.masteryFeatures as | feature |}}
+                {{> 'systems/daggerheart/templates/sheets/global/partials/feature-section-item.hbs' type='mastery' feature=feature}}
+            {{/each}}
         </div>
     </fieldset>
 </section>

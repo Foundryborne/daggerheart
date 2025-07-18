@@ -87,6 +87,8 @@ export default class DhCharacter extends BaseDataActor {
                 value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
                 subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })
             }),
+            advantageSources: new fields.ArrayField(new fields.StringField()),
+            disadvantageSources: new fields.ArrayField(new fields.StringField()),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
                 roll: new fields.SchemaField({
@@ -102,7 +104,7 @@ export default class DhCharacter extends BaseDataActor {
                     physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
                     magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage'),
                     primaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.primaryWeapon'),
-                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.primaryWeapon')
+                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.secondaryWeapon')
                 }),
                 healing: bonusField('DAGGERHEART.GENERAL.Healing.healingAmount'),
                 range: new fields.SchemaField({
@@ -120,6 +122,47 @@ export default class DhCharacter extends BaseDataActor {
                         integer: true,
                         initial: 0,
                         label: 'DAGGERHEART.GENERAL.Range.other'
+                    })
+                }),
+                rally: new fields.ArrayField(new fields.StringField(), {
+                    label: 'DAGGERHEART.CLASS.Feature.rallyDice'
+                }),
+                rest: new fields.SchemaField({
+                    shortRest: new fields.SchemaField({
+                        shortMoves: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            min: 0,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.shortRestMoves.label',
+                            hint: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.shortRestMoves.hint'
+                        }),
+                        longMoves: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            min: 0,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.longRestMoves.label',
+                            hint: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.longRestMoves.hint'
+                        })
+                    }),
+                    longRest: new fields.SchemaField({
+                        shortMoves: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            min: 0,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.shortRestMoves.label',
+                            hint: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.shortRestMoves.hint'
+                        }),
+                        longMoves: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            min: 0,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.longRestMoves.label',
+                            hint: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.longRestMoves.hint'
+                        })
                     })
                 })
             }),
@@ -244,23 +287,23 @@ export default class DhCharacter extends BaseDataActor {
             features = [];
 
         for (let item of this.parent.items) {
-            if (item.system.type === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
+            if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
                 ancestryFeatures.push(item);
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.community.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
                 communityFeatures.push(item);
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.class.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
                 classFeatures.push(item);
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.subclass.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
                 const subclassState = this.class.subclass.system.featureState;
-                const identifier = item.system.identifier;
+                const subType = item.system.subType;
                 if (
-                    identifier === 'foundationFeature' ||
-                    (identifier === 'specializationFeature' && subclassState >= 2) ||
-                    (identifier === 'masterFeature' && subclassState >= 3)
+                    subType === CONFIG.DH.ITEM.featureSubTypes.foundation ||
+                    (subType === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
+                    (subType === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
                 ) {
                     subclassFeatures.push(item);
                 }
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.companion.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
                 companionFeatures.push(item);
             } else if (item.type === 'feature' && !item.system.type) {
                 features.push(item);

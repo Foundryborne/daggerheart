@@ -28,7 +28,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             useAction: this.useAction,
             toggleResourceDice: this.toggleResourceDice,
             handleResourceDice: this.handleResourceDice,
-            toChat: this.toChat
+            toChat: this.toChat,
+            useDowntime: this.useDowntime
         },
         window: {
             resizable: true
@@ -750,6 +751,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
             if (!item) return;
             item.toChat(this.document.id);
         }
+    }
+
+    static useDowntime(_, button) {
+        new game.system.api.applications.dialogs.Downtime(this.document, button.dataset.type === 'shortRest').render(
+            true
+        );
     }
 
     async _onDragStart(event) {

@@ -116,5 +116,14 @@
         {{/each}}
     </div>
 
-    {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+    {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+        <div class="character-downtime-container">
+            <button data-action="useDowntime" data-type="shortRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}">
+                <i class="fa-solid fa-chair"></i>
+            </button>
+            <button data-action="useDowntime" data-type="longRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}">
+                <i class="fa-solid fa-bed"></i>
+            </button>
+        </div>
+    {{/'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
 </header>

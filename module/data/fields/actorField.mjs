@@ -25,8 +25,11 @@ const stressDamageReductionRule = localizationPath =>
 
 const bonusField = label =>
     new fields.SchemaField({
-        bonus: new fields.NumberField({ integer: true, initial: 0, label }),
-        dice: new fields.ArrayField(new fields.StringField())
+        bonus: new fields.NumberField({ integer: true, initial: 0, label: `${game.i18n.localize(label)} Value` }),
+        dice: new fields.ArrayField(
+            new fields.StringField(),
+            { label: `${game.i18n.localize(label)} Dice` }
+        )
     });
 
 export { attributeField, resourceField, stressDamageReductionRule, bonusField };

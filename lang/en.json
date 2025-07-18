@@ -252,8 +252,9 @@
                 "title": "{actor} - Death Move"
             },
             "Downtime": {
-                "downtimeHeader": "Downtime Moves ({current}/{max})",
                 "longRest": {
+                    "title": "Long Rest",
+                    "moves": "Long Rest Moves ({current}/{max})",
                     "clearStress": {
                         "description": "Describe how you blow off steam or pull yourself together, and clear all marked Stress.",
                         "name": "Clear Stress"
@@ -270,7 +271,6 @@
                         "description": "Describe how you patch yourself up and remove all marked Hit Points. You may also do this on an ally instead.",
                         "name": "Tend to Wounds"
                     },
-                    "title": "Long Rest",
                     "workOnAProject": {
                         "description": "Establish or continue work on a project.",
                         "name": "Work on a Project"
@@ -278,6 +278,7 @@
                 },
                 "shortRest": {
                     "title": "Short Rest",
+                    "moves": "Short Rest Moves ({current}/{max})",
                     "tendToWounds": {
                         "name": "Tend to Wounds",
                         "description": "Describe how you hastily patch yourself up, then clear a number of Hit Points equal to 1d4 + your tier. You can do this to an ally instead."
@@ -294,7 +295,8 @@
                         "name": "Prepare",
                         "description": "Describe how you prepare yourself for the path ahead, then gain a Hope. If you choose to Prepare with one or more members of your party, you each gain 2 Hope."
                     }
-                }
+                },
+                "takeDowntime": "Take Downtime"
             },
             "HUD": {
                 "tokenHUD": {
@@ -410,7 +412,11 @@
                 "rerollDice": "Reroll Dice"
             }
         },
-
+        "CLASS": {
+            "Feature": {
+                "rallyDice": "Bardic Rally Dice"
+            }
+        },
         "CONFIG": {
             "ActionType": {
                 "passive": "Passive",
@@ -778,7 +784,7 @@
             "WeaponFeature": {
                 "barrier": {
                     "name": "Barrier",
-                    "description": "+{armorScore} to Armor Score; -1 to Evasion"
+                    "description": "Gain your character's Tier + 1 to Armor Score; -1 to Evasion"
                 },
                 "bonded": {
                     "name": "Bonded",
@@ -894,7 +900,7 @@
                 },
                 "paired": {
                     "name": "Paired",
-                    "description": "+{bonusDamage} to primary weapon damage to targets within Melee range"
+                    "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range"
                 },
                 "parry": {
                     "name": "Parry",
@@ -914,7 +920,7 @@
                 },
                 "protective": {
                     "name": "Protective",
-                    "description": "+{tier} to Armor Score"
+                    "description": "Add your character's Tier to your Armor Score"
                 },
                 "quick": {
                     "name": "Quick",
@@ -963,10 +969,6 @@
                 "timebending": {
                     "name": "Timebending",
                     "description": "You can choose the target of your attack after making your attack roll."
-                },
-                "versatile": {
-                    "name": "Versatile",
-                    "description": "This weapon can also be used with these statistics—{characterTrait}, {range}, {damage}."
                 }
             }
         },
@@ -1014,6 +1016,30 @@
             "Adversary": {
                 "singular": "Adversary",
                 "plural": "Adversaries"
+            },
+            "Bonuses": {
+                "rest": {
+                    "shortRest": {
+                        "shortRestMoves": {
+                            "label": "Short Rest: Bonus Short Rest Moves",
+                            "hint": "The number of extra Short Rest Moves the character can take during a Short Rest."
+                        },
+                        "longRestMoves": {
+                            "label": "Short Rest: Bonus Long Rest Moves",
+                            "hint": "The number of extra Long Rest Moves the character can take during a Short Rest."
+                        }
+                    },
+                    "longRest": {
+                        "shortRestMoves": {
+                            "label": "Long Rest: Bonus Short Rest Moves",
+                            "hint": "The number of extra Short Rest Moves the character can take during a Long Rest."
+                        },
+                        "longRestMoves": {
+                            "label": "Long Rest: Bonus Long Rest Moves",
+                            "hint": "The number of extra Long Rest Moves the character can take during a Long Rest."
+                        }
+                    }
+                }
             },
             "Character": {
                 "singular": "Character",
@@ -1328,8 +1354,8 @@
             },
             "DomainCard": {
                 "type": "Type",
-                "foundation": "Foundation",
                 "recallCost": "Recall Cost",
+                "foundationTitle": "Foundation",
                 "specializationTitle": "Specialization",
                 "masteryTitle": "Mastery"
             },
@@ -1540,7 +1566,18 @@
                 "noAvailableArmorMarks": "You have no more available armor marks",
                 "notEnoughStress": "You don't have enough stress",
                 "damageIgnore": "{character} did not take damage",
-                "featureIsMissing": "Feature is missing"
+                "featureIsMissing": "Feature is missing",
+                "actionIsMissing": "Action is missing",
+                "attackIsMissing": "Attack is missing",
+                "unownedActionMacro": "Cannot make a Use macro for an Action not on your character",
+                "unownedAttackMacro": "Cannot make a Use macro for an Attack that doesn't belong to one of your characters",
+                "featureNotHope": "This feature is used as something else than a Hope feature and cannot be used here.",
+                "featureNotClass": "This feature is used as something else than a Class feature and cannot be used here.",
+                "featureNotPrimary": "This feature is used as something else than a Primary feature and cannot be used here.",
+                "featureNotSecondary": "This feature is used as something else than a Secondary feature and cannot be used here.",
+                "featureNotFoundation": "This feature is used as something else than a Foundation feature and cannot be used here.",
+                "featureNotSpecialization": "This feature is used as something else than a Specialization feature and cannot be used here.",
+                "featureNotMastery": "This feature is used as something else than a Mastery feature and cannot be used here."
             },
             "Tooltip": {
                 "openItemWorld": "Open Item World",

@@ -439,7 +439,7 @@ export const weaponFeatures = {
                     {
                         key: 'system.bonuses.damage.primaryWeapon.bonus',
                         mode: 2,
-                        value: '@system.levelData.levels.current'
+                        value: '@system.levelData.level.current'
                     }
                 ]
             }
@@ -1261,15 +1261,6 @@ export const weaponFeatures = {
     timebending: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.description'
-    },
-    versatile: {
-        label: 'DAGGERHEART.CONFIG.WeaponFeature.versatile.name',
-        description: 'DAGGERHEART.CONFIG.WeaponFeature.versatile.description'
-        // versatile: {
-        //     characterTrait: '',
-        //     range: '',
-        //     damage: ''
-        // }
     }
 };
 
@@ -1322,7 +1313,12 @@ export const featureTypes = {
 
 export const featureSubTypes = {
     primary: 'primary',
-    secondary: 'secondary'
+    secondary: 'secondary',
+    hope: 'hope',
+    class: 'class',
+    foundation: 'foundation',
+    specialization: 'specialization',
+    mastery: 'mastery'
 };
 
 export const actionTypes = {

@@ -1,81 +1,75 @@
 @import '../../utils/spacing.less';
 @import '../../utils/colors.less';
 
-.daggerheart.views {
+.theme-light .daggerheart.dh-style.views.downtime {
+    .downtime-container .activity-container .activity-selected-marker {
+        background-image: url(../assets/parchments/dh-parchment-light.png);
+    }
+}
+
+.daggerheart.dh-style.views.downtime {
+    font-family: @font-body;
+
     .downtime-container {
-        .downtime-header {
-            margin: 0;
-            color: light-dark(@dark-blue, @golden);
-            text-align: center;
+        .activities-grouping {
+            width: 280px;
         }
 
-        .activity-container {
-            display: flex;
-            align-items: center;
-            padding: 8px;
+        .activities-container {
+            width: 100%;
 
-            .activity-title {
-                flex: 1;
+            .activity-container {
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
+                padding: 8px;
 
-                .activity-title-text {
-                    font-size: 24px;
-                    font-weight: bold;
-                }
-
-                .activity-image {
-                    width: 80px;
-                    position: relative;
+                .activity-inner-container {
                     display: flex;
-                    justify-content: center;
-                    margin-right: 8px;
-                    border: 2px solid black;
-                    border-radius: 50%;
-                    cursor: pointer;
+                    align-items: center;
+                    gap: 4px;
 
-                    .activity-select-label {
-                        position: absolute;
-                        top: -9px;
-                        font-size: 14px;
-                        border: 1px solid light-dark(@dark-blue, @golden);
-                        border-radius: 6px;
-                        color: light-dark(@beige, @dark);
-                        background-image: url(../assets/parchments/dh-parchment-light.png);
-                        padding: 0 8px;
-                        line-height: 1;
-                        font-weight: bold;
+                    .activity-marker {
+                        font-size: 8px;
+                        flex: none;
+                        color: light-dark(#18162e, #f3c267);
+                        margin-right: 4px;
                     }
 
-                    img {
-                        border-radius: 50%;
-                    }
+                    .activity-select-section {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
 
-                    &:hover,
-                    &.selected {
-                        filter: drop-shadow(0 0 6px gold);
+                        .activity-icon {
+                            min-width: 24px;
+                            text-align: center;
+                        }
                     }
                 }
 
-                .custom-name-input {
-                    font-size: 24px;
+                .activity-selected-marker {
+                    font-size: 14px;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    color: light-dark(@dark, @beige);
+                    background-image: url(../assets/parchments/dh-parchment-dark.png);
+                    padding: 0 8px;
+                    line-height: 1;
                     font-weight: bold;
-                    padding: 0;
-                    background: transparent;
-                    color: rgb(239, 230, 216);
                 }
-            }
-
-            .activity-body {
-                flex: 1;
-                font-style: italic;
             }
         }
     }
 
-    &.downtime {
-        .activity-text-area {
-            resize: none;
+    footer {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+
+        button {
+            flex: 1;
+            font-family: 'Montserrat', sans-serif;
         }
     }
 }

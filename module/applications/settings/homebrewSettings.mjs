@@ -76,6 +76,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                 reject,
                 game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.downtimeMoves'),
                 move.name,
+                move.icon,
                 move.img,
                 move.description,
                 move.actions
@@ -87,6 +88,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         await this.settings.updateSource({
             [`restMoves.${type}.moves.${id}`]: {
                 name: data.name,
+                icon: data.icon,
                 img: data.img,
                 description: data.description
             }

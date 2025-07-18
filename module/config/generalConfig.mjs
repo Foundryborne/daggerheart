@@ -135,6 +135,7 @@ export const defaultRestOptions = {
         tendToWounds: {
             id: 'tendToWounds',
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.name'),
+            icon: 'fa-solid fa-bandage',
             img: 'icons/magic/life/cross-worn-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.description'),
             actions: [
@@ -158,6 +159,7 @@ export const defaultRestOptions = {
         clearStress: {
             id: 'clearStress',
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.name'),
+            icon: 'fa-regular fa-face-surprise',
             img: 'icons/magic/perception/eye-ringed-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.description'),
             actions: [
@@ -181,6 +183,7 @@ export const defaultRestOptions = {
         repairArmor: {
             id: 'repairArmor',
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.name'),
+            icon: 'fa-solid fa-hammer',
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.description'),
             actions: []
@@ -188,6 +191,7 @@ export const defaultRestOptions = {
         prepare: {
             id: 'prepare',
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.name'),
+            icon: 'fa-solid fa-dumbbell',
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.description'),
             actions: []
@@ -197,6 +201,7 @@ export const defaultRestOptions = {
         tendToWounds: {
             id: 'tendToWounds',
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.name'),
+            icon: 'fa-solid fa-bandage',
             img: 'icons/magic/life/cross-worn-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.description'),
             actions: []
@@ -204,6 +209,7 @@ export const defaultRestOptions = {
         clearStress: {
             id: 'clearStress',
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.name'),
+            icon: 'fa-regular fa-face-surprise',
             img: 'icons/magic/perception/eye-ringed-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.description'),
             actions: []
@@ -211,6 +217,7 @@ export const defaultRestOptions = {
         repairArmor: {
             id: 'repairArmor',
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.name'),
+            icon: 'fa-solid fa-hammer',
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.description'),
             actions: []
@@ -218,6 +225,7 @@ export const defaultRestOptions = {
         prepare: {
             id: 'prepare',
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.name'),
+            icon: 'fa-solid fa-dumbbell',
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.description'),
             actions: []
@@ -225,19 +233,12 @@ export const defaultRestOptions = {
         workOnAProject: {
             id: 'workOnAProject',
             name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.workOnAProject.name'),
+            icon: 'fa-solid fa-diagram-project',
             img: 'icons/skills/social/thumbsup-approval-like.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.workOnAProject.description'),
             actions: []
         }
-    }),
-    custom: {
-        id: 'customActivity',
-        name: '',
-        img: 'icons/skills/trades/academics-investigation-puzzles.webp',
-        description: '',
-        namePlaceholder: 'DAGGERHEART.APPLICATIONS.Downtime.custom.namePlaceholder',
-        placeholder: 'DAGGERHEART.APPLICATIONS.Downtime.custom.placeholder'
-    }
+    })
 };
 
 export const deathMoves = {

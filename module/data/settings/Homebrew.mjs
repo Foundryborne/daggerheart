@@ -54,6 +54,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     moves: new fields.TypedObjectField(
                         new fields.SchemaField({
                             name: new fields.StringField({ required: true }),
+                            icon: new fields.StringField({ required: true }),
                             img: new fields.FilePathField({
                                 initial: 'icons/magic/life/cross-worn-green.webp',
                                 categories: ['IMAGE'],
@@ -70,6 +71,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     moves: new fields.TypedObjectField(
                         new fields.SchemaField({
                             name: new fields.StringField({ required: true }),
+                            icon: new fields.StringField({ required: true }),
                             img: new fields.FilePathField({
                                 initial: 'icons/magic/life/cross-worn-green.webp',
                                 categories: ['IMAGE'],
