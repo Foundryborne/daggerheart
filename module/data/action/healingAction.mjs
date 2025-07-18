@@ -19,14 +19,14 @@ export default class DHHealingAction extends DHBaseAction {
             formula = formulaValue.getFormula(this.actor);
 
         if (!formula || formula == '') return;
-        let roll = { formula: formula, total: formula },
-            bonusDamage = [];
+        let roll = { formula: formula, total: formula };
 
         const config = {
             title: game.i18n.format('DAGGERHEART.UI.Chat.healingRoll.title', {
                 healing: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[this.healing.type].label)
             }),
-            roll: { formula },
+            // roll: { formula },
+            roll: [ formula ],
             targets: (data.system?.targets ?? data.targets).filter(t => t.hit),
             messageType: 'healing',
             type: this.healing.type,

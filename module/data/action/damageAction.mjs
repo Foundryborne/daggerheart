@@ -34,16 +34,10 @@ export default class DHDamageAction extends DHBaseAction {
 
     async rollDamage(event, data) {
         const systemData = data.system ?? data;
-        /* let formula = this.damage.parts.map(p => this.getFormulaValue(p, data).getFormula(this.actor)).join(' + '),
-            damageTypes = [...new Set(this.damage.parts.reduce((a, c) => a.concat([...c.type]), []))];
-
-        damageTypes = !damageTypes.length ? ['physical'] : damageTypes;
-        
-        if (!formula || formula == '') return; */
        
         let formulas = this.damage.parts.map(p => ({
             formula: this.getFormulaValue(p, data).getFormula(this.actor),
-            damageTypes: p.type,
+            damageTypes: p.applyTo === 'hitPoints' && !p.type.size ? new Set(['physical']) : p.type,
             applyTo: p.applyTo
         }));
 
@@ -51,21 +45,14 @@ export default class DHDamageAction extends DHBaseAction {
 
         formulas = this.formatFormulas(formulas, systemData);
 
-        /* let roll = { formula: formula, total: formula };
-
-        if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(systemData)); */
-
         const config = {
             title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: this.name }),
-            // roll: { formula },
-            // roll: { formulas },
             roll: formulas,
             targets: systemData.targets.filter(t => t.hit) ?? data.targets,
             hasSave: this.hasSave,
             isCritical: systemData.roll?.isCritical ?? false,
             source: systemData.source,
             data: this.getRollData(),
-            // damageTypes,
             event
         };
         if (this.hasSave) config.onSave = this.save.damageMod;
@@ -76,7 +63,6 @@ export default class DHDamageAction extends DHBaseAction {
             config.directDamage = true;
         }
 
-        // roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);
-        CONFIG.Dice.daggerheart.DamageRoll.build(config);
+        return CONFIG.Dice.daggerheart.DamageRoll.build(config);
     }
 }

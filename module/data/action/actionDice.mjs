@@ -128,8 +128,7 @@ export class DHDamageData extends DHResourceData {
                     required: true
                 }),
                 {
-                    label: 'Type',
-                    initial: 'physical'
+                    label: 'Type'
                 }
             )
         }

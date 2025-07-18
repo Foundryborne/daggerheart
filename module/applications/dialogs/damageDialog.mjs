@@ -43,6 +43,7 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
+        context.config = CONFIG.DH;
         context.title = this.config.title
             ? this.config.title
             : game.i18n.localize('DAGGERHEART.EFFECTS.ApplyLocations.damageRoll.name');
@@ -55,7 +56,6 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
             label,
             icon
         }));
-
         return context;
     }
 

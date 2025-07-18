@@ -10,10 +10,19 @@ export default class DamageRoll extends DHRoll {
 
     static DefaultDialog = DamageDialog;
 
-    static async postEvaluate(roll, config = {}) {
-        super.postEvaluate(roll, config);
-        config.roll.type = config.type;
-        config.roll.modifierTotal = this.calculateTotalModifiers(roll);
+    static async buildEvaluate(rolls, config = {}, message = {}) {
+        if ( config.evaluate !== false ) {
+            for ( const roll of config.roll ) await roll.roll.evaluate();
+        }
+        config.roll = config.roll.map(r => this.postEvaluate(r.roll));
+    }
+
+    static postEvaluate(roll, config = {}) {
+        return {
+            ...super.postEvaluate(roll, config),
+            type: config.type,
+            modifierTotal: this.calculateTotalModifiers(roll)
+        }
     }
 
     static async buildPost(roll, config, message) {
@@ -74,39 +83,5 @@ export default class DamageRoll extends DHRoll {
             part.roll.terms.push(...this.formatModifier(criticalBonus));
         }
         return (part.roll._formula = this.constructor.getFormula(part.roll.terms));
-    }
-
-    async evaluate({minimize=false, maximize=false, allowStrings=false, allowInteractive=true, ...options}={}) {
-        if ( this._evaluated ) {
-            throw new Error(`The ${this.constructor.name} has already been evaluated and is now immutable`);
-        }
-        this._evaluated = true;
-        if ( CONFIG.debug.dice ) console.debug(`Evaluating roll with formula "${this.formula}"`);
-
-        // Migration path for async rolls
-        if ( "async" in options ) {
-            foundry.utils.logCompatibilityWarning("The async option for Roll#evaluate has been removed. "
-                + "Use Roll#evaluateSync for synchronous roll evaluation.");
-        }
-        
-        this.options.roll.forEach( async part => {
-            await part.roll.evaluate({minimize, maximize, allowStrings, allowInteractive, ...options})
-        })
-        // return this._evaluate({minimize, maximize, allowStrings, allowInteractive});
-    }
-
-    static postEvaluate(roll, config = {}) {
-        if (!config.roll) config.roll = {};
-        config.roll.total = roll.total;
-        config.roll.formula = roll.formula;
-        config.roll.dice = [];
-        roll.dice.forEach(d => {
-            config.roll.dice.push({
-                dice: d.denomination,
-                total: d.total,
-                formula: d.formula,
-                results: d.results
-            });
-        });
     }
 }
