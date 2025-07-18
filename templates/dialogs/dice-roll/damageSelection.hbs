@@ -2,10 +2,12 @@
     <header class="dialog-header">
         <h1>{{title}}</h1>
     </header>
-    <span class="formula-label"><b>Formula:</b> {{@root.formula}}</span>
-    <div class="form-group">
-        <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="Situational Bonus">
-    </div>
+    {{#each @root.formula}}
+        <span class="formula-label"><b>Formula:</b> {{roll.formula}}</span>
+        <div class="form-group">
+            <input type="text" value="{{extraFormula}}" name="roll.{{ @index }}.extraFormula" placeholder="Situational Bonus">
+        </div>
+    {{/each}}
     <div class="damage-section-controls">
         {{#if directDamage}}
             <select class="roll-mode-select" name="selectedRollMode">

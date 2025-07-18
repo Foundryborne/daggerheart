@@ -47,7 +47,7 @@ export default class DHRoll extends Roll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         if (config.evaluate !== false) await roll.evaluate();
-        this.postEvaluate(roll, config);
+        config.roll = this.postEvaluate(roll);
     }
 
     static async buildPost(roll, config, message) {
@@ -63,19 +63,17 @@ export default class DHRoll extends Roll {
         }
     }
 
-    static postEvaluate(roll, config = {}) {
-        if (!config.roll) config.roll = {};
-        config.roll.total = roll.total;
-        config.roll.formula = roll.formula;
-        config.roll.dice = [];
-        roll.dice.forEach(d => {
-            config.roll.dice.push({
+    static postEvaluate(roll) {
+        return {
+            total: roll.total,
+            formula: roll.formula,
+            dice: roll.dice.map(d => ({
                 dice: d.denomination,
                 total: d.total,
                 formula: d.formula,
                 results: d.results
-            });
-        });
+            }))
+        }
     }
 
     static async toMessage(roll, config) {
@@ -118,8 +116,9 @@ export default class DHRoll extends Roll {
         return [];
     }
 
-    addModifiers() {
-        this.options.roll.modifiers?.forEach(m => {
+    addModifiers(roll) {
+        roll = roll ?? this.options.roll;
+        roll.modifiers?.forEach(m => {
             this.terms.push(...this.formatModifier(m.value));
         });
     }

@@ -311,3 +311,15 @@ export const itemAbleRollParse = (value, actor, item) => {
         return '';
     }
 };
+
+export const arraysEqual = (a, b) =>
+  a.length === b.length &&
+  [...new Set([...a, ...b])].every(
+    v => a.filter(e => e === v).length === b.filter(e => e === v).length
+  );
+
+export const setsEqual = (a, b) =>
+    a.size === b.size &&
+    [...a].every(
+        value => b.has(value)
+    );
