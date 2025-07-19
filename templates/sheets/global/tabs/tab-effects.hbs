@@ -1,26 +1,21 @@
-<section
-    class='tab {{tabs.effects.cssClass}} {{tabs.effects.id}}'
-    data-tab='{{tabs.effects.id}}'
-    data-group='{{tabs.effects.group}}'
->
-    <fieldset class="one-column">
-            <legend>
-                {{localize "DAGGERHEART.GENERAL.Effect.plural"}} 
-                <a data-action="createDoc" data-document-class="ActiveEffect" data-type="base">
-                    <i class="fa-solid fa-plus icon-button"></i>
-                </a>
-            </legend>
-        <div class="effects-list">
-            {{#each document.effects as |effect|}}
-                <div class="effect-item">
-                    <img class="image" src="{{effect.img}}" />
-                    <span>{{effect.name}}</span>
-                    <div class="controls">
-                        <a data-action="editDoc" data-type="ActiveEffect" data-doc-id="{{effect.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a data-action="deleteDoc" data-type="ActiveEffect" data-doc-id="{{effect.id}}" {{disabled effect.mandatory}}><i class="fa-solid fa-trash icon-button {{disabled effect.mandatory}}"></i></a>
-                    </div>
-                </div> 
-            {{/each}}
-        </div>
-    </fieldset>
+<section class='tab {{tabs.effects.cssClass}} {{tabs.effects.id}}' data-tab='{{tabs.effects.id}}'
+    data-group='{{tabs.effects.group}}'>
+
+    {{> 'daggerheart.inventory-items'
+    title='DAGGERHEART.GENERAL.activeEffects'
+    type='effect'
+    isGlassy=true
+    collection=effects.actives
+    canCreate=true
+    hideResources=true
+    }}
+
+    {{> 'daggerheart.inventory-items'
+    title='DAGGERHEART.GENERAL.inactiveEffects'
+    type='effect'
+    isGlassy=true
+    collection=effects.inactives
+    canCreate=true
+    hideResources=true
+    }}
 </section>

@@ -47,7 +47,7 @@ export default class DHRoll extends Roll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         if (config.evaluate !== false) await roll.evaluate();
-        this.postEvaluate(roll, config);
+        config.roll = this.postEvaluate(roll, config);
     }
 
     static async buildPost(roll, config, message) {
@@ -57,25 +57,26 @@ export default class DHRoll extends Roll {
 
         // Create Chat Message
         if (config.source?.message) {
+            if(Object.values(config.roll)?.length) {
+                const pool = foundry.dice.terms.PoolTerm.fromRolls(Object.values(config.roll).flatMap(r => r.parts.map(p => p.roll)));
+                roll = Roll.fromTerms([pool]);
+            }
             if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
-        } else {
+        } else 
             config.message = await this.toMessage(roll, config);
-        }
     }
 
     static postEvaluate(roll, config = {}) {
-        if (!config.roll) config.roll = {};
-        config.roll.total = roll.total;
-        config.roll.formula = roll.formula;
-        config.roll.dice = [];
-        roll.dice.forEach(d => {
-            config.roll.dice.push({
+        return {
+            total: roll.total,
+            formula: roll.formula,
+            dice: roll.dice.map(d => ({
                 dice: d.denomination,
                 total: d.total,
                 formula: d.formula,
                 results: d.results
-            });
-        });
+            }))
+        }
     }
 
     static async toMessage(roll, config) {
@@ -118,8 +119,9 @@ export default class DHRoll extends Roll {
         return [];
     }
 
-    addModifiers() {
-        this.options.roll.modifiers?.forEach(m => {
+    addModifiers(roll) {
+        roll = roll ?? this.options.roll;
+        roll.modifiers?.forEach(m => {
             this.terms.push(...this.formatModifier(m.value));
         });
     }

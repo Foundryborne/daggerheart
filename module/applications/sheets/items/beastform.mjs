@@ -28,20 +28,4 @@ export default class BeastformSheet extends DHBaseItemSheet {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
-
-    /**@inheritdoc */
-    async _prepareContext(_options) {
-        const context = await super._prepareContext(_options);
-
-        context.document = context.document.toObject();
-        context.document.effects = this.document.effects.map(effect => {
-            const data = effect.toObject();
-            data.id = effect.id;
-            if (effect.type === 'beastform') data.mandatory = true;
-
-            return data;
-        });
-
-        return context;
-    }
 }

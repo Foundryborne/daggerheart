@@ -1,30 +1,33 @@
-<section
-    class='tab {{tabs.adversaries.cssClass}} {{tabs.adversaries.id}}'
-    data-tab='{{tabs.adversaries.id}}'
-    data-group='{{tabs.adversaries.group}}'
->    
+<section class='tab {{tabs.adversaries.cssClass}} {{tabs.adversaries.id}}' data-tab='{{tabs.adversaries.id}}'
+    data-group='{{tabs.adversaries.group}}'>
     <button type="button" class="add-action-btn" data-action="addCategory">
         New Category
     </button>
-    {{#each document.system.potentialAdversaries as |category id|}}
-        <fieldset class="category-container" data-potential-adversary="{{id}}">
-            <legend>{{category.label}}</legend>
-            <div class="category-name">
-                <input type="text" name="{{concat "system.potentialAdversaries." @key ".label" }}" value="{{category.label}}" />
-                <a data-action="removeCategory" data-category-id={{id}} data-tooltip='{{localize "CONTROLS.CommonDelete"}}'>
-                    <i class="fa-solid fa-trash"></i>
-                </a>
+    {{#each document.system.potentialAdversaries as |category categoryId|}}
+    <fieldset class="category-container" data-potential-adversary="{{categoryId}}">
+        <legend>{{category.label}}</legend>
+        <div class="category-name">
+            <input type="text" name="system.potentialAdversaries.{{categoryId}}.label"
+                value="{{category.label}}" />
+            <a data-action="removeCategory" data-category-id={{categoryId}} data-tooltip='{{localize "CONTROLS.CommonDelete"}}'>
+                <i class="fa-solid fa-trash"></i>
+            </a>
+        </div>
+        <div class="adversaries-container">
+            {{#each category.adversaries as |adversary|}}
+            <div class="adversary-container">
+                {{> 'daggerheart.inventory-item'
+                item=adversary
+                type='adversary'
+                isActor=true
+                categoryAdversary=categoryId
+                }}
             </div>
-            <div class="adversaries-container">
-                {{#each category.adversaries as |adversary|}}
-                    <div class="adversary-container">
-                        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=adversary type='adversary' isActor=true categoryAdversary=@../key}}
-                    </div>
-                {{/each}}
-            </div>
-            <div class="adversaries-dragger">
-                Drop Actors here
-            </div>
-        </fieldset>
+            {{/each}}
+        </div>
+        <div class="adversaries-dragger">
+            Drop Actors here
+        </div>
+    </fieldset>
     {{/each}}
 </section>

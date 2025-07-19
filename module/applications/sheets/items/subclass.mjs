@@ -6,11 +6,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
         classes: ['subclass'],
         position: { width: 600 },
         window: { resizable: false },
-        actions: {
-            addFeature: this.addFeature,
-            editFeature: this.editFeature,
-            deleteFeature: this.deleteFeature
-        }
+        actions: {}
     };
 
     /**@override */
@@ -25,63 +21,21 @@ export default class SubclassSheet extends DHBaseItemSheet {
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/subclass/settings.hbs',
             scrollable: ['.settings']
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
+            scrollable: ['.effects']
         }
     };
 
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }],
+            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }, { id: 'effects' }],
             initial: 'description',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
-
-    static async addFeature(_, target) {
-        const feature = await game.items.documentClass.create({
-            type: 'feature',
-            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') }),
-            system: {
-                subType:
-                    target.dataset.type === 'foundation'
-                        ? CONFIG.DH.ITEM.featureSubTypes.foundation
-                        : target.dataset.type === 'specialization'
-                          ? CONFIG.DH.ITEM.featureSubTypes.specialization
-                          : CONFIG.DH.ITEM.featureSubTypes.mastery
-            }
-        });
-        await this.document.update({
-            [`system.features`]: [...this.document.system.features.map(x => x.uuid), feature.uuid]
-        });
-    }
-
-    static async editFeature(_, button) {
-        const feature = this.document.system.features.find(x => x.id === button.dataset.feature);
-        if (!feature) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
-            return;
-        }
-
-        if (feature) {
-            await feature.update({ 'system.subType': null });
-        }
-
-        feature.sheet.render(true);
-    }
-
-    static async deleteFeature(event, target) {
-        event.stopPropagation();
-        const feature = this.document.system.features.find(feature => feature.id === target.dataset.feature);
-        if (feature) {
-            await feature.update({ 'system.subType': null });
-        }
-
-        await this.document.update({
-            [`system.features`]: this.document.system.features
-                .filter(feature => feature && feature.id !== target.dataset.feature)
-                .map(x => x.uuid)
-        });
-    }
 
     async _onDragStart(event) {
         const featureItem = event.currentTarget.closest('.drop-section');

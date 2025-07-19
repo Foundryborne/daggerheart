@@ -1,111 +1,118 @@
 <aside class="adversary-sidebar-sheet">
     <div class="portrait {{#if (and source.system.resources.hitPoints.max (gte source.system.resources.hitPoints.value source.system.resources.hitPoints.max))}}death-roll{{/if}}">
         <img src="{{source.img}}" alt="{{source.name}}" data-action='editImage' data-edit="img">
-        <a class="death-roll-btn" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.makeDeathMove"}}" data-action="makeDeathMove"><i class="fas fa-skull death-save" ></i></a>
+        <a class="death-roll-btn" data-tooltip="{{localize " DAGGERHEART.UI.Tooltip.makeDeathMove"}}"
+            data-action="makeDeathMove"><i class="fas fa-skull death-save"></i></a>
     </div>
-    
+
     <div class="info-section">
         <div class="resources-section">
             <div class="status-bar">
                 <div class='status-value'>
-                    <p><input class="bar-input" name="system.resources.hitPoints.value" value="{{source.system.resources.hitPoints.value}}" type="number"></p>
+                    <p><input class="bar-input" name="system.resources.hitPoints.value"
+                            value="{{source.system.resources.hitPoints.value}}" type="number"></p>
                     <p>/</p>
                     <p class="bar-label">{{source.system.resources.hitPoints.max}}</p>
                 </div>
-                <progress
-                    class='progress-bar'
-                    value='{{source.system.resources.hitPoints.value}}'
-                    max='{{source.system.resources.hitPoints.max}}'
-                ></progress>
+                <progress class='progress-bar' value='{{source.system.resources.hitPoints.value}}'
+                    max='{{source.system.resources.hitPoints.max}}'></progress>
                 <div class="status-label">
-                    <h4>HP</h4>
+                    <h4>{{localize 'DAGGERHEART.GENERAL.attack.hitPoints.short'}}</h4>
                 </div>
-                
+
             </div>
             <div class="status-bar">
                 <div class='status-value'>
-                    <p><input class="bar-input" name="system.resources.stress.value" value="{{source.system.resources.stress.value}}" type="number"></p>
+                    <p><input class="bar-input" name="system.resources.stress.value"
+                            value="{{source.system.resources.stress.value}}" type="number"></p>
                     <p>/</p>
                     <p class="bar-label">{{source.system.resources.stress.max}}</p>
                 </div>
-                <progress
-                    class='progress-bar stress-color'
-                    value='{{source.system.resources.stress.value}}'
-                    max='{{source.system.resources.stress.max}}'
-                ></progress>
+                <progress class='progress-bar stress-color' value='{{source.system.resources.stress.value}}'
+                    max='{{source.system.resources.stress.max}}'></progress>
                 <div class="status-label">
-                    <h4>Stress</h4>
+                    <h4>{{localize 'DAGGERHEART.GENERAL.stress'}}</h4>
                 </div>
             </div>
         </div>
         <div class="status-section">
             <div class="threshold-section">
-            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
-            <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
-            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
-            <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
-            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
-        </div>
+                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
+                <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
+                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
+                <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
+                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
+            </div>
         </div>
         <div class="status-section">
             <div class="status-number">
                 <div class='status-value armor-slots'>
                     {{#if source.system.difficulty}}
-                        <p>{{source.system.difficulty}}</p>
+                    <p>{{source.system.difficulty}}</p>
                     {{else}}
-                        <p>-</p>
+                    <p>-</p>
                     {{/if}}
                 </div>
                 <div class="status-label">
-                    <h4>Difficulty</h4>
+                    <h4>{{localize DAGGERHEART.GENERAL.difficulty}}</h4>
                 </div>
             </div>
             <div class="status-number">
                 <div class='status-value armor-slots'>
                     {{#if source.system.attack.target.amount}}
-                        <p>{{source.system.attack.target.amount}}</p>
+                    <p>{{source.system.attack.target.amount}}</p>
                     {{else}}
-                        <p>-</p>
+                    <p>-</p>
                     {{/if}}
                 </div>
                 <div class="status-label">
-                    <h4>Attack</h4>
+                    <h4>{{localize "DAGGERHEART.GENERAL.attack"}}</h4>
                 </div>
             </div>
         </div>
     </div>
     <div class="attack-section">
         <div class="title">
-            <side-line-div  class="invert"></side-line-div>
-            <h3>Attack</h3>
+            <side-line-div class="invert"></side-line-div>
+            <h3>{{localize "DAGGERHEART.GENERAL.attack"}}</h3>
             <side-line-div></side-line-div>
         </div>
         <ul class="items-sidebar-list">
-            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=source.system.attack type=source.system.attack.systemPath isSidebar=true}}
+            {{> 'daggerheart.inventory-item'
+            item=document.system.attack
+            type='action'
+            hideTags=true
+            hideDescription=true
+            hideTooltip=true
+            hideResources=true
+            noExtensible=true
+            }}
         </ul>
     </div>
     <div class="experience-section">
         <div class="title">
-            <side-line-div  class="invert"></side-line-div>
-            <h3>Experience</h3>
+            <side-line-div class="invert"></side-line-div>
+            <h3>{{localize DAGGERHEART.GENERAL.experience.plural}}</h3>
             <side-line-div></side-line-div>
         </div>
         <div class="experience-list">
             {{#each source.system.experiences as |experience id|}}
-                <div class="experience-row">
-                    <div class="experience-value">
-                        +{{experience.value}}
-                    </div>
-                    <span class="experience-name">{{experience.name}}</span>
-                    <div class="controls">
-                        <a data-action="toChat" data-type="experience" data-uuid="{{id}}"><i class="fa-regular fa-message"></i></a>
-                    </div>
+            <div class="experience-row">
+                <div class="experience-value">
+                    +{{experience.value}}
                 </div>
+                <span class="experience-name">{{experience.name}}</span>
+                <div class="controls">
+                    <a data-action="sendExpToChat" data-id="{{id}}">
+                        <i class="fa-regular fa-message"></i>
+                    </a>
+                </div>
+            </div>
             {{/each}}
         </div>
     </div>
     <line-div></line-div>
     <div class="reaction-section">
-        <button data-action="reactionRoll">Reaction Test</button>
+        <button data-action="reactionRoll">{{localize DAGGERHEART.GENERAL.Roll.reaction}}</button>
     </div>
 </aside>

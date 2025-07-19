@@ -27,7 +27,11 @@ export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
             template: 'systems/daggerheart/templates/sheets/items/armor/settings.hbs',
             scrollable: ['.settings']
         },
-        ...super.PARTS
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
+            scrollable: ['.effects']
+        },
+        ...super.PARTS,
     };
 
     /**@inheritdoc */

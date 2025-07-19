@@ -1,8 +1,5 @@
-<section
-    class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
-    data-tab='{{tabs.details.id}}'
-    data-group='{{tabs.details.group}}'
->
+<section class='tab {{tabs.details.cssClass}} {{tabs.details.id}}' data-tab='{{tabs.details.id}}'
+    data-group='{{tabs.details.group}}'>
     <div class="partner-section">
         <div class="title">
             <side-line-div  class="invert"></side-line-div>
@@ -10,11 +7,18 @@
             <side-line-div></side-line-div>
         </div>
         {{#if document.system.partner}}
-            <ul class="item-list">
-                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=document.system.partner type='actor' isSidebar=true isActor=true noTooltip=true}}
-            </ul>
+        <ul class="item-list">
+            {{> 'daggerheart.inventory-item'
+            item=document.system.partner
+            type='companion'
+            hideTags=true
+            hideDescription=true
+            isActor=true
+            hideTooltip=true
+            }}
+        </ul>
         {{else}}
-            <span class="partner-placeholder">{{localize "DAGGERHEART.ACTORS.Companion.noPartner"}}</span>
+        <span class="partner-placeholder">{{localize "DAGGERHEART.ACTORS.Companion.noPartner"}}</span>
         {{/if}}
     </div>
     <div class="attack-section">
@@ -24,7 +28,13 @@
             <side-line-div></side-line-div>
         </div>
         <ul class="item-list">
-            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-item.hbs' item=source.system.attack type=source.system.attack.systemPath isSidebar=true isCompanion=true noTooltip=true}}
+            {{> 'daggerheart.inventory-item'
+            item=document.system.attack
+            type='action'
+            hideTags=true
+            hideDescription=true
+            hideTooltip=true
+            }}
         </ul>
     </div>
     <div class="experience-list">
@@ -34,15 +44,16 @@
             <side-line-div></side-line-div>
         </div>
         {{#each source.system.experiences as |experience id|}}
-            <div class="experience-row">
-                <div class="experience-value">
-                    +{{experience.value}}
-                </div>
-                <span class="experience-name">{{experience.name}}</span>
-                <div class="controls">
-                    <a data-action="toChat" data-type="experience" data-uuid="{{id}}"><i class="fa-regular fa-message"></i></a>
-                </div>
+        <div class="experience-row">
+            <div class="experience-value">
+                +{{experience.value}}
             </div>
+            <span class="experience-name">{{experience.name}}</span>
+            <div class="controls">
+                <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
+                    <i class="fa-regular fa-message"></i></a>
+            </div>
+        </div>
         {{/each}}
     </div>
 </section>

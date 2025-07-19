@@ -2,10 +2,26 @@
     <header class="dialog-header">
         <h1>{{title}}</h1>
     </header>
-    <span class="formula-label"><b>Formula:</b> {{@root.formula}}</span>
-    <div class="form-group">
-        <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="Situational Bonus">
-    </div>
+    {{#each @root.formula}}
+        <div class="damage-formula">
+            <span class="damage-resource"><b>Formula:</b> {{roll.formula}}</span>
+            <span class="damage-details">
+                {{#with (lookup @root.config.GENERAL.healingTypes applyTo)}}
+                    {{localize label}}
+                {{/with}}
+                {{#if damageTypes}}
+                    {{#each damageTypes as | type | }}
+                        {{#with (lookup @root.config.GENERAL.damageTypes type)}}
+                            <i class="fa-solid {{icon}}"></i>
+                        {{/with}}
+                    {{/each}}
+                {{/if}}
+            </span>
+        </div>
+        <div class="form-group">
+            <input type="text" value="{{extraFormula}}" name="roll.{{ @index }}.extraFormula" placeholder="Situational Bonus">
+        </div>
+    {{/each}}
     <div class="damage-section-controls">
         {{#if directDamage}}
             <select class="roll-mode-select" name="selectedRollMode">

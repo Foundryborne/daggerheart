@@ -1,3 +1,4 @@
+import { setsEqual } from '../../helpers/utils.mjs';
 import DHBaseAction from './baseAction.mjs';
 
 export default class DHDamageAction extends DHBaseAction {
@@ -18,28 +19,40 @@ export default class DHDamageAction extends DHBaseAction {
         return formulaValue;
     }
 
+    formatFormulas(formulas, systemData) {
+        const formattedFormulas = [];
+        formulas.forEach(formula => {
+            if (isNaN(formula.formula)) formula.formula = Roll.replaceFormulaData(formula.formula, this.getRollData(systemData));
+            const same = formattedFormulas.find(f => setsEqual(f.damageTypes, formula.damageTypes) && f.applyTo === formula.applyTo);
+            if(same)
+                same.formula += ` + ${formula.formula}`;
+            else
+                formattedFormulas.push(formula);
+        })
+        return formattedFormulas;
+    }
+
     async rollDamage(event, data) {
         const systemData = data.system ?? data;
-        let formula = this.damage.parts.map(p => this.getFormulaValue(p, data).getFormula(this.actor)).join(' + '),
-            damageTypes = [...new Set(this.damage.parts.reduce((a, c) => a.concat([...c.type]), []))];
+       
+        let formulas = this.damage.parts.map(p => ({
+            formula: this.getFormulaValue(p, data).getFormula(this.actor),
+            damageTypes: p.applyTo === 'hitPoints' && !p.type.size ? new Set(['physical']) : p.type,
+            applyTo: p.applyTo
+        }));
 
-        damageTypes = !damageTypes.length ? ['physical'] : damageTypes;
+        if(!formulas.length) return;
 
-        if (!formula || formula == '') return;
-        let roll = { formula: formula, total: formula },
-            bonusDamage = [];
-
-        if (isNaN(formula)) formula = Roll.replaceFormulaData(formula, this.getRollData(systemData));
+        formulas = this.formatFormulas(formulas, systemData);
 
         const config = {
             title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: this.name }),
-            roll: { formula },
+            roll: formulas,
             targets: systemData.targets.filter(t => t.hit) ?? data.targets,
             hasSave: this.hasSave,
             isCritical: systemData.roll?.isCritical ?? false,
             source: systemData.source,
             data: this.getRollData(),
-            damageTypes,
             event
         };
         if (this.hasSave) config.onSave = this.save.damageMod;
@@ -50,10 +63,6 @@ export default class DHDamageAction extends DHBaseAction {
             config.directDamage = true;
         }
 
-        roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);
+        return CONFIG.Dice.daggerheart.DamageRoll.build(config);
     }
-
-    // get modifiers() {
-    //     return [];
-    // }
 }

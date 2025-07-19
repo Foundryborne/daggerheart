@@ -1,3 +1,4 @@
+import { getDocFromElement } from '../../helpers/utils.mjs';
 import DHBaseActorSettings from '../sheets/api/actor-setting.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
@@ -9,8 +10,7 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
         actions: {
             addCategory: DHEnvironmentSettings.#addCategory,
             removeCategory: DHEnvironmentSettings.#removeCategory,
-            viewAdversary: this.#viewAdversary,
-            deleteAdversary: this.#deleteAdversary
+            deleteAdversary: DHEnvironmentSettings.#deleteAdversary
         },
         dragDrop: [
             { dragSelector: null, dropSelector: '.category-container' },
@@ -69,37 +69,30 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
         await this.actor.update({ [`system.potentialAdversaries.-=${target.dataset.categoryId}`]: null });
     }
 
-    static async #viewAdversary(_, button) {
-        const adversary = await foundry.utils.fromUuid(button.dataset.adversary);
-        if (!adversary) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.adversaryMissing'));
-            return;
-        }
+    /**
+     * 
+     * @type {ApplicationClickAction}
+     * @returns 
+     */
+    static async #deleteAdversary(_event, target) {
+        const doc = getDocFromElement(target);
+        const { category } = target.dataset;
+        const path = `system.potentialAdversaries.${category}.adversaries`;
 
-        adversary.sheet.render({ force: true });
-    }
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                    type: game.i18n.localize('TYPES.Actor.adversary'),
+                    name: doc.name
+                })
+            },
+            content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: doc.name })
+        });
 
-    static async #deleteAdversary(event, target) {
-        const adversaryKey = target.dataset.adversary;
-        const path = `system.potentialAdversaries.${target.dataset.potentialAdversary}.adversaries`;
-        const property = foundry.utils.getProperty(this.actor, path);
-        const adversary = property.find(x => (x?.uuid ?? x) === adversaryKey);
+        if (!confirmed) return;
 
-        if (adversary) {
-            const confirmed = await foundry.applications.api.DialogV2.confirm({
-                window: {
-                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                        type: game.i18n.localize('TYPES.Actor.adversary'),
-                        name: adversary.name
-                    })
-                },
-                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: adversary.name })
-            });
-
-            if (!confirmed) return;
-        }
-
-        const newAdversaries = property.filter(x => x && (x?.uuid ?? x) !== adversaryKey);
+        const adversaries = foundry.utils.getProperty(this.actor, path);
+        const newAdversaries = adversaries.filter(a => a.uuid !== doc.uuid);
         await this.actor.update({ [path]: newAdversaries });
     }
 

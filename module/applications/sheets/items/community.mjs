@@ -10,7 +10,7 @@ export default class CommunitySheet extends DHHeritageSheet {
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/items/community/header.hbs' },
         ...super.PARTS,
-        feature: {
+        features: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-features.hbs',
             scrollable: ['.feature']
         }

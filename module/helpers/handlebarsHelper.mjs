@@ -8,10 +8,10 @@ export default class RegisterHandlebarsHelpers {
             times: this.times,
             damageFormula: this.damageFormula,
             damageSymbols: this.damageSymbols,
-            rollParsed: this.rollParsed
+            rollParsed: this.rollParsed,
+            hasProperty: foundry.utils.hasProperty,
         });
     }
-
     static add(a, b) {
         const aNum = Number.parseInt(a);
         const bNum = Number.parseInt(b);

@@ -10,10 +10,6 @@ export default class ClassSheet extends DHBaseItemSheet {
         actions: {
             removeItemFromCollection: ClassSheet.#removeItemFromCollection,
             removeSuggestedItem: ClassSheet.#removeSuggestedItem,
-            viewDoc: ClassSheet.#viewDoc,
-            addFeature: this.addFeature,
-            editFeature: this.editFeature,
-            deleteFeature: this.deleteFeature
         },
         tagifyConfigs: [
             {
@@ -46,13 +42,17 @@ export default class ClassSheet extends DHBaseItemSheet {
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/class/settings.hbs',
             scrollable: ['.settings']
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
+            scrollable: ['.effects']
         }
     };
 
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }],
+            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }, { id: 'effects' }],
             initial: 'description',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -178,60 +178,5 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeSuggestedItem(_event, element) {
         const { target } = element.dataset;
         await this.document.update({ [`system.characterGuide.${target}`]: null });
-    }
-
-    /**
-     * Open the sheet of a item by UUID.
-     * @param {PointerEvent} _event -
-     * @param {HTMLElement} button
-     */
-    static async #viewDoc(_event, button) {
-        const doc = await fromUuid(button.dataset.uuid);
-        doc.sheet.render({ force: true });
-    }
-
-    static async addFeature(_, target) {
-        const feature = await game.items.documentClass.create({
-            type: 'feature',
-            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') }),
-            system: {
-                subType:
-                    target.dataset.type === 'hope'
-                        ? CONFIG.DH.ITEM.featureSubTypes.hope
-                        : CONFIG.DH.ITEM.featureSubTypes.class
-            }
-        });
-        await this.document.update({
-            [`system.features`]: [...this.document.system.features.filter(x => x).map(x => x.uuid), feature.uuid]
-        });
-    }
-
-    static async editFeature(_, button) {
-        const target = button.closest('.feature-item');
-        const feature = this.document.system.features.find(x => x?.id === target.dataset.featureId);
-        if (!feature) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
-            return;
-        }
-
-        feature.sheet.render(true);
-    }
-
-    static async deleteFeature(event, button) {
-        event.stopPropagation();
-        const target = button.closest('.feature-item');
-
-        const feature = this.document.system.features.find(
-            feature => feature && feature.id === target.dataset.featureId
-        );
-        if (feature) {
-            await feature.update({ 'system.subType': null });
-        }
-
-        await this.document.update({
-            [`system.features`]: this.document.system.features
-                .filter(feature => feature && feature.id !== target.dataset.featureId)
-                .map(x => x.uuid)
-        });
     }
 }

@@ -391,59 +391,70 @@ export default class DhpActor extends Actor {
         return canUseArmor || canUseStress;
     }
 
-    async takeDamage(baseDamage, type) {
-        if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, baseDamage, type) === false) return null;
+    async takeDamage(damages) {
+        if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, damages) === false) return null;
 
         if (this.type === 'companion') {
             await this.modifyResource([{ value: 1, key: 'stress' }]);
             return;
         }
 
-        type = !Array.isArray(type) ? [type] : type;
+        const updates = [];
 
-        const hpDamage = this.calculateDamage(baseDamage, type);
+        Object.entries(damages).forEach(([key, damage]) => {
+            damage.parts.forEach(part => {
+                if(part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
+                    part.total = this.calculateDamage(part.total, part.damageTypes);
+                const update = updates.find(u => u.key === key);
+                if(update) {
+                    update.value += part.total;
+                    update.damageTypes.add(...new Set(part.damageTypes));
+                } else updates.push({ value: part.total, key, damageTypes: new Set(part.damageTypes) })
+            })
+        });
 
-        if (!hpDamage) return;
+        if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, damages) === false) return null;
 
-        const updates = [{ value: hpDamage, type: 'hitPoints' }];
+        if(!updates.length) return;
 
-        if (this.type === 'character' && this.system.armor && this.#canReduceDamage(hpDamage, type)) {
-            const armorStackResult = await this.owner.query('armorStack', {
-                actorId: this.uuid,
-                damage: hpDamage,
-                type: type
-            });
-            if (armorStackResult) {
-                const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
-                updates.find(u => u.type === 'hitPoints').value = modifiedDamage;
-                updates.push(
-                    ...(armorSpent ? [{ value: armorSpent, key: 'armorStack' }] : []),
-                    ...(stressSpent ? [{ value: stressSpent, key: 'stress' }] : [])
-                );
+        const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
+        if(hpDamage) {
+            hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
+            if (this.type === 'character' && this.system.armor && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
+                const armorStackResult = await this.owner.query('armorStack', {
+                    actorId: this.uuid,
+                    damage: hpDamage.value,
+                    type: [...hpDamage.damageTypes]
+                });
+                if (armorStackResult) {
+                    const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
+                    updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
+                    updates.push(
+                        ...(armorSpent ? [{ value: armorSpent, key: 'armorStack' }] : []),
+                        ...(stressSpent ? [{ value: stressSpent, key: 'stress' }] : [])
+                    );
+                }
             }
         }
-
+        
+        updates.forEach( u =>
+            u.value = u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value
+        );
+        
         await this.modifyResource(updates);
 
-        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damage, type) === false) return null;
+        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damages) === false) return null;
     }
 
     calculateDamage(baseDamage, type) {
-        if (Hooks.call(`${CONFIG.DH.id}.preCalculateDamage`, this, baseDamage, type) === false) return null;
 
-        /* if(this.system.resistance[type]?.immunity) return 0;
-        if(this.system.resistance[type]?.resistance) baseDamage = Math.ceil(baseDamage / 2); */
         if (this.canResist(type, 'immunity')) return 0;
         if (this.canResist(type, 'resistance')) baseDamage = Math.ceil(baseDamage / 2);
 
-        // const flatReduction = this.system.resistance[type].reduction;
         const flatReduction = this.getDamageTypeReduction(type);
         const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
-        const hpDamage = this.convertDamageToThreshold(damage);
 
-        if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, baseDamage, type) === false) return null;
-
-        return hpDamage;
+        return damage;
     }
 
     canResist(type, resistance) {
@@ -461,8 +472,13 @@ export default class DhpActor extends Actor {
     }
 
     async takeHealing(resources) {
-        resources.forEach(r => (r.value *= -1));
-        await this.modifyResource(resources);
+        const updates = Object.entries(resources).map(([key, value]) => (
+            {
+                key: key,
+                value: !(key === 'fear' || this.system?.resources?.[key]?.isReversed === false) ? value.total * -1 : value.total
+            }
+        ))
+        await this.modifyResource(updates);
     }
 
     async modifyResource(resources) {

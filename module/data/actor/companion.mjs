@@ -13,6 +13,7 @@ export default class DhCompanion extends BaseDataActor {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.companion',
             type: 'companion',
+            isNPC: false,
             settingSheet: DHCompanionSettings
         });
     }

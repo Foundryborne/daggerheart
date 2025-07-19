@@ -39,6 +39,9 @@
                 "multiplier": "Multiplier",
                 "resultBased": {
                     "label": "Formula based on Hope/Fear result."
+                },
+                "applyTo": {
+                    "label": "Targeted Resource"
                 }
             },
             "TYPES": {
@@ -109,15 +112,6 @@
             "Character": {
                 "age": "Age",
                 "companionFeatures": "Companion Features",
-                "contextMenu": {
-                    "consume": "Consume Item",
-                    "equip": "Equip",
-                    "sendToChat": "Send To Chat",
-                    "toLoadout": "Send to Loadout",
-                    "toVault": "Send to Vault",
-                    "unequip": "Unequip",
-                    "useItem": "Use Item"
-                },
                 "faith": "Faith",
                 "levelUp": "You can level up",
                 "pronouns": "Pronouns",
@@ -208,6 +202,16 @@
                 "giveSpotlight": "Give The Spotlight",
                 "requestingSpotlight": "Requesting The Spotlight",
                 "requestSpotlight": "Request The Spotlight"
+            },
+            "ContextMenu": {
+                "disableEffect": "Disable Effect",
+                "enableEffect": "Enable Effect",
+                "equip": "Equip",
+                "sendToChat": "Send To Chat",
+                "toLoadout": "Send to Loadout",
+                "toVault": "Send to Vault",
+                "unequip": "Unequip",
+                "useItem": "Use Item"
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
@@ -668,6 +672,10 @@
                 "armorStack": {
                     "name": "Armor Stack",
                     "abbreviation": "AS"
+                },
+                "fear": {
+                    "name": "Fear",
+                    "abbreviation": "FR"
                 }
             },
             "ItemResourceType": {
@@ -1260,6 +1268,7 @@
             },
             "fear": "Fear",
             "features": "Features",
+            "healing": "Healing",
             "hitPoints": {
                 "single": "Hit Point",
                 "plural": "Hit Points",
@@ -1582,6 +1591,8 @@
                 "featureNotMastery": "This feature is used as something else than a Mastery feature and cannot be used here."
             },
             "Tooltip": {
+                "disableEffect": "Disable Effect",
+                "enableEffect": "Enable Effect",
                 "openItemWorld": "Open Item World",
                 "openActorWorld": "Open Actor World",
                 "sendToChat": "Send to Chat",

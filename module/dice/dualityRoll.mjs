@@ -161,21 +161,21 @@ export default class DualityRoll extends D20Roll {
     }
 
     static postEvaluate(roll, config = {}) {
-        super.postEvaluate(roll, config);
+        const data = super.postEvaluate(roll, config);
         
-        config.roll.hope = {
+        data.hope = {
             dice: roll.dHope.denomination,
             value: roll.dHope.total
         };
-        config.roll.fear = {
+        data.fear = {
             dice: roll.dFear.denomination,
             value: roll.dFear.total
         };
-        config.roll.rally = {
+        data.rally = {
             dice: roll.dRally?.denomination,
             value: roll.dRally?.total
         };
-        config.roll.result = {
+        data.result = {
             duality: roll.withHope ? 1 : roll.withFear ? -1 : 0,
             total: roll.dHope.total + roll.dFear.total,
             label: roll.totalLabel
@@ -184,6 +184,8 @@ export default class DualityRoll extends D20Roll {
         if(roll._rallyIndex && roll.data?.parent) 
             roll.data.parent.deleteEmbeddedDocuments('ActiveEffect', [roll._rallyIndex]);
 
-        setDiceSoNiceForDualityRoll(roll, config.roll.advantage.type);
+        setDiceSoNiceForDualityRoll(roll, data.advantage.type);
+
+        return data;
     }
 }

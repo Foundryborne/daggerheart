@@ -4,7 +4,7 @@ import { abilities } from '../../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { itemAbleRollParse } from '../../../helpers/utils.mjs';
+import { getDocFromElement, itemAbleRollParse } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -15,7 +15,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         classes: ['character'],
         position: { width: 850, height: 800 },
         actions: {
-            triggerContextMenu: CharacterSheet.#triggerContextMenu,
             toggleVault: CharacterSheet.#toggleVault,
             rollAttribute: CharacterSheet.#rollAttribute,
             toggleHope: CharacterSheet.#toggleHope,
@@ -24,11 +23,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             makeDeathMove: CharacterSheet.#makeDeathMove,
             levelManagement: CharacterSheet.#levelManagement,
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
-            useItem: this.useItem, //TODO Fix this
-            useAction: this.useAction,
-            toggleResourceDice: this.toggleResourceDice,
-            handleResourceDice: this.handleResourceDice,
-            toChat: this.toChat,
+            toggleResourceDice: CharacterSheet.#toggleResourceDice,
+            handleResourceDice: CharacterSheet.#handleResourceDice,
             useDowntime: this.useDowntime
         },
         window: {
@@ -42,8 +38,24 @@ export default class CharacterSheet extends DHBaseActorSheet {
         ],
         contextMenus: [
             {
-                handler: CharacterSheet._getContextMenuOptions,
-                selector: '[data-item-id]',
+                handler: CharacterSheet.#getDomainCardContextOptions,
+                selector: '[data-item-uuid][data-type="domainCard"]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            },
+            {
+                handler: CharacterSheet.#getEquipamentContextOptions,
+                selector: '[data-item-uuid][data-type="armor"], [data-item-uuid][data-type="weapon"]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            },
+            {
+                handler: CharacterSheet.#getItemContextOptions,
+                selector: '[data-item-uuid][data-type="consumable"], [data-item-uuid][data-type="miscellaneous"]',
                 options: {
                     parentClassHooks: false,
                     fixed: true
@@ -124,20 +136,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /* -------------------------------------------- */
-
-    getItem(element) {
-        const listElement = (element.target ?? element).closest('[data-item-id]');
-        const itemId = listElement.dataset.itemId;
-
-        switch (listElement.dataset.type) {
-            case 'effect':
-                return this.document.effects.get(itemId);
-            default:
-                return this.document.items.get(itemId);
-        }
-    }
-
-    /* -------------------------------------------- */
     /*  Prepare Context                             */
     /* -------------------------------------------- */
 
@@ -186,16 +184,62 @@ export default class CharacterSheet extends DHBaseActorSheet {
             case 'sidebar':
                 await this._prepareSidebarContext(context, options);
                 break;
+            case 'biography':
+                await this._prepareBiographyContext(context, options);
+                break;
         }
         return context;
     }
 
+    /**
+     * Prepare render context for the Loadout part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
     async _prepareLoadoutContext(context, _options) {
-        context.listView = game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList);
+        context.cardView = !game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.displayDomainCardsAsList);
     }
 
+    /**
+     * Prepare render context for the Sidebar part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
     async _prepareSidebarContext(context, _options) {
         context.isDeath = this.document.system.deathMoveViable;
+    }
+
+    /**
+     * Prepare render context for the Biography part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareBiographyContext(context, _options) {
+        const { system } = this.document;
+        const { TextEditor } = foundry.applications.ux;
+
+        const paths = {
+            background: 'biography.background',
+            connections: 'biography.connections'
+        };
+
+        for (const [key, path] of Object.entries(paths)) {
+            const value = foundry.utils.getProperty(system, path);
+            context[key] = {
+                field: system.schema.getField(path),
+                value,
+                enriched: await TextEditor.implementation.enrichHTML(value, {
+                    secrets: this.document.isOwner,
+                    relativeTo: this.document
+                })
+            };
+        }
     }
 
     /* -------------------------------------------- */
@@ -203,107 +247,72 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /* -------------------------------------------- */
 
     /**
-     * Get the set of ContextMenu options.
+     * Get the set of ContextMenu options for DomainCards.
      * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
      * @this {CharacterSheet}
      * @protected
      */
-    static _getContextMenuOptions() {
-        /**
-         * Get the item from the element.
-         * @param {HTMLElement} el
-         * @returns {foundry.documents.Item?}
-         */
-        const getItem = element => {
-            const listElement = (element.target ?? element).closest('[data-item-id]');
-            const itemId = listElement.dataset.itemId;
-
-            switch (listElement.dataset.type) {
-                case 'effect':
-                    return this.document.effects.get(itemId);
-                default:
-                    return this.document.items.get(itemId);
+    static #getDomainCardContextOptions() {
+        /**@type {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} */
+        const options = [
+            {
+                name: 'toLoadout',
+                icon: 'fa-solid fa-arrow-up',
+                condition: target => getDocFromElement(target).system.inVault,
+                callback: target => getDocFromElement(target).update({ 'system.inVault': false })
+            },
+            {
+                name: 'toVault',
+                icon: 'fa-solid fa-arrow-down',
+                condition: target => !getDocFromElement(target).system.inVault,
+                callback: target => getDocFromElement(target).update({ 'system.inVault': true })
             }
-        };
+        ].map(option => ({
+            ...option,
+            name: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.name}`,
+            icon: `<i class="${option.icon}"></i>`
+        }));
 
-        return [
-            {
-                name: 'DAGGERHEART.ACTORS.Character.contextMenu.useItem',
-                icon: '<i class="fa-solid fa-burst"></i>',
-                condition: el => {
-                    const item = getItem(el);
-                    return !['class', 'subclass'].includes(item.type);
-                },
-                callback: (button, event) => CharacterSheet.useItem.call(this, event, button)
-            },
-            {
-                name: 'DAGGERHEART.ACTORS.Character.contextMenu.equip',
-                icon: '<i class="fa-solid fa-hands"></i>',
-                condition: el => {
-                    const item = getItem(el);
-                    return ['weapon', 'armor'].includes(item.type) && !item.system.equipped;
-                },
-                callback: CharacterSheet.#toggleEquipItem.bind(this)
-            },
-            {
-                name: 'DAGGERHEART.ACTORS.Character.contextMenu.unequip',
-                icon: '<i class="fa-solid fa-hands"></i>',
-                condition: el => {
-                    const item = getItem(el);
-                    return ['weapon', 'armor'].includes(item.type) && item.system.equipped;
-                },
-                callback: CharacterSheet.#toggleEquipItem.bind(this)
-            },
-            {
-                name: 'DAGGERHEART.ACTORS.Character.contextMenu.toLoadout',
-                icon: '<i class="fa-solid fa-arrow-up"></i>',
-                condition: el => {
-                    const item = getItem(el);
-                    return ['domainCard'].includes(item.type) && item.system.inVault;
-                },
-                callback: target => getItem(target).update({ 'system.inVault': false })
-            },
-            {
-                name: 'DAGGERHEART.ACTORS.Character.contextMenu.toVault',
-                icon: '<i class="fa-solid fa-arrow-down"></i>',
-                condition: el => {
-                    const item = getItem(el);
-                    return ['domainCard'].includes(item.type) && !item.system.inVault;
-                },
-                callback: target => getItem(target).update({ 'system.inVault': true })
-            },
-            {
-                name: 'DAGGERHEART.ACTORS.Character.contextMenu.sendToChat',
-                icon: '<i class="fa-regular fa-message"></i>',
-                callback: CharacterSheet.toChat.bind(this)
-            },
-            {
-                name: 'CONTROLS.CommonEdit',
-                icon: '<i class="fa-solid fa-pen-to-square"></i>',
-                callback: target => getItem(target).sheet.render({ force: true })
-            },
-            {
-                name: 'CONTROLS.CommonDelete',
-                icon: '<i class="fa-solid fa-trash"></i>',
-                callback: async el => {
-                    const item = getItem(el);
-                    const confirmed = await foundry.applications.api.DialogV2.confirm({
-                        window: {
-                            title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                                type: game.i18n.localize(`TYPES.${item.documentName}.${item.type}`),
-                                name: item.name
-                            })
-                        },
-                        content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', {
-                            name: item.name
-                        })
-                    });
-                    if (!confirmed) return;
+        return [...options, ...this._getContextMenuCommonOptions.call(this, { usable: true, toChat: true })];
+    }
 
-                    item.delete();
-                }
+    /**
+     * Get the set of ContextMenu options for Armors and Weapons.
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
+     * @this {CharacterSheet}
+     * @protected
+     */
+    static #getEquipamentContextOptions() {
+        const options = [
+            {
+                name: 'equip',
+                icon: 'fa-solid fa-hands',
+                condition: target => !getDocFromElement(target).system.equipped,
+                callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
+            },
+            {
+                name: 'unequip',
+                icon: 'fa-solid fa-hands',
+                condition: target => getDocFromElement(target).system.equipped,
+                callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             }
-        ];
+        ].map(option => ({
+            ...option,
+            name: `DAGGERHEART.APPLICATIONS.ContextMenu.${option.name}`,
+            icon: `<i class="${option.icon}"></i>`
+        }));
+
+        return [...options, ...this._getContextMenuCommonOptions.call(this, { usable: true, toChat: true })];
+    }
+
+    /**
+     * Get the set of ContextMenu options for Consumable and Miscellaneous.
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
+     * @this {CharacterSheet}
+     * @protected
+     */
+    static #getItemContextOptions() {
+        return this._getContextMenuCommonOptions.call(this, { usable: true, toChat: true });
     }
     /* -------------------------------------------- */
     /*  Filter Tracking                             */
@@ -397,7 +406,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         this.#filteredItems.inventory.search.clear();
 
         for (const li of html.querySelectorAll('.inventory-item')) {
-            const item = this.document.items.get(li.dataset.itemId);
+            const item = getDocFromElement(li);
             const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
             if (matchesSearch) this.#filteredItems.inventory.search.add(item.id);
             const { menu } = this.#filteredItems.inventory;
@@ -417,7 +426,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         this.#filteredItems.loadout.search.clear();
 
         for (const li of html.querySelectorAll('.items-list .inventory-item, .card-list .card-item')) {
-            const item = this.document.items.get(li.dataset.itemId);
+            const item = getDocFromElement(li);
             const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
             if (matchesSearch) this.#filteredItems.loadout.search.add(item.id);
             const { menu } = this.#filteredItems.loadout;
@@ -468,7 +477,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         this.#filteredItems.inventory.menu.clear();
 
         for (const li of html.querySelectorAll('.inventory-item')) {
-            const item = this.document.items.get(li.dataset.itemId);
+            const item = getDocFromElement(li);
 
             const matchesMenu =
                 filters.length === 0 || filters.some(f => foundry.applications.ux.SearchFilter.evaluateFilter(item, f));
@@ -489,7 +498,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         this.#filteredItems.loadout.menu.clear();
 
         for (const li of html.querySelectorAll('.items-list .inventory-item, .card-list .card-item')) {
-            const item = this.document.items.get(li.dataset.itemId);
+            const item = getDocFromElement(li);
 
             const matchesMenu =
                 filters.length === 0 || filters.some(f => foundry.applications.ux.SearchFilter.evaluateFilter(item, f));
@@ -503,22 +512,21 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /* -------------------------------------------- */
     /*  Application Listener Actions                */
     /* -------------------------------------------- */
+
     async updateItemResource(event) {
-        const item = this.getItem(event.currentTarget);
+        const item = getDocFromElement(event.currentTarget);
         if (!item) return;
 
         const max = item.system.resource.max ? itemAbleRollParse(item.system.resource.max, this.document, item) : null;
         const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
         await item.update({ 'system.resource.value': value });
-        this.render();
     }
 
     async updateItemQuantity(event) {
-        const item = this.getItem(event.currentTarget);
+        const item = getDocFromElement(event.currentTarget);
         if (!item) return;
 
         await item.update({ 'system.quantity': event.currentTarget.value });
-        this.render();
     }
 
     async updateArmorMarks(event) {
@@ -528,7 +536,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const maxMarks = this.document.system.armorScore;
         const value = Math.min(Math.max(Number(event.currentTarget.value), 0), maxMarks);
         await armor.update({ 'system.marks.value': value });
-        this.render();
     }
 
     /* -------------------------------------------- */
@@ -588,13 +595,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
         this.document.diceRoll(config);
     }
 
+    //TODO: redo toggleEquipItem method
+
     /**
      * Toggles the equipped state of an item (armor or weapon).
      * @type {ApplicationClickAction}
      */
     static async #toggleEquipItem(_event, button) {
-        //TODO: redo this
-        const item = this.actor.items.get(button.closest('[data-item-id]')?.dataset.itemId);
+        const item = getDocFromElement(button);
         if (!item) return;
         if (item.system.equipped) {
             await item.update({ 'system.equipped': false });
@@ -642,64 +650,23 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Toggles whether an item is stored in the vault.
      * @type {ApplicationClickAction}
      */
-    static async #toggleVault(event, button) {
-        const docId = button.closest('[data-item-id]')?.dataset.itemId;
-        const doc = this.document.items.get(docId);
+    static async #toggleVault(_event, button) {
+        const doc = getDocFromElement(button);
         await doc?.update({ 'system.inVault': !doc.system.inVault });
-    }
-
-    /**
-     * Trigger the context menu.
-     * @type {ApplicationClickAction}
-     */
-    static #triggerContextMenu(event, _) {
-        return CONFIG.ux.ContextMenu.triggerContextMenu(event);
-    }
-
-    /**
-     * Use a item
-     * @type {ApplicationClickAction}
-     */
-    static async useItem(event, button) {
-        const item = this.getItem(button);
-        if (!item) return;
-
-        // Should dandle its actions. Or maybe they'll be separate buttons as per an Issue on the board
-        if (item.type === 'feature') {
-            item.use(event);
-        } else if (item instanceof ActiveEffect) {
-            item.toChat(this);
-        } else {
-            item.use(event);
-        }
-    }
-
-    /**
-     * Use an action
-     * @type {ApplicationClickAction}
-     */
-    static async useAction(event, button) {
-        const item = this.getItem(button);
-        if (!item) return;
-
-        const action = item.system.actions.find(x => x.id === button.dataset.actionId);
-        if (!action) return;
-
-        action.use(event);
     }
 
     /**
      * Toggle the used state of a resource dice.
      * @type {ApplicationClickAction}
      */
-    static async toggleResourceDice(event) {
-        const target = event.target.closest('.item-resource');
-        const item = this.getItem(event);
-        if (!item) return;
+    static async #toggleResourceDice(event, target) {
+        const item = getDocFromElement(target);
 
-        const diceState = item.system.resource.diceStates[target.dataset.dice];
+        const { dice } = event.target.closest('.item-resource').dataset;
+        const diceState = item.system.resource.diceStates[dice];
+
         await item.update({
-            [`system.resource.diceStates.${target.dataset.dice}.used`]: diceState?.used ? !diceState.used : true
+            [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
         });
     }
 
@@ -707,8 +674,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * Handle the roll values of resource dice.
      * @type {ApplicationClickAction}
      */
-    static async handleResourceDice(event) {
-        const item = this.getItem(event);
+    static async #handleResourceDice(_, target) {
+        const item = getDocFromElement(target);
         if (!item) return;
 
         const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(item, this.document);
@@ -720,37 +687,6 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 return acc;
             }, {})
         });
-        this.render();
-    }
-
-    /**
-     * Send item to Chat
-     * @type {ApplicationClickAction}
-     */
-    static async toChat(event, button) {
-        if (button?.dataset?.type === 'experience') {
-            const experience = this.document.system.experiences[button.dataset.uuid];
-            const cls = getDocumentClass('ChatMessage');
-            const systemData = {
-                name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
-                description: `${experience.name} ${experience.value.signedString()}`
-            };
-            const msg = new cls({
-                type: 'abilityUse',
-                user: game.user.id,
-                system: systemData,
-                content: await foundry.applications.handlebars.renderTemplate(
-                    'systems/daggerheart/templates/ui/chat/ability-use.hbs',
-                    systemData
-                )
-            });
-
-            cls.create(msg.toObject());
-        } else {
-            const item = this.getItem(event);
-            if (!item) return;
-            item.toChat(this.document.id);
-        }
     }
 
     static useDowntime(_, button) {
@@ -760,7 +696,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async _onDragStart(event) {
-        const item = this.getItem(event);
+        const item = getDocFromElement(event.target);
 
         const dragData = {
             type: item.documentName,

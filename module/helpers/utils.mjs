@@ -300,6 +300,18 @@ export const updateActorTokens = async (actor, update) => {
     }
 };
 
+/**
+ * Retrieves a Foundry document associated with the nearest ancestor element
+ * that has a `data-item-uuid` attribute.
+ * @param {HTMLElement} element - The DOM element to start the search from.
+ * @returns {foundry.abstract.Document|null} The resolved document, or null if not found or invalid.
+ */
+export function getDocFromElement(element) {
+    const target = element.closest('[data-item-uuid]');
+    return foundry.utils.fromUuidSync(target.dataset.itemUuid) ?? null;
+}
+
+
 export const itemAbleRollParse = (value, actor, item) => {
     if (!value) return value;
 
@@ -311,3 +323,15 @@ export const itemAbleRollParse = (value, actor, item) => {
         return '';
     }
 };
+
+export const arraysEqual = (a, b) =>
+  a.length === b.length &&
+  [...new Set([...a, ...b])].every(
+    v => a.filter(e => e === v).length === b.filter(e => e === v).length
+  );
+
+export const setsEqual = (a, b) =>
+    a.size === b.size &&
+    [...a].every(
+        value => b.has(value)
+    );

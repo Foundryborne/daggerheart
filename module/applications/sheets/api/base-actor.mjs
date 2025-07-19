@@ -21,10 +21,23 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             submitOnChange: true
         },
         actions: {
-            openSettings: DHBaseActorSheet.#openSettings
+            openSettings: DHBaseActorSheet.#openSettings,
+            sendExpToChat: DHBaseActorSheet.#sendExpToChat,
         },
+        contextMenus: [
+            {
+                handler: DHBaseActorSheet.#getFeatureContextOptions,
+                selector: '[data-item-uuid][data-type="feature"]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            }
+        ],
         dragDrop: [{ dragSelector: '.inventory-item[data-type="attack"]', dropSelector: null }]
     };
+
+    /* -------------------------------------------- */
 
     /**@type {typeof DHBaseActorSettings}*/
     #settingSheet;
@@ -35,6 +48,10 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         return (this.#settingSheet ??= SheetClass ? new SheetClass({ document: this.document }) : null);
     }
 
+    /* -------------------------------------------- */
+    /*  Prepare Context                             */
+    /* -------------------------------------------- */
+
     /**@inheritdoc */
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
@@ -42,12 +59,85 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         return context;
     }
 
+
+    /**@inheritdoc */
+    async _preparePartContext(partId, context, options) {
+        context = await super._preparePartContext(partId, context, options);
+        switch (partId) {
+            case 'effects':
+                await this._prepareEffectsContext(context, options);
+                break;
+        }
+        return context;
+    }
+
+    /**
+     * Prepare render context for the Effect part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareEffectsContext(context, _options) {
+        context.effects = {
+            actives: [],
+            inactives: [],
+        };
+
+        for (const effect of this.actor.allApplicableEffects()) {
+            const list = effect.active ? context.effects.actives : context.effects.inactives;
+            list.push(effect);
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Context Menu                                */
+    /* -------------------------------------------- */
+
+    /**
+     * Get the set of ContextMenu options for Features.
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
+     * @this {DHSheetV2}
+     * @protected
+     */
+    static #getFeatureContextOptions() {
+        return this._getContextMenuCommonOptions.call(this, { usable: true, toChat: true });
+    }
+
+
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
+
     /**
      * Open the Actor Setting Sheet
      * @type {ApplicationClickAction}
      */
     static async #openSettings() {
         await this.settingSheet.render({ force: true });
+    }
+
+    /**
+     * Send Experience to Chat
+     * @type {ApplicationClickAction}
+     */
+    static async #sendExpToChat(_, button) {
+        const experience = this.document.system.experiences[button.dataset.id];
+
+        const systemData = {
+            name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
+            description: `${experience.name} ${experience.value.signedString()}`
+        };
+
+        foundry.documents.ChatMessage.implementation.create({
+            type: 'abilityUse',
+            user: game.user.id,
+            system: systemData,
+            content: await foundry.applications.handlebars.renderTemplate(
+                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
+                systemData
+            )
+        });
     }
 
     /* -------------------------------------------- */

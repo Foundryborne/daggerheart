@@ -1,4 +1,4 @@
-import { DHActionDiceData, DHActionRollData, DHDamageField } from './actionDice.mjs';
+import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField, DHResourceData } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 
@@ -96,21 +96,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                         onSave: new fields.BooleanField({ initial: false })
                     })
                 ),
-                healing: new fields.SchemaField({
-                    type: new fields.StringField({
-                        choices: CONFIG.DH.GENERAL.healingTypes,
-                        required: true,
-                        blank: false,
-                        initial: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
-                        label: 'Healing'
-                    }),
-                    resultBased: new fields.BooleanField({
-                        initial: false,
-                        label: 'DAGGERHEART.ACTIONS.Settings.resultBased.label'
-                    }),
-                    value: new fields.EmbeddedDataField(DHActionDiceData),
-                    valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
-                }),
+                healing: new fields.EmbeddedDataField(DHResourceData),
                 beastform: new fields.SchemaField({
                     tierAccess: new fields.SchemaField({
                         exact: new fields.NumberField({ integer: true, nullable: true, initial: null })
@@ -156,7 +142,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     static getSourceConfig(parent) {
         const updateSource = {};
         updateSource.img ??= parent?.img ?? parent?.system?.img;
-        if (parent?.type === 'weapon') {
+        if (parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
             updateSource['damage'] = { includeBase: true };
             updateSource['range'] = parent?.system?.attack?.range;
             updateSource['roll'] = {
@@ -177,6 +163,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     getRollData(data = {}) {
+        if(!this.actor) return null;
         const actorData = this.actor.getRollData(false);
 
         // Add Roll results to RollDatas
@@ -191,6 +178,8 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     async use(event, ...args) {
+        if(!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
+        
         const isFastForward = event.shiftKey || (!this.hasRoll && !this.hasSave);
         // Prepare base Config
         const initConfig = this.initActionConfig(event);
@@ -227,7 +216,6 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
         // Display configuration window if necessary
-        // if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
         if (this.requireConfigurationDialog(config)) {
             config = await D20RollDialog.configure(null, config);
             if (!config) return;

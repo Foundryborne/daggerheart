@@ -10,12 +10,12 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.reject = reject;
         this.actor = actor;
         this.damage = damage;
-
+        
         const canApplyArmor = damageType.every(t => actor.system.armorApplicableDamageTypes[t] === true);
         const maxArmorMarks = canApplyArmor
             ? Math.min(
                   actor.system.armorScore - actor.system.armor.system.marks.value,
-                  actor.system.rules.damageReduction.maxArmorMarked.total
+                  actor.system.rules.damageReduction.maxArmorMarked.value
               )
             : 0;
 
@@ -100,7 +100,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         context.armorScore = this.actor.system.armorScore;
         context.armorMarks = currentMarks;
         context.basicMarksUsed =
-            selectedArmorMarks.length === this.actor.system.rules.damageReduction.maxArmorMarked.total;
+            selectedArmorMarks.length === this.actor.system.rules.damageReduction.maxArmorMarked.value;
 
         const stressReductionStress = this.availableStressReductions
             ? stressReductions.reduce((acc, red) => acc + red.cost, 0)

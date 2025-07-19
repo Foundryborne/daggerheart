@@ -4,8 +4,17 @@
     data-group='{{tabs.potentialAdversaries.group}}'
 >    
     <div class="action-section">
-        {{#each document.system.potentialAdversaries}}
-            {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=this.label type='adversary' isGlassy=true adversaries=this.adversaries}}
+        {{#each document.system.potentialAdversaries as |category categoryId|}}
+            {{> 'daggerheart.inventory-items'
+            title=category.label
+            type='adversary'
+            isGlassy=true
+            isActor=true
+            categoryAdversary=categoryId
+            hideControls=true
+            collection=category.adversaries
+            hideResources=true
+            }}
         {{/each}}
     </div>
 </section>

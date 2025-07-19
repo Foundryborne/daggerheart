@@ -1,34 +1,22 @@
-<li class="card-item" data-item-id="{{item.id}}" data-item-id="{{item.id}}">
+<li class="card-item" data-item-uuid="{{item.uuid}}">
     <img src="{{item.img}}" data-action="useItem" class="card-img" />
     <div class="card-label">
-        <div class="menu {{#if item.system.resource}}resource-menu{{/if}} {{#if (eq item.system.resource.type 'diceValue')}}dice-menu{{/if}}">
+        <div
+            class="menu {{#if item.system.resource}}resource-menu{{/if}} {{#if (eq item.system.resource.type 'diceValue')}}dice-menu{{/if}}">
             {{#if item.system.resource}}
-                {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
+            {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
             {{/if}}
             <div class="controls">
-                {{#if (eq type 'weapon')}}
-                    <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.UI.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.UI.Tooltip.unequip'}}{{/unless}}">
-                        <i class="fa-solid fa-hands"></i>
-                    </a>
-                {{/if}}
-                {{#if (eq type 'armor')}}
-                    <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem" data-tooltip="{{#unless item.system.equipped}}{{localize 'DAGGERHEART.UI.Tooltip.equip'}}{{else}}{{localize 'DAGGERHEART.UI.Tooltip.unequip'}}{{/unless}}">
-                    <i class="fa-solid fa-shield"></i>
-                    </a>
-                {{/if}}
-                {{#if (eq type 'domainCard')}}
-                    {{#unless item.system.inVault}}
-                        <a data-action="toggleVault" data-tooltip="{{localize 'DAGGERHEART.UI.Tooltip.sendToVault'}}">
-                            <i class="fa-solid fa-arrow-down"></i>
-                        </a>
-                    {{else}}
-                        <a data-action="toggleVault" data-tooltip="{{localize 'DAGGERHEART.UI.Tooltip.sendToLoadout'}}">
-                            <i class="fa-solid fa-arrow-up"></i>
-                        </a>
-                    {{/unless}}
-                {{/if}}
-                <a data-action="toChat" data-tooltip="{{localize 'DAGGERHEART.UI.Tooltip.sendToChat'}}"><i class="fa-regular fa-message"></i></a>
-                <a data-action="triggerContextMenu" data-tooltip="{{localize 'DAGGERHEART.UI.Tooltip.moreOptions'}}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                <a data-action="toggleVault"
+                    data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.inVault 'sendToLoadout' 'sendToVault' }}">
+                    <i class="fa-solid {{ifThen item.system.inVault 'fa-arrow-up' 'fa-arrow-down'}}"></i>
+                </a>
+                <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
+                    <i class="fa-regular fa-message"></i>
+                </a>
+                <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </a>
             </div>
         </div>
         <div class="card-name">{{item.name}}</div>

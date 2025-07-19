@@ -1,0 +1,239 @@
+{{!--
+{{> 'daggerheart.inventory-item' }}
+
+Parameters:
+- type {string} : The type of items in the list
+- isActor {boolean} : Passed through to inventory-item partials.
+- categoryAdversary {string} : Category adversary id.
+- noExtensible {boolean} : If true, the inventory-item-content would be collapsable/extendible else it always be showed
+- hideLabels {boolean} : If true, hide label-tags else show label-tags.
+- hideTags {boolean} : If true, hide simple-tags else show simple-tags.
+- hideTooltip {boolean} : If true, disables the tooltip on the item image.
+- hideControls {boolean} : If true, hides the controls inside inventory-item partials.
+- hideDescription {boolean} : If true, hides the item's description.
+- hideResources {boolean} : If true, hides the item's resources.
+- showActions {boolean} : If true show feature's actions.
+--}}
+
+<li class="inventory-item" {{#if (eq type 'action' )}}data-action-id="{{item.id}}" {{/if}}
+  data-item-uuid="{{item.uuid}}" data-type="{{type}}" draggable="true">
+  <div class="inventory-item-header" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
+    {{!-- Image --}}
+    <div class="img-portait"
+      data-action='{{ifThen (hasProperty item "use") "useItem" (ifThen (hasProperty item "toChat") "toChat" "editDoc") }}'
+      {{#unless hideTooltip}}data-tooltip="#item#{{item.uuid}}" {{/unless}}>
+      <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
+      <img class="roll-img" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
+    </div>
+
+    {{!-- Name & Tags --}}
+    <div class="item-label {{#if hideResources}}fullWidth{{/if}}">
+
+      {{!-- Item Name --}}
+      <div class="item-name">{{item.name}}</div>
+
+      {{!-- Weapon Block Start --}}
+      {{#if (eq type 'weapon')}}
+      {{#if (not hideTags)}}
+      <div class="item-tags">
+        <div class="tag">
+          {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.name')}}
+        </div>
+        <div class="tag">
+          {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.attack.range '.name')}}
+        </div>
+        <div class="tag">
+          {{item.system.attack.damage.parts.0.value.dice}}
+          {{#if item.system.attack.damage.parts.0.value.bonus}} +
+          {{item.system.attack.damage.parts.0.value.bonus}}{{/if}}
+          (
+          {{#each item.system.attack.damage.parts.0.type as |type|}}
+
+          {{localize (concat 'DAGGERHEART.CONFIG.DamageType.' type '.abbreviation')}}
+          {{#unless @last}}|{{/unless}}
+          {{/each}}
+          )
+
+        </div>
+        <div class="tag">
+          {{localize (concat 'DAGGERHEART.CONFIG.Burden.' item.system.burden)}}
+        </div>
+      </div>
+      {{else if (not hideLabels)}}
+      <div class="item-labels">
+        <div class="label">
+          {{localize (concat 'DAGGERHEART.CONFIG.Traits.' item.system.attack.roll.trait '.short')}}
+          {{localize (concat 'DAGGERHEART.CONFIG.Range.' item.system.attack.range '.short')}}
+          <span> - </span>
+          {{item.system.attack.damage.parts.0.value.dice}}
+          {{#if item.system.attack.damage.parts.0.value.bonus}} +
+          {{item.system.attack.damage.parts.0.value.bonus}}
+          {{/if}}
+          {{#with (lookup @root.config.GENERAL.damageTypes item.system.attack.damage.parts.0.type)}}
+          {{#each icon}}<i class="fa-solid {{this}}"></i>{{/each}}
+          {{/with}}
+        </div>
+      </div>
+      {{/if}}
+      {{/if}}
+      {{!-- Weapon Block End --}}
+
+      {{!-- Armor Block Start --}}
+      {{#if (eq type 'armor')}}
+      {{#if (not hideTags)}}
+      <div class="item-tags">
+        <div class="tag">{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}: {{item.system.baseScore}}</div>
+        <div class="tag">
+          {{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.base"}}:
+          {{item.system.baseThresholds.major}} / {{item.system.baseThresholds.severe}}
+        </div>
+      </div>
+      {{else if (not hideLabels)}}
+      <div class="item-labels">
+        <div class="label">
+          {{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}: {{item.system.baseScore}}
+        </div>
+      </div>
+      {{/if}}
+      {{/if}}
+      {{!-- Armor Block End --}}
+
+      {{!-- Domain Card Block Start --}}
+      {{#if (eq type 'domainCard')}}
+      {{#if (not hideTags)}}
+      <div class="item-tags">
+        <div class="tag">{{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' item.system.type)}}</div>
+        <div class="tag">{{localize (concat 'DAGGERHEART.GENERAL.Domain.' item.system.domain '.label')}}</div>
+        <div class="tag">
+          <span class="recall-label">{{localize "DAGGERHEART.ITEMS.DomainCard.recallCost"}}: </span>
+          <span class="recall-value">{{item.system.recallCost}}</span>
+        </div>
+      </div>
+      {{else if (not hideLabels)}}
+      <div class="item-labels">
+        <div class="label">
+          {{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' item.system.type)}} -
+          {{localize (concat 'DAGGERHEART.GENERAL.Domain.' item.system.domain '.label')}} -
+          <span class="recall-value">{{item.system.recallCost}}</span>
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+      </div>
+      {{/if}}
+      {{/if}}
+      {{!-- Domain Card Block End --}}
+
+      {{!-- Effect Block Start --}}
+      {{#if (eq type 'effect')}}
+      {{#if (not hideTags)}}
+      <div class="item-tags">
+        <div class="tag">
+          {{localize item.parent.system.metadata.label}}: {{item.parent.name}}
+        </div>
+        <div class="tag">
+          {{#if item.duration.duration}}
+          {{localize 'DAGGERHEART.EFFECTS.Duration.temporary'}}
+          {{else}}
+          {{localize 'DAGGERHEART.EFFECTS.Duration.passive'}}
+          {{/if}}
+        </div>
+        {{#each item.statuses as |status|}}
+        <div class="tag">{{localize (concat 'DAGGERHEART.CONFIG.Condition.' status '.name')}}</div>
+        {{/each}}
+      </div>
+      {{else if (not hideLabels)}}
+      {{!-- Empty --}}
+      {{/if}}
+      {{/if}}
+      {{!-- Effect Block End --}}
+
+      {{!-- Action Block Start --}}
+      {{#if (eq type 'action')}}
+      {{#if (not hideTags)}}
+      <div class="item-tags">
+        <div class="tag">{{localize (concat 'DAGGERHEART.ACTIONS.TYPES.' item.type '.name')}}</div>
+        <div class="tag">{{localize (concat 'DAGGERHEART.CONFIG.ActionType.' item.actionType)}}</div>
+      </div>
+      {{else if (not hideLabels)}}
+      {{!-- Empty --}}
+      {{/if}}
+      {{/if}}
+      {{!-- Action Block End --}}
+    </div>
+
+    {{!-- Simple Resource --}}
+    {{#if (and (not hideResources) (eq item.system.resource.type 'simple'))}}
+    {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
+    {{/if}}
+    {{#if (and (not hideResources) item.system.quantity)}}
+    <div class="item-resource">
+      <input type="number" class="inventory-item-quantity" value="{{item.system.quantity}}" step="1" />
+    </div>
+    {{/if}}
+
+    {{!-- Controls --}}
+    {{#unless hideControls}}
+    <div class="controls">
+      {{#if isActor}}
+      <a data-action="editDoc" data-tooltip="DAGGERHEART.UI.Tooltip.openActorWorld">
+        <i class="fa-solid fa-globe"></i>
+      </a>
+      {{#if (eq type 'adversary')}}
+      <a data-action='deleteAdversary' data-category="{{categoryAdversary}}" data-tooltip="CONTROLS.CommonDelete">
+        <i class='fas fa-trash'></i>
+      </a>
+      {{/if}}
+      {{else}}
+      {{#if (eq type 'weapon')}}
+      <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+        <i class="fa-solid fa-hands"></i>
+      </a>
+      {{else if (eq type 'armor')}}
+      <a class="{{#unless item.system.equipped}}unequipped{{/unless}}" data-action="toggleEquipItem"
+        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.equipped 'unequip' 'equip' }}">
+        <i class="fa-solid fa-shield"></i>
+      </a>
+      {{else if (eq type 'domainCard')}}
+      <a data-action="toggleVault"
+        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.system.inVault 'sendToLoadout' 'sendToVault' }}">
+        <i class="fa-solid {{ifThen item.system.inVault 'fa-arrow-up' 'fa-arrow-down'}}"></i>
+      </a>
+      {{else if (eq type 'effect')}}
+      <a data-action="toggleEffect"
+        data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.disabled 'enableEffect' 'disableEffect' }}">
+        <i class="{{ifThen item.disabled 'fa-regular fa-lightbulb' 'fa-solid fa-lightbulb'}}"></i>
+      </a>
+      {{/if}}
+      {{#if (hasProperty item "toChat")}}
+      <a data-action="toChat" data-tooltip="DAGGERHEART.UI.Tooltip.sendToChat">
+        <i class="fa-regular fa-message"></i>
+      </a>
+      {{/if}}
+      <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+      </a>
+      {{/if}}
+    </div>
+    {{/unless}}
+  </div>
+  <div class="inventory-item-content{{#unless noExtensible}} extensible{{/unless}}">
+    {{!-- Description --}}
+    {{#unless hideDescription}}
+    <div class="invetory-description"></div>
+    {{/unless}}
+    {{!-- Dice Resource --}}
+    {{#if (and (not hideResources) (eq item.system.resource.type 'diceValue'))}}
+    {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
+    {{/if}}
+    {{!-- Actions Buttons --}}
+    {{#if (and showActions (eq item.type 'feature'))}}
+    <div class="item-buttons">
+      {{#each item.system.actions as | action |}}
+      <button type="button" data-action="useAction" data-action-id="{{action.id}}">
+        {{action.name}}
+      </button>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+</li>

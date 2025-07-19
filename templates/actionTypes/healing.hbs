@@ -1,43 +1,41 @@
 
-<fieldset class="action-category">
-    <legend class="action-category-label" data-action="toggleSection" data-section="effects">
-        <div>Healing</div>
+<fieldset class="one-column">
+    <legend>
+        {{localize "DAGGERHEART.GENERAL.healing"}}
     </legend>
-    <div class="action-category-data open">
-        <fieldset>
-            {{formField fields.type value=source.type name="healing.type" localize=true}}
-            {{#if (and (not @root.isNPC) @root.hasRoll)}}
-                {{formField fields.resultBased value=source.resultBased name="healing.resultBased" localize=true}}
-            {{/if}}
-            {{#if (and (not @root.isNPC) @root.hasRoll source.resultBased)}}
-                <fieldset>
-                    <legend>
-                        <div>With Hope</div>
-                    </legend>
-                    {{> formula fields=fields.value.fields source=source.value target="value"}}
-                </fieldset>
-                <fieldset>
-                    <legend>
-                        <div>With Fear</div>
-                    </legend>
-                    {{> formula fields=fields.valueAlt.fields source=source.valueAlt target="valueAlt"}}
-                </fieldset>
-            {{else}}
+    {{#if (and (not @root.isNPC) @root.hasRoll)}}
+        {{formField fields.resultBased value=source.resultBased name="healing.resultBased" localize=true classes="checkbox"}}
+    {{/if}}
+    {{#if (and (not @root.isNPC) @root.hasRoll source.resultBased)}}
+        <div class="nest-inputs">
+            <fieldset class="one-column">
+                <legend>
+                    <div>With Hope</div>
+                </legend>
                 {{> formula fields=fields.value.fields source=source.value target="value"}}
-            {{/if}}
-        </fieldset>
-    </div>
+            </fieldset>
+            <fieldset class="one-column">
+                <legend>
+                    <div>With Fear</div>
+                </legend>
+                {{> formula fields=fields.valueAlt.fields source=source.valueAlt target="valueAlt"}}
+            </fieldset>
+        </div>
+    {{else}}
+        {{> formula fields=fields.value.fields source=source.value target="value"}}
+    {{/if}}
+    {{formField fields.applyTo value=source.type name="healing.applyTo" localize=true}}
 </fieldset>
 
 {{#*inline "formula"}}
-    <div class="multi-display">
-        {{formField fields.custom.fields.enabled value=source.custom.enabled name=(concat "healing." target ".custom.enabled")}}
-        {{#if source.custom.enabled}}
-            {{formField fields.custom.fields.formula value=source.custom.formula name=(concat "healing." target ".custom.formula") localize=true}}
-        {{else}}
+    {{formField fields.custom.fields.enabled value=source.custom.enabled name=(concat "healing." target ".custom.enabled") classes="checkbox"}}
+    {{#if source.custom.enabled}}
+        {{formField fields.custom.fields.formula value=source.custom.formula name=(concat "healing." target ".custom.formula") localize=true}}
+    {{else}}
+        <div class="nest-inputs">
             {{formField fields.multiplier value=source.multiplier name=(concat "healing." target ".multiplier") localize=true}}
             {{formField fields.dice value=source.dice name=(concat "healing." target ".dice")}}
             {{formField fields.bonus value=source.bonus name=(concat "healing." target ".bonus") localize=true}}
-        {{/if}}
-    </div>
+        </div>
+    {{/if}}
 {{/inline}}

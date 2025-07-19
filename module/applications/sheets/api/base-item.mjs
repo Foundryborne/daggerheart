@@ -1,4 +1,4 @@
-import DHActionConfig from '../../sheets-configs/action-config.mjs';
+import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHApplicationMixin from './application-mixin.mjs';
 
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -15,16 +15,14 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         classes: ['item'],
         position: { width: 600 },
+        window: { resizable: true },
         form: {
             submitOnChange: true
         },
         actions: {
-            addAction: DHBaseItemSheet.#addAction,
-            editAction: DHBaseItemSheet.#editAction,
             removeAction: DHBaseItemSheet.#removeAction,
             addFeature: DHBaseItemSheet.#addFeature,
-            editFeature: DHBaseItemSheet.#editFeature,
-            removeFeature: DHBaseItemSheet.#removeFeature,
+            deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
             removeResource: DHBaseItemSheet.#removeResource
         },
@@ -32,6 +30,16 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             { dragSelector: null, dropSelector: '.tab.features .drop-section' },
             { dragSelector: '.feature-item', dropSelector: null },
             { dragSelector: '.action-item', dropSelector: null }
+        ],
+        contextMenus: [
+            {
+                handler: DHBaseItemSheet.#getFeatureContextOptions,
+                selector: '[data-item-uuid][data-type="feature"]',
+                options: {
+                    parentClassHooks: false,
+                    fixed: true
+                }
+            }
         ]
     };
 
@@ -40,7 +48,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'description' }, { id: 'settings' }, { id: 'actions' }],
+            tabs: [{ id: 'description' }, { id: 'settings' }, { id: 'actions' }, { id: 'effects' }],
             initial: 'description',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -51,8 +59,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /* -------------------------------------------- */
 
     /**@inheritdoc */
-    async _preparePartContext(partId, context) {
-        await super._preparePartContext(partId, context);
+    async _preparePartContext(partId, context, options) {
+        await super._preparePartContext(partId, context, options);
         const { TextEditor } = foundry.applications.ux;
 
         switch (partId) {
@@ -64,76 +72,77 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                     secrets: this.item.isOwner
                 });
                 break;
+            case "effects":
+                await this._prepareEffectsContext(context, options)
+                break;
+            case "features":
+                context.isGM = game.user.isGM;
+                break;
         }
 
         return context;
     }
 
-    /* -------------------------------------------- */
-    /*  Application Clicks Actions                  */
-    /* -------------------------------------------- */
-
     /**
-     * Render a dialog prompting the user to select an action type.
-     *
-     * @returns {Promise<object>} An object containing the selected action type.
+     * Prepare render context for the Effect part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
      */
-    static async selectActionType() {
-        const content = await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                { types: CONFIG.DH.ACTIONS.actionTypes }
-            ),
-            title = 'Select Action Type';
+    async _prepareEffectsContext(context, _options) {
+        context.effects = {
+            actives: [],
+            inactives: [],
+        };
 
-        return foundry.applications.api.DialogV2.prompt({
-            window: { title },
-            content,
-            ok: {
-                label: title,
-                callback: (event, button, dialog) => button.form.elements.type.value
-            }
-        });
-    }
-
-    /**
-     * Add a new action to the item, prompting the user for its type.
-     * @type {ApplicationClickAction}
-     */
-    static async #addAction(_event, _button) {
-        const actionType = await DHBaseItemSheet.selectActionType();
-        if (!actionType) return;
-        try {
-            const cls =
-                    game.system.api.models.actions.actionsTypes[actionType] ??
-                    game.system.api.models.actions.actionsTypes.attack,
-                action = new cls(
-                    {
-                        _id: foundry.utils.randomID(),
-                        type: actionType,
-                        name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
-                        ...cls.getSourceConfig(this.document)
-                    },
-                    {
-                        parent: this.document
-                    }
-                );
-            await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
-            await new DHActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render({
-                force: true
-            });
-        } catch (error) {
-            console.log(error);
+        for (const effect of this.item.effects) {
+            const list = effect.active ? context.effects.actives : context.effects.inactives;
+            list.push(effect);
         }
     }
 
+    /* -------------------------------------------- */
+    /*  Context Menu                                */
+    /* -------------------------------------------- */
+
     /**
-     * Edit an existing action on the item
-     * @type {ApplicationClickAction}
+     * Get the set of ContextMenu options for Features.
+     * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
+     * @this {DHSheetV2}
+     * @protected
      */
-    static async #editAction(_event, button) {
-        const action = this.document.system.actions[button.dataset.index];
-        await new DHActionConfig(action).render({ force: true });
+    static #getFeatureContextOptions() {
+        const options = this._getContextMenuCommonOptions({ usable: true, toChat: true, deletable: false })
+        options.push(
+            {
+                name: 'CONTROLS.CommonDelete',
+                icon: '<i class="fa-solid fa-trash"></i>',
+                callback: async (target) => {
+                    const feature = getDocFromElement(target);
+                    if (!feature) return;
+                    const confirmed = await foundry.applications.api.DialogV2.confirm({
+                        window: {
+                            title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                                type: game.i18n.localize(`TYPES.Item.feature`),
+                                name: feature.name
+                            })
+                        },
+                        content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: feature.name })
+                    });
+                    if (!confirmed) return;
+                    await this.document.update({
+                        'system.features': this.document.system.toObject().features.filter(uuid => uuid !== feature.uuid)
+                    });
+                },
+            }
+        )
+        return options;
     }
+
+    /* -------------------------------------------- */
+    /*  Application Clicks Actions                  */
+    /* -------------------------------------------- */
 
     /**
      * Remove an action from the item.
@@ -144,16 +153,19 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const actionIndex = button.closest('[data-index]').dataset.index;
         const action = this.document.system.actions[actionIndex];
 
-        const confirmed = await foundry.applications.api.DialogV2.confirm({
-            window: {
-                title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                    type: game.i18n.localize(`DAGGERHEART.GENERAL.Action.single`),
-                    name: action.name
-                })
-            },
-            content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: action.name })
-        });
-        if (!confirmed) return;
+        if(!event.shiftKey) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                        type: game.i18n.localize(`DAGGERHEART.GENERAL.Action.single`),
+                        name: action.name
+                    })
+                },
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: action.name })
+            });
+            if (!confirmed) return;
+        }
+
 
         await this.document.update({
             'system.actions': this.document.system.actions.filter((_, index) => index !== Number.parseInt(actionIndex))
@@ -164,57 +176,31 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * Add a new feature to the item, prompting the user for its type.
      * @type {ApplicationClickAction}
      */
-    static async #addFeature(_event, _button) {
-        const feature = await game.items.documentClass.create({
+    static async #addFeature(_, target) {
+        const { type } = target.dataset;
+        const cls = foundry.documents.Item.implementation;
+        const feature = await cls.create({
             type: 'feature',
-            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') })
+            name: cls.defaultName({ type: 'feature' }),
+            "system.subType": CONFIG.DH.ITEM.featureSubTypes[type]
         });
         await this.document.update({
-            'system.features': [...this.document.system.features.filter(x => x).map(x => x.uuid), feature.uuid]
+            'system.features': [...this.document.system.features, feature].map(f => f.uuid)
         });
-    }
-
-    /**
-     * Edit an existing feature on the item
-     * @type {ApplicationClickAction}
-     */
-    static async #editFeature(_event, button) {
-        const target = button.closest('.feature-item');
-        const feature = this.document.system.features.find(x => x?.id === target.id);
-        if (!feature) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
-            return;
-        }
-
-        feature.sheet.render(true);
     }
 
     /**
      * Remove a feature from the item.
      * @type {ApplicationClickAction}
      */
-    static async #removeFeature(event, button) {
-        event.stopPropagation();
-        const target = button.closest('.feature-item');
-        const feature = this.document.system.features.find(x => x && x.id === target.id);
-
-        if (feature) {
-            const confirmed = await foundry.applications.api.DialogV2.confirm({
-                window: {
-                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                        type: game.i18n.localize(`TYPES.Item.feature`),
-                        name: feature.name
-                    })
-                },
-                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: feature.name })
-            });
-            if (!confirmed) return;
-        }
-
+    static async #deleteFeature(_, target) {
+        const feature = getDocFromElement(target);
+        if (!feature) return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
+        await feature.update({ 'system.subType': null });
         await this.document.update({
             'system.features': this.document.system.features
-                .filter(feature => feature && feature.id !== target.id)
                 .map(x => x.uuid)
+                .filter(uuid => uuid !== feature.uuid)
         });
     }
 

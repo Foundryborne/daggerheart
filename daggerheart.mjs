@@ -66,7 +66,7 @@ Hooks.once('init', () => {
     CONFIG.Token.documentClass = documents.DhToken;
     CONFIG.Token.prototypeSheetClass = applications.sheetConfigs.DhPrototypeTokenConfig;
     DocumentSheetConfig.unregisterSheet(TokenDocument, 'core', foundry.applications.sheets.TokenConfig);
-    DocumentSheetConfig.registerSheet(TokenDocument, 'dnd5e', applications.sheetConfigs.DhTokenConfig, {
+    DocumentSheetConfig.registerSheet(TokenDocument, SYSTEM.id, applications.sheetConfigs.DhTokenConfig, {
         makeDefault: true
     });
 

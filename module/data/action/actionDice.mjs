@@ -96,10 +96,32 @@ export class DHDamageField extends fields.SchemaField {
     }
 }
 
-export class DHDamageData extends foundry.abstract.DataModel {
+export class DHResourceData extends foundry.abstract.DataModel {
     /** @override */
     static defineSchema() {
         return {
+            applyTo: new fields.StringField({
+                choices: CONFIG.DH.GENERAL.healingTypes,
+                required: true,
+                blank: false,
+                initial: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
+                label: 'DAGGERHEART.ACTIONS.Settings.applyTo.label'
+            }),
+            resultBased: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.ACTIONS.Settings.resultBased.label'
+            }),
+            value: new fields.EmbeddedDataField(DHActionDiceData),
+            valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
+        }
+    }
+}
+
+export class DHDamageData extends DHResourceData {
+    /** @override */
+    static defineSchema() {
+        return {
+            ...super.defineSchema(),
             base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
             type: new fields.SetField(
                 new fields.StringField({
@@ -109,16 +131,9 @@ export class DHDamageData extends foundry.abstract.DataModel {
                     required: true
                 }),
                 {
-                    label: 'Type',
-                    initial: 'physical'
+                    label: 'Type'
                 }
-            ),
-            resultBased: new fields.BooleanField({
-                initial: false,
-                label: 'DAGGERHEART.ACTIONS.Settings.resultBased.label'
-            }),
-            value: new fields.EmbeddedDataField(DHActionDiceData),
-            valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
-        };
+            )
+        }
     }
 }

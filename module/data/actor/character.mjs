@@ -67,7 +67,7 @@ export default class DhCharacter extends BaseDataActor {
             scars: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField({}),
-                    description: new fields.HTMLField()
+                    description: new fields.StringField()
                 })
             ),
             biography: new fields.SchemaField({
@@ -170,11 +170,10 @@ export default class DhCharacter extends BaseDataActor {
             rules: new fields.SchemaField({
                 damageReduction: new fields.SchemaField({
                     maxArmorMarked: new fields.SchemaField({
-                        value: new fields.NumberField({ required: true, integer: true, initial: 1 }),
-                        bonus: new fields.NumberField({
+                        value: new fields.NumberField({
                             required: true,
                             integer: true,
-                            initial: 0,
+                            initial: 1,
                             label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedBonus'
                         }),
                         stressExtra: new fields.NumberField({

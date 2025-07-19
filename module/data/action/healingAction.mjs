@@ -15,25 +15,25 @@ export default class DHHealingAction extends DHBaseAction {
     }
 
     async rollHealing(event, data) {
-        let formulaValue = this.getFormulaValue(data),
-            formula = formulaValue.getFormula(this.actor);
-
-        if (!formula || formula == '') return;
-        let roll = { formula: formula, total: formula },
-            bonusDamage = [];
-
+        const systemData = data.system ?? data;
+        let formulas = [{
+            formula: this.getFormulaValue(data).getFormula(this.actor),
+            applyTo: this.healing.applyTo
+        }];
+        
         const config = {
             title: game.i18n.format('DAGGERHEART.UI.Chat.healingRoll.title', {
-                healing: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[this.healing.type].label)
+                healing: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[this.healing.applyTo].label)
             }),
-            roll: { formula },
+            roll: formulas,
             targets: (data.system?.targets ?? data.targets).filter(t => t.hit),
             messageType: 'healing',
-            type: this.healing.type,
+            source: systemData.source,
+            data: this.getRollData(),
             event
         };
 
-        roll = CONFIG.Dice.daggerheart.DamageRoll.build(config);
+        return CONFIG.Dice.daggerheart.DamageRoll.build(config);
     }
 
     get chatTemplate() {

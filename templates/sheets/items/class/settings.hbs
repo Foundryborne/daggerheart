@@ -38,7 +38,7 @@
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedPrimaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#if document.system.characterGuide.suggestedPrimaryWeapon}}
-                        <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{document.system.characterGuide.suggestedPrimaryWeapon.uuid}}">
+                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{document.system.characterGuide.suggestedPrimaryWeapon.uuid}}">
                             <img class="image" src="{{document.system.characterGuide.suggestedPrimaryWeapon.img}}" />
                             <span>{{document.system.characterGuide.suggestedPrimaryWeapon.name}}</span>
                             <div class="controls">
@@ -53,7 +53,7 @@
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedSecondaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#if document.system.characterGuide.suggestedSecondaryWeapon}}
-                        <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{system.system.characterGuide.suggestedSecondaryWeapon.uuid}}">
+                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{system.system.characterGuide.suggestedSecondaryWeapon.uuid}}">
                             <img class="image" src="{{document.system.characterGuide.suggestedSecondaryWeapon.img}}" />
                             <span>{{document.system.characterGuide.suggestedSecondaryWeapon.name}}</span>
                             <div class="controls">
@@ -68,7 +68,7 @@
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedArmorTitle"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#if document.system.characterGuide.suggestedArmor}}
-                        <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{document.system.characterGuide.suggestedArmor.uuid}}">
+                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{document.system.characterGuide.suggestedArmor.uuid}}">
                             <img class="image" src="{{document.system.characterGuide.suggestedArmor.img}}" />
                             <span>{{document.system.characterGuide.suggestedArmor.name}}</span>
                             <div class="controls">
@@ -86,7 +86,7 @@
                 <legend>{{localize "DAGGERHEART.GENERAL.take"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#each source.system.inventory.take}}
-                        <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{this.uuid}}">
+                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
                             <img class="image" src="{{this.img}}" />
                             <span>{{this.name}}</span>
                             <div class="controls">
@@ -101,7 +101,7 @@
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.thenChoose"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#each source.system.inventory.choiceA}}
-                        <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{this.uuid}}">
+                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
                             <img class="image" src="{{this.img}}" />
                             <span>{{this.name}}</span>
                             <div class="controls">
@@ -116,7 +116,7 @@
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.andEither"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#each source.system.inventory.choiceB}}
-                        <div class="suggested-item item-line" data-action="viewDoc" data-uuid="{{this.uuid}}">
+                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
                             <img class="image" src="{{this.img}}" />
                             <span>{{this.name}}</span>
                             <div class="controls">

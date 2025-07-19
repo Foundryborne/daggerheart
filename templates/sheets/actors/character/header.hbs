@@ -29,25 +29,25 @@
     <div class="character-details">
         <div>
             {{#if document.system.class.value}}
-                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.class.value.id}}">{{document.system.class.value.name}}</span>
+                <span data-action="editDoc" data-item-uuid="{{document.system.class.value.uuid}}">{{document.system.class.value.name}}</span>
             {{else}}
                 <span data-action="openPack" data-key="daggerheart.classes">{{localize 'TYPES.Item.class'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.class.subclass}}
-                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.class.subclass.id}}">{{document.system.class.subclass.name}}</span>
+                <span data-action="editDoc" data-item-uuid="{{document.system.class.subclass.uuid}}">{{document.system.class.subclass.name}}</span>
             {{else}}
                 <span data-action="openPack" data-key="daggerheart.subclass">{{localize 'TYPES.Item.subclass'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.community}}
-                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.community.id}}">{{document.system.community.name}}</span>
+                <span data-action="editDoc" data-item-uuid="{{document.system.community.uuid}}">{{document.system.community.name}}</span>
             {{else}}
                 <span data-action="openPack" data-key="daggerheart.community">{{localize 'TYPES.Item.community'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.ancestry}}
-                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.ancestry.id}}">{{document.system.ancestry.name}}</span>
+                <span data-action="editDoc" data-item-uuid="{{document.system.ancestry.uuid}}">{{document.system.ancestry.name}}</span>
             {{else}}
                 <span data-action="openPack" data-key="daggerheart.ancestry">{{localize 'TYPES.Item.ancestry'}}</span>
             {{/if}}
@@ -56,13 +56,13 @@
         {{#if document.system.multiclass.value}}
             <div class="multiclass">
                 {{#if document.system.multiclass.value}}
-                    <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.multiclass.value.id}}">{{document.system.multiclass.value.name}}</span>
+                    <span data-action="editDoc"data-item-uuid="{{document.system.multiclass.value.uuid}}">{{document.system.multiclass.value.name}}</span>
                 {{else}}
                     <span data-action="openPack" data-key="daggerheart.classes">{{localize 'DAGGERHEART.GENERAL.multiclass'}}</span>
                 {{/if}}
                 <span class="dot">•</span>
                 {{#if document.system.multiclass.subclass}}
-                    <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.multiclass.subclass.id}}">{{document.system.multiclass.subclass.name}}</span>
+                    <span data-action="editDoc" data-item-uuid="{{document.system.multiclass.subclass.uuid}}">{{document.system.multiclass.subclass.name}}</span>
                 {{else}}
                     <span data-action="openPack" data-key="daggerheart.subclass">{{localize 'TYPES.Item.subclass'}}</span>
                 {{/if}}

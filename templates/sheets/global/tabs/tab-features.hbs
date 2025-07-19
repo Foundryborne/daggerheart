@@ -1,23 +1,11 @@
-<section
-    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
-    data-tab='{{tabs.features.id}}'
-    data-group='{{tabs.features.group}}'
->
-    <fieldset class="one-column drop-section">
-        <legend>{{localize "DAGGERHEART.GENERAL.features"}} <a><i data-action="addFeature" class="fa-solid fa-plus icon-button"></i></a></legend>
-        <div class="features-list">
-            {{#each document.system.features as |feature|}}
-                <div class="feature-item"
-                    data-action="editFeature"
-                    id="{{feature.id}}"
-                >
-                    <img class="image" src="{{feature.img}}" data-tooltip="{{concat "#item#" feature.uuid}}" />
-                    <span>{{feature.name}}</span>
-                    <div class="controls">
-                        <a data-action="removeFeature" id="{{feature.id}}"><i class="fa-solid fa-trash"></i></a>
-                    </div>
-                </div> 
-            {{/each}}
-        </div>
-    </fieldset>
+<section class='tab {{tabs.features.cssClass}} {{tabs.features.id}}' data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'>
+    {{> 'daggerheart.inventory-items'
+    title='DAGGERHEART.GENERAL.features'
+    type='feature'
+    isGlassy=true
+    collection=document.system.features
+    canCreate=(or document.parent isGM)
+    showActions=false
+    }}
 </section>

@@ -22,7 +22,12 @@
                     {{formField ../fields.value.fields.bonus value=dmg.value.bonus name=(concat ../path "damage.parts." index ".value.bonus") localize=true classes="inline-child"}}
                 </div>
             {{/if}}
-            {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." index ".type") localize=true}}
+            <div class="nest-inputs">
+                {{formField ../fields.applyTo value=dmg.applyTo name=(concat ../path "damage.parts." realIndex ".applyTo") localize=true}}
+                {{#if (eq dmg.applyTo 'hitPoints')}}
+                    {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." index ".type") localize=true}}
+                {{/if}}
+            </div>
             {{#if ../horde}}
                 <fieldset class="one-column">
                     <legend>{{localize "DAGGERHEART.ACTORS.Adversary.hordeDamage"}}</legend>
@@ -56,7 +61,12 @@
                                 {{> formula fields=../../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
                             </fieldset>
                         {{/if}}
-                        {{formField ../../fields.type value=dmg.type name=(concat "damage.parts." realIndex ".type") localize=true}} 
+                        <div class="nest-inputs">
+                            {{formField ../../fields.applyTo value=dmg.applyTo name=(concat "damage.parts." realIndex ".applyTo") localize=true}}
+                            {{#if (eq dmg.applyTo 'hitPoints')}}
+                                {{formField ../../fields.type value=dmg.type name=(concat "damage.parts." realIndex ".type") localize=true}}
+                            {{/if}}
+                        </div>
                         <input type="hidden" name="damage.parts.{{realIndex}}.base" value="{{dmg.base}}">
                     </fieldset>
                     {{#unless dmg.base}}<div class="fas fa-trash" data-action="removeDamage" data-index="{{realIndex}}"></div>{{/unless}}

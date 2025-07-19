@@ -9,11 +9,7 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         position: {
             width: 500
         },
-        actions: {
-            useItem: this.useItem,
-            useAction: this.useItem,
-            toChat: this.toChat
-        },
+        actions: {},
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]
     };
 
@@ -36,46 +32,66 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         }
     };
 
-    /* -------------------------------------------- */
-
-    getItem(element) {
-        const itemId = (element.target ?? element).closest('[data-item-id]').dataset.itemId,
-            item = this.document.items.get(itemId);
-        return item;
+    /**@inheritdoc */
+    async _preparePartContext(partId, context, options) {
+        context = await super._preparePartContext(partId, context, options);
+        switch (partId) {
+            case 'header':
+                await this._prepareHeaderContext(context, options);
+                break;
+            case 'notes':
+                await this._prepareNotesContext(context, options);
+                break;
+        }
+        return context;
     }
-
-    /* -------------------------------------------- */
-    /*  Application Clicks Actions                  */
-    /* -------------------------------------------- */
 
     /**
-     *
-     * @type {ApplicationClickAction}
+     * Prepare render context for the Biography part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
      */
-    async viewAdversary(_, button) {
-        const target = button.closest('[data-item-uuid]');
-        const adversary = await foundry.utils.fromUuid(target.dataset.itemUuid);
-        if (!adversary) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.adversaryMissing'));
-            return;
+    async _prepareNotesContext(context, _options) {
+        const { system } = this.document;
+        const { TextEditor } = foundry.applications.ux;
+
+        const paths = {
+            notes: 'notes'
+        };
+
+        for (const [key, path] of Object.entries(paths)) {
+            const value = foundry.utils.getProperty(system, path);
+            context[key] = {
+                field: system.schema.getField(path),
+                value,
+                enriched: await TextEditor.implementation.enrichHTML(value, {
+                    secrets: this.document.isOwner,
+                    relativeTo: this.document
+                })
+            };
         }
-
-        adversary.sheet.render({ force: true });
     }
 
-    static async useItem(event, button) {
-        const action = this.getItem(event);
-        if (!action) {
-            await this.viewAdversary(event, button);
-        } else {
-            action.use(event);
-        }
+    /**
+     * Prepare render context for the Header part.
+     * @param {ApplicationRenderContext} context
+     * @param {ApplicationRenderOptions} options
+     * @returns {Promise<void>}
+     * @protected
+     */
+    async _prepareHeaderContext(context, _options) {
+        const { system } = this.document;
+        const { TextEditor } = foundry.applications.ux;
+
+        context.description = await TextEditor.implementation.enrichHTML(system.description, {
+            secrets: this.document.isOwner,
+            relativeTo: this.document
+        });
     }
 
-    static async toChat(event) {
-        const item = this.getItem(event);
-        item.toChat(this.document.id);
-    }
+    /* -------------------------------------------- */
 
     async _onDragStart(event) {
         const item = event.currentTarget.closest('.inventory-item');

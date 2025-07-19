@@ -5,7 +5,6 @@ export default class AncestrySheet extends DHHeritageSheet {
     static DEFAULT_OPTIONS = {
         classes: ['ancestry'],
         actions: {
-            addFeature: AncestrySheet.#addFeature,
             editFeature: AncestrySheet.#editFeature,
             removeFeature: AncestrySheet.#removeFeature
         },
@@ -22,23 +21,6 @@ export default class AncestrySheet extends DHHeritageSheet {
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
-
-    /**
-     * Add a new feature to the item, prompting the user for its type.
-     * @type {ApplicationClickAction}
-     */
-    static async #addFeature(_event, button) {
-        const feature = await game.items.documentClass.create({
-            type: 'feature',
-            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') }),
-            system: {
-                subType: button.dataset.type
-            }
-        });
-        await this.document.update({
-            'system.features': [...this.document.system.features.map(x => x.uuid), feature.uuid]
-        });
-    }
 
     /**
      * Edit an existing feature on the item

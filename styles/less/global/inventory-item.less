@@ -12,87 +12,155 @@
     }
 }
 
+.appTheme({}, {
+    .inventory-item-header .img-portait .roll-img {
+        filter: invert(1);
+    }
+});
+
 .application.daggerheart.dh-style {
     .inventory-item {
-        display: grid;
-        grid-template-columns: 40px 1fr 60px;
-        gap: 10px;
         width: 100%;
+        list-style-type: none;
 
-        .item-img {
-            height: 40px;
-            width: 40px;
-            border-radius: 3px;
-            border: none;
-            cursor: pointer;
-            object-fit: cover;
-
-            &.actor-img {
-                border-radius: 50%;
-            }
-        }
-
-        .item-label-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 60px;
-        }
-
-        .item-label {
-            font-family: @font-body;
-            align-self: center;
-
-            &.fullWidth {
-                grid-column: span 2;
-            }
-
-            .item-name {
-                font-size: 14px;
-            }
-
-            .item-tags,
-            .item-labels {
-                display: flex;
-                gap: 10px;
-
-                .tag {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 3px 5px;
-                    font-size: 12px;
-
-                    background: light-dark(@dark-15, @beige-15);
-                    border: 1px solid light-dark(@dark, @beige);
-                    border-radius: 3px;
+        &:hover {
+            .inventory-item-header .img-portait {
+                .roll-img {
+                    opacity: 1;
                 }
-
-                .label {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 12px;
-                    gap: 4px;
+                .item-img {
+                    opacity: 0;
                 }
             }
         }
 
-        .controls {
+        .inventory-item-header {
             display: flex;
             align-items: center;
-            justify-content: end;
-            gap: 8px;
+            gap: 10px;
+            cursor: pointer;
 
-            a {
-                text-align: center;
+            .img-portait {
+                flex: 0 0 40px;
+                height: 40px;
+                cursor: pointer;
+                position: relative;
 
-                &.unequipped {
-                    opacity: 0.4;
+                .item-img,
+                .roll-img {
+                    position: absolute;
+                    transition: opacity 300ms ease-in;
+                }
+
+                .roll-img {
+                    opacity: 0;
+                }
+            }
+
+            .item-label {
+                flex: 1;
+                font-family: @font-body;
+                align-self: center;
+
+                .item-name {
+                    font-size: 14px;
+                }
+
+                .item-tags,
+                .item-labels {
+                    display: flex;
+                    gap: 10px;
+
+                    .tag,
+                    .label {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 12px;
+                    }
+
+                    .tag {
+                        padding: 3px 5px;
+                        background: light-dark(@dark-15, @beige-15);
+                        border: 1px solid light-dark(@dark, @beige);
+                        border-radius: 3px;
+                    }
+
+                    .label {
+                        gap: 4px;
+                    }
+                }
+            }
+
+            .item-resource {
+                flex: 0 0 60px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+            .controls {
+                flex: 0 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                gap: 8px;
+            }
+        }
+
+        .inventory-item-content {
+            > *:not(:last-child) {
+                margin-bottom: 5px;
+            }
+            &.extensible {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+                &.extended {
+                    max-height: 500px;
+                    overflow: auto;
+                }
+            }
+            .item-resources {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                .item-dice-resource {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 26px;
+
+                    label,
+                    i {
+                        position: absolute;
+                        z-index: 2;
+                        cursor: pointer;
+                    }
+
+                    label {
+                        color: light-dark(white, black);
+                        filter: drop-shadow(0 0 1px light-dark(@dark-blue, @golden));
+                        font-size: 18px;
+                    }
+
+                    img {
+                        filter: brightness(0) saturate(100%) invert(97%) sepia(7%) saturate(580%) hue-rotate(332deg)
+                            brightness(96%) contrast(95%);
+                    }
+
+                    i {
+                        text-shadow: 0 0 3px white;
+                        filter: drop-shadow(0 1px white);
+                        color: black;
+                        font-size: 26px;
+                    }
                 }
             }
         }
     }
+
     .card-item {
         position: relative;
         height: 120px;
@@ -212,6 +280,7 @@
 
             input {
                 flex: 1;
+                text-align: center;
             }
 
             .item-dice-resource {

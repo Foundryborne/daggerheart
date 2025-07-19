@@ -187,7 +187,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
             return;
         }
-
         game.canvas.pan(token);
     };
 
@@ -207,15 +206,24 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 if (!confirm) return;
             }
         }
-
+        
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-        for (let target of targets) {
-            let damage = message.system.roll.total;
-            if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true)
-                damage = Math.ceil(damage * (CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
-            target.actor.takeDamage(damage, message.system.damage.damageType);
+        for (let target of targets) {
+            let damages = foundry.utils.deepClone(message.system.damage?.roll ?? message.system.roll);
+            if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true) {
+                const mod = CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1;
+                Object.entries(damages).forEach(([k,v]) => {
+                    v.total = 0;
+                    v.parts.forEach(part => {
+                        part.total = Math.ceil(part.total * mod);
+                        v.total += part.total;
+                    })
+                })
+            }
+
+            target.actor.takeDamage(damages);
         }
     };
 
@@ -224,10 +232,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const targets = Array.from(game.user.targets);
 
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+        
         for (var target of targets) {
-            target.actor.takeHealing([{ value: message.system.roll.total, type: message.system.roll.type }]);
+            target.actor.takeHealing(message.system.roll);
         }
     };
 
