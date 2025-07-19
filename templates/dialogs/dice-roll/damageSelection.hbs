@@ -5,7 +5,6 @@
     {{#each @root.formula}}
         <div class="damage-formula">
             <span class="damage-resource"><b>Formula:</b> {{roll.formula}}</span>
-            {{!-- <span>{{localize (concat 'CONFIG.DH.GENERAL.healingTypes.' applyTo '.label')}}</span> --}}
             <span class="damage-details">
                 {{#with (lookup @root.config.GENERAL.healingTypes applyTo)}}
                     {{localize label}}

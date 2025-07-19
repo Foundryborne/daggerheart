@@ -401,15 +401,15 @@ export default class DhpActor extends Actor {
 
         const updates = [];
 
-        Object.entries(damages).forEach(([type, damage]) => {
+        Object.entries(damages).forEach(([key, damage]) => {
             damage.parts.forEach(part => {
                 if(part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
                     part.total = this.calculateDamage(part.total, part.damageTypes);
-                const update = updates.find(u => u.type === type);
+                const update = updates.find(u => u.key === key);
                 if(update) {
                     update.value += part.total;
                     update.damageTypes.add(...new Set(part.damageTypes));
-                } else updates.push({ value: part.total, type, damageTypes: new Set(part.damageTypes) })
+                } else updates.push({ value: part.total, key, damageTypes: new Set(part.damageTypes) })
             })
         });
 
@@ -417,7 +417,7 @@ export default class DhpActor extends Actor {
 
         if(!updates.length) return;
 
-        const hpDamage = updates.find(u => u.type === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
+        const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
         if(hpDamage) {
             hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
             if (this.type === 'character' && this.system.armor && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
@@ -428,7 +428,7 @@ export default class DhpActor extends Actor {
                 });
                 if (armorStackResult) {
                     const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
-                    updates.find(u => u.type === 'hitPoints').value = modifiedDamage;
+                    updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
                     updates.push(
                         ...(armorSpent ? [{ value: armorSpent, key: 'armorStack' }] : []),
                         ...(stressSpent ? [{ value: stressSpent, key: 'stress' }] : [])
@@ -436,7 +436,11 @@ export default class DhpActor extends Actor {
                 }
             }
         }
-
+        
+        updates.forEach( u =>
+            u.value = u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value
+        );
+        
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damages) === false) return null;
@@ -449,7 +453,6 @@ export default class DhpActor extends Actor {
 
         const flatReduction = this.getDamageTypeReduction(type);
         const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
-        // const hpDamage = this.convertDamageToThreshold(damage);
 
         return damage;
     }
@@ -469,8 +472,13 @@ export default class DhpActor extends Actor {
     }
 
     async takeHealing(resources) {
-        resources.forEach(r => (r.value *= -1));
-        await this.modifyResource(resources);
+        const updates = Object.entries(resources).map(([key, value]) => (
+            {
+                key: key,
+                value: !(key === 'fear' || this.system?.resources?.[key]?.isReversed === false) ? value.total * -1 : value.total
+            }
+        ))
+        await this.modifyResource(updates);
     }
 
     async modifyResource(resources) {

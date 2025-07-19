@@ -57,13 +57,13 @@ export default class DHRoll extends Roll {
 
         // Create Chat Message
         if (config.source?.message) {
-            console.log(config)
-            if(Array.isArray(config.roll?.parts)) {
-                const pool = foundry.dice.terms.PoolTerm.fromRolls(config.roll.parts.map(r => r.roll));
+            if(Object.values(config.roll)?.length) {
+                const pool = foundry.dice.terms.PoolTerm.fromRolls(Object.values(config.roll).flatMap(r => r.parts.map(p => p.roll)));
                 roll = Roll.fromTerms([pool]);
             }
             if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
         } else {
+            console.log(roll, config)
             config.message = await this.toMessage(roll, config);
         }
     }

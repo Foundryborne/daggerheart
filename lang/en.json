@@ -1259,6 +1259,7 @@
             },
             "fear": "Fear",
             "features": "Features",
+            "healing": "Healing",
             "hitPoints": {
                 "single": "Hit Point",
                 "plural": "Hit Points",

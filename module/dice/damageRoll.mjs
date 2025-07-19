@@ -10,10 +10,11 @@ export default class DamageRoll extends DHRoll {
 
     static DefaultDialog = DamageDialog;
 
-    static async buildEvaluate(rolls, config = {}, message = {}) {
+    static async buildEvaluate(roll, config = {}, message = {}) {
         if ( config.evaluate !== false ) {
             for ( const roll of config.roll ) await roll.roll.evaluate();
         }
+        roll._evaluated = true;
         const parts = config.roll.map(r => this.postEvaluate(r));
         config.roll = this.unifyDamageRoll(parts);
     }
@@ -22,7 +23,7 @@ export default class DamageRoll extends DHRoll {
         return {
             ...roll,
             ...super.postEvaluate(roll.roll, config),
-            damageTypes: [...roll.damageTypes],
+            damageTypes: [...(roll.damageTypes ?? [])],
             roll: roll.roll,
             type: config.type,
             modifierTotal: this.calculateTotalModifiers(roll.roll)

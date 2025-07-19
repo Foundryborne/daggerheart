@@ -142,7 +142,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     static getSourceConfig(parent) {
         const updateSource = {};
         updateSource.img ??= parent?.img ?? parent?.system?.img;
-        if (parent?.type === 'weapon') {
+        if (parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
             updateSource['damage'] = { includeBase: true };
             updateSource['range'] = parent?.system?.attack?.range;
             updateSource['roll'] = {
@@ -216,7 +216,6 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
         // Display configuration window if necessary
-        // if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
         if (this.requireConfigurationDialog(config)) {
             config = await D20RollDialog.configure(null, config);
             if (!config) return;

@@ -208,7 +208,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
         
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         for (let target of targets) {
             let damages = message.system.damage;
@@ -222,7 +222,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                     })
                 })
             }
-            // damage = Math.ceil(damage * (CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
 
             target.actor.takeDamage(damages.roll);
         }
@@ -233,10 +232,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const targets = Array.from(game.user.targets);
 
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+        
         for (var target of targets) {
-            target.actor.takeHealing([{ value: message.system.roll.total, type: message.system.roll.type }]);
+            target.actor.takeHealing(message.system.roll);
         }
     };
 
