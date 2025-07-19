@@ -20,10 +20,10 @@ Parameters:
   <div class="inventory-item-header" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
     <div class="img-portait"
-      data-action='{{ifThen (hasProperty item "use") "useItem" (ifThen (hasProperty item "toChat") "toChat" "editDoc") }}'>
-      <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" {{#unless
-        hideTooltip}}data-tooltip="#item#{{item.uuid}}" {{/unless}} />
-      <img class="roll-img" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="">
+      data-action='{{ifThen (hasProperty item "use") "useItem" (ifThen (hasProperty item "toChat") "toChat" "editDoc") }}'
+      {{#unless hideTooltip}}data-tooltip="#item#{{item.uuid}}" {{/unless}}>
+      <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
+      <img class="roll-img" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
     </div>
 
     {{!-- Name & Tags --}}

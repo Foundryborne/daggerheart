@@ -21,6 +21,7 @@
 .application.daggerheart.dh-style {
     .inventory-item {
         width: 100%;
+        list-style-type: none;
 
         &:hover {
             .inventory-item-header .img-portait {
@@ -108,13 +109,16 @@
         }
 
         .inventory-item-content {
+            > *:not(:last-child) {
+                margin-bottom: 5px;
+            }
             &.extensible {
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 2s linear;
+                transition: max-height 0.5s ease-in-out;
                 &.extended {
-                    max-height: 1000px; // Reasonable large value
-                    //maybe need the redo this.... idk, i'm just a little wittle girl, atte: JP.
+                    max-height: 500px;
+                    overflow: auto;
                 }
             }
             .item-resources {
