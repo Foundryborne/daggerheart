@@ -33,6 +33,10 @@
                 }
             },
             "Settings": {
+                "attackBonus": "Attack Bonus",
+                "attackName": "Attack Name",
+                "includeBase": { "label": "Include Item Damage" },
+                "multiplier": "Multiplier",
                 "resultBased": {
                     "label": "Formula based on Hope/Fear result."
                 }
@@ -134,7 +138,9 @@
                     "partner": { "label": "Partner" },
                     "resources": {
                         "stress": {
-                            "value": { "label": "Stress" }
+                            "value": { "label": "Stress" },
+                            "currentStress": { "label": "Current Stress" },
+                            "maxStress": { "label": "Max Stress" }
                         }
                     }
                 },
@@ -1229,6 +1235,8 @@
                 "single": "Trait",
                 "plural": "Traits"
             },
+            "actorName": "Actor Name",
+            "amount": "Amount",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
@@ -1259,6 +1267,7 @@
             },
             "hope": "Hope",
             "hordeHp": "Horde HP",
+            "imagePath": "Image Path",
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "level": "Level",

@@ -87,7 +87,10 @@ export class DHDamageField extends fields.SchemaField {
     constructor(options, context = {}) {
         const damageFields = {
             parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData)),
-            includeBase: new fields.BooleanField({ initial: false })
+            includeBase: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
+            })
         };
         super(damageFields, options, context);
     }
