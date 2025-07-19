@@ -62,10 +62,8 @@ export default class DHRoll extends Roll {
                 roll = Roll.fromTerms([pool]);
             }
             if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
-        } else {
-            console.log(roll, config)
+        } else 
             config.message = await this.toMessage(roll, config);
-        }
     }
 
     static postEvaluate(roll, config = {}) {
