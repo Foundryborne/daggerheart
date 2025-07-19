@@ -14,14 +14,18 @@ export default class DamageRoll extends DHRoll {
         if ( config.evaluate !== false ) {
             for ( const roll of config.roll ) await roll.roll.evaluate();
         }
-        config.roll = config.roll.map(r => this.postEvaluate(r.roll));
+        const parts = config.roll.map(r => this.postEvaluate(r));
+        config.roll = this.unifyDamageRoll(parts);
     }
 
     static postEvaluate(roll, config = {}) {
         return {
-            ...super.postEvaluate(roll, config),
+            ...roll,
+            ...super.postEvaluate(roll.roll, config),
+            damageTypes: [...roll.damageTypes],
+            roll: roll.roll,
             type: config.type,
-            modifierTotal: this.calculateTotalModifiers(roll)
+            modifierTotal: this.calculateTotalModifiers(roll.roll)
         }
     }
 
@@ -31,6 +35,43 @@ export default class DamageRoll extends DHRoll {
             const chatMessage = ui.chat.collection.get(config.source.message);
             chatMessage.update({ 'system.damage': config });
         }
+    }
+
+    static unifyDamageRoll(rolls) {
+        const unified = {};
+        rolls.forEach(r => {
+            const resource = unified[r.applyTo] ?? { formula: '', total: 0, parts: [] };
+            resource.formula += `${resource.formula !== '' ? ' + ' : ''}${r.formula}`;
+            resource.total += r.total;
+            resource.parts.push(r);
+            unified[r.applyTo] = resource;
+        })
+        return unified;
+    }
+
+    static formatGlobal(rolls) {
+        let formula, total;
+        const applyTo = new Set(rolls.flatMap(r => r.applyTo));
+        if(applyTo.size > 1) {
+            const data = {};
+            rolls.forEach(r => {
+                if(data[r.applyTo]) {
+                    data[r.applyTo].formula += ` + ${r.formula}` ;
+                    data[r.applyTo].total += r.total ;
+                } else {
+                    data[r.applyTo] = {
+                        formula: r.formula,
+                        total: r.total
+                    }
+                }
+            });
+            formula = Object.entries(data).reduce((a, [k,v]) => a + ` ${k}: ${v.formula}`, '');
+            total = Object.entries(data).reduce((a, [k,v]) => a + ` ${k}: ${v.total}`, '');
+        } else {
+            formula = rolls.map(r => r.formula).join(' + ');
+            total = rolls.reduce((a,c) => a + c.total, 0)
+        }
+        return {formula, total}
     }
 
     applyBaseBonus(part) {

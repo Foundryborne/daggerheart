@@ -16,7 +16,7 @@ export default class DHToken extends TokenDocument {
         });
         bars.sort((a, b) => a.label.compare(b.label));
 
-        const invalidAttributes = ['gold', 'levelData', 'actions', 'rules.damageReduction.maxArmorMarked.value'];
+        const invalidAttributes = ['gold', 'levelData', 'actions'];
         const values = attributes.value.reduce((acc, v) => {
             const a = v.join('.');
             if (invalidAttributes.some(x => a.startsWith(x))) return acc;

@@ -47,7 +47,7 @@ export default class DHRoll extends Roll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         if (config.evaluate !== false) await roll.evaluate();
-        config.roll = this.postEvaluate(roll);
+        config.roll = this.postEvaluate(roll, config);
     }
 
     static async buildPost(roll, config, message) {
@@ -57,8 +57,9 @@ export default class DHRoll extends Roll {
 
         // Create Chat Message
         if (config.source?.message) {
-            if(Array.isArray(config.roll)) {
-                const pool = foundry.dice.terms.PoolTerm.fromRolls(config.roll);
+            console.log(config)
+            if(Array.isArray(config.roll?.parts)) {
+                const pool = foundry.dice.terms.PoolTerm.fromRolls(config.roll.parts.map(r => r.roll));
                 roll = Roll.fromTerms([pool]);
             }
             if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
@@ -67,7 +68,7 @@ export default class DHRoll extends Roll {
         }
     }
 
-    static postEvaluate(roll) {
+    static postEvaluate(roll, config = {}) {
         return {
             total: roll.total,
             formula: roll.formula,

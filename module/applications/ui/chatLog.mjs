@@ -187,7 +187,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
             return;
         }
-
         game.canvas.pan(token);
     };
 
@@ -207,15 +206,25 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 if (!confirm) return;
             }
         }
-
+        
         if (targets.length === 0)
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-        for (let target of targets) {
-            let damage = message.system.roll.total;
-            if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true)
-                damage = Math.ceil(damage * (CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
 
-            target.actor.takeDamage(damage, message.system.damage.damageType);
+        for (let target of targets) {
+            let damages = message.system.damage;
+            if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true) {
+                const mod = CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1;
+                Object.entries(damages).forEach((k,v) => {
+                    let newTotal = 0;
+                    v.forEach(part => {
+                        v.total = Math.ceil(v.total * mod);
+                        newTotal += v.total;
+                    })
+                })
+            }
+            // damage = Math.ceil(damage * (CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
+
+            target.actor.takeDamage(damages.roll);
         }
     };
 
