@@ -215,10 +215,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true) {
                 const mod = CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1;
                 Object.entries(damages).forEach((k,v) => {
-                    let newTotal = 0;
+                    v.total = 0;
                     v.forEach(part => {
-                        v.total = Math.ceil(v.total * mod);
-                        newTotal += v.total;
+                        part.total = Math.ceil(part.total * mod);
+                        v.total += part.total;
                     })
                 })
             }
