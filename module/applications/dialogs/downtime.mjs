@@ -119,6 +119,18 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             : 0;
 
         this.render();
+
+        // On macOS with a single-button mouse (e.g. a laptop trackpad),
+        // right-click is triggered with ctrl+click, which triggers both a
+        // `contextmenu` event and a regular click event. We need to stop
+        // event propagation to prevent the click event from triggering the
+        // `selectMove` function and undoing the change we just made.
+        event.stopPropagation();
+
+        // Having stopped propagation, we're no longer subject to Foundry's
+        // default `contextmenu` handler, so we also have to prevent the
+        // default behaviour to prevent a context menu from appearing.
+        event.preventDefault();
     }
 
     static async takeDowntime() {
