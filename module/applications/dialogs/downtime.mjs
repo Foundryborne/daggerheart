@@ -113,10 +113,9 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
 
     deselectMove(event) {
         const button = event.target.closest('.activity-container');
-        const move = button.dataset.move;
-        this.moveData[button.dataset.category].moves[move].selected = this.moveData[button.dataset.category].moves[move]
-            .selected
-            ? this.moveData[button.dataset.category].moves[move].selected - 1
+        const { move, category } = button.dataset;
+        this.moveData[category].moves[move].selected = this.moveData[category].moves[move].selected
+            ? this.moveData[category].moves[move].selected - 1
             : 0;
 
         this.render();
