@@ -10,13 +10,13 @@
         <div class="nest-inputs">
             <fieldset class="one-column">
                 <legend>
-                    <div>With Hope</div>
+                    <div>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}</div>
                 </legend>
                 {{> formula fields=fields.value.fields source=source.value target="value"}}
             </fieldset>
             <fieldset class="one-column">
                 <legend>
-                    <div>With Fear</div>
+                    <div>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}</div>
                 </legend>
                 {{> formula fields=fields.valueAlt.fields source=source.valueAlt target="valueAlt"}}
             </fieldset>

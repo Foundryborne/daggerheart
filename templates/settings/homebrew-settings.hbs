@@ -5,7 +5,7 @@
     <div class="trait-array-container">
         {{#each settingFields._source.traitArray as |trait index|}}
             <div class="trait-array-item">
-                <label>{{localize "DAGGERHEART.GENERAL.modifier"}} {{add index 1}}</label>
+                <label>{{localize "DAGGERHEART.GENERAL.Modifier.single"}} {{add index 1}}</label>
                 <input type="text" data-dtype="Number" name="{{concat "traitArray." index}}" value="{{this}}" />
             </div>
         {{/each}}

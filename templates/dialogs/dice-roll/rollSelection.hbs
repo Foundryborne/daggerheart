@@ -17,14 +17,14 @@
                                 <div class="dice-option">
                                     <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/adv/' @root.roll.d20.denomination '.svg'}}" alt="">
                                     <div class="dice-select">
-                                        <span class="label">Advantage</span>
+                                        <span class="label">{{localize "DAGGERHEART.GENERAL.Advantage.full"}}</span>
                                     </div>
                                 </div>
                             {{else if (eq @root.advantage -1)}}
                                 <div class="dice-option">
                                     <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/disadv/' @root.roll.d20.denomination '.svg'}}" alt="">
                                     <div class="dice-select">
-                                        <span class="label">Disdvantage</span>
+                                        <span class="label">{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}</span>
                                     </div>
                                 </div>
                             {{/if}}
@@ -34,7 +34,7 @@
                         <div class="dice-option">
                             <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/hope/' @root.roll.dHope.denomination '.svg'}}" alt="">
                             <div class="dice-select">
-                                <span class="label">Hope</span>
+                                <span class="label">{{localize "DAGGERHEART.GENERAL.hope"}}</span>
                                 <select name="roll.dice.dHope">
                                     {{selectOptions diceOptions selected=@root.roll.dHope.denomination}}
                                 </select>
@@ -54,14 +54,14 @@
                                 <div class="dice-option">
                                     <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/adv/' @root.roll.dAdvantage.denomination '.svg'}}" alt="">
                                     <div class="dice-select">
-                                        <span class="label">Advantage</span>
+                                        <span class="label">{{localize "DAGGERHEART.GENERAL.Advantage.full"}}</span>
                                     </div>
                                 </div>
                             {{else if (eq @root.advantage -1)}}
                                 <div class="dice-option">
                                     <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/disadv/' @root.roll.dAdvantage.denomination '.svg'}}" alt="">
                                     <div class="dice-select">
-                                        <span class="label">Disdvantage</span>
+                                        <span class="label">{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}</span>
                                     </div>
                                 </div>
                             {{/if}}
@@ -70,7 +70,7 @@
                 </div>
 
                 <fieldset class="experience-container">
-                    <legend>Experiences</legend>
+                    <legend>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</legend>
                     {{#each experiences}}
                         {{#if name}}
                             <div class="experience-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}">
@@ -89,7 +89,7 @@
                     {{/each}}
                 </fieldset>
                 <fieldset class="modifier-container {{#if (eq @root.rollType 'DualityRoll')}}two-columns{{else}}one-column{{/if}}">
-                    <legend>Modifiers</legend>
+                    <legend>{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</legend>
                     <div class="nest-inputs">
                         <button class="advantage-chip flex1 {{#if (eq advantage 1)}}selected{{/if}}" data-action="updateIsAdvantage" data-advantage="1">
                             {{#if (eq advantage 1)}}
@@ -132,23 +132,23 @@
                             {{selectOptions @root.rallyDie blank="" selected=@root.roll._rallyIndex}}
                         </select>
                     {{/if}}
-                    {{#if (eq @root.rollType 'DualityRoll')}}<span class="formula-label">Situational Bonus</span>{{/if}}
+                    {{#if (eq @root.rollType 'DualityRoll')}}<span class="formula-label">{{localize "DAGGERHEART.GENERAL.situationalBonus"}}</span>{{/if}}
                     <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="{{#if (eq @root.rollType 'DualityRoll')}}Ex: 1d6 + 5{{else}}Situational Bonus{{/if}}">
                 </fieldset>
             {{/unless}}
-            <span class="formula-label"><b>Formula:</b> {{@root.formula}}</span>
+            <span class="formula-label"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{@root.formula}}</span>
             <div class="roll-dialog-controls">
                 <select class="roll-mode-select" name="selectedRollMode">
                     {{selectOptions rollModes selected=selectedRollMode valueAttr="action" labelAttr="label" localize=true}}
                 </select>
                 <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
                     <i class="fa-solid fa-dice"></i>
-                    <span class="label">Roll</span>
+                    <span class="label">{{localize "DAGGERHEART.GENERAL.roll"}}</span>
                 </button>
             </div>
     {{else}}
         <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
-            <span class="label">Continue</span>
+            <span class="label">{{localize "DAGGERHEART.GENERAL.continue"}}</span>
         </button>
     {{/if}}
         </div>

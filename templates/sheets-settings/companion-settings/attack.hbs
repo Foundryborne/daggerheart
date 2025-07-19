@@ -12,7 +12,7 @@
         <legend>{{localize "DAGGERHEART.GENERAL.attack"}}</legend>
             {{formField systemFields.attack.fields.range value=document.system.attack.range label="DAGGERHEART.GENERAL.range" name="system.attack.range" localize=true}}
             {{#if systemFields.attack.fields.target.fields}}
-                {{ formField systemFields.attack.fields.target.fields.type value=document.system.attack.target.type label="DAGGERHEART.GENERAL.target" name="system.attack.target.type" localize=true}}
+                {{ formField systemFields.attack.fields.target.fields.type value=document.system.attack.target.type label="DAGGERHEART.GENERAL.Target.single" name="system.attack.target.type" localize=true}}
                 {{#if (and document.system.attack.target.type (not (eq document.system.attack.target.type 'self')))}}
                     {{ formField systemFields.attack.fields.target.fields.amount value=document.system.attack.target.amount label="DAGGERHEART.GENERAL.amount" name="system.attack.target.amount" localize=true}}
                 {{/if}}

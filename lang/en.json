@@ -189,6 +189,7 @@
                 "selectSecondaryWeapon": "Select Secondary Weapon",
                 "selectSubclass": "Select Subclass",
                 "startingItems": "Starting Items",
+                "story": "Story",
                 "suggestedArmor": "Suggested Armor",
                 "suggestedPrimaryWeapon": "Suggested Primary Weapon",
                 "suggestedSecondaryWeapon": "Suggested Secondary Weapon",
@@ -1145,6 +1146,10 @@
             "Healing": {
                 "healingAmount": "Healing Amount"
             },
+            "Modifier": {
+                "single": "Modifier",
+                "plural": "Modifiers"
+            },
             "Neutral": {
                 "full": "None",
                 "short": "no"
@@ -1253,21 +1258,25 @@
             "bonus": "Bonus",
             "burden": "Burden",
             "check": "{check} Check",
+            "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "damage": "Damage",
             "damageType": "Damage Type",
             "description": "Description",
             "difficulty": "Difficulty",
+            "dropActorsHere": "Drop Actors here",
             "duality": "Duality",
             "dualityRoll": "Duality Roll",
             "enabled": "Enabled",
             "evasion": "Evasion",
+            "equipment": "Equipment",
             "experience": {
                 "single": "Experience",
                 "plural": "Experiences"
             },
             "fear": "Fear",
             "features": "Features",
+            "formula": "Formula",
             "healing": "Healing",
             "hitPoints": {
                 "single": "Hit Point",
@@ -1276,25 +1285,37 @@
             },
             "hope": "Hope",
             "hordeHp": "Horde HP",
+            "identify": "Identity",
             "imagePath": "Image Path",
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "level": "Level",
+            "levelUp": "Level Up",
+            "loadout": "Loadout",
             "max": "Max",
-            "modifier": "Modifier",
             "multiclass": "Multiclass",
+            "newCategory": "New Category",
             "none": "None",
             "partner": "Partner",
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
             "recovery": "Recovery",
+            "resource": "Resource",
             "roll": "Roll",
+            "rollAll": "Roll All",
+            "rollDamage": "Roll Damage",
+            "save": "Save",
             "scalable": "Scalable",
+            "situationalBonus": "Situational Bonus",
             "stress": "Stress",
             "take": "Take",
-            "target": "Target",
+            "Target": {
+                "single": "Target",
+                "plural": "Targets"
+            },
             "title": "Title",
+            "total": "Total",
             "true": "True",
             "type": "Type",
             "unarmored": "Unarmored",
@@ -1602,7 +1623,8 @@
                 "sendToVault": "Send to Vault",
                 "sendToLoadout": "Send to Loadout",
                 "makeDeathMove": "Make a Death Move",
-                "rangeAndTarget": "Range & Target"
+                "rangeAndTarget": "Range & Target",
+                "appliedEvenIfSuccessful": "Applied even if save succeeded"
             }
         }
     }
