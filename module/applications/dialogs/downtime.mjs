@@ -24,7 +24,6 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                     actor.system.bonuses.rest[`${shortrest ? 'short' : 'long'}Rest`].longMoves
             }
         };
-        this.nrChoices.total = { max: this.nrChoices.shortRest.max + this.nrChoices.longRest.max };
     }
 
     get title() {
@@ -64,10 +63,6 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         );
         context.selectedActivity = this.selectedActivity;
         context.moveData = this.moveData;
-        context.nrCurrentChoices = Object.values(this.moveData).reduce((acc, category) => {
-            acc += Object.values(category.moves).reduce((acc, x) => acc + (x.selected ?? 0), 0);
-            return acc;
-        }, 0);
 
         const shortRestMovesSelected = Object.values(this.moveData.shortRest.moves).reduce(
             (acc, x) => acc + (x.selected ?? 0),
@@ -87,10 +82,6 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                 ...this.nrChoices.longRest,
                 current: this.nrChoices.longRest.taken + longRestMovesSelected
             }
-        };
-        context.nrChoices.total = {
-            ...this.nrChoices.total,
-            current: context.nrChoices.shortRest.current + context.nrChoices.longRest.current
         };
 
         context.shortRestMoves = this.nrChoices.shortRest.max > 0 ? this.moveData.shortRest : null;
