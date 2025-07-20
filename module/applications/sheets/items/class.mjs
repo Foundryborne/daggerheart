@@ -83,16 +83,38 @@ export default class ClassSheet extends DHBaseItemSheet {
         const item = await fromUuid(data.uuid);
         const target = event.target.closest('fieldset.drop-section');
         if (item.type === 'subclass') {
+            if (item.system.originId) {
+                const origin = await foundry.utils.fromUuid(item.system.originId);
+                return ui.notifications.warn(
+                    game.i18n.format('DAGGERHEART.UI.Notifications.featureAlreadyLinked', {
+                        name: item.name,
+                        origin: origin.name
+                    })
+                );
+            }
+
+            await item.update({
+                system: {
+                    originItemType: CONFIG.DH.ITEM.featureTypes[this.document.type].id,
+                    originId: this.document.uuid
+                }
+            });
+
             await this.document.update({
                 'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
             });
         } else if (item.type === 'feature') {
-            if (target.classList.contains('hope-feature')) {
-                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.hope) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotHope'));
-                    return;
-                }
+            if (item.system.originId) {
+                const origin = await foundry.utils.fromUuid(item.system.originId);
+                return ui.notifications.warn(
+                    game.i18n.format('DAGGERHEART.UI.Notifications.featureAlreadyLinked', {
+                        name: item.name,
+                        origin: origin.name
+                    })
+                );
+            }
 
+            if (target.classList.contains('hope-feature')) {
                 await item.update({
                     system: {
                         subType: CONFIG.DH.ITEM.featureSubTypes.hope,
@@ -104,11 +126,6 @@ export default class ClassSheet extends DHBaseItemSheet {
                     'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
                 });
             } else if (target.classList.contains('class-feature')) {
-                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.class) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotClass'));
-                    return;
-                }
-
                 await item.update({
                     system: {
                         subType: CONFIG.DH.ITEM.featureSubTypes.class,
@@ -151,18 +168,20 @@ export default class ClassSheet extends DHBaseItemSheet {
             }
         } else if (item.type === 'miscellaneous') {
             if (target.classList.contains('take-section')) {
-                if (this.document.system.inventory.take.length < 3)
+                if (this.document.system.inventory.take.length < 3) {
                     await this.document.update({
                         'system.inventory.take': [...this.document.system.inventory.take.map(x => x.uuid), item.uuid]
                     });
+                }
             } else if (target.classList.contains('choice-b-section')) {
-                if (this.document.system.inventory.choiceB.length < 2)
+                if (this.document.system.inventory.choiceB.length < 2) {
                     await this.document.update({
                         'system.inventory.choiceB': [
                             ...this.document.system.inventory.choiceB.map(x => x.uuid),
                             item.uuid
                         ]
                     });
+                }
             }
         }
     }
@@ -179,7 +198,19 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeItemFromCollection(_event, element) {
         const { uuid, target } = element.dataset;
         const prop = foundry.utils.getProperty(this.document.system, target);
-        await this.document.update({ [`system.${target}`]: prop.filter(i => i.uuid !== uuid) });
+        const item = await foundry.utils.fromUuid(uuid);
+
+        if (item) {
+            await item.update({
+                system: {
+                    originItemType: null,
+                    originId: null,
+                    subType: null
+                }
+            });
+        }
+
+        await this.document.update({ [`system.${target}`]: prop.filter(i => i && i.uuid !== uuid) });
     }
 
     /**

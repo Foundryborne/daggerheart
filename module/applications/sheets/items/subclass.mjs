@@ -62,12 +62,17 @@ export default class SubclassSheet extends DHBaseItemSheet {
         const item = await fromUuid(data.uuid);
         const target = event.target.closest('fieldset.drop-section');
         if (item.type === 'feature') {
-            if (target.dataset.type === 'foundation') {
-                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.foundation) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotFoundation'));
-                    return;
-                }
+            if (item.system.originId) {
+                const origin = await foundry.utils.fromUuid(item.system.originId);
+                return ui.notifications.warn(
+                    game.i18n.format('DAGGERHEART.UI.Notifications.featureAlreadyLinked', {
+                        name: item.name,
+                        origin: origin.name
+                    })
+                );
+            }
 
+            if (target.dataset.type === 'foundation') {
                 await item.update({
                     system: {
                         subType: CONFIG.DH.ITEM.featureSubTypes.foundation,
@@ -79,11 +84,6 @@ export default class SubclassSheet extends DHBaseItemSheet {
                     'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
                 });
             } else if (target.dataset.type === 'specialization') {
-                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.specialization) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotSpecialization'));
-                    return;
-                }
-
                 await item.update({
                     system: {
                         subType: CONFIG.DH.ITEM.featureSubTypes.specialization,
@@ -95,11 +95,6 @@ export default class SubclassSheet extends DHBaseItemSheet {
                     'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
                 });
             } else if (target.dataset.type === 'mastery') {
-                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.mastery) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotMastery'));
-                    return;
-                }
-
                 await item.update({
                     system: {
                         subType: CONFIG.DH.ITEM.featureSubTypes.mastery,

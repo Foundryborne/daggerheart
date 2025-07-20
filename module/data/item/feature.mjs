@@ -8,7 +8,8 @@ export default class DHFeature extends BaseDataItem {
             label: 'TYPES.Item.feature',
             type: 'feature',
             hasDescription: true,
-            hasResource: true
+            hasResource: true,
+            possibleItemLink: true
         });
     }
 
@@ -17,13 +18,6 @@ export default class DHFeature extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            originItemType: new fields.StringField({
-                choices: CONFIG.DH.ITEM.featureTypes,
-                nullable: true,
-                initial: null
-            }),
-            originId: new fields.StringField({ nullable: true, initial: null }),
-            subType: new fields.StringField({ choices: CONFIG.DH.ITEM.featureSubTypes, nullable: true, initial: null }),
             actions: new fields.ArrayField(new ActionField())
         };
     }

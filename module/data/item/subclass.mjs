@@ -7,7 +7,8 @@ export default class DHSubclass extends BaseDataItem {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Item.subclass',
             type: 'subclass',
-            hasDescription: true
+            hasDescription: true,
+            possibleItemLink: true
         });
     }
 

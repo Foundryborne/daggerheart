@@ -50,13 +50,17 @@ export default class AncestrySheet extends DHHeritageSheet {
 
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
-            const subType = event.target.closest('.primary-feature') ? 'primary' : 'secondary';
-            if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes[subType]) {
-                const error = subType === 'primary' ? 'featureNotPrimary' : 'featureNotSecondary';
-                ui.notifications.warn(game.i18n.localize(`DAGGERHEART.UI.Notifications.${error}`));
-                return;
+            if (item.system.originId) {
+                const origin = await foundry.utils.fromUuid(item.system.originId);
+                return ui.notifications.warn(
+                    game.i18n.format('DAGGERHEART.UI.Notifications.featureAlreadyLinked', {
+                        name: item.name,
+                        origin: origin.name
+                    })
+                );
             }
 
+            const subType = event.target.closest('.primary-feature') ? 'primary' : 'secondary';
             await item.update({
                 system: {
                     subType: subType,

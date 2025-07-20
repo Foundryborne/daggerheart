@@ -506,7 +506,12 @@ export default function DHApplicationMixin(Base) {
             if (doc) return doc.sheet.render({ force: true });
 
             // TODO: REDO this
-            const { actionId } = target.closest('[data-action-id]').dataset;
+            const actionNode = target.closest('[data-action-id]');
+            if (!actionNode) {
+                return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
+            }
+
+            const { actionId } = actionNode.dataset;
             const { actions, attack } = this.document.system;
             const action = attack?.id === actionId ? attack : actions?.find(a => a.id === actionId);
             new DHActionConfig(action).render({ force: true });

@@ -86,6 +86,18 @@ export default class DHClass extends BaseDataItem {
         }
     }
 
+    async _preDelete() {
+        for (var subclass of this.subclasses) {
+            await subclass.update({
+                system: {
+                    originItemType: null,
+                    originId: null,
+                    subType: null
+                }
+            });
+        }
+    }
+
     _onDelete(options, userId) {
         super._onDelete(options, userId);
 

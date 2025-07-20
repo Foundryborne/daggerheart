@@ -21,7 +21,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             hasDescription: false,
             hasResource: false,
             isQuantifiable: false,
-            isInventoryItem: false
+            isInventoryItem: false,
+            possibleItemLink: false
         };
     }
 
@@ -68,6 +69,20 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         if (this.metadata.isQuantifiable)
             schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
+
+        if (this.metadata.possibleItemLink) {
+            schema.originItemType = new fields.StringField({
+                choices: CONFIG.DH.ITEM.featureTypes,
+                nullable: true,
+                initial: null
+            });
+            schema.originId = new fields.StringField({ nullable: true, initial: null });
+            schema.subType = new fields.StringField({
+                choices: CONFIG.DH.ITEM.featureSubTypes,
+                nullable: true,
+                initial: null
+            });
+        }
 
         return schema;
     }
@@ -137,22 +152,43 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     async _preDelete() {
         if (this.originId) {
-            if (this.actor && this.actor.type === 'character') {
-                const items = this.actor.items.filter(item => item.system.originId === this.parent.id);
-                if (items.length > 0)
-                    await this.actor.deleteEmbeddedDocuments(
-                        'Item',
-                        items.map(x => x.id)
-                    );
-            } else {
-                const linkedItem = await foundry.utils.fromUuid(this.originId);
-                if (linkedItem) {
-                    await linkedItem.update({
-                        'system.features': linkedItem.system.features
-                            .filter(x => x.uuid !== this.parent.uuid)
-                            .map(x => x.uuid)
-                    });
+            if (this.parent.type === 'feature') {
+                if (this.actor && this.actor.type === 'character') {
+                    const items = this.actor.items.filter(item => item.system.originId === this.parent.id);
+                    if (items.length > 0)
+                        await this.actor.deleteEmbeddedDocuments(
+                            'Item',
+                            items.map(x => x.id)
+                        );
+                } else {
+                    const linkedItem = await foundry.utils.fromUuid(this.originId);
+                    if (linkedItem) {
+                        await linkedItem.update({
+                            'system.features': linkedItem.system.features
+                                .filter(x => x.uuid !== this.parent.uuid)
+                                .map(x => x.uuid)
+                        });
+                    }
                 }
+            } else if (this.parent.type === 'subclass') {
+                const linkedItem = await foundry.utils.fromUuid(this.originId);
+                await linkedItem.update({
+                    'system.subclasses': linkedItem.system.subclasses
+                        .filter(x => x.uuid !== this.parent.uuid)
+                        .map(x => x.uuid)
+                });
+            }
+        }
+
+        if (this.features?.length) {
+            for (var feature of this.features) {
+                await feature.update({
+                    system: {
+                        originItemType: null,
+                        originId: null,
+                        subType: null
+                    }
+                });
             }
         }
     }

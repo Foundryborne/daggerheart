@@ -290,6 +290,16 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
+            if (item.system.originId) {
+                const origin = await foundry.utils.fromUuid(item.system.originId);
+                return ui.notifications.warn(
+                    game.i18n.format('DAGGERHEART.UI.Notifications.featureAlreadyLinked', {
+                        name: item.name,
+                        origin: origin.name
+                    })
+                );
+            }
+
             await item.update({
                 system: {
                     originItemType: CONFIG.DH.ITEM.featureTypes[this.document.type].id,

@@ -1603,13 +1603,7 @@
                 "attackIsMissing": "Attack is missing",
                 "unownedActionMacro": "Cannot make a Use macro for an Action not on your character",
                 "unownedAttackMacro": "Cannot make a Use macro for an Attack that doesn't belong to one of your characters",
-                "featureNotHope": "This feature is used as something else than a Hope feature and cannot be used here.",
-                "featureNotClass": "This feature is used as something else than a Class feature and cannot be used here.",
-                "featureNotPrimary": "This feature is used as something else than a Primary feature and cannot be used here.",
-                "featureNotSecondary": "This feature is used as something else than a Secondary feature and cannot be used here.",
-                "featureNotFoundation": "This feature is used as something else than a Foundation feature and cannot be used here.",
-                "featureNotSpecialization": "This feature is used as something else than a Specialization feature and cannot be used here.",
-                "featureNotMastery": "This feature is used as something else than a Mastery feature and cannot be used here."
+                "featureAlreadyLinked": "{name} is already linked to {origin}. Remove it from there if you want to link it elsewhere."
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
