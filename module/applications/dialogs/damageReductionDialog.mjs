@@ -10,7 +10,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.reject = reject;
         this.actor = actor;
         this.damage = damage;
-        
+
         const canApplyArmor = damageType.every(t => actor.system.armorApplicableDamageTypes[t] === true);
         const maxArmorMarks = canApplyArmor
             ? Math.min(

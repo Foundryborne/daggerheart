@@ -19,10 +19,16 @@ export default class DHBeastform extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            tier: new fields.StringField({
+            beastformType: new fields.StringField({
                 required: true,
+                choices: CONFIG.DH.ITEM.beastformTypes,
+                initial: CONFIG.DH.ITEM.beastformTypes.normal.id
+            }),
+            tier: new fields.NumberField({
+                required: true,
+                integer: true,
                 choices: CONFIG.DH.GENERAL.tiers,
-                initial: CONFIG.DH.GENERAL.tiers.tier1.id
+                initial: CONFIG.DH.GENERAL.tiers[1].id
             }),
             tokenImg: new fields.FilePathField({
                 initial: 'icons/svg/mystery-man.svg',
@@ -38,9 +44,40 @@ export default class DHBeastform extends BaseDataItem {
                 height: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true }),
                 width: new fields.NumberField({ integer: true, min: 1, initial: null, nullable: true })
             }),
+            mainTrait: new fields.StringField({
+                required: true,
+                choices: CONFIG.DH.ACTOR.abilities,
+                initial: CONFIG.DH.ACTOR.abilities.agility.id
+            }),
             examples: new fields.StringField(),
-            advantageOn: new fields.StringField(),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
+            advantageOn: new fields.TypedObjectField(
+                new fields.SchemaField({
+                    value: new fields.StringField()
+                })
+            ),
+            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            evolved: new fields.SchemaField({
+                maximumTier: new fields.NumberField({
+                    integer: true,
+                    choices: CONFIG.DH.GENERAL.tiers
+                }),
+                mainTraitBonus: new fields.NumberField({
+                    required: true,
+                    integer: true,
+                    min: 0,
+                    initial: 0
+                })
+            }),
+            hybrid: new fields.SchemaField({
+                maximumTier: new fields.NumberField({
+                    integer: true,
+                    choices: CONFIG.DH.GENERAL.tiers,
+                    label: 'DAGGERHEART.ITEMS.Beastform.FIELDS.evolved.maximumTier.label'
+                }),
+                beastformOptions: new fields.NumberField({ required: true, integer: true, initial: 2, min: 2 }),
+                advantages: new fields.NumberField({ required: true, integer: true, initial: 2, min: 2 }),
+                features: new fields.NumberField({ required: true, integer: true, initial: 2, min: 2 })
+            })
         };
     }
 
@@ -69,7 +106,16 @@ export default class DHBeastform extends BaseDataItem {
 
         const beastformEffect = this.parent.effects.find(x => x.type === 'beastform');
         await beastformEffect.updateSource({
-            changes: [...beastformEffect.changes, { key: 'system.advantageSources', mode: 2, value: this.advantageOn }],
+            changes: [
+                ...beastformEffect.changes,
+                {
+                    key: 'system.advantageSources',
+                    mode: 2,
+                    value: Object.values(this.advantageOn)
+                        .map(x => x.value)
+                        .join(', ')
+                }
+            ],
             system: {
                 characterTokenData: {
                     tokenImg: this.parent.parent.prototypeToken.texture.src,

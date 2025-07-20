@@ -163,7 +163,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     getRollData(data = {}) {
-        if(!this.actor) return null;
+        if (!this.actor) return null;
         const actorData = this.actor.getRollData(false);
 
         // Add Roll results to RollDatas
@@ -178,8 +178,8 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     async use(event, ...args) {
-        if(!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
-        
+        if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
+
         const isFastForward = event.shiftKey || (!this.hasRoll && !this.hasSave);
         // Prepare base Config
         const initConfig = this.initActionConfig(event);

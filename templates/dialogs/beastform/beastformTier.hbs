@@ -1,0 +1,8 @@
+<div class="beastforms-tier">
+    {{#each tier.values as |form uuid|}}
+        <div data-action="selectBeastform" data-uuid="{{uuid}}" data-tooltip="{{concat "#item#" uuid}}" class="beastform-container {{#unless form.selected}}inactive{{/unless}} {{#if form.draggable}}draggable{{/if}}">
+            <img src="{{form.value.img}}" />
+            <div class="beastform-title">{{form.value.name}}</div>
+        </div>
+    {{/each}}
+</div>

@@ -1,6 +1,6 @@
 <fieldset class="one-column" data-key="effects">
     <legend>
-        Effects
+        {{localize "DAGGERHEART.GENERAL.Effect.plural"}}
         <a><i class="fa-solid fa-plus icon-button" data-action="addEffect"></i></a>
     </legend>
     <ul class="items-list">
@@ -13,7 +13,7 @@
                     </div>
                 {{/with}}
                 <input type="hidden" name="effects.{{index}}._id" value="{{effect._id}}">
-                {{#if @root.source.save.trait}}{{formInput ../fields.onSave value=effect.onSave name=(concat "effects." index ".onSave") dataset=(object tooltip="Applied even if save succeeded" tooltipDirection="UP")}}{{/if}}
+                {{#if @root.source.save.trait}}{{formInput ../fields.onSave value=effect.onSave name=(concat "effects." index ".onSave") dataset=(object tooltip=(localize "DAGGERHEART.UI.Tooltip.appliedEvenIfSuccessful") tooltipDirection="UP")}}{{/if}}
                 <div class="controls">
                     <a data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeEffect" data-index="{{index}}"><i class="fas fa-trash"></i></a>
                 </div>

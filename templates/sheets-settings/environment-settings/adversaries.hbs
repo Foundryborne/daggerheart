@@ -1,7 +1,7 @@
 <section class='tab {{tabs.adversaries.cssClass}} {{tabs.adversaries.id}}' data-tab='{{tabs.adversaries.id}}'
     data-group='{{tabs.adversaries.group}}'>
     <button type="button" class="add-action-btn" data-action="addCategory">
-        New Category
+        {{localize "DAGGERHEART.GENERAL.newCategory"}}
     </button>
     {{#each document.system.potentialAdversaries as |category categoryId|}}
     <fieldset class="category-container" data-potential-adversary="{{categoryId}}">
@@ -26,7 +26,7 @@
             {{/each}}
         </div>
         <div class="adversaries-dragger">
-            Drop Actors here
+            {{localize "DAGGERHEART.GENERAL.dropActorsHere"}}
         </div>
     </fieldset>
     {{/each}}

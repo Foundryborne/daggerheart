@@ -1,0 +1,29 @@
+<div class="daggerheart dh-style tooltip">
+    <h2 class="tooltip-title">{{attack.name}}</h2>
+    <img class="tooltip-image" src="{{attack.img}}" />
+    <div class="tooltip-description">{{{description}}}</div>
+
+    <div class="tooltip-information-section spaced">
+        <div class="tooltip-information">
+            <label>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</label>
+            {{#with (lookup config.ACTOR.abilities attack.roll.trait) as | trait |}}
+                <div>{{localize trait.label}}</div>
+            {{/with}}
+        </div>
+        <div class="tooltip-information">
+            <label>{{localize "DAGGERHEART.GENERAL.range"}}</label>
+            {{#with (lookup config.GENERAL.range attack.range) as | range |}}
+                <div>{{localize range.label}}</div>
+            {{/with}}
+        </div>
+
+        <div class="tooltip-information">
+            <label>{{localize "DAGGERHEART.GENERAL.damage"}}</label>
+            <div>{{{damageFormula attack parent}}}</div>
+        </div>
+        <div class="tooltip-information">
+            <label>{{localize "DAGGERHEART.GENERAL.damageType"}}</label>
+            <div>{{{damageSymbols attack.damage.parts}}}</div>
+        </div>
+    </div>
+</div>

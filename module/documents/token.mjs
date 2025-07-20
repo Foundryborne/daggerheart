@@ -16,7 +16,21 @@ export default class DHToken extends TokenDocument {
         });
         bars.sort((a, b) => a.label.compare(b.label));
 
-        const invalidAttributes = ['gold', 'levelData', 'actions'];
+        const invalidAttributes = [
+            'gold',
+            'levelData',
+            'actions',
+            'biography',
+            'class',
+            'multiclass',
+            'companion',
+            'notes',
+            'partner',
+            'description',
+            'impulses',
+            'tier',
+            'type'
+        ];
         const values = attributes.value.reduce((acc, v) => {
             const a = v.join('.');
             if (invalidAttributes.some(x => a.startsWith(x))) return acc;
@@ -38,9 +52,11 @@ export default class DHToken extends TokenDocument {
         for (const [name, field] of Object.entries(schema.fields)) {
             const p = _path.concat([name]);
             if (field instanceof foundry.data.fields.NumberField) attributes.value.push(p);
+            if (field instanceof foundry.data.fields.StringField) attributes.value.push(p);
             if (field instanceof foundry.data.fields.ArrayField) attributes.value.push(p);
             const isSchema = field instanceof foundry.data.fields.SchemaField;
             const isModel = field instanceof foundry.data.fields.EmbeddedDataField;
+
             if (isSchema || isModel) {
                 const schema = isModel ? field.model.schema : field;
                 const isBar = schema.has && schema.has('value') && schema.has('max');

@@ -1,5 +1,7 @@
 export default class DhTooltipManager extends foundry.helpers.interaction.TooltipManager {
     async activate(element, options = {}) {
+        const { TextEditor } = foundry.applications.ux;
+
         let html = options.html;
         if (element.dataset.tooltip?.startsWith('#item#')) {
             const splitValues = element.dataset.tooltip.slice(6).split('#action#');
@@ -10,10 +12,16 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             const item = actionId ? baseItem.system.actions.find(x => x.id === actionId) : baseItem;
             if (item) {
                 const type = actionId ? 'action' : item.type;
+                const description = await TextEditor.enrichHTML(item.system.description);
+                for (let feature of item.system.features) {
+                    feature.system.enrichedDescription = await TextEditor.enrichHTML(feature.system.description);
+                }
+
                 html = await foundry.applications.handlebars.renderTemplate(
                     `systems/daggerheart/templates/ui/tooltip/${type}.hbs`,
                     {
                         item: item,
+                        description: description,
                         config: CONFIG.DH
                     }
                 );
@@ -22,6 +30,26 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 options.direction = this._determineItemTooltipDirection(element);
             }
         } else {
+            const attack = element.dataset.tooltip?.startsWith('#attack#');
+            if (attack) {
+                const actorUuid = element.dataset.tooltip.slice(8);
+                const actor = await foundry.utils.fromUuid(actorUuid);
+                const attack = actor.system.attack;
+
+                const description = await TextEditor.enrichHTML(attack.description);
+                html = await foundry.applications.handlebars.renderTemplate(
+                    `systems/daggerheart/templates/ui/tooltip/attack.hbs`,
+                    {
+                        attack: attack,
+                        description: description,
+                        parent: actor,
+                        config: CONFIG.DH
+                    }
+                );
+
+                this.tooltip.innerHTML = html;
+            }
+
             const shortRest = element.dataset.tooltip?.startsWith('#shortRest#');
             const longRest = element.dataset.tooltip?.startsWith('#longRest#');
             if (shortRest || longRest) {
@@ -29,18 +57,21 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 const downtimeOptions = shortRest
                     ? CONFIG.DH.GENERAL.defaultRestOptions.shortRest()
                     : CONFIG.DH.GENERAL.defaultRestOptions.longRest();
+
                 const move = downtimeOptions[key];
+                const description = await TextEditor.enrichHTML(move.description);
                 html = await foundry.applications.handlebars.renderTemplate(
                     `systems/daggerheart/templates/ui/tooltip/downtime.hbs`,
                     {
-                        move: move
+                        move: move,
+                        description: description
                     }
                 );
 
                 this.tooltip.innerHTML = html;
                 options.direction = this._determineItemTooltipDirection(
                     element,
-                    this.constructor.TOOLTIP_DIRECTIONS.UP
+                    this.constructor.TOOLTIP_DIRECTIONS.RIGHT
                 );
             }
 

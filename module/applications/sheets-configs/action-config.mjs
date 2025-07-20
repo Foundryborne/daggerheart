@@ -114,7 +114,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
         context.tierOptions = [
-            { key: 1, label: game.i18n.localize('DAGGERHEART.GENERAL.Tiers.tier1') },
+            { key: 1, label: game.i18n.localize('DAGGERHEART.GENERAL.Tiers.1') },
             ...Object.values(settingsTiers).map(x => ({ key: x.tier, label: x.name }))
         ];
 

@@ -13,6 +13,9 @@
             "armor": "Armor",
             "beastform": "Beastform"
         },
+        "ActiveEffect": {
+            "beastform": "Beastform"
+        },
         "Actor": {
             "character": "Character",
             "companion": "Companion",
@@ -33,6 +36,10 @@
                 }
             },
             "Settings": {
+                "attackBonus": "Attack Bonus",
+                "attackName": "Attack Name",
+                "includeBase": { "label": "Include Item Damage" },
+                "multiplier": "Multiplier",
                 "resultBased": {
                     "label": "Formula based on Hope/Fear result."
                 },
@@ -106,8 +113,25 @@
                 "horderHp": "Horde/HP"
             },
             "Character": {
+                "advantageSources": {
+                    "label": "Advantage Sources",
+                    "hint": "Add single words or short text as reminders and hints of what a character has advantage on."
+                },
                 "age": "Age",
                 "companionFeatures": "Companion Features",
+                "contextMenu": {
+                    "consume": "Consume Item",
+                    "equip": "Equip",
+                    "sendToChat": "Send To Chat",
+                    "toLoadout": "Send to Loadout",
+                    "toVault": "Send to Vault",
+                    "unequip": "Unequip",
+                    "useItem": "Use Item"
+                },
+                "disadvantageSources": {
+                    "label": "Disadvantage Sources",
+                    "hint": "Add single words or short text as reminders and hints of what a character has disadvantage on."
+                },
                 "faith": "Faith",
                 "levelUp": "You can level up",
                 "pronouns": "Pronouns",
@@ -128,7 +152,9 @@
                     "partner": { "label": "Partner" },
                     "resources": {
                         "stress": {
-                            "value": { "label": "Stress" }
+                            "value": { "label": "Stress" },
+                            "currentStress": { "label": "Current Stress" },
+                            "maxStress": { "label": "Max Stress" }
                         }
                     }
                 },
@@ -183,6 +209,7 @@
                 "selectSecondaryWeapon": "Select Secondary Weapon",
                 "selectSubclass": "Select Subclass",
                 "startingItems": "Starting Items",
+                "story": "Story",
                 "suggestedArmor": "Suggested Armor",
                 "suggestedPrimaryWeapon": "Suggested Primary Weapon",
                 "suggestedSecondaryWeapon": "Suggested Secondary Weapon",
@@ -564,6 +591,11 @@
                     "name": "Warded",
                     "description": "You reduce incoming magic damage by your Armor Score before applying it to your damage thresholds."
                 }
+            },
+            "BeastformType": {
+                "normal": "Normal",
+                "evolved": "Evolved",
+                "hybrid": "Hybrid"
             },
             "Burden": {
                 "oneHanded": "One-Handed",
@@ -1012,6 +1044,7 @@
             },
             "Advantage": {
                 "full": "Advantage",
+                "plural": "Advantages",
                 "short": "Adv"
             },
             "Adversary": {
@@ -1139,6 +1172,10 @@
             "Healing": {
                 "healingAmount": "Healing Amount"
             },
+            "Modifier": {
+                "single": "Modifier",
+                "plural": "Modifiers"
+            },
             "Neutral": {
                 "full": "None",
                 "short": "no"
@@ -1191,6 +1228,11 @@
                             "hint": "The cost in stress you can pay to reduce minor damage to none."
                         }
                     }
+                },
+                "attack": {
+                    "damage": {
+                        "value": { "label": "Base Attack: Damage" }
+                    }
                 }
             },
             "Tabs": {
@@ -1224,19 +1266,26 @@
                 "recovery": "Recovery",
                 "setup": "Setup",
                 "equipment": "Equipment",
-                "attachments": "Attachments"
-            },
-            "Tiers": {
-                "singular": "Tier",
+                "attachments": "Attachments",
+                "advanced": "Advanced",
                 "tier1": "Tier 1",
                 "tier2": "Tier 2",
                 "tier3": "Tier 3",
-                "tier4": "Tier 4"
+                "tier4": "tier 4"
+            },
+            "Tiers": {
+                "singular": "Tier",
+                "1": "Tier 1",
+                "2": "Tier 2",
+                "3": "Tier 3",
+                "4": "Tier 4"
             },
             "Trait": {
                 "single": "Trait",
                 "plural": "Traits"
             },
+            "actorName": "Actor Name",
+            "amount": "Amount",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
@@ -1245,49 +1294,68 @@
             "bonus": "Bonus",
             "burden": "Burden",
             "check": "{check} Check",
+            "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "damage": "Damage",
             "damageType": "Damage Type",
             "description": "Description",
             "difficulty": "Difficulty",
+            "dropActorsHere": "Drop Actors here",
             "duality": "Duality",
             "dualityRoll": "Duality Roll",
             "enabled": "Enabled",
             "evasion": "Evasion",
+            "equipment": "Equipment",
             "experience": {
                 "single": "Experience",
                 "plural": "Experiences"
             },
             "fear": "Fear",
             "features": "Features",
+            "formula": "Formula",
             "healing": "Healing",
-            "hitPoints": {
+            "HitPoints": {
                 "single": "Hit Point",
                 "plural": "Hit Points",
                 "short": "HP"
             },
             "hope": "Hope",
             "hordeHp": "Horde HP",
+            "identify": "Identity",
+            "imagePath": "Image Path",
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "level": "Level",
+            "levelUp": "Level Up",
+            "loadout": "Loadout",
             "max": "Max",
-            "modifier": "Modifier",
             "multiclass": "Multiclass",
+            "newCategory": "New Category",
             "none": "None",
             "partner": "Partner",
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
             "recovery": "Recovery",
+            "resource": "Resource",
             "roll": "Roll",
+            "rollAll": "Roll All",
+            "rollDamage": "Roll Damage",
+            "save": "Save",
             "scalable": "Scalable",
+            "situationalBonus": "Situational Bonus",
             "stress": "Stress",
             "take": "Take",
-            "target": "Target",
+            "Target": {
+                "single": "Target",
+                "plural": "Targets"
+            },
             "title": "Title",
+            "total": "Total",
             "true": "True",
             "type": "Type",
+            "unarmed": "Unarmed",
+            "unarmedStrike": "Unarmed Strike",
             "unarmored": "Unarmored",
             "use": "Use",
             "used": "Used",
@@ -1321,7 +1389,9 @@
             },
             "Beastform": {
                 "FIELDS": {
+                    "beastformType": { "label": "Beastform Type" },
                     "tier": { "label": "Tier" },
+                    "mainTrait": { "label": "Main Trait" },
                     "examples": { "label": "Examples" },
                     "advantageOn": { "label": "Gain Advantage On" },
                     "tokenImg": { "label": "Token Image" },
@@ -1330,12 +1400,28 @@
                         "placeholder": "Using character dimensions",
                         "height": { "label": "Height" },
                         "width": { "label": "Width" }
+                    },
+                    "evolved": {
+                        "maximumTier": { "label": "Maximum Tier" },
+                        "mainTraitBonus": { "label": "Main Trait Bonus" }
+                    },
+                    "hybrid": {
+                        "beastformOptions": { "label": "Nr Beastforms" },
+                        "advantages": { "label": "Nr Advantages" },
+                        "features": { "label": "Nr Features" }
                     }
                 },
+                "attackName": "Beast Attack",
+                "beastformEffect": "Beastform Transformation",
                 "dialogTitle": "Beastform Selection",
                 "tokenTitle": "Beastform Token",
                 "transform": "Transform",
-                "beastformEffect": "Beastform Transformation"
+                "evolve": "Evolve",
+                "evolvedFeatureTitle": "Evolved",
+                "evolvedDrag": "Drag a form here to evolve it.",
+                "hybridize": "Hybridize",
+                "hybridizeFeatureTitle": "Hybrid Features",
+                "hybridizeDrag": "Drag a form here to hybridize it."
             },
             "Class": {
                 "hopeFeatures": "Hope Features",
@@ -1580,7 +1666,11 @@
                 "featureNotSecondary": "This feature is used as something else than a Secondary feature and cannot be used here.",
                 "featureNotFoundation": "This feature is used as something else than a Foundation feature and cannot be used here.",
                 "featureNotSpecialization": "This feature is used as something else than a Specialization feature and cannot be used here.",
-                "featureNotMastery": "This feature is used as something else than a Mastery feature and cannot be used here."
+                "featureNotMastery": "This feature is used as something else than a Mastery feature and cannot be used here.",
+                "beastformMissingEffect": "The Beastform is missing a Beastform Effect. Cannot be used.",
+                "beastformToManyAdvantages": "You cannot select any more advantages.",
+                "beastformToManyFeatures": "You cannot select any more features.",
+                "beastformEquipWeapon": "You cannot use weapons while in a Beastform."
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
@@ -1594,7 +1684,9 @@
                 "sendToVault": "Send to Vault",
                 "sendToLoadout": "Send to Loadout",
                 "makeDeathMove": "Make a Death Move",
-                "rangeAndTarget": "Range & Target"
+                "rangeAndTarget": "Range & Target",
+                "dragApplyEffect": "Drag effect to apply it to an actor",
+                "appliedEvenIfSuccessful": "Applied even if save succeeded"
             }
         }
     }

@@ -1346,3 +1346,18 @@ export const itemResourceTypes = {
         label: 'DAGGERHEART.CONFIG.ItemResourceType.diceValue'
     }
 };
+
+export const beastformTypes = {
+    normal: {
+        id: 'normal',
+        label: 'DAGGERHEART.CONFIG.BeastformType.normal'
+    },
+    evolved: {
+        id: 'evolved',
+        label: 'DAGGERHEART.CONFIG.BeastformType.evolved'
+    },
+    hybrid: {
+        id: 'hybrid',
+        label: 'DAGGERHEART.CONFIG.BeastformType.hybrid'
+    }
+};

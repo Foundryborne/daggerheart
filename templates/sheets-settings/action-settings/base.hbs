@@ -4,14 +4,14 @@
     data-tab="base"
 >
     <fieldset class="one-column">
-        <legend>Identity</legend>
+        <legend>{{localize "DAGGERHEART.GENERAL.identify"}}</legend>
         {{formField fields.name value=source.name label="Name" name="name"}}
         {{formField fields.img value=source.img label="Icon" name="img"}}
         {{formField fields.actionType value=source.actionType label="Type" name="actionType" localize=true}}
         {{formField fields.chatDisplay value=source.chatDisplay name="chatDisplay" classes="checkbox"}}
     </fieldset>
     <fieldset class="action-category">
-        <legend>Description</legend>
+        <legend>{{localize "DAGGERHEART.GENERAL.description"}}</legend>
         {{formInput fields.description value=source.description name="description" }}
     </fieldset>
 </section>

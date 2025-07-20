@@ -22,7 +22,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         },
         actions: {
             openSettings: DHBaseActorSheet.#openSettings,
-            sendExpToChat: DHBaseActorSheet.#sendExpToChat,
+            sendExpToChat: DHBaseActorSheet.#sendExpToChat
         },
         contextMenus: [
             {
@@ -59,7 +59,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         return context;
     }
 
-
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
@@ -81,7 +80,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     async _prepareEffectsContext(context, _options) {
         context.effects = {
             actives: [],
-            inactives: [],
+            inactives: []
         };
 
         for (const effect of this.actor.allApplicableEffects()) {
@@ -103,7 +102,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     static #getFeatureContextOptions() {
         return this._getContextMenuCommonOptions.call(this, { usable: true, toChat: true });
     }
-
 
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */

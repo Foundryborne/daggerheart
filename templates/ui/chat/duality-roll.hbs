@@ -148,7 +148,7 @@
     </div>
 </div>
 <fieldset class="dice-roll daggerheart chat roll expanded{{#unless damage.roll}} hidden{{/unless}}" data-action="expandRoll">
-    <legend class="dice-flavor">Damage</legend>
+    <legend class="dice-flavor">{{localize "DAGGERHEART.GENERAL.damage"}}</legend>
     <div class="dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">
@@ -176,7 +176,17 @@
                     <button class="duality-action{{#if (or hasDamage hasHealing)}} duality-action-effect{{/if}}" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</span></button>
             {{/if}}
             <div class="duality-result">
-                <div>{{roll.total}} {{#if (eq roll.result.duality 1)}}With Hope{{else}}{{#if (eq roll.result.duality -1)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
+                <div>{{roll.total}} 
+                    {{#if (eq roll.result.duality 1)}}
+                        {{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}
+                    {{else}}
+                        {{#if (eq roll.result.duality -1)}}
+                            {{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}
+                        {{else}}
+                            {{localize "DAGGERHEART.GENERAL.criticalSuccess"}}
+                        {{/if}}
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>

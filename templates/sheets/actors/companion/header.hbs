@@ -5,7 +5,7 @@
             type='text'
             name='name'
             value='{{document.name}}'
-            placeholder='Actor Name'
+            placeholder='{{localize "DAGGERHEART.GENERAL.actorName"}}'
         />
     </h1>
     <div class="status-section">
@@ -14,7 +14,7 @@
                 <p>{{document.system.evasion}}</p>
             </div>
             <div class="status-label">
-                <h4>Evasion</h4>
+                <h4>{{localize "DAGGERHEART.GENERAL.evasion"}}</h4>
             </div>
         </div>
         <div class="status-bar">
@@ -29,7 +29,7 @@
                 max='{{document.system.resources.stress.max}}'
             ></progress>
             <div class="status-label">
-                <h4>Stress</h4>
+                <h4>{{localize "DAGGERHEART.GENERAL.stress"}}</h4>
             </div>
         </div>
         <h3 class="level-up-label">

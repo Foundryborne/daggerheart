@@ -9,7 +9,7 @@ export default class RegisterHandlebarsHelpers {
             damageFormula: this.damageFormula,
             damageSymbols: this.damageSymbols,
             rollParsed: this.rollParsed,
-            hasProperty: foundry.utils.hasProperty,
+            hasProperty: foundry.utils.hasProperty
         });
     }
     static add(a, b) {

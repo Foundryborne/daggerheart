@@ -145,11 +145,11 @@ export const defaultRestOptions = {
                     img: 'icons/magic/life/cross-worn-green.webp',
                     actionType: 'action',
                     healing: {
-                        type: 'health',
+                        applyTo: healingTypes.hitPoints.id,
                         value: {
                             custom: {
                                 enabled: true,
-                                formula: '1d4 + 1' // should be 1d4 + {tier}. How to use the roll param?
+                                formula: '1d4 + @tier'
                             }
                         }
                     }
@@ -169,11 +169,11 @@ export const defaultRestOptions = {
                     img: 'icons/magic/perception/eye-ringed-green.webp',
                     actionType: 'action',
                     healing: {
-                        type: 'stress',
+                        applyTo: healingTypes.stress.id,
                         value: {
                             custom: {
                                 enabled: true,
-                                formula: '1d4 + 1' // should be 1d4 + {tier}. How to use the roll param?
+                                formula: '1d4 + @tier'
                             }
                         }
                     }
@@ -186,7 +186,23 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-hammer',
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.description'),
-            actions: []
+            actions: [
+                {
+                    type: 'healing',
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.name'),
+                    img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
+                    actionType: 'action',
+                    healing: {
+                        applyTo: healingTypes.armorStack.id,
+                        value: {
+                            custom: {
+                                enabled: true,
+                                formula: '1d4 + @tier'
+                            }
+                        }
+                    }
+                }
+            ]
         },
         prepare: {
             id: 'prepare',
@@ -263,25 +279,21 @@ export const deathMoves = {
 };
 
 export const tiers = {
-    tier1: {
-        id: 'tier1',
-        label: 'DAGGERHEART.GENERAL.Tiers.tier1',
-        value: 1
+    1: {
+        id: 1,
+        label: 'DAGGERHEART.GENERAL.Tiers.1'
     },
-    tier2: {
-        id: 'tier2',
-        label: 'DAGGERHEART.GENERAL.Tiers.tier2',
-        value: 2
+    2: {
+        id: 2,
+        label: 'DAGGERHEART.GENERAL.Tiers.2'
     },
-    tier3: {
-        id: 'tier3',
-        label: 'DAGGERHEART.GENERAL.Tiers.tier3',
-        value: 3
+    3: {
+        id: 3,
+        label: 'DAGGERHEART.GENERAL.Tiers.3'
     },
-    tier4: {
-        id: 'tier4',
-        label: 'DAGGERHEART.GENERAL.Tiers.tier4',
-        value: 4
+    4: {
+        id: 4,
+        label: 'DAGGERHEART.GENERAL.Tiers.4'
     }
 };
 

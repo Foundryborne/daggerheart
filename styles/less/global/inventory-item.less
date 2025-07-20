@@ -113,12 +113,14 @@
                 margin-bottom: 5px;
             }
             &.extensible {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.5s ease-in-out;
+                display: grid;
+                grid-template-rows: 0fr;
+                transition: grid-template-rows 0.3s ease-in-out;
                 &.extended {
-                    max-height: 500px;
-                    overflow: auto;
+                    grid-template-rows: 1fr;
+                }
+                .invetory-description {
+                    overflow: hidden;
                 }
             }
             .item-resources {

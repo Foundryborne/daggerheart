@@ -619,6 +619,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 await item.update({ 'system.equipped': true });
                 break;
             case 'weapon':
+                if (this.document.effects.find(x => x.type === 'beastform')) {
+                    return ui.notifications.warn(
+                        game.i18n.localize('DAGGERHEART.UI.Notifications.beastformEquipWeapon')
+                    );
+                }
+
                 await this.document.system.constructor.unequipBeforeEquip.bind(this.document.system)(item);
 
                 await item.update({ 'system.equipped': true });

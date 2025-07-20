@@ -1,15 +1,208 @@
 @import '../../utils/colors.less';
 @import '../../utils/mixin.less';
 
-.appTheme({
-    &.beastform-selection {
-        .beastforms-container .beastforms-tier .beastform-container .beastform-title {
-            background-image: url('../assets/parchments/dh-parchment-dark.png');
+.theme-light .application.daggerheart.dh-style.views.beastform-selection .beastforms-outer-container {
+    .beastform-title {
+        background-image: url('../assets/parchments/dh-parchment-light.png');
+    }
+
+    .advanced-container {
+        .advanced-forms-container {
+            .advanced-form-container {
+                background-image: url('../assets/parchments/dh-parchment-light.png');
+            }
+
+            .hybrid-data-wrapper .hybrid-data-container .hybrid-data-inner-container .hybrid-data {
+                background-image: url('../assets/parchments/dh-parchment-light.png');
+            }
+        }
+        .form-features .form-feature {
+            background-image: url('../assets/parchments/dh-parchment-light.png');
         }
     }
-}, {});
+}
 
 .application.daggerheart.dh-style.views.beastform-selection {
+    .beastform-nav {
+        nav {
+            flex: 1;
+
+            a {
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .beastform-title {
+        position: absolute;
+        top: 4px;
+        padding: 0 2px;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        font-size: 16px;
+        margin: 0 4px;
+        border: 1px solid light-dark(@dark-blue, @golden);
+        border-radius: 6px;
+        color: light-dark(@dark, @beige);
+        background-image: url('../assets/parchments/dh-parchment-dark.png');
+    }
+
+    .beastforms-tier {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 4px;
+
+        .beastform-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            cursor: pointer;
+            width: 120px;
+            height: 120px;
+
+            &.inactive {
+                opacity: 0.4;
+                cursor: default;
+            }
+
+            &.draggable {
+                cursor: pointer;
+                filter: drop-shadow(0 0 15px light-dark(@dark-blue, @golden));
+            }
+
+            img {
+                width: 100%;
+                border-radius: 6px;
+            }
+        }
+    }
+
+    .advanced-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 12px;
+        transition: width 0.3s ease;
+
+        h2 {
+            margin: 0;
+        }
+
+        .advanced-forms-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .advanced-form-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            border: 1px solid light-dark(#18162e, #f3c267);
+            border-radius: 6px;
+            cursor: pointer;
+            width: 120px;
+            height: 120px;
+            align-items: center;
+            text-align: center;
+            color: light-dark(@dark, @beige);
+            background-image: url('../assets/parchments/dh-parchment-dark.png');
+
+            &.hybridized {
+                flex-direction: column;
+                justify-content: start;
+                padding-top: 4px;
+                height: 200px;
+                width: 100%;
+                overflow: hidden;
+
+                &.empty {
+                    justify-content: center;
+                }
+
+                .beastform-title {
+                    position: initial;
+                }
+            }
+
+            .empty-form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                i {
+                    font-size: 24px;
+                }
+            }
+
+            .beastform-title-wrapper {
+                height: 44px;
+            }
+
+            .hybrid-data-wrapper {
+                overflow: auto;
+
+                .hybrid-data-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+                    padding: 0 4px;
+
+                    label {
+                        font-weight: bold;
+                    }
+
+                    .hybrid-data-inner-container {
+                        display: flex;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                        gap: 4px;
+
+                        .hybrid-data {
+                            padding: 0 2px;
+                            border: 1px solid light-dark(@dark-blue, @golden);
+                            border-radius: 6px;
+                            color: light-dark(@dark, @beige);
+                            background-image: url('../assets/parchments/dh-parchment-dark.png');
+                            opacity: 0.4;
+
+                            &.active {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .form-features {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0 16px;
+            margin: 8px 0;
+
+            .form-feature {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                padding: 0 4px;
+                border: 1px solid light-dark(@dark-blue, @golden);
+                border-radius: 6px;
+                color: light-dark(@dark, @beige);
+                background-image: url('../assets/parchments/dh-parchment-dark.png');
+
+                h4 {
+                    text-align: center;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
     footer {
         margin-top: 8px;
         display: flex;

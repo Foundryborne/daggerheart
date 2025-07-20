@@ -3,7 +3,7 @@ import * as applications from './module/applications/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
-import { DhDualityRollEnricher, DhTemplateEnricher } from './module/enrichers/_module.mjs';
+import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
@@ -20,6 +20,7 @@ import { placeables } from './module/canvas/_module.mjs';
 import { registerRollDiceHooks } from './module/dice/dhRoll.mjs';
 import { registerDHActorHooks } from './module/documents/actor.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
+import { renderDamageButton } from './module/enrichers/DamageEnricher.mjs';
 
 Hooks.once('init', () => {
     CONFIG.DH = SYSTEM;
@@ -29,18 +30,7 @@ Hooks.once('init', () => {
         documents
     };
 
-    CONFIG.TextEditor.enrichers.push(
-        ...[
-            {
-                pattern: /\[\[\/dr\s?(.*?)\]\]/g,
-                enricher: DhDualityRollEnricher
-            },
-            {
-                pattern: /^@Template\[(.*)\]$/g,
-                enricher: DhTemplateEnricher
-            }
-        ]
-    );
+    CONFIG.TextEditor.enrichers.push(...enricherConfig);
 
     CONFIG.statusEffects = [
         ...CONFIG.statusEffects.filter(x => !['dead', 'unconscious'].includes(x.id)),
@@ -178,33 +168,15 @@ Hooks.on('ready', () => {
 Hooks.once('dicesoniceready', () => {});
 
 Hooks.on('renderChatMessageHTML', (_, element) => {
-    element
-        .querySelectorAll('.duality-roll-button')
-        .forEach(element => element.addEventListener('click', renderDualityButton));
-
-    element
-        .querySelectorAll('.measured-template-button')
-        .forEach(element => element.addEventListener('click', renderMeasuredTemplate));
+    enricherRenderSetup(element);
 });
 
 Hooks.on('renderJournalEntryPageProseMirrorSheet', (_, element) => {
-    element
-        .querySelectorAll('.duality-roll-button')
-        .forEach(element => element.addEventListener('click', renderDualityButton));
-
-    element
-        .querySelectorAll('.measured-template-button')
-        .forEach(element => element.addEventListener('click', renderMeasuredTemplate));
+    enricherRenderSetup(element);
 });
 
 Hooks.on('renderHandlebarsApplication', (_, element) => {
-    element
-        .querySelectorAll('.duality-roll-button')
-        .forEach(element => element.addEventListener('click', renderDualityButton));
-
-    element
-        .querySelectorAll('.measured-template-button')
-        .forEach(element => element.addEventListener('click', renderMeasuredTemplate));
+    enricherRenderSetup(element);
 });
 
 Hooks.on('chatMessage', (_, message) => {

@@ -15,13 +15,20 @@ Parameters:
 - showActions {boolean} : If true show feature's actions.
 --}}
 
-<li class="inventory-item" {{#if (eq type 'action' )}}data-action-id="{{item.id}}" {{/if}}
+<li class="inventory-item" {{#if (or (eq type 'action' ) (eq type 'attack'))}}data-action-id="{{item.id}}" {{/if}}
   data-item-uuid="{{item.uuid}}" data-type="{{type}}" draggable="true">
   <div class="inventory-item-header" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
     <div class="img-portait"
-      data-action='{{ifThen (hasProperty item "use") "useItem" (ifThen (hasProperty item "toChat") "toChat" "editDoc") }}'
-      {{#unless hideTooltip}}data-tooltip="#item#{{item.uuid}}" {{/unless}}>
+      data-action='{{ifThen (or (hasProperty item "use") (eq type 'attack')) "useItem" (ifThen (hasProperty item "toChat") "toChat" "editDoc") }}'
+      {{#unless hideTooltip}}
+        {{#if (eq type 'attack')}}
+          data-tooltip="#attack#{{item.actor.uuid}}" 
+        {{else}}
+          data-tooltip="#item#{{item.uuid}}" 
+        {{/if}}
+      {{/unless}}
+    >
       <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
       <img class="roll-img" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt="d20">
     </div>
@@ -30,7 +37,20 @@ Parameters:
     <div class="item-label {{#if hideResources}}fullWidth{{/if}}">
 
       {{!-- Item Name --}}
-      <div class="item-name">{{item.name}}</div>
+      <div class="item-name">{{localize item.name}}</div>
+
+      {{!-- Attack Block Start --}}
+      {{#if  (eq type 'attack')}}
+          <div class="item-tags">
+              <div class="tag">
+                  {{localize 'DAGGERHEART.GENERAL.unarmed'}}
+              </div>
+              <div class="tag">
+                  {{localize 'DAGGERHEART.CONFIG.ActionType.action'}}
+              </div>
+          </div>
+      {{/if}}
+      {{!-- Attack Block End --}}
 
       {{!-- Weapon Block Start --}}
       {{#if (eq type 'weapon')}}

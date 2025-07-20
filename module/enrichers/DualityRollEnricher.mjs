@@ -8,7 +8,7 @@ export default function DhDualityRollEnricher(match, _options) {
     return getDualityMessage(roll);
 }
 
-export function getDualityMessage(roll) {
+function getDualityMessage(roll) {
     const traitLabel =
         roll.trait && abilities[roll.trait]
             ? game.i18n.format('DAGGERHEART.GENERAL.check', {

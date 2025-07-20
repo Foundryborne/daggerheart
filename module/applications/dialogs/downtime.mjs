@@ -12,17 +12,18 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         );
         this.nrChoices = {
             shortRest: {
+                taken: 0,
                 max:
                     (shortrest ? this.moveData.shortRest.nrChoices : 0) +
                     actor.system.bonuses.rest[`${shortrest ? 'short' : 'long'}Rest`].shortMoves
             },
             longRest: {
+                taken: 0,
                 max:
                     (!shortrest ? this.moveData.longRest.nrChoices : 0) +
                     actor.system.bonuses.rest[`${shortrest ? 'short' : 'long'}Rest`].longMoves
             }
         };
-        this.nrChoices.total = { max: this.nrChoices.shortRest.max + this.nrChoices.longRest.max };
     }
 
     get title() {
@@ -62,50 +63,41 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         );
         context.selectedActivity = this.selectedActivity;
         context.moveData = this.moveData;
-        context.nrCurrentChoices = Object.values(this.moveData).reduce((acc, category) => {
-            acc += Object.values(category.moves).reduce((acc, x) => acc + (x.selected ?? 0), 0);
-            return acc;
-        }, 0);
 
+        const shortRestMovesSelected = this.#nrSelectedMoves('shortRest');
+        const longRestMovesSelected = this.#nrSelectedMoves('longRest');
         context.nrChoices = {
             ...this.nrChoices,
             shortRest: {
                 ...this.nrChoices.shortRest,
-                current: Object.values(this.moveData.shortRest.moves).reduce((acc, x) => acc + (x.selected ?? 0), 0)
+                current: this.nrChoices.shortRest.taken + shortRestMovesSelected
             },
             longRest: {
                 ...this.nrChoices.longRest,
-                current: Object.values(this.moveData.longRest.moves).reduce((acc, x) => acc + (x.selected ?? 0), 0)
+                current: this.nrChoices.longRest.taken + longRestMovesSelected
             }
-        };
-        context.nrChoices.total = {
-            ...this.nrChoices.total,
-            current: context.nrChoices.shortRest.current + context.nrChoices.longRest.current
         };
 
         context.shortRestMoves = this.nrChoices.shortRest.max > 0 ? this.moveData.shortRest : null;
         context.longRestMoves = this.nrChoices.longRest.max > 0 ? this.moveData.longRest : null;
 
-        context.disabledDowntime = context.nrChoices.total.current < context.nrChoices.total.max;
+        context.disabledDowntime = shortRestMovesSelected === 0 && longRestMovesSelected === 0;
 
         return context;
     }
 
     static selectMove(_, target) {
-        const nrSelected = Object.values(this.moveData[target.dataset.category].moves).reduce(
-            (acc, x) => acc + (x.selected ?? 0),
-            0
-        );
+        const { category, move } = target.dataset;
 
-        if (nrSelected === this.nrChoices[target.dataset.category].max) {
+        const nrSelected = this.#nrSelectedMoves(category);
+
+        if (nrSelected + this.nrChoices[category].taken >= this.nrChoices[category].max) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noMoreMoves'));
             return;
         }
 
-        const move = target.dataset.move;
-        this.moveData[target.dataset.category].moves[move].selected = this.moveData[target.dataset.category].moves[move]
-            .selected
-            ? this.moveData[target.dataset.category].moves[move].selected + 1
+        this.moveData[category].moves[move].selected = this.moveData[category].moves[move].selected
+            ? this.moveData[category].moves[move].selected + 1
             : 1;
 
         this.render();
@@ -150,7 +142,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/downtime.hbs',
                 {
-                    title: `${this.actor.name} - ${game.i18n.localize(`DAGGERHEART.APPLICATIONS.Downtime.${this.shortRest ? 'shortRest' : 'longRest'}.title`)}`,
+                    title: `${this.actor.name} - ${game.i18n.localize(`DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`)}`,
                     moves: moves
                 }
             )
@@ -158,11 +150,33 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
 
         cls.create(msg.toObject());
 
-        this.close();
+        // Reset selection and update number of taken moves
+        for (const [catName, category] of Object.entries(this.moveData)) {
+            for (const move of Object.values(category.moves)) {
+                if (move.selected > 0) {
+                    this.nrChoices[catName].taken += move.selected;
+                    move.selected = 0;
+                }
+            }
+        }
+
+        // We can close the window when all moves are taken
+        if (
+            this.nrChoices.shortRest.taken >= this.nrChoices.shortRest.max &&
+            this.nrChoices.longRest.taken >= this.nrChoices.longRest.max
+        ) {
+            this.close();
+        } else {
+            this.render();
+        }
     }
 
     static async updateData(event, element, formData) {
         this.customActivity = foundry.utils.mergeObject(this.customActivity, formData.object);
         this.render();
+    }
+
+    #nrSelectedMoves(category) {
+        return Object.values(this.moveData[category].moves).reduce((acc, x) => acc + (x.selected ?? 0), 0);
     }
 }

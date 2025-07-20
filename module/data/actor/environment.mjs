@@ -18,10 +18,11 @@ export default class DhEnvironment extends BaseDataActor {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            tier: new fields.StringField({
+            tier: new fields.NumberField({
                 required: true,
+                integer: true,
                 choices: CONFIG.DH.GENERAL.tiers,
-                initial: CONFIG.DH.GENERAL.tiers.tier1.id
+                initial: CONFIG.DH.GENERAL.tiers[1].id
             }),
             type: new fields.StringField({ choices: CONFIG.DH.ACTOR.environmentTypes }),
             impulses: new fields.StringField(),

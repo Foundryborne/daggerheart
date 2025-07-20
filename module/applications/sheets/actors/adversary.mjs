@@ -8,7 +8,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
         position: { width: 660, height: 766 },
         window: { resizable: true },
         actions: {
-            reactionRoll: AdversarySheet.#reactionRoll,
+            reactionRoll: AdversarySheet.#reactionRoll
         },
         window: {
             resizable: true

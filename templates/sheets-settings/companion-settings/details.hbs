@@ -7,8 +7,8 @@
         <legend>{{localize 'DAGGERHEART.GENERAL.basics'}}</legend>
         <div class="nest-inputs">
             {{formGroup systemFields.evasion value=document.system.evasion localize=true}}
-            {{formGroup systemFields.resources.fields.stress.fields.value value=document.system.resources.stress.value label='Current Stress'}}
-            {{formGroup systemFields.resources.fields.stress.fields.max value=document.system.resources.stress.max label='Max Stress'}}
+            {{formGroup systemFields.resources.fields.stress.fields.value value=document.system.resources.stress.value label='DAGGERHEART.ACTORS.Companion.FIELDS.resources.stress.currentStress.label' localize=true}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=document.system.resources.stress.max label='DAGGERHEART.ACTORS.Companion.FIELDS.resources.stress.maxStress.label' localize=true}}
         </div>
         <div class="form-group">
             <div class="form-fields">
@@ -19,5 +19,5 @@
             </div>
         </div>
     </fieldset>
-    <button type="button" data-action="levelUp" {{#if (not document.system.levelData.canLevelUp)}}disabled{{/if}}>Level Up</button>
+    <button type="button" data-action="levelUp" {{#if (not document.system.levelData.canLevelUp)}}disabled{{/if}}>{{localize "DAGGERHEART.GENERAL.levelUp"}}</button>
 </section>

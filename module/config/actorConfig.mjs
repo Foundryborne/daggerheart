@@ -1,5 +1,6 @@
 export const abilities = {
     agility: {
+        id: 'agility',
         label: 'DAGGERHEART.CONFIG.Traits.agility.name',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.agility.verb.sprint',
@@ -8,6 +9,7 @@ export const abilities = {
         ]
     },
     strength: {
+        id: 'strength',
         label: 'DAGGERHEART.CONFIG.Traits.strength.name',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.strength.verb.lift',
@@ -16,6 +18,7 @@ export const abilities = {
         ]
     },
     finesse: {
+        id: 'finesse',
         label: 'DAGGERHEART.CONFIG.Traits.finesse.name',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.finesse.verb.control',
@@ -24,6 +27,7 @@ export const abilities = {
         ]
     },
     instinct: {
+        id: 'instinct',
         label: 'DAGGERHEART.CONFIG.Traits.instinct.name',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.instinct.verb.perceive',
@@ -32,6 +36,7 @@ export const abilities = {
         ]
     },
     presence: {
+        id: 'presence',
         label: 'DAGGERHEART.CONFIG.Traits.presence.name',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.presence.verb.charm',
@@ -40,6 +45,7 @@ export const abilities = {
         ]
     },
     knowledge: {
+        id: 'knowledge',
         label: 'DAGGERHEART.CONFIG.Traits.knowledge.name',
         verbs: [
             'DAGGERHEART.CONFIG.Traits.knowledge.verb.recall',

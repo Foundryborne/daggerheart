@@ -9,7 +9,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         position: { width: 700 },
         actions: {
             removeItemFromCollection: ClassSheet.#removeItemFromCollection,
-            removeSuggestedItem: ClassSheet.#removeSuggestedItem,
+            removeSuggestedItem: ClassSheet.#removeSuggestedItem
         },
         tagifyConfigs: [
             {

@@ -206,21 +206,24 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 if (!confirm) return;
             }
         }
-        
+
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         for (let target of targets) {
             let damages = foundry.utils.deepClone(message.system.damage?.roll ?? message.system.roll);
-            if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true) {
+            if (
+                message.system.onSave &&
+                message.system.targets.find(t => t.id === target.id)?.saved?.success === true
+            ) {
                 const mod = CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1;
-                Object.entries(damages).forEach(([k,v]) => {
+                Object.entries(damages).forEach(([k, v]) => {
                     v.total = 0;
                     v.parts.forEach(part => {
                         part.total = Math.ceil(part.total * mod);
                         v.total += part.total;
-                    })
-                })
+                    });
+                });
             }
 
             target.actor.takeDamage(damages);
@@ -233,7 +236,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-        
+
         for (var target of targets) {
             target.actor.takeHealing(message.system.roll);
         }
@@ -294,15 +297,16 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         await actor.useAction(action);
     };
 
-    actionUseButton = async (_, message) => {
+    actionUseButton = async (event, message) => {
+        const { moveIndex, actionIndex } = event.currentTarget.dataset;
         const parent = await foundry.utils.fromUuid(message.system.actor);
-        const actionType = Object.values(message.system.moves)[0].actions[0];
-        const cls = CONFIG.DH.ACTIONS.actionTypes[actionType.type];
+        const actionType = message.system.moves[moveIndex].actions[actionIndex];
+        const cls = game.system.api.models.actions.actionsTypes[actionType.type];
         const action = new cls(
             { ...actionType, _id: foundry.utils.randomID(), name: game.i18n.localize(actionType.name) },
-            { parent: parent }
+            { parent: parent.system }
         );
 
-        action.use();
+        action.use(event);
     };
 }

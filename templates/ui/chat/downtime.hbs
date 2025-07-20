@@ -2,10 +2,12 @@
     <h2 class="downtime-title-container">
         <div>{{title}}</div>
     </h2>
-    {{#each moves}}
-        <strong>{{this.name}}</strong>
-        <img class="downtime-image" src="{{this.img}}" />
-        <div>{{{this.description}}}</div>
-        {{#if (gt this.actions.length 0)}}<button class="action-use-button">{{localize "Action"}}</button>{{/if}}
+    {{#each moves as | move index |}}
+        <strong>{{move.name}}</strong>
+        <img class="downtime-image" src="{{move.img}}" />
+        <div>{{{move.description}}}</div>
+        {{#each move.actions as | action index |}}
+            <button class="action-use-button" data-move-index="{{@../key}}" data-action-index="{{index}}">{{localize action.name}}</button>
+        {{/each}}
     {{/each}}
 </div>

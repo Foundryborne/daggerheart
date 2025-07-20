@@ -87,7 +87,10 @@ export class DHDamageField extends fields.SchemaField {
     constructor(options, context = {}) {
         const damageFields = {
             parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData)),
-            includeBase: new fields.BooleanField({ initial: false })
+            includeBase: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
+            })
         };
         super(damageFields, options, context);
     }
@@ -110,7 +113,7 @@ export class DHResourceData extends foundry.abstract.DataModel {
             }),
             value: new fields.EmbeddedDataField(DHActionDiceData),
             valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
-        }
+        };
     }
 }
 
@@ -131,6 +134,6 @@ export class DHDamageData extends DHResourceData {
                     label: 'Type'
                 }
             )
-        }
+        };
     }
 }

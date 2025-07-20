@@ -99,7 +99,7 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
 
     async createItemMacro(data, slot) {
         const macro = await Macro.implementation.create({
-            name: `${game.i18n.localize('Display')} ${name}`,
+            name: data.name,
             type: CONST.MACRO_TYPES.SCRIPT,
             img: data.img,
             command: `await game.system.api.applications.ui.DhHotbar.useItem("${data.uuid}");`
@@ -109,7 +109,7 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
 
     async createActionMacro(data, slot) {
         const macro = await Macro.implementation.create({
-            name: `${game.i18n.localize('Display')} ${name}`,
+            name: data.data.name,
             type: CONST.MACRO_TYPES.SCRIPT,
             img: data.data.img,
             command: `await game.system.api.applications.ui.DhHotbar.useAction("${data.data.itemUuid}", "${data.data.id}");`
@@ -119,7 +119,7 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
 
     async createAttackMacro(data, slot) {
         const macro = await Macro.implementation.create({
-            name: `${game.i18n.localize('Display')} ${name}`,
+            name: data.name,
             type: CONST.MACRO_TYPES.SCRIPT,
             img: data.img,
             command: `await game.system.api.applications.ui.DhHotbar.useAttack("${data.actorUuid}");`

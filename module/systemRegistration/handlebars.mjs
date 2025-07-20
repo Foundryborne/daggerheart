@@ -1,8 +1,9 @@
 export const preloadHandlebarsTemplates = async function () {
     foundry.applications.handlebars.loadTemplates({
-        'daggerheart.inventory-items': 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items-V2.hbs',
-        'daggerheart.inventory-item': 'systems/daggerheart/templates/sheets/global/partials/inventory-item-V2.hbs',
-    })
+        'daggerheart.inventory-items':
+            'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items-V2.hbs',
+        'daggerheart.inventory-item': 'systems/daggerheart/templates/sheets/global/partials/inventory-item-V2.hbs'
+    });
     return foundry.applications.handlebars.loadTemplates([
         'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs',
         'systems/daggerheart/templates/sheets/global/partials/action-item.hbs',
@@ -27,6 +28,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/daggerheart/templates/settings/components/settings-item-line.hbs',
         'systems/daggerheart/templates/ui/chat/parts/damage-chat.hbs',
         'systems/daggerheart/templates/ui/chat/parts/target-chat.hbs',
+        'systems/daggerheart/templates/ui/tooltip/parts/tooltipChips.hbs',
         'systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs',
         'systems/daggerheart/templates/dialogs/downtime/activities.hbs'
     ]);

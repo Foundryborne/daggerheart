@@ -63,24 +63,22 @@ export default class DualityRoll extends D20Roll {
     }
 
     setRallyChoices() {
-        return this.data?.parent?.effects.reduce((a,c) => {
-                const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
-                if(change) a.push({ value: c.id, label: change.value });
-                return a;
-            }, []);
+        return this.data?.parent?.effects.reduce((a, c) => {
+            const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
+            if (change) a.push({ value: c.id, label: change.value });
+            return a;
+        }, []);
     }
 
     get dRally() {
-        if(!this.rallyFaces) return null;
-        if(this.hasDisadvantage || this.hasAdvantage)
-            return this.dice[3];
-        else
-            return this.dice[2];
+        if (!this.rallyFaces) return null;
+        if (this.hasDisadvantage || this.hasAdvantage) return this.dice[3];
+        else return this.dice[2];
     }
 
     get rallyFaces() {
         const rallyChoice = this.rallyChoices?.find(r => r.value === this._rallyIndex)?.label;
-        return rallyChoice ? this.getFaces(rallyChoice) :  null;
+        return rallyChoice ? this.getFaces(rallyChoice) : null;
     }
 
     get isCritical() {
@@ -129,13 +127,13 @@ export default class DualityRoll extends D20Roll {
         if (this.hasAdvantage || this.hasDisadvantage) {
             const dieFaces = this.advantageFaces,
                 advDie = new foundry.dice.terms.Die({ faces: dieFaces, number: this.advantageNumber });
-            if(this.advantageNumber > 1) advDie.modifiers = ['kh'];
+            if (this.advantageNumber > 1) advDie.modifiers = ['kh'];
             this.terms.push(
                 new foundry.dice.terms.OperatorTerm({ operator: this.hasDisadvantage ? '-' : '+' }),
                 advDie
             );
         }
-        if(this.rallyFaces)
+        if (this.rallyFaces)
             this.terms.push(
                 new foundry.dice.terms.OperatorTerm({ operator: this.hasDisadvantage ? '-' : '+' }),
                 new foundry.dice.terms.Die({ faces: this.rallyFaces })
@@ -162,7 +160,7 @@ export default class DualityRoll extends D20Roll {
 
     static postEvaluate(roll, config = {}) {
         const data = super.postEvaluate(roll, config);
-        
+
         data.hope = {
             dice: roll.dHope.denomination,
             value: roll.dHope.total
@@ -181,7 +179,7 @@ export default class DualityRoll extends D20Roll {
             label: roll.totalLabel
         };
 
-        if(roll._rallyIndex && roll.data?.parent) 
+        if (roll._rallyIndex && roll.data?.parent)
             roll.data.parent.deleteEmbeddedDocuments('ActiveEffect', [roll._rallyIndex]);
 
         setDiceSoNiceForDualityRoll(roll, data.advantage.type);

@@ -70,9 +70,9 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
     }
 
     /**
-     * 
+     *
      * @type {ApplicationClickAction}
-     * @returns 
+     * @returns
      */
     static async #deleteAdversary(_event, target) {
         const doc = getDocFromElement(target);

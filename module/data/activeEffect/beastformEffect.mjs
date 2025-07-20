@@ -26,6 +26,13 @@ export default class BeastformEffect extends foundry.abstract.TypeDataModel {
         };
     }
 
+    async _onCreate() {
+        if (this.parent.parent?.type === 'character') {
+            this.parent.parent.system.primaryWeapon?.update?.({ 'system.equipped': false });
+            this.parent.parent.system.secondayWeapon?.update?.({ 'system.equipped': false });
+        }
+    }
+
     async _preDelete() {
         if (this.parent.parent.type === 'character') {
             const update = {

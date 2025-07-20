@@ -370,6 +370,7 @@ export default class DhpActor extends Actor {
 
     getRollData() {
         const rollData = super.getRollData();
+        rollData.system = this.system.getRollData();
         rollData.prof = this.system.proficiency ?? 1;
         rollData.cast = this.system.spellcastModifier ?? 1;
         return rollData;
@@ -403,24 +404,28 @@ export default class DhpActor extends Actor {
 
         Object.entries(damages).forEach(([key, damage]) => {
             damage.parts.forEach(part => {
-                if(part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
+                if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
                     part.total = this.calculateDamage(part.total, part.damageTypes);
                 const update = updates.find(u => u.key === key);
-                if(update) {
+                if (update) {
                     update.value += part.total;
                     update.damageTypes.add(...new Set(part.damageTypes));
-                } else updates.push({ value: part.total, key, damageTypes: new Set(part.damageTypes) })
-            })
+                } else updates.push({ value: part.total, key, damageTypes: new Set(part.damageTypes) });
+            });
         });
 
         if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, damages) === false) return null;
 
-        if(!updates.length) return;
+        if (!updates.length) return;
 
         const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
-        if(hpDamage) {
+        if (hpDamage) {
             hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
-            if (this.type === 'character' && this.system.armor && this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)) {
+            if (
+                this.type === 'character' &&
+                this.system.armor &&
+                this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
+            ) {
                 const armorStackResult = await this.owner.query('armorStack', {
                     actorId: this.uuid,
                     damage: hpDamage.value,
@@ -436,18 +441,19 @@ export default class DhpActor extends Actor {
                 }
             }
         }
-        
-        updates.forEach( u =>
-            u.value = u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value
+
+        updates.forEach(
+            u =>
+                (u.value =
+                    u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value)
         );
-        
+
         await this.modifyResource(updates);
 
         if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damages) === false) return null;
     }
 
     calculateDamage(baseDamage, type) {
-
         if (this.canResist(type, 'immunity')) return 0;
         if (this.canResist(type, 'resistance')) baseDamage = Math.ceil(baseDamage / 2);
 
@@ -472,12 +478,12 @@ export default class DhpActor extends Actor {
     }
 
     async takeHealing(resources) {
-        const updates = Object.entries(resources).map(([key, value]) => (
-            {
-                key: key,
-                value: !(key === 'fear' || this.system?.resources?.[key]?.isReversed === false) ? value.total * -1 : value.total
-            }
-        ))
+        const updates = Object.entries(resources).map(([key, value]) => ({
+            key: key,
+            value: !(key === 'fear' || this.system?.resources?.[key]?.isReversed === false)
+                ? value.total * -1
+                : value.total
+        }));
         await this.modifyResource(updates);
     }
 

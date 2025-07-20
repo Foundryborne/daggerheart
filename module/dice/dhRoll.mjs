@@ -57,13 +57,14 @@ export default class DHRoll extends Roll {
 
         // Create Chat Message
         if (config.source?.message) {
-            if(Object.values(config.roll)?.length) {
-                const pool = foundry.dice.terms.PoolTerm.fromRolls(Object.values(config.roll).flatMap(r => r.parts.map(p => p.roll)));
+            if (Object.values(config.roll)?.length) {
+                const pool = foundry.dice.terms.PoolTerm.fromRolls(
+                    Object.values(config.roll).flatMap(r => r.parts.map(p => p.roll))
+                );
                 roll = Roll.fromTerms([pool]);
             }
             if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
-        } else 
-            config.message = await this.toMessage(roll, config);
+        } else config.message = await this.toMessage(roll, config);
     }
 
     static postEvaluate(roll, config = {}) {
@@ -76,7 +77,7 @@ export default class DHRoll extends Roll {
                 formula: d.formula,
                 results: d.results
             }))
-        }
+        };
     }
 
     static async toMessage(roll, config) {

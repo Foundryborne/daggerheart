@@ -1,5 +1,5 @@
 <fieldset class="one-column">
-    <legend>Range{{#if fields.target}} & Target{{/if}}</legend>
+    <legend>{{localize "DAGGERHEART.GENERAL.range"}}{{#if fields.target}} & {{localize "DAGGERHEART.GENERAL.Target.single"}}{{/if}}</legend>
     {{formField fields.range value=source.range label="Range" name=(concat path "range") localize=true}}
     {{#if fields.target}}
     <div class="nest-inputs">

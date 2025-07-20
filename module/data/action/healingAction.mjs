@@ -16,11 +16,13 @@ export default class DHHealingAction extends DHBaseAction {
 
     async rollHealing(event, data) {
         const systemData = data.system ?? data;
-        let formulas = [{
-            formula: this.getFormulaValue(data).getFormula(this.actor),
-            applyTo: this.healing.applyTo
-        }];
-        
+        let formulas = [
+            {
+                formula: this.getFormulaValue(data).getFormula(this.actor),
+                applyTo: this.healing.applyTo
+            }
+        ];
+
         const config = {
             title: game.i18n.format('DAGGERHEART.UI.Chat.healingRoll.title', {
                 healing: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[this.healing.applyTo].label)
