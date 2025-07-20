@@ -40,7 +40,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                 this.tooltip.innerHTML = html;
                 options.direction = this._determineItemTooltipDirection(
                     element,
-                    this.constructor.TOOLTIP_DIRECTIONS.UP
+                    this.constructor.TOOLTIP_DIRECTIONS.RIGHT
                 );
             }
 
