@@ -1430,6 +1430,7 @@
                 }
             },
             "Menu": {
+                "title": "Daggerheart Game Settings",
                 "automation": {
                     "name": "Automation Settings",
                     "label": "Configure Automation",

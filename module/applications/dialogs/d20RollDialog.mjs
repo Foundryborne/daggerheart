@@ -52,10 +52,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         rollSelection: {
             id: 'rollSelection',
             template: 'systems/daggerheart/templates/dialogs/dice-roll/rollSelection.hbs'
-        },
-        costSelection: {
-            id: 'costSelection',
-            template: 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'
         }
     };
 

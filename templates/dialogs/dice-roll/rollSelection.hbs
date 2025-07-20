@@ -135,6 +135,12 @@
                     {{#if (eq @root.rollType 'DualityRoll')}}<span class="formula-label">Situational Bonus</span>{{/if}}
                     <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="{{#if (eq @root.rollType 'DualityRoll')}}Ex: 1d6 + 5{{else}}Situational Bonus{{/if}}">
                 </fieldset>
+                {{#if costs}}
+                    <fieldset>
+                        <legend>{{localize 'DAGGERHEART.General.Cost.single'}}</legend>
+                        {{> 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'}}
+                    </fieldset>
+                {{/if}}
             {{/unless}}
             <span class="formula-label"><b>Formula:</b> {{@root.formula}}</span>
             <div class="roll-dialog-controls">

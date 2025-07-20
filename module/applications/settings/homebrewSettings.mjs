@@ -13,14 +13,17 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.name');
+        return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.title');
     }
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
         id: 'daggerheart-homebrew-settings',
-        classes: ['daggerheart', 'setting', 'dh-style'],
+        classes: ['daggerheart', 'dh-style', 'dialog', 'setting'],
         position: { width: '600', height: 'auto' },
+        window: {
+            icon: 'fa-solid fa-gears'
+        },
         actions: {
             addItem: this.addItem,
             editItem: this.editItem,
