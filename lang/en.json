@@ -1196,6 +1196,7 @@
             },
             "Roll": {
                 "attack": "Attack Roll",
+                "difficulty": "Roll (Difficulty {difficulty})",
                 "primaryWeaponAttack": "Primary Weapon Attack Roll",
                 "secondaryWeaponAttack": "Secondary Weapon Attack Roll",
                 "spellcast": "Spellcast Roll",
@@ -1310,6 +1311,7 @@
                 "single": "Experience",
                 "plural": "Experiences"
             },
+            "failure": "Failure",
             "fear": "Fear",
             "features": "Features",
             "formula": "Formula",
@@ -1345,6 +1347,7 @@
             "scalable": "Scalable",
             "situationalBonus": "Situational Bonus",
             "stress": "Stress",
+            "success": "Success",
             "take": "Take",
             "Target": {
                 "single": "Target",

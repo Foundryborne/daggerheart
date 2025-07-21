@@ -8,7 +8,7 @@ import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs'
 import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
 import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/_module.mjs';
-import { renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
+import { enrichedDualityRoll, renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
 import { renderMeasuredTemplate } from './module/enrichers/TemplateEnricher.mjs';
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
@@ -188,49 +188,21 @@ Hooks.on('chatMessage', (_, message) => {
         }
 
         const traitValue = rollCommand.trait?.toLowerCase();
-        const advantageState = rollCommand.advantage ? true : rollCommand.disadvantage ? false : null;
+        const advantage = rollCommand.advantage
+            ? CONFIG.DH.ACTIONS.advandtageState.advantage.value
+            : rollCommand.disadvantage
+              ? CONFIG.DH.ACTIONS.advandtageState.disadvantage.value
+              : undefined;
+        const difficulty = rollCommand.difficulty;
 
-        // Target not required if an attribute is not used.
-        const target = traitValue ? getCommandTarget() : undefined;
-        if (target || !traitValue) {
-            new Promise(async (resolve, reject) => {
-                const trait = target ? target.system.traits[traitValue] : undefined;
-                if (traitValue && !trait) {
-                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.attributeFaulty'));
-                    reject();
-                    return;
-                }
+        const target = getCommandTarget();
+        const title = traitValue
+            ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                  ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
+              })
+            : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
-                const title = traitValue
-                    ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                          ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)
-                      })
-                    : game.i18n.localize('DAGGERHEART.GENERAL.duality');
-
-                const config = {
-                    title: title,
-                    roll: {
-                        trait: traitValue
-                    },
-                    data: {
-                        traits: {
-                            [traitValue]: trait
-                        }
-                    },
-                    source: target,
-                    hasSave: false,
-                    dialog: { configure: false },
-                    evaluate: true,
-                    advantage: rollCommand.advantage == true,
-                    disadvantage: rollCommand.disadvantage == true
-                };
-
-                await CONFIG.Dice.daggerheart['DualityRoll'].build(config);
-
-                resolve();
-            });
-        }
-
+        enrichedDualityRoll({ traitValue, target, difficulty, title, label: 'test', actionType: null, advantage });
         return false;
     }
 });

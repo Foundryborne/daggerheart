@@ -140,7 +140,17 @@
             </div>
         </div>
         <div class="dice-total duality {{#if (eq roll.result.duality 1)}}hope{{else}}{{#if (eq roll.result.duality -1)}}fear{{else}}critical{{/if}}{{/if}}">
-            <div class="dice-total-label">{{roll.result.label}}</div>
+            <div class="dice-total-label">
+                {{#unless (eq _source.roll.success undefined)}}
+                    {{#if _source.roll.success}}
+                        {{localize "DAGGERHEART.GENERAL.success"}} {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}
+                    {{else}}
+                        {{localize "DAGGERHEART.GENERAL.failure"}} {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}
+                    {{/if}}
+                {{else}}
+                    {{roll.result.label}}
+                {{/unless}}
+            </div>
             <div class="dice-total-value">
                 {{roll.total}}
             </div>
