@@ -17,16 +17,22 @@ export default class ItemLinksField extends foundry.data.fields.TypedObjectField
 
     /** @inheritDoc */
     static get _defaults() {
-        return mergeObject(super._defaults, { validateKey: this.validateKey });
+        return foundry.utils.mergeObject(super._defaults, { validateKey: this.validateKey });
     }
 
     /**
      * @param {Object} [value]    The candidate object to be added.
      */
     static validateKey(value) {
-        return true;
         const parsed = foundry.utils.parseUuid(value);
-        if (!parsed || parsed.type !== CONFIG.Item.documentClass.documentName) return false;
-        if (!foundry.packages.BasePackage.validateId(parsed.documentId)) return false;
+        if (!parsed || parsed.type !== foundry.documents.Item.documentName) return false;
+        if (!foundry.data.validators.isValidId(parsed.documentId)) return false;
+        return true;
+    }
+
+    /**@inheritdoc */
+    _cast(value) {
+        value = super._cast(value);
+        return foundry.utils.flattenObject(value);
     }
 }
