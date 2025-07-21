@@ -112,7 +112,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     prepareData() {}
 
     get index() {
-        return foundry.utils.getProperty(this.parent, this.systemPath).indexOf(this);
+        return foundry.utils.getProperty(this.parent, this.systemPath).findIndex(x => x.id === this.id);
     }
 
     get id() {

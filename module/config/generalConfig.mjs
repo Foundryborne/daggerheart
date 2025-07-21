@@ -140,6 +140,8 @@ export const defaultRestOptions = {
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.description'),
             actions: [
                 {
+                    _id: foundry.utils.randomID(),
+                    systemPath: 'restMoves.shortRest.moves.tendToWounds.actions',
                     type: 'healing',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.name'),
                     img: 'icons/magic/life/cross-worn-green.webp',
@@ -164,6 +166,8 @@ export const defaultRestOptions = {
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.description'),
             actions: [
                 {
+                    _id: foundry.utils.randomID(),
+                    systemPath: 'restMoves.shortRest.moves.tendToWounds.actions',
                     type: 'healing',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.name'),
                     img: 'icons/magic/perception/eye-ringed-green.webp',
@@ -188,6 +192,8 @@ export const defaultRestOptions = {
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.description'),
             actions: [
                 {
+                    _id: foundry.utils.randomID(),
+                    systemPath: 'restMoves.shortRest.moves.tendToWounds.actions',
                     type: 'healing',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.name'),
                     img: 'icons/skills/trades/smithing-anvil-silver-red.webp',

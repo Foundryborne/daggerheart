@@ -2,10 +2,11 @@ import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
 export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
-    constructor(action) {
+    constructor(action, sheetUpdate) {
         super({});
 
         this.action = action;
+        this.sheetUpdate = sheetUpdate;
         this.openSection = null;
     }
 
@@ -183,12 +184,32 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
         } else newActions = data;
 
-        const updates = await this.action.parent.parent.update({ [`system.${this.action.systemPath}`]: newActions });
-        if (!updates) return;
-        this.action = Array.isArray(container)
-            ? foundry.utils.getProperty(updates.system, this.action.systemPath)[this.action.index]
-            : foundry.utils.getProperty(updates.system, this.action.systemPath);
+        const action = await this.updateParent(newActions, container);
+        if (!action) return;
+
+        this.action = action;
+
+        this.sheetUpdate?.(this.action);
         this.render();
+    }
+
+    async updateParent(newActions, container) {
+        const isSystemPath = this.action.parent.parent?.update;
+        if (isSystemPath) {
+            const updates = await this.action.parent.parent.update({
+                [`system.${this.action.systemPath}`]: newActions
+            });
+            if (!updates) return null;
+
+            return Array.isArray(container)
+                ? foundry.utils.getProperty(updates.system, this.action.systemPath)[this.action.index]
+                : foundry.utils.getProperty(updates.system, this.action.systemPath);
+        } else {
+            await this.action.parent.updateSource({ [this.action.systemPath]: newActions });
+
+            const updates = foundry.utils.getProperty(this.action.parent, this.action.systemPath);
+            return Array.isArray(container) ? updates[this.action.index] : updates;
+        }
     }
 
     static addElement(event) {

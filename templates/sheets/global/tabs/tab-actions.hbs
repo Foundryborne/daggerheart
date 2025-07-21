@@ -4,6 +4,11 @@
     data-group='{{tabs.actions.group}}'
 >
 
+    <div class="item-tags">
+        <div class="tag">{{localize (concat 'DAGGERHEART.ACTIONS.TYPES.' item.type '.name')}}</div>
+        <div class="tag">{{localize (concat 'DAGGERHEART.CONFIG.ActionType.' item.actionType)}}</div>
+      </div>
+
 {{> 'daggerheart.inventory-items'
     title='DAGGERHEART.GENERAL.Action.plural'
     collection=document.system.actions
