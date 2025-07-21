@@ -52,17 +52,11 @@ export default class DHClass extends BaseDataItem {
     }
 
     get hopeFeatures() {
-        return (
-            this.features.filter(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.hope) ??
-            (this.features.filter(x => !x).length > 0 ? {} : null)
-        );
+        return this.features.filter(x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.hope);
     }
 
     get classFeatures() {
-        return (
-            this.features.filter(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.class) ??
-            (this.features.filter(x => !x).length > 0 ? {} : null)
-        );
+        return this.features.filter(x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.class);
     }
 
     async _preCreate(data, options, user) {

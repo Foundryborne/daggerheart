@@ -29,15 +29,21 @@ export default class DHSubclass extends BaseDataItem {
     }
 
     get foundationFeatures() {
-        return this.features.filter(x => x.system.subType === CONFIG.DH.ITEM.featureSubTypes.foundation);
+        return this.features.filter(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.foundation
+        );
     }
 
     get specializationFeatures() {
-        return this.features.filter(x => x.system.subType === CONFIG.DH.ITEM.featureSubTypes.specialization);
+        return this.features.filter(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.specialization
+        );
     }
 
     get masteryFeatures() {
-        return this.features.filter(x => x.system.subType === CONFIG.DH.ITEM.featureSubTypes.mastery);
+        return this.features.filter(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.mastery
+        );
     }
 
     async _preCreate(data, options, user) {

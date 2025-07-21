@@ -492,15 +492,29 @@ export default function DHApplicationMixin(Base) {
          * Renders an embedded document.
          * @type {ApplicationClickAction}
          */
-        static #editDoc(_event, target) {
+        static async #editDoc(_event, target) {
             const doc = getDocFromElement(target);
-            if (doc) return doc.sheet.render({ force: true });
+            if (doc) {
+                const appId = this.element.id;
+                doc.apps[appId] = this;
+                const app = await doc.sheet.render({ force: true });
+                app.addEventListener(
+                    'close',
+                    () => {
+                        delete doc.apps[appId];
+                    },
+                    { once: true }
+                );
+                return;
+            }
 
             // TODO: REDO this
             const { actionId } = target.closest('[data-action-id]').dataset;
             const { actions, attack } = this.document.system;
             const action = attack?.id === actionId ? attack : actions?.find(a => a.id === actionId);
-            new DHActionConfig(action).render({ force: true });
+
+            const config = new DHActionConfig(action);
+            config.render({ force: true });
         }
 
         /**

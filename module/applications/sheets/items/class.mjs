@@ -87,27 +87,7 @@ export default class ClassSheet extends DHBaseItemSheet {
                 'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
             });
         } else if (item.type === 'feature') {
-            if (target.classList.contains('hope-feature')) {
-                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.hope) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotHope'));
-                    return;
-                }
-
-                await item.update({ 'system.subType': CONFIG.DH.ITEM.featureSubTypes.hope });
-                await this.document.update({
-                    'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
-                });
-            } else if (target.classList.contains('class-feature')) {
-                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.class) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotClass'));
-                    return;
-                }
-
-                await item.update({ 'system.subType': CONFIG.DH.ITEM.featureSubTypes.class });
-                await this.document.update({
-                    'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
-                });
-            }
+            super._onDrop(event);
         } else if (item.type === 'weapon') {
             if (target.classList.contains('primary-weapon-section')) {
                 if (!this.document.system.characterGuide.suggestedPrimaryWeapon && !item.system.secondary)

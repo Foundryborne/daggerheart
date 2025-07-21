@@ -181,7 +181,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const feature = await cls.create({
             type: 'feature',
             name: cls.defaultName({ type: 'feature' }),
-            [`system.itemLinks.["${this.document.uuid}"]`]: CONFIG.DH.ITEM.featureSubTypes[type]
+            [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.featureSubTypes[type]
         });
         await this.document.update({
             'system.features': [...this.document.system.features, feature].map(f => f.uuid)
@@ -192,7 +192,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * Remove a feature from the item.
      * @type {ApplicationClickAction}
      */
-    static async #deleteFeature(_, target) {
+    static async #deleteFeature(event, target) {
         const feature = getDocFromElement(target);
         if (!feature) return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
         await feature.update({ [`system.itemLinks.-=${this.document.uuid}`]: null });
@@ -270,13 +270,19 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         if (data.fromInternal) return;
 
+        const target = event.target.closest('fieldset.drop-section');
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
             const { type } = target.dataset;
+            const previouslyLinked = item.system.itemLinks[this.document.uuid] !== undefined;
             await item.update({ [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.featureSubTypes[type] });
 
-            const current = this.document.system.features.map(x => x.uuid);
-            await this.document.update({ 'system.features': [...current, item.uuid] });
+            if (!previouslyLinked) {
+                const current = this.document.system.features.map(x => x.uuid);
+                await this.document.update({ 'system.features': [...current, item.uuid] });
+            } else {
+                this.render();
+            }
         }
     }
 }
