@@ -12,12 +12,12 @@
             {{#if document.system.primaryFeature}}
                 <div class="feature-item"
                     data-action="editFeature"
-                    data-type="primary"
+                    data-item-uuid="{{this.uuid}}"
                 >
                     <img class="image" src="{{document.system.primaryFeature.img}}" />
                     <span>{{document.system.primaryFeature.name}}</span>
                     <div class="controls">
-                        <a data-action="removeFeature" data-type="primary"><i class="fa-solid fa-trash"></i></a>
+                        <a data-action="deleteFeature"><i class="fa-solid fa-trash"></i></a>
                     </div>
                 </div> 
             {{/if}}
@@ -33,12 +33,12 @@
             {{#if document.system.secondaryFeature}}
                 <div class="feature-item"
                     data-action="editFeature"
-                    data-type="secondary"
+                    data-item-uuid="{{this.uuid}}"
                 >
                     <img class="image" src="{{document.system.secondaryFeature.img}}" />
                     <span>{{document.system.secondaryFeature.name}}</span>
                     <div class="controls">
-                        <a data-action="removeFeature" data-type="secondary"><i class="fa-solid fa-trash"></i></a>
+                        <a data-action="deleteFeature"><i class="fa-solid fa-trash"></i></a>
                     </div>
                 </div> 
             {{/if}}

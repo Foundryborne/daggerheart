@@ -8,7 +8,8 @@ export default class DHFeature extends BaseDataItem {
             label: 'TYPES.Item.feature',
             type: 'feature',
             hasDescription: true,
-            hasResource: true
+            hasResource: true,
+            isItemLinkable: true
         });
     }
 

@@ -3,6 +3,17 @@
  * @extends {foundry.documents.Item}
  */
 export default class DHItem extends foundry.documents.Item {
+    /**@inheritdoc */
+    static async create(data, operation = {}) {
+        if (data.type === 'feature') {
+            const linkUuid = Object.keys(data)
+                .find(x => x.startsWith('system.itemLinks.'))
+                ?.slice(17);
+        }
+
+        return super.create(data, operation);
+    }
+
     /** @inheritDoc */
     prepareEmbeddedDocuments() {
         super.prepareEmbeddedDocuments();

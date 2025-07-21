@@ -8,6 +8,8 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
+import ItemLinksField from '../fields/itemLinksField.mjs';
+
 const fields = foundry.data.fields;
 
 export default class BaseDataItem extends foundry.abstract.TypeDataModel {
@@ -21,7 +23,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             hasDescription: false,
             hasResource: false,
             isQuantifiable: false,
-            isInventoryItem: false
+            isInventoryItem: false,
+            isItemLinkable: true
         };
     }
 
@@ -68,6 +71,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         if (this.metadata.isQuantifiable)
             schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
+
+        if (this.metadata.isItemLinkable) {
+            schema.itemLinks = new ItemLinksField();
+        }
 
         return schema;
     }

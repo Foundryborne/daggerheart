@@ -179,9 +179,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const { type } = target.dataset;
         const cls = foundry.documents.Item.implementation;
         const feature = await cls.create({
-            'type': 'feature',
-            'name': cls.defaultName({ type: 'feature' }),
-            'system.subType': CONFIG.DH.ITEM.featureSubTypes[type]
+            type: 'feature',
+            name: cls.defaultName({ type: 'feature' }),
+            [`system.itemLinks.["${this.document.uuid}"]`]: CONFIG.DH.ITEM.featureSubTypes[type]
         });
         await this.document.update({
             'system.features': [...this.document.system.features, feature].map(f => f.uuid)
@@ -195,7 +195,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static async #deleteFeature(_, target) {
         const feature = getDocFromElement(target);
         if (!feature) return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
-        await feature.update({ 'system.subType': null });
+        await feature.update({ [`system.itemLinks.-=${this.document.uuid}`]: null });
         await this.document.update({
             'system.features': this.document.system.features.map(x => x.uuid).filter(uuid => uuid !== feature.uuid)
         });
@@ -272,6 +272,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
+            const { type } = target.dataset;
+            await item.update({ [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.featureSubTypes[type] });
+
             const current = this.document.system.features.map(x => x.uuid);
             await this.document.update({ 'system.features': [...current, item.uuid] });
         }
