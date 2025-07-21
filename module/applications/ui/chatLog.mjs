@@ -305,9 +305,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     rerollEvent = async(event,message)=> {
         let DieTerm=foundry.dice.terms.Die;
         let dicetype = event.target.value;
-        let originalRoll=message.rolls.map(roll => JSON.parse(roll))[0];
+        let originalRoll_parsed=message.rolls.map(roll => JSON.parse(roll))[0];
+        let originalRoll=Roll.fromData(originalRoll_parsed);
         let diceIndex;
-        console.log("Dice to reroll is:",dicetype,", and the message id is:",message._id)
+        console.log("Dice to reroll is:",dicetype,", and the message id is:",message._id,originalRoll_parsed);
         console.log("Original Roll Terms:",originalRoll.terms);
         switch(dicetype){
             case "hope": {
@@ -315,22 +316,25 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 break;
             };
             case "fear" :{
-                diceIndex=2 //Fear Die
+                diceIndex=2; //Fear Die
                 break;
             };
             default: 
                 ui.notifications.warn("Invalid Dice type selected.");
                 break;
         }
-        let rollClone=originalRoll;
+
+        let rollClone=originalRoll.clone();
         let rerolledTerm=rollClone.terms[diceIndex];
+        console.log("originalRoll:",originalRoll,"rollClone:",rollClone,"rerolledTerm",rerolledTerm);
         if (!(rerolledTerm instanceof DieTerm)) {
             ui.notifications.error("Selected term is not a die.");
             return;
         }
-/*
-        await rerolledTerm.reroll();
+        await rollClone.reroll()[diceIndex];
         await rollClone.evaluate();
+        console.log(rollClone.result);
+        
         const confirm = await foundry.applications.api.DialogV2.confirm({
             window: { title: 'Confirm Reroll' },
             content: `<p>You have rerolled your <strong>${dicetype}</strong> die to <strong>${rerolledTerm.results[0].result}</strong>.</p><p>Apply this new roll?</p>`
@@ -338,6 +342,5 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         if (!confirm) return;
         rollClone.toMessage({flavor: 'Selective reroll applied for ${dicetype}.'});
         console.log("Updated Roll",rollClone);
-        */
     }
 }
