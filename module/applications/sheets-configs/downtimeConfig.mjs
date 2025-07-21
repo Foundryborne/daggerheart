@@ -88,26 +88,18 @@ export default class DhSettingsActionView extends HandlebarsApplicationMixin(App
     }
 
     async selectActionType() {
-        const content = await foundry.applications.handlebars.renderTemplate(
+        (await foundry.applications.api.DialogV2.input({
+            window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
+            content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/actionTypes/actionType.hbs',
                 { types: CONFIG.DH.ACTIONS.actionTypes }
             ),
-            title = 'Select Action Type',
-            type = 'form',
-            data = {};
-        return Dialog.prompt({
-            title,
-            label: title,
-            content,
-            type,
-            callback: html => {
-                const form = html[0].querySelector('form'),
-                    fd = new foundry.applications.ux.FormDataExtended(form);
-                foundry.utils.mergeObject(data, fd.object, { inplace: true });
-                return data;
-            },
-            rejectClose: false
-        });
+            ok: {
+                label: game.i18n.format('DOCUMENT.Create', {
+                    type: game.i18n.localize('DAGGERHEART.GENERAL.Action.single')
+                })
+            }
+        })) ?? {};
     }
 
     static async addItem() {
