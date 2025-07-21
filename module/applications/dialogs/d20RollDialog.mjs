@@ -22,7 +22,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         id: 'roll-selection',
         classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'roll-selection'],
         position: {
-            width: 550
+            width: 'auto'
         },
         window: {
             icon: 'fa-solid fa-dice'
