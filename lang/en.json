@@ -756,7 +756,7 @@
             },
             "SelectAction": {
                 "selectType": "Select Action Type",
-                "selectAction": "Select Action"
+                "selectAction": "Action Selection"
             },
             "Traits": {
                 "agility": {

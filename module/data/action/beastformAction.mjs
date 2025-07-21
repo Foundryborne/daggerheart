@@ -10,7 +10,9 @@ export default class DhBeastformAction extends DHBaseAction {
         const abort = await this.handleActiveTransformations();
         if (abort) return;
 
-        const { selected, evolved, hybrid } = await BeastformDialog.configure(beastformConfig);
+        const item = args[0];
+
+        const { selected, evolved, hybrid } = await BeastformDialog.configure(beastformConfig, item);
         if (!selected) return;
 
         await this.transform(selected, evolved, hybrid);

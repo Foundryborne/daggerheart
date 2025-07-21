@@ -441,9 +441,13 @@ export default function DHApplicationMixin(Base) {
                 const { type: actionType } =
                     (await foundry.applications.api.DialogV2.input({
                         window: { title: 'Select Action Type' },
+                        classes: ['daggerheart', 'dh-style'],
                         content: await foundry.applications.handlebars.renderTemplate(
                             'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                            { types: CONFIG.DH.ACTIONS.actionTypes }
+                            {
+                                types: CONFIG.DH.ACTIONS.actionTypes,
+                                itemName: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectAction')
+                            }
                         ),
                         ok: {
                             label: game.i18n.format('DOCUMENT.Create', {
@@ -581,7 +585,7 @@ export default function DHApplicationMixin(Base) {
             const { actionId } = target.closest('[data-action-id]').dataset;
             const { actions, attack } = doc.system;
             const action = attack?.id === actionId ? attack : actions?.find(a => a.id === actionId);
-            await action.use(event);
+            await action.use(event, doc);
         }
 
         /**
