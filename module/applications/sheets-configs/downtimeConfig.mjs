@@ -88,28 +88,32 @@ export default class DhSettingsActionView extends HandlebarsApplicationMixin(App
     }
 
     async selectActionType() {
-        (await foundry.applications.api.DialogV2.input({
-            window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                { types: CONFIG.DH.ACTIONS.actionTypes }
-            ),
-            ok: {
-                label: game.i18n.format('DOCUMENT.Create', {
-                    type: game.i18n.localize('DAGGERHEART.GENERAL.Action.single')
-                })
-            }
-        })) ?? {};
+        return (
+            (await foundry.applications.api.DialogV2.input({
+                window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
+                content: await foundry.applications.handlebars.renderTemplate(
+                    'systems/daggerheart/templates/actionTypes/actionType.hbs',
+                    { types: CONFIG.DH.ACTIONS.actionTypes }
+                ),
+                ok: {
+                    label: game.i18n.format('DOCUMENT.Create', {
+                        type: game.i18n.localize('DAGGERHEART.GENERAL.Action.single')
+                    })
+                }
+            })) ?? {}
+        );
     }
 
     static async addItem() {
-        const actionType = await this.selectActionType();
-        const cls = actionsTypes[actionType?.type] ?? actionsTypes.attack,
+        const { type: actionType } = await this.selectActionType();
+        if (!actionType) return;
+
+        const cls = actionsTypes[actionType] ?? actionsTypes.attack,
             action = new cls(
                 {
                     _id: foundry.utils.randomID(),
-                    type: actionType.type,
-                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType.type].name),
+                    type: actionType,
+                    name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
                     img: 'icons/magic/life/cross-worn-green.webp',
                     actionType: 'action',
                     systemPath: this.actionsPath
