@@ -20,7 +20,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             submitOnChange: true
         },
         actions: {
-            removeAction: DHBaseItemSheet.#removeAction,
             addFeature: DHBaseItemSheet.#addFeature,
             deleteFeature: DHBaseItemSheet.#deleteFeature,
             addResource: DHBaseItemSheet.#addResource,
@@ -143,33 +142,6 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /* -------------------------------------------- */
     /*  Application Clicks Actions                  */
     /* -------------------------------------------- */
-
-    /**
-     * Remove an action from the item.
-     * @type {ApplicationClickAction}
-     */
-    static async #removeAction(event, button) {
-        event.stopPropagation();
-        const actionIndex = button.closest('[data-index]').dataset.index;
-        const action = this.document.system.actions[actionIndex];
-
-        if (!event.shiftKey) {
-            const confirmed = await foundry.applications.api.DialogV2.confirm({
-                window: {
-                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                        type: game.i18n.localize(`DAGGERHEART.GENERAL.Action.single`),
-                        name: action.name
-                    })
-                },
-                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: action.name })
-            });
-            if (!confirmed) return;
-        }
-
-        await this.document.update({
-            'system.actions': this.document.system.actions.filter((_, index) => index !== Number.parseInt(actionIndex))
-        });
-    }
 
     /**
      * Add a new feature to the item, prompting the user for its type.

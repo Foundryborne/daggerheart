@@ -1,5 +1,5 @@
 import AttachableItem from './attachableItem.mjs';
-import ActionField from '../fields/actionField.mjs';
+import { ActionField } from '../fields/actionField.mjs';
 import { armorFeatures } from '../../config/itemConfig.mjs';
 import { actionsTypes } from '../action/_module.mjs';
 

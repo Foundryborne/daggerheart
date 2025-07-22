@@ -1,6 +1,7 @@
 import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField, DHResourceData } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
+import { ActionMixin } from '../fields/actionField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -16,12 +17,12 @@ const fields = foundry.data.fields;
     - Summon Action create method
 */
 
-export default class DHBaseAction extends foundry.abstract.DataModel {
+export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel) {
     static extraSchemas = [];
 
     static defineSchema() {
         return {
-            _id: new fields.DocumentIdField(),
+            _id: new fields.DocumentIdField({ initial: () => foundry.utils.randomID() }),
             systemPath: new fields.StringField({ required: true, initial: 'actions' }),
             type: new fields.StringField({ initial: undefined, readonly: true, required: true }),
             name: new fields.StringField({ initial: undefined }),
@@ -109,7 +110,10 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         return extraSchemas;
     }
 
-    prepareData() {}
+    prepareData() {
+        this.name = this.name || game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[this.type].name);
+        this.img = this.img ?? this.parent?.parent?.img;
+    }
 
     get index() {
         return foundry.utils.getProperty(this.parent, this.systemPath).indexOf(this);
@@ -141,22 +145,21 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
 
     static getSourceConfig(parent) {
         const updateSource = {};
-        updateSource.img ??= parent?.img ?? parent?.system?.img;
-        if (parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
+        if (parent?.parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
             updateSource['damage'] = { includeBase: true };
-            updateSource['range'] = parent?.system?.attack?.range;
+            updateSource['range'] = parent?.attack?.range;
             updateSource['roll'] = {
                 useDefault: true
             };
         } else {
-            if (parent?.system?.trait) {
+            if (parent?.trait) {
                 updateSource['roll'] = {
                     type: this.getRollType(parent),
-                    trait: parent.system.trait
+                    trait: parent.trait
                 };
             }
-            if (parent?.system?.range) {
-                updateSource['range'] = parent?.system?.range;
+            if (parent?.range) {
+                updateSource['range'] = parent?.range;
             }
         }
         return updateSource;
@@ -551,28 +554,5 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                 this.updateChatMessage(c, targetId, changes, false);
             });
         }
-    }
-
-    async toChat(origin) {
-        const cls = getDocumentClass('ChatMessage');
-        const systemData = {
-            title: game.i18n.localize('DAGGERHEART.CONFIG.ActionType.action'),
-            origin: origin,
-            img: this.img,
-            name: this.name,
-            description: this.description,
-            actions: []
-        };
-        const msg = new cls({
-            type: 'abilityUse',
-            user: game.user.id,
-            system: systemData,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
-                systemData
-            )
-        });
-
-        cls.create(msg.toObject());
     }
 }

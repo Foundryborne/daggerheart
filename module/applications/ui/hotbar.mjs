@@ -30,7 +30,7 @@ export default class DhHotbar extends foundry.applications.ui.Hotbar {
             });
         }
 
-        const action = item.system.actions.find(x => x.id === actionId);
+        const action = item.system.actions.get(actionId);
         if (!action) {
             return ui.notifications.warn('DAGGERHEART.UI.Notifications.actionIsMissing');
         }

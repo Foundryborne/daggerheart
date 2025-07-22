@@ -5,7 +5,7 @@ export default class DHAttackAction extends DHDamageAction {
     static extraSchemas = [...super.extraSchemas, ...['roll', 'save']];
 
     static getRollType(parent) {
-        return parent.type === 'weapon' ? 'attack' : 'spellcast';
+        return parent.parent.type === 'weapon' ? 'attack' : 'spellcast';
     }
 
     get chatTemplate() {

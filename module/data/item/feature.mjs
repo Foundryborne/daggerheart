@@ -1,5 +1,5 @@
 import BaseDataItem from './base.mjs';
-import ActionField from '../fields/actionField.mjs';
+import { ActionField } from '../fields/actionField.mjs';
 
 export default class DHFeature extends BaseDataItem {
     /** @inheritDoc */

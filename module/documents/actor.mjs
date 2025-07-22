@@ -23,6 +23,23 @@ export default class DhpActor extends Actor {
         return this.system.metadata.isNPC;
     }
 
+    /** @inheritDoc */
+    getEmbeddedDocument(embeddedName, id, options) {
+        let doc;
+        switch ( embeddedName ) {
+            case "Action":
+                doc = this.system.actions?.get(id);
+                if(!doc && this.system.attack?.id === id) doc = this.system.attack; 
+                break;
+            default:
+                return super.getEmbeddedDocument(embeddedName, id, options);
+        }
+        if ( options?.strict && !doc ) {
+            throw new Error(`The key ${id} does not exist in the ${embeddedName} Collection`);
+        }
+        return doc;
+    }
+
     async _preCreate(data, options, user) {
         if ((await super._preCreate(data, options, user)) === false) return false;
 

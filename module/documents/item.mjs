@@ -9,6 +9,23 @@ export default class DHItem extends foundry.documents.Item {
         for (const action of this.system.actions ?? []) action.prepareData();
     }
 
+    /** @inheritDoc */
+    getEmbeddedDocument(embeddedName, id, options) {
+        let doc;
+        switch ( embeddedName ) {
+            case "Action":
+                doc = this.system.actions?.get(id);
+                if(!doc && this.system.attack?.id === id) doc = this.system.attack; 
+                break;
+            default:
+                return super.getEmbeddedDocument(embeddedName, id, options);
+        }
+        if ( options?.strict && !doc ) {
+            throw new Error(`The key ${id} does not exist in the ${embeddedName} Collection`);
+        }
+        return doc;
+    }
+
     /**
      * @inheritdoc
      * @param {object} options - Options which modify the getRollData method.

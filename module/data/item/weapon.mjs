@@ -1,6 +1,6 @@
 import AttachableItem from './attachableItem.mjs';
 import { actionsTypes } from '../action/_module.mjs';
-import ActionField from '../fields/actionField.mjs';
+import { ActionsField, ActionField } from '../fields/actionField.mjs';
 
 export default class DHWeapon extends AttachableItem {
     /** @inheritDoc */
@@ -65,7 +65,8 @@ export default class DHWeapon extends AttachableItem {
                     }
                 }
             }),
-            actions: new fields.ArrayField(new ActionField())
+            actions: new ActionsField()
+            // actions: new fields.ArrayField(new ActionField())
         };
     }
 

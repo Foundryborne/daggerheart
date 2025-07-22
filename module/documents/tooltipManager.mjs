@@ -9,7 +9,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             const actionId = splitValues.length > 1 ? splitValues[1] : null;
 
             const baseItem = await foundry.utils.fromUuid(itemUuid);
-            const item = actionId ? baseItem.system.actions.find(x => x.id === actionId) : baseItem;
+            const item = actionId ? baseItem.system.actions.get(actionId) : baseItem;
             if (item) {
                 const type = actionId ? 'action' : item.type;
                 const description = await TextEditor.enrichHTML(item.system.description);
