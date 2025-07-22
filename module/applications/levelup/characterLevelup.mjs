@@ -223,8 +223,8 @@ export default class DhCharacterLevelUp extends LevelUpBase {
 
                 context.achievements = {
                     proficiency: {
-                        old: this.actor.system.proficiency.total,
-                        new: this.actor.system.proficiency.total + achivementProficiency,
+                        old: this.actor.system.proficiency,
+                        new: this.actor.system.proficiency + achivementProficiency,
                         shown: achivementProficiency > 0
                     },
                     damageThresholds: {
@@ -332,16 +332,16 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                             new: context.achievements.proficiency.new + (advancement.proficiency ?? 0)
                         },
                         hitPoints: {
-                            old: this.actor.system.resources.hitPoints.maxTotal,
-                            new: this.actor.system.resources.hitPoints.maxTotal + (advancement.hitPoint ?? 0)
+                            old: this.actor.system.resources.hitPoints.max,
+                            new: this.actor.system.resources.hitPoints.max + (advancement.hitPoint ?? 0)
                         },
                         stress: {
-                            old: this.actor.system.resources.stress.maxTotal,
-                            new: this.actor.system.resources.stress.maxTotal + (advancement.stress ?? 0)
+                            old: this.actor.system.resources.stress.max,
+                            new: this.actor.system.resources.stress.max + (advancement.stress ?? 0)
                         },
                         evasion: {
-                            old: this.actor.system.evasion.total,
-                            new: this.actor.system.evasion.total + (advancement.evasion ?? 0)
+                            old: this.actor.system.evasion,
+                            new: this.actor.system.evasion + (advancement.evasion ?? 0)
                         }
                     },
                     traits: Object.keys(this.actor.system.traits).reduce((acc, traitKey) => {
@@ -349,8 +349,8 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                             if (!acc) acc = {};
                             acc[traitKey] = {
                                 label: game.i18n.localize(abilities[traitKey].label),
-                                old: this.actor.system.traits[traitKey].total,
-                                new: this.actor.system.traits[traitKey].total + advancement.trait[traitKey]
+                                old: this.actor.system.traits[traitKey].max,
+                                new: this.actor.system.traits[traitKey].max + advancement.trait[traitKey]
                             };
                         }
                         return acc;

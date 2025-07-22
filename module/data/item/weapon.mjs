@@ -1,16 +1,15 @@
-import BaseDataItem from './base.mjs';
+import AttachableItem from './attachableItem.mjs';
 import { actionsTypes } from '../action/_module.mjs';
 import ActionField from '../fields/actionField.mjs';
 
-export default class DHWeapon extends BaseDataItem {
+export default class DHWeapon extends AttachableItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Item.weapon',
             type: 'weapon',
             hasDescription: true,
-            isQuantifiable: true,
-            isInventoryItem: true,
+            isInventoryItem: true
             // hasInitialAction: true
         });
     }
@@ -26,8 +25,7 @@ export default class DHWeapon extends BaseDataItem {
             //SETTINGS
             secondary: new fields.BooleanField({ initial: false }),
             burden: new fields.StringField({ required: true, choices: CONFIG.DH.GENERAL.burden, initial: 'oneHanded' }),
-            
-            features: new fields.ArrayField(
+            weaponFeatures: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
                         required: true,
@@ -52,14 +50,15 @@ export default class DHWeapon extends BaseDataItem {
                     },
                     roll: {
                         trait: 'agility',
-                        type: 'weapon'
+                        type: 'attack'
                     },
                     damage: {
                         parts: [
                             {
+                                type: ['physical'],
                                 value: {
                                     multiplier: 'prof',
-                                    dice: "d8"
+                                    dice: 'd8'
                                 }
                             }
                         ]
@@ -74,21 +73,29 @@ export default class DHWeapon extends BaseDataItem {
         return [this.attack, ...this.actions];
     }
 
+    get customActions() {
+        return this.actions.filter(
+            action => !this.weaponFeatures.some(feature => feature.actionIds.includes(action.id))
+        );
+    }
+
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
-        if (changes.system?.features) {
-            const removed = this.features.filter(x => !changes.system.features.includes(x));
-            const added = changes.system.features.filter(x => !this.features.includes(x));
+        if (changes.system?.weaponFeatures) {
+            const removed = this.weaponFeatures.filter(x => !changes.system.weaponFeatures.includes(x));
+            const added = changes.system.weaponFeatures.filter(x => !this.weaponFeatures.includes(x));
 
+            const removedEffectsUpdate = [];
+            const removedActionsUpdate = [];
             for (let weaponFeature of removed) {
-                for (var effectId of weaponFeature.effectIds) {
-                    await this.parent.effects.get(effectId).delete();
-                }
-
-                changes.system.actions = this.actions.filter(x => !weaponFeature.actionIds.includes(x._id));
+                removedEffectsUpdate.push(...weaponFeature.effectIds);
+                removedActionsUpdate.push(...weaponFeature.actionIds);
             }
+
+            await this.parent.deleteEmbeddedDocuments('ActiveEffect', removedEffectsUpdate);
+            changes.system.actions = this.actions.filter(x => !removedActionsUpdate.includes(x._id));
 
             for (let weaponFeature of added) {
                 const featureData = CONFIG.DH.ITEM.weaponFeatures[weaponFeature.value];
@@ -102,17 +109,37 @@ export default class DHWeapon extends BaseDataItem {
                     ]);
                     weaponFeature.effectIds = embeddedItems.map(x => x.id);
                 }
+
+                const newActions = [];
                 if (featureData.actions?.length > 0) {
-                    const newActions = featureData.actions.map(action => {
-                        const cls = actionsTypes[action.type];
-                        return new cls(
-                            { ...action, _id: foundry.utils.randomID(), name: game.i18n.localize(action.name) },
-                            { parent: this }
+                    for (let action of featureData.actions) {
+                        const embeddedEffects = await this.parent.createEmbeddedDocuments(
+                            'ActiveEffect',
+                            (action.effects ?? []).map(effect => ({
+                                ...effect,
+                                transfer: false,
+                                name: game.i18n.localize(effect.name),
+                                description: game.i18n.localize(effect.description)
+                            }))
                         );
-                    });
-                    changes.system.actions = [...this.actions, ...newActions];
-                    weaponFeature.actionIds = newActions.map(x => x._id);
+                        const cls = actionsTypes[action.type];
+                        newActions.push(
+                            new cls(
+                                {
+                                    ...action,
+                                    _id: foundry.utils.randomID(),
+                                    name: game.i18n.localize(action.name),
+                                    description: game.i18n.localize(action.description),
+                                    effects: embeddedEffects.map(x => ({ _id: x.id }))
+                                },
+                                { parent: this }
+                            )
+                        );
+                    }
                 }
+
+                changes.system.actions = [...this.actions, ...newActions];
+                weaponFeature.actionIds = newActions.map(x => x._id);
             }
         }
     }

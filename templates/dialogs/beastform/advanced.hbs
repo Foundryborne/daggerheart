@@ -1,0 +1,73 @@
+<div class="advanced-container">
+    {{#if (eq selected.system.beastformType 'evolved')}}
+        <h2>{{localize "DAGGERHEART.ITEMS.Beastform.evolve"}}</h2>
+
+        <div class="form-features">   
+            {{#if selectedBeastformEffect}}
+                <div class="form-feature" data-tooltip="{{concat "#item#" selectedBeastformEffect.uuid}}">
+                    <h4>{{localize "DAGGERHEART.ITEMS.Beastform.evolvedFeatureTitle"}}</h4>
+                    <div>{{{selectedBeastformEffect.description}}}</div>
+                </div>
+            {{/if}}
+        </div>
+
+        <div class="advanced-form-container evolved">
+            {{#if evolved.form}}
+                <div class="beastform-title">{{concat (localize "DAGGERHEART.CONFIG.BeastformType.evolved") " " evolved.form.name}}</div>
+                <img src="{{evolved.form.img}}" />                        
+            {{else}}
+                <div class="empty-form">
+                    <i class="fa-solid fa-plus"></i>
+                    <label>{{localize "DAGGERHEART.ITEMS.Beastform.evolvedDrag"}}</label>
+                </div>
+            {{/if}}
+        </div>
+    {{/if}}
+    {{#if (eq selected.system.beastformType 'hybrid')}}
+        <h2>{{localize "DAGGERHEART.ITEMS.Beastform.hybridize"}}</h2>
+
+        <div class="form-features">   
+            {{#if selectedBeastformEffect}}
+                <div class="form-feature" data-tooltip="{{concat "#item#" selectedBeastformEffect.uuid}}">
+                    <h4>{{localize "DAGGERHEART.ITEMS.Beastform.hybridizeFeatureTitle"}}</h4>
+                    <div>{{{selectedBeastformEffect.description}}}</div>
+                </div>
+            {{/if}}
+        </div>
+
+        <div class="advanced-forms-container">
+            {{#each hybridForms as | form key |}}
+                <div class="advanced-form-container hybridized {{#unless form}}empty{{/unless}}" id="{{key}}">
+                    {{#if form}}
+                        <div class="beastform-title-wrapper">
+                            <div class="beastform-title">{{form.name}}</div>
+                        </div>
+                        <div class="hybrid-data-wrapper">
+                            <div class="hybrid-data-container">
+                                <label>{{localize "DAGGERHEART.GENERAL.features"}}</label>
+                                <div class="hybrid-data-inner-container">
+                                    {{#each form.system.features as | feature |}}
+                                        <a data-action="toggleHybridFeature" id="{{feature.uuid}}" data-form="{{@../key}}"><div class="hybrid-data {{#if feature.selected}}active{{/if}}" data-tooltip="{{concat "#item#" feature.uuid}}">{{feature.name}}</div></a>
+                                    {{/each}}
+                                </div>
+                            </div>    
+                            <div class="hybrid-data-container">
+                                <label>{{localize "DAGGERHEART.GENERAL.Advantage.plural"}}</label>
+                                <div class="hybrid-data-inner-container">
+                                    {{#each form.system.advantageOn as | advantage id |}}
+                                        <a data-action="toggleHybridAdvantage" id="{{id}}" data-form="{{@../key}}"><div class="hybrid-data {{#if advantage.selected}}active{{/if}}">{{advantage.value}}</div></a>
+                                    {{/each}}
+                                </div>
+                            </div>     
+                        </div>               
+                    {{else}}
+                        <div class="empty-form">
+                            <i class="fa-solid fa-plus"></i>
+                            <label>{{localize "DAGGERHEART.ITEMS.Beastform.hybridizeDrag"}}</label>
+                        </div>
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+</div>

@@ -102,7 +102,7 @@ class DhCountdown extends foundry.abstract.DataModel {
                     value: new fields.StringField({
                         required: true,
                         choices: CONFIG.DH.GENERAL.countdownTypes,
-                        initial: CONFIG.DH.GENERAL.countdownTypes.spotlight.id,
+                        initial: CONFIG.DH.GENERAL.countdownTypes.custom.id,
                         label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.type.value.label'
                     }),
                     label: new fields.StringField({
@@ -132,7 +132,13 @@ class DhCountdown extends foundry.abstract.DataModel {
 export const registerCountdownHooks = () => {
     Hooks.on(socketEvent.Refresh, ({ refreshType, application }) => {
         if (refreshType === RefreshType.Countdown) {
-            foundry.applications.instances.get(application)?.render();
+            if (application) {
+                foundry.applications.instances.get(application)?.render();
+            } else {
+                foundry.applications.instances.get('narrative-countdowns')?.render();
+                foundry.applications.instances.get('encounter-countdowns')?.render();
+            }
+
             return false;
         }
     });

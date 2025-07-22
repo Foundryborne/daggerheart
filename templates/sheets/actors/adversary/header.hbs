@@ -2,7 +2,7 @@
     <line-div></line-div>
     <div class="name-row">
         <h1 class='actor-name'>
-            <input type='text' name='name' value='{{source.name}}' placeholder='Actor Name'
+            <input type='text' name='name' value='{{source.name}}' placeholder="{{localize "DAGGERHEART.GENERAL.actorName"}}"
             />
         </h1>
     </div>
@@ -20,14 +20,14 @@
         {{#if (eq source.system.type 'horde')}}
             <div class="tag">
                 <span>{{source.system.hordeHp}}</span>
-                <span>/HP</span>
+                <span>/{{localize "DAGGERHEART.GENERAL.HitPoints.short"}}</span>
             </div>
         {{/if}}
     </div>
     <line-div></line-div>
     <div class="adversary-info">
         <div class="description">
-            <i>{{source.system.description}}</i>
+            <i>{{{description}}}</i>
         </div>
         <div class="motives-and-tatics">
             <b>{{localize 'DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label'}}: </b>{{{source.system.motivesAndTactics}}}

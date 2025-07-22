@@ -16,8 +16,8 @@
                         <span>{{feature.name}}</span>
                     </div>
                     <div class="controls">
-                        <a data-action="editDoc" data-type="Item" data-doc-id="{{feature.id}}" data-tooltip="{{localize 'DAGGERHEART.Tooltip.edit'}}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a data-action="deleteDoc"  data-type="Item" data-doc-id="{{feature.id}}" data-tooltip="{{localize 'CONTROLS.CommonDelete'}}"><i class="fa-solid fa-trash"></i></a>
+                        <a data-action="editDoc" data-doc-uuid="{{feature.uuid}}" data-tooltip="{{localize 'CONTROLS.CommonEdit'}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a data-action="deleteDoc"  data-item-uuid="{{feature.uuid}}" data-tooltip="{{localize 'CONTROLS.CommonDelete'}}"><i class="fa-solid fa-trash"></i></a>
                     </div>
                 </li>
             {{/each}}

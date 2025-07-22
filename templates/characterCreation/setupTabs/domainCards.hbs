@@ -1,0 +1,22 @@
+<section
+    class='tab {{setupTabs.domainCards.cssClass}} {{setupTabs.domainCards.id}}'
+    data-tab='{{setupTabs.domainCards.id}}'
+    data-group='{{setupTabs.domainCards.group}}'
+>
+    <div class="main-selections-container">
+        <fieldset class="section-container">
+            <legend>{{localize "TYPES.Item.domainCard"}}</legend>
+            <div class="selections-outer-container">
+                {{#each domainCards as |domainCard id|}}
+                    <div class="selections-container domain-card" data-card="{{id}}"> 
+                        {{#> "systems/daggerheart/templates/components/card-preview.hbs" domainCard }}
+                            {{#each @root.class.system.domains }}
+                                <div>{{localize (concat "DAGGERHEART.GENERAL.Domain." this ".label")}}</div>
+                            {{/each}}
+                        {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
+                    </div>
+                {{/each}}
+            </div>
+        </fieldset>
+    </div>
+</section>

@@ -10,10 +10,6 @@ export default class DHHeritageSheet extends DHBaseItemSheet {
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
-        feature: {
-            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-features.hbs',
-            scrollable: ['.feature']
-        },
         effects: {
             template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
             scrollable: ['.effects']

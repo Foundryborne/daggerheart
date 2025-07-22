@@ -1,0 +1,78 @@
+<div class="col left">
+    <div class="attribute elevation" data-tooltip="HUD.Elevation">
+        <i class="fas fa-angle-up"></i>
+        <input type="text" name="elevation" value="{{elevation}}" {{disabled (or locked (and isGamePaused (not isGM)))}}>
+    </div>
+
+    <button type="button" class="control-icon" data-action="sort" data-direction="up" data-tooltip="HUD.ToFront">
+        <img src="{{icons.up}}">
+    </button>
+
+    <button type="button" class="control-icon" data-action="sort" data-direction="down" data-tooltip="HUD.ToBack">
+        <img src="{{icons.down}}">
+    </button>
+
+    {{#if canConfigure}}
+    <button type="button" class="control-icon" data-action="config" data-tooltip="HUD.OpenConfig">
+        <i class="fa-solid fa-gear" inert></i>
+    </button>
+    {{/if}}
+</div>
+
+<div class="col middle">
+    <div class="attribute bar2">
+        {{#if displayBar2}}
+        <input type="text" name="bar2" value="{{bar2Data.value}}" {{#unless bar2Data.editable}}disabled{{/unless}}>
+        {{/if}}
+    </div>
+
+    <div class="attribute bar1">
+        {{#if displayBar1}}
+        <input type="text" name="bar1" value="{{bar1Data.value}}" {{#unless bar1Data.editable}}disabled{{/unless}}>
+        {{/if}}
+    </div>
+</div>
+
+<div class="col right">
+    {{#if isGM}}
+    <button type="button" class="control-icon {{visibilityClass}}" data-action="visibility" data-tooltip="HUD.ToggleVis">
+        <img src="{{icons.visibility}}">
+    </button>
+    {{/if}}
+
+    <button type="button" class="control-icon" data-action="togglePalette" data-palette="effects" data-tooltip="HUD.AssignStatusEffects">
+        <img src="{{icons.effects}}">
+    </button>
+    <div class="palette status-effects" data-palette="effects">
+        {{#each systemStatusEffects as |status|}}
+            <img class="effect-control {{status.cssClass}}" src="{{status.src}}" data-action="effect" data-status-id="{{status.id}}" {{#if status.title}}data-tooltip-text="{{status.title}}"{{/if}}>
+        {{/each}}
+        {{#if genericStatusEffects}}
+            <label class="palette-category-title">{{localize "DAGGERHEART.APPLICATIONS.HUD.tokenHUD.genericEffects"}}</label>
+            {{#each genericStatusEffects as |status|}}
+                <img class="effect-control {{status.cssClass}}" src="{{status.src}}" data-action="effect" data-status-id="{{status.id}}" {{#if status.title}}data-tooltip-text="{{status.title}}"{{/if}}>
+            {{/each}}
+        {{/if}}
+    </div>
+
+    <button type="button" class="control-icon" data-action="togglePalette" data-palette="movementActions" data-tooltip="HUD.SelectMovementAction">
+        <i class="{{movementActionsIcon}}" inert></i>
+    </button>
+    <div class="palette movement-actions" data-palette="movementActions">
+        {{#each movementActions as |action|}}
+        <a class="movement-action-control {{action.cssClass}}" data-action="movementAction" data-movement-action="{{action.id}}">
+            <span>{{#if action.icon}}<i class="{{action.icon}} fa-fw" inert></i>{{/if}} {{action.label}}</span>
+        </a>
+        {{/each}}
+    </div>
+
+    <button type="button" class="control-icon {{targetClass}}" data-action="target" data-tooltip="HUD.ToggleTargetState">
+        <i class="fa-solid fa-bullseye" inert></i>
+    </button>
+
+    {{#if canToggleCombat}}
+    <button type="button" class="control-icon {{combatClass}}" data-action="combat" data-tooltip="HUD.ToggleCombatState">
+        <img src="{{icons.combat}}">
+    </button>
+    {{/if}}
+</div>

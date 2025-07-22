@@ -10,28 +10,33 @@
         <a class="filter-button">
             <i class="fa-solid fa-filter"></i>
         </a>
-        <button type="button" class="btn-toggle-view" data-action="toggleLoadoutView" data-value="{{listView}}">
-            <span class="{{ifThen listView 'list-active' ''}} list-icon">
+        <button type="button" class="btn-toggle-view" data-action="toggleLoadoutView" data-value="{{not cardView}}">
+            <span class="{{ifThen cardView '' 'list-active'}} list-icon">
                 <i class="fa-solid fa-bars"></i>
             </span>
-            <span class="{{ifThen listView '' 'grid-active'}} grid-icon">
+            <span class="{{ifThen cardView 'grid-active' ''}} grid-icon">
                 <i class="fa-solid fa-grip"></i>
             </span>
         </button>
     </div>
 
     <div class="items-section">
-        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs'
-        title=(localize 'DAGGERHEART.GENERAL.Tabs.loadout')
+        {{> 'daggerheart.inventory-items'
+        title='DAGGERHEART.GENERAL.Tabs.loadout'
         type='domainCard'
         isGlassy=true
-        cardView=(ifThen listView "list" "card")}}
-
-        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs'
-        title=(localize 'DAGGERHEART.GENERAL.Tabs.vault')
+        cardView=cardView
+        collection=document.system.domainCards.loadout
+        canCreate=true
+        }}
+        {{> 'daggerheart.inventory-items'
+        title='DAGGERHEART.GENERAL.Tabs.vault'
         type='domainCard'
-        isVault=true
         isGlassy=true
-        cardView=(ifThen listView "list" "card")}}
+        cardView=cardView
+        collection=document.system.domainCards.vault
+        canCreate=true
+        inVault=true
+        }}
     </div>
 </section>

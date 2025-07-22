@@ -10,6 +10,11 @@ export default class BeastformEffect extends foundry.abstract.TypeDataModel {
                     base64: false,
                     nullable: true
                 }),
+                tokenRingImg: new fields.FilePathField({
+                    initial: 'icons/svg/mystery-man.svg',
+                    categories: ['IMAGE'],
+                    base64: false
+                }),
                 tokenSize: new fields.SchemaField({
                     height: new fields.NumberField({ integer: true, nullable: true }),
                     width: new fields.NumberField({ integer: true, nullable: true })
@@ -21,6 +26,13 @@ export default class BeastformEffect extends foundry.abstract.TypeDataModel {
         };
     }
 
+    async _onCreate() {
+        if (this.parent.parent?.type === 'character') {
+            this.parent.parent.system.primaryWeapon?.update?.({ 'system.equipped': false });
+            this.parent.parent.system.secondayWeapon?.update?.({ 'system.equipped': false });
+        }
+    }
+
     async _preDelete() {
         if (this.parent.parent.type === 'character') {
             const update = {
@@ -28,6 +40,11 @@ export default class BeastformEffect extends foundry.abstract.TypeDataModel {
                 width: this.characterTokenData.tokenSize.width,
                 texture: {
                     src: this.characterTokenData.tokenImg
+                },
+                ring: {
+                    subject: {
+                        texture: this.characterTokenData.tokenRingImg
+                    }
                 }
             };
 

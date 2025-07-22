@@ -4,6 +4,7 @@ export default class DHRoll extends Roll {
     baseTerms = [];
     constructor(formula, data, options) {
         super(formula, data, options);
+        if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
     static messageType = 'adversaryRoll';
@@ -46,7 +47,7 @@ export default class DHRoll extends Roll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         if (config.evaluate !== false) await roll.evaluate();
-        this.postEvaluate(roll, config);
+        config.roll = this.postEvaluate(roll, config);
     }
 
     static async buildPost(roll, config, message) {
@@ -56,25 +57,27 @@ export default class DHRoll extends Roll {
 
         // Create Chat Message
         if (config.source?.message) {
-        } else {
-            const messageData = {};
-            config.message = await this.toMessage(roll, config);
-        }
+            if (Object.values(config.roll)?.length) {
+                const pool = foundry.dice.terms.PoolTerm.fromRolls(
+                    Object.values(config.roll).flatMap(r => r.parts.map(p => p.roll))
+                );
+                roll = Roll.fromTerms([pool]);
+            }
+            if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
+        } else config.message = await this.toMessage(roll, config);
     }
 
     static postEvaluate(roll, config = {}) {
-        if (!config.roll) config.roll = {};
-        config.roll.total = roll.total;
-        config.roll.formula = roll.formula;
-        config.roll.dice = [];
-        roll.dice.forEach(d => {
-            config.roll.dice.push({
+        return {
+            total: roll.total,
+            formula: roll.formula,
+            dice: roll.dice.map(d => ({
                 dice: d.denomination,
                 total: d.total,
                 formula: d.formula,
                 results: d.results
-            });
-        });
+            }))
+        };
     }
 
     static async toMessage(roll, config) {
@@ -86,7 +89,7 @@ export default class DHRoll extends Roll {
                 system: config,
                 rolls: [roll]
             };
-        return await cls.create(msg);
+        return await cls.create(msg, { rollMode: config.selectedRollMode });
     }
 
     static applyKeybindings(config) {
@@ -99,11 +102,45 @@ export default class DHRoll extends Roll {
     }
 
     formatModifier(modifier) {
-        const numTerm = modifier < 0 ? '-' : '+';
-        return [
-            new foundry.dice.terms.OperatorTerm({ operator: numTerm }),
-            new foundry.dice.terms.NumericTerm({ number: Math.abs(modifier) })
-        ];
+        if (Array.isArray(modifier)) {
+            return [
+                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                ...this.constructor.parse(modifier.join(' + '), this.options.data)
+            ];
+        } else {
+            const numTerm = modifier < 0 ? '-' : '+';
+            return [
+                new foundry.dice.terms.OperatorTerm({ operator: numTerm }),
+                new foundry.dice.terms.NumericTerm({ number: Math.abs(modifier) })
+            ];
+        }
+    }
+
+    applyBaseBonus() {
+        return [];
+    }
+
+    addModifiers(roll) {
+        roll = roll ?? this.options.roll;
+        roll.modifiers?.forEach(m => {
+            this.terms.push(...this.formatModifier(m.value));
+        });
+    }
+
+    getBonus(path, label) {
+        const bonus = foundry.utils.getProperty(this.data.bonuses, path),
+            modifiers = [];
+        if (bonus?.bonus)
+            modifiers.push({
+                label: label,
+                value: bonus?.bonus
+            });
+        if (bonus?.dice?.length)
+            modifiers.push({
+                label: label,
+                value: bonus?.dice
+            });
+        return modifiers;
     }
 
     getFaces(faces) {
@@ -112,6 +149,9 @@ export default class DHRoll extends Roll {
 
     constructFormula(config) {
         this.terms = Roll.parse(this.options.roll.formula, config.data);
+
+        this.options.roll.modifiers = this.applyBaseBonus();
+        this.addModifiers();
 
         if (this.options.extraFormula) {
             this.terms.push(
@@ -138,8 +178,10 @@ export default class DHRoll extends Roll {
 
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async (config, message) => {
+        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;
         if (
-            !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hope ||
+            !config.source?.actor ||
+            (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
             config.roll.type === 'reaction'
         )
             return;
@@ -147,13 +189,18 @@ export const registerRollDiceHooks = () => {
         const actor = await fromUuid(config.source.actor),
             updates = [];
         if (!actor) return;
-        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ type: 'hope', value: 1 });
-        if (config.roll.isCritical) updates.push({ type: 'stress', value: -1 });
-        if (config.roll.result.duality === -1) updates.push({ type: 'fear', value: 1 });
+        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ key: 'hope', value: 1 });
+        if (config.roll.isCritical) updates.push({ key: 'stress', value: -1 });
+        if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1 });
 
-        if (updates.length) actor.modifyResource(updates);
+        if (updates.length) {
+            const target = actor.system.partner ?? actor;
+            if (!['dead', 'unconcious'].some(x => actor.statuses.has(x))) {
+                target.modifyResource(updates);
+            }
+        }
 
-        if (!config.roll.hasOwnProperty('success') && !config.targets.length) return;
+        if (!config.roll.hasOwnProperty('success') && !config.targets?.length) return;
 
         const rollResult = config.roll.success || config.targets.some(t => t.hit),
             looseSpotlight = !rollResult || config.roll.result.duality === -1;

@@ -9,11 +9,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         position: { width: 700 },
         actions: {
             removeItemFromCollection: ClassSheet.#removeItemFromCollection,
-            removeSuggestedItem: ClassSheet.#removeSuggestedItem,
-            viewDoc: ClassSheet.#viewDoc,
-            addFeature: this.addFeature,
-            editFeature: this.editFeature,
-            deleteFeature: this.deleteFeature
+            removeSuggestedItem: ClassSheet.#removeSuggestedItem
         },
         tagifyConfigs: [
             {
@@ -46,13 +42,17 @@ export default class ClassSheet extends DHBaseItemSheet {
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/class/settings.hbs',
             scrollable: ['.settings']
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
+            scrollable: ['.effects']
         }
     };
 
     /** @inheritdoc */
     static TABS = {
         primary: {
-            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }],
+            tabs: [{ id: 'description' }, { id: 'features' }, { id: 'settings' }, { id: 'effects' }],
             initial: 'description',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
@@ -78,6 +78,7 @@ export default class ClassSheet extends DHBaseItemSheet {
     /* -------------------------------------------- */
 
     async _onDrop(event) {
+        event.stopPropagation();
         const data = TextEditor.getDragEventData(event);
         const item = await fromUuid(data.uuid);
         const target = event.target.closest('fieldset.drop-section');
@@ -85,6 +86,28 @@ export default class ClassSheet extends DHBaseItemSheet {
             await this.document.update({
                 'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
             });
+        } else if (item.type === 'feature') {
+            if (target.classList.contains('hope-feature')) {
+                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.hope) {
+                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotHope'));
+                    return;
+                }
+
+                await item.update({ 'system.subType': CONFIG.DH.ITEM.featureSubTypes.hope });
+                await this.document.update({
+                    'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
+                });
+            } else if (target.classList.contains('class-feature')) {
+                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.class) {
+                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotClass'));
+                    return;
+                }
+
+                await item.update({ 'system.subType': CONFIG.DH.ITEM.featureSubTypes.class });
+                await this.document.update({
+                    'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
+                });
+            }
         } else if (item.type === 'weapon') {
             if (target.classList.contains('primary-weapon-section')) {
                 if (!this.document.system.characterGuide.suggestedPrimaryWeapon && !item.system.secondary)
@@ -144,7 +167,7 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeItemFromCollection(_event, element) {
         const { uuid, target } = element.dataset;
         const prop = foundry.utils.getProperty(this.document.system, target);
-        await this.document.update({ [target]: prop.filter(i => i.uuid !== uuid) });
+        await this.document.update({ [`system.${target}`]: prop.filter(i => i.uuid !== uuid) });
     }
 
     /**
@@ -155,57 +178,5 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeSuggestedItem(_event, element) {
         const { target } = element.dataset;
         await this.document.update({ [`system.characterGuide.${target}`]: null });
-    }
-
-    /**
-     * Open the sheet of a item by UUID.
-     * @param {PointerEvent} _event -
-     * @param {HTMLElement} button
-     */
-    static async #viewDoc(_event, button) {
-        const doc = await fromUuid(button.dataset.uuid);
-        doc.sheet.render({ force: true });
-    }
-
-    getActionPath(type) {
-        return type === 'hope' ? 'hopeFeatures' : 'classFeatures';
-    }
-
-    static async addFeature(_, target) {
-        const actionPath = this.getActionPath(target.dataset.type);
-        const feature = await game.items.documentClass.create({
-            type: 'feature',
-            name: game.i18n.format('DOCUMENT.New', { type: game.i18n.localize('TYPES.Item.feature') })
-        });
-        await this.document.update({
-            [`system.${actionPath}`]: [
-                ...this.document.system[actionPath].filter(x => x).map(x => x.uuid),
-                feature.uuid
-            ]
-        });
-    }
-
-    static async editFeature(_, button) {
-        const target = button.closest('.feature-item');
-        const actionPath = this.getActionPath(button.dataset.type);
-        const feature = this.document.system[actionPath].find(x => x?.id === target.dataset.featureId);
-        if (!feature) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.notifications.featureIsMissing'));
-            return;
-        }
-
-        feature.sheet.render(true);
-    }
-
-    static async deleteFeature(event, button) {
-        event.stopPropagation();
-        const target = button.closest('.feature-item');
-        const actionPath = this.getActionPath(button.dataset.type);
-
-        await this.document.update({
-            [`system.${actionPath}`]: this.document.system[actionPath]
-                .filter(feature => feature && feature.id !== target.dataset.featureId)
-                .map(x => x.uuid)
-        });
     }
 }

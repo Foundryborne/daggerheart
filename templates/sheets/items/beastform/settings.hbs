@@ -3,22 +3,32 @@
     data-tab='{{tabs.settings.id}}'
     data-group='{{tabs.settings.group}}'
 >
-    <div class="two-columns">
+    {{#if (eq source.system.beastformType 'evolved')}}
         {{formGroup systemFields.tier value=source.system.tier localize=true}}
-        {{formGroup systemFields.examples value=source.system.examples localize=true}}
-    </div>
+    {{else}}
+        <div class="two-columns even">
+            {{formGroup systemFields.tier value=source.system.tier localize=true}}
+            {{formGroup systemFields.mainTrait value=source.system.mainTrait blank=false localize=true}}
+        </div>
 
-     <fieldset class="two-columns">
-        <legend>{{localize "DAGGERHEART.ITEMS.Beastform.FIELDS.advantageOn.label"}}</legend>
-        
-        {{!-- {{formGroup systemFields.examples value=source.system.examples localize=true}} --}}
-    </fieldset>
+        {{#unless (eq source.system.beastformType 'hybrid')}}
+            {{formGroup systemFields.examples value=source.system.examples localize=true}}
+            <div class="advantage-on-section">
+                <label>{{localize "DAGGERHEART.ITEMS.Beastform.FIELDS.advantageOn.label"}}</label>
+                <input class="advantageon-input" value="{{advantageOn}}" />
+            </div>
+        {{/unless}}
+    {{/if}}
 
     <fieldset class="two-columns even">
         <legend>{{localize "DAGGERHEART.ITEMS.Beastform.tokenTitle"}}</legend>
 
         <div class="full-width">
             {{formGroup systemFields.tokenImg value=source.system.tokenImg localize=true}}
+        </div>
+
+        <div class="full-width">
+            {{formGroup systemFields.tokenRingImg value=source.system.tokenRingImg localize=true}}
         </div>
 
         {{formGroup systemFields.tokenSize.fields.height value=source.system.tokenSize.height localize=true placeholder=(localize "DAGGERHEART.ITEMS.Beastform.FIELDS.tokenSize.placeholder") }}

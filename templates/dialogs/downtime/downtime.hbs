@@ -1,0 +1,14 @@
+<div>
+    <header class="dialog-header">
+        <h1>{{title}}</h1>
+    </header>
+
+    <div class="downtime-container {{#if (and shortRestMoves.moves longRestMoves.moves)}}two-columns even{{else}}one-column{{/if}}">
+        {{#if shortRestMoves.moves}}{{> "systems/daggerheart/templates/dialogs/downtime/activities.hbs" moves=shortRestMoves.moves category='shortRest' nrChoices=nrChoices.shortRest}}{{/if}}
+        {{#if longRestMoves.moves}}{{> "systems/daggerheart/templates/dialogs/downtime/activities.hbs" moves=longRestMoves.moves category='longRest' nrChoices=nrChoices.longRest}}{{/if}}
+    </div>
+    <footer>
+        <button type="button" data-action="close">{{localize "Cancel"}}</button>
+        <button type="button" data-action="takeDowntime" {{#if disabledDowntime}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.Downtime.takeDowntime"}}</button>
+    </footer>
+</div>

@@ -4,6 +4,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ActionField from '../fields/actionField.mjs';
 import { adjustDice, adjustRange } from '../../helpers/utils.mjs';
 import DHCompanionSettings from '../../applications/sheets-configs/companion-settings.mjs';
+import { resourceField, bonusField } from '../fields/actorField.mjs';
 
 export default class DhCompanion extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Companion'];
@@ -12,6 +13,7 @@ export default class DhCompanion extends BaseDataActor {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.companion',
             type: 'companion',
+            isNPC: false,
             settingSheet: DHCompanionSettings
         });
     }
@@ -20,24 +22,23 @@ export default class DhCompanion extends BaseDataActor {
         const fields = foundry.data.fields;
 
         return {
+            ...super.defineSchema(),
             partner: new ForeignDocumentUUIDField({ type: 'Actor' }),
             resources: new fields.SchemaField({
-                stress: new fields.SchemaField({
-                    value: new fields.NumberField({ initial: 0, integer: true }),
-                    bonus: new fields.NumberField({ initial: 0, integer: true }),
-                    max: new fields.NumberField({ initial: 3, integer: true })
-                }),
-                hope: new fields.NumberField({ initial: 0, integer: true })
+                stress: resourceField(3, 'DAGGERHEART.GENERAL.stress', true),
+                hope: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.hope' })
             }),
-            evasion: new fields.SchemaField({
-                value: new fields.NumberField({ required: true, min: 1, initial: 10, integer: true }),
-                bonus: new fields.NumberField({ initial: 0, integer: true })
+            evasion: new fields.NumberField({
+                required: true,
+                min: 1,
+                initial: 10,
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.evasion'
             }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField({}),
-                    value: new fields.NumberField({ integer: true, initial: 0 }),
-                    bonus: new fields.NumberField({ integer: true, initial: 0 })
+                    value: new fields.NumberField({ integer: true, initial: 0 })
                 }),
                 {
                     initial: {
@@ -59,17 +60,16 @@ export default class DhCompanion extends BaseDataActor {
                         amount: 1
                     },
                     roll: {
-                        type: 'weapon',
-                        bonus: 0,
-                        trait: 'instinct'
+                        type: 'attack',
+                        bonus: 0
                     },
                     damage: {
                         parts: [
                             {
-                                multiplier: 'flat',
+                                type: ['physical'],
                                 value: {
                                     dice: 'd6',
-                                    multiplier: 'flat'
+                                    multiplier: 'prof'
                                 }
                             }
                         ]
@@ -77,20 +77,22 @@ export default class DhCompanion extends BaseDataActor {
                 }
             }),
             actions: new fields.ArrayField(new ActionField()),
-            levelData: new fields.EmbeddedDataField(DhLevelData)
+            levelData: new fields.EmbeddedDataField(DhLevelData),
+            bonuses: new fields.SchemaField({
+                damage: new fields.SchemaField({
+                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
+                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
+                })
+            })
         };
     }
 
-    get traits() {
-        return {
-            instinct: { total: this.attack.roll.bonus }
-        };
+    get proficiency() {
+        return this.partner?.system?.proficiency ?? 1;
     }
 
     prepareBaseData() {
-        const partnerSpellcastingModifier = this.partner?.system?.spellcastingModifiers?.main;
-        const spellcastingModifier = this.partner?.system?.traits?.[partnerSpellcastingModifier]?.total;
-        this.attack.roll.bonus = spellcastingModifier ?? 0; // Needs to expand on which modifier it is that should be used because of multiclassing;
+        this.attack.roll.bonus = this.partner?.system?.spellcastModifier ?? 0;
 
         for (let levelKey in this.levelData.levelups) {
             const level = this.levelData.levelups[levelKey];
@@ -107,34 +109,20 @@ export default class DhCompanion extends BaseDataActor {
                         }
                         break;
                     case 'stress':
-                        this.resources.stress.bonus += selection.value;
+                        this.resources.stress.max += selection.value;
                         break;
                     case 'evasion':
-                        this.evasion.bonus += selection.value;
+                        this.evasion += selection.value;
                         break;
                     case 'experience':
                         Object.keys(this.experiences).forEach(key => {
                             const experience = this.experiences[key];
-                            experience.bonus += selection.value;
+                            experience.value += selection.value;
                         });
                         break;
                 }
             }
         }
-    }
-
-    prepareDerivedData() {
-        for (var experienceKey in this.experiences) {
-            var experience = this.experiences[experienceKey];
-            experience.total = experience.value + experience.bonus;
-        }
-
-        if (this.partner) {
-            this.partner.system.resources.hope.max += this.resources.hope;
-        }
-
-        this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
-        this.evasion.total = this.evasion.value + this.evasion.bonus;
     }
 
     async _preDelete() {

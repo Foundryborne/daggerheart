@@ -3,21 +3,11 @@
     data-tab='{{tabs.actions.id}}'
     data-group='{{tabs.actions.group}}'
 >
-    <fieldset class="one-column">
-        <legend>{{localize "DAGGERHEART.GENERAL.Action.plural"}} <a><i class="fa-solid fa-plus icon-button" data-action="addAction"></i></a></legend>
-        <div class="actions-list">
-            {{#each document.system.actions as |action index|}}
-                <div class="action-item"
-                    data-action="editAction"
-                    data-index="{{index}}"
-                >
-                    <img class="image" src="{{action.img}}" />
-                    <span>{{action.name}}</span>
-                    <div class="controls">
-                        <a data-action="removeAction"><i class="fa-solid fa-trash"></i></a>
-                    </div>
-                </div> 
-            {{/each}}
-        </div>
-    </fieldset>
+
+{{> 'daggerheart.inventory-items'
+    title='DAGGERHEART.GENERAL.Action.plural'
+    collection=document.system.actions
+    type='action'
+    canCreate=true
+}}
 </section>

@@ -1,0 +1,6 @@
+<h4 class="tooltip-sub-title">{{localize label}}</h4>
+<div class="tooltip-chips">
+    {{#each chips as | chip |}}
+        <div class="tooltip-chip">{{ifThen chip.value chip.value chip}}</div>
+    {{/each}}
+</div>

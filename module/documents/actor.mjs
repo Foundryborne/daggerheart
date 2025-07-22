@@ -1,10 +1,19 @@
-import DamageSelectionDialog from '../applications/dialogs/damageSelectionDialog.mjs';
-import { GMUpdateEvent, socketEvent } from '../systemRegistration/socket.mjs';
+import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
+import { damageKeyToNumber } from '../helpers/utils.mjs';
 
-export default class DhpActor extends foundry.documents.Actor {
+export default class DhpActor extends Actor {
+    /**
+     * Return the first Actor active owner.
+     */
+    get owner() {
+        const user =
+            this.hasPlayerOwner && game.users.players.find(u => this.testUserPermission(u, 'OWNER') && u.active);
+        if (!user) return game.user.isGM ? game.user : null;
+        return user;
+    }
 
     /**
      * Whether this actor is an NPC.
@@ -52,7 +61,7 @@ export default class DhpActor extends foundry.documents.Actor {
                 return acc;
             }, {});
 
-            const featureIds = [];
+            const features = [];
             const domainCards = [];
             const experiences = [];
             const subclassFeatureState = { class: null, multiclass: null };
@@ -65,7 +74,7 @@ export default class DhpActor extends foundry.documents.Actor {
                     const advancementCards = level.selections.filter(x => x.type === 'domainCard').map(x => x.itemUuid);
                     domainCards.push(...achievementCards, ...advancementCards);
                     experiences.push(...Object.keys(level.achievements.experiences));
-                    featureIds.push(...level.selections.flatMap(x => x.featureIds));
+                    features.push(...level.selections.flatMap(x => x.features));
 
                     const subclass = level.selections.find(x => x.type === 'subclass');
                     if (subclass) {
@@ -79,8 +88,11 @@ export default class DhpActor extends foundry.documents.Actor {
                     multiclass = level.selections.find(x => x.type === 'multiclass');
                 });
 
-            for (let featureId of featureIds) {
-                this.items.get(featureId).delete();
+            for (let feature of features) {
+                if (feature.onPartner && !this.system.partner) continue;
+
+                const document = feature.onPartner ? this.system.partner : this;
+                document.items.get(feature.id)?.delete();
             }
 
             if (experiences.length > 0) {
@@ -144,7 +156,6 @@ export default class DhpActor extends foundry.documents.Actor {
     }
 
     async levelUp(levelupData) {
-        const actions = [];
         const levelups = {};
         for (var levelKey of Object.keys(levelupData)) {
             const level = levelupData[levelKey];
@@ -228,7 +239,9 @@ export default class DhpActor extends foundry.documents.Actor {
                         ...featureData,
                         description: game.i18n.localize(featureData.description)
                     });
-                    const embeddedItem = await this.createEmbeddedDocuments('Item', [
+
+                    const document = featureData.toPartner && this.system.partner ? this.system.partner : this;
+                    const embeddedItem = await document.createEmbeddedDocuments('Item', [
                         {
                             ...featureData,
                             name: game.i18n.localize(featureData.name),
@@ -236,9 +249,13 @@ export default class DhpActor extends foundry.documents.Actor {
                             system: feature
                         }
                     ]);
-                    addition.checkbox.featureIds = !addition.checkbox.featureIds
-                        ? [embeddedItem[0].id]
-                        : [...addition.checkbox.featureIds, embeddedItem[0].id];
+                    const newFeature = {
+                        onPartner: Boolean(featureData.toPartner && this.system.partner),
+                        id: embeddedItem[0].id
+                    };
+                    addition.checkbox.features = !addition.checkbox.features
+                        ? [newFeature]
+                        : [...addition.checkbox.features, newFeature];
                 }
 
                 selections.push(addition.checkbox);
@@ -308,7 +325,6 @@ export default class DhpActor extends foundry.documents.Actor {
 
         await this.update({
             system: {
-                actions: [...this.system.actions, ...actions],
                 levelData: {
                     level: {
                         current: this.system.levelData.level.changed
@@ -353,185 +369,211 @@ export default class DhpActor extends foundry.documents.Actor {
     }
 
     getRollData() {
-        return this.system;
+        const rollData = super.getRollData();
+        rollData.system = this.system.getRollData();
+        rollData.prof = this.system.proficiency ?? 1;
+        rollData.cast = this.system.spellcastModifier ?? 1;
+        return rollData;
     }
 
-    formatRollModifier(roll) {
-        const modifier = roll.modifier !== null ? Number.parseInt(roll.modifier) : null;
-        return modifier !== null
-            ? [
-                {
-                    value: modifier,
-                    label: roll.label
-                        ? modifier >= 0
-                            ? `${roll.label} +${modifier}`
-                            : `${roll.label} ${modifier}`
-                        : null,
-                    title: roll.label
-                }
-            ]
-            : [];
+    #canReduceDamage(hpDamage, type) {
+        const availableStress = this.system.resources.stress.max - this.system.resources.stress.value;
+
+        const canUseArmor =
+            this.system.armor &&
+            this.system.armor.system.marks.value < this.system.armorScore &&
+            type.every(t => this.system.armorApplicableDamageTypes[t] === true);
+        const canUseStress = Object.keys(this.system.rules.damageReduction.stressDamageReduction).reduce((acc, x) => {
+            const rule = this.system.rules.damageReduction.stressDamageReduction[x];
+            if (damageKeyToNumber(x) <= hpDamage) return acc || (rule.enabled && availableStress >= rule.cost);
+            return acc;
+        }, false);
+
+        return canUseArmor || canUseStress;
     }
 
-    async damageRoll(title, damage, targets, shiftKey) {
-        let rollString = damage.value;
-        let bonusDamage = damage.bonusDamage?.filter(x => x.initiallySelected) ?? [];
-        if (!shiftKey) {
-            const dialogClosed = new Promise((resolve, _) => {
-                new DamageSelectionDialog(rollString, bonusDamage, resolve).render(true);
-            });
-            const result = await dialogClosed;
-            bonusDamage = result.bonusDamage;
-            rollString = result.rollString;
+    async takeDamage(damages) {
+        if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, damages) === false) return null;
 
-            const automateHope = await game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation.Hope);
-            if (automateHope && result.hopeUsed) {
-                await this.update({
-                    'system.resources.hope.value': this.system.resources.hope.value - result.hopeUsed
-                });
-            }
-        }
-
-        const roll = new Roll(rollString);
-        let rollResult = await roll.evaluate();
-
-        const dice = [];
-        const modifiers = [];
-        for (var i = 0; i < rollResult.terms.length; i++) {
-            const term = rollResult.terms[i];
-            if (term.faces) {
-                dice.push({
-                    type: `d${term.faces}`,
-                    rolls: term.results.map(x => x.result),
-                    total: term.results.reduce((acc, x) => acc + x.result, 0)
-                });
-            } else if (term.operator) {
-            } else if (term.number) {
-                const operator = i === 0 ? '' : rollResult.terms[i - 1].operator;
-                modifiers.push({ value: term.number, operator: operator });
-            }
-        }
-
-        const cls = getDocumentClass('ChatMessage');
-        const systemData = {
-            title: game.i18n.format('DAGGERHEART.UI.Chat.damageRoll.title', { damage: title }),
-            roll: rollString,
-            damage: {
-                total: rollResult.total,
-                type: damage.type
-            },
-            dice: dice,
-            modifiers: modifiers,
-            targets: targets
-        };
-        const msg = new cls({
-            type: 'damageRoll',
-            user: game.user.id,
-            sound: CONFIG.sounds.dice,
-            system: systemData,
-            content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/damage-roll.hbs',
-                systemData
-            ),
-            rolls: [roll]
-        });
-
-        cls.create(msg.toObject());
-    }
-
-    async takeDamage(damage, type) {
         if (this.type === 'companion') {
-            await this.modifyResource([{ value: 1, type: 'stress' }]);
+            await this.modifyResource([{ value: 1, key: 'stress' }]);
             return;
         }
 
-        const hpDamage =
-            damage >= this.system.damageThresholds.severe
-                ? 3
-                : damage >= this.system.damageThresholds.major
-                    ? 2
-                    : damage >= this.system.damageThresholds.minor
-                        ? 1
-                        : 0;
+        const updates = [];
 
-        if (
-            this.type === 'character' &&
-            this.system.armor &&
-            this.system.armor.system.marks.value < this.system.armorScore
-        ) {
-            new Promise((resolve, reject) => {
-                new DamageReductionDialog(resolve, reject, this, hpDamage).render(true);
-            })
-                .then(async ({ modifiedDamage, armorSpent, stressSpent }) => {
-                    const resources = [
-                        { value: modifiedDamage, type: 'hitPoints' },
-                        ...(armorSpent ? [{ value: armorSpent, type: 'armorStack' }] : []),
-                        ...(stressSpent ? [{ value: stressSpent, type: 'stress' }] : [])
-                    ];
-                    await this.modifyResource(resources);
-                })
-                .catch(() => {
-                    const cls = getDocumentClass('ChatMessage');
-                    const msg = new cls({
-                        user: game.user.id,
-                        content: game.i18n.format('DAGGERHEART.UI.Notifications.damageIgnore', {
-                            character: this.name
-                        })
-                    });
-                    cls.create(msg.toObject());
+        Object.entries(damages).forEach(([key, damage]) => {
+            damage.parts.forEach(part => {
+                if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id)
+                    part.total = this.calculateDamage(part.total, part.damageTypes);
+                const update = updates.find(u => u.key === key);
+                if (update) {
+                    update.value += part.total;
+                    update.damageTypes.add(...new Set(part.damageTypes));
+                } else updates.push({ value: part.total, key, damageTypes: new Set(part.damageTypes) });
+            });
+        });
+
+        if (Hooks.call(`${CONFIG.DH.id}.postCalculateDamage`, this, damages) === false) return null;
+
+        if (!updates.length) return;
+
+        const hpDamage = updates.find(u => u.key === CONFIG.DH.GENERAL.healingTypes.hitPoints.id);
+        if (hpDamage) {
+            hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
+            if (
+                this.type === 'character' &&
+                this.system.armor &&
+                this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
+            ) {
+                const armorStackResult = await this.owner.query('armorStack', {
+                    actorId: this.uuid,
+                    damage: hpDamage.value,
+                    type: [...hpDamage.damageTypes]
                 });
-        } else {
-            await this.modifyResource([{ value: hpDamage, type: 'hitPoints' }]);
+                if (armorStackResult) {
+                    const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
+                    updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
+                    updates.push(
+                        ...(armorSpent ? [{ value: armorSpent, key: 'armorStack' }] : []),
+                        ...(stressSpent ? [{ value: stressSpent, key: 'stress' }] : [])
+                    );
+                }
+            }
         }
+
+        updates.forEach(
+            u =>
+                (u.value =
+                    u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value)
+        );
+
+        await this.modifyResource(updates);
+
+        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damages) === false) return null;
+    }
+
+    calculateDamage(baseDamage, type) {
+        if (this.canResist(type, 'immunity')) return 0;
+        if (this.canResist(type, 'resistance')) baseDamage = Math.ceil(baseDamage / 2);
+
+        const flatReduction = this.getDamageTypeReduction(type);
+        const damage = Math.max(baseDamage - (flatReduction ?? 0), 0);
+
+        return damage;
+    }
+
+    canResist(type, resistance) {
+        if (!type) return 0;
+        return type.every(t => this.system.resistance[t]?.[resistance] === true);
+    }
+
+    getDamageTypeReduction(type) {
+        if (!type) return 0;
+        const reduction = Object.entries(this.system.resistance).reduce(
+            (a, [index, value]) => (type.includes(index) ? Math.min(value.reduction, a) : a),
+            Infinity
+        );
+        return reduction === Infinity ? 0 : reduction;
     }
 
     async takeHealing(resources) {
-        resources.forEach(r => (r.value *= -1));
-        await this.modifyResource(resources);
+        const updates = Object.entries(resources).map(([key, value]) => ({
+            key: key,
+            value: !(key === 'fear' || this.system?.resources?.[key]?.isReversed === false)
+                ? value.total * -1
+                : value.total
+        }));
+        await this.modifyResource(updates);
     }
 
     async modifyResource(resources) {
         if (!resources.length) return;
-        let updates = { actor: { target: this, resources: {} }, armor: { target: this.system.armor, resources: {} } };
+
+        if (resources.find(r => r.type === 'stress')) this.convertStressDamageToHP(resources);
+        let updates = {
+            actor: { target: this, resources: {} },
+            armor: { target: this.system.armor, resources: {} },
+            items: {}
+        };
         resources.forEach(r => {
-            switch (r.type) {
-                case 'fear':
-                    ui.resources.updateFear(
-                        game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear) + r.value
-                    );
-                    break;
-                case 'armorStack':
-                    updates.armor.resources['system.marks.value'] = Math.max(
-                        Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
-                        0
-                    );
-                    break;
-                default:
-                    updates.actor.resources[`system.resources.${r.type}.value`] = Math.max(
-                        Math.min(
-                            this.system.resources[r.type].value + r.value,
-                            this.system.resources[r.type].maxTotal ?? this.system.resources[r.type].max
-                        ),
-                        0
-                    );
-                    break;
+            if (r.keyIsID) {
+                updates.items[r.key] = {
+                    target: r.target,
+                    resources: {
+                        'system.resource.value': r.target.system.resource.value + r.value
+                    }
+                };
+            } else {
+                switch (r.key) {
+                    case 'fear':
+                        ui.resources.updateFear(
+                            game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear) + r.value
+                        );
+                        break;
+                    case 'armorStack':
+                        updates.armor.resources['system.marks.value'] = Math.max(
+                            Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
+                            0
+                        );
+                        break;
+                    default:
+                        updates.actor.resources[`system.resources.${r.key}.value`] = Math.max(
+                            Math.min(this.system.resources[r.key].value + r.value, this.system.resources[r.key].max),
+                            0
+                        );
+                        break;
+                }
             }
         });
-        Object.values(updates).forEach(async u => {
-            if (Object.keys(u.resources).length > 0) {
-                if (game.user.isGM) {
-                    await u.target.update(u.resources);
-                } else {
-                    await game.socket.emit(`system.${CONFIG.DH.id}`, {
-                        action: socketEvent.GMUpdate,
-                        data: {
-                            action: GMUpdateEvent.UpdateDocument,
-                            uuid: u.target.uuid,
-                            update: u.resources
-                        }
-                    });
+        Object.keys(updates).forEach(async key => {
+            const u = updates[key];
+            if (key === 'items') {
+                Object.values(u).forEach(async item => {
+                    await emitAsGM(
+                        GMUpdateEvent.UpdateDocument,
+                        item.target.update.bind(item.target),
+                        item.resources,
+                        item.target.uuid
+                    );
+                });
+            } else {
+                if (Object.keys(u.resources).length > 0) {
+                    await emitAsGM(
+                        GMUpdateEvent.UpdateDocument,
+                        u.target.update.bind(u.target),
+                        u.resources,
+                        u.target.uuid
+                    );
                 }
             }
         });
     }
+
+    convertDamageToThreshold(damage) {
+        return damage >= this.system.damageThresholds.severe
+            ? 3
+            : damage >= this.system.damageThresholds.major
+              ? 2
+              : damage >= this.system.damageThresholds.minor
+                ? 1
+                : 0;
+    }
+
+    convertStressDamageToHP(resources) {
+        const stressDamage = resources.find(r => r.type === 'stress'),
+            newValue = this.system.resources.stress.value + stressDamage.value;
+        if (newValue <= this.system.resources.stress.max) return;
+        const hpDamage = resources.find(r => r.type === 'hitPoints');
+        if (hpDamage) hpDamage.value++;
+        else
+            resources.push({
+                type: 'hitPoints',
+                value: 1
+            });
+    }
 }
+
+export const registerDHActorHooks = () => {
+    CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
+};

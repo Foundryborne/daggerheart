@@ -1,0 +1,484 @@
+@import '../../utils/colors.less';
+
+.appTheme({}, {
+    &.daggerheart.dh-style.dialog.character-creation {
+        .setup-tabs button {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
+        }
+
+        nav a .descriptor {
+            background-image: url(../assets/parchments/dh-parchment-dark.png);
+        }
+
+        .main-selections-container {
+            .ancestry-mixed-controller label {
+                background-image: url(../assets/parchments/dh-parchment-dark.png);
+            }
+
+            .selections-container
+            .ancestry-preview-info-container
+            .ancestry-preview-features
+            .ancestry-preview-feature {
+                background-image: url(../assets/parchments/dh-parchment-light.png);
+            }
+
+            .traits-container {
+                .suggested-traits-container .suggested-trait-container {
+                    background-image: url('../assets/parchments/dh-parchment-dark.png');
+                }
+
+                .traits-inner-container .trait-container {
+                    background: url('../assets/svg/trait-shield-light.svg') no-repeat;
+                    
+                    div {
+                        filter: none;
+                        text-shadow: none;
+                    }
+                }
+            }
+        }  
+    }
+});
+
+.daggerheart.dh-style.dialog.character-creation {
+    .setup-tabs {
+        display: flex;
+        justify-content: center;
+
+        button {
+            background-image: url(../assets/parchments/dh-parchment-light.png);
+            border-radius: 6px;
+            border-color: light-dark(@dark-blue, @golden);
+            color: light-dark(@beige, @dark);
+        }
+    }
+
+    .main-selections-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .ancestry-mixed-controller {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 4px;
+            margin-bottom: 8px;
+
+            &.active {
+                label {
+                    opacity: 1;
+                }
+            }
+
+            label {
+                position: absolute;
+                font-size: 18px;
+                font-weight: bold;
+                padding: 0 2px;
+                background-image: url(../assets/parchments/dh-parchment-light.png);
+                border: 1px solid light-dark(@dark-blue, @golden);
+                border-radius: 6px;
+                color: light-dark(@beige, @dark);
+                opacity: 0.4;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+
+            input {
+                width: 50%;
+            }
+        }
+
+        .ancestry-name {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 8px;
+
+            input {
+                width: 50%;
+                text-align: center;
+            }
+        }
+
+        .selections-container {
+            width: 140px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            .card-preview-container {
+                border-color: light-dark(@dark-blue, @golden);
+            }
+
+            .ancestry-preview-info-container {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                width: 100%;
+
+                .ancestry-preview-label {
+                    text-align: center;
+                    font-weight: bold;
+                }
+
+                .ancestry-preview-features {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: end;
+                    gap: 2px;
+                    width: 100%;
+                    padding: 0 2px 2px 2px;
+
+                    .ancestry-preview-feature {
+                        flex: 1;
+                        font-size: 14px;
+                        white-space: wrap;
+                        padding: 0 2px;
+                        border: 1px solid light-dark(@golden, @dark-blue);
+                        border-radius: 6px;
+                        background-image: url(../assets/parchments/dh-parchment-dark.png);
+                        color: light-dark(@dark, @beige);
+                        height: min-content;
+
+                        &.inactive {
+                            opacity: 0.2;
+                        }
+                    }
+                }
+            }
+        }
+
+        .selections-outer-container {
+            display: flex;
+            justify-content: space-evenly;
+            height: 210px;
+        }
+
+        .section-container {
+            border-radius: 8px;
+            border-color: light-dark(@dark-blue, @golden);
+
+            &.inactive {
+                opacity: 0.2;
+            }
+
+            legend {
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 28px;
+                font-weight: bold;
+                padding: 0 8px;
+            }
+
+            .section-inner-container {
+                position: relative;
+                border-radius: 8px;
+                border-color: light-dark(@dark-blue, @golden);
+                display: flex;
+                justify-content: center;
+
+                legend {
+                    font-size: 20px;
+                    white-space: nowrap;
+                }
+
+                .action-button {
+                    position: absolute;
+                    bottom: -8px;
+                    height: 16px;
+                    width: 110px;
+                    min-height: unset;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    color: light-dark(@beige, @beige);
+                    background-color: light-dark(var(--color-warm-3), var(--color-warm-3));
+
+                    &:hover {
+                        background-color: light-dark(var(--color-warm-2), var(--color-warm-2));
+                        filter: drop-shadow(0 0 3px light-dark(var(--color-warm-2), var(--color-warm-2)));
+                    }
+                }
+            }
+        }
+
+        .traits-container {
+            text-align: center;
+            display: flex;
+            gap: 16px;
+
+            .suggested-traits-container {
+                display: flex;
+                flex-wrap: wrap;
+                width: 176px;
+                gap: 4px;
+                margin-bottom: 8px;
+
+                .suggested-trait-container {
+                    width: 56px;
+                    white-space: nowrap;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    color: light-dark(@beige, @dark);
+                    background-image: url('../assets/parchments/dh-parchment-light.png');
+                }
+            }
+
+            .traits-inner-container {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                gap: 8px;
+
+                .trait-container {
+                    width: 60px;
+                    height: 60px;
+                    background: url(../assets/svg/trait-shield.svg) no-repeat;
+
+                    div {
+                        filter: drop-shadow(0 0 3px black);
+                        text-shadow: 0 0 3px black;
+                    }
+
+                    select {
+                        text-align: center;
+                        width: 32px;
+                        height: 24px;
+                        position: relative;
+                        top: 2px;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+
+        .experiences-inner-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .experience-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                .experience-description {
+                    border-color: light-dark(@dark-blue, @golden);
+                    padding-right: 24px;
+                }
+
+                .experience-value {
+                    position: absolute;
+                    right: 0;
+                    width: 22px;
+                    border-left: 1px solid light-dark(@dark-blue, @golden);
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .creation-action-footer {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+
+            .footer-section {
+                display: flex;
+                align-items: center;
+                gap: 32px;
+
+                nav {
+                    flex: 1;
+                    gap: 8px;
+                    border: 0;
+
+                    a {
+                        flex: 1;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        position: relative;
+                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border-radius: 6px;
+
+                        .nav-section-text {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .finish-marker {
+                            position: absolute;
+                            align-self: center;
+                            top: -10px;
+                            padding: 4px;
+                            border: 1px solid;
+                            border-radius: 50%;
+                            height: 20px;
+                            width: 20px;
+                            font-size: 14px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: var(--color-cool-4);
+                            content: '';
+
+                            &.finished {
+                                background-color: var(--color-warm-2);
+                            }
+                        }
+
+                        .descriptor {
+                            position: absolute;
+                            bottom: -8px;
+                            font-size: 12px;
+                            border-radius: 8px;
+                            width: 56px;
+                            text-align: center;
+                            line-height: 1;
+                            border: 1px solid light-dark(@dark-blue, @golden);
+                            border-radius: 6px;
+                            color: light-dark(@beige, @dark);
+                            background-image: url(../assets/parchments/dh-parchment-light.png);
+                        }
+                    }
+                }
+
+                button {
+                    flex: 1;
+                    height: 100%;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .main-equipment-selection {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 16px;
+
+            &.triple {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .equipment-selection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid light-dark(@dark-blue, @golden);
+            border-radius: 8px;
+
+            legend {
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 28px;
+                font-weight: bold;
+                padding: 0 8px;
+                white-space: nowrap;
+            }
+
+            .equipment-subsection {
+                display: flex;
+                align-items: start;
+                gap: 32px;
+            }
+
+            .equipment-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .simple-equipment-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                gap: 8px;
+                height: 100%;
+
+                .simple-equipment {
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 8px;
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+
+                    &.selectable {
+                        cursor: pointer;
+                    }
+
+                    &.inactive {
+                        opacity: 0.4;
+                    }
+
+                    label {
+                        position: absolute;
+                        top: -8px;
+                        font-size: 12px;
+                        white-space: nowrap;
+                        border: 1px solid light-dark(@dark-blue, @golden);
+                        border-radius: 6px;
+                        color: light-dark(@beige, @dark);
+                        background-image: url('../assets/parchments/dh-parchment-light.png');
+                        padding: 0 2px;
+                    }
+
+                    img {
+                        width: 60px;
+                        height: 60px;
+                        border-radius: 8px;
+                    }
+                }
+            }
+
+            .suggestion-container {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                height: min-content;
+                border: 2px solid light-dark(@dark-blue, @golden);
+                border-radius: 8px;
+
+                legend {
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-size: 12px;
+                }
+
+                .suggestion-inner-container {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 6px;
+                    cursor: grab;
+
+                    &.taken {
+                        opacity: 0.4;
+                    }
+
+                    label {
+                        position: absolute;
+                        top: -2px;
+                        font-size: 12px;
+                    }
+
+                    img {
+                        width: 120px;
+                    }
+                }
+            }
+        }
+    }
+}

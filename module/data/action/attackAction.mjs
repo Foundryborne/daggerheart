@@ -5,7 +5,7 @@ export default class DHAttackAction extends DHDamageAction {
     static extraSchemas = [...super.extraSchemas, ...['roll', 'save']];
 
     static getRollType(parent) {
-        return parent.type === 'weapon' ? 'weapon' : 'spellcast';
+        return parent.type === 'weapon' ? 'attack' : 'spellcast';
     }
 
     get chatTemplate() {
@@ -14,14 +14,14 @@ export default class DHAttackAction extends DHDamageAction {
 
     prepareData() {
         super.prepareData();
-        if(!!this.item?.system?.attack) {
+        if (!!this.item?.system?.attack) {
             if (this.damage.includeBase) {
                 const baseDamage = this.getParentDamage();
                 this.damage.parts.unshift(new DHDamageData(baseDamage));
             }
-            if(this.roll.useDefault) {
+            if (this.roll.useDefault) {
                 this.roll.trait = this.item.system.attack.roll.trait;
-                this.roll.type = 'weapon';
+                this.roll.type = 'attack';
             }
         }
     }
@@ -37,4 +37,17 @@ export default class DHAttackAction extends DHDamageAction {
             base: true
         };
     }
+
+    async use(event, ...args) {
+        const result = await super.use(event, args);
+
+        const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
+        await updateCountdowns(CONFIG.DH.GENERAL.countdownTypes.characterAttack.id);
+
+        return result;
+    }
+
+    // get modifiers() {
+    //     return [];
+    // }
 }

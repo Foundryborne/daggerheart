@@ -1,6 +1,6 @@
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
-    constructor() {
-        super();
+    constructor(options) {
+        super(options);
 
         this.targetTemplate = {
             activeLayer: undefined,
@@ -83,15 +83,15 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 actor.system.attack?._id === actionId
                     ? actor.system.attack
                     : item.system.attack?._id === actionId
-                        ? item.system.attack
-                        : item?.system?.actions?.find(a => a._id === actionId);
+                      ? item.system.attack
+                      : item?.system?.actions?.find(a => a._id === actionId);
         return action;
     }
 
     onRollDamage = async (event, message) => {
         event.stopPropagation();
         const actor = await this.getActor(message.system.source.actor);
-        if (!actor || !game.user.isGM) return true;
+        if (game.user.character?.id !== actor.id && !game.user.isGM) return true;
         if (message.system.source.item && message.system.source.action) {
             const action = this.getAction(actor, message.system.source.item, message.system.source.action);
             if (!action || !action?.rollDamage) return;
@@ -190,7 +190,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
             return;
         }
-
         game.canvas.pan(token);
     };
 
@@ -212,13 +211,25 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
 
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-        for (let target of targets) {
-            let damage = message.system.roll.total;
-            if (message.system.onSave && message.system.targets.find(t => t.id === target.id)?.saved?.success === true)
-                damage = Math.ceil(damage * (CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1));
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
-            await target.actor.takeDamage(damage, message.system.roll.type);
+        for (let target of targets) {
+            let damages = foundry.utils.deepClone(message.system.damage?.roll ?? message.system.roll);
+            if (
+                message.system.onSave &&
+                message.system.targets.find(t => t.id === target.id)?.saved?.success === true
+            ) {
+                const mod = CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1;
+                Object.entries(damages).forEach(([k, v]) => {
+                    v.total = 0;
+                    v.parts.forEach(part => {
+                        part.total = Math.ceil(part.total * mod);
+                        v.total += part.total;
+                    });
+                });
+            }
+
+            target.actor.takeDamage(damages);
         }
     };
 
@@ -227,10 +238,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const targets = Array.from(game.user.targets);
 
         if (targets.length === 0)
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         for (var target of targets) {
-            await target.actor.takeHealing([{ value: message.system.roll.total, type: message.system.roll.type }]);
+            target.actor.takeHealing(message.system.roll);
         }
     };
 
@@ -289,53 +300,54 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         await actor.useAction(action);
     };
 
-    actionUseButton = async (_, message) => {
+    actionUseButton = async (event, message) => {
+        const { moveIndex, actionIndex } = event.currentTarget.dataset;
         const parent = await foundry.utils.fromUuid(message.system.actor);
-        const actionType = Object.values(message.system.moves)[0].actions[0];
-        const cls = CONFIG.DH.ACTIONS.actionTypes[actionType.type];
+        const actionType = message.system.moves[moveIndex].actions[actionIndex];
+        const cls = game.system.api.models.actions.actionsTypes[actionType.type];
         const action = new cls(
             { ...actionType, _id: foundry.utils.randomID(), name: game.i18n.localize(actionType.name) },
-            { parent: parent }
+            { parent: parent.system }
         );
 
-        action.use();
+        action.use(event);
     };
 
     //Reroll Functionality
-    rerollEvent = async(event,message)=> {
-        let DieTerm=foundry.dice.terms.Die;
+    rerollEvent = async (event, message) => {
+        let DieTerm = foundry.dice.terms.Die;
         let dicetype = event.target.value;
-        let originalRoll_parsed=message.rolls.map(roll => JSON.parse(roll))[0];
-        console.log("Parsed Map:",originalRoll_parsed);
-        let originalRoll=Roll.fromData(originalRoll_parsed);
+        let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
+        console.log('Parsed Map:', originalRoll_parsed);
+        let originalRoll = Roll.fromData(originalRoll_parsed);
         let diceIndex;
-        console.log("Dice to reroll is:",dicetype,", and the message id is:",message._id,originalRoll_parsed);
-        console.log("Original Roll Terms:",originalRoll.terms);
-        switch(dicetype){
-            case "hope": {
-                diceIndex=0; //Hope Die
+        console.log('Dice to reroll is:', dicetype, ', and the message id is:', message._id, originalRoll_parsed);
+        console.log('Original Roll Terms:', originalRoll.terms);
+        switch (dicetype) {
+            case 'hope': {
+                diceIndex = 0; //Hope Die
                 break;
-            };
-            case "fear" :{
-                diceIndex=2; //Fear Die
+            }
+            case 'fear': {
+                diceIndex = 2; //Fear Die
                 break;
-            };
-            default: 
-                ui.notifications.warn("Invalid Dice type selected.");
+            }
+            default:
+                ui.notifications.warn('Invalid Dice type selected.');
                 break;
         }
-        let rollClone=originalRoll.clone();
-        let rerolledTerm=originalRoll.terms[diceIndex];
-        console.log("originalRoll:",originalRoll,"rerolledTerm",rerolledTerm);
+        let rollClone = originalRoll.clone();
+        let rerolledTerm = originalRoll.terms[diceIndex];
+        console.log('originalRoll:', originalRoll, 'rerolledTerm', rerolledTerm);
         if (!(rerolledTerm instanceof DieTerm)) {
-            ui.notifications.error("Selected term is not a die.");
+            ui.notifications.error('Selected term is not a die.');
             return;
         }
-        await rollClone.reroll({allowStrings:true})[diceIndex];
+        await rollClone.reroll({ allowStrings: true })[diceIndex];
         console.log(rollClone);
-        await rollClone.evaluate({allowStrings:true});
+        await rollClone.evaluate({ allowStrings: true });
         console.log(rollClone.result);
- /*       
+        /*       
         const confirm = await foundry.applications.api.DialogV2.confirm({
             window: { title: 'Confirm Reroll' },
             content: `<p>You have rerolled your <strong>${dicetype}</strong> die to <strong>${rollClone.result}</strong>.</p><p>Apply this new roll?</p>`
@@ -343,5 +355,5 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         if (!confirm) return;
         rollClone.toMessage({flavor: 'Selective reroll applied for ${dicetype}.'});
         console.log("Updated Roll",rollClone);*/
-    }
+    };
 }

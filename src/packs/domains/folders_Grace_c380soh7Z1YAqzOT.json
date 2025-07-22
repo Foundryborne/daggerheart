@@ -3,7 +3,7 @@
   "folder": null,
   "name": "Grace",
   "color": "#7a3961",
-  "sorting": "a",
+  "sorting": "m",
   "_id": "c380soh7Z1YAqzOT",
   "description": "",
   "sort": 500000,
@@ -12,12 +12,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1748717115983,
-    "modifiedTime": 1748717766758,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1752681433948,
+    "lastModifiedBy": "YNJ4HgHtFrTI89mx"
   },
   "_key": "!folders!c380soh7Z1YAqzOT"
 }

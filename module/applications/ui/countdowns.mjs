@@ -1,4 +1,3 @@
-import { countdownTypes } from '../../config/generalConfig.mjs';
 import { GMUpdateEvent, RefreshType, socketEvent } from '../../systemRegistration/socket.mjs';
 import constructHTMLButton from '../../helpers/utils.mjs';
 import OwnershipSelection from '../dialogs/ownershipSelection.mjs';
@@ -328,43 +327,29 @@ export class EncounterCountdowns extends Countdowns {
     };
 }
 
-export const registerCountdownApplicationHooks = () => {
-    const updateCountdowns = async shouldProgress => {
-        if (game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).countdowns) {
-            const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
-            for (let countdownCategoryKey in countdownSetting) {
-                const countdownCategory = countdownSetting[countdownCategoryKey];
-                for (let countdownKey in countdownCategory.countdowns) {
-                    const countdown = countdownCategory.countdowns[countdownKey];
-
-                    if (shouldProgress(countdown)) {
-                        await countdownSetting.updateSource({
-                            [`${countdownCategoryKey}.countdowns.${countdownKey}.progress.current`]:
-                                countdown.progress.current - 1
-                        });
-                        await game.settings.set(
-                            CONFIG.DH.id,
-                            CONFIG.DH.SETTINGS.gameSettings.Countdowns,
-                            countdownSetting
-                        );
-                        foundry.applications.instances.get(`${countdownCategoryKey}-countdowns`)?.render();
-                    }
+export async function updateCountdowns(progressType) {
+    const countdownSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns);
+    const update = Object.keys(countdownSetting).reduce((update, typeKey) => {
+        return foundry.utils.mergeObject(
+            update,
+            Object.keys(countdownSetting[typeKey].countdowns).reduce((acc, countdownKey) => {
+                const countdown = countdownSetting[typeKey].countdowns[countdownKey];
+                if (countdown.progress.current > 0 && countdown.progress.type.value === progressType) {
+                    acc[`${typeKey}.countdowns.${countdownKey}.progress.current`] = countdown.progress.current - 1;
                 }
-            }
-        }
-    };
 
-    Hooks.on(CONFIG.DH.HOOKS.characterAttack, async () => {
-        updateCountdowns(countdown => {
-            return (
-                countdown.progress.type.value === countdownTypes.characterAttack.id && countdown.progress.current > 0
-            );
-        });
-    });
+                return acc;
+            }, {})
+        );
+    }, {});
 
-    Hooks.on(CONFIG.DH.HOOKS.spotlight, async () => {
-        updateCountdowns(countdown => {
-            return countdown.progress.type.value === countdownTypes.spotlight.id && countdown.progress.current > 0;
-        });
+    await countdownSetting.updateSource(update);
+    await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Countdowns, countdownSetting);
+
+    const data = { refreshType: RefreshType.Countdown };
+    await game.socket.emit(`system.${CONFIG.DH.id}`, {
+        action: socketEvent.Refresh,
+        data
     });
-};
+    Hooks.callAll(socketEvent.Refresh, data);
+}

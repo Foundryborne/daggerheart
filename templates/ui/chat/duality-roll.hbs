@@ -16,6 +16,11 @@
                 {{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}
             </div>
         {{/if}}
+        {{#if roll.rally.dice}}
+            <div class="duality-modifier">
+                {{localize "DAGGERHEART.CLASS.Feature.rallyDice"}} {{roll.rally.dice}}
+            </div>
+        {{/if}}
     </div>
     <div class="dice-result"> 
         <div class="dice-formula" data-action="expandRoll">{{roll.formula}}</div>
@@ -36,10 +41,10 @@
                                 <li class="roll die {{roll.hope.dice}}" title="{{localize "DAGGERHEART.GENERAL.hope"}}">
                                     <div class="dice-container">
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.hope"}}</div>
-                                        <div class="dice-inner-container hope" title="{{localize "DAGGERHEART.GENERAL.hope"}}">
+                                        <div class="dice-inner-container hope" title="{{localize "DAGGERHEART.GENERAL.hope"}}">s
                                             <button type="checkbox" class="reroll-button" id="reroll-dice" value="hope">
                                                 <div class="dice-wrapper">
-                                                    <img class="dice" src="../icons/svg/d12-grey.svg"/>
+                                                    <img class="dice" src="../icons/svg/{{roll.hope.dice}}-grey.svg"/>
                                                 </div>
                                                 <div class="dice-value">{{roll.hope.value}}</div>
                                             </button>
@@ -51,7 +56,7 @@
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.fear"}}</div>
                                         <div class="dice-inner-container fear" title="{{localize "DAGGERHEART.GENERAL.fear"}}">
                                             <div class="dice-wrapper">
-                                                <img class="dice" src="../icons/svg/d12-grey.svg"/>
+                                                <img class="dice" src="../icons/svg/{{roll.fear.dice}}-grey.svg"/>
                                             </div>
                                             <div class="dice-value">{{roll.fear.value}}</div>
                                         </div>
@@ -74,9 +79,33 @@
                                         <div class="dice-container">
                                             <div class="dice-inner-container {{#if (eq roll.advantage.type 1)}}advantage{{else}}disadvantage{{/if}}">
                                                 <div class="dice-wrapper">
-                                                    <img class="dice" src="../icons/svg/d6-grey.svg"/>
+                                                    <img class="dice" src="../icons/svg/{{roll.advantage.dice}}-grey.svg"/>
                                                 </div>
                                                 <div class="dice-value">{{roll.advantage.value}}</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>  
+                        </div>
+                    {{/if}}
+                    {{#if roll.rally.dice}}
+                        <div class="dice">
+                            <header class="part-header flexrow">
+                                <span class="part-formula">
+                                    <span>1{{roll.rally.dice}}</span>
+                                </span>
+                                <span class="part-total">{{roll.rally.value}}</span>
+                            </header>
+                            <div class="flexrow">
+                                <ol class="dice-rolls">
+                                    <li class="roll die {{roll.rally.dice}}">
+                                        <div class="dice-container">
+                                            <div class="dice-inner-container">
+                                                <div class="dice-wrapper">
+                                                    <img class="dice" src="../icons/svg/{{roll.rally.dice}}-grey.svg"/>
+                                                </div>
+                                                <div class="dice-value">{{roll.rally.value}}</div>
                                             </div>
                                         </div>
                                     </li>
@@ -113,7 +142,17 @@
             </div>
         </div>
         <div class="dice-total duality {{#if (eq roll.result.duality 1)}}hope{{else}}{{#if (eq roll.result.duality -1)}}fear{{else}}critical{{/if}}{{/if}}">
-            <div class="dice-total-label">{{roll.result.label}}</div>
+            <div class="dice-total-label">
+                {{#unless (eq _source.roll.success undefined)}}
+                    {{#if _source.roll.success}}
+                        {{localize "DAGGERHEART.GENERAL.success"}} {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}
+                    {{else}}
+                        {{localize "DAGGERHEART.GENERAL.failure"}} {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}
+                    {{/if}}
+                {{else}}
+                    {{roll.result.label}}
+                {{/unless}}
+            </div>
             <div class="dice-total-value">
                 {{roll.total}}
             </div>
@@ -121,7 +160,7 @@
     </div>
 </div>
 <fieldset class="dice-roll daggerheart chat roll expanded{{#unless damage.roll}} hidden{{/unless}}" data-action="expandRoll">
-    <legend class="dice-flavor">Damage</legend>
+    <legend class="dice-flavor">{{localize "DAGGERHEART.GENERAL.damage"}}</legend>
     <div class="dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">
@@ -136,7 +175,7 @@
         <div class="dice-actions{{#unless (or hasDamage hasHealing)}} duality-alone{{/unless}}">
             {{#if hasDamage}}
                 {{#if damage.roll}}
-                    <button class="duality-action damage-button" data-target-hit="true" data-value="{{roll.total}}"><span>Deal Damage</span></button>
+                    <button class="duality-action damage-button" data-target-hit="true" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.damageRoll.dealDamage"}}</span></button>
                 {{else}}
                     <button class="duality-action duality-action-damage" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.rollDamage"}}</span></button>
                 {{/if}}
@@ -149,7 +188,17 @@
                     <button class="duality-action{{#if (or hasDamage hasHealing)}} duality-action-effect{{/if}}" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</span></button>
             {{/if}}
             <div class="duality-result">
-                <div>{{roll.total}} {{#if (eq roll.result.duality 1)}}With Hope{{else}}{{#if (eq roll.result.duality -1)}}With Fear{{else}}Critical Success{{/if}}{{/if}}</div>
+                <div>{{roll.total}} 
+                    {{#if (eq roll.result.duality 1)}}
+                        {{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}
+                    {{else}}
+                        {{#if (eq roll.result.duality -1)}}
+                            {{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}
+                        {{else}}
+                            {{localize "DAGGERHEART.GENERAL.criticalSuccess"}}
+                        {{/if}}
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>

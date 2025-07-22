@@ -1,0 +1,19 @@
+<section
+    class='tab {{setupTabs.experience.cssClass}} {{setupTabs.experience.id}}'
+    data-tab='{{setupTabs.experience.id}}'
+    data-group='{{setupTabs.experience.group}}'
+>
+    <div class="main-selections-container">
+        <fieldset class="section-container">
+            <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.initialExperiences"}} {{experience.nrSelected}}/{{experience.nrTotal}}</legend>
+            <div class="experiences-inner-container">
+                {{#each experience.values as |experience id|}}
+                    <div class="experience-container">
+                        <input class="experience-description" type="text" name="{{concat "experiences." id ".name" }}" value="{{experience.name}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.newExperience"}}" />
+                        <div class="experience-value">{{numberFormat this.value sign=true}}</div>
+                    </div>
+                {{/each}}
+            </div>
+        </fieldset>
+    </div>
+</section>

@@ -1,30 +1,18 @@
-<li class='feature-item' data-feature-id='{{feature.id}}'>
+<li class='feature-item' data-item-uuid='{{feature.uuid}}'>
     <div class='feature-line'>
         <img class='image' src='{{feature.img}}' />
         <h4>
             {{feature.name}}
         </h4>
         {{#unless hideContrals}}
-            <div class='controls'>
-                <a
-                    class='effect-control'
-                    data-action='editFeature'
-                    data-feature='{{feature._id}}'
-                    data-type='{{type}}'
-                    data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
-                >
-                    <i class="fa-solid fa-globe"></i>
-                </a>
-                <a
-                    class='effect-control'
-                    data-action='deleteFeature'
-                    data-feature='{{feature._id}}'
-                    data-type='{{type}}'
-                    data-tooltip='{{localize "CONTROLS.CommonDelete"}}'
-                >
-                    <i class='fas fa-trash'></i>
-                </a>
-            </div>
+        <div class='controls'>
+            <a class='effect-control' data-action='editDoc' data-tooltip="DAGGERHEART.UI.Tooltip.openItemWorld">
+                <i class="fa-solid fa-globe"></i>
+            </a>
+            <a class='effect-control' data-action='deleteFeature' data-tooltip="CONTROLS.CommonDelete">
+                <i class='fas fa-trash'></i>
+            </a>
+        </div>
         {{/unless}}
     </div>
 </li>

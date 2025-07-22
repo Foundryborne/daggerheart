@@ -70,6 +70,18 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
      * @type {ApplicationClickAction}
      */
     static async #removeExperience(_, target) {
+        const experience = this.actor.system.experiences[target.dataset.experience];
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                    type: game.i18n.localize(`DAGGERHEART.GENERAL.Experience.single`),
+                    name: experience.name
+                })
+            },
+            content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: experience.name })
+        });
+        if (!confirmed) return;
+
         await this.actor.update({ [`system.experiences.-=${target.dataset.experience}`]: null });
     }
 

@@ -4,7 +4,6 @@ export * as domainConfig from './domainConfig.mjs';
 export * as effectConfig from './effectConfig.mjs';
 export * as flagsConfig from './flagsConfig.mjs';
 export * as generalConfig from './generalConfig.mjs';
-export * as hooksConfig from './hooksConfig.mjs';
 export * as itemConfig from './itemConfig.mjs';
 export * as settingsConfig from './settingsConfig.mjs';
 export * as systemConfig from './system.mjs';

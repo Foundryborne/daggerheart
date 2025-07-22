@@ -1,0 +1,43 @@
+.theme-light .autocomplete {
+    background-image: url('../assets/parchments/dh-parchment-light.png');
+    color: black;
+}
+
+.autocomplete {
+    padding: 2px;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: light-dark(@dark, @beige);
+    border-radius: 6px;
+    background-image: url('../assets/parchments/dh-parchment-dark.png');
+    max-height: 400px !important;
+    width: fit-content !important;
+    overflow-y: auto;
+    font-family: @font-body;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+
+    .group {
+        font-weight: bold;
+        font-size: 14px;
+        padding-left: 8px;
+    }
+
+    li[role='option'] {
+        font-size: 14px;
+        padding-left: 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: light-dark(@dark, @beige);
+            color: light-dark(@beige, var(--color-dark-3));
+        }
+
+        > div {
+            white-space: nowrap;
+        }
+    }
+}

@@ -1,9 +1,13 @@
-<section
-    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
-    data-tab='{{tabs.features.id}}'
-    data-group='{{tabs.features.group}}'
->    
+<section class='tab {{tabs.features.cssClass}} {{tabs.features.id}}' data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'>
     <div class="feature-section">
-        {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=(localize tabs.features.label) type='feature' values=document.system.features hideControls=true}}
+        {{> 'daggerheart.inventory-items'
+        title=tabs.features.label
+        type='feature'
+        collection=document.system.features
+        hideControls=true
+        canCreate=true
+        showActions=true
+        }}
     </div>
 </section>

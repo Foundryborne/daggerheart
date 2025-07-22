@@ -1,4 +1,4 @@
-import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField } from './actionDice.mjs';
+import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField, DHResourceData } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 
@@ -35,12 +35,12 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             }),
             cost: new fields.ArrayField(
                 new fields.SchemaField({
-                    type: new fields.StringField({
-                        choices: CONFIG.DH.GENERAL.abilityCosts,
+                    key: new fields.StringField({
                         nullable: false,
                         required: true,
                         initial: 'hope'
                     }),
+                    keyIsID: new fields.BooleanField(),
                     value: new fields.NumberField({ nullable: true, initial: 1 }),
                     scalable: new fields.BooleanField({ initial: false }),
                     step: new fields.NumberField({ nullable: true, initial: null })
@@ -96,21 +96,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
                         onSave: new fields.BooleanField({ initial: false })
                     })
                 ),
-                healing: new fields.SchemaField({
-                    type: new fields.StringField({
-                        choices: CONFIG.DH.GENERAL.healingTypes,
-                        required: true,
-                        blank: false,
-                        initial: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
-                        label: 'Healing'
-                    }),
-                    resultBased: new fields.BooleanField({
-                        initial: false,
-                        label: 'DAGGERHEART.ACTIONS.Settings.resultBased.label'
-                    }),
-                    value: new fields.EmbeddedDataField(DHActionDiceData),
-                    valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
-                }),
+                healing: new fields.EmbeddedDataField(DHResourceData),
                 beastform: new fields.SchemaField({
                     tierAccess: new fields.SchemaField({
                         exact: new fields.NumberField({ integer: true, nullable: true, initial: null })
@@ -150,18 +136,18 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     static getRollType(parent) {
-        return 'ability';
+        return 'trait';
     }
 
     static getSourceConfig(parent) {
         const updateSource = {};
         updateSource.img ??= parent?.img ?? parent?.system?.img;
-        if (parent?.type === 'weapon') {
+        if (parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
             updateSource['damage'] = { includeBase: true };
             updateSource['range'] = parent?.system?.attack?.range;
             updateSource['roll'] = {
                 useDefault: true
-            }
+            };
         } else {
             if (parent?.system?.trait) {
                 updateSource['roll'] = {
@@ -177,18 +163,12 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     getRollData(data = {}) {
+        if (!this.actor) return null;
         const actorData = this.actor.getRollData(false);
 
-        // Remove when included directly in Actor getRollData
-        actorData.prof = actorData.proficiency?.value ?? 1;
-        actorData.cast = actorData.spellcast?.value ?? 1;
+        // Add Roll results to RollDatas
         actorData.result = data.roll?.total ?? 1;
-        /* actorData.scale = data.costs?.length
-                ? data.costs.reduce((a, c) => {
-                      a[c.type] = c.value;
-                      return a;
-                  }, {})
-                : 1; */
+
         actorData.scale = data.costs?.length // Right now only return the first scalable cost.
             ? (data.costs.find(c => c.scalable)?.total ?? 1)
             : 1;
@@ -198,6 +178,8 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     async use(event, ...args) {
+        if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
+
         const isFastForward = event.shiftKey || (!this.hasRoll && !this.hasSave);
         // Prepare base Config
         const initConfig = this.initActionConfig(event);
@@ -211,7 +193,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
 
         // Prepare Costs
         const costsConfig = this.prepareCost();
-        if (isFastForward && !this.hasCost(costsConfig))
+        if (isFastForward && !(await this.hasCost(costsConfig)))
             return ui.notifications.warn("You don't have the resources to use that action.");
 
         // Prepare Uses
@@ -234,7 +216,6 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
         // Display configuration window if necessary
-        // if (config.dialog?.configure && this.requireConfigurationDialog(config)) {
         if (this.requireConfigurationDialog(config)) {
             config = await D20RollDialog.configure(null, config);
             if (!config) return;
@@ -275,7 +256,8 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             hasDamage: !!this.damage?.parts?.length,
             hasHealing: !!this.healing,
             hasEffect: !!this.effects?.length,
-            hasSave: this.hasSave
+            hasSave: this.hasSave,
+            selectedRollMode: game.settings.get('core', 'rollMode')
         };
     }
 
@@ -285,7 +267,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
 
     prepareCost() {
         const costs = this.cost?.length ? foundry.utils.deepClone(this.cost) : [];
-        return costs;
+        return this.calcCosts(costs);
     }
 
     prepareUse() {
@@ -295,7 +277,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     prepareTarget() {
-        if(!this.target?.type) return [];
+        if (!this.target?.type) return [];
         let targets;
         if (this.target?.type === CONFIG.DH.ACTIONS.targetTypes.self.id)
             targets = this.constructor.formatTarget(this.actor.token ?? this.actor.prototypeToken);
@@ -315,7 +297,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
 
     prepareRoll() {
         const roll = {
-            modifiers: [],
+            modifiers: this.modifiers,
             trait: this.roll?.trait,
             label: 'Attack',
             type: this.actionType,
@@ -334,10 +316,26 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     }
 
     async consume(config) {
+        const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
+        for (var cost of config.costs) {
+            if (cost.keyIsID) {
+                usefulResources[cost.key] = {
+                    value: cost.value,
+                    target: this.parent.parent,
+                    keyIsID: true
+                };
+            }
+        }
         const resources = config.costs
             .filter(c => c.enabled !== false)
             .map(c => {
-                return { type: c.type, value: (c.total ?? c.value) * -1 };
+                const resource = usefulResources[c.key];
+                return {
+                    key: c.key,
+                    value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
+                    target: resource.target,
+                    keyIsID: resource.keyIsID
+                };
             });
 
         await this.actor.modifyResource(resources);
@@ -352,6 +350,13 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
     /* ROLL */
     get hasRoll() {
         return !!this.roll?.type || !!this.roll?.bonus;
+    }
+
+    get modifiers() {
+        if (!this.actor) return [];
+        const modifiers = [];
+        /** Placeholder for specific bonuses **/
+        return modifiers;
     }
     /* ROLL */
 
@@ -378,23 +383,46 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         });
     }
 
-    hasCost(costs) {
+    async getResources(costs) {
+        const actorResources = this.actor.system.resources;
+        const itemResources = {};
+        for (var itemResource of costs) {
+            if (itemResource.keyIsID) {
+                itemResources[itemResource.key] = {
+                    value: this.parent.resource.value ?? 0
+                };
+            }
+        }
+
+        return {
+            ...actorResources,
+            ...itemResources
+        };
+    }
+
+    /* COST */
+    async hasCost(costs) {
         const realCosts = this.getRealCosts(costs),
-            hasFearCost = realCosts.findIndex(c => c.type === 'fear');
+            hasFearCost = realCosts.findIndex(c => c.key === 'fear');
         if (hasFearCost > -1) {
-            const fearCost = realCosts.splice(hasFearCost, 1);
+            const fearCost = realCosts.splice(hasFearCost, 1)[0];
             if (
                 !game.user.isGM ||
-                fearCost[0].total > game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
+                fearCost.total > game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
             )
                 return false;
         }
+
+        /* isReversed is a sign that the resource is inverted, IE it counts upwards instead of down */
+        const resources = await this.getResources(realCosts);
         return realCosts.reduce(
-            (a, c) => a && this.actor.system.resources[c.type]?.value >= (c.total ?? c.value),
+            (a, c) =>
+                a && resources[c.key].isReversed
+                    ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
+                    : resources[c.key]?.value >= (c.total ?? c.value),
             true
         );
     }
-    /* COST */
 
     /* USES */
     calcUses(uses) {
@@ -409,7 +437,6 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
         if (!uses) return true;
         return (uses.hasOwnProperty('enabled') && !uses.enabled) || uses.value + 1 <= uses.max;
     }
-    /* USES */
 
     /* TARGET */
     isTargetFriendly(target) {
@@ -432,7 +459,7 @@ export default class DHBaseAction extends foundry.abstract.DataModel {
             name: actor.actor.name,
             img: actor.actor.img,
             difficulty: actor.actor.system.difficulty,
-            evasion: actor.actor.system.evasion?.total
+            evasion: actor.actor.system.evasion
         };
     }
     /* TARGET */

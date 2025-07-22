@@ -76,11 +76,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
         };
     }
 
-    getFormula(actor) {
-        /* const multiplier = this.multiplier === 'flat' ? this.flatMultiplier : actor.system[this.multiplier]?.total;
-        return this.custom.enabled
-            ? this.custom.formula
-            : `${multiplier ?? 1}${this.dice}${this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : ''}`; */
+    getFormula() {
         const multiplier = this.multiplier === 'flat' ? this.flatMultiplier : `@${this.multiplier}`,
             bonus = this.bonus ? (this.bonus < 0 ? ` - ${Math.abs(this.bonus)}` : ` + ${this.bonus}`) : '';
         return this.custom.enabled ? this.custom.formula : `${multiplier ?? 1}${this.dice}${bonus}`;
@@ -91,25 +87,25 @@ export class DHDamageField extends fields.SchemaField {
     constructor(options, context = {}) {
         const damageFields = {
             parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData)),
-            includeBase: new fields.BooleanField({ initial: false })
+            includeBase: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.ACTIONS.Settings.includeBase.label'
+            })
         };
-        // if (hasBase) damageFields.includeBase = new fields.BooleanField({ initial: true });
         super(damageFields, options, context);
     }
 }
 
-export class DHDamageData extends foundry.abstract.DataModel {
+export class DHResourceData extends foundry.abstract.DataModel {
     /** @override */
     static defineSchema() {
         return {
-            // ...super.defineSchema(),
-            base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
-            type: new fields.StringField({
-                choices: CONFIG.DH.GENERAL.damageTypes,
-                initial: 'physical',
-                label: 'Type',
-                nullable: false,
-                required: true
+            applyTo: new fields.StringField({
+                choices: CONFIG.DH.GENERAL.healingTypes,
+                required: true,
+                blank: false,
+                initial: CONFIG.DH.GENERAL.healingTypes.hitPoints.id,
+                label: 'DAGGERHEART.ACTIONS.Settings.applyTo.label'
             }),
             resultBased: new fields.BooleanField({
                 initial: false,
@@ -117,6 +113,27 @@ export class DHDamageData extends foundry.abstract.DataModel {
             }),
             value: new fields.EmbeddedDataField(DHActionDiceData),
             valueAlt: new fields.EmbeddedDataField(DHActionDiceData)
+        };
+    }
+}
+
+export class DHDamageData extends DHResourceData {
+    /** @override */
+    static defineSchema() {
+        return {
+            ...super.defineSchema(),
+            base: new fields.BooleanField({ initial: false, readonly: true, label: 'Base' }),
+            type: new fields.SetField(
+                new fields.StringField({
+                    choices: CONFIG.DH.GENERAL.damageTypes,
+                    initial: 'physical',
+                    nullable: false,
+                    required: true
+                }),
+                {
+                    label: 'Type'
+                }
+            )
         };
     }
 }

@@ -15,7 +15,11 @@
                 {{localize (concat 'DAGGERHEART.CONFIG.Range.' source.system.attack.range '.name')}}
                 <span>-</span>
                 {{source.system.attack.damage.parts.0.value.dice}}{{#if source.system.attack.damage.parts.0.value.bonus}} + {{source.system.attack.damage.parts.0.value.bonus}}{{/if}}
-                ({{localize (concat 'DAGGERHEART.CONFIG.DamageType.' source.system.attack.damage.parts.0.type '.abbreviation')}})
+                (
+                    {{#each source.system.attack.damage.parts.0.type}}
+                        {{localize (concat 'DAGGERHEART.CONFIG.DamageType.' this '.abbreviation')}}
+                    {{/each}}
+                )
                 <span>-</span>
                 {{localize (concat 'DAGGERHEART.CONFIG.Burden.' source.system.burden)}}
             </h3>

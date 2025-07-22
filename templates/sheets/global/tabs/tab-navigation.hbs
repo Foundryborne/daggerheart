@@ -1,11 +1,18 @@
 <section class='tab-navigation'>
-    <line-div></line-div>
-    <nav class='feature-tab sheet-tabs tabs' data-group='primary'>
-        {{#each tabs as |tab|}}
-            <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
-                {{localize tab.label}}
-            </a>
-        {{/each}}
-    </nav>
-    <line-div></line-div>
+    <div class='navigation-container'>
+        <div class="navigation-inner-container">
+            <line-div></line-div>
+            <nav class='feature-tab sheet-tabs tabs' data-group='primary'>
+                {{#each tabs as |tab|}}
+                    <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                        {{localize tab.label}}
+                    </a>
+                {{/each}}
+            </nav>
+            <line-div></line-div>
+        </div>
+        {{#if @partial-block}}
+            {{> @partial-block }}
+        {{/if}}
+    </div>
 </section>

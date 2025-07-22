@@ -1,0 +1,47 @@
+<section
+    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
+    data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'
+>
+    <fieldset class="one-column drop-section primary-feature">
+        <legend>
+            {{localize "DAGGERHEART.ITEMS.Ancestry.primaryFeature"}}
+            {{#unless document.system.primaryFeature}}<a><i data-action="addFeature" data-type="primary" class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
+        </legend>
+        <div class="features-list">
+            {{#if document.system.primaryFeature}}
+                <div class="feature-item"
+                    data-action="editFeature"
+                    data-type="primary"
+                >
+                    <img class="image" src="{{document.system.primaryFeature.img}}" />
+                    <span>{{document.system.primaryFeature.name}}</span>
+                    <div class="controls">
+                        <a data-action="removeFeature" data-type="primary"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div> 
+            {{/if}}
+        </div>
+    </fieldset>
+
+    <fieldset class="one-column drop-section secondary-feature">
+        <legend>
+            {{localize "DAGGERHEART.ITEMS.Ancestry.secondaryFeature"}} 
+            {{#unless document.system.secondaryFeature}}<a><i data-action="addFeature" data-type="secondary" class="fa-solid fa-plus icon-button"></i></a>{{/unless}}
+        </legend>
+        <div class="features-list">
+            {{#if document.system.secondaryFeature}}
+                <div class="feature-item"
+                    data-action="editFeature"
+                    data-type="secondary"
+                >
+                    <img class="image" src="{{document.system.secondaryFeature.img}}" />
+                    <span>{{document.system.secondaryFeature.name}}</span>
+                    <div class="controls">
+                        <a data-action="removeFeature" data-type="secondary"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div> 
+            {{/if}}
+        </div>
+    </fieldset>
+</section>

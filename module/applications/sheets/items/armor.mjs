@@ -1,10 +1,10 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
+import ItemAttachmentSheet from '../api/item-attachment-sheet.mjs';
 
-export default class ArmorSheet extends DHBaseItemSheet {
+export default class ArmorSheet extends ItemAttachmentSheet(DHBaseItemSheet) {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
         classes: ['armor'],
-        dragDrop: [{ dragSelector: null, dropSelector: null }],
         tagifyConfigs: [
             {
                 selector: '.features-input',
@@ -26,7 +26,12 @@ export default class ArmorSheet extends DHBaseItemSheet {
         settings: {
             template: 'systems/daggerheart/templates/sheets/items/armor/settings.hbs',
             scrollable: ['.settings']
-        }
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/global/tabs/tab-effects.hbs',
+            scrollable: ['.effects']
+        },
+        ...super.PARTS
     };
 
     /**@inheritdoc */
@@ -35,7 +40,7 @@ export default class ArmorSheet extends DHBaseItemSheet {
 
         switch (partId) {
             case 'settings':
-                context.features = this.document.system.features.map(x => x.value);
+                context.features = this.document.system.armorFeatures.map(x => x.value);
                 break;
         }
 
@@ -47,6 +52,6 @@ export default class ArmorSheet extends DHBaseItemSheet {
      * @param {Array<Object>} selectedOptions - The currently selected tag objects.
      */
     static async #onFeatureSelect(selectedOptions) {
-        await this.document.update({ 'system.features': selectedOptions.map(x => ({ value: x.value })) });
+        await this.document.update({ 'system.armorFeatures': selectedOptions.map(x => ({ value: x.value })) });
     }
 }

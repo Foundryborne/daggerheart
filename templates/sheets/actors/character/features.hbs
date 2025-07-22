@@ -1,13 +1,25 @@
-<section
-    class='tab {{tabs.features.cssClass}} {{tabs.features.id}}'
-    data-tab='{{tabs.features.id}}'
-    data-group='{{tabs.features.group}}'
->
+<section class='tab {{tabs.features.cssClass}} {{tabs.features.id}}' data-tab='{{tabs.features.id}}'
+    data-group='{{tabs.features.group}}'>
     <div class="features-sections">
-        {{#each document.system.sheetLists}}
-            {{#if this.values}}
-                {{> 'systems/daggerheart/templates/sheets/global/partials/inventory-fieldset-items.hbs' title=this.title values=this.values}}
-            {{/if}}
+        {{#each document.system.sheetLists as |category|}}
+        {{#if (eq category.type 'feature' )}}
+        {{> 'daggerheart.inventory-items'
+        title=category.title
+        type='feature'
+        collection=category.values
+        canCreate=true
+        showActions=true
+        }}
+        {{else if category.values}}
+        {{> 'daggerheart.inventory-items'
+        title=category.title
+        type='feature'
+        collection=category.values
+        canCreate=false
+        showActions=true
+        }}
+
+        {{/if}}
         {{/each}}
     </div>
 </section>

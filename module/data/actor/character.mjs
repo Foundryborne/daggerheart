@@ -1,35 +1,18 @@
 import { burden } from '../../config/generalConfig.mjs';
-import ActionField from '../fields/actionField.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
 import BaseDataActor from './base.mjs';
-
-const attributeField = () =>
-    new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: null, integer: true }),
-        bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        tierMarked: new foundry.data.fields.BooleanField({ initial: false })
-    });
-
-const resourceField = max =>
-    new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        max: new foundry.data.fields.NumberField({ initial: max, integer: true })
-    });
-
-const stressDamageReductionRule = () =>
-    new foundry.data.fields.SchemaField({
-        enabled: new foundry.data.fields.BooleanField({ required: true, initial: false }),
-        cost: new foundry.data.fields.NumberField({ integer: true })
-    });
+import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
+import ActionField from '../fields/actionField.mjs';
 
 export default class DhCharacter extends BaseDataActor {
+    static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
+
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.character',
             type: 'character',
-            isNPC: false,
+            isNPC: false
         });
     }
 
@@ -37,36 +20,43 @@ export default class DhCharacter extends BaseDataActor {
         const fields = foundry.data.fields;
 
         return {
+            ...super.defineSchema(),
             resources: new fields.SchemaField({
-                hitPoints: new fields.SchemaField({
-                    value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-                    bonus: new foundry.data.fields.NumberField({ initial: 0, integer: true })
-                }),
-                stress: resourceField(6),
-                hope: resourceField(6),
-                tokens: new fields.ObjectField(),
-                dice: new fields.ObjectField()
+                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
+                stress: resourceField(6, 'DAGGERHEART.GENERAL.stress', true),
+                hope: resourceField(6, 'DAGGERHEART.GENERAL.hope')
             }),
             traits: new fields.SchemaField({
-                agility: attributeField(),
-                strength: attributeField(),
-                finesse: attributeField(),
-                instinct: attributeField(),
-                presence: attributeField(),
-                knowledge: attributeField()
+                agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
+                strength: attributeField('DAGGERHEART.CONFIG.Traits.strength.name'),
+                finesse: attributeField('DAGGERHEART.CONFIG.Traits.finesse.name'),
+                instinct: attributeField('DAGGERHEART.CONFIG.Traits.instinct.name'),
+                presence: attributeField('DAGGERHEART.CONFIG.Traits.presence.name'),
+                knowledge: attributeField('DAGGERHEART.CONFIG.Traits.knowledge.name')
             }),
-            proficiency: new fields.SchemaField({
-                value: new fields.NumberField({ initial: 1, integer: true }),
-                bonus: new fields.NumberField({ initial: 0, integer: true })
+            proficiency: new fields.NumberField({
+                initial: 1,
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.proficiency'
             }),
-            evasion: new fields.SchemaField({
-                bonus: new fields.NumberField({ initial: 0, integer: true })
+            evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
+            armorScore: new fields.NumberField({ integer: true, initial: 0, label: 'DAGGERHEART.GENERAL.armorScore' }),
+            damageThresholds: new fields.SchemaField({
+                severe: new fields.NumberField({
+                    integer: true,
+                    initial: 0,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                }),
+                major: new fields.NumberField({
+                    integer: true,
+                    initial: 0,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                })
             }),
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
-                    value: new fields.NumberField({ integer: true, initial: 0 }),
-                    bonus: new fields.NumberField({ integer: true, initial: 0 })
+                    value: new fields.NumberField({ integer: true, initial: 0 })
                 })
             ),
             gold: new fields.SchemaField({
@@ -78,7 +68,7 @@ export default class DhCharacter extends BaseDataActor {
             scars: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField({}),
-                    description: new fields.HTMLField()
+                    description: new fields.StringField()
                 })
             ),
             biography: new fields.SchemaField({
@@ -98,43 +88,174 @@ export default class DhCharacter extends BaseDataActor {
                 value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
                 subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })
             }),
+            attack: new ActionField({
+                initial: {
+                    name: 'Attack',
+                    img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
+                    _id: foundry.utils.randomID(),
+                    systemPath: 'attack',
+                    type: 'attack',
+                    range: 'melee',
+                    target: {
+                        type: 'any',
+                        amount: 1
+                    },
+                    roll: {
+                        type: 'attack',
+                        trait: 'strength'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                type: ['physical'],
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '@system.rules.attack.damage.value'
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }),
+            advantageSources: new fields.ArrayField(new fields.StringField(), {
+                label: 'DAGGERHEART.ACTORS.Character.advantageSources.label',
+                hint: 'DAGGERHEART.ACTORS.Character.advantageSources.hint'
+            }),
+            disadvantageSources: new fields.ArrayField(new fields.StringField(), {
+                label: 'DAGGERHEART.ACTORS.Character.disadvantageSources.label',
+                hint: 'DAGGERHEART.ACTORS.Character.disadvantageSources.hint'
+            }),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
-                armorScore: new fields.NumberField({ integer: true, initial: 0 }),
-                damageThresholds: new fields.SchemaField({
-                    severe: new fields.NumberField({ integer: true, initial: 0 }),
-                    major: new fields.NumberField({ integer: true, initial: 0 })
-                }),
                 roll: new fields.SchemaField({
-                    attack: new fields.NumberField({ integer: true, initial: 0 }),
-                    spellcast: new fields.NumberField({ integer: true, initial: 0 }),
-                    action: new fields.NumberField({ integer: true, initial: 0 }),
-                    hopeOrFear: new fields.NumberField({ integer: true, initial: 0 })
+                    attack: bonusField('DAGGERHEART.GENERAL.Roll.attack'),
+                    spellcast: bonusField('DAGGERHEART.GENERAL.Roll.spellcast'),
+                    trait: bonusField('DAGGERHEART.GENERAL.Roll.trait'),
+                    action: bonusField('DAGGERHEART.GENERAL.Roll.action'),
+                    reaction: bonusField('DAGGERHEART.GENERAL.Roll.reaction'),
+                    primaryWeapon: bonusField('DAGGERHEART.GENERAL.Roll.primaryWeaponAttack'),
+                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Roll.secondaryWeaponAttack')
                 }),
                 damage: new fields.SchemaField({
-                    all: new fields.NumberField({ integer: true, initial: 0 }),
-                    physical: new fields.NumberField({ integer: true, initial: 0 }),
-                    magic: new fields.NumberField({ integer: true, initial: 0 })
+                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
+                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage'),
+                    primaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.primaryWeapon'),
+                    secondaryWeapon: bonusField('DAGGERHEART.GENERAL.Damage.secondaryWeapon')
+                }),
+                healing: bonusField('DAGGERHEART.GENERAL.Healing.healingAmount'),
+                range: new fields.SchemaField({
+                    weapon: new fields.NumberField({
+                        integer: true,
+                        initial: 0,
+                        label: 'DAGGERHEART.GENERAL.Range.weapon'
+                    }),
+                    spell: new fields.NumberField({
+                        integer: true,
+                        initial: 0,
+                        label: 'DAGGERHEART.GENERAL.Range.spell'
+                    }),
+                    other: new fields.NumberField({
+                        integer: true,
+                        initial: 0,
+                        label: 'DAGGERHEART.GENERAL.Range.other'
+                    })
+                }),
+                rally: new fields.ArrayField(new fields.StringField(), {
+                    label: 'DAGGERHEART.CLASS.Feature.rallyDice'
+                }),
+                rest: new fields.SchemaField({
+                    shortRest: new fields.SchemaField({
+                        shortMoves: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            min: 0,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.shortRestMoves.label',
+                            hint: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.shortRestMoves.hint'
+                        }),
+                        longMoves: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            min: 0,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.longRestMoves.label',
+                            hint: 'DAGGERHEART.GENERAL.Bonuses.rest.shortRest.longRestMoves.hint'
+                        })
+                    }),
+                    longRest: new fields.SchemaField({
+                        shortMoves: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            min: 0,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.shortRestMoves.label',
+                            hint: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.shortRestMoves.hint'
+                        }),
+                        longMoves: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            min: 0,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.longRestMoves.label',
+                            hint: 'DAGGERHEART.GENERAL.Bonuses.rest.longRest.longRestMoves.hint'
+                        })
+                    })
                 })
             }),
             companion: new ForeignDocumentUUIDField({ type: 'Actor', nullable: true, initial: null }),
             rules: new fields.SchemaField({
-                maxArmorMarked: new fields.SchemaField({
-                    value: new fields.NumberField({ required: true, integer: true, initial: 1 }),
-                    bonus: new fields.NumberField({ required: true, integer: true, initial: 0 }),
-                    stressExtra: new fields.NumberField({ required: true, integer: true, initial: 0 })
+                damageReduction: new fields.SchemaField({
+                    maxArmorMarked: new fields.SchemaField({
+                        value: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            initial: 1,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedBonus'
+                        }),
+                        stressExtra: new fields.NumberField({
+                            required: true,
+                            integer: true,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.maxArmorMarkedStress.hint'
+                        })
+                    }),
+                    stressDamageReduction: new fields.SchemaField({
+                        severe: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.severe'),
+                        major: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.major'),
+                        minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor')
+                    }),
+                    increasePerArmorMark: new fields.NumberField({
+                        integer: true,
+                        initial: 1,
+                        label: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.label',
+                        hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
+                    }),
+                    magical: new fields.BooleanField({ initial: false }),
+                    physical: new fields.BooleanField({ initial: false })
                 }),
-                stressDamageReduction: new fields.SchemaField({
-                    severe: stressDamageReductionRule(),
-                    major: stressDamageReductionRule(),
-                    minor: stressDamageReductionRule()
+                attack: new fields.SchemaField({
+                    damage: new fields.SchemaField({
+                        value: new fields.StringField({
+                            required: true,
+                            initial: '@profd4',
+                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.value.label'
+                        })
+                    })
                 }),
-                strangePatterns: new fields.NumberField({
-                    integer: true,
-                    min: 1,
-                    max: 12,
-                    nullable: true,
-                    initial: null
+                weapon: new fields.SchemaField({
+                    /*  Unimplemented 
+                        -> Should remove the lowest damage dice from weapon damage 
+                        -> Reflect this in the chat message somehow so players get feedback that their choice is helping them.
+                    */
+                    dropLowestDamageDice: new fields.BooleanField({ initial: false }),
+                    /*  Unimplemented 
+                        -> Should flip any lowest possible dice rolls for weapon damage to highest
+                        -> Reflect this in the chat message somehow so players get feedback that their choice is helping them.
+                    */
+                    flipMinDiceValue: new fields.BooleanField({ intial: false })
                 }),
                 runeWard: new fields.BooleanField({ initial: false })
             })
@@ -169,6 +290,11 @@ export default class DhCharacter extends BaseDataActor {
         return !this.class.value || !this.class.subclass;
     }
 
+    get spellcastModifier() {
+        const subClasses = this.parent.items.filter(x => x.type === 'subclass') ?? [];
+        return Math.max(subClasses?.map(sc => this.traits[sc.system.spellcastingTrait]?.value));
+    }
+
     get spellcastingModifiers() {
         return {
             main: this.class.subclass?.system?.spellcastingTrait,
@@ -198,6 +324,24 @@ export default class DhCharacter extends BaseDataActor {
         return this.parent.items.find(x => x.type === 'armor' && x.system.equipped);
     }
 
+    get activeBeastform() {
+        return this.parent.effects.find(x => x.type === 'beastform');
+    }
+
+    get usedUnarmed() {
+        const primaryWeaponEquipped = this.primaryWeapon?.system?.equipped;
+        const secondaryWeaponEquipped = this.secondaryWeapon?.system?.equipped;
+        return !primaryWeaponEquipped && !secondaryWeaponEquipped
+            ? {
+                  ...this.attack,
+                  id: this.attack.id,
+                  name: this.activeBeastform ? 'DAGGERHEART.ITEMS.Beastform.attackName' : this.attack.name,
+                  img: this.activeBeastform ? 'icons/creatures/claws/claw-straight-brown.webp' : this.attack.img,
+                  actor: this.parent
+              }
+            : null;
+    }
+
     get sheetLists() {
         const ancestryFeatures = [],
             communityFeatures = [],
@@ -207,23 +351,23 @@ export default class DhCharacter extends BaseDataActor {
             features = [];
 
         for (let item of this.parent.items) {
-            if (item.system.type === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
+            if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.ancestry.id) {
                 ancestryFeatures.push(item);
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.community.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.community.id) {
                 communityFeatures.push(item);
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.class.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.class.id) {
                 classFeatures.push(item);
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.subclass.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
                 const subclassState = this.class.subclass.system.featureState;
-                const identifier = item.system.identifier;
+                const subType = item.system.subType;
                 if (
-                    identifier === 'foundationFeature' ||
-                    (identifier === 'specializationFeature' && subclassState >= 2) ||
-                    (identifier === 'masterFeature' && subclassState >= 3)
+                    subType === CONFIG.DH.ITEM.featureSubTypes.foundation ||
+                    (subType === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
+                    (subType === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
                 ) {
                     subclassFeatures.push(item);
                 }
-            } else if (item.system.type === CONFIG.DH.ITEM.featureTypes.companion.id) {
+            } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.companion.id) {
                 companionFeatures.push(item);
             } else if (item.type === 'feature' && !item.system.type) {
                 features.push(item);
@@ -278,9 +422,14 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get deathMoveViable() {
-        return (
-            this.resources.hitPoints.maxTotal > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.maxTotal
-        );
+        return this.resources.hitPoints.max > 0 && this.resources.hitPoints.value >= this.resources.hitPoints.max;
+    }
+
+    get armorApplicableDamageTypes() {
+        return {
+            physical: !this.rules.damageReduction.magical,
+            magical: !this.rules.damageReduction.physical
+        };
     }
 
     static async unequipBeforeEquip(itemToEquip) {
@@ -306,6 +455,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareBaseData() {
+        this.evasion = this.class.value?.system?.evasion ?? 0;
+
         const currentLevel = this.levelData.level.current;
         const currentTier =
             currentLevel === 1
@@ -316,32 +467,32 @@ export default class DhCharacter extends BaseDataActor {
         for (let levelKey in this.levelData.levelups) {
             const level = this.levelData.levelups[levelKey];
 
-            this.proficiency.bonus += level.achievements.proficiency;
+            this.proficiency += level.achievements.proficiency;
 
             for (let selection of level.selections) {
                 switch (selection.type) {
                     case 'trait':
                         selection.data.forEach(data => {
-                            this.traits[data].bonus += 1;
+                            this.traits[data].value += 1;
                             this.traits[data].tierMarked = selection.tier === currentTier;
                         });
                         break;
                     case 'hitPoint':
-                        this.resources.hitPoints.bonus += selection.value;
+                        this.resources.hitPoints.max += selection.value;
                         break;
                     case 'stress':
-                        this.resources.stress.bonus += selection.value;
+                        this.resources.stress.max += selection.value;
                         break;
                     case 'evasion':
-                        this.evasion.bonus += selection.value;
+                        this.evasion += selection.value;
                         break;
                     case 'proficiency':
-                        this.proficiency.bonus = selection.value;
+                        this.proficiency = selection.value;
                         break;
                     case 'experience':
                         Object.keys(this.experiences).forEach(key => {
                             const experience = this.experiences[key];
-                            experience.bonus += selection.value;
+                            experience.value += selection.value;
                         });
                         break;
                 }
@@ -349,6 +500,7 @@ export default class DhCharacter extends BaseDataActor {
         }
 
         const armor = this.armor;
+        this.armorScore = armor ? armor.system.baseScore : 0;
         this.damageThresholds = {
             major: armor
                 ? armor.system.baseThresholds.major + this.levelData.level.current
@@ -357,38 +509,19 @@ export default class DhCharacter extends BaseDataActor {
                 ? armor.system.baseThresholds.severe + this.levelData.level.current
                 : this.levelData.level.current * 2
         };
+        this.resources.hope.max -= Object.keys(this.scars).length;
+        this.resources.hitPoints.max = this.class.value?.system?.hitPoints ?? 0;
     }
 
     prepareDerivedData() {
-        this.resources.hope.max -= Object.keys(this.scars).length;
-        this.resources.hope.value = Math.min(this.resources.hope.value, this.resources.hope.max);
-
-        for (var traitKey in this.traits) {
-            var trait = this.traits[traitKey];
-            trait.total = (trait.value ?? 0) + trait.bonus;
-        }
-
-        for (var experienceKey in this.experiences) {
-            var experience = this.experiences[experienceKey];
-            experience.total = experience.value + experience.bonus;
-        }
-
-        this.rules.maxArmorMarked.total = this.rules.maxArmorMarked.value + this.rules.maxArmorMarked.bonus;
-
-        this.armorScore = this.armor ? this.armor.system.baseScore + (this.bonuses.armorScore ?? 0) : 0;
-        this.resources.hitPoints.maxTotal = (this.class.value?.system?.hitPoints ?? 0) + this.resources.hitPoints.bonus;
-        this.resources.stress.maxTotal = this.resources.stress.max + this.resources.stress.bonus;
-        this.evasion.total = (this.class?.evasion ?? 0) + this.evasion.bonus;
-        this.proficiency.total = this.proficiency.value + this.proficiency.bonus;
+        const baseHope = this.resources.hope.value + (this.companion?.system?.resources?.hope ?? 0);
+        this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
     }
 
     getRollData() {
         const data = super.getRollData();
         return {
             ...data,
-            ...this.resources.tokens,
-            ...this.resources.dice,
-            ...this.bonuses,
             tier: this.tier,
             level: this.levelData.level.current
         };

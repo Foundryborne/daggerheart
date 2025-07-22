@@ -1,5 +1,6 @@
 export * as characterCreation from './characterCreation/_module.mjs';
 export * as dialogs from './dialogs/_module.mjs';
+export * as hud from './hud/_module.mjs';
 export * as levelup from './levelup/_module.mjs';
 export * as settings from './settings/_module.mjs';
 export * as sheets from './sheets/_module.mjs';

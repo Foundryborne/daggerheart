@@ -80,20 +80,26 @@ export default class DHItem extends foundry.documents.Item {
     async selectActionDialog(prevEvent) {
         const content = await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/dialogs/actionSelect.hbs',
-                { actions: this.system.actionsList }
+                {
+                    actions: this.system.actionsList,
+                    itemName: this.name
+                }
             ),
-            title = 'Select Action';
+            title = game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectAction');
 
         return foundry.applications.api.DialogV2.prompt({
             window: { title },
+            classes: ['daggerheart', 'dh-style'],
             content,
             ok: {
                 label: title,
                 callback: (event, button, dialog) => {
-                    Object.defineProperty(prevEvent, "shiftKey", {
-                        get() { return event.shiftKey; },
+                    Object.defineProperty(prevEvent, 'shiftKey', {
+                        get() {
+                            return event.shiftKey;
+                        }
                     });
-                    return this.system.actionsList.find(a => a._id === button.form.elements.actionId.value)
+                    return this.system.actionsList.find(a => a._id === button.form.elements.actionId.value);
                 }
             }
         });

@@ -1,78 +1,8 @@
 import { diceTypes, getDiceSoNicePresets, range } from '../config/generalConfig.mjs';
 import Tagify from '@yaireo/tagify';
 
-export const loadCompendiumOptions = async compendiums => {
-    const compendiumValues = [];
-
-    for (var compendium of compendiums) {
-        const values = await getCompendiumOptions(compendium);
-        compendiumValues.push(values);
-    }
-
-    return compendiumValues;
-};
-
-const getCompendiumOptions = async compendium => {
-    const compendiumPack = await game.packs.get(compendium);
-
-    const values = [];
-    for (var value of compendiumPack.index) {
-        const document = await compendiumPack.getDocument(value._id);
-        values.push(document);
-    }
-
-    return values;
-};
-
-export const getWidthOfText = (txt, fontsize, allCaps, bold) => {
-    const text = allCaps ? txt.toUpperCase() : txt;
-    if (getWidthOfText.c === undefined) {
-        getWidthOfText.c = document.createElement('canvas');
-        getWidthOfText.ctx = getWidthOfText.c.getContext('2d');
-    }
-    var fontspec = `${bold ? 'bold' : ''} ${fontsize}px` + ' ' + 'Signika, sans-serif';
-    if (getWidthOfText.ctx.font !== fontspec) getWidthOfText.ctx.font = fontspec;
-
-    return getWidthOfText.ctx.measureText(text).width;
-};
-
-export const padArray = (arr, len, fill) => {
-    return arr.concat(Array(len).fill(fill)).slice(0, len);
-};
-
-export const getTier = (level, asNr) => {
-    switch (Math.floor((level + 1) / 3)) {
-        case 1:
-            return asNr ? 1 : 'tier1';
-        case 2:
-            return asNr ? 2 : 'tier2';
-        case 3:
-            return asNr ? 3 : 'tier3';
-        default:
-            return asNr ? 0 : 'tier0';
-    }
-};
-
 export const capitalize = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-export const getPathValue = (path, entity, numeric) => {
-    const pathValue = foundry.utils.getProperty(entity, path);
-    if (pathValue) return numeric ? Number.parseInt(pathValue) : pathValue;
-
-    return numeric ? Number.parseInt(path) : path;
-};
-
-export const generateId = (title, length) => {
-    const id = title
-        .split(' ')
-        .map((w, i) => {
-            const p = w.slugify({ replacement: '', strict: true });
-            return i ? p.titleCase() : p;
-        })
-        .join('');
-    return Number.isNumeric(length) ? id.slice(0, length).padEnd(length, '0') : id;
 };
 
 export function rollCommandToJSON(text) {
@@ -126,12 +56,10 @@ export const setDiceSoNiceForDualityRoll = (rollResult, advantageState) => {
     const diceSoNicePresets = getDiceSoNicePresets();
     rollResult.dice[0].options = { appearance: diceSoNicePresets.hope };
     rollResult.dice[1].options = { appearance: diceSoNicePresets.fear }; //diceSoNicePresets.fear;
-    if (rollResult.dice[2]) {
-        if (advantageState === true) {
-            rollResult.dice[2].options = { appearance: diceSoNicePresets.advantage };
-        } else if (advantageState === false) {
-            rollResult.dice[2].options = { appearance: diceSoNicePresets.disadvantage };
-        }
+    if (rollResult.dice[2] && advantageState) {
+        rollResult.dice[2].options = {
+            appearance: advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage
+        };
     }
 };
 
@@ -159,7 +87,8 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
             return {
                 value: key,
                 name: game.i18n.localize(option.label),
-                src: option.src
+                src: option.src,
+                description: option.description
             };
         }),
         maxTags: maxTags,
@@ -173,11 +102,12 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
         },
         templates: {
             tag(tagData) {
-                return `<tag title="${tagData.title || tagData.value}"
+                return `<tag
                             contenteditable='false'
                             spellcheck='false'
                             tabIndex="${this.settings.a11y.focusableTags ? 0 : -1}"
                             class="${this.settings.classNames.tag} ${tagData.class ? tagData.class : ''}"
+                            data-tooltip="${tagData.description || tagData.name}"
                             ${this.getAttributes(tagData)}> 
                     <x class="${this.settings.classNames.tagX}" role='button' aria-label='remove tag'></x>
                     <div>
@@ -190,6 +120,8 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
     });
 
     tagifyElement.on('add', event => {
+        if (event.detail.data.__isValid === 'not allowed') return;
+
         const input = event.detail.tagify.DOM.originalInput;
         const currentList = input.value ? JSON.parse(input.value) : [];
         onChange([...currentList, event.detail.data], { option: event.detail.data.value, removed: false }, input);
@@ -233,30 +165,21 @@ Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false 
     return nativeReplaceFormulaData(formula, data, { missing, warn });
 };
 
+export const getDamageKey = damage => {
+    return ['none', 'minor', 'major', 'severe'][damage];
+};
+
 export const getDamageLabel = damage => {
-    switch (damage) {
-        case 3:
-            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.severe');
-        case 2:
-            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.major');
-        case 1:
-            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.minor');
-        case 0:
-            return game.i18n.localize('DAGGERHEART.GENERAL.Damage.none');
-    }
+    return game.i18n.localize(`DAGGERHEART.GENERAL.Damage.${getDamageKey(damage)}`);
 };
 
 export const damageKeyToNumber = key => {
-    switch (key) {
-        case 'severe':
-            return 3;
-        case 'major':
-            return 2;
-        case 'minor':
-            return 1;
-        case 'none':
-            return 0;
-    }
+    return {
+        none: 0,
+        minor: 1,
+        major: 2,
+        severe: 3
+    }[key];
 };
 
 export default function constructHTMLButton({
@@ -306,3 +229,32 @@ export const updateActorTokens = async (actor, update) => {
         }
     }
 };
+
+/**
+ * Retrieves a Foundry document associated with the nearest ancestor element
+ * that has a `data-item-uuid` attribute.
+ * @param {HTMLElement} element - The DOM element to start the search from.
+ * @returns {foundry.abstract.Document|null} The resolved document, or null if not found or invalid.
+ */
+export function getDocFromElement(element) {
+    const target = element.closest('[data-item-uuid]');
+    return foundry.utils.fromUuidSync(target.dataset.itemUuid) ?? null;
+}
+
+export const itemAbleRollParse = (value, actor, item) => {
+    if (!value) return value;
+
+    const isItemTarget = value.toLowerCase().startsWith('item.');
+    const slicedValue = isItemTarget ? value.slice(5) : value;
+    try {
+        return Roll.replaceFormulaData(slicedValue, isItemTarget ? item : actor);
+    } catch (_) {
+        return '';
+    }
+};
+
+export const arraysEqual = (a, b) =>
+    a.length === b.length &&
+    [...new Set([...a, ...b])].every(v => a.filter(e => e === v).length === b.filter(e => e === v).length);
+
+export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));

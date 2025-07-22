@@ -4,7 +4,13 @@
 >
     {{#if this.img}}
         <img class="preview-image-container" src="{{this.img}}" />
-        <div class="preview-text-container">{{this.name}}</div>
+        <div class="preview-text-container">
+            {{#if altPartialBlock}}
+                {{> @partial-block }}
+            {{else}}
+                {{this.name}}
+            {{/if}}
+        </div>
     {{else}}
         <div class="preview-empty-container">
             <div class="preview-empty-inner-container">

@@ -1,0 +1,29 @@
+<section
+    class='tab {{tabs.advanced.cssClass}} {{tabs.advanced.id}}'
+    data-tab='{{tabs.advanced.id}}'
+    data-group='{{tabs.advanced.group}}'
+>
+    {{formGroup systemFields.beastformType value=source.system.beastformType localize=true blank=false}}
+
+    {{#if (eq source.system.beastformType 'evolved')}}
+        <fieldset class="two-columns even">
+            <legend>{{localize "DAGGERHEART.CONFIG.BeastformType.evolved"}}</legend>
+
+            {{formGroup systemFields.evolved.fields.maximumTier value=source.system.evolved.maximumTier localize=true blank=false}}
+            {{formGroup systemFields.evolved.fields.mainTraitBonus value=source.system.evolved.mainTraitBonus localize=true}}
+        </fieldset>
+    {{/if}}
+
+    {{#if (eq source.system.beastformType 'hybrid')}}
+        <fieldset class="one-column">
+            <legend>{{localize "DAGGERHEART.CONFIG.BeastformType.hybrid"}}</legend>
+
+            {{formGroup systemFields.hybrid.fields.maximumTier value=source.system.hybrid.maximumTier localize=true blank=false}}
+            <div class="nest-inputs">
+                {{formGroup systemFields.hybrid.fields.beastformOptions value=source.system.hybrid.beastformOptions localize=true}}
+                {{formGroup systemFields.hybrid.fields.advantages value=source.system.hybrid.advantages localize=true}}
+                {{formGroup systemFields.hybrid.fields.features value=source.system.hybrid.features localize=true}}
+            </div>
+        </fieldset>
+    {{/if}}
+</section>

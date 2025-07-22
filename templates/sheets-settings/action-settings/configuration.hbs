@@ -4,6 +4,6 @@
     data-tab="config"
 >
     {{> 'systems/daggerheart/templates/actionTypes/uses.hbs' fields=fields.uses.fields source=source.uses}}
-    {{> 'systems/daggerheart/templates/actionTypes/cost.hbs' fields=fields.cost.element.fields source=source.cost}}
+    {{> 'systems/daggerheart/templates/actionTypes/cost.hbs' fields=fields.cost.element.fields source=source.cost costOptions=costOptions}}
     {{> 'systems/daggerheart/templates/actionTypes/range-target.hbs' fields=(object range=fields.range target=fields.target.fields) source=(object target=source.target range=source.range)}}
 </section>

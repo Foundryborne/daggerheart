@@ -1,0 +1,75 @@
+@import '../../utils/spacing.less';
+@import '../../utils/colors.less';
+
+.theme-light .daggerheart.dh-style.views.downtime {
+    .downtime-container .activity-container .activity-selected-marker {
+        background-image: url(../assets/parchments/dh-parchment-light.png);
+    }
+}
+
+.daggerheart.dh-style.views.downtime {
+    font-family: @font-body;
+
+    .downtime-container {
+        .activities-grouping {
+            width: 280px;
+        }
+
+        .activities-container {
+            width: 100%;
+
+            .activity-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px;
+
+                .activity-inner-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+
+                    .activity-marker {
+                        font-size: 8px;
+                        flex: none;
+                        color: light-dark(#18162e, #f3c267);
+                        margin-right: 4px;
+                    }
+
+                    .activity-select-section {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+
+                        .activity-icon {
+                            min-width: 24px;
+                            text-align: center;
+                        }
+                    }
+                }
+
+                .activity-selected-marker {
+                    font-size: 14px;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    color: light-dark(@dark, @beige);
+                    background-image: url(../assets/parchments/dh-parchment-dark.png);
+                    padding: 0 8px;
+                    line-height: 1;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    footer {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+
+        button {
+            flex: 1;
+            font-family: 'Montserrat', sans-serif;
+        }
+    }
+}

@@ -3,55 +3,55 @@ export const domains = {
         id: 'arcana',
         label: 'DAGGERHEART.GENERAL.Domain.arcana.label',
         src: 'systems/daggerheart/assets/icons/domains/arcana.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.Arcana'
+        description: 'DAGGERHEART.GENERAL.Domain.arcana.description'
     },
     blade: {
         id: 'blade',
         label: 'DAGGERHEART.GENERAL.Domain.blade.label',
         src: 'systems/daggerheart/assets/icons/domains/blade.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.Blade'
+        description: 'DAGGERHEART.GENERAL.Domain.blade.description'
     },
     bone: {
         id: 'bone',
         label: 'DAGGERHEART.GENERAL.Domain.bone.label',
         src: 'systems/daggerheart/assets/icons/domains/bone.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.Bone'
+        description: 'DAGGERHEART.GENERAL.Domain.bone.description'
     },
     codex: {
         id: 'codex',
         label: 'DAGGERHEART.GENERAL.Domain.codex.label',
         src: 'systems/daggerheart/assets/icons/domains/codex.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.Codex'
+        description: 'DAGGERHEART.GENERAL.Domain.codex.description'
     },
     grace: {
         id: 'grace',
         label: 'DAGGERHEART.GENERAL.Domain.grace.label',
         src: 'systems/daggerheart/assets/icons/domains/grace.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.Grace'
+        description: 'DAGGERHEART.GENERAL.Domain.grace.description'
     },
     midnight: {
         id: 'midnight',
         label: 'DAGGERHEART.GENERAL.Domain.midnight.label',
         src: 'systems/daggerheart/assets/icons/domains/midnight.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.Midnight'
+        description: 'DAGGERHEART.GENERAL.Domain.midnight.description'
     },
     sage: {
         id: 'sage',
         label: 'DAGGERHEART.GENERAL.Domain.sage.label',
         src: 'systems/daggerheart/assets/icons/domains/sage.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.Sage'
+        description: 'DAGGERHEART.GENERAL.Domain.sage.description'
     },
     splendor: {
         id: 'splendor',
         label: 'DAGGERHEART.GENERAL.Domain.splendor.label',
         src: 'systems/daggerheart/assets/icons/domains/splendor.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.Splendor'
+        description: 'DAGGERHEART.GENERAL.Domain.splendor.description'
     },
     valor: {
         id: 'valor',
         label: 'DAGGERHEART.GENERAL.Domain.valor.label',
         src: 'systems/daggerheart/assets/icons/domains/valor.svg',
-        description: 'DAGGERHEART.GENERAL.Domain.Valor'
+        description: 'DAGGERHEART.GENERAL.Domain.valor.description'
     }
 };
 

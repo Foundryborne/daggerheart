@@ -15,7 +15,7 @@
                 {{#if (or document.system.needsCharacterSetup document.system.levelData.canLevelUp)}}
                     <button
                         type="button"
-                        class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.Sheets.PC.CharacterSetup"}}{{else}}{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}{{/if}}"
+                        class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.buttonTitle"}}{{else}}{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}{{/if}}"
                         data-action="levelManagement"
                     >
                         <i class="fa-solid fa-triangle-exclamation"></i>
@@ -29,25 +29,25 @@
     <div class="character-details">
         <div>
             {{#if document.system.class.value}}
-                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.class.value.id}}">{{document.system.class.value.name}}</span>
+                <span data-action="editDoc" data-item-uuid="{{document.system.class.value.uuid}}">{{document.system.class.value.name}}</span>
             {{else}}
                 <span data-action="openPack" data-key="daggerheart.classes">{{localize 'TYPES.Item.class'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.class.subclass}}
-                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.class.subclass.id}}">{{document.system.class.subclass.name}}</span>
+                <span data-action="editDoc" data-item-uuid="{{document.system.class.subclass.uuid}}">{{document.system.class.subclass.name}}</span>
             {{else}}
                 <span data-action="openPack" data-key="daggerheart.subclass">{{localize 'TYPES.Item.subclass'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.community}}
-                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.community.id}}">{{document.system.community.name}}</span>
+                <span data-action="editDoc" data-item-uuid="{{document.system.community.uuid}}">{{document.system.community.name}}</span>
             {{else}}
                 <span data-action="openPack" data-key="daggerheart.community">{{localize 'TYPES.Item.community'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.ancestry}}
-                <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.ancestry.id}}">{{document.system.ancestry.name}}</span>
+                <span data-action="editDoc" data-item-uuid="{{document.system.ancestry.uuid}}">{{document.system.ancestry.name}}</span>
             {{else}}
                 <span data-action="openPack" data-key="daggerheart.ancestry">{{localize 'TYPES.Item.ancestry'}}</span>
             {{/if}}
@@ -56,13 +56,13 @@
         {{#if document.system.multiclass.value}}
             <div class="multiclass">
                 {{#if document.system.multiclass.value}}
-                    <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.multiclass.value.id}}">{{document.system.multiclass.value.name}}</span>
+                    <span data-action="editDoc"data-item-uuid="{{document.system.multiclass.value.uuid}}">{{document.system.multiclass.value.name}}</span>
                 {{else}}
                     <span data-action="openPack" data-key="daggerheart.classes">{{localize 'DAGGERHEART.GENERAL.multiclass'}}</span>
                 {{/if}}
                 <span class="dot">•</span>
                 {{#if document.system.multiclass.subclass}}
-                    <span data-action="editDoc" data-type="Item" data-doc-id="{{document.system.multiclass.subclass.id}}">{{document.system.multiclass.subclass.name}}</span>
+                    <span data-action="editDoc" data-item-uuid="{{document.system.multiclass.subclass.uuid}}">{{document.system.multiclass.subclass.name}}</span>
                 {{else}}
                     <span data-action="openPack" data-key="daggerheart.subclass">{{localize 'TYPES.Item.subclass'}}</span>
                 {{/if}}
@@ -96,7 +96,7 @@
 
     <div class="character-traits">
         {{#each this.attributes as |attribute key|}}
-            <div class="trait" data-tooltip="{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.total}}">
+            <div class="trait" data-tooltip="{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.value}}">
                 <div class="trait-name">
                     <span>{{localize (concat 'DAGGERHEART.CONFIG.Traits.' key '.short')}}</span>
                     {{#if attribute.tierMarked}}
@@ -106,15 +106,24 @@
                     {{/if}}
                 </div>
                 <div class="trait-value">
-                    {{#if (gt attribute.total 0)}}
-                        <span>+{{attribute.total}}</span>
+                    {{#if (gt attribute.value 0)}}
+                        <span>+{{attribute.value}}</span>
                     {{else}}
-                        <span>{{attribute.total}}</span>
+                        <span>{{attribute.value}}</span>
                     {{/if}}
                 </div>
             </div>
         {{/each}}
     </div>
 
-    {{> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+    {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+        <div class="character-downtime-container">
+            <button data-action="useDowntime" data-type="shortRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}">
+                <i class="fa-solid fa-chair"></i>
+            </button>
+            <button data-action="useDowntime" data-type="longRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}">
+                <i class="fa-solid fa-bed"></i>
+            </button>
+        </div>
+    {{/'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
 </header>

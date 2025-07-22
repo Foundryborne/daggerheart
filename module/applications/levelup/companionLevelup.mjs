@@ -122,12 +122,12 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                 context.advancements = {
                     statistics: {
                         stress: {
-                            old: this.actor.system.resources.stress.maxTotal,
-                            new: this.actor.system.resources.stress.maxTotal + (advancement.stress ?? 0)
+                            old: this.actor.system.resources.stress.max,
+                            new: this.actor.system.resources.stress.max + (advancement.stress ?? 0)
                         },
                         evasion: {
-                            old: this.actor.system.evasion.total,
-                            new: this.actor.system.evasion.total + (advancement.evasion ?? 0)
+                            old: this.actor.system.evasion,
+                            new: this.actor.system.evasion + (advancement.evasion ?? 0)
                         }
                     },
                     experiences:

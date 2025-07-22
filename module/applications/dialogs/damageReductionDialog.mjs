@@ -1,9 +1,9 @@
 import { damageKeyToNumber, getDamageLabel } from '../../helpers/utils.mjs';
 
-const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+const { DialogV2, ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageReductionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(resolve, reject, actor, damage) {
+    constructor(resolve, reject, actor, damage, damageType) {
         super({});
 
         this.resolve = resolve;
@@ -11,37 +11,46 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.actor = actor;
         this.damage = damage;
 
-        const maxArmorMarks = Math.min(
-            actor.system.armorScore - actor.system.armor.system.marks.value,
-            actor.system.rules.maxArmorMarked.total
-        );
+        const canApplyArmor = damageType.every(t => actor.system.armorApplicableDamageTypes[t] === true);
+        const maxArmorMarks = canApplyArmor
+            ? Math.min(
+                  actor.system.armorScore - actor.system.armor.system.marks.value,
+                  actor.system.rules.damageReduction.maxArmorMarked.value
+              )
+            : 0;
 
         const armor = [...Array(maxArmorMarks).keys()].reduce((acc, _) => {
             acc[foundry.utils.randomID()] = { selected: false };
             return acc;
         }, {});
-        const stress = [...Array(actor.system.rules.maxArmorMarked.stressExtra ?? 0).keys()].reduce((acc, _) => {
-            acc[foundry.utils.randomID()] = { selected: false };
-            return acc;
-        }, {});
+        const stress = [...Array(actor.system.rules.damageReduction.maxArmorMarked.stressExtra ?? 0).keys()].reduce(
+            (acc, _) => {
+                acc[foundry.utils.randomID()] = { selected: false };
+                return acc;
+            },
+            {}
+        );
         this.marks = { armor, stress };
 
-        this.availableStressReductions = Object.keys(actor.system.rules.stressDamageReduction).reduce((acc, key) => {
-            const dr = actor.system.rules.stressDamageReduction[key];
-            if (dr.enabled) {
-                if (acc === null) acc = {};
+        this.availableStressReductions = Object.keys(actor.system.rules.damageReduction.stressDamageReduction).reduce(
+            (acc, key) => {
+                const dr = actor.system.rules.damageReduction.stressDamageReduction[key];
+                if (dr.enabled) {
+                    if (acc === null) acc = {};
 
-                const damage = damageKeyToNumber(key);
-                acc[damage] = {
-                    cost: dr.cost,
-                    selected: false,
-                    from: getDamageLabel(damage),
-                    to: getDamageLabel(damage - 1)
-                };
-            }
+                    const damage = damageKeyToNumber(key);
+                    acc[damage] = {
+                        cost: dr.cost,
+                        selected: false,
+                        from: getDamageLabel(damage),
+                        to: getDamageLabel(damage - 1)
+                    };
+                }
 
-            return acc;
-        }, null);
+                return acc;
+            },
+            null
+        );
     }
 
     get title() {
@@ -90,7 +99,8 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
         context.armorScore = this.actor.system.armorScore;
         context.armorMarks = currentMarks;
-        context.basicMarksUsed = selectedArmorMarks.length === this.actor.system.rules.maxArmorMarked.total;
+        context.basicMarksUsed =
+            selectedArmorMarks.length === this.actor.system.rules.damageReduction.maxArmorMarked.value;
 
         const stressReductionStress = this.availableStressReductions
             ? stressReductions.reduce((acc, red) => acc + red.cost, 0)
@@ -100,7 +110,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
                 ? {
                       value:
                           this.actor.system.resources.stress.value + selectedStressMarks.length + stressReductionStress,
-                      maxTotal: this.actor.system.resources.stress.maxTotal
+                      max: this.actor.system.resources.stress.max
                   }
                 : null;
 
@@ -122,12 +132,15 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
     getDamageInfo = () => {
         const selectedArmorMarks = Object.values(this.marks.armor).filter(x => x.selected);
         const selectedStressMarks = Object.values(this.marks.stress).filter(x => x.selected);
-        const stressReductions = Object.values(this.availableStressReductions).filter(red => red.selected);
+        const stressReductions = this.availableStressReductions
+            ? Object.values(this.availableStressReductions).filter(red => red.selected)
+            : [];
         const currentMarks =
             this.actor.system.armor.system.marks.value + selectedArmorMarks.length + selectedStressMarks.length;
 
-        const currentDamage =
-            this.damage - selectedArmorMarks.length - selectedStressMarks.length - stressReductions.length;
+        const armorMarkReduction =
+            selectedArmorMarks.length * this.actor.system.rules.damageReduction.increasePerArmorMark;
+        const currentDamage = this.damage - armorMarkReduction - selectedStressMarks.length - stressReductions.length;
 
         return { selectedArmorMarks, selectedStressMarks, stressReductions, currentMarks, currentDamage };
     };
@@ -184,7 +197,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
                 : 0;
             const currentStress =
                 this.actor.system.resources.stress.value + selectedStressMarks.length + stressReductionStress;
-            if (currentStress + stressReduction.cost > this.actor.system.resources.stress.maxTotal) {
+            if (currentStress + stressReduction.cost > this.actor.system.resources.stress.max) {
                 ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.notEnoughStress'));
                 return;
             }
@@ -210,9 +223,17 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
     async close(fromSave) {
         if (!fromSave) {
-            this.reject();
+            this.resolve();
         }
 
         await super.close({});
+    }
+
+    static async armorStackQuery({ actorId, damage, type }) {
+        return new Promise(async (resolve, reject) => {
+            const actor = await fromUuid(actorId);
+            if (!actor || !actor?.isOwner) reject();
+            new DamageReductionDialog(resolve, reject, actor, damage, type).render({ force: true });
+        });
     }
 }

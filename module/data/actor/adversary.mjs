@@ -1,12 +1,7 @@
 import DHAdversarySettings from '../../applications/sheets-configs/adversary-settings.mjs';
 import ActionField from '../fields/actionField.mjs';
 import BaseDataActor from './base.mjs';
-
-const resourceField = () =>
-    new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({ initial: 0, integer: true }),
-        max: new foundry.data.fields.NumberField({ initial: 0, integer: true })
-    });
+import { resourceField, bonusField } from '../fields/actorField.mjs';
 
 export default class DhpAdversary extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Adversary'];
@@ -22,28 +17,44 @@ export default class DhpAdversary extends BaseDataActor {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
-            tier: new fields.StringField({
+            ...super.defineSchema(),
+            tier: new fields.NumberField({
                 required: true,
+                integer: true,
                 choices: CONFIG.DH.GENERAL.tiers,
-                initial: CONFIG.DH.GENERAL.tiers.tier1.id
+                initial: CONFIG.DH.GENERAL.tiers[1].id
             }),
             type: new fields.StringField({
                 required: true,
                 choices: CONFIG.DH.ACTOR.adversaryTypes,
                 initial: CONFIG.DH.ACTOR.adversaryTypes.standard.id
             }),
-            description: new fields.StringField(),
             motivesAndTactics: new fields.StringField(),
             notes: new fields.HTMLField(),
             difficulty: new fields.NumberField({ required: true, initial: 1, integer: true }),
-            hordeHp: new fields.NumberField({ required: true, initial: 1, integer: true }),
+            hordeHp: new fields.NumberField({
+                required: true,
+                initial: 1,
+                integer: true,
+                label: 'DAGGERHEART.GENERAL.hordeHp'
+            }),
             damageThresholds: new fields.SchemaField({
-                major: new fields.NumberField({ required: true, initial: 0, integer: true }),
-                severe: new fields.NumberField({ required: true, initial: 0, integer: true })
+                major: new fields.NumberField({
+                    required: true,
+                    initial: 0,
+                    integer: true,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                }),
+                severe: new fields.NumberField({
+                    required: true,
+                    initial: 0,
+                    integer: true,
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                })
             }),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(),
-                stress: resourceField()
+                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
+                stress: resourceField(0, 'DAGGERHEART.GENERAL.stress', true)
             }),
             attack: new ActionField({
                 initial: {
@@ -58,11 +69,12 @@ export default class DhpAdversary extends BaseDataActor {
                         amount: 1
                     },
                     roll: {
-                        type: 'weapon'
+                        type: 'attack'
                     },
                     damage: {
                         parts: [
                             {
+                                type: ['physical'],
                                 value: {
                                     multiplier: 'flat'
                                 }
@@ -74,13 +86,18 @@ export default class DhpAdversary extends BaseDataActor {
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
-                    total: new fields.NumberField({ required: true, integer: true, initial: 1 })
+                    value: new fields.NumberField({ required: true, integer: true, initial: 1 })
                 })
             ),
             bonuses: new fields.SchemaField({
-                difficulty: new fields.SchemaField({
-                    all: new fields.NumberField({ integer: true, initial: 0 }),
-                    reaction: new fields.NumberField({ integer: true, initial: 0 })
+                roll: new fields.SchemaField({
+                    attack: bonusField('DAGGERHEART.GENERAL.Roll.attack'),
+                    action: bonusField('DAGGERHEART.GENERAL.Roll.action'),
+                    reaction: bonusField('DAGGERHEART.GENERAL.Roll.reaction')
+                }),
+                damage: new fields.SchemaField({
+                    physical: bonusField('DAGGERHEART.GENERAL.Damage.physicalDamage'),
+                    magical: bonusField('DAGGERHEART.GENERAL.Damage.magicalDamage')
                 })
             })
         };
@@ -92,5 +109,38 @@ export default class DhpAdversary extends BaseDataActor {
 
     get features() {
         return this.parent.items.filter(x => x.type === 'feature');
+    }
+
+    async _preUpdate(changes, options, user) {
+        const allowed = await super._preUpdate(changes, options, user);
+        if (allowed === false) return false;
+
+        if (this.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+            if (changes.system?.resources?.hitPoints?.value) {
+                const halfHP = Math.ceil(this.resources.hitPoints.max / 2);
+                const newHitPoints = changes.system.resources.hitPoints.value;
+                const previouslyAboveHalf = this.resources.hitPoints.value < halfHP;
+                const loweredBelowHalf = previouslyAboveHalf && newHitPoints >= halfHP;
+                const raisedAboveHalf = !previouslyAboveHalf && newHitPoints < halfHP;
+                if (loweredBelowHalf) {
+                    await this.parent.createEmbeddedDocuments('ActiveEffect', [
+                        {
+                            name: game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                            img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                            disabled: !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation)
+                                .hordeDamage
+                        }
+                    ]);
+                } else if (raisedAboveHalf) {
+                    const hordeEffects = this.parent.effects.filter(
+                        x => x.name === game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label')
+                    );
+                    await this.parent.deleteEmbeddedDocuments(
+                        'ActiveEffect',
+                        hordeEffects.map(x => x.id)
+                    );
+                }
+            }
+        }
     }
 }

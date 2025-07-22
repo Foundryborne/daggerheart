@@ -7,3 +7,5 @@ export const encounterCountdown = {
     simple: 'countdown-encounter-simple',
     position: 'countdown-encounter-position'
 };
+
+export const itemAttachmentSource = 'attachmentSource';

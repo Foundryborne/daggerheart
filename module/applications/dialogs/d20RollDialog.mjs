@@ -22,7 +22,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         id: 'roll-selection',
         classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'roll-selection'],
         position: {
-            width: 550
+            width: 'auto'
         },
         window: {
             icon: 'fa-solid fa-dice'
@@ -52,10 +52,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         rollSelection: {
             id: 'rollSelection',
             template: 'systems/daggerheart/templates/dialogs/dice-roll/rollSelection.hbs'
-        },
-        costSelection: {
-            id: 'costSelection',
-            template: 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'
         }
     };
 
@@ -63,9 +59,22 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         const context = await super._prepareContext(_options);
         context.rollConfig = this.config;
         context.hasRoll = !!this.config.roll;
+        context.canRoll = true;
+        context.selectedRollMode = this.config.selectedRollMode;
+        context.rollModes = Object.entries(CONFIG.Dice.rollModes).map(([action, { label, icon }]) => ({
+            action,
+            label,
+            icon
+        }));
+
         if (this.config.costs?.length) {
             const updatedCosts = this.action.calcCosts(this.config.costs);
-            context.costs = updatedCosts;
+            context.costs = updatedCosts.map(x => ({
+                ...x,
+                label: x.keyIsID
+                    ? this.action.parent.parent.name
+                    : game.i18n.localize(CONFIG.DH.GENERAL.abilityCosts[x.key].label)
+            }));
             context.canRoll = this.action.hasCost(updatedCosts);
             this.config.data.scale = this.config.costs[0].total;
         }
@@ -73,9 +82,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.uses = this.action.calcUses(this.config.uses);
             context.canRoll = context.canRoll && this.action.hasUses(context.uses);
         }
-        if(this.roll) {
+        if (this.roll) {
             context.roll = this.roll;
             context.rollType = this.roll?.constructor.name;
+            context.rallyDie = this.roll.rallyChoices;
             context.experiences = Object.keys(this.config.data.experiences).map(id => ({
                 id,
                 ...this.config.data.experiences[id]
@@ -84,7 +94,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.advantage = this.config.roll?.advantage;
             context.disadvantage = this.config.roll?.disadvantage;
             context.diceOptions = CONFIG.DH.GENERAL.diceTypes;
-            context.canRoll = true;
             context.isLite = this.config.roll?.lite;
             context.extraFormula = this.config.extraFormula;
             context.formula = this.roll.constructFormula(this.config);
@@ -94,6 +103,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     static updateRollConfiguration(event, _, formData) {
         const { ...rest } = foundry.utils.expandObject(formData.object);
+        this.config.selectedRollMode = rest.selectedRollMode;
+
         if (this.config.costs) {
             this.config.costs = foundry.utils.mergeObject(this.config.costs, rest.costs);
         }
@@ -117,11 +128,6 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static selectExperience(_, button) {
-        /* if (this.config.experiences.find(x => x === button.dataset.key)) {
-            this.config.experiences = this.config.experiences.filter(x => x !== button.dataset.key);
-        } else {
-            this.config.experiences = [...this.config.experiences, button.dataset.key];
-        } */
         this.config.experiences =
             this.config.experiences.indexOf(button.dataset.key) > -1
                 ? this.config.experiences.filter(x => x !== button.dataset.key)

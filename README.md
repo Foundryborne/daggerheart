@@ -4,7 +4,7 @@
 
 - [Overview](#overview)
 - [User Install Guide](#user-install)
-- [Developer Setup](#developer-setup)
+- [Developer Setup](#development-setup)
 - [Contribution Info](#contributing)
 
 ## Overview

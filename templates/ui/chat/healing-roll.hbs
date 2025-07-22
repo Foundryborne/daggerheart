@@ -1,27 +1,31 @@
 <div class="dice-roll daggerheart chat roll" data-action="expandRoll">
     <div class="dice-flavor">{{title}}</div>
     <div class="dice-result">
-        <div class="dice-formula">{{roll.formula}}</div>
-        <div class="dice-tooltip">
-            <div class="wrapper">
-                <section class="tooltip-part">
-                    {{#each roll.dice}}
-                        <div class="dice">
-                            <header class="part-header flexrow">
-                                <span class="part-formula">{{formula}}</span>
-                                <span class="part-total">{{total}}</span>
-                            </header>
-                            <ol class="dice-rolls">
-                                {{#each results}}
-                                    <li class="roll die {{../denomination}} min">{{result}}</li>
-                                {{/each}}
-                            </ol>
-                        </div>
+        {{#each roll as | resource index | }}
+            <div class="dice-formula">{{resource.formula}}</div>
+            <div class="dice-tooltip">
+                <div class="wrapper">
+                    {{#each resource.parts}}
+                        <section class="tooltip-part">
+                            <div class="dice">
+                                <header class="part-header flexrow">
+                                    <span class="part-formula">{{formula}}</span>
+                                    <span class="part-total">{{total}}</span>
+                                </header>
+                                <ol class="dice-rolls">
+                                    {{#each dice}}
+                                        {{#each results}}
+                                            <li class="roll die {{../dice}} min">{{result}}</li>
+                                        {{/each}}
+                                    {{/each}}
+                                </ol>
+                            </div>
+                        </section>
                     {{/each}}
-                </section>
+                </div>
             </div>
-        </div>
-        <div class="dice-total">{{roll.total}}</div>
+            <div class="dice-total">{{resource.total}}</div>
+        {{/each}}
         <div class="flexrow">
             <button class="healing-button"><span>{{localize "DAGGERHEART.UI.Chat.healingRoll.heal"}}</span></button>  
         </div>

@@ -100,7 +100,7 @@ export default class DHContextMenu extends foundry.applications.ux.ContextMenu {
         event.preventDefault();
         event.stopPropagation();
         const { clientX, clientY } = event;
-        const selector = '[data-item-id]';
+        const selector = '[data-item-uuid]';
         const target = event.target.closest(selector) ?? event.currentTarget.closest(selector);
         target?.dispatchEvent(
             new PointerEvent('contextmenu', {

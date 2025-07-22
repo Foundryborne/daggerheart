@@ -1,78 +1,168 @@
 @import '../utils/colors.less';
 @import '../utils/fonts.less';
 
+.theme-light .application.daggerheart.dh-style {
+    .inventory-item,
+    .card-item {
+        .item-resource .item-dice-resource {
+            img {
+                filter: brightness(0) saturate(100%);
+            }
+        }
+    }
+}
+
+.appTheme({}, {
+    .inventory-item-header .img-portait .roll-img {
+        filter: invert(1);
+    }
+});
+
 .application.daggerheart.dh-style {
     .inventory-item {
-        display: grid;
-        grid-template-columns: 40px 1fr 60px;
-        gap: 10px;
         width: 100%;
+        list-style-type: none;
 
-        .item-img {
-            height: 40px;
-            width: 40px;
-            border-radius: 3px;
-            border: none;
-            cursor: pointer;
-            object-fit: cover;
-
-            &.actor-img {
-                border-radius: 50%;
-            }
-        }
-
-        .item-label {
-            font-family: @font-body;
-            align-self: center;
-
-            .item-name {
-                font-size: 14px;
-            }
-
-            .item-tags,
-            .item-labels {
-                display: flex;
-                gap: 10px;
-
-                .tag {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 3px 5px;
-                    font-size: 12px;
-
-                    background: light-dark(@dark-15, @beige-15);
-                    border: 1px solid light-dark(@dark, @beige);
-                    border-radius: 3px;
+        &:hover {
+            .inventory-item-header .img-portait {
+                .roll-img {
+                    opacity: 1;
                 }
-
-                .label {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 12px;
-                    gap: 4px;
+                .item-img {
+                    opacity: 0;
                 }
             }
         }
 
-        .controls {
+        .inventory-item-header {
             display: flex;
             align-items: center;
-            justify-content: end;
-            gap: 8px;
+            gap: 10px;
+            cursor: pointer;
 
-            a {
-                text-align: center;
+            .img-portait {
+                flex: 0 0 40px;
+                height: 40px;
+                cursor: pointer;
+                position: relative;
 
-                &.unequipped {
-                    opacity: 0.4;
+                .item-img,
+                .roll-img {
+                    position: absolute;
+                    transition: opacity 300ms ease-in;
+                }
+
+                .roll-img {
+                    opacity: 0;
+                }
+            }
+
+            .item-label {
+                flex: 1;
+                font-family: @font-body;
+                align-self: center;
+
+                .item-name {
+                    font-size: 14px;
+                }
+
+                .item-tags,
+                .item-labels {
+                    display: flex;
+                    gap: 10px;
+
+                    .tag,
+                    .label {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 12px;
+                    }
+
+                    .tag {
+                        padding: 3px 5px;
+                        background: light-dark(@dark-15, @beige-15);
+                        border: 1px solid light-dark(@dark, @beige);
+                        border-radius: 3px;
+                    }
+
+                    .label {
+                        gap: 4px;
+                    }
+                }
+            }
+
+            .item-resource {
+                flex: 0 0 60px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+            .controls {
+                flex: 0 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                gap: 8px;
+            }
+        }
+
+        .inventory-item-content {
+            > *:not(:last-child) {
+                margin-bottom: 5px;
+            }
+            &.extensible {
+                display: grid;
+                grid-template-rows: 0fr;
+                transition: grid-template-rows 0.3s ease-in-out;
+                &.extended {
+                    grid-template-rows: 1fr;
+                }
+                .invetory-description {
+                    overflow: hidden;
+                }
+            }
+            .item-resources {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                .item-dice-resource {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 26px;
+
+                    label,
+                    i {
+                        position: absolute;
+                        z-index: 2;
+                        cursor: pointer;
+                    }
+
+                    label {
+                        color: light-dark(white, black);
+                        filter: drop-shadow(0 0 1px light-dark(@dark-blue, @golden));
+                        font-size: 18px;
+                    }
+
+                    img {
+                        filter: brightness(0) saturate(100%) invert(97%) sepia(7%) saturate(580%) hue-rotate(332deg)
+                            brightness(96%) contrast(95%);
+                    }
+
+                    i {
+                        text-shadow: 0 0 3px white;
+                        filter: drop-shadow(0 1px white);
+                        color: black;
+                        font-size: 26px;
+                    }
                 }
             }
         }
     }
+
     .card-item {
         position: relative;
         height: 120px;
@@ -84,11 +174,27 @@
         &:hover {
             .card-label {
                 padding-top: 15px;
-                .controls {
+                .menu {
                     opacity: 1;
                     visibility: visible;
                     transition: all 0.3s ease;
                     max-height: 16px;
+
+                    &.resource-menu {
+                        max-height: 55px;
+
+                        &.dice-menu {
+                            max-height: 118px;
+
+                            .item-resources {
+                                flex-wrap: wrap;
+                            }
+
+                            .item-resource {
+                                width: unset;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -97,6 +203,7 @@
             height: 100%;
             width: 100%;
             object-fit: cover;
+            border-radius: 6px;
         }
 
         .card-label {
@@ -123,15 +230,89 @@
                 color: @beige;
             }
 
-            .controls {
+            .menu {
                 display: flex;
-                gap: 15px;
-                align-items: center;
+                flex-direction: column;
+                gap: 8px;
                 max-height: 0px;
                 opacity: 0;
                 visibility: collapse;
                 transition: all 0.3s ease;
                 color: @beige;
+
+                .controls {
+                    display: flex;
+                    gap: 2px;
+                    gap: 15px;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .item-resources {
+            width: 92px;
+        }
+
+        .item-resource {
+            width: 92px;
+        }
+    }
+
+    .inventory-item,
+    .card-item {
+        .item-resources {
+            display: flex;
+            gap: 4px;
+
+            .resource-edit {
+                font-size: 14px;
+            }
+        }
+
+        .item-resource {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            gap: 4px;
+
+            i {
+                flex: none;
+                font-size: 14px;
+            }
+
+            input {
+                flex: 1;
+                text-align: center;
+            }
+
+            .item-dice-resource {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 26px;
+
+                label {
+                    position: absolute;
+                    color: light-dark(white, black);
+                    filter: drop-shadow(0 0 1px light-dark(@dark-blue, @golden));
+                    z-index: 2;
+                    font-size: 18px;
+                    cursor: pointer;
+                }
+
+                img {
+                    filter: brightness(0) saturate(100%) invert(97%) sepia(7%) saturate(580%) hue-rotate(332deg)
+                        brightness(96%) contrast(95%);
+                }
+
+                i {
+                    position: absolute;
+                    text-shadow: 0 0 3px white;
+                    filter: drop-shadow(0 1px white);
+                    color: black;
+                    font-size: 26px;
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 @import '../utils/colors.less';
 @import '../utils/fonts.less';
+@import '../utils/mixin.less';
 
 .appTheme({
     &.dialog {
@@ -38,6 +39,32 @@
                 border: 1px solid light-dark(@dark-blue, @golden);
                 color: light-dark(@dark-blue, @golden);
             }
+        }
+    }
+
+    .submit-btn {
+        width: 100%;
+        height: 38px;
+    }
+
+    .formula-label {
+        font-family: @font-body;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+
+        color: light-dark(@dark, @beige);
+    }
+
+    .damage-formula {
+        display: flex;
+        justify-content: space-between;
+        .damage-details {
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
     }
 }
