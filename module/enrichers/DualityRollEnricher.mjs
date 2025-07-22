@@ -48,7 +48,7 @@ function getDualityMessage(roll) {
         >
             <i class="fa-solid fa-circle-half-stroke"></i>
             ${label}
-            ${roll.difficulty || advantageLabel ? `(${[roll.difficulty, game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`)].filter(x => x).join(' ')})` : ''}
+            ${roll.difficulty || advantageLabel ? `(${[roll.difficulty, advantageLabel ? game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`) : null].filter(x => x).join(' ')})` : ''}
         </button>
     `;
 

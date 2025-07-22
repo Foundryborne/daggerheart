@@ -110,6 +110,13 @@ export default class DualityRoll extends D20Roll {
         return [...(hooks ?? []), 'Duality'];
     }
 
+    /** @inheritDoc */
+    static fromData(data) {
+        data.terms[0].class = game.system.api.dice.DualityDie.name;
+        data.terms[2].class = game.system.api.dice.DualityDie.name;
+        return super.fromData(data);
+    }
+
     createBaseDice() {
         if (
             this.dice[0] instanceof CONFIG.Dice.daggerheart.DualityDie &&

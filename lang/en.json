@@ -1339,6 +1339,7 @@
             "quantity": "Quantity",
             "range": "Range",
             "recovery": "Recovery",
+            "rerollThing": "Reroll {thing}",
             "resource": "Resource",
             "roll": "Roll",
             "rollAll": "Roll All",

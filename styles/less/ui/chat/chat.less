@@ -44,6 +44,21 @@
                 &.duality {
                     display: flex;
                     gap: 0.25rem;
+
+                    > .roll {
+                        background-image: none;
+
+                        .reroll-button {
+                            border: none;
+                            background: initial;
+                            width: 42px;
+
+                            &:hover {
+                                background: var(--button-background-color);
+                                border: 1px solid var(--button-border-color);
+                            }
+                        }
+                    }
                 }
                 // margin: 0;
                 > .roll {
@@ -52,6 +67,7 @@
                     justify-content: center;
                     gap: 4px;
                     margin-bottom: 4px;
+
                     .dice-container {
                         display: flex;
                         flex-direction: column;

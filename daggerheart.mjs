@@ -2,14 +2,14 @@ import { SYSTEM } from './module/config/system.mjs';
 import * as applications from './module/applications/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
+import * as dice from './module/dice/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
 import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/_module.mjs';
-import { enrichedDualityRoll, renderDualityButton } from './module/enrichers/DualityRollEnricher.mjs';
-import { renderMeasuredTemplate } from './module/enrichers/TemplateEnricher.mjs';
+import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
     handlebarsRegistration,
@@ -20,14 +20,14 @@ import { placeables } from './module/canvas/_module.mjs';
 import { registerRollDiceHooks } from './module/dice/dhRoll.mjs';
 import { registerDHActorHooks } from './module/documents/actor.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
-import { renderDamageButton } from './module/enrichers/DamageEnricher.mjs';
 
 Hooks.once('init', () => {
     CONFIG.DH = SYSTEM;
     game.system.api = {
         applications,
         models,
-        documents
+        documents,
+        dice
     };
 
     CONFIG.TextEditor.enrichers.push(...enricherConfig);
@@ -47,6 +47,11 @@ Hooks.once('init', () => {
         DualityRoll: DualityRoll,
         D20Roll: D20Roll,
         DamageRoll: DamageRoll
+    };
+
+    CONFIG.Dice.terms = {
+        ...CONFIG.Dice.terms,
+        DualityDie
     };
 
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, ...[DHRoll, DualityRoll, D20Roll, DamageRoll]];

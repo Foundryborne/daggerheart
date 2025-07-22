@@ -1,3 +1,5 @@
+import { getDiceSoNicePresets } from '../../config/generalConfig.mjs';
+
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
         super(options);
@@ -313,47 +315,50 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         action.use(event);
     };
 
-    //Reroll Functionality
     rerollEvent = async (event, message) => {
-        let DieTerm = foundry.dice.terms.Die;
-        let dicetype = event.target.value;
+        const target = event.target.closest('button[data-die-index]');
         let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
-        console.log('Parsed Map:', originalRoll_parsed);
-        let originalRoll = Roll.fromData(originalRoll_parsed);
-        let diceIndex;
-        console.log('Dice to reroll is:', dicetype, ', and the message id is:', message._id, originalRoll_parsed);
-        console.log('Original Roll Terms:', originalRoll.terms);
-        switch (dicetype) {
-            case 'hope': {
-                diceIndex = 0; //Hope Die
-                break;
+        let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...originalRoll_parsed, evaluated: false });
+        const term = parsedRoll.terms[target.dataset.dieIndex];
+        await term.reroll(`/r1=${term.total}`);
+        if (game.modules.get('dice-so-nice')?.active) {
+            const diceSoNiceRoll = {
+                _evaluated: true,
+                dice: [new Die({ ...term, faces: term._faces, results: term.results.filter(x => !x.rerolled) })],
+                options: { appearance: {} }
+            };
+            const diceSoNicePresets = getDiceSoNicePresets();
+            switch (target.dataset.type) {
+                case 'hope':
+                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.hope };
+                    break;
+                case 'fear':
+                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.fear };
+                    break;
+                case 'advantage':
+                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.advantage };
+                    break;
+                case 'disadvantage':
+                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.disadvantage };
+                    break;
             }
-            case 'fear': {
-                diceIndex = 2; //Fear Die
-                break;
+
+            await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
+        }
+
+        await parsedRoll.evaluate();
+
+        const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
+            targets: message.system.targets,
+            roll: {
+                advantage: message.system.roll.advantage?.type,
+                difficulty: message.system.roll.difficulty ? Number(message.system.roll.difficulty) : null
             }
-            default:
-                ui.notifications.warn('Invalid Dice type selected.');
-                break;
-        }
-        let rollClone = originalRoll.clone();
-        let rerolledTerm = originalRoll.terms[diceIndex];
-        console.log('originalRoll:', originalRoll, 'rerolledTerm', rerolledTerm);
-        if (!(rerolledTerm instanceof DieTerm)) {
-            ui.notifications.error('Selected term is not a die.');
-            return;
-        }
-        await rollClone.reroll({ allowStrings: true })[diceIndex];
-        console.log(rollClone);
-        await rollClone.evaluate({ allowStrings: true });
-        console.log(rollClone.result);
-        /*       
-        const confirm = await foundry.applications.api.DialogV2.confirm({
-            window: { title: 'Confirm Reroll' },
-            content: `<p>You have rerolled your <strong>${dicetype}</strong> die to <strong>${rollClone.result}</strong>.</p><p>Apply this new roll?</p>`
-            });
-        if (!confirm) return;
-        rollClone.toMessage({flavor: 'Selective reroll applied for ${dicetype}.'});
-        console.log("Updated Roll",rollClone);*/
+        });
+        newRoll.extra = newRoll.extra.slice(2);
+
+        await game.messages.get(message._id).update({
+            'system.roll': newRoll
+        });
     };
 }

@@ -147,7 +147,10 @@ export default class D20Roll extends DHRoll {
                 const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
                 target.hit = this.isCritical || roll.total >= difficulty;
             });
-        } else if (config.roll.difficulty) data.success = roll.isCritical || roll.total >= config.roll.difficulty;
+        } else if (config.roll.difficulty) {
+            data.difficulty = config.roll.difficulty;
+            data.success = roll.isCritical || roll.total >= config.roll.difficulty;
+        }
         data.advantage = {
             type: config.roll.advantage,
             dice: roll.dAdvantage?.denomination,

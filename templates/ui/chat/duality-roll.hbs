@@ -38,11 +38,11 @@
                         </header>
                         <div class="flexrow">
                             <ol class="dice-rolls duality">
-                                <li class="roll die {{roll.hope.dice}}" title="{{localize "DAGGERHEART.GENERAL.hope"}}">
+                                <li class="roll die {{roll.hope.dice}}">
                                     <div class="dice-container">
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.hope"}}</div>
-                                        <div class="dice-inner-container hope" title="{{localize "DAGGERHEART.GENERAL.hope"}}">s
-                                            <button type="checkbox" class="reroll-button" id="reroll-dice" value="hope">
+                                        <div class="dice-inner-container hope" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}">
+                                            <button type="checkbox" class="reroll-button" data-die-index="0" data-type="hope">
                                                 <div class="dice-wrapper">
                                                     <img class="dice" src="../icons/svg/{{roll.hope.dice}}-grey.svg"/>
                                                 </div>
@@ -51,14 +51,16 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="roll die {{roll.fear.dice}}" title="{{localize "DAGGERHEART.GENERAL.fear"}}">
+                                <li class="roll die {{roll.fear.dice}}">
                                     <div class="dice-container">
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.fear"}}</div>
-                                        <div class="dice-inner-container fear" title="{{localize "DAGGERHEART.GENERAL.fear"}}">
-                                            <div class="dice-wrapper">
-                                                <img class="dice" src="../icons/svg/{{roll.fear.dice}}-grey.svg"/>
-                                            </div>
-                                            <div class="dice-value">{{roll.fear.value}}</div>
+                                        <div class="dice-inner-container fear" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}">
+                                            <button type="checkbox" class="reroll-button" data-die-index="2" data-type="fear">
+                                                <div class="dice-wrapper">
+                                                    <img class="dice" src="../icons/svg/{{roll.fear.dice}}-grey.svg"/>
+                                                </div>
+                                                <div class="dice-value">{{roll.fear.value}}</div>
+                                            </button>
                                         </div>
                                     </div>
                                 </li>
