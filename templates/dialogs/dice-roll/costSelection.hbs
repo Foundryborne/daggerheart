@@ -1,21 +1,30 @@
-<div>
-    {{#if uses}}
-        <div class="form-group">
-            <div class="form-fields">
-                <label for="uses.enabled">Uses: {{uses.value}}/{{uses.max}}</label>
-                <input name="uses.enabled" type="checkbox"{{#if uses.enabled}} checked{{/if}}>
+<fieldset class="one-column">
+    <legend>{{localize 'DAGGERHEART.GENERAL.Cost.single'}}</legend>
+    <ul>
+        {{#if uses}}
+            <li class="scalable-input">
+                <div class="form-group">
+                    <div class="form-fields nest-inputs">
+                        <input name="uses.enabled" type="checkbox"{{#if uses.enabled}} checked{{/if}}>
+                        <label for="uses.enabled">Uses</label>
+                    </div>
+                </div>
+                <label class="modifier-label">{{uses.value}}/{{uses.max}}</label>
+            </li>
+        {{/if}}
+        {{#each costs as | cost index |}}
+        <li class="scalable-input">
+            <div class="form-group">
+                <div class="form-fields nest-inputs">
+                    <input name="costs.{{index}}.enabled" type="checkbox"{{#if enabled}} checked{{/if}}>
+                    <label>{{label}}</label>
+                </div>
             </div>
-        </div>
-    {{/if}}
-    {{#each costs as | cost index |}}
-        <div class="form-group">
-            <div class="form-fields">
-                <label>{{label}}: {{total}}</label>
-                <input name="costs.{{index}}.enabled" type="checkbox"{{#if enabled}} checked{{/if}}>
-                {{#if scalable}}
-                    <input type="range" value="{{scale}}" min="1" max="10" step="{{step}}" name="costs.{{index}}.scale">
-                {{/if}}
-            </div>
-        </div>
-    {{/each}}
-</div>
+            {{#if scalable}}
+                <input type="range" value="{{scale}}" min="1" max="10" step="{{step}}" name="costs.{{index}}.scale">
+            {{/if}}
+            <label class="modifier-label">{{total}}/10</label>
+        </li>
+        {{/each}}
+    </ul>
+</fieldset>

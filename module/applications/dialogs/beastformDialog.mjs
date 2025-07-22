@@ -1,8 +1,10 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class BeastformDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(configData) {
+    constructor(configData, item) {
         super();
+
+        this.item = item;
 
         this.configData = configData;
         this.selected = null;
@@ -14,10 +16,13 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'views', 'dh-style', 'beastform-selection'],
+        classes: ['daggerheart', 'views', 'dialog', 'dh-style', 'beastform-selection'],
         position: {
             width: 600,
             height: 'auto'
+        },
+        window: {
+            icon: 'fa-solid fa-paw'
         },
         actions: {
             selectBeastform: this.selectBeastform,
@@ -34,11 +39,12 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
     };
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.ITEMS.Beastform.dialogTitle');
+        return this.item.name;
     }
 
     /** @override */
     static PARTS = {
+        header: { template: 'systems/daggerheart/templates/dialogs/beastform/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/dialogs/beastform/tabs.hbs' },
         beastformTier: { template: 'systems/daggerheart/templates/dialogs/beastform/beastformTier.hbs' },
         advanced: { template: 'systems/daggerheart/templates/dialogs/beastform/advanced.hbs' },
@@ -262,12 +268,13 @@ export default class BeastformDialog extends HandlebarsApplicationMixin(Applicat
         if (!options.submitted) this.selected = null;
     }
 
-    static async configure(configData) {
+    static async configure(configData, item) {
         return new Promise(resolve => {
-            const app = new this(configData);
+            const app = new this(configData, item);
+            const featureItem = item;
             app.addEventListener(
                 'close',
-                () => resolve({ selected: app.selected, evolved: app.evolved, hybrid: app.hybrid }),
+                () => resolve({ selected: app.selected, evolved: app.evolved, hybrid: app.hybrid, item: featureItem }),
                 { once: true }
             );
             app.render({ force: true });

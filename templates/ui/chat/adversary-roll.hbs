@@ -12,16 +12,13 @@
                                 <span class="part-total">{{total}}</span>
                             </header>
                             <div class="flexrow">
-                                <ol class="dice-rolls">
-                                    {{#each results}}
-                                        <li class="roll die {{../dice}}{{#if discarded}} discarded{{/if}} min">{{result}}</li>
-                                    {{/each}}
+                                <ol class="dice-rolls rerollable">
+                                    <button type="checkbox" class="reroll-button" data-die-index="0" data-tooltip="{{localize "DAGGERHEART.GENERAL.reroll"}}">
+                                        {{#each results as |result index|}}
+                                            <li class="roll die {{../dice}}{{#if discarded}} discarded{{/if}} min">{{result.result}}</li>
+                                        {{/each}}
+                                    </button>
                                 </ol>
-                                {{#if (eq index 0)}}
-                                <div class="attack-roll-advantage-container">
-                                    {{#if (eq ../roll.advantage.type 1)}}{{localize "DAGGERHEART.GENERAL.Advantage.full"}}{{/if}}{{#if (eq ../roll.advantage.type -1)}}{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}{{/if}}
-                                </div>
-                                {{/if}}
                             </div>
                         {{/each}}
                     </div>

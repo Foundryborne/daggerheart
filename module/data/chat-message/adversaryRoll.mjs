@@ -6,7 +6,7 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         return {
             title: new fields.StringField(),
-            roll: new fields.DataField(),
+            roll: new fields.ObjectField(),
             targets: new fields.ArrayField(
                 new fields.SchemaField({
                     id: new fields.StringField({}),

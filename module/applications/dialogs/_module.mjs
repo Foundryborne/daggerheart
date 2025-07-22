@@ -1,5 +1,4 @@
 export { default as BeastformDialog } from './beastformDialog.mjs';
-export { default as costSelectionDialog } from './costSelectionDialog.mjs';
 export { default as d20RollDialog } from './d20RollDialog.mjs';
 export { default as DamageDialog } from './damageDialog.mjs';
 export { default as DamageReductionDialog } from './damageReductionDialog.mjs';
