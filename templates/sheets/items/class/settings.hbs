@@ -37,45 +37,51 @@
             <fieldset class="one-column drop-section primary-weapon-section">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedPrimaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#if document.system.characterGuide.suggestedPrimaryWeapon}}
-                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{document.system.characterGuide.suggestedPrimaryWeapon.uuid}}">
-                            <img class="image" src="{{document.system.characterGuide.suggestedPrimaryWeapon.img}}" />
-                            <span>{{document.system.characterGuide.suggestedPrimaryWeapon.name}}</span>
-                            <div class="controls">
-                                <i data-action="removeSuggestedItem" data-target="suggestedPrimaryWeapon" class="fa-solid fa-trash icon-button"></i>
+                    {{#with (ifThen document.system.suggestedPrimaryWeapon document.system.suggestedPrimaryWeapon null)}}
+                        {{#if this}}
+                            <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
+                                <img class="image" src="{{this.img}}" />
+                                <span>{{this.name}}</span>
+                                <div class="controls">
+                                    <a><i data-action="removeLinkedItem" data-uuid="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    {{/if}}
+                        {{/if}}
+                    {{/with}}
                 </div>
             </fieldset>
 
             <fieldset class="one-column drop-section secondary-weapon-section">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedSecondaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#if document.system.characterGuide.suggestedSecondaryWeapon}}
-                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{system.system.characterGuide.suggestedSecondaryWeapon.uuid}}">
-                            <img class="image" src="{{document.system.characterGuide.suggestedSecondaryWeapon.img}}" />
-                            <span>{{document.system.characterGuide.suggestedSecondaryWeapon.name}}</span>
-                            <div class="controls">
-                                <i data-action="removeSuggestedItem" data-target="suggestedSecondaryWeapon" class="fa-solid fa-trash icon-button"></i>
+                    {{#with (ifThen document.system.suggestedSecondaryWeapon document.system.suggestedSecondaryWeapon null)}}
+                        {{#if this}}
+                            <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
+                                <img class="image" src="{{this.img}}" />
+                                <span>{{this.name}}</span>
+                                <div class="controls">
+                                    <a><i data-action="removeLinkedItem" data-uuid="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    {{/if}}
+                        {{/if}}
+                    {{/with}}
                 </div>
             </fieldset>
 
             <fieldset class="one-column drop-section armor-section">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedArmorTitle"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#if document.system.characterGuide.suggestedArmor}}
-                        <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{document.system.characterGuide.suggestedArmor.uuid}}">
-                            <img class="image" src="{{document.system.characterGuide.suggestedArmor.img}}" />
-                            <span>{{document.system.characterGuide.suggestedArmor.name}}</span>
-                            <div class="controls">
-                                <i data-action="removeSuggestedItem" data-target="suggestedArmor" class="fa-solid fa-trash icon-button"></i>
+                    {{#with (ifThen document.system.suggestedArmor document.system.suggestedArmor null)}}
+                        {{#if this}}
+                            <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
+                                <img class="image" src="{{this.img}}" />
+                                <span>{{this.name}}</span>
+                                <div class="controls">
+                                    <a><i data-action="removeLinkedItem" data-uuid="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    {{/if}}
+                        {{/if}}
+                    {{/with}}
                 </div>
             </fieldset>
         </fieldset>
@@ -85,12 +91,12 @@
             <fieldset class="one-column drop-section take-section">
                 <legend>{{localize "DAGGERHEART.GENERAL.take"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#each source.system.inventory.take}}
+                    {{#each source.system.take}}
                         <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
                             <img class="image" src="{{this.img}}" />
                             <span>{{this.name}}</span>
                             <div class="controls">
-                                <i data-action="removeItemFromCollection" data-target="invetory.take" data-uuid="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i>
+                                <a><i data-action="removeLinkedItem" data-uuid="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i></a>
                             </div>
                         </div>
                     {{/each}}
@@ -100,12 +106,12 @@
             <fieldset class="one-column drop-section choice-a-section">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.thenChoose"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#each source.system.inventory.choiceA}}
+                    {{#each source.system.choiceA}}
                         <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
                             <img class="image" src="{{this.img}}" />
                             <span>{{this.name}}</span>
                             <div class="controls">
-                                <i data-action="removeItemFromCollection" data-target="invetory.choiceA" data-uuid="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i>
+                                <a><i data-action="removeLinkedItem" data-uuid="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i></a>
                             </div>
                         </div>
                     {{/each}}
@@ -115,12 +121,12 @@
             <fieldset class="one-column drop-section choice-b-section">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.andEither"}}</legend>
                 <div class="drop-section-body list-items">
-                    {{#each source.system.inventory.choiceB}}
+                    {{#each source.system.choiceB}}
                         <div class="suggested-item item-line" data-action="editDoc" data-item-uuid="{{this.uuid}}">
                             <img class="image" src="{{this.img}}" />
                             <span>{{this.name}}</span>
                             <div class="controls">
-                                <i data-action="removeItemFromCollection" data-target="invetory.choiceB" data-uuid="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i>
+                                <a><i data-action="removeLinkedItem" data-uuid="{{this.uuid}}" class="fa-solid fa-trash icon-button"></i></a>
                             </div>
                         </div>
                     {{/each}}

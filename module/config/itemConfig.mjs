@@ -1311,7 +1311,7 @@ export const featureTypes = {
     }
 };
 
-export const featureSubTypes = {
+export const itemLinkFeatureTypes = {
     primary: 'primary',
     secondary: 'secondary',
     hope: 'hope',
@@ -1319,6 +1319,20 @@ export const featureSubTypes = {
     foundation: 'foundation',
     specialization: 'specialization',
     mastery: 'mastery'
+};
+
+export const itemLinkItemTypes = {
+    primaryWeapon: 'primaryWeapon',
+    secondaryWeapon: 'secondaryWeapon',
+    armor: 'armor',
+    choiceA: 'choiceA',
+    choiceB: 'choiceB',
+    take: 'take'
+};
+
+export const itemLinkTypes = {
+    ...itemLinkFeatureTypes,
+    ...itemLinkItemTypes
 };
 
 export const actionTypes = {

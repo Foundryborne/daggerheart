@@ -24,7 +24,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             hasResource: false,
             isQuantifiable: false,
             isInventoryItem: false,
-            isItemLinkable: true
+            isItemLinkable: false
         };
     }
 
@@ -143,13 +143,27 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
     }
 
     async _preDelete() {
-        if (!this.actor || this.actor.type !== 'character') return;
+        if (this.actor && this.actor.type === 'character') {
+            const items = this.actor.items.filter(item => item.system.originId === this.parent.id);
+            if (items.length > 0)
+                await this.actor.deleteEmbeddedDocuments(
+                    'Item',
+                    items.map(x => x.id)
+                );
+        }
 
-        const items = this.actor.items.filter(item => item.system.originId === this.parent.id);
-        if (items.length > 0)
-            await this.actor.deleteEmbeddedDocuments(
-                'Item',
-                items.map(x => x.id)
-            );
+        if (this.metadata.isItemLinkable) {
+            const linkEntries = Object.entries(this.itemLinks);
+            for (let [uuid, type] of linkEntries) {
+                const item = await foundry.utils.fromUuid(uuid);
+                const path = CONFIG.DH.ITEM.itemLinkFeatureTypes[type] ? 'system.features' : 'system.linkedItems';
+                await item.update({
+                    [path]: foundry.utils
+                        .getProperty(item, path)
+                        .filter(x => x.uuid !== this.parent.uuid)
+                        .map(x => x.uuid)
+                });
+            }
+        }
     }
 }

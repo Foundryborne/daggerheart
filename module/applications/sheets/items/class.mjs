@@ -8,8 +8,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         classes: ['class'],
         position: { width: 700 },
         actions: {
-            removeItemFromCollection: ClassSheet.#removeItemFromCollection,
-            removeSuggestedItem: ClassSheet.#removeSuggestedItem
+            removeLinkedItem: ClassSheet.#removeLinkedItem
         },
         tagifyConfigs: [
             {
@@ -76,6 +75,34 @@ export default class ClassSheet extends DHBaseItemSheet {
     }
 
     /* -------------------------------------------- */
+    /*  Application Drag/Drop                       */
+    /* -------------------------------------------- */
+    async linkedItemUpdate(item, property, replace) {
+        const removedLinkedItems = [];
+        const existingLink = item.system.itemLinks[this.document.uuid];
+        if (replace) {
+            const toRemove = this.document.system.linkedItems.find(
+                x => x.uuid !== item.uuid && x.system.itemLinks[this.document.uuid] === property
+            );
+            if (toRemove) {
+                removedLinkedItems.push(toRemove.uuid);
+                await toRemove.update({ [`system.itemLinks.-=${this.document.uuid}`]: null });
+            }
+        }
+
+        await item.update({ [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.itemLinkTypes[property] });
+
+        if (!existingLink) {
+            await this.document.update({
+                'system.linkedItems': [
+                    ...this.document.system.linkedItems.map(x => x.uuid).filter(x => !removedLinkedItems.includes(x)),
+                    item.uuid
+                ]
+            });
+        } else {
+            this.render();
+        }
+    }
 
     async _onDrop(event) {
         event.stopPropagation();
@@ -83,6 +110,10 @@ export default class ClassSheet extends DHBaseItemSheet {
         const item = await fromUuid(data.uuid);
         const target = event.target.closest('fieldset.drop-section');
         if (item.type === 'subclass') {
+            const previouslyLinked = item.system.itemLinks[this.document.uuid] !== undefined;
+            if (previouslyLinked) return;
+
+            await item.update({ [`system.itemLinks.${this.document.uuid}`]: null });
             await this.document.update({
                 'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
             });
@@ -90,47 +121,30 @@ export default class ClassSheet extends DHBaseItemSheet {
             super._onDrop(event);
         } else if (item.type === 'weapon') {
             if (target.classList.contains('primary-weapon-section')) {
-                if (!this.document.system.characterGuide.suggestedPrimaryWeapon && !item.system.secondary)
-                    await this.document.update({
-                        'system.characterGuide.suggestedPrimaryWeapon': item.uuid
-                    });
+                if (!item.system.secondary) {
+                    await this.linkedItemUpdate(item, CONFIG.DH.ITEM.itemLinkTypes.primaryWeapon, true);
+                }
             } else if (target.classList.contains('secondary-weapon-section')) {
-                if (!this.document.system.characterGuide.suggestedSecondaryWeapon && item.system.secondary)
-                    await this.document.update({
-                        'system.characterGuide.suggestedSecondaryWeapon': item.uuid
-                    });
+                if (item.system.secondary) {
+                    await this.linkedItemUpdate(item, CONFIG.DH.ITEM.itemLinkTypes.secondaryWeapon, true);
+                }
             }
         } else if (item.type === 'armor') {
             if (target.classList.contains('armor-section')) {
-                if (!this.document.system.characterGuide.suggestedArmor)
-                    await this.document.update({
-                        'system.characterGuide.suggestedArmor': item.uuid
-                    });
+                await this.linkedItemUpdate(item, CONFIG.DH.ITEM.itemLinkTypes.armor, true);
             }
         } else if (target.classList.contains('choice-a-section')) {
             if (item.type === 'miscellaneous' || item.type === 'consumable') {
-                if (this.document.system.inventory.choiceA.length < 2)
-                    await this.document.update({
-                        'system.inventory.choiceA': [
-                            ...this.document.system.inventory.choiceA.map(x => x.uuid),
-                            item.uuid
-                        ]
-                    });
+                if (this.document.system.choiceA.length < 2)
+                    await this.linkedItemUpdate(item, CONFIG.DH.ITEM.itemLinkTypes.choiceA);
             }
         } else if (item.type === 'miscellaneous') {
             if (target.classList.contains('take-section')) {
-                if (this.document.system.inventory.take.length < 3)
-                    await this.document.update({
-                        'system.inventory.take': [...this.document.system.inventory.take.map(x => x.uuid), item.uuid]
-                    });
+                if (this.document.system.take.length < 3)
+                    await this.linkedItemUpdate(item, CONFIG.DH.ITEM.itemLinkTypes.take);
             } else if (target.classList.contains('choice-b-section')) {
-                if (this.document.system.inventory.choiceB.length < 2)
-                    await this.document.update({
-                        'system.inventory.choiceB': [
-                            ...this.document.system.inventory.choiceB.map(x => x.uuid),
-                            item.uuid
-                        ]
-                    });
+                if (this.document.system.choiceB.length < 2)
+                    await this.linkedItemUpdate(item, CONFIG.DH.ITEM.itemLinkTypes.choiceB);
             }
         }
     }
@@ -140,23 +154,18 @@ export default class ClassSheet extends DHBaseItemSheet {
     /* -------------------------------------------- */
 
     /**
-     * Removes an item from an class collection by UUID.
+     * Removes an item from class LinkedItems by uuid.
      * @param {PointerEvent} event - The originating click event
-     * @param {HTMLElement} element - The capturing HTML element which defines the [data-action="removeItemFromCollection"]
+     * @param {HTMLElement} element - The capturing HTML element which defines the [data-action="removeLinkedItem"]
      */
-    static async #removeItemFromCollection(_event, element) {
-        const { uuid, target } = element.dataset;
-        const prop = foundry.utils.getProperty(this.document.system, target);
-        await this.document.update({ [`system.${target}`]: prop.filter(i => i.uuid !== uuid) });
-    }
+    static async #removeLinkedItem(_event, element) {
+        const { uuid } = element.dataset;
+        const item = this.document.system.linkedItems.find(x => x.uuid === uuid);
+        if (!item) return;
 
-    /**
-     * Removes an suggested item from the class.
-     * @param {PointerEvent} _event - The originating click event
-     * @param {HTMLElement} element - The capturing HTML element which defines the [data-action="removeSuggestedItem"]
-     */
-    static async #removeSuggestedItem(_event, element) {
-        const { target } = element.dataset;
-        await this.document.update({ [`system.characterGuide.${target}`]: null });
+        await item.update({ [`system.itemLinks-=${uuid}`]: null });
+        await this.document.update({
+            'system.linkedItems': this.document.system.linkedItems.filter(x => x.uuid !== uuid).map(x => x.uuid)
+        });
     }
 }

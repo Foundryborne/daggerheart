@@ -23,7 +23,7 @@
         </fieldset>
     </div>
 
-    <fieldset>
+    <fieldset class="drop-section">
         <legend>{{localize "TYPES.Item.subclass"}}</legend>
         <div class="feature-list">
             {{#each source.system.subclasses as |subclass index|}}
@@ -36,8 +36,8 @@
                         <div class='controls'>
                             <a
                                 class='effect-control'
-                                data-action='viewDoc'
-                                data-uuid={{subclass.uuid}}
+                                data-action='editDoc'
+                                data-item-uuid={{subclass.uuid}}
                                 data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
                             >
                                 <i class="fa-solid fa-globe"></i>

@@ -28,12 +28,8 @@ export default class DHClass extends BaseDataItem {
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
             features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            linkedItems: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
-            inventory: new fields.SchemaField({
-                take: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
-                choiceA: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
-                choiceB: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false })
-            }),
             characterGuide: new fields.SchemaField({
                 suggestedTraits: new fields.SchemaField({
                     agility: new fields.NumberField({ initial: 0, integer: true }),
@@ -42,21 +38,54 @@ export default class DHClass extends BaseDataItem {
                     instinct: new fields.NumberField({ initial: 0, integer: true }),
                     presence: new fields.NumberField({ initial: 0, integer: true }),
                     knowledge: new fields.NumberField({ initial: 0, integer: true })
-                }),
-                suggestedPrimaryWeapon: new ForeignDocumentUUIDField({ type: 'Item' }),
-                suggestedSecondaryWeapon: new ForeignDocumentUUIDField({ type: 'Item' }),
-                suggestedArmor: new ForeignDocumentUUIDField({ type: 'Item' })
+                })
             }),
             isMulticlass: new fields.BooleanField({ initial: false })
         };
     }
 
     get hopeFeatures() {
-        return this.features.filter(x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.hope);
+        return this.features.filter(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.hope
+        );
     }
 
     get classFeatures() {
-        return this.features.filter(x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.class);
+        return this.features.filter(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.class
+        );
+    }
+
+    get suggestedPrimaryWeapon() {
+        return this.linkedItems.find(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.primaryWeapon
+        );
+    }
+
+    get suggestedSecondaryWeapon() {
+        return this.linkedItems.find(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.secondaryWeapon
+        );
+    }
+
+    get suggestedArmor() {
+        return this.linkedItems.find(x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.armor);
+    }
+
+    get take() {
+        return this.linkedItems.filter(x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.take);
+    }
+
+    get choiceA() {
+        return this.linkedItems.filter(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.choiceA
+        );
+    }
+
+    get choiceB() {
+        return this.linkedItems.filter(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.choiceB
+        );
     }
 
     async _preCreate(data, options, user) {

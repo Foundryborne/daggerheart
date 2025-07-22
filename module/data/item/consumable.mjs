@@ -9,7 +9,8 @@ export default class DHConsumable extends BaseDataItem {
             type: 'consumable',
             hasDescription: true,
             isQuantifiable: true,
-            isInventoryItem: true
+            isInventoryItem: true,
+            isItemLinkable: true
         });
     }
 

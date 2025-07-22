@@ -6,7 +6,7 @@ export default class ItemLinksField extends foundry.data.fields.TypedObjectField
     constructor(options, context) {
         super(
             new foundry.data.fields.StringField({
-                choices: CONFIG.DH.ITEM.featureSubTypes,
+                choices: CONFIG.DH.ITEM.itemLinkTypes,
                 nullable: true,
                 initial: null
             }),

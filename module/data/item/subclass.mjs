@@ -7,7 +7,8 @@ export default class DHSubclass extends BaseDataItem {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Item.subclass',
             type: 'subclass',
-            hasDescription: true
+            hasDescription: true,
+            isItemLinkable: true
         });
     }
 
@@ -30,19 +31,19 @@ export default class DHSubclass extends BaseDataItem {
 
     get foundationFeatures() {
         return this.features.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.foundation
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.foundation
         );
     }
 
     get specializationFeatures() {
         return this.features.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.specialization
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.specialization
         );
     }
 
     get masteryFeatures() {
         return this.features.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.mastery
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.mastery
         );
     }
 

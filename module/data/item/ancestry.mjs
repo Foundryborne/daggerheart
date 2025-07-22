@@ -20,12 +20,14 @@ export default class DHAncestry extends BaseDataItem {
     }
 
     get primaryFeature() {
-        return this.features.find(x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.primary);
+        return this.features.find(
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.primary
+        );
     }
 
     get secondaryFeature() {
         return this.features.find(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.featureSubTypes.secondary
+            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.secondary
         );
     }
 }

@@ -181,7 +181,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const feature = await cls.create({
             type: 'feature',
             name: cls.defaultName({ type: 'feature' }),
-            [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.featureSubTypes[type]
+            [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.itemLinkFeatureTypes[type]
         });
         await this.document.update({
             'system.features': [...this.document.system.features, feature].map(f => f.uuid)
@@ -275,7 +275,9 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         if (item?.type === 'feature') {
             const { type } = target.dataset;
             const previouslyLinked = item.system.itemLinks[this.document.uuid] !== undefined;
-            await item.update({ [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.featureSubTypes[type] });
+            await item.update({
+                [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.itemLinkFeatureTypes[type]
+            });
 
             if (!previouslyLinked) {
                 const current = this.document.system.features.map(x => x.uuid);
