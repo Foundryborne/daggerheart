@@ -324,7 +324,13 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         if (game.modules.get('dice-so-nice')?.active) {
             const diceSoNiceRoll = {
                 _evaluated: true,
-                dice: [new Die({ ...term, faces: term._faces, results: term.results.filter(x => !x.rerolled) })],
+                dice: [
+                    new foundry.dice.terms.Die({
+                        ...term,
+                        faces: term._faces,
+                        results: term.results.filter(x => !x.rerolled)
+                    })
+                ],
                 options: { appearance: {} }
             };
             const diceSoNicePresets = getDiceSoNicePresets();
@@ -358,7 +364,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         newRoll.extra = newRoll.extra.slice(2);
 
         await game.messages.get(message._id).update({
-            'system.roll': newRoll
+            'system.roll': newRoll,
+            'rolls': [parsedRoll]
         });
     };
 }
