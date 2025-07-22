@@ -205,7 +205,11 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
     _getSetupTabs(tabs) {
         for (const v of Object.values(tabs)) {
-            v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
+            v.active = this.tabGroups[v.group]
+                ? this.tabGroups[v.group] === v.id
+                : this.tabGroups.primary !== 'equipment'
+                  ? v.active
+                  : false;
             v.cssClass = v.active ? 'active' : '';
 
             switch (v.id) {
@@ -242,6 +246,16 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     marker.classList.remove('active');
                 }
             }
+
+            if (tab === 'equipment') {
+                this.tabGroups.setup = null;
+                this.element.querySelector('section[data-group="setup"].active')?.classList?.remove?.('active');
+            } else {
+                this.tabGroups.setup = 'domainCards';
+                this.element
+                    .querySelector('section[data-group="setup"][data-tab="domainCards"]')
+                    ?.classList?.add?.('active');
+            }
         }
     }
 
@@ -266,7 +280,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     async _preparePartContext(partId, context) {
         switch (partId) {
             case 'footer':
-                context.isLastTab = this.tabGroups.setup === 'domainCards';
+                context.isLastTab = this.tabGroups.setup === 'domainCards' || this.tabGroups.primary !== 'setup';
                 switch (this.tabGroups.setup) {
                     case null:
                     case 'ancestry':
@@ -353,13 +367,18 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 );
                 context.armor = {
                     ...this.equipment.armor,
-                    suggestion: { ...suggestions.armor, taken: suggestions.armor?.uuid === this.equipment.armor?.uuid },
+                    suggestion: {
+                        ...suggestions.armor,
+                        uuid: suggestions.armor?.uuid,
+                        taken: suggestions.armor?.uuid === this.equipment.armor?.uuid
+                    },
                     compendium: 'armors'
                 };
                 context.primaryWeapon = {
                     ...this.equipment.primaryWeapon,
                     suggestion: {
                         ...suggestions.primaryWeapon,
+                        uuid: suggestions.primaryWeapon?.uuid,
                         taken: suggestions.primaryWeapon?.uuid === this.equipment.primaryWeapon?.uuid
                     },
                     compendium: 'weapons'
@@ -368,6 +387,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     ...this.equipment.secondaryWeapon,
                     suggestion: {
                         ...suggestions.secondaryWeapon,
+                        uuid: suggestions.secondaryWeapon?.uuid,
                         taken: suggestions.secondaryWeapon?.uuid === this.equipment.secondaryWeapon?.uuid
                     },
                     disabled: this.equipment.primaryWeapon?.system?.burden === burden.twoHanded.value,
@@ -421,18 +441,29 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     async getEquipmentSuggestions(choiceA, choiceB) {
         if (!this.setup.class.uuid) return { inventory: { take: [] } };
 
-        const { inventory, characterGuide } = this.setup.class.system;
         return {
-            armor: characterGuide.suggestedArmor ?? null,
-            primaryWeapon: characterGuide.suggestedPrimaryWeapon ?? null,
-            secondaryWeapon: characterGuide.suggestedSecondaryWeapon
-                ? { ...characterGuide.suggestedSecondaryWeapon, uuid: characterGuide.suggestedSecondaryWeapon.uuid }
+            armor: this.setup.class.system.suggestedArmor ?? null,
+            primaryWeapon: this.setup.class.system.suggestedPrimaryWeapon ?? null,
+            secondaryWeapon: this.setup.class.system.suggestedSecondaryWeapon
+                ? {
+                      ...this.setup.class.system.suggestedSecondaryWeapon,
+                      uuid: this.setup.class.system.suggestedSecondaryWeapon.uuid
+                  }
                 : null,
             inventory: {
-                take: inventory.take ?? [],
+                take: this.setup.class.system.take ?? [],
                 choiceA:
-                    inventory.choiceA?.map(x => ({ ...x, uuid: x.uuid, selected: x.uuid === choiceA?.uuid })) ?? [],
-                choiceB: inventory.choiceB?.map(x => ({ ...x, uuid: x.uuid, selected: x.uuid === choiceB?.uuid })) ?? []
+                    this.setup.class.system.choiceA?.map(x => ({
+                        ...x,
+                        uuid: x.uuid,
+                        selected: x.uuid === choiceA?.uuid
+                    })) ?? [],
+                choiceB:
+                    this.setup.class.system.choiceB?.map(x => ({
+                        ...x,
+                        uuid: x.uuid,
+                        selected: x.uuid === choiceB?.uuid
+                    })) ?? []
             }
         };
     }
@@ -535,7 +566,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             await this.character.createEmbeddedDocuments('Item', [this.equipment.inventory.choiceA]);
         if (this.equipment.inventory.choiceB.uuid)
             await this.character.createEmbeddedDocuments('Item', [this.equipment.inventory.choiceB]);
-        await this.character.createEmbeddedDocuments('Item', this.setup.class.system.inventory.take);
+        await this.character.createEmbeddedDocuments('Item', this.setup.class.system.take);
 
         await this.character.update({
             system: {
