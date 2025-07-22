@@ -135,21 +135,37 @@
                     {{#if (eq @root.rollType 'DualityRoll')}}<span class="formula-label">{{localize "DAGGERHEART.GENERAL.situationalBonus"}}</span>{{/if}}
                     <input type="text" value="{{extraFormula}}" name="extraFormula" placeholder="{{#if (eq @root.rollType 'DualityRoll')}}Ex: 1d6 + 5{{else}}Situational Bonus{{/if}}">
                 </fieldset>
+                {{#if (or costs uses)}}
+                    {{> 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'}}
+                {{/if}}
             {{/unless}}
+
             <span class="formula-label"><b>{{localize "DAGGERHEART.GENERAL.formula"}}:</b> {{@root.formula}}</span>
+                
             <div class="roll-dialog-controls">
                 <select class="roll-mode-select" name="selectedRollMode">
                     {{selectOptions rollModes selected=selectedRollMode valueAttr="action" labelAttr="label" localize=true}}
                 </select>
                 <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
                     <i class="fa-solid fa-dice"></i>
-                    <span class="label">{{localize "DAGGERHEART.GENERAL.roll"}}</span>
+                    <span class="label">
+                        {{#if @root.rollConfig.roll.difficulty}}
+                            {{localize "DAGGERHEART.GENERAL.Roll.difficulty" difficulty=@root.rollConfig.roll.difficulty}}
+                        {{else}}
+                            {{localize "DAGGERHEART.GENERAL.roll"}}
+                        {{/if}}
+                    </span>
                 </button>
             </div>
     {{else}}
-        <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
-            <span class="label">{{localize "DAGGERHEART.GENERAL.continue"}}</span>
-        </button>
+        {{#if (or costs uses)}}
+            {{> 'systems/daggerheart/templates/dialogs/dice-roll/costSelection.hbs'}}
+        {{/if}}
+        <div class="roll-dialog-controls">
+            <button class="sunmit-btn" data-action="submitRoll"{{#unless canRoll}} disabled{{/unless}}>
+                <span class="label">{{localize "DAGGERHEART.GENERAL.continue"}}</span>
+            </button>
+        </div>
     {{/if}}
         </div>
 </div>

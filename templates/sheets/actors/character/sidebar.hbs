@@ -142,7 +142,7 @@
             {{#each document.system.experiences as |experience id|}}
             <div class="experience-row">
                 <div class="experience-value">
-                    +{{experience.total}}
+                    +{{experience.value}}
                 </div>
                 <input name="system.experiences.{{id}}.name" data-experience={{id}}
                     value="{{experience.name}}" type="text" />

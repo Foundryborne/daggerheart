@@ -1,10 +1,10 @@
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async renderHTML() {
         if (this.system.messageTemplate)
-            this.content = await foundry.applications.handlebars.renderTemplate(
-                this.system.messageTemplate,
-                this.system
-            );
+            this.content = await foundry.applications.handlebars.renderTemplate(this.system.messageTemplate, {
+                ...this.system,
+                _source: this.system._source
+            });
 
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML();
