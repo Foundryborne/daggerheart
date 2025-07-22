@@ -306,6 +306,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         let DieTerm=foundry.dice.terms.Die;
         let dicetype = event.target.value;
         let originalRoll_parsed=message.rolls.map(roll => JSON.parse(roll))[0];
+        console.log("Parsed Map:",originalRoll_parsed);
         let originalRoll=Roll.fromData(originalRoll_parsed);
         let diceIndex;
         console.log("Dice to reroll is:",dicetype,", and the message id is:",message._id,originalRoll_parsed);
@@ -323,24 +324,24 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 ui.notifications.warn("Invalid Dice type selected.");
                 break;
         }
-
         let rollClone=originalRoll.clone();
-        let rerolledTerm=rollClone.terms[diceIndex];
-        console.log("originalRoll:",originalRoll,"rollClone:",rollClone,"rerolledTerm",rerolledTerm);
+        let rerolledTerm=originalRoll.terms[diceIndex];
+        console.log("originalRoll:",originalRoll,"rerolledTerm",rerolledTerm);
         if (!(rerolledTerm instanceof DieTerm)) {
             ui.notifications.error("Selected term is not a die.");
             return;
         }
-        await rollClone.reroll()[diceIndex];
-        await rollClone.evaluate();
+        await rollClone.reroll({allowStrings:true})[diceIndex];
+        console.log(rollClone);
+        await rollClone.evaluate({allowStrings:true});
         console.log(rollClone.result);
-        
+ /*       
         const confirm = await foundry.applications.api.DialogV2.confirm({
             window: { title: 'Confirm Reroll' },
-            content: `<p>You have rerolled your <strong>${dicetype}</strong> die to <strong>${rerolledTerm.results[0].result}</strong>.</p><p>Apply this new roll?</p>`
+            content: `<p>You have rerolled your <strong>${dicetype}</strong> die to <strong>${rollClone.result}</strong>.</p><p>Apply this new roll?</p>`
             });
         if (!confirm) return;
         rollClone.toMessage({flavor: 'Selective reroll applied for ${dicetype}.'});
-        console.log("Updated Roll",rollClone);
+        console.log("Updated Roll",rollClone);*/
     }
 }
