@@ -1,5 +1,4 @@
 import AttachableItem from './attachableItem.mjs';
-import { actionsTypes } from '../action/_module.mjs';
 import { ActionsField, ActionField } from '../fields/actionField.mjs';
 
 export default class DHWeapon extends AttachableItem {
@@ -66,7 +65,6 @@ export default class DHWeapon extends AttachableItem {
                 }
             }),
             actions: new ActionsField()
-            // actions: new fields.ArrayField(new ActionField())
         };
     }
 
@@ -96,7 +94,10 @@ export default class DHWeapon extends AttachableItem {
             }
 
             await this.parent.deleteEmbeddedDocuments('ActiveEffect', removedEffectsUpdate);
-            changes.system.actions = this.actions.filter(x => !removedActionsUpdate.includes(x._id));
+            changes.system.actions = removedActionsUpdate.reduce((acc, id) => {
+                acc[`-=${id}`] = null;
+                return acc;
+            }, {});
 
             for (let weaponFeature of added) {
                 const featureData = CONFIG.DH.ITEM.weaponFeatures[weaponFeature.value];
@@ -111,7 +112,7 @@ export default class DHWeapon extends AttachableItem {
                     weaponFeature.effectIds = embeddedItems.map(x => x.id);
                 }
 
-                const newActions = [];
+                const newActions = {};
                 if (featureData.actions?.length > 0) {
                     for (let action of featureData.actions) {
                         const embeddedEffects = await this.parent.createEmbeddedDocuments(
@@ -123,24 +124,25 @@ export default class DHWeapon extends AttachableItem {
                                 description: game.i18n.localize(effect.description)
                             }))
                         );
-                        const cls = actionsTypes[action.type];
-                        newActions.push(
-                            new cls(
-                                {
-                                    ...action,
-                                    _id: foundry.utils.randomID(),
-                                    name: game.i18n.localize(action.name),
-                                    description: game.i18n.localize(action.description),
-                                    effects: embeddedEffects.map(x => ({ _id: x.id }))
-                                },
-                                { parent: this }
-                            )
+
+                        const cls = game.system.api.models.actions.actionsTypes[action.type];
+                        const actionId = foundry.utils.randomID();
+                        newActions[actionId] = new cls(
+                            {
+                                ...cls.getSourceConfig(this),
+                                ...action,
+                                _id: actionId,
+                                name: game.i18n.localize(action.name),
+                                description: game.i18n.localize(action.description),
+                                effects: embeddedEffects.map(x => ({ _id: x.id }))
+                            },
+                            { parent: this }
                         );
                     }
                 }
 
-                changes.system.actions = [...this.actions, ...newActions];
-                weaponFeature.actionIds = newActions.map(x => x._id);
+                changes.system.actions = newActions;
+                weaponFeature.actionIds = Object.keys(newActions);
             }
         }
     }

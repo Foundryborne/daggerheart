@@ -1,5 +1,5 @@
 import BaseDataItem from './base.mjs';
-import { ActionField } from '../fields/actionField.mjs';
+import { ActionField, ActionsField } from '../fields/actionField.mjs';
 
 export default class DHFeature extends BaseDataItem {
     /** @inheritDoc */
@@ -25,7 +25,7 @@ export default class DHFeature extends BaseDataItem {
             subType: new fields.StringField({ choices: CONFIG.DH.ITEM.featureSubTypes, nullable: true, initial: null }),
             originId: new fields.StringField({ nullable: true, initial: null }),
             identifier: new fields.StringField(),
-            actions: new fields.ArrayField(new ActionField())
+            actions: new ActionsField()
         };
     }
 

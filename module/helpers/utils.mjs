@@ -96,7 +96,7 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
             mapValueTo: 'name',
             searchKeys: ['name'],
             enabled: 0,
-            maxItems: 20,
+            maxItems: 100,
             closeOnSelect: true,
             highlightFirst: false
         },

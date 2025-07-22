@@ -82,7 +82,6 @@ export default function DHApplicationMixin(Base) {
                 deleteDoc: DHSheetV2.#deleteDoc,
                 toChat: DHSheetV2.#toChat,
                 useItem: DHSheetV2.#useItem,
-                useAction: DHSheetV2.#useAction,
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended
             },
@@ -378,9 +377,15 @@ export default function DHApplicationMixin(Base) {
         static async #createDoc(event, target) {
             const { documentClass, type, inVault, disabled } = target.dataset;
             const parentIsItem = this.document.documentName === 'Item';
-            const parent = parentIsItem && documentClass === 'Item' ? (type === 'action' ? this.document.system : null) : this.document;
+            const parent =
+                parentIsItem && documentClass === 'Item'
+                    ? type === 'action'
+                        ? this.document.system
+                        : null
+                    : this.document;
 
-            const cls = type === 'action' ? game.system.api.models.actions.actionsTypes.base : getDocumentClass(documentClass);
+            const cls =
+                type === 'action' ? game.system.api.models.actions.actionsTypes.base : getDocumentClass(documentClass);
             const data = {
                 name: cls.defaultName({ type, parent }),
                 type
@@ -434,15 +439,6 @@ export default function DHApplicationMixin(Base) {
         static async #useItem(event, target) {
             let doc = getDocFromElement(target);
             await doc.use(event);
-        }
-
-        /**
-         * Use a item
-         * @type {ApplicationClickAction}
-         */
-        static async #useAction(event, target) {
-            const doc = getDocFromElement(target);
-            await action.use(event);
         }
 
         /**
