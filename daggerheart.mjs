@@ -54,7 +54,7 @@ Hooks.once('init', () => {
         DualityDie
     };
 
-    CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, ...[DHRoll, DualityRoll, D20Roll, DamageRoll]];
+    CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, DHRoll, DualityRoll, D20Roll, DamageRoll];
     CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
     const { DocumentSheetConfig } = foundry.applications.apps;

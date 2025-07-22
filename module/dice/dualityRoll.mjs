@@ -211,20 +211,11 @@ export default class DualityRoll extends D20Roll {
                 ],
                 options: { appearance: {} }
             };
+
             const diceSoNicePresets = getDiceSoNicePresets();
-            switch (target.dataset.type) {
-                case 'hope':
-                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.hope };
-                    break;
-                case 'fear':
-                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.fear };
-                    break;
-                case 'advantage':
-                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.advantage };
-                    break;
-                case 'disadvantage':
-                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.disadvantage };
-                    break;
+            const type = target.dataset.type;
+            if (diceSoNicePresets[type]) {
+                diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets[type] };
             }
 
             await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
