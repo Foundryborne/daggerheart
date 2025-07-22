@@ -172,4 +172,22 @@ export default class D20Roll extends DHRoll {
     resetFormula() {
         return (this._formula = this.constructor.getFormula(this.terms));
     }
+
+    static async reroll(rollString, _target, message) {
+        let parsedRoll = game.system.api.dice.D20Roll.fromData(rollString);
+        parsedRoll = await parsedRoll.reroll();
+        const newRoll = game.system.api.dice.D20Roll.postEvaluate(parsedRoll, {
+            targets: message.system.targets,
+            roll: {
+                advantage: message.system.roll.advantage?.type,
+                difficulty: message.system.roll.difficulty ? Number(message.system.roll.difficulty) : null
+            }
+        });
+
+        if (game.modules.get('dice-so-nice')?.active) {
+            await game.dice3d.showForRoll(parsedRoll, game.user, true);
+        }
+
+        return { newRoll, parsedRoll };
+    }
 }

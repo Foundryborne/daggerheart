@@ -1339,6 +1339,7 @@
             "quantity": "Quantity",
             "range": "Range",
             "recovery": "Recovery",
+            "reroll": "Reroll",
             "rerollThing": "Reroll {thing}",
             "resource": "Resource",
             "roll": "Roll",
@@ -1615,6 +1616,10 @@
                 "healingRoll": {
                     "title": "Heal - {healing}",
                     "heal": "Heal"
+                },
+                "reroll": {
+                    "confirmTitle": "Reroll Dice",
+                    "confirmText": "Are you sure you want to reroll?"
                 },
                 "resourceRoll": {
                     "playerMessage": "{user} rerolled their {name}"

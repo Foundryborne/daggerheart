@@ -1,5 +1,3 @@
-import { getDiceSoNicePresets } from '../../config/generalConfig.mjs';
-
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
         super(options);
@@ -316,52 +314,23 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     };
 
     rerollEvent = async (event, message) => {
-        const target = event.target.closest('button[data-die-index]');
-        let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
-        let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...originalRoll_parsed, evaluated: false });
-        const term = parsedRoll.terms[target.dataset.dieIndex];
-        await term.reroll(`/r1=${term.total}`);
-        if (game.modules.get('dice-so-nice')?.active) {
-            const diceSoNiceRoll = {
-                _evaluated: true,
-                dice: [
-                    new foundry.dice.terms.Die({
-                        ...term,
-                        faces: term._faces,
-                        results: term.results.filter(x => !x.rerolled)
-                    })
-                ],
-                options: { appearance: {} }
-            };
-            const diceSoNicePresets = getDiceSoNicePresets();
-            switch (target.dataset.type) {
-                case 'hope':
-                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.hope };
-                    break;
-                case 'fear':
-                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.fear };
-                    break;
-                case 'advantage':
-                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.advantage };
-                    break;
-                case 'disadvantage':
-                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.disadvantage };
-                    break;
-            }
-
-            await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
+        if (!event.shiftKey) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.UI.Chat.reroll.confirmTitle')
+                },
+                content: game.i18n.localize('DAGGERHEART.UI.Chat.reroll.confirmText')
+            });
+            if (!confirmed) return;
         }
 
-        await parsedRoll.evaluate();
-
-        const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
-            targets: message.system.targets,
-            roll: {
-                advantage: message.system.roll.advantage?.type,
-                difficulty: message.system.roll.difficulty ? Number(message.system.roll.difficulty) : null
-            }
-        });
-        newRoll.extra = newRoll.extra.slice(2);
+        const target = event.target.closest('button[data-die-index]');
+        let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
+        const rollClass =
+            game.system.api.dice[
+                message.type === 'dualityRoll' ? 'DualityRoll' : target.dataset.type === 'damage' ? 'DHRoll' : 'D20Roll'
+            ];
+        const { newRoll, parsedRoll } = await rollClass.reroll(originalRoll_parsed, target, message);
 
         await game.messages.get(message._id).update({
             'system.roll': newRoll,

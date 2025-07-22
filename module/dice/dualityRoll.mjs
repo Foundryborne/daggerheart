@@ -1,6 +1,7 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 import D20Roll from './d20Roll.mjs';
 import { setDiceSoNiceForDualityRoll } from '../helpers/utils.mjs';
+import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
 
 export default class DualityRoll extends D20Roll {
     _advantageFaces = 6;
@@ -192,5 +193,54 @@ export default class DualityRoll extends D20Roll {
         setDiceSoNiceForDualityRoll(roll, data.advantage.type);
 
         return data;
+    }
+
+    static async reroll(rollString, target, message) {
+        let parsedRoll = game.system.api.dice.DualityRoll.fromData({ ...rollString, evaluated: false });
+        const term = parsedRoll.terms[target.dataset.dieIndex];
+        await term.reroll(`/r1=${term.total}`);
+        if (game.modules.get('dice-so-nice')?.active) {
+            const diceSoNiceRoll = {
+                _evaluated: true,
+                dice: [
+                    new foundry.dice.terms.Die({
+                        ...term,
+                        faces: term._faces,
+                        results: term.results.filter(x => !x.rerolled)
+                    })
+                ],
+                options: { appearance: {} }
+            };
+            const diceSoNicePresets = getDiceSoNicePresets();
+            switch (target.dataset.type) {
+                case 'hope':
+                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.hope };
+                    break;
+                case 'fear':
+                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.fear };
+                    break;
+                case 'advantage':
+                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.advantage };
+                    break;
+                case 'disadvantage':
+                    diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets.disadvantage };
+                    break;
+            }
+
+            await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
+        }
+
+        await parsedRoll.evaluate();
+
+        const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
+            targets: message.system.targets,
+            roll: {
+                advantage: message.system.roll.advantage?.type,
+                difficulty: message.system.roll.difficulty ? Number(message.system.roll.difficulty) : null
+            }
+        });
+        newRoll.extra = newRoll.extra.slice(2);
+
+        return { newRoll, parsedRoll };
     }
 }
