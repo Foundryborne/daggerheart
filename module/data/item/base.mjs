@@ -190,5 +190,27 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 }
             }
         }
+
+        if (this.features?.length) {
+            for (let feature of this.features) {
+                await feature.update({
+                    'system.itemLinks': Object.keys(feature.system.itemLinks).reduce((acc, type) => {
+                        acc[type] = feature.system.itemLinks[type].filter(uuid => uuid !== this.parent.uuid);
+                        return acc;
+                    }, {})
+                });
+            }
+        }
+
+        if (this.linkedItems?.length) {
+            for (let item of this.linkedItems) {
+                await item.update({
+                    'system.itemLinks': Object.keys(item.system.itemLinks).reduce((acc, type) => {
+                        acc[type] = item.system.itemLinks[type].filter(uuid => uuid !== this.parent.uuid);
+                        return acc;
+                    }, {})
+                });
+            }
+        }
     }
 }
