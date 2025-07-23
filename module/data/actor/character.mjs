@@ -359,11 +359,15 @@ export default class DhCharacter extends BaseDataActor {
                 classFeatures.push(item);
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
                 const subclassState = this.class.subclass.system.featureState;
-                const subType = item.system.itemLinks[this.class.subclass.uuid];
+                const foundationFeature =
+                    item.system.itemLinks[CONFIG.DH.ITEM.itemLinkFeatureTypes.foundation]?.size > 0;
+                const specializationFeature =
+                    item.system.itemLinks[CONFIG.DH.ITEM.itemLinkFeatureTypes.specialization]?.size > 0;
+                const masteryFeature = item.system.itemLinks[CONFIG.DH.ITEM.itemLinkFeatureTypes.mastery]?.size > 0;
                 if (
-                    subType === CONFIG.DH.ITEM.itemLinkFeatureTypes.foundation ||
-                    (subType === CONFIG.DH.ITEM.itemLinkFeatureTypes.specialization && subclassState >= 2) ||
-                    (subType === CONFIG.DH.ITEM.itemLinkFeatureTypes.mastery && subclassState >= 3)
+                    foundationFeature ||
+                    (specializationFeature && subclassState >= 2) ||
+                    (masteryFeature && subclassState >= 3)
                 ) {
                     subclassFeatures.push(item);
                 }
