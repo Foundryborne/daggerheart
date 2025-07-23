@@ -137,10 +137,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 ...feature,
                 system: {
                     ...feature.system,
-                    itemLinks: Object.keys(feature.system.itemLinks).reduce((acc, uuid) => {
-                        const type = feature.system.itemLinks[uuid];
-                        acc[uuid === options.origUuid ? this.parent.uuid : uuid] = type;
-
+                    itemLinks: Object.keys(feature.system.itemLinks).reduce((acc, type) => {
+                        acc[type] = feature.system.itemLinks[type].map(uuid =>
+                            uuid === options.origUuid ? this.parent.uuid : uuid
+                        );
                         return acc;
                     }, {}),
                     originItemType: this.parent.type,
@@ -152,9 +152,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         for (let feature of this.features) {
             feature.update({
-                'system.itemLinks': Object.keys(feature.system.itemLinks).reduce((acc, uuid) => {
-                    const type = feature.system.itemLinks[uuid];
-                    acc[uuid === options.origUuid ? this.parent.uuid : uuid] = type;
+                'system.itemLinks': Object.keys(feature.system.itemLinks).reduce((acc, type) => {
+                    acc[type] = Array.from(feature.system.itemLinks[type]).flatMap(uuid =>
+                        uuid === options.origUuid ? [uuid, this.parent.uuid] : [uuid]
+                    );
                     return acc;
                 }, {})
             });
@@ -176,6 +177,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             for (let [type, uuidList] of linkEntries) {
                 for (let uuid of uuidList) {
                     const item = await foundry.utils.fromUuid(uuid);
+                    if (!item) return;
+
                     const path = CONFIG.DH.ITEM.itemLinkFeatureTypes[type]
                         ? 'system.features'
                         : CONFIG.DH.ITEM.itemLinkItemTypes[type]
@@ -193,6 +196,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         if (this.features?.length) {
             for (let feature of this.features) {
+                if (!feature) continue;
                 await feature.update({
                     'system.itemLinks': Object.keys(feature.system.itemLinks).reduce((acc, type) => {
                         acc[type] = feature.system.itemLinks[type].filter(uuid => uuid !== this.parent.uuid);
@@ -204,6 +208,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         if (this.linkedItems?.length) {
             for (let item of this.linkedItems) {
+                if (!item) continue;
                 await item.update({
                     'system.itemLinks': Object.keys(item.system.itemLinks).reduce((acc, type) => {
                         acc[type] = item.system.itemLinks[type].filter(uuid => uuid !== this.parent.uuid);

@@ -535,5 +535,36 @@ export default class DhCharacter extends BaseDataActor {
         if (this.companion) {
             this.companion.updateLevel(1);
         }
+
+        const featureLinks = [
+            ...(this.ancestry?.system?.features?.map(x => ({ linkUuid: this.ancestry.uuid, feature: x })) ?? []),
+            ...(this.community?.system?.features?.map(x => ({ linkUuid: this.community.uuid, feature: x })) ?? []),
+            ...(this.class?.value?.system?.features?.map(x => ({ linkUuid: this.class.value.uuid, feature: x })) ?? []),
+            ...(this.class?.subclass?.system?.features?.map(x => ({
+                linkUuid: this.class.subclass.uuid,
+                feature: x
+            })) ?? [])
+        ];
+        for (let { linkUuid, feature } of featureLinks) {
+            await feature.update({
+                'system.itemLinks': Object.keys(CONFIG.DH.ITEM.itemLinkFeatureTypes).reduce((acc, type) => {
+                    acc[type] = (feature.system.itemLinks[type] ?? []).filter(uuid => uuid !== linkUuid);
+                    return acc;
+                }, {})
+            });
+        }
+
+        const itemLinks = this.class?.value?.system?.linkedItems?.map(x => ({
+            linkUuid: this.class.value.uuid,
+            item: x
+        }));
+        for (let { linkUuid, item } of itemLinks) {
+            await item.update({
+                'system.itemLinks': Object.keys(CONFIG.DH.ITEM.itemLinkItemTypes).reduce((acc, type) => {
+                    acc[type] = (item.system.itemLinks[type] ?? []).filter(uuid => uuid !== linkUuid);
+                    return acc;
+                }, {})
+            });
+        }
     }
 }
