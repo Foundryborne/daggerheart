@@ -1318,7 +1318,8 @@ export const itemLinkFeatureTypes = {
     class: 'class',
     foundation: 'foundation',
     specialization: 'specialization',
-    mastery: 'mastery'
+    mastery: 'mastery',
+    subclass: 'subclass'
 };
 
 export const itemLinkItemTypes = {

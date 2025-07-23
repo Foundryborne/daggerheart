@@ -30,20 +30,20 @@ export default class DHSubclass extends BaseDataItem {
     }
 
     get foundationFeatures() {
-        return this.features.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.foundation
+        return this.features.filter(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkFeatureTypes.foundation]?.has(this.parent.uuid)
         );
     }
 
     get specializationFeatures() {
-        return this.features.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.specialization
+        return this.features.filter(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkFeatureTypes.specialization]?.has(this.parent.uuid)
         );
     }
 
     get masteryFeatures() {
-        return this.features.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.mastery
+        return this.features.filter(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkFeatureTypes.mastery]?.has(this.parent.uuid)
         );
     }
 

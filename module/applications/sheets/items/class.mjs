@@ -79,23 +79,29 @@ export default class ClassSheet extends DHBaseItemSheet {
     /* -------------------------------------------- */
     async linkedItemUpdate(item, property, replace) {
         const removedLinkedItems = [];
-        const existingLink = item.system.itemLinks[this.document.uuid];
+        const existing = Object.values(item.system.itemLinks).some(x => x.some(uuid => uuid === this.document.uuid));
         if (replace) {
             const toRemove = this.document.system.linkedItems.find(
-                x => x.uuid !== item.uuid && x.system.itemLinks[this.document.uuid] === property
+                x => x.uuid !== item.uuid && x.system.itemLinks[property]?.has(this.document.uuid)
             );
             if (toRemove) {
                 removedLinkedItems.push(toRemove.uuid);
-                await toRemove.update({ [`system.itemLinks.-=${this.document.uuid}`]: null });
+                await toRemove.update({
+                    [`system.itemLinks.${property}`]: toRemove.system.itemLinks[property].filter(
+                        x => x !== this.document.uuid
+                    )
+                });
             }
         }
 
-        await item.update({ [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.itemLinkTypes[property] });
+        await item.addItemLink(this.document.uuid, property, true);
 
-        if (!existingLink) {
+        if (!existing) {
             await this.document.update({
                 'system.linkedItems': [
-                    ...this.document.system.linkedItems.map(x => x.uuid).filter(x => !removedLinkedItems.includes(x)),
+                    ...this.document.system.linkedItems
+                        .filter(x => !removedLinkedItems.includes(x.uuid))
+                        .map(x => x.uuid),
                     item.uuid
                 ]
             });
@@ -110,13 +116,15 @@ export default class ClassSheet extends DHBaseItemSheet {
         const item = await fromUuid(data.uuid);
         const target = event.target.closest('fieldset.drop-section');
         if (item.type === 'subclass') {
-            const previouslyLinked = item.system.itemLinks[this.document.uuid] !== undefined;
-            if (previouslyLinked) return;
+            const existing = await item.addItemLink(this.document.uuid, CONFIG.DH.ITEM.itemLinkTypes.subclass, true);
 
-            await item.update({ [`system.itemLinks.${this.document.uuid}`]: null });
-            await this.document.update({
-                'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
-            });
+            if (existing) {
+                this.render();
+            } else {
+                await this.document.update({
+                    'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
+                });
+            }
         } else if (item.type === 'feature') {
             super._onDrop(event);
         } else if (item.type === 'weapon') {
@@ -159,13 +167,16 @@ export default class ClassSheet extends DHBaseItemSheet {
      * @param {HTMLElement} element - The capturing HTML element which defines the [data-action="removeLinkedItem"]
      */
     static async #removeLinkedItem(_event, element) {
-        const { uuid } = element.dataset;
-        const item = this.document.system.linkedItems.find(x => x.uuid === uuid);
+        const { uuid, target } = element.dataset;
+        const prop = target === 'subclass' ? 'subclasses' : 'linkedItems';
+        const item = this.document.system[prop].find(x => x.uuid === uuid);
         if (!item) return;
 
-        await item.update({ [`system.itemLinks-=${uuid}`]: null });
         await this.document.update({
-            'system.linkedItems': this.document.system.linkedItems.filter(x => x.uuid !== uuid).map(x => x.uuid)
+            [`system.${prop}`]: this.document.system[prop].filter(x => x.uuid !== uuid).map(x => x.uuid)
+        });
+        await item.update({
+            [`system.itemLinks.${target}`]: item.system.itemLinks[target].filter(x => x !== this.document.uuid)
         });
     }
 }

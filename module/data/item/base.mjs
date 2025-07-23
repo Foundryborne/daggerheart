@@ -171,18 +171,18 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 );
         }
 
-        if (this.metadata.isItemLinkable) {
-            const linkEntries = Object.entries(this.itemLinks);
-            for (let [uuid, type] of linkEntries) {
-                const item = await foundry.utils.fromUuid(uuid);
-                const path = CONFIG.DH.ITEM.itemLinkFeatureTypes[type] ? 'system.features' : 'system.linkedItems';
-                await item.update({
-                    [path]: foundry.utils
-                        .getProperty(item, path)
-                        .filter(x => x.uuid !== this.parent.uuid)
-                        .map(x => x.uuid)
-                });
-            }
-        }
+        // if (this.metadata.isItemLinkable) {
+        //     const linkEntries = Object.entries(this.itemLinks);
+        //     for (let [uuid, type] of linkEntries) {
+        //         const item = await foundry.utils.fromUuid(uuid);
+        //         const path = CONFIG.DH.ITEM.itemLinkFeatureTypes[type] ? 'system.features' : 'system.linkedItems';
+        //         await item.update({
+        //             [path]: foundry.utils
+        //                 .getProperty(item, path)
+        //                 .filter(x => x.uuid !== this.parent.uuid)
+        //                 .map(x => x.uuid)
+        //         });
+        //     }
+        // }
     }
 }

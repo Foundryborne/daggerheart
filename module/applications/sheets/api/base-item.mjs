@@ -176,12 +176,13 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * @type {ApplicationClickAction}
      */
     static async #addFeature(_, target) {
-        const { type } = target.dataset;
         const cls = foundry.documents.Item.implementation;
+
+        const featurePath = `system.itemLinks.${CONFIG.DH.ITEM.itemLinkFeatureTypes[target.dataset.type]}`;
         const feature = await cls.create({
             type: 'feature',
             name: cls.defaultName({ type: 'feature' }),
-            [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.itemLinkFeatureTypes[type]
+            [featurePath]: [this.document.uuid]
         });
         await this.document.update({
             'system.features': [...this.document.system.features, feature].map(f => f.uuid)
@@ -192,10 +193,15 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * Remove a feature from the item.
      * @type {ApplicationClickAction}
      */
-    static async #deleteFeature(event, target) {
+    static async #deleteFeature(event, element) {
+        const target = element.closest('[data-item-uuid]');
         const feature = getDocFromElement(target);
         if (!feature) return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
-        await feature.update({ [`system.itemLinks.-=${this.document.uuid}`]: null });
+
+        const featurePath = `system.itemLinks.${CONFIG.DH.ITEM.itemLinkFeatureTypes[target.dataset.type]}`;
+        await feature.update({
+            [featurePath]: foundry.utils.getProperty(feature, featurePath).filter(x => x !== this.document.uuid)
+        });
         await this.document.update({
             'system.features': this.document.system.features.map(x => x.uuid).filter(uuid => uuid !== feature.uuid)
         });
@@ -267,23 +273,20 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * @param {DragEvent} event - The drag event
      */
     async _onDrop(event) {
+        event.stopPropagation();
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         if (data.fromInternal) return;
 
         const target = event.target.closest('fieldset.drop-section');
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
-            const { type } = target.dataset;
-            const previouslyLinked = item.system.itemLinks[this.document.uuid] !== undefined;
-            await item.update({
-                [`system.itemLinks.${this.document.uuid}`]: CONFIG.DH.ITEM.itemLinkFeatureTypes[type]
-            });
+            const existing = await item.addItemLink(this.document.uuid, target.dataset.type, true);
 
-            if (!previouslyLinked) {
+            if (existing) {
+                this.render();
+            } else {
                 const current = this.document.system.features.map(x => x.uuid);
                 await this.document.update({ 'system.features': [...current, item.uuid] });
-            } else {
-                this.render();
             }
         }
     }

@@ -20,6 +20,27 @@ export default class DHItem extends foundry.documents.Item {
         for (const action of this.system.actions ?? []) action.prepareData();
     }
 
+    async addItemLink(documentUuid, type, replace) {
+        if (!this.system.metadata.isItemLinkable) return;
+
+        let existing = false;
+        if (replace) {
+            await this.update({
+                'system.itemLinks': Object.keys(CONFIG.DH.ITEM.itemLinkTypes).reduce((acc, key) => {
+                    const filtered = (this.system.itemLinks[key] ?? []).filter(uuid => uuid !== documentUuid);
+                    acc[key] = key === type ? [...filtered, documentUuid] : filtered;
+
+                    existing = existing ? existing : (this.system.itemLinks[key] ?? []).size > filtered.size;
+                    return acc;
+                }, {})
+            });
+        } else {
+            await this.update({ [`system.itemLinks.${type}`]: [...(this.system.itemLinks[type] ?? []), documentUuid] });
+        }
+
+        return existing;
+    }
+
     /**
      * @inheritdoc
      * @param {object} options - Options which modify the getRollData method.

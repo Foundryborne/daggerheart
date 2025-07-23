@@ -1,5 +1,4 @@
 import BaseDataItem from './base.mjs';
-import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 
 export default class DHClass extends BaseDataItem {
@@ -29,7 +28,7 @@ export default class DHClass extends BaseDataItem {
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
             features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             linkedItems: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
-            subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
+            subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
             characterGuide: new fields.SchemaField({
                 suggestedTraits: new fields.SchemaField({
                     agility: new fields.NumberField({ initial: 0, integer: true }),
@@ -45,46 +44,50 @@ export default class DHClass extends BaseDataItem {
     }
 
     get hopeFeatures() {
-        return this.features.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.hope
+        return this.features.filter(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkFeatureTypes.hope]?.has(this.parent.uuid)
         );
     }
 
     get classFeatures() {
-        return this.features.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkFeatureTypes.class
+        return this.features.filter(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkFeatureTypes.class]?.has(this.parent.uuid)
         );
     }
 
     get suggestedPrimaryWeapon() {
-        return this.linkedItems.find(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.primaryWeapon
+        return this.linkedItems.find(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkItemTypes.primaryWeapon]?.has(this.parent.uuid)
         );
     }
 
     get suggestedSecondaryWeapon() {
-        return this.linkedItems.find(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.secondaryWeapon
+        return this.linkedItems.find(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkItemTypes.secondaryWeapon]?.has(this.parent.uuid)
         );
     }
 
     get suggestedArmor() {
-        return this.linkedItems.find(x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.armor);
+        return this.linkedItems.find(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkItemTypes.armor]?.has(this.parent.uuid)
+        );
     }
 
     get take() {
-        return this.linkedItems.filter(x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.take);
+        return this.linkedItems.filter(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkItemTypes.take]?.has(this.parent.uuid)
+        );
     }
 
     get choiceA() {
-        return this.linkedItems.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.choiceA
+        return this.linkedItems.filter(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkItemTypes.choiceA]?.has(this.parent.uuid)
         );
     }
 
     get choiceB() {
-        return this.linkedItems.filter(
-            x => x.system.itemLinks[this.parent.uuid] === CONFIG.DH.ITEM.itemLinkTypes.choiceB
+        return this.linkedItems.filter(x =>
+            x.system.itemLinks[CONFIG.DH.ITEM.itemLinkItemTypes.choiceB]?.has(this.parent.uuid)
         );
     }
 
