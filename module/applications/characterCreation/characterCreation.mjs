@@ -205,7 +205,11 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
     _getSetupTabs(tabs) {
         for (const v of Object.values(tabs)) {
-            v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
+            v.active = this.tabGroups[v.group]
+                ? this.tabGroups[v.group] === v.id
+                : this.tabGroups.primary !== 'equipment'
+                  ? v.active
+                  : false;
             v.cssClass = v.active ? 'active' : '';
 
             switch (v.id) {
@@ -242,6 +246,16 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     marker.classList.remove('active');
                 }
             }
+
+            if (tab === 'equipment') {
+                this.tabGroups.setup = null;
+                this.element.querySelector('section[data-group="setup"].active')?.classList?.remove?.('active');
+            } else {
+                this.tabGroups.setup = 'domainCards';
+                this.element
+                    .querySelector('section[data-group="setup"][data-tab="domainCards"]')
+                    ?.classList?.add?.('active');
+            }
         }
     }
 
@@ -256,6 +270,11 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         });
     }
 
+    async _preFirstRender(_context, _options) {
+        this.tabGroups.primary = 'setup';
+        this.tabGroups.setup = 'ancestry';
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.tabs = this._getTabs(this.constructor.TABS);
@@ -266,7 +285,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     async _preparePartContext(partId, context) {
         switch (partId) {
             case 'footer':
-                context.isLastTab = this.tabGroups.setup === 'domainCards';
+                context.isLastTab = this.tabGroups.setup === 'domainCards' || this.tabGroups.primary !== 'setup';
                 switch (this.tabGroups.setup) {
                     case null:
                     case 'ancestry':
