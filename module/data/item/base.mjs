@@ -125,7 +125,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             this.updateSource({ actions: [action] });
         }
 
-        options.origUuid = data.uuid;
+        options.origUuid = data.uuid ?? `Item.${data._id}`;
     }
 
     _onCreate(data, options) {

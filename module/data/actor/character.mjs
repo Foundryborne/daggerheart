@@ -263,7 +263,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get tier() {
-        return this.levelData.level.current === 1
+        const currentLevel = this.levelData.level.current;
+        return currentLevel === 1
             ? 1
             : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
                   tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
@@ -543,6 +544,14 @@ export default class DhCharacter extends BaseDataActor {
             ...(this.class?.subclass?.system?.features?.map(x => ({
                 linkUuid: this.class.subclass.uuid,
                 feature: x
+            })) ?? []),
+            ...(this.multiclass?.value?.system?.features?.map(x => ({
+                linkUuid: this.multiclass.value.uuid,
+                feature: x
+            })) ?? []),
+            ...(this.multiclass?.subclass?.system?.features?.map(x => ({
+                linkUuid: this.multiclass.subclass.uuid,
+                feature: x
             })) ?? [])
         ];
         for (let { linkUuid, feature } of featureLinks) {
@@ -554,10 +563,13 @@ export default class DhCharacter extends BaseDataActor {
             });
         }
 
-        const itemLinks = this.class?.value?.system?.linkedItems?.map(x => ({
-            linkUuid: this.class.value.uuid,
-            item: x
-        }));
+        const itemLinks = [
+            ...(this.class?.value?.system?.linkedItems?.map(x => ({ linkUuid: this.class.value.uuid, item: x })) ?? []),
+            ...(this.multiclass?.value?.system?.linkedItems?.map(x => ({
+                linkUuid: this.multiclass.value.uuid,
+                item: x
+            })) ?? [])
+        ];
         for (let { linkUuid, item } of itemLinks) {
             await item.update({
                 'system.itemLinks': Object.keys(CONFIG.DH.ITEM.itemLinkItemTypes).reduce((acc, type) => {

@@ -349,8 +349,8 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                             if (!acc) acc = {};
                             acc[traitKey] = {
                                 label: game.i18n.localize(abilities[traitKey].label),
-                                old: this.actor.system.traits[traitKey].max,
-                                new: this.actor.system.traits[traitKey].max + advancement.trait[traitKey]
+                                old: this.actor.system.traits[traitKey].value,
+                                new: this.actor.system.traits[traitKey].value + advancement.trait[traitKey]
                             };
                         }
                         return acc;
