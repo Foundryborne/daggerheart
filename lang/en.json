@@ -1669,8 +1669,6 @@
                 "attackIsMissing": "Attack is missing",
                 "unownedActionMacro": "Cannot make a Use macro for an Action not on your character",
                 "unownedAttackMacro": "Cannot make a Use macro for an Attack that doesn't belong to one of your characters",
-                "featureNotHope": "This feature is used as something else than a Hope feature and cannot be used here.",
-                "featureNotClass": "This feature is used as something else than a Class feature and cannot be used here.",
                 "beastformMissingEffect": "The Beastform is missing a Beastform Effect. Cannot be used.",
                 "beastformToManyAdvantages": "You cannot select any more advantages.",
                 "beastformToManyFeatures": "You cannot select any more features.",
