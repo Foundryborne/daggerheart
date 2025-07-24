@@ -82,7 +82,6 @@ export default function DHApplicationMixin(Base) {
                 deleteDoc: DHSheetV2.#deleteDoc,
                 toChat: DHSheetV2.#toChat,
                 useItem: DHSheetV2.#useItem,
-                useAction: DHSheetV2.#useAction,
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended
             },
@@ -271,65 +270,8 @@ export default function DHApplicationMixin(Base) {
          */
         static #getActionContextOptions() {
             /**@type {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} */
-            const getAction = target => {
-                const { actionId } = target.closest('[data-action-id]').dataset;
-                const { actions, attack } = this.document.system;
-                return attack?.id === actionId ? attack : actions?.find(a => a.id === actionId);
-            };
-
-            const options = [
-                {
-                    name: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
-                    icon: 'fa-solid fa-burst',
-                    condition:
-                        this.document instanceof foundry.documents.Actor ||
-                        (this.document instanceof foundry.documents.Item && this.document.parent),
-                    callback: (target, event) => getAction(target).use(event)
-                },
-                {
-                    name: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
-                    icon: 'fa-solid fa-message',
-                    callback: target => getAction(target).toChat(this.document.id)
-                },
-                {
-                    name: 'CONTROLS.CommonEdit',
-                    icon: 'fa-solid fa-pen-to-square',
-                    callback: target => new DHActionConfig(getAction(target)).render({ force: true })
-                },
-                {
-                    name: 'CONTROLS.CommonDelete',
-                    icon: 'fa-solid fa-trash',
-                    condition: target => {
-                        const { actionId } = target.closest('[data-action-id]').dataset;
-                        const { attack } = this.document.system;
-                        return attack?.id !== actionId;
-                    },
-                    callback: async target => {
-                        const action = getAction(target);
-                        const confirmed = await foundry.applications.api.DialogV2.confirm({
-                            window: {
-                                title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                                    type: game.i18n.localize(`DAGGERHEART.GENERAL.Action.single`),
-                                    name: action.name
-                                })
-                            },
-                            content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', {
-                                name: action.name
-                            })
-                        });
-                        if (!confirmed) return;
-
-                        return this.document.update({
-                            'system.actions': this.document.system.actions.filter(a => a.id !== action.id)
-                        });
-                    }
-                }
-            ].map(option => ({
-                ...option,
-                icon: `<i class="${option.icon}"></i>`
-            }));
-
-            return options;
+            const options = [];
+            return [...options, ...this._getContextMenuCommonOptions.call(this, { usable: true, toChat: true })];
         }
 
         /**
@@ -341,6 +283,10 @@ export default function DHApplicationMixin(Base) {
                 {
                     name: 'CONTROLS.CommonEdit',
                     icon: 'fa-solid fa-pen-to-square',
+                    condition: target => {
+                        const doc = getDocFromElement(target);
+                        return !doc.hasOwnProperty('systemPath') || doc.inCollection;
+                    },
                     callback: target => getDocFromElement(target).sheet.render({ force: true })
                 }
             ];
@@ -409,7 +355,7 @@ export default function DHApplicationMixin(Base) {
                 ? getDocFromElement(extensibleElement)
                 : this.document.system.attack?.id === actionId
                   ? this.document.system.attack
-                  : this.document.system.actions?.find(a => a.id === actionId);
+                  : this.document.system.actions?.get(actionId);
             if (!doc) return;
 
             const description = doc.system?.description ?? doc.description;
@@ -435,61 +381,29 @@ export default function DHApplicationMixin(Base) {
         static async #createDoc(event, target) {
             const { documentClass, type, inVault, disabled } = target.dataset;
             const parentIsItem = this.document.documentName === 'Item';
-            const parent = parentIsItem && documentClass === 'Item' ? null : this.document;
+            const parent =
+                parentIsItem && documentClass === 'Item'
+                    ? type === 'action'
+                        ? this.document.system
+                        : null
+                    : this.document;
 
-            if (type === 'action') {
-                const { type: actionType } =
-                    (await foundry.applications.api.DialogV2.input({
-                        window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
-                        classes: ['daggerheart', 'dh-style'],
-                        content: await foundry.applications.handlebars.renderTemplate(
-                            'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                            {
-                                types: CONFIG.DH.ACTIONS.actionTypes,
-                                itemName: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectAction')
-                            }
-                        ),
-                        ok: {
-                            label: game.i18n.format('DOCUMENT.Create', {
-                                type: game.i18n.localize('DAGGERHEART.GENERAL.Action.single')
-                            })
-                        }
-                    })) ?? {};
-                if (!actionType) return;
-                const cls = game.system.api.models.actions.actionsTypes[actionType];
-                const action = new cls(
-                    {
-                        _id: foundry.utils.randomID(),
-                        type: actionType,
-                        name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
-                        ...cls.getSourceConfig(this.document)
-                    },
-                    {
-                        parent: this.document
-                    }
-                );
-                await this.document.update({ 'system.actions': [...this.document.system.actions, action] });
-                await new DHActionConfig(this.document.system.actions[this.document.system.actions.length - 1]).render({
-                    force: true
+            const cls =
+                type === 'action' ? game.system.api.models.actions.actionsTypes.base : getDocumentClass(documentClass);
+            const data = {
+                name: cls.defaultName({ type, parent }),
+                type
+            };
+            if (inVault) data['system.inVault'] = true;
+            if (disabled) data.disabled = true;
+
+            const doc = await cls.create(data, { parent, renderSheet: !event.shiftKey });
+            if (parentIsItem && type === 'feature') {
+                await this.document.update({
+                    'system.features': this.document.system.toObject().features.concat(doc.uuid)
                 });
-                return action;
-            } else {
-                const cls = getDocumentClass(documentClass);
-                const data = {
-                    name: cls.defaultName({ type, parent }),
-                    type
-                };
-                if (inVault) data['system.inVault'] = true;
-                if (disabled) data.disabled = true;
-
-                const doc = await cls.create(data, { parent, renderSheet: !event.shiftKey });
-                if (parentIsItem && type === 'feature') {
-                    await this.document.update({
-                        'system.features': this.document.system.toObject().features.concat(doc.uuid)
-                    });
-                }
-                return doc;
             }
+            return doc;
         }
 
         /**
@@ -499,12 +413,6 @@ export default function DHApplicationMixin(Base) {
         static #editDoc(_event, target) {
             const doc = getDocFromElement(target);
             if (doc) return doc.sheet.render({ force: true });
-
-            // TODO: REDO this
-            const { actionId } = target.closest('[data-action-id]').dataset;
-            const { actions, attack } = this.document.system;
-            const action = attack?.id === actionId ? attack : actions?.find(a => a.id === actionId);
-            new DHActionConfig(action).render({ force: true });
         }
 
         /**
@@ -513,34 +421,10 @@ export default function DHApplicationMixin(Base) {
          */
         static async #deleteDoc(event, target) {
             const doc = getDocFromElement(target);
-
             if (doc) {
                 if (event.shiftKey) return doc.delete();
                 else return await doc.deleteDialog();
             }
-
-            // TODO: REDO this
-            const { actionId } = target.closest('[data-action-id]').dataset;
-            const { actions, attack } = this.document.system;
-            if (attack?.id === actionId) return;
-            const action = actions.find(a => a.id === actionId);
-
-            if (!event.shiftKey) {
-                const confirmed = await foundry.applications.api.DialogV2.confirm({
-                    window: {
-                        title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
-                            type: game.i18n.localize(`DAGGERHEART.GENERAL.Action.single`),
-                            name: action.name
-                        })
-                    },
-                    content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: action.name })
-                });
-                if (!confirmed) return;
-            }
-
-            return await this.document.update({
-                'system.actions': actions.filter(a => a.id !== action.id)
-            });
         }
 
         /**
@@ -549,13 +433,6 @@ export default function DHApplicationMixin(Base) {
          */
         static async #toChat(_event, target) {
             let doc = getDocFromElement(target);
-
-            // TODO: REDO this
-            if (!doc) {
-                const { actionId } = target.closest('[data-action-id]').dataset;
-                const { actions, attack } = this.document.system;
-                doc = attack?.id === actionId ? attack : actions?.find(a => a.id === actionId);
-            }
             return doc.toChat(this.document.id);
         }
 
@@ -565,27 +442,7 @@ export default function DHApplicationMixin(Base) {
          */
         static async #useItem(event, target) {
             let doc = getDocFromElement(target);
-            // TODO: REDO this
-            if (!doc) {
-                const { actionId } = target.closest('[data-action-id]').dataset;
-                const { actions, attack } = this.document.system;
-                doc = attack?.id === actionId ? attack : actions?.find(a => a.id === actionId);
-                if (this.document instanceof foundry.documents.Item && !this.document.parent) return;
-            }
-
             await doc.use(event);
-        }
-
-        /**
-         * Use a item
-         * @type {ApplicationClickAction}
-         */
-        static async #useAction(event, target) {
-            const doc = getDocFromElement(target);
-            const { actionId } = target.closest('[data-action-id]').dataset;
-            const { actions, attack } = doc.system;
-            const action = attack?.id === actionId ? attack : actions?.find(a => a.id === actionId);
-            await action.use(event, doc);
         }
 
         /**

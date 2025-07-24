@@ -106,7 +106,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
         if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack')
             context.hasBaseDamage = !!this.action.parent.attack;
-        context.getRealIndex = this.getRealIndex.bind(this);
         context.getEffectDetails = this.getEffectDetails.bind(this);
         context.costOptions = this.getCostOptions();
         context.disableOption = this.disableOption.bind(this);
@@ -148,11 +147,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         return filtered;
     }
 
-    getRealIndex(index) {
-        const data = this.action.toObject(false);
-        return data.damage.parts.find(d => d.base) ? index - 1 : index;
-    }
-
     getEffectDetails(id) {
         return this.action.item.effects.get(id);
     }
@@ -176,20 +170,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     static async updateForm(event, _, formData) {
         const submitData = this._prepareSubmitData(event, formData),
-            data = foundry.utils.mergeObject(this.action.toObject(), submitData),
-            container = foundry.utils.getProperty(this.action.parent, this.action.systemPath);
-        let newActions;
-        if (Array.isArray(container)) {
-            newActions = foundry.utils.getProperty(this.action.parent, this.action.systemPath).map(x => x.toObject());
-            if (!newActions.findSplice(x => x._id === data._id, data)) newActions.push(data);
-        } else newActions = data;
-
-        const action = await this.updateParent(newActions, container);
-        if (!action) return;
-
-        this.action = action;
-
-        this.sheetUpdate?.(this.action);
+            data = foundry.utils.mergeObject(this.action.toObject(), submitData);
+        this.action = await this.action.update(data);
         this.render();
     }
 
@@ -231,8 +213,10 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     static addDamage(event) {
         if (!this.action.damage.parts) return;
-        const data = this.action.toObject();
-        data.damage.parts.push({});
+        const data = this.action.toObject(),
+            part = {};
+        if (this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
+        data.damage.parts.push(part);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

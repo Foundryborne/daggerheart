@@ -77,7 +77,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                     ? actor.system.attack
                     : item.system.attack?._id === actionId
                       ? item.system.attack
-                      : item?.system?.actions?.find(a => a._id === actionId);
+                      : item?.system?.actions?.get(actionId);
         return action;
     }
 
@@ -254,7 +254,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
         const action = message.system.actions[Number.parseInt(event.currentTarget.dataset.index)];
         const actor = game.actors.get(message.system.source.actor);
-        await actor.useAction(action);
+        await actor.use(action);
     }
 
     async actionUseButton(event, message) {

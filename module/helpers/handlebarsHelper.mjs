@@ -9,7 +9,8 @@ export default class RegisterHandlebarsHelpers {
             damageFormula: this.damageFormula,
             damageSymbols: this.damageSymbols,
             rollParsed: this.rollParsed,
-            hasProperty: foundry.utils.hasProperty
+            hasProperty: foundry.utils.hasProperty,
+            setVar: this.setVar
         });
     }
     static add(a, b) {
@@ -49,5 +50,9 @@ export default class RegisterHandlebarsHelpers {
         const isNumerical = typeof numerical === 'boolean' ? numerical : false;
         const result = itemAbleRollParse(value, actor, item);
         return isNumerical && !result ? 0 : result;
+    }
+
+    static setVar(name, value, context) {
+        this[name] = value;
     }
 }

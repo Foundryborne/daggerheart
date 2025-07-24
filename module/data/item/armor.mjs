@@ -1,7 +1,6 @@
 import AttachableItem from './attachableItem.mjs';
-import ActionField from '../fields/actionField.mjs';
+import { ActionsField } from '../fields/actionField.mjs';
 import { armorFeatures } from '../../config/itemConfig.mjs';
-import { actionsTypes } from '../action/_module.mjs';
 
 export default class DHArmor extends AttachableItem {
     /** @inheritDoc */
@@ -10,7 +9,8 @@ export default class DHArmor extends AttachableItem {
             label: 'TYPES.Item.armor',
             type: 'armor',
             hasDescription: true,
-            isInventoryItem: true
+            isInventoryItem: true,
+            hasActions: true
         });
     }
 
@@ -39,8 +39,7 @@ export default class DHArmor extends AttachableItem {
             baseThresholds: new fields.SchemaField({
                 major: new fields.NumberField({ integer: true, initial: 0 }),
                 severe: new fields.NumberField({ integer: true, initial: 0 })
-            }),
-            actions: new fields.ArrayField(new ActionField())
+            })
         };
     }
 
@@ -65,7 +64,10 @@ export default class DHArmor extends AttachableItem {
                 actionIds.push(...feature.actionIds);
             }
             await this.parent.deleteEmbeddedDocuments('ActiveEffect', effectIds);
-            changes.system.actions = this.actions.filter(x => !actionIds.includes(x._id));
+            changes.system.actions = actionIds.reduce((acc, id) => {
+                acc[`-=${id}`] = null;
+                return acc;
+            }, {});
 
             for (var feature of added) {
                 const featureData = armorFeatures[feature.value];
@@ -79,17 +81,38 @@ export default class DHArmor extends AttachableItem {
                     ]);
                     feature.effectIds = embeddedItems.map(x => x.id);
                 }
+
+                const newActions = {};
                 if (featureData.actions?.length > 0) {
-                    const newActions = featureData.actions.map(action => {
-                        const cls = actionsTypes[action.type];
-                        return new cls(
-                            { ...action, _id: foundry.utils.randomID(), name: game.i18n.localize(action.name) },
+                    for (let action of featureData.actions) {
+                        const embeddedEffects = await this.parent.createEmbeddedDocuments(
+                            'ActiveEffect',
+                            (action.effects ?? []).map(effect => ({
+                                ...effect,
+                                transfer: false,
+                                name: game.i18n.localize(effect.name),
+                                description: game.i18n.localize(effect.description)
+                            }))
+                        );
+
+                        const cls = game.system.api.models.actions.actionsTypes[action.type];
+                        const actionId = foundry.utils.randomID();
+                        newActions[actionId] = new cls(
+                            {
+                                ...cls.getSourceConfig(this),
+                                ...action,
+                                _id: actionId,
+                                name: game.i18n.localize(action.name),
+                                description: game.i18n.localize(action.description),
+                                effects: embeddedEffects.map(x => ({ _id: x.id }))
+                            },
                             { parent: this }
                         );
-                    });
-                    changes.system.actions = [...this.actions, ...newActions];
-                    feature.actionIds = newActions.map(x => x._id);
+                    }
                 }
+
+                changes.system.actions = newActions;
+                feature.actionIds = Object.keys(newActions);
             }
         }
     }

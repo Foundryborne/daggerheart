@@ -1,4 +1,3 @@
-export * as ActionDice from './actionDice.mjs';
 import AttackAction from './attackAction.mjs';
 import BaseAction from './baseAction.mjs';
 import BeastformAction from './beastformAction.mjs';

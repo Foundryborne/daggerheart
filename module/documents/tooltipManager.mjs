@@ -4,19 +4,18 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
 
         let html = options.html;
         if (element.dataset.tooltip?.startsWith('#item#')) {
-            const splitValues = element.dataset.tooltip.slice(6).split('#action#');
-            const itemUuid = splitValues[0];
-            const actionId = splitValues.length > 1 ? splitValues[1] : null;
-
-            const baseItem = await foundry.utils.fromUuid(itemUuid);
-            const item = actionId ? baseItem.system.actions.find(x => x.id === actionId) : baseItem;
+            const itemUuid = element.dataset.tooltip.slice(6);
+            const item = await foundry.utils.fromUuid(itemUuid);
             if (item) {
-                const type = actionId ? 'action' : item.type;
-                const description = await TextEditor.enrichHTML(item.system.description);
-                for (let feature of item.system.features) {
-                    feature.system.enrichedDescription = await TextEditor.enrichHTML(feature.system.description);
+                const isAction = item instanceof game.system.api.models.actions.actionsTypes.base;
+                const description = await TextEditor.enrichHTML(isAction ? item.description : item.system.description);
+                if (item.system?.features) {
+                    for (let feature of item.system.features) {
+                        feature.system.enrichedDescription = await TextEditor.enrichHTML(feature.system.description);
+                    }
                 }
 
+                const type = isAction ? 'action' : item.type;
                 html = await foundry.applications.handlebars.renderTemplate(
                     `systems/daggerheart/templates/ui/tooltip/${type}.hbs`,
                     {

@@ -249,7 +249,7 @@ Parameters:
     {{#if (and showActions (eq item.type 'feature'))}}
     <div class="item-buttons">
       {{#each item.system.actions as | action |}}
-      <button type="button" data-action="useAction" data-action-id="{{action.id}}">
+      <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
         {{action.name}}
       </button>
       {{/each}}

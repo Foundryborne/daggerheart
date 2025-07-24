@@ -1,5 +1,5 @@
 import DHAdversarySettings from '../../applications/sheets-configs/adversary-settings.mjs';
-import ActionField from '../fields/actionField.mjs';
+import { ActionField } from '../fields/actionField.mjs';
 import BaseDataActor from './base.mjs';
 import { resourceField, bonusField } from '../fields/actorField.mjs';
 

@@ -3,7 +3,7 @@ import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import DhLevelData from '../levelData.mjs';
 import BaseDataActor from './base.mjs';
 import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
-import ActionField from '../fields/actionField.mjs';
+import { ActionField } from '../fields/actionField.mjs';
 
 export default class DhCharacter extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
@@ -334,6 +334,7 @@ export default class DhCharacter extends BaseDataActor {
         return !primaryWeaponEquipped && !secondaryWeaponEquipped
             ? {
                   ...this.attack,
+                  uuid: this.attack.uuid,
                   id: this.attack.id,
                   name: this.activeBeastform ? 'DAGGERHEART.ITEMS.Beastform.attackName' : this.attack.name,
                   img: this.activeBeastform ? 'icons/creatures/claws/claw-straight-brown.webp' : this.attack.img,
