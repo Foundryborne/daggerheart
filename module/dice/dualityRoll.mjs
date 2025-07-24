@@ -232,6 +232,12 @@ export default class DualityRoll extends D20Roll {
         });
         newRoll.extra = newRoll.extra.slice(2);
 
+        Hooks.call(`${CONFIG.DH.id}.postRollDuality`, {
+            source: { actor: message.system.source.actor ?? '' },
+            targets: message.system.targets,
+            roll: newRoll,
+            rerolledRoll: message.system.roll
+        });
         return { newRoll, parsedRoll };
     }
 }

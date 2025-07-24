@@ -47,13 +47,13 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             element.addEventListener('click', this.onToggleTargets)
         );
         html.querySelectorAll('.ability-use-button').forEach(element =>
-            element.addEventListener('click', event => this.abilityUseButton(this, event, data.message))
+            element.addEventListener('click', event => this.abilityUseButton(event, data.message))
         );
         html.querySelectorAll('.action-use-button').forEach(element =>
-            element.addEventListener('click', event => this.actionUseButton(this, event, data.message))
+            element.addEventListener('click', event => this.actionUseButton(event, data.message))
         );
         html.querySelectorAll('.reroll-button').forEach(element =>
-            element.addEventListener('click', event => this.rerollEvent(this, event, data.message))
+            element.addEventListener('click', event => this.rerollEvent(event, data.message))
         );
     };
 
@@ -287,6 +287,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             game.system.api.dice[
                 message.type === 'dualityRoll' ? 'DualityRoll' : target.dataset.type === 'damage' ? 'DHRoll' : 'D20Roll'
             ];
+
+        if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+
         const { newRoll, parsedRoll } = await rollClass.reroll(originalRoll_parsed, target, message);
 
         await game.messages.get(message._id).update({
