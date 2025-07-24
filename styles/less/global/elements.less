@@ -15,6 +15,10 @@
         color: light-dark(@dark-blue, @golden);
         border: 1px solid light-dark(@dark, @beige);
 
+        &::placeholder {
+            color: light-dark(@dark-40, @beige-50);
+        }
+
         &:hover[type='text'],
         &:hover[type='number'],
         &:focus[type='text'],
@@ -45,6 +49,24 @@
         }
         &::before {
             color: light-dark(@dark-40, @golden-40);
+        }
+    }
+
+    input[type='range'] {
+        &::-webkit-slider-runnable-track {
+            background: light-dark(@dark-blue-40, @golden-40);
+        }
+        &::-moz-range-track {
+            background: light-dark(@dark-blue-40, @golden-40);
+        }
+        &::-webkit-slider-thumb {
+            background: light-dark(@dark-blue, @golden);
+            border: none;
+            border-radius: 50%;
+
+            &:hover {
+                box-shadow: 0 0 8px light-dark(@dark-blue, @golden);
+            }
         }
     }
 
@@ -296,6 +318,31 @@
             }
         }
 
+        .scalable-input {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+
+            .form-group {
+                width: fit-content;
+                .nest-inputs {
+                    width: fit-content;
+                }
+            }
+
+            label {
+                font-family: @font-body;
+                font-size: 14px;
+                font-weight: 400;
+
+                &.modifier-label {
+                    width: 6ch;
+                    text-align: end;
+                }
+            }
+        }
+
         &:has(.list-w-img) {
             gap: 0;
         }
@@ -413,6 +460,7 @@
 
         label {
             font-size: 16px;
+            font-family: @font-body;
         }
 
         .form-fields {

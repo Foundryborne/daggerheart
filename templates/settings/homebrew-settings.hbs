@@ -1,4 +1,7 @@
 <div class="scrollable">
+    <header class="dialog-header">
+        <h1>{{localize 'DAGGERHEART.SETTINGS.Menu.homebrew.name'}}</h1>
+    </header>
     {{formGroup settingFields.schema.fields.maxFear value=settingFields._source.maxFear localize=true}}
 
     <h4>{{localize "DAGGERHEART.SETTINGS.Homebrew.FIELDS.traitArray.label"}}</h4>
@@ -27,7 +30,7 @@
     <fieldset class="two-columns even">
         <legend>{{localize "DAGGERHEART.SETTINGS.Homebrew.downtimeMoves"}}</legend>
 
-        <fieldset>
+        <fieldset class="start-align">
             <legend>
                 {{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}} 
                 <a data-action="addItem" data-type="longRest"><i class="fa-solid fa-plus"></i></a>
@@ -48,7 +51,7 @@
             </div>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="start-align">
             <legend>
                 {{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}
                 <a data-action="addItem" data-type="shortRest"><i class="fa-solid fa-plus"></i></a>

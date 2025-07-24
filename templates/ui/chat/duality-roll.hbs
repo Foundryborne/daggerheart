@@ -1,6 +1,6 @@
-<div class="dice-roll daggerheart chat roll" data-action="expandRoll">
-    <div class="dice-flavor">{{title}}</div>
-    <div class="duality-modifiers">
+<div class="dice-roll daggerheart chat roll"  data-action="expandRoll">
+    <div class="dice-flavor" data-action="expandRoll">{{title}}</div>
+    <div class="duality-modifiers" data-action="expandRoll">
         {{#each roll.modifiers}}
             <div class="duality-modifier">
                 {{localize label}} {{#if (gte value 0)}}+{{/if}}{{value}}
@@ -22,12 +22,12 @@
             </div>
         {{/if}}
     </div>
-    <div class="dice-result">
-        <div class="dice-formula">{{roll.formula}}</div>
+    <div class="dice-result"> 
+        <div class="dice-formula" data-action="expandRoll">{{roll.formula}}</div>
         <div class="dice-tooltip">
             <div class="wrapper">
                 <section class="tooltip-part">
-                    <div class="dice">
+                    <div class="dice" data-action="expandRoll">
                         <header class="part-header flexrow">
                             <span class="part-formula">
                                 <span>1{{roll.hope.dice}}</span>
@@ -38,25 +38,29 @@
                         </header>
                         <div class="flexrow">
                             <ol class="dice-rolls duality">
-                                <li class="roll die {{roll.hope.dice}}" title="{{localize "DAGGERHEART.GENERAL.hope"}}">
+                                <li class="roll die {{roll.hope.dice}}">
                                     <div class="dice-container">
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.hope"}}</div>
-                                        <div class="dice-inner-container hope" title="{{localize "DAGGERHEART.GENERAL.hope"}}">
-                                            <div class="dice-wrapper">
-                                                <img class="dice" src="../icons/svg/{{roll.hope.dice}}-grey.svg"/>
-                                            </div>
-                                            <div class="dice-value">{{roll.hope.value}}</div>
+                                        <div class="dice-inner-container hope" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}">
+                                            <button type="checkbox" class="reroll-button" data-die-index="0" data-type="hope">
+                                                <div class="dice-wrapper">
+                                                    <img class="dice" src="../icons/svg/{{roll.hope.dice}}-grey.svg"/>
+                                                </div>
+                                                <div class="dice-value">{{roll.hope.value}}</div>
+                                            </button>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="roll die {{roll.fear.dice}}" title="{{localize "DAGGERHEART.GENERAL.fear"}}">
+                                <li class="roll die {{roll.fear.dice}}">
                                     <div class="dice-container">
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.fear"}}</div>
-                                        <div class="dice-inner-container fear" title="{{localize "DAGGERHEART.GENERAL.fear"}}">
-                                            <div class="dice-wrapper">
-                                                <img class="dice" src="../icons/svg/{{roll.fear.dice}}-grey.svg"/>
-                                            </div>
-                                            <div class="dice-value">{{roll.fear.value}}</div>
+                                        <div class="dice-inner-container fear" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}">
+                                            <button type="checkbox" class="reroll-button" data-die-index="2" data-type="fear">
+                                                <div class="dice-wrapper">
+                                                    <img class="dice" src="../icons/svg/{{roll.fear.dice}}-grey.svg"/>
+                                                </div>
+                                                <div class="dice-value">{{roll.fear.value}}</div>
+                                            </button>
                                         </div>
                                     </div>
                                 </li>
@@ -64,7 +68,7 @@
                         </div>  
                     </div>
                     {{#if roll.advantage.type}}
-                        <div class="dice">
+                        <div class="dice" data-action="expandRoll">
                             <header class="part-header flexrow">
                                 <span class="part-formula">
                                     <span>1{{roll.advantage.dice}}</span>
@@ -112,7 +116,7 @@
                         </div>
                     {{/if}}
                     {{#each roll.extra as | extra | }}
-                        <div class="dice">
+                        <div class="dice" data-action="expandRoll">
                             <header class="part-header flexrow">
                                 <span class="part-formula">
                                     <span>1{{extra.dice}}</span>
@@ -140,7 +144,17 @@
             </div>
         </div>
         <div class="dice-total duality {{#if (eq roll.result.duality 1)}}hope{{else}}{{#if (eq roll.result.duality -1)}}fear{{else}}critical{{/if}}{{/if}}">
-            <div class="dice-total-label">{{roll.result.label}}</div>
+            <div class="dice-total-label">
+                {{#unless (eq _source.roll.success undefined)}}
+                    {{#if _source.roll.success}}
+                        {{localize "DAGGERHEART.GENERAL.success"}} {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}
+                    {{else}}
+                        {{localize "DAGGERHEART.GENERAL.failure"}} {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}
+                    {{/if}}
+                {{else}}
+                    {{roll.result.label}}
+                {{/unless}}
+            </div>
             <div class="dice-total-value">
                 {{roll.total}}
             </div>

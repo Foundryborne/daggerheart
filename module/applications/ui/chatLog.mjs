@@ -46,17 +46,14 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.target-indicator').forEach(element =>
             element.addEventListener('click', this.onToggleTargets)
         );
-        html.querySelectorAll('.advantage').forEach(element =>
-            element.addEventListener('mouseenter', this.hoverAdvantage)
-        );
-        html.querySelectorAll('.advantage').forEach(element =>
-            element.addEventListener('click', event => this.selectAdvantage.call(this, event, data.message))
-        );
         html.querySelectorAll('.ability-use-button').forEach(element =>
-            element.addEventListener('click', event => this.abilityUseButton.call(this, event, data.message))
+            element.addEventListener('click', event => this.abilityUseButton(this, event, data.message))
         );
         html.querySelectorAll('.action-use-button').forEach(element =>
-            element.addEventListener('click', event => this.actionUseButton.call(this, event, data.message))
+            element.addEventListener('click', event => this.actionUseButton(this, event, data.message))
+        );
+        html.querySelectorAll('.reroll-button').forEach(element =>
+            element.addEventListener('click', event => this.rerollEvent(this, event, data.message))
         );
     };
 
@@ -70,7 +67,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     async getActor(id) {
-        // return game.actors.get(id);
         return await fromUuid(id);
     }
 
@@ -85,7 +81,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         return action;
     }
 
-    onRollDamage = async (event, message) => {
+    async onRollDamage(event, message) {
         event.stopPropagation();
         const actor = await this.getActor(message.system.source.actor);
         if (game.user.character?.id !== actor.id && !game.user.isGM) return true;
@@ -94,9 +90,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (!action || !action?.rollDamage) return;
             await action.rollDamage(event, message);
         }
-    };
+    }
 
-    onRollHealing = async (event, message) => {
+    async onRollHealing(event, message) {
         event.stopPropagation();
         const actor = await this.getActor(message.system.source.actor);
         if (!actor || !game.user.isGM) return true;
@@ -105,9 +101,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (!action || !action?.rollHealing) return;
             await action.rollHealing(event, message);
         }
-    };
+    }
 
-    onRollSave = async (event, message) => {
+    async onRollSave(event, message) {
         event.stopPropagation();
         const actor = await this.getActor(message.system.source.actor),
             tokenId = event.target.closest('[data-token]')?.dataset.token,
@@ -118,9 +114,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (!action || !action?.hasSave) return;
             action.rollSave(token, event, message);
         }
-    };
+    }
 
-    onRollAllSave = async (event, message) => {
+    onRollAllSave(event, _message) {
         event.stopPropagation();
         const targets = event.target.parentElement.querySelectorAll(
             '.target-section > [data-token] .target-save-container'
@@ -128,9 +124,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         targets.forEach(el => {
             el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
         });
-    };
+    }
 
-    onApplyEffect = async (event, message) => {
+    async onApplyEffect(event, message) {
         event.stopPropagation();
         const actor = await this.getActor(message.system.source.actor);
         if (!actor || !game.user.isGM) return true;
@@ -142,9 +138,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
             await action.applyEffects(event, message, targets);
         }
-    };
+    }
 
-    onTargetSelection = async (event, message) => {
+    onTargetSelection(event, message) {
         event.stopPropagation();
         const targetSelection = Boolean(event.target.dataset.targetHit),
             msg = ui.chat.collection.get(message._id);
@@ -154,9 +150,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         msg.system.targetSelection = targetSelection;
         msg.system.prepareDerivedData();
         ui.chat.updateMessage(msg);
-    };
+    }
 
-    getTargetList = (event, message) => {
+    getTargetList(event, message) {
         const targetSelection = event.target
                 .closest('.message-content')
                 .querySelector('.button-target-selection.target-selected'),
@@ -167,20 +163,20 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 ? message.system.targets.filter(t => t.hit === true).map(target => game.canvas.tokens.get(target.id))
                 : Array.from(game.user.targets)
         };
-    };
+    }
 
-    hoverTarget = event => {
+    hoverTarget(event) {
         event.stopPropagation();
         const token = canvas.tokens.get(event.currentTarget.dataset.token);
         if (!token?.controlled) token._onHoverIn(event, { hoverOutOthers: true });
-    };
+    }
 
-    unhoverTarget = event => {
+    unhoverTarget(event) {
         const token = canvas.tokens.get(event.currentTarget.dataset.token);
         if (!token?.controlled) token._onHoverOut(event);
-    };
+    }
 
-    clickTarget = event => {
+    clickTarget(event) {
         event.stopPropagation();
         const token = canvas.tokens.get(event.currentTarget.dataset.token);
         if (!token) {
@@ -188,9 +184,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             return;
         }
         game.canvas.pan(token);
-    };
+    }
 
-    onDamage = async (event, message) => {
+    async onDamage(event, message) {
         event.stopPropagation();
         const { isHit, targets } = this.getTargetList(event, message);
 
@@ -228,9 +224,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
             target.actor.takeDamage(damages);
         }
-    };
+    }
 
-    onHealing = async (event, message) => {
+    async onHealing(event, message) {
         event.stopPropagation();
         const targets = Array.from(game.user.targets);
 
@@ -240,7 +236,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         for (var target of targets) {
             target.actor.takeHealing(message.system.roll);
         }
-    };
+    }
 
     /**
      * Toggle visibility of target containers.
@@ -253,51 +249,15 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             .forEach(el => el.classList.toggle('hidden'));
     }
 
-    /**
-     * Highlight advantage icons on hover.
-     * @param {MouseEvent} event
-     */
-    hoverAdvantage(event) {
-        const parent = event.currentTarget.parentElement;
-        if (!parent) return;
-
-        parent.querySelectorAll('.advantage').forEach(el => {
-            if (el !== event.currentTarget) {
-                el.classList.toggle('unused');
-            }
-        });
-    }
-
-    /**
-     * Handle selecting an advantage and disable further selection.
-     * @param {MouseEvent} event
-     * @param {object} message
-     */
-    async selectAdvantage(event, message) {
-        event.stopPropagation();
-
-        const updateMessage = game.messages.get(message._id);
-        await updateMessage?.update({
-            system: { advantageSelected: event.currentTarget.id === 'hope' ? 1 : 2 }
-        });
-
-        const parent = event.currentTarget.parentElement;
-        if (!parent) return;
-
-        parent.querySelectorAll('.advantage').forEach(el => {
-            el.replaceWith(el.cloneNode(true));
-        });
-    }
-
-    abilityUseButton = async (event, message) => {
+    async abilityUseButton(event, message) {
         event.stopPropagation();
 
         const action = message.system.actions[Number.parseInt(event.currentTarget.dataset.index)];
         const actor = game.actors.get(message.system.source.actor);
         await actor.useAction(action);
-    };
+    }
 
-    actionUseButton = async (event, message) => {
+    async actionUseButton(event, message) {
         const { moveIndex, actionIndex } = event.currentTarget.dataset;
         const parent = await foundry.utils.fromUuid(message.system.actor);
         const actionType = message.system.moves[moveIndex].actions[actionIndex];
@@ -308,5 +268,30 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         );
 
         action.use(event);
-    };
+    }
+
+    async rerollEvent(event, message) {
+        if (!event.shiftKey) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.UI.Chat.reroll.confirmTitle')
+                },
+                content: game.i18n.localize('DAGGERHEART.UI.Chat.reroll.confirmText')
+            });
+            if (!confirmed) return;
+        }
+
+        const target = event.target.closest('button[data-die-index]');
+        let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
+        const rollClass =
+            game.system.api.dice[
+                message.type === 'dualityRoll' ? 'DualityRoll' : target.dataset.type === 'damage' ? 'DHRoll' : 'D20Roll'
+            ];
+        const { newRoll, parsedRoll } = await rollClass.reroll(originalRoll_parsed, target, message);
+
+        await game.messages.get(message._id).update({
+            'system.roll': newRoll,
+            'rolls': [parsedRoll]
+        });
+    }
 }

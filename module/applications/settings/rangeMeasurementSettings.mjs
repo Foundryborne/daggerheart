@@ -12,14 +12,17 @@ export default class DhRangeMeasurementSettings extends HandlebarsApplicationMix
     }
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.automation.name');
+        return game.i18n.localize('DAGGERHEART.SETTINGS.Menu.title');
     }
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
         id: 'daggerheart-automation-settings',
-        classes: ['daggerheart', 'setting', 'dh-style'],
+        classes: ['daggerheart', 'dialog', 'dh-style', 'setting'],
         position: { width: '600', height: 'auto' },
+        window: {
+            icon: 'fa-solid fa-gears'
+        },
         actions: {
             reset: this.reset,
             save: this.save
