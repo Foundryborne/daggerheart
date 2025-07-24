@@ -76,7 +76,6 @@ export default class DhCompanion extends BaseDataActor {
                     }
                 }
             }),
-            actions: new ActionsField(),
             levelData: new fields.EmbeddedDataField(DhLevelData),
             bonuses: new fields.SchemaField({
                 damage: new fields.SchemaField({
