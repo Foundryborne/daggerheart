@@ -171,11 +171,19 @@ export default class DualityRoll extends D20Roll {
 
         data.hope = {
             dice: roll.dHope.denomination,
-            value: roll.dHope.total
+            value: roll.dHope.total,
+            rerolled: {
+                any: roll.dHope.results.some(x => x.rerolled),
+                rerolls: roll.dHope.results.filter(x => x.rerolled)
+            }
         };
         data.fear = {
             dice: roll.dFear.denomination,
-            value: roll.dFear.total
+            value: roll.dFear.total,
+            rerolled: {
+                any: roll.dFear.results.some(x => x.rerolled),
+                rerolls: roll.dFear.results.filter(x => x.rerolled)
+            }
         };
         data.rally = {
             dice: roll.dRally?.denomination,
@@ -236,7 +244,8 @@ export default class DualityRoll extends D20Roll {
             source: { actor: message.system.source.actor ?? '' },
             targets: message.system.targets,
             roll: newRoll,
-            rerolledRoll: message.system.roll
+            rerolledRoll:
+                newRoll.result.duality !== message.system.roll.result.duality ? message.system.roll : undefined
         });
         return { newRoll, parsedRoll };
     }

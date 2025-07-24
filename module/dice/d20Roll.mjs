@@ -1,4 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
+import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class D20Roll extends DHRoll {
@@ -156,6 +157,14 @@ export default class D20Roll extends DHRoll {
             dice: roll.dAdvantage?.denomination,
             value: roll.dAdvantage?.total
         };
+        data.dice = data.dice.map(dice => ({
+            ...dice,
+            results: dice.results.filter(x => !x.rerolled),
+            rerolled: {
+                any: dice.results.some(x => x.rerolled),
+                rerolls: dice.results.filter(x => x.rerolled)
+            }
+        }));
         data.isCritical = roll.isCritical;
         data.extra = roll.dice
             .filter(d => !roll.baseTerms.includes(d))
@@ -173,9 +182,35 @@ export default class D20Roll extends DHRoll {
         return (this._formula = this.constructor.getFormula(this.terms));
     }
 
-    static async reroll(rollString, _target, message) {
-        let parsedRoll = game.system.api.dice.D20Roll.fromData(rollString);
-        parsedRoll = await parsedRoll.reroll();
+    static async reroll(rollString, target, message) {
+        let parsedRoll = game.system.api.dice.D20Roll.fromData({ ...rollString, evaluated: false });
+
+        const term = parsedRoll.terms[0];
+        await term.reroll(`/r1=${term.total}`);
+
+        if (game.modules.get('dice-so-nice')?.active) {
+            const diceSoNiceRoll = {
+                _evaluated: true,
+                dice: [
+                    new foundry.dice.terms.Die({
+                        ...term,
+                        faces: term._faces,
+                        results: term.results.filter(x => !x.rerolled)
+                    })
+                ],
+                options: { appearance: {} }
+            };
+
+            const diceSoNicePresets = getDiceSoNicePresets();
+            const type = target.dataset.type;
+            if (diceSoNicePresets[type]) {
+                diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets[type] };
+            }
+
+            await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
+        }
+        await parsedRoll.evaluate();
+
         const newRoll = game.system.api.dice.D20Roll.postEvaluate(parsedRoll, {
             targets: message.system.targets,
             roll: {
@@ -184,10 +219,7 @@ export default class D20Roll extends DHRoll {
             }
         });
 
-        if (game.modules.get('dice-so-nice')?.active) {
-            await game.dice3d.showForRoll(parsedRoll, game.user, true);
-        }
-
+        newRoll.extra = newRoll.extra.slice(1);
         return { newRoll, parsedRoll };
     }
 }

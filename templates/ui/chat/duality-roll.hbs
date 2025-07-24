@@ -41,6 +41,7 @@
                                 <li class="roll die {{roll.hope.dice}}">
                                     <div class="dice-container">
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.hope"}}</div>
+                                        {{#if roll.hope.rerolled.any}}<i class="fa-solid fa-dice dice-rerolled" title="{{localize "DAGGERHEART.UI.Tooltip.diceIsRerolled" times=roll.hope.rerolled.rerolls.length}}"></i>{{/if}}
                                         <div class="dice-inner-container hope" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}">
                                             <button type="checkbox" class="reroll-button" data-die-index="0" data-type="hope">
                                                 <div class="dice-wrapper">
@@ -54,6 +55,7 @@
                                 <li class="roll die {{roll.fear.dice}}">
                                     <div class="dice-container">
                                         <div class="dice-title">{{localize "DAGGERHEART.GENERAL.fear"}}</div>
+                                        {{#if roll.fear.rerolled.any}}<i class="fa-solid fa-dice dice-rerolled" title="{{localize "DAGGERHEART.UI.Tooltip.diceIsRerolled" times=roll.fear.rerolled.rerolls.length}}"></i>{{/if}}
                                         <div class="dice-inner-container fear" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}">
                                             <button type="checkbox" class="reroll-button" data-die-index="2" data-type="fear">
                                                 <div class="dice-wrapper">

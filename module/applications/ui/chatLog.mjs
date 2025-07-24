@@ -271,6 +271,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     }
 
     async rerollEvent(event, message) {
+        event.stopPropagation();
         if (!event.shiftKey) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
