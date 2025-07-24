@@ -12,6 +12,7 @@ export default class DamageRoll extends DHRoll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         if (config.evaluate !== false) {
+            if(config.dialog.configure === false) roll.constructFormula(config);
             for (const roll of config.roll) await roll.roll.evaluate();
         }
         roll._evaluated = true;

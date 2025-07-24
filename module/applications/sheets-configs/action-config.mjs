@@ -195,7 +195,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         if (!this.action.damage.parts) return;
         const data = this.action.toObject(),
             part = {};
-        if(this.action.actor.isNPC) part.value = { multiplier: 'flat' };
+        if(this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
         data.damage.parts.push(part);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
