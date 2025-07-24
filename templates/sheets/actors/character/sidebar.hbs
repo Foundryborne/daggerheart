@@ -88,71 +88,74 @@
             </div>
         </div>
     </div>
-    <div class="equipment-section">
-        <div class="title">
-            <side-line-div class="invert"></side-line-div>
-            <h3>{{localize "DAGGERHEART.GENERAL.equipment"}}</h3>
-            <side-line-div></side-line-div>
-        </div>
-        <ul class="items-sidebar-list">
-            {{#if document.system.usedUnarmed}}
-                {{> 'daggerheart.inventory-item' item=document.system.usedUnarmed type='attack' isSidebar=true}}
-            {{/if}}
-            {{#each document.items as |item|}}
-            {{#if item.system.equipped}}
-            {{> 'daggerheart.inventory-item'
-            item=item
-            type=item.type
-            hideTags=true
-            hideDescription=true
-            hideResources=true
-            noExtensible=true
-            }}
-            {{/if}}
-            {{/each}}
-        </ul>
-    </div>
-    <div class="loadout-section">
-        <div class="title">
-            <side-line-div class="invert"></side-line-div>
-            <h3>{{localize "DAGGERHEART.GENERAL.loadout"}}</h3>
-            <side-line-div></side-line-div>
-        </div>
-        <ul class="items-sidebar-list">
-            {{#each document.system.domainCards.loadout as |card|}}
-              {{> 'daggerheart.inventory-item'
-                item=card
-                type='domainCard'
+
+    <div class="shortcut-items-section">
+        <div class="equipment-section">
+            <div class="title">
+                <side-line-div class="invert"></side-line-div>
+                <h3>{{localize "DAGGERHEART.GENERAL.equipment"}}</h3>
+                <side-line-div></side-line-div>
+            </div>
+            <ul class="items-sidebar-list">
+                {{#if document.system.usedUnarmed}}
+                    {{> 'daggerheart.inventory-item' item=document.system.usedUnarmed type='attack' isSidebar=true}}
+                {{/if}}
+                {{#each document.items as |item|}}
+                {{#if item.system.equipped}}
+                {{> 'daggerheart.inventory-item'
+                item=item
+                type=item.type
                 hideTags=true
                 hideDescription=true
                 hideResources=true
                 noExtensible=true
-            }}
-
-            {{/each}}
-        </ul>
-    </div>
-    <div class="experience-section">
-        <div class="title">
-            <side-line-div class="invert"></side-line-div>
-            <h3>{{localize "DAGGERHEART.GENERAL.experience.single"}}</h3>
-            <side-line-div></side-line-div>
+                }}
+                {{/if}}
+                {{/each}}
+            </ul>
         </div>
-        <div class="experience-list">
-            {{#each document.system.experiences as |experience id|}}
-            <div class="experience-row">
-                <div class="experience-value">
-                    +{{experience.value}}
-                </div>
-                <input name="system.experiences.{{id}}.name" data-experience={{id}}
-                    value="{{experience.name}}" type="text" />
-                <div class="controls">
-                    <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
-                        <i class="fa-regular fa-message"></i>
-                    </a>
-                </div>
+        <div class="loadout-section">
+            <div class="title">
+                <side-line-div class="invert"></side-line-div>
+                <h3>{{localize "DAGGERHEART.GENERAL.loadout"}}</h3>
+                <side-line-div></side-line-div>
             </div>
-            {{/each}}
+            <ul class="items-sidebar-list">
+                {{#each document.system.domainCards.loadout as |card|}}
+                {{> 'daggerheart.inventory-item'
+                    item=card
+                    type='domainCard'
+                    hideTags=true
+                    hideDescription=true
+                    hideResources=true
+                    noExtensible=true
+                }}
+
+                {{/each}}
+            </ul>
+        </div>
+        <div class="experience-section">
+            <div class="title">
+                <side-line-div class="invert"></side-line-div>
+                <h3>{{localize "DAGGERHEART.GENERAL.experience.single"}}</h3>
+                <side-line-div></side-line-div>
+            </div>
+            <div class="experience-list">
+                {{#each document.system.experiences as |experience id|}}
+                <div class="experience-row">
+                    <div class="experience-value">
+                        +{{experience.value}}
+                    </div>
+                    <input name="system.experiences.{{id}}.name" data-experience={{id}}
+                        value="{{experience.name}}" type="text" />
+                    <div class="controls">
+                        <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
+                            <i class="fa-regular fa-message"></i>
+                        </a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
         </div>
     </div>
 </aside>
