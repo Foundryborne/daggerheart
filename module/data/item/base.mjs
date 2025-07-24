@@ -8,6 +8,8 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
+import { addLinkedItemsDiff, updateLinkedItemApps } from '../../helpers/utils.mjs';
+
 const fields = foundry.data.fields;
 
 export default class BaseDataItem extends foundry.abstract.TypeDataModel {
@@ -153,30 +155,12 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         const allowed = await super._preUpdate(changed, options, userId);
         if (allowed === false) return false;
 
-        if (changed.system?.features) {
-            const prevFeatures = new Set(this.features);
-            const newFeatures = new Set(changed.system.features);
-            options.changedFeatures = {
-                toLink: Array.from(newFeatures.difference(prevFeatures).map(feature => feature.item ?? feature)),
-                toUnlink: Array.from(
-                    prevFeatures.difference(newFeatures).map(feature => feature.item?.uuid ?? feature.uuid)
-                )
-            };
-        }
+        addLinkedItemsDiff(changed.system?.features, this.features, options, 'changedFeatures');
     }
 
     _onUpdate(changed, options, userId) {
         super._onUpdate(changed, options, userId);
 
-        if (options.changedFeatures) {
-            options.changedFeatures.toLink.forEach(featureUuid => {
-                const doc = foundry.utils.fromUuidSync(featureUuid);
-                doc.apps[this.parent.sheet.id] = this.parent.sheet;
-            });
-            options.changedFeatures.toUnlink.forEach(featureUuid => {
-                const doc = foundry.utils.fromUuidSync(featureUuid);
-                delete doc.apps[this.parent.sheet.id];
-            });
-        }
+        updateLinkedItemApps(options, 'changedFeatures', this.parent.sheet);
     }
 }

@@ -241,6 +241,45 @@ export function getDocFromElement(element) {
     return foundry.utils.fromUuidSync(target.dataset.itemUuid) ?? null;
 }
 
+/**
+ * Adds the update diff on a linkedItem property to update.options for use
+ * in _onUpdate via the updateLinkedItemApps function.
+ * @param {Array} changedItems            The candidate changed list
+ * @param {Array} currentItems            The current list
+ * @param {object} options                Additional options which modify the update request
+ * @param {string} optionsName            The name of the options property holding the diff
+ */
+export function addLinkedItemsDiff(changedItems, currentItems, options, optionsName) {
+    if (changedItems) {
+        const prevItems = new Set(currentItems);
+        const newItems = new Set(changedItems);
+        options[optionsName] = {
+            toLink: Array.from(newItems.difference(prevItems).map(item => item?.item ?? item)),
+            toUnlink: Array.from(prevItems.difference(newItems).map(item => item?.item?.uuid ?? item?.uuid ?? item))
+        };
+    }
+}
+
+/**
+ * Adds or removes the current Application from linked document apps
+ * depending on an update diff in the linked item list.
+ * @param {object} options                Additional options which modify the update requests
+ * @param {string} optionName             The prop name on options of the update diff
+ * @param {object} sheet                  The application to add or remove from document apps
+ */
+export function updateLinkedItemApps(options, optionName, sheet) {
+    if (options[optionName]) {
+        options[optionName].toLink.forEach(featureUuid => {
+            const doc = foundry.utils.fromUuidSync(featureUuid);
+            doc.apps[sheet.id] = sheet;
+        });
+        options[optionName].toUnlink.forEach(featureUuid => {
+            const doc = foundry.utils.fromUuidSync(featureUuid);
+            delete doc.apps[sheet.id];
+        });
+    }
+}
+
 export const itemAbleRollParse = (value, actor, item) => {
     if (!value) return value;
 

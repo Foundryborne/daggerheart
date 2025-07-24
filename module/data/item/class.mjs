@@ -2,6 +2,7 @@ import BaseDataItem from './base.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import ItemLinkFields from '../fields/itemLinkFields.mjs';
+import { addLinkedItemsDiff, updateLinkedItemApps } from '../../helpers/utils.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -95,5 +96,50 @@ export default class DHClass extends BaseDataItem {
 
             foundry.utils.getProperty(options.parent, `${path}.subclass`)?.delete();
         }
+    }
+
+    async _preUpdate(changed, options, userId) {
+        const allowed = await super._preUpdate(changed, options, userId);
+        if (allowed === false) return false;
+
+        addLinkedItemsDiff(changed.system?.subclasses, this.subclasses, options, 'changedSubclasses');
+
+        const guide = changed.system?.characterGuide;
+        addLinkedItemsDiff(
+            guide?.suggestedPrimaryWeapon ? [guide.suggestedPrimaryWeapon] : null,
+            this.characterGuide.suggestedPrimaryWeapon ? [this.characterGuide.suggestedPrimaryWeapon] : [],
+            options,
+            'primaryWeapon'
+        );
+        addLinkedItemsDiff(
+            guide?.suggestedSecondaryWeapon ? [guide.suggestedSecondaryWeapon] : null,
+            this.characterGuide.suggestedSecondaryWeapon ? [this.characterGuide.suggestedSecondaryWeapon] : [],
+            options,
+            'secondaryWeapon'
+        );
+        addLinkedItemsDiff(
+            guide?.suggestedArmor ? [guide.suggestedArmor] : null,
+            this.characterGuide.suggestedArmor ? [this.characterGuide.suggestedArmor] : [],
+            options,
+            'armor'
+        );
+
+        addLinkedItemsDiff(changed.system?.inventory?.take, this.inventory.take, options, 'changedTake');
+        addLinkedItemsDiff(changed.system?.inventory?.choiceA, this.inventory.choiceA, options, 'changedChoiceA');
+        addLinkedItemsDiff(changed.system?.inventory?.choiceB, this.inventory.choiceB, options, 'changedChoiceB');
+    }
+
+    _onUpdate(changed, options, userId) {
+        super._onUpdate(changed, options, userId);
+
+        updateLinkedItemApps(options, 'changedSubclasses', this.parent.sheet);
+
+        updateLinkedItemApps(options, 'primaryWeapon', this.parent.sheet);
+        updateLinkedItemApps(options, 'secondaryWeapon', this.parent.sheet);
+        updateLinkedItemApps(options, 'armor', this.parent.sheet);
+
+        updateLinkedItemApps(options, 'changedTake', this.parent.sheet);
+        updateLinkedItemApps(options, 'changedChoiceA', this.parent.sheet);
+        updateLinkedItemApps(options, 'changedChoiceB', this.parent.sheet);
     }
 }
