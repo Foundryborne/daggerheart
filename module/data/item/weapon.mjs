@@ -8,8 +8,8 @@ export default class DHWeapon extends AttachableItem {
             label: 'TYPES.Item.weapon',
             type: 'weapon',
             hasDescription: true,
-            isInventoryItem: true
-            // hasInitialAction: true
+            isInventoryItem: true,
+            hasActions: true
         });
     }
 
@@ -63,13 +63,12 @@ export default class DHWeapon extends AttachableItem {
                         ]
                     }
                 }
-            }),
-            actions: new ActionsField()
+            })
         };
     }
 
     get actionsList() {
-        return new Set([this.attack, ...this.actions]);
+        return [this.attack, ...this.actions];
     }
 
     get customActions() {

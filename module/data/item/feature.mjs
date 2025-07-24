@@ -8,7 +8,8 @@ export default class DHFeature extends BaseDataItem {
             label: 'TYPES.Item.feature',
             type: 'feature',
             hasDescription: true,
-            hasResource: true
+            hasResource: true,
+            hasActions: true
         });
     }
 
@@ -24,8 +25,7 @@ export default class DHFeature extends BaseDataItem {
             }),
             subType: new fields.StringField({ choices: CONFIG.DH.ITEM.featureSubTypes, nullable: true, initial: null }),
             originId: new fields.StringField({ nullable: true, initial: null }),
-            identifier: new fields.StringField(),
-            actions: new ActionsField()
+            identifier: new fields.StringField()
         };
     }
 

@@ -9,7 +9,8 @@ export default class DHArmor extends AttachableItem {
             label: 'TYPES.Item.armor',
             type: 'armor',
             hasDescription: true,
-            isInventoryItem: true
+            isInventoryItem: true,
+            hasActions: true
         });
     }
 
@@ -38,8 +39,7 @@ export default class DHArmor extends AttachableItem {
             baseThresholds: new fields.SchemaField({
                 major: new fields.NumberField({ integer: true, initial: 0 }),
                 severe: new fields.NumberField({ integer: true, initial: 0 })
-            }),
-            actions: new ActionsField()
+            })
         };
     }
 

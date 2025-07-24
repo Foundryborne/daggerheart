@@ -8,7 +8,8 @@ export default class DHDomainCard extends BaseDataItem {
             label: 'TYPES.Item.domainCard',
             type: 'domainCard',
             hasDescription: true,
-            hasResource: true
+            hasResource: true,
+            hasActions: true
         });
     }
 
@@ -29,8 +30,7 @@ export default class DHDomainCard extends BaseDataItem {
                 required: true,
                 initial: CONFIG.DH.DOMAIN.cardTypes.ability.id
             }),
-            inVault: new fields.BooleanField({ initial: false }),
-            actions: new fields.ArrayField(new ActionField())
+            inVault: new fields.BooleanField({ initial: false })
         };
     }
 

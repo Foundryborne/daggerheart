@@ -32,7 +32,8 @@ export default class TargetField extends fields.SchemaField {
     }
 
     static checkTargets(amount, targets) {
-        return !amount || (targets.length > amount);
+        return true
+        // return !amount || (targets.length > amount);
     }
 
     static isTargetFriendly(target) {

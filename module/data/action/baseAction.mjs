@@ -171,7 +171,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasEffect: !!this.effects?.length,
             hasSave: this.hasSave,
             selectedRollMode: game.settings.get('core', 'rollMode'),
-            isFastForward: event.shiftKey || (!this.hasRoll && !this.hasSave),
+            isFastForward: event.shiftKey,
             data: this.getRollData()
         };
     }
