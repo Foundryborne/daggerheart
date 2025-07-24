@@ -3,6 +3,7 @@ import * as applications from './module/applications/_module.mjs';
 import * as models from './module/data/_module.mjs';
 import * as documents from './module/documents/_module.mjs';
 import * as dice from './module/dice/_module.mjs';
+import * as fields from './module/data/fields/_module.mjs'
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
@@ -27,7 +28,8 @@ Hooks.once('init', () => {
         applications,
         models,
         documents,
-        dice
+        dice,
+        fields
     };
 
     CONFIG.TextEditor.enrichers.push(...enricherConfig);

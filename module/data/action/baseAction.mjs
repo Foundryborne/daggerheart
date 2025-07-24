@@ -1,8 +1,6 @@
-import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField, DHResourceData } from './actionDice.mjs';
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
-import * as ActionFields from '../fields/action/_module.mjs';
 
 const fields = foundry.data.fields;
 
@@ -19,8 +17,7 @@ const fields = foundry.data.fields;
 */
 
 export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel) {
-    static baseFields = ['cost', 'uses', 'range'];
-    static extraFields = [];
+    static extraSchemas = ['cost', 'uses', 'range'];
 
     static defineSchema() {
         const schemaFields = {
@@ -38,27 +35,17 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             })
         };
 
-        [...this.baseFields, ...extraFields].forEach(s => {
-            // const clsField = 
+        this.extraSchemas.forEach(s => {
+            let clsField;
+            if(clsField = this.getActionField(s)) schemaFields[s] = new clsField();
         });
 
         return schemaFields;
     }
 
-    static defineExtraSchema() {
-        const extraFields = {
-                damage: new DHDamageField(),
-                roll: new fields.EmbeddedDataField(DHActionRollData),
-                save: new ActionFields.SaveField(),
-                target: new ActionFields.TargetField(),
-                effects: new ActionFields.EffectField(),
-                healing: new fields.EmbeddedDataField(DHResourceData),
-                beastform: new ActionFields.BeastformField()
-            },
-            extraSchemas = {};
-
-        this.extraSchemas.forEach(s => (extraSchemas[s] = extraFields[s]));
-        return extraSchemas;
+    static getActionField(name) {
+        const field = game.system.api.fields.ActionFields[`${name.capitalize()}Field`];
+        return fields.DataField.isPrototypeOf(field) && field;
     }
 
     prepareData() {
@@ -130,38 +117,14 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     async use(event, ...args) {
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
-        const isFastForward = event.shiftKey || (!this.hasRoll && !this.hasSave);
-        // Prepare base Config
-        const initConfig = this.initActionConfig(event);
-
-        // Prepare Targets
-        const targetConfig = this.prepareTarget();
-        if (isFastForward && !targetConfig) return ui.notifications.warn('Too many targets selected for that actions.');
-
-        // Prepare Range
-        const rangeConfig = this.prepareRange();
-
-        // Prepare Costs
-        const costsConfig = this.prepareCost();
-        if (isFastForward && !(await this.hasCost(costsConfig)))
-            return ui.notifications.warn("You don't have the resources to use that action.");
-
-        // Prepare Uses
-        const usesConfig = this.prepareUse();
-        if (isFastForward && !this.hasUses(usesConfig))
-            return ui.notifications.warn("That action doesn't have remaining uses.");
-
-        // Prepare Roll Data
-        const actorData = this.getRollData();
-
-        let config = {
-            ...initConfig,
-            targets: targetConfig,
-            range: rangeConfig,
-            costs: costsConfig,
-            uses: usesConfig,
-            data: actorData
-        };
+        let config = this.prepareConfig(event);
+        for(let i = 0; i < this.constructor.extraSchemas.length; i++) {
+            let clsField = this.constructor.getActionField(this.constructor.extraSchemas[i]);
+            if(clsField?.prepareConfig) {
+                const keep = clsField.prepareConfig.call(this, config);
+                if(config.isFastForward && !keep) return;
+            }
+        }
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -193,7 +156,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /* */
-    initActionConfig(event) {
+    prepareConfig(event) {
         return {
             event,
             title: this.item.name,
@@ -207,42 +170,14 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasHealing: !!this.healing,
             hasEffect: !!this.effects?.length,
             hasSave: this.hasSave,
-            selectedRollMode: game.settings.get('core', 'rollMode')
+            selectedRollMode: game.settings.get('core', 'rollMode'),
+            isFastForward: event.shiftKey || (!this.hasRoll && !this.hasSave),
+            data: this.getRollData()
         };
     }
 
     requireConfigurationDialog(config) {
         return !config.event.shiftKey && !this.hasRoll && (config.costs?.length || config.uses);
-    }
-
-    prepareCost() {
-        const costs = this.cost?.length ? foundry.utils.deepClone(this.cost) : [];
-        return this.calcCosts(costs);
-    }
-
-    prepareUse() {
-        const uses = this.uses?.max ? foundry.utils.deepClone(this.uses) : null;
-        if (uses && !uses.value) uses.value = 0;
-        return uses;
-    }
-
-    prepareTarget() {
-        if (!this.target?.type) return [];
-        let targets;
-        if (this.target?.type === CONFIG.DH.ACTIONS.targetTypes.self.id)
-            targets = this.constructor.formatTarget(this.actor.token ?? this.actor.prototypeToken);
-        targets = Array.from(game.user.targets);
-        if (this.target.type !== CONFIG.DH.ACTIONS.targetTypes.any.id) {
-            targets = targets.filter(t => this.isTargetFriendly(t));
-            if (this.target.amount && targets.length > this.target.amount) targets = [];
-        }
-        targets = targets.map(t => this.constructor.formatTarget(t));
-        return targets;
-    }
-
-    prepareRange() {
-        const range = this.range ?? null;
-        return range;
     }
 
     prepareRoll() {
@@ -315,108 +250,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return !!this.save?.trait;
     }
     /* SAVE */
-
-    /* COST */
-
-    getRealCosts(costs) {
-        const realCosts = costs?.length ? costs.filter(c => c.enabled) : [];
-        return realCosts;
-    }
-
-    calcCosts(costs) {
-        return costs.map(c => {
-            c.scale = c.scale ?? 1;
-            c.step = c.step ?? 1;
-            c.total = c.value * c.scale * c.step;
-            c.enabled = c.hasOwnProperty('enabled') ? c.enabled : true;
-            return c;
-        });
-    }
-
-    async getResources(costs) {
-        const actorResources = this.actor.system.resources;
-        const itemResources = {};
-        for (var itemResource of costs) {
-            if (itemResource.keyIsID) {
-                itemResources[itemResource.key] = {
-                    value: this.parent.resource.value ?? 0
-                };
-            }
-        }
-
-        return {
-            ...actorResources,
-            ...itemResources
-        };
-    }
-
-    /* COST */
-    async hasCost(costs) {
-        const realCosts = this.getRealCosts(costs),
-            hasFearCost = realCosts.findIndex(c => c.key === 'fear');
-        if (hasFearCost > -1) {
-            const fearCost = realCosts.splice(hasFearCost, 1)[0];
-            if (
-                !game.user.isGM ||
-                fearCost.total > game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
-            )
-                return false;
-        }
-
-        /* isReversed is a sign that the resource is inverted, IE it counts upwards instead of down */
-        const resources = await this.getResources(realCosts);
-        return realCosts.reduce(
-            (a, c) =>
-                a && resources[c.key].isReversed
-                    ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
-                    : resources[c.key]?.value >= (c.total ?? c.value),
-            true
-        );
-    }
-
-    /* USES */
-    calcUses(uses) {
-        if (!uses) return null;
-        return {
-            ...uses,
-            enabled: uses.hasOwnProperty('enabled') ? uses.enabled : true
-        };
-    }
-
-    hasUses(uses) {
-        if (!uses) return true;
-        return (uses.hasOwnProperty('enabled') && !uses.enabled) || uses.value + 1 <= uses.max;
-    }
-
-    /* TARGET */
-    isTargetFriendly(target) {
-        const actorDisposition = this.actor.token
-                ? this.actor.token.disposition
-                : this.actor.prototypeToken.disposition,
-            targetDisposition = target.document.disposition;
-        return (
-            (this.target.type === CONFIG.DH.ACTIONS.targetTypes.friendly.id &&
-                actorDisposition === targetDisposition) ||
-            (this.target.type === CONFIG.DH.ACTIONS.targetTypes.hostile.id &&
-                actorDisposition + targetDisposition === 0)
-        );
-    }
-
-    static formatTarget(actor) {
-        return {
-            id: actor.id,
-            actorId: actor.actor.uuid,
-            name: actor.actor.name,
-            img: actor.actor.img,
-            difficulty: actor.actor.system.difficulty,
-            evasion: actor.actor.system.evasion
-        };
-    }
-    /* TARGET */
-
-    /* RANGE */
-
-    /* RANGE */
 
     /* EFFECTS */
     async applyEffects(event, data, targets) {

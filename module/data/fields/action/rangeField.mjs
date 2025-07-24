@@ -9,4 +9,6 @@ export default class RangeField extends fields.StringField {
         };
         super(options, context);
     }
+
+    static prepareConfig(config) {}
 }

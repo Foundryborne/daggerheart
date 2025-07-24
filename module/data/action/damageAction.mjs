@@ -2,7 +2,7 @@ import { setsEqual } from '../../helpers/utils.mjs';
 import DHBaseAction from './baseAction.mjs';
 
 export default class DHDamageAction extends DHBaseAction {
-    static extraSchemas = ['damage', 'target', 'effects'];
+    static extraSchemas = [...super.extraSchemas, 'damage', 'target', 'effects'];
 
     getFormulaValue(part, data) {
         let formulaValue = part.value;

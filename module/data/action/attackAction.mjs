@@ -1,8 +1,8 @@
-import { DHDamageData } from './actionDice.mjs';
+import { DHDamageData } from '../fields/action/damageField.mjs';
 import DHDamageAction from './damageAction.mjs';
 
 export default class DHAttackAction extends DHDamageAction {
-    static extraSchemas = [...super.extraSchemas, ...['roll', 'save']];
+    static extraSchemas = [...super.extraSchemas, 'roll', 'save'];
 
     static getRollType(parent) {
         return parent.parent.type === 'weapon' ? 'attack' : 'spellcast';

@@ -68,19 +68,19 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         }));
 
         if (this.config.costs?.length) {
-            const updatedCosts = this.action.calcCosts(this.config.costs);
+            const updatedCosts = game.system.api.fields.ActionFields.CostField.calcCosts.call(this.action, this.config.costs);
             context.costs = updatedCosts.map(x => ({
                 ...x,
                 label: x.keyIsID
                     ? this.action.parent.parent.name
                     : game.i18n.localize(CONFIG.DH.GENERAL.abilityCosts[x.key].label)
             }));
-            context.canRoll = this.action.hasCost(updatedCosts);
+            context.canRoll = game.system.api.fields.ActionFields.CostField.hasCost.call(this.action, updatedCosts);
             this.config.data.scale = this.config.costs[0].total;
         }
         if (this.config.uses?.max) {
-            context.uses = this.action.calcUses(this.config.uses);
-            context.canRoll = context.canRoll && this.action.hasUses(context.uses);
+            context.uses = game.system.api.fields.ActionFields.UsesField.calcUses.call(this.action, this.config.uses);
+            context.canRoll = context.canRoll && game.system.api.fields.ActionFields.UsesField.hasUses.call(this.action, context.uses);
         }
         if (this.roll) {
             context.roll = this.roll;
