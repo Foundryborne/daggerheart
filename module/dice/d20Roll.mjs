@@ -1,4 +1,5 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
+import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class D20Roll extends DHRoll {
@@ -156,6 +157,14 @@ export default class D20Roll extends DHRoll {
             dice: roll.dAdvantage?.denomination,
             value: roll.dAdvantage?.total
         };
+        data.dice = data.dice.map(dice => ({
+            ...dice,
+            results: dice.results.filter(x => !x.rerolled),
+            rerolled: {
+                any: dice.results.some(x => x.rerolled),
+                rerolls: dice.results.filter(x => x.rerolled)
+            }
+        }));
         data.isCritical = roll.isCritical;
         data.extra = roll.dice
             .filter(d => !roll.baseTerms.includes(d))
@@ -188,6 +197,26 @@ export default class D20Roll extends DHRoll {
             await game.dice3d.showForRoll(parsedRoll, game.user, true);
         }
 
-        return { newRoll, parsedRoll };
+        const rerolled = {
+            any: true,
+            rerolls: [
+                ...(message.system.roll.dice[0].rerolled?.rerolls?.length > 0
+                    ? [message.system.roll.dice[0].rerolled?.rerolls]
+                    : []),
+                rollString.terms[0].results
+            ]
+        };
+        return {
+            newRoll: {
+                ...newRoll,
+                dice: [
+                    {
+                        ...newRoll.dice[0],
+                        rerolled: rerolled
+                    }
+                ]
+            },
+            parsedRoll
+        };
     }
 }

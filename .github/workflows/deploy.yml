@@ -14,7 +14,9 @@ jobs:
       run: npm ci
 
     - name: Build Packs
-      run: npm run pullYMLtoLDB
+      run: |
+        npm run pullYMLtoLDB
+        mv --force src/packs/LICENSE packs/LICENSE
 
     - name: Build daggerheart.js
       run: npm run build

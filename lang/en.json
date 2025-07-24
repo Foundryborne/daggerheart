@@ -1695,7 +1695,8 @@
                 "makeDeathMove": "Make a Death Move",
                 "rangeAndTarget": "Range & Target",
                 "dragApplyEffect": "Drag effect to apply it to an actor",
-                "appliedEvenIfSuccessful": "Applied even if save succeeded"
+                "appliedEvenIfSuccessful": "Applied even if save succeeded",
+                "diceIsRerolled": "The dice has been rerolled (x{times})"
             }
         }
     }
