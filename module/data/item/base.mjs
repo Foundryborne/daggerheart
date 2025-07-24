@@ -23,7 +23,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             hasDescription: false,
             hasResource: false,
             isQuantifiable: false,
-            isInventoryItem: false
+            isInventoryItem: false,
+            hasActions: false
         };
     }
 
