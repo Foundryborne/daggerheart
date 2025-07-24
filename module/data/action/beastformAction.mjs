@@ -2,7 +2,7 @@ import BeastformDialog from '../../applications/dialogs/beastformDialog.mjs';
 import DHBaseAction from './baseAction.mjs';
 
 export default class DhBeastformAction extends DHBaseAction {
-    static extraSchemas = ['beastform'];
+    static extraSchemas = [...super.extraSchemas, 'beastform'];
 
     async use(event, ...args) {
         const beastformConfig = this.prepareBeastformConfig();

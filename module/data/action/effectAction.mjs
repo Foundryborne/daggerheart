@@ -1,10 +1,10 @@
 import DHBaseAction from './baseAction.mjs';
 
 export default class DHEffectAction extends DHBaseAction {
-    static extraSchemas = ['effects', 'target'];
+    static extraSchemas = [...super.extraSchemas, 'effects', 'target'];
 
     async trigger(event, data) {
-        if(this.effects.length) {
+        if (this.effects.length) {
             const cls = getDocumentClass('ChatMessage'),
                 msg = {
                     type: 'applyEffect',

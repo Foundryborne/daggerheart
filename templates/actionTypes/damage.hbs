@@ -4,90 +4,78 @@
         {{localize "DAGGERHEART.GENERAL.damage"}}
         {{#unless (eq path 'system.attack.')}}<a><i class="fa-solid fa-plus icon-button" data-action="addDamage"></i></a>{{/unless}}
     </legend>
-    {{#unless (or @root.isNPC path)}}
-        {{#if @root.hasBaseDamage}}
-            {{formField @root.fields.damage.fields.includeBase value=@root.source.damage.includeBase name="damage.includeBase" classes="checkbox" localize=true }}
-        {{/if}}
-    {{/unless}}
+    {{#if @root.hasBaseDamage}}
+        {{formField @root.fields.damage.fields.includeBase value=@root.source.damage.includeBase name="damage.includeBase" classes="checkbox" localize=true }}
+    {{/if}}
     {{#each source.parts as |dmg index|}}
-        {{#if (or @root.isNPC ../path)}}
-            {{formField ../fields.value.fields.custom.fields.enabled value=dmg.value.custom.enabled name=(concat ../path "damage.parts." index ".value.custom.enabled") classes="checkbox"}}
-            <input type="hidden" name="{{../path}}damage.parts.{{index}}.value.multiplier" value="{{dmg.value.multiplier}}">
-            {{#if dmg.value.custom.enabled}}
-                {{formField ../fields.value.fields.custom.fields.formula value=dmg.value.custom.formula name=(concat ../path "damage.parts." index ".value.custom.formula") localize=true}}
-            {{else}}
-                <div class="nest-inputs">
-                    {{#if @root.isNPC}}{{formField ../fields.value.fields.flatMultiplier value=dmg.value.flatMultiplier name=(concat ../path "damage.parts." index ".value.flatMultiplier") label="DAGGERHEART.ACTIONS.Settings.multiplier" classes="inline-child" localize=true }}{{/if}}
-                    {{formField ../fields.value.fields.dice value=dmg.value.dice name=(concat ../path "damage.parts." index ".value.dice") classes="inline-child"}}
-                    {{formField ../fields.value.fields.bonus value=dmg.value.bonus name=(concat ../path "damage.parts." index ".value.bonus") localize=true classes="inline-child"}}
-                </div>
-            {{/if}}
-            <div class="nest-inputs">
-                {{formField ../fields.applyTo value=dmg.applyTo name=(concat ../path "damage.parts." realIndex ".applyTo") localize=true}}
-                {{#if (eq dmg.applyTo 'hitPoints')}}
-                    {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." index ".type") localize=true}}
-                {{/if}}
-            </div>
-            {{#if ../horde}}
-                <fieldset class="one-column">
-                    <legend>{{localize "DAGGERHEART.ACTORS.Adversary.hordeDamage"}}</legend>
-                    <div class="nest-inputs">
-                        {{formField ../fields.valueAlt.fields.flatMultiplier value=dmg.valueAlt.flatMultiplier name=(concat ../path "damage.parts." index ".valueAlt.flatMultiplier") label="DAGGERHEART.ACTIONS.Settings.multiplier"  classes="inline-child" localize=true }}
-                        {{formField ../fields.valueAlt.fields.dice value=dmg.valueAlt.dice name=(concat ../path "damage.parts." index ".valueAlt.dice") classes="inline-child"}}
-                        {{formField ../fields.valueAlt.fields.bonus value=dmg.valueAlt.bonus name=(concat ../path "damage.parts." index ".valueAlt.bonus") localize=true classes="inline-child"}}
-                    </div>
-                </fieldset>
-            {{/if}}
+        {{#if (and @root.hasBaseDamage @root.source.damage.includeBase)}}
+            {{setVar 'realIndex' (add index -1)}}
         {{else}}
-            {{#with (@root.getRealIndex index) as | realIndex |}}
-                <div class="nest-inputs">
-                    <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column">
-                        {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base))}}
-                            {{formField ../../fields.resultBased value=dmg.resultBased name=(concat "damage.parts." realIndex ".resultBased") localize=true classes="checkbox"}}
-                        {{/if}}
-                        {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base) dmg.resultBased)}}
-                            <div class="nest-inputs">
-                                <fieldset class="one-column">
-                                    <legend>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}</legend>
-                                    {{> formula fields=../../fields.value.fields type=../../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
-                                </fieldset>
-                                <fieldset class="one-column">
-                                    <legend>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}</legend>
-                                    {{> formula fields=../../fields.valueAlt.fields type=../../fields.type dmg=dmg source=dmg.valueAlt target="valueAlt" realIndex=realIndex}}
-                                </fieldset>
-                            </div>
-                        {{else}}
-                            <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column">
-                                {{> formula fields=../../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex}}
-                            </fieldset>
-                        {{/if}}
-                        <div class="nest-inputs">
-                            {{formField ../../fields.applyTo value=dmg.applyTo name=(concat "damage.parts." realIndex ".applyTo") localize=true}}
-                            {{#if (eq dmg.applyTo 'hitPoints')}}
-                                {{formField ../../fields.type value=dmg.type name=(concat "damage.parts." realIndex ".type") localize=true}}
-                            {{/if}}
-                        </div>
-                        <input type="hidden" name="damage.parts.{{realIndex}}.base" value="{{dmg.base}}">
-                    </fieldset>
-                    {{#unless dmg.base}}<div class="fas fa-trash" data-action="removeDamage" data-index="{{realIndex}}"></div>{{/unless}}
-                </div>
-            {{/with}}
+            {{setVar 'realIndex' index}}
         {{/if}}
+        <div class="nest-inputs">
+            <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column{{#if ../path}} no-style{{/if}}">
+                {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base))}}
+                    {{formField ../fields.resultBased value=dmg.resultBased name=(concat "damage.parts." realIndex ".resultBased") localize=true classes="checkbox"}}
+                {{/if}}
+                {{#if (and (not @root.isNPC) @root.hasRoll (not dmg.base) dmg.resultBased)}}
+                    <div class="nest-inputs">
+                        <fieldset class="one-column">
+                            <legend>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}</legend>
+                            {{> formula fields=../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex path=../path}}
+                        </fieldset>
+                        <fieldset class="one-column">
+                            <legend>{{localize "DAGGERHEART.GENERAL.withThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}</legend>
+                            {{> formula fields=../fields.valueAlt.fields type=../fields.type dmg=dmg source=dmg.valueAlt target="valueAlt" realIndex=realIndex path=../path}}
+                        </fieldset>
+                    </div>
+                {{else}}
+                    <fieldset{{#if dmg.base}} disabled{{/if}} class="one-column">
+                        <legend>{{localize "DAGGERHEART.GENERAL.formula"}}</legend>
+                        {{> formula fields=../fields.value.fields type=../fields.type dmg=dmg source=dmg.value target="value" realIndex=realIndex path=../path}}
+                    </fieldset>
+                {{/if}}
+                <div class="nest-inputs">
+                    {{formField ../fields.applyTo value=dmg.applyTo name=(concat ../path "damage.parts." realIndex ".applyTo") localize=true}}
+                    {{#if (eq dmg.applyTo 'hitPoints')}}
+                        {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." realIndex ".type") localize=true}}
+                    {{/if}}
+                </div>
+                {{#if ../horde}}
+                    <fieldset class="one-column">
+                        <legend>{{localize "DAGGERHEART.ACTORS.Adversary.hordeDamage"}}</legend>
+                        <div class="nest-inputs">
+                            <input type="hidden" name="{{../path}}damage.parts.{{realIndex}}.valueAlt.multiplier" value="flat">
+                            {{formField ../fields.valueAlt.fields.flatMultiplier value=dmg.valueAlt.flatMultiplier name=(concat ../path "damage.parts." realIndex ".valueAlt.flatMultiplier") label="DAGGERHEART.ACTIONS.Settings.multiplier"  classes="inline-child" localize=true }}
+                            {{formField ../fields.valueAlt.fields.dice value=dmg.valueAlt.dice name=(concat ../path "damage.parts." realIndex ".valueAlt.dice") classes="inline-child"}}
+                            {{formField ../fields.valueAlt.fields.bonus value=dmg.valueAlt.bonus name=(concat ../path "damage.parts." realIndex ".valueAlt.bonus") localize=true classes="inline-child"}}
+                        </div>
+                    </fieldset>
+                {{/if}}
+                <input type="hidden" name="damage.parts.{{realIndex}}.base" value="{{dmg.base}}">
+            </fieldset>
+            {{#unless (or dmg.base ../path)}}<div class="fas fa-trash" data-action="removeDamage" data-index="{{realIndex}}"></div>{{/unless}}
+        </div>
     {{/each}}
 </fieldset>
 
 {{#*inline "formula"}}
         {{#unless dmg.base}}
-            {{formField fields.custom.fields.enabled value=source.custom.enabled name=(concat "damage.parts." realIndex "." target ".custom.enabled") classes="checkbox"}}
+            {{formField fields.custom.fields.enabled value=source.custom.enabled name=(concat path "damage.parts." realIndex "." target ".custom.enabled") classes="checkbox"}}
         {{/unless}}
         {{#if source.custom.enabled}}
-            {{formField fields.custom.fields.formula value=source.custom.formula name=(concat "damage.parts." realIndex "." target ".custom.formula") localize=true}}
+            {{formField fields.custom.fields.formula value=source.custom.formula name=(concat path "damage.parts." realIndex "." target ".custom.formula") localize=true}}
         {{else}}
             <div class="nest-inputs">
-                {{formField fields.multiplier value=source.multiplier name=(concat "damage.parts." realIndex "." target ".multiplier") localize=true}}
-                {{#if (eq source.multiplier 'flat')}}{{formField fields.flatMultiplier value=source.flatMultiplier name=(concat "damage.parts." realIndex ".flatMultiplier") }}{{/if}}
-                {{formField fields.dice value=source.dice name=(concat "damage.parts." realIndex "." target ".dice")}}
-                {{formField fields.bonus value=source.bonus name=(concat "damage.parts." realIndex "." target ".bonus") localize=true}}
+                {{#unless @root.isNPC}}
+                    {{formField fields.multiplier value=source.multiplier name=(concat path "damage.parts." realIndex "." target ".multiplier") localize=true}}
+                {{/unless}}
+                {{#if (eq source.multiplier 'flat')}}{{formField fields.flatMultiplier value=source.flatMultiplier name=(concat ../path "damage.parts." realIndex "." target ".flatMultiplier") }}{{/if}}
+                {{formField fields.dice value=source.dice name=(concat path "damage.parts." realIndex "." target ".dice")}}
+                {{formField fields.bonus value=source.bonus name=(concat path "damage.parts." realIndex "." target ".bonus") localize=true}}
             </div>
+        {{/if}}
+        {{#if @root.isNPC}}
+            <input type="hidden" name="{{path}}damage.parts.{{realIndex}}.{{target}}.multiplier" value="flat">
         {{/if}}
 {{/inline}}

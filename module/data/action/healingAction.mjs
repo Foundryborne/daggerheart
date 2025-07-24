@@ -1,7 +1,7 @@
 import DHBaseAction from './baseAction.mjs';
 
 export default class DHHealingAction extends DHBaseAction {
-    static extraSchemas = ['target', 'effects', 'healing', 'roll'];
+    static extraSchemas = [...super.extraSchemas, 'target', 'effects', 'healing', 'roll'];
 
     static getRollType(parent) {
         return 'spellcast';

@@ -63,7 +63,7 @@
         flex-direction: column;
         top: -20px;
         gap: 30px;
-        margin-bottom: -10px;
+        margin-bottom: -16px;
 
         .resources-section {
             display: flex;
@@ -357,54 +357,39 @@
         }
     }
 
-    .equipment-section {
-        .title {
-            display: flex;
-            gap: 15px;
-            align-items: center;
+    .shortcut-items-section {
+        overflow-y: hidden;
+        max-height: 56%;
+        padding-top: 16px;
+        padding-bottom: 20px;
+        mask-image: linear-gradient(0deg, transparent 0%, black 5%, black 95%, transparent 100%);
 
-            h3 {
-                font-size: 20px;
-            }
-        }
-        .items-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
+        &:hover {
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: light-dark(@dark-blue, @golden) transparent;
         }
     }
 
-    .loadout-section {
+    .equipment-section,
+    .loadout-section,
+    .experience-section {
         .title {
-            display: flex;
-            gap: 15px;
-            align-items: center;
+            .section-title();
+        }
+    }
 
-            h3 {
-                font-size: 20px;
-            }
+    .equipment-section {
+        .items-list {
+            .column-list(10px);
         }
     }
 
     .experience-section {
-        .title {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-
-            h3 {
-                font-size: 20px;
-            }
-        }
-
         .experience-list {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+            .column-list(5px);
             width: 100%;
             margin-top: 10px;
-            align-items: center;
 
             .experience-row {
                 display: flex;

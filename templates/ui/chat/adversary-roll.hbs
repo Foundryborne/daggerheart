@@ -13,6 +13,9 @@
                             </header>
                             <div class="flexrow">
                                 <ol class="dice-rolls rerollable">
+                                    {{#if dice.rerolled.any}}
+                                        <i class="fa-solid fa-dice dice-rerolled" title="{{localize "DAGGERHEART.UI.Tooltip.diceIsRerolled" times=dice.rerolled.rerolls.length}}"></i>
+                                    {{/if}}
                                     <button type="checkbox" class="reroll-button" data-die-index="0" data-tooltip="{{localize "DAGGERHEART.GENERAL.reroll"}}">
                                         {{#each results as |result index|}}
                                             <li class="roll die {{../dice}}{{#if discarded}} discarded{{/if}} min">{{result.result}}</li>
@@ -31,7 +34,7 @@
     </div>
 </div>
 <fieldset class="dice-roll daggerheart chat roll expanded{{#unless damage.roll}} hidden{{/unless}}" data-action="expandRoll">
-    <legend class="dice-flavor">{{localize "DAGGEHEART.GENERAL.damage"}}</legend>
+    <legend class="dice-flavor">{{localize "DAGGERHEART.GENERAL.damage"}}</legend>
     <div class="dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">

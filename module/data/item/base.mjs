@@ -9,6 +9,7 @@
  */
 
 import { addLinkedItemsDiff, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { ActionsField } from '../fields/actionField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -23,7 +24,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             hasDescription: false,
             hasResource: false,
             isQuantifiable: false,
-            isInventoryItem: false
+            isInventoryItem: false,
+            hasActions: false
         };
     }
 
@@ -70,6 +72,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         if (this.metadata.isQuantifiable)
             schema.quantity = new fields.NumberField({ integer: true, initial: 1, min: 0, required: true });
+
+        if (this.metadata.hasActions) schema.actions = new ActionsField();
 
         return schema;
     }
