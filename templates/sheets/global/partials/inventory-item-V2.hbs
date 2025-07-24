@@ -221,7 +221,7 @@ Parameters:
       {{else if (eq type 'effect')}}
       <a data-action="toggleEffect"
         data-tooltip="DAGGERHEART.UI.Tooltip.{{ifThen item.disabled 'enableEffect' 'disableEffect' }}">
-        <i class="{{ifThen item.disabled 'fa-regular fa-lightbulb' 'fa-solid fa-lightbulb'}}"></i>
+        <i class="{{ifThen item.disabled 'fa-solid fa-toggle-off' 'fa-solid fa-toggle-on'}}"></i>
       </a>
       {{/if}}
       {{#if (hasProperty item "toChat")}}
