@@ -11,6 +11,7 @@
         width: 100%;
         padding-bottom: 0;
         overflow-x: auto;
+        margin-bottom: 0;
 
         .character-sidebar-sheet {
             grid-row: 1 / span 2;
@@ -25,6 +26,11 @@
         .tab {
             grid-row: 2;
             grid-column: 2;
+            &.active {
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
         }
     }
 }
