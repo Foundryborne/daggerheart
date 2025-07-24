@@ -452,6 +452,12 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                     return;
                 }
 
+                const secondaryData = Object.keys(
+                    foundry.utils.getProperty(this.levelup, `${target.dataset.path}.secondaryData`)
+                ).reduce((acc, key) => {
+                    acc[`-=${key}`] = null;
+                    return acc;
+                }, {});
                 await this.levelup.updateSource({
                     multiclass: {
                         class: item.uuid,
@@ -464,7 +470,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                         amount: target.dataset.amount ? Number(target.dataset.amount) : null,
                         value: target.dataset.value,
                         type: target.dataset.type,
-                        data: item.uuid
+                        data: item.uuid,
+                        secondaryData: secondaryData
                     }
                 });
                 this.render();
@@ -538,10 +545,21 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
     static async selectDomain(_, button) {
         const option = foundry.utils.getProperty(this.levelup, button.dataset.path);
         const domain = option.secondaryData.domain ? null : button.dataset.domain;
+        const update = { [`${button.dataset.path}.secondaryData.domain`]: domain };
 
-        await this.levelup.updateSource({
-            [`${button.dataset.path}.secondaryData.domain`]: domain
+        const domainCards = this.levelup.levels[this.levelup.currentLevel].achievements.domainCards;
+        const illegalDomainCards = option.secondaryData.domain
+            ? Object.keys(domainCards)
+                  .map(key => ({ ...domainCards[key], key }))
+                  .filter(
+                      x => x.uuid && foundry.utils.fromUuidSync(x.uuid).system.domain === option.secondaryData.domain
+                  )
+            : [];
+        illegalDomainCards.forEach(card => {
+            update[`levels.${this.levelup.currentLevel}.achievements.domainCards.${card.key}.uuid`] = null;
         });
+
+        await this.levelup.updateSource(update);
         this.render();
     }
 

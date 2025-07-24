@@ -166,6 +166,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                     context.multiclass = {
                         ...data,
                         ...(multiclass.toObject?.() ?? multiclass),
+                        type: 'multiclass',
                         uuid: multiclass.uuid,
                         domains:
                             multiclass?.system?.domains.map(key => {

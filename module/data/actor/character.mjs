@@ -263,7 +263,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get tier() {
-        return this.levelData.level.current === 1
+        const currentLevel = this.levelData.level.current;
+        return currentLevel === 1
             ? 1
             : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
                   tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
