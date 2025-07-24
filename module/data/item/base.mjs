@@ -124,12 +124,13 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         this.actor.createEmbeddedDocuments(
             'Item',
             this.features.map(feature => ({
-                ...feature,
+                ...(feature.item ?? feature),
                 system: {
-                    ...feature.system,
+                    ...(feature.item?.system ?? feature.system),
                     originItemType: this.parent.type,
                     originId: data._id,
-                    identifier: feature.identifier
+                    identifier: feature.identifier,
+                    subType: feature.item ? feature.type : undefined
                 }
             }))
         );

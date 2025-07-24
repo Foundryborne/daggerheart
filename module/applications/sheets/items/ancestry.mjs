@@ -3,12 +3,7 @@ import DHHeritageSheet from '../api/heritage-sheet.mjs';
 export default class AncestrySheet extends DHHeritageSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
-        classes: ['ancestry'],
-        actions: {
-            editFeature: AncestrySheet.#editFeature,
-            removeFeature: AncestrySheet.#removeFeature
-        },
-        dragDrop: [{ dragSelector: null, dropSelector: '.tab.features .drop-section' }]
+        classes: ['ancestry']
     };
 
     /**@inheritdoc */
@@ -19,40 +14,6 @@ export default class AncestrySheet extends DHHeritageSheet {
     };
 
     /* -------------------------------------------- */
-    /*  Application Clicks Actions                  */
-    /* -------------------------------------------- */
-
-    /**
-     * Edit an existing feature on the item
-     * @type {ApplicationClickAction}
-     */
-    static async #editFeature(_event, button) {
-        const target = button.closest('.feature-item');
-        const feature = this.document.system[`${target.dataset.type}Feature`];
-        if (!feature || Object.keys(feature).length === 0) {
-            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
-            return;
-        }
-
-        feature.sheet.render(true);
-    }
-
-    /**
-     * Remove a feature from the item.
-     * @type {ApplicationClickAction}
-     */
-    static async #removeFeature(event, button) {
-        event.stopPropagation();
-        const target = button.closest('.feature-item');
-        const feature = this.document.system[`${target.dataset.type}Feature`];
-
-        if (feature) await feature.update({ 'system.subType': null });
-        await this.document.update({
-            'system.features': this.document.system.features.filter(x => x && x.uuid !== feature.uuid).map(x => x.uuid)
-        });
-    }
-
-    /* -------------------------------------------- */
     /*  Application Drag/Drop                       */
     /* -------------------------------------------- */
 
@@ -61,22 +22,12 @@ export default class AncestrySheet extends DHHeritageSheet {
      * @param {DragEvent} event - The drag event
      */
     async _onDrop(event) {
-        event.stopPropagation();
-        const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+        const target = event.target.closest('fieldset.drop-section');
+        const typeField =
+            this.document.system[target.dataset.type === 'primary' ? 'primaryFeature' : 'secondaryFeature'];
 
-        const item = await fromUuid(data.uuid);
-        if (item?.type === 'feature') {
-            const subType = event.target.closest('.primary-feature') ? 'primary' : 'secondary';
-            if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes[subType]) {
-                const error = subType === 'primary' ? 'featureNotPrimary' : 'featureNotSecondary';
-                ui.notifications.warn(game.i18n.localize(`DAGGERHEART.UI.Notifications.${error}`));
-                return;
-            }
-
-            await item.update({ 'system.subType': subType });
-            await this.document.update({
-                'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
-            });
+        if (!typeField) {
+            super._onDrop(event);
         }
     }
 }

@@ -1,5 +1,5 @@
-import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
 import BaseDataItem from './base.mjs';
+import ItemLinkFields from '../../data/fields/itemLinkFields.mjs';
 
 export default class DHAncestry extends BaseDataItem {
     /** @inheritDoc */
@@ -15,23 +15,15 @@ export default class DHAncestry extends BaseDataItem {
     static defineSchema() {
         return {
             ...super.defineSchema(),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
+            features: new ItemLinkFields()
         };
     }
 
     get primaryFeature() {
-        return (
-            this.features.find(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.primary) ??
-            (this.features.filter(x => !x).length > 0 ? {} : null)
-        );
+        return this.features.find(x => x.type === CONFIG.DH.ITEM.featureSubTypes.primary)?.item;
     }
 
     get secondaryFeature() {
-        return (
-            this.features.find(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.secondary) ??
-            (this.features.filter(x => !x || x.system.subType === CONFIG.DH.ITEM.featureSubTypes.primary).length > 1
-                ? {}
-                : null)
-        );
+        return this.features.find(x => x.type === CONFIG.DH.ITEM.featureSubTypes.secondary)?.item;
     }
 }

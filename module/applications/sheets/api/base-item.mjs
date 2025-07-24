@@ -178,13 +178,15 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static async #addFeature(_, target) {
         const { type } = target.dataset;
         const cls = foundry.documents.Item.implementation;
-        const feature = await cls.create({
-            'type': 'feature',
-            'name': cls.defaultName({ type: 'feature' }),
-            'system.subType': CONFIG.DH.ITEM.featureSubTypes[type]
+        const item = await cls.create({
+            type: 'feature',
+            name: cls.defaultName({ type: 'feature' })
         });
         await this.document.update({
-            'system.features': [...this.document.system.features, feature].map(f => f.uuid)
+            'system.features': [...this.document.system.features, { type, item }].map(x => ({
+                ...x,
+                item: x.item?.uuid
+            }))
         });
     }
 
@@ -192,12 +194,14 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * Remove a feature from the item.
      * @type {ApplicationClickAction}
      */
-    static async #deleteFeature(_, target) {
+    static async #deleteFeature(_, element) {
+        const target = element.closest('[data-item-uuid]');
         const feature = getDocFromElement(target);
         if (!feature) return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
-        await feature.update({ 'system.subType': null });
         await this.document.update({
-            'system.features': this.document.system.features.map(x => x.uuid).filter(uuid => uuid !== feature.uuid)
+            'system.features': this.document.system.features
+                .filter(x => target.dataset.type !== x.type || x.item.uuid !== feature.uuid)
+                .map(x => ({ ...x, item: x.item.uuid }))
         });
     }
 
@@ -270,10 +274,15 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         if (data.fromInternal) return;
 
+        const target = event.target.closest('fieldset.drop-section');
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
-            const current = this.document.system.features.map(x => x.uuid);
-            await this.document.update({ 'system.features': [...current, item.uuid] });
+            await this.document.update({
+                'system.features': [...this.document.system.features, { type: target.dataset.type, item }].map(x => ({
+                    ...x,
+                    item: x.item?.uuid
+                }))
+            });
         }
     }
 }

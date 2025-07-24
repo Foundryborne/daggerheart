@@ -1,6 +1,7 @@
 import BaseDataItem from './base.mjs';
 import ForeignDocumentUUIDField from '../fields/foreignDocumentUUIDField.mjs';
 import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
+import ItemLinkFields from '../fields/itemLinkFields.mjs';
 
 export default class DHClass extends BaseDataItem {
     /** @inheritDoc */
@@ -27,7 +28,7 @@ export default class DHClass extends BaseDataItem {
                 label: 'DAGGERHEART.GENERAL.HitPoints.plural'
             }),
             evasion: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.evasion' }),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            features: new ItemLinkFields(),
             subclasses: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
             inventory: new fields.SchemaField({
                 take: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
@@ -52,17 +53,11 @@ export default class DHClass extends BaseDataItem {
     }
 
     get hopeFeatures() {
-        return (
-            this.features.filter(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.hope) ??
-            (this.features.filter(x => !x).length > 0 ? {} : null)
-        );
+        return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.hope).map(x => x.item);
     }
 
     get classFeatures() {
-        return (
-            this.features.filter(x => x?.system?.subType === CONFIG.DH.ITEM.featureSubTypes.class) ??
-            (this.features.filter(x => !x).length > 0 ? {} : null)
-        );
+        return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.class).map(x => x.item);
     }
 
     async _preCreate(data, options, user) {

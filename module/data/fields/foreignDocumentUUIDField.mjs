@@ -23,15 +23,17 @@ export default class ForeignDocumentUUIDField extends foundry.data.fields.Docume
     /**@override */
     initialize(value, _model, _options = {}) {
         if (this.idOnly) return value;
-        return () => {
-            try {
-                const doc = fromUuidSync(value);
-                return doc;
-            } catch (error) {
-                console.error(error);
-                return value ?? null;
-            }
-        };
+        return () => ForeignDocumentUUIDField.getInitializedField(value);
+    }
+
+    static getInitializedField(value) {
+        try {
+            const doc = fromUuidSync(value);
+            return doc;
+        } catch (error) {
+            console.error(error);
+            return value ?? null;
+        }
     }
 
     /**@override */

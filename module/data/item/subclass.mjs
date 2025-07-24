@@ -1,4 +1,4 @@
-import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayField.mjs';
+import ItemLinkFields from '../fields/itemLinkFields.mjs';
 import BaseDataItem from './base.mjs';
 
 export default class DHSubclass extends BaseDataItem {
@@ -22,22 +22,22 @@ export default class DHSubclass extends BaseDataItem {
                 nullable: true,
                 initial: null
             }),
-            features: new ForeignDocumentUUIDArrayField({ type: 'Item' }),
+            features: new ItemLinkFields(),
             featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),
             isMulticlass: new fields.BooleanField({ initial: false })
         };
     }
 
     get foundationFeatures() {
-        return this.features.filter(x => x.system.subType === CONFIG.DH.ITEM.featureSubTypes.foundation);
+        return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.foundation).map(x => x.item);
     }
 
     get specializationFeatures() {
-        return this.features.filter(x => x.system.subType === CONFIG.DH.ITEM.featureSubTypes.specialization);
+        return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.specialization).map(x => x.item);
     }
 
     get masteryFeatures() {
-        return this.features.filter(x => x.system.subType === CONFIG.DH.ITEM.featureSubTypes.mastery);
+        return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.mastery).map(x => x.item);
     }
 
     async _preCreate(data, options, user) {

@@ -13,7 +13,7 @@
                         {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectArmor"}}
                     {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                 </div>
-                {{#if armor.suggestion}}
+                {{#if armor.suggestion.name}}
                     <fieldset class="suggestion-container">
                         <legend>{{armor.suggestion.name}}</legend>
                         <div class="suggestion-inner-container {{#if armor.suggestion.taken}}taken{{/if}}" data-action="viewItem" data-uuid="{{armor.suggestion.uuid}}">
@@ -33,7 +33,7 @@
                                 {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectPrimaryWeapon"}}
                             {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                         </div>
-                        {{#if primaryWeapon.suggestion}}
+                        {{#if primaryWeapon.suggestion.name}}
                             <fieldset class="suggestion-container">
                                 <legend>{{primaryWeapon.suggestion.name}}</legend>
                                 <div class="suggestion-inner-container {{#if primaryWeapon.suggestion.taken}}taken{{/if}}" data-action="viewItem" data-uuid="{{primaryWeapon.suggestion.uuid}}">
@@ -48,7 +48,7 @@
                                 {{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.selectSecondaryWeapon"}}
                             {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                         </div>
-                        {{#if secondaryWeapon.suggestion}}
+                        {{#if secondaryWeapon.suggestion.name}}
                             <fieldset class="suggestion-container">
                                 <legend>{{secondaryWeapon.suggestion.name}}</legend>
                                 <div 
@@ -63,45 +63,47 @@
                 </div>
             </fieldset>
         </div>
-        <div class="main-equipment-selection triple">
-            <fieldset class="equipment-selection">
-                <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.startingItems"}}</legend>
+        {{#unless noInventoryChoices}}
+            <div class="main-equipment-selection triple">
+                <fieldset class="equipment-selection">
+                    <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.startingItems"}}</legend>
 
-                <div class="simple-equipment-container">
-                    {{#each inventory.take}}
-                        <div class="simple-equipment">
-                            <label>{{this.name}}</label>
-                            <img src="{{this.img}}" />
-                        </div>
-                    {{/each}}
-                </div>
-            </fieldset>
+                    <div class="simple-equipment-container">
+                        {{#each inventory.take}}
+                            <div class="simple-equipment">
+                                <label>{{this.name}}</label>
+                                <img src="{{this.img}}" />
+                            </div>
+                        {{/each}}
+                    </div>
+                </fieldset>
 
-            <fieldset class="equipment-selection">
-                <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.choice"}}</legend>
+                <fieldset class="equipment-selection">
+                    <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.choice"}}</legend>
 
-                <div class="simple-equipment-container">
-                    {{#each inventory.choiceA.suggestions}}
-                        <div class="simple-equipment selectable {{#if (not this.selected)}}inactive{{/if}}" data-action="equipmentChoice" data-path="choiceA" data-uuid="{{this.uuid}}">
-                            <label>{{this.name}}</label>
-                            <img src="{{this.img}}" />
-                        </div>
-                    {{/each}}
-                </div>
-            </fieldset>
+                    <div class="simple-equipment-container">
+                        {{#each inventory.choiceA.suggestions}}
+                            <div class="simple-equipment selectable {{#if (not this.selected)}}inactive{{/if}}" data-action="equipmentChoice" data-path="choiceA" data-uuid="{{this.uuid}}">
+                                <label>{{this.name}}</label>
+                                <img src="{{this.img}}" />
+                            </div>
+                        {{/each}}
+                    </div>
+                </fieldset>
 
-            <fieldset class="equipment-selection">
-                <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.choice"}}</legend>
+                <fieldset class="equipment-selection">
+                    <legend>{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.choice"}}</legend>
 
-                <div class="simple-equipment-container">
-                    {{#each inventory.choiceB.suggestions}}
-                        <div class="simple-equipment selectable {{#if (not this.selected)}}inactive{{/if}}" data-action="equipmentChoice" data-path="choiceB" data-uuid="{{this.uuid}}"  >
-                            <label>{{this.name}}</label>
-                            <img src="{{this.img}}" />
-                        </div>
-                    {{/each}}
-                </div>
-            </fieldset>
-        </div>
+                    <div class="simple-equipment-container">
+                        {{#each inventory.choiceB.suggestions}}
+                            <div class="simple-equipment selectable {{#if (not this.selected)}}inactive{{/if}}" data-action="equipmentChoice" data-path="choiceB" data-uuid="{{this.uuid}}"  >
+                                <label>{{this.name}}</label>
+                                <img src="{{this.img}}" />
+                            </div>
+                        {{/each}}
+                    </div>
+                </fieldset>
+            </div>
+        {{/unless}}
     </div>
 </section>

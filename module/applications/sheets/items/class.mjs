@@ -87,69 +87,45 @@ export default class ClassSheet extends DHBaseItemSheet {
                 'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
             });
         } else if (item.type === 'feature') {
-            if (target.classList.contains('hope-feature')) {
-                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.hope) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotHope'));
-                    return;
-                }
-
-                await item.update({ 'system.subType': CONFIG.DH.ITEM.featureSubTypes.hope });
-                await this.document.update({
-                    'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
-                });
-            } else if (target.classList.contains('class-feature')) {
-                if (item.system.subType && item.system.subType !== CONFIG.DH.ITEM.featureSubTypes.class) {
-                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureNotClass'));
-                    return;
-                }
-
-                await item.update({ 'system.subType': CONFIG.DH.ITEM.featureSubTypes.class });
-                await this.document.update({
-                    'system.features': [...this.document.system.features.map(x => x.uuid), item.uuid]
-                });
-            }
+            super._onDrop(event);
         } else if (item.type === 'weapon') {
             if (target.classList.contains('primary-weapon-section')) {
-                if (!this.document.system.characterGuide.suggestedPrimaryWeapon && !item.system.secondary)
+                if (!item.system.secondary)
                     await this.document.update({
                         'system.characterGuide.suggestedPrimaryWeapon': item.uuid
                     });
             } else if (target.classList.contains('secondary-weapon-section')) {
-                if (!this.document.system.characterGuide.suggestedSecondaryWeapon && item.system.secondary)
+                if (item.system.secondary)
                     await this.document.update({
                         'system.characterGuide.suggestedSecondaryWeapon': item.uuid
                     });
             }
         } else if (item.type === 'armor') {
             if (target.classList.contains('armor-section')) {
-                if (!this.document.system.characterGuide.suggestedArmor)
-                    await this.document.update({
-                        'system.characterGuide.suggestedArmor': item.uuid
-                    });
+                await this.document.update({
+                    'system.characterGuide.suggestedArmor': item.uuid
+                });
             }
         } else if (target.classList.contains('choice-a-section')) {
             if (item.type === 'miscellaneous' || item.type === 'consumable') {
-                if (this.document.system.inventory.choiceA.length < 2)
+                const filteredChoiceA = this.document.system.inventory.choiceA;
+                if (filteredChoiceA.length < 2)
                     await this.document.update({
-                        'system.inventory.choiceA': [
-                            ...this.document.system.inventory.choiceA.map(x => x.uuid),
-                            item.uuid
-                        ]
+                        'system.inventory.choiceA': [...filteredChoiceA.map(x => x.uuid), item.uuid]
                     });
             }
         } else if (item.type === 'miscellaneous') {
             if (target.classList.contains('take-section')) {
-                if (this.document.system.inventory.take.length < 3)
+                const filteredTake = this.document.system.inventory.take.filter(x => x);
+                if (filteredTake.length < 3)
                     await this.document.update({
-                        'system.inventory.take': [...this.document.system.inventory.take.map(x => x.uuid), item.uuid]
+                        'system.inventory.take': [...filteredTake.map(x => x.uuid), item.uuid]
                     });
             } else if (target.classList.contains('choice-b-section')) {
-                if (this.document.system.inventory.choiceB.length < 2)
+                const filteredChoiceB = this.document.system.inventory.choiceB.filter(x => x);
+                if (filteredChoiceB.length < 2)
                     await this.document.update({
-                        'system.inventory.choiceB': [
-                            ...this.document.system.inventory.choiceB.map(x => x.uuid),
-                            item.uuid
-                        ]
+                        'system.inventory.choiceB': [...filteredChoiceB.map(x => x.uuid), item.uuid]
                     });
             }
         }
@@ -167,7 +143,7 @@ export default class ClassSheet extends DHBaseItemSheet {
     static async #removeItemFromCollection(_event, element) {
         const { uuid, target } = element.dataset;
         const prop = foundry.utils.getProperty(this.document.system, target);
-        await this.document.update({ [`system.${target}`]: prop.filter(i => i.uuid !== uuid) });
+        await this.document.update({ [`system.${target}`]: prop.filter(i => i.uuid !== uuid).map(x => x.uuid) });
     }
 
     /**

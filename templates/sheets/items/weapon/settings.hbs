@@ -20,7 +20,7 @@
     <fieldset class="two-columns">
         {{#with systemFields.attack.fields.damage.fields.parts.element.fields as | fields | }}
         {{#with (lookup ../document.system.attack.damage.parts 0) as | source | }}
-            <legend>{{localize "DAGGERHEART.GENERAL.title"}}</legend>
+            <legend>{{localize "DAGGERHEART.GENERAL.damage"}}</legend>
             <span>{{localize "DAGGERHEART.GENERAL.Dice.single"}}</span>
             {{formInput fields.value.fields.dice value=source.value.dice name="system.attack.damage.parts.0.value.dice"}}
             <span>{{localize "DAGGERHEART.GENERAL.bonus"}}</span>
