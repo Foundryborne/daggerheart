@@ -59,6 +59,11 @@ export default class ClassSheet extends DHBaseItemSheet {
     };
 
     /**@inheritdoc */
+    get relatedDocs() {
+        return this.document.system.features.map(x => x.item);
+    }
+
+    /**@inheritdoc */
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.domains = this.document.system.domains;

@@ -108,6 +108,13 @@ export default function DHApplicationMixin(Base) {
             tagifyConfigs: []
         };
 
+        /**
+         * Related documents that should cause a rerender of this application when updated.
+         */
+        get relatedDocs() {
+            return [];
+        }
+
         /* -------------------------------------------- */
 
         /**@inheritdoc */
@@ -118,7 +125,15 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         async _onFirstRender(context, options) {
             await super._onFirstRender(context, options);
+            this.relatedDocs.map(doc => (doc.apps[this.id] = this));
+
             if (!!this.options.contextMenus.length) this._createContextMenus();
+        }
+
+        /** @inheritDoc */
+        _onClose(options) {
+            super._onClose(options);
+            this.relatedDocs.map(doc => delete doc.apps[this.id]);
         }
 
         /**@inheritdoc */
@@ -511,19 +526,7 @@ export default function DHApplicationMixin(Base) {
          */
         static async #editDoc(_event, target) {
             const doc = getDocFromElement(target);
-            if (doc) {
-                const appId = this.element.id;
-                doc.apps[appId] = this;
-                const app = await doc.sheet.render({ force: true });
-                app.addEventListener(
-                    'close',
-                    () => {
-                        delete doc.apps[appId];
-                    },
-                    { once: true }
-                );
-                return;
-            }
+            if (doc) return doc.sheet.render({ force: true });
 
             // TODO: REDO this
             const { actionId } = target.closest('[data-action-id]').dataset;

@@ -148,4 +148,35 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                 items.map(x => x.id)
             );
     }
+
+    async _preUpdate(changed, options, userId) {
+        const allowed = await super._preUpdate(changed, options, userId);
+        if (allowed === false) return false;
+
+        if (changed.system?.features) {
+            const prevFeatures = new Set(this.features);
+            const newFeatures = new Set(changed.system.features);
+            options.changedFeatures = {
+                toLink: Array.from(newFeatures.difference(prevFeatures).map(feature => feature.item ?? feature)),
+                toUnlink: Array.from(
+                    prevFeatures.difference(newFeatures).map(feature => feature.item?.uuid ?? feature.uuid)
+                )
+            };
+        }
+    }
+
+    _onUpdate(changed, options, userId) {
+        super._onUpdate(changed, options, userId);
+
+        if (options.changedFeatures) {
+            options.changedFeatures.toLink.forEach(featureUuid => {
+                const doc = foundry.utils.fromUuidSync(featureUuid);
+                doc.apps[this.parent.sheet.id] = this.parent.sheet;
+            });
+            options.changedFeatures.toUnlink.forEach(featureUuid => {
+                const doc = foundry.utils.fromUuidSync(featureUuid);
+                delete doc.apps[this.parent.sheet.id];
+            });
+        }
+    }
 }

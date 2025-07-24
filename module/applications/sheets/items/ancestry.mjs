@@ -13,6 +13,11 @@ export default class AncestrySheet extends DHHeritageSheet {
         features: { template: 'systems/daggerheart/templates/sheets/items/ancestry/features.hbs' }
     };
 
+    /**@inheritdoc */
+    get relatedDocs() {
+        return this.document.system.features.map(x => x.item);
+    }
+
     /* -------------------------------------------- */
     /*  Application Drag/Drop                       */
     /* -------------------------------------------- */

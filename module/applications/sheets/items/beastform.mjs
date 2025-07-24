@@ -31,6 +31,11 @@ export default class BeastformSheet extends DHBaseItemSheet {
         }
     };
 
+    /**@inheritdoc */
+    get relatedDocs() {
+        return this.document.system.features;
+    }
+
     _attachPartListeners(partId, htmlElement, options) {
         super._attachPartListeners(partId, htmlElement, options);
 

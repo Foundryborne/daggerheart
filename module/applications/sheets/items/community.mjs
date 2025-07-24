@@ -15,4 +15,9 @@ export default class CommunitySheet extends DHHeritageSheet {
             scrollable: ['.feature']
         }
     };
+
+    /**@inheritdoc */
+    get relatedDocs() {
+        return this.document.system.features;
+    }
 }

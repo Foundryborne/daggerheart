@@ -35,4 +35,9 @@ export default class SubclassSheet extends DHBaseItemSheet {
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+
+    /**@inheritdoc */
+    get relatedDocs() {
+        return this.document.system.features.map(x => x.item);
+    }
 }
