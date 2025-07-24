@@ -118,7 +118,9 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         }
     }
 
-    _onCreate(data) {
+    _onCreate(data, _, userId) {
+        if (userId !== game.user.id) return;
+
         if (!this.actor || this.actor.type !== 'character' || !this.features) return;
 
         this.actor.createEmbeddedDocuments(

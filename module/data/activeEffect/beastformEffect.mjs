@@ -26,7 +26,9 @@ export default class BeastformEffect extends foundry.abstract.TypeDataModel {
         };
     }
 
-    async _onCreate() {
+    async _onCreate(_data, _options, userId) {
+        if (userId !== game.user.id) return;
+
         if (this.parent.parent?.type === 'character') {
             this.parent.parent.system.primaryWeapon?.update?.({ 'system.equipped': false });
             this.parent.parent.system.secondayWeapon?.update?.({ 'system.equipped': false });

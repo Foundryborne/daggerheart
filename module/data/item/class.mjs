@@ -75,6 +75,9 @@ export default class DHClass extends BaseDataItem {
 
     _onCreate(data, options, userId) {
         super._onCreate(data, options, userId);
+
+        if (userId !== game.user.id) return;
+
         if (options.parent?.type === 'character') {
             const path = `system.${data.system.isMulticlass ? 'multiclass.value' : 'class.value'}`;
             options.parent.update({ [path]: `${options.parent.uuid}.Item.${data._id}` });

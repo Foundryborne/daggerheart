@@ -149,7 +149,9 @@ export default class DHBeastform extends BaseDataItem {
         return false;
     }
 
-    _onCreate() {
+    _onCreate(_data, _options, userId) {
+        if (userId !== game.user.id) return;
+
         this.parent.createEmbeddedDocuments('ActiveEffect', [
             {
                 type: 'beastform',

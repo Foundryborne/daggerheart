@@ -13,7 +13,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             if (item) {
                 const type = actionId ? 'action' : item.type;
                 const description = await TextEditor.enrichHTML(item.system.description);
-                for (let feature of item.system.features) {
+                for (let feature of item.system?.features ?? []) {
                     feature.system.enrichedDescription = await TextEditor.enrichHTML(feature.system.description);
                 }
 
