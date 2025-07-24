@@ -125,7 +125,7 @@ export default class DHItem extends foundry.documents.Item {
     async use(event) {
         const actions = this.system.actionsList;
         if (actions?.size) {
-            let action = actions.contents[0];
+            let action = actions.first(0);
             if (actions.size > 1 && !event?.shiftKey) {
                 // Actions Choice Dialog
                 action = await this.selectActionDialog(event);

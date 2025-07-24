@@ -105,7 +105,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         if (!!this.action.effects) context.effects = this.action.effects.map(e => this.action.item.effects.get(e._id));
         if (this.action.damage?.hasOwnProperty('includeBase') && this.action.type === 'attack')
             context.hasBaseDamage = !!this.action.parent.attack;
-        context.getRealIndex = this.getRealIndex.bind(this);
         context.getEffectDetails = this.getEffectDetails.bind(this);
         context.costOptions = this.getCostOptions();
         context.disableOption = this.disableOption.bind(this);
@@ -145,11 +144,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             if (choices.find((c, idx) => c.type === o && index !== idx)) filtered[o].disabled = true;
         });
         return filtered;
-    }
-
-    getRealIndex(index) {
-        const data = this.action.toObject(false);
-        return data.damage.parts.find(d => d.base) ? index - 1 : index;
     }
 
     getEffectDetails(id) {
@@ -199,8 +193,10 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
 
     static addDamage(event) {
         if (!this.action.damage.parts) return;
-        const data = this.action.toObject();
-        data.damage.parts.push({});
+        const data = this.action.toObject(),
+            part = {};
+        if(this.action.actor.isNPC) part.value = { multiplier: 'flat' };
+        data.damage.parts.push(part);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
 

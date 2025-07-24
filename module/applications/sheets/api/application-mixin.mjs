@@ -283,6 +283,10 @@ export default function DHApplicationMixin(Base) {
                 {
                     name: 'CONTROLS.CommonEdit',
                     icon: 'fa-solid fa-pen-to-square',
+                    condition: target => {
+                        const doc = getDocFromElement(target);
+                        return !doc.hasOwnProperty('systemPath') || doc.inCollection
+                    },
                     callback: target => getDocFromElement(target).sheet.render({ force: true })
                 }
             ];

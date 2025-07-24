@@ -69,7 +69,7 @@ export default class DHWeapon extends AttachableItem {
     }
 
     get actionsList() {
-        return [this.attack, ...this.actions];
+        return new Set([this.attack, ...this.actions]);
     }
 
     get customActions() {

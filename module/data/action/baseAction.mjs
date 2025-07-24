@@ -2,6 +2,7 @@ import { DHActionDiceData, DHActionRollData, DHDamageData, DHDamageField, DHReso
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
+import * as ActionFields from '../fields/action/_module.mjs';
 
 const fields = foundry.data.fields;
 
@@ -18,10 +19,11 @@ const fields = foundry.data.fields;
 */
 
 export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel) {
-    static extraSchemas = [];
+    static baseFields = ['cost', 'uses', 'range'];
+    static extraFields = [];
 
     static defineSchema() {
-        return {
+        const schemaFields = {
             _id: new fields.DocumentIdField({ initial: () => foundry.utils.randomID() }),
             systemPath: new fields.StringField({ required: true, initial: 'actions' }),
             type: new fields.StringField({ initial: undefined, readonly: true, required: true }),
@@ -33,76 +35,25 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 choices: CONFIG.DH.ITEM.actionTypes,
                 initial: 'action',
                 nullable: true
-            }),
-            cost: new fields.ArrayField(
-                new fields.SchemaField({
-                    key: new fields.StringField({
-                        nullable: false,
-                        required: true,
-                        initial: 'hope'
-                    }),
-                    keyIsID: new fields.BooleanField(),
-                    value: new fields.NumberField({ nullable: true, initial: 1 }),
-                    scalable: new fields.BooleanField({ initial: false }),
-                    step: new fields.NumberField({ nullable: true, initial: null })
-                })
-            ),
-            uses: new fields.SchemaField({
-                value: new fields.NumberField({ nullable: true, initial: null }),
-                max: new fields.NumberField({ nullable: true, initial: null }),
-                recovery: new fields.StringField({
-                    choices: CONFIG.DH.GENERAL.refreshTypes,
-                    initial: null,
-                    nullable: true
-                })
-            }),
-            range: new fields.StringField({
-                choices: CONFIG.DH.GENERAL.range,
-                required: false,
-                blank: true
-                // initial: null
-            }),
-            ...this.defineExtraSchema()
+            })
         };
+
+        [...this.baseFields, ...extraFields].forEach(s => {
+            // const clsField = 
+        });
+
+        return schemaFields;
     }
 
     static defineExtraSchema() {
         const extraFields = {
                 damage: new DHDamageField(),
                 roll: new fields.EmbeddedDataField(DHActionRollData),
-                save: new fields.SchemaField({
-                    trait: new fields.StringField({
-                        nullable: true,
-                        initial: null,
-                        choices: CONFIG.DH.ACTOR.abilities
-                    }),
-                    difficulty: new fields.NumberField({ nullable: true, initial: 10, integer: true, min: 0 }),
-                    damageMod: new fields.StringField({
-                        initial: CONFIG.DH.ACTIONS.damageOnSave.none.id,
-                        choices: CONFIG.DH.ACTIONS.damageOnSave
-                    })
-                }),
-                target: new fields.SchemaField({
-                    type: new fields.StringField({
-                        choices: CONFIG.DH.ACTIONS.targetTypes,
-                        initial: CONFIG.DH.ACTIONS.targetTypes.any.id,
-                        nullable: true,
-                        initial: null
-                    }),
-                    amount: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 })
-                }),
-                effects: new fields.ArrayField( // ActiveEffect
-                    new fields.SchemaField({
-                        _id: new fields.DocumentIdField(),
-                        onSave: new fields.BooleanField({ initial: false })
-                    })
-                ),
+                save: new ActionFields.SaveField(),
+                target: new ActionFields.TargetField(),
+                effects: new ActionFields.EffectField(),
                 healing: new fields.EmbeddedDataField(DHResourceData),
-                beastform: new fields.SchemaField({
-                    tierAccess: new fields.SchemaField({
-                        exact: new fields.NumberField({ integer: true, nullable: true, initial: null })
-                    })
-                })
+                beastform: new ActionFields.BeastformField()
             },
             extraSchemas = {};
 
@@ -113,10 +64,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     prepareData() {
         this.name = this.name || game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[this.type].name);
         this.img = this.img ?? this.parent?.parent?.img;
-    }
-
-    get index() {
-        return foundry.utils.getProperty(this.parent, this.systemPath).indexOf(this);
     }
 
     get id() {

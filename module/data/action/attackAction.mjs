@@ -46,8 +46,4 @@ export default class DHAttackAction extends DHDamageAction {
 
         return result;
     }
-
-    // get modifiers() {
-    //     return [];
-    // }
 }
