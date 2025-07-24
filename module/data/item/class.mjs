@@ -102,44 +102,28 @@ export default class DHClass extends BaseDataItem {
         const allowed = await super._preUpdate(changed, options, userId);
         if (allowed === false) return false;
 
-        addLinkedItemsDiff(changed.system?.subclasses, this.subclasses, options, 'changedSubclasses');
+        const paths = [
+            'subclasses',
+            'characterGuide.suggestedPrimaryWeapon',
+            'characterGuide.suggestedSecondaryWeapon',
+            'characterGuide.suggestedArmor',
+            'inventory.take',
+            'inventory.choiceA',
+            'inventory.choiceB'
+        ];
 
-        const guide = changed.system?.characterGuide;
-        addLinkedItemsDiff(
-            guide?.suggestedPrimaryWeapon ? [guide.suggestedPrimaryWeapon] : null,
-            this.characterGuide.suggestedPrimaryWeapon ? [this.characterGuide.suggestedPrimaryWeapon] : [],
-            options,
-            'primaryWeapon'
-        );
-        addLinkedItemsDiff(
-            guide?.suggestedSecondaryWeapon ? [guide.suggestedSecondaryWeapon] : null,
-            this.characterGuide.suggestedSecondaryWeapon ? [this.characterGuide.suggestedSecondaryWeapon] : [],
-            options,
-            'secondaryWeapon'
-        );
-        addLinkedItemsDiff(
-            guide?.suggestedArmor ? [guide.suggestedArmor] : null,
-            this.characterGuide.suggestedArmor ? [this.characterGuide.suggestedArmor] : [],
-            options,
-            'armor'
-        );
+        for (let path of paths) {
+            const currentItems = [].concat(foundry.utils.getProperty(this, path) ?? []);
+            const changedItems = [].concat(foundry.utils.getProperty(changed, `system.${path}`) ?? []);
+            if (!changedItems.length) continue;
 
-        addLinkedItemsDiff(changed.system?.inventory?.take, this.inventory.take, options, 'changedTake');
-        addLinkedItemsDiff(changed.system?.inventory?.choiceA, this.inventory.choiceA, options, 'changedChoiceA');
-        addLinkedItemsDiff(changed.system?.inventory?.choiceB, this.inventory.choiceB, options, 'changedChoiceB');
+            addLinkedItemsDiff(changedItems, currentItems, options);
+        }
     }
 
     _onUpdate(changed, options, userId) {
         super._onUpdate(changed, options, userId);
 
-        updateLinkedItemApps(options, 'changedSubclasses', this.parent.sheet);
-
-        updateLinkedItemApps(options, 'primaryWeapon', this.parent.sheet);
-        updateLinkedItemApps(options, 'secondaryWeapon', this.parent.sheet);
-        updateLinkedItemApps(options, 'armor', this.parent.sheet);
-
-        updateLinkedItemApps(options, 'changedTake', this.parent.sheet);
-        updateLinkedItemApps(options, 'changedChoiceA', this.parent.sheet);
-        updateLinkedItemApps(options, 'changedChoiceB', this.parent.sheet);
+        updateLinkedItemApps(options, this.parent.sheet);
     }
 }

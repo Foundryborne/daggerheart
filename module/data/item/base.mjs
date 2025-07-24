@@ -159,12 +159,12 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         const allowed = await super._preUpdate(changed, options, userId);
         if (allowed === false) return false;
 
-        addLinkedItemsDiff(changed.system?.features, this.features, options, 'changedFeatures');
+        addLinkedItemsDiff(changed.system?.features, this.features, options);
     }
 
     _onUpdate(changed, options, userId) {
         super._onUpdate(changed, options, userId);
 
-        updateLinkedItemApps(options, 'changedFeatures', this.parent.sheet);
+        updateLinkedItemApps(options, this.parent.sheet);
     }
 }

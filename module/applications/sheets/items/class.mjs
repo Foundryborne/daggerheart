@@ -64,6 +64,26 @@ export default class ClassSheet extends DHBaseItemSheet {
     }
 
     /**@inheritdoc */
+    async _onFirstRender(context, options) {
+        await super._onFirstRender(context, options);
+
+        const paths = [
+            'subclasses',
+            'characterGuide.suggestedPrimaryWeapon',
+            'characterGuide.suggestedSecondaryWeapon',
+            'characterGuide.suggestedArmor',
+            'inventory.take',
+            'inventory.choiceA',
+            'inventory.choiceB'
+        ];
+
+        paths.forEach(path => {
+            const docs = [].concat(foundry.utils.getProperty(this.document, `system.${path}`) ?? []);
+            docs.forEach(doc => (doc.apps[this.id] = this));
+        });
+    }
+
+    /**@inheritdoc */
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.domains = this.document.system.domains;
