@@ -49,25 +49,32 @@
             },
             "TYPES": {
                 "attack": {
-                    "name": "Attack"
+                    "name": "Attack",
+                    "tooltip": "Offensive Action like weapon attack, spellcast, etc."
                 },
                 "beastform": {
-                    "name": "Beastform"
+                    "name": "Beastform",
+                    "tooltip": "Shapeshift the user into another form."
                 },
                 "damage": {
-                    "name": "Damage"
+                    "name": "Damage",
+                    "tooltip": "Direct damage without a roll."
                 },
                 "effect": {
-                    "name": "Effect"
+                    "name": "Generic",
+                    "tooltip": "Generic action that only display a chat message if nothing is configured."
                 },
                 "healing": {
-                    "name": "Healing"
+                    "name": "Healing",
+                    "tooltip": "Restore resources to the target. May have a roll configured."
                 },
                 "macro": {
-                    "name": "Macro"
+                    "name": "Macro",
+                    "tooltip": "Execute a macro by UUID."
                 },
                 "summon": {
-                    "name": "Summon"
+                    "name": "Summon",
+                    "tooltip": "Create tokens in the scene."
                 }
             }
         },

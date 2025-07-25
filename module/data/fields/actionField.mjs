@@ -168,6 +168,7 @@ export function ActionMixin(Base) {
             ({ type } =
                 (await foundry.applications.api.DialogV2.input({
                     window: { title: 'Select Action Type' },
+                    position: { width: 300 },
                     classes: ['daggerheart', 'dh-style'],
                     content: await foundry.applications.handlebars.renderTemplate(
                         'systems/daggerheart/templates/actionTypes/actionType.hbs',

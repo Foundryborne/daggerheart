@@ -236,7 +236,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         if (!this.action.effects) return;
         const index = button.dataset.index,
             effectId = this.action.effects[index]._id;
-        this.constructor.removeElement.bind(this)(event);
+        this.constructor.removeElement.bind(this)(event, button);
         this.action.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
     }
 

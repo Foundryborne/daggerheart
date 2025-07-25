@@ -5,7 +5,7 @@
     <ul class="actions-list">
     {{#each types}}
         <li class="action-item">
-            <label class="label" for="{{id}}">
+            <label class="label" for="{{id}}" data-tooltip="{{localize tooltip}}" data-tooltip-direction="LEFT">
                 <i class="fa-solid {{icon}} fa-xl"></i>
                 <span class="label">{{localize name}}</span>
             </label>
