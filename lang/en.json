@@ -1472,6 +1472,7 @@
             "Appearance": {
                 "FIELDS": {
                     "displayFear": { "label": "Fear Display" },
+                    "dualityColorScheme": { "label": "Chat Style" },
                     "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
                 },
                 "fearDisplay": {
@@ -1552,7 +1553,7 @@
                     "duality": "Duality Rolls",
                     "diceSoNice": {
                         "title": "Dice So Nice",
-                        "hint": "Coloration of Hope and Fear dice if the Dice So Nice module is used.",
+                        "hint": "Coloration of Duality dice if the Dice So Nice module is used.",
                         "foreground": "Foreground",
                         "background": "Background",
                         "outline": "Outline",

@@ -1,6 +1,4 @@
 import { DhHomebrew } from '../../data/settings/_module.mjs';
-import DhSettingsActionView from './components/settingsActionsView.mjs';
-
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhHomebrewSettings extends HandlebarsApplicationMixin(ApplicationV2) {
@@ -73,23 +71,21 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
 
     static async editItem(_, target) {
         const move = this.settings.restMoves[target.dataset.type].moves[target.dataset.id];
-        new Promise((resolve, reject) => {
-            new DhSettingsActionView(
-                resolve,
-                reject,
-                game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.downtimeMoves'),
-                move.name,
-                move.icon,
-                move.img,
-                move.description,
-                move.actions
-            ).render(true);
-        }).then(data => this.updateAction.bind(this)(data, target.dataset.type, target.dataset.id));
+        const path = `restMoves.${target.dataset.type}.moves.${target.dataset.id}`;
+        const editedMove = await game.system.api.applications.sheetConfigs.DowntimeConfig.configure(
+            move,
+            path,
+            this.settings
+        );
+        if (!editedMove) return;
+
+        await this.updateAction.bind(this)(editedMove, target.dataset.type, target.dataset.id);
     }
 
     async updateAction(data, type, id) {
         await this.settings.updateSource({
             [`restMoves.${type}.moves.${id}`]: {
+                actions: data.actions,
                 name: data.name,
                 icon: data.icon,
                 img: data.img,
@@ -139,7 +135,11 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                 acc[key] = {
                     ...move,
                     name: game.i18n.localize(move.name),
-                    description: game.i18n.localize(move.description)
+                    description: game.i18n.localize(move.description),
+                    actions: move.actions.map(action => ({
+                        ...action,
+                        name: game.i18n.localize(action.name)
+                    }))
                 };
 
                 return acc;

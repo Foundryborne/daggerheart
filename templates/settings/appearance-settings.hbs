@@ -5,110 +5,48 @@
     {{formGroup settingFields.schema.fields.displayFear value=settingFields._source.displayFear localize=true}}
     {{formGroup settingFields.schema.fields.showGenericStatusEffects value=settingFields._source.showGenericStatusEffects localize=true}}
 
+    {{formGroup settingFields.schema.fields.dualityColorScheme value=settingFields._source.dualityColorScheme localize=true}}
+
     <fieldset>
-        <legend>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.duality"}}</legend>
-
-        {{formInput settingFields.schema.fields.dualityColorScheme value=settingFields._source.dualityColorScheme localize=true}}
-
-        <h2>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.title"}}</h2>
+        <legend>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.title"}}</legend>
         <div class="title-hint">{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.hint"}}</div>
 
-        <fieldset>
-            <legend>{{localize "DAGGERHEART.GENERAL.hope"}}</legend>
-
-            <div class="field-section">
-                <div class="split-section">
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.hope.fields.foreground value=settingFields._source.diceSoNice.hope.foreground localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.hope.fields.background value=settingFields._source.diceSoNice.hope.background localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.hope.fields.outline value=settingFields._source.diceSoNice.hope.outline localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.hope.fields.edge value=settingFields._source.diceSoNice.hope.edge localize=true}}
-                    </div>
+        <section class='tab-navigation'>
+            <div class='navigation-container'>
+                <div class="navigation-inner-container">
+                    <line-div></line-div>
+                    <nav class='feature-tab sheet-tabs tabs' data-group='diceSoNice'>
+                        {{#each tabs as |tab|}}
+                            <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                                {{localize tab.label}}
+                            </a>
+                        {{/each}}
+                    </nav>
+                    <line-div></line-div>
                 </div>
             </div>
-        </fieldset>
-        <fieldset>
-            <legend>{{localize "DAGGERHEART.GENERAL.fear"}}</legend>
+        </section>
 
-            <div class="field-section">
-                <div class="split-section">
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.fear.fields.foreground value=settingFields._source.diceSoNice.fear.foreground localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.fear.fields.background value=settingFields._source.diceSoNice.fear.background localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.fear.fields.outline value=settingFields._source.diceSoNice.fear.outline localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.fear.fields.edge value=settingFields._source.diceSoNice.fear.edge localize=true}}
-                    </div>
+        <div class="field-section">
+            <div class="split-section">
+                <div class="label-container">
+                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
+                    {{formInput diceTab.fields.foreground value=diceTab.source.foreground localize=true}}
+                </div>
+                <div class="label-container">
+                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
+                    {{formInput diceTab.fields.background value=diceTab.source.background localize=true}}
+                </div>
+                <div class="label-container">
+                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
+                    {{formInput diceTab.fields.outline value=diceTab.source.outline localize=true}}
+                </div>
+                <div class="label-container">
+                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
+                    {{formInput diceTab.fields.edge value=diceTab.source.edge localize=true}}
                 </div>
             </div>
-        </fieldset>
-        <fieldset>
-            <legend>{{localize "DAGGERHEART.GENERAL.Advantage.full"}}</legend>
-
-            <div class="field-section">
-                <div class="split-section">
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.advantage.fields.foreground value=settingFields._source.diceSoNice.advantage.foreground localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.advantage.fields.background value=settingFields._source.diceSoNice.advantage.background localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.advantage.fields.outline value=settingFields._source.diceSoNice.advantage.outline localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.advantage.fields.edge value=settingFields._source.diceSoNice.advantage.edge localize=true}}
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>{{localize "DAGGERHEART.GENERAL.Disadvantage.full"}}</legend>
-
-            <div class="field-section">
-                <div class="split-section">
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.disadvantage.fields.foreground value=settingFields._source.diceSoNice.disadvantage.foreground localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.disadvantage.fields.background value=settingFields._source.diceSoNice.disadvantage.background localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.disadvantage.fields.outline value=settingFields._source.diceSoNice.disadvantage.outline localize=true}}
-                    </div>
-                    <div class="label-container">
-                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.disadvantage.fields.edge value=settingFields._source.diceSoNice.disadvantage.edge localize=true}}
-                    </div>
-                </div>
-            </div>
-        </fieldset>
+        </div>
     </fieldset>
 
     <footer class="form-footer">

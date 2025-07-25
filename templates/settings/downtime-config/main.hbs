@@ -1,0 +1,19 @@
+<section
+    class='tab {{tabs.main.cssClass}} {{tabs.main.id}}'
+    data-tab='{{tabs.main.id}}'
+    data-group='{{tabs.main.group}}'
+>
+    <fieldset class="one-column">
+        <legend>{{localize "Icon"}}</legend>
+
+        <input type="text" name="icon" value="{{move.icon}}" />
+    </fieldset>
+
+    <fieldset class="one-column">
+        <legend>{{localize "Description"}}</legend>
+        
+        <prose-mirror name="description" value="{{move.description}}">
+            {{{ move.enrichedDescription }}}
+        </prose-mirror>
+    </fieldset>
+</section>

@@ -64,8 +64,8 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         context.selectedActivity = this.selectedActivity;
         context.moveData = this.moveData;
 
-        const shortRestMovesSelected = this.#nrSelectedMoves('shortRest');
-        const longRestMovesSelected = this.#nrSelectedMoves('longRest');
+        const shortRestMovesSelected = this.nrSelectedMoves('shortRest');
+        const longRestMovesSelected = this.nrSelectedMoves('longRest');
         context.nrChoices = {
             ...this.nrChoices,
             shortRest: {
@@ -89,7 +89,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
     static selectMove(_, target) {
         const { category, move } = target.dataset;
 
-        const nrSelected = this.#nrSelectedMoves(category);
+        const nrSelected = this.nrSelectedMoves(category);
 
         if (nrSelected + this.nrChoices[category].taken >= this.nrChoices[category].max) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noMoreMoves'));
@@ -176,7 +176,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         this.render();
     }
 
-    #nrSelectedMoves(category) {
+    nrSelectedMoves(category) {
         return Object.values(this.moveData[category].moves).reduce((acc, x) => acc + (x.selected ?? 0), 0);
     }
 }

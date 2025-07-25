@@ -2,10 +2,11 @@ import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
 export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
-    constructor(action) {
+    constructor(action, sheetUpdate) {
         super({});
 
         this.action = action;
+        this.sheetUpdate = sheetUpdate;
         this.openSection = null;
     }
 
@@ -171,6 +172,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         const submitData = this._prepareSubmitData(event, formData),
             data = foundry.utils.mergeObject(this.action.toObject(), submitData);
         this.action = await this.action.update(data);
+
+        this.sheetUpdate?.(this.action);
         this.render();
     }
 
@@ -195,7 +198,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         if (!this.action.damage.parts) return;
         const data = this.action.toObject(),
             part = {};
-        if(this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
+        if (this.action.actor?.isNPC) part.value = { multiplier: 'flat' };
         data.damage.parts.push(part);
         this.constructor.updateForm.bind(this)(null, null, { object: foundry.utils.flattenObject(data) });
     }
