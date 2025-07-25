@@ -28,7 +28,7 @@ export default class DHHealingAction extends DHBaseAction {
                 healing: game.i18n.localize(CONFIG.DH.GENERAL.healingTypes[this.healing.applyTo].label)
             }),
             roll: formulas,
-            targets: (data.system?.targets ?? data.targets).filter(t => t.hit),
+            targets: systemData.targets?.filter(t => t.hit),
             messageType: 'healing',
             source: systemData.source,
             data: this.getRollData(),
