@@ -106,8 +106,6 @@ export default class DHItem extends foundry.documents.Item {
             }
             if (action) return action.use(event);
         }
-
-        return this.toChat();
     }
 
     async toChat(origin) {
