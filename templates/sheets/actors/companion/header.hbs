@@ -19,7 +19,7 @@
         </div>
         <div class="status-bar">
             <div class='status-value'>
-                <p><input class="bar-input" name="system.resources.stress.value" value="{{document.system.resources.stress.value}}" type="number"></p>
+                <p><input class="bar-input" name="system.resources.stress.value" value="{{document.system.resources.stress.value}}" min="0" max='{{document.system.resources.stress.max}}' type="number"></p>
                 <p>/</p>
                 <p class="bar-label">{{document.system.resources.stress.max}}</p>
             </div>
