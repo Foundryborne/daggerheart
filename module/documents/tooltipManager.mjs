@@ -5,8 +5,7 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
         let html = options.html;
         if (element.dataset.tooltip?.startsWith('#item#')) {
             const itemUuid = element.dataset.tooltip.slice(6);
-            const baseItem = await foundry.utils.fromUuid(itemUuid);
-            const item = baseItem?.item ?? item;
+            const item = await foundry.utils.fromUuid(itemUuid);
             if (item) {
                 const isAction = item instanceof game.system.api.models.actions.actionsTypes.base;
                 const isEffect = item instanceof ActiveEffect;
