@@ -259,7 +259,12 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 name: 'toLoadout',
                 icon: 'fa-solid fa-arrow-up',
                 condition: target => getDocFromElement(target).system.inVault,
-                callback: target => getDocFromElement(target).update({ 'system.inVault': false })
+                callback: target => {
+                    const elem = getDocFromElement(target),
+                        actorLoadout = elem.actor?.system.loadoutSlot ?? null;
+                    if(actorLoadout?.available) return elem.update({ 'system.inVault': false });
+                    ui.notifications.warn(game.i18n.format('DAGGERHEART.UI.Notifications.loadoutMaxReached', { max: actorLoadout.max }))
+                }
             },
             {
                 name: 'toVault',
@@ -729,7 +734,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const item = await Item.implementation.fromDropData(data);
         const itemData = item.toObject();
 
-        if (item.type === 'domainCard' && this.document.system.domainCards.loadout.length >= 5) {
+        if (item.type === 'domainCard' && !this.document.system.loadoutSlot.available) {
             itemData.system.inVault = true;
         }
 

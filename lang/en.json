@@ -1516,7 +1516,8 @@
                 "resetMovesText": "Are you sure you want to reset?",
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
-                    "traitArray": { "label": "Initial Trait Modifiers" }
+                    "traitArray": { "label": "Initial Trait Modifiers" },
+                    "maxLoadout": { "label": "Max Cards in Loadout" }
                 },
                 "currency": {
                     "enabled": "Enable Overrides",
@@ -1687,7 +1688,8 @@
                 "beastformMissingEffect": "The Beastform is missing a Beastform Effect. Cannot be used.",
                 "beastformToManyAdvantages": "You cannot select any more advantages.",
                 "beastformToManyFeatures": "You cannot select any more features.",
-                "beastformEquipWeapon": "You cannot use weapons while in a Beastform."
+                "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
+                "loadoutMaxReached": "You already have {max} cards in your loadout. Move atleast one to your vault before adding a new one."
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
