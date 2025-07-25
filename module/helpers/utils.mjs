@@ -252,9 +252,18 @@ export function addLinkedItemsDiff(changedItems, currentItems, options) {
     if (changedItems) {
         const prevItems = new Set(currentItems);
         const newItems = new Set(changedItems);
-        options.toLink = Array.from(newItems.difference(prevItems).map(item => item?.item ?? item));
+        options.toLink = Array.from(
+            newItems
+                .difference(prevItems)
+                .map(item => item?.item ?? item)
+                .filter(x => (typeof x === 'object' ? x.item : x))
+        );
+
         options.toUnlink = Array.from(
-            prevItems.difference(newItems).map(item => item?.item?.uuid ?? item?.uuid ?? item)
+            prevItems
+                .difference(newItems)
+                .map(item => item?.item?.uuid ?? item?.uuid ?? item)
+                .filter(x => (typeof x === 'object' ? x.item : x))
         );
     }
 }

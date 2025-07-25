@@ -124,7 +124,7 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         async _onFirstRender(context, options) {
             await super._onFirstRender(context, options);
-            this.relatedDocs.map(doc => (doc.apps[this.id] = this));
+            this.relatedDocs.filter(doc => doc).map(doc => (doc.apps[this.id] = this));
 
             if (!!this.options.contextMenus.length) this._createContextMenus();
         }
@@ -132,7 +132,7 @@ export default function DHApplicationMixin(Base) {
         /** @inheritDoc */
         _onClose(options) {
             super._onClose(options);
-            this.relatedDocs.map(doc => delete doc.apps[this.id]);
+            this.relatedDocs.filter(doc => doc).map(doc => delete doc.apps[this.id]);
         }
 
         /**@inheritdoc */

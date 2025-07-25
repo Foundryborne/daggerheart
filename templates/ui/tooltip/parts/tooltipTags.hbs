@@ -1,12 +1,14 @@
 {{#if (gt features.length 0)}}<h4 class="tooltip-sub-title">{{label}}</h4>{{/if}}
 <div class="tooltip-tags">
     {{#each features as | feature |}}
-        <div class="tooltip-tag">
-            <div class="tooltip-tag-label-container">
-                    <div class="tooltip-tag-label">{{localize feature.name}}</div>
-                    {{#if feature.img}}<img class="tooltip-tag-image" src="{{feature.img}}" />{{/if}}
-                </div>
-            <div class="tooltip-tag-description">{{{localize (ifThen feature.description feature.description (ifThen feature.system.enrichedDescription feature.system.enrichedDescription feature.system.description))}}}</div>
-        </div>
+        {{#with (ifThen ../isAction feature (ifThen feature.item feature.item feature))}}
+            <div class="tooltip-tag">
+                <div class="tooltip-tag-label-container">
+                        <div class="tooltip-tag-label">{{localize this.name}}</div>
+                        {{#if this.img}}<img class="tooltip-tag-image" src="{{this.img}}" />{{/if}}
+                    </div>
+                <div class="tooltip-tag-description">{{{localize (ifThen this.enrichedDescription this.enrichedDescription this.system.enrichedDescription)}}}</div>
+            </div>
+        {{/with}}
     {{/each}}
 </div>
