@@ -14,30 +14,56 @@
         <div class="title-hint">{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.hint"}}</div>
 
         <fieldset>
-            <legend>{{localize "DAGGERHEART.GENERAL.hope"}}</legend>
+            <section class='tab-navigation'>
+                <div class='navigation-container'>
+                    <div class="navigation-inner-container">
+                        <line-div></line-div>
+                        <nav class='feature-tab sheet-tabs tabs' data-group='diceSoNice'>
+                            {{#each tabs as |tab|}}
+                                <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                                    {{localize tab.label}}
+                                </a>
+                            {{/each}}
+                        </nav>
+                        <line-div></line-div>
+                    </div>
+                </div>
+            </section>
 
             <div class="field-section">
                 <div class="split-section">
                     <div class="label-container">
                         <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.hope.fields.foreground value=settingFields._source.diceSoNice.hope.foreground localize=true}}
+                        {{formInput diceTab.fields.foreground value=diceTab.source.foreground localize=true}}
                     </div>
                     <div class="label-container">
                         <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.hope.fields.background value=settingFields._source.diceSoNice.hope.background localize=true}}
+                        {{formInput diceTab.fields.background value=diceTab.source.background localize=true}}
                     </div>
                     <div class="label-container">
                         <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.hope.fields.outline value=settingFields._source.diceSoNice.hope.outline localize=true}}
+                        {{formInput diceTab.fields.outline value=diceTab.source.outline localize=true}}
                     </div>
                     <div class="label-container">
                         <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
-                        {{formInput settingFields.schema.fields.diceSoNice.fields.hope.fields.edge value=settingFields._source.diceSoNice.hope.edge localize=true}}
+                        {{formInput diceTab.fields.edge value=diceTab.source.edge localize=true}}
+                    </div>
+                    <div class="label-container">
+                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.texture"}}</label>
+                        <select name={{concat "diceSoNice." diceTab.key ".texture"}}>
+                            {{selectOptions diceSoNiceTextures selected=diceTab.source.texture labelAttr="name" localize=true }}
+                        </select>
+                    </div>
+                    <div class="label-container">
+                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.colorset"}}</label>
+                        <select name="diceSoNice." {{diceTab.key}} ".colorset">
+                            {{selectOptions diceSoNiceColorsets selected=diceTab.source.colorset labelAttr="name" localize=true }}
+                        </select>
                     </div>
                 </div>
             </div>
         </fieldset>
-        <fieldset>
+        {{!-- <fieldset>
             <legend>{{localize "DAGGERHEART.GENERAL.fear"}}</legend>
 
             <div class="field-section">
@@ -108,7 +134,7 @@
                     </div>
                 </div>
             </div>
-        </fieldset>
+        </fieldset> --}}
     </fieldset>
 
     <footer class="form-footer">
