@@ -261,8 +261,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 condition: target => getDocFromElement(target).system.inVault,
                 callback: target => {
                     const doc = getDocFromElement(target),
-                        actorLoadout = doc.actor?.system.loadoutSlot ?? null;
-                    if(actorLoadout?.available) return doc.update({ 'system.inVault': false });
+                        actorLoadout = doc.actor.system.loadoutSlot;
+                    if(actorLoadout.available) return doc.update({ 'system.inVault': false });
                     ui.notifications.warn(game.i18n.format('DAGGERHEART.UI.Notifications.loadoutMaxReached', { max: actorLoadout.max }))
                 }
             },
