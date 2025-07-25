@@ -4,12 +4,13 @@ import DHActionConfig from './action-config.mjs';
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 export default class DhSettingsActionView extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(move, moveId, settings, options) {
+    constructor(move, movePath, settings, options) {
         super(options);
 
         this.move = move;
 
-        this.actionsPath = `restMoves.shortRest.moves.${moveId}.actions`;
+        this.movePath = movePath;
+        this.actionsPath = `${movePath}.actions`;
         this.settings = settings;
     }
 
@@ -111,7 +112,6 @@ export default class DhSettingsActionView extends HandlebarsApplicationMixin(App
         const cls = actionsTypes[actionType] ?? actionsTypes.attack,
             action = new cls(
                 {
-                    _id: foundry.utils.randomID(),
                     type: actionType,
                     name: game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[actionType].name),
                     img: 'icons/magic/life/cross-worn-green.webp',
@@ -123,26 +123,25 @@ export default class DhSettingsActionView extends HandlebarsApplicationMixin(App
                 }
             );
 
-        this.move.actions.push(action);
-        await this.settings.updateSource({ [this.actionsPath]: this.move.actions });
+        await this.settings.updateSource({ [`${this.actionsPath}.${action.id}`]: action });
+        this.move = foundry.utils.getProperty(this.settings, this.movePath);
 
         this.render();
     }
 
     static async editItem(_, target) {
-        const editIndex = Number(target.dataset.id);
-        const action = this.move.actions.find((_, index) => index === editIndex);
+        const actionId = target.dataset.id;
+        const action = this.move.actions.get(actionId);
         await new DHActionConfig(action, async updatedMove => {
-            this.move.actions[editIndex] = updatedMove;
-            await this.settings.updateSource({ [this.actionsPath]: this.move.actions });
+            await this.settings.updateSource({ [`${this.actionsPath}.${actionId}`]: updatedMove });
+            this.move = foundry.utils.getProperty(this.settings, this.movePath);
             this.render();
         }).render(true);
     }
 
     static async removeItem(_, target) {
-        this.move.actions = this.move.actions.filter((_, index) => index !== Number(target.dataset.id));
-        await this.settings.updateSource({ [this.actionsPath]: this.move.actions });
-
+        await this.settings.updateSource({ [`${this.actionsPath}.-=${target.dataset.id}`]: null });
+        this.move = foundry.utils.getProperty(this.settings, this.movePath);
         this.render();
     }
 
@@ -153,9 +152,9 @@ export default class DhSettingsActionView extends HandlebarsApplicationMixin(App
         if (!options.submitted) this.move = null;
     }
 
-    static async configure(move, moveId, settings, options = {}) {
+    static async configure(move, movePath, settings, options = {}) {
         return new Promise(resolve => {
-            const app = new this(move, moveId, settings, options);
+            const app = new this(move, movePath, settings, options);
             app.addEventListener('close', () => resolve(app.move), { once: true });
             app.render({ force: true });
         });

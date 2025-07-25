@@ -172,6 +172,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         const submitData = this._prepareSubmitData(event, formData),
             data = foundry.utils.mergeObject(this.action.toObject(), submitData);
         this.action = await this.action.update(data);
+
+        this.sheetUpdate?.(this.action);
         this.render();
     }
 

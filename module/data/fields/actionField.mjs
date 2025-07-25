@@ -202,11 +202,21 @@ export function ActionMixin(Base) {
         }
 
         async update(updates, options = {}) {
-            const path = this.inCollection ? `system.${this.systemPath}.${this.id}` : `system.${this.systemPath}`,
+            const isSetting = !this.parent.parent;
+            const basePath = isSetting ? this.systemPath : `system.${this.systemPath}`;
+
+            const path = this.inCollection ? `${basePath}.${this.id}` : basePath;
+
+            let result = null;
+            if (isSetting) {
+                await this.parent.updateSource({ [path]: updates }, options);
+                result = this.parent;
+            } else {
                 result = await this.item.update({ [path]: updates }, options);
+            }
             return this.inCollection
-                ? foundry.utils.getProperty(result, `system.${this.systemPath}`).get(this.id)
-                : foundry.utils.getProperty(result, `system.${this.systemPath}`);
+                ? foundry.utils.getProperty(result, basePath).get(this.id)
+                : foundry.utils.getProperty(result, basePath);
         }
 
         delete() {

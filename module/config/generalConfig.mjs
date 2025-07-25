@@ -138,9 +138,8 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-bandage',
             img: 'icons/magic/life/cross-worn-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.description'),
-            actions: [
-                {
-                    _id: foundry.utils.randomID(),
+            actions: {
+                tendToWounds: {
                     systemPath: 'restMoves.shortRest.moves.tendToWounds.actions',
                     type: 'healing',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.name'),
@@ -156,7 +155,7 @@ export const defaultRestOptions = {
                         }
                     }
                 }
-            ]
+            }
         },
         clearStress: {
             id: 'clearStress',
@@ -164,9 +163,8 @@ export const defaultRestOptions = {
             icon: 'fa-regular fa-face-surprise',
             img: 'icons/magic/perception/eye-ringed-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.description'),
-            actions: [
-                {
-                    _id: foundry.utils.randomID(),
+            actions: {
+                clearStress: {
                     systemPath: 'restMoves.shortRest.moves.tendToWounds.actions',
                     type: 'healing',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.name'),
@@ -182,7 +180,7 @@ export const defaultRestOptions = {
                         }
                     }
                 }
-            ]
+            }
         },
         repairArmor: {
             id: 'repairArmor',
@@ -190,9 +188,8 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-hammer',
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.description'),
-            actions: [
-                {
-                    _id: foundry.utils.randomID(),
+            actions: {
+                repairArmor: {
                     systemPath: 'restMoves.shortRest.moves.tendToWounds.actions',
                     type: 'healing',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.name'),
@@ -208,7 +205,7 @@ export const defaultRestOptions = {
                         }
                     }
                 }
-            ]
+            }
         },
         prepare: {
             id: 'prepare',
@@ -216,7 +213,7 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-dumbbell',
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.prepare.description'),
-            actions: []
+            actions: {}
         }
     }),
     longRest: () => ({
@@ -226,7 +223,24 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-bandage',
             img: 'icons/magic/life/cross-worn-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.description'),
-            actions: []
+            actions: {
+                tendToWounds: {
+                    systemPath: 'restMoves.longRest.moves.tendToWounds.actions',
+                    type: 'healing',
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.name'),
+                    img: 'icons/magic/life/cross-worn-green.webp',
+                    actionType: 'action',
+                    healing: {
+                        applyTo: healingTypes.hitPoints.id,
+                        value: {
+                            custom: {
+                                enabled: true,
+                                formula: '@system.resources.hitPoints.max'
+                            }
+                        }
+                    }
+                }
+            }
         },
         clearStress: {
             id: 'clearStress',
@@ -234,7 +248,24 @@ export const defaultRestOptions = {
             icon: 'fa-regular fa-face-surprise',
             img: 'icons/magic/perception/eye-ringed-green.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.description'),
-            actions: []
+            actions: {
+                clearStress: {
+                    systemPath: 'restMoves.longRest.moves.tendToWounds.actions',
+                    type: 'healing',
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.name'),
+                    img: 'icons/magic/perception/eye-ringed-green.webp',
+                    actionType: 'action',
+                    healing: {
+                        applyTo: healingTypes.stress.id,
+                        value: {
+                            custom: {
+                                enabled: true,
+                                formula: '@system.resources.stress.max'
+                            }
+                        }
+                    }
+                }
+            }
         },
         repairArmor: {
             id: 'repairArmor',
@@ -242,7 +273,24 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-hammer',
             img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.description'),
-            actions: []
+            actions: {
+                repairArmor: {
+                    systemPath: 'restMoves.longRest.moves.tendToWounds.actions',
+                    type: 'healing',
+                    name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.name'),
+                    img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
+                    actionType: 'action',
+                    healing: {
+                        applyTo: healingTypes.armorStack.id,
+                        value: {
+                            custom: {
+                                enabled: true,
+                                formula: '@system.armorScore'
+                            }
+                        }
+                    }
+                }
+            }
         },
         prepare: {
             id: 'prepare',
@@ -250,7 +298,7 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-dumbbell',
             img: 'icons/skills/trades/academics-merchant-scribe.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.prepare.description'),
-            actions: []
+            actions: {}
         },
         workOnAProject: {
             id: 'workOnAProject',
@@ -258,7 +306,7 @@ export const defaultRestOptions = {
             icon: 'fa-solid fa-diagram-project',
             img: 'icons/skills/social/thumbsup-approval-like.webp',
             description: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.workOnAProject.description'),
-            actions: []
+            actions: {}
         }
     })
 };

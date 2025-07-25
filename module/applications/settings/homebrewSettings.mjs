@@ -71,9 +71,10 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
 
     static async editItem(_, target) {
         const move = this.settings.restMoves[target.dataset.type].moves[target.dataset.id];
+        const path = `restMoves.${target.dataset.type}.moves.${target.dataset.id}`;
         const editedMove = await game.system.api.applications.sheetConfigs.DowntimeConfig.configure(
             move,
-            target.dataset.id,
+            path,
             this.settings
         );
         if (!editedMove) return;
