@@ -24,7 +24,7 @@
     {{else}}
         {{> formula fields=fields.value.fields source=source.value target="value"}}
     {{/if}}
-    {{formField fields.applyTo value=source.type name="healing.applyTo" localize=true}}
+    {{formField fields.applyTo value=source.applyTo name="healing.applyTo" localize=true}}
 </fieldset>
 
 {{#*inline "formula"}}
