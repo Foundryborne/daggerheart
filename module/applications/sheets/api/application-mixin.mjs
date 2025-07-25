@@ -425,7 +425,7 @@ export default function DHApplicationMixin(Base) {
          * Renders an embedded document.
          * @type {ApplicationClickAction}
          */
-        static async #editDoc(_event, target) {
+        static #editDoc(_event, target) {
             const doc = getDocFromElement(target);
             if (doc) return doc.sheet.render({ force: true });
         }
