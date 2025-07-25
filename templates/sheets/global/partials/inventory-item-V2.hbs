@@ -186,7 +186,7 @@ Parameters:
     {{/if}}
     {{#if (and (not hideResources) item.system.quantity)}}
     <div class="item-resource">
-      <input type="number" class="inventory-item-quantity" value="{{item.system.quantity}}" step="1" />
+      <input type="number" class="inventory-item-quantity" value="{{item.system.quantity}}" min="0" />
     </div>
     {{/if}}
 

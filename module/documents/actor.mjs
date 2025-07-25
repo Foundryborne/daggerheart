@@ -568,13 +568,7 @@ export default class DhpActor extends Actor {
     }
 
     convertDamageToThreshold(damage) {
-        return damage >= this.system.damageThresholds.severe
-            ? 3
-            : damage >= this.system.damageThresholds.major
-              ? 2
-              : damage >= this.system.damageThresholds.minor
-                ? 1
-                : 0;
+        return damage >= this.system.damageThresholds.severe ? 3 : damage >= this.system.damageThresholds.major ? 2 : 1;
     }
 
     convertStressDamageToHP(resources) {

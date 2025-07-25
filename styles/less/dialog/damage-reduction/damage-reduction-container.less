@@ -46,10 +46,6 @@
                 display: flex;
                 gap: 2px;
 
-                &:not(:last-child) {
-                    margin-right: 8px;
-                }
-
                 .mark-container {
                     cursor: pointer;
                     border: 1px solid light-dark(@dark-blue, @golden);
@@ -61,6 +57,10 @@
                     align-items: center;
                     justify-content: center;
                     opacity: 0.4;
+
+                    &:not(:last-child) {
+                        margin-right: 8px;
+                    }
 
                     &.selected {
                         opacity: 1;
