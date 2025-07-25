@@ -203,7 +203,11 @@ export default class DhCharacter extends BaseDataActor {
                         })
                     })
                 }),
-                maxLoadout : new fields.NumberField({ integer: true, initial: 0 })
+                maxLoadout : new fields.NumberField({
+                    integer: true,
+                    initial: 0,
+                    label: 'DAGGERHEART.GENERAL.Bonuses.maxLoadout.label'
+                })
             }),
             companion: new ForeignDocumentUUIDField({ type: 'Actor', nullable: true, initial: null }),
             rules: new fields.SchemaField({

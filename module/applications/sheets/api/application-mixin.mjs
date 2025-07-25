@@ -296,8 +296,8 @@ export default function DHApplicationMixin(Base) {
                     name: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
                     icon: 'fa-solid fa-burst',
                     condition: target => {
-                        const elem = getDocFromElement(target);
-                        return !(elem.type === 'domainCard' && elem.system.inVault)
+                        const doc = getDocFromElement(target);
+                        return !(doc.type === 'domainCard' && doc.system.inVault)
                     },
                     callback: (target, event) => getDocFromElement(target).use(event)
                 });

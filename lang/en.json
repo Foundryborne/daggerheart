@@ -1080,6 +1080,9 @@
                             "hint": "The number of extra Long Rest Moves the character can take during a Long Rest."
                         }
                     }
+                },
+                "maxLoadout": {
+                    "label": "Max Loadout Cards Bonus"
                 }
             },
             "Character": {
