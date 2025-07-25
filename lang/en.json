@@ -1549,7 +1549,9 @@
                         "foreground": "Foreground",
                         "background": "Background",
                         "outline": "Outline",
-                        "edge": "Edge"
+                        "edge": "Edge",
+                        "texture": "Texture",
+                        "colorset": "Colorset"
                     }
                 },
                 "variantRules": {
