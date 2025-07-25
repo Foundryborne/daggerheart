@@ -8,7 +8,7 @@ const attributeField = label =>
 
 const resourceField = (max = 0, label, reverse = false) =>
     new fields.SchemaField({
-        value: new fields.NumberField({ initial: 0, integer: true, label }),
+        value: new fields.NumberField({ initial: 0, min: 0, integer: true, label }),
         max: new fields.NumberField({ initial: max, integer: true }),
         isReversed: new fields.BooleanField({ initial: reverse })
     });

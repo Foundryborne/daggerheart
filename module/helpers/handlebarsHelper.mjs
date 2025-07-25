@@ -47,7 +47,7 @@ export default class RegisterHandlebarsHelpers {
 
     static rollParsed(value, actor, item, numerical) {
         const isNumerical = typeof numerical === 'boolean' ? numerical : false;
-        const result = itemAbleRollParse(value, actor, item);
-        return isNumerical && !result ? 0 : result;
+        const result = itemAbleRollParse(value, actor.getRollData(), item);
+        return isNumerical ? (!result ? 0 : Number(result)) : result;
     }
 }
