@@ -2,11 +2,13 @@
     <header class="dialog-header">
         <h1>{{itemName}}</h1>
     </header>
-    <ul class="actions-list">
+    <ul class="action-buttons-list">
     {{#each actions}}
         <li class="action-item">
-            <input type="radio" id="action-{{_id}}" name="actionId" value="{{_id}}" {{#if (eq @index 0)}}checked{{/if}}>
-            <label class="label" for="action-{{_id}}">{{ name }}</label>
+            <button type="button" class="list-button reverted" data-action-id="{{id}}" data-action="choose">
+                <img src="{{ img }}">
+                <span>{{ name }}</span>
+            </button>
         </li>
     {{/each}}
     </ul>

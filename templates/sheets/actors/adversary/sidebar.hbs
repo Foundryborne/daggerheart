@@ -9,7 +9,7 @@
         <div class="resources-section">
             <div class="status-bar">
                 <div class='status-value'>
-                    <p><input class="bar-input" name="system.resources.hitPoints.value"
+                    <p><input class="bar-input" name="system.resources.hitPoints.value" min="0" max='{{source.system.resources.hitPoints.max}}'
                             value="{{source.system.resources.hitPoints.value}}" type="number"></p>
                     <p>/</p>
                     <p class="bar-label">{{source.system.resources.hitPoints.max}}</p>
@@ -23,7 +23,7 @@
             </div>
             <div class="status-bar">
                 <div class='status-value'>
-                    <p><input class="bar-input" name="system.resources.stress.value"
+                    <p><input class="bar-input" name="system.resources.stress.value" min="0" max='{{source.system.resources.stress.max}}'
                             value="{{source.system.resources.stress.value}}" type="number"></p>
                     <p>/</p>
                     <p class="bar-label">{{source.system.resources.stress.max}}</p>

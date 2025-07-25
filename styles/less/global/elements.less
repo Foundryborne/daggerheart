@@ -97,6 +97,19 @@
                 color: light-dark(@dark-blue, @dark-blue);
             }
         }
+
+        &.reverted {
+            background: light-dark(@dark-blue-10, @golden-10);
+            color: light-dark(@dark-blue, @golden);
+            border: 1px solid light-dark(@dark, transparent);
+            &:hover {
+                background: light-dark(transparent, @golden);
+                color: light-dark(@dark-blue, @dark-blue);
+            }
+            img {
+                border-radius: 3px;
+            }
+        }
     }
 
     select {

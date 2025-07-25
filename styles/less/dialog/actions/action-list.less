@@ -1,18 +1,62 @@
 @import '../../utils/fonts.less';
 
 .application.daggerheart.dh-style {
-    .actions-list {
+    .actions-list,
+    .action-buttons-list {
         display: flex;
         flex-direction: column;
-        gap: 10px;
 
         .action-item {
             display: flex;
             align-items: center;
             gap: 5px;
+        }
+    }
+
+    .action-buttons-list {
+        gap: 10px;
+        button {
+            flex: 1;
+            display: flex;
+            padding: 6px 40px 6px 6px;
+            height: fit-content;
+            img {
+                width: 30px;
+            }
+            span {
+                font-family: @font-body;
+                flex: 1;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .actions-list {
+        gap: 5px;
+
+        .action-item {
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
 
             .label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
                 font-family: @font-body;
+                cursor: pointer;
+                flex: 1;
+                i {
+                    text-align: center;
+                    width: 30px;
+                }
+            }
+
+            input[type='radio'] {
+                margin-left: auto;
             }
         }
     }

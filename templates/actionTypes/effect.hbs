@@ -4,7 +4,7 @@
         <a><i class="fa-solid fa-plus icon-button" data-action="addEffect"></i></a>
     </legend>
     <ul class="items-list">
-        {{#each source as | effect index |}}
+        {{!-- {{#each source as | effect index |}}
             <div class="inventory-item" data-effect-id="{{effect._id}}" data-action="editEffect">
                 {{#with (@root.getEffectDetails effect._id) as | details |}}
                         <img class="item-img" src="{{img}}">
@@ -16,6 +16,25 @@
                 {{#if @root.source.save.trait}}{{formInput ../fields.onSave value=effect.onSave name=(concat "effects." index ".onSave") dataset=(object tooltip=(localize "DAGGERHEART.UI.Tooltip.appliedEvenIfSuccessful") tooltipDirection="UP")}}{{/if}}
                 <div class="controls">
                     <a data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeEffect" data-index="{{index}}"><i class="fas fa-trash"></i></a>
+                </div>
+            </div>
+        {{/each}} --}}
+        {{#each source as | effect index |}}
+            <div class="inventory-item single-img" data-effect-id="{{effect._id}}" data-action="editEffect">
+                <div class="inventory-item-header">
+                    {{#with (@root.getEffectDetails effect._id) as | details |}}
+                        <div class="img-portait">
+                            <img class="item-img" src="{{img}}">
+                        </div>
+                        <div class="item-label">
+                            <div class="item-name">{{name}}</div>
+                        </div>
+                    {{/with}}
+                    <input type="hidden" name="effects.{{index}}._id" value="{{effect._id}}">
+                    {{#if @root.source.save.trait}}{{formInput ../fields.onSave value=effect.onSave name=(concat "effects." index ".onSave") dataset=(object tooltip=(localize "DAGGERHEART.UI.Tooltip.appliedEvenIfSuccessful") tooltipDirection="UP")}}{{/if}}
+                    <div class="controls">
+                        <a data-tooltip="{{localize "CONTROLS.CommonDelete"}}" data-action="removeEffect" data-index="{{index}}"><i class="fas fa-trash"></i></a>
+                    </div>
                 </div>
             </div>
         {{/each}}

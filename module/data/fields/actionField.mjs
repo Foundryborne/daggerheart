@@ -170,7 +170,9 @@ export function ActionMixin(Base) {
             if (!type || !game.system.api.models.actions.actionsTypes[type]) {
                 ({ type } =
                     (await foundry.applications.api.DialogV2.input({
-                        window: { title: 'Select Action Type' },
+                        window: { title: game.i18n.localize('DAGGERHEART.CONFIG.SelectAction.selectType') },
+                        position: { width: 300 },
+                        classes: ['daggerheart', 'dh-style'],
                         content: await foundry.applications.handlebars.renderTemplate(
                             'systems/daggerheart/templates/actionTypes/actionType.hbs',
                             { types: CONFIG.DH.ACTIONS.actionTypes }
@@ -202,11 +204,20 @@ export function ActionMixin(Base) {
         }
 
         async update(updates, options = {}) {
-            const path = this.inCollection ? `system.${this.systemPath}.${this.id}` : `system.${this.systemPath}`,
+            const isSetting = !this.parent.parent;
+            const basePath = isSetting ? this.systemPath : `system.${this.systemPath}`;
+            const path = this.inCollection ? `${basePath}.${this.id}` : basePath;
+            let result = null;
+            if (isSetting) {
+                await this.parent.updateSource({ [path]: updates }, options);
+                result = this.parent;
+            } else {
                 result = await this.item.update({ [path]: updates }, options);
+            }
+
             return this.inCollection
-                ? foundry.utils.getProperty(result, `system.${this.systemPath}`).get(this.id)
-                : foundry.utils.getProperty(result, `system.${this.systemPath}`);
+                ? foundry.utils.getProperty(result, basePath).get(this.id)
+                : foundry.utils.getProperty(result, basePath);
         }
 
         delete() {

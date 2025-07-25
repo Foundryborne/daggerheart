@@ -13,7 +13,8 @@ export default class DhAppearance extends foundry.abstract.DataModel {
             dualityColorScheme: new fields.StringField({
                 required: true,
                 choices: DualityRollColor,
-                initial: DualityRollColor.normal.value
+                initial: DualityRollColor.normal.value,
+                label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.dualityColorScheme.label'
             }),
             diceSoNice: new fields.SchemaField({
                 hope: new fields.SchemaField({

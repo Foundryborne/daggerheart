@@ -1,4 +1,5 @@
 import { defaultRestOptions } from '../../config/generalConfig.mjs';
+import { ActionsField } from '../fields/actionField.mjs';
 
 export default class DhHomebrew extends foundry.abstract.DataModel {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.SETTINGS.Homebrew']; // Doesn't work for some reason
@@ -61,7 +62,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                                 base64: false
                             }),
                             description: new fields.HTMLField(),
-                            actions: new fields.ArrayField(new fields.ObjectField())
+                            actions: new ActionsField()
                         }),
                         { initial: defaultRestOptions.longRest() }
                     )
@@ -78,7 +79,7 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                                 base64: false
                             }),
                             description: new fields.HTMLField(),
-                            actions: new fields.ArrayField(new fields.ObjectField())
+                            actions: new ActionsField()
                         }),
                         { initial: defaultRestOptions.shortRest() }
                     )

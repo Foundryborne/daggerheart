@@ -517,9 +517,10 @@ export default class CharacterSheet extends DHBaseActorSheet {
         const item = getDocFromElement(event.currentTarget);
         if (!item) return;
 
-        const max = item.system.resource.max ? itemAbleRollParse(item.system.resource.max, this.document, item) : null;
+        const max = event.currentTarget.max ? Number(event.currentTarget.max) : null;
         const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
         await item.update({ 'system.resource.value': value });
+        this.render();
     }
 
     async updateItemQuantity(event) {
@@ -527,6 +528,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!item) return;
 
         await item.update({ 'system.quantity': event.currentTarget.value });
+        this.render();
     }
 
     async updateArmorMarks(event) {

@@ -2,37 +2,44 @@ export const actionTypes = {
     attack: {
         id: 'attack',
         name: 'DAGGERHEART.ACTIONS.TYPES.attack.name',
-        icon: 'fa-swords'
+        icon: 'fa-khanda',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.attack.tooltip'
     },
     healing: {
         id: 'healing',
         name: 'DAGGERHEART.ACTIONS.TYPES.healing.name',
-        icon: 'fa-kit-medical'
+        icon: 'fa-kit-medical',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.healing.tooltip'
     },
     damage: {
         id: 'damage',
         name: 'DAGGERHEART.ACTIONS.TYPES.damage.name',
-        icon: 'fa-bone-break'
-    },
-    summon: {
-        id: 'summon',
-        name: 'DAGGERHEART.ACTIONS.TYPES.summon.name',
-        icon: 'fa-ghost'
-    },
-    effect: {
-        id: 'effect',
-        name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',
-        icon: 'fa-person-rays'
-    },
-    macro: {
-        id: 'macro',
-        name: 'DAGGERHEART.ACTIONS.TYPES.macro.name',
-        icon: 'fa-scroll'
+        icon: 'fa-heart-crack',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.damage.tooltip'
     },
     beastform: {
         id: 'beastform',
         name: 'DAGGERHEART.ACTIONS.TYPES.beastform.name',
-        icon: 'fa-paw'
+        icon: 'fa-paw',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.beastform.tooltip'
+    },
+    summon: {
+        id: 'summon',
+        name: 'DAGGERHEART.ACTIONS.TYPES.summon.name',
+        icon: 'fa-ghost',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.summon.tooltip'
+    },
+    effect: {
+        id: 'effect',
+        name: 'DAGGERHEART.ACTIONS.TYPES.effect.name',
+        icon: 'fa-person-rays',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.effect.tooltip'
+    },
+    macro: {
+        id: 'macro',
+        name: 'DAGGERHEART.ACTIONS.TYPES.macro.name',
+        icon: 'fa-scroll',
+        tooltip: 'DAGGERHEART.ACTIONS.TYPES.macro.tooltip'
     }
 };
 

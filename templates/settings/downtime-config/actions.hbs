@@ -1,0 +1,15 @@
+<section
+    class='tab {{tabs.actions.cssClass}} {{tabs.actions.id}}'
+    data-tab='{{tabs.actions.id}}'
+    data-group='{{tabs.actions.group}}'
+>
+    <fieldset class="one-column">
+        <legend>{{localize "DAGGERHEART.GENERAL.Action.plural"}} <a><i class="fa-solid fa-plus icon-button" data-action="addItem"></i></a></legend>
+
+        <div class="settings-items">
+            {{#each move.actions as |action|}}
+                {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" id=action.id }}
+            {{/each}}
+        </div>
+    </fieldset>
+</section>

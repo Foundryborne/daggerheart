@@ -2,10 +2,11 @@ import DaggerheartSheet from '../sheets/daggerheart-sheet.mjs';
 
 const { ApplicationV2 } = foundry.applications.api;
 export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
-    constructor(action) {
+    constructor(action, sheetUpdate) {
         super({});
 
         this.action = action;
+        this.sheetUpdate = sheetUpdate;
         this.openSection = null;
     }
 
@@ -171,6 +172,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         const submitData = this._prepareSubmitData(event, formData),
             data = foundry.utils.mergeObject(this.action.toObject(), submitData);
         this.action = await this.action.update(data);
+
+        this.sheetUpdate?.(this.action);
         this.render();
     }
 
@@ -236,7 +239,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         if (!this.action.effects) return;
         const index = button.dataset.index,
             effectId = this.action.effects[index]._id;
-        this.constructor.removeElement.bind(this)(event);
+        this.constructor.removeElement.bind(this)(event, button);
         this.action.item.deleteEmbeddedDocuments('ActiveEffect', [effectId]);
     }
 

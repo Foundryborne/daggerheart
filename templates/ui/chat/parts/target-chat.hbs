@@ -9,7 +9,7 @@
                     <label class="button-target-selection{{#unless @root.targetSelection}} target-selected{{/unless}}">{{localize "DAGGERHEART.UI.Chat.damageRoll.selectedTarget"}}</label>
                 </div>
                 {{#if (and hasSave @root.targetSelection @root.hasHitTarget)}}
-                    <button class="inner-button inner-button-right roll-all-save-button">{{localize "DAGERHEART.GENERAL.rollAll"}} <i class="fa-solid fa-shield"></i></button>
+                    <button class="inner-button inner-button-right roll-all-save-button">{{localize "DAGGERHEART.GENERAL.rollAll"}} <i class="fa-solid fa-shield"></i></button>
                 {{/if}}
                 <div class="target-section">
                     {{#each currentTargets as |target|}}

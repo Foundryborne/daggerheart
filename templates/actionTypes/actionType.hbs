@@ -5,8 +5,11 @@
     <ul class="actions-list">
     {{#each types}}
         <li class="action-item">
-            <input type="radio" name="type" value="{{id}}" {{#if (eq @index 0)}}checked{{/if}}>
-            <span class="label">{{localize name}}</span>
+            <label class="label" for="{{id}}" data-tooltip="{{localize tooltip}}" data-tooltip-direction="LEFT">
+                <i class="fa-solid {{icon}} fa-xl"></i>
+                <span class="label">{{localize name}}</span>
+            </label>
+            <input type="radio" name="type" id="{{id}}" value="{{id}}" {{#if (eq @index 0)}}checked{{/if}}>
         </li>
     {{/each}}
     </ul>

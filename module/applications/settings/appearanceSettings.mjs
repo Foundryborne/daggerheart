@@ -36,9 +36,36 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         }
     };
 
+    /** @inheritdoc */
+    static TABS = {
+        diceSoNice: {
+            tabs: [
+                { id: 'hope', label: 'DAGGERHEART.GENERAL.hope' },
+                { id: 'fear', label: 'DAGGERHEART.GENERAL.fear' },
+                { id: 'advantage', label: 'DAGGERHEART.GENERAL.Advantage.full' },
+                { id: 'disadvantage', label: 'DAGGERHEART.GENERAL.Advantage.full' }
+            ],
+            initial: 'hope'
+        }
+    };
+
+    changeTab(tab, group, options) {
+        super.changeTab(tab, group, options);
+
+        this.render();
+    }
+
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.settingFields = this.settings;
+
+        context.diceSoNiceTextures = game.dice3d?.exports?.TEXTURELIST ?? {};
+        context.diceSoNiceColorsets = game.dice3d?.exports?.COLORSETS ?? {};
+        context.diceTab = {
+            key: this.tabGroups.diceSoNice,
+            source: this.settings._source.diceSoNice[this.tabGroups.diceSoNice],
+            fields: this.settings.schema.fields.diceSoNice.fields[this.tabGroups.diceSoNice].fields
+        };
 
         return context;
     }
@@ -64,5 +91,14 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         );
 
         this.close();
+    }
+
+    _getTabs(tabs) {
+        for (const v of Object.values(tabs)) {
+            v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
+            v.cssClass = v.active ? 'active' : '';
+        }
+
+        return tabs;
     }
 }

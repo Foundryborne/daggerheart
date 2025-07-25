@@ -1,5 +1,3 @@
-import DHBaseAction from "../action/baseAction.mjs";
-
 export default class DHApplyEffect extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
@@ -27,7 +25,9 @@ export default class DHApplyEffect extends foundry.abstract.TypeDataModel {
         this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
         this.currentTargets =
             this.targetSelection !== true
-                ? Array.from(game.user.targets).map(t => DHBaseAction.formatTarget(t))
+                ? Array.from(game.user.targets).map(t =>
+                      game.system.api.fields.ActionFields.TargetField.formatTarget(t)
+                  )
                 : this.targets;
     }
 
