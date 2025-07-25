@@ -12,7 +12,35 @@
             gap: 5px;
 
             .label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
                 font-family: @font-body;
+                cursor: pointer;
+                flex: 1;
+                i {
+                    text-align: center;
+                    width: 30px;
+                }
+            }
+
+            input[type="radio"] {
+                margin-left: auto;
+            }
+
+            button {
+                flex: 1;
+                display: flex;
+                padding: 6px 40px 6px 6px;
+                height: fit-content;
+                img {
+                    width: 30px;
+                }
+                span {
+                    font-family: @font-body;
+                    flex: 1;
+                    font-weight: bold;
+                }
             }
         }
     }

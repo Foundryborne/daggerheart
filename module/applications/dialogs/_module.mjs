@@ -7,3 +7,4 @@ export { default as DeathMove } from './deathMove.mjs';
 export { default as Downtime } from './downtime.mjs';
 export { default as OwnershipSelection } from './ownershipSelection.mjs';
 export { default as ResourceDiceDialog } from './resourceDiceDialog.mjs';
+export { default as ActionSelectionDialog } from './actionSelectionDialog.mjs';
