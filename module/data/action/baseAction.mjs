@@ -27,7 +27,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             name: new fields.StringField({ initial: undefined }),
             description: new fields.HTMLField(),
             img: new fields.FilePathField({ initial: undefined, categories: ['IMAGE'], base64: false }),
-            chatDisplay: new fields.BooleanField({ initial: true, label: 'Display in chat' }),
+            chatDisplay: new fields.BooleanField({ initial: true, label: 'DAGGERHEART.ACTIONS.Config.displayInChat' }),
             actionType: new fields.StringField({
                 choices: CONFIG.DH.ITEM.actionTypes,
                 initial: 'action',

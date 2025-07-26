@@ -305,7 +305,7 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-pen-to-square',
                     condition: target => {
                         const doc = getDocFromElementSync(target);
-                        return doc && (!doc.hasOwnProperty('systemPath') || doc.inCollection);
+                        return !doc || !doc.hasOwnProperty('systemPath') || doc.inCollection;
                     },
                     callback: async target => (await getDocFromElement(target)).sheet.render({ force: true })
                 }

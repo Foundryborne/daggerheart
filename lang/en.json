@@ -33,7 +33,8 @@
                     "exact": "Beastform Max Tier",
                     "exactHint": "The Character's Tier is used if empty",
                     "label": "Beastform"
-                }
+                },
+                "displayInChat": "Display in chat"
             },
             "Settings": {
                 "attackBonus": "Attack Bonus",
