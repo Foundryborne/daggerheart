@@ -230,7 +230,7 @@ export default class DualityRoll extends D20Roll {
                 options: { appearance: {} }
             };
 
-            const diceSoNicePresets = await getDiceSoNicePresets();
+            const diceSoNicePresets = await getDiceSoNicePresets(`d${term._faces}`, `d${term._faces}`);
             const type = target.dataset.type;
             if (diceSoNicePresets[type]) {
                 diceSoNiceRoll.dice[0].options = diceSoNicePresets[type];
