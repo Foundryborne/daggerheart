@@ -253,7 +253,9 @@ export default class DhCharacter extends BaseDataActor {
                     roll: new fields.SchemaField({
                         trait: new fields.StringField({
                             required: true,
-                            initial: CONFIG.DH.ACTOR.abilities.strength.id,
+                            choices: CONFIG.DH.ACTOR.abilities,
+                            nullable: true,
+                            initial: null,
                             label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
                         })
                     })
@@ -544,6 +546,7 @@ export default class DhCharacter extends BaseDataActor {
     prepareDerivedData() {
         const baseHope = this.resources.hope.value + (this.companion?.system?.resources?.hope ?? 0);
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
+        this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
     }
 
     getRollData() {
