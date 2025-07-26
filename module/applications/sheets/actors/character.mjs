@@ -4,7 +4,7 @@ import { abilities } from '../../../config/actorConfig.mjs';
 import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
-import { getDocFromElement, itemAbleRollParse } from '../../../helpers/utils.mjs';
+import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -258,19 +258,27 @@ export default class CharacterSheet extends DHBaseActorSheet {
             {
                 name: 'toLoadout',
                 icon: 'fa-solid fa-arrow-up',
-                condition: target => getDocFromElement(target).system.inVault,
-                callback: target => {
-                    const doc = getDocFromElement(target),
-                        actorLoadout = doc.actor.system.loadoutSlot;
-                    if(actorLoadout.available) return doc.update({ 'system.inVault': false });
-                    ui.notifications.warn(game.i18n.format('DAGGERHEART.UI.Notifications.loadoutMaxReached', { max: actorLoadout.max }))
+                condition: target => {
+                    const doc = getDocFromElementSync(target);
+                    return doc && system.inVault;
+                },
+                callback: async target => {
+                    const doc = await getDocFromElement(target);
+                    const actorLoadout = doc.actor.system.loadoutSlot;
+                    if (actorLoadout.available) return doc.update({ 'system.inVault': false });
+                    ui.notifications.warn(
+                        game.i18n.format('DAGGERHEART.UI.Notifications.loadoutMaxReached', { max: actorLoadout.max })
+                    );
                 }
             },
             {
                 name: 'toVault',
                 icon: 'fa-solid fa-arrow-down',
-                condition: target => !getDocFromElement(target).system.inVault,
-                callback: target => getDocFromElement(target).update({ 'system.inVault': true })
+                condition: target => {
+                    const doc = getDocFromElementSync(target);
+                    return doc && !doc.system.inVault;
+                },
+                callback: async target => (await getDocFromElement(target)).update({ 'system.inVault': true })
             }
         ].map(option => ({
             ...option,
@@ -292,13 +300,19 @@ export default class CharacterSheet extends DHBaseActorSheet {
             {
                 name: 'equip',
                 icon: 'fa-solid fa-hands',
-                condition: target => !getDocFromElement(target).system.equipped,
+                condition: target => {
+                    const doc = getDocFromElementSync(target);
+                    return doc && !doc.system.equipped;
+                },
                 callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             },
             {
                 name: 'unequip',
                 icon: 'fa-solid fa-hands',
-                condition: target => getDocFromElement(target).system.equipped,
+                condition: target => {
+                    const doc = getDocFromElementSync(target);
+                    return doc && system.equipped;
+                },
                 callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             }
         ].map(option => ({
@@ -407,11 +421,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @param {HTMLElement} html     The container to filter items from.
      * @protected
      */
-    _onSearchFilterInventory(event, query, rgx, html) {
+    async _onSearchFilterInventory(_event, query, rgx, html) {
         this.#filteredItems.inventory.search.clear();
 
         for (const li of html.querySelectorAll('.inventory-item')) {
-            const item = getDocFromElement(li);
+            const item = await getDocFromElement(li);
             const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
             if (matchesSearch) this.#filteredItems.inventory.search.add(item.id);
             const { menu } = this.#filteredItems.inventory;
@@ -427,11 +441,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @param {HTMLElement} html     The container to filter items from.
      * @protected
      */
-    _onSearchFilterCard(event, query, rgx, html) {
+    async _onSearchFilterCard(_event, query, rgx, html) {
         this.#filteredItems.loadout.search.clear();
 
         for (const li of html.querySelectorAll('.items-list .inventory-item, .card-list .card-item')) {
-            const item = getDocFromElement(li);
+            const item = await getDocFromElement(li);
             const matchesSearch = !query || foundry.applications.ux.SearchFilter.testQuery(rgx, item.name);
             if (matchesSearch) this.#filteredItems.loadout.search.add(item.id);
             const { menu } = this.#filteredItems.loadout;
@@ -478,11 +492,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @param {HTMLElement} html
      * @param {import('../ux/filter-menu.mjs').FilterItem[]} filters
      */
-    _onMenuFilterInventory(event, html, filters) {
+    async _onMenuFilterInventory(_event, html, filters) {
         this.#filteredItems.inventory.menu.clear();
 
         for (const li of html.querySelectorAll('.inventory-item')) {
-            const item = getDocFromElement(li);
+            const item = await getDocFromElement(li);
 
             const matchesMenu =
                 filters.length === 0 || filters.some(f => foundry.applications.ux.SearchFilter.evaluateFilter(item, f));
@@ -499,11 +513,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @param {HTMLElement} html
      * @param {import('../ux/filter-menu.mjs').FilterItem[]} filters
      */
-    _onMenuFilterLoadout(event, html, filters) {
+    async _onMenuFilterLoadout(_event, html, filters) {
         this.#filteredItems.loadout.menu.clear();
 
         for (const li of html.querySelectorAll('.items-list .inventory-item, .card-list .card-item')) {
-            const item = getDocFromElement(li);
+            const item = await getDocFromElement(li);
 
             const matchesMenu =
                 filters.length === 0 || filters.some(f => foundry.applications.ux.SearchFilter.evaluateFilter(item, f));
@@ -519,7 +533,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     /* -------------------------------------------- */
 
     async updateItemResource(event) {
-        const item = getDocFromElement(event.currentTarget);
+        const item = await getDocFromElement(event.currentTarget);
         if (!item) return;
 
         const max = event.currentTarget.max ? Number(event.currentTarget.max) : null;
@@ -529,7 +543,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async updateItemQuantity(event) {
-        const item = getDocFromElement(event.currentTarget);
+        const item = await getDocFromElement(event.currentTarget);
         if (!item) return;
 
         await item.update({ 'system.quantity': event.currentTarget.value });
@@ -609,7 +623,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #toggleEquipItem(_event, button) {
-        const item = getDocFromElement(button);
+        const item = await getDocFromElement(button);
         if (!item) return;
         if (item.system.equipped) {
             await item.update({ 'system.equipped': false });
@@ -664,7 +678,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #toggleVault(_event, button) {
-        const doc = getDocFromElement(button);
+        const doc = await getDocFromElement(button);
         await doc?.update({ 'system.inVault': !doc.system.inVault });
     }
 
@@ -673,7 +687,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #toggleResourceDice(event, target) {
-        const item = getDocFromElement(target);
+        const item = await getDocFromElement(target);
 
         const { dice } = event.target.closest('.item-resource').dataset;
         const diceState = item.system.resource.diceStates[dice];
@@ -688,7 +702,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
      * @type {ApplicationClickAction}
      */
     static async #handleResourceDice(_, target) {
-        const item = getDocFromElement(target);
+        const item = await getDocFromElement(target);
         if (!item) return;
 
         const rollValues = await game.system.api.applications.dialogs.ResourceDiceDialog.create(item, this.document);
@@ -709,7 +723,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async _onDragStart(event) {
-        const item = getDocFromElement(event.target);
+        const item = await getDocFromElement(event.target);
 
         const dragData = {
             type: item.documentName,

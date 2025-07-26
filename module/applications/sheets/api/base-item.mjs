@@ -117,7 +117,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
             name: 'CONTROLS.CommonDelete',
             icon: '<i class="fa-solid fa-trash"></i>',
             callback: async target => {
-                const feature = getDocFromElement(target);
+                const feature = await getDocFromElement(target);
                 if (!feature) return;
                 const confirmed = await foundry.applications.api.DialogV2.confirm({
                     window: {
@@ -168,7 +168,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      */
     static async #deleteFeature(_, element) {
         const target = element.closest('[data-item-uuid]');
-        const feature = getDocFromElement(target);
+        const feature = await getDocFromElement(target);
         if (!feature) return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
         await this.document.update({
             'system.features': this.document.system.features

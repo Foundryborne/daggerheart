@@ -235,9 +235,25 @@ export const updateActorTokens = async (actor, update) => {
  * @param {HTMLElement} element - The DOM element to start the search from.
  * @returns {foundry.abstract.Document|null} The resolved document, or null if not found or invalid.
  */
-export function getDocFromElement(element) {
+export async function getDocFromElement(element) {
     const target = element.closest('[data-item-uuid]');
-    return foundry.utils.fromUuidSync(target.dataset.itemUuid) ?? null;
+    return (await foundry.utils.fromUuid(target.dataset.itemUuid)) ?? null;
+}
+
+/**
+ * Retrieves a Foundry document associated with the nearest ancestor element
+ * that has a `data-item-uuid` attribute.
+ * @param {HTMLElement} element - The DOM element to start the search from.
+ * @returns {foundry.abstract.Document|null} The resolved document, or null if not found, invalid
+ * or in embedded compendium collection.
+ */
+export function getDocFromElementSync(element) {
+    const target = element.closest('[data-item-uuid]');
+    try {
+        return foundry.utils.fromUuidSync(target.dataset.itemUuid) ?? null;
+    } catch (_) {
+        return null;
+    }
 }
 
 /**

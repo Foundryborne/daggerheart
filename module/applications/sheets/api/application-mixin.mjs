@@ -1,6 +1,5 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
-import { getDocFromElement, tagifyElement } from '../../../helpers/utils.mjs';
-import DHActionConfig from '../../sheets-configs/action-config.mjs';
+import { getDocFromElement, getDocFromElementSync, tagifyElement } from '../../../helpers/utils.mjs';
 
 /**
  * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction
@@ -259,14 +258,20 @@ export default function DHApplicationMixin(Base) {
                 {
                     name: 'disableEffect',
                     icon: 'fa-solid fa-lightbulb',
-                    condition: target => !getDocFromElement(target).disabled,
-                    callback: target => getDocFromElement(target).update({ disabled: true })
+                    condition: target => {
+                        const doc = getDocFromElementSync(target);
+                        return doc && !doc.disabled;
+                    },
+                    callback: async target => (await getDocFromElement(target)).update({ disabled: true })
                 },
                 {
                     name: 'enableEffect',
                     icon: 'fa-regular fa-lightbulb',
-                    condition: target => getDocFromElement(target).disabled,
-                    callback: target => getDocFromElement(target).update({ disabled: false })
+                    condition: target => {
+                        const doc = getDocFromElementSync(target);
+                        return doc && doc.disabled;
+                    },
+                    callback: async target => (await getDocFromElement(target)).update({ disabled: false })
                 }
             ].map(option => ({
                 ...option,
@@ -299,10 +304,10 @@ export default function DHApplicationMixin(Base) {
                     name: 'CONTROLS.CommonEdit',
                     icon: 'fa-solid fa-pen-to-square',
                     condition: target => {
-                        const doc = getDocFromElement(target);
-                        return !doc.hasOwnProperty('systemPath') || doc.inCollection;
+                        const doc = getDocFromElementSync(target);
+                        return doc && (!doc.hasOwnProperty('systemPath') || doc.inCollection);
                     },
-                    callback: target => getDocFromElement(target).sheet.render({ force: true })
+                    callback: async target => (await getDocFromElement(target)).sheet.render({ force: true })
                 }
             ];
 
@@ -311,25 +316,25 @@ export default function DHApplicationMixin(Base) {
                     name: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
                     icon: 'fa-solid fa-burst',
                     condition: target => {
-                        const doc = getDocFromElement(target);
-                        return !(doc.type === 'domainCard' && doc.system.inVault)
+                        const doc = getDocFromElementSync(target);
+                        return doc && !(doc.type === 'domainCard' && doc.system.inVault);
                     },
-                    callback: (target, event) => getDocFromElement(target).use(event)
+                    callback: async (target, event) => (await getDocFromElement(target)).use(event)
                 });
 
             if (toChat)
                 options.unshift({
                     name: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
                     icon: 'fa-solid fa-message',
-                    callback: target => getDocFromElement(target).toChat(this.document.id)
+                    callback: async target => (await getDocFromElement(target)).toChat(this.document.id)
                 });
 
             if (deletable)
                 options.push({
                     name: 'CONTROLS.CommonDelete',
                     icon: 'fa-solid fa-trash',
-                    callback: (target, event) => {
-                        const doc = getDocFromElement(target);
+                    callback: async (target, event) => {
+                        const doc = await getDocFromElement(target);
                         if (event.shiftKey) return doc.delete();
                         else return doc.deleteDialog();
                     }
@@ -371,7 +376,7 @@ export default function DHApplicationMixin(Base) {
             if (!actionId && !itemUuid) return;
 
             const doc = itemUuid
-                ? getDocFromElement(extensibleElement)
+                ? await getDocFromElement(extensibleElement)
                 : this.document.system.attack?.id === actionId
                   ? this.document.system.attack
                   : this.document.system.actions?.get(actionId);
@@ -429,8 +434,8 @@ export default function DHApplicationMixin(Base) {
          * Renders an embedded document.
          * @type {ApplicationClickAction}
          */
-        static #editDoc(_event, target) {
-            const doc = getDocFromElement(target);
+        static async #editDoc(_event, target) {
+            const doc = await getDocFromElement(target);
             if (doc) return doc.sheet.render({ force: true });
         }
 
@@ -439,7 +444,7 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #deleteDoc(event, target) {
-            const doc = getDocFromElement(target);
+            const doc = await getDocFromElement(target);
             if (doc) {
                 if (event.shiftKey) return doc.delete();
                 else return await doc.deleteDialog();
@@ -451,7 +456,7 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #toChat(_event, target) {
-            let doc = getDocFromElement(target);
+            let doc = await getDocFromElement(target);
             return doc.toChat(this.document.id);
         }
 
@@ -460,7 +465,7 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #useItem(event, target) {
-            let doc = getDocFromElement(target);
+            let doc = await getDocFromElement(target);
             await doc.use(event);
         }
 
@@ -469,7 +474,7 @@ export default function DHApplicationMixin(Base) {
          * @type {ApplicationClickAction}
          */
         static async #toggleEffect(_, target) {
-            const doc = getDocFromElement(target);
+            const doc = await getDocFromElement(target);
             await doc.update({ disabled: !doc.disabled });
         }
 
@@ -492,7 +497,7 @@ export default function DHApplicationMixin(Base) {
             const t = extensible?.classList.toggle('extended');
 
             const descriptionElement = extensible?.querySelector('.invetory-description');
-            if (t && !!descriptionElement) this.#prepareInventoryDescription(extensible, descriptionElement);
+            if (t && !!descriptionElement) await this.#prepareInventoryDescription(extensible, descriptionElement);
         }
     }
 
