@@ -215,7 +215,10 @@ export function ActionMixin(Base) {
                 await this.parent.updateSource({ [path]: updates }, options);
                 result = this.parent;
             } else {
-                result = await this.item.update({ [path]: updates }, options);
+                /* Fix me - For some reason updating the "healing" section in particular doesn't work without this */
+                await this.item.update({ [path]: updates }, options);
+                await this.item.updateSource({ [path]: updates }, options);
+                result = this.item;
             }
 
             return this.inCollection
