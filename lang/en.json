@@ -1561,7 +1561,11 @@
                         "foreground": "Foreground",
                         "background": "Background",
                         "outline": "Outline",
-                        "edge": "Edge"
+                        "edge": "Edge",
+                        "texture": "Texture",
+                        "colorset": "Theme",
+                        "material": "Material",
+                        "system": "Dice Preset"
                     }
                 },
                 "variantRules": {

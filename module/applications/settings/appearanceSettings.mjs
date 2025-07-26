@@ -59,8 +59,20 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         const context = await super._prepareContext(_options);
         context.settingFields = this.settings;
 
-        context.diceSoNiceTextures = game.dice3d?.exports?.TEXTURELIST ?? {};
-        context.diceSoNiceColorsets = game.dice3d?.exports?.COLORSETS ?? {};
+        context.showDiceSoNice = game.modules.get('dice-so-nice')?.active;
+        if (game.dice3d) {
+            context.diceSoNiceTextures = game.dice3d.exports.TEXTURELIST;
+            context.diceSoNiceColorsets = game.dice3d.exports.COLORSETS;
+            context.diceSoNiceMaterials = Object.keys(game.dice3d.DiceFactory.material_options).map(key => ({
+                key: key,
+                name: `DICESONICE.Material${key.capitalize()}`
+            }));
+            context.diceSoNiceSystems = [];
+            for (const [key, system] of game.dice3d.DiceFactory.systems.entries()) {
+                context.diceSoNiceSystems.push({ key, name: system.name });
+            }
+        }
+
         context.diceTab = {
             key: this.tabGroups.diceSoNice,
             source: this.settings._source.diceSoNice[this.tabGroups.diceSoNice],

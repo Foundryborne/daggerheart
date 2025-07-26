@@ -52,14 +52,13 @@ export const getCommandTarget = () => {
     return target;
 };
 
-export const setDiceSoNiceForDualityRoll = (rollResult, advantageState) => {
-    const diceSoNicePresets = getDiceSoNicePresets();
-    rollResult.dice[0].options = { appearance: diceSoNicePresets.hope };
-    rollResult.dice[1].options = { appearance: diceSoNicePresets.fear }; //diceSoNicePresets.fear;
+export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
+    const diceSoNicePresets = await getDiceSoNicePresets(hopeFaces, fearFaces, advantageFaces, advantageFaces);
+    rollResult.dice[0].options = diceSoNicePresets.hope;
+    rollResult.dice[1].options = diceSoNicePresets.fear;
     if (rollResult.dice[2] && advantageState) {
-        rollResult.dice[2].options = {
-            appearance: advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage
-        };
+        rollResult.dice[2].options =
+            advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage;
     }
 };
 

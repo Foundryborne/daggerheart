@@ -166,8 +166,8 @@ export default class DualityRoll extends D20Roll {
         return modifiers;
     }
 
-    static postEvaluate(roll, config = {}) {
-        const data = super.postEvaluate(roll, config);
+    static async postEvaluate(roll, config = {}) {
+        const data = await super.postEvaluate(roll, config);
 
         data.hope = {
             dice: roll.dHope.denomination,
@@ -198,7 +198,13 @@ export default class DualityRoll extends D20Roll {
         if (roll._rallyIndex && roll.data?.parent)
             roll.data.parent.deleteEmbeddedDocuments('ActiveEffect', [roll._rallyIndex]);
 
-        setDiceSoNiceForDualityRoll(roll, data.advantage.type);
+        await setDiceSoNiceForDualityRoll(
+            roll,
+            data.advantage.type,
+            data.hope.dice,
+            data.fear.dice,
+            data.advantage.dice
+        );
 
         return data;
     }
@@ -220,10 +226,10 @@ export default class DualityRoll extends D20Roll {
                 options: { appearance: {} }
             };
 
-            const diceSoNicePresets = getDiceSoNicePresets();
+            const diceSoNicePresets = await getDiceSoNicePresets();
             const type = target.dataset.type;
             if (diceSoNicePresets[type]) {
-                diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets[type] };
+                diceSoNiceRoll.dice[0].options = diceSoNicePresets[type];
             }
 
             await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
@@ -231,7 +237,7 @@ export default class DualityRoll extends D20Roll {
 
         await parsedRoll.evaluate();
 
-        const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
+        const newRoll = await game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
             targets: message.system.targets,
             roll: {
                 advantage: message.system.roll.advantage?.type,

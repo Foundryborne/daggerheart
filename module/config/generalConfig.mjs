@@ -369,42 +369,28 @@ export const diceSetNumbers = {
     flat: 'Flat'
 };
 
-export const getDiceSoNicePresets = () => {
+export const getDiceSoNicePresets = async (hopeFaces, fearFaces, advantageFaces = 'd6', disadvantageFaces = 'd6') => {
     const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+    const getPreset = async (type, faces) => {
+        const system = game.dice3d.DiceFactory.systems.get(type.system).dice.get(faces);
+        if (!system.modelLoaded) {
+            await system.loadModel(game.dice3d.DiceFactory.loaderGLTF);
+        }
+
+        return {
+            modelFile: system.modelFile,
+            appearance: {
+                ...system.appearance,
+                ...type
+            }
+        };
+    };
 
     return {
-        hope: {
-            ...diceSoNice.hope,
-            colorset: 'inspired',
-            texture: 'bloodmoon',
-            material: 'metal',
-            font: 'Arial Black',
-            system: 'standard'
-        },
-        fear: {
-            ...diceSoNice.fear,
-            colorset: 'bloodmoon',
-            texture: 'bloodmoon',
-            material: 'metal',
-            font: 'Arial Black',
-            system: 'standard'
-        },
-        advantage: {
-            ...diceSoNice.advantage,
-            colorset: 'bloodmoon',
-            texture: 'bloodmoon',
-            material: 'metal',
-            font: 'Arial Black',
-            system: 'standard'
-        },
-        disadvantage: {
-            ...diceSoNice.disadvantage,
-            colorset: 'bloodmoon',
-            texture: 'bloodmoon',
-            material: 'metal',
-            font: 'Arial Black',
-            system: 'standard'
-        }
+        hope: await getPreset(diceSoNice.hope, hopeFaces),
+        fear: await getPreset(diceSoNice.fear, fearFaces),
+        advantage: await getPreset(diceSoNice.advantage, advantageFaces),
+        disadvantage: await getPreset(diceSoNice.disadvantage, disadvantageFaces)
     };
 };
 
