@@ -94,6 +94,7 @@ export default class DhCharacter extends BaseDataActor {
                     img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',
+                    chatDisplay: false,
                     type: 'attack',
                     range: 'melee',
                     target: {
