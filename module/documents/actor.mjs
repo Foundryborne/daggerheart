@@ -1,5 +1,4 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
-import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 import { damageKeyToNumber } from '../helpers/utils.mjs';
@@ -584,7 +583,3 @@ export default class DhpActor extends Actor {
             });
     }
 }
-
-export const registerDHActorHooks = () => {
-    CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
-};

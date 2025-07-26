@@ -1,3 +1,6 @@
+import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
+import ReactionRollDialog from '../applications/dialogs/reactionRollDialog.mjs';
+
 export function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
         case socketEvent.GMUpdate:
@@ -68,6 +71,11 @@ export const registerSocketHooks = () => {
         }
     });
 };
+
+export const registerUserQueries = () => {
+    CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
+    CONFIG.queries.reactionRoll = ReactionRollDialog.reactionRollQuery;
+}
 
 export const emitAsGM = async (eventName, callback, update, uuid = null) => {
     if (!game.user.isGM) {
