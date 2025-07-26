@@ -144,6 +144,7 @@ export const defaultRestOptions = {
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.name'),
                     img: 'icons/magic/life/cross-worn-green.webp',
                     actionType: 'action',
+                    chatDisplay: false,
                     healing: {
                         applyTo: healingTypes.hitPoints.id,
                         value: {
@@ -168,6 +169,7 @@ export const defaultRestOptions = {
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.name'),
                     img: 'icons/magic/perception/eye-ringed-green.webp',
                     actionType: 'action',
+                    chatDisplay: false,
                     healing: {
                         applyTo: healingTypes.stress.id,
                         value: {
@@ -192,6 +194,7 @@ export const defaultRestOptions = {
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.name'),
                     img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
                     actionType: 'action',
+                    chatDisplay: false,
                     healing: {
                         applyTo: healingTypes.armorStack.id,
                         value: {
@@ -226,6 +229,7 @@ export const defaultRestOptions = {
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.name'),
                     img: 'icons/magic/life/cross-worn-green.webp',
                     actionType: 'action',
+                    chatDisplay: false,
                     healing: {
                         applyTo: healingTypes.hitPoints.id,
                         value: {
@@ -250,6 +254,7 @@ export const defaultRestOptions = {
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.name'),
                     img: 'icons/magic/perception/eye-ringed-green.webp',
                     actionType: 'action',
+                    chatDisplay: false,
                     healing: {
                         applyTo: healingTypes.stress.id,
                         value: {
@@ -274,6 +279,7 @@ export const defaultRestOptions = {
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.name'),
                     img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
                     actionType: 'action',
+                    chatDisplay: false,
                     healing: {
                         applyTo: healingTypes.armorStack.id,
                         value: {
