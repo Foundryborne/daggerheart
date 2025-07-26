@@ -136,7 +136,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                     ...move,
                     name: game.i18n.localize(move.name),
                     description: game.i18n.localize(move.description),
-                    actions: Object.keys(move.actions).reduce((acc, key) => {
+                    actions: move.actions.reduce((acc, key) => {
                         const action = move.actions[key];
                         acc[key] = {
                             ...action,
