@@ -1243,6 +1243,9 @@
                 "attack": {
                     "damage": {
                         "value": { "label": "Base Attack: Damage" }
+                    },
+                    "roll": {
+                        "trait": { "label": "Base Attack: Trait" }
                     }
                 }
             },
@@ -1593,6 +1596,10 @@
                         "hint": "test"
                     }
                 }
+            },
+            "ResetSettings": {
+                "resetConfirmationTitle": "Reset Settings",
+                "resetConfirmationText": "Are you sure you want to reset the {settings}?"
             }
         },
         "UI": {

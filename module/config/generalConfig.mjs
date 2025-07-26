@@ -141,6 +141,7 @@ export const defaultRestOptions = {
             actions: {
                 tendToWounds: {
                     type: 'healing',
+                    systemPath: 'restMoves.shortRest.moves.tendToWounds.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.tendToWounds.name'),
                     img: 'icons/magic/life/cross-worn-green.webp',
                     actionType: 'action',
@@ -166,6 +167,7 @@ export const defaultRestOptions = {
             actions: {
                 clearStress: {
                     type: 'healing',
+                    systemPath: 'restMoves.shortRest.moves.clearStress.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.clearStress.name'),
                     img: 'icons/magic/perception/eye-ringed-green.webp',
                     actionType: 'action',
@@ -191,6 +193,7 @@ export const defaultRestOptions = {
             actions: {
                 repairArmor: {
                     type: 'healing',
+                    systemPath: 'restMoves.shortRest.moves.repairArmor.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.shortRest.repairArmor.name'),
                     img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
                     actionType: 'action',
@@ -226,6 +229,7 @@ export const defaultRestOptions = {
             actions: {
                 tendToWounds: {
                     type: 'healing',
+                    systemPath: 'restMoves.longRest.moves.tendToWounds.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.tendToWounds.name'),
                     img: 'icons/magic/life/cross-worn-green.webp',
                     actionType: 'action',
@@ -251,6 +255,7 @@ export const defaultRestOptions = {
             actions: {
                 clearStress: {
                     type: 'healing',
+                    systemPath: 'restMoves.longRest.moves.clearStress.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.clearStress.name'),
                     img: 'icons/magic/perception/eye-ringed-green.webp',
                     actionType: 'action',
@@ -276,6 +281,7 @@ export const defaultRestOptions = {
             actions: {
                 repairArmor: {
                     type: 'healing',
+                    systemPath: 'restMoves.longRest.moves.repairArmor.actions',
                     name: game.i18n.localize('DAGGERHEART.APPLICATIONS.Downtime.longRest.repairArmor.name'),
                     img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
                     actionType: 'action',

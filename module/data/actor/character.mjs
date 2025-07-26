@@ -204,7 +204,7 @@ export default class DhCharacter extends BaseDataActor {
                         })
                     })
                 }),
-                maxLoadout : new fields.NumberField({
+                maxLoadout: new fields.NumberField({
                     integer: true,
                     initial: 0,
                     label: 'DAGGERHEART.GENERAL.Bonuses.maxLoadout.label'
@@ -248,6 +248,13 @@ export default class DhCharacter extends BaseDataActor {
                             required: true,
                             initial: '@profd4',
                             label: 'DAGGERHEART.GENERAL.Rules.attack.damage.value.label'
+                        })
+                    }),
+                    roll: new fields.SchemaField({
+                        trait: new fields.StringField({
+                            required: true,
+                            initial: CONFIG.DH.ACTOR.abilities.strength.id,
+                            label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
                         })
                     })
                 }),
@@ -329,13 +336,15 @@ export default class DhCharacter extends BaseDataActor {
 
     get loadoutSlot() {
         const loadoutCount = this.domainCards.loadout?.length ?? 0,
-            max = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout + this.bonuses.maxLoadout;
+            max =
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout +
+                this.bonuses.maxLoadout;
 
         return {
             current: loadoutCount,
             available: Math.max(max - loadoutCount, 0),
             max
-        }
+        };
     }
 
     get armor() {
