@@ -47,7 +47,7 @@ export default class DHRoll extends Roll {
 
     static async buildEvaluate(roll, config = {}, message = {}) {
         if (config.evaluate !== false) await roll.evaluate();
-        config.roll = await this.postEvaluate(roll, config);
+        config.roll = this.postEvaluate(roll, config);
     }
 
     static async buildPost(roll, config, message) {
@@ -67,7 +67,7 @@ export default class DHRoll extends Roll {
         } else config.message = await this.toMessage(roll, config);
     }
 
-    static async postEvaluate(roll, config = {}) {
+    static postEvaluate(roll, config = {}) {
         return {
             total: roll.total,
             formula: roll.formula,

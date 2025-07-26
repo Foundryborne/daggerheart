@@ -25,10 +25,10 @@ export default class DamageRoll extends DHRoll {
         config.roll = this.unifyDamageRoll(parts);
     }
 
-    static async postEvaluate(roll, config = {}) {
+    static postEvaluate(roll, config = {}) {
         return {
             ...roll,
-            ...(await super.postEvaluate(roll.roll, config)),
+            ...super.postEvaluate(roll.roll, config),
             damageTypes: [...(roll.damageTypes ?? [])],
             roll: roll.roll,
             type: config.type,

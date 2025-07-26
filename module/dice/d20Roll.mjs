@@ -140,8 +140,8 @@ export default class D20Roll extends DHRoll {
         return modifiers;
     }
 
-    static async postEvaluate(roll, config = {}) {
-        const data = await super.postEvaluate(roll, config);
+    static postEvaluate(roll, config = {}) {
+        const data = super.postEvaluate(roll, config);
         if (config.targets?.length) {
             config.targets.forEach(target => {
                 const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
@@ -184,7 +184,7 @@ export default class D20Roll extends DHRoll {
     static async reroll(rollString, _target, message) {
         let parsedRoll = game.system.api.dice.D20Roll.fromData(rollString);
         parsedRoll = await parsedRoll.reroll();
-        const newRoll = await game.system.api.dice.D20Roll.postEvaluate(parsedRoll, {
+        const newRoll = game.system.api.dice.D20Roll.postEvaluate(parsedRoll, {
             targets: message.system.targets,
             roll: {
                 advantage: message.system.roll.advantage?.type,

@@ -175,7 +175,10 @@ export function ActionMixin(Base) {
                         classes: ['daggerheart', 'dh-style'],
                         content: await foundry.applications.handlebars.renderTemplate(
                             'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                            { types: CONFIG.DH.ACTIONS.actionTypes }
+                            {
+                                types: CONFIG.DH.ACTIONS.actionTypes,
+                                itemName: parent.parent?.name
+                            }
                         ),
                         ok: {
                             label: game.i18n.format('DOCUMENT.Create', {
