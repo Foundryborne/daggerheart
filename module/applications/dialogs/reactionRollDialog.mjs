@@ -13,7 +13,7 @@ export default class ReactionRollDialog extends HandlebarsApplicationMixin(Appli
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'views', 'damage-reduction'],
+        classes: ['daggerheart', 'views'],
         position: {
             width: 240,
             height: 'auto'
@@ -32,9 +32,9 @@ export default class ReactionRollDialog extends HandlebarsApplicationMixin(Appli
 
     /** @override */
     static PARTS = {
-        damageSelection: {
-            id: 'damageReduction',
-            template: 'systems/daggerheart/templates/dialogs/damageReduction.hbs'
+        reactionRoll: {
+            id: 'reactionRoll',
+            template: 'systems/daggerheart/templates/dialogs/reactionRoll.hbs'
         }
     };
 
@@ -42,7 +42,7 @@ export default class ReactionRollDialog extends HandlebarsApplicationMixin(Appli
 
     /** @inheritDoc */
     get title() {
-        return game.i18n.localize('DAGGERHEART.APPLICATIONS.DamageReduction.title');
+        return game.i18n.format('DAGGERHEART.APPLICATIONS.ReactionRoll.title', { trait: game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${this.trait}.name`) });
     }
 
     async _prepareContext(_options) {

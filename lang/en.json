@@ -442,6 +442,9 @@
                 "title": "Ownership Selection - {name}",
                 "default": "Default Ownership"
             },
+            "ReactionRoll": {
+                "title": "Reaction Roll: {trait}"
+            },
             "ResourceDice": {
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
