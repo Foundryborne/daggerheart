@@ -166,8 +166,20 @@ export default class DualityRoll extends D20Roll {
         return modifiers;
     }
 
-    static async postEvaluate(roll, config = {}) {
-        const data = await super.postEvaluate(roll, config);
+    static async buildEvaluate(roll, config = {}, message = {}) {
+        await super.buildEvaluate(roll, config, message);
+
+        await setDiceSoNiceForDualityRoll(
+            roll,
+            config.roll.advantage.type,
+            config.roll.hope.dice,
+            config.roll.fear.dice,
+            config.roll.advantage.dice
+        );
+    }
+
+    static postEvaluate(roll, config = {}) {
+        const data = super.postEvaluate(roll, config);
 
         data.hope = {
             dice: roll.dHope.denomination,
@@ -197,14 +209,6 @@ export default class DualityRoll extends D20Roll {
 
         if (roll._rallyIndex && roll.data?.parent)
             roll.data.parent.deleteEmbeddedDocuments('ActiveEffect', [roll._rallyIndex]);
-
-        await setDiceSoNiceForDualityRoll(
-            roll,
-            data.advantage.type,
-            data.hope.dice,
-            data.fear.dice,
-            data.advantage.dice
-        );
 
         return data;
     }
@@ -237,7 +241,7 @@ export default class DualityRoll extends D20Roll {
 
         await parsedRoll.evaluate();
 
-        const newRoll = await game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
+        const newRoll = game.system.api.dice.DualityRoll.postEvaluate(parsedRoll, {
             targets: message.system.targets,
             roll: {
                 advantage: message.system.roll.advantage?.type,
