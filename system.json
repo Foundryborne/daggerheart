@@ -119,10 +119,10 @@
             "flags": {}
         },
         {
-            "name": "miscellaneous",
-            "label": "Miscellaneous",
+            "name": "Loot",
+            "label": "Loot",
             "system": "daggerheart",
-            "path": "packs/items/miscellaneous.db",
+            "path": "packs/items/loot.db",
             "type": "Item",
             "private": false,
             "flags": {}
