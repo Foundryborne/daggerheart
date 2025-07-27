@@ -311,7 +311,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 icon: 'fa-solid fa-hands',
                 condition: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && system.equipped;
+                    return doc && doc.system.equipped;
                 },
                 callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             }

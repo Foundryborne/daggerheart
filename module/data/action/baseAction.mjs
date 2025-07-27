@@ -305,7 +305,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 title: 'Roll Save',
                 roll: {
                     trait: this.save.trait,
-                    difficulty: this.save.difficulty,
+                    difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
                     type: 'reaction'
                 },
                 data: target.actor.getRollData()

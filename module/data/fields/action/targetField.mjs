@@ -6,8 +6,7 @@ export default class TargetField extends fields.SchemaField {
             type: new fields.StringField({
                 choices: CONFIG.DH.ACTIONS.targetTypes,
                 initial: CONFIG.DH.ACTIONS.targetTypes.any.id,
-                nullable: true,
-                initial: null
+                nullable: true
             }),
             amount: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 })
         };
