@@ -22,14 +22,14 @@ function getDualityMessage(roll) {
         : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
     const advantage = roll.advantage
-        ? CONFIG.DH.ACTIONS.advandtageState.advantage.value
+        ? CONFIG.DH.ACTIONS.advantageState.advantage.value
         : roll.disadvantage
-          ? CONFIG.DH.ACTIONS.advandtageState.disadvantage.value
+          ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
           : undefined;
     const advantageLabel =
-        advantage === CONFIG.DH.ACTIONS.advandtageState.advantage.value
+        advantage === CONFIG.DH.ACTIONS.advantageState.advantage.value
             ? 'Advantage'
-            : advantage === CONFIG.DH.ACTIONS.advandtageState.disadvantage.value
+            : advantage === CONFIG.DH.ACTIONS.advantageState.disadvantage.value
               ? 'Disadvantage'
               : undefined;
 

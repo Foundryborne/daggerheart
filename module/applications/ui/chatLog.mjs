@@ -66,8 +66,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         super.close(options);
     }
 
-    async getActor(id) {
-        return await fromUuid(id);
+    async getActor(uuid) {
+        return await foundry.utils.fromUuid(uuid);
     }
 
     getAction(actor, itemId, actionId) {

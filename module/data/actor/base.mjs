@@ -1,10 +1,23 @@
 import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
 
-const resistanceField = reductionLabel =>
+const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
     new foundry.data.fields.SchemaField({
-        resistance: new foundry.data.fields.BooleanField({ initial: false }),
-        immunity: new foundry.data.fields.BooleanField({ initial: false }),
-        reduction: new foundry.data.fields.NumberField({ integer: true, initial: 0, label: reductionLabel })
+        resistance: new foundry.data.fields.BooleanField({
+            initial: false,
+            label: `${resistanceLabel}.label`,
+            hint: `${resistanceLabel}.hint`
+        }),
+        immunity: new foundry.data.fields.BooleanField({
+            initial: false,
+            label: `${immunityLabel}.label`,
+            hint: `${immunityLabel}.hint`
+        }),
+        reduction: new foundry.data.fields.NumberField({
+            integer: true,
+            initial: 0,
+            label: `${reductionLabel}.label`,
+            hint: `${reductionLabel}.hint`
+        })
     });
 
 /**
@@ -40,8 +53,16 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         if (this.metadata.isNPC) schema.description = new fields.HTMLField({ required: true, nullable: true });
         if (this.metadata.hasResistances)
             schema.resistance = new fields.SchemaField({
-                physical: resistanceField('DAGGERHEART.GENERAL.DamageResistance.physicalReduction'),
-                magical: resistanceField('DAGGERHEART.GENERAL.DamageResistance.magicalReduction')
+                physical: resistanceField(
+                    'DAGGERHEART.GENERAL.DamageResistance.physicalResistance',
+                    'DAGGERHEART.GENERAL.DamageResistance.physicalImmunity',
+                    'DAGGERHEART.GENERAL.DamageResistance.physicalReduction'
+                ),
+                magical: resistanceField(
+                    'DAGGERHEART.GENERAL.DamageResistance.magicalResistance',
+                    'DAGGERHEART.GENERAL.DamageResistance.magicalImmunity',
+                    'DAGGERHEART.GENERAL.DamageResistance.magicalReduction'
+                )
             });
         return schema;
     }

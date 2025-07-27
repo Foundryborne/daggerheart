@@ -45,12 +45,12 @@ export default class DhCharacter extends BaseDataActor {
                 severe: new fields.NumberField({
                     integer: true,
                     initial: 0,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
                 }),
                 major: new fields.NumberField({
                     integer: true,
                     initial: 0,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
                 })
             }),
             experiences: new fields.TypedObjectField(

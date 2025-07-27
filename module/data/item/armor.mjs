@@ -1,5 +1,4 @@
 import AttachableItem from './attachableItem.mjs';
-import { ActionsField } from '../fields/actionField.mjs';
 import { armorFeatures } from '../../config/itemConfig.mjs';
 
 export default class DHArmor extends AttachableItem {

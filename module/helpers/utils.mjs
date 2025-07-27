@@ -271,14 +271,14 @@ export function addLinkedItemsDiff(changedItems, currentItems, options) {
             newItems
                 .difference(prevItems)
                 .map(item => item?.item ?? item)
-                .filter(x => (typeof x === 'object' ? x.item : x))
+                .filter(x => (typeof x === 'object' ? x?.item : x))
         );
 
         options.toUnlink = Array.from(
             prevItems
                 .difference(newItems)
                 .map(item => item?.item?.uuid ?? item?.uuid ?? item)
-                .filter(x => (typeof x === 'object' ? x.item : x))
+                .filter(x => (typeof x === 'object' ? x?.item : x))
         );
     }
 }

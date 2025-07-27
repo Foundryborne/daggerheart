@@ -196,9 +196,9 @@ Hooks.on('chatMessage', (_, message) => {
 
         const traitValue = rollCommand.trait?.toLowerCase();
         const advantage = rollCommand.advantage
-            ? CONFIG.DH.ACTIONS.advandtageState.advantage.value
+            ? CONFIG.DH.ACTIONS.advantageState.advantage.value
             : rollCommand.disadvantage
-              ? CONFIG.DH.ACTIONS.advandtageState.disadvantage.value
+              ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
               : undefined;
         const difficulty = rollCommand.difficulty;
 

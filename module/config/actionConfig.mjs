@@ -108,7 +108,7 @@ export const diceCompare = {
     }
 };
 
-export const advandtageState = {
+export const advantageState = {
     disadvantage: {
         label: 'DAGGERHEART.GENERAL.Disadvantage.full',
         value: -1

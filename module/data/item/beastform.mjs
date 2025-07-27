@@ -152,12 +152,14 @@ export default class DHBeastform extends BaseDataItem {
     _onCreate(_data, _options, userId) {
         if (userId !== game.user.id) return;
 
-        this.parent.createEmbeddedDocuments('ActiveEffect', [
-            {
-                type: 'beastform',
-                name: game.i18n.localize('DAGGERHEART.ITEMS.Beastform.beastformEffect'),
-                img: 'icons/creatures/abilities/paw-print-pair-purple.webp'
-            }
-        ]);
+        if (!this.parent.effects.find(x => x.type === 'beastform')) {
+            this.parent.createEmbeddedDocuments('ActiveEffect', [
+                {
+                    type: 'beastform',
+                    name: game.i18n.localize('DAGGERHEART.ITEMS.Beastform.beastformEffect'),
+                    img: 'icons/creatures/abilities/paw-print-pair-purple.webp'
+                }
+            ]);
+        }
     }
 }

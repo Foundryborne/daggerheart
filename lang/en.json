@@ -28,26 +28,6 @@
     },
     "DAGGERHEART": {
         "ACTIONS": {
-            "Config": {
-                "beastform": {
-                    "exact": "Beastform Max Tier",
-                    "exactHint": "The Character's Tier is used if empty",
-                    "label": "Beastform"
-                },
-                "displayInChat": "Display in chat"
-            },
-            "Settings": {
-                "attackBonus": "Attack Bonus",
-                "attackName": "Attack Name",
-                "includeBase": { "label": "Include Item Damage" },
-                "multiplier": "Multiplier",
-                "resultBased": {
-                    "label": "Formula based on Hope/Fear result."
-                },
-                "applyTo": {
-                    "label": "Targeted Resource"
-                }
-            },
             "TYPES": {
                 "attack": {
                     "name": "Attack",
@@ -76,6 +56,35 @@
                 "summon": {
                     "name": "Summon",
                     "tooltip": "Create tokens in the scene."
+                }
+            },
+            "Config": {
+                "beastform": {
+                    "exact": "Beastform Max Tier",
+                    "exactHint": "The Character's Tier is used if empty",
+                    "label": "Beastform"
+                },
+                "displayInChat": "Display in chat"
+            },
+            "RollField": {
+                "diceRolling": {
+                    "compare": "Should be",
+                    "dice": "Dice Type",
+                    "flatMultiplier": "Flat Multiplier",
+                    "multiplier": "Dice Number",
+                    "threshold": "Threshold"
+                }
+            },
+            "Settings": {
+                "attackBonus": "Attack Bonus",
+                "attackName": "Attack Name",
+                "includeBase": { "label": "Include Item Damage" },
+                "multiplier": "Multiplier",
+                "resultBased": {
+                    "label": "Formula based on Hope/Fear result."
+                },
+                "applyTo": {
+                    "label": "Targeted Resource"
                 }
             }
         },
@@ -1107,10 +1116,30 @@
             },
             "DamageResistance": {
                 "none": "None",
-                "resistance": "Resistance",
-                "immunity": "Immunity",
-                "physicalReduction": "Physical Damage Reduction",
-                "magicalReduction": "Magical Damage Reduction"
+                "physicalResistance": {
+                    "label": "Damage Resistance: Physical",
+                    "hint": "Physical Damage is halved if this is set to 1"
+                },
+                "magicalResistance": {
+                    "label": "Damage Resistance: Magical",
+                    "hint": "Magical Damage is halved if this is set to 1"
+                },
+                "physicalImmunity": {
+                    "label": "Damage Immunity: Physical",
+                    "hint": "Immune to Physical Damage if this is set to 1"
+                },
+                "magicalImmunity": {
+                    "label": "Damage Immunity: Magical",
+                    "hint": "Immune to Magical Damage if this is set to 1"
+                },
+                "physicalReduction": {
+                    "label": "Damage Reduction: Physical",
+                    "hint": "Physical Damage is reduced by the amount set here"
+                },
+                "magicalReduction": {
+                    "label": "Damage Reduction: Magical",
+                    "hint": "Magical Damage is reduced by the amount set here"
+                }
             },
             "DamageThresholds": {
                 "title": "Damage Thresholds",

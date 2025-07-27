@@ -249,12 +249,20 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const target = event.target.closest('fieldset.drop-section');
         const item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
-            await this.document.update({
-                'system.features': [...this.document.system.features, { type: target.dataset.type, item }].map(x => ({
-                    ...x,
-                    item: x.item?.uuid
-                }))
-            });
+            if (target.dataset.type) {
+                await this.document.update({
+                    'system.features': [...this.document.system.features, { type: target.dataset.type, item }].map(
+                        x => ({
+                            ...x,
+                            item: x.item?.uuid
+                        })
+                    )
+                });
+            } else {
+                await this.document.update({
+                    'system.features': [...this.document.system.features, item].map(x => x.uuid)
+                });
+            }
         }
     }
 }
