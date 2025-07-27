@@ -31,21 +31,24 @@ export function rollCommandToJSON(text) {
     return Object.keys(result).length > 0 ? result : null;
 }
 
-export const getCommandTarget = () => {
+export const getCommandTarget = (options = {}) => {
+    const { allowNull = false } = options;
     let target = game.canvas.tokens.controlled.length > 0 ? game.canvas.tokens.controlled[0].actor : null;
     if (!game.user.isGM) {
         target = game.user.character;
-        if (!target) {
+        if (!target && !allowNull) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noAssignedPlayerCharacter'));
             return null;
         }
     }
-    if (!target) {
+    if (!target && !allowNull) {
         ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noSelectedToken'));
         return null;
     }
-    if (target.type !== 'character') {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyUseableByPC'));
+    if (target && target.type !== 'character') {
+        if (!allowNull) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyUseableByPC'));
+        }
         return null;
     }
 

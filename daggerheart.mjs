@@ -202,7 +202,7 @@ Hooks.on('chatMessage', (_, message) => {
               : undefined;
         const difficulty = rollCommand.difficulty;
 
-        const target = getCommandTarget();
+        const target = getCommandTarget({ allowNull: true });
         const title = traitValue
             ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                   ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)

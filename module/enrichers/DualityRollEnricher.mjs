@@ -58,7 +58,7 @@ function getDualityMessage(roll) {
 export const renderDualityButton = async event => {
     const button = event.currentTarget,
         traitValue = button.dataset.trait?.toLowerCase(),
-        target = getCommandTarget(),
+        target = getCommandTarget({ allowNull: true }),
         difficulty = button.dataset.difficulty,
         advantage = button.dataset.advantage ? Number(button.dataset.advantage) : undefined;
 
@@ -80,13 +80,11 @@ export const enrichedDualityRoll = async (
     { traitValue, target, difficulty, title, label, actionType, advantage },
     event
 ) => {
-    if (!target) return;
-
     const config = {
         event: event ?? {},
         title: title,
         roll: {
-            modifier: traitValue ? target.system.traits[traitValue].value : null,
+            modifier: traitValue && target ? target.system.traits[traitValue].value : null,
             label: label,
             difficulty: difficulty,
             advantage,
@@ -96,5 +94,13 @@ export const enrichedDualityRoll = async (
             template: 'systems/daggerheart/templates/ui/chat/duality-roll.hbs'
         }
     };
-    await target.diceRoll(config);
+
+    if (target) {
+        await target.diceRoll(config);
+    } else {
+        // For no target, call DualityRoll directly with basic data
+        config.data = { experiences: {}, traits: {} };
+        config.source = { actor: null };
+        await CONFIG.Dice.daggerheart.DualityRoll.build(config);
+    }
 };
