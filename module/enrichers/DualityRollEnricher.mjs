@@ -84,7 +84,7 @@ export const enrichedDualityRoll = async (
         event: event ?? {},
         title: title,
         roll: {
-            modifier: traitValue && target ? target.system.traits[traitValue].value : null,
+            trait: traitValue && target ? traitValue : null,
             label: label,
             difficulty: difficulty,
             advantage,
