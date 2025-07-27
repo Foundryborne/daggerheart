@@ -1272,7 +1272,11 @@
                 },
                 "attack": {
                     "damage": {
-                        "value": { "label": "Base Attack: Damage" }
+                        "dice": {
+                            "label": "Base Attack: Damage Dice Index",
+                            "hint": "Index for the damage dice used on the basic attack. 0=d4, 1=d6, 2=d8, 3=d10, 4=d12, 5=d20"
+                        },
+                        "bonus": { "label": "Base Attack: Damage Bonus" }
                     },
                     "roll": {
                         "trait": { "label": "Base Attack: Trait" }

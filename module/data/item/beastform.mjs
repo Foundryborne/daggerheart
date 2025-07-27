@@ -94,10 +94,13 @@ export default class DHBeastform extends BaseDataItem {
             return false;
         }
 
-        const features = await this.parent.parent.createEmbeddedDocuments(
-            'Item',
-            this.features.map(x => x.toObject())
-        );
+        const beastformFeatures = [];
+        for (let featureData of this.features) {
+            const feature = await foundry.utils.fromUuid(featureData.uuid);
+            beastformFeatures.push(feature.toObject());
+        }
+
+        const features = await this.parent.parent.createEmbeddedDocuments('Item', beastformFeatures);
 
         const extraEffects = await this.parent.parent.createEmbeddedDocuments(
             'ActiveEffect',

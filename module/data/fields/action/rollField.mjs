@@ -10,12 +10,12 @@ export class DHActionRollData extends foundry.abstract.DataModel {
             bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
             advState: new fields.StringField({
                 choices: CONFIG.DH.ACTIONS.advantageState,
-                initial: CONFIG.DH.ACTIONS.advantageState.neutral.label
+                initial: 'neutral'
             }),
             diceRolling: new fields.SchemaField({
                 multiplier: new fields.StringField({
                     choices: CONFIG.DH.GENERAL.diceSetNumbers,
-                    initial: CONFIG.DH.GENERAL.diceSetNumbers.prof,
+                    initial: 'prof',
                     label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.multiplier'
                 }),
                 flatMultiplier: new fields.NumberField({

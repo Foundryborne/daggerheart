@@ -112,7 +112,7 @@ export default class DhCharacter extends BaseDataActor {
                                 value: {
                                     custom: {
                                         enabled: true,
-                                        formula: '@system.rules.attack.damage.value'
+                                        formula: '@profd4'
                                     }
                                 }
                             }
@@ -244,10 +244,19 @@ export default class DhCharacter extends BaseDataActor {
                 }),
                 attack: new fields.SchemaField({
                     damage: new fields.SchemaField({
-                        value: new fields.StringField({
+                        diceIndex: new fields.NumberField({
+                            integer: true,
+                            min: 0,
+                            max: 5,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.hint'
+                        }),
+                        bonus: new fields.NumberField({
                             required: true,
-                            initial: '@profd4',
-                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.value.label'
+                            initial: 0,
+                            min: 0,
+                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.bonus.label'
                         })
                     }),
                     roll: new fields.SchemaField({
@@ -547,6 +556,10 @@ export default class DhCharacter extends BaseDataActor {
         const baseHope = this.resources.hope.value + (this.companion?.system?.resources?.hope ?? 0);
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
+
+        const diceTypes = Object.keys(CONFIG.DH.GENERAL.diceTypes);
+        const attackDiceIndex = Math.max(Math.min(this.rules.attack.damage.diceIndex, 5), 0);
+        this.attack.damage.parts[0].value.custom.formula = `@prof${diceTypes[attackDiceIndex]}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
     }
 
     getRollData() {
