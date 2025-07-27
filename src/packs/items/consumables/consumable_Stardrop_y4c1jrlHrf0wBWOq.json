@@ -1,0 +1,86 @@
+{
+  "name": "Stardrop",
+  "type": "consumable",
+  "_id": "y4c1jrlHrf0wBWOq",
+  "img": "icons/magic/light/projectiles-star-purple.webp",
+  "system": {
+    "description": "<p>You can use this stardrop to summon a hailstorm of comets that deals 8d20 physical damage to all targets within Very Far range.</p>",
+    "quantity": 1,
+    "actions": {
+      "pt5U6hlyx4T7MUOa": {
+        "type": "damage",
+        "_id": "pt5U6hlyx4T7MUOa",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 8,
+                "dice": "d20",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Use",
+        "img": "icons/magic/light/projectiles-star-purple.webp",
+        "range": "veryFar"
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753592933782,
+    "modifiedTime": 1753593062814,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!y4c1jrlHrf0wBWOq"
+}

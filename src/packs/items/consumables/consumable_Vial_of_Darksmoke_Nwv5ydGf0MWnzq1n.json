@@ -1,0 +1,55 @@
+{
+  "name": "Vial of Darksmoke",
+  "type": "consumable",
+  "_id": "Nwv5ydGf0MWnzq1n",
+  "img": "icons/consumables/potions/bottle-bulb-empty-glass.webp",
+  "system": {
+    "description": "<p>When an adversary attacks you, use  this vial and roll a number of d6s equal to your Agility. Add the highest result to your Evasion against the attack.</p>",
+    "quantity": 1,
+    "actions": {
+      "4nFnAoyH5dENizsx": {
+        "type": "effect",
+        "_id": "4nFnAoyH5dENizsx",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "reaction",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/consumables/potions/bottle-bulb-empty-glass.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753588345314,
+    "modifiedTime": 1753616649293,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!Nwv5ydGf0MWnzq1n"
+}

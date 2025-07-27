@@ -1,0 +1,105 @@
+{
+  "name": "Major Charm Potion",
+  "type": "consumable",
+  "_id": "IJLAUlQymbSjzsri",
+  "img": "icons/consumables/potions/potion-bottle-corked-blue.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your Presence until your next rest.</p>",
+    "quantity": 1,
+    "actions": {
+      "Bz6oZUN317mLvQSk": {
+        "type": "effect",
+        "_id": "Bz6oZUN317mLvQSk",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "3iXv9QiuLGOfDCi2",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/potion-bottle-corked-blue.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Major Charm Potion",
+      "img": "icons/consumables/potions/potion-bottle-corked-blue.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.IJLAUlQymbSjzsri",
+      "transfer": false,
+      "_id": "3iXv9QiuLGOfDCi2",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.presence.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753589854495,
+        "modifiedTime": 1753589862607,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!IJLAUlQymbSjzsri.3iXv9QiuLGOfDCi2"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753589816684,
+    "modifiedTime": 1753589854510,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!IJLAUlQymbSjzsri"
+}

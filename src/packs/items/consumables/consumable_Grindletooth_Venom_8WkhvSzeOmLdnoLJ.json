@@ -1,0 +1,86 @@
+{
+  "name": "Grindletooth Venom",
+  "type": "consumable",
+  "_id": "8WkhvSzeOmLdnoLJ",
+  "img": "icons/consumables/potions/bottle-conical-corked-labeled-skull-poison-green.webp",
+  "system": {
+    "description": "<p>You can apply this venom to a weapon that deals physical damage to add a d6 to your next damage roll with that weapon.</p>",
+    "quantity": 1,
+    "actions": {
+      "PxLGZBoJCS0L4QZl": {
+        "type": "damage",
+        "_id": "PxLGZBoJCS0L4QZl",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "effects": [],
+        "name": "Apply Venom",
+        "img": "icons/consumables/potions/bottle-conical-corked-labeled-skull-poison-green.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753587386639,
+    "modifiedTime": 1753587966903,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!8WkhvSzeOmLdnoLJ"
+}

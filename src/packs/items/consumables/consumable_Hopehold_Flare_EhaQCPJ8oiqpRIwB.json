@@ -1,0 +1,55 @@
+{
+  "name": "Hopehold Flare",
+  "type": "consumable",
+  "_id": "EhaQCPJ8oiqpRIwB",
+  "img": "icons/commodities/tech/smoke-bomb-purple.webp",
+  "system": {
+    "description": "<p>When you use this flare, allies within Close range roll a d6 when they spend a Hope. On a result of 6, they gain the effect of that Hope without spending it. The flare lasts until the end of the scene.</p>",
+    "quantity": 1,
+    "actions": {
+      "hTF2K4uWcrUypLbs": {
+        "type": "effect",
+        "_id": "hTF2K4uWcrUypLbs",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/commodities/tech/smoke-bomb-purple.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753590388618,
+    "modifiedTime": 1753590501578,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!EhaQCPJ8oiqpRIwB"
+}
