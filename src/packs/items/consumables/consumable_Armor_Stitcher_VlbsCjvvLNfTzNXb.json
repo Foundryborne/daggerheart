@@ -6,78 +6,7 @@
   "system": {
     "description": "<p>You can use this stitcher to spend any number of Hope and clear that many Armor Slots.</p>",
     "quantity": 1,
-    "actions": {
-      "mMWp5isSCerqjJGU": {
-        "type": "healing",
-        "_id": "mMWp5isSCerqjJGU",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "scalable": true,
-            "key": "hope",
-            "value": 1,
-            "step": 1,
-            "keyIsID": false
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": null,
-          "amount": null
-        },
-        "effects": [],
-        "healing": {
-          "applyTo": "armorStack",
-          "resultBased": false,
-          "value": {
-            "multiplier": "scale",
-            "flatMultiplier": 1,
-            "dice": "d4",
-            "bonus": null,
-            "custom": {
-              "enabled": true,
-              "formula": "@scale"
-            }
-          },
-          "valueAlt": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "base": false,
-          "type": []
-        },
-        "roll": {
-          "type": null,
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": "above",
-            "treshold": 1
-          },
-          "useDefault": false
-        },
-        "name": "Use",
-        "img": "icons/skills/trades/textiles-stitching-leather-brown.webp",
-        "range": ""
-      }
-    },
+    "actions": {},
     "consumeOnUse": true
   },
   "effects": [],
@@ -96,7 +25,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588973384,
-    "modifiedTime": 1753616684194,
+    "modifiedTime": 1753623129674,
     "lastModifiedBy": "OFxauskoxcvVTVNA"
   },
   "_key": "!items!VlbsCjvvLNfTzNXb"

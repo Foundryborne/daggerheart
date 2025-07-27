@@ -6,70 +6,7 @@
   "system": {
     "description": "<p>You can eat these paired leaves to immediately gain 2 Hope.</p>",
     "quantity": 1,
-    "actions": {
-      "aX2Odf9PzbRsU1gc": {
-        "type": "healing",
-        "_id": "aX2Odf9PzbRsU1gc",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": null,
-          "amount": null
-        },
-        "effects": [],
-        "healing": {
-          "applyTo": "hope",
-          "resultBased": false,
-          "value": {
-            "multiplier": "flat",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": true,
-              "formula": "2"
-            }
-          },
-          "valueAlt": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "base": false,
-          "type": []
-        },
-        "roll": {
-          "type": null,
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": "above",
-            "treshold": 1
-          },
-          "useDefault": false
-        },
-        "name": "Eat",
-        "img": "icons/consumables/plants/leaf-serrated-pink.webp",
-        "range": ""
-      }
-    },
+    "actions": {},
     "consumeOnUse": true
   },
   "effects": [],
@@ -88,7 +25,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753587484164,
-    "modifiedTime": 1753588013329,
+    "modifiedTime": 1753623431444,
     "lastModifiedBy": "OFxauskoxcvVTVNA"
   },
   "_key": "!items!hvy5BkG3F6iOIXTx"

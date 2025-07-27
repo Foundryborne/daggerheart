@@ -6,69 +6,7 @@
   "system": {
     "description": "<p>Clear 1d4 Stress.</p>",
     "quantity": 1,
-    "actions": {
-      "s3UXcGku86aXFCKo": {
-        "type": "healing",
-        "_id": "s3UXcGku86aXFCKo",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": null,
-          "amount": null
-        },
-        "effects": [],
-        "healing": {
-          "applyTo": "stress",
-          "resultBased": false,
-          "value": {
-            "multiplier": "flat",
-            "flatMultiplier": 1,
-            "dice": "d4",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "valueAlt": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "base": false,
-          "type": []
-        },
-        "roll": {
-          "type": null,
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": "above",
-            "treshold": 1
-          },
-          "useDefault": false
-        },
-        "name": "Drink",
-        "img": "icons/consumables/potions/potion-tube-corked-green.webp",
-        "range": ""
-      }
-    },
+    "actions": {},
     "consumeOnUse": true
   },
   "effects": [],
@@ -87,7 +25,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753587324465,
-    "modifiedTime": 1753587988202,
+    "modifiedTime": 1753623297325,
     "lastModifiedBy": "OFxauskoxcvVTVNA"
   },
   "_key": "!items!b6vGSPFWOlzZZDLO"

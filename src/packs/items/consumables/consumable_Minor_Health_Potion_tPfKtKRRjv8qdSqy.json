@@ -6,69 +6,7 @@
   "system": {
     "description": "<p>Clear 1d4 HP.</p>",
     "quantity": 1,
-    "actions": {
-      "nWs6DwFafL6xOOIZ": {
-        "type": "healing",
-        "_id": "nWs6DwFafL6xOOIZ",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": null,
-          "amount": null
-        },
-        "effects": [],
-        "healing": {
-          "applyTo": "hitPoints",
-          "resultBased": false,
-          "value": {
-            "multiplier": "flat",
-            "flatMultiplier": 1,
-            "dice": "d4",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "valueAlt": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "base": false,
-          "type": []
-        },
-        "roll": {
-          "type": null,
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": "above",
-            "treshold": 1
-          },
-          "useDefault": false
-        },
-        "name": "Drink",
-        "img": "icons/consumables/potions/potion-tube-corked-red.webp",
-        "range": ""
-      }
-    },
+    "actions": {},
     "consumeOnUse": true
   },
   "effects": [],
@@ -87,7 +25,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753587253431,
-    "modifiedTime": 1753587977441,
+    "modifiedTime": 1753623289863,
     "lastModifiedBy": "OFxauskoxcvVTVNA"
   },
   "_key": "!items!tPfKtKRRjv8qdSqy"

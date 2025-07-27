@@ -6,69 +6,7 @@
   "system": {
     "description": "<p>Clear 1d4+1 HP.</p>",
     "quantity": 1,
-    "actions": {
-      "XeKSZ99sdgK9oV3D": {
-        "type": "healing",
-        "_id": "XeKSZ99sdgK9oV3D",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": null,
-          "amount": null
-        },
-        "effects": [],
-        "healing": {
-          "applyTo": "hitPoints",
-          "resultBased": false,
-          "value": {
-            "multiplier": "flat",
-            "flatMultiplier": 1,
-            "dice": "d4",
-            "bonus": 1,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "valueAlt": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "base": false,
-          "type": []
-        },
-        "roll": {
-          "type": null,
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": "above",
-            "treshold": 1
-          },
-          "useDefault": false
-        },
-        "name": "Drink",
-        "img": "icons/consumables/potions/bottle-corked-red.webp",
-        "range": ""
-      }
-    },
+    "actions": {},
     "consumeOnUse": true
   },
   "effects": [],
@@ -87,7 +25,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588839527,
-    "modifiedTime": 1753588886268,
+    "modifiedTime": 1753623230976,
     "lastModifiedBy": "OFxauskoxcvVTVNA"
   },
   "_key": "!items!Aruc2NLutWuVIjP1"

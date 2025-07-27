@@ -6,130 +6,7 @@
   "system": {
     "description": "<p>You can consume this moss during a rest to clear 1d10 HP or 1d10 Stress.</p>",
     "quantity": 1,
-    "actions": {
-      "jQRgDZ6IBuIr0lbf": {
-        "type": "healing",
-        "_id": "jQRgDZ6IBuIr0lbf",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": null,
-          "amount": null
-        },
-        "effects": [],
-        "healing": {
-          "applyTo": "hitPoints",
-          "resultBased": false,
-          "value": {
-            "multiplier": "flat",
-            "flatMultiplier": 1,
-            "dice": "d10",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "valueAlt": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "base": false,
-          "type": []
-        },
-        "roll": {
-          "type": null,
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": "above",
-            "treshold": 1
-          },
-          "useDefault": false
-        },
-        "name": "Eat (HP)",
-        "img": "icons/consumables/plants/succulent-bundle-green.webp",
-        "range": ""
-      },
-      "kANBl1eRStshQYPu": {
-        "type": "healing",
-        "_id": "kANBl1eRStshQYPu",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": null,
-          "amount": null
-        },
-        "effects": [],
-        "healing": {
-          "applyTo": "stress",
-          "resultBased": false,
-          "value": {
-            "multiplier": "flat",
-            "flatMultiplier": 1,
-            "dice": "d10",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "valueAlt": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "bonus": null,
-            "custom": {
-              "enabled": false
-            }
-          },
-          "base": false,
-          "type": []
-        },
-        "roll": {
-          "type": null,
-          "trait": null,
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": "above",
-            "treshold": 1
-          },
-          "useDefault": false
-        },
-        "name": "Eat (Stress)",
-        "img": "icons/consumables/plants/succulent-bundle-green.webp",
-        "range": ""
-      }
-    },
+    "actions": {},
     "consumeOnUse": true
   },
   "effects": [],
@@ -148,7 +25,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753592391195,
-    "modifiedTime": 1753592499447,
+    "modifiedTime": 1753623392811,
     "lastModifiedBy": "OFxauskoxcvVTVNA"
   },
   "_key": "!items!GrDrRqWgv7gvl9vn"
