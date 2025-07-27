@@ -1,15 +1,15 @@
 import DHBaseItemSheet from '../api/base-item.mjs';
 
-export default class MiscellaneousSheet extends DHBaseItemSheet {
+export default class LootSheet extends DHBaseItemSheet {
     /**@inheritdoc */
     static DEFAULT_OPTIONS = {
-        classes: ['miscellaneous'],
+        classes: ['loot'],
         position: { width: 550 }
     };
 
     /**@override */
     static PARTS = {
-        header: { template: 'systems/daggerheart/templates/sheets/items/miscellaneous/header.hbs' },
+        header: { template: 'systems/daggerheart/templates/sheets/items/loot/header.hbs' },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         description: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-description.hbs' },
         actions: {
@@ -17,7 +17,7 @@ export default class MiscellaneousSheet extends DHBaseItemSheet {
             scrollable: ['.actions']
         },
         settings: {
-            template: 'systems/daggerheart/templates/sheets/items/miscellaneous/settings.hbs',
+            template: 'systems/daggerheart/templates/sheets/items/loot/settings.hbs',
             scrollable: ['.settings']
         },
         effects: {

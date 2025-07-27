@@ -1,5 +1,4 @@
 import BaseDataItem from './base.mjs';
-import { ActionField } from '../fields/actionField.mjs';
 
 export default class DHLoot extends BaseDataItem {
     /** @inheritDoc */
