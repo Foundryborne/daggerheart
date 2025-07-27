@@ -142,10 +142,18 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/downtime.hbs',
                 {
-                    title: `${this.actor.name} - ${game.i18n.localize(`DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`)}`,
+                    title: game.i18n.localize(
+                        `DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`
+                    ),
+                    actor: { name: this.actor.name, img: this.actor.img },
                     moves: moves
                 }
-            )
+            ),
+            flags: {
+                daggerheart: {
+                    cssClass: 'dh-chat-message dh-style'
+                }
+            }
         });
 
         cls.create(msg.toObject());

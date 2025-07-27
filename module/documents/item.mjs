@@ -121,9 +121,9 @@ export default class DHItem extends foundry.documents.Item {
                         : game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: origin,
             img: this.img,
-            name: this.name,
+            item: { name: this.name, img: this.img, tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'] },
             description: this.system.description,
-            actions: []
+            actions: this.system.actions
         };
         const msg = new cls({
             type: 'abilityUse',
@@ -132,7 +132,12 @@ export default class DHItem extends foundry.documents.Item {
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
-            )
+            ),
+            flags: {
+                daggerheart: {
+                    cssClass: 'dh-chat-message dh-style'
+                }
+            }
         });
 
         cls.create(msg.toObject());

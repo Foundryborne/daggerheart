@@ -1,31 +1,8 @@
 @import '../../utils/colors.less';
+@import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
 .daggerheart.chat {
-    &.downtime {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .downtime-title-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            .downtime-subtitle {
-                font-size: 17px;
-            }
-        }
-
-        .downtime-image {
-            width: 80px;
-        }
-
-        .action-use-button {
-            width: 100%;
-        }
-    }
-
     &.resource-roll {
         .reroll-message {
             text-align: center;
@@ -355,58 +332,6 @@
 
         &:not(.expanded) .dice-tooltip {
             grid-template-rows: 0fr;
-        }
-    }
-
-    &.domain-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .domain-card-title {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            div {
-                font-size: 20px;
-                font-variant: small-caps;
-                font-weight: bold;
-            }
-
-            h2 {
-                width: 100%;
-                text-align: center;
-                margin: 0;
-            }
-        }
-
-        .ability-card-footer {
-            display: flex;
-            width: 100%;
-            margin-top: @fullMargin;
-            flex-wrap: wrap;
-
-            button {
-                border-radius: 6px;
-                background: @positive;
-                border-color: black;
-                flex-basis: calc(50% - 2px);
-
-                &:nth-of-type(n + 3) {
-                    margin-top: @tinyMargin;
-                }
-            }
-
-            .ability-card-action-cost {
-                margin: auto;
-                font-size: 1.5em;
-            }
-        }
-
-        img {
-            width: 80px;
         }
     }
 

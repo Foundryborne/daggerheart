@@ -174,8 +174,10 @@ Hooks.on('ready', () => {
 
 Hooks.once('dicesoniceready', () => {});
 
-Hooks.on('renderChatMessageHTML', (_, element) => {
+Hooks.on('renderChatMessageHTML', (_, element, message) => {
     enricherRenderSetup(element);
+    const cssClass = message.message.flags?.daggerheart?.cssClass;
+    if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
 });
 
 Hooks.on('renderJournalEntryPageProseMirrorSheet', (_, element) => {

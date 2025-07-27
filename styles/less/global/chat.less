@@ -1,0 +1,18 @@
+@import '../utils/colors.less';
+@import '../utils/fonts.less';
+@import '../utils/mixin.less';
+
+.dh-chat-message {
+    background-image: url('../assets/parchments/dh-parchment-dark.png');
+    border: none !important;
+    padding: 8px 0;
+
+    .message-header {
+        padding: 0 8px 8px;
+        color: @beige;
+        .message-sender,
+        .message-metadata {
+            font-family: @font-body;
+        }
+    }
+}

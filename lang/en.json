@@ -1060,6 +1060,7 @@
             },
             "Bonuses": {
                 "rest": {
+                    "downtimeAction": "Downtime Action",
                     "shortRest": {
                         "shortRestMoves": {
                             "label": "Short Rest: Bonus Short Rest Moves",
