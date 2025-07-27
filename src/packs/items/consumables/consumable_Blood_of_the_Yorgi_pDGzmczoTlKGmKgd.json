@@ -1,0 +1,55 @@
+{
+  "name": "Blood of the Yorgi",
+  "type": "consumable",
+  "_id": "pDGzmczoTlKGmKgd",
+  "img": "icons/consumables/potions/potion-tube-corked-bat-gold-red.webp",
+  "system": {
+    "description": "<p>You can drink this blood to disappear from where you are and immediately reappear at a point you can see within Very Far range.</p>",
+    "quantity": 1,
+    "actions": {
+      "6QGfkGkFqqzuVOOY": {
+        "type": "effect",
+        "_id": "6QGfkGkFqqzuVOOY",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/potion-tube-corked-bat-gold-red.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753589954973,
+    "modifiedTime": 1753589985716,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!pDGzmczoTlKGmKgd"
+}

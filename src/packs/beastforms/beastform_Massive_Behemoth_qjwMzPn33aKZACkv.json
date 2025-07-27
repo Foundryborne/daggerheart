@@ -1,0 +1,142 @@
+{
+  "name": "Massive Behemoth",
+  "type": "beastform",
+  "img": "icons/creatures/mammals/beast-horned-scaled-glowing-orange.webp",
+  "system": {
+    "beastformType": "normal",
+    "tier": 4,
+    "tokenImg": "icons/svg/mystery-man.svg",
+    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenSize": {
+      "height": null,
+      "width": null
+    },
+    "mainTrait": "strength",
+    "advantageOn": {
+      "4dxvlv6F3kjurgJg": {
+        "value": "Locate"
+      },
+      "WiskYFviMDpdKcR6": {
+        "value": "Protect"
+      },
+      "AoFiYKVbPxGalK8Y": {
+        "value": "Scare"
+      },
+      "TMzWo667tWr355c9": {
+        "value": "Sprint"
+      }
+    },
+    "features": [
+      "Compendium.daggerheart.beastforms.Item.EVOJTskJYf4rpuga",
+      "Compendium.daggerheart.beastforms.Item.DfBXO8jTchwFG8dZ",
+      "Compendium.daggerheart.beastforms.Item.ODudjX88Te4vDP57"
+    ],
+    "evolved": {
+      "mainTraitBonus": 0
+    },
+    "hybrid": {
+      "beastformOptions": 2,
+      "advantages": 2,
+      "features": 2
+    },
+    "examples": "Elephant, Mammoth, Rhinoceros, etc."
+  },
+  "effects": [
+    {
+      "type": "beastform",
+      "name": "Beastform Transformation",
+      "img": "icons/creatures/abilities/paw-print-pair-purple.webp",
+      "_id": "RR6ySJU5zaC7ws6A",
+      "system": {
+        "characterTokenData": {
+          "tokenImg": null,
+          "tokenRingImg": "icons/svg/mystery-man.svg",
+          "tokenSize": {}
+        },
+        "advantageOn": [],
+        "featureIds": [],
+        "effectIds": []
+      },
+      "changes": [
+        {
+          "key": "system.traits.strength.value",
+          "mode": 2,
+          "value": "3",
+          "priority": null
+        },
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.diceIndex",
+          "mode": 5,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.bonus",
+          "mode": 5,
+          "value": "12",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.roll.trait",
+          "mode": 5,
+          "value": "strength",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+        "modifiedTime": 1753636791070
+      },
+      "_key": "!items.effects!qjwMzPn33aKZACkv.RR6ySJU5zaC7ws6A"
+    }
+  ],
+  "folder": "UQEr5SAm2Z1Aih1S",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753627711166,
+    "modifiedTime": 1753631381561,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "qjwMzPn33aKZACkv",
+  "sort": 100000,
+  "_key": "!items!qjwMzPn33aKZACkv"
+}

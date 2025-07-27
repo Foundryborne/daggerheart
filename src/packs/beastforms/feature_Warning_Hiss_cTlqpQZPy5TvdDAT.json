@@ -1,0 +1,65 @@
+{
+  "name": "Warning Hiss",
+  "type": "feature",
+  "img": "icons/creatures/reptiles/snake-fangs-bite-green-yellow.webp",
+  "system": {
+    "description": "<p><strong>Mark a Stress</strong> to force any number of targets within Melee range to move back to Very Close range.</p>",
+    "resource": null,
+    "actions": {
+      "D9YmUP1aeiCzNxcC": {
+        "type": "effect",
+        "_id": "D9YmUP1aeiCzNxcC",
+        "systemPath": "actions",
+        "description": "<p><strong>Mark a Stress</strong> to force any number of targets within Melee range to move back to Very Close range.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/creatures/reptiles/snake-fangs-bite-green-yellow.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753621249622,
+    "modifiedTime": 1753628206133,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "cTlqpQZPy5TvdDAT",
+  "sort": 1200000,
+  "_key": "!items!cTlqpQZPy5TvdDAT"
+}

@@ -1,0 +1,105 @@
+{
+  "name": "Major Enlighten Potion",
+  "type": "consumable",
+  "_id": "SDdv1G2veMLKrxcJ",
+  "img": "icons/consumables/potions/bottle-corked-empty.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your Knowledge until your next rest.</p>",
+    "quantity": 1,
+    "actions": {
+      "cZL1A3hNXHbjfwi3": {
+        "type": "effect",
+        "_id": "cZL1A3hNXHbjfwi3",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "Ul5brgnx88npVGNj",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/bottle-corked-empty.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Major Enlighten Potion",
+      "img": "icons/consumables/potions/bottle-corked-empty.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.SDdv1G2veMLKrxcJ",
+      "transfer": false,
+      "_id": "Ul5brgnx88npVGNj",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.knowledge.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753589930774,
+        "modifiedTime": 1753589937684,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!SDdv1G2veMLKrxcJ.Ul5brgnx88npVGNj"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753589874661,
+    "modifiedTime": 1753589930795,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!SDdv1G2veMLKrxcJ"
+}

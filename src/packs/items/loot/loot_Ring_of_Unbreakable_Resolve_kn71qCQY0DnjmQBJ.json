@@ -1,0 +1,62 @@
+{
+  "name": "Ring of Unbreakable Resolve",
+  "type": "loot",
+  "_id": "kn71qCQY0DnjmQBJ",
+  "img": "icons/equipment/finger/ring-faceted-gold-teal.webp",
+  "system": {
+    "description": "<p>Once per session, when the GM spends a Fear, you can spend 4 Hope to cancel the effects of that spent Fear.</p>",
+    "quantity": 1,
+    "actions": {
+      "R92d0DSVEwmqNJhM": {
+        "type": "effect",
+        "_id": "R92d0DSVEwmqNJhM",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 4,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": 1,
+          "recovery": "session"
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/equipment/finger/ring-faceted-gold-teal.webp",
+        "range": ""
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753640632212,
+    "modifiedTime": 1753640958684,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!kn71qCQY0DnjmQBJ"
+}

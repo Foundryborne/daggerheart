@@ -119,7 +119,7 @@
             "flags": {}
         },
         {
-            "name": "Loot",
+            "name": "loot",
             "label": "Loot",
             "system": "daggerheart",
             "path": "packs/items/loot.db",

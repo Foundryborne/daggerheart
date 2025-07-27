@@ -1,0 +1,55 @@
+{
+  "name": "Acidpaste",
+  "type": "consumable",
+  "_id": "cfVFmS8vT9dbq9s1",
+  "img": "icons/commodities/materials/bowl-powder-teal.webp",
+  "system": {
+    "description": "<p>This paste eats away walls and other surfaces in bright flashes.</p>",
+    "quantity": 1,
+    "actions": {
+      "FQ2Ty0pP3z6JrBr6": {
+        "type": "effect",
+        "_id": "FQ2Ty0pP3z6JrBr6",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/commodities/materials/bowl-powder-teal.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753590344700,
+    "modifiedTime": 1753590379629,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!cfVFmS8vT9dbq9s1"
+}

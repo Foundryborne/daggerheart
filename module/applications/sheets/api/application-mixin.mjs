@@ -123,7 +123,14 @@ export default function DHApplicationMixin(Base) {
         /**@inheritdoc */
         async _onFirstRender(context, options) {
             await super._onFirstRender(context, options);
-            this.relatedDocs.filter(doc => doc).map(doc => (doc.apps[this.id] = this));
+
+            const docs = [];
+            for (var docData of this.relatedDocs) {
+                const doc = await foundry.utils.fromUuid(docData.uuid);
+                docs.push(doc);
+            }
+
+            docs.filter(doc => doc).map(doc => (doc.apps[this.id] = this));
 
             if (!!this.options.contextMenus.length) this._createContextMenus();
         }

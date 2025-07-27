@@ -1,0 +1,138 @@
+{
+  "name": "Armored Sentry",
+  "type": "beastform",
+  "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+  "system": {
+    "beastformType": "normal",
+    "tier": 2,
+    "tokenImg": "icons/svg/mystery-man.svg",
+    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenSize": {
+      "height": null,
+      "width": null
+    },
+    "mainTrait": "strength",
+    "advantageOn": {
+      "mX0DbTDuWAIpAGYq": {
+        "value": "Armadillo"
+      },
+      "0VGGQOhVOoNpZfdJ": {
+        "value": "Pangolin"
+      },
+      "6v6bkfKevJrn3YHf": {
+        "value": "Turtle"
+      }
+    },
+    "features": [
+      "Compendium.daggerheart.beastforms.Item.nDQZdIF2epKlhauX",
+      "Compendium.daggerheart.beastforms.Item.jp5KpPRBFBOIs46Q"
+    ],
+    "evolved": {
+      "mainTraitBonus": 0
+    },
+    "hybrid": {
+      "beastformOptions": 2,
+      "advantages": 2,
+      "features": 2
+    },
+    "examples": "Armadillo, Pangolin, Turtle, etc."
+  },
+  "effects": [
+    {
+      "type": "beastform",
+      "name": "Beastform Transformation",
+      "img": "icons/creatures/abilities/paw-print-pair-purple.webp",
+      "_id": "hd0uVl6ZZeyPJn9O",
+      "system": {
+        "characterTokenData": {
+          "tokenImg": null,
+          "tokenRingImg": "icons/svg/mystery-man.svg",
+          "tokenSize": {}
+        },
+        "advantageOn": [],
+        "featureIds": [],
+        "effectIds": []
+      },
+      "changes": [
+        {
+          "key": "system.traits.strength.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.diceIndex",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.bonus",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.roll.trait",
+          "mode": 5,
+          "value": "strength",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+        "modifiedTime": 1753636932760
+      },
+      "_key": "!items.effects!8pUHJv3BYdjA4Qdf.hd0uVl6ZZeyPJn9O"
+    }
+  ],
+  "folder": "Rd30i5G7Pg0HtEUT",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753580987168,
+    "modifiedTime": 1753617739186,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "8pUHJv3BYdjA4Qdf",
+  "sort": 100000,
+  "_key": "!items!8pUHJv3BYdjA4Qdf"
+}

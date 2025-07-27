@@ -164,7 +164,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             title: this.item.name,
             source: {
                 item: this.item._id,
-                action: this._id
+                action: this._id,
+                actor: this.actor.uuid
             },
             dialog: {},
             type: this.type,
@@ -191,7 +192,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             difficulty: this.roll?.difficulty,
             formula: this.roll.getFormula(),
             bonus: this.roll.bonus,
-            advantage: CONFIG.DH.ACTIONS.advandtageState[this.roll.advState].value
+            advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
         };
         if (this.roll?.type === 'diceSet') roll.lite = true;
 
@@ -256,6 +257,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* EFFECTS */
     async applyEffects(event, data, targets) {
         targets ??= data.system.targets;
+        const force = true; /* Where should this come from? */
         if (!this.effects?.length || !targets.length) return;
         let effects = this.effects;
         targets.forEach(async token => {

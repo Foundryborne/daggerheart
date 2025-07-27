@@ -1,0 +1,132 @@
+{
+  "name": "Aquatic Scout",
+  "type": "beastform",
+  "img": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp",
+  "system": {
+    "beastformType": "normal",
+    "tier": 1,
+    "tokenImg": "icons/svg/mystery-man.svg",
+    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenSize": {
+      "height": null,
+      "width": null
+    },
+    "mainTrait": "agility",
+    "advantageOn": {
+      "OG0TnlIP9lKye1e9": {
+        "value": "Navigate"
+      },
+      "q3yvEjEGqK6o4AYw": {
+        "value": "Sneak"
+      },
+      "RWK8rni8s7nYVP7I": {
+        "value": "Swim"
+      }
+    },
+    "features": [
+      "Compendium.daggerheart.beastforms.Item.kQWWx9P3fCyGSVOI",
+      "Compendium.daggerheart.beastforms.Item.QFg1hNCEoKVDd9Zo"
+    ],
+    "evolved": {
+      "mainTraitBonus": 0
+    },
+    "hybrid": {
+      "beastformOptions": 2,
+      "advantages": 2,
+      "features": 2
+    },
+    "examples": "Eel, Fish, Octopus, etc."
+  },
+  "effects": [
+    {
+      "type": "beastform",
+      "name": "Beastform Transformation",
+      "img": "icons/creatures/abilities/paw-print-pair-purple.webp",
+      "_id": "TsXyfEOCk0ma5tp9",
+      "system": {
+        "characterTokenData": {
+          "tokenImg": null,
+          "tokenRingImg": "icons/svg/mystery-man.svg",
+          "tokenSize": {}
+        },
+        "advantageOn": [],
+        "featureIds": [],
+        "effectIds": []
+      },
+      "changes": [
+        {
+          "key": "system.traits.agility.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.diceIndex",
+          "mode": 5,
+          "value": "0",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.roll.trait",
+          "mode": 5,
+          "value": "agility",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+        "modifiedTime": 1753637058698
+      },
+      "_key": "!items.effects!qqzdFCxyYupWZK23.TsXyfEOCk0ma5tp9"
+    }
+  ],
+  "folder": "nhnRdZgSSrE9myIX",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753575463467,
+    "modifiedTime": 1753575469111,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "qqzdFCxyYupWZK23",
+  "sort": 200000,
+  "_key": "!items!qqzdFCxyYupWZK23"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Replication Parchment",
+  "type": "consumable",
+  "_id": "yJkwz4AP6yhGo8Vj",
+  "img": "icons/sundries/scrolls/scroll-worn-beige.webp",
+  "system": {
+    "description": "<p>By touching this piece of parchment to another, you can perfectly copy the second parchment’s contents. Once used, this parchment becomes mundane paper.</p>",
+    "quantity": 1,
+    "actions": {
+      "j5gIVHXvcGu7PEZZ": {
+        "type": "effect",
+        "_id": "j5gIVHXvcGu7PEZZ",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/sundries/scrolls/scroll-worn-beige.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753589306667,
+    "modifiedTime": 1753589388523,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!yJkwz4AP6yhGo8Vj"
+}

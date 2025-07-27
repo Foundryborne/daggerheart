@@ -1,0 +1,31 @@
+{
+  "name": "Phoenix Feather",
+  "type": "loot",
+  "_id": "QNtzJSVENww63THa",
+  "img": "icons/commodities/materials/feather-red.webp",
+  "system": {
+    "description": "<p>If you have at least one Phoenix Feather on you when you fall unconscious, you gain a +1 bonus to the roll you make to determine whether you gain a scar.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753638285123,
+    "modifiedTime": 1753638336982,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!QNtzJSVENww63THa"
+}

@@ -1,0 +1,105 @@
+{
+  "name": "Major Stride Potion",
+  "type": "consumable",
+  "_id": "yK6eEDUrsPbZA8G0",
+  "img": "icons/consumables/potions/potion-jar-capped-teal.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your Agility until your next rest.</p>",
+    "quantity": 1,
+    "actions": {
+      "UIVnvI726LJnlK86": {
+        "type": "effect",
+        "_id": "UIVnvI726LJnlK86",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "L9dAw8pws1o02XkE",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/potion-jar-capped-teal.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Major Stride Potion",
+      "img": "icons/consumables/potions/potion-jar-capped-teal.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.yK6eEDUrsPbZA8G0",
+      "transfer": false,
+      "_id": "L9dAw8pws1o02XkE",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.agility.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753589592477,
+        "modifiedTime": 1753589609592,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!yK6eEDUrsPbZA8G0.L9dAw8pws1o02XkE"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753589545730,
+    "modifiedTime": 1753589592499,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!yK6eEDUrsPbZA8G0"
+}

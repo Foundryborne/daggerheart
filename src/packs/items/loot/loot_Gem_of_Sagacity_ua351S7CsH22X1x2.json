@@ -1,0 +1,31 @@
+{
+  "name": "Gem of Sagacity",
+  "type": "loot",
+  "_id": "ua351S7CsH22X1x2",
+  "img": "icons/commodities/gems/gem-rough-cushion-purple.webp",
+  "system": {
+    "description": "<p>You can attach this gem to a weapon, allowing you to use your Knowledge when making an attack with that weapon.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753640610217,
+    "modifiedTime": 1753640623916,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!ua351S7CsH22X1x2"
+}
