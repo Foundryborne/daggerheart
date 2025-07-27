@@ -1,12 +1,12 @@
 import BaseDataItem from './base.mjs';
 import { ActionField } from '../fields/actionField.mjs';
 
-export default class DHMiscellaneous extends BaseDataItem {
+export default class DHLoot extends BaseDataItem {
     /** @inheritDoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
-            label: 'TYPES.Item.miscellaneous',
-            type: 'miscellaneous',
+            label: 'TYPES.Item.loot',
+            type: 'loot',
             hasDescription: true,
             isQuantifiable: true,
             isInventoryItem: true,
