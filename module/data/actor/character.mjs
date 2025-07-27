@@ -471,6 +471,12 @@ export default class DhCharacter extends BaseDataActor {
         };
     }
 
+    get basicAttackDamageDice() {
+        const diceTypes = Object.keys(CONFIG.DH.GENERAL.diceTypes);
+        const attackDiceIndex = Math.max(Math.min(this.rules.attack.damage.diceIndex, 5), 0);
+        return diceTypes[attackDiceIndex];
+    }
+
     static async unequipBeforeEquip(itemToEquip) {
         const primary = this.primaryWeapon,
             secondary = this.secondaryWeapon;
@@ -557,15 +563,15 @@ export default class DhCharacter extends BaseDataActor {
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
-        const diceTypes = Object.keys(CONFIG.DH.GENERAL.diceTypes);
-        const attackDiceIndex = Math.max(Math.min(this.rules.attack.damage.diceIndex, 5), 0);
-        this.attack.damage.parts[0].value.custom.formula = `@prof${diceTypes[attackDiceIndex]}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
+        this.attack.damage.parts[0].value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
     }
 
     getRollData() {
         const data = super.getRollData();
+
         return {
             ...data,
+            basicAttackDamageDice: this.basicAttackDamageDice,
             tier: this.tier,
             level: this.levelData.level.current
         };
