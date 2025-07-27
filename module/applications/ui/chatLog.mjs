@@ -17,9 +17,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.duality-action-damage').forEach(element =>
             element.addEventListener('click', event => this.onRollDamage(event, data.message))
         );
-        // html.querySelectorAll('.duality-action-healing').forEach(element =>
-        //     element.addEventListener('click', event => this.onRollDamage(event, data.message))
-        // );
         html.querySelectorAll('.target-save-container').forEach(element =>
             element.addEventListener('click', event => this.onRollSave(event, data.message))
         );
@@ -91,17 +88,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             await action.rollDamage(event, message);
         }
     }
-
-    // async onRollHealing(event, message) {
-    //     event.stopPropagation();
-    //     const actor = await this.getActor(message.system.source.actor);
-    //     if (!actor || !game.user.isGM) return true;
-    //     if (message.system.source.item && message.system.source.action) {
-    //         const action = this.getAction(actor, message.system.source.item, message.system.source.action);
-    //         if (!action || !action?.rollHealing) return;
-    //         await action.rollHealing(event, message);
-    //     }
-    // }
 
     async onRollSave(event, message) {
         event.stopPropagation();
@@ -228,18 +214,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 target.actor.takeDamage(damages);
         }
     }
-
-    // async onHealing(event, message) {
-    //     event.stopPropagation();
-    //     const targets = Array.from(game.user.targets);
-
-    //     if (targets.length === 0)
-    //         return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-
-    //     for (var target of targets) {
-    //         target.actor.takeHealing(message.system.roll);
-    //     }
-    // }
 
     /**
      * Toggle visibility of target containers.
