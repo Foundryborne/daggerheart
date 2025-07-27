@@ -1,0 +1,81 @@
+{
+  "name": "Unyielding",
+  "type": "feature",
+  "img": "icons/magic/defensive/shield-barrier-blue.webp",
+  "system": {
+    "description": "<p>When you would mark an Armor Slot, roll a <strong>d6</strong>. On a result of 5 or higher, reduce the severity by one threshold without marking an Armor Slot.</p>",
+    "resource": null,
+    "actions": {
+      "hiGZCQpdTVqE5W4B": {
+        "type": "attack",
+        "_id": "hiGZCQpdTVqE5W4B",
+        "systemPath": "actions",
+        "description": "<p>When you would mark an Armor Slot, roll a <strong>d6</strong>. On a result of 5 or higher, reduce the severity by one threshold without marking an Armor Slot.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": "aboveEqual",
+            "treshold": 5
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": 10,
+          "damageMod": "none"
+        },
+        "name": "Roll d6",
+        "img": "icons/magic/defensive/shield-barrier-blue.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753628692761,
+    "modifiedTime": 1753628692761,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "vEAQ4cfsoPmOv2Gg",
+  "sort": 0,
+  "_key": "!items!vEAQ4cfsoPmOv2Gg"
+}
