@@ -53,12 +53,14 @@ export const getCommandTarget = () => {
 };
 
 export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
-    const diceSoNicePresets = await getDiceSoNicePresets(hopeFaces, fearFaces, advantageFaces, advantageFaces);
-    rollResult.dice[0].options = diceSoNicePresets.hope;
-    rollResult.dice[1].options = diceSoNicePresets.fear;
-    if (rollResult.dice[2] && advantageState) {
-        rollResult.dice[2].options =
-            advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage;
+    if (game.modules.get('dice-so-nice')?.active) {
+        const diceSoNicePresets = await getDiceSoNicePresets(hopeFaces, fearFaces, advantageFaces, advantageFaces);
+        rollResult.dice[0].options = diceSoNicePresets.hope;
+        rollResult.dice[1].options = diceSoNicePresets.fear;
+        if (rollResult.dice[2] && advantageState) {
+            rollResult.dice[2].options =
+                advantageState === 1 ? diceSoNicePresets.advantage : diceSoNicePresets.disadvantage;
+        }
     }
 };
 
