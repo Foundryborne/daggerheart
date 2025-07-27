@@ -172,7 +172,7 @@
                     "name": "Items",
                     "sorting": "m",
                     "color": "#000000",
-                    "packs": ["armors", "weapons", "consumables", "miscellaneous"]
+                    "packs": ["armors", "weapons", "consumables", "loot"]
                 }
             ]
         }
@@ -222,7 +222,7 @@
             "domainCard": {
                 "htmlFields": ["description"]
             },
-            "miscellaneous": {
+            "loot": {
                 "htmlFields": ["description"]
             },
             "consumable": {
