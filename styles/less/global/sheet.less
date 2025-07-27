@@ -15,6 +15,9 @@
 
     // Window header styles
     .window-header {
+        position: absolute;
+        width: 100%;
+        height: var(--header-height);
         background: transparent;
         border-bottom: none;
         justify-content: end;
@@ -41,11 +44,9 @@
     .window-content {
         padding: 0;
         position: relative;
-        top: -36px;
         min-height: -webkit-fill-available;
         transition: opacity 0.3s ease;
         padding-bottom: 20px;
-        margin-bottom: -36px;
 
         .tab {
             padding: 0 10px;

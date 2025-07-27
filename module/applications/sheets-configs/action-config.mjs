@@ -110,6 +110,7 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         context.costOptions = this.getCostOptions();
         context.disableOption = this.disableOption.bind(this);
         context.isNPC = this.action.actor?.isNPC;
+        context.baseSaveDifficulty = this.action.actor?.baseSaveDifficulty;
         context.hasRoll = this.action.hasRoll;
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;

@@ -1,0 +1,111 @@
+{
+  "name": "Shrinking Potion",
+  "type": "consumable",
+  "_id": "HGixKenQwhyRAYNk",
+  "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
+  "system": {
+    "description": "<p>You can drink this potion to halve your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Agility and a −1 penalty to your Proficiency.</p>",
+    "quantity": 1,
+    "actions": {
+      "F9vKFVwtJfR4Q8Kh": {
+        "type": "effect",
+        "_id": "F9vKFVwtJfR4Q8Kh",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "yaRLd7eHWYm2MHRM",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Shrinking Potion",
+      "img": "icons/consumables/potions/flask-decorated-label-pink.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.HGixKenQwhyRAYNk",
+      "transfer": false,
+      "_id": "yaRLd7eHWYm2MHRM",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.agility.value",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.proficiency",
+          "mode": 2,
+          "value": "-1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753592138957,
+        "modifiedTime": 1753592163296,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!HGixKenQwhyRAYNk.yaRLd7eHWYm2MHRM"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753592077792,
+    "modifiedTime": 1753592138977,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!HGixKenQwhyRAYNk"
+}

@@ -55,7 +55,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             },
             {
                 handler: CharacterSheet.#getItemContextOptions,
-                selector: '[data-item-uuid][data-type="consumable"], [data-item-uuid][data-type="miscellaneous"]',
+                selector: '[data-item-uuid][data-type="consumable"], [data-item-uuid][data-type="loot"]',
                 options: {
                     parentClassHooks: false,
                     fixed: true
@@ -311,7 +311,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 icon: 'fa-solid fa-hands',
                 condition: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && system.equipped;
+                    return doc && doc.system.equipped;
                 },
                 callback: (target, event) => CharacterSheet.#toggleEquipItem.call(this, event, target)
             }
@@ -325,7 +325,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     /**
-     * Get the set of ContextMenu options for Consumable and Miscellaneous.
+     * Get the set of ContextMenu options for Consumable and Loot.
      * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
      * @this {CharacterSheet}
      * @protected

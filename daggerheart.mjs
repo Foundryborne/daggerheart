@@ -80,8 +80,8 @@ Hooks.once('init', () => {
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Subclass, { types: ['subclass'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Feature, { types: ['feature'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.sheets.items.DomainCard, { types: ['domainCard'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Miscellaneous, {
-        types: ['miscellaneous'],
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Loot, {
+        types: ['loot'],
         makeDefault: true
     });
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Consumable, { types: ['consumable'], makeDefault: true });

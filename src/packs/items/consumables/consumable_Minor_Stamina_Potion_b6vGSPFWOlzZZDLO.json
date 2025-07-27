@@ -1,0 +1,32 @@
+{
+  "name": "Minor Stamina Potion",
+  "type": "consumable",
+  "_id": "b6vGSPFWOlzZZDLO",
+  "img": "icons/consumables/potions/potion-tube-corked-green.webp",
+  "system": {
+    "description": "<p>Clear 1d4 Stress.</p>",
+    "quantity": 1,
+    "actions": {},
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753587324465,
+    "modifiedTime": 1753623297325,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!b6vGSPFWOlzZZDLO"
+}

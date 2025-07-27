@@ -1,0 +1,55 @@
+{
+  "name": "Channelstone",
+  "type": "consumable",
+  "_id": "IKMVQ6VwtapwoUim",
+  "img": "icons/commodities/stone/engraved-symbol-water-grey.webp",
+  "system": {
+    "description": "<p>You can use this stone to take a spell or grimoire from your vault, use it once, and return it to your vault.</p>",
+    "quantity": 1,
+    "actions": {
+      "X4KtBG5Uve09hRoj": {
+        "type": "effect",
+        "_id": "X4KtBG5Uve09hRoj",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/commodities/stone/engraved-symbol-water-grey.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753590192533,
+    "modifiedTime": 1753590231535,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!IKMVQ6VwtapwoUim"
+}

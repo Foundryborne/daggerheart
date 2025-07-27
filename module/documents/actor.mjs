@@ -385,6 +385,10 @@ export default class DhpActor extends Actor {
         return CONFIG.Dice.daggerheart[['character', 'companion'].includes(this.type) ? 'DualityRoll' : 'D20Roll'];
     }
 
+    get baseSaveDifficulty() {
+        return this.system.difficulty ?? 10;
+    }
+
     getRollData() {
         const rollData = super.getRollData();
         rollData.system = this.system.getRollData();
