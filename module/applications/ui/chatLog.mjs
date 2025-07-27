@@ -112,11 +112,55 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         if (message.system.source.item && message.system.source.action) {
             const action = this.getAction(actor, message.system.source.item, message.system.source.action);
             if (!action || !action?.hasSave) return;
-            action.rollSave(token, event, message);
+            action.rollSave(token.actor, event, message).then(result => action.updateSaveMessage(result, message, token.id));
         }
     }
 
-    onRollAllSave(event, _message) {
+    async onRollAllSave(event, message) {
+        event.stopPropagation();
+        if(!game.user.isGM) return;
+        const targets = event.target.parentElement.querySelectorAll(
+            '.target-section > [data-token] .target-save-container'
+        );
+        const promises = [],
+            actor = await this.getActor(message.system.source.actor),
+            action = this.getAction(actor, message.system.source.item, message.system.source.action);
+        targets.forEach(async el => {
+            const tokenId = el.closest('[data-token]')?.dataset.token,
+                token = game.canvas.tokens.get(tokenId);
+            if(!token.actor) return;
+            if(game.user === token.actor.owner) {
+                el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
+            } else {
+                // console.log(action,
+                //     token,
+                //     event,
+                //     message)
+                const reactionRoll = await token.actor.owner.query('reactionRoll', {
+                    actionId: action.uuid,
+                    actorId: token.actor.uuid,
+                    event,
+                    message
+                });
+                if(reactionRoll) {
+                    console.log(reactionRoll)
+                }
+                // const armorStackResult = await token.actor.owner.query('armorStack', {
+                //         actorId: token.actor.uuid,
+                //         damage: 3,
+                //         type: ['physical']
+                //     },
+                //     {
+                //         timeout: 30000
+                //     }
+                // );
+            }
+
+            // el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
+        });
+    }
+
+    /* onRollAllSave(event, _message) {
         event.stopPropagation();
         const targets = event.target.parentElement.querySelectorAll(
             '.target-section > [data-token] .target-save-container'
@@ -124,7 +168,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         targets.forEach(el => {
             el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
         });
-    }
+    } */
 
     async onApplyEffect(event, message) {
         event.stopPropagation();

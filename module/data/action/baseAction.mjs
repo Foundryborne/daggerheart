@@ -297,9 +297,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* EFFECTS */
 
     /* SAVE */
-    async rollSave(target, event, message) {
-        if (!target?.actor) return;
-        return target.actor
+    async rollSave(actor, event, message) {
+        if (!actor) return;
+        return actor
             .diceRoll({
                 event,
                 title: 'Roll Save',
@@ -308,15 +308,29 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                     difficulty: this.save.difficulty,
                     type: 'reaction'
                 },
-                data: target.actor.getRollData()
+                data: actor.getRollData()
             })
-            .then(async result => {
-                if (result)
-                    this.updateChatMessage(message, target.id, {
+            /* .then(async result => {
+                if (result) {
+                    const updateMsg = this.updateChatMessage.bind(this, message, target.id, {
                         result: result.roll.total,
                         success: result.roll.success
                     });
-            });
+                    if (game.modules.get('dice-so-nice')?.active)
+                        game.dice3d.waitFor3DAnimationByMessageID(result.message.id).then(()=> updateMsg());
+                    else updateMsg();
+                }
+            }) */;
+    }
+
+    updateSaveMessage(result, message, targetId) {
+        const updateMsg = this.updateChatMessage.bind(this, message, targetId, {
+            result: result.roll.total,
+            success: result.roll.success
+        });
+        if (game.modules.get('dice-so-nice')?.active)
+            game.dice3d.waitFor3DAnimationByMessageID(result.message.id).then(()=> updateMsg());
+        else updateMsg();
     }
     /* SAVE */
 
@@ -331,7 +345,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (chain) {
             if (message.system.source.message)
                 this.updateChatMessage(ui.chat.collection.get(message.system.source.message), targetId, changes, false);
-            const relatedChatMessages = ui.chat.collection.filter(c => c.system.source.message === message._id);
+            const relatedChatMessages = ui.chat.collection.filter(c => c.system.source?.message === message._id);
             relatedChatMessages.forEach(c => {
                 this.updateChatMessage(c, targetId, changes, false);
             });

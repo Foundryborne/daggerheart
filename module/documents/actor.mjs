@@ -443,10 +443,14 @@ export default class DhpActor extends Actor {
                 this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
             ) {
                 const armorStackResult = await this.owner.query('armorStack', {
-                    actorId: this.uuid,
-                    damage: hpDamage.value,
-                    type: [...hpDamage.damageTypes]
-                });
+                        actorId: this.uuid,
+                        damage: hpDamage.value,
+                        type: [...hpDamage.damageTypes]
+                    },
+                    {
+                        timeout: 30000
+                    }
+                );
                 if (armorStackResult) {
                     const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;

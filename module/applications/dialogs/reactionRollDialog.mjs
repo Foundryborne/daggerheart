@@ -57,11 +57,12 @@ export default class ReactionRollDialog extends HandlebarsApplicationMixin(Appli
         this.render(true);
     }
 
-    static async reactionRollQuery({ actorId, trait }) {
+    static async reactionRollQuery({ action, token, event, message }) {
         return new Promise(async (resolve, reject) => {
-            const actor = await fromUuid(actorId);
-            if (!actor || !actor?.isOwner) reject();
-            new ReactionRollDialog(resolve, reject, actor, trait).render({ force: true });
+            // const actor = await fromUuid(actorId);
+            // if (!actor || !actor?.isOwner) reject();
+            action.rollSave(token, event, message).then(result => resolve(result));
+            // new ReactionRollDialog(resolve, reject, actor, trait).render({ force: true });
         });
     }
 

@@ -74,7 +74,18 @@ export const registerSocketHooks = () => {
 
 export const registerUserQueries = () => {
     CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
-    CONFIG.queries.reactionRoll = ReactionRollDialog.reactionRollQuery;
+    // CONFIG.queries.reactionRoll = ReactionRollDialog.reactionRollQuery;
+    CONFIG.queries.reactionRoll = ({ actionId, actorId,  event, message }) => {
+        // console.log('reactionRoll')
+        return new Promise(async (resolve, reject) => {
+            // resolve()
+            const actor = await fromUuid(actorId),
+                action = await fromUuid(actionId);
+            if (!actor || !actor?.isOwner) reject();
+            action.rollSave(actor, event, message).then(result => resolve(result));
+            // new ReactionRollDialog(resolve, reject, actor, trait).render({ force: true });
+        });
+    }
 }
 
 export const emitAsGM = async (eventName, callback, update, uuid = null) => {
