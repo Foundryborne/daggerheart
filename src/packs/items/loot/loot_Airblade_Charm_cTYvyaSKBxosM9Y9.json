@@ -1,0 +1,54 @@
+{
+  "name": "Airblade Charm",
+  "type": "loot",
+  "_id": "cTYvyaSKBxosM9Y9",
+  "img": "icons/equipment/neck/amulet-carved-stone-spiral-blue.webp",
+  "system": {
+    "description": "<p>You can attach this charm to a weapon with a Melee range. Three times per rest, you can activate the charm and attack a target within Close range.</p>",
+    "quantity": 1,
+    "actions": {
+      "nlAfmdgfHTmsOdPb": {
+        "type": "effect",
+        "_id": "nlAfmdgfHTmsOdPb",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": 3,
+          "recovery": "shortRest"
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Activate",
+        "img": "icons/equipment/neck/amulet-carved-stone-spiral-blue.webp",
+        "range": ""
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753638435202,
+    "modifiedTime": 1753638500393,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!cTYvyaSKBxosM9Y9"
+}

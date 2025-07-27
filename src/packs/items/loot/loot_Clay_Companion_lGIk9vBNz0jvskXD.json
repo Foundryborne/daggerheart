@@ -1,0 +1,31 @@
+{
+  "name": "Clay Companion",
+  "type": "loot",
+  "_id": "lGIk9vBNz0jvskXD",
+  "img": "icons/commodities/gems/pearl-brown.webp",
+  "system": {
+    "description": "<p>When you sculpt this ball of clay into a clay animal companion, it behaves as that animal. For example, a clay spider can spin clay webs, while a clay bird can fly. The clay companion retains memory and identity across different shapes, but they can adopt new mannerisms with each form.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753640057300,
+    "modifiedTime": 1753640276057,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!lGIk9vBNz0jvskXD"
+}

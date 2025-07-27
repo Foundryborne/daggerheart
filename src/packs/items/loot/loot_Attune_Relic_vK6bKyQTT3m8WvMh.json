@@ -1,0 +1,76 @@
+{
+  "name": "Attune Relic",
+  "type": "loot",
+  "_id": "vK6bKyQTT3m8WvMh",
+  "img": "icons/commodities/treasure/token-runed-spiral-grey.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your Instinct. You can only carry one relic.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [
+    {
+      "name": "Attune Relic",
+      "type": "base",
+      "_id": "KmoJVnCQJUGyrZIk",
+      "img": "icons/magic/life/heart-cross-blue.webp",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.instinct.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753639655271,
+        "modifiedTime": 1753639665432,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!vK6bKyQTT3m8WvMh.KmoJVnCQJUGyrZIk"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753639587267,
+    "modifiedTime": 1753639733198,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!vK6bKyQTT3m8WvMh"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Honing Relic",
+  "type": "loot",
+  "_id": "SAAnEAeXDnhBbLjB",
+  "img": "icons/commodities/treasure/token-runed-nyd-yellow.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to an Experience of your choice. You can only carry one relic.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753639799902,
+    "modifiedTime": 1753639815534,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!SAAnEAeXDnhBbLjB"
+}

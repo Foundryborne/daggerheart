@@ -1,0 +1,31 @@
+{
+  "name": "Minor Health Potion Recipe",
+  "type": "loot",
+  "_id": "PQxvxAVBbkt0TleC",
+  "img": "icons/sundries/scrolls/scroll-bound-red.webp",
+  "system": {
+    "description": "<p>As a downtime move, you can use a vial of blood to craft a Minor Health Potion.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753637045921,
+    "modifiedTime": 1753637071130,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!PQxvxAVBbkt0TleC"
+}
