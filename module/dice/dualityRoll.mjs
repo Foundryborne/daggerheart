@@ -169,13 +169,15 @@ export default class DualityRoll extends D20Roll {
     static async buildEvaluate(roll, config = {}, message = {}) {
         await super.buildEvaluate(roll, config, message);
 
-        await setDiceSoNiceForDualityRoll(
-            roll,
-            config.roll.advantage.type,
-            config.roll.hope.dice,
-            config.roll.fear.dice,
-            config.roll.advantage.dice
-        );
+        if (game.dice3d) {
+            await setDiceSoNiceForDualityRoll(
+                roll,
+                config.roll.advantage.type,
+                config.roll.hope.dice,
+                config.roll.fear.dice,
+                config.roll.advantage.dice
+            );
+        }
     }
 
     static postEvaluate(roll, config = {}) {
