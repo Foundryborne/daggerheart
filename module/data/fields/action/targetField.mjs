@@ -17,11 +17,13 @@ export default class TargetField extends fields.SchemaField {
         if (!this.target?.type) return [];
         let targets;
         if (this.target?.type === CONFIG.DH.ACTIONS.targetTypes.self.id)
-            targets = TargetField.formatTarget.call(this, this.actor.token ?? this.actor.prototypeToken);
-        targets = Array.from(game.user.targets);
-        if (this.target.type !== CONFIG.DH.ACTIONS.targetTypes.any.id) {
-            targets = targets.filter(t => TargetField.isTargetFriendly.call(this, t));
-            if (this.target.amount && targets.length > this.target.amount) targets = [];
+            targets = [this.actor.token ?? this.actor.prototypeToken];
+        else {
+            targets = Array.from(game.user.targets);
+            if (this.target.type !== CONFIG.DH.ACTIONS.targetTypes.any.id) {
+                targets = targets.filter(t => TargetField.isTargetFriendly.call(this, t));
+                if (this.target.amount && targets.length > this.target.amount) targets = [];
+            }
         }
         config.targets = targets.map(t => TargetField.formatTarget.call(this, t));
         const hasTargets = TargetField.checkTargets.call(this, this.target.amount, config.targets);

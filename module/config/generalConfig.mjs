@@ -439,7 +439,7 @@ export const abilityCosts = {
     },
     armor: {
         id: 'armor',
-        label: 'Armor Stack',
+        label: 'Armor Slot',
         group: 'TYPES.Actor.character'
     },
     fear: {

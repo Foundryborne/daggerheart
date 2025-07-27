@@ -200,7 +200,7 @@ export function ActionMixin(Base) {
                 }
             );
             const created = await parent.parent.update({ [`system.actions.${action.id}`]: action.toObject() });
-            const newAction = parent.actions.get(action.id);
+            const newAction = created.system.actions.get(action.id);
             if (!newAction) return null;
             if (renderSheet) newAction.sheet.render({ force: true });
             return newAction;
@@ -215,10 +215,7 @@ export function ActionMixin(Base) {
                 await this.parent.updateSource({ [path]: updates }, options);
                 result = this.parent;
             } else {
-                /* Fix me - For some reason updating the "healing" section in particular doesn't work without this */
-                await this.item.update({ [path]: updates }, options);
-                await this.item.updateSource({ [path]: updates }, options);
-                result = this.item;
+                result = await this.item.update({ [path]: updates }, options);
             }
 
             return this.inCollection

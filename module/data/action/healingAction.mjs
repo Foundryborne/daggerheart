@@ -1,7 +1,14 @@
 import DHBaseAction from './baseAction.mjs';
+import DHDamageAction from './damageAction.mjs';
 
-export default class DHHealingAction extends DHBaseAction {
-    static extraSchemas = [...super.extraSchemas, 'target', 'effects', 'healing', 'roll'];
+export default class DHHealingAction extends DHDamageAction {
+    static extraSchemas = [...super.extraSchemas, 'roll'];
+
+    static getRollType(parent) {
+        return 'spellcast';
+    }
+    
+    /* static extraSchemas = [...super.extraSchemas, 'target', 'effects', 'healing', 'roll'];
 
     static getRollType(parent) {
         return 'spellcast';
@@ -44,5 +51,5 @@ export default class DHHealingAction extends DHBaseAction {
 
     get modifiers() {
         return [];
-    }
+    } */
 }

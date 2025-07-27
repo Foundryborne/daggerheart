@@ -118,7 +118,6 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             { key: 1, label: game.i18n.localize('DAGGERHEART.GENERAL.Tiers.1') },
             ...Object.values(settingsTiers).map(x => ({ key: x.tier, label: x.name }))
         ];
-
         return context;
     }
 

@@ -471,7 +471,7 @@ export default class DhpActor extends Actor {
 
         await this.modifyResource(updates);
 
-        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damages) === false) return null;
+        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, updates) === false) return null;
     }
 
     calculateDamage(baseDamage, type) {
@@ -498,14 +498,28 @@ export default class DhpActor extends Actor {
         return reduction === Infinity ? 0 : reduction;
     }
 
-    async takeHealing(resources) {
-        const updates = Object.entries(resources).map(([key, value]) => ({
-            key: key,
-            value: !(key === 'fear' || this.system?.resources?.[key]?.isReversed === false)
-                ? value.total * -1
-                : value.total
-        }));
+    async takeHealing(healings) {
+        if (Hooks.call(`${CONFIG.DH.id}.preTakeHealing`, this, healings) === false) return null;
+
+        const updates = [];
+        Object.entries(healings).forEach(([key, healing]) => {
+            healing.parts.forEach(part => {
+                const update = updates.find(u => u.key === key);
+                if (update)
+                    update.value += part.total;
+                else updates.push({ value: part.total, key });
+            });
+        });
+
+        updates.forEach(
+            u =>
+                (u.value =
+                    !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false) ? u.value * -1 : u.value)
+        );
+
         await this.modifyResource(updates);
+
+        if (Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates) === false) return null;
     }
 
     async modifyResource(resources) {
@@ -547,6 +561,7 @@ export default class DhpActor extends Actor {
                 }
             }
         });
+        
         Object.keys(updates).forEach(async key => {
             const u = updates[key];
             if (key === 'items') {
