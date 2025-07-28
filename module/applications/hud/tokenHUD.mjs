@@ -66,12 +66,9 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
                 if (!status) continue;
                 if (status._id) {
                     if (status._id !== effect.id) continue;
-                } else {
-                    if (effect.statuses.size !== 1) continue;
                 }
                 status.isActive = true;
                 if (effect.getFlag('core', 'overlay')) status.isOverlay = true;
-                break;
             }
         }
 

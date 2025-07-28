@@ -1,0 +1,57 @@
+@import '../../utils/spacing.less';
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.daggerheart.dh-style.dialog.death-move {
+    .death-move-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .moves-list {
+            .move-item {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                &:hover {
+                    background-color: light-dark(@soft-shadow, @soft-white-shadow);
+                    cursor: pointer;
+                }
+                padding: 5px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease-in-out;
+
+                .label {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-family: @font-body;
+                    cursor: pointer;
+                    flex: 1;
+                    i {
+                        text-align: center;
+                        width: 30px;
+                    }
+                }
+
+                input[type='radio'] {
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+
+    footer {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+
+        button {
+            flex: 1;
+            height: 40px;
+            font-family: @font-body;
+            font-weight: 600;
+        }
+    }
+}

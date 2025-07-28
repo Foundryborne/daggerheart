@@ -156,8 +156,8 @@ Parameters:
           {{localize 'DAGGERHEART.EFFECTS.Duration.passive'}}
           {{/if}}
         </div>
-        {{#each item.statuses as |status|}}
-        <div class="tag">{{localize (concat 'DAGGERHEART.CONFIG.Condition.' status '.name')}}</div>
+        {{#each item.localizedStatuses as |status|}}
+          <div class="tag">{{status.name}}</div>
         {{/each}}
       </div>
       {{else if (not hideLabels)}}
