@@ -1,8 +1,23 @@
 <div class="daggerheart chat downtime">
-    <h2 class="downtime-title-container">
-        <div>{{this.player}} {{localize "DAGGERHEART.UI.Chat.deathMove.title"}}</div>
-        <div class="downtime-subtitle">{{this.title}}</div>
-    </h2>
-    <img class="downtime-image" src="{{this.img}}" />
-    <div>{{{this.description}}}</div>
+    <div class="downtime-header">
+        <img class="profile" src="{{actor.img}}">
+        <div class="header-label">
+            <h2 class="title">{{localize 'DAGGERHEART.UI.Chat.deathMove.title'}}</h2>
+            <span class="label">{{actor.name}}</span>
+        </div>
+    </div>
+    <ul class="downtime-moves-list">
+        <li class="downtime-move">
+            <div class="downtime-label">
+                <img class="downtime-image" src="{{this.img}}" />
+                <div class="header-label">
+                    <h2 class="title">{{this.title}}</h2>
+                    <span class="label">{{localize 'DAGGERHEART.UI.Chat.deathMove.title'}}</span>
+                </div>
+            </div>
+            <div class="description">
+                {{{this.description}}}
+            </div>
+        </li>
+    </ul>
 </div>

@@ -51,11 +51,17 @@ export default class DhpDeathMove extends HandlebarsApplicationMixin(Application
                 'systems/daggerheart/templates/ui/chat/deathMove.hbs',
                 {
                     player: this.actor.name,
+                    actor: { name: this.actor.name, img: this.actor.img },
                     title: game.i18n.localize(this.selectedMove.name),
                     img: this.selectedMove.img,
                     description: game.i18n.localize(this.selectedMove.description)
                 }
-            )
+            ),
+            flags: {
+                daggerheart: {
+                    cssClass: 'dh-chat-message dh-style'
+                }
+            }
         });
 
         cls.create(msg.toObject());
