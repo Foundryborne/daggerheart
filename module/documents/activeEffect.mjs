@@ -41,6 +41,14 @@ export default class DhActiveEffect extends ActiveEffect {
         });
     }
 
+    get localizedStatuses() {
+        const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status.name]));
+        return this.statuses.map(x => ({
+            key: x,
+            name: game.i18n.localize(statusMap.get(x))
+        }));
+    }
+
     async _preCreate(data, options, user) {
         const update = {};
         if (!data.img) {

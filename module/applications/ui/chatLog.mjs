@@ -1,3 +1,5 @@
+import { emitAsGM, GMUpdateEvent } from "../../systemRegistration/socket.mjs";
+
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
         super(options);
@@ -98,17 +100,41 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         if (message.system.source.item && message.system.source.action) {
             const action = this.getAction(actor, message.system.source.item, message.system.source.action);
             if (!action || !action?.hasSave) return;
-            action.rollSave(token, event, message);
+            action.rollSave(token.actor, event, message).then(result => emitAsGM(
+                GMUpdateEvent.UpdateSaveMessage,
+                action.updateSaveMessage.bind(action, result, message, token.id),
+                {
+                    action: action.uuid,
+                    message: message._id,
+                    token: token.id,
+                    result
+                }
+            ));
         }
     }
 
-    onRollAllSave(event, _message) {
+    async onRollAllSave(event, message) {
         event.stopPropagation();
+        if(!game.user.isGM) return;
         const targets = event.target.parentElement.querySelectorAll(
             '.target-section > [data-token] .target-save-container'
         );
-        targets.forEach(el => {
-            el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
+        const actor = await this.getActor(message.system.source.actor),
+            action = this.getAction(actor, message.system.source.item, message.system.source.action);
+        targets.forEach(async el => {
+            const tokenId = el.closest('[data-token]')?.dataset.token,
+                token = game.canvas.tokens.get(tokenId);
+            if(!token.actor) return;
+            if(game.user === token.actor.owner)
+                el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
+            else {
+                token.actor.owner.query('reactionRoll', {
+                    actionId: action.uuid,
+                    actorId: token.actor.uuid,
+                    event,
+                    message
+                }).then(result => action.updateSaveMessage(result, message, token.id));
+            }
         });
     }
 

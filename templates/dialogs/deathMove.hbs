@@ -1,19 +1,22 @@
 <div>
-    <div class="downtime-container">
-        {{#each this.options as |option key|}}
-            <div class="activity-container">
-                <div class="activity-title">
-                    <img class="activity-image {{#if (eq ../selectedMove.id key)}}selected{{/if}}" src="{{option.img}}" data-action="selectMove" data-move="{{key}}" />
-                    <span class="activity-title-text">{{localize this.name}}</span>
-                </div>
-                <div class="activity-body">
-                    {{localize this.description}}
-                </div>
-            </div>
-        {{/each}}
+    <header class="dialog-header">
+        <h1>{{title}}</h1>
+    </header>
+    <div class="death-move-container">
+        <ul class="moves-list">
+            {{#each this.options as |option key|}}
+                <li class="move-item" data-tooltip="{{concat "#" "deathMove" "#"}}" data-action="selectMove" data-move="{{key}}"data-death-img="{{option.img}}" data-death-name="{{this.name}}" data-death-description="{{this.description}}">
+                    <label class="label" for="{{id}}" data-tooltip="{{localize tooltip}}" data-tooltip-direction="LEFT">
+                        <i class="fa-solid {{icon}} fa-xl"></i>
+                        <span class="label">{{localize this.name}}</span>
+                    </label>
+                    <input type="radio" {{#if (eq ../this.selectedMove.id option.id)}}checked{{/if}}>
+                </li>
+            {{/each}}
+        </ul>
     </div>
     <footer class="flexrow">
-        <button data-action="takeMove" {{#if (not this.selectedMove)}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.DeathMove.takeMove"}}</button>
-        <button data-action="close">{{localize "DAGGERHEART.Application.Cancel"}}</button>
+        <button data-action="close">{{localize "Cancel"}}</button>
+        <button data-action="takeMove" {{#if (not this.selectedMove)}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.DeathMove.selectMove"}}</button>
     </footer>
 </div>

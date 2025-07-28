@@ -322,18 +322,21 @@ export const deathMoves = {
         id: 'avoidDeath',
         name: 'DAGGERHEART.CONFIG.DeathMoves.avoidDeath.name',
         img: 'icons/magic/time/hourglass-yellow-green.webp',
+        icon: 'fa-person-running',
         description: 'DAGGERHEART.CONFIG.DeathMoves.avoidDeath.description'
     },
     riskItAll: {
         id: 'riskItAll',
         name: 'DAGGERHEART.CONFIG.DeathMoves.riskItAll.name',
         img: 'icons/sundries/gaming/dice-pair-white-green.webp',
+        icon: 'fa-dice',
         description: 'DAGGERHEART.CONFIG.DeathMoves.riskItAll.description'
     },
     blazeOfGlory: {
         id: 'blazeOfGlory',
         name: 'DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.name',
         img: 'icons/magic/life/heart-cross-strong-flame-purple-orange.webp',
+        icon: 'fa-burst',
         description: 'DAGGERHEART.CONFIG.DeathMoves.blazeOfGlory.description'
     }
 };

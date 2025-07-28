@@ -52,6 +52,7 @@ export default class DHToken extends TokenDocument {
         for (const [name, field] of Object.entries(schema.fields)) {
             const p = _path.concat([name]);
             if (field instanceof foundry.data.fields.NumberField) attributes.value.push(p);
+            if (field instanceof foundry.data.fields.BooleanField && field.options.isAttributeChoice) attributes.value.push(p);
             if (field instanceof foundry.data.fields.StringField) attributes.value.push(p);
             if (field instanceof foundry.data.fields.ArrayField) attributes.value.push(p);
             const isSchema = field instanceof foundry.data.fields.SchemaField;

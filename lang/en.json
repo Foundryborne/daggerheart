@@ -293,6 +293,7 @@
                 "usedMarks": "Used Marks"
             },
             "DeathMove": {
+                "selectMove": "Select Move",
                 "takeMove": "Take Death Move",
                 "title": "{actor} - Death Move"
             },
@@ -451,6 +452,9 @@
             "OwnershipSelection": {
                 "title": "Ownership Selection - {name}",
                 "default": "Default Ownership"
+            },
+            "ReactionRoll": {
+                "title": "Reaction Roll: {trait}"
             },
             "ResourceDice": {
                 "title": "{name} Resource",
