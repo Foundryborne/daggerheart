@@ -532,7 +532,7 @@ export default class DhCharacter extends BaseDataActor {
                         this.evasion += selection.value;
                         break;
                     case 'proficiency':
-                        this.proficiency = selection.value;
+                        this.proficiency += selection.value;
                         break;
                     case 'experience':
                         Object.keys(this.experiences).forEach(key => {
