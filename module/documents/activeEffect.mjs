@@ -42,20 +42,11 @@ export default class DhActiveEffect extends ActiveEffect {
     }
 
     get localizedStatuses() {
-        const { statusMap, isStatusActiveEffect } = this.isStatusActiveEffect;
-        if (!isStatusActiveEffect) return [];
-
+        const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status.name]));
         return this.statuses.map(x => ({
             key: x,
-            name: game.i18n.localize(statusMap.get(x).name)
+            name: game.i18n.localize(statusMap.get(x))
         }));
-    }
-
-    get isStatusActiveEffect() {
-        const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status]));
-        const isStatusActiveEffect =
-            this.statuses.size === 1 && this.name === game.i18n.localize(statusMap.get(this.statuses.first()).name);
-        return { statusMap, isStatusActiveEffect };
     }
 
     async _preCreate(data, options, user) {
@@ -69,34 +60,6 @@ export default class DhActiveEffect extends ActiveEffect {
         }
 
         await super._preCreate(data, options, user);
-    }
-
-    _onCreate(data, options, userId) {
-        super._onCreate(data, options, userId);
-
-        if (game.user.id === userId) {
-            this.addStatusActiveEffects(data.statuses);
-        }
-    }
-
-    _onUpdate(changed, options, userId) {
-        super._onUpdate(changed, options, userId);
-
-        if ('disabled' in changed) {
-            if (changed.disabled) {
-                this.removeStatusActiveEffects(this.statuses);
-            } else {
-                this.addStatusActiveEffects(this.statuses);
-            }
-        }
-    }
-
-    _onDelete(data, userId) {
-        super._onDelete(data, userId);
-
-        if (game.user.id === userId) {
-            this.removeStatusActiveEffects(this.statuses);
-        }
     }
 
     static applyField(model, change, field) {
@@ -117,54 +80,6 @@ export default class DhActiveEffect extends ActiveEffect {
         }
 
         return result;
-    }
-
-    async addStatusActiveEffects(statuses) {
-        if (this.parent.type !== 'character') return;
-
-        const { statusMap, isStatusActiveEffect } = this.isStatusActiveEffect;
-        if (isStatusActiveEffect) return;
-
-        const statusesToAdd = statuses.reduce((acc, status) => {
-            const statusData = statusMap.get(status);
-            const statusName = game.i18n.localize(statusData.name);
-            const alreadyExists = this.parent.effects.find(
-                effect => effect.statuses.size === 1 && effect.statuses.first() === status && effect.name === statusName
-            );
-            if (!alreadyExists) {
-                acc.push({
-                    name: statusName,
-                    description: game.i18n.localize(statusData.description),
-                    img: statusData.icon,
-                    statuses: [status]
-                });
-            }
-
-            return acc;
-        }, []);
-
-        await this.parent.createEmbeddedDocuments('ActiveEffect', statusesToAdd);
-    }
-
-    async removeStatusActiveEffects(statuses) {
-        if (this.parent.type !== 'character') return;
-
-        const { statusMap, isStatusActiveEffect } = this.isStatusActiveEffect;
-        if (isStatusActiveEffect) return;
-
-        const statusesToRemove = statuses.reduce((acc, status) => {
-            const statusName = game.i18n.localize(statusMap.get(status).name);
-            const existingEffect = this.parent.effects.find(
-                effect => effect.statuses.size === 1 && effect.statuses.first() === status && effect.name === statusName
-            );
-            if (existingEffect) {
-                acc.push(existingEffect.id);
-            }
-
-            return acc;
-        }, []);
-
-        await this.parent.deleteEmbeddedDocuments('ActiveEffect', statusesToRemove);
     }
 
     async toChat(origin) {
