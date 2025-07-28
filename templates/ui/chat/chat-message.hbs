@@ -1,14 +1,14 @@
 <li class="chat-message message flexcol {{cssClass}}" data-message-id="{{message._id}}"
     {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
     <header class="message-header flexrow">
-        <div class="message-sub-header">
+        <div class="message-header-main">
             <img class="actor-img" src="{{actor.img}}" />
             <div class="message-sub-header-container">
                 <h4>{{ifThen message.title message.title alias}}</h4>
                 <div>{{actor.name}}</div>
             </div>
         </div>
-        <div class="message-header-section">
+        <div class="message-header-metadata">
             <span class="message-metadata">
                 <time class="message-timestamp">{{timeSince message.timestamp}}</time>
                 {{#if canDelete}}

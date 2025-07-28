@@ -18,10 +18,12 @@
             background-image: url('../assets/parchments/dh-parchment-dark.png');
 
             .message-header {
+                display: flex;
+                gap: 4px;
                 padding: 0 8px 8px;
 
-                .message-header-section {
-                    width: 100%;
+                .message-header-metadata {
+                    flex: none;
                     display: flex;
 
                     .message-metadata {
@@ -29,13 +31,12 @@
                     }
                 }
 
-                .message-sub-header {
-                    width: 100%;
+                .message-header-main {
+                    flex: 1;
                     display: flex;
                     gap: 8px;
 
                     .actor-img {
-                        flex: none;
                         border-radius: 50%;
                         width: 60px;
                         height: 60px;
