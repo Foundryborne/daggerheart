@@ -9,13 +9,15 @@
                 {{#with (lookup @root.config.GENERAL.healingTypes applyTo)}}
                     {{localize label}}
                 {{/with}}
-                {{#if damageTypes}}
-                    {{#each damageTypes as | type | }}
-                        {{#with (lookup @root.config.GENERAL.damageTypes type)}}
-                            <i class="fa-solid {{icon}}"></i>
-                        {{/with}}
-                    {{/each}}
-                {{/if}}
+                {{#unless @root.isHealing}}
+                    {{#if damageTypes}}
+                        {{#each damageTypes as | type | }}
+                            {{#with (lookup @root.config.GENERAL.damageTypes type)}}
+                                <i class="fa-solid {{icon}}"></i>
+                            {{/with}}
+                        {{/each}}
+                    {{/if}}
+                {{/unless}}
             </span>
         </div>
         <div class="form-group">

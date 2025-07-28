@@ -1,0 +1,55 @@
+{
+  "name": "Featherbone",
+  "type": "consumable",
+  "_id": "DpxEMpwfasEBpORU",
+  "img": "icons/commodities/bones/bones-stack-worn-brown.webp",
+  "system": {
+    "description": "<p>You can use this bone to control your falling speed for a number of minutes equal to your level.</p>",
+    "quantity": 1,
+    "actions": {
+      "MC0EA6TDZpEHMz11": {
+        "type": "effect",
+        "_id": "MC0EA6TDZpEHMz11",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/commodities/bones/bones-stack-worn-brown.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753590624634,
+    "modifiedTime": 1753590684567,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!DpxEMpwfasEBpORU"
+}

@@ -8,25 +8,38 @@ export class DHActionRollData extends foundry.abstract.DataModel {
             trait: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.ACTOR.abilities }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
             bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
-            advState: new fields.StringField({ choices: CONFIG.DH.ACTIONS.advandtageState, initial: 'neutral' }),
+            advState: new fields.StringField({
+                choices: CONFIG.DH.ACTIONS.advantageState,
+                initial: 'neutral'
+            }),
             diceRolling: new fields.SchemaField({
                 multiplier: new fields.StringField({
                     choices: CONFIG.DH.GENERAL.diceSetNumbers,
                     initial: 'prof',
-                    label: 'Dice Number'
+                    label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.multiplier'
                 }),
-                flatMultiplier: new fields.NumberField({ nullable: true, initial: 1, label: 'Flat Multiplier' }),
+                flatMultiplier: new fields.NumberField({
+                    nullable: true,
+                    initial: 1,
+                    label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.flatMultiplier'
+                }),
                 dice: new fields.StringField({
                     choices: CONFIG.DH.GENERAL.diceTypes,
-                    initial: 'd6',
-                    label: 'Dice Type'
+                    initial: CONFIG.DH.GENERAL.diceTypes.d6,
+                    label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.dice'
                 }),
                 compare: new fields.StringField({
                     choices: CONFIG.DH.ACTIONS.diceCompare,
-                    initial: 'above',
-                    label: 'Should be'
+                    nullable: true,
+                    initial: null,
+                    label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.compare'
                 }),
-                treshold: new fields.NumberField({ initial: 1, integer: true, min: 1, label: 'Treshold' })
+                treshold: new fields.NumberField({
+                    integer: true,
+                    nullable: true,
+                    initial: null,
+                    label: 'DAGGERHEART.ACTIONS.RollField.diceRolling.threshold'
+                })
             }),
             useDefault: new fields.BooleanField({ initial: false })
         };
@@ -41,7 +54,11 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                     this.diceRolling.multiplier === 'flat'
                         ? this.diceRolling.flatMultiplier
                         : `@${this.diceRolling.multiplier}`;
-                formula = `${multiplier}${this.diceRolling.dice}cs${CONFIG.DH.ACTIONS.diceCompare[this.diceRolling.compare].operator}${this.diceRolling.treshold}`;
+                if (this.diceRolling.compare && this.diceRolling.threshold) {
+                    formula = `${multiplier}${this.diceRolling.dice}cs${CONFIG.DH.ACTIONS.diceCompare[this.diceRolling.compare].operator}${this.diceRolling.treshold}`;
+                } else {
+                    formula = `${multiplier}${this.diceRolling.dice}`;
+                }
                 break;
             default:
                 formula = '';

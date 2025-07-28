@@ -1,0 +1,105 @@
+{
+  "name": "Attune Potion",
+  "type": "consumable",
+  "_id": "JGD3M9hBHtVAA8XP",
+  "img": "icons/consumables/potions/bottle-conical-corked-purple.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your next Instinct Roll.</p>",
+    "quantity": 1,
+    "actions": {
+      "aiyNOQZbVpTDagXy": {
+        "type": "effect",
+        "_id": "aiyNOQZbVpTDagXy",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "I5vgALTNDVApxy9d",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/bottle-conical-corked-purple.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Attune Potion",
+      "img": "icons/consumables/potions/bottle-conical-corked-purple.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.JGD3M9hBHtVAA8XP",
+      "transfer": false,
+      "_id": "I5vgALTNDVApxy9d",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.instinct.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753587072840,
+        "modifiedTime": 1753587081602,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!JGD3M9hBHtVAA8XP.I5vgALTNDVApxy9d"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753587033468,
+    "modifiedTime": 1753587890614,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!JGD3M9hBHtVAA8XP"
+}

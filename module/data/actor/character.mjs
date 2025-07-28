@@ -45,12 +45,12 @@ export default class DhCharacter extends BaseDataActor {
                 severe: new fields.NumberField({
                     integer: true,
                     initial: 0,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
                 }),
                 major: new fields.NumberField({
                     integer: true,
                     initial: 0,
-                    label: 'DAGGERHEART.GENERAL.DamageThresholds.severeThreshold'
+                    label: 'DAGGERHEART.GENERAL.DamageThresholds.majorThreshold'
                 })
             }),
             experiences: new fields.TypedObjectField(
@@ -112,7 +112,7 @@ export default class DhCharacter extends BaseDataActor {
                                 value: {
                                     custom: {
                                         enabled: true,
-                                        formula: '@system.rules.attack.damage.value'
+                                        formula: '@profd4'
                                     }
                                 }
                             }
@@ -204,7 +204,7 @@ export default class DhCharacter extends BaseDataActor {
                         })
                     })
                 }),
-                maxLoadout : new fields.NumberField({
+                maxLoadout: new fields.NumberField({
                     integer: true,
                     initial: 0,
                     label: 'DAGGERHEART.GENERAL.Bonuses.maxLoadout.label'
@@ -244,10 +244,28 @@ export default class DhCharacter extends BaseDataActor {
                 }),
                 attack: new fields.SchemaField({
                     damage: new fields.SchemaField({
-                        value: new fields.StringField({
+                        diceIndex: new fields.NumberField({
+                            integer: true,
+                            min: 0,
+                            max: 5,
+                            initial: 0,
+                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.label',
+                            hint: 'DAGGERHEART.GENERAL.Rules.attack.damage.dice.hint'
+                        }),
+                        bonus: new fields.NumberField({
                             required: true,
-                            initial: '@profd4',
-                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.value.label'
+                            initial: 0,
+                            min: 0,
+                            label: 'DAGGERHEART.GENERAL.Rules.attack.damage.bonus.label'
+                        })
+                    }),
+                    roll: new fields.SchemaField({
+                        trait: new fields.StringField({
+                            required: true,
+                            choices: CONFIG.DH.ACTOR.abilities,
+                            nullable: true,
+                            initial: null,
+                            label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
                         })
                     })
                 }),
@@ -329,13 +347,15 @@ export default class DhCharacter extends BaseDataActor {
 
     get loadoutSlot() {
         const loadoutCount = this.domainCards.loadout?.length ?? 0,
-            max = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout + this.bonuses.maxLoadout;
+            max =
+                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout +
+                this.bonuses.maxLoadout;
 
         return {
             current: loadoutCount,
             available: Math.max(max - loadoutCount, 0),
             max
-        }
+        };
     }
 
     get armor() {
@@ -451,6 +471,12 @@ export default class DhCharacter extends BaseDataActor {
         };
     }
 
+    get basicAttackDamageDice() {
+        const diceTypes = Object.keys(CONFIG.DH.GENERAL.diceTypes);
+        const attackDiceIndex = Math.max(Math.min(this.rules.attack.damage.diceIndex, 5), 0);
+        return diceTypes[attackDiceIndex];
+    }
+
     static async unequipBeforeEquip(itemToEquip) {
         const primary = this.primaryWeapon,
             secondary = this.secondaryWeapon;
@@ -535,12 +561,17 @@ export default class DhCharacter extends BaseDataActor {
     prepareDerivedData() {
         const baseHope = this.resources.hope.value + (this.companion?.system?.resources?.hope ?? 0);
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
+        this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
+
+        this.attack.damage.parts[0].value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
     }
 
     getRollData() {
         const data = super.getRollData();
+
         return {
             ...data,
+            basicAttackDamageDice: this.basicAttackDamageDice,
             tier: this.tier,
             level: this.levelData.level.current
         };

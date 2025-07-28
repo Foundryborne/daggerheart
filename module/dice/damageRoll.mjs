@@ -83,18 +83,20 @@ export default class DamageRoll extends DHRoll {
 
     applyBaseBonus(part) {
         const modifiers = [],
-            type = this.options.messageType ?? 'damage',
+            type = this.options.messageType ?? (this.options.isHealing ? 'healing' : 'damage'),
             options = part ?? this.options;
-
+        
         modifiers.push(...this.getBonus(`${type}`, `${type.capitalize()} Bonus`));
-        options.damageTypes?.forEach(t => {
-            modifiers.push(...this.getBonus(`${type}.${t}`, `${t.capitalize()} ${type.capitalize()} Bonus`));
-        });
-        const weapons = ['primaryWeapon', 'secondaryWeapon'];
-        weapons.forEach(w => {
-            if (this.options.source.item && this.options.source.item === this.data[w]?.id)
-                modifiers.push(...this.getBonus(`${type}.${w}`, 'Weapon Bonus'));
-        });
+        if(!this.options.isHealing) {
+            options.damageTypes?.forEach(t => {
+                modifiers.push(...this.getBonus(`${type}.${t}`, `${t.capitalize()} ${type.capitalize()} Bonus`));
+            });
+            const weapons = ['primaryWeapon', 'secondaryWeapon'];
+            weapons.forEach(w => {
+                if (this.options.source.item && this.options.source.item === this.data[w]?.id)
+                    modifiers.push(...this.getBonus(`${type}.${w}`, 'Weapon Bonus'));
+            });
+        }
 
         return modifiers;
     }

@@ -1,0 +1,31 @@
+{
+  "name": "Manacles",
+  "type": "loot",
+  "_id": "GkmATIuemyFtQX1D",
+  "img": "icons/sundries/survival/cuffs-shackles-steel.webp",
+  "system": {
+    "description": "<p>This pair of locking cuffs comes with a key.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753625337217,
+    "modifiedTime": 1753625362038,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!GkmATIuemyFtQX1D"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Gill Salve",
+  "type": "consumable",
+  "_id": "Nvbb9mze6o5D0AEg",
+  "img": "icons/commodities/materials/bowl-powder-blue.webp",
+  "system": {
+    "description": "<p>You can apply this salve to your neck to breathe underwater for a number of minutes equal to your level.</p>",
+    "quantity": 1,
+    "actions": {
+      "57IIcyhEs2ByoENx": {
+        "type": "effect",
+        "_id": "57IIcyhEs2ByoENx",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Apply",
+        "img": "icons/commodities/materials/bowl-powder-blue.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753589241094,
+    "modifiedTime": 1753589295204,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!Nvbb9mze6o5D0AEg"
+}

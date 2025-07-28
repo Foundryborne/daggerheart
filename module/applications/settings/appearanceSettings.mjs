@@ -43,7 +43,7 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
                 { id: 'hope', label: 'DAGGERHEART.GENERAL.hope' },
                 { id: 'fear', label: 'DAGGERHEART.GENERAL.fear' },
                 { id: 'advantage', label: 'DAGGERHEART.GENERAL.Advantage.full' },
-                { id: 'disadvantage', label: 'DAGGERHEART.GENERAL.Advantage.full' }
+                { id: 'disadvantage', label: 'DAGGERHEART.GENERAL.Disadvantage.full' }
             ],
             initial: 'hope'
         }

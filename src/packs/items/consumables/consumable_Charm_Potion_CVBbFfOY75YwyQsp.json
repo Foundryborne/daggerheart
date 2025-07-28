@@ -1,0 +1,105 @@
+{
+  "name": "Charm Potion",
+  "type": "consumable",
+  "_id": "CVBbFfOY75YwyQsp",
+  "img": "icons/consumables/potions/potion-tube-corked-blue.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your next Presence Roll.</p>",
+    "quantity": 1,
+    "actions": {
+      "2trd3JYIb527LIrn": {
+        "type": "effect",
+        "_id": "2trd3JYIb527LIrn",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "COrKb7gBin4Ro6r6",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/potion-tube-corked-blue.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Charm Potion",
+      "img": "icons/consumables/potions/potion-tube-corked-blue.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.CVBbFfOY75YwyQsp",
+      "transfer": false,
+      "_id": "COrKb7gBin4Ro6r6",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.presence.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753587164842,
+        "modifiedTime": 1753587173489,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!CVBbFfOY75YwyQsp.COrKb7gBin4Ro6r6"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753587097370,
+    "modifiedTime": 1753587932738,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!CVBbFfOY75YwyQsp"
+}

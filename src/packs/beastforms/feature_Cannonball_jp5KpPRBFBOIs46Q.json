@@ -1,0 +1,87 @@
+{
+  "name": "Cannonball",
+  "type": "feature",
+  "img": "icons/skills/movement/ball-spinning-blue.webp",
+  "system": {
+    "description": "<p><strong>Mark a Stress</strong> to allow an ally to throw or launch you at an adversary. To do so, the ally makes an attack roll using Agility or Strength (their choice) against a target within Close range. On a success, the adversary takes <strong>d12+2</strong> physical damage using the thrower’s Proficiency. You can <strong>spend a Hope</strong> to target an additional adversary within Very Close range of the first. The second target takes half the damage dealt to the first target.</p>",
+    "resource": null,
+    "actions": {
+      "5Vxm8LyBHE1GYbsv": {
+        "type": "effect",
+        "_id": "5Vxm8LyBHE1GYbsv",
+        "systemPath": "actions",
+        "description": "<p><strong>Mark a Stress</strong> to allow an ally to throw or launch you at an adversary. To do so, the ally makes an attack roll using Agility or Strength (their choice) against a target within Close range. On a success, the adversary takes <strong>d12+2</strong> physical damage using the thrower’s Proficiency.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "name": "Cannonball",
+        "img": "icons/skills/movement/ball-spinning-blue.webp",
+        "range": "close"
+      },
+      "QCQzArBrajYi2D2I": {
+        "type": "effect",
+        "_id": "QCQzArBrajYi2D2I",
+        "systemPath": "actions",
+        "description": "<p>You can <strong>spend a Hope</strong> to target an additional adversary within Very Close range of the first. The second target takes half the damage dealt to the first target.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+        "range": "veryClose"
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753580984811,
+    "modifiedTime": 1753628206133,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "jp5KpPRBFBOIs46Q",
+  "sort": 1900000,
+  "_key": "!items!jp5KpPRBFBOIs46Q"
+}

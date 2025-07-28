@@ -1,0 +1,138 @@
+{
+  "name": "Powerful Beast",
+  "type": "beastform",
+  "img": "icons/creatures/abilities/bear-roar-bite-brown-green.webp",
+  "system": {
+    "beastformType": "normal",
+    "tier": 2,
+    "tokenImg": "icons/svg/mystery-man.svg",
+    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenSize": {
+      "height": null,
+      "width": null
+    },
+    "mainTrait": "strength",
+    "advantageOn": {
+      "LhmE20iV5HBExx0A": {
+        "value": "Navigate"
+      },
+      "EP4KQJfmXWGomsVC": {
+        "value": "Protect"
+      },
+      "lMMv1eTry3N6rZCx": {
+        "value": "Scare"
+      }
+    },
+    "features": [
+      "Compendium.daggerheart.beastforms.Item.8upqfcZvi7b5hRLE",
+      "Compendium.daggerheart.beastforms.Item.ZYbdXaWVj2zdcmaK"
+    ],
+    "evolved": {
+      "mainTraitBonus": 0
+    },
+    "hybrid": {
+      "beastformOptions": 2,
+      "advantages": 2,
+      "features": 2
+    },
+    "examples": "Bear, Bull, Moose, etc."
+  },
+  "effects": [
+    {
+      "type": "beastform",
+      "name": "Beastform Transformation",
+      "img": "icons/creatures/abilities/paw-print-pair-purple.webp",
+      "_id": "AZGTvqzFVHa4wS1a",
+      "system": {
+        "characterTokenData": {
+          "tokenImg": null,
+          "tokenRingImg": "icons/svg/mystery-man.svg",
+          "tokenSize": {}
+        },
+        "advantageOn": [],
+        "featureIds": [],
+        "effectIds": []
+      },
+      "changes": [
+        {
+          "key": "system.traits.strength.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "3",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.diceIndex",
+          "mode": 5,
+          "value": "3",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.bonus",
+          "mode": 5,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.roll.trait",
+          "mode": 5,
+          "value": "strength",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+        "modifiedTime": 1753636973034
+      },
+      "_key": "!items.effects!m8BVTuJI1wCvzTcf.AZGTvqzFVHa4wS1a"
+    }
+  ],
+  "folder": "Rd30i5G7Pg0HtEUT",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753582598510,
+    "modifiedTime": 1753617739186,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "m8BVTuJI1wCvzTcf",
+  "sort": 300000,
+  "_key": "!items!m8BVTuJI1wCvzTcf"
+}

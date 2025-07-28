@@ -55,7 +55,8 @@ export default class DhActiveEffect extends ActiveEffect {
     }
 
     static applyField(model, change, field) {
-        change.value = this.effectSafeEval(itemAbleRollParse(change.value, model, change.effect.parent));
+        const evalValue = this.effectSafeEval(itemAbleRollParse(change.value, model, change.effect.parent));
+        change.value = evalValue ?? change.value;
         super.applyField(model, change, field);
     }
 

@@ -1,0 +1,76 @@
+{
+  "name": "Charm Relic",
+  "type": "loot",
+  "_id": "9P9jqGSlxVCbTdLe",
+  "img": "icons/commodities/treasure/token-runed-wyn-grey.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your Presence. You can only carry one relic.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [
+    {
+      "name": "Charm Relic",
+      "type": "base",
+      "_id": "2yr8Ps6wvaG3b1qy",
+      "img": "icons/magic/life/heart-cross-blue.webp",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.presence.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753639698545,
+        "modifiedTime": 1753639708693,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!9P9jqGSlxVCbTdLe.2yr8Ps6wvaG3b1qy"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753639686831,
+    "modifiedTime": 1753639719586,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!9P9jqGSlxVCbTdLe"
+}

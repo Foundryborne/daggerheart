@@ -1,0 +1,105 @@
+{
+  "name": "Bolster Potion",
+  "type": "consumable",
+  "_id": "FOPQNqXbiVO0ilYL",
+  "img": "icons/consumables/potions/potion-vial-tube-yellow.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your next Strength Roll.</p>",
+    "quantity": 1,
+    "actions": {
+      "YqbQKTgblItoZOm8": {
+        "type": "effect",
+        "_id": "YqbQKTgblItoZOm8",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "HVCJp9Tkhr1i4Oc1",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/potion-vial-tube-yellow.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Bolster Potion",
+      "img": "icons/consumables/potions/potion-vial-tube-yellow.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.FOPQNqXbiVO0ilYL",
+      "transfer": false,
+      "_id": "HVCJp9Tkhr1i4Oc1",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.strength.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753586918808,
+        "modifiedTime": 1753586928363,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!FOPQNqXbiVO0ilYL.HVCJp9Tkhr1i4Oc1"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753586850134,
+    "modifiedTime": 1753587920117,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!FOPQNqXbiVO0ilYL"
+}

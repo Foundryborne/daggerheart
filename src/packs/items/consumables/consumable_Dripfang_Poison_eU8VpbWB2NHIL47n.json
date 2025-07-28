@@ -1,0 +1,86 @@
+{
+  "name": "Dripfang Poison",
+  "type": "consumable",
+  "_id": "eU8VpbWB2NHIL47n",
+  "img": "icons/consumables/potions/potion-jug-corked-skull-poison-brown-green.webp",
+  "system": {
+    "description": "<p>A creature who consumes this poison takes 8d10 direct magic damage.</p>",
+    "quantity": 1,
+    "actions": {
+      "F8CUhhCuZMnXVCrw": {
+        "type": "damage",
+        "_id": "F8CUhhCuZMnXVCrw",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 8,
+                "dice": "d10",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "effects": [],
+        "name": "Consume",
+        "img": "icons/consumables/potions/potion-jug-corked-skull-poison-brown-green.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753590938047,
+    "modifiedTime": 1753591027903,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!eU8VpbWB2NHIL47n"
+}

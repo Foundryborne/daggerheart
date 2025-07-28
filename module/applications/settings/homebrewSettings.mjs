@@ -136,10 +136,14 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
                     ...move,
                     name: game.i18n.localize(move.name),
                     description: game.i18n.localize(move.description),
-                    actions: move.actions.map(action => ({
-                        ...action,
-                        name: game.i18n.localize(action.name)
-                    }))
+                    actions: move.actions.reduce((acc, key) => {
+                        const action = move.actions[key];
+                        acc[key] = {
+                            ...action,
+                            name: game.i18n.localize(action.name)
+                        };
+                        return acc;
+                    }, {})
                 };
 
                 return acc;
@@ -165,8 +169,18 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     }
 
     static async reset() {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.format('DAGGERHEART.SETTINGS.ResetSettings.resetConfirmationTitle')
+            },
+            content: game.i18n.format('DAGGERHEART.SETTINGS.ResetSettings.resetConfirmationText', {
+                settings: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.name')
+            })
+        });
+        if (!confirmed) return;
+
         const resetSettings = new DhHomebrew();
-        let localizedSettings = this.localizeObject(resetSettings);
+        let localizedSettings = this.localizeObject(resetSettings.toObject());
         this.settings.updateSource(localizedSettings);
         this.render();
     }

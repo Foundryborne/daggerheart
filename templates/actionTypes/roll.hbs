@@ -11,9 +11,9 @@
         {{#if (eq source.type "diceSet")}}
             <div class="nest-inputs">
                 {{formField fields.diceRolling.fields.multiplier name="roll.diceRolling.multiplier" value=source.diceRolling.multiplier localize=true}}
-                {{#if (eq source.diceRolling.multiplier 'flat')}}{{formField fields.diceRolling.fields.flatMultiplier value=source.diceRolling.flatMultiplier name="roll.diceRolling.flatMultiplier" }}{{/if}}
-                {{formField fields.diceRolling.fields.dice name="roll.diceRolling.dice" value=source.diceRolling.dice}}
-                {{formField fields.diceRolling.fields.compare name="roll.diceRolling.compare" value=source.diceRolling.compare localize=true}}
+                {{#if (eq source.diceRolling.multiplier 'flat')}}{{formField fields.diceRolling.fields.flatMultiplier value=source.diceRolling.flatMultiplier name="roll.diceRolling.flatMultiplier" localize=true }}{{/if}}
+                {{formField fields.diceRolling.fields.dice name="roll.diceRolling.dice" value=source.diceRolling.dice localize=true}}
+                {{formField fields.diceRolling.fields.compare name="roll.diceRolling.compare" value=source.diceRolling.compare localize=true blank=""}}
                 {{formField fields.diceRolling.fields.treshold name="roll.diceRolling.treshold" value=source.diceRolling.treshold localize=true}}
             </div>
         {{else}}

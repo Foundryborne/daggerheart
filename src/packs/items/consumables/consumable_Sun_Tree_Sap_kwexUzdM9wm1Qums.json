@@ -1,0 +1,55 @@
+{
+  "name": "Sun Tree Sap",
+  "type": "consumable",
+  "_id": "kwexUzdM9wm1Qums",
+  "img": "icons/consumables/drinks/wine-amphora-clay-pink.webp",
+  "system": {
+    "description": "<p>Consume this sap to roll a [[/r d6]]. On a result of 5–6, clear 2 HP. On a result of 2–4, clear 3 Stress. On a result of 1, see through the veil of death and return changed, gaining one scar.</p>",
+    "quantity": 1,
+    "actions": {
+      "bxM1ig880ykRgmTl": {
+        "type": "effect",
+        "_id": "bxM1ig880ykRgmTl",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/drinks/wine-amphora-clay-pink.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753590791260,
+    "modifiedTime": 1753590920951,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!kwexUzdM9wm1Qums"
+}

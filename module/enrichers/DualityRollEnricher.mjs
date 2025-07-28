@@ -22,14 +22,14 @@ function getDualityMessage(roll) {
         : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
     const advantage = roll.advantage
-        ? CONFIG.DH.ACTIONS.advandtageState.advantage.value
+        ? CONFIG.DH.ACTIONS.advantageState.advantage.value
         : roll.disadvantage
-          ? CONFIG.DH.ACTIONS.advandtageState.disadvantage.value
+          ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
           : undefined;
     const advantageLabel =
-        advantage === CONFIG.DH.ACTIONS.advandtageState.advantage.value
+        advantage === CONFIG.DH.ACTIONS.advantageState.advantage.value
             ? 'Advantage'
-            : advantage === CONFIG.DH.ACTIONS.advandtageState.disadvantage.value
+            : advantage === CONFIG.DH.ACTIONS.advantageState.disadvantage.value
               ? 'Disadvantage'
               : undefined;
 
@@ -58,7 +58,7 @@ function getDualityMessage(roll) {
 export const renderDualityButton = async event => {
     const button = event.currentTarget,
         traitValue = button.dataset.trait?.toLowerCase(),
-        target = getCommandTarget(),
+        target = getCommandTarget({ allowNull: true }),
         difficulty = button.dataset.difficulty,
         advantage = button.dataset.advantage ? Number(button.dataset.advantage) : undefined;
 
@@ -80,13 +80,11 @@ export const enrichedDualityRoll = async (
     { traitValue, target, difficulty, title, label, actionType, advantage },
     event
 ) => {
-    if (!target) return;
-
     const config = {
         event: event ?? {},
         title: title,
         roll: {
-            modifier: traitValue ? target.system.traits[traitValue].value : null,
+            trait: traitValue && target ? traitValue : null,
             label: label,
             difficulty: difficulty,
             advantage,
@@ -96,5 +94,13 @@ export const enrichedDualityRoll = async (
             template: 'systems/daggerheart/templates/ui/chat/duality-roll.hbs'
         }
     };
-    await target.diceRoll(config);
+
+    if (target) {
+        await target.diceRoll(config);
+    } else {
+        // For no target, call DualityRoll directly with basic data
+        config.data = { experiences: {}, traits: {} };
+        config.source = { actor: null };
+        await CONFIG.Dice.daggerheart.DualityRoll.build(config);
+    }
 };

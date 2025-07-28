@@ -15,7 +15,7 @@ Parameters:
 - showActions {boolean} : If true show feature's actions.
 --}}
 
-<li class="inventory-item" {{#if (or (eq type 'action' ) (eq type 'attack'))}}data-action-id="{{item.id}}" {{/if}}
+<li class="inventory-item" data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack'))}} data-action-id="{{item.id}}" {{/if}}
   data-item-uuid="{{item.uuid}}" data-type="{{type}}" draggable="true">
   <div class="inventory-item-header" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
