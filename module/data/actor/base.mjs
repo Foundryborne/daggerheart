@@ -5,12 +5,14 @@ const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
         resistance: new foundry.data.fields.BooleanField({
             initial: false,
             label: `${resistanceLabel}.label`,
-            hint: `${resistanceLabel}.hint`
+            hint: `${resistanceLabel}.hint`,
+            isAttributeChoice: true
         }),
         immunity: new foundry.data.fields.BooleanField({
             initial: false,
             label: `${immunityLabel}.label`,
-            hint: `${immunityLabel}.hint`
+            hint: `${immunityLabel}.hint`,
+            isAttributeChoice: true
         }),
         reduction: new foundry.data.fields.NumberField({
             integer: true,

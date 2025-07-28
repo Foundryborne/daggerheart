@@ -311,18 +311,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                     type: 'reaction'
                 },
                 data: actor.getRollData()
-            })
-            /* .then(async result => {
-                if (result) {
-                    const updateMsg = this.updateChatMessage.bind(this, message, target.id, {
-                        result: result.roll.total,
-                        success: result.roll.success
-                    });
-                    if (game.modules.get('dice-so-nice')?.active)
-                        game.dice3d.waitFor3DAnimationByMessageID(result.message.id).then(()=> updateMsg());
-                    else updateMsg();
-                }
-            }) */;
+            });
     }
 
     updateSaveMessage(result, message, targetId) {
@@ -333,6 +322,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (game.modules.get('dice-so-nice')?.active)
             game.dice3d.waitFor3DAnimationByMessageID(result.message.id).then(()=> updateMsg());
         else updateMsg();
+    }
+
+    static rollSaveQuery({ actionId, actorId,  event, message }) {
+        return new Promise(async (resolve, reject) => {
+            const actor = await fromUuid(actorId),
+                action = await fromUuid(actionId);
+            if (!actor || !actor?.isOwner) reject();
+            action.rollSave(actor, event, message).then(result => resolve(result));
+        });
     }
     /* SAVE */
 
