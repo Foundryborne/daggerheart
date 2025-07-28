@@ -62,6 +62,7 @@ export default class DhpAdversary extends BaseDataActor {
                     img: 'icons/skills/melee/blood-slash-foam-red.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',
+                    chatDisplay: false,
                     type: 'attack',
                     range: 'melee',
                     target: {

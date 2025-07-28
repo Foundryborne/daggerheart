@@ -1,0 +1,157 @@
+{
+  "name": "Demolish",
+  "type": "feature",
+  "img": "icons/magic/earth/barrier-stone-brown-green.webp",
+  "system": {
+    "description": "<p><strong>Spend a Hope</strong> to move up to Far range in a straight line and make an attack against all targets within Melee range of the line. Targets you succeed against take <strong>d8+10</strong> physical damage using your Proficiency and are temporarily <em>Vulnerable</em>.</p><p>@Template[type:ray|range:f]</p>",
+    "resource": null,
+    "actions": {
+      "5SXMT39vrZoK7GBM": {
+        "type": "attack",
+        "_id": "5SXMT39vrZoK7GBM",
+        "systemPath": "actions",
+        "description": "<p>Spend a Hope to move up to Far range in a straight line and make an attack against all targets within Melee range of the line. Targets you succeed against take d8+10 physical damage using your Proficiency and are temporarily Vulnerable.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "prof",
+                "dice": "d8",
+                "bonus": 10,
+                "flatMultiplier": 1
+              },
+              "applyTo": "hitPoints",
+              "type": [],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "FXdFgEgqVl5gIWJS",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "attack",
+          "trait": "strength",
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": 10,
+          "damageMod": "none"
+        },
+        "name": "Attack",
+        "img": "icons/magic/earth/barrier-stone-brown-green.webp",
+        "range": "far"
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Demolished",
+      "img": "icons/skills/wounds/injury-pain-body-orange.webp",
+      "origin": "Item.PkLs4PFO0HiCNVRH",
+      "transfer": false,
+      "_id": "FXdFgEgqVl5gIWJS",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "vulnerable"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!DfBXO8jTchwFG8dZ.FXdFgEgqVl5gIWJS"
+    }
+  ],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753627699848,
+    "modifiedTime": 1753628206133,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "DfBXO8jTchwFG8dZ",
+  "sort": 100000,
+  "_key": "!items!DfBXO8jTchwFG8dZ"
+}

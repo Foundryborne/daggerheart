@@ -1,0 +1,138 @@
+{
+  "name": "Pouncing Predator",
+  "type": "beastform",
+  "img": "icons/creatures/abilities/cougar-roar-rush-orange.webp",
+  "system": {
+    "beastformType": "normal",
+    "tier": 2,
+    "tokenImg": "icons/svg/mystery-man.svg",
+    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenSize": {
+      "height": null,
+      "width": null
+    },
+    "mainTrait": "instinct",
+    "advantageOn": {
+      "q5bjThxdJ1JAuX2r": {
+        "value": "Attack"
+      },
+      "paOxE0DUkqKYVbss": {
+        "value": "Climb"
+      },
+      "nDnJf1tiImA6ryyy": {
+        "value": "Sneak"
+      }
+    },
+    "features": [
+      "Compendium.daggerheart.beastforms.Item.GhHsSHOa509cwCvr",
+      "Compendium.daggerheart.beastforms.Item.0ey4kM9ssj2otHvb"
+    ],
+    "evolved": {
+      "mainTraitBonus": 0
+    },
+    "hybrid": {
+      "beastformOptions": 2,
+      "advantages": 2,
+      "features": 2
+    },
+    "examples": "Cheetah, Lion, Panther, etc."
+  },
+  "effects": [
+    {
+      "type": "beastform",
+      "name": "Beastform Transformation",
+      "img": "icons/creatures/abilities/paw-print-pair-purple.webp",
+      "_id": "GSmW6nJ3kyIoEK2H",
+      "system": {
+        "characterTokenData": {
+          "tokenImg": null,
+          "tokenRingImg": "icons/svg/mystery-man.svg",
+          "tokenSize": {}
+        },
+        "advantageOn": [],
+        "featureIds": [],
+        "effectIds": []
+      },
+      "changes": [
+        {
+          "key": "system.traits.instinct.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "3",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.diceIndex",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.bonus",
+          "mode": 5,
+          "value": "6",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.roll.trait",
+          "mode": 5,
+          "value": "instinct",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+        "modifiedTime": 1753636957124
+      },
+      "_key": "!items.effects!33oFSZ1PwFqInHPe.GSmW6nJ3kyIoEK2H"
+    }
+  ],
+  "folder": "Rd30i5G7Pg0HtEUT",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753621789186,
+    "modifiedTime": 1753621803375,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "33oFSZ1PwFqInHPe",
+  "sort": 0,
+  "_key": "!items!33oFSZ1PwFqInHPe"
+}

@@ -175,7 +175,10 @@ export function ActionMixin(Base) {
                         classes: ['daggerheart', 'dh-style'],
                         content: await foundry.applications.handlebars.renderTemplate(
                             'systems/daggerheart/templates/actionTypes/actionType.hbs',
-                            { types: CONFIG.DH.ACTIONS.actionTypes }
+                            {
+                                types: CONFIG.DH.ACTIONS.actionTypes,
+                                itemName: parent.parent?.name
+                            }
                         ),
                         ok: {
                             label: game.i18n.format('DOCUMENT.Create', {
@@ -197,7 +200,7 @@ export function ActionMixin(Base) {
                 }
             );
             const created = await parent.parent.update({ [`system.actions.${action.id}`]: action.toObject() });
-            const newAction = parent.actions.get(action.id);
+            const newAction = created.system.actions.get(action.id);
             if (!newAction) return null;
             if (renderSheet) newAction.sheet.render({ force: true });
             return newAction;

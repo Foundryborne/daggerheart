@@ -1,0 +1,31 @@
+{
+  "name": "Flickerfly Pendant",
+  "type": "loot",
+  "_id": "9VKYSBQxN9XFWlAm",
+  "img": "icons/equipment/neck/choker-rough-green.webp",
+  "system": {
+    "description": "<p>While you carry this pendant, your weapons with a Melee range that deal physical damage have a gossamer sheen and can attack targets within Very Close range.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753639935227,
+    "modifiedTime": 1753639964153,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!9VKYSBQxN9XFWlAm"
+}

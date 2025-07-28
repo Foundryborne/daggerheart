@@ -1,0 +1,86 @@
+{
+  "name": "Mythic Dust",
+  "type": "consumable",
+  "_id": "Zsh2AvZr8EkGtLyw",
+  "img": "icons/commodities/materials/bowl-powder-grey.webp",
+  "system": {
+    "description": "<p>You can apply this dust to a weapon that deals magic damage to add a d12 to your next damage roll with that weapon.</p>",
+    "quantity": 1,
+    "actions": {
+      "yAE40wCrWg0qC3z0": {
+        "type": "damage",
+        "_id": "yAE40wCrWg0qC3z0",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d12",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "effects": [],
+        "name": "Apply",
+        "img": "icons/commodities/materials/bowl-powder-grey.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753590241722,
+    "modifiedTime": 1753590307682,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!Zsh2AvZr8EkGtLyw"
+}

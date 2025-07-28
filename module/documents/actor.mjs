@@ -1,5 +1,4 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
-import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 import { damageKeyToNumber } from '../helpers/utils.mjs';
@@ -385,6 +384,45 @@ export default class DhpActor extends Actor {
         return CONFIG.Dice.daggerheart[['character', 'companion'].includes(this.type) ? 'DualityRoll' : 'D20Roll'];
     }
 
+    get baseSaveDifficulty() {
+        return this.system.difficulty ?? 10;
+    }
+
+    /** @inheritDoc */
+    async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
+        const status = CONFIG.statusEffects.find(e => e.id === statusId);
+        if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
+        const existing = [];
+
+        // Find the effect with the static _id of the status effect
+        if (status._id) {
+            const effect = this.effects.get(status._id);
+            if (effect) existing.push(effect.id);
+        }
+
+        // If no static _id, find all effects that have this status
+        else {
+            for (const effect of this.effects) {
+                if (effect.statuses.has(status.id)) existing.push(effect.id);
+            }
+        }
+
+        // Remove the existing effects unless the status effect is forced active
+        if (existing.length) {
+            if (active) return true;
+            await this.deleteEmbeddedDocuments('ActiveEffect', existing);
+            return false;
+        }
+
+        // Create a new effect unless the status effect is forced inactive
+        if (!active && active !== undefined) return;
+
+        const ActiveEffect = getDocumentClass('ActiveEffect');
+        const effect = await ActiveEffect.fromStatusEffect(statusId);
+        if (overlay) effect.updateSource({ 'flags.core.overlay': true });
+        return ActiveEffect.implementation.create(effect, { parent: this, keepId: true });
+    }
+
     getRollData() {
         const rollData = super.getRollData();
         rollData.system = this.system.getRollData();
@@ -444,10 +482,14 @@ export default class DhpActor extends Actor {
                 this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
             ) {
                 const armorStackResult = await this.owner.query('armorStack', {
-                    actorId: this.uuid,
-                    damage: hpDamage.value,
-                    type: [...hpDamage.damageTypes]
-                });
+                        actorId: this.uuid,
+                        damage: hpDamage.value,
+                        type: [...hpDamage.damageTypes]
+                    },
+                    {
+                        timeout: 30000
+                    }
+                );
                 if (armorStackResult) {
                     const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
@@ -467,7 +509,7 @@ export default class DhpActor extends Actor {
 
         await this.modifyResource(updates);
 
-        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, damages) === false) return null;
+        if (Hooks.call(`${CONFIG.DH.id}.postTakeDamage`, this, updates) === false) return null;
     }
 
     calculateDamage(baseDamage, type) {
@@ -494,14 +536,28 @@ export default class DhpActor extends Actor {
         return reduction === Infinity ? 0 : reduction;
     }
 
-    async takeHealing(resources) {
-        const updates = Object.entries(resources).map(([key, value]) => ({
-            key: key,
-            value: !(key === 'fear' || this.system?.resources?.[key]?.isReversed === false)
-                ? value.total * -1
-                : value.total
-        }));
+    async takeHealing(healings) {
+        if (Hooks.call(`${CONFIG.DH.id}.preTakeHealing`, this, healings) === false) return null;
+
+        const updates = [];
+        Object.entries(healings).forEach(([key, healing]) => {
+            healing.parts.forEach(part => {
+                const update = updates.find(u => u.key === key);
+                if (update) update.value += part.total;
+                else updates.push({ value: part.total, key });
+            });
+        });
+
+        updates.forEach(
+            u =>
+                (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
+                    ? u.value * -1
+                    : u.value)
+        );
+
         await this.modifyResource(updates);
+
+        if (Hooks.call(`${CONFIG.DH.id}.postTakeHealing`, this, updates) === false) return null;
     }
 
     async modifyResource(resources) {
@@ -543,6 +599,7 @@ export default class DhpActor extends Actor {
                 }
             }
         });
+
         Object.keys(updates).forEach(async key => {
             const u = updates[key];
             if (key === 'items') {
@@ -584,7 +641,3 @@ export default class DhpActor extends Actor {
             });
     }
 }
-
-export const registerDHActorHooks = () => {
-    CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
-};

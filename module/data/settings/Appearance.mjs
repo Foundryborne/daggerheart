@@ -21,25 +21,41 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                     foreground: new fields.ColorField({ required: true, initial: '#ffffff' }),
                     background: new fields.ColorField({ required: true, initial: '#ffe760' }),
                     outline: new fields.ColorField({ required: true, initial: '#000000' }),
-                    edge: new fields.ColorField({ required: true, initial: '#ffffff' })
+                    edge: new fields.ColorField({ required: true, initial: '#ffffff' }),
+                    texture: new fields.StringField({ initial: 'astralsea' }),
+                    colorset: new fields.StringField({ initial: 'inspired' }),
+                    material: new fields.StringField({ initial: 'metal' }),
+                    system: new fields.StringField({ initial: 'standard' })
                 }),
                 fear: new fields.SchemaField({
                     foreground: new fields.ColorField({ required: true, initial: '#000000' }),
                     background: new fields.ColorField({ required: true, initial: '#0032b1' }),
                     outline: new fields.ColorField({ required: true, initial: '#ffffff' }),
-                    edge: new fields.ColorField({ required: true, initial: '#000000' })
+                    edge: new fields.ColorField({ required: true, initial: '#000000' }),
+                    texture: new fields.StringField({ initial: 'astralsea' }),
+                    colorset: new fields.StringField({ initial: 'inspired' }),
+                    material: new fields.StringField({ initial: 'metal' }),
+                    system: new fields.StringField({ initial: 'standard' })
                 }),
                 advantage: new fields.SchemaField({
                     foreground: new fields.ColorField({ required: true, initial: '#ffffff' }),
                     background: new fields.ColorField({ required: true, initial: '#008000' }),
                     outline: new fields.ColorField({ required: true, initial: '#000000' }),
-                    edge: new fields.ColorField({ required: true, initial: '#ffffff' })
+                    edge: new fields.ColorField({ required: true, initial: '#ffffff' }),
+                    texture: new fields.StringField({ initial: 'astralsea' }),
+                    colorset: new fields.StringField({ initial: 'inspired' }),
+                    material: new fields.StringField({ initial: 'metal' }),
+                    system: new fields.StringField({ initial: 'standard' })
                 }),
                 disadvantage: new fields.SchemaField({
                     foreground: new fields.ColorField({ required: true, initial: '#000000' }),
                     background: new fields.ColorField({ required: true, initial: '#b30000' }),
                     outline: new fields.ColorField({ required: true, initial: '#ffffff' }),
-                    edge: new fields.ColorField({ required: true, initial: '#000000' })
+                    edge: new fields.ColorField({ required: true, initial: '#000000' }),
+                    texture: new fields.StringField({ initial: 'astralsea' }),
+                    colorset: new fields.StringField({ initial: 'inspired' }),
+                    material: new fields.StringField({ initial: 'metal' }),
+                    system: new fields.StringField({ initial: 'standard' })
                 })
             }),
             showGenericStatusEffects: new fields.BooleanField({

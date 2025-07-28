@@ -6,7 +6,7 @@ import DHCommunity from './community.mjs';
 import DHConsumable from './consumable.mjs';
 import DHDomainCard from './domainCard.mjs';
 import DHFeature from './feature.mjs';
-import DHMiscellaneous from './miscellaneous.mjs';
+import DHLoot from './loot.mjs';
 import DHSubclass from './subclass.mjs';
 import DHWeapon from './weapon.mjs';
 import DHBeastform from './beastform.mjs';
@@ -20,7 +20,7 @@ export {
     DHConsumable,
     DHDomainCard,
     DHFeature,
-    DHMiscellaneous,
+    DHLoot,
     DHSubclass,
     DHWeapon,
     DHBeastform
@@ -35,7 +35,7 @@ export const config = {
     consumable: DHConsumable,
     domainCard: DHDomainCard,
     feature: DHFeature,
-    miscellaneous: DHMiscellaneous,
+    loot: DHLoot,
     subclass: DHSubclass,
     weapon: DHWeapon,
     beastform: DHBeastform

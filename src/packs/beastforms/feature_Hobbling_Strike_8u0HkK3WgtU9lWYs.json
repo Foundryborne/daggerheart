@@ -1,0 +1,110 @@
+{
+  "name": "Hobbling Strike",
+  "type": "feature",
+  "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
+  "system": {
+    "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>mark a Stress</strong> to make the target temporarily <em>Vulnerable</em>.</p>",
+    "resource": null,
+    "actions": {
+      "p8DESOMGA6dLwEMz": {
+        "type": "effect",
+        "_id": "p8DESOMGA6dLwEMz",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "2kKkV9zhfvqA2vlt",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Hobbling Strike",
+      "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
+      "origin": "Compendium.daggerheart.beastforms.Item.8u0HkK3WgtU9lWYs",
+      "transfer": false,
+      "_id": "2kKkV9zhfvqA2vlt",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "vulnerable"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753578616579,
+        "modifiedTime": 1753578640444,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!8u0HkK3WgtU9lWYs.2kKkV9zhfvqA2vlt"
+    }
+  ],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753575250590,
+    "modifiedTime": 1753628206133,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "8u0HkK3WgtU9lWYs",
+  "sort": 2400000,
+  "_key": "!items!8u0HkK3WgtU9lWYs"
+}

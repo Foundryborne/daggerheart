@@ -8,7 +8,7 @@ export default class SaveField extends fields.SchemaField {
                 initial: null,
                 choices: CONFIG.DH.ACTOR.abilities
             }),
-            difficulty: new fields.NumberField({ nullable: true, initial: 10, integer: true, min: 0 }),
+            difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
             damageMod: new fields.StringField({
                 initial: CONFIG.DH.ACTIONS.damageOnSave.none.id,
                 choices: CONFIG.DH.ACTIONS.damageOnSave

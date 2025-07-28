@@ -1,3 +1,5 @@
+import { emitAsGM, GMUpdateEvent } from "../../systemRegistration/socket.mjs";
+
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
         super(options);
@@ -16,9 +18,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     addChatListeners = async (app, html, data) => {
         html.querySelectorAll('.duality-action-damage').forEach(element =>
             element.addEventListener('click', event => this.onRollDamage(event, data.message))
-        );
-        html.querySelectorAll('.duality-action-healing').forEach(element =>
-            element.addEventListener('click', event => this.onRollHealing(event, data.message))
         );
         html.querySelectorAll('.target-save-container').forEach(element =>
             element.addEventListener('click', event => this.onRollSave(event, data.message))
@@ -66,8 +65,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         super.close(options);
     }
 
-    async getActor(id) {
-        return await fromUuid(id);
+    async getActor(uuid) {
+        return await foundry.utils.fromUuid(uuid);
     }
 
     getAction(actor, itemId, actionId) {
@@ -92,17 +91,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
     }
 
-    async onRollHealing(event, message) {
-        event.stopPropagation();
-        const actor = await this.getActor(message.system.source.actor);
-        if (!actor || !game.user.isGM) return true;
-        if (message.system.source.item && message.system.source.action) {
-            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
-            if (!action || !action?.rollHealing) return;
-            await action.rollHealing(event, message);
-        }
-    }
-
     async onRollSave(event, message) {
         event.stopPropagation();
         const actor = await this.getActor(message.system.source.actor),
@@ -112,17 +100,41 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         if (message.system.source.item && message.system.source.action) {
             const action = this.getAction(actor, message.system.source.item, message.system.source.action);
             if (!action || !action?.hasSave) return;
-            action.rollSave(token, event, message);
+            action.rollSave(token.actor, event, message).then(result => emitAsGM(
+                GMUpdateEvent.UpdateSaveMessage,
+                action.updateSaveMessage.bind(action, result, message, token.id),
+                {
+                    action: action.uuid,
+                    message: message._id,
+                    token: token.id,
+                    result
+                }
+            ));
         }
     }
 
-    onRollAllSave(event, _message) {
+    async onRollAllSave(event, message) {
         event.stopPropagation();
+        if(!game.user.isGM) return;
         const targets = event.target.parentElement.querySelectorAll(
             '.target-section > [data-token] .target-save-container'
         );
-        targets.forEach(el => {
-            el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
+        const actor = await this.getActor(message.system.source.actor),
+            action = this.getAction(actor, message.system.source.item, message.system.source.action);
+        targets.forEach(async el => {
+            const tokenId = el.closest('[data-token]')?.dataset.token,
+                token = game.canvas.tokens.get(tokenId);
+            if(!token.actor) return;
+            if(game.user === token.actor.owner)
+                el.dispatchEvent(new PointerEvent('click', { shiftKey: true }));
+            else {
+                token.actor.owner.query('reactionRoll', {
+                    actionId: action.uuid,
+                    actorId: token.actor.uuid,
+                    event,
+                    message
+                }).then(result => action.updateSaveMessage(result, message, token.id));
+            }
         });
     }
 
@@ -160,7 +172,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         return {
             isHit,
             targets: isHit
-                ? message.system.targets.filter(t => t.hit === true).map(target => game.canvas.tokens.get(target.id))
+                ? message.system.targets.filter(t => t.hit === true).map(target => game.canvas.tokens.documentCollection.find(t => t.actor.uuid === target.actorId))
                 : Array.from(game.user.targets)
         };
     }
@@ -222,19 +234,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 });
             }
 
-            target.actor.takeDamage(damages);
-        }
-    }
-
-    async onHealing(event, message) {
-        event.stopPropagation();
-        const targets = Array.from(game.user.targets);
-
-        if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-
-        for (var target of targets) {
-            target.actor.takeHealing(message.system.roll);
+            if(message.system.hasHealing)
+                target.actor.takeHealing(damages);
+            else
+                target.actor.takeDamage(damages);
         }
     }
 

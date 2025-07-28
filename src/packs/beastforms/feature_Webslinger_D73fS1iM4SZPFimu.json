@@ -1,0 +1,125 @@
+{
+  "name": "Webslinger",
+  "type": "feature",
+  "img": "icons/creatures/webs/webthin-blue.webp",
+  "system": {
+    "description": "<p>You can create a strong web material useful for both adventuring and battle. The web is resilient enough to support one creature. You can temporarily <em>Restrain</em> a target within Close range by succeeding on a Finesse Roll against them.</p>",
+    "resource": null,
+    "actions": {
+      "vRU6xutkp3VYxZ0i": {
+        "type": "attack",
+        "_id": "vRU6xutkp3VYxZ0i",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "effects": [
+          {
+            "_id": "cBJueH89gNvvDKfQ",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "trait",
+          "trait": "finesse",
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": 10,
+          "damageMod": "none"
+        },
+        "name": "Restrain",
+        "img": "icons/creatures/webs/webthin-blue.webp",
+        "range": "close"
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Webslinger",
+      "img": "icons/creatures/webs/webthin-blue.webp",
+      "origin": "Item.6SkEDPsHvLHQmNts",
+      "transfer": false,
+      "_id": "cBJueH89gNvvDKfQ",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "restrained"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+        "modifiedTime": 1753576128082
+      },
+      "_key": "!items.effects!D73fS1iM4SZPFimu.cBJueH89gNvvDKfQ"
+    }
+  ],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753576005315,
+    "modifiedTime": 1753628206133,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "D73fS1iM4SZPFimu",
+  "sort": 1700000,
+  "_key": "!items!D73fS1iM4SZPFimu"
+}

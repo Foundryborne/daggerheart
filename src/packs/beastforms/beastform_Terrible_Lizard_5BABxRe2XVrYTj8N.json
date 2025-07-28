@@ -1,0 +1,141 @@
+{
+  "name": "Terrible Lizard",
+  "type": "beastform",
+  "img": "icons/creatures/abilities/dragon-breath-purple.webp",
+  "system": {
+    "beastformType": "normal",
+    "tier": 4,
+    "tokenImg": "icons/svg/mystery-man.svg",
+    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenSize": {
+      "height": null,
+      "width": null
+    },
+    "mainTrait": "strength",
+    "advantageOn": {
+      "onvcDZ0vtg88AjUn": {
+        "value": "Attack"
+      },
+      "poo5ToKvpeI1Kvr3": {
+        "value": "Deceive"
+      },
+      "oPA8ogGHNDvxrJps": {
+        "value": "Scare"
+      },
+      "BIdGziN8wJX0iaHQ": {
+        "value": "Track"
+      }
+    },
+    "features": [
+      "Compendium.daggerheart.beastforms.Item.HJbQcKWcFZ9NoFxs",
+      "Compendium.daggerheart.beastforms.Item.9QkZSeuEKgXtlpHc"
+    ],
+    "evolved": {
+      "mainTraitBonus": 0
+    },
+    "hybrid": {
+      "beastformOptions": 2,
+      "advantages": 2,
+      "features": 2
+    },
+    "examples": "Brachiosaurus, Tyrannosaurus, etc."
+  },
+  "effects": [
+    {
+      "type": "beastform",
+      "name": "Beastform Transformation",
+      "img": "icons/creatures/abilities/paw-print-pair-purple.webp",
+      "_id": "qPtjZIkRVm68TGHN",
+      "system": {
+        "characterTokenData": {
+          "tokenImg": null,
+          "tokenRingImg": "icons/svg/mystery-man.svg",
+          "tokenSize": {}
+        },
+        "advantageOn": [],
+        "featureIds": [],
+        "effectIds": []
+      },
+      "changes": [
+        {
+          "key": "system.traits.strength.value",
+          "mode": 2,
+          "value": "3",
+          "priority": null
+        },
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.diceIndex",
+          "mode": 5,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.bonus",
+          "mode": 5,
+          "value": "10",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.roll.trait",
+          "mode": 5,
+          "value": "strength",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+        "modifiedTime": 1753636836057
+      },
+      "_key": "!items.effects!5BABxRe2XVrYTj8N.qPtjZIkRVm68TGHN"
+    }
+  ],
+  "folder": "UQEr5SAm2Z1Aih1S",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753628213224,
+    "modifiedTime": 1753628382733,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "5BABxRe2XVrYTj8N",
+  "sort": 300000,
+  "_key": "!items!5BABxRe2XVrYTj8N"
+}
