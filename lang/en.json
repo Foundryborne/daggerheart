@@ -531,83 +531,209 @@
             "ArmorFeature": {
                 "burning": {
                     "name": "Burning",
-                    "description": "When an adversary attacks you within Melee range, they mark a Stress."
+                    "description": "When an adversary attacks you within Melee range, they mark a Stress.",
+                    "actions": {
+                        "burn": {
+                            "name": "Burn",
+                            "description": "When an adversary attacks you within Melee range, they mark a Stress."
+                        }
+                    }
                 },
                 "channeling": {
                     "name": "Channeling",
-                    "description": "+1 to Spellcast Rolls"
+                    "description": "+1 to Spellcast Rolls",
+                    "effects": {
+                        "channeling": {
+                            "name": "Channeling",
+                            "description": "+1 to Spellcast Rolls"
+                        }
+                    }
                 },
                 "difficult": {
                     "name": "Difficult",
-                    "description": "-1 to all character traits and Evasion"
+                    "description": "-1 to all character traits and Evasion",
+                    "effects": {
+                        "difficult": {
+                            "name": "Difficult",
+                            "description": "-1 to all character traits and Evasion"
+                        }
+                    }
                 },
                 "flexible": {
                     "name": "Flexible",
-                    "description": "+1 to Evasion"
+                    "description": "+1 to Evasion",
+                    "effects": {
+                        "flexible": {
+                            "name": "Flexible",
+                            "description": "+1 to Evasion"
+                        }
+                    }
                 },
                 "fortified": {
                     "name": "Fortified",
-                    "description": "When you mark an Armor Slot, you reduce the severity of an attack by two thresholds instead of one."
+                    "description": "When you mark an Armor Slot, you reduce the severity of an attack by two thresholds instead of one.",
+                    "effects": {
+                        "fortified": {
+                            "name": "Fortified",
+                            "description": "When you mark an Armor Slot, you reduce the severity of an attack by two thresholds instead of one."
+                        }
+                    }
                 },
                 "gilded": {
                     "name": "Gilded",
-                    "description": "+1 to Presence"
+                    "description": "+1 to Presence",
+                    "effects": {
+                        "gilded": {
+                            "name": "Gilded",
+                            "description": "+1 to Presence"
+                        }
+                    }
                 },
                 "heavy": {
                     "name": "Heavy",
-                    "description": "-1 to Evasion"
+                    "description": "-1 to Evasion",
+                    "effects": {
+                        "heavy": {
+                            "name": "Heavy",
+                            "description": "-1 to Evasion"
+                        }
+                    }
                 },
                 "hopeful": {
                     "name": "Hopeful",
-                    "description": "When you would spend a Hope, you can mark an Armor Slot instead."
+                    "description": "When you would spend a Hope, you can mark an Armor Slot instead.",
+                    "actions": {
+                        "hope": {
+                            "name": "Hope",
+                            "description": "When you would spend a Hope, you can mark an Armor Slot instead."
+                        }
+                    }
                 },
                 "impenetrable": {
                     "name": "Impenetrable",
-                    "description": "Once per short rest, when you would mark your last Hit Point, you can instead mark a Stress."
+                    "description": "Once per short rest, when you would mark your last Hit Point, you can instead mark a Stress.",
+                    "actions": {
+                        "impenetrable": {
+                            "name": "Impenetrable",
+                            "description": "Once per short rest, when you would mark your last Hit Point, you can instead mark a Stress."
+                        }
+                    }
                 },
                 "magical": {
                     "name": "Magical",
-                    "description": "You can't mark an Armor Slot to reduce physical damage."
+                    "description": "You can't mark an Armor Slot to reduce physical damage.",
+                    "effects": {
+                        "magical": {
+                            "name": "Magical",
+                            "description": "You can't mark an Armor Slot to reduce physical damage."
+                        }
+                    }
                 },
                 "physical": {
                     "name": "Physical",
-                    "description": "You can't mark an Armor Slot to reduce magic damage."
+                    "description": "You can't mark an Armor Slot to reduce magic damage.",
+                    "effects": {
+                        "physical": {
+                            "name": "Physical",
+                            "description": "You can't mark an Armor Slot to reduce magic damage."
+                        }
+                    }
                 },
                 "quiet": {
                     "name": "Quiet",
-                    "description": "You gain a +2 bonus to rolls you make to move silently."
+                    "description": "You gain a +2 bonus to rolls you make to move silently.",
+                    "actions": {
+                        "quiet": {
+                            "name": "Quiet",
+                            "description": "You gain a +2 bonus to rolls you make to move silently."
+                        }
+                    }
                 },
                 "reinforced": {
                     "name": "Reinforced",
-                    "description": "When you mark your last Armor Slot, increase your damage thresholds by +2 until you clear at least 1 Armor Slot."
+                    "description": "When you mark your last Armor Slot, increase your damage thresholds by +2 until you clear at least 1 Armor Slot.",
+                    "actions": {
+                        "reinforce": {
+                            "name": "Reinforce",
+                            "description": "When you mark your last Armor Slot, increase your damage thresholds by +2 until you clear at least 1 Armor Slot."
+                        }
+                    },
+                    "effects": {
+                        "reinforced": {
+                            "name": "Reinforced",
+                            "description": "When you mark your last Armor Slot, increase your damage thresholds by +2 until you clear at least 1 Armor Slot."
+                        }
+                    }
                 },
                 "resilient": {
                     "name": "Resilient",
-                    "description": "Before you mark your last Armor Slot, roll a d6. On a result of 6, reduce the severity by one threshold without marking an Armor Slot."
+                    "description": "Before you mark your last Armor Slot, roll a d6. On a result of 6, reduce the severity by one threshold without marking an Armor Slot.",
+                    "actions": {
+                        "resilient": {
+                            "name": "Resilient",
+                            "description": "Before you mark your last Armor Slot, roll a d6. On a result of 6, reduce the severity by one threshold without marking an Armor Slot."
+                        }
+                    }
                 },
                 "sharp": {
                     "name": "Sharp",
-                    "description": "On a successful attack against a target within Melee range, add a d4 to the damage roll."
+                    "description": "On a successful attack against a target within Melee range, add a d4 to the damage roll.",
+                    "actions": {
+                        "sharp": {
+                            "name": "Sharp",
+                            "description": "On a successful attack against a target within Melee range, add a d4 to the damage roll."
+                        }
+                    }
                 },
                 "shifting": {
                     "name": "Shifting",
-                    "description": "When you are targeted for an attack, you can mark an Armor Slot to give the attack roll against you disadvantage."
+                    "description": "When you are targeted for an attack, you can mark an Armor Slot to give the attack roll against you disadvantage.",
+                    "actions": {
+                        "shift": {
+                            "name": "Shift",
+                            "description": "When you are targeted for an attack, you can mark an Armor Slot to give the attack roll against you disadvantage."
+                        }
+                    }
                 },
                 "timeslowing": {
                     "name": "Timeslowing",
-                    "description": "Mark an Armor Slot to roll a d4 and add its result as a bonus to your Evasion against an incoming attack."
+                    "description": "Mark an Armor Slot to roll a d4 and add its result as a bonus to your Evasion against an incoming attack.",
+                    "actions": {
+                        "slowTime": {
+                            "name": "Slow Time",
+                            "description": "Mark an Armor Slot to roll a d4 and add its result as a bonus to your Evasion against an incoming attack."
+                        }
+                    }
                 },
                 "truthseeking": {
                     "name": "Truthseeking",
-                    "description": "This armor glows when another creature within Close range tells a lie."
+                    "description": "This armor glows when another creature within Close range tells a lie.",
+                    "actions": {
+                        "truthseeking": {
+                            "name": "Truthseeking",
+                            "description": "This armor glows when another creature within Close range tells a lie."
+                        }
+                    }
                 },
                 "veryHeavy": {
                     "name": "Very Heavy",
-                    "description": "-2 to Evasion; -1 to Agility"
+                    "description": "-2 to Evasion; -1 to Agility",
+                    "effects": {
+                        "veryHeavy": {
+                            "name": "Very Heavy",
+                            "description": "-2 to Evasion; -1 to Agility"
+                        }
+                    }
                 },
                 "warded": {
                     "name": "Warded",
-                    "description": "You reduce incoming magic damage by your Armor Score before applying it to your damage thresholds."
+                    "description": "You reduce incoming magic damage by your Armor Score before applying it to your damage thresholds.",
+                    "effects": {
+                        "warded": {
+                            "name": "Warded",
+                            "description": "You reduce incoming magic damage by your Armor Score before applying it to your damage thresholds."
+                        }
+                    }
                 }
             },
             "BeastformType": {
@@ -835,191 +961,495 @@
             "WeaponFeature": {
                 "barrier": {
                     "name": "Barrier",
-                    "description": "Gain your character's Tier + 1 to Armor Score; -1 to Evasion"
+                    "description": "Gain Weapon Tier + 1 to Armor Score; -1 to Evasion",
+                    "effects": {
+                        "barrier": {
+                            "name": "Barrier",
+                            "description": "Gain Weapon Tier + 1 to Armor Score; -1 to Evasion"
+                        }
+                    }
                 },
                 "bonded": {
                     "name": "Bonded",
-                    "description": "Gain a bonus to your damage rolls equal to your level."
+                    "description": "Gain a bonus to your damage rolls equal to your level.",
+                    "effects": {
+                        "damage": {
+                            "name": "Weapon Bond",
+                            "description": "Gain a bonus to your damage rolls equal to your level."
+                        }
+                    }
                 },
                 "bouncing": {
                     "name": "Bouncing",
-                    "description": "Mark 1 or more Stress to hit that many targets in range of the attack."
+                    "description": "Mark 1 or more Stress to hit that many targets in range of the attack.",
+                    "actions": {
+                        "bounce": {
+                            "name": "Bounce",
+                            "description": "Mark 1 or more Stress to hit that many targets in range of the attack."
+                        }
+                    }
                 },
                 "brave": {
                     "name": "Brave",
-                    "description": "-1 to Evasion; +3 to Severe damage threshold"
+                    "description": "-1 to Evasion; + Weapon Tier to Severe damage threshold",
+                    "effects": {
+                        "brave": {
+                            "name": "Brave",
+                            "description": "-1 to Evasion; + Weapon Tier to Severe damage threshold"
+                        }
+                    }
                 },
                 "brutal": {
                     "name": "Brutal",
-                    "description": "When you roll the maximum value on a damage die, roll an additional damage die."
+                    "description": "When you roll the maximum value on a damage die, roll an additional damage die.",
+                    "actions": {
+                        "name": "Brutal",
+                        "description": "When you roll the maximum value on a damage die, roll an additional damage die."
+                    }
                 },
                 "charged": {
                     "name": "Charged",
-                    "description": "Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack."
+                    "description": "Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack.",
+                    "actions": {
+                        "markStress": {
+                            "name": "Charge",
+                            "description": "Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack."
+                        }
+                    },
+                    "effects": {
+                        "charged": {
+                            "name": "Charged",
+                            "description": "Gain a +1 bonus to your Proficiency on a primary weapon attack."
+                        }
+                    }
                 },
                 "concussive": {
                     "name": "Concussive",
-                    "description": "On a successful attack, you can spend a Hope to knock the target back to Far range."
+                    "description": "On a successful attack, you can spend a Hope to knock the target back to Far range.",
+                    "actions": {
+                        "attack": {
+                            "name": "Concuss",
+                            "description": "On a successful attack, you can spend a Hope to knock the target back to Far range."
+                        }
+                    }
                 },
                 "cumbersome": {
                     "name": "Cumbersome",
-                    "description": "-1 to Finesse"
+                    "description": "-1 to Finesse",
+                    "effects": {
+                        "cumbersome": {
+                            "name": "Cumbersome",
+                            "description": "-1 to Finesse"
+                        }
+                    }
                 },
                 "deadly": {
                     "name": "Deadly",
-                    "description": "When you deal Severe damage, the target must mark an additional HP."
+                    "description": "When you deal Severe damage, the target must mark an additional HP.",
+                    "actions": {
+                        "extraDamage": {
+                            "name": "Deadly",
+                            "description": "When you deal Severe damage, the target must mark an additional HP."
+                        }
+                    }
                 },
                 "deflecting": {
                     "name": "Deflecting",
-                    "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your Armor Score against the attack."
+                    "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your Armor Score against the attack.",
+                    "actions": {
+                        "deflect": {
+                            "name": "Deflect",
+                            "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your Armor Score against the attack."
+                        }
+                    },
+                    "effects": {
+                        "deflecting": {
+                            "name": "Deflecting",
+                            "description": "Gain a bonus to your Evasion equal to your Armor Score against the attack"
+                        }
+                    }
                 },
                 "destructive": {
                     "name": "Destructive",
-                    "description": "-1 to Agility; on a successful attack, all adversaries within Very Close range must mark a Stress."
+                    "description": "-1 to Agility; on a successful attack, all adversaries within Very Close range must mark a Stress.",
+                    "actions": {
+                        "attack": {
+                            "name": "Destruction",
+                            "description": "On a successful attack, all adversaries within Very Close range must mark a Stress."
+                        }
+                    },
+                    "effects": {
+                        "agility": {
+                            "name": "Destructive",
+                            "description": "-1 to Agility"
+                        }
+                    }
                 },
                 "devastating": {
                     "name": "Devastating",
-                    "description": "Before you make an attack roll, you can mark a Stress to use a d20 as your damage die."
+                    "description": "Before you make an attack roll, you can mark a Stress to use a d20 as your damage die.",
+                    "actions": {
+                        "devastate": {
+                            "name": "Devastate",
+                            "description": "Before you make an attack roll, you can mark a Stress to use a d20 as your damage die."
+                        }
+                    }
                 },
                 "doubleDuty": {
                     "name": "Double Duty",
-                    "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range"
+                    "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range",
+                    "effects": {
+                        "doubleDuty": {
+                            "name": "Double Duty",
+                            "description": "+1 to Armor Score; +1 to primary weapon damage within Melee range"
+                        }
+                    }
                 },
                 "doubledUp": {
                     "name": "Doubled Up",
-                    "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range."
+                    "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range.",
+                    "actions": {
+                        "doubleUp": {
+                            "name": "Double Up",
+                            "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range."
+                        }
+                    }
                 },
                 "dueling": {
                     "name": "Dueling",
-                    "description": "When there are no other creatures within Close range of the target, gain advantage on your attack roll against them."
+                    "description": "When there are no other creatures within Close range of the target, gain advantage on your attack roll against them.",
+                    "actions": {
+                        "duel": {
+                            "name": "Duel",
+                            "description": "When there are no other creatures within Close range of the target, gain advantage on your attack roll against them."
+                        }
+                    }
                 },
                 "eruptive": {
                     "name": "Eruptive",
-                    "description": "On a successful attack against a target within Melee range, all other adversaries within Very Close range must succeed on a reaction roll (14) or take half damage."
+                    "description": "On a successful attack against a target within Melee range, all other adversaries within Very Close range must succeed on a reaction roll (14) or take half damage.",
+                    "actions": {
+                        "erupt": {
+                            "name": "Erupt",
+                            "description": "On a successful attack against a target within Melee range, all other adversaries within Very Close range must succeed on a reaction roll (14) or take half damage."
+                        }
+                    }
                 },
                 "grappling": {
                     "name": "Grappling",
-                    "description": "On a successful attack, you can spend a Hope to Restrain the target or pull them into Melee range with you."
+                    "description": "On a successful attack, you can spend a Hope to Restrain the target or pull them into Melee range with you.",
+                    "actions": {
+                        "grapple": {
+                            "name": "Grapple",
+                            "description": "On a successful attack, you can spend a Hope to Restrain the target or pull them into Melee range with you."
+                        }
+                    }
                 },
                 "greedy": {
                     "name": "Greedy",
-                    "description": "Spend a handful of gold to gain a +1 bonus to your Proficiency on a damage roll."
+                    "description": "Spend a handful of gold to gain a +1 bonus to your Proficiency on a damage roll.",
+                    "actions": {
+                        "greed": {
+                            "name": "Greed",
+                            "description": "Spend a handful of gold to gain a +1 bonus to your Proficiency on a damage roll."
+                        }
+                    }
                 },
                 "healing": {
                     "name": "Healing",
-                    "description": "During downtime, automatically clear a Hit Point."
+                    "description": "During downtime, automatically clear a Hit Point.",
+                    "actions": {
+                        "heal": {
+                            "name": "Heal",
+                            "description": "During downtime, automatically clear a Hit Point."
+                        }
+                    }
                 },
                 "heavy": {
                     "name": "Heavy",
-                    "description": "-1 to Evasion"
+                    "description": "-1 to Evasion",
+                    "effects": {
+                        "heavy": {
+                            "name": "Heavy",
+                            "description": "-1 to Evasion"
+                        }
+                    }
                 },
                 "hooked": {
                     "name": "Hooked",
-                    "description": "On a successful attack, you can pull the target into Melee range."
+                    "description": "On a successful attack, you can pull the target into Melee range.",
+                    "actions": {
+                        "hook": {
+                            "name": "Hook",
+                            "description": "On a successful attack, you can pull the target into Melee range."
+                        }
+                    }
                 },
                 "hot": {
                     "name": "Hot",
-                    "description": "This weapon cuts through solid material."
+                    "description": "This weapon cuts through solid material.",
+                    "actions": {
+                        "hot": {
+                            "name": "Hot",
+                            "description": "This weapon cuts through solid material."
+                        }
+                    }
                 },
                 "invigorating": {
                     "name": "Invigorating",
-                    "description": "On a successful attack, roll a d4. On a result of 4, clear a Stress."
+                    "description": "On a successful attack, roll a d4. On a result of 4, clear a Stress.",
+                    "actions": {
+                        "invigorate": {
+                            "name": "Invigorate",
+                            "description": "On a successful attack, roll a d4. On a result of 4, clear a Stress."
+                        }
+                    }
                 },
                 "lifestealing": {
                     "name": "Lifestealing",
-                    "description": "On a successful attack, roll a d6. On a result of 6, clear a Hit Point or clear a Stress."
+                    "description": "On a successful attack, roll a d6. On a result of 6, clear a Hit Point or clear a Stress.",
+                    "actions": {
+                        "lifesteal": {
+                            "name": "Lifesteal",
+                            "description": "On a successful attack, roll a d6. On a result of 6, clear a Hit Point or clear a Stress."
+                        }
+                    }
                 },
                 "lockedOn": {
                     "name": "Locked On",
-                    "description": "On a successful attack, your next attack against the same target with your primary weapon automatically succeeds."
-                },
-                "lucky": {
-                    "name": "Lucky",
-                    "description": "On a failed attack, you can mark a Stress to reroll your attack."
+                    "description": "On a successful attack, your next attack against the same target with your primary weapon automatically succeeds.",
+                    "actions": {
+                        "lockOn": {
+                            "name": "Lock On",
+                            "description": "On a successful attack, your next attack against the same target with your primary weapon automatically succeeds."
+                        }
+                    }
                 },
                 "long": {
                     "name": "Long",
-                    "description": "This weapon's attack targets all adversaries in a line within range."
+                    "description": "This weapon's attack targets all adversaries in a line within range.",
+                    "actions": {
+                        "long": {
+                            "name": "Long",
+                            "description": "This weapon's attack targets all adversaries in a line within range."
+                        }
+                    }
+                },
+                "lucky": {
+                    "name": "Lucky",
+                    "description": "On a failed attack, you can mark a Stress to reroll your attack.",
+                    "actions": {
+                        "luck": {
+                            "name": "Luck",
+                            "description": "On a failed attack, you can mark a Stress to reroll your attack."
+                        }
+                    }
                 },
                 "massive": {
                     "name": "Massive",
-                    "description": "-1 to Evasion; on a successful attack, roll an additional damage die and discard the lowest result."
+                    "description": "-1 to Evasion; on a successful attack, roll an additional damage die and discard the lowest result.",
+                    "effects": {
+                        "massive": {
+                            "name": "Massive",
+                            "description": "-1 to Evasion; on a successful attack, roll an additional damage die and discard the lowest result."
+                        }
+                    }
                 },
                 "painful": {
                     "name": "Painful",
-                    "description": "Each time you make a successful attack, you must mark a Stress."
+                    "description": "Each time you make a successful attack, you must mark a Stress.",
+                    "actions": {
+                        "pain": {
+                            "name": "Pain",
+                            "description": "Each time you make a successful attack, you must mark a Stress."
+                        }
+                    }
                 },
                 "paired": {
                     "name": "Paired",
-                    "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range"
+                    "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range",
+                    "actions": {
+                        "paired": {
+                            "name": "Paired",
+                            "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range"
+                        }
+                    }
                 },
                 "parry": {
                     "name": "Parry",
-                    "description": "When you are attacked, roll this weapon's damage dice. If any of the attacker's damage dice rolled the same value as your dice, the matching results are discarded from the attacker's damage dice before the damage you take is totaled."
+                    "description": "When you are attacked, roll this weapon's damage dice. If any of the attacker's damage dice rolled the same value as your dice, the matching results are discarded from the attacker's damage dice before the damage you take is totaled.",
+                    "actions": {
+                        "parry": {
+                            "name": "Parry",
+                            "description": "When you are attacked, roll this weapon's damage dice. If any of the attacker's damage dice rolled the same value as your dice, the matching results are discarded from the attacker's damage dice before the damage you take is totaled."
+                        }
+                    }
                 },
                 "persuasive": {
                     "name": "Persuasive",
-                    "description": "Before you make a Presence Roll, you can mark a Stress to gain a +2 bonus to the result."
+                    "description": "Before you make a Presence Roll, you can mark a Stress to gain a +2 bonus to the result.",
+                    "actions": {
+                        "persuade": {
+                            "name": "Persuade",
+                            "description": "Before you make a Presence Roll, you can mark a Stress to gain a +2 bonus to the result."
+                        }
+                    },
+                    "effects": {
+                        "persuasive": {
+                            "name": "Persuasive",
+                            "description": "Gain a +2 bonus to the Presence roll"
+                        }
+                    }
                 },
                 "pompous": {
                     "name": "Pompous",
-                    "description": "You must have a Presence of 0 or lower to use this weapon."
+                    "description": "You must have a Presence of 0 or lower to use this weapon.",
+                    "actions": {
+                        "pompous": {
+                            "name": "Pompous",
+                            "description": "You must have a Presence of 0 or lower to use this weapon."
+                        }
+                    }
                 },
                 "powerful": {
                     "name": "Powerful",
-                    "description": "On a successful attack, roll an additional damage die and discard the lowest result."
+                    "description": "On a successful attack, roll an additional damage die and discard the lowest result.",
+                    "effects": {
+                        "powerful": {
+                            "name": "Powerful",
+                            "description": "On a successful attack, roll an additional damage die and discard the lowest result."
+                        }
+                    }
                 },
                 "protective": {
                     "name": "Protective",
-                    "description": "Add your character's Tier to your Armor Score"
+                    "description": "Add your character's Tier to your Armor Score",
+                    "effects": {
+                        "protective": {
+                            "name": "Protective",
+                            "description": "Add your character's Tier to your Armor Score"
+                        }
+                    }
                 },
                 "quick": {
                     "name": "Quick",
-                    "description": "When you make an attack, you can mark a Stress to target another creature within range."
+                    "description": "When you make an attack, you can mark a Stress to target another creature within range.",
+                    "actions": {
+                        "quick": {
+                            "name": "Quick",
+                            "description": "When you make an attack, you can mark a Stress to target another creature within range."
+                        }
+                    }
                 },
                 "reliable": {
                     "name": "Reliable",
-                    "description": "+1 to attack rolls"
+                    "description": "+1 to attack rolls",
+                    "effects": {
+                        "reliable": {
+                            "name": "Reliable",
+                            "description": "+1 to attack rolls"
+                        }
+                    }
                 },
                 "reloading": {
                     "name": "Reloading",
-                    "description": "After you make an attack, roll a d6. On a result of 1, you must mark a Stress to reload this weapon before you can fire it again."
+                    "description": "After you make an attack, roll a d6. On a result of 1, you must mark a Stress to reload this weapon before you can fire it again.",
+                    "actions": {
+                        "reload": {
+                            "name": "Reload",
+                            "description": "After you make an attack, roll a d6. On a result of 1, you must mark a Stress to reload this weapon before you can fire it again."
+                        }
+                    }
                 },
                 "retractable": {
                     "name": "Retractable",
-                    "description": "The blade can be hidden in the hilt to avoid detection."
+                    "description": "The blade can be hidden in the hilt to avoid detection.",
+                    "actions": {
+                        "retract": {
+                            "name": "Retract",
+                            "description": "The blade can be hidden in the hilt to avoid detection."
+                        }
+                    }
                 },
                 "returning": {
                     "name": "Returning",
-                    "description": "When this weapon is thrown within its range, it appears in your hand immediately after the attack."
+                    "description": "When this weapon is thrown within its range, it appears in your hand immediately after the attack.",
+                    "actions": {
+                        "return": {
+                            "name": "Return",
+                            "description": "When this weapon is thrown within its range, it appears in your hand immediately after the attack."
+                        }
+                    }
                 },
                 "scary": {
                     "name": "Scary",
-                    "description": "On a successful attack, the target must mark a Stress."
+                    "description": "On a successful attack, the target must mark a Stress.",
+                    "actions": {
+                        "scare": {
+                            "name": "Scare",
+                            "description": "On a successful attack, the target must mark a Stress."
+                        }
+                    }
                 },
                 "selfCorrecting": {
                     "name": "Self Correcting",
-                    "description": "When you roll a 1 on a damage die, it deals 6 damage instead."
+                    "description": "When you roll a 1 on a damage die, it deals 6 damage instead.",
+                    "effects": {
+                        "selfCorrecting": {
+                            "name": "Self Correcting",
+                            "description": "When you roll a 1 on a damage die, it deals 6 damage instead."
+                        }
+                    }
                 },
                 "serrated": {
                     "name": "Serrated",
-                    "description": "When you roll a 1 on a damage die, it deals 8 damage instead."
+                    "description": "When you roll a 1 on a damage die, it deals 8 damage instead.",
+                    "effects": {
+                        "serrated": {
+                            "name": "Serrated",
+                            "description": "When you roll a 1 on a damage die, it deals 8 damage instead."
+                        }
+                    }
                 },
                 "sharpwing": {
                     "name": "Sharpwing",
-                    "description": "Gain a bonus to your damage rolls equal to your Agility."
+                    "description": "Gain a bonus to your damage rolls equal to your Agility.",
+                    "effects": {
+                        "sharpwing": {
+                            "name": "Sharpwing",
+                            "description": "Gain a bonus to your damage rolls equal to your Agility."
+                        }
+                    }
                 },
                 "sheltering": {
                     "name": "Sheltering",
-                    "description": "When you mark an Armor Slot, it reduces damage for you and all allies within Melee range of you who took the same damage."
+                    "description": "When you mark an Armor Slot, it reduces damage for you and all allies within Melee range of you who took the same damage.",
+                    "actions": {
+                        "shelter": {
+                            "name": "Shelter",
+                            "description": "When you mark an Armor Slot, it reduces damage for you and all allies within Melee range of you who took the same damage."
+                        }
+                    }
                 },
                 "startling": {
                     "name": "Startling",
-                    "description": "Mark a Stress to crack the whip and force all adversaries within Melee range back to Close range."
+                    "description": "Mark a Stress to crack the whip and force all adversaries within Melee range back to Close range.",
+                    "actions": {
+                        "startle": {
+                            "name": "Startle",
+                            "description": "Mark a Stress to crack the whip and force all adversaries within Melee range back to Close range."
+                        }
+                    }
                 },
                 "timebending": {
                     "name": "Timebending",
-                    "description": "You can choose the target of your attack after making your attack roll."
+                    "description": "You can choose the target of your attack after making your attack roll.",
+                    "actions": {
+                        "bendTime": {
+                            "name": "Bend Time",
+                            "description": "You can choose the target of your attack after making your attack roll."
+                        }
+                    }
                 }
             }
         },
