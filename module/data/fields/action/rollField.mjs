@@ -4,7 +4,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
     /** @override */
     static defineSchema() {
         return {
-            type: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.GENERAL.rollTypes }),
+            type: new fields.StringField({ nullable: true, initial: null, choices: this.getRollTypes() }),
             trait: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.ACTOR.abilities }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
             bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
@@ -45,6 +45,15 @@ export class DHActionRollData extends foundry.abstract.DataModel {
         };
     }
 
+    static getRollTypes() {
+        console.log(this.parent, this._source)
+        return CONFIG.DH.GENERAL.rollTypes;
+    }
+
+    _configure() {
+        console.log(this)
+    }
+
     getFormula() {
         if (!this.type) return;
         let formula = '';
@@ -71,5 +80,6 @@ export class DHActionRollData extends foundry.abstract.DataModel {
 export default class RollField extends fields.EmbeddedDataField {
     constructor(options, context = {}) {
         super(DHActionRollData, options, context);
+        console.log(this)
     }
 }
