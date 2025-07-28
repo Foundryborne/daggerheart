@@ -23,7 +23,8 @@ export const socketEvent = {
 export const GMUpdateEvent = {
     UpdateDocument: 'DhGMUpdateDocument',
     UpdateSetting: 'DhGMUpdateSetting',
-    UpdateFear: 'DhGMUpdateFear'
+    UpdateFear: 'DhGMUpdateFear',
+    UpdateSaveMessage: 'DhGMUpdateSaveMessage'
 };
 
 export const RefreshType = {
@@ -55,8 +56,12 @@ export const registerSocketHooks = () => {
                             )
                         )
                     );
-                    /* Hooks.callAll(socketEvent.DhpFearUpdate);
-                    await game.socket.emit(`system.${CONFIG.DH.id}`, { action: socketEvent.DhpFearUpdate }); */
+                    break;
+                case GMUpdateEvent.UpdateSaveMessage:
+                    const action = await fromUuid(data.update.action),
+                        message = game.messages.get(data.update.message);
+                    if(!action || !message) return;
+                    action.updateSaveMessage(data.update.result, message, data.update.token);
                     break;
             }
 

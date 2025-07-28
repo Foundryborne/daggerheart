@@ -1,3 +1,5 @@
+import { emitAsGM, GMUpdateEvent } from "../../systemRegistration/socket.mjs";
+
 export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLog {
     constructor(options) {
         super(options);
@@ -98,7 +100,16 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         if (message.system.source.item && message.system.source.action) {
             const action = this.getAction(actor, message.system.source.item, message.system.source.action);
             if (!action || !action?.hasSave) return;
-            action.rollSave(token.actor, event, message).then(result => action.updateSaveMessage(result, message, token.id));
+            action.rollSave(token.actor, event, message).then(result => emitAsGM(
+                GMUpdateEvent.UpdateSaveMessage,
+                action.updateSaveMessage.bind(action, result, message, token.id),
+                {
+                    action: action.uuid,
+                    message: message._id,
+                    token: token.id,
+                    result
+                }
+            ));
         }
     }
 
