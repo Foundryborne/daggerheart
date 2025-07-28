@@ -320,7 +320,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             success: result.roll.success
         });
         if (game.modules.get('dice-so-nice')?.active)
-            game.dice3d.waitFor3DAnimationByMessageID(result.message.id).then(()=> updateMsg());
+            game.dice3d.waitFor3DAnimationByMessageID(result.message.id ?? result.message._id).then(() => updateMsg());
         else updateMsg();
     }
 
