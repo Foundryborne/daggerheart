@@ -43,6 +43,52 @@ export const range = {
     }
 };
 
+export const compareOperator = {
+    lessThan: {
+        id: 'lessThan',
+        label: 'DAGGERHEART.CONFIG.CompareOperator.lessThan'
+    },
+    lessThanEqual: {
+        id: 'lessThanEqual',
+        label: 'DAGGERHEART.CONFIG.CompareOperator.lessThanEqual'
+    },
+    equal: {
+        id: 'equal',
+        label: 'DAGGERHEART.CONFIG.CompareOperator.equal'
+    },
+    moreThanEqual: {
+        id: 'moreThanEqual',
+        label: 'DAGGERHEART.CONFIG.CompareOperator.moreThanEqual'
+    },
+    moreThan: {
+        id: 'moreThan',
+        label: 'DAGGERHEART.CONFIG.CompareOperator.moreThan'
+    }
+};
+
+export const otherTargetTypes = {
+    friendly: {
+        id: 'friendly',
+        label: 'Friendly'
+    },
+    hostile: {
+        id: 'hostile',
+        label: 'Hostile'
+    },
+    any: {
+        id: 'any',
+        label: 'Any'
+    }
+};
+
+export const targetTypes = {
+    self: {
+        id: 'self',
+        label: 'Self'
+    },
+    ...otherTargetTypes
+};
+
 export const burden = {
     oneHanded: {
         value: 'oneHanded',

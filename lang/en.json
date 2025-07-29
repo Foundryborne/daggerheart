@@ -88,6 +88,17 @@
                 }
             }
         },
+        "ACTIVEEFFECT": {
+            "Config": {
+                "rangeDependence": {
+                    "title": "Range Dependence"
+                }
+            },
+            "RangeDependance": {
+                "hint": "Settings for an optional distance at which this effect should activate",
+                "title": "Range Dependant"
+            }
+        },
         "ACTORS": {
             "Adversary": {
                 "FIELDS": {
@@ -621,6 +632,13 @@
             "Burden": {
                 "oneHanded": "One-Handed",
                 "twoHanded": "Two-Handed"
+            },
+            "CompareOperator": {
+                "lessThan": "Less Than",
+                "lessThanEqual": "Less Than Equal",
+                "equal": "Equal",
+                "moreThanEqual": "More Than Equal",
+                "moreThan": "More Than"
             },
             "Condition": {
                 "dead": {
@@ -1546,6 +1564,12 @@
                     "hordeDamage": {
                         "label": "Automatic Horde Damage",
                         "hint": "Automatically active horde effect to lower damage when reaching half or lower HP."
+                    },
+                    "effects": {
+                        "rangeDependent": {
+                            "label": "Effect Range Dependent",
+                            "hint": "Effects with defined range dependency will automatically turn on/off depending on range"
+                        }
                     }
                 }
             },

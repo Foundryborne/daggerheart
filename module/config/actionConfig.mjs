@@ -43,25 +43,6 @@ export const actionTypes = {
     }
 };
 
-export const targetTypes = {
-    self: {
-        id: 'self',
-        label: 'Self'
-    },
-    friendly: {
-        id: 'friendly',
-        label: 'Friendly'
-    },
-    hostile: {
-        id: 'hostile',
-        label: 'Hostile'
-    },
-    any: {
-        id: 'any',
-        label: 'Any'
-    }
-};
-
 export const damageOnSave = {
     none: {
         id: 'none',
