@@ -185,13 +185,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     prepareRoll() {
         const roll = {
-            modifiers: this.modifiers,
-            trait: this.roll?.trait,
+            baseModifiers: this.roll.getModifier(),
             label: 'Attack',
             type: this.actionType,
             difficulty: this.roll?.difficulty,
             formula: this.roll.getFormula(),
-            bonus: this.roll.bonus,
             advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
         };
         if (this.roll?.type === 'diceSet') roll.lite = true;
@@ -237,7 +235,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /* ROLL */
     get hasRoll() {
-        return !!this.roll?.type || !!this.roll?.bonus;
+        return !!this.roll?.type;
     }
 
     get modifiers() {

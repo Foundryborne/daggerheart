@@ -10,6 +10,7 @@
 
 import { addLinkedItemsDiff, updateLinkedItemApps } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
+import FormulaField from '../fields/formulaField.mjs';
 
 const fields = foundry.data.fields;
 
@@ -48,7 +49,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                         initial: CONFIG.DH.ITEM.itemResourceTypes.simple
                     }),
                     value: new fields.NumberField({ integer: true, min: 0, initial: 0 }),
-                    max: new fields.StringField({ nullable: true, initial: null }),
+                    max: new FormulaField({ nullable: true, initial: null, deterministic: true }),
                     icon: new fields.StringField(),
                     recovery: new fields.StringField({
                         choices: CONFIG.DH.GENERAL.refreshTypes,

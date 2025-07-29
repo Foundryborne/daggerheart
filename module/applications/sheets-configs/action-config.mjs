@@ -133,8 +133,8 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         const resource = this.action.parent.resource;
         if (resource) {
             options[this.action.parent.parent.id] = {
-                label: this.action.parent.parent.name,
-                group: 'TYPES.Actor.character'
+                label: "DAGGERHEART.GENERAL.itemResource",
+                group: 'Global'
             };
         }
 

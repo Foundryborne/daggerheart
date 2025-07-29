@@ -260,7 +260,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 icon: 'fa-solid fa-arrow-up',
                 condition: target => {
                     const doc = getDocFromElementSync(target);
-                    return doc && system.inVault;
+                    return doc && doc.system.inVault;
                 },
                 callback: async target => {
                     const doc = await getDocFromElement(target);

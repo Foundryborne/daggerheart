@@ -124,13 +124,7 @@ export default class D20Roll extends DHRoll {
     }
 
     applyBaseBonus() {
-        const modifiers = [];
-
-        if (this.options.roll.bonus)
-            modifiers.push({
-                label: 'Bonus to Hit',
-                value: this.options.roll.bonus
-            });
+        const modifiers = foundry.utils.deepClone(this.options.roll.baseModifiers) ?? [];
 
         modifiers.push(...this.getBonus(`roll.${this.options.type}`, `${this.options.type?.capitalize()} Bonus`));
         modifiers.push(

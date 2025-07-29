@@ -7,6 +7,7 @@ export default class RegisterHandlebarsHelpers {
             includes: this.includes,
             times: this.times,
             damageFormula: this.damageFormula,
+            formulaValue: this.formulaValue,
             damageSymbols: this.damageSymbols,
             rollParsed: this.rollParsed,
             hasProperty: foundry.utils.hasProperty,
@@ -37,6 +38,15 @@ export default class RegisterHandlebarsHelpers {
         ].filter(x => x);
 
         return instances.join(traitTotal > 0 ? ' + ' : ' - ');
+    }
+
+    static formulaValue(formula, item) {
+        if(isNaN(formula)) {
+            const data = item.getRollData.bind(item)(),
+                roll = new Roll(Roll.replaceFormulaData(formula, data)).evaluateSync();
+            formula = roll.total;
+        }
+        return formula;
     }
 
     static damageSymbols(damageParts) {

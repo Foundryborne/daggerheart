@@ -8,8 +8,8 @@
                         <input name="uses.enabled" type="checkbox"{{#if uses.enabled}} checked{{/if}}>
                         <label for="uses.enabled">Uses</label>
                     </div>
-                </div>
-                <label class="modifier-label">{{uses.value}}/{{uses.max}}</label>
+                </div>{{log @root}}
+                <label class="modifier-label">{{uses.value}}/{{formulaValue uses.max @root.rollConfig.data}}</label>
             </li>
         {{/if}}
         {{#each costs as | cost index |}}

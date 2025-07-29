@@ -1381,6 +1381,7 @@
             "imagePath": "Image Path",
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
+            "itemResource": "Item Resource",
             "level": "Level",
             "levelUp": "Level Up",
             "loadout": "Loadout",

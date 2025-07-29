@@ -66,6 +66,43 @@ export class DHActionRollData extends foundry.abstract.DataModel {
         }
         return formula;
     }
+
+    getModifier() {
+        const modifiers = [];
+        if(!this.parent?.actor) return modifiers;
+        switch (this.parent.actor.type) {
+            case 'character':
+                const trait = this.useDefault || !this.trait ? this.parent.item.system.attack.roll.trait : this.trait;
+                if(this.type === CONFIG.DH.GENERAL.rollTypes.attack.id || this.type === CONFIG.DH.GENERAL.rollTypes.trait.id)
+                    modifiers.push(
+                        {
+                            label: `DAGGERHEART.CONFIG.Traits.${trait}.name`,
+                            value: this.parent.actor.system.traits[trait].value
+                        }
+                    )
+                else if(this.type === CONFIG.DH.GENERAL.rollTypes.spellcast.id)
+                    modifiers.push(
+                        {
+                            label: `DAGGERHEART.CONFIG.RollTypes.spellcast.name`,
+                            value: this.parent.actor.system.spellcastModifier
+                        }
+                    )
+                break;
+            case 'companion':
+            case 'adversary':
+                if(this.type === CONFIG.DH.GENERAL.rollTypes.attack.id)
+                    modifiers.push(
+                        {
+                            label: 'Bonus to Hit',
+                            value: this.bonus ?? this.parent.actor.system.attack.roll.bonus
+                        }
+                    )
+                break;
+            default:
+                break;
+        }
+        return modifiers;
+    }
 }
 
 export default class RollField extends fields.EmbeddedDataField {
