@@ -18,7 +18,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
                 x => x.statuses.size === 1 && x.name === game.i18n.localize(statusMap.get(x.statuses.first()).name)
             );
             for (var status of effect.statuses) {
-                if (!currentStatusActiveEffects.find(x => x.statuses.includes(status))) {
+                if (!currentStatusActiveEffects.find(x => x.statuses.has(status))) {
                     const statusData = statusMap.get(status);
                     acc.push({
                         name: game.i18n.localize(statusData.name),
