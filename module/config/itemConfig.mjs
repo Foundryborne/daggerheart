@@ -1301,9 +1301,9 @@ export const featureTypes = {
         id: 'consumable',
         label: 'TYPES.Item.consumable'
     },
-    miscellaneous: {
-        id: 'miscellaneous',
-        label: 'TYPES.Item.miscellaneous'
+    loot: {
+        id: 'loot',
+        label: 'TYPES.Item.loot'
     },
     beastform: {
         if: 'beastform',

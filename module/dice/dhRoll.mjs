@@ -193,11 +193,12 @@ export const registerRollDiceHooks = () => {
         if (config.roll.isCritical) updates.push({ key: 'stress', value: -1 });
         if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1 });
 
-        if (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1)
-            updates.push({ key: 'hope', value: -1 });
-        if (config.rerolledRoll.isCritical) updates.push({ key: 'stress', value: 1 });
-        if (config.rerolledRoll.result.duality === -1) updates.push({ key: 'fear', value: -1 });
-
+        if (config.rerolledRoll) {
+            if (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1) updates.push({ key: 'hope', value: -1 });
+            if (config.rerolledRoll.isCritical) updates.push({ key: 'stress', value: 1 });
+            if (config.rerolledRoll.result.duality === -1) updates.push({ key: 'fear', value: -1 });
+        }
+        
         if (updates.length) {
             const target = actor.system.partner ?? actor;
             if (!['dead', 'unconcious'].some(x => actor.statuses.has(x))) {

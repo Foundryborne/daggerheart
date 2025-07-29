@@ -38,17 +38,15 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     };
 
     get title() {
-        return game.i18n.localize('DAGGERHEART.EFFECTS.ApplyLocations.damageRoll.name');
+        return game.i18n.localize(`DAGGERHEART.EFFECTS.ApplyLocations.${this.config.isHealing ? 'healing' : 'damage'}Roll.name`);
     }
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.config = CONFIG.DH;
-        context.title = this.config.title
-            ? this.config.title
-            : game.i18n.localize('DAGGERHEART.EFFECTS.ApplyLocations.damageRoll.name');
-        // context.extraFormula = this.config.extraFormula;
+        context.title = this.config.title ?? this.title;
         context.formula = this.roll.constructFormula(this.config);
+        context.isHealing = this.config.isHealing;
         context.directDamage = this.config.directDamage;
         context.selectedRollMode = this.config.selectedRollMode;
         context.rollModes = Object.entries(CONFIG.Dice.rollModes).map(([action, { label, icon }]) => ({

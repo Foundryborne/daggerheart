@@ -1,0 +1,100 @@
+{
+  "name": "Blinding Orb",
+  "type": "consumable",
+  "_id": "eAXHdzA5qNPldOpn",
+  "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
+  "system": {
+    "description": "<p>You can activate this orb to create a flash of bright light. All targets within Close range become Vulnerable until they mark HP.</p>",
+    "quantity": 1,
+    "actions": {
+      "vk4dE0C8bjNdTwAF": {
+        "type": "effect",
+        "_id": "vk4dE0C8bjNdTwAF",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "nryJhrF26hyFQUxH",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Activate",
+        "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
+        "range": "close"
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Blinding Orb",
+      "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.eAXHdzA5qNPldOpn",
+      "transfer": false,
+      "_id": "nryJhrF26hyFQUxH",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "vulnerable"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753592689854,
+        "modifiedTime": 1753592707034,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!eAXHdzA5qNPldOpn.nryJhrF26hyFQUxH"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753592512731,
+    "modifiedTime": 1753592689875,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!eAXHdzA5qNPldOpn"
+}

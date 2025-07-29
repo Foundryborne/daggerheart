@@ -1,0 +1,99 @@
+{
+  "name": "Elusive Amulet",
+  "type": "loot",
+  "_id": "PkmTZXRMZL022O75",
+  "img": "icons/equipment/neck/pendant-rough-silver-purple.webp",
+  "system": {
+    "description": "<p>Once per long rest, you can activate this amulet to become Hidden until you move. While Hidden in this way, you remain unseen even if an adversary moves to where they would normally see you.</p>",
+    "quantity": 1,
+    "actions": {
+      "vitnEzfU3gCzsRem": {
+        "type": "effect",
+        "_id": "vitnEzfU3gCzsRem",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": 1,
+          "recovery": "longRest"
+        },
+        "effects": [
+          {
+            "_id": "YBkYjxU0Vn5JEsMK",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Activate",
+        "img": "icons/equipment/neck/pendant-rough-silver-purple.webp",
+        "range": ""
+      }
+    }
+  },
+  "effects": [
+    {
+      "name": "Elusive Amulet",
+      "img": "icons/equipment/neck/pendant-rough-silver-purple.webp",
+      "origin": "Compendium.daggerheart.loot.Item.PkmTZXRMZL022O75",
+      "transfer": true,
+      "_id": "YBkYjxU0Vn5JEsMK",
+      "type": "base",
+      "system": {},
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "hidden"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753639111583,
+        "modifiedTime": 1753639213582,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!PkmTZXRMZL022O75.YBkYjxU0Vn5JEsMK"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753638931971,
+    "modifiedTime": 1753639111606,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!PkmTZXRMZL022O75"
+}

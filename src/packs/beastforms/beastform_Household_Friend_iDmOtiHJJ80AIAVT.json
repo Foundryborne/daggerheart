@@ -1,0 +1,132 @@
+{
+  "name": "Household Friend",
+  "type": "beastform",
+  "img": "icons/creatures/mammals/rabbit-movement-glowing-green.webp",
+  "system": {
+    "beastformType": "normal",
+    "tier": 1,
+    "tokenImg": "icons/svg/mystery-man.svg",
+    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenSize": {
+      "height": null,
+      "width": null
+    },
+    "mainTrait": "instinct",
+    "advantageOn": {
+      "CXfEZDZ96ajdn5aU": {
+        "value": "Climb"
+      },
+      "IojJaTrMIkT4xFSN": {
+        "value": "Locate"
+      },
+      "IwwGzrAig49bAy8y": {
+        "value": "Protect"
+      }
+    },
+    "features": [
+      "Compendium.daggerheart.beastforms.Item.jhWSC5bNZyYUAA5Q",
+      "Compendium.daggerheart.beastforms.Item.QFg1hNCEoKVDd9Zo"
+    ],
+    "evolved": {
+      "mainTraitBonus": 0
+    },
+    "hybrid": {
+      "beastformOptions": 2,
+      "advantages": 2,
+      "features": 2
+    },
+    "examples": "Cat, Dog, Rabbit, etc."
+  },
+  "effects": [
+    {
+      "type": "beastform",
+      "name": "Beastform Transformation",
+      "img": "icons/creatures/abilities/paw-print-pair-purple.webp",
+      "_id": "CzMAMg2q5gL15JrZ",
+      "system": {
+        "characterTokenData": {
+          "tokenImg": null,
+          "tokenRingImg": "icons/svg/mystery-man.svg",
+          "tokenSize": {}
+        },
+        "advantageOn": [],
+        "featureIds": [],
+        "effectIds": []
+      },
+      "changes": [
+        {
+          "key": "system.traits.instinct.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.diceIndex",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.roll.trait",
+          "mode": 5,
+          "value": "instinct",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+        "modifiedTime": 1753637069907
+      },
+      "_key": "!items.effects!iDmOtiHJJ80AIAVT.CzMAMg2q5gL15JrZ"
+    }
+  ],
+  "folder": "nhnRdZgSSrE9myIX",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753573035973,
+    "modifiedTime": 1753575463479,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "iDmOtiHJJ80AIAVT",
+  "sort": 100000,
+  "_key": "!items!iDmOtiHJJ80AIAVT"
+}

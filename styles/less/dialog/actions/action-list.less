@@ -1,4 +1,5 @@
 @import '../../utils/fonts.less';
+@import '../../utils/colors.less';
 
 .application.daggerheart.dh-style {
     .actions-list,
@@ -36,7 +37,8 @@
 
         .action-item {
             &:hover {
-                background-color: rgba(255, 255, 255, 0.05);
+                background-color: light-dark(@soft-shadow, @soft-white-shadow);
+                cursor: pointer;
             }
             padding: 5px;
             border-radius: 5px;
@@ -47,7 +49,6 @@
                 align-items: center;
                 gap: 10px;
                 font-family: @font-body;
-                cursor: pointer;
                 flex: 1;
                 i {
                     text-align: center;

@@ -1,0 +1,31 @@
+{
+  "name": "Portal Seed",
+  "type": "loot",
+  "_id": "eRd5Gk7J7hPCqp11",
+  "img": "icons/commodities/treasure/egg-ornate-green-gold.webp",
+  "system": {
+    "description": "<p>You can plant this seed in the ground to grow a portal in that spot. The portal is ready to use in 24 hours. You can use this portal to travel to any other location where you planted a portal seed. A portal can be destroyed by dealing any amount of magic damage to it.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753638512020,
+    "modifiedTime": 1753638586392,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!eRd5Gk7J7hPCqp11"
+}

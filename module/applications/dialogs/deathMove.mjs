@@ -13,8 +13,9 @@ export default class DhpDeathMove extends HandlebarsApplicationMixin(Application
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ['daggerheart', 'views', 'death-move'],
-        position: { width: 800, height: 'auto' },
+        classes: ['daggerheart', 'dh-style', 'dialog', 'views', 'death-move'],
+        position: { width: 'auto', height: 'auto' },
+        window: { icon: 'fa-solid fa-skull' },
         actions: {
             selectMove: this.selectMove,
             takeMove: this.takeMove
@@ -32,6 +33,7 @@ export default class DhpDeathMove extends HandlebarsApplicationMixin(Application
         const context = await super._prepareContext(_options);
         context.selectedMove = this.selectedMove;
         context.options = CONFIG.DH.GENERAL.deathMoves;
+        context.title = game.i18n.localize('DAGGERHEART.APPLICATIONS.DeathMove.takeMove');
 
         return context;
     }

@@ -1,0 +1,105 @@
+{
+  "name": "Major Control Potion",
+  "type": "consumable",
+  "_id": "80s1FLmTLtohZ5GH",
+  "img": "icons/consumables/potions/bottle-round-corked-blue.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your Finesse until your next rest.</p>",
+    "quantity": 1,
+    "actions": {
+      "fk272mE2zHIHq8qR": {
+        "type": "effect",
+        "_id": "fk272mE2zHIHq8qR",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "YOgojNdjARXUUrky",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/bottle-round-corked-blue.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Major Control Potion",
+      "img": "icons/consumables/potions/bottle-round-corked-blue.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.80s1FLmTLtohZ5GH",
+      "transfer": false,
+      "_id": "YOgojNdjARXUUrky",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.finesse.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753589723372,
+        "modifiedTime": 1753589738716,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!80s1FLmTLtohZ5GH.YOgojNdjARXUUrky"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753589675185,
+    "modifiedTime": 1753589723393,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!80s1FLmTLtohZ5GH"
+}

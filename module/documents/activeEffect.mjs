@@ -41,6 +41,14 @@ export default class DhActiveEffect extends ActiveEffect {
         });
     }
 
+    get localizedStatuses() {
+        const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status.name]));
+        return this.statuses.map(x => ({
+            key: x,
+            name: game.i18n.localize(statusMap.get(x))
+        }));
+    }
+
     async _preCreate(data, options, user) {
         const update = {};
         if (!data.img) {
@@ -55,7 +63,8 @@ export default class DhActiveEffect extends ActiveEffect {
     }
 
     static applyField(model, change, field) {
-        change.value = this.effectSafeEval(itemAbleRollParse(change.value, model, change.effect.parent));
+        const evalValue = this.effectSafeEval(itemAbleRollParse(change.value, model, change.effect.parent));
+        change.value = evalValue ?? change.value;
         super.applyField(model, change, field);
     }
 

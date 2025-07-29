@@ -1,5 +1,6 @@
 @import '../../utils/spacing.less';
 @import '../../utils/colors.less';
+@import '../../utils/fonts.less';
 
 .theme-light .daggerheart.dh-style.views.downtime {
     .downtime-container .activity-container .activity-selected-marker {
@@ -69,7 +70,9 @@
 
         button {
             flex: 1;
-            font-family: 'Montserrat', sans-serif;
+            height: 40px;
+            font-family: @font-body;
+            font-weight: 600;
         }
     }
 }

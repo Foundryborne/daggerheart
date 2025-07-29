@@ -63,6 +63,19 @@ export default class DHWeapon extends AttachableItem {
                         ]
                     }
                 }
+            }),
+            rules: new fields.SchemaField({
+                attack: new fields.SchemaField({
+                    roll: new fields.SchemaField({
+                        trait: new fields.StringField({
+                            required: true,
+                            choices: CONFIG.DH.ACTOR.abilities,
+                            nullable: true,
+                            initial: null,
+                            label: 'DAGGERHEART.GENERAL.Rules.attack.roll.trait.label'
+                        })
+                    })
+                })
             })
         };
     }
@@ -75,6 +88,10 @@ export default class DHWeapon extends AttachableItem {
         return this.actions.filter(
             action => !this.weaponFeatures.some(feature => feature.actionIds.includes(action.id))
         );
+    }
+
+    prepareDerivedData() {
+        this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
     }
 
     async _preUpdate(changes, options, user) {

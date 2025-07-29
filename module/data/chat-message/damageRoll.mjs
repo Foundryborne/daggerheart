@@ -21,6 +21,7 @@ export default class DHDamageRoll extends foundry.abstract.TypeDataModel {
             ),
             targetSelection: new fields.BooleanField({ initial: true }),
             hasSave: new fields.BooleanField({ initial: false }),
+            isHealing: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
             source: new fields.SchemaField({
                 actor: new fields.StringField(),

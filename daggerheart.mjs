@@ -19,7 +19,6 @@ import {
 } from './module/systemRegistration/_module.mjs';
 import { placeables } from './module/canvas/_module.mjs';
 import { registerRollDiceHooks } from './module/dice/dhRoll.mjs';
-import { registerDHActorHooks } from './module/documents/actor.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
 
 Hooks.once('init', () => {
@@ -80,8 +79,8 @@ Hooks.once('init', () => {
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Subclass, { types: ['subclass'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Feature, { types: ['feature'], makeDefault: true });
     Items.registerSheet(SYSTEM.id, applications.sheets.items.DomainCard, { types: ['domainCard'], makeDefault: true });
-    Items.registerSheet(SYSTEM.id, applications.sheets.items.Miscellaneous, {
-        types: ['miscellaneous'],
+    Items.registerSheet(SYSTEM.id, applications.sheets.items.Loot, {
+        types: ['loot'],
         makeDefault: true
     });
     Items.registerSheet(SYSTEM.id, applications.sheets.items.Consumable, { types: ['consumable'], makeDefault: true });
@@ -169,7 +168,7 @@ Hooks.on('ready', () => {
     registerCountdownHooks();
     socketRegistration.registerSocketHooks();
     registerRollDiceHooks();
-    registerDHActorHooks();
+    socketRegistration.registerUserQueries();
 });
 
 Hooks.once('dicesoniceready', () => {});
@@ -196,13 +195,13 @@ Hooks.on('chatMessage', (_, message) => {
 
         const traitValue = rollCommand.trait?.toLowerCase();
         const advantage = rollCommand.advantage
-            ? CONFIG.DH.ACTIONS.advandtageState.advantage.value
+            ? CONFIG.DH.ACTIONS.advantageState.advantage.value
             : rollCommand.disadvantage
-              ? CONFIG.DH.ACTIONS.advandtageState.disadvantage.value
+              ? CONFIG.DH.ACTIONS.advantageState.disadvantage.value
               : undefined;
         const difficulty = rollCommand.difficulty;
 
-        const target = getCommandTarget();
+        const target = getCommandTarget({ allowNull: true });
         const title = traitValue
             ? game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                   ability: game.i18n.localize(SYSTEM.ACTOR.abilities[traitValue].label)

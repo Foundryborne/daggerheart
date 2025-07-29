@@ -1,0 +1,31 @@
+{
+  "name": "Glider",
+  "type": "loot",
+  "_id": "CiXwelozmBDcPY48",
+  "img": "icons/commodities/leather/leather-patch-red.webp",
+  "system": {
+    "description": "<p>While falling, you can mark a Stress to deploy this small parachute and glide safely to the ground.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753637642501,
+    "modifiedTime": 1753637766985,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!CiXwelozmBDcPY48"
+}

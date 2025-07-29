@@ -31,21 +31,24 @@ export function rollCommandToJSON(text) {
     return Object.keys(result).length > 0 ? result : null;
 }
 
-export const getCommandTarget = () => {
+export const getCommandTarget = (options = {}) => {
+    const { allowNull = false } = options;
     let target = game.canvas.tokens.controlled.length > 0 ? game.canvas.tokens.controlled[0].actor : null;
     if (!game.user.isGM) {
         target = game.user.character;
-        if (!target) {
+        if (!target && !allowNull) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noAssignedPlayerCharacter'));
             return null;
         }
     }
-    if (!target) {
+    if (!target && !allowNull) {
         ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noSelectedToken'));
         return null;
     }
-    if (target.type !== 'character') {
-        ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyUseableByPC'));
+    if (target && target.type !== 'character') {
+        if (!allowNull) {
+            ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.onlyUseableByPC'));
+        }
         return null;
     }
 
@@ -53,6 +56,7 @@ export const getCommandTarget = () => {
 };
 
 export const setDiceSoNiceForDualityRoll = async (rollResult, advantageState, hopeFaces, fearFaces, advantageFaces) => {
+    if (!game.modules.get('dice-so-nice')?.active) return;
     const diceSoNicePresets = await getDiceSoNicePresets(hopeFaces, fearFaces, advantageFaces, advantageFaces);
     rollResult.dice[0].options = diceSoNicePresets.hope;
     rollResult.dice[1].options = diceSoNicePresets.fear;
@@ -235,9 +239,25 @@ export const updateActorTokens = async (actor, update) => {
  * @param {HTMLElement} element - The DOM element to start the search from.
  * @returns {foundry.abstract.Document|null} The resolved document, or null if not found or invalid.
  */
-export function getDocFromElement(element) {
+export async function getDocFromElement(element) {
     const target = element.closest('[data-item-uuid]');
-    return foundry.utils.fromUuidSync(target.dataset.itemUuid) ?? null;
+    return (await foundry.utils.fromUuid(target.dataset.itemUuid)) ?? null;
+}
+
+/**
+ * Retrieves a Foundry document associated with the nearest ancestor element
+ * that has a `data-item-uuid` attribute.
+ * @param {HTMLElement} element - The DOM element to start the search from.
+ * @returns {foundry.abstract.Document|null} The resolved document, or null if not found, invalid
+ * or in embedded compendium collection.
+ */
+export function getDocFromElementSync(element) {
+    const target = element.closest('[data-item-uuid]');
+    try {
+        return foundry.utils.fromUuidSync(target.dataset.itemUuid) ?? null;
+    } catch (_) {
+        return null;
+    }
 }
 
 /**
@@ -255,14 +275,14 @@ export function addLinkedItemsDiff(changedItems, currentItems, options) {
             newItems
                 .difference(prevItems)
                 .map(item => item?.item ?? item)
-                .filter(x => (typeof x === 'object' ? x.item : x))
+                .filter(x => (typeof x === 'object' ? x?.item : x))
         );
 
         options.toUnlink = Array.from(
             prevItems
                 .difference(newItems)
                 .map(item => item?.item?.uuid ?? item?.uuid ?? item)
-                .filter(x => (typeof x === 'object' ? x.item : x))
+                .filter(x => (typeof x === 'object' ? x?.item : x))
         );
     }
 }

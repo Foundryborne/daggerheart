@@ -75,7 +75,7 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
      * @returns
      */
     static async #deleteAdversary(_event, target) {
-        const doc = getDocFromElement(target);
+        const doc = await getDocFromElement(target);
         const { category } = target.dataset;
         const path = `system.potentialAdversaries.${category}.adversaries`;
 

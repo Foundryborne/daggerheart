@@ -200,7 +200,7 @@ export function ActionMixin(Base) {
                 }
             );
             const created = await parent.parent.update({ [`system.actions.${action.id}`]: action.toObject() });
-            const newAction = parent.actions.get(action.id);
+            const newAction = created.system.actions.get(action.id);
             if (!newAction) return null;
             if (renderSheet) newAction.sheet.render({ force: true });
             return newAction;

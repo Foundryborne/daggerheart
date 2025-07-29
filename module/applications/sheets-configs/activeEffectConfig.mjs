@@ -99,7 +99,17 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
     async _preparePartContext(partId, context) {
         const partContext = await super._preparePartContext(partId, context);
         switch (partId) {
-            case 'changes':
+            case 'details':
+                const useGeneric = game.settings.get(
+                    CONFIG.DH.id,
+                    CONFIG.DH.SETTINGS.gameSettings.appearance
+                ).showGenericStatusEffects;
+                if (!useGeneric) {
+                    partContext.statuses = Object.values(CONFIG.DH.GENERAL.conditions).map(status => ({
+                        value: status.id,
+                        label: game.i18n.localize(status.name)
+                    }));
+                }
                 break;
         }
 

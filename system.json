@@ -119,10 +119,10 @@
             "flags": {}
         },
         {
-            "name": "miscellaneous",
-            "label": "Miscellaneous",
+            "name": "loot",
+            "label": "Loot",
             "system": "daggerheart",
-            "path": "packs/items/miscellaneous.db",
+            "path": "packs/items/loot.db",
             "type": "Item",
             "private": false,
             "flags": {}
@@ -172,7 +172,7 @@
                     "name": "Items",
                     "sorting": "m",
                     "color": "#000000",
-                    "packs": ["armors", "weapons", "consumables", "miscellaneous"]
+                    "packs": ["armors", "weapons", "consumables", "loot"]
                 }
             ]
         }
@@ -222,7 +222,7 @@
             "domainCard": {
                 "htmlFields": ["description"]
             },
-            "miscellaneous": {
+            "loot": {
                 "htmlFields": ["description"]
             },
             "consumable": {
