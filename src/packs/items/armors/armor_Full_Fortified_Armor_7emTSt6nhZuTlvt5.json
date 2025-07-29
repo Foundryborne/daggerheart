@@ -1,0 +1,89 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Full Fortified Armor",
+  "type": "armor",
+  "_id": "7emTSt6nhZuTlvt5",
+  "img": "icons/equipment/chest/breastplate-layered-steel.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "baseScore": 4,
+    "armorFeatures": [
+      {
+        "value": "fortified",
+        "effectIds": [
+          "QIefVb73cm9gYju8"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 15,
+      "severe": 40
+    }
+  },
+  "effects": [
+    {
+      "name": "Fortified",
+      "description": "When you mark an Armor Slot, you reduce the severity of an attack by two thresholds instead of one.",
+      "img": "icons/magic/defensive/shield-barrier-glowing-blue.webp",
+      "changes": [
+        {
+          "key": "system.rules.damageReduction.increasePerArmorMark",
+          "mode": 5,
+          "value": "2"
+        }
+      ],
+      "_id": "QIefVb73cm9gYju8",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753809671654,
+        "modifiedTime": 1753809671654,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!7emTSt6nhZuTlvt5.QIefVb73cm9gYju8"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753809653710,
+    "modifiedTime": 1753809691935,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!7emTSt6nhZuTlvt5"
+}

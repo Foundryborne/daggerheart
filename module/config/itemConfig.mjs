@@ -4,12 +4,29 @@ export const armorFeatures = {
         description: 'DAGGERHEART.CONFIG.ArmorFeature.burning.description',
         actions: [
             {
-                type: 'effect',
+                type: 'damage',
                 actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.burning.actions.burn.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.burning.actions.burn.description',
-                img: 'icons/magic/fire/flame-burning-embers-yellow.webp'
+                img: 'icons/magic/fire/flame-burning-embers-yellow.webp',
+                range: 'melee',
+                target: {
+                    type: 'hostile'
+                },
+                damage: {
+                    parts: [
+                        {
+                            applyTo: 'stress',
+                            value: {
+                                custom: {
+                                    enabled: true,
+                                    formula: '1'
+                                }
+                            }
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -183,7 +200,7 @@ export const armorFeatures = {
                 },
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ]
@@ -202,6 +219,26 @@ export const armorFeatures = {
                     {
                         key: 'system.rules.damageReduction.magical',
                         mode: 5,
+                        value: 1
+                    }
+                ]
+            }
+        ]
+    },
+    painful: {
+        label: 'DAGGERHEART.CONFIG.ArmorFeature.painful.name',
+        description: 'DAGGERHEART.CONFIG.ArmorFeature.painful.description',
+        actions: [
+            {
+                type: 'effect',
+                actionType: 'action',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.painful.actions.pain.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.painful.actions.pain.description',
+                img: 'icons/skills/wounds/injury-face-impact-orange.webp',
+                cost: [
+                    {
+                        key: 'stress',
                         value: 1
                     }
                 ]
@@ -243,31 +280,21 @@ export const armorFeatures = {
     reinforced: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.name',
         description: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.description',
-        actions: [
+        effects: [
             {
-                type: 'effect',
-                actionType: 'action',
-                chatDisplay: true,
-                name: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.actions.reinforce.name',
-                description: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.actions.reinforce.description',
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.effects.reinforced.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.effects.reinforced.description',
                 img: 'icons/magic/defensive/shield-barrier-glowing-triangle-green.webp',
-                effects: [
+                changes: [
                     {
-                        name: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.effects.reinforced.name',
-                        description: 'DAGGERHEART.CONFIG.ArmorFeature.reinforced.effects.reinforced.description',
-                        img: 'icons/magic/defensive/shield-barrier-glowing-triangle-green.webp',
-                        changes: [
-                            {
-                                key: 'system.bunuses.damageThresholds.major',
-                                mode: 2,
-                                value: '2'
-                            },
-                            {
-                                key: 'system.bunuses.damageThresholds.severe',
-                                mode: 2,
-                                value: '2'
-                            }
-                        ]
+                        key: 'system.bunuses.damageThresholds.major',
+                        mode: 2,
+                        value: '2'
+                    },
+                    {
+                        key: 'system.bunuses.damageThresholds.severe',
+                        mode: 2,
+                        value: '2'
                     }
                 ]
             }
@@ -278,39 +305,45 @@ export const armorFeatures = {
         description: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.description',
         actions: [
             {
-                type: 'effect',
+                type: 'attack',
                 actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.actions.resilient.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.resilient.actions.resilient.description',
-                img: 'icons/magic/life/heart-cross-purple-orange.webp'
+                img: 'icons/magic/life/heart-cross-purple-orange.webp',
+                roll: {
+                    type: 'diceSet',
+                    diceRolling: {
+                        compare: 'equal',
+                        dice: 'd6',
+                        multiplier: 'flat',
+                        flatMultiplier: 1,
+                        treshold: 6
+                    }
+                }
             }
         ]
     },
     sharp: {
         label: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.name',
         description: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.description',
-        actions: [
+        effects: [
             {
-                type: 'damage',
-                actionType: 'action',
-                chatDisplay: true,
-                name: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.actions.sharp.name',
-                description: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.actions.sharp.description',
-                img: 'icons/skills/melee/blade-tips-triple-bent-white.webp',
-                damage: {
-                    parts: [
-                        {
-                            type: 'physical',
-                            value: {
-                                custom: {
-                                    enabled: true,
-                                    formula: '1d4'
-                                }
-                            }
-                        }
-                    ]
-                }
+                name: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.effects.sharp.name',
+                description: 'DAGGERHEART.CONFIG.ArmorFeature.sharp.effects.sharp.description',
+                img: 'icons/magic/defensive/shield-barrier-glowing-triangle-green.webp',
+                changes: [
+                    {
+                        key: 'system.bonuses.damage.primaryWeapon.dice',
+                        mode: 2,
+                        value: '1d4'
+                    },
+                    {
+                        key: 'system.bonuses.damage.secondaryWeapon.dice',
+                        mode: 2,
+                        value: '1d4'
+                    }
+                ]
             }
         ]
     },
@@ -327,7 +360,7 @@ export const armorFeatures = {
                 img: 'icons/magic/defensive/illusion-evasion-echo-purple.webp',
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ]
@@ -339,12 +372,26 @@ export const armorFeatures = {
         description: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.description',
         actions: [
             {
-                type: 'effect',
+                type: 'attack',
                 actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.actions.slowTime.name',
                 description: 'DAGGERHEART.CONFIG.ArmorFeature.timeslowing.actions.slowTime.description',
-                img: 'icons/magic/time/hourglass-brown-orange.webp'
+                img: 'icons/magic/time/hourglass-brown-orange.webp',
+                cost: [
+                    {
+                        key: 'armorStack',
+                        value: 1
+                    }
+                ],
+                roll: {
+                    type: 'diceSet',
+                    diceRolling: {
+                        dice: 'd4',
+                        multiplier: 'flat',
+                        flatMultiplier: 1
+                    }
+                }
             }
         ]
     },
@@ -460,7 +507,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/movement/ball-spinning-blue.webp',
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1,
                         scalable: true,
                         step: 1
@@ -522,7 +569,7 @@ export const weaponFeatures = {
                 },
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ],
@@ -559,7 +606,7 @@ export const weaponFeatures = {
                 },
                 cost: [
                     {
-                        type: 'hope',
+                        key: 'hope',
                         value: 1
                     }
                 ]
@@ -614,7 +661,7 @@ export const weaponFeatures = {
                 },
                 cost: [
                     {
-                        type: 'armorStack',
+                        key: 'armorStack',
                         value: 1
                     }
                 ],
@@ -693,7 +740,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/strike-flail-destructive-yellow.webp',
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ]
@@ -778,7 +825,7 @@ export const weaponFeatures = {
                 img: 'icons/magic/control/debuff-chains-ropes-net-white.webp',
                 cost: [
                     {
-                        type: 'hope',
+                        key: 'hope',
                         value: 1
                     }
                 ]
@@ -952,7 +999,7 @@ export const weaponFeatures = {
                 img: 'icons/magic/control/buff-luck-fortune-green.webp',
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ]
@@ -1000,7 +1047,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/wounds/injury-face-impact-orange.webp',
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ]
@@ -1055,7 +1102,7 @@ export const weaponFeatures = {
                 },
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ],
@@ -1144,7 +1191,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/movement/arrow-upward-yellow.webp',
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ]
@@ -1306,7 +1353,7 @@ export const weaponFeatures = {
                 img: 'icons/magic/control/fear-fright-mask-orange.webp',
                 cost: [
                     {
-                        type: 'stress',
+                        key: 'stress',
                         value: 1
                     }
                 ]

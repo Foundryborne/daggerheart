@@ -1,0 +1,103 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Emberwoven Armor",
+  "type": "armor",
+  "_id": "bcQUh4QG3qFX0Vx6",
+  "img": "icons/equipment/chest/breastplate-layered-gilded-orange.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "L8mHf4A8SylyxsMH": {
+        "type": "damage",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Burn",
+        "description": "When an adversary attacks you within Melee range, they mark a Stress.",
+        "img": "icons/magic/fire/flame-burning-embers-yellow.webp",
+        "range": "melee",
+        "target": {
+          "type": "hostile",
+          "amount": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "applyTo": "stress",
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "base": false,
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "_id": "L8mHf4A8SylyxsMH",
+        "effects": [],
+        "systemPath": "actions",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "baseScore": 0,
+    "armorFeatures": [
+      {
+        "value": "burning",
+        "effectIds": [],
+        "actionIds": [
+          "L8mHf4A8SylyxsMH"
+        ]
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 0,
+      "severe": 0
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753809470138,
+    "modifiedTime": 1753809633344,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!bcQUh4QG3qFX0Vx6"
+}

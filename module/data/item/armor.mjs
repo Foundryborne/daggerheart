@@ -71,13 +71,14 @@ export default class DHArmor extends AttachableItem {
             for (var feature of added) {
                 const featureData = armorFeatures[feature.value];
                 if (featureData.effects?.length > 0) {
-                    const embeddedItems = await this.parent.createEmbeddedDocuments('ActiveEffect', [
-                        {
-                            name: game.i18n.localize(featureData.label),
-                            description: game.i18n.localize(featureData.description),
-                            changes: featureData.effects.flatMap(x => x.changes)
-                        }
-                    ]);
+                    const embeddedItems = await this.parent.createEmbeddedDocuments(
+                        'ActiveEffect',
+                        featureData.effects.map(effect => ({
+                            ...effect,
+                            name: game.i18n.localize(effect.name),
+                            description: game.i18n.localize(effect.description)
+                        }))
+                    );
                     feature.effectIds = embeddedItems.map(x => x.id);
                 }
 
@@ -93,6 +94,7 @@ export default class DHArmor extends AttachableItem {
                                 description: game.i18n.localize(effect.description)
                             }))
                         );
+                        feature.effectIds = [...(feature.effectIds ?? []), ...embeddedEffects.map(x => x.id)];
 
                         const cls = game.system.api.models.actions.actionsTypes[action.type];
                         const actionId = foundry.utils.randomID();

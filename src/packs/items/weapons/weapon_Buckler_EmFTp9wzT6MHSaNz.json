@@ -7,7 +7,7 @@
   "system": {
     "description": "",
     "actions": {
-      "mmm95zUmnxcwy3wL": {
+      "BspGQXodaANPEQcl": {
         "type": "effect",
         "actionType": "action",
         "chatDisplay": true,
@@ -20,8 +20,8 @@
         },
         "cost": [
           {
+            "key": "armorStack",
             "value": 1,
-            "key": "hope",
             "keyIsID": false,
             "scalable": false,
             "step": null
@@ -29,11 +29,11 @@
         ],
         "effects": [
           {
-            "_id": "dYef2V28BwZ2HY0e",
+            "_id": "Anbxt99bL9IWnlGh",
             "onSave": false
           }
         ],
-        "_id": "mmm95zUmnxcwy3wL",
+        "_id": "BspGQXodaANPEQcl",
         "systemPath": "actions",
         "uses": {
           "value": null,
@@ -51,10 +51,10 @@
       {
         "value": "deflecting",
         "effectIds": [
-          "dYef2V28BwZ2HY0e"
+          "Anbxt99bL9IWnlGh"
         ],
         "actionIds": [
-          "mmm95zUmnxcwy3wL"
+          "BspGQXodaANPEQcl"
         ]
       }
     ],
@@ -152,7 +152,7 @@
         }
       ],
       "transfer": false,
-      "_id": "dYef2V28BwZ2HY0e",
+      "_id": "Anbxt99bL9IWnlGh",
       "type": "base",
       "system": {},
       "disabled": false,
@@ -172,11 +172,11 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1753795201169,
-        "modifiedTime": 1753795201169,
+        "createdTime": 1753808413748,
+        "modifiedTime": 1753808413748,
         "lastModifiedBy": "FecEtPuoQh6MpjQ0"
       },
-      "_key": "!items.effects!EmFTp9wzT6MHSaNz.dYef2V28BwZ2HY0e"
+      "_key": "!items.effects!EmFTp9wzT6MHSaNz.Anbxt99bL9IWnlGh"
     }
   ],
   "sort": 0,
@@ -193,7 +193,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753795181779,
-    "modifiedTime": 1753795201173,
+    "modifiedTime": 1753808413753,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
   "_key": "!items!EmFTp9wzT6MHSaNz"

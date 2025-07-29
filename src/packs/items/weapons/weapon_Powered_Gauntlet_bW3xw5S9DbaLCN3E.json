@@ -7,7 +7,7 @@
   "system": {
     "description": "",
     "actions": {
-      "vkZ0aIoYzBC3SlIE": {
+      "GlA0PwKQSq5vwh7D": {
         "type": "effect",
         "actionType": "action",
         "chatDisplay": true,
@@ -20,8 +20,8 @@
         },
         "cost": [
           {
+            "key": "stress",
             "value": 1,
-            "key": "hope",
             "keyIsID": false,
             "scalable": false,
             "step": null
@@ -29,11 +29,11 @@
         ],
         "effects": [
           {
-            "_id": "v4PAscWlWFaakiN7",
+            "_id": "n5EB7pI0kv2Zx35G",
             "onSave": false
           }
         ],
-        "_id": "vkZ0aIoYzBC3SlIE",
+        "_id": "GlA0PwKQSq5vwh7D",
         "systemPath": "actions",
         "uses": {
           "value": null,
@@ -51,10 +51,10 @@
       {
         "value": "charged",
         "effectIds": [
-          "v4PAscWlWFaakiN7"
+          "n5EB7pI0kv2Zx35G"
         ],
         "actionIds": [
-          "vkZ0aIoYzBC3SlIE"
+          "GlA0PwKQSq5vwh7D"
         ]
       }
     ],
@@ -152,7 +152,7 @@
         }
       ],
       "transfer": false,
-      "_id": "v4PAscWlWFaakiN7",
+      "_id": "n5EB7pI0kv2Zx35G",
       "type": "base",
       "system": {},
       "disabled": false,
@@ -172,11 +172,11 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1753796745084,
-        "modifiedTime": 1753796745084,
+        "createdTime": 1753808423859,
+        "modifiedTime": 1753808423859,
         "lastModifiedBy": "FecEtPuoQh6MpjQ0"
       },
-      "_key": "!items.effects!bW3xw5S9DbaLCN3E.v4PAscWlWFaakiN7"
+      "_key": "!items.effects!bW3xw5S9DbaLCN3E.n5EB7pI0kv2Zx35G"
     }
   ],
   "sort": 0,
@@ -193,7 +193,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753796723376,
-    "modifiedTime": 1753796767984,
+    "modifiedTime": 1753808423862,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
   "_key": "!items!bW3xw5S9DbaLCN3E"

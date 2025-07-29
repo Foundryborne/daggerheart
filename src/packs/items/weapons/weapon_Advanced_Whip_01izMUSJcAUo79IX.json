@@ -7,7 +7,7 @@
   "system": {
     "description": "",
     "actions": {
-      "uTqQUaZ0DH0s0EiM": {
+      "9x82us4KqCFp2ds0": {
         "type": "effect",
         "actionType": "action",
         "chatDisplay": true,
@@ -16,14 +16,14 @@
         "img": "icons/magic/control/fear-fright-mask-orange.webp",
         "cost": [
           {
+            "key": "stress",
             "value": 1,
-            "key": "hope",
             "keyIsID": false,
             "scalable": false,
             "step": null
           }
         ],
-        "_id": "uTqQUaZ0DH0s0EiM",
+        "_id": "9x82us4KqCFp2ds0",
         "effects": [],
         "systemPath": "actions",
         "uses": {
@@ -47,7 +47,7 @@
         "value": "startling",
         "effectIds": [],
         "actionIds": [
-          "uTqQUaZ0DH0s0EiM"
+          "9x82us4KqCFp2ds0"
         ]
       }
     ],
@@ -147,7 +147,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753795001576,
-    "modifiedTime": 1753795023997,
+    "modifiedTime": 1753808405822,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
   "_key": "!items!01izMUSJcAUo79IX"

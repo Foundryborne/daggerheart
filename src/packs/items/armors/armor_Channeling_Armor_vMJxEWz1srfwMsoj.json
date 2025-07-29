@@ -1,0 +1,89 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Channeling Armor",
+  "type": "armor",
+  "_id": "vMJxEWz1srfwMsoj",
+  "img": "icons/equipment/chest/robe-collared-blue.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "baseScore": 5,
+    "armorFeatures": [
+      {
+        "value": "channeling",
+        "effectIds": [
+          "8bwf1Ri3jYkjphEv"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 13,
+      "severe": 36
+    }
+  },
+  "effects": [
+    {
+      "name": "Channeling",
+      "description": "+1 to Spellcast Rolls",
+      "img": "icons/magic/symbols/rune-sigil-horned-blue.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.roll.spellcast",
+          "mode": 2,
+          "value": "1"
+        }
+      ],
+      "_id": "8bwf1Ri3jYkjphEv",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753809448084,
+        "modifiedTime": 1753809448084,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!vMJxEWz1srfwMsoj.8bwf1Ri3jYkjphEv"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753809433880,
+    "modifiedTime": 1753809460722,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!vMJxEWz1srfwMsoj"
+}

@@ -1,0 +1,94 @@
+{
+  "folder": "rkSdPu86ybLz6aKF",
+  "name": "Spiked Plate Armor",
+  "type": "armor",
+  "_id": "QjwsIhXKqnlvRBMv",
+  "img": "icons/equipment/chest/breastplate-banded-steel-studded.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 3,
+    "equipped": false,
+    "baseScore": 5,
+    "armorFeatures": [
+      {
+        "value": "sharp",
+        "effectIds": [
+          "V8CcTcVAIxHq8KNd"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 10,
+      "severe": 25
+    }
+  },
+  "effects": [
+    {
+      "name": "Sharp",
+      "description": "On a successful attack against a target within Melee range, add a d4 to the damage roll.",
+      "img": "icons/magic/defensive/shield-barrier-glowing-triangle-green.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.primaryWeapon.dice",
+          "mode": 2,
+          "value": "1d4"
+        },
+        {
+          "key": "system.bonuses.damage.secondaryWeapon.dice",
+          "mode": 2,
+          "value": "1d4"
+        }
+      ],
+      "_id": "V8CcTcVAIxHq8KNd",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753808658514,
+        "modifiedTime": 1753808658514,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!QjwsIhXKqnlvRBMv.V8CcTcVAIxHq8KNd"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753808464678,
+    "modifiedTime": 1753808691813,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!QjwsIhXKqnlvRBMv"
+}

@@ -1,0 +1,89 @@
+{
+  "folder": "h4QgrovjVZ1oee7O",
+  "name": "Chainmail Armor",
+  "type": "armor",
+  "_id": "haULhuEg37zUUvhb",
+  "img": "icons/equipment/chest/breastplate-scale-grey.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 1,
+    "equipped": false,
+    "baseScore": 4,
+    "armorFeatures": [
+      {
+        "value": "heavy",
+        "effectIds": [
+          "ZfO5NjpqEIzZVlPq"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 7,
+      "severe": 15
+    }
+  },
+  "effects": [
+    {
+      "name": "Heavy",
+      "description": "-1 to Evasion",
+      "img": "icons/commodities/metal/ingot-worn-iron.webp",
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "-1"
+        }
+      ],
+      "_id": "ZfO5NjpqEIzZVlPq",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753805298651,
+        "modifiedTime": 1753805298651,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!haULhuEg37zUUvhb.ZfO5NjpqEIzZVlPq"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753805286605,
+    "modifiedTime": 1753805329039,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!haULhuEg37zUUvhb"
+}

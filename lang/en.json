@@ -629,6 +629,16 @@
                         }
                     }
                 },
+                "painful": {
+                    "name": "Painful",
+                    "description": "Each time you mark an Armor Slot, you must mark a Stress.",
+                    "actions": {
+                        "pain": {
+                            "name": "Pain",
+                            "description": "Each time you mark an Armor Slot, you must mark a Stress."
+                        }
+                    }
+                },
                 "physical": {
                     "name": "Physical",
                     "description": "You can't mark an Armor Slot to reduce magic damage.",
@@ -678,7 +688,7 @@
                 "sharp": {
                     "name": "Sharp",
                     "description": "On a successful attack against a target within Melee range, add a d4 to the damage roll.",
-                    "actions": {
+                    "effects": {
                         "sharp": {
                             "name": "Sharp",
                             "description": "On a successful attack against a target within Melee range, add a d4 to the damage roll."
