@@ -129,6 +129,7 @@ Hooks.once('init', () => {
 
     CONFIG.ChatMessage.dataModels = models.chatMessages.config;
     CONFIG.ChatMessage.documentClass = documents.DhChatMessage;
+    CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-message.hbs';
 
     CONFIG.Canvas.rulerClass = placeables.DhRuler;
     CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;

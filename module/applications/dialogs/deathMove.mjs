@@ -54,6 +54,8 @@ export default class DhpDeathMove extends HandlebarsApplicationMixin(Application
                 {
                     player: this.actor.name,
                     actor: { name: this.actor.name, img: this.actor.img },
+                    author: game.users.get(game.user.id),
+                    speaker: cls.getSpeaker(),
                     title: game.i18n.localize(this.selectedMove.name),
                     img: this.selectedMove.img,
                     description: game.i18n.localize(this.selectedMove.description)

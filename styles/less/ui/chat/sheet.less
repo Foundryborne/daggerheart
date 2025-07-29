@@ -1,3 +1,12 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
+.chat-message.dh-chat-message {
+    .message-content {
+        padding: 0;
+    }
+}
+
 .chat-message {
     .duality-modifiers,
     .duality-result,
@@ -6,6 +15,66 @@
     }
 
     .message-content {
+        padding: 0 8px;
+        font-family: @font-body;
+        color: light-dark(@dark, @beige);
+
+        blockquote {
+            border-left: 5px solid light-dark(@dark-blue-40, @golden-40);
+        }
+
+        a[href] {
+            color: light-dark(@dark-blue, @golden);
+        }
+
+        a[href]:hover,
+        a[href].active {
+            font-weight: bold;
+            text-shadow: 0 0 8px light-dark(@dark-blue, @golden);
+        }
+
+        button {
+            background: light-dark(transparent, @golden);
+            border: 1px solid light-dark(@dark-blue, @dark-blue);
+            color: light-dark(@dark-blue, @dark-blue);
+            outline: none;
+            box-shadow: none;
+
+            &:hover {
+                background: light-dark(@light-black, @dark-blue);
+                color: light-dark(@dark-blue, @golden);
+            }
+
+            &.glow {
+                animation: glow 0.75s infinite alternate;
+            }
+
+            &:disabled {
+                background: light-dark(transparent, @golden);
+                color: light-dark(@dark-blue, @dark-blue);
+                opacity: 0.6;
+                cursor: not-allowed;
+
+                &:hover {
+                    background: light-dark(transparent, @golden);
+                    color: light-dark(@dark-blue, @dark-blue);
+                }
+            }
+
+            &.reverted {
+                background: light-dark(@dark-blue-10, @golden-10);
+                color: light-dark(@dark-blue, @golden);
+                border: 1px solid light-dark(@dark, transparent);
+                &:hover {
+                    background: light-dark(transparent, @golden);
+                    color: light-dark(@dark-blue, @dark-blue);
+                }
+                img {
+                    border-radius: 3px;
+                }
+            }
+        }
+
         .enriched-effect {
             display: flex;
             align-items: center;
@@ -23,6 +92,24 @@
             span {
                 white-space: nowrap;
             }
+        }
+
+        .dice-roll .dice-formula,
+        .dice-roll .dice-total {
+            box-shadow: none;
+            border: none;
+            background: light-dark(@dark-blue-40, @golden-40);
+            color: light-dark(@dark-blue, @golden);
+            font-weight: 600;
+            align-content: center;
+        }
+
+        .dice-roll .dice-formula {
+            height: 27px;
+        }
+
+        .dice-roll .dice-total {
+            height: 34px;
         }
     }
 }

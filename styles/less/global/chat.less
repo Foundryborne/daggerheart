@@ -2,17 +2,73 @@
 @import '../utils/fonts.less';
 @import '../utils/mixin.less';
 
-.dh-chat-message {
-    background-image: url('../assets/parchments/dh-parchment-dark.png');
-    border: none !important;
-    padding: 8px 0;
+.theme-light {
+    .daggerheart.chat-sidebar .chat-log,
+    #chat-notifications .chat-log {
+        .chat-message {
+            background-image: url('../assets/parchments/dh-parchment-light.png');
+        }
+    }
+}
 
-    .message-header {
-        padding: 0 8px 8px;
-        color: @beige;
-        .message-sender,
-        .message-metadata {
-            font-family: @font-body;
+#chat-message {
+    font-family: @font-body;
+    padding: 8px;
+}
+
+.daggerheart.chat-sidebar,
+#chat-notifications {
+    .chat-log {
+        .chat-message {
+            border: none !important;
+            padding: 8px 0;
+            background-image: url('../assets/parchments/dh-parchment-dark.png');
+
+            .message-header {
+                display: flex;
+                gap: 4px;
+                padding: 0 8px 8px;
+
+                .message-header-metadata {
+                    flex: none;
+                    display: flex;
+
+                    .message-metadata {
+                        font-family: @font-body;
+                        color: light-dark(@dark, @beige);
+                    }
+                }
+
+                .message-header-main {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    flex: 1;
+
+                    .actor-img {
+                        border-radius: 50%;
+                        width: 40px;
+                        height: 40px;
+                        object-fit: cover;
+                    }
+
+                    .message-sub-header-container {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        color: light-dark(@dark, @beige);
+
+                        h4 {
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin-bottom: 0;
+                            font-family: @font-subtitle;
+                            color: light-dark(@dark-blue, @golden);
+                        }
+                    }
+                }
+            }
         }
     }
 }

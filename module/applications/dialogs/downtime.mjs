@@ -139,6 +139,10 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                 moves: moves,
                 actor: this.actor.uuid
             },
+            speaker: cls.getSpeaker(),
+            title: game.i18n.localize(
+                `DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`
+            ),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/downtime.hbs',
                 {
