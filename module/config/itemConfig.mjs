@@ -413,7 +413,7 @@ export const weaponFeatures = {
             {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.barrier.effects.barrier.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.barrier.effects.barrier.description',
-                img: 'icons/skills/melee/strike-sword-slashing-red.webp',
+                img: 'icons/skills/melee/shield-block-bash-blue.webp',
                 changes: [
                     {
                         key: 'system.armorScore',
@@ -1017,7 +1017,21 @@ export const weaponFeatures = {
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.paired.actions.paired.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.paired.actions.paired.description',
-                img: 'icons/skills/melee/weapons-crossed-swords-yellow-teal.webp'
+                img: 'icons/skills/melee/weapons-crossed-swords-yellow-teal.webp',
+                effects: [
+                    {
+                        name: 'DAGGERHEART.CONFIG.WeaponFeature.paired.effects.paired.name',
+                        description: 'DAGGERHEART.CONFIG.WeaponFeature.paired.effects.paired.description',
+                        img: 'icons/skills/melee/weapons-crossed-swords-yellow-teal.webp',
+                        changes: [
+                            {
+                                key: 'system.bonuses.damage.primaryWeapon.bonus',
+                                mode: 2,
+                                value: '1 + ITEM.@system.tier'
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -1121,7 +1135,7 @@ export const weaponFeatures = {
                     {
                         key: 'system.armorScore',
                         mode: 2,
-                        value: '1'
+                        value: 'ITEM.@system.tier'
                     }
                 ]
             }
@@ -1294,7 +1308,7 @@ export const weaponFeatures = {
         description: 'DAGGERHEART.CONFIG.WeaponFeature.startling.description',
         actions: [
             {
-                type: 'resource',
+                type: 'effect',
                 actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.startling.actions.startle.name',

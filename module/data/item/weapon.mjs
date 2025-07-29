@@ -141,6 +141,10 @@ export default class DHWeapon extends AttachableItem {
                                 description: game.i18n.localize(effect.description)
                             }))
                         );
+                        weaponFeature.effectIds = [
+                            ...(weaponFeature.effectIds ?? []),
+                            ...embeddedEffects.map(x => x.id)
+                        ];
 
                         const cls = game.system.api.models.actions.actionsTypes[action.type];
                         const actionId = foundry.utils.randomID();
