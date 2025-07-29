@@ -54,8 +54,8 @@ export default class CostField extends fields.ArrayField {
                 !resources[c.key]
                     ? a
                     : a && resources[c.key].isReversed
-                        ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
-                        : resources[c.key]?.value >= (c.total ?? c.value),
+                      ? resources[c.key].value + (c.total ?? c.value) <= resources[c.key].max
+                      : resources[c.key]?.value >= (c.total ?? c.value),
             true
         );
     }
@@ -67,8 +67,7 @@ export default class CostField extends fields.ArrayField {
             if (itemResource.keyIsID) {
                 itemResources[itemResource.key] = {
                     value: this.parent.resource.value ?? 0,
-                    max: CostField.formatMax.call(this, this.parent?.resource?.max),
-                    isReversed: true
+                    max: CostField.formatMax.call(this, this.parent?.resource?.max)
                 };
             }
         }
@@ -86,10 +85,10 @@ export default class CostField extends fields.ArrayField {
 
     static formatMax(max) {
         max ??= 0;
-        if(isNaN(max)) {
+        if (isNaN(max)) {
             const roll = Roll.replaceFormulaData(max, this.getRollData());
             max = roll.total;
         }
-        return max;
+        return Number(max);
     }
 }

@@ -299,17 +299,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* SAVE */
     async rollSave(actor, event, message) {
         if (!actor) return;
-        return actor
-            .diceRoll({
-                event,
-                title: 'Roll Save',
-                roll: {
-                    trait: this.save.trait,
-                    difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
-                    type: 'reaction'
-                },
-                data: actor.getRollData()
-            });
+        return actor.diceRoll({
+            event,
+            title: 'Roll Save',
+            roll: {
+                trait: this.save.trait,
+                difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
+                type: 'reaction'
+            },
+            data: actor.getRollData()
+        });
     }
 
     updateSaveMessage(result, message, targetId) {
@@ -322,7 +321,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         else updateMsg();
     }
 
-    static rollSaveQuery({ actionId, actorId,  event, message }) {
+    static rollSaveQuery({ actionId, actorId, event, message }) {
         return new Promise(async (resolve, reject) => {
             const actor = await fromUuid(actorId),
                 action = await fromUuid(actionId);
