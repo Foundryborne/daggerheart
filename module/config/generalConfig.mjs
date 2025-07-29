@@ -85,10 +85,10 @@ export const healingTypes = {
         label: 'DAGGERHEART.CONFIG.HealingType.hope.name',
         abbreviation: 'DAGGERHEART.CONFIG.HealingType.hope.abbreviation'
     },
-    armorStack: {
-        id: 'armorStack',
-        label: 'DAGGERHEART.CONFIG.HealingType.armorStack.name',
-        abbreviation: 'DAGGERHEART.CONFIG.HealingType.armorStack.abbreviation'
+    armorSlot: {
+        id: 'armorSlot',
+        label: 'DAGGERHEART.CONFIG.HealingType.armorSlot.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.armorSlot.abbreviation'
     },
     fear: {
         id: 'fear',
@@ -199,7 +199,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     healing: {
-                        applyTo: healingTypes.armorStack.id,
+                        applyTo: healingTypes.armorSlot.id,
                         value: {
                             custom: {
                                 enabled: true,
@@ -287,7 +287,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     healing: {
-                        applyTo: healingTypes.armorStack.id,
+                        applyTo: healingTypes.armorSlot.id,
                         value: {
                             custom: {
                                 enabled: true,
@@ -425,8 +425,8 @@ export const refreshTypes = {
 };
 
 export const abilityCosts = {
-    hp: {
-        id: 'hp',
+    hitPoints: {
+        id: 'hitPoints',
         label: 'DAGGERHEART.CONFIG.HealingType.hitPoints.name',
         group: 'Global'
     },
@@ -473,11 +473,13 @@ export const rollTypes = {
     },
     spellcast: {
         id: 'spellcast',
-        label: 'DAGGERHEART.CONFIG.RollTypes.spellcast.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.spellcast.name',
+        playerOnly: true
     },
     trait: {
         id: 'trait',
-        label: 'DAGGERHEART.CONFIG.RollTypes.trait.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.trait.name',
+        playerOnly: true
     },
     diceSet: {
         id: 'diceSet',

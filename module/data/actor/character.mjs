@@ -532,7 +532,7 @@ export default class DhCharacter extends BaseDataActor {
                         this.evasion += selection.value;
                         break;
                     case 'proficiency':
-                        this.proficiency = selection.value;
+                        this.proficiency += selection.value;
                         break;
                     case 'experience':
                         Object.keys(this.experiences).forEach(key => {
@@ -562,6 +562,12 @@ export default class DhCharacter extends BaseDataActor {
         const baseHope = this.resources.hope.value + (this.companion?.system?.resources?.hope ?? 0);
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
+
+        this.resources.armor = {
+            value: this.armor.system.marks.value,
+            max: this.armorScore,
+            isReversed: true
+        };
 
         this.attack.damage.parts[0].value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
     }

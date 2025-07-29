@@ -1,6 +1,6 @@
 import { damageKeyToNumber, getDamageLabel } from '../../helpers/utils.mjs';
 
-const { DialogV2, ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageReductionDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(resolve, reject, actor, damage, damageType) {
@@ -51,10 +51,6 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             },
             null
         );
-    }
-
-    get title() {
-        return game.i18n.localize('DAGGERHEART.APPLICATIONS.DamageReduction.title');
     }
 
     static DEFAULT_OPTIONS = {
@@ -229,7 +225,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         await super.close({});
     }
 
-    static async armorStackQuery({ actorId, damage, type }) {
+    static async armorSlotQuery({ actorId, damage, type }) {
         return new Promise(async (resolve, reject) => {
             const actor = await fromUuid(actorId);
             if (!actor || !actor?.isOwner) reject();

@@ -453,6 +453,9 @@
                 "title": "Ownership Selection - {name}",
                 "default": "Default Ownership"
             },
+            "ReactionRoll": {
+                "title": "Reaction Roll: {trait}"
+            },
             "ResourceDice": {
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
@@ -849,7 +852,7 @@
                     "name": "Hope",
                     "abbreviation": "HO"
                 },
-                "armorStack": {
+                "armorSlot": {
                     "name": "Armor Slot",
                     "abbreviation": "AS"
                 },
@@ -1824,6 +1827,7 @@
             "imagePath": "Image Path",
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
+            "itemResource": "Item Resource",
             "level": "Level",
             "levelUp": "Level Up",
             "loadout": "Loadout",

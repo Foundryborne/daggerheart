@@ -8,8 +8,8 @@
                         <input name="uses.enabled" type="checkbox"{{#if uses.enabled}} checked{{/if}}>
                         <label for="uses.enabled">Uses</label>
                     </div>
-                </div>
-                <label class="modifier-label">{{uses.value}}/{{uses.max}}</label>
+                </div>{{log @root}}
+                <label class="modifier-label">{{uses.value}}/{{formulaValue uses.max @root.rollConfig.data}}</label>
             </li>
         {{/if}}
         {{#each costs as | cost index |}}
@@ -20,10 +20,10 @@
                     <label>{{label}}</label>
                 </div>
             </div>
-            {{#if scalable}}
-                <input type="range" value="{{scale}}" min="1" max="10" step="{{step}}" name="costs.{{index}}.scale">
+            {{#if (and scalable (gt maxStep 1))}}
+                <input type="range" value="{{scale}}" min="1" max="{{maxStep}}" step="1" name="costs.{{index}}.scale">
             {{/if}}
-            <label class="modifier-label">{{total}}/10</label>
+            <label class="modifier-label">{{total}}/{{max}}</label>
         </li>
         {{/each}}
     </ul>

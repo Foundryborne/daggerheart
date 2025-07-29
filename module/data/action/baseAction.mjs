@@ -185,13 +185,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     prepareRoll() {
         const roll = {
-            modifiers: this.modifiers,
-            trait: this.roll?.trait,
+            baseModifiers: this.roll.getModifier(),
             label: 'Attack',
             type: this.actionType,
             difficulty: this.roll?.difficulty,
             formula: this.roll.getFormula(),
-            bonus: this.roll.bonus,
             advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
         };
         if (this.roll?.type === 'diceSet') roll.lite = true;
@@ -205,6 +203,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     async consume(config) {
         const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
+
         for (var cost of config.costs) {
             if (cost.keyIsID) {
                 usefulResources[cost.key] = {
@@ -225,19 +224,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                     keyIsID: resource.keyIsID
                 };
             });
-
+        console.log(resources);
         await this.actor.modifyResource(resources);
-        if (config.uses?.enabled) {
-            const newActions = foundry.utils.getProperty(this.item.system, this.systemPath).map(x => x.toObject());
-            newActions[this.index].uses.value++;
-            await this.item.update({ [`system.${this.systemPath}`]: newActions });
-        }
+        if (config.uses?.enabled) this.update({ 'uses.value': this.uses.value + 1 });
     }
     /* */
 
     /* ROLL */
     get hasRoll() {
-        return !!this.roll?.type || !!this.roll?.bonus;
+        return !!this.roll?.type;
     }
 
     get modifiers() {
@@ -299,26 +294,37 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* EFFECTS */
 
     /* SAVE */
-    async rollSave(target, event, message) {
-        if (!target?.actor) return;
-        return target.actor
-            .diceRoll({
-                event,
-                title: 'Roll Save',
-                roll: {
-                    trait: this.save.trait,
-                    difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
-                    type: 'reaction'
-                },
-                data: target.actor.getRollData()
-            })
-            .then(async result => {
-                if (result)
-                    this.updateChatMessage(message, target.id, {
-                        result: result.roll.total,
-                        success: result.roll.success
-                    });
-            });
+    async rollSave(actor, event, message) {
+        if (!actor) return;
+        return actor.diceRoll({
+            event,
+            title: 'Roll Save',
+            roll: {
+                trait: this.save.trait,
+                difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
+                type: 'reaction'
+            },
+            data: actor.getRollData()
+        });
+    }
+
+    updateSaveMessage(result, message, targetId) {
+        const updateMsg = this.updateChatMessage.bind(this, message, targetId, {
+            result: result.roll.total,
+            success: result.roll.success
+        });
+        if (game.modules.get('dice-so-nice')?.active)
+            game.dice3d.waitFor3DAnimationByMessageID(result.message.id ?? result.message._id).then(() => updateMsg());
+        else updateMsg();
+    }
+
+    static rollSaveQuery({ actionId, actorId, event, message }) {
+        return new Promise(async (resolve, reject) => {
+            const actor = await fromUuid(actorId),
+                action = await fromUuid(actionId);
+            if (!actor || !actor?.isOwner) reject();
+            action.rollSave(actor, event, message).then(result => resolve(result));
+        });
     }
     /* SAVE */
 
@@ -333,7 +339,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (chain) {
             if (message.system.source.message)
                 this.updateChatMessage(ui.chat.collection.get(message.system.source.message), targetId, changes, false);
-            const relatedChatMessages = ui.chat.collection.filter(c => c.system.source.message === message._id);
+            const relatedChatMessages = ui.chat.collection.filter(c => c.system.source?.message === message._id);
             relatedChatMessages.forEach(c => {
                 this.updateChatMessage(c, targetId, changes, false);
             });

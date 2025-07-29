@@ -1,5 +1,4 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
-import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
 import { damageKeyToNumber } from '../helpers/utils.mjs';
@@ -482,16 +481,22 @@ export default class DhpActor extends Actor {
                 this.system.armor &&
                 this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
             ) {
-                const armorStackResult = await this.owner.query('armorStack', {
-                    actorId: this.uuid,
-                    damage: hpDamage.value,
-                    type: [...hpDamage.damageTypes]
-                });
-                if (armorStackResult) {
-                    const { modifiedDamage, armorSpent, stressSpent } = armorStackResult;
+                const armorSlotResult = await this.owner.query(
+                    'armorSlot',
+                    {
+                        actorId: this.uuid,
+                        damage: hpDamage.value,
+                        type: [...hpDamage.damageTypes]
+                    },
+                    {
+                        timeout: 30000
+                    }
+                );
+                if (armorSlotResult) {
+                    const { modifiedDamage, armorSpent, stressSpent } = armorSlotResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
                     updates.push(
-                        ...(armorSpent ? [{ value: armorSpent, key: 'armorStack' }] : []),
+                        ...(armorSpent ? [{ value: armorSpent, key: 'armor' }] : []),
                         ...(stressSpent ? [{ value: stressSpent, key: 'stress' }] : [])
                     );
                 }
@@ -566,6 +571,7 @@ export default class DhpActor extends Actor {
             armor: { target: this.system.armor, resources: {} },
             items: {}
         };
+
         resources.forEach(r => {
             if (r.keyIsID) {
                 updates.items[r.key] = {
@@ -581,7 +587,7 @@ export default class DhpActor extends Actor {
                             game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear) + r.value
                         );
                         break;
-                    case 'armorStack':
+                    case 'armor':
                         updates.armor.resources['system.marks.value'] = Math.max(
                             Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
                             0
@@ -638,7 +644,3 @@ export default class DhpActor extends Actor {
             });
     }
 }
-
-export const registerDHActorHooks = () => {
-    CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
-};
