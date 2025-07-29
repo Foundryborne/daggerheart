@@ -321,18 +321,3 @@ export const arraysEqual = (a, b) =>
     [...new Set([...a, ...b])].every(v => a.filter(e => e === v).length === b.filter(e => e === v).length);
 
 export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
-
-export function compareValues(a, b, compare) {
-    switch (compare) {
-        case CONFIG.DH.GENERAL.compareOperator.lessThan.id:
-            return a < b;
-        case CONFIG.DH.GENERAL.compareOperator.lessThanEqual.id:
-            return a <= b;
-        case CONFIG.DH.GENERAL.compareOperator.equal.id:
-            return a === b;
-        case CONFIG.DH.GENERAL.compareOperator.moreThanEqual.id:
-            return a >= b;
-        case CONFIG.DH.GENERAL.compareOperator.moreThan.id:
-            return a > b;
-    }
-}

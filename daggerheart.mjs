@@ -6,7 +6,7 @@ import * as dice from './module/dice/_module.mjs';
 import * as fields from './module/data/fields/_module.mjs';
 import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
-import { compareValues, getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
+import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
 import { DualityRollColor } from './module/data/settings/Appearance.mjs';
 import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/_module.mjs';
@@ -242,47 +242,25 @@ Hooks.on('moveToken', async (movedToken, data) => {
 
     const rangeDependantEffects = movedToken.actor.effects.filter(effect => effect.system.rangeDependence.enabled);
 
-    const { x, y, height, width } = data.destination;
-    const getDimensions = (x, y, height, width) => {
-        const heightModifier = Math.max(Math.round(height) - 1, 0);
-        const widthModifier = Math.max(Math.round(width) - 1, 0);
-
-        return {
-            minX: x - widthModifier,
-            maxX: x + widthModifier,
-            minY: y - heightModifier,
-            maxY: y + widthModifier
-        };
-    };
-
-    const { minX: dMinX, maxX: dMaxX, minY: dMinY, maxY: dMaxY } = getDimensions(x, y, height, width);
-
-    const updateEffects = async (token, dimensions, effects, effectUpdates) => {
-        const { minX, maxX, minY, maxY } = dimensions;
-
+    const updateEffects = async (disposition, token, effects, effectUpdates) => {
         const rangeMeasurement = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement);
 
         for (let effect of effects.filter(x => x.system.rangeDependence.enabled)) {
             const { target, range, type } = effect.system.rangeDependence;
-            if (
-                (target === 'friendly' && token.disposition !== 1) ||
-                (target === 'hostile' && token.disposition !== -1)
-            )
+            if ((target === 'friendly' && disposition !== 1) || (target === 'hostile' && disposition !== -1))
                 return false;
 
-            const distance = rangeMeasurement[range] * 20; // x/y scale is 100. Grid in feet is 5.
-            const xOkay =
-                compareValues(Math.abs(minX - dMinX), distance, type) ||
-                compareValues(Math.abs(maxX - dMaxX), distance, type);
-            const yOkay =
-                compareValues(Math.abs(minY - dMinY), distance, type) ||
-                compareValues(Math.abs(maxY - dMaxY), distance, type);
+            const distanceBetween = canvas.grid.measurePath([
+                { ...movedToken.toObject(), x: data.destination.x, y: data.destination.y },
+                token
+            ]).distance;
+            const distance = rangeMeasurement[range];
 
-            const reverse = ['moreThan', 'moreThanEqual'].includes(type);
-            const newDisabled = reverse ? !xOkay && !yOkay : !xOkay || !yOkay;
+            const reverse = type === CONFIG.DH.GENERAL.rangeInclusion.outsideRange.id;
+            const newDisabled = reverse ? distanceBetween <= distance : distanceBetween > distance;
             const oldDisabled = effectUpdates[effect.uuid] ? effectUpdates[effect.uuid].disabled : newDisabled;
             effectUpdates[effect.uuid] = {
-                disabled: reverse ? oldDisabled || newDisabled : oldDisabled && newDisabled,
+                disabled: oldDisabled || newDisabled,
                 value: effect
             };
         }
@@ -290,14 +268,11 @@ Hooks.on('moveToken', async (movedToken, data) => {
 
     const effectUpdates = {};
     for (let token of game.scenes.find(x => x.active).tokens) {
-        if (token.id === movedToken.id) continue;
+        if (token.id !== movedToken.id) {
+            await updateEffects(token.disposition, token, rangeDependantEffects, effectUpdates);
+        }
 
-        const { x, y, height, width } = token;
-        const dimensions = getDimensions(x, y, height, width);
-
-        await updateEffects(token, dimensions, rangeDependantEffects, effectUpdates);
-
-        if (token.actor) await updateEffects(token, dimensions, token.actor.effects, effectUpdates);
+        if (token.actor) await updateEffects(movedToken.disposition, token, token.actor.effects, effectUpdates);
     }
 
     for (let key in effectUpdates) {

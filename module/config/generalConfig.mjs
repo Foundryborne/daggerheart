@@ -43,26 +43,14 @@ export const range = {
     }
 };
 
-export const compareOperator = {
-    lessThan: {
-        id: 'lessThan',
-        label: 'DAGGERHEART.CONFIG.CompareOperator.lessThan'
+export const rangeInclusion = {
+    withinRange: {
+        id: 'withinRange',
+        label: 'DAGGERHEART.CONFIG.RangeInclusion.withinRange'
     },
-    lessThanEqual: {
-        id: 'lessThanEqual',
-        label: 'DAGGERHEART.CONFIG.CompareOperator.lessThanEqual'
-    },
-    equal: {
-        id: 'equal',
-        label: 'DAGGERHEART.CONFIG.CompareOperator.equal'
-    },
-    moreThanEqual: {
-        id: 'moreThanEqual',
-        label: 'DAGGERHEART.CONFIG.CompareOperator.moreThanEqual'
-    },
-    moreThan: {
-        id: 'moreThan',
-        label: 'DAGGERHEART.CONFIG.CompareOperator.moreThan'
+    outsideRange: {
+        id: 'outsideRange',
+        label: 'DAGGERHEART.CONFIG.RangeInclusion.outsideRange'
     }
 };
 

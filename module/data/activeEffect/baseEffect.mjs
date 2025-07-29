@@ -11,8 +11,8 @@ export default class BaseEffect extends foundry.abstract.TypeDataModel {
                 }),
                 type: new fields.StringField({
                     required: true,
-                    choices: CONFIG.DH.GENERAL.compareOperator,
-                    initial: CONFIG.DH.GENERAL.compareOperator.lessThanEqual.id,
+                    choices: CONFIG.DH.GENERAL.rangeInclusion,
+                    initial: CONFIG.DH.GENERAL.rangeInclusion.withinRange.id,
                     label: 'DAGGERHEART.GENERAL.type'
                 }),
                 target: new fields.StringField({

@@ -633,12 +633,9 @@
                 "oneHanded": "One-Handed",
                 "twoHanded": "Two-Handed"
             },
-            "CompareOperator": {
-                "lessThan": "Less Than",
-                "lessThanEqual": "Less Than Equal",
-                "equal": "Equal",
-                "moreThanEqual": "More Than Equal",
-                "moreThan": "More Than"
+            "RangeInclusion": {
+                "withinRange": "Within Range",
+                "outsideRange": "Outside Range"
             },
             "Condition": {
                 "dead": {
