@@ -563,6 +563,12 @@ export default class DhCharacter extends BaseDataActor {
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
+        this.resources.armor = {
+            value: this.armor.system.marks.value,
+            max: this.armorScore,
+            isReversed: true
+        };
+
         this.attack.damage.parts[0].value.custom.formula = `@prof${this.basicAttackDamageDice}${this.rules.attack.damage.bonus ? ` + ${this.rules.attack.damage.bonus}` : ''}`;
     }
 

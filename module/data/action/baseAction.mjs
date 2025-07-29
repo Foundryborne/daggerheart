@@ -203,6 +203,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     async consume(config) {
         const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
+        
         for (var cost of config.costs) {
             if (cost.keyIsID) {
                 usefulResources[cost.key] = {
@@ -223,13 +224,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                     keyIsID: resource.keyIsID
                 };
             });
-
+        console.log(resources)
         await this.actor.modifyResource(resources);
-        if (config.uses?.enabled) {
-            const newActions = foundry.utils.getProperty(this.item.system, this.systemPath).map(x => x.toObject());
-            newActions[this.index].uses.value++;
-            await this.item.update({ [`system.${this.systemPath}`]: newActions });
-        }
+        if (config.uses?.enabled)
+            this.update({ 'uses.value': this.uses.value + 1 });
     }
     /* */
 

@@ -225,7 +225,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         await super.close({});
     }
 
-    static async armorStackQuery({ actorId, damage, type }) {
+    static async armorSlotQuery({ actorId, damage, type }) {
         return new Promise(async (resolve, reject) => {
             const actor = await fromUuid(actorId);
             if (!actor || !actor?.isOwner) reject();

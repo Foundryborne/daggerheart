@@ -604,7 +604,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/hand-grip-sword-strike-orange.webp',
                 cost: [
                     {
-                        type: 'armorStack',
+                        type: 'armorSlot',
                         value: 1
                     }
                 ],

@@ -72,7 +72,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
         if(!this.parent?.actor) return modifiers;
         switch (this.parent.actor.type) {
             case 'character':
-                const trait = this.useDefault || !this.trait ? this.parent.item.system.attack.roll.trait : this.trait;
+                const trait = this.useDefault || !this.trait ? (this.parent.item.system.attack.roll.trait ?? 'agility') : this.trait;
                 if(this.type === CONFIG.DH.GENERAL.rollTypes.attack.id || this.type === CONFIG.DH.GENERAL.rollTypes.trait.id)
                     modifiers.push(
                         {

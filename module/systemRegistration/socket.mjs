@@ -77,7 +77,7 @@ export const registerSocketHooks = () => {
 };
 
 export const registerUserQueries = () => {
-    CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
+    CONFIG.queries.armorSlot = DamageReductionDialog.armorSlotQuery;
     CONFIG.queries.reactionRoll = game.system.api.models.actions.actionsTypes.base.rollSaveQuery;
 }
 

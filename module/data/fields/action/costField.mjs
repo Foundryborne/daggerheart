@@ -26,11 +26,19 @@ export default class CostField extends fields.ArrayField {
     }
 
     static calcCosts(costs) {
+        console.log(costs, CostField.getResources.call(this, costs))
+        const resources = CostField.getResources.call(this, costs);
         return costs.map(c => {
             c.scale = c.scale ?? 1;
             c.step = c.step ?? 1;
-            c.total = c.value * c.scale * c.step;
+            c.total = c.value + ((c.scale - 1) * c.step);
             c.enabled = c.hasOwnProperty('enabled') ? c.enabled : true;
+            c.max = c.key === 'fear'
+                        ? game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear)
+                        : resources[c.key].isReversed
+                            ? resources[c.key].max
+                            : resources[c.key].value
+            if(c.scalable) c.maxStep = Math.floor(c.max / c.step);
             return c;
         });
     }
