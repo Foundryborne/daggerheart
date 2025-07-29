@@ -1,0 +1,31 @@
+{
+  "name": "Vial of Darksmoke Recipe",
+  "type": "loot",
+  "_id": "MhCo8i0cRXzdnXbA",
+  "img": "icons/sundries/scrolls/scroll-bound-black-brown.webp",
+  "system": {
+    "description": "<p>As a downtime move, you can mark a Stress to craft a Vial of Darksmoke.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753637508452,
+    "modifiedTime": 1753637524868,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!MhCo8i0cRXzdnXbA"
+}

@@ -1,7 +1,11 @@
 
 <fieldset class="one-column">
     <legend>
-        {{localize "DAGGERHEART.GENERAL.damage"}}
+        {{#if (eq @root.source.type 'healing')}}
+            {{localize "DAGGERHEART.GENERAL.healing"}}
+        {{else}}
+            {{localize "DAGGERHEART.GENERAL.damage"}}
+        {{/if}}
         {{#unless (eq path 'system.attack.')}}<a><i class="fa-solid fa-plus icon-button" data-action="addDamage"></i></a>{{/unless}}
     </legend>
     {{#if @root.hasBaseDamage}}
@@ -37,7 +41,7 @@
                 {{/if}}
                 <div class="nest-inputs">
                     {{formField ../fields.applyTo value=dmg.applyTo name=(concat ../path "damage.parts." realIndex ".applyTo") localize=true}}
-                    {{#if (eq dmg.applyTo 'hitPoints')}}
+                    {{#if (and (eq dmg.applyTo 'hitPoints') (ne @root.source.type 'healing'))}}
                         {{formField ../fields.type value=dmg.type name=(concat ../path "damage.parts." realIndex ".type") localize=true}}
                     {{/if}}
                 </div>

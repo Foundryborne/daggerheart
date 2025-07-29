@@ -27,7 +27,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             name: new fields.StringField({ initial: undefined }),
             description: new fields.HTMLField(),
             img: new fields.FilePathField({ initial: undefined, categories: ['IMAGE'], base64: false }),
-            chatDisplay: new fields.BooleanField({ initial: true, label: 'Display in chat' }),
+            chatDisplay: new fields.BooleanField({ initial: true, label: 'DAGGERHEART.ACTIONS.Config.displayInChat' }),
             actionType: new fields.StringField({
                 choices: CONFIG.DH.ITEM.actionTypes,
                 initial: 'action',
@@ -164,12 +164,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             title: this.item.name,
             source: {
                 item: this.item._id,
-                action: this._id
+                action: this._id,
+                actor: this.actor.uuid
             },
             dialog: {},
             type: this.type,
-            hasDamage: !!this.damage?.parts?.length,
-            hasHealing: !!this.healing,
+            hasDamage: this.damage?.parts?.length && this.type !== 'healing',
+            hasHealing: this.damage?.parts?.length && this.type === 'healing',
             hasEffect: !!this.effects?.length,
             hasSave: this.hasSave,
             selectedRollMode: game.settings.get('core', 'rollMode'),
@@ -191,7 +192,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             difficulty: this.roll?.difficulty,
             formula: this.roll.getFormula(),
             bonus: this.roll.bonus,
-            advantage: CONFIG.DH.ACTIONS.advandtageState[this.roll.advState].value
+            advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
         };
         if (this.roll?.type === 'diceSet') roll.lite = true;
 
@@ -256,6 +257,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* EFFECTS */
     async applyEffects(event, data, targets) {
         targets ??= data.system.targets;
+        const force = true; /* Where should this come from? */
         if (!this.effects?.length || !targets.length) return;
         let effects = this.effects;
         targets.forEach(async token => {
@@ -297,26 +299,38 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* EFFECTS */
 
     /* SAVE */
-    async rollSave(target, event, message) {
-        if (!target?.actor) return;
-        return target.actor
+    async rollSave(actor, event, message) {
+        if (!actor) return;
+        return actor
             .diceRoll({
                 event,
                 title: 'Roll Save',
                 roll: {
                     trait: this.save.trait,
-                    difficulty: this.save.difficulty,
+                    difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
                     type: 'reaction'
                 },
-                data: target.actor.getRollData()
-            })
-            .then(async result => {
-                if (result)
-                    this.updateChatMessage(message, target.id, {
-                        result: result.roll.total,
-                        success: result.roll.success
-                    });
+                data: actor.getRollData()
             });
+    }
+
+    updateSaveMessage(result, message, targetId) {
+        const updateMsg = this.updateChatMessage.bind(this, message, targetId, {
+            result: result.roll.total,
+            success: result.roll.success
+        });
+        if (game.modules.get('dice-so-nice')?.active)
+            game.dice3d.waitFor3DAnimationByMessageID(result.message.id ?? result.message._id).then(() => updateMsg());
+        else updateMsg();
+    }
+
+    static rollSaveQuery({ actionId, actorId,  event, message }) {
+        return new Promise(async (resolve, reject) => {
+            const actor = await fromUuid(actorId),
+                action = await fromUuid(actionId);
+            if (!actor || !actor?.isOwner) reject();
+            action.rollSave(actor, event, message).then(result => resolve(result));
+        });
     }
     /* SAVE */
 
@@ -331,7 +345,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (chain) {
             if (message.system.source.message)
                 this.updateChatMessage(ui.chat.collection.get(message.system.source.message), targetId, changes, false);
-            const relatedChatMessages = ui.chat.collection.filter(c => c.system.source.message === message._id);
+            const relatedChatMessages = ui.chat.collection.filter(c => c.system.source?.message === message._id);
             relatedChatMessages.forEach(c => {
                 this.updateChatMessage(c, targetId, changes, false);
             });

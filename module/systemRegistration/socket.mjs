@@ -1,3 +1,5 @@
+import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
+
 export function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
         case socketEvent.GMUpdate:
@@ -21,7 +23,8 @@ export const socketEvent = {
 export const GMUpdateEvent = {
     UpdateDocument: 'DhGMUpdateDocument',
     UpdateSetting: 'DhGMUpdateSetting',
-    UpdateFear: 'DhGMUpdateFear'
+    UpdateFear: 'DhGMUpdateFear',
+    UpdateSaveMessage: 'DhGMUpdateSaveMessage'
 };
 
 export const RefreshType = {
@@ -53,8 +56,12 @@ export const registerSocketHooks = () => {
                             )
                         )
                     );
-                    /* Hooks.callAll(socketEvent.DhpFearUpdate);
-                    await game.socket.emit(`system.${CONFIG.DH.id}`, { action: socketEvent.DhpFearUpdate }); */
+                    break;
+                case GMUpdateEvent.UpdateSaveMessage:
+                    const action = await fromUuid(data.update.action),
+                        message = game.messages.get(data.update.message);
+                    if(!action || !message) return;
+                    action.updateSaveMessage(data.update.result, message, data.update.token);
                     break;
             }
 
@@ -68,6 +75,11 @@ export const registerSocketHooks = () => {
         }
     });
 };
+
+export const registerUserQueries = () => {
+    CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
+    CONFIG.queries.reactionRoll = game.system.api.models.actions.actionsTypes.base.rollSaveQuery;
+}
 
 export const emitAsGM = async (eventName, callback, update, uuid = null) => {
     if (!game.user.isGM) {

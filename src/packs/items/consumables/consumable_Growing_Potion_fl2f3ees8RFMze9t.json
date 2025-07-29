@@ -1,0 +1,111 @@
+{
+  "name": "Growing Potion",
+  "type": "consumable",
+  "_id": "fl2f3ees8RFMze9t",
+  "img": "icons/consumables/potions/potion-bottle-corked-labeled-green.webp",
+  "system": {
+    "description": "<p>You can drink this potion to double your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Strength and a +1 bonus to your Proficiency.</p>",
+    "quantity": 1,
+    "actions": {
+      "A8wHvMnKnewQ2J3m": {
+        "type": "effect",
+        "_id": "A8wHvMnKnewQ2J3m",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "YEGd74Lssj7rCmpF",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/potion-bottle-corked-labeled-green.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [
+    {
+      "name": "Growing Potion",
+      "img": "icons/consumables/potions/potion-bottle-corked-labeled-green.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.fl2f3ees8RFMze9t",
+      "transfer": false,
+      "_id": "YEGd74Lssj7rCmpF",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.strength.value",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.proficiency",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753592211848,
+        "modifiedTime": 1753592229488,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!fl2f3ees8RFMze9t.YEGd74Lssj7rCmpF"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753592174440,
+    "modifiedTime": 1753592211868,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!fl2f3ees8RFMze9t"
+}

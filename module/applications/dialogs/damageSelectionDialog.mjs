@@ -1,3 +1,5 @@
+// TO DELETE ?
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export default class DamageSelectionDialog extends HandlebarsApplicationMixin(ApplicationV2) {

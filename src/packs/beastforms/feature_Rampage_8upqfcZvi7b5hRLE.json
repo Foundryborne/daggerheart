@@ -1,0 +1,70 @@
+{
+  "name": "Rampage",
+  "type": "feature",
+  "img": "icons/creatures/claws/claw-bear-paw-swipe-red.webp",
+  "system": {
+    "description": "<p>When you roll a 1 on a damage die, you can roll a d10 and add the result to the damage roll. Additionally, before you make an attack roll, you can <strong>mark a Stress</strong> to gain a +1 bonus to your Proficiency for that attack.</p>",
+    "resource": null,
+    "actions": {
+      "N7IoOHpqcvcJNsJQ": {
+        "type": "effect",
+        "_id": "N7IoOHpqcvcJNsJQ",
+        "systemPath": "actions",
+        "description": "<p>Before you make an attack roll, you can mark a Stress to gain a +1 bonus to your Proficiency for that attack.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "5TX0hHFKZHvBeWne",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Gain Proficiency",
+        "img": "icons/creatures/abilities/bear-roar-bite-brown.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753582591417,
+    "modifiedTime": 1753628206133,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "8upqfcZvi7b5hRLE",
+  "sort": 2000000,
+  "_key": "!items!8upqfcZvi7b5hRLE"
+}

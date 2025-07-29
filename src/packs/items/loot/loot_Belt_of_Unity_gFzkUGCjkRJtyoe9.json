@@ -1,0 +1,62 @@
+{
+  "name": "Belt of Unity",
+  "type": "loot",
+  "_id": "gFzkUGCjkRJtyoe9",
+  "img": "icons/equipment/waist/belt-buckle-ornate-steel.webp",
+  "system": {
+    "description": "<p>Once per session, you can spend 5 Hope to lead a Tag Team Roll with three PCs instead of two.</p>",
+    "quantity": 1,
+    "actions": {
+      "SuaYNEUO9U9TIZWb": {
+        "type": "effect",
+        "_id": "SuaYNEUO9U9TIZWb",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 5,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": 1,
+          "recovery": "session"
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/equipment/waist/belt-buckle-ornate-steel.webp",
+        "range": ""
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753640971116,
+    "modifiedTime": 1753641065768,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!gFzkUGCjkRJtyoe9"
+}

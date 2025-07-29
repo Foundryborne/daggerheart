@@ -1,0 +1,32 @@
+{
+  "name": "Varik Leaves",
+  "type": "consumable",
+  "_id": "hvy5BkG3F6iOIXTx",
+  "img": "icons/consumables/plants/leaf-serrated-pink.webp",
+  "system": {
+    "description": "<p>You can eat these paired leaves to immediately gain 2 Hope.</p>",
+    "quantity": 1,
+    "actions": {},
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753587484164,
+    "modifiedTime": 1753623431444,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!hvy5BkG3F6iOIXTx"
+}

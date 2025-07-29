@@ -132,14 +132,14 @@ export default class ClassSheet extends DHBaseItemSheet {
                 });
             }
         } else if (target.classList.contains('choice-a-section')) {
-            if (item.type === 'miscellaneous' || item.type === 'consumable') {
+            if (item.type === 'loot' || item.type === 'consumable') {
                 const filteredChoiceA = this.document.system.inventory.choiceA;
                 if (filteredChoiceA.length < 2)
                     await this.document.update({
                         'system.inventory.choiceA': [...filteredChoiceA.map(x => x.uuid), item.uuid]
                     });
             }
-        } else if (item.type === 'miscellaneous') {
+        } else if (item.type === 'loot') {
             if (target.classList.contains('take-section')) {
                 const filteredTake = this.document.system.inventory.take.filter(x => x);
                 if (filteredTake.length < 3)

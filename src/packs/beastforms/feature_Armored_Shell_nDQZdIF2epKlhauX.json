@@ -1,0 +1,155 @@
+{
+  "name": "Armored Shell",
+  "type": "feature",
+  "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+  "system": {
+    "description": "<p>Your hardened exterior gives you resistance to physical damage. Additionally, <strong>mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can’t perform other actions without leaving this form.</p>",
+    "resource": null,
+    "actions": {
+      "15XSCpCAZ2JLspmN": {
+        "type": "effect",
+        "_id": "15XSCpCAZ2JLspmN",
+        "systemPath": "actions",
+        "description": "<p><strong>Mark an Armor Slot</strong> to retract into your shell. While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can’t perform other actions without leaving this form.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "armor",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "OY3lEB3vuDKNLzxv",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Retract",
+        "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Armored Shell",
+      "type": "base",
+      "_id": "XFmEC0kDQJNrGbtr",
+      "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.resistance.physical.resistance",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Your hardened exterior gives you resistance to physical damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!nDQZdIF2epKlhauX.XFmEC0kDQJNrGbtr"
+    },
+    {
+      "name": "Retracted",
+      "img": "icons/creatures/reptiles/turtle-shell-glowing-green.webp",
+      "origin": "Item.WqNiQYeaRVGPWpm0",
+      "transfer": false,
+      "_id": "OY3lEB3vuDKNLzxv",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.resistance.physical.reduction",
+          "mode": 2,
+          "value": "@system.armorScore",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>While in your shell, physical damage is reduced by a number equal to your Armor Score (after applying resistance), but you can’t perform other actions without leaving this form.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!nDQZdIF2epKlhauX.OY3lEB3vuDKNLzxv"
+    }
+  ],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753580983699,
+    "modifiedTime": 1753628206133,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "nDQZdIF2epKlhauX",
+  "sort": 2200000,
+  "_key": "!items!nDQZdIF2epKlhauX"
+}

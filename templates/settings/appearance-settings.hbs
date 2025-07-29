@@ -7,47 +7,74 @@
 
     {{formGroup settingFields.schema.fields.dualityColorScheme value=settingFields._source.dualityColorScheme localize=true}}
 
-    <fieldset>
-        <legend>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.title"}}</legend>
-        <div class="title-hint">{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.hint"}}</div>
+    {{#if showDiceSoNice}}
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.title"}}</legend>
+            <div class="title-hint">{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.hint"}}</div>
 
-        <section class='tab-navigation'>
-            <div class='navigation-container'>
-                <div class="navigation-inner-container">
-                    <line-div></line-div>
-                    <nav class='feature-tab sheet-tabs tabs' data-group='diceSoNice'>
-                        {{#each tabs as |tab|}}
-                            <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
-                                {{localize tab.label}}
-                            </a>
-                        {{/each}}
-                    </nav>
-                    <line-div></line-div>
+            <section class='tab-navigation'>
+                <div class='navigation-container'>
+                    <div class="navigation-inner-container">
+                        <line-div></line-div>
+                        <nav class='feature-tab sheet-tabs tabs' data-group='diceSoNice'>
+                            {{#each tabs as |tab|}}
+                                <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+                                    {{localize tab.label}}
+                                </a>
+                            {{/each}}
+                        </nav>
+                        <line-div></line-div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="field-section">
+                <div class="label-container full-width">
+                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.system"}}</label>
+                    <select name="{{concat "diceSoNice." diceTab.key ".system"}}">
+                        {{selectOptions diceSoNiceSystems selected=diceTab.source.system valueAttr="key" labelAttr="name" localize=true}}
+                    </select>
+                </div>
+
+                <div class="split-section">
+                    <div class="label-container">
+                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
+                        {{formInput diceTab.fields.foreground value=diceTab.source.foreground localize=true}}
+                    </div>
+                    <div class="label-container">
+                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
+                        {{formInput diceTab.fields.background value=diceTab.source.background localize=true}}
+                    </div>
+                    <div class="label-container">
+                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
+                        {{formInput diceTab.fields.outline value=diceTab.source.outline localize=true}}
+                    </div>
+                    <div class="label-container">
+                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
+                        {{formInput diceTab.fields.edge value=diceTab.source.edge localize=true}}
+                    </div>
+                    <div class="label-container">
+                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.colorset"}}</label>
+                        <select name="{{concat "diceSoNice." diceTab.key ".colorset"}}">
+                            {{selectOptions diceSoNiceColorsets selected=diceTab.source.colorset labelAttr="description" localize=true}}
+                        </select>
+                    </div>
+                    <div class="label-container">
+                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.texture"}}</label>
+                        <select name="{{concat "diceSoNice." diceTab.key ".texture"}}">
+                            {{selectOptions diceSoNiceTextures selected=diceTab.source.texture labelAttr="name" localize=true}}
+                        </select>
+                    </div>
+                    <div class="label-container">
+                        <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.material"}}</label>
+                        <select name="{{concat "diceSoNice." diceTab.key ".material"}}">
+                            {{selectOptions diceSoNiceMaterials selected=diceTab.source.material valueAttr="key" labelAttr="name" localize=true}}
+                        </select>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <div class="field-section">
-            <div class="split-section">
-                <div class="label-container">
-                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.foreground"}}</label>
-                    {{formInput diceTab.fields.foreground value=diceTab.source.foreground localize=true}}
-                </div>
-                <div class="label-container">
-                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.background"}}</label>
-                    {{formInput diceTab.fields.background value=diceTab.source.background localize=true}}
-                </div>
-                <div class="label-container">
-                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.outline"}}</label>
-                    {{formInput diceTab.fields.outline value=diceTab.source.outline localize=true}}
-                </div>
-                <div class="label-container">
-                    <label>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.edge"}}</label>
-                    {{formInput diceTab.fields.edge value=diceTab.source.edge localize=true}}
-                </div>
-            </div>
-        </div>
-    </fieldset>
+        </fieldset>
+    {{/if}}
 
     <footer class="form-footer">
         <button data-action="reset">

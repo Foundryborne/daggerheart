@@ -53,6 +53,7 @@ export default class DhCompanion extends BaseDataActor {
                     img: 'icons/creatures/claws/claw-bear-paw-swipe-brown.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',
+                    chatDisplay: false,
                     type: 'attack',
                     range: 'melee',
                     target: {

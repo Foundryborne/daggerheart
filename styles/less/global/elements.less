@@ -443,6 +443,10 @@
         }
 
         .field-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
             .split-section {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -455,9 +459,18 @@
             grid-template-columns: 1fr 1fr;
             gap: 10px;
 
+            &.full-width {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+
+                select {
+                    grid-column: span 3;
+                }
+            }
+
             label {
                 align-self: center;
                 text-align: center;
+                white-space: nowrap;
             }
         }
     }

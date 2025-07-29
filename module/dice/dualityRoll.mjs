@@ -166,6 +166,18 @@ export default class DualityRoll extends D20Roll {
         return modifiers;
     }
 
+    static async buildEvaluate(roll, config = {}, message = {}) {
+        await super.buildEvaluate(roll, config, message);
+
+        await setDiceSoNiceForDualityRoll(
+            roll,
+            config.roll.advantage.type,
+            config.roll.hope.dice,
+            config.roll.fear.dice,
+            config.roll.advantage.dice
+        );
+    }
+
     static postEvaluate(roll, config = {}) {
         const data = super.postEvaluate(roll, config);
 
@@ -198,8 +210,6 @@ export default class DualityRoll extends D20Roll {
         if (roll._rallyIndex && roll.data?.parent)
             roll.data.parent.deleteEmbeddedDocuments('ActiveEffect', [roll._rallyIndex]);
 
-        setDiceSoNiceForDualityRoll(roll, data.advantage.type);
-
         return data;
     }
 
@@ -220,10 +230,10 @@ export default class DualityRoll extends D20Roll {
                 options: { appearance: {} }
             };
 
-            const diceSoNicePresets = getDiceSoNicePresets();
+            const diceSoNicePresets = await getDiceSoNicePresets(`d${term._faces}`, `d${term._faces}`);
             const type = target.dataset.type;
             if (diceSoNicePresets[type]) {
-                diceSoNiceRoll.dice[0].options = { appearance: diceSoNicePresets[type] };
+                diceSoNiceRoll.dice[0].options = diceSoNicePresets[type];
             }
 
             await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);

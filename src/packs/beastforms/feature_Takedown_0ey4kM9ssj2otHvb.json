@@ -1,0 +1,158 @@
+{
+  "name": "Takedown",
+  "type": "feature",
+  "img": "icons/creatures/abilities/paw-print-orange.webp",
+  "system": {
+    "description": "<p><strong>Mark a Stress</strong> to move into Melee range of a target and make an attack roll against them. On a success, you gain a +2 bonus to your Proficiency for this attack and the target must mark a Stress.</p>",
+    "resource": null,
+    "actions": {
+      "DKorr1QzvtBz7d9y": {
+        "type": "attack",
+        "_id": "DKorr1QzvtBz7d9y",
+        "systemPath": "actions",
+        "description": "<p><strong>Mark a Stress</strong> to move into Melee range of a target and make an attack roll against them. On a success, you gain a +2 bonus to your Proficiency for this attack and the target must mark a Stress.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "(@prof+2)@basicAttackDamageDice"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "attack",
+          "trait": "instinct",
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": 10,
+          "damageMod": "none"
+        },
+        "name": "Attack",
+        "img": "icons/creatures/abilities/paw-print-orange.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Takedown",
+      "img": "icons/creatures/abilities/paw-print-orange.webp",
+      "origin": "Item.okjlLUwEdNOKeUk3",
+      "transfer": false,
+      "_id": "hE6ciIusvKEtUQ8U",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.proficiency",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!0ey4kM9ssj2otHvb.hE6ciIusvKEtUQ8U"
+    }
+  ],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753621786000,
+    "modifiedTime": 1753643111609,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "0ey4kM9ssj2otHvb",
+  "sort": 600000,
+  "_key": "!items!0ey4kM9ssj2otHvb"
+}

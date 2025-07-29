@@ -1,0 +1,141 @@
+{
+  "name": "Mythic Aerial Hunter",
+  "type": "beastform",
+  "img": "icons/creatures/reptiles/dragon-winged-blue.webp",
+  "system": {
+    "beastformType": "normal",
+    "tier": 4,
+    "tokenImg": "icons/svg/mystery-man.svg",
+    "tokenRingImg": "icons/svg/mystery-man.svg",
+    "tokenSize": {
+      "height": null,
+      "width": null
+    },
+    "mainTrait": "finesse",
+    "advantageOn": {
+      "wqIBmWSIbwwJdB07": {
+        "value": "Attack"
+      },
+      "wUjIM4ohI1309Qmy": {
+        "value": "Deceive"
+      },
+      "7YTz0VSytRCmpn3Y": {
+        "value": "Locate"
+      },
+      "YyyzVE5FOevDKvAP": {
+        "value": "Navigate"
+      }
+    },
+    "features": [
+      "Compendium.daggerheart.beastforms.Item.EVOJTskJYf4rpuga",
+      "Compendium.daggerheart.beastforms.Item.QQtQ77tos8ijTHag"
+    ],
+    "evolved": {
+      "mainTraitBonus": 0
+    },
+    "hybrid": {
+      "beastformOptions": 2,
+      "advantages": 2,
+      "features": 2
+    },
+    "examples": "Dragon, Pterodactyl, Roc, Wyvern, etc."
+  },
+  "effects": [
+    {
+      "type": "beastform",
+      "name": "Beastform Transformation",
+      "img": "icons/creatures/abilities/paw-print-pair-purple.webp",
+      "_id": "hnKnaOaswWJdaYmf",
+      "system": {
+        "characterTokenData": {
+          "tokenImg": null,
+          "tokenRingImg": "icons/svg/mystery-man.svg",
+          "tokenSize": {}
+        },
+        "advantageOn": [],
+        "featureIds": [],
+        "effectIds": []
+      },
+      "changes": [
+        {
+          "key": "system.traits.finesse.value",
+          "mode": 2,
+          "value": "3",
+          "priority": null
+        },
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.diceIndex",
+          "mode": 5,
+          "value": "3",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.damage.bonus",
+          "mode": 5,
+          "value": "11",
+          "priority": null
+        },
+        {
+          "key": "system.rules.attack.roll.trait",
+          "mode": 5,
+          "value": "finesse",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+        "modifiedTime": 1753636808135
+      },
+      "_key": "!items.effects!jV6EuEacyQlHW4SN.hnKnaOaswWJdaYmf"
+    }
+  ],
+  "folder": "UQEr5SAm2Z1Aih1S",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753628382723,
+    "modifiedTime": 1753628401450,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "jV6EuEacyQlHW4SN",
+  "sort": 200000,
+  "_key": "!items!jV6EuEacyQlHW4SN"
+}

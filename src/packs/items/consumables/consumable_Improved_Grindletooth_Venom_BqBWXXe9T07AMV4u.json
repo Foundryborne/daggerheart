@@ -1,0 +1,86 @@
+{
+  "name": "Improved Grindletooth Venom",
+  "type": "consumable",
+  "_id": "BqBWXXe9T07AMV4u",
+  "img": "icons/consumables/potions/potion-jar-corked-labeled-poison-skull-green.webp",
+  "system": {
+    "description": "<p>You can apply this venom to a weapon that deals physical damage to add a d8 to your next damage roll with that weapon.</p>",
+    "quantity": 1,
+    "actions": {
+      "qCr94sRkuODpywiZ": {
+        "type": "damage",
+        "_id": "qCr94sRkuODpywiZ",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d8",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "effects": [],
+        "name": "Apply Venom",
+        "img": "icons/consumables/potions/potion-jar-corked-labeled-poison-skull-green.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753588170670,
+    "modifiedTime": 1753588234520,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!BqBWXXe9T07AMV4u"
+}

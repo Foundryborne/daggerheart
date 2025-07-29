@@ -1,0 +1,86 @@
+{
+  "name": "Redthorn Saliva",
+  "type": "consumable",
+  "_id": "s2Exl2XFuoOhtIov",
+  "img": "icons/commodities/materials/slime-thick-blue.webp",
+  "system": {
+    "description": "<p>You can apply this saliva to a weapon that deals physical damage to add a d12 to your next damage roll with that weapon.</p>",
+    "quantity": 1,
+    "actions": {
+      "RJ9WXmH6mwQKpS8O": {
+        "type": "damage",
+        "_id": "RJ9WXmH6mwQKpS8O",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d12",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "effects": [],
+        "name": "Apply",
+        "img": "icons/commodities/materials/slime-thick-blue.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753590061810,
+    "modifiedTime": 1753590334574,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!s2Exl2XFuoOhtIov"
+}

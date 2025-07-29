@@ -87,6 +87,26 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
                     this.tooltip.innerHTML = html;
                 }
             }
+
+            const deathMove = element.dataset.tooltip?.startsWith('#deathMove#');
+            if (deathMove) {
+                const name = element.dataset.deathName;
+                const img = element.dataset.deathImg;
+                const description = element.dataset.deathDescription;
+
+                html = await foundry.applications.handlebars.renderTemplate(
+                    `systems/daggerheart/templates/ui/tooltip/death-move.hbs`,
+                    {
+                        move: { name: name, img: img, description: description }
+                    }
+                );
+
+                this.tooltip.innerHTML = html;
+                options.direction = this._determineItemTooltipDirection(
+                    element,
+                    this.constructor.TOOLTIP_DIRECTIONS.RIGHT
+                );
+            }
         }
 
         super.activate(element, { ...options, html: html });

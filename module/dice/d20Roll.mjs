@@ -1,5 +1,4 @@
 import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
-import { getDiceSoNicePresets } from '../config/generalConfig.mjs';
 import DHRoll from './dhRoll.mjs';
 
 export default class D20Roll extends DHRoll {

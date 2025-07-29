@@ -164,7 +164,13 @@
     </div>
 </div>
 <fieldset class="dice-roll daggerheart chat roll expanded{{#unless damage.roll}} hidden{{/unless}}" data-action="expandRoll">
-    <legend class="dice-flavor">{{localize "DAGGERHEART.GENERAL.damage"}}</legend>
+    <legend class="dice-flavor">
+        {{#if hasHealing}}
+            {{localize "DAGGERHEART.GENERAL.healing"}}
+        {{else}}
+            {{localize "DAGGERHEART.GENERAL.damage"}}
+        {{/if}}
+    </legend>
     <div class="dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">
@@ -177,19 +183,31 @@
 <div class="dice-roll daggerheart chat roll">
     <div class="dice-result">
         <div class="dice-actions{{#unless (or hasDamage hasHealing)}} duality-alone{{/unless}}">
-            {{#if hasDamage}}
+            {{#if (or hasDamage hasHealing)}}
                 {{#if damage.roll}}
-                    <button class="duality-action damage-button" data-target-hit="true" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.damageRoll.dealDamage"}}</span></button>
+                    <button class="duality-action damage-button" data-target-hit="true" data-value="{{roll.total}}"><span>
+                        {{#if hasHealing}}
+                            {{localize "DAGGERHEART.UI.Chat.healingRoll.applyHealing"}}
+                        {{else}}
+                            {{localize "DAGGERHEART.UI.Chat.damageRoll.dealDamage"}}
+                        {{/if}}
+                    </span></button>
                 {{else}}
-                    <button class="duality-action duality-action-damage" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.rollDamage"}}</span></button>
+                    <button class="duality-action duality-action-damage" data-value="{{roll.total}}"><span>
+                        {{#if hasHealing}}
+                            {{localize "DAGGERHEART.UI.Chat.attackRoll.rollHealing"}}
+                        {{else}}
+                            {{localize "DAGGERHEART.UI.Chat.attackRoll.rollDamage"}}
+                        {{/if}}
+                    </span></button>
                 {{/if}}
-            {{else}}
+            {{!-- {{else}}
                 {{#if hasHealing}}
                     <button class="duality-action duality-action-healing" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.rollHealing"}}</span></button>
-                {{/if}}
+                {{/if}} --}}
             {{/if}}
             {{#if hasEffect}}
-                    <button class="duality-action{{#if (or hasDamage hasHealing)}} duality-action-effect{{/if}}" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</span></button>
+                    <button class="duality-action-effect" data-value="{{roll.total}}"><span>{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</span></button>
             {{/if}}
             <div class="duality-result">
                 <div>{{roll.total}} 

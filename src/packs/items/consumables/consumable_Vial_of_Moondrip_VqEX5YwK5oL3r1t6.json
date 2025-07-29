@@ -1,0 +1,55 @@
+{
+  "name": "Vial of Moondrip",
+  "type": "consumable",
+  "_id": "VqEX5YwK5oL3r1t6",
+  "img": "icons/consumables/potions/bottle-ornate-bat-teal.webp",
+  "system": {
+    "description": "<p>When you drink the contents of this vial, you can see in total darkness until your next rest.</p>",
+    "quantity": 1,
+    "actions": {
+      "6Ny75zR1b8I8Ycsb": {
+        "type": "effect",
+        "_id": "6Ny75zR1b8I8Ycsb",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/bottle-ornate-bat-teal.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753587590537,
+    "modifiedTime": 1753588714959,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!VqEX5YwK5oL3r1t6"
+}

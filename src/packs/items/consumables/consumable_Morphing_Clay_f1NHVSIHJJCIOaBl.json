@@ -1,0 +1,63 @@
+{
+  "name": "Morphing Clay",
+  "type": "consumable",
+  "_id": "f1NHVSIHJJCIOaBl",
+  "img": "icons/commodities/stone/ore-chunk-brown.webp",
+  "system": {
+    "description": "<p>You can spend a Hope to use this clay, altering your face enough to make you unrecognizable until your next rest.</p>",
+    "quantity": 1,
+    "actions": {
+      "S4wEG1RzfLNtvcg7": {
+        "type": "effect",
+        "_id": "S4wEG1RzfLNtvcg7",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/commodities/stone/ore-chunk-brown.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753588254032,
+    "modifiedTime": 1753588327474,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!f1NHVSIHJJCIOaBl"
+}

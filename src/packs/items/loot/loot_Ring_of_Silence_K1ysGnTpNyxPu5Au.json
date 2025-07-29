@@ -1,0 +1,62 @@
+{
+  "name": "Ring of Silence",
+  "type": "loot",
+  "_id": "K1ysGnTpNyxPu5Au",
+  "img": "icons/equipment/finger/ring-ball-purple.webp",
+  "system": {
+    "description": "<p>Spend a Hope to activate this ring. Your footsteps are silent until your next rest.</p>",
+    "quantity": 1,
+    "actions": {
+      "Y4mvuJ4tncrKhyjY": {
+        "type": "effect",
+        "_id": "Y4mvuJ4tncrKhyjY",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": 1,
+          "recovery": "shortRest"
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Activate",
+        "img": "icons/equipment/finger/ring-ball-purple.webp",
+        "range": ""
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753637775628,
+    "modifiedTime": 1753637832657,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!K1ysGnTpNyxPu5Au"
+}

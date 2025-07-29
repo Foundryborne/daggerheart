@@ -1,0 +1,65 @@
+{
+  "name": "Fleet",
+  "type": "feature",
+  "img": "icons/skills/movement/arrow-upward-yellow.webp",
+  "system": {
+    "description": "<p><strong>Spend a Hope</strong> to move up to Far range without rolling.</p>",
+    "resource": null,
+    "actions": {
+      "pn5p2ocVvVPzDyAX": {
+        "type": "effect",
+        "_id": "pn5p2ocVvVPzDyAX",
+        "systemPath": "actions",
+        "description": "<p><strong>Spend a Hope</strong> to move up to Far range without rolling.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Move",
+        "img": "icons/skills/movement/arrow-upward-yellow.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "folder": "uU8bIoZvXge0rLaU",
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753621784810,
+    "modifiedTime": 1753628206133,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_id": "GhHsSHOa509cwCvr",
+  "sort": 1000000,
+  "_key": "!items!GhHsSHOa509cwCvr"
+}

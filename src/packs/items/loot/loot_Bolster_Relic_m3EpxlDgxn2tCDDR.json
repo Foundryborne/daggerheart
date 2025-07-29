@@ -1,0 +1,76 @@
+{
+  "name": "Bolster Relic",
+  "type": "loot",
+  "_id": "m3EpxlDgxn2tCDDR",
+  "img": "icons/commodities/treasure/token-runed-radr-brown.webp",
+  "system": {
+    "description": "<p>You gain a +1 bonus to your Strength. You can only carry one relic.</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [
+    {
+      "name": "Bolster Relic",
+      "type": "base",
+      "_id": "ByYXvJNr5YbXqn8I",
+      "img": "icons/magic/life/heart-cross-blue.webp",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.traits.strength.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753639476499,
+        "modifiedTime": 1753639561079,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!m3EpxlDgxn2tCDDR.ByYXvJNr5YbXqn8I"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753639461783,
+    "modifiedTime": 1753639473676,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!m3EpxlDgxn2tCDDR"
+}

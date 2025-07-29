@@ -1,0 +1,62 @@
+{
+  "name": "Shard of Memory",
+  "type": "loot",
+  "_id": "2ULPgNyqCrxea0v0",
+  "img": "icons/commodities/gems/gem-rough-navette-purple-pink.webp",
+  "system": {
+    "description": "<p>Once per long rest, you can spend 2 Hope to recall a domain card from your vault instead of paying its Recall</p><p>Cost.</p>",
+    "quantity": 1,
+    "actions": {
+      "YNRybKQC51muVHYH": {
+        "type": "effect",
+        "_id": "YNRybKQC51muVHYH",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 2,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": 1,
+          "recovery": "longRest"
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/commodities/gems/gem-rough-navette-purple-pink.webp",
+        "range": ""
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753640199098,
+    "modifiedTime": 1753640251763,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!2ULPgNyqCrxea0v0"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Jumping Root",
+  "type": "consumable",
+  "_id": "c2putn9apuurJhWX",
+  "img": "icons/consumables/plants/dried-bundle-wrapped-stems-sticks-brown.webp",
+  "system": {
+    "description": "<p>Eat this root to leap up to Far range once without needing to roll.</p>",
+    "quantity": 1,
+    "actions": {
+      "TT4jzve7o2ykPcQO": {
+        "type": "effect",
+        "_id": "TT4jzve7o2ykPcQO",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": null,
+          "amount": null
+        },
+        "name": "Eat",
+        "img": "icons/consumables/plants/dried-bundle-wrapped-stems-sticks-brown.webp",
+        "range": ""
+      }
+    },
+    "consumeOnUse": true
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753588566489,
+    "modifiedTime": 1753588625439,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!c2putn9apuurJhWX"
+}

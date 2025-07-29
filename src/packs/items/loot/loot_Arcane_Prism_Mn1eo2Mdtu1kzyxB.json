@@ -1,0 +1,104 @@
+{
+  "name": "Arcane Prism",
+  "type": "loot",
+  "_id": "Mn1eo2Mdtu1kzyxB",
+  "img": "icons/commodities/gems/gem-faceted-trillion-blue.webp",
+  "system": {
+    "description": "",
+    "quantity": 1,
+    "actions": {
+      "QgBDJh0laEvOB94w": {
+        "type": "effect",
+        "_id": "QgBDJh0laEvOB94w",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": 1,
+          "recovery": "longRest"
+        },
+        "effects": [
+          {
+            "_id": "Ee3Z0PnyERiNFgjU",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "friendly",
+          "amount": null
+        },
+        "name": "Activate",
+        "img": "icons/commodities/gems/gem-faceted-trillion-blue.webp",
+        "range": "close"
+      }
+    }
+  },
+  "effects": [
+    {
+      "name": "Arcane Prism",
+      "img": "icons/commodities/gems/gem-faceted-trillion-blue.webp",
+      "origin": "Compendium.daggerheart.loot.Item.Mn1eo2Mdtu1kzyxB",
+      "transfer": false,
+      "_id": "Ee3Z0PnyERiNFgjU",
+      "type": "base",
+      "system": {},
+      "changes": [
+        {
+          "key": "system.bonuses.roll.spellcast.bonus",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.344",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753626610878,
+        "modifiedTime": 1753626628337,
+        "lastModifiedBy": "OFxauskoxcvVTVNA"
+      },
+      "_key": "!items.effects!Mn1eo2Mdtu1kzyxB.Ee3Z0PnyERiNFgjU"
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "OFxauskoxcvVTVNA": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753626536923,
+    "modifiedTime": 1753626610902,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
+  },
+  "_key": "!items!Mn1eo2Mdtu1kzyxB"
+}
