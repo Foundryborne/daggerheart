@@ -129,7 +129,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             */
             for (let listFeature of this.features) {
                 const feature = listFeature.item ?? listFeature;
-                const docs = await this.actor.createEmbeddedDocuments('Item', [
+                const [doc] = await this.actor.createEmbeddedDocuments('Item', [
                     {
                         ...feature,
                         effects: feature.effects.map(x => x.toObject()),
@@ -148,10 +148,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                     const action = new cls(
                         {
                             ...oldAction.toObject(),
-                            ...cls.getSourceConfig(docs[0])
+                            ...cls.getSourceConfig(doc)
                         },
                         {
-                            parent: docs[0]
+                            parent: doc
                         }
                     );
 
@@ -160,7 +160,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                     return acc;
                 }, {});
 
-                await docs[0].updateSource({ 'system.actions': actions });
+                await doc.updateSource({ 'system.actions': actions });
             }
         }
     }
