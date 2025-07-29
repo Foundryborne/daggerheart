@@ -1,12 +1,12 @@
 {
   "type": "Item",
-  "folder": "vc6psFLwYfjOAVZu",
-  "name": "Tier 1",
+  "folder": null,
+  "name": "Primary Weapons",
   "color": null,
   "sorting": "a",
-  "_id": "d7tdCsIUd94XuTtq",
+  "_id": "Dq27vPNpeuINRJeY",
   "description": "",
-  "sort": 100000,
+  "sort": 800000,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -15,9 +15,8 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1748717279663,
-    "modifiedTime": 1753740491274,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0",
+    "modifiedTime": 1753740311572
   },
-  "_key": "!folders!d7tdCsIUd94XuTtq"
+  "_key": "!folders!Dq27vPNpeuINRJeY"
 }

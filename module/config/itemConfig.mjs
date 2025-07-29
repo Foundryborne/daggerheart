@@ -723,7 +723,7 @@ export const weaponFeatures = {
             }
         ]
     },
-    doubledup: {
+    doubledUp: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.doubledUp.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.doubledUp.description',
         actions: [
@@ -911,7 +911,7 @@ export const weaponFeatures = {
             }
         ]
     },
-    lockedon: {
+    lockedOn: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.lockedOn.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.lockedOn.description',
         actions: [
@@ -1010,26 +1010,16 @@ export const weaponFeatures = {
     paired: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.paired.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.paired.description',
-        actions: [
+        effects: [
             {
-                type: 'effect',
-                actionType: 'action',
-                chatDisplay: true,
-                name: 'DAGGERHEART.CONFIG.WeaponFeature.paired.actions.paired.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.paired.actions.paired.description',
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.paired.effects.paired.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.paired.effects.paired.description',
                 img: 'icons/skills/melee/weapons-crossed-swords-yellow-teal.webp',
-                effects: [
+                changes: [
                     {
-                        name: 'DAGGERHEART.CONFIG.WeaponFeature.paired.effects.paired.name',
-                        description: 'DAGGERHEART.CONFIG.WeaponFeature.paired.effects.paired.description',
-                        img: 'icons/skills/melee/weapons-crossed-swords-yellow-teal.webp',
-                        changes: [
-                            {
-                                key: 'system.bonuses.damage.primaryWeapon.bonus',
-                                mode: 2,
-                                value: '1 + ITEM.@system.tier'
-                            }
-                        ]
+                        key: 'system.bonuses.damage.primaryWeapon.bonus',
+                        mode: 2,
+                        value: 'ITEM.@system.tier + 1'
                     }
                 ]
             }

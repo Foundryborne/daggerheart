@@ -1,0 +1,188 @@
+{
+  "folder": "woovqIJsIyoK1ZQW",
+  "name": "Knuckle Claws",
+  "type": "weapon",
+  "_id": "SFqganS8Du4aEKjQ",
+  "img": "icons/skills/melee/blade-tips-triple-steel.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "fRKcEeShWSLkoExh": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Double Up",
+        "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range.",
+        "img": "icons/skills/melee/strike-slashes-orange.webp",
+        "_id": "fRKcEeShWSLkoExh",
+        "effects": [],
+        "systemPath": "actions",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      },
+      "lVsEmJwjYgpYL9l4": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Double Up",
+        "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range.",
+        "img": "icons/skills/melee/strike-slashes-orange.webp",
+        "_id": "lVsEmJwjYgpYL9l4",
+        "effects": [],
+        "systemPath": "actions",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      },
+      "2ndqofzTHsEUMxsm": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Double Up",
+        "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range.",
+        "img": "icons/skills/melee/strike-slashes-orange.webp",
+        "_id": "2ndqofzTHsEUMxsm",
+        "effects": [],
+        "systemPath": "actions",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "secondary": true,
+    "burden": "oneHanded",
+    "weaponFeatures": [
+      {
+        "value": "doubledUp",
+        "effectIds": [],
+        "actionIds": [
+          "2ndqofzTHsEUMxsm"
+        ]
+      }
+    ],
+    "attack": {
+      "name": "Attack",
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "_id": "qY9ylkwxFwRlPy6a",
+      "systemPath": "attack",
+      "type": "attack",
+      "range": "melee",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "trait": "strength",
+        "type": "attack",
+        "difficulty": null,
+        "bonus": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "dice": "d6",
+              "bonus": 8,
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": [
+              "physical"
+            ],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "rules": {
+      "attack": {
+        "roll": {
+          "trait": null
+        }
+      }
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753797258168,
+    "modifiedTime": 1753798882899,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!SFqganS8Du4aEKjQ"
+}

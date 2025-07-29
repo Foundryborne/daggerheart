@@ -1,12 +1,12 @@
 {
   "type": "Item",
-  "folder": "vc6psFLwYfjOAVZu",
-  "name": "Tier 1",
+  "folder": "NbXyhDASDCqpg4eG",
+  "name": "Tier 3",
   "color": null,
   "sorting": "a",
-  "_id": "d7tdCsIUd94XuTtq",
+  "_id": "v3OQH9vwMVYsZvXS",
   "description": "",
-  "sort": 100000,
+  "sort": 0,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -15,9 +15,7 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1748717279663,
-    "modifiedTime": 1753740491274,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "lastModifiedBy": null
   },
-  "_key": "!folders!d7tdCsIUd94XuTtq"
+  "_key": "!folders!v3OQH9vwMVYsZvXS"
 }
