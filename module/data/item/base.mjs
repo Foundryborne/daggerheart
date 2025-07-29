@@ -122,26 +122,47 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
             this.updateSource({ actions: [action] });
         }
-    }
 
-    _onCreate(data, _, userId) {
-        if (userId !== game.user.id) return;
+        if (this.actor && this.actor.type === 'character' && this.features) {
+            /* Actions won't get created during createEmbeddedDocuments because they need the parent to be the newly created feature. 
+               If this can be fixed somehow, we can just create all at the same time instead of one by one.
+            */
+            for (let listFeature of this.features) {
+                const feature = listFeature.item ?? listFeature;
+                const docs = await this.actor.createEmbeddedDocuments('Item', [
+                    {
+                        ...feature,
+                        effects: feature.effects.map(x => x.toObject()),
+                        system: {
+                            ...feature.system,
+                            originItemType: this.parent.type,
+                            originId: data._id,
+                            identifier: feature.identifier,
+                            subType: feature.item ? feature.type : undefined
+                        }
+                    }
+                ]);
 
-        if (!this.actor || this.actor.type !== 'character' || !this.features) return;
+                const actions = feature.system.actions.reduce((acc, oldAction) => {
+                    const cls = game.system.api.models.actions.actionsTypes[oldAction.type];
+                    const action = new cls(
+                        {
+                            ...oldAction.toObject(),
+                            ...cls.getSourceConfig(docs[0])
+                        },
+                        {
+                            parent: docs[0]
+                        }
+                    );
 
-        this.actor.createEmbeddedDocuments(
-            'Item',
-            this.features.map(feature => ({
-                ...(feature.item ?? feature),
-                system: {
-                    ...(feature.item?.system ?? feature.system),
-                    originItemType: this.parent.type,
-                    originId: data._id,
-                    identifier: feature.identifier,
-                    subType: feature.item ? feature.type : undefined
-                }
-            }))
-        );
+                    acc[action.id] = action.toObject();
+
+                    return acc;
+                }, {});
+
+                await docs[0].updateSource({ 'system.actions': actions });
+            }
+        }
     }
 
     async _preDelete() {
