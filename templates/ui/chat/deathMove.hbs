@@ -1,16 +1,17 @@
 <div class="daggerheart chat downtime">
     <ul class="downtime-moves-list">
-        <li class="downtime-move">
-            <div class="downtime-label">
+        <details class="downtime-move">
+            <summary class="downtime-label">
                 <img class="downtime-image" src="{{this.img}}" />
                 <div class="header-label">
                     <h2 class="title">{{this.title}}</h2>
                     <span class="label">{{localize 'DAGGERHEART.UI.Chat.deathMove.title'}}</span>
                 </div>
-            </div>
+                <i class="fa-solid fa-chevron-down"></i>
+            </summary>
             <div class="description">
                 {{{this.description}}}
             </div>
-        </li>
+        </details>
     </ul>
 </div>

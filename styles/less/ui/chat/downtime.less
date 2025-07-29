@@ -8,10 +8,23 @@
         flex-direction: column;
         align-items: center;
 
+        details[open] {
+            .fa-chevron-down {
+                transform: rotate(180deg);
+                transition: all 0.3s ease;
+            }
+        }
+
         .downtime-moves-list {
             display: flex;
             flex-direction: column;
             gap: 5px;
+            width: 100%;
+
+            .fa-chevron-down {
+                transition: all 0.3s ease;
+                margin-left: auto;
+            }
 
             .downtime-move {
                 width: 100%;
@@ -24,6 +37,12 @@
                     margin: 0 8px;
                     padding-bottom: 5px;
                     width: -webkit-fill-available;
+
+                    &:hover {
+                        background: light-dark(@dark-blue-10, @golden-10);
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    }
 
                     .downtime-image {
                         width: 40px;

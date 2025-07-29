@@ -1,14 +1,19 @@
 <div class="daggerheart chat domain-card">
     <img class="card-img" src="{{item.img}}" />
-    <div class="domain-card-header">
-        <h2 class="title">{{item.name}}</h2>
-        <ul class="tags">
-            {{#each item.tags as |tag|}}
-                <li class="tag">{{tag}}</li>
-            {{/each}}
-        </ul>
-    </div>
-    <div class="description">{{{description}}}</div>
+    <details class="domain-card-move">
+        <summary class="domain-card-header">
+            <div class="domain-label">
+                <h2 class="title">{{item.name}}</h2>
+                <ul class="tags">
+                    {{#each item.tags as |tag|}}
+                        <li class="tag">{{tag}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+            <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="description">{{{description}}}</div>
+    </details>
     <footer class="ability-card-footer">
         {{#each actions as |action index|}}
             <button class="ability-use-button" data-index="{{index}}">

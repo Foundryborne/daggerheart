@@ -15,40 +15,71 @@
             object-fit: cover;
         }
 
-        .domain-card-header {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            margin: 8px 8px 0;
-            padding-bottom: 5px;
-            width: -webkit-fill-available;
-            gap: 5px;
-            border-bottom: 1px solid @golden;
+        details[open] {
+            .fa-chevron-down {
+                transform: rotate(180deg);
+                transition: all 0.3s ease;
+            }
+        }
 
-            .title {
-                font-size: 20px;
-                color: @golden;
-                font-family: @font-subtitle;
-                margin: 0;
+        .domain-card-move {
+            width: 100%;
+
+            .fa-chevron-down {
+                transition: all 0.3s ease;
+                margin-left: auto;
             }
 
-            .tags {
+            .domain-card-header {
                 display: flex;
-                gap: 10px;
+                flex-direction: row;
+                align-items: center;
+                margin: 8px;
+                padding-bottom: 5px;
+                width: -webkit-fill-available;
+                gap: 5px;
+                border-bottom: 1px solid @golden;
 
-                .tag {
+                &:hover {
+                    background: light-dark(@dark-blue-10, @golden-10);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                .domain-label {
                     display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 3px 5px;
-                    font-size: 12px;
-                    font-family: @font-body;
+                    flex-direction: column;
+                    width: 100%;
+                    padding-bottom: 5px;
+                    width: -webkit-fill-available;
+                    gap: 5px;
 
-                    background: light-dark(@dark-15, @beige-15);
-                    border: 1px solid light-dark(@dark, @beige);
-                    color: light-dark(@dark, @beige);
-                    border-radius: 3px;
+                    .title {
+                        font-size: 20px;
+                        color: @golden;
+                        font-family: @font-subtitle;
+                        margin: 0;
+                    }
+
+                    .tags {
+                        display: flex;
+                        gap: 10px;
+
+                        .tag {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 3px 5px;
+                            font-size: 12px;
+                            font-family: @font-body;
+
+                            background: light-dark(@dark-15, @beige-15);
+                            border: 1px solid light-dark(@dark, @beige);
+                            color: light-dark(@dark, @beige);
+                            border-radius: 3px;
+                        }
+                    }
                 }
             }
         }
