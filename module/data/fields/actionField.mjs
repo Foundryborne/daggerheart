@@ -254,11 +254,15 @@ export function ActionMixin(Base) {
                 origin: origin,
                 action: { name: this.name, img: this.img, tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'] },
                 itemOrigin: this.item,
-                description: this.description,
+                description: this.description
             };
             const msg = {
                 type: 'abilityUse',
                 user: game.user.id,
+                actor: { name: this.actor.name, img: this.actor.img },
+                author: this.author,
+                speaker: cls.getSpeaker(),
+                title: game.i18n.localize('DAGGERHEART.UI.Chat.action.title'),
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(
                     'systems/daggerheart/templates/ui/chat/action.hbs',
