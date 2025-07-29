@@ -37,11 +37,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         this.extraSchemas.forEach(s => {
             let clsField;
-            if ((clsField = this.getActionField(s))) schemaFields[s] = new clsField(
-                {
-                    type: this
-                }
-            );
+            if ((clsField = this.getActionField(s))) schemaFields[s] = new clsField();
         });
 
         return schemaFields;

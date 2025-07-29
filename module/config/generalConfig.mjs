@@ -473,11 +473,13 @@ export const rollTypes = {
     },
     spellcast: {
         id: 'spellcast',
-        label: 'DAGGERHEART.CONFIG.RollTypes.spellcast.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.spellcast.name',
+        playerOnly: true
     },
     trait: {
         id: 'trait',
-        label: 'DAGGERHEART.CONFIG.RollTypes.trait.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.trait.name',
+        playerOnly: true
     },
     diceSet: {
         id: 'diceSet',

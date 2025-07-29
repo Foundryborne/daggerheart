@@ -108,9 +108,11 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
             context.hasBaseDamage = !!this.action.parent.attack;
         context.getEffectDetails = this.getEffectDetails.bind(this);
         context.costOptions = this.getCostOptions();
+        context.getRollTypeOptions = this.getRollTypeOptions();
         context.disableOption = this.disableOption.bind(this);
         context.isNPC = this.action.actor?.isNPC;
         context.baseSaveDifficulty = this.action.actor?.baseSaveDifficulty;
+        context.baseAttackBonus = this.action.actor?.system.attack?.damage.parts[0].value.bonus;
         context.hasRoll = this.action.hasRoll;
 
         const settingsTiers = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers;
@@ -137,6 +139,15 @@ export default class DHActionConfig extends DaggerheartSheet(ApplicationV2) {
         }
 
         return options;
+    }
+
+    getRollTypeOptions() {
+        const types = foundry.utils.deepClone(CONFIG.DH.GENERAL.rollTypes);
+        if(!this.action.actor) return types;
+        Object.values(types).forEach(t => {
+            if(this.action.actor.type !== 'character' && t.playerOnly) delete types[t.id];
+        })
+        return types;
     }
 
     disableOption(index, costOptions, choices) {
