@@ -5,7 +5,9 @@
             <img class="actor-img" src="{{actor.img}}" />
             <div class="message-sub-header-container">
                 <h4>{{ifThen message.title message.title alias}}</h4>
-                <div>{{actor.name}}</div>
+                {{#if actor.name}}
+                    <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
+                {{/if}}
             </div>
         </div>
         <div class="message-header-metadata">

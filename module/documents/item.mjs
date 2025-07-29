@@ -128,7 +128,11 @@ export default class DHItem extends foundry.documents.Item {
         const msg = new cls({
             type: 'abilityUse',
             user: game.user.id,
+            actor: this.actor,
+            author: this.author,
+            speaker: cls.getSpeaker(),
             system: systemData,
+            title: game.i18n.localize('DAGGERHEART.ACTIONS.Config.displayInChat'),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData

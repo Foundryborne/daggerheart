@@ -7,9 +7,13 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             });
 
         const actor = game.actors.get(this.speaker.actor);
-        const actorData = actor ?? { img: 'icons/svg/mystery-man.svg', name: '' };
+        const actorData = actor ?? {
+            img: this.author.avatar ? this.author.avatar : 'icons/svg/mystery-man.svg',
+            name: ''
+        };
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
-        const html = await super.renderHTML({ actor: actorData });
+        const html = await super.renderHTML({ actor: actorData, author: this.author });
+        console.log(this.author);
         this.applyPermission(html);
 
         if (this.type === 'dualityRoll') {
