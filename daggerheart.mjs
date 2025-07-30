@@ -240,12 +240,12 @@ Hooks.on('moveToken', async (movedToken, data) => {
     const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
     if (!effectsAutomation.rangeDependent) return;
 
-    const rangeDependantEffects = movedToken.actor.effects.filter(effect => effect.system.rangeDependence.enabled);
+    const rangeDependantEffects = movedToken.actor.effects.filter(effect => effect.system.rangeDependence?.enabled);
 
     const updateEffects = async (disposition, token, effects, effectUpdates) => {
         const rangeMeasurement = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement);
 
-        for (let effect of effects.filter(x => x.system.rangeDependence.enabled)) {
+        for (let effect of effects.filter(x => x.system.rangeDependence?.enabled)) {
             const { target, range, type } = effect.system.rangeDependence;
             if ((target === 'friendly' && disposition !== 1) || (target === 'hostile' && disposition !== -1))
                 return false;
