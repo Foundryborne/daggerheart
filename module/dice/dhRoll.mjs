@@ -7,6 +7,12 @@ export default class DHRoll extends Roll {
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
+    get title() {
+        return game.i18n.localize(
+            "DAGGERHEART.GENERAL.Roll"
+        );
+    }
+
     static messageType = 'adversaryRoll';
 
     static DefaultDialog = D20RollDialog;
@@ -85,6 +91,8 @@ export default class DHRoll extends Roll {
             msg = {
                 type: this.messageType,
                 user: game.user.id,
+                title: roll.title,
+                speaker: cls.getSpeaker(),
                 sound: config.mute ? null : CONFIG.sounds.dice,
                 system: config,
                 rolls: [roll]

@@ -1,0 +1,176 @@
+<div class="chat-roll">
+    {{!-- Roll Start --}}
+    <div class="roll-part roll-section">
+        <div class="roll-part-header"><span>Finesse Check</span></div>
+        <div class="roll-part-content">
+            <div class="roll-result-container">
+                <span class="roll-result-value">18</span>
+                <span class="roll-result-desc">with hope</span>
+            </div>
+            <span class="roll-difficulty">difficulty 15</span>
+        </div>
+        <div class="dice-roll" data-action="expandRoll">
+            <div class="roll-part-header"><div><span>Formula</span></div></div>
+            <div class="roll-part-content dice-result">
+                <div class="dice-tooltip">
+                    <div class="wrapper">
+                        <div class="roll-dice">
+                            <div class="roll-die">
+                                <label>Hope</label>
+                                <div>12 <img class="dice-icon" src="systems/daggerheart/assets/icons/dice/hope/d20.svg" alt=""></div>
+                            </div>
+                            <div class="roll-die">
+                                <label></label>
+                                <div>+</div>
+                            </div>
+                            <div class="roll-die">
+                                <label>Fear</label>
+                                <div>6 <img class="dice-icon" src="systems/daggerheart/assets/icons/dice/fear/d12.svg" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roll-formula">
+                        1d12 + 1d12 + 0
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- Roll End --}}
+    {{!-- Damage Start --}}
+    <div class="roll-part damage-section dice-roll" data-action="expandRoll">
+        <div class="roll-part-header"><div><span>Damage</span></div></div>
+        <div class="roll-part-extra on-reduced">
+            <div class="wrapper">
+                <div class="roll-formula">Hit Points: 10</div>
+                <div class="roll-formula">Stress: 10</div>
+            </div>
+        </div>
+        <div class="roll-part-content dice-result">
+            <div class="dice-tooltip">
+                <div class="wrapper">
+                    <fieldset>
+                        <legend>
+                            Hit Points <div class="roll-formula">Total: 10</div>
+                        </legend>
+                        <label class="roll-part-header"><span>Physical <div class="roll-formula">10</div></span></label>
+                        <div class="roll-dice">
+                            <div class="roll-die">
+                                <div>4 <img class="dice-icon" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt=""></div>
+                            </div>
+                            <div class="roll-die">
+                                <div>+</div>
+                            </div>
+                            <div class="roll-die">
+                                <div>6</div>
+                            </div>
+                        </div>
+                        <label class="roll-part-header"><span>Magical <div class="roll-formula">10</div></span></label>
+                        <div class="roll-dice">
+                            <div class="roll-die">
+                                <div>4 <img class="dice-icon" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt=""></div>
+                            </div>
+                            <div class="roll-die">
+                                <div>+</div>
+                            </div>
+                            <div class="roll-die">
+                                <div>6</div>
+                            </div>
+                        </div>
+                        <label class="roll-part-header"><span>Phy/Mag <div class="roll-formula">10</div></span></label>
+                        <div class="roll-dice">
+                            <div class="roll-die">
+                                <div>4 <img class="dice-icon" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt=""></div>
+                            </div>
+                            <div class="roll-die">
+                                <div>+</div>
+                            </div>
+                            <div class="roll-die">
+                                <div>6</div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            Stress <div class="roll-formula">Total: 10</div>
+                        </legend>
+                        <div class="roll-dice">
+                            <div class="roll-die">
+                                <div>4 <img class="dice-icon" src="systems/daggerheart/assets/icons/dice/default/d20.svg" alt=""></div>
+                            </div>
+                            <div class="roll-die">
+                                <div>+</div>
+                            </div>
+                            <div class="roll-die">
+                                <div>6</div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- Damage End --}}
+    {{!-- Target Start --}}
+    <div class="roll-part target-section dice-roll" data-action="expandRoll">
+        <div class="roll-part-header"><div><span>Target</span></div></div>
+        <div class="roll-part-extra on-reduced">
+            <div class="wrapper">
+                <div class="target-hit-status">2 Hits</div>
+                <div class="target-hit-status is-miss">2 Miss</div>
+            </div>
+        </div>
+        <div class="roll-part-content dice-result">
+            <div class="dice-tooltip">
+                <div class="wrapper">
+                    <div class="target-selector">
+                        <div class="roll-part-header"><div></div></div>
+                        <div class="target-choice"><div class="target-selected">Hit</div><div>Current</div></div>
+                        <div class="roll-part-header"><div></div></div>
+                    </div>
+                    <div class="roll-part-extra">Reaction Roll All Targets<i class="fa-solid fa-shield fa-lg"></i></div>
+                    <div class="roll-target">
+                        <img class="target-img" src="images/goliath_ranger.jpg">
+                        <div class="target-data">
+                            <div class="target-name">Archer Squadron</div>
+                            <div class="target-hit-status is-hit">Hit</div>
+                        </div>
+                        <i class="fa-solid fa-shield fa-lg"></i>
+                    </div>
+                    <div class="roll-target">
+                        <img class="target-img" src="images/goliath_ranger.jpg">
+                        <div class="target-data">
+                            <div class="target-name">Conscript</div>
+                            <div class="target-hit-status is-miss">Miss</div>
+                        </div>
+                        <i class="fa-solid fa-shield fa-lg"></i>
+                    </div>
+                    <div class="roll-target">
+                        <img class="target-img" src="images/goliath_ranger.jpg">
+                        <div class="target-data">
+                            <div class="target-name">Elite Soldier</div>
+                            <div class="target-hit-status is-hit">Hit</div>
+                        </div>
+                        <i class="fa-solid fa-shield fa-lg"></i>
+                    </div>
+                    <div class="roll-target">
+                        <img class="target-img" src="images/goliath_ranger.jpg">
+                        <div class="target-data">
+                            <div class="target-name">Knight of the Realm</div>
+                            <div class="target-hit-status is-miss">Miss</div>
+                        </div>
+                        <i class="fa-solid fa-shield fa-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- Target End --}}
+    <div class="roll-part-header"><div></div></div>
+</div>
+{{!-- Button Start --}}
+<div class="roll-buttons">
+    <button>Deal Damage</button>
+    <button>Apply Effects</button>
+</div>
+{{!-- Button End --}}

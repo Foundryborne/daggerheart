@@ -125,7 +125,7 @@ export default class DHItem extends foundry.documents.Item {
             description: this.system.description,
             actions: this.system.actions
         };
-        const msg = new cls({
+        const msg = {
             type: 'abilityUse',
             user: game.user.id,
             actor: this.actor,
@@ -142,8 +142,8 @@ export default class DHItem extends foundry.documents.Item {
                     cssClass: 'dh-chat-message dh-style'
                 }
             }
-        });
+        };
 
-        cls.create(msg.toObject());
+        cls.create(msg);
     }
 }

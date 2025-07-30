@@ -92,7 +92,7 @@ export default class DhActiveEffect extends ActiveEffect {
             description: this.description,
             actions: []
         };
-        const msg = new cls({
+        const msg = {
             type: 'abilityUse',
             user: game.user.id,
             system: systemData,
@@ -100,8 +100,8 @@ export default class DhActiveEffect extends ActiveEffect {
                 'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
             )
-        });
+        };
 
-        cls.create(msg.toObject());
+        cls.create(msg);
     }
 }

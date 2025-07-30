@@ -19,6 +19,12 @@ export default class D20Roll extends DHRoll {
 
     static DefaultDialog = D20RollDialog;
 
+    get title() {
+        return game.i18n.localize(
+            "DAGGERHEART.GENERAL.d20Roll"
+        );
+    }
+
     get d20() {
         if (!(this.terms[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         return this.terms[0];

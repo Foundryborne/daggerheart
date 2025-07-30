@@ -21,13 +21,13 @@
     .chat-log {
         .chat-message {
             border: none !important;
-            padding: 8px 0;
+            padding: 0;
             background-image: url('../assets/parchments/dh-parchment-dark.png');
 
             .message-header {
                 display: flex;
                 gap: 4px;
-                padding: 0 8px 8px;
+                padding: 8px;
 
                 .message-header-metadata {
                     flex: none;
@@ -68,6 +68,10 @@
                         }
                     }
                 }
+            }
+
+            .message-content {
+                padding-bottom: 8px;
             }
         }
     }

@@ -69,10 +69,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
               : this.item?.actor;
     }
 
-    get chatTemplate() {
-        return 'systems/daggerheart/templates/ui/chat/duality-roll.hbs';
-    }
-
     static getRollType(parent) {
         return 'trait';
     }

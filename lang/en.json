@@ -1352,7 +1352,9 @@
             "check": "{check} Check",
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
+            "d20Roll": "D20 Roll",
             "damage": "Damage",
+            "damageRoll": "Damage Roll",
             "damageType": "Damage Type",
             "description": "Description",
             "difficulty": "Difficulty",
@@ -1371,6 +1373,7 @@
             "features": "Features",
             "formula": "Formula",
             "healing": "Healing",
+            "healingRoll": "Healing Roll",
             "HitPoints": {
                 "single": "Hit Point",
                 "plural": "Hit Points",

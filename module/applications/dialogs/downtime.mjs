@@ -133,7 +133,7 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         });
 
         const cls = getDocumentClass('ChatMessage');
-        const msg = new cls({
+        const msg = {
             user: game.user.id,
             system: {
                 moves: moves,
@@ -158,9 +158,9 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                     cssClass: 'dh-chat-message dh-style'
                 }
             }
-        });
+        };
 
-        cls.create(msg.toObject());
+        cls.create(msg);
 
         // Reset selection and update number of taken moves
         for (const [catName, category] of Object.entries(this.moveData)) {
