@@ -15,8 +15,8 @@ Parameters:
 - showActions {boolean} : If true show feature's actions.
 --}}
 
-<li class="inventory-item" data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack'))}} data-action-id="{{item.id}}" {{/if}}
-  data-item-uuid="{{item.uuid}}" data-type="{{type}}" draggable="true">
+<li class="inventory-item" data-item-id="{{item.id}}" {{#if (or (eq type 'action' ) (eq type 'attack' ))}}
+  data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" draggable="true">
   <div class="inventory-item-header" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
     <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type ' attack')) "useItem" (ifThen
@@ -32,7 +32,7 @@ Parameters:
       {{!-- Item Name --}}
       <div class="item-name">{{localize item.name}}</div>
 
-      {{!-- Attack Block Start --}}
+      {{!-- Attack Tags Start --}}
       {{#if (eq type 'attack')}}
       <div class="item-tags">
         <div class="tag">
@@ -42,106 +42,35 @@ Parameters:
           {{localize 'DAGGERHEART.CONFIG.ActionType.action'}}
         </div>
       </div>
-      {{/if}}
-      {{!-- Attack Block End --}}
-
-      {{!-- Weapon Block Start --}}
-      {{#if (eq type 'weapon')}}
-      {{#if (not hideTags)}}
-      <div class="item-tags">
-        {{#each item.getTags as |tag|}}
-        <div class="tag">
-          {{tag}}
-        </div>
-        {{/each}}
-      </div>
-      {{else if (not hideLabels)}}
-      <div class="item-labels">
-        {{#each item.getLabels as |label|}}
-        <div class="label">
-          {{ifThen label.value label.value label}}
-          {{log label.icons}}
-          {{#each label.icons as |icon|}}
-          <i class="fa-solid {{icon}}"></i>
+      {{!-- Attack Tags End --}}
+      {{else}}
+        {{#with item}}
+        {{#if (not ../hideTags)}}
+        <div class="item-tags">
+          {{#each this._getTags as |tag|}}
+          <div class="tag">
+            {{tag}}
+          </div>
           {{/each}}
+        </div>
+        {{else if (not ../hideLabels)}}
+        <div class="item-lables">
+          <div class="label">
+            {{#each this._getLabels as |label|}}
+            {{ifThen label.value label.value label}}
+            {{#each label.icons as |icon|}}
+            <i class="fa-solid {{icon}}"></i>
+            {{/each}}
+            {{#if (not @last)}}
+            <span>-</span>
+            {{/if}}
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+        {{/with}}
+      {{/if}}
 
-          {{#if (not @last)}}
-          <span>-</span>
-          {{/if}}
-        </div>
-        {{/each}}
-      </div>
-      {{/if}}
-      {{/if}}
-      {{!-- Weapon Block End --}}
-
-      {{!-- Armor Block Start --}}
-      {{#if (eq type 'armor')}}
-      {{#if (not hideTags)}}
-      <div class="item-tags">
-        <div class="tag">{{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}: {{item.system.baseScore}}</div>
-        <div class="tag">
-          {{localize "DAGGERHEART.ITEMS.Armor.baseThresholds.base"}}:
-          {{item.system.baseThresholds.major}} / {{item.system.baseThresholds.severe}}
-        </div>
-      </div>
-      {{else if (not hideLabels)}}
-      <div class="item-labels">
-        <div class="label">
-          {{localize "DAGGERHEART.ITEMS.Armor.baseScore"}}: {{item.system.baseScore}}
-        </div>
-      </div>
-      {{/if}}
-      {{/if}}
-      {{!-- Armor Block End --}}
-
-      {{!-- Domain Card Block Start --}}
-      {{#if (eq type 'domainCard')}}
-      {{#if (not hideTags)}}
-      <div class="item-tags">
-        <div class="tag">{{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' item.system.type)}}</div>
-        <div class="tag">{{localize (concat 'DAGGERHEART.GENERAL.Domain.' item.system.domain '.label')}}</div>
-        <div class="tag">
-          <span class="recall-label">{{localize "DAGGERHEART.ITEMS.DomainCard.recallCost"}}: </span>
-          <span class="recall-value">{{item.system.recallCost}}</span>
-        </div>
-      </div>
-      {{else if (not hideLabels)}}
-      <div class="item-labels">
-        <div class="label">
-          {{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' item.system.type)}} -
-          {{localize (concat 'DAGGERHEART.GENERAL.Domain.' item.system.domain '.label')}} -
-          <span class="recall-value">{{item.system.recallCost}}</span>
-          <i class="fa-solid fa-bolt"></i>
-        </div>
-      </div>
-      {{/if}}
-      {{/if}}
-      {{!-- Domain Card Block End --}}
-
-      {{!-- Effect Block Start --}}
-      {{#if (eq type 'effect')}}
-      {{#if (not hideTags)}}
-      <div class="item-tags">
-        <div class="tag">
-          {{localize item.parent.system.metadata.label}}: {{item.parent.name}}
-        </div>
-        <div class="tag">
-          {{#if item.duration.duration}}
-          {{localize 'DAGGERHEART.EFFECTS.Duration.temporary'}}
-          {{else}}
-          {{localize 'DAGGERHEART.EFFECTS.Duration.passive'}}
-          {{/if}}
-        </div>
-        {{#each item.localizedStatuses as |status|}}
-          <div class="tag">{{status.name}}</div>
-        {{/each}}
-      </div>
-      {{else if (not hideLabels)}}
-      {{!-- Empty --}}
-      {{/if}}
-      {{/if}}
-      {{!-- Effect Block End --}}
 
       {{!-- Action Block Start --}}
       {{#if (eq type 'action')}}

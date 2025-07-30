@@ -167,15 +167,13 @@ export default class DHWeapon extends AttachableItem {
      * Generates a list of localized tags based on this item's type-specific properties.
      * @returns {string[]} An array of localized tag strings.
      */
-    getTags() {
+    _getTags() {
         const { attack, burden } = this;
-        const tags = [];
-
-        const traitTag = game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${attack.roll.trait}.name`);
-        const rangeTag = game.i18n.localize(`DAGGERHEART.CONFIG.Range.${attack.range}.name`);
-        const burdenTag = game.i18n.localize(`DAGGERHEART.CONFIG.Burden.${burden}`);
-
-        tags.push(traitTag, rangeTag, burdenTag);
+        const tags = [
+            game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${attack.roll.trait}.name`),
+            game.i18n.localize(`DAGGERHEART.CONFIG.Range.${attack.range}.name`),
+            game.i18n.localize(`DAGGERHEART.CONFIG.Burden.${burden}`)
+        ];
 
         for (const { value, type } of attack.damage.parts) {
             const parts = [value.dice];
@@ -184,13 +182,12 @@ export default class DHWeapon extends AttachableItem {
             if (type.size > 0) {
                 const typeTags = Array.from(type)
                     .map(t => game.i18n.localize(`DAGGERHEART.CONFIG.DamageType.${t}.abbreviation`))
-                    .join(" | ");
+                    .join(' | ');
                 parts.push(` (${typeTags})`); // Add a space in front and put it inside a ().
             }
 
-            tags.push(parts.join(""));
+            tags.push(parts.join(''));
         }
-
 
         return tags;
     }
@@ -199,12 +196,13 @@ export default class DHWeapon extends AttachableItem {
      * Generate a localized label array for this item subtype.
      * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
      */
-    getLabels() {
-        const labels = [];
-
+    _getLabels() {
         const { roll, range, damage } = this.attack;
-        labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`));
-        labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`));
+
+        const labels = [
+            game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${roll.trait}.short`),
+            game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.short`)
+        ];
 
         for (const { value, type } of damage.parts) {
             const str = [value.dice];
@@ -214,7 +212,7 @@ export default class DHWeapon extends AttachableItem {
                 .map(t => CONFIG.DH.GENERAL.damageTypes[t]?.icon)
                 .filter(Boolean);
 
-            const labelValue = str.join("");
+            const labelValue = str.join('');
             if (icons.length === 0) {
                 labels.push(labelValue);
             } else {
@@ -224,7 +222,4 @@ export default class DHWeapon extends AttachableItem {
 
         return labels;
     }
-
-
-
 }
