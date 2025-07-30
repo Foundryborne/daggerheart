@@ -1,8 +1,10 @@
 <header class="dialog-header">
     <h1>
         {{ifThen rollConfig.headerTitle rollConfig.headerTitle rollConfig.title}}
-        <button class="reaction-roll-controller {{#if reactionOverride}}active{{/if}}" data-action="toggleReaction" data-tooltip-text="{{localize "DAGGERHEART.GENERAL.reactionRoll"}}">
-            <i class="fa-solid fa-reply"></i>
-        </button>
+        {{#if showReaction}}
+            <button class="reaction-roll-controller {{#if reactionOverride}}active{{/if}}" data-action="toggleReaction" data-tooltip-text="{{localize "DAGGERHEART.GENERAL.reactionRoll"}}">
+                <i class="fa-solid fa-reply"></i>
+            </button>
+        {{/if}}
     </h1>
 </header>

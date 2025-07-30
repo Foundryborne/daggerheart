@@ -7,7 +7,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.roll = roll;
         this.config = config;
         this.config.experiences = [];
-        this.reactionOverride = false;
+        this.reactionOverride = config.roll.type === 'reaction';
 
         if (config.source?.action) {
             this.item = config.data.parent.items.get(config.source.item) ?? config.data.parent;
@@ -105,6 +105,8 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.isLite = this.config.roll?.lite;
             context.extraFormula = this.config.extraFormula;
             context.formula = this.roll.constructFormula(this.config);
+
+            context.showReaction = !context.rollConfig.type && context.rollType === 'DualityRoll';
             context.reactionOverride = this.reactionOverride;
         }
         return context;
@@ -152,7 +154,11 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     }
 
     static async submitRoll() {
-        this.config.roll.type = this.reactionOverride ? CONFIG.DH.ITEM.actionTypes.reaction.id : this.config.roll.type;
+        this.config.roll.type = this.reactionOverride
+            ? CONFIG.DH.ITEM.actionTypes.reaction.id
+            : this.config.roll.type === CONFIG.DH.ITEM.actionTypes.reaction.id
+              ? null
+              : this.config.roll.type;
         await this.close({ submitted: true });
     }
 

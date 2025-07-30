@@ -193,6 +193,7 @@ Hooks.on('chatMessage', (_, message) => {
             return false;
         }
 
+        const reaction = rollCommand.reaction;
         const traitValue = rollCommand.trait?.toLowerCase();
         const advantage = rollCommand.advantage
             ? CONFIG.DH.ACTIONS.advantageState.advantage.value
@@ -208,7 +209,16 @@ Hooks.on('chatMessage', (_, message) => {
               })
             : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
-        enrichedDualityRoll({ traitValue, target, difficulty, title, label: 'test', actionType: null, advantage });
+        enrichedDualityRoll({
+            reaction,
+            traitValue,
+            target,
+            difficulty,
+            title,
+            label: 'test',
+            actionType: null,
+            advantage
+        });
         return false;
     }
 });
