@@ -1,0 +1,163 @@
+{
+  "folder": "cvhQpWXCo3YJhtwx",
+  "name": "Aantari Bow",
+  "type": "weapon",
+  "_id": "ijodu5yNBoMxpkHV",
+  "img": "icons/weapons/bows/shortbow-leaves-green.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "secondary": false,
+    "burden": "twoHanded",
+    "weaponFeatures": [
+      {
+        "value": "reliable",
+        "effectIds": [
+          "HrbJ0bI7lMAYUCux"
+        ],
+        "actionIds": []
+      }
+    ],
+    "attack": {
+      "name": "Attack",
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "_id": "31XEMDUyjpqFA7H9",
+      "systemPath": "attack",
+      "type": "attack",
+      "range": "far",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "trait": "finesse",
+        "type": "attack",
+        "difficulty": null,
+        "bonus": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "dice": "d6",
+              "bonus": 11,
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": [
+              "physical"
+            ],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "rules": {
+      "attack": {
+        "roll": {
+          "trait": null
+        }
+      }
+    }
+  },
+  "effects": [
+    {
+      "name": "Reliable",
+      "description": "+1 to attack rolls",
+      "img": "icons/skills/melee/strike-sword-slashing-red.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.roll.primaryWeapon.attack",
+          "mode": 2,
+          "value": "1"
+        }
+      ],
+      "_id": "HrbJ0bI7lMAYUCux",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753835307838,
+        "modifiedTime": 1753835307838,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!ijodu5yNBoMxpkHV.HrbJ0bI7lMAYUCux"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753835285790,
+    "modifiedTime": 1753835317605,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!ijodu5yNBoMxpkHV"
+}
