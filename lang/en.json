@@ -2225,7 +2225,8 @@
                 "beastformToManyAdvantages": "You cannot select any more advantages.",
                 "beastformToManyFeatures": "You cannot select any more features.",
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
-                "loadoutMaxReached": "You already have {max} cards in your loadout. Move atleast one to your vault before adding a new one."
+                "loadoutMaxReached": "You already have {max} cards in your loadout. Move atleast one to your vault before adding a new one.",
+                "insufficientResources": "You have insufficient resources"
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
