@@ -1,105 +1,68 @@
 {
-  "folder": "oreMpiiytMRaR9sy",
-  "name": "Advanced Scepter",
+  "folder": "UNDVQEo6UtTuueNQ",
+  "name": "Midas Scythe",
   "type": "weapon",
-  "_id": "2Khzuj768yoWN9QK",
-  "img": "icons/weapons/staves/staff-forest-hooked.webp",
+  "_id": "BdLfy5i488VZgkjP",
+  "img": "icons/weapons/sickles/scythe-bone-green-fire.webp",
   "system": {
     "description": "",
     "actions": {
-      "4w1WlA4yZzUcRMXA": {
-        "type": "attack",
-        "damage": {
-          "includeBase": false,
-          "parts": [
-            {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "prof",
-                "dice": "d8",
-                "bonus": 4,
-                "flatMultiplier": 1
-              },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              }
-            }
-          ]
-        },
-        "range": "melee",
-        "roll": {
-          "useDefault": true,
-          "type": "attack",
-          "trait": "presence",
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": null,
-            "treshold": null
-          }
-        },
-        "_id": "4w1WlA4yZzUcRMXA",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
+      "kKEAq1C1fz0WZmlZ": {
+        "type": "effect",
         "actionType": "action",
+        "chatDisplay": true,
+        "name": "Greedy",
+        "description": "Spend a handful of gold to gain a +1 bonus to your Proficiency on a damage roll.",
+        "img": "icons/commodities/currency/coins-crown-stack-gold.webp",
+        "effects": [
+          {
+            "_id": "1C5o1D5JYgLdt2eU",
+            "onSave": false
+          }
+        ],
+        "_id": "kKEAq1C1fz0WZmlZ",
+        "systemPath": "actions",
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
+          "max": null,
           "recovery": null
         },
         "target": {
           "type": "any",
           "amount": null
-        },
-        "effects": [],
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
-        "name": "Versatile Attack",
-        "img": "icons/weapons/maces/shortmace-ornate-gold.webp"
+        }
       }
     },
     "attached": [],
-    "tier": 3,
+    "tier": 4,
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [],
+    "weaponFeatures": [
+      {
+        "value": "greedy",
+        "effectIds": [
+          "1C5o1D5JYgLdt2eU"
+        ],
+        "actionIds": [
+          "kKEAq1C1fz0WZmlZ"
+        ]
+      }
+    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
-      "_id": "8j3yjH0TiwwZsaBW",
+      "_id": "B2LewQYZb9Jhl4A6",
       "systemPath": "attack",
       "type": "attack",
-      "range": "far",
+      "range": "melee",
       "target": {
         "type": "any",
         "amount": 1
       },
       "roll": {
-        "trait": "presence",
+        "trait": "knowledge",
         "type": "attack",
         "difficulty": null,
         "bonus": null,
@@ -117,8 +80,8 @@
         "parts": [
           {
             "value": {
-              "dice": "d6",
-              "bonus": 6,
+              "dice": "d10",
+              "bonus": 9,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {
@@ -168,7 +131,46 @@
       }
     }
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Greed",
+      "description": "Spend a handful of gold to gain a +1 bonus to your Proficiency on a damage roll.",
+      "img": "icons/commodities/currency/coins-crown-stack-gold.webp",
+      "changes": [
+        {
+          "key": "system.proficiency",
+          "mode": 2,
+          "value": "1"
+        }
+      ],
+      "transfer": false,
+      "_id": "1C5o1D5JYgLdt2eU",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753836142588,
+        "modifiedTime": 1753836142588,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!BdLfy5i488VZgkjP.1C5o1D5JYgLdt2eU"
+    }
+  ],
   "sort": 0,
   "ownership": {
     "default": 0,
@@ -182,9 +184,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753833421806,
-    "modifiedTime": 1753835888435,
+    "createdTime": 1753836123608,
+    "modifiedTime": 1753836160033,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
-  "_key": "!items!2Khzuj768yoWN9QK"
+  "_key": "!items!BdLfy5i488VZgkjP"
 }

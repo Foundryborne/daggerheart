@@ -3,7 +3,7 @@
   "name": "Scepter",
   "type": "weapon",
   "_id": "GZh345N8fmuS4Jeh",
-  "img": "icons/weapons/maces/shortmace-ornate-gold.webp",
+  "img": "icons/weapons/staves/staff-blue-jewel.webp",
   "system": {
     "description": "",
     "actions": {
@@ -183,7 +183,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753828453134,
-    "modifiedTime": 1753833508699,
+    "modifiedTime": 1753835916388,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
   "_key": "!items!GZh345N8fmuS4Jeh"

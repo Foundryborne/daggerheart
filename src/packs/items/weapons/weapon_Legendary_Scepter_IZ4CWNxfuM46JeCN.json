@@ -1,13 +1,13 @@
 {
-  "folder": "oreMpiiytMRaR9sy",
-  "name": "Advanced Scepter",
+  "folder": "UNDVQEo6UtTuueNQ",
+  "name": "Legendary Scepter",
   "type": "weapon",
-  "_id": "2Khzuj768yoWN9QK",
-  "img": "icons/weapons/staves/staff-forest-hooked.webp",
+  "_id": "IZ4CWNxfuM46JeCN",
+  "img": "icons/weapons/staves/staff-orb-purple.webp",
   "system": {
     "description": "",
     "actions": {
-      "4w1WlA4yZzUcRMXA": {
+      "h6UfUEGdR11jD6g4": {
         "type": "attack",
         "damage": {
           "includeBase": false,
@@ -20,7 +20,7 @@
                 },
                 "multiplier": "prof",
                 "dice": "d8",
-                "bonus": 4,
+                "bonus": 6,
                 "flatMultiplier": 1
               },
               "applyTo": "hitPoints",
@@ -56,7 +56,7 @@
             "treshold": null
           }
         },
-        "_id": "4w1WlA4yZzUcRMXA",
+        "_id": "h6UfUEGdR11jD6g4",
         "systemPath": "actions",
         "description": "",
         "chatDisplay": true,
@@ -78,11 +78,11 @@
           "damageMod": "none"
         },
         "name": "Versatile Attack",
-        "img": "icons/weapons/maces/shortmace-ornate-gold.webp"
+        "img": "icons/weapons/staves/staff-orb-purple.webp"
       }
     },
     "attached": [],
-    "tier": 3,
+    "tier": 4,
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
@@ -90,7 +90,7 @@
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
-      "_id": "8j3yjH0TiwwZsaBW",
+      "_id": "B2LewQYZb9Jhl4A6",
       "systemPath": "attack",
       "type": "attack",
       "range": "far",
@@ -118,7 +118,7 @@
           {
             "value": {
               "dice": "d6",
-              "bonus": 6,
+              "bonus": 9,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {
@@ -182,9 +182,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753833421806,
-    "modifiedTime": 1753835888435,
+    "createdTime": 1753835822353,
+    "modifiedTime": 1753835867763,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
-  "_key": "!items!2Khzuj768yoWN9QK"
+  "_key": "!items!IZ4CWNxfuM46JeCN"
 }

@@ -1,105 +1,61 @@
 {
-  "folder": "oreMpiiytMRaR9sy",
-  "name": "Advanced Scepter",
+  "folder": "UNDVQEo6UtTuueNQ",
+  "name": "Magus Revolver",
   "type": "weapon",
-  "_id": "2Khzuj768yoWN9QK",
-  "img": "icons/weapons/staves/staff-forest-hooked.webp",
+  "_id": "jGykNGQiKm63tCiE",
+  "img": "icons/weapons/guns/gun-pistol-flintlock-metal.webp",
   "system": {
     "description": "",
     "actions": {
-      "4w1WlA4yZzUcRMXA": {
-        "type": "attack",
-        "damage": {
-          "includeBase": false,
-          "parts": [
-            {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "prof",
-                "dice": "d8",
-                "bonus": 4,
-                "flatMultiplier": 1
-              },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              }
-            }
-          ]
-        },
-        "range": "melee",
-        "roll": {
-          "useDefault": true,
-          "type": "attack",
-          "trait": "presence",
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": null,
-            "treshold": null
-          }
-        },
-        "_id": "4w1WlA4yZzUcRMXA",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
+      "242ZR9HyiRtJqhqG": {
+        "type": "effect",
         "actionType": "action",
+        "chatDisplay": true,
+        "name": "Reload",
+        "description": "After you make an attack, roll a d6. On a result of 1, you must mark a Stress to reload this weapon before you can fire it again.",
+        "img": "icons/weapons/ammunition/shot-round-blue.webp",
+        "_id": "242ZR9HyiRtJqhqG",
+        "effects": [],
+        "systemPath": "actions",
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
+          "max": null,
           "recovery": null
         },
         "target": {
           "type": "any",
           "amount": null
-        },
-        "effects": [],
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
-        "name": "Versatile Attack",
-        "img": "icons/weapons/maces/shortmace-ornate-gold.webp"
+        }
       }
     },
     "attached": [],
-    "tier": 3,
+    "tier": 4,
     "equipped": false,
     "secondary": false,
-    "burden": "twoHanded",
-    "weaponFeatures": [],
+    "burden": "oneHanded",
+    "weaponFeatures": [
+      {
+        "value": "reloading",
+        "effectIds": [],
+        "actionIds": [
+          "242ZR9HyiRtJqhqG"
+        ]
+      }
+    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
-      "_id": "8j3yjH0TiwwZsaBW",
+      "_id": "B2LewQYZb9Jhl4A6",
       "systemPath": "attack",
       "type": "attack",
-      "range": "far",
+      "range": "veryFar",
       "target": {
         "type": "any",
         "amount": 1
       },
       "roll": {
-        "trait": "presence",
+        "trait": "finesse",
         "type": "attack",
         "difficulty": null,
         "bonus": null,
@@ -118,7 +74,7 @@
           {
             "value": {
               "dice": "d6",
-              "bonus": 6,
+              "bonus": 13,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {
@@ -182,9 +138,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753833421806,
-    "modifiedTime": 1753835888435,
+    "createdTime": 1753836385650,
+    "modifiedTime": 1753836419000,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
-  "_key": "!items!2Khzuj768yoWN9QK"
+  "_key": "!items!jGykNGQiKm63tCiE"
 }

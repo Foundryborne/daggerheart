@@ -3,7 +3,7 @@
   "name": "Improved Scepter",
   "type": "weapon",
   "_id": "tj26lbNkwy8bORF4",
-  "img": "icons/weapons/maces/shortmace-ornate-gold.webp",
+  "img": "icons/weapons/staves/staff-crescent-green.webp",
   "system": {
     "description": "",
     "actions": {
@@ -183,7 +183,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753830930043,
-    "modifiedTime": 1753833495460,
+    "modifiedTime": 1753835907269,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
   "_key": "!items!tj26lbNkwy8bORF4"
