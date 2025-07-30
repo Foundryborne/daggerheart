@@ -12,13 +12,14 @@
 
         <div class='level-div'>
             <h3 class='label'>
+                <button data-action="openConfig">Temp</button>
                 {{#if (or document.system.needsCharacterSetup document.system.levelData.canLevelUp)}}
                     <button
                         type="button"
                         class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.buttonTitle"}}{{else}}{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}{{/if}}"
                         data-action="levelManagement"
                     >
-                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <i class="fa-solid fa-angles-up"></i>
                     </button>
                 {{/if}}
                 {{localize 'DAGGERHEART.GENERAL.level'}}

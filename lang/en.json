@@ -2013,6 +2013,10 @@
                         "gm": { "label": "GM" },
                         "players": { "label": "Players" }
                     },
+                    "levelupAuto": {
+                        "label": "Levelup Automation",
+                        "hint": "When you've made your choices and finish levelup, the numerical changes are automatically applied to your character."
+                    },
                     "actionPoints": {
                         "label": "Action Points",
                         "hint": "Automatically give and take Action Points as combatants take their turns."

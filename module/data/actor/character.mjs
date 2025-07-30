@@ -511,37 +511,39 @@ export default class DhCharacter extends BaseDataActor {
                 : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
                       tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
                   ).tier;
-        for (let levelKey in this.levelData.levelups) {
-            const level = this.levelData.levelups[levelKey];
+        if (game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto) {
+            for (let levelKey in this.levelData.levelups) {
+                const level = this.levelData.levelups[levelKey];
 
-            this.proficiency += level.achievements.proficiency;
+                this.proficiency += level.achievements.proficiency;
 
-            for (let selection of level.selections) {
-                switch (selection.type) {
-                    case 'trait':
-                        selection.data.forEach(data => {
-                            this.traits[data].value += 1;
-                            this.traits[data].tierMarked = selection.tier === currentTier;
-                        });
-                        break;
-                    case 'hitPoint':
-                        this.resources.hitPoints.max += selection.value;
-                        break;
-                    case 'stress':
-                        this.resources.stress.max += selection.value;
-                        break;
-                    case 'evasion':
-                        this.evasion += selection.value;
-                        break;
-                    case 'proficiency':
-                        this.proficiency += selection.value;
-                        break;
-                    case 'experience':
-                        Object.keys(this.experiences).forEach(key => {
-                            const experience = this.experiences[key];
-                            experience.value += selection.value;
-                        });
-                        break;
+                for (let selection of level.selections) {
+                    switch (selection.type) {
+                        case 'trait':
+                            selection.data.forEach(data => {
+                                this.traits[data].value += 1;
+                                this.traits[data].tierMarked = selection.tier === currentTier;
+                            });
+                            break;
+                        case 'hitPoint':
+                            this.resources.hitPoints.max += selection.value;
+                            break;
+                        case 'stress':
+                            this.resources.stress.max += selection.value;
+                            break;
+                        case 'evasion':
+                            this.evasion += selection.value;
+                            break;
+                        case 'proficiency':
+                            this.proficiency += selection.value;
+                            break;
+                        case 'experience':
+                            Object.keys(this.experiences).forEach(key => {
+                                const experience = this.experiences[key];
+                                experience.value += selection.value;
+                            });
+                            break;
+                    }
                 }
             }
         }
