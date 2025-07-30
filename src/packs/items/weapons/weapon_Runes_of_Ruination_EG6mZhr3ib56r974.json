@@ -1,105 +1,69 @@
 {
-  "folder": "cnmKLegyDD1xkSuI",
-  "name": "Scepter",
+  "folder": "oreMpiiytMRaR9sy",
+  "name": "Runes of Ruination",
   "type": "weapon",
-  "_id": "GZh345N8fmuS4Jeh",
-  "img": "icons/weapons/maces/shortmace-ornate-gold.webp",
+  "_id": "EG6mZhr3ib56r974",
+  "img": "icons/magic/symbols/mask-yellow-orange.webp",
   "system": {
     "description": "",
     "actions": {
-      "c7McXmzSWTNGOdHL": {
-        "type": "attack",
-        "damage": {
-          "includeBase": false,
-          "parts": [
-            {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "prof",
-                "dice": "d8",
-                "bonus": null,
-                "flatMultiplier": 1
-              },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              }
-            }
-          ]
-        },
-        "range": "melee",
-        "roll": {
-          "useDefault": true,
-          "type": "attack",
-          "trait": "presence",
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": null,
-            "treshold": null
-          }
-        },
-        "_id": "c7McXmzSWTNGOdHL",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
+      "pmnGErMlUT1lJFDL": {
+        "type": "effect",
         "actionType": "action",
-        "cost": [],
+        "chatDisplay": true,
+        "name": "Pain",
+        "description": "Each time you make a successful attack, you must mark a Stress.",
+        "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "_id": "pmnGErMlUT1lJFDL",
+        "effects": [],
+        "systemPath": "actions",
         "uses": {
           "value": null,
-          "max": "",
+          "max": null,
           "recovery": null
         },
         "target": {
           "type": "any",
           "amount": null
-        },
-        "effects": [],
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
-        "name": "Versatile Attack",
-        "img": "icons/weapons/maces/shortmace-ornate-gold.webp"
+        }
       }
     },
     "attached": [],
-    "tier": 1,
+    "tier": 3,
     "equipped": false,
     "secondary": false,
-    "burden": "twoHanded",
-    "weaponFeatures": [],
+    "burden": "oneHanded",
+    "weaponFeatures": [
+      {
+        "value": "painful",
+        "effectIds": [],
+        "actionIds": [
+          "pmnGErMlUT1lJFDL"
+        ]
+      }
+    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
-      "_id": "ZSdAawliPNsoA7nP",
+      "_id": "8j3yjH0TiwwZsaBW",
       "systemPath": "attack",
       "type": "attack",
-      "range": "far",
+      "range": "veryClose",
       "target": {
         "type": "any",
         "amount": 1
       },
       "roll": {
-        "trait": "presence",
+        "trait": "knowledge",
         "type": "attack",
         "difficulty": null,
         "bonus": null,
@@ -117,8 +81,8 @@
         "parts": [
           {
             "value": {
-              "dice": "d6",
-              "bonus": null,
+              "dice": "d20",
+              "bonus": 4,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {
@@ -182,9 +146,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753828453134,
-    "modifiedTime": 1753833508699,
+    "createdTime": 1753833802007,
+    "modifiedTime": 1753833831195,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
-  "_key": "!items!GZh345N8fmuS4Jeh"
+  "_key": "!items!EG6mZhr3ib56r974"
 }

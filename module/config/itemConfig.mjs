@@ -553,6 +553,20 @@ export const weaponFeatures = {
             }
         ]
     },
+    burning: {
+        label: 'DAGGERHEART.CONFIG.WeaponFeature.burning.name',
+        description: 'DAGGERHEART.CONFIG.WeaponFeature.burning.description',
+        actions: [
+            {
+                type: 'effect',
+                actionType: 'action',
+                chatDisplay: true,
+                name: 'DAGGERHEART.CONFIG.WeaponFeature.burning.actions.burn.name',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.burning.actions.burn.description',
+                img: 'icons/magic/fire/blast-jet-stream-embers-orange.webp'
+            }
+        ]
+    },
     charged: {
         label: 'DAGGERHEART.CONFIG.WeaponFeature.charged.name',
         description: 'DAGGERHEART.CONFIG.WeaponFeature.charged.description',

@@ -1,96 +1,52 @@
 {
-  "folder": "cnmKLegyDD1xkSuI",
-  "name": "Scepter",
+  "folder": "oreMpiiytMRaR9sy",
+  "name": "Firestaff",
   "type": "weapon",
-  "_id": "GZh345N8fmuS4Jeh",
-  "img": "icons/weapons/maces/shortmace-ornate-gold.webp",
+  "_id": "BtCm2RhWEfs00g38",
+  "img": "icons/weapons/staves/staff-engraved-red.webp",
   "system": {
     "description": "",
     "actions": {
-      "c7McXmzSWTNGOdHL": {
-        "type": "attack",
-        "damage": {
-          "includeBase": false,
-          "parts": [
-            {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "prof",
-                "dice": "d8",
-                "bonus": null,
-                "flatMultiplier": 1
-              },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              }
-            }
-          ]
-        },
-        "range": "melee",
-        "roll": {
-          "useDefault": true,
-          "type": "attack",
-          "trait": "presence",
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": null,
-            "treshold": null
-          }
-        },
-        "_id": "c7McXmzSWTNGOdHL",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
+      "9j81Lxp3sDskHFDS": {
+        "type": "effect",
         "actionType": "action",
+        "chatDisplay": true,
+        "name": "Burn",
+        "description": "When you roll a 6 on a damage die, the target must mark a Stress.",
+        "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
+        "_id": "9j81Lxp3sDskHFDS",
+        "effects": [],
+        "systemPath": "actions",
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
+          "max": null,
           "recovery": null
         },
         "target": {
           "type": "any",
           "amount": null
-        },
-        "effects": [],
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
-        "name": "Versatile Attack",
-        "img": "icons/weapons/maces/shortmace-ornate-gold.webp"
+        }
       }
     },
     "attached": [],
-    "tier": 1,
+    "tier": 3,
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [],
+    "weaponFeatures": [
+      {
+        "value": "burning",
+        "effectIds": [],
+        "actionIds": [
+          "9j81Lxp3sDskHFDS"
+        ]
+      }
+    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
-      "_id": "ZSdAawliPNsoA7nP",
+      "_id": "8j3yjH0TiwwZsaBW",
       "systemPath": "attack",
       "type": "attack",
       "range": "far",
@@ -99,7 +55,7 @@
         "amount": 1
       },
       "roll": {
-        "trait": "presence",
+        "trait": "instinct",
         "type": "attack",
         "difficulty": null,
         "bonus": null,
@@ -118,7 +74,7 @@
           {
             "value": {
               "dice": "d6",
-              "bonus": null,
+              "bonus": 7,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {
@@ -182,9 +138,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753828453134,
-    "modifiedTime": 1753833508699,
+    "createdTime": 1753833915734,
+    "modifiedTime": 1753834249920,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
-  "_key": "!items!GZh345N8fmuS4Jeh"
+  "_key": "!items!BtCm2RhWEfs00g38"
 }

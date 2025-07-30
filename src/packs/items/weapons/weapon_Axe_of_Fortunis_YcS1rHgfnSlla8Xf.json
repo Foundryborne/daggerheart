@@ -1,105 +1,69 @@
 {
-  "folder": "cnmKLegyDD1xkSuI",
-  "name": "Scepter",
+  "folder": "oreMpiiytMRaR9sy",
+  "name": "Axe of Fortunis",
   "type": "weapon",
-  "_id": "GZh345N8fmuS4Jeh",
-  "img": "icons/weapons/maces/shortmace-ornate-gold.webp",
+  "_id": "YcS1rHgfnSlla8Xf",
+  "img": "icons/weapons/axes/axe-double-blue.webp",
   "system": {
     "description": "",
     "actions": {
-      "c7McXmzSWTNGOdHL": {
-        "type": "attack",
-        "damage": {
-          "includeBase": false,
-          "parts": [
-            {
-              "resultBased": false,
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "prof",
-                "dice": "d8",
-                "bonus": null,
-                "flatMultiplier": 1
-              },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              }
-            }
-          ]
-        },
-        "range": "melee",
-        "roll": {
-          "useDefault": true,
-          "type": "attack",
-          "trait": "presence",
-          "difficulty": null,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": null,
-            "treshold": null
-          }
-        },
-        "_id": "c7McXmzSWTNGOdHL",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
+      "AtVHF6Y00zLo8W5G": {
+        "type": "effect",
         "actionType": "action",
-        "cost": [],
+        "chatDisplay": true,
+        "name": "Luck",
+        "description": "On a failed attack, you can mark a Stress to reroll your attack.",
+        "img": "icons/magic/control/buff-luck-fortune-green.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "_id": "AtVHF6Y00zLo8W5G",
+        "effects": [],
+        "systemPath": "actions",
         "uses": {
           "value": null,
-          "max": "",
+          "max": null,
           "recovery": null
         },
         "target": {
           "type": "any",
           "amount": null
-        },
-        "effects": [],
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
-        "name": "Versatile Attack",
-        "img": "icons/weapons/maces/shortmace-ornate-gold.webp"
+        }
       }
     },
     "attached": [],
-    "tier": 1,
+    "tier": 3,
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [],
+    "weaponFeatures": [
+      {
+        "value": "lucky",
+        "effectIds": [],
+        "actionIds": [
+          "AtVHF6Y00zLo8W5G"
+        ]
+      }
+    ],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
-      "_id": "ZSdAawliPNsoA7nP",
+      "_id": "8j3yjH0TiwwZsaBW",
       "systemPath": "attack",
       "type": "attack",
-      "range": "far",
+      "range": "melee",
       "target": {
         "type": "any",
         "amount": 1
       },
       "roll": {
-        "trait": "presence",
+        "trait": "strength",
         "type": "attack",
         "difficulty": null,
         "bonus": null,
@@ -117,8 +81,8 @@
         "parts": [
           {
             "value": {
-              "dice": "d6",
-              "bonus": null,
+              "dice": "d10",
+              "bonus": 8,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {
@@ -182,9 +146,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753828453134,
-    "modifiedTime": 1753833508699,
+    "createdTime": 1753833614959,
+    "modifiedTime": 1753833653403,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
-  "_key": "!items!GZh345N8fmuS4Jeh"
+  "_key": "!items!YcS1rHgfnSlla8Xf"
 }

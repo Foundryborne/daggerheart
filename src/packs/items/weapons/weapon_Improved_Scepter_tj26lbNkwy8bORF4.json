@@ -24,7 +24,9 @@
                 "flatMultiplier": 1
               },
               "applyTo": "hitPoints",
-              "type": [],
+              "type": [
+                "magical"
+              ],
               "base": false,
               "valueAlt": {
                 "multiplier": "prof",
@@ -181,7 +183,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753830930043,
-    "modifiedTime": 1753830973631,
+    "modifiedTime": 1753833495460,
     "lastModifiedBy": "FecEtPuoQh6MpjQ0"
   },
   "_key": "!items!tj26lbNkwy8bORF4"
