@@ -2,19 +2,21 @@ import { abilities } from '../config/actorConfig.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export default function DhDualityRollEnricher(match, _options) {
-    const roll = rollCommandToJSON(match[1]);
+    const roll = rollCommandToJSON(match[1], match[0]);
     if (!roll) return match[0];
 
-    return getDualityMessage(roll);
+    return getDualityMessage(roll.result, roll.flavor);
 }
 
-function getDualityMessage(roll) {
+function getDualityMessage(roll, flavor) {
     const trait = roll.trait && abilities[roll.trait] ? game.i18n.localize(abilities[roll.trait].label) : null;
-    const label = roll.trait
-        ? game.i18n.format('DAGGERHEART.GENERAL.rollWith', { roll: trait })
-        : roll.reaction
-          ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
-          : game.i18n.localize('DAGGERHEART.GENERAL.duality');
+    const label =
+        flavor ??
+        (roll.trait
+            ? game.i18n.format('DAGGERHEART.GENERAL.rollWith', { roll: trait })
+            : roll.reaction
+              ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
+              : game.i18n.localize('DAGGERHEART.GENERAL.duality'));
 
     const dataLabel = trait
         ? game.i18n.localize(abilities[roll.trait].label)
@@ -48,7 +50,7 @@ function getDualityMessage(roll) {
         >
             ${roll.reaction ? '<i class="fa-solid fa-reply"></i>' : '<i class="fa-solid fa-circle-half-stroke"></i>'}
             ${label}
-            ${roll.difficulty || advantageLabel ? `(${[roll.difficulty, advantageLabel ? game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`) : null].filter(x => x).join(' ')})` : ''}
+            ${!flavor && (roll.difficulty || advantageLabel) ? `(${[roll.difficulty, advantageLabel ? game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`) : null].filter(x => x).join(' ')})` : ''}
         </button>
     `;
 

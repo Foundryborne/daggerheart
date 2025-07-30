@@ -187,11 +187,13 @@ Hooks.on('renderHandlebarsApplication', (_, element) => {
 
 Hooks.on('chatMessage', (_, message) => {
     if (message.startsWith('/dr')) {
-        const rollCommand = rollCommandToJSON(message.replace(/\/dr\s?/, ''));
-        if (!rollCommand) {
+        const result = rollCommandToJSON(message.replace(/\/dr\s?/, ''));
+        if (!result) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.dualityParsing'));
             return false;
         }
+
+        const { result: rollCommand, flavor } = result;
 
         const reaction = rollCommand.reaction;
         const traitValue = rollCommand.trait?.toLowerCase();

@@ -5,8 +5,11 @@ export const capitalize = string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export function rollCommandToJSON(text) {
+export function rollCommandToJSON(text, raw) {
     if (!text) return {};
+
+    const flavorMatch = raw?.match(/{(.*)}$/);
+    const flavor = flavorMatch ? flavorMatch[1] : null;
 
     // Match key="quoted string"  OR  key=unquotedValue
     const PAIR_RE = /(\w+)=("(?:[^"\\]|\\.)*"|\S+)/g;
@@ -28,7 +31,7 @@ export function rollCommandToJSON(text) {
         }
         result[key] = value;
     }
-    return Object.keys(result).length > 0 ? result : null;
+    return Object.keys(result).length > 0 ? { result, flavor } : null;
 }
 
 export const getCommandTarget = (options = {}) => {
