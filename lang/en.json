@@ -1393,6 +1393,7 @@
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
+            "reactionRoll": "Reaction Roll",
             "recovery": "Recovery",
             "reroll": "Reroll",
             "rerollThing": "Reroll {thing}",

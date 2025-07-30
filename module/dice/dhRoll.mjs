@@ -69,6 +69,7 @@ export default class DHRoll extends Roll {
 
     static postEvaluate(roll, config = {}) {
         return {
+            type: config.roll.type,
             total: roll.total,
             formula: roll.formula,
             dice: roll.dice.map(d => ({
@@ -194,11 +195,12 @@ export const registerRollDiceHooks = () => {
         if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1 });
 
         if (config.rerolledRoll) {
-            if (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1) updates.push({ key: 'hope', value: -1 });
+            if (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1)
+                updates.push({ key: 'hope', value: -1 });
             if (config.rerolledRoll.isCritical) updates.push({ key: 'stress', value: 1 });
             if (config.rerolledRoll.result.duality === -1) updates.push({ key: 'fear', value: -1 });
         }
-        
+
         if (updates.length) {
             const target = actor.system.partner ?? actor;
             if (!['dead', 'unconcious'].some(x => actor.statuses.has(x))) {

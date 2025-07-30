@@ -9,6 +9,36 @@
 }
 
 .application.daggerheart.dialog.dh-style.views.roll-selection {
+    .dialog-header {
+        display: flex;
+        justify-content: center;
+
+        h1 {
+            width: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .reaction-roll-controller {
+                width: auto;
+                opacity: 0.3;
+                border-radius: 50%;
+                font-size: 18px;
+                font-weight: bold;
+
+                &:hover {
+                    opacity: 0.5;
+                    background: light-dark(transparent, @golden);
+                    color: light-dark(@dark-blue, @dark-blue);
+                }
+
+                &.active {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
     .roll-dialog-container {
         display: flex;
         flex-direction: column;
@@ -16,6 +46,7 @@
         max-width: 550px;
 
         .dices-section {
+            position: relative;
             display: flex;
             gap: 60px;
             justify-content: center;
