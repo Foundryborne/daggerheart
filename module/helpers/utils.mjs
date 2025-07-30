@@ -307,8 +307,8 @@ export function updateLinkedItemApps(options, sheet) {
 export const itemAbleRollParse = (value, actor, item) => {
     if (!value) return value;
 
-    const isItemTarget = value.toLowerCase().replace('item.@', '@');
-    const slicedValue = isItemTarget ? value.slice(5) : value;
+    const isItemTarget = value.toLowerCase().includes('item.@');
+    const slicedValue = isItemTarget ? value.replaceAll(/item\.@/gi, '@') : value;
     try {
         return Roll.replaceFormulaData(slicedValue, isItemTarget ? item : actor);
     } catch (_) {
