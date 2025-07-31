@@ -167,6 +167,10 @@
                     "backgroundTitle": "Background",
                     "characteristics": "Characteristics",
                     "connectionsTitle": "Connections"
+                },
+                "experienceDataRemoveConfirmation": {
+                    "title": "Remove Experience Data",
+                    "text": "The experience you are about to remove has levelup data linked to it (assumably because you did levelups with the 'levelupAuto' automation setting on). Removing it will remove this automation data aswell. Do you want to proceed?"
                 }
             },
             "Companion": {
@@ -1859,6 +1863,7 @@
             "levelUp": "Level Up",
             "loadout": "Loadout",
             "max": "Max",
+            "maxWithThing": "Max {thing}",
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "none": "None",

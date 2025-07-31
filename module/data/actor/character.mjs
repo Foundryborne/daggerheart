@@ -4,6 +4,7 @@ import DhLevelData from '../levelData.mjs';
 import BaseDataActor from './base.mjs';
 import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
+import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 
 export default class DhCharacter extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
@@ -12,6 +13,7 @@ export default class DhCharacter extends BaseDataActor {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.character',
             type: 'character',
+            settingSheet: DHCharacterSettings,
             isNPC: false
         });
     }
@@ -56,7 +58,8 @@ export default class DhCharacter extends BaseDataActor {
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
-                    value: new fields.NumberField({ integer: true, initial: 0 })
+                    value: new fields.NumberField({ integer: true, initial: 0 }),
+                    description: new fields.StringField()
                 })
             ),
             gold: new fields.SchemaField({
@@ -538,9 +541,9 @@ export default class DhCharacter extends BaseDataActor {
                             this.proficiency += selection.value;
                             break;
                         case 'experience':
-                            Object.keys(this.experiences).forEach(key => {
-                                const experience = this.experiences[key];
-                                experience.value += selection.value;
+                            selection.data.forEach(id => {
+                                const experience = this.experiences[id];
+                                if (experience) experience.value += selection.value;
                             });
                             break;
                     }
@@ -568,7 +571,7 @@ export default class DhCharacter extends BaseDataActor {
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
         this.resources.armor = {
-            value: this.armor.system.marks.value,
+            value: this.armor?.system?.marks?.value ?? 0,
             max: this.armorScore,
             isReversed: true
         };

@@ -142,18 +142,17 @@
             </div>
             <div class="experience-list">
                 {{#each document.system.experiences as |experience id|}}
-                <div class="experience-row">
-                    <div class="experience-value">
-                        +{{experience.value}}
+                    <div class="experience-row" data-tooltip-text="{{experience.description}}">
+                        <div class="experience-value">
+                            +{{experience.value}}
+                        </div>
+                        <div>{{experience.name}}</div>
+                        <div class="controls">
+                            <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
+                                <i class="fa-regular fa-message"></i>
+                            </a>
+                        </div>
                     </div>
-                    <input name="system.experiences.{{id}}.name" data-experience={{id}}
-                        value="{{experience.name}}" type="text" />
-                    <div class="controls">
-                        <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
-                            <i class="fa-regular fa-message"></i>
-                        </a>
-                    </div>
-                </div>
                 {{/each}}
             </div>
         </div>

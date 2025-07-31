@@ -1,0 +1,34 @@
+<section
+    class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
+    data-tab='{{tabs.details.id}}'
+    data-group='{{tabs.details.group}}'
+>
+    <fieldset class="one-column">
+        <legend>{{localize 'DAGGERHEART.GENERAL.Trait.plural'}}</legend>
+
+        <div class="nest-inputs">
+            <div class="traits-inner-container">
+                {{#each document.system.traits as | trait key |}}
+                    <div class="trait-container">
+                        <div>{{localize (concat "DAGGERHEART.CONFIG.Traits." key ".name" )}}</div>
+                        <input type="text" data-dtype="Number" name="{{concat "system.traits." key ".value"}}" value="{{trait.value}}" />
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="one-column">
+        <legend>{{localize 'DAGGERHEART.GENERAL.basics'}}</legend>
+
+        <div class="two-columns even">
+            {{formGroup systemFields.resources.fields.hitPoints.fields.value value=document.system.resources.hitPoints.value localize=true}}
+            {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document.system.resources.hitPoints.max localize=true}}
+
+            {{formGroup systemFields.resources.fields.stress.fields.value value=document.system.resources.stress.value localize=true}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=document.system.resources.stress.max localize=true}}
+
+            {{formGroup systemFields.proficiency value=document.proficiency localize=true}}
+        </div>
+    </fieldset>
+</section>

@@ -1,0 +1,36 @@
+.application.daggerheart.dh-style.dialog {
+    .tab.details {
+        .traits-inner-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 8px;
+
+            .trait-container {
+                width: 60px;
+                height: 60px;
+                background: url(../assets/svg/trait-shield.svg) no-repeat;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                div {
+                    filter: drop-shadow(0 0 3px black);
+                    text-shadow: 0 0 3px black;
+                    font-family: @font-body;
+                    font-size: 12px;
+                }
+
+                input {
+                    text-align: center;
+                    width: 32px;
+                    height: 24px;
+                    position: relative;
+                    top: 2px;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

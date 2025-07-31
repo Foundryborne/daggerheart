@@ -7,7 +7,10 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
     static DEFAULT_OPTIONS = {
         classes: ['character-settings'],
         position: { width: 455, height: 'auto' },
-        actions: {},
+        actions: {
+            addExperience: DHCharacterSettings.#addExperience,
+            removeExperience: DHCharacterSettings.#removeExperience
+        },
         dragDrop: [
             { dragSelector: null, dropSelector: '.tab.features' },
             { dragSelector: '.feature-item', dropSelector: null }
@@ -18,33 +21,111 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
     static PARTS = {
         header: {
             id: 'header',
-            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/header.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/character-settings/header.hbs'
         },
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         details: {
             id: 'details',
-            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/details.hbs'
-        },
-        attack: {
-            id: 'attack',
-            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/attack.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/character-settings/details.hbs'
         },
         experiences: {
             id: 'experiences',
-            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/experiences.hbs'
-        },
-        features: {
-            id: 'features',
-            template: 'systems/daggerheart/templates/sheets-settings/adversary-settings/features.hbs'
+            template: 'systems/daggerheart/templates/sheets-settings/character-settings/experiences.hbs'
         }
     };
 
     /** @override */
     static TABS = {
         primary: {
-            tabs: [{ id: 'details' }, { id: 'attack' }, { id: 'experiences' }, { id: 'features' }],
+            tabs: [{ id: 'details' }, { id: 'experiences' }],
             initial: 'details',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
+
+    /**@inheritdoc */
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+
+        return context;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Adds a new experience entry to the actor.
+     * @type {ApplicationClickAction}
+     */
+    static async #addExperience() {
+        const newExperience = {
+            name: 'Experience',
+            modifier: 0
+        };
+        await this.actor.update({ [`system.experiences.${foundry.utils.randomID()}`]: newExperience });
+    }
+
+    /**
+     * Removes an experience entry from the actor.
+     * @type {ApplicationClickAction}
+     */
+    static async #removeExperience(_, target) {
+        const experience = this.actor.system.experiences[target.dataset.experience];
+        const updates = {};
+
+        const relinkData = Object.keys(this.actor.system.levelData.levelups).reduce((acc, key) => {
+            const level = this.actor.system.levelData.levelups[key];
+            const selectionIndex = level.selections.findIndex(
+                x => x.optionKey === 'experience' && x.data[0] === target.dataset.experience
+            );
+            if (selectionIndex !== -1)
+                acc.push({ levelKey: key, selectionIndex, experience: target.dataset.experience });
+
+            return acc;
+        }, []);
+
+        if (relinkData.length > 0) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.ACTORS.Character.experienceDataRemoveConfirmation.title')
+                },
+                content: game.i18n.localize('DAGGERHEART.ACTORS.Character.experienceDataRemoveConfirmation.text')
+            });
+            if (!confirmed) return;
+
+            relinkData.forEach(data => {
+                updates[`system.levelData.levelups.${data.levelKey}.selections`] = this.actor.system.levelData.levelups[
+                    data.levelKey
+                ].selections.reduce((acc, selection, index) => {
+                    if (
+                        index === data.selectionIndex &&
+                        selection.optionKey === 'experience' &&
+                        selection.data.includes(data.experience)
+                    ) {
+                        acc.push({ ...selection, data: selection.data.filter(x => x !== data.experience) });
+                    } else {
+                        acc.push(selection);
+                    }
+
+                    return acc;
+                }, []);
+            });
+        } else {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                        type: game.i18n.localize(`DAGGERHEART.GENERAL.Experience.single`),
+                        name: experience.name
+                    })
+                },
+                content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: experience.name })
+            });
+            if (!confirmed) return;
+        }
+
+        await this.actor.update({
+            ...updates,
+            [`system.experiences.-=${target.dataset.experience}`]: null
+        });
+    }
 }
