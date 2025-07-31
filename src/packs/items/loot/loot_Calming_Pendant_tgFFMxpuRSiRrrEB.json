@@ -6,7 +6,54 @@
   "system": {
     "description": "<p>When you would mark your last Stress, roll a [[/r d6]]. On a result of 5 or higher, don’t mark it.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {
+      "wIlkGuUddWSUp4nN": {
+        "type": "attack",
+        "_id": "wIlkGuUddWSUp4nN",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": "aboveEqual",
+            "treshold": 5
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Use",
+        "img": "icons/equipment/neck/amulet-round-blue.webp",
+        "range": ""
+      }
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +67,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753637842111,
-    "modifiedTime": 1753637884439,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753989405747,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!tgFFMxpuRSiRrrEB"
 }

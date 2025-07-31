@@ -13,7 +13,7 @@
       "name": "Bolster Relic",
       "type": "base",
       "_id": "ByYXvJNr5YbXqn8I",
-      "img": "icons/magic/life/heart-cross-blue.webp",
+      "img": "icons/magic/control/buff-strength-muscle-damage-orange.webp",
       "system": {},
       "changes": [
         {
@@ -33,7 +33,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You gain a +1 bonus to your Strength.</span></p>",
       "origin": null,
       "tint": "#ffffff",
       "transfer": true,
@@ -44,12 +44,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753639476499,
-        "modifiedTime": 1753639561079,
-        "lastModifiedBy": "OFxauskoxcvVTVNA"
+        "modifiedTime": 1753989646651,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!m3EpxlDgxn2tCDDR.ByYXvJNr5YbXqn8I"
     }

@@ -4,7 +4,7 @@
   "_id": "2ULPgNyqCrxea0v0",
   "img": "icons/commodities/gems/gem-rough-navette-purple-pink.webp",
   "system": {
-    "description": "<p>Once per long rest, you can spend 2 Hope to recall a domain card from your vault instead of paying its Recall</p><p>Cost.</p>",
+    "description": "<p>Once per long rest, you can <strong>spend 2 Hope</strong> to recall a domain card from your vault instead of paying its Recall Cost.</p>",
     "quantity": 1,
     "actions": {
       "YNRybKQC51muVHYH": {
@@ -51,12 +51,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753640199098,
-    "modifiedTime": 1753640251763,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753990369010,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!2ULPgNyqCrxea0v0"
 }

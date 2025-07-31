@@ -6,7 +6,38 @@
   "system": {
     "description": "<p>You can use this stitcher to spend any number of Hope and clear that many Armor Slots.</p>",
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "htoGx8qrv8trds81": {
+        "type": "effect",
+        "_id": "htoGx8qrv8trds81",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "step": 1,
+            "keyIsID": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Stitch",
+        "img": "icons/skills/trades/textiles-stitching-leather-brown.webp",
+        "range": ""
+      }
+    },
     "consumeOnUse": true
   },
   "effects": [],
@@ -21,12 +52,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588973384,
-    "modifiedTime": 1753623129674,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753990471152,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!VlbsCjvvLNfTzNXb"
 }
