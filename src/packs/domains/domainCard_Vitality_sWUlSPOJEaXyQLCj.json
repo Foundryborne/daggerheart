@@ -1,0 +1,29 @@
+{
+  "name": "Vitality",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Emnx4o1DWGTVKoAg",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you choose this card, permanently gain two of the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">One <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> slot</li><li class=\"vertical-card-list-found\">One <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> slot</li><li class=\"vertical-card-list-found\">+2 bonus to your damage thresholds</li></ul><p class=\"Body-Foundation\">Then place this card in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">vault</tooltip> permanently.</p></p>",
+    "domain": "blade",
+    "recallCost": 0,
+    "level": 5,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784542,
+    "modifiedTime": 1753922784542,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "sWUlSPOJEaXyQLCj",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!sWUlSPOJEaXyQLCj"
+}

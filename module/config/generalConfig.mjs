@@ -43,6 +43,40 @@ export const range = {
     }
 };
 
+export const rangeInclusion = {
+    withinRange: {
+        id: 'withinRange',
+        label: 'DAGGERHEART.CONFIG.RangeInclusion.withinRange'
+    },
+    outsideRange: {
+        id: 'outsideRange',
+        label: 'DAGGERHEART.CONFIG.RangeInclusion.outsideRange'
+    }
+};
+
+export const otherTargetTypes = {
+    friendly: {
+        id: 'friendly',
+        label: 'Friendly'
+    },
+    hostile: {
+        id: 'hostile',
+        label: 'Hostile'
+    },
+    any: {
+        id: 'any',
+        label: 'Any'
+    }
+};
+
+export const targetTypes = {
+    self: {
+        id: 'self',
+        label: 'Self'
+    },
+    ...otherTargetTypes
+};
+
 export const burden = {
     oneHanded: {
         value: 'oneHanded',
@@ -85,10 +119,10 @@ export const healingTypes = {
         label: 'DAGGERHEART.CONFIG.HealingType.hope.name',
         abbreviation: 'DAGGERHEART.CONFIG.HealingType.hope.abbreviation'
     },
-    armorStack: {
-        id: 'armorStack',
-        label: 'DAGGERHEART.CONFIG.HealingType.armorStack.name',
-        abbreviation: 'DAGGERHEART.CONFIG.HealingType.armorStack.abbreviation'
+    armorSlot: {
+        id: 'armorSlot',
+        label: 'DAGGERHEART.CONFIG.HealingType.armorSlot.name',
+        abbreviation: 'DAGGERHEART.CONFIG.HealingType.armorSlot.abbreviation'
     },
     fear: {
         id: 'fear',
@@ -199,7 +233,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     healing: {
-                        applyTo: healingTypes.armorStack.id,
+                        applyTo: healingTypes.armorSlot.id,
                         value: {
                             custom: {
                                 enabled: true,
@@ -287,7 +321,7 @@ export const defaultRestOptions = {
                     actionType: 'action',
                     chatDisplay: false,
                     healing: {
-                        applyTo: healingTypes.armorStack.id,
+                        applyTo: healingTypes.armorSlot.id,
                         value: {
                             custom: {
                                 enabled: true,
@@ -425,8 +459,8 @@ export const refreshTypes = {
 };
 
 export const abilityCosts = {
-    hp: {
-        id: 'hp',
+    hitPoints: {
+        id: 'hitPoints',
         label: 'DAGGERHEART.CONFIG.HealingType.hitPoints.name',
         group: 'Global'
     },
@@ -473,11 +507,13 @@ export const rollTypes = {
     },
     spellcast: {
         id: 'spellcast',
-        label: 'DAGGERHEART.CONFIG.RollTypes.spellcast.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.spellcast.name',
+        playerOnly: true
     },
     trait: {
         id: 'trait',
-        label: 'DAGGERHEART.CONFIG.RollTypes.trait.name'
+        label: 'DAGGERHEART.CONFIG.RollTypes.trait.name',
+        playerOnly: true
     },
     diceSet: {
         id: 'diceSet',

@@ -1,0 +1,42 @@
+{
+  "folder": "h4QgrovjVZ1oee7O",
+  "name": "Leather Armor",
+  "type": "armor",
+  "_id": "nibfdNtp2PtxvbVz",
+  "img": "icons/equipment/chest/breastplate-layered-leather-brown.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 1,
+    "equipped": false,
+    "baseScore": 3,
+    "armorFeatures": [],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 6,
+      "severe": 13
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753805219679,
+    "modifiedTime": 1753805275427,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!nibfdNtp2PtxvbVz"
+}

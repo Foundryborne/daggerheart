@@ -1,0 +1,29 @@
+{
+  "name": "Forest Sprites",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "qY4Zqc1Ch6p317uK",
+  "system": {
+    "description": "<p><p class=\"Body\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong>. On a success, <strong>spend any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to create an equal number of small forest sprites who appear at points you choose within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range, providing the following benefits:        </p><ul class=\"\"><li class=\"vertical-card-list\">Your allies gain a +3 bonus to attack rolls against adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of a sprite. </li><li class=\"vertical-card-list\">An ally who marks an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip> while within Melee range of a sprite can mark an additional Armor Slot. </li></ul><p class=\"Body\">A sprite vanishes after granting a benefit or taking any damage.</p></p>",
+    "domain": "sage",
+    "recallCost": 2,
+    "level": 8,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784457,
+    "modifiedTime": 1753922784457,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "JrkUMTzaFmQNBHVm",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!JrkUMTzaFmQNBHVm"
+}

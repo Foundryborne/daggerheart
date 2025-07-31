@@ -1,0 +1,29 @@
+{
+  "name": "Sensory Projection",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "fucNnucgoUjbzvcA",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest, make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. On a success, drop into a vision that lets you clearly see and hear any place you have been before as though you are standing there in this moment. You can move freely in this vision and are not constrained by the physics or impediments of a physical body. This spell cannot be detected by mundane or magical means. You drop out of this vision upon taking damage or casting another spell.</p></p>",
+    "domain": "arcana",
+    "recallCost": 0,
+    "level": 9,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784511,
+    "modifiedTime": 1753922784511,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "gZOMzskSOfeiXn54",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!gZOMzskSOfeiXn54"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Orc",
+  "img": "icons/svg/item-bag.svg",
+  "type": "ancestry",
+  "folder": null,
+  "system": {
+    "description": "<p>Orcs are humanoids most easily recognized by their square features and boar-like tusks that protrude from their lower jaw.<br><br><p>Tusks come in various sizes, and though they extend from the mouth, they aren’t used for consuming food. Instead, many orcs choose to decorate their tusks with significant ornamentation. Orcs typically live for 125 years, and unless altered, their tusks continue to grow throughout the course of their lives. Their ears are pointed, and their hair and skin typically have green, blue, pink, or gray tones. Orcs tend toward a muscular build, and their average height ranges from 5 feet to 6 ½ feet.</p></p>"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784389,
+    "modifiedTime": 1753922784389,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "D1RbUsRV9HpTrPuF",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!D1RbUsRV9HpTrPuF"
+}

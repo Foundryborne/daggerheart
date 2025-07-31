@@ -1,0 +1,29 @@
+{
+  "name": "Sage-Touched",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "gEVGjjPrjqxxZkb5",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Sage domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list\">While you’re in a natural environment, you gain a +2 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Rolls</tooltip>.</li><li class=\"vertical-card-list\">Once per rest, you can double your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip> or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"instinct\" nexus=\"daggerheart\">Instinct</tooltip> when making a roll that uses that trait. You must choose to do this before you roll.</li></ul></p>",
+    "domain": "sage",
+    "recallCost": 2,
+    "level": 7,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784507,
+    "modifiedTime": 1753922784507,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "VOSFaQHZbmhMyXwi",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!VOSFaQHZbmhMyXwi"
+}

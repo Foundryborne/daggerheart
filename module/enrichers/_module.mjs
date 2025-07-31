@@ -7,19 +7,19 @@ export { DhDamageEnricher, DhDualityRollEnricher, DhEffectEnricher, DhTemplateEn
 
 export const enricherConfig = [
     {
-        pattern: /^@Damage\[(.*)\]$/g,
+        pattern: /^@Damage\[(.*)\]({.*})?$/g,
         enricher: DhDamageEnricher
     },
     {
-        pattern: /\[\[\/dr\s?(.*?)\]\]/g,
+        pattern: /\[\[\/dr\s?(.*?)\]\]({.*})?/g,
         enricher: DhDualityRollEnricher
     },
     {
-        pattern: /^@Effect\[(.*)\]$/g,
+        pattern: /^@Effect\[(.*)\]({.*})?$/g,
         enricher: DhEffectEnricher
     },
     {
-        pattern: /^@Template\[(.*)\]$/g,
+        pattern: /^@Template\[(.*)\]({.*})?$/g,
         enricher: DhTemplateEnricher
     }
 ];

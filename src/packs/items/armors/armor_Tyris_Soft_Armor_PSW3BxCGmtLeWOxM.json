@@ -1,0 +1,72 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Tyris Soft Armor",
+  "type": "armor",
+  "_id": "PSW3BxCGmtLeWOxM",
+  "img": "icons/equipment/chest/robe-layered-purple.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "Ch6IhuPewBeseGez": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Quiet",
+        "description": "You gain a +2 bonus to rolls you make to move silently.",
+        "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+        "_id": "Ch6IhuPewBeseGez",
+        "effects": [],
+        "systemPath": "actions",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 2,
+    "equipped": false,
+    "baseScore": 5,
+    "armorFeatures": [
+      {
+        "value": "quiet",
+        "effectIds": [],
+        "actionIds": [
+          "Ch6IhuPewBeseGez"
+        ]
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 8,
+      "severe": 18
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753807607742,
+    "modifiedTime": 1753807646156,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!PSW3BxCGmtLeWOxM"
+}

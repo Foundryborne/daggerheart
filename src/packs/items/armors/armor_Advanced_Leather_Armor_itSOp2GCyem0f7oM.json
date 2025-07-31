@@ -1,0 +1,42 @@
+{
+  "folder": "rkSdPu86ybLz6aKF",
+  "name": "Advanced Leather Armor",
+  "type": "armor",
+  "_id": "itSOp2GCyem0f7oM",
+  "img": "icons/equipment/chest/breastplate-layered-leather-blue.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 3,
+    "equipped": false,
+    "baseScore": 5,
+    "armorFeatures": [],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 11,
+      "severe": 27
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753807744573,
+    "modifiedTime": 1753807795515,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!itSOp2GCyem0f7oM"
+}

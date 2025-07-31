@@ -1,0 +1,29 @@
+{
+  "name": "Encore",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "wdhWWqWlPiBxtsvr",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range deals damage to an adversary, you can make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against that same target. On a success, you deal the same damage to the target that your ally dealt. If your Spellcast Roll succeeds with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>, place this card in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">vault</tooltip>.</p></p>",
+    "domain": "grace",
+    "recallCost": 1,
+    "level": 10,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784450,
+    "modifiedTime": 1753922784450,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "klahWDFwihqqEhXP",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!klahWDFwihqqEhXP"
+}

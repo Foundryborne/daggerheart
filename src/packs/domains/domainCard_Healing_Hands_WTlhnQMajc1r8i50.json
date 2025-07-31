@@ -1,0 +1,29 @@
+{
+  "name": "Healing Hands",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "2yh8wuYprOyswf0r",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong> and target a creature other than yourself within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range. On a success, <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to clear 2 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> or 2 Stress on the target. On a failure, <strong>mark a Stress</strong> to clear a Hit Point or a Stress on the target. You can’t heal the same target again until your next <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>.        </p></p>",
+    "domain": "splendor",
+    "recallCost": 1,
+    "level": 2,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784467,
+    "modifiedTime": 1753922784467,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "WTlhnQMajc1r8i50",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!WTlhnQMajc1r8i50"
+}

@@ -4,14 +4,24 @@ import DHBaseAction from './baseAction.mjs';
 export default class DhBeastformAction extends DHBaseAction {
     static extraSchemas = [...super.extraSchemas, 'beastform'];
 
-    async use(_event, ...args) {
+    async use(event, ...args) {
         const beastformConfig = this.prepareBeastformConfig();
 
         const abort = await this.handleActiveTransformations();
         if (abort) return;
 
+        const calcCosts = game.system.api.fields.ActionFields.CostField.calcCosts.call(this, this.cost);
+        const hasCost = game.system.api.fields.ActionFields.CostField.hasCost.call(this, calcCosts);
+        if (!hasCost) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
+            return;
+        }
+
         const { selected, evolved, hybrid } = await BeastformDialog.configure(beastformConfig, this.item);
         if (!selected) return;
+
+        const result = await super.use(event, args);
+        if (!result) return;
 
         await this.transform(selected, evolved, hybrid);
     }

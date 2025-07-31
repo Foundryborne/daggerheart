@@ -1,0 +1,29 @@
+{
+  "name": "Recovery",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "pYEavNqteiQepvvD",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">During a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"short-rest\" nexus=\"daggerheart\">short rest</tooltip>, you can choose a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> downtime move instead. You can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to let an ally do the same.        </p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 6,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784500,
+    "modifiedTime": 1753922784500,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "gsiQFT6q3WOgqerJ",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!gsiQFT6q3WOgqerJ"
+}

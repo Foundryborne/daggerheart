@@ -1,0 +1,25 @@
+{
+  "name": "Fungril",
+  "img": "icons/svg/item-bag.svg",
+  "type": "ancestry",
+  "folder": null,
+  "system": {
+    "description": "<p>Fungril resemble humanoid mushrooms.<br><br><p>They can be either more humanoid or more fungal in appearance, and they come in an assortment of colors, from earth tones to bright reds, yellows, purples, and blues. Fungril display an incredible variety of bodies, faces, and limbs, as there’s no single common shape among them. Even their heights range from a tiny 2 feet tall to a staggering 7 feet tall. While the common lifespan of a fungril is about 300 years, some have been reported to live much longer. They can communicate nonverbally, and many members of this ancestry use a mycelial array to chemically exchange information with other fungril across long distances.</p></p>"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784385,
+    "modifiedTime": 1753922784385,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "J1hX7nBBc5jQiHli",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!J1hX7nBBc5jQiHli"
+}

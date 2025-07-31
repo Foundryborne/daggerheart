@@ -1,0 +1,29 @@
+{
+  "name": "Plant Dominion",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "R5afi5bhq9ccnYY2",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (18)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, you reshape the natural world, changing the surrounding plant life anywhere within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range of you. For example, you can grow trees instantly, clear a path through dense vines, or create a wall of roots.</p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 9,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784493,
+    "modifiedTime": 1753922784493,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "9a6xP5pxhVvdugk9",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!9a6xP5pxhVvdugk9"
+}

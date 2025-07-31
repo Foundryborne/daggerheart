@@ -1,0 +1,29 @@
+{
+  "name": "Book of Yarrow",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "IIVaYseNJbA2ta1B",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Timejammer:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (18)</strong>. On a success, time temporarily slows to a halt for everyone within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range except for you. It resumes the next time you make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip> that targets another creature.</p><p class=\"Card-Feature\"><em><strong>Magic Immunity:</strong></em> <strong>Spend 5 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to become immune to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"magic-damage-type\" nexus=\"daggerheart\">magic</tooltip> damage until your next rest.        </p></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 10,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784429,
+    "modifiedTime": 1753922784429,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "J1ovx2FpNDvPq1o6",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!J1ovx2FpNDvPq1o6"
+}

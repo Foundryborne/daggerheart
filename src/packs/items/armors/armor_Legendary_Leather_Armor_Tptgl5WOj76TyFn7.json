@@ -1,0 +1,42 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Legendary Leather Armor",
+  "type": "armor",
+  "_id": "Tptgl5WOj76TyFn7",
+  "img": "icons/equipment/chest/breastplate-layered-gilded-black.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "baseScore": 6,
+    "armorFeatures": [],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 13,
+      "severe": 36
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753809078323,
+    "modifiedTime": 1753809106203,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!Tptgl5WOj76TyFn7"
+}

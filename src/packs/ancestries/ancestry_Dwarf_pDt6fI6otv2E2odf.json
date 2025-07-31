@@ -1,0 +1,25 @@
+{
+  "name": "Dwarf",
+  "img": "icons/svg/item-bag.svg",
+  "type": "ancestry",
+  "folder": null,
+  "system": {
+    "description": "<p>Dwarves are most easily recognized as short humanoids with square frames, dense musculature, and thick hair.<br><br><p>Their average height ranges from 4 to 5 ½ feet, and they are often broad in proportion to their stature. Their skin and nails contain a high amount of keratin, making them naturally resilient. This allows dwarves to embed gemstones into their bodies and decorate themselves with tattoos or piercings. Their hair grows thickly—usually on their heads, but some dwarves have thick hair across their bodies as well. Dwarves of all genders can grow facial hair, which they often style in elaborate arrangements. Typically, dwarves live up to 250 years of age, maintaining their muscle mass well into later life.</p></p>"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784382,
+    "modifiedTime": 1753922784382,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "pDt6fI6otv2E2odf",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!pDt6fI6otv2E2odf"
+}

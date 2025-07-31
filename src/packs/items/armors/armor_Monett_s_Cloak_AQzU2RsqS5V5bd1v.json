@@ -1,0 +1,89 @@
+{
+  "folder": "rkSdPu86ybLz6aKF",
+  "name": "Monett's Cloak",
+  "type": "armor",
+  "_id": "AQzU2RsqS5V5bd1v",
+  "img": "icons/equipment/chest/coat-collared-red.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 3,
+    "equipped": false,
+    "baseScore": 6,
+    "armorFeatures": [
+      {
+        "value": "magical",
+        "effectIds": [
+          "3n4O7PyAWMEFdr5p"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 16,
+      "severe": 39
+    }
+  },
+  "effects": [
+    {
+      "name": "Magical",
+      "description": "You can't mark an Armor Slot to reduce physical damage.",
+      "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
+      "changes": [
+        {
+          "key": "system.rules.damageReduction.magical",
+          "mode": 5,
+          "value": "1"
+        }
+      ],
+      "_id": "3n4O7PyAWMEFdr5p",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753808812589,
+        "modifiedTime": 1753808812589,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!AQzU2RsqS5V5bd1v.3n4O7PyAWMEFdr5p"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753808797896,
+    "modifiedTime": 1753808820623,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!AQzU2RsqS5V5bd1v"
+}

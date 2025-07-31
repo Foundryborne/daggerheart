@@ -1,0 +1,29 @@
+{
+  "name": "Disintegration Wave",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "KwZYrsSUYnHiNtPl",
+  "system": {
+    "description": "<p><p class=\"Body\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (18)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, the GM tells you which adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range have a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> of 18 or lower. <strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> for each one you wish to hit with this spell. They are killed and can’t come back to life by any means.        </p></p>",
+    "domain": "codex",
+    "recallCost": 4,
+    "level": 9,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784447,
+    "modifiedTime": 1753922784447,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "kja5qvh4rdeDBB96",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!kja5qvh4rdeDBB96"
+}

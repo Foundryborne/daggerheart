@@ -1,0 +1,29 @@
+{
+  "name": "Book of Homet",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "hh2vkggcAQ0QUE6C",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Pass Through:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong>. Once per rest on a success, you and all creatures touching you can pass through a wall or door within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. The effect ends once everyone is on the other side.</p><p class=\"Card-Feature\"><em><strong>Plane Gate:</strong></em> Make a <strong>Spellcast Roll (14)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, open a gateway to a location in another dimension or plane of existence you’ve been to before. This gateway lasts until your next rest.</p></p>",
+    "domain": "codex",
+    "recallCost": 0,
+    "level": 7,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784421,
+    "modifiedTime": 1753922784421,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "gFMx08ogQ8hS2Obi",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!gFMx08ogQ8hS2Obi"
+}

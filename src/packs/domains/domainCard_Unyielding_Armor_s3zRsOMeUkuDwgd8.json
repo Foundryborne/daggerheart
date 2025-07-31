@@ -1,0 +1,29 @@
+{
+  "name": "Unyielding Armor",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "D1MFCYakdFIKDmcD",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you would mark an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>, roll a number of <strong>d6s</strong> equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. If any roll a 6, reduce the severity by one threshold without marking an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>.</p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 10,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784538,
+    "modifiedTime": 1753922784538,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "s3zRsOMeUkuDwgd8",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!s3zRsOMeUkuDwgd8"
+}

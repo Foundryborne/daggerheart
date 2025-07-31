@@ -1,7 +1,9 @@
+import BaseEffect from './baseEffect.mjs';
 import BeastformEffect from './beastformEffect.mjs';
 
-export { BeastformEffect };
+export { BaseEffect, BeastformEffect };
 
 export const config = {
+    base: BaseEffect,
     beastform: BeastformEffect
 };

@@ -1,0 +1,29 @@
+{
+  "name": "Book of Ava",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "tqhasjtHBX0F20lN",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Power Push:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range. On a success, they’re knocked back to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range and take <strong>d10+2</strong> magic damage using your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.</p><p class=\"Card-Feature\"><em><strong>Tava’s Armor:</strong></em> <strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to give a target you can touch a +1 bonus to their <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-score\" nexus=\"daggerheart\">Armor Score</tooltip> until their next rest or you cast Tava’s Armor again.        </p><p class=\"Card-Feature\"><em><strong>Ice Spike:</strong></em> Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target’s <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 1,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784419,
+    "modifiedTime": 1753922784419,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "YtZzYBtR0yLPPA93",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!YtZzYBtR0yLPPA93"
+}

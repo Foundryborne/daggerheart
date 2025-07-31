@@ -118,13 +118,14 @@ export default class DHWeapon extends AttachableItem {
             for (let weaponFeature of added) {
                 const featureData = CONFIG.DH.ITEM.weaponFeatures[weaponFeature.value];
                 if (featureData.effects?.length > 0) {
-                    const embeddedItems = await this.parent.createEmbeddedDocuments('ActiveEffect', [
-                        {
-                            name: game.i18n.localize(featureData.label),
-                            description: game.i18n.localize(featureData.description),
-                            changes: featureData.effects.flatMap(x => x.changes)
-                        }
-                    ]);
+                    const embeddedItems = await this.parent.createEmbeddedDocuments(
+                        'ActiveEffect',
+                        featureData.effects.map(effect => ({
+                            ...effect,
+                            name: game.i18n.localize(effect.name),
+                            description: game.i18n.localize(effect.description)
+                        }))
+                    );
                     weaponFeature.effectIds = embeddedItems.map(x => x.id);
                 }
 
@@ -140,6 +141,10 @@ export default class DHWeapon extends AttachableItem {
                                 description: game.i18n.localize(effect.description)
                             }))
                         );
+                        weaponFeature.effectIds = [
+                            ...(weaponFeature.effectIds ?? []),
+                            ...embeddedEffects.map(x => x.id)
+                        ];
 
                         const cls = game.system.api.models.actions.actionsTypes[action.type];
                         const actionId = foundry.utils.randomID();

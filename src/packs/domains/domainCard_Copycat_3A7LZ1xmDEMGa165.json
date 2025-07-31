@@ -1,0 +1,29 @@
+{
+  "name": "Copycat",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "yFcD1LOM3xKbkNYl",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, this card can mimic the features of another domain card of level 8 or lower in another player’s <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip>. <strong>Spend </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip><strong> equal to half the card’s level</strong> to gain access to the feature. It lasts until your next rest or they place the card in their vault.        </p></p>",
+    "domain": "grace",
+    "recallCost": 3,
+    "level": 9,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784439,
+    "modifiedTime": 1753922784439,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "3A7LZ1xmDEMGa165",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!3A7LZ1xmDEMGa165"
+}

@@ -1,0 +1,80 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Runetan Floating Armor",
+  "type": "armor",
+  "_id": "tHlBUDQC24YMZqd6",
+  "img": "icons/equipment/chest/breastplate-layered-leather-black.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "Nn33zCIcWe6LQMDH": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Shift",
+        "description": "When you are targeted for an attack, you can mark an Armor Slot to give the attack roll against you disadvantage.",
+        "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "_id": "Nn33zCIcWe6LQMDH",
+        "effects": [],
+        "systemPath": "actions",
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 2,
+    "equipped": false,
+    "baseScore": 4,
+    "armorFeatures": [
+      {
+        "value": "shifting",
+        "effectIds": [],
+        "actionIds": [
+          "Nn33zCIcWe6LQMDH"
+        ]
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 9,
+      "severe": 20
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753807528637,
+    "modifiedTime": 1753808232404,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!tHlBUDQC24YMZqd6"
+}

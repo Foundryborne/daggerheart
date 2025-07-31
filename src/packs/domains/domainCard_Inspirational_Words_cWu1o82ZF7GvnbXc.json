@@ -1,0 +1,29 @@
+{
+  "name": "Inspirational Words",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "nVCKcZkcoEivYJaF",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Your speech is imbued with power. After a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, place a number of tokens on this card equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"presence\" nexus=\"daggerheart\">Presence</tooltip>. When you speak with an ally, you can spend a token from this card to give them one benefit from the following options:</p><ul class=\"\"><li class=\"vertical-card-list-found\">Your ally clears a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</li><li class=\"vertical-card-list-found\">Your ally clears a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip>.</li><li class=\"vertical-card-list-found\">Your ally gains a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>.</li></ul><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p></p>",
+    "domain": "grace",
+    "recallCost": 1,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784473,
+    "modifiedTime": 1753922784473,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "cWu1o82ZF7GvnbXc",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!cWu1o82ZF7GvnbXc"
+}

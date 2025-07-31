@@ -1,0 +1,200 @@
+{
+  "folder": "v3OQH9vwMVYsZvXS",
+  "name": "Powered Gauntlet",
+  "type": "weapon",
+  "_id": "bW3xw5S9DbaLCN3E",
+  "img": "icons/equipment/hand/gauntlet-armored-leather-teal-orange.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "GlA0PwKQSq5vwh7D": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Charge",
+        "description": "Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack.",
+        "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "effects": [
+          {
+            "_id": "n5EB7pI0kv2Zx35G",
+            "onSave": false
+          }
+        ],
+        "_id": "GlA0PwKQSq5vwh7D",
+        "systemPath": "actions",
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 3,
+    "equipped": false,
+    "secondary": true,
+    "burden": "oneHanded",
+    "weaponFeatures": [
+      {
+        "value": "charged",
+        "effectIds": [
+          "n5EB7pI0kv2Zx35G"
+        ],
+        "actionIds": [
+          "GlA0PwKQSq5vwh7D"
+        ]
+      }
+    ],
+    "attack": {
+      "name": "Attack",
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "_id": "qY9ylkwxFwRlPy6a",
+      "systemPath": "attack",
+      "type": "attack",
+      "range": "close",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "trait": "knowledge",
+        "type": "attack",
+        "difficulty": null,
+        "bonus": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "dice": "d6",
+              "bonus": 4,
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": [
+              "physical"
+            ],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "rules": {
+      "attack": {
+        "roll": {
+          "trait": null
+        }
+      }
+    }
+  },
+  "effects": [
+    {
+      "name": "Charged",
+      "description": "Mark a Stress to gain a +1 bonus to your Proficiency on a primary weapon attack.",
+      "img": "icons/magic/lightning/claws-unarmed-strike-teal.webp",
+      "changes": [
+        {
+          "key": "system.proficiency",
+          "mode": 2,
+          "value": "1"
+        }
+      ],
+      "transfer": false,
+      "_id": "n5EB7pI0kv2Zx35G",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753808423859,
+        "modifiedTime": 1753808423859,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!bW3xw5S9DbaLCN3E.n5EB7pI0kv2Zx35G"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753796723376,
+    "modifiedTime": 1753808423862,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!bW3xw5S9DbaLCN3E"
+}

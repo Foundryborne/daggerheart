@@ -1,0 +1,29 @@
+{
+  "name": "Wild Fortress",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "ZZHIbaynhzVArA1p",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong>. On a success, <strong>spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to grow a natural barricade in the shape of a dome that you and one ally can take cover within. While inside the dome, a creature can’t be targeted by attacks and can’t make attacks. Attacks made against the dome automatically succeed. The dome has a Major damage threshold of 15 and a Severe damage threshold of 30, and lasts until it marks 3 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>. Place tokens on this card to represent marking Hit Points.        </p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 5,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784546,
+    "modifiedTime": 1753922784546,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "9dFvcM1i3bxG3BSA",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!9dFvcM1i3bxG3BSA"
+}

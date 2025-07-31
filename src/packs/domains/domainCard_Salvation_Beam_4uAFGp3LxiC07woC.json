@@ -1,0 +1,29 @@
+{
+  "name": "Salvation Beam",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "sGCKwmomutMTv0Xs",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (16)</strong>. On a success, <strong>mark any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to target a line of allies within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. You can clear <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> on the targets equal to the number of Stress marked, divided among them however you’d like.        </p></p>",
+    "domain": "splendor",
+    "recallCost": 2,
+    "level": 9,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784508,
+    "modifiedTime": 1753922784508,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "4uAFGp3LxiC07woC",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!4uAFGp3LxiC07woC"
+}

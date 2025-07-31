@@ -1,0 +1,25 @@
+{
+  "name": "Simiah",
+  "img": "icons/svg/item-bag.svg",
+  "type": "ancestry",
+  "folder": null,
+  "system": {
+    "description": "<p>Simiah resemble anthropomorphic monkeys and apes with long limbs and prehensile feet.<br><br><p>While their appearance reflects all simian creatures, from the largest gorilla to the smallest marmoset, their size does not align with their animal counterparts, and they can be anywhere from 2 to 6 feet tall. All simiah can use their dexterous feet for nonverbal communication, work, and combat. Additionally, some also have prehensile tails that can grasp objects or help with balance during difficult maneuvers. These traits grant members of this ancestry unique agility that aids them in a variety of physical tasks. In particular, simiah are skilled climbers and can easily transition from bipedal movement to knuckle-walking and climbing, and back again. On average, simiah live for about 100 years.</p></p>"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784390,
+    "modifiedTime": 1753922784390,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "2yMLxxn7CHEvmShj",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!2yMLxxn7CHEvmShj"
+}

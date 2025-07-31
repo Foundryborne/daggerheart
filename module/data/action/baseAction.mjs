@@ -181,13 +181,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     prepareRoll() {
         const roll = {
-            modifiers: this.modifiers,
-            trait: this.roll?.trait,
+            baseModifiers: this.roll.getModifier(),
             label: 'Attack',
             type: this.actionType,
             difficulty: this.roll?.difficulty,
             formula: this.roll.getFormula(),
-            bonus: this.roll.bonus,
             advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
         };
         if (this.roll?.type === 'diceSet') roll.lite = true;
@@ -201,6 +199,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     async consume(config) {
         const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
+
         for (var cost of config.costs) {
             if (cost.keyIsID) {
                 usefulResources[cost.key] = {
@@ -223,17 +222,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             });
 
         await this.actor.modifyResource(resources);
-        if (config.uses?.enabled) {
-            const newActions = foundry.utils.getProperty(this.item.system, this.systemPath).map(x => x.toObject());
-            newActions[this.index].uses.value++;
-            await this.item.update({ [`system.${this.systemPath}`]: newActions });
-        }
+        if (config.uses?.enabled) this.update({ 'uses.value': this.uses.value + 1 });
     }
     /* */
 
     /* ROLL */
     get hasRoll() {
-        return !!this.roll?.type || !!this.roll?.bonus;
+        return !!this.roll?.type;
     }
 
     get modifiers() {
@@ -297,17 +292,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* SAVE */
     async rollSave(actor, event, message) {
         if (!actor) return;
-        return actor
-            .diceRoll({
-                event,
-                title: 'Roll Save',
-                roll: {
-                    trait: this.save.trait,
-                    difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
-                    type: 'reaction'
-                },
-                data: actor.getRollData()
-            });
+        return actor.diceRoll({
+            event,
+            title: 'Roll Save',
+            roll: {
+                trait: this.save.trait,
+                difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
+                type: 'reaction'
+            },
+            data: actor.getRollData()
+        });
     }
 
     updateSaveMessage(result, message, targetId) {
@@ -320,7 +314,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         else updateMsg();
     }
 
-    static rollSaveQuery({ actionId, actorId,  event, message }) {
+    static rollSaveQuery({ actionId, actorId, event, message }) {
         return new Promise(async (resolve, reject) => {
             const actor = await fromUuid(actorId),
                 action = await fromUuid(actionId);

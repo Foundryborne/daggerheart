@@ -1,0 +1,25 @@
+{
+  "name": "Goblin",
+  "img": "icons/svg/item-bag.svg",
+  "type": "ancestry",
+  "folder": null,
+  "system": {
+    "description": "<p>Goblins are small humanoids easily recognizable by their large eyes and massive membranous ears.<br><br><p>With keen hearing and sharp eyesight, they perceive details both at great distances and in darkness, allowing them to move through less-optimal environments with ease. Their skin and eye colors are incredibly varied, with no one hue, either vibrant or subdued, more dominant than another. A typical goblin stands between 3 feet and 4 feet tall, and each of their ears is about the size of their head. Goblins are known to use ear positions to very specific effect when communicating nonverbally. A goblin’s lifespan is roughly 100 years, and many maintain their keen hearing and sight well into advanced age.</p></p>"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784386,
+    "modifiedTime": 1753922784386,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "EKPEdIz9lA9grPqH",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!EKPEdIz9lA9grPqH"
+}

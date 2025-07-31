@@ -1,0 +1,29 @@
+{
+  "name": "Onslaught",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "7pKKYgRQAKlQAksV",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you successfully make an attack with your weapon, you never deal damage beneath a target’s <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"major-damage\" nexus=\"daggerheart\">Major</tooltip> damage threshold (the target always marks a minimum of 2 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>).</p><p class=\"Body-Foundation\">Additionally, when a creature within your weapon’s range deals damage to an ally with an attack that doesn’t include you, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to force them to make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (15). On a failure, the target must mark a Hit Point.        </p></p>",
+    "domain": "blade",
+    "recallCost": 3,
+    "level": 10,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784490,
+    "modifiedTime": 1753922784490,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "I7pNsQ9Yx6mRJX4V",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!I7pNsQ9Yx6mRJX4V"
+}

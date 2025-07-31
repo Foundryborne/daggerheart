@@ -7,6 +7,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.roll = roll;
         this.config = config;
         this.config.experiences = [];
+        this.reactionOverride = config.roll.type === 'reaction';
 
         if (config.source?.action) {
             this.item = config.data.parent.items.get(config.source.item) ?? config.data.parent;
@@ -30,6 +31,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         actions: {
             updateIsAdvantage: this.updateIsAdvantage,
             selectExperience: this.selectExperience,
+            toggleReaction: this.toggleReaction,
             submitRoll: this.submitRoll
         },
         form: {
@@ -103,6 +105,9 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             context.isLite = this.config.roll?.lite;
             context.extraFormula = this.config.extraFormula;
             context.formula = this.roll.constructFormula(this.config);
+
+            context.showReaction = !context.rollConfig.type && context.rollType === 'DualityRoll';
+            context.reactionOverride = this.reactionOverride;
         }
         return context;
     }
@@ -141,7 +146,19 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.render();
     }
 
+    static toggleReaction() {
+        if (this.config.roll) {
+            this.reactionOverride = !this.reactionOverride;
+            this.render();
+        }
+    }
+
     static async submitRoll() {
+        this.config.roll.type = this.reactionOverride
+            ? CONFIG.DH.ITEM.actionTypes.reaction.id
+            : this.config.roll.type === CONFIG.DH.ITEM.actionTypes.reaction.id
+              ? null
+              : this.config.roll.type;
         await this.close({ submitted: true });
     }
 

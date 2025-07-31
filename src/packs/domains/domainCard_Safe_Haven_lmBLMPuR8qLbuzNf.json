@@ -1,0 +1,29 @@
+{
+  "name": "Safe Haven",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "8bWpGblWODdf8mDR",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you have a few minutes of calm to focus, you can <strong>spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to summon your Safe Haven, a large interdimensional home where you and your allies can take shelter. When you do, a magical door appears somewhere within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. Only creatures of your choice can enter. Once inside, you can make the entrance invisible. You and anyone else inside can always exit. Once you leave, the doorway must be summoned again.        </p><p class=\"Body-Foundation\">When you take a rest within your own Safe Haven, you can choose an additional <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"downtime\" nexus=\"daggerheart\">downtime</tooltip> move.</p></p>",
+    "domain": "codex",
+    "recallCost": 3,
+    "level": 8,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784506,
+    "modifiedTime": 1753922784506,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "lmBLMPuR8qLbuzNf",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!lmBLMPuR8qLbuzNf"
+}

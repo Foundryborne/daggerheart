@@ -1,0 +1,29 @@
+{
+  "name": "Redirect",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "3e8kCsLzLxiACJDb",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When an attack made against you from beyond <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range fails, roll a number of <strong>d6s</strong> equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. If any roll a 6, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to redirect the attack to damage an adversary within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range instead.        </p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 4,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784500,
+    "modifiedTime": 1753922784500,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "faU0XkJCbar69PiN",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!faU0XkJCbar69PiN"
+}

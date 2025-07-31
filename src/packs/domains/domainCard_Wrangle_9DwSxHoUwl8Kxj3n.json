@@ -1,0 +1,29 @@
+{
+  "name": "Wrangle",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "n7pgTBYSItMzCX0s",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip> Roll against all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range.<strong> Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to move targets you succeed against, and any willing allies within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range, to another point within Close range.        </p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 8,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784549,
+    "modifiedTime": 1753922784549,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "9DwSxHoUwl8Kxj3n",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!9DwSxHoUwl8Kxj3n"
+}

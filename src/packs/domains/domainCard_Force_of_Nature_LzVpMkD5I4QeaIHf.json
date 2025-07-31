@@ -1,0 +1,29 @@
+{
+  "name": "Force of Nature",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "pPzU9WOQNv3ckO1w",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\"><strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to transform into a hulking nature spirit, gaining the following benefits:        </p><ul class=\"\"><li class=\"vertical-card-list\">When you succeed on an attack or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Roll</tooltip>, gain a +10 bonus to the damage roll.</li><li class=\"vertical-card-list\">When you deal enough damage to defeat a creature within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range, you absorb them and clear an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>.</li><li class=\"vertical-card-list\">You can’t be <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restrained</em></tooltip>.</li></ul><p class=\"Body-Foundation\">Before you make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip>, you must <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip>. If you can’t, you revert to your normal form.        </p></p>",
+    "domain": "sage",
+    "recallCost": 2,
+    "level": 10,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784456,
+    "modifiedTime": 1753922784456,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "LzVpMkD5I4QeaIHf",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!LzVpMkD5I4QeaIHf"
+}

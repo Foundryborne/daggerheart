@@ -1,0 +1,29 @@
+{
+  "name": "Reassurance",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "LlWJaBZOKh0Ot2kD",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest, after an ally attempts an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip> but before the consequences take place, you can offer assistance or words of support. When you do, your ally can reroll their dice.</p></p>",
+    "domain": "splendor",
+    "recallCost": 0,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784499,
+    "modifiedTime": 1753922784499,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "iYNVTB7uAD1FTCZu",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!iYNVTB7uAD1FTCZu"
+}

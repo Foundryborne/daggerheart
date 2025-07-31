@@ -23,6 +23,12 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 required: true,
                 initial: true,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.hordeDamage.label'
+            }),
+            effects: new fields.SchemaField({
+                rangeDependent: new fields.BooleanField({
+                    initial: true,
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.effects.rangeDependent.label'
+                })
             })
         };
     }

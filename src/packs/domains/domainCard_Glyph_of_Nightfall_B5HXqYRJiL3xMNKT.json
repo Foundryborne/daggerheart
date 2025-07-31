@@ -1,0 +1,29 @@
+{
+  "name": "Glyph of Nightfall",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "WTdOLLkQyPdg0KWU",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. On a success, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to conjure a dark glyph upon their body that exposes their weak points, temporarily reducing the target’s <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> by a value equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"knowledge\" nexus=\"daggerheart\">Knowledge</tooltip> (minimum 1).        </p></p>",
+    "domain": "midnight",
+    "recallCost": 1,
+    "level": 4,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784463,
+    "modifiedTime": 1753922784463,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "B5HXqYRJiL3xMNKT",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!B5HXqYRJiL3xMNKT"
+}

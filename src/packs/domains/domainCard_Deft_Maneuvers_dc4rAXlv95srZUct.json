@@ -1,0 +1,29 @@
+{
+  "name": "Deft Maneuvers",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "PeeIjbkBv41613yZ",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest,<strong> </strong><strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to sprint anywhere within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range without making an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip> Roll to get there.        </p><p class=\"Body-Foundation\">If you end this movement within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of an adversary and immediately make an attack against them, gain a +1 bonus to the <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack roll</tooltip>.</p></p>",
+    "domain": "bone",
+    "recallCost": 0,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784446,
+    "modifiedTime": 1753922784446,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "dc4rAXlv95srZUct",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!dc4rAXlv95srZUct"
+}

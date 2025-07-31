@@ -1,6 +1,7 @@
 import { updateActorTokens } from '../../helpers/utils.mjs';
+import BaseEffect from './baseEffect.mjs';
 
-export default class BeastformEffect extends foundry.abstract.TypeDataModel {
+export default class BeastformEffect extends BaseEffect {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

@@ -1,0 +1,29 @@
+{
+  "name": "Veil of Night",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "hoDIPBzwYPxiSXGU",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong>. On a success, you can create a temporary curtain of darkness between two points within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. Only you can see through this darkness. You’re considered <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hidden\" nexus=\"daggerheart\"><em>Hidden</em></tooltip> to adversaries on the other side of the veil, and you have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on attacks you make through the darkness. The veil remains until you cast another spell.</p></p>",
+    "domain": "midnight",
+    "recallCost": 1,
+    "level": 3,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784541,
+    "modifiedTime": 1753922784541,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "gV4L5ZZmfPrEbIDh",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!gV4L5ZZmfPrEbIDh"
+}

@@ -241,19 +241,19 @@ Parameters:
     {{#unless hideDescription}}
     <div class="invetory-description"></div>
     {{/unless}}
-    {{!-- Dice Resource --}}
-    {{#if (and (not hideResources) (eq item.system.resource.type 'diceValue'))}}
-    {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
-    {{/if}}
-    {{!-- Actions Buttons --}}
-    {{#if (and showActions (eq item.type 'feature'))}}
-    <div class="item-buttons">
-      {{#each item.system.actions as | action |}}
-      <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
-        {{action.name}}
-      </button>
-      {{/each}}
-    </div>
-    {{/if}}
   </div>
+  {{!-- Dice Resource --}}
+  {{#if (and (not hideResources) (eq item.system.resource.type 'diceValue'))}}
+  {{> "systems/daggerheart/templates/sheets/global/partials/item-resource.hbs"}}
+  {{/if}}
+  {{!-- Actions Buttons --}}
+  {{#if (and showActions (eq item.type 'feature'))}}
+  <div class="item-buttons">
+    {{#each item.system.actions as | action |}}
+    <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
+      {{action.name}}
+    </button>
+    {{/each}}
+  </div>
+  {{/if}}
 </li>

@@ -1,0 +1,29 @@
+{
+  "name": "Corrosive Projectile",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "uXGugK72AffddFdH",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. On a success, deal <strong>d6+4</strong> magic damage using your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. Additionally, <strong>mark 2 or more </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a −1 penalty to their <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> for every 2 Stress you spent. This <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip> can stack.        </p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 3,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784439,
+    "modifiedTime": 1753922784439,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "qJaSNTuDfbPVr8Lb",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!qJaSNTuDfbPVr8Lb"
+}

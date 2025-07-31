@@ -1,0 +1,29 @@
+{
+  "name": "Goad Them On",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "cOZgzLQRGNnBzsHT",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Describe how you taunt a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range, then make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"presence\" nexus=\"daggerheart\"><strong>Presence</strong></tooltip><strong> Roll</strong> against them. On a success, the target must mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>, and the next time the GM <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spotlight\" nexus=\"daggerheart\">spotlights</tooltip> them, they must target you with an attack, which they make with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">disadvantage</tooltip>.</p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 4,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784464,
+    "modifiedTime": 1753922784464,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "HufF5KzuNfEb9RTi",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!HufF5KzuNfEb9RTi"
+}

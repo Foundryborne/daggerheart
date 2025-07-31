@@ -1,0 +1,29 @@
+{
+  "name": "Soothing Speech",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "thP6nUk0nkrNcpXY",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">During a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"short-rest\" nexus=\"daggerheart\">short rest</tooltip>, when you take the time to comfort another character while using the <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"tend-to-wounds\" nexus=\"daggerheart\">Tend to Wounds</tooltip> <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"downtime\" nexus=\"daggerheart\">downtime</tooltip> move on them, clear an additional <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> on that character. When you do, you also clear 2 Hit Points.        </p></p>",
+    "domain": "grace",
+    "recallCost": 1,
+    "level": 4,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784519,
+    "modifiedTime": 1753922784519,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "QED2PDYePOSTbLtC",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!QED2PDYePOSTbLtC"
+}

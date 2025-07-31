@@ -1,0 +1,29 @@
+{
+  "name": "Scramble",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "wWL9mV6i2EGX5xHS",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest, when a creature within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range would deal damage to you, you can avoid the attack and safely move out of Melee range of the enemy. </p></p>",
+    "domain": "blade",
+    "recallCost": 1,
+    "level": 3,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784509,
+    "modifiedTime": 1753922784509,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "5bBU9jWHOuOY12lR",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!5bBU9jWHOuOY12lR"
+}

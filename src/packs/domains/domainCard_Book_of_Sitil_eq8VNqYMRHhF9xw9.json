@@ -1,0 +1,29 @@
+{
+  "name": "Book of Sitil",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "j9i2Q6Z7Z82udHn1",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Adjust Appearance:</strong></em> You magically shift your appearance and clothing to avoid recognition.</p><p class=\"Card-Feature\"><strong><em>Parallela:</em> </strong><strong>Spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to cast this spell on yourself or an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. The next time the target makes an attack, they can hit an additional target within range that their <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack roll</tooltip> would succeed against. You can only hold this spell on one creature at a time.        </p><p class=\"Card-Feature\"><em><strong>Illusion:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (14)</strong>. On a success, create a temporary visual illusion no larger than you within Close range that lasts for as long as you look at it. It holds up to scrutiny until an observer is within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range.</p></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 2,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784424,
+    "modifiedTime": 1753922784424,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "eq8VNqYMRHhF9xw9",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!eq8VNqYMRHhF9xw9"
+}

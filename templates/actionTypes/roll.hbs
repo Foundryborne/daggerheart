@@ -3,25 +3,27 @@
         Roll
         {{#if @root.hasBaseDamage}}{{formInput fields.useDefault name="roll.useDefault" value=source.useDefault dataset=(object tooltip="Use default Item values" tooltipDirection="UP")}}{{/if}}
     </legend>
-    {{#if @root.isNPC}}
-        {{formField fields.bonus label="Bonus" name="roll.bonus" value=source.bonus}}
-        {{formField fields.advState label= "Advantage State" name="roll.advState" value=source.advState localize=true}}
+    
+    {{formField fields.type label="Type" name="roll.type" value=source.type localize=true choices=@root.getRollTypeOptions}}
+    {{#if (eq source.type "diceSet")}}
+        <div class="nest-inputs">
+            {{formField fields.diceRolling.fields.multiplier name="roll.diceRolling.multiplier" value=source.diceRolling.multiplier localize=true}}
+            {{#if (eq source.diceRolling.multiplier 'flat')}}{{formField fields.diceRolling.fields.flatMultiplier value=source.diceRolling.flatMultiplier name="roll.diceRolling.flatMultiplier" localize=true }}{{/if}}
+            {{formField fields.diceRolling.fields.dice name="roll.diceRolling.dice" value=source.diceRolling.dice localize=true}}
+            {{formField fields.diceRolling.fields.compare name="roll.diceRolling.compare" value=source.diceRolling.compare localize=true blank=""}}
+            {{formField fields.diceRolling.fields.treshold name="roll.diceRolling.treshold" value=source.diceRolling.treshold localize=true}}
+        </div>
     {{else}}
-        {{formField fields.type label="Type" name="roll.type" value=source.type localize=true}}
-        {{#if (eq source.type "diceSet")}}
-            <div class="nest-inputs">
-                {{formField fields.diceRolling.fields.multiplier name="roll.diceRolling.multiplier" value=source.diceRolling.multiplier localize=true}}
-                {{#if (eq source.diceRolling.multiplier 'flat')}}{{formField fields.diceRolling.fields.flatMultiplier value=source.diceRolling.flatMultiplier name="roll.diceRolling.flatMultiplier" localize=true }}{{/if}}
-                {{formField fields.diceRolling.fields.dice name="roll.diceRolling.dice" value=source.diceRolling.dice localize=true}}
-                {{formField fields.diceRolling.fields.compare name="roll.diceRolling.compare" value=source.diceRolling.compare localize=true blank=""}}
-                {{formField fields.diceRolling.fields.treshold name="roll.diceRolling.treshold" value=source.diceRolling.treshold localize=true}}
-            </div>
-        {{else}}
-            <div class="nest-inputs">
-                {{formField fields.trait label="Trait" name="roll.trait" value=source.trait localize=true disabled=(not source.type)}}
-                {{formField fields.difficulty label="Difficulty" name="roll.difficulty" value=source.difficulty disabled=(not source.type)}}
-                {{formField fields.advState label= "Advantage State" name="roll.advState" value=source.advState localize=true}}
-            </div>
-        {{/if}}
+        <div class="nest-inputs">
+            {{#unless (eq source.type 'spellcast')}}
+                {{#if @root.isNPC}}
+                    {{formField fields.bonus label="Bonus" name="roll.bonus" value=source.bonus placeholder=@root.baseAttackBonus disabled=(not source.type)}}
+                {{else}}
+                    {{formField fields.trait label="Trait" name="roll.trait" value=source.trait localize=true disabled=(not source.type)}}
+                {{/if}}
+            {{/unless}}
+            {{formField fields.difficulty label="Difficulty" name="roll.difficulty" value=source.difficulty disabled=(not source.type)}}
+            {{formField fields.advState label= "Advantage State" name="roll.advState" value=source.advState localize=true disabled=(not source.type)}}
+        </div>
     {{/if}}
 </fieldset>

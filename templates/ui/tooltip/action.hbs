@@ -2,7 +2,6 @@
     <h2 class="tooltip-title">{{item.name}}</h2>
     <img class="tooltip-image" src="{{item.img}}" />
     <div class="tooltip-description">{{{description}}}</div>
-
     {{#if item.uses.max}}
         <h4 class="tooltip-sub-title">{{localize "DAGGERHEART.GENERAL.uses"}}</h4>
         <div class="tooltip-information-section triple spaced">
@@ -12,7 +11,7 @@
             </div>
             <div class="tooltip-information">
                 <label>{{localize "DAGGERHEART.GENERAL.max"}}</label>
-                <div>{{item.uses.max}}</div>
+                <div>{{formulaValue item.uses.max item}}</div>
             </div>
             <div class="tooltip-information">
                 <label>{{localize "DAGGERHEART.GENERAL.recovery"}}</label>

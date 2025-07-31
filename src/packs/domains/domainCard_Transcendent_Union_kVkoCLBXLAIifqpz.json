@@ -1,0 +1,29 @@
+{
+  "name": "Transcendent Union",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "IIVaYseNJbA2ta1B",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, <strong>spend 5 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to cast this spell on two or more willing creatures. Until your next rest, when a creature connected by this union would mark <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>, the connected creatures can choose who marks it.        </p></p>",
+    "domain": "codex",
+    "recallCost": 1,
+    "level": 10,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784534,
+    "modifiedTime": 1753922784534,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "kVkoCLBXLAIifqpz",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!kVkoCLBXLAIifqpz"
+}

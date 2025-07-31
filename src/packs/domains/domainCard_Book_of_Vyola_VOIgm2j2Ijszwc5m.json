@@ -1,0 +1,29 @@
+{
+  "name": "Book of Vyola",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "8bWpGblWODdf8mDR",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Memory Delve:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. On a success, peer into the target’s mind and ask the GM a question. The GM describes any memories the target has pertaining to the answer.</p><p class=\"Card-Feature\"><em><strong>Shared Clarity:</strong> </em>Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to choose two willing creatures. When one of them would mark <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>, they can choose between the two of them who marks it. This spell lasts until their next rest.        </p></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 8,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784427,
+    "modifiedTime": 1753922784427,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "VOIgm2j2Ijszwc5m",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!VOIgm2j2Ijszwc5m"
+}
