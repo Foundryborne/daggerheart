@@ -62,16 +62,37 @@ export default class DHClass extends BaseDataItem {
     }
 
     async _preCreate(data, options, user) {
-        const allowed = await super._preCreate(data, options, user);
-        if (allowed === false) return;
-
         if (this.actor?.type === 'character') {
-            const path = data.system.isMulticlass ? 'system.multiclass.value' : 'system.class.value';
-            if (foundry.utils.getProperty(this.actor, path)) {
-                ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.classAlreadySelected'));
-                return false;
+            const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+            if (levelupAuto) {
+                const path = data.system.isMulticlass ? 'system.multiclass.value' : 'system.class.value';
+                if (foundry.utils.getProperty(this.actor, path)) {
+                    ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.classAlreadySelected'));
+                    return false;
+                }
+            } else {
+                if (this.actor.system.class.value) {
+                    if (this.actor.system.multiclass.value) {
+                        ui.notifications.warn(
+                            game.i18n.localize('DAGGERHEART.UI.Notifications.multiclassAlreadyPresent')
+                        );
+                        return false;
+                    } else {
+                        const selectedDomain =
+                            await game.system.api.applications.dialogs.MulticlassChoiceDialog.configure(
+                                this.actor,
+                                this
+                            );
+                        if (!selectedDomain) return false;
+
+                        await this.updateSource({ isMulticlass: true, domains: [selectedDomain] });
+                    }
+                }
             }
         }
+
+        const allowed = await super._preCreate(data, options, user);
+        if (allowed === false) return;
     }
 
     _onCreate(data, options, userId) {

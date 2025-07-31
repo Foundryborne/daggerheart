@@ -173,6 +173,14 @@
                 "experienceDataRemoveConfirmation": {
                     "title": "Remove Experience Data",
                     "text": "The experience you are about to remove has levelup data linked to it (assumably because you did levelups with the 'levelupAuto' automation setting on). Removing it will remove this automation data aswell. Do you want to proceed?"
+                },
+                "manualMulticlass": {
+                    "title": "Multiclass",
+                    "text": "Do you want to add this class as your multiclass?"
+                },
+                "manualMulticlassSubclass": {
+                    "title": "Multiclass Subclass",
+                    "text": "Do you want to add this subclass as your multiclass subclass?"
                 }
             },
             "Companion": {
@@ -465,6 +473,11 @@
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
                 "title": "{actor} Level Up"
+            },
+            "MulticlassChoice": {
+                "title": "Multiclassing - {actor}",
+                "explanation": "You are adding {class} as your multiclass",
+                "selectDomainPrompt": "Select your new domain"
             },
             "OwnershipSelection": {
                 "title": "Ownership Selection - {name}",
@@ -2209,6 +2222,7 @@
                 "tooLowLevel": "You cannot lower the character level below starting level",
                 "subclassNotInClass": "This subclass does not belong to your selected class.",
                 "missingClass": "You don't have a class selected yet.",
+                "missingMulticlass": "Missing multiclass",
                 "wrongDomain": "The card isn't from one of your class domains.",
                 "cardTooHighLevel": "The card is too high level!",
                 "duplicateCard": "You cannot select the same card more than once.",
@@ -2238,7 +2252,9 @@
                 "beastformToManyFeatures": "You cannot select any more features.",
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
                 "loadoutMaxReached": "You already have {max} cards in your loadout. Move atleast one to your vault before adding a new one.",
-                "insufficientResources": "You have insufficient resources"
+                "insufficientResources": "You have insufficient resources",
+                "multiclassAlreadyPresent": "You already have a class and multiclass",
+                "subclassesAlreadyPresent": "You already have a class and multiclass subclass"
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",

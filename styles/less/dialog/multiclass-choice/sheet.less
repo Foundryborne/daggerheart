@@ -1,0 +1,76 @@
+.theme-light .daggerheart.dh-style.dialog.multiclass-choice {
+    .multiclass-container .domain-choice-container button label {
+        background-image: url(../assets/parchments/dh-parchment-light.png);
+    }
+}
+
+.daggerheart.dh-style.dialog.multiclass-choice {
+    .multiclass-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+
+        .multiclass-explanation {
+            margin-top: 0;
+            font-style: italic;
+        }
+
+        .multiclass-domains-container {
+            display: flex;
+            gap: 16px;
+
+            .domain-choice-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+
+                button {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    width: 120px;
+                    height: 120px;
+                    background: light-dark(@dark-blue-10, @golden-10);
+                    color: light-dark(@dark-blue, @golden);
+
+                    &.selected {
+                        background: light-dark(@dark-blue-40, @golden-40);
+                    }
+
+                    label {
+                        position: absolute;
+                        top: 4px;
+                        font-family: @font-body;
+                        border-radius: 6px;
+                        border: 2px solid;
+                        padding: 0 2px;
+                        background-image: url(../assets/parchments/dh-parchment-dark.png);
+                        color: light-dark(@dark, @beige);
+                    }
+                }
+
+                .domain-description {
+                    width: 240px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    font-style: italic;
+                    border: 1px solid light-dark(@dark-blue, @golden);
+                    border-radius: 6px;
+                    padding: 4px 4px;
+                }
+            }
+        }
+
+        footer {
+            width: 100%;
+            display: flex;
+            gap: 8px;
+
+            button {
+                flex: 1;
+            }
+        }
+    }
+}
