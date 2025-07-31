@@ -26,29 +26,37 @@
                             {{/if}}
                             <div class="roll-dice">
                                 {{#each dice}}
-                                    <div class="roll-die">
-                                        {{!-- <div>{{total}} <img class="dice-icon" src="systems/daggerheart/assets/icons/dice/default/{{dice}}.svg" alt=""></div> --}}
-                                        <div>{{total}} <li class="roll die {{dice}} min"></li></div>
-                                    </div>
+                                    {{#each results}}
+                                        {{#unless discarded}}
+                                            <div class="roll-die">
+                                                <div class="dice {{../dice}}">{{result}}</div>
+                                            </div>
+                                            {{#unless @last}}
+                                                <div class="roll-die">
+                                                    <div class="font-20">+</div>
+                                                </div>
+                                            {{/unless}}
+                                        {{/unless}}
+                                    {{/each}}
                                     {{#unless @last}}
                                         <div class="roll-die">
-                                            <div>+</div>
+                                            <div class="font-20">+</div>
                                         </div>
                                     {{/unless}}
                                 {{/each}}
                                 {{#if modifierTotal}}
                                     {{#if (gt modifierTotal 0)}}
                                         <div class="roll-die">
-                                            <div>+</div>
+                                            <div class="font-20">+</div>
                                         </div>
                                     {{/if}}
                                     <div class="roll-die">
-                                        <div>{{modifierTotal}}</div>
+                                        <div class="font-20">{{modifierTotal}}</div>
                                     </div>
                                 {{/if}}
                                 {{#unless dice.length}}
                                     <div class="roll-die">
-                                        <div>{{total}}</div>
+                                        <div class="font-20">{{total}}</div>
                                     </div>
                                 {{/unless}}
                             </div>

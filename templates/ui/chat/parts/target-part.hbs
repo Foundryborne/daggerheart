@@ -1,6 +1,6 @@
 <div class="roll-part target-section dice-roll" data-action="expandRoll">
     <div class="roll-part-header"><div><span>Target</span></div></div>
-    {{#if targetSelection}}
+    {{#if targets.length}}
         <div class="roll-part-extra on-reduced">
             <div class="wrapper">
                 <div class="target-hit-status">{{targetShort.hit}} {{#if (gt targetShort.hit 1)}}{{localize "DAGGERHEART.GENERAL.hit.single"}}{{else}}{{localize "DAGGERHEART.GENERAL.hit.plural"}}{{/if}}</div>
@@ -11,10 +11,13 @@
     <div class="roll-part-content dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">
-                {{#if targets.length}}
+                {{#if targetSelection}}
                     <div class="target-selector">
                         <div class="roll-part-header"><div></div></div>
-                        <div class="target-choice"><div {{#if targetSelection}}class="target-selected"{{/if}} data-target-hit="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.hitTarget"}}</div><div {{#unless targetSelection}}class="target-selected"{{/unless}}>{{localize "DAGGERHEART.UI.Chat.damageRoll.currentTarget"}}</div></div>
+                        <div class="target-choice">
+                            <div class="button-target-selection{{#if targetSelection}} target-selected{{/if}}" data-target-hit="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.hitTarget"}}</div>
+                            <div class="button-target-selection{{#unless targetSelection}} target-selected{{/unless}}">{{localize "DAGGERHEART.UI.Chat.damageRoll.currentTarget"}}</div>
+                        </div>
                         <div class="roll-part-header"><div></div></div>
                     </div>
                 {{/if}}

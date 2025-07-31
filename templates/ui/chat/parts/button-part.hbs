@@ -1,9 +1,17 @@
 <div class="roll-buttons">
     {{#if hasDamage}}
-        <button class="duality-action duality-action-damage">{{localize "DAGGERHEART.UI.Chat.attackRoll.rollDamage"}}</button>
+        {{#if damage.roll}}
+            <button class="duality-action damage-button">{{localize "DAGGERHEART.UI.Chat.damageRoll.dealDamage"}}</button>
+        {{else}}
+            <button class="duality-action duality-action-damage">{{localize "DAGGERHEART.UI.Chat.attackRoll.rollDamage"}}</button>
+        {{/if}}
     {{/if}}
     {{#if hasHealing}}
-        <button class="duality-action duality-action-damage">{{localize "DAGGERHEART.UI.Chat.attackRoll.rollHealing"}}</button>
+        {{#if damage.roll}}
+            <button class="duality-action damage-button">{{localize "DAGGERHEART.UI.Chat.healingRoll.applyHealing"}}</button>
+        {{else}}
+            <button class="duality-action duality-action-damage">{{localize "DAGGERHEART.UI.Chat.attackRoll.rollHealing"}}</button>
+        {{/if}}
     {{/if}}
     {{#if hasEffect}}<button>{{localize "DAGGERHEART.UI.Chat.attackRoll.applyEffect"}}</button>{{/if}}
 </div>

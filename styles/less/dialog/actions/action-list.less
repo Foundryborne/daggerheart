@@ -2,6 +2,13 @@
 @import '../../utils/colors.less';
 
 .application.daggerheart.dh-style {
+    &.max-800 {
+        max-height: 800px;
+        .tab.active {
+            overflow: auto;
+        }
+    }
+
     .actions-list,
     .action-buttons-list {
         display: flex;

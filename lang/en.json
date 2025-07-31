@@ -1717,6 +1717,7 @@
             },
             "Roll": {
                 "attack": "Attack Roll",
+                "basic": "Roll",
                 "difficulty": "Roll (Difficulty {difficulty})",
                 "primaryWeaponAttack": "Primary Weapon Attack Roll",
                 "secondaryWeaponAttack": "Secondary Weapon Attack Roll",

@@ -165,8 +165,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         const targetSelection = Boolean(event.target.dataset.targetHit),
             msg = ui.chat.collection.get(message._id);
         if (msg.system.targetSelection === targetSelection) return;
-        if (targetSelection !== true && !Array.from(game.user.targets).length)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+        // if (targetSelection !== true && !Array.from(game.user.targets).length)
+        //     return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
         msg.system.targetSelection = targetSelection;
         msg.system.prepareDerivedData();
         ui.chat.updateMessage(msg);

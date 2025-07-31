@@ -9,7 +9,7 @@ export default class DHRoll extends Roll {
 
     get title() {
         return game.i18n.localize(
-            "DAGGERHEART.GENERAL.Roll"
+            "DAGGERHEART.GENERAL.Roll.basic"
         );
     }
 

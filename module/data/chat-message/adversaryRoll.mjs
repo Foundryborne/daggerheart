@@ -36,7 +36,7 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
     }
 
     get messageTemplate() {
-        return 'systems/daggerheart/templates/ui/chat/adversary-roll.hbs';
+        return 'systems/daggerheart/templates/ui/chat/roll.hbs';
     }
 
     prepareDerivedData() {
