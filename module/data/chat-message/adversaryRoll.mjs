@@ -21,6 +21,7 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
                 })
             ),
             targetSelection: new fields.BooleanField({ initial: true }),
+            hasRoll: new fields.BooleanField({ initial: false }),
             hasDamage: new fields.BooleanField({ initial: false }),
             hasHealing: new fields.BooleanField({ initial: false }),
             hasEffect: new fields.BooleanField({ initial: false }),
