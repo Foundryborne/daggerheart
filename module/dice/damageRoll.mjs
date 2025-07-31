@@ -16,11 +16,7 @@ export default class DamageRoll extends DHRoll {
             for (const roll of config.roll) await roll.roll.evaluate();
         }
         roll._evaluated = true;
-        const parts = [];
-        for (let r of config.roll) {
-            const part = this.postEvaluate(r);
-            parts.push(part);
-        }
+        const parts = config.roll.map(r => this.postEvaluate(r));
 
         config.roll = this.unifyDamageRoll(parts);
     }

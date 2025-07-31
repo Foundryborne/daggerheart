@@ -1874,6 +1874,7 @@
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "none": "None",
+            "noTarget": "No current target",
             "partner": "Partner",
             "proficiency": "Proficiency",
             "quantity": "Quantity",

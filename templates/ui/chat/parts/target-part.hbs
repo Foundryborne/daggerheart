@@ -11,11 +11,13 @@
     <div class="roll-part-content dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">
-                <div class="target-selector">
-                    <div class="roll-part-header"><div></div></div>
-                    <div class="target-choice"><div {{#if targetSelection}}class="target-selected"{{/if}} data-target-hit="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.hitTarget"}}</div><div {{#unless targetSelection}}class="target-selected"{{/unless}}>{{localize "DAGGERHEART.UI.Chat.damageRoll.currentTarget"}}</div></div>
-                    <div class="roll-part-header"><div></div></div>
-                </div>
+                {{#if targets.length}}
+                    <div class="target-selector">
+                        <div class="roll-part-header"><div></div></div>
+                        <div class="target-choice"><div {{#if targetSelection}}class="target-selected"{{/if}} data-target-hit="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.hitTarget"}}</div><div {{#unless targetSelection}}class="target-selected"{{/unless}}>{{localize "DAGGERHEART.UI.Chat.damageRoll.currentTarget"}}</div></div>
+                        <div class="roll-part-header"><div></div></div>
+                    </div>
+                {{/if}}
                 {{#if roll.hasSave}}<div class="roll-part-extra">Reaction Roll All Targets<i class="fa-solid fa-shield fa-lg"></i></div>{{/if}}
                 {{#each currentTargets}}
                     <div class="roll-target" data-token="{{id}}">
@@ -34,6 +36,8 @@
                         </div>
                         {{#if ../roll.hasSave}}<i class="fa-solid fa-shield fa-lg"></i>{{/if}}
                     </div>
+                {{else}}
+                    <i>{{localize "DAGGERHEART.GENERAL.noTarget"}}</i>
                 {{/each}}
             </div>
         </div>

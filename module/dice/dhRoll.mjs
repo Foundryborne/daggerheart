@@ -74,9 +74,7 @@ export default class DHRoll extends Roll {
     }
 
     static postEvaluate(roll, config = {}) {
-        console.log(roll, config)
         return {
-            type: config.roll.type,
             total: roll.total,
             formula: roll.formula,
             dice: roll.dice.map(d => ({
@@ -188,7 +186,7 @@ export default class DHRoll extends Roll {
 
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async (config, message) => {
-        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;
+        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;    
         if (
             !config.source?.actor ||
             (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||

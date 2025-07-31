@@ -142,6 +142,7 @@ export default class D20Roll extends DHRoll {
 
     static postEvaluate(roll, config = {}) {
         const data = super.postEvaluate(roll, config);
+        data.type = config.roll?.type;
         if (config.targets?.length) {
             config.targetSelection = true;
             config.targets.forEach(target => {
