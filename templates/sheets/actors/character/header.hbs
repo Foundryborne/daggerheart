@@ -12,7 +12,6 @@
 
         <div class='level-div'>
             <h3 class='label'>
-                <button data-action="openSettings">Temp</button>
                 {{#if (or document.system.needsCharacterSetup document.system.levelData.canLevelUp)}}
                     <button
                         type="button"
@@ -118,6 +117,7 @@
     </div>
 
     {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
+        <button data-action="openSettings" data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.openSheetSettings"}}"><i class="fa-solid fa-wrench"></i></button>
         <div class="character-downtime-container">
             <button type="button" data-action="useDowntime" data-type="shortRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}">
                 <i class="fa-solid fa-chair"></i>

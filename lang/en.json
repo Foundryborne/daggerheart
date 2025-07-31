@@ -162,6 +162,8 @@
                 },
                 "faith": "Faith",
                 "levelUp": "You can level up",
+                "maxEvasionBonus": "Max Evasion Increase",
+                "maxHPBonus": "Max HP Increase",
                 "pronouns": "Pronouns",
                 "story": {
                     "backgroundTitle": "Background",
@@ -2244,6 +2246,8 @@
                 "openItemWorld": "Open Item World",
                 "openActorWorld": "Open Actor World",
                 "sendToChat": "Send to Chat",
+                "maxEvasionClassBound": "Your Evasion base is set on your class. This is the increase ontop of that.",
+                "maxHPClassBound": "Your max HP base is set on your class. This is the increase ontop of that.",
                 "moreOptions": "More Options",
                 "equip": "Equip",
                 "unequip": "Unequip",
@@ -2253,7 +2257,8 @@
                 "rangeAndTarget": "Range & Target",
                 "dragApplyEffect": "Drag effect to apply it to an actor",
                 "appliedEvenIfSuccessful": "Applied even if save succeeded",
-                "diceIsRerolled": "The dice has been rerolled (x{times})"
+                "diceIsRerolled": "The dice has been rerolled (x{times})",
+                "openSheetSettings": "Open Settings"
             }
         }
     }

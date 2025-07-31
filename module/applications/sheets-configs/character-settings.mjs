@@ -73,18 +73,23 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
         const experience = this.actor.system.experiences[target.dataset.experience];
         const updates = {};
 
-        const relinkData = Object.keys(this.actor.system.levelData.levelups).reduce((acc, key) => {
+        const relinkAchievementData = [];
+        const relinkSelectionData = [];
+        Object.keys(this.actor.system.levelData.levelups).forEach(key => {
             const level = this.actor.system.levelData.levelups[key];
+
+            const achievementIncludesExp = level.achievements.experiences[target.dataset.experience];
+            if (achievementIncludesExp)
+                relinkAchievementData.push({ levelKey: key, experience: target.dataset.experience });
+
             const selectionIndex = level.selections.findIndex(
                 x => x.optionKey === 'experience' && x.data[0] === target.dataset.experience
             );
             if (selectionIndex !== -1)
-                acc.push({ levelKey: key, selectionIndex, experience: target.dataset.experience });
+                relinkSelectionData.push({ levelKey: key, selectionIndex, experience: target.dataset.experience });
+        });
 
-            return acc;
-        }, []);
-
-        if (relinkData.length > 0) {
+        if (relinkAchievementData.length > 0 || relinkSelectionData.length > 0) {
             const confirmed = await foundry.applications.api.DialogV2.confirm({
                 window: {
                     title: game.i18n.localize('DAGGERHEART.ACTORS.Character.experienceDataRemoveConfirmation.title')
@@ -92,8 +97,15 @@ export default class DHCharacterSettings extends DHBaseActorSettings {
                 content: game.i18n.localize('DAGGERHEART.ACTORS.Character.experienceDataRemoveConfirmation.text')
             });
             if (!confirmed) return;
+        }
 
-            relinkData.forEach(data => {
+        if (relinkAchievementData.length > 0) {
+            relinkAchievementData.forEach(data => {
+                updates[`system.levelData.levelups.${data.levelKey}.achievements.experiences.-=${data.experience}`] =
+                    null;
+            });
+        } else if (relinkSelectionData.length > 0) {
+            relinkSelectionData.forEach(data => {
                 updates[`system.levelData.levelups.${data.levelKey}.selections`] = this.actor.system.levelData.levelups[
                     data.levelKey
                 ].selections.reduce((acc, selection, index) => {

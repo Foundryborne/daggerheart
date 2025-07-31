@@ -24,7 +24,12 @@ export default class DhCharacter extends BaseDataActor {
         return {
             ...super.defineSchema(),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
+                hitPoints: resourceField(
+                    0,
+                    'DAGGERHEART.GENERAL.HitPoints.plural',
+                    true,
+                    'DAGGERHEART.ACTORS.Character.maxHPBonus'
+                ),
                 stress: resourceField(6, 'DAGGERHEART.GENERAL.stress', true),
                 hope: resourceField(6, 'DAGGERHEART.GENERAL.hope')
             }),
@@ -505,7 +510,7 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareBaseData() {
-        this.evasion = this.class.value?.system?.evasion ?? 0;
+        this.evasion += this.class.value?.system?.evasion ?? 0;
 
         const currentLevel = this.levelData.level.current;
         const currentTier =
