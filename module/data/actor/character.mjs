@@ -320,7 +320,7 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get needsCharacterSetup() {
-        return !this.class.value || !this.class.subclass;
+        return !(this.class.value || this.class.subclass || this.ancestry || this.community);
     }
 
     get spellcastModifier() {
