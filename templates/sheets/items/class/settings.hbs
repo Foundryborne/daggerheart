@@ -31,10 +31,10 @@
             <span>{{localize "DAGGERHEART.CONFIG.Traits.knowledge.name"}}</span>
             <input type="text" name="system.characterGuide.suggestedTraits.knowledge" value="{{source.system.characterGuide.suggestedTraits.knowledge}}" />
         </fieldset>
-
+        
         <fieldset class="one-column">
             <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedEquipment"}}</legend>
-            <fieldset class="one-column drop-section primary-weapon-section">
+            <fieldset class="one-column drop-section primary-weapon-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedPrimaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#if document.system.characterGuide.suggestedPrimaryWeapon}}
@@ -42,14 +42,14 @@
                             <img class="image" src="{{document.system.characterGuide.suggestedPrimaryWeapon.img}}" />
                             <span>{{document.system.characterGuide.suggestedPrimaryWeapon.name}}</span>
                             <div class="controls">
-                                <a data-action="removeSuggestedItem" data-target="suggestedPrimaryWeapon"><i class="fa-solid fa-trash icon-button"></i></a>
+                                {{#unless (eq document.parent.type 'character')}}<a data-action="removeSuggestedItem" data-target="suggestedPrimaryWeapon"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                             </div>
                         </div>
                     {{/if}}
                 </div>
             </fieldset>
 
-            <fieldset class="one-column drop-section secondary-weapon-section">
+            <fieldset class="one-column drop-section secondary-weapon-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedSecondaryWeaponTitle"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#if document.system.characterGuide.suggestedSecondaryWeapon}}
@@ -57,14 +57,14 @@
                             <img class="image" src="{{document.system.characterGuide.suggestedSecondaryWeapon.img}}" />
                             <span>{{document.system.characterGuide.suggestedSecondaryWeapon.name}}</span>
                             <div class="controls">
-                                <a data-action="removeSuggestedItem" data-target="suggestedSecondaryWeapon"><i class="fa-solid fa-trash icon-button"></i></a>
+                                {{#unless (eq document.parent.type 'character')}}<a data-action="removeSuggestedItem" data-target="suggestedSecondaryWeapon"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                             </div>
                         </div>
                     {{/if}}
                 </div>
             </fieldset>
 
-            <fieldset class="one-column drop-section armor-section">
+            <fieldset class="one-column drop-section armor-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.suggestedArmorTitle"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#if document.system.characterGuide.suggestedArmor}}
@@ -72,7 +72,7 @@
                             <img class="image" src="{{document.system.characterGuide.suggestedArmor.img}}" />
                             <span>{{document.system.characterGuide.suggestedArmor.name}}</span>
                             <div class="controls">
-                                <a data-action="removeSuggestedItem" data-target="suggestedArmor"><i class="fa-solid fa-trash icon-button"></i></a>
+                                {{#unless (eq document.parent.type 'character')}}<a data-action="removeSuggestedItem" data-target="suggestedArmor"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                             </div>
                         </div>
                     {{/if}}
@@ -82,7 +82,7 @@
 
         <fieldset class="one-column">
             <legend>{{localize "DAGGERHEART.GENERAL.inventory"}}</legend>
-            <fieldset class="one-column drop-section take-section">
+            <fieldset class="one-column drop-section take-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.GENERAL.take"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#each source.system.inventory.take}}
@@ -91,7 +91,7 @@
                                 <img class="image" src="{{this.img}}" />
                                 <span>{{this.name}}</span>
                                 <div class="controls">
-                                    <a data-action="removeItemFromCollection" data-target="inventory.take" data-uuid="{{this.uuid}}"><i class="fa-solid fa-trash icon-button"></i></a>
+                                    {{#unless (eq document.parent.type 'character')}}<a data-action="removeItemFromCollection" data-target="inventory.take" data-uuid="{{this.uuid}}"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                                 </div>
                             </div>
                         {{/if}}
@@ -99,7 +99,7 @@
                 </div>
             </fieldset>
 
-            <fieldset class="one-column drop-section choice-a-section">
+            <fieldset class="one-column drop-section choice-a-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.thenChoose"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#each source.system.inventory.choiceA}}
@@ -108,7 +108,7 @@
                                 <img class="image" src="{{this.img}}" />
                                 <span>{{this.name}}</span>
                                 <div class="controls">
-                                    <a data-action="removeItemFromCollection" data-target="inventory.choiceA" data-uuid="{{this.uuid}}"><i class="fa-solid fa-trash icon-button"></i></a>
+                                    {{#unless (eq document.parent.type 'character')}}<a data-action="removeItemFromCollection" data-target="inventory.choiceA" data-uuid="{{this.uuid}}"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                                 </div>
                             </div>
                         {{/if}}
@@ -116,7 +116,7 @@
                 </div>
             </fieldset>
 
-            <fieldset class="one-column drop-section choice-b-section">
+            <fieldset class="one-column drop-section choice-b-section {{#if (eq document.parent.type 'character')}}inactive{{/if}}">
                 <legend>{{localize "DAGGERHEART.ITEMS.Class.guide.inventory.andEither"}}</legend>
                 <div class="drop-section-body list-items">
                     {{#each source.system.inventory.choiceB}}
@@ -125,7 +125,7 @@
                                 <img class="image" src="{{this.img}}" />
                                 <span>{{this.name}}</span>
                                 <div class="controls">
-                                    <a data-action="removeItemFromCollection" data-target="inventory.choiceB" data-uuid="{{this.uuid}}"><i class="fa-solid fa-trash icon-button"></i></a>
+                                    {{#unless (eq document.parent.type 'character')}}<a data-action="removeItemFromCollection" data-target="inventory.choiceB" data-uuid="{{this.uuid}}"><i class="fa-solid fa-trash icon-button"></i></a>{{/unless}}
                                 </div>
                             </div>
                         {{/if}}
