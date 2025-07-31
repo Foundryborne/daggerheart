@@ -165,6 +165,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             },
             dialog: {},
             type: this.type,
+            hasRoll: this.hasRoll,
             hasDamage: this.damage?.parts?.length && this.type !== 'healing',
             hasHealing: this.damage?.parts?.length && this.type === 'healing',
             hasEffect: !!this.effects?.length,

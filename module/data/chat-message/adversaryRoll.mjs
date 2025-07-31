@@ -20,7 +20,7 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
                     })
                 })
             ),
-            targetSelection: new fields.BooleanField({ initial: true }),
+            targetSelection: new fields.BooleanField({ initial: false }),
             hasRoll: new fields.BooleanField({ initial: false }),
             hasDamage: new fields.BooleanField({ initial: false }),
             hasHealing: new fields.BooleanField({ initial: false }),
@@ -47,5 +47,12 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
                       game.system.api.fields.ActionFields.TargetField.formatTarget(t)
                   )
                 : this.targets;
+        if(this.targetSelection === true) {
+            this.targetShort = this.targets.reduce((a,c) => {
+                if(c.hit) a.hit += 1;
+                else c.miss += 1;
+                return a;
+            }, {hit: 0, miss: 0})
+        }
     }
 }

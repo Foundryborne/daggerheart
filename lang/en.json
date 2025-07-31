@@ -1824,6 +1824,7 @@
             "burden": "Burden",
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
+            "criticalShort": "Critical",
             "d20Roll": "D20 Roll",
             "damage": "Damage",
             "damageRoll": "Damage Roll",
@@ -1846,6 +1847,10 @@
             "formula": "Formula",
             "healing": "Healing",
             "healingRoll": "Healing Roll",
+            "hit": {
+                "single": "Hit",
+                "plural": "Hits"
+            },
             "HitPoints": {
                 "single": "Hit Point",
                 "plural": "Hit Points",
@@ -1862,6 +1867,10 @@
             "levelUp": "Level Up",
             "loadout": "Loadout",
             "max": "Max",
+            "miss": {
+                "single": "Miss",
+                "plural": "Miss"
+            },
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "none": "None",
@@ -2147,8 +2156,9 @@
                     "dealDamageToTargets": "Damage Hit Targets",
                     "dealDamage": "Deal Damage",
                     "rollDamage": "Roll Damage",
-                    "hitTarget": "Hit Targets",
-                    "selectedTarget": "Selected"
+                    "hitTarget": "Hit",
+                    "selectedTarget": "Selected",
+                    "currentTarget": "Current"
                 },
                 "deathMove": {
                     "title": "Death Move"

@@ -143,6 +143,7 @@ export default class D20Roll extends DHRoll {
     static postEvaluate(roll, config = {}) {
         const data = super.postEvaluate(roll, config);
         if (config.targets?.length) {
+            config.targetSelection = true;
             config.targets.forEach(target => {
                 const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
                 target.hit = this.isCritical || roll.total >= difficulty;

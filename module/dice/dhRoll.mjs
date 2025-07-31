@@ -74,6 +74,7 @@ export default class DHRoll extends Roll {
     }
 
     static postEvaluate(roll, config = {}) {
+        console.log(roll, config)
         return {
             type: config.roll.type,
             total: roll.total,
