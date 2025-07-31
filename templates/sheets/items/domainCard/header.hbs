@@ -6,6 +6,10 @@
             <span class="recall-value">{{source.system.recallCost}}</span>
             <i class="fa-solid fa-bolt"></i>
         </span>
+        <span class="item-icon">
+            <span class="recall-label">{{localize (concat 'DAGGERHEART.GENERAL.Domain.' source.system.domain '.label')}}</span>
+            <img src="{{concat 'systems/daggerheart/assets/icons/domains/' source.system.domain '.svg'}}" alt="">
+        </span>
     </div>
     <div class='item-info'>
         <h1 class='item-name'><input type='text' name='name' value='{{source.name}}' /></h1>
