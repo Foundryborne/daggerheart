@@ -1,0 +1,29 @@
+{
+  "name": "Book of Ronin",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "KwZYrsSUYnHiNtPl",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Transform:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. On a success, transform into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p><p class=\"Card-Feature\"><em><strong>Eternal Enervation:</strong> </em>Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, make a <strong>Spellcast Roll</strong> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. On a success, they become permanently <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>. They can’t clear this <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip> by any means.</p></p>",
+    "domain": "codex",
+    "recallCost": 4,
+    "level": 9,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784424,
+    "modifiedTime": 1753922784424,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "SZMNR3uGNinJcN4N",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!SZMNR3uGNinJcN4N"
+}

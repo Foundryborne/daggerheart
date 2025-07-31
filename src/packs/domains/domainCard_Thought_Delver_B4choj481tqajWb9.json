@@ -1,0 +1,29 @@
+{
+  "name": "Thought Delver",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "6gA7SmNIblkMaYgr",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">You can peek into the minds of others. <strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to read the vague surface thoughts of a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. Make a<strong> </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> </strong>against the target to delve for deeper, more hidden thoughts.        </p><p class=\"Body-Foundation\">On a roll with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>, the target might, at the GM’s discretion, become aware that you’re reading their thoughts.</p></p>",
+    "domain": "grace",
+    "recallCost": 2,
+    "level": 5,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784532,
+    "modifiedTime": 1753922784532,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "B4choj481tqajWb9",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!B4choj481tqajWb9"
+}

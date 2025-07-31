@@ -69,6 +69,7 @@ export default class DHRoll extends Roll {
 
     static postEvaluate(roll, config = {}) {
         return {
+            type: config.roll.type,
             total: roll.total,
             formula: roll.formula,
             dice: roll.dice.map(d => ({

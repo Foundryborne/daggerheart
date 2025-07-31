@@ -1,0 +1,29 @@
+{
+  "name": "Deadly Focus",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "yalAnCU3SndrYImF",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.</p></p>",
+    "domain": "blade",
+    "recallCost": 2,
+    "level": 4,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784443,
+    "modifiedTime": 1753922784443,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "xxZOXC4tiZQ6kg1e",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!xxZOXC4tiZQ6kg1e"
+}

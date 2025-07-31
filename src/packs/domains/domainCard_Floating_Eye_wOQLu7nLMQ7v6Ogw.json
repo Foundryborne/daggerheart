@@ -1,0 +1,29 @@
+{
+  "name": "Floating Eye",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "u8Yz2hUTaF3N2fFT",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to create a single, small floating orb that you can move anywhere within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-far\" nexus=\"daggerheart\">Very Far</tooltip> range. While this spell is active, you can see through the orb as though you’re looking out from its position. You can transition between using your own senses and seeing through the orb freely. If the orb takes damage or moves out of range, the spell ends.        </p></p>",
+    "domain": "arcana",
+    "recallCost": 0,
+    "level": 2,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784455,
+    "modifiedTime": 1753922784455,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "wOQLu7nLMQ7v6Ogw",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!wOQLu7nLMQ7v6Ogw"
+}

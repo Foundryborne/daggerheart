@@ -1,0 +1,29 @@
+{
+  "name": "Fortified Armor",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "yalAnCU3SndrYImF",
+  "system": {
+    "description": "<p><p class=\"Body\">While you are wearing <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor\" nexus=\"daggerheart\">armor</tooltip>, gain a +2 bonus to your damage thresholds.</p></p>",
+    "domain": "blade",
+    "recallCost": 0,
+    "level": 4,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784458,
+    "modifiedTime": 1753922784458,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "oVa49lI107eZILZr",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!oVa49lI107eZILZr"
+}

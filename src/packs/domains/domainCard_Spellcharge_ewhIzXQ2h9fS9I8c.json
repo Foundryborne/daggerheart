@@ -1,0 +1,29 @@
+{
+  "name": "Spellcharge",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "taM81THa8h6Bv2Xa",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you take magic damage, place tokens equal to the number of <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> you marked on this card. You can store a number of tokens equal to your Spellcast trait.</p><p class=\"Body-Foundation\">When you make a successful attack against a target, you can spend any number of tokens to add a <strong>d6</strong> for each token spent to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"damage-roll\" nexus=\"daggerheart\">damage roll</tooltip>. </p></p>",
+    "domain": "midnight",
+    "recallCost": 1,
+    "level": 8,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784521,
+    "modifiedTime": 1753922784521,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "ewhIzXQ2h9fS9I8c",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!ewhIzXQ2h9fS9I8c"
+}

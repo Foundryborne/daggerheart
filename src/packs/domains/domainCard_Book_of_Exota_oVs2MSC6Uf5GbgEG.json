@@ -1,0 +1,29 @@
+{
+  "name": "Book of Exota",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "rUGDM9JvGfhh9a2Y",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Repudiate:</strong></em> You can interrupt a magical effect taking place. Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">reaction roll</tooltip> using your Spellcast trait. Once per rest on a success, the effect stops and any consequences are avoided. </p><p class=\"Card-Feature\"><em><strong>Create Construct:</strong></em> <strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to choose a group of objects around you and create an animated construct from them that obeys basic commands. Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> to command them to take action. When necessary, they share your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"evasion\" nexus=\"daggerheart\">Evasion</tooltip> and traits and their attacks deal <strong>2d10+3</strong> physical damage. You can only maintain one construct at a time, and they fall apart when they take any amount of damage.        </p></p>",
+    "domain": "codex",
+    "recallCost": 3,
+    "level": 4,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784420,
+    "modifiedTime": 1753922784420,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "oVs2MSC6Uf5GbgEG",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!oVs2MSC6Uf5GbgEG"
+}

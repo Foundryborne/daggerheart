@@ -1,0 +1,29 @@
+{
+  "name": "Ground Pound",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "FUzQxkv4gFc46SIs",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to strike the ground where you stand and make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"strength\" nexus=\"daggerheart\"><strong>Strength</strong></tooltip><strong> Roll</strong> against all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. Targets you succeed against are thrown back to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range and must make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (17). Targets who fail take <strong>4d10+8</strong> damage. Targets who succeed take half damage.        </p></p>",
+    "domain": "valor",
+    "recallCost": 2,
+    "level": 8,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784466,
+    "modifiedTime": 1753922784466,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "WnGldYhJPDhx8v9X",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!WnGldYhJPDhx8v9X"
+}

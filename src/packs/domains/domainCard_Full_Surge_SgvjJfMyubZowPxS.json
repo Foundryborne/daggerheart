@@ -1,0 +1,29 @@
+{
+  "name": "Full Surge",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "FUzQxkv4gFc46SIs",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, <strong>mark 3 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to push your body to its limits. Gain a +2 bonus to all of your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"character-traits\" nexus=\"daggerheart\">character traits</tooltip> until your next rest.        </p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 8,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784460,
+    "modifiedTime": 1753922784460,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "SgvjJfMyubZowPxS",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!SgvjJfMyubZowPxS"
+}

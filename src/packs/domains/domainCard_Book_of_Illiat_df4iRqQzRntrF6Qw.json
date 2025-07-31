@@ -1,0 +1,29 @@
+{
+  "name": "Book of Illiat",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "tqhasjtHBX0F20lN",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Slumber:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. On a success, they’re <em>Asleep</em> until they take damage or the GM spends a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\"><strong>Fear</strong></tooltip> on their turn to clear this <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip>.</p><p class=\"Card-Feature\"><em><strong>Arcane Barrage:</strong></em> Once per rest, <strong>spend any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> and shoot magical projectiles that strike a target of your choice within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. Roll a number of <strong>d6s</strong> equal to the Hope spent and deal that much <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"magic-damage-type\" nexus=\"daggerheart\">magic</tooltip> damage to the target.        </p><p class=\"Card-Feature\"><em><strong>Telepathy:</strong></em> <strong>Spend a Hope</strong> to open a line of mental communication with one target you can see. This connection lasts until your next rest or you cast Telepathy again.</p></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 1,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784421,
+    "modifiedTime": 1753922784421,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "df4iRqQzRntrF6Qw",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!df4iRqQzRntrF6Qw"
+}

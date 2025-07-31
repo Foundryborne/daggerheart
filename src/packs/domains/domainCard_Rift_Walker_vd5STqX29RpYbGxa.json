@@ -1,0 +1,29 @@
+{
+  "name": "Rift Walker",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "gqnmAgerh7HhNo7t",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. On a success, you place an arcane marking on the ground where you currently stand. The next time you successfully cast Rift Walker, a rift in space opens up, providing safe passage back to the exact spot where the marking was placed. This rift stays open until you choose to close it or you cast another spell.</p><p class=\"Body-Foundation-No-BOLDITALIC\">You can drop the spell at any time to cast Rift Walker again and place the marking somewhere new.</p></p>",
+    "domain": "arcana",
+    "recallCost": 2,
+    "level": 6,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784503,
+    "modifiedTime": 1753922784503,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "vd5STqX29RpYbGxa",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!vd5STqX29RpYbGxa"
+}

@@ -1,6 +1,7 @@
 @import '../utils/colors.less';
+@import '../utils/fonts.less';
 
-.application {
+.application.daggerheart {
     prose-mirror {
         height: 100% !important;
 
@@ -11,13 +12,69 @@
             scrollbar-width: thin;
             scrollbar-color: light-dark(@dark-blue, @golden) transparent;
             h1 {
-                font-size: 36px;
-            }
-            h2 {
                 font-size: 32px;
             }
+            h2 {
+                font-size: 28px;
+                font-weight: 600;
+            }
             h3 {
-                font-size: 24px;
+                font-size: 20px;
+                font-weight: 600;
+            }
+            h4 {
+                font-size: 16px;
+                color: @beige;
+                font-weight: 600;
+            }
+
+            table {
+                font-family: @font-body;
+                border-radius: 3px;
+
+                thead {
+                    background-color: light-dark(@dark-blue, @golden);
+                    color: light-dark(@beige, @dark-blue);
+                }
+
+                tr:nth-child(odd) {
+                    background-color: light-dark(@dark-blue-40, @golden-40);
+                    border-color: light-dark(@golden, @dark-blue);
+                }
+                tr:nth-child(even) {
+                    background-color: light-dark(@dark-blue-10, @golden-10);
+                    border-color: light-dark(@golden, @dark-blue);
+                }
+            }
+
+            ul,
+            ol {
+                margin: 1rem 0;
+                padding: 0 0 0 1.25rem;
+
+                li {
+                    font-family: @font-body;
+                    margin-bottom: 0.25rem;
+                }
+            }
+
+            ul {
+                list-style: disc;
+            }
+
+            pre {
+                code {
+                    border-radius: 6px;
+                    background-color: @dark;
+                    color: @beige;
+                    border-color: @dark-blue;
+                }
+            }
+
+            blockquote {
+                border-radius: 3px;
+                border-left: 3px solid light-dark(@dark-blue-40, @golden-40);
+                background-color: light-dark(@dark-blue-10, @golden-10);
             }
         }
     }

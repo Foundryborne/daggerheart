@@ -1,0 +1,29 @@
+{
+  "name": "Wall Walk",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "o7kvw9NRGvDZSce2",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to allow a creature you can touch to climb on walls and ceilings as easily as walking on the ground. This lasts until the end of the scene or you cast Wall Walk again.        </p></p>",
+    "domain": "arcana",
+    "recallCost": 1,
+    "level": 1,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784543,
+    "modifiedTime": 1753922784543,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "1ROT08E1UVBwHLAS",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!1ROT08E1UVBwHLAS"
+}

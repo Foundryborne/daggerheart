@@ -1,0 +1,29 @@
+{
+  "name": "Counterspell",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "mOv6BGhJAeGrzA84",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">You can interrupt a magical effect taking place by making a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">reaction roll</tooltip> using your Spellcast trait. On a success, the effect stops and any consequences are avoided, and this card is placed in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">vault</tooltip>.</p></p>",
+    "domain": "arcana",
+    "recallCost": 2,
+    "level": 3,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784440,
+    "modifiedTime": 1753922784440,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "6dhqo1kzGxejCjHa",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!6dhqo1kzGxejCjHa"
+}

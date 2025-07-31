@@ -1,0 +1,29 @@
+{
+  "name": "Bold Presence",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "pk4xXE8D3vTawrqj",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"presence\" nexus=\"daggerheart\">Presence</tooltip> Roll, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to add your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"strength\" nexus=\"daggerheart\">Strength </tooltip>to the roll.        </p><p class=\"Body-Foundation\">Additionally, once per rest when you would gain a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip>, you can describe how your bold presence aids you in the situation and avoid gaining the condition.</p></p>",
+    "domain": "valor",
+    "recallCost": 0,
+    "level": 2,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784418,
+    "modifiedTime": 1753922784418,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "tdsL00yTSLNgZWs6",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!tdsL00yTSLNgZWs6"
+}

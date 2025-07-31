@@ -1,0 +1,29 @@
+{
+  "name": "Eclipse",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "8qr1Y2tW3vLwNZOg",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (16)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, plunge the entire area within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range into complete darkness only you and your allies can see through. <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">Attack rolls</tooltip> have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">disadvantage</tooltip> when targeting you or an ally within this shadow.</p><p class=\"Body-Foundation\">Additionally, when you or an ally succeeds with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> against an adversary within this shadow, the target must mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</p><p class=\"Body-Foundation\">This spell lasts until the GM spends a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\"><strong>Fear</strong></tooltip> on their turn to clear this effect or you take <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe</tooltip> damage.</p></p>",
+    "domain": "midnight",
+    "recallCost": 2,
+    "level": 10,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784449,
+    "modifiedTime": 1753922784449,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "62Sj67PdPFzwWVe3",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!62Sj67PdPFzwWVe3"
+}

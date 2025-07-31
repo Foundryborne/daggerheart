@@ -1,0 +1,29 @@
+{
+  "name": "Hypnotic Shimmer",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "GhLhMfmSgGqS9bwU",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all adversaries in front of you within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip>.</p></p>",
+    "domain": "grace",
+    "recallCost": 1,
+    "level": 3,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784471,
+    "modifiedTime": 1753922784471,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "2ZeuCGVatQdPOVC6",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!2ZeuCGVatQdPOVC6"
+}

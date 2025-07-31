@@ -1,0 +1,29 @@
+{
+  "name": "Healing Strike",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Z6oglw8LIOrtBcN6",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you deal damage to an adversary, you can <strong>spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> on an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range.        </p></p>",
+    "domain": "splendor",
+    "recallCost": 1,
+    "level": 7,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784468,
+    "modifiedTime": 1753922784468,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "XtSc0jIJLOoMTMYS",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!XtSc0jIJLOoMTMYS"
+}

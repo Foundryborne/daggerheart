@@ -1,0 +1,29 @@
+{
+  "name": "I See It Coming",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "PeeIjbkBv41613yZ",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you’re targeted by an attack made from beyond <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"melee\" class=\"tooltip-convert\">Melee</tooltip> range, you can <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"marking-stress\" class=\"tooltip-convert\"><strong>mark a Stress</strong></tooltip> to roll a <strong>d4</strong> and gain a bonus to your <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"evasion\" class=\"tooltip-convert\">Evasion</tooltip> equal to the result against the attack.    </p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784472,
+    "modifiedTime": 1753922784472,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "Kp6RejHGimnuoBom",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!Kp6RejHGimnuoBom"
+}

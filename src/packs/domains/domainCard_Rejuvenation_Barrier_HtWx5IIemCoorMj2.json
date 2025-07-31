@@ -1,0 +1,29 @@
+{
+  "name": "Rejuvenation Barrier",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "qY4Zqc1Ch6p317uK",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>. While the barrier is up, you and all allies within have resistance to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"physical-damage-type\" nexus=\"daggerheart\">physical</tooltip> damage from outside the barrier.        </p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 8,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784502,
+    "modifiedTime": 1753922784502,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "HtWx5IIemCoorMj2",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!HtWx5IIemCoorMj2"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Banish",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "FcMclsLDy86EicA6",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. On a success, roll a number of <strong>d20</strong>s equal to your Spellcast trait. The target must make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">reaction roll</tooltip> with a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> equal to your highest result. On a success, the target must mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> but isn’t banished. Once per rest on a failure, they are banished from this realm. </p><p class=\"Body-Foundation\">When the PCs roll with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>, the Difficulty gains a −1 penalty and the target makes another reaction roll. On a success, they return from banishment.</p></p>",
+    "domain": "codex",
+    "recallCost": 0,
+    "level": 6,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784411,
+    "modifiedTime": 1753922784411,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "AIbHfryMA2Rvs1ut",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!AIbHfryMA2Rvs1ut"
+}

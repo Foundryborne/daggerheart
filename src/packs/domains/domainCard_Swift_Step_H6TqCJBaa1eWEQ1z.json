@@ -1,0 +1,29 @@
+{
+  "name": "Swift Step",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Hs6POmXKThDXQJBn",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When an attack made against you fails, clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>. If you can’t clear a Stress, gain a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>.</p></p>",
+    "domain": "bone",
+    "recallCost": 2,
+    "level": 10,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784526,
+    "modifiedTime": 1753922784526,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "H6TqCJBaa1eWEQ1z",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!H6TqCJBaa1eWEQ1z"
+}

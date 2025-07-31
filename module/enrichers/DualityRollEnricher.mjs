@@ -2,22 +2,23 @@ import { abilities } from '../config/actorConfig.mjs';
 import { getCommandTarget, rollCommandToJSON } from '../helpers/utils.mjs';
 
 export default function DhDualityRollEnricher(match, _options) {
-    const roll = rollCommandToJSON(match[1]);
+    const roll = rollCommandToJSON(match[1], match[0]);
     if (!roll) return match[0];
 
-    return getDualityMessage(roll);
+    return getDualityMessage(roll.result, roll.flavor);
 }
 
-function getDualityMessage(roll) {
-    const traitLabel =
-        roll.trait && abilities[roll.trait]
-            ? game.i18n.format('DAGGERHEART.GENERAL.check', {
-                  check: game.i18n.localize(abilities[roll.trait].label)
-              })
-            : null;
+function getDualityMessage(roll, flavor) {
+    const trait = roll.trait && abilities[roll.trait] ? game.i18n.localize(abilities[roll.trait].label) : null;
+    const label =
+        flavor ??
+        (roll.trait
+            ? game.i18n.format('DAGGERHEART.GENERAL.rollWith', { roll: trait })
+            : roll.reaction
+              ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
+              : game.i18n.localize('DAGGERHEART.GENERAL.duality'));
 
-    const label = traitLabel ?? game.i18n.localize('DAGGERHEART.GENERAL.duality');
-    const dataLabel = traitLabel
+    const dataLabel = trait
         ? game.i18n.localize(abilities[roll.trait].label)
         : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
@@ -38,6 +39,7 @@ function getDualityMessage(roll) {
         <button class="duality-roll-button" 
             data-title="${label}"
             data-label="${dataLabel}"
+            data-reaction="${roll.reaction ? 'true' : 'false'}"
             data-hope="${roll.hope ?? 'd12'}" 
             data-fear="${roll.fear ?? 'd12'}"
             ${advantage ? `data-advantage="${advantage}"` : ''}
@@ -46,9 +48,9 @@ function getDualityMessage(roll) {
             ${roll.advantage ? 'data-advantage="true"' : ''}
             ${roll.disadvantage ? 'data-disadvantage="true"' : ''}
         >
-            <i class="fa-solid fa-circle-half-stroke"></i>
+            ${roll.reaction ? '<i class="fa-solid fa-reply"></i>' : '<i class="fa-solid fa-circle-half-stroke"></i>'}
             ${label}
-            ${roll.difficulty || advantageLabel ? `(${[roll.difficulty, advantageLabel ? game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`) : null].filter(x => x).join(' ')})` : ''}
+            ${!flavor && (roll.difficulty || advantageLabel) ? `(${[roll.difficulty, advantageLabel ? game.i18n.localize(`DAGGERHEART.GENERAL.${advantageLabel}.short`) : null].filter(x => x).join(' ')})` : ''}
         </button>
     `;
 
@@ -57,6 +59,7 @@ function getDualityMessage(roll) {
 
 export const renderDualityButton = async event => {
     const button = event.currentTarget,
+        reaction = button.dataset.reaction === 'true',
         traitValue = button.dataset.trait?.toLowerCase(),
         target = getCommandTarget({ allowNull: true }),
         difficulty = button.dataset.difficulty,
@@ -64,12 +67,12 @@ export const renderDualityButton = async event => {
 
     await enrichedDualityRoll(
         {
+            reaction,
             traitValue,
             target,
             difficulty,
             title: button.dataset.title,
             label: button.dataset.label,
-            actionType: button.dataset.actionType,
             advantage
         },
         event
@@ -77,7 +80,7 @@ export const renderDualityButton = async event => {
 };
 
 export const enrichedDualityRoll = async (
-    { traitValue, target, difficulty, title, label, actionType, advantage },
+    { reaction, traitValue, target, difficulty, title, label, advantage },
     event
 ) => {
     const config = {
@@ -88,7 +91,7 @@ export const enrichedDualityRoll = async (
             label: label,
             difficulty: difficulty,
             advantage,
-            type: actionType ?? null // Need check,
+            type: reaction ? 'reaction' : null
         },
         chatMessage: {
             template: 'systems/daggerheart/templates/ui/chat/duality-roll.hbs'

@@ -1,0 +1,29 @@
+{
+  "name": "Shape Material",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Jbw6Teaha6So9tym",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to shape a section of natural material you’re touching (such as stone, ice, or wood) to suit your purpose. The area of the material can be no larger than you. For example, you can form a rudimentary tool or create a door.        </p><p class=\"Body-Foundation\">You can only affect the material within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range of where you’re touching it.</p></p>",
+    "domain": "splendor",
+    "recallCost": 1,
+    "level": 5,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784514,
+    "modifiedTime": 1753922784514,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "db4xV3YErHRslbVE",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!db4xV3YErHRslbVE"
+}

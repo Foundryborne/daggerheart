@@ -1,0 +1,29 @@
+{
+  "name": "Ferocity",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Q9rmrfeKqcqBNnWc",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you cause an adversary to mark 1 or more <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>, you can <strong>spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to increase your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"evasion\" nexus=\"daggerheart\">Evasion</tooltip> by the number of Hit Points they marked. This bonus lasts until after the next attack made against you.        </p></p>",
+    "domain": "bone",
+    "recallCost": 2,
+    "level": 2,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784453,
+    "modifiedTime": 1753922784453,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "jSQsSP61CX4MhSN7",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!jSQsSP61CX4MhSN7"
+}

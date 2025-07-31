@@ -1,0 +1,29 @@
+{
+  "name": "Armorer",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "XDSp0FdiYDVO0tfw",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">While you’re wearing armor, gain a +1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-score\" nexus=\"daggerheart\">Armor Score</tooltip>.</p><p class=\"Body-Foundation\">During a rest, when you choose to repair your armor as a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"downtime\" nexus=\"daggerheart\">downtime</tooltip> move, your allies also clear an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>.</p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 5,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784409,
+    "modifiedTime": 1753922784409,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "cy8GjBPGc9w9RaGO",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!cy8GjBPGc9w9RaGO"
+}

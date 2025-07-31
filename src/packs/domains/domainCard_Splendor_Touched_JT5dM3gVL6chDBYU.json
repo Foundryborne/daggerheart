@@ -1,0 +1,29 @@
+{
+  "name": "Splendor-Touched",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Z6oglw8LIOrtBcN6",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Splendor domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list\">+3 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe</tooltip> damage threshold</li><li class=\"vertical-card-list\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, when incoming damage would require you to mark a number of <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>, you can choose to mark that much <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> or spend that much <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> instead.</li></ul></p>",
+    "domain": "splendor",
+    "recallCost": 2,
+    "level": 7,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784522,
+    "modifiedTime": 1753922784522,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "JT5dM3gVL6chDBYU",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!JT5dM3gVL6chDBYU"
+}

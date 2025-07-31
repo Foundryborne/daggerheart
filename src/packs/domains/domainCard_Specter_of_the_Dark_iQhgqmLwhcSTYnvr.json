@@ -1,0 +1,29 @@
+{
+  "name": "Specter of the Dark",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "8qr1Y2tW3vLwNZOg",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to become <em>Spectral </em>until you make an action roll targeting another creature. While <em>Spectral</em>, you’re immune to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"physical-damage-type\" nexus=\"daggerheart\">physical</tooltip> damage and can float and pass through solid objects. Other creatures can still see you while you’re in this form.        </p></p>",
+    "domain": "midnight",
+    "recallCost": 1,
+    "level": 10,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784520,
+    "modifiedTime": 1753922784520,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "iQhgqmLwhcSTYnvr",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!iQhgqmLwhcSTYnvr"
+}

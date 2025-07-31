@@ -1,0 +1,29 @@
+{
+  "name": "Divination",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "vAZKNDtAafd7HDWV",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per long rest, <strong>spend 3 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to reach out to the forces beyond and ask one “yes or no” question about an event, person, place, or situation in the near future. For a moment, the present falls away and you see the answer before you.        </p></p>",
+    "domain": "splendor",
+    "recallCost": 1,
+    "level": 4,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784448,
+    "modifiedTime": 1753922784448,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "K8oFepK24UVsAX8B",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!K8oFepK24UVsAX8B"
+}

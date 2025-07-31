@@ -1,0 +1,29 @@
+{
+  "name": "Rise Up",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "nKCmeAn7ESsb4byE",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Gain a bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe </tooltip>threshold equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.</p><p class=\"Body-Foundation\">When you mark 1 or more <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> from an attack, clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</p></p>",
+    "domain": "valor",
+    "recallCost": 2,
+    "level": 6,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784504,
+    "modifiedTime": 1753922784504,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "oDIZoC4l19Nli0Fj",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!oDIZoC4l19Nli0Fj"
+}

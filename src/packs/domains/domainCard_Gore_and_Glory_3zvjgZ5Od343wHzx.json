@@ -1,0 +1,29 @@
+{
+  "name": "Gore and Glory",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "QYdeGsmVYIF34kZR",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"critical-success\" nexus=\"daggerheart\">critically succeed</tooltip> on a weapon attack, gain an additional <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> or clear an additional <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>. </p><p class=\"Body-Foundation\">Additionally, when you deal enough damage to defeat an enemy, gain a Hope or clear a Stress.</p></p>",
+    "domain": "blade",
+    "recallCost": 2,
+    "level": 9,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784464,
+    "modifiedTime": 1753922784464,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "3zvjgZ5Od343wHzx",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!3zvjgZ5Od343wHzx"
+}

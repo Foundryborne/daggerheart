@@ -1,0 +1,29 @@
+{
+  "name": "Codex-Touched",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "hh2vkggcAQ0QUE6C",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Codex domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list\">You can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to add your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip> to a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Roll</tooltip>.            </li><li class=\"vertical-card-list\">Once per rest, replace this card with any card from your vault without paying its Recall Cost.</li></ul></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 7,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784435,
+    "modifiedTime": 1753922784435,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "7Pu83ABdMukTxu3e",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!7Pu83ABdMukTxu3e"
+}

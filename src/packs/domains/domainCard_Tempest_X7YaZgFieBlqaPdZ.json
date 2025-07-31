@@ -1,0 +1,29 @@
+{
+  "name": "Tempest",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "pPzU9WOQNv3ckO1w",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Choose one of the following tempests and make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. Targets you succeed against experience its effects until the GM spends a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><em><strong>Blizzard:</strong></em> Deal <strong>2d20+8</strong> magic damage and targets are temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>.</li><li class=\"vertical-card-list\"><strong><em>Hurricane: </em></strong>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can’t move against the wind.</li><li class=\"vertical-card-list\"><em><strong>Sandstorm:</strong></em> Deal <strong>5d6+9</strong> magic damage. Attacks made from beyond <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">disadvantage</tooltip>.</li></ul></p>",
+    "domain": "sage",
+    "recallCost": 2,
+    "level": 10,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784530,
+    "modifiedTime": 1753922784530,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "X7YaZgFieBlqaPdZ",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!X7YaZgFieBlqaPdZ"
+}
