@@ -41,7 +41,7 @@ export default class MulticlassChoiceDialog extends HandlebarsApplicationMixin(A
                 description: game.i18n.localize(domain.description),
                 src: domain.src,
                 selected: value === this.selectedDomain,
-                disabled: this.actor.system.domains.includes(domain)
+                disabled: this.actor.system.domains.includes(value)
             };
         });
         context.multiclassDisabled = !this.selectedDomain;

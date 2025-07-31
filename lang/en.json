@@ -2221,6 +2221,7 @@
                 "tooHighLevel": "You cannot raise the character level past the maximum",
                 "tooLowLevel": "You cannot lower the character level below starting level",
                 "subclassNotInClass": "This subclass does not belong to your selected class.",
+                "subclassNotInMulticlass": "This subclass does not belong to your selected multiclass.",
                 "missingClass": "You don't have a class selected yet.",
                 "missingMulticlass": "Missing multiclass",
                 "wrongDomain": "The card isn't from one of your class domains.",

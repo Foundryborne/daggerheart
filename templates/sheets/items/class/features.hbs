@@ -23,38 +23,40 @@
         </fieldset>
     </div>
 
-    <fieldset>
-        <legend>{{localize "TYPES.Item.subclass"}}</legend>
-        <div class="feature-list">
-            {{#each source.system.subclasses as |subclass index|}}
-                <li class='feature-item'>
-                    <div class='feature-line'>
-                        <img class='image' src='{{subclass.img}}' />
-                        <h4>
-                            {{subclass.name}}
-                        </h4>
-                        <div class='controls'>
-                            <a
-                                class='effect-control'
-                                data-action='editDoc'
-                                data-item-uuid={{subclass.uuid}}
-                                data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
-                            >
-                                <i class="fa-solid fa-globe"></i>
-                            </a>
-                            <a
-                                class='effect-control'
-                                data-action='removeItemFromCollection'
-                                data-target="subclasses"
-                                data-uuid={{subclass.uuid}}
-                                data-tooltip='{{localize "CONTROLS.CommonDelete"}}'
-                            >
-                                <i class='fas fa-trash'></i>
-                            </a>
+    {{#unless (eq document.parent.type 'character')}}
+        <fieldset>
+            <legend>{{localize "TYPES.Item.subclass"}}</legend>
+            <div class="feature-list">
+                {{#each source.system.subclasses as |subclass index|}}
+                    <li class='feature-item'>
+                        <div class='feature-line'>
+                            <img class='image' src='{{subclass.img}}' />
+                            <h4>
+                                {{subclass.name}}
+                            </h4>
+                            <div class='controls'>
+                                <a
+                                    class='effect-control'
+                                    data-action='editDoc'
+                                    data-item-uuid={{subclass.uuid}}
+                                    data-tooltip='{{localize "DAGGERHEART.UI.Tooltip.openItemWorld"}}'
+                                >
+                                    <i class="fa-solid fa-globe"></i>
+                                </a>
+                                <a
+                                    class='effect-control'
+                                    data-action='removeItemFromCollection'
+                                    data-target="subclasses"
+                                    data-uuid={{subclass.uuid}}
+                                    data-tooltip='{{localize "CONTROLS.CommonDelete"}}'
+                                >
+                                    <i class='fas fa-trash'></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            {{/each}}
-        </div>
-    </fieldset>
+                    </li>
+                {{/each}}
+            </div>
+        </fieldset>
+    {{/unless}}
 </div>

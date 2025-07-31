@@ -6,7 +6,7 @@
         <div class="multiclass-domains-container">
             {{#each domainChoices as | choice |}}
                 <div class="domain-choice-container">
-                    <button data-action="selectDomain" data-domain="{{choice.value}}" {{#if choice.selected}}class="selected"{{/if}}>
+                    <button data-action="selectDomain" data-domain="{{choice.value}}" {{#if choice.selected}}class="selected"{{/if}} {{disabled choice.disabled}}>
                         <label>{{choice.label}}</label>
                         <img src="{{choice.src}}" />
                     </button>
