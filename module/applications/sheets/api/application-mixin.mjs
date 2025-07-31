@@ -413,17 +413,29 @@ export default function DHApplicationMixin(Base) {
             const { documentClass, type, inVault, disabled } = target.dataset;
             const parentIsItem = this.document.documentName === 'Item';
             const parent =
-                parentIsItem && documentClass === 'Item'
-                    ? type === 'action'
-                        ? this.document.system
-                        : null
-                    : this.document;
+                this.document.parent?.type === 'character'
+                    ? this.document.parent
+                    : parentIsItem && documentClass === 'Item'
+                      ? type === 'action'
+                          ? this.document.system
+                          : null
+                      : this.document;
+
+            let systemData = {};
+            if (parent?.type === 'character' && type === 'feature') {
+                systemData = {
+                    originItemType: this.document.type,
+                    originId: this.document.id,
+                    identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                };
+            }
 
             const cls =
                 type === 'action' ? game.system.api.models.actions.actionsTypes.base : getDocumentClass(documentClass);
             const data = {
                 name: cls.defaultName({ type, parent }),
-                type
+                type,
+                system: systemData
             };
             if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;

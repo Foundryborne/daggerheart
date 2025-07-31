@@ -150,10 +150,24 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static async #addFeature(_, target) {
         const { type } = target.dataset;
         const cls = foundry.documents.Item.implementation;
-        const item = await cls.create({
-            type: 'feature',
-            name: cls.defaultName({ type: 'feature' })
-        });
+
+        let systemData = {};
+        if (this.document.parent?.type === 'character') {
+            systemData = {
+                originItemType: this.document.type,
+                originId: this.document.id,
+                identifier: this.document.system.isMulticlass ? 'multiclass' : null
+            };
+        }
+
+        const item = await cls.create(
+            {
+                type: 'feature',
+                name: cls.defaultName({ type: 'feature' }),
+                system: systemData
+            },
+            { parent: this.document.parent?.type === 'character' ? this.document.parent : undefined }
+        );
         await this.document.update({
             'system.features': [...this.document.system.features, { type, item }].map(x => ({
                 ...x,

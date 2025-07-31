@@ -134,8 +134,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                         system: {
                             originItemType: this.parent.type,
                             originId: data._id,
-                            identifier: this.isMulticlass ? 'multiclass' : null,
-                            subType: feature.item ? feature.type : undefined
+                            identifier: this.isMulticlass ? 'multiclass' : null
                         }
                     },
                     { inplace: false }
