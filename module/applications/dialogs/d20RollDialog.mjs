@@ -149,16 +149,16 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     static toggleReaction() {
         if (this.config.roll) {
             this.reactionOverride = !this.reactionOverride;
+            this.config.roll.type = this.reactionOverride
+                ? CONFIG.DH.ITEM.actionTypes.reaction.id
+                : this.config.roll.type === CONFIG.DH.ITEM.actionTypes.reaction.id
+                  ? null
+                  : this.config.roll.type;
             this.render();
         }
     }
 
     static async submitRoll() {
-        this.config.roll.type = this.reactionOverride
-            ? CONFIG.DH.ITEM.actionTypes.reaction.id
-            : this.config.roll.type === CONFIG.DH.ITEM.actionTypes.reaction.id
-              ? null
-              : this.config.roll.type;
         await this.close({ submitted: true });
     }
 
