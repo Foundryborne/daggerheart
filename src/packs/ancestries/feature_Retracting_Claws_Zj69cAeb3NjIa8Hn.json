@@ -1,0 +1,133 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Retracting Claws",
+  "type": "feature",
+  "_id": "Zj69cAeb3NjIa8Hn",
+  "img": "icons/creatures/claws/claw-straight-orange.webp",
+  "system": {
+    "description": "<p>Make an <strong>Agility Roll</strong> to scratch a target within Melee range. On a success, they become temporarily Vulnerable.</p>",
+    "resource": null,
+    "actions": {
+      "LcFhDb3sJk8sraAc": {
+        "type": "attack",
+        "_id": "LcFhDb3sJk8sraAc",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "pO76svFkmWmZ6LjC",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "attack",
+          "trait": "agility",
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Scratch",
+        "img": "icons/creatures/claws/claw-straight-orange.webp",
+        "range": "melee"
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Retractable Claws",
+      "img": "icons/creatures/claws/claw-straight-orange.webp",
+      "origin": "Compendium.daggerheart.ancestries.Item.Zj69cAeb3NjIa8Hn",
+      "transfer": false,
+      "_id": "pO76svFkmWmZ6LjC",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "vulnerable"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754000434939,
+        "modifiedTime": 1754000461912,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!Zj69cAeb3NjIa8Hn.pO76svFkmWmZ6LjC"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754000306620,
+    "modifiedTime": 1754000434953,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!Zj69cAeb3NjIa8Hn"
+}

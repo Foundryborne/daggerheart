@@ -1,25 +1,38 @@
 {
   "name": "Human",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Humans are most easily recognized by their dexterous hands, rounded ears, and bodies built for endurance.<br><br><p>Their average height ranges from just under 5 feet to about 6 ½ feet. They have a wide variety of builds, with some being quite broad, others lithe, and many inhabiting the spectrum in between. Humans are physically adaptable and adjust to harsh climates with relative ease. In general, humans live to an age of about 100, with their bodies changing dramatically between their youngest and oldest years.</p></p>"
+    "description": "<p>Humans are most easily recognized by their dexterous hands, rounded ears, and bodies built for endurance.<br><br><p>Their average height ranges from just under 5 feet to about 6 ½ feet. They have a wide variety of builds, with some being quite broad, others lithe, and many inhabiting the spectrum in between. Humans are physically adaptable and adjust to harsh climates with relative ease. In general, humans live to an age of about 100, with their bodies changing dramatically between their youngest and oldest years.</p></p>",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.HMXNJZ7ynzajR2KT"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.BNofV1UC4ZbdFTkb"
+      }
+    ]
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784388,
-    "modifiedTime": 1753922784388,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1753997481487,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "wtJ5V5qRppLQn61n",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!wtJ5V5qRppLQn61n"
 }

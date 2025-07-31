@@ -1,0 +1,123 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Tusks",
+  "type": "feature",
+  "_id": "YhxD1ujZpftPu19w",
+  "img": "icons/creatures/abilities/fang-tooth-blood-red.webp",
+  "system": {
+    "description": "<p>When you succeed on an attack against a target within Melee range, you can <strong>spend a Hope</strong> to gore the target with your tusks, dealing an extra <strong>1d6</strong> damage.</p>",
+    "resource": null,
+    "actions": {
+      "1n4ZsA6s2iBAL1tG": {
+        "type": "effect",
+        "_id": "1n4ZsA6s2iBAL1tG",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/creatures/abilities/fang-tooth-blood-red.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Base",
+      "type": "base",
+      "_id": "klEyAxQa5YHXVnrl",
+      "img": "icons/creatures/abilities/fang-tooth-blood-red.webp",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.physical.dice",
+          "mode": 2,
+          "value": "1d6",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.magical.dice",
+          "mode": 2,
+          "value": "1d6",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>You <span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">gore the target with your tusks, dealing an extra </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">1d6</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> damage on this attack.</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754000662388,
+        "modifiedTime": 1754000724393,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!YhxD1ujZpftPu19w.klEyAxQa5YHXVnrl"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754000611682,
+    "modifiedTime": 1754000658375,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!YhxD1ujZpftPu19w"
+}

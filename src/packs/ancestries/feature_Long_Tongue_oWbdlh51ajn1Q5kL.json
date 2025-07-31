@@ -1,0 +1,114 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Long Tongue",
+  "type": "feature",
+  "_id": "oWbdlh51ajn1Q5kL",
+  "img": "icons/commodities/biological/tongue-violet.webp",
+  "system": {
+    "description": "<p>You can use your long tongue to grab onto things within Close range. <strong>Mark a Stress</strong> to use your tongue as a Finesse Close weapon that deals <strong>d12</strong> physical damage using your Proficiency.</p>",
+    "resource": null,
+    "actions": {
+      "MhAWv7tuvkfOf7wQ": {
+        "type": "attack",
+        "_id": "MhAWv7tuvkfOf7wQ",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "prof",
+                "dice": "d12",
+                "bonus": null,
+                "flatMultiplier": 1
+              },
+              "applyTo": "hitPoints",
+              "type": [],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "attack",
+          "trait": "finesse",
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Attack",
+        "img": "icons/commodities/biological/tongue-violet.webp",
+        "range": "close"
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754000791839,
+    "modifiedTime": 1754000854253,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!oWbdlh51ajn1Q5kL"
+}

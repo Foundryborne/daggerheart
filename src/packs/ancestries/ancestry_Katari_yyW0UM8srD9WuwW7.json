@@ -1,25 +1,38 @@
 {
   "name": "Katari",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/creatures/claws/claw-straight-orange.webp",
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Katari are feline humanoids with retractable claws, vertically slit pupils, and high, triangular ears.<br><br><p>They can also have small, pointed canine teeth, soft fur, and long whiskers that assist their perception and navigation. Their ears can swivel nearly 180 degrees to detect sound, adding to their heightened senses. Katari may look more or less feline or humanoid, with catlike attributes in the form of hair, whiskers, and a muzzle. About half of the katari population have tails. Their skin and fur come in a wide range of hues and patterns, including solid colors, calico tones, tabby stripes, and an array of spots, patches, marbling, or bands. Their height ranges from about 3 feet to 6 ½ feet, and they live to around 150 years.</p></p>"
+    "description": "<p>Katari are feline humanoids with retractable claws, vertically slit pupils, and high, triangular ears.<br><br><p>They can also have small, pointed canine teeth, soft fur, and long whiskers that assist their perception and navigation. Their ears can swivel nearly 180 degrees to detect sound, adding to their heightened senses. Katari may look more or less feline or humanoid, with catlike attributes in the form of hair, whiskers, and a muzzle. About half of the katari population have tails. Their skin and fur come in a wide range of hues and patterns, including solid colors, calico tones, tabby stripes, and an array of spots, patches, marbling, or bands. Their height ranges from about 3 feet to 6 ½ feet, and they live to around 150 years.</p></p>",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.lNgbbYnCKgrdvA85"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.Zj69cAeb3NjIa8Hn"
+      }
+    ]
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784388,
-    "modifiedTime": 1753922784388,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754000474970,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "yyW0UM8srD9WuwW7",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!yyW0UM8srD9WuwW7"
 }

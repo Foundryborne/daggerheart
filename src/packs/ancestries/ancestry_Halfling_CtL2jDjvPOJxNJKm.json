@@ -1,25 +1,38 @@
 {
   "name": "Halfling",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/tools/navigation/compass-brass-blue-red.webp",
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Halflings are small humanoids with large hairy feet and prominent rounded ears.<br><br><p>On average, halflings are 3 to 4 feet in height, and their ears, nose, and feet are larger in proportion to the rest of their body. Members of this ancestry live for around 150 years, and a halfling’s appearance is likely to remain youthful even as they progress from adulthood into old age. Halflings are naturally attuned to the magnetic fields of the Mortal Realm, granting them a strong internal compass. They also possess acute senses of hearing and smell, and can often detect those who are familiar to them by the sound of their movements.</p></p>"
+    "description": "<p>Halflings are small humanoids with large hairy feet and prominent rounded ears.<br><br><p>On average, halflings are 3 to 4 feet in height, and their ears, nose, and feet are larger in proportion to the rest of their body. Members of this ancestry live for around 150 years, and a halfling’s appearance is likely to remain youthful even as they progress from adulthood into old age. Halflings are naturally attuned to the magnetic fields of the Mortal Realm, granting them a strong internal compass. They also possess acute senses of hearing and smell, and can often detect those who are familiar to them by the sound of their movements.</p></p>",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.8O6SQQMxKWr430QA"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.e2Cu6exxtvfQzc1e"
+      }
+    ]
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784387,
-    "modifiedTime": 1753922784387,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1753997257661,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "CtL2jDjvPOJxNJKm",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!CtL2jDjvPOJxNJKm"
 }

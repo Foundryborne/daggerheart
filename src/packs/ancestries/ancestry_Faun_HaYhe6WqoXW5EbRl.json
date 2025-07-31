@@ -1,25 +1,38 @@
 {
   "name": "Faun",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/magic/nature/leaf-flower-wreath-glow-green-blue.webp",
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Fauns resemble humanoid goats with curving horns, square pupils, and cloven hooves.<br><br><p>Though their appearances may vary, most fauns have a humanoid torso and a goatlike lower body covered in dense fur. Faun faces can be more caprine or more humanlike, and they have a wide variety of ear and horn shapes. Faun horns range from short with minimal curvature to much larger with a distinct curl. The average faun ranges from 4 feet to 6 ½ feet tall, but their height can change dramatically from one moment to the next based on their stance. The majority of fauns have proportionately long limbs, no matter their size or shape, and are known for their ability to deliver powerful blows with their split hooves. Fauns live for roughly 225 years, and as they age, their appearance can become increasingly goatlike.</p></p>"
+    "description": "<p>Fauns resemble humanoid goats with curving horns, square pupils, and cloven hooves.<br><br><p>Though their appearances may vary, most fauns have a humanoid torso and a goatlike lower body covered in dense fur. Faun faces can be more caprine or more humanlike, and they have a wide variety of ear and horn shapes. Faun horns range from short with minimal curvature to much larger with a distinct curl. The average faun ranges from 4 feet to 6 ½ feet tall, but their height can change dramatically from one moment to the next based on their stance. The majority of fauns have proportionately long limbs, no matter their size or shape, and are known for their ability to deliver powerful blows with their split hooves. Fauns live for roughly 225 years, and as they age, their appearance can become increasingly goatlike.</p></p>",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.nLL2zuDDDbbyxlrQ"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.gpW19TfJk0WWFh1S"
+      }
+    ]
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784383,
-    "modifiedTime": 1753922784383,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1753995403631,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "HaYhe6WqoXW5EbRl",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!HaYhe6WqoXW5EbRl"
 }

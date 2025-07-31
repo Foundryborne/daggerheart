@@ -1,0 +1,81 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Fungril Network",
+  "type": "feature",
+  "_id": "9tmeXm623hl4Qnws",
+  "img": "icons/commodities/biological/suckers-green.webp",
+  "system": {
+    "description": "<p>Make an <strong>Instinct Roll (12)</strong> to use your mycelial array to speak with others of your ancestry. On a success, you can communicate across any distance.</p>",
+    "resource": null,
+    "actions": {
+      "ZYfigAyUdDUteczO": {
+        "type": "attack",
+        "_id": "ZYfigAyUdDUteczO",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "trait",
+          "trait": "instinct",
+          "difficulty": 12,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Communicate",
+        "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753996087513,
+    "modifiedTime": 1753996189704,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!9tmeXm623hl4Qnws"
+}

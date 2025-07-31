@@ -1,0 +1,65 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Fearless",
+  "type": "feature",
+  "_id": "IlWvn5kCqCBMuUJn",
+  "img": "icons/magic/light/orb-container-orange.webp",
+  "system": {
+    "description": "<p>When you roll with Fear, you can <strong>mark 2 Stress</strong> to change it into a roll with Hope instead.</p>",
+    "resource": null,
+    "actions": {
+      "G1H7k5RdvS1EJgFu": {
+        "type": "effect",
+        "_id": "G1H7k5RdvS1EJgFu",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 2,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/magic/light/orb-container-orange.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753999842518,
+    "modifiedTime": 1753999969945,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!IlWvn5kCqCBMuUJn"
+}
