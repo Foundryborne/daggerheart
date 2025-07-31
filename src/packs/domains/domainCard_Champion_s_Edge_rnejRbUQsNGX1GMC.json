@@ -1,0 +1,29 @@
+{
+  "name": "Champion’s Edge",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Emnx4o1DWGTVKoAg",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">When you <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"critical-success\" nexus=\"daggerheart\">critically succeed</tooltip> on an attack, you can <strong>spend up to 3 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> and choose one of the following options for each Hope spent:        </p><ul class=\"\"><li class=\"vertical-card-list\">You clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip>.</li><li class=\"vertical-card-list\">You clear an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>.</li><li class=\"vertical-card-list\">The target must mark an additional Hit Point.</li></ul><p class=\"Card-Feature\">You can’t choose the same option more than once.</p></p>",
+    "domain": "blade",
+    "recallCost": 1,
+    "level": 5,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784433,
+    "modifiedTime": 1753922784433,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "rnejRbUQsNGX1GMC",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!rnejRbUQsNGX1GMC"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "A Soldier’s Bond",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "o7t2fsAmRxKLoHrO",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, when you compliment someone or ask them about something they’re good at, you can both gain 3 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>.</p></p>",
+    "domain": "blade",
+    "recallCost": 1,
+    "level": 2,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784407,
+    "modifiedTime": 1753922784407,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "Y08dLFuPXsgeRrHi",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!Y08dLFuPXsgeRrHi"
+}
