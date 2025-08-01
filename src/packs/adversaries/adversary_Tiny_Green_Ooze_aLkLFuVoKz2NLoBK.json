@@ -55,15 +55,15 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784359,
-    "modifiedTime": 1753922784359,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754010222919,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "aLkLFuVoKz2NLoBK",
-  "sort": 3400000,
+  "sort": 3900000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,

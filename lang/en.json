@@ -930,6 +930,14 @@
                 "selectType": "Select Action Type",
                 "selectAction": "Action Selection"
             },
+            "TemplateTypes": {
+                "circle": "Circle",
+                "cone": "Cone",
+                "emanation": "Emanation",
+                "inFront": "In Front",
+                "rect": "Rectangle",
+                "ray": "Ray"
+            },
             "Traits": {
                 "agility": {
                     "name": "Agility",

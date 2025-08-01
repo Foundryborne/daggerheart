@@ -1,27 +1,27 @@
 {
-  "name": "Bear",
+  "name": "Acid Burrower",
   "img": "icons/svg/mystery-man.svg",
   "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
   "system": {
     "difficulty": 14,
     "damageThresholds": {
-      "major": 9,
-      "severe": 17
+      "major": 8,
+      "severe": 15
     },
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 7,
+        "max": 8,
         "isReversed": true
       },
       "stress": {
         "value": 0,
-        "max": 2,
+        "max": 3,
         "isReversed": true
       }
     },
-    "motivesAndTactics": "Climb, defend territory, pummel, track",
+    "motivesAndTactics": "Burrow, drag away, feed, reposition",
     "resistance": {
       "physical": {
         "resistance": false,
@@ -34,16 +34,12 @@
         "reduction": 0
       }
     },
-    "type": "bruiser",
+    "type": "solo",
     "notes": "",
     "hordeHp": 1,
     "experiences": {
-      "5ASmWCwf7HMplPDT": {
-        "name": "Ambusher",
-        "value": 3
-      },
-      "rjs6ek5OZP8inYqu": {
-        "name": "Keen Senses",
+      "pe7OIoJsqlpMXEvs": {
+        "name": "Tremor Sense",
         "value": 2
       }
     },
@@ -74,11 +70,24 @@
       }
     },
     "tier": 1,
-    "description": "<p>A large bear with thick fur and powerful claws.</p>",
+    "description": "<p>A horse-sized insect with digging claws and acidic blood.</p>",
     "attack": {
       "name": "Claws",
+      "range": "veryClose",
       "roll": {
-        "bonus": 1
+        "bonus": 3,
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
         "parts": [
@@ -87,8 +96,8 @@
               "custom": {
                 "enabled": false
               },
-              "dice": "d8",
-              "bonus": 3,
+              "dice": "d12",
+              "bonus": 2,
               "multiplier": "flat",
               "flatMultiplier": 1
             },
@@ -108,9 +117,32 @@
             },
             "base": false
           }
-        ]
+        ],
+        "includeBase": false
       },
-      "img": "icons/creatures/claws/claw-straight-brown.webp"
+      "_id": "TCKVaVweyJzhEArX",
+      "systemPath": "actions",
+      "type": "",
+      "description": "",
+      "img": "icons/creatures/claws/claw-curved-jagged-yellow.webp",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     }
   },
   "flags": {},
@@ -121,19 +153,18 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753922784226,
-    "modifiedTime": 1754012446332,
+    "createdTime": 1754010222829,
+    "modifiedTime": 1754010222919,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
-  "_id": "71qKDLKO3CsrNkdy",
-  "sort": 1200000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
+    "WafZqd6qLGpBRGTt": 3,
+    "MQSznptE5yLT7kj8": 3
   },
   "prototypeToken": {
-    "name": "Bear",
+    "name": "Acid Burrower",
     "displayName": 0,
     "actorLink": false,
     "width": 1,
@@ -228,12 +259,12 @@
   },
   "items": [
     {
-      "name": "Overwhelming Force",
+      "name": "Relentless (3)",
       "type": "feature",
-      "_id": "2fXzhh2qil8dw3vw",
-      "img": "icons/skills/melee/strike-slashes-orange.webp",
+      "_id": "MFmGN6Tbf5GYxrQ9",
+      "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
       "system": {
-        "description": "<p>Targets who mark HP from the Bear’s standard attack are knocked back to Very Close range.</p>",
+        "description": "<p>The Burrower can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -255,24 +286,22 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754012151208,
-        "modifiedTime": 1754012182512,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!71qKDLKO3CsrNkdy.2fXzhh2qil8dw3vw"
+      "_key": "!actors.items!89yAh30vaNQOALlz.MFmGN6Tbf5GYxrQ9"
     },
     {
-      "name": "Bite",
+      "name": "Earth Eruption",
       "type": "feature",
-      "_id": "zgR0MEqyobKp2yXr",
-      "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
+      "_id": "ctXYwil2D1zfsekT",
+      "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Melee range. On a success, deal <strong>3d4+10</strong> physical damage and the target is <em>Restrained</em> until they break free with a successful Strength Roll.</p>",
+        "description": "<p><strong>Mark a Stress</strong> to have the Burrower burst out of the ground. All creatures within Very Close range must succeed on an Agility Reaction Roll or be knocked over, making them Vulnerable until they next act.</p><p>@Template[type:emanation|range:vc]</p>",
         "resource": null,
         "actions": {
-          "PXL3e51eBYZ4O2lb": {
+          "4ppSeiTdbqnMzWAs": {
             "type": "attack",
-            "_id": "PXL3e51eBYZ4O2lb",
+            "_id": "4ppSeiTdbqnMzWAs",
             "systemPath": "actions",
             "description": "",
             "chatDisplay": true,
@@ -292,16 +321,279 @@
               "recovery": null
             },
             "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "9PsnogEPsp1OOK64",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Use",
+            "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Earth Eruption",
+          "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.aKVLLjMb35om4QbJ.Item.ctXYwil2D1zfsekT",
+          "transfer": false,
+          "_id": "9PsnogEPsp1OOK64",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "statuses": [
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "lastModifiedBy": null
+          },
+          "_key": "!actors.items.effects!89yAh30vaNQOALlz.ctXYwil2D1zfsekT.9PsnogEPsp1OOK64"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.items!89yAh30vaNQOALlz.ctXYwil2D1zfsekT"
+    },
+    {
+      "name": "Spit Acid",
+      "type": "feature",
+      "_id": "UpFsnlbZkyvM2Ftv",
+      "img": "icons/magic/acid/projectile-smoke-glowing.webp",
+      "system": {
+        "description": "<p>Make an attack against all targets in front of the Burrower within Close range. Targets the Burrower succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "yd10HwK6Wa3OEvv2": {
+            "type": "attack",
+            "_id": "yd10HwK6Wa3OEvv2",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
               "parts": [
                 {
                   "value": {
                     "custom": {
-                      "enabled": false
+                      "enabled": true,
+                      "formula": "2d6"
                     },
-                    "flatMultiplier": 3,
-                    "dice": "d4",
-                    "bonus": 10,
-                    "multiplier": "flat"
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                },
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "armorSlot",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/acid/projectile-smoke-glowing.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754012083498
+      },
+      "_key": "!actors.items!89yAh30vaNQOALlz.UpFsnlbZkyvM2Ftv"
+    },
+    {
+      "name": "Acid Bath",
+      "type": "feature",
+      "_id": "aNIVT5LKhwLyjKpI",
+      "img": "icons/magic/acid/dissolve-drip-droplet-smoke.webp",
+      "system": {
+        "description": "<p>When the Burrower takes Severe damage, all creatures within Close range are bathed in their acidic blood, taking <strong>1d10</strong> physical damage. This splash covers the ground within Very Close range with blood, and all creatures other than the Burrower who move through it take <strong>1d6</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "XbtTzOBvlTaxOKTy": {
+            "type": "damage",
+            "_id": "XbtTzOBvlTaxOKTy",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1d10"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
                   },
                   "applyTo": "hitPoints",
                   "type": [
@@ -326,121 +618,14 @@
               "type": "any",
               "amount": null
             },
-            "effects": [
-              {
-                "_id": "U50Ccm9emMqAxma6",
-                "onSave": false
-              }
-            ],
-            "roll": {
-              "type": "attack",
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
-            "save": {
-              "trait": null,
-              "difficulty": null,
-              "damageMod": "none"
-            },
-            "name": "Attack",
-            "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
-            "range": "melee"
-          }
-        },
-        "originItemType": null,
-        "subType": null,
-        "originId": null
-      },
-      "effects": [
-        {
-          "name": "Bite",
-          "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
-          "origin": "Compendium.daggerheart.adversaries.Actor.71qKDLKO3CsrNkdy.Item.zgR0MEqyobKp2yXr",
-          "transfer": false,
-          "_id": "U50Ccm9emMqAxma6",
-          "type": "base",
-          "system": {
-            "rangeDependence": {
-              "enabled": false,
-              "type": "withinRange",
-              "target": "hostile",
-              "range": "melee"
-            }
+            "effects": [],
+            "name": "Splash",
+            "img": "icons/magic/acid/dissolve-drip-droplet-smoke.webp",
+            "range": "close"
           },
-          "changes": [],
-          "disabled": false,
-          "duration": {
-            "startTime": null,
-            "combat": null,
-            "seconds": null,
-            "rounds": null,
-            "turns": null,
-            "startRound": null,
-            "startTurn": null
-          },
-          "description": "<p>You are <em>Restrained</em> until you break free with a successful Strength Roll.</p>",
-          "tint": "#ffffff",
-          "statuses": [
-            "restrain"
-          ],
-          "sort": 0,
-          "flags": {},
-          "_stats": {
-            "compendiumSource": null,
-            "duplicateSource": null,
-            "exportSource": null,
-            "coreVersion": "13.346",
-            "systemId": "daggerheart",
-            "systemVersion": "0.0.1",
-            "createdTime": 1754012285077,
-            "modifiedTime": 1754012313771,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
-          },
-          "_key": "!actors.items.effects!71qKDLKO3CsrNkdy.zgR0MEqyobKp2yXr.U50Ccm9emMqAxma6"
-        }
-      ],
-      "folder": null,
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754012195973,
-        "modifiedTime": 1754012285100,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
-      },
-      "_key": "!actors.items!71qKDLKO3CsrNkdy.zgR0MEqyobKp2yXr"
-    },
-    {
-      "name": "Momentum",
-      "type": "feature",
-      "_id": "4hJbq9WCwJn78frt",
-      "img": "icons/skills/melee/strike-weapons-orange.webp",
-      "system": {
-        "description": "<p>When the Bear makes a successful attack against a PC, you gain a Fear.</p>",
-        "resource": null,
-        "actions": {
-          "HawHNALF7mdigX4X": {
-            "type": "healing",
-            "_id": "HawHNALF7mdigX4X",
+          "xpcp1ECTWF20kxve": {
+            "type": "damage",
+            "_id": "xpcp1ECTWF20kxve",
             "systemPath": "actions",
             "description": "",
             "chatDisplay": true,
@@ -457,14 +642,17 @@
                   "value": {
                     "custom": {
                       "enabled": true,
-                      "formula": "1"
+                      "formula": "1d6"
                     },
                     "multiplier": "flat",
                     "flatMultiplier": 1,
                     "dice": "d6",
                     "bonus": null
                   },
-                  "applyTo": "fear",
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -475,8 +663,7 @@
                     "custom": {
                       "enabled": false
                     }
-                  },
-                  "type": []
+                  }
                 }
               ],
               "includeBase": false
@@ -486,23 +673,8 @@
               "amount": null
             },
             "effects": [],
-            "roll": {
-              "type": null,
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
-            "name": "Gain Fear",
-            "img": "icons/magic/unholy/orb-hands-pink.webp",
+            "name": "Acid Ground",
+            "img": "icons/magic/acid/dissolve-pool-bubbles.webp",
             "range": ""
           }
         },
@@ -525,13 +697,13 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754012330113,
-        "modifiedTime": 1754012418576,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!71qKDLKO3CsrNkdy.4hJbq9WCwJn78frt"
+      "_key": "!actors.items!89yAh30vaNQOALlz.aNIVT5LKhwLyjKpI"
     }
   ],
   "effects": [],
-  "_key": "!actors!71qKDLKO3CsrNkdy"
+  "_id": "89yAh30vaNQOALlz",
+  "sort": 500000,
+  "_key": "!actors!89yAh30vaNQOALlz"
 }
