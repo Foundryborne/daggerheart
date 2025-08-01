@@ -34,10 +34,15 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "skulk",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "0QeViWJm5MdiJ9GL": {
+        "name": "Camouflage",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,22 +70,59 @@
       }
     },
     "tier": 1,
-    "description": "<p>A moving mound of translucent flaming red slime.</p>"
+    "description": "<p>A moving mound of translucent flaming red slime.</p>",
+    "attack": {
+      "name": "Ooze Appendage",
+      "roll": {
+        "bonus": 1
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/creatures/slimes/slime-movement-dripping-pseudopods-green.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784338,
-    "modifiedTime": 1753922784338,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754052609388,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "9rVlbJVrDNn1x7PS",
-  "sort": 3400000,
+  "sort": 1700000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +222,318 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Creeping Fire",
+      "type": "feature",
+      "_id": "QGQTLWXIMMLUvm7c",
+      "img": "icons/magic/fire/flame-burning-embers-yellow.webp",
+      "system": {
+        "description": "<p>The Ooze can only move within Very Close range as their normal movement. They light any flammable object they touch on fi re.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052613872,
+        "modifiedTime": 1754052642573,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!9rVlbJVrDNn1x7PS.QGQTLWXIMMLUvm7c"
+    },
+    {
+      "name": "Ignite",
+      "type": "feature",
+      "_id": "JU9uVwZSM0ItnZRq",
+      "img": "icons/magic/fire/blast-jet-stream-splash.webp",
+      "system": {
+        "description": "<p>Make an attack against a target within Very Close range. On a success, the target takes <strong>1d8</strong> magic damage and is Ignited until they’re extinguished with a successful Finesse Roll (14). While Ignited, the target takes <strong>1d4</strong> magic damage when they make an action roll.</p>",
+        "resource": null,
+        "actions": {
+          "b4g8XUIKLhxDlUPy": {
+            "type": "attack",
+            "_id": "b4g8XUIKLhxDlUPy",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d8",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "9UBLk9M87VIUziAQ",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/fire/blast-jet-stream-splash.webp",
+            "range": "veryClose"
+          },
+          "6xYE9Zi8ce6bYjV8": {
+            "type": "damage",
+            "_id": "6xYE9Zi8ce6bYjV8",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Ignited Damage",
+            "img": "icons/magic/fire/blast-jet-stream-splash.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Ignited",
+          "img": "icons/magic/fire/blast-jet-stream-splash.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.9rVlbJVrDNn1x7PS.Item.JU9uVwZSM0ItnZRq",
+          "transfer": false,
+          "_id": "9UBLk9M87VIUziAQ",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>You are <em>Ignited</em> until you are extinguished with a successful Finesse Roll (14). While <em>Ignited</em>, you take <strong>1d4</strong> magic damage whenever you make an action roll.</p><p>[[/dr trait=finesse difficulty=14]]</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754052706000,
+            "modifiedTime": 1754052775735,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!9rVlbJVrDNn1x7PS.JU9uVwZSM0ItnZRq.9UBLk9M87VIUziAQ"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052646207,
+        "modifiedTime": 1754052803213,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!9rVlbJVrDNn1x7PS.JU9uVwZSM0ItnZRq"
+    },
+    {
+      "name": "Split",
+      "type": "feature",
+      "_id": "M9gAcPrgKfSg9Tjb",
+      "img": "icons/creatures/slimes/slime-movement-splashing-red.webp",
+      "system": {
+        "description": "<p>When the Ooze has 3 or more HP marked, you can <strong>spend a Fear</strong> to split them into two Tiny Red Oozes (with no marked HP or Stress). Immediately spotlight both of them.</p>",
+        "resource": null,
+        "actions": {
+          "dw6Juw8mriH7sg0e": {
+            "type": "effect",
+            "_id": "dw6Juw8mriH7sg0e",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/creatures/slimes/slime-movement-splashing-red.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052809157,
+        "modifiedTime": 1754052844133,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!9rVlbJVrDNn1x7PS.M9gAcPrgKfSg9Tjb"
+    }
+  ],
   "effects": [],
   "_key": "!actors!9rVlbJVrDNn1x7PS"
 }

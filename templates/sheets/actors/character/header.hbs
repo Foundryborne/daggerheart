@@ -18,7 +18,7 @@
                         class="level-button glow" data-tooltip="{{#if document.system.needsCharacterSetup}}{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.buttonTitle"}}{{else}}{{localize "DAGGERHEART.ACTORS.Character.levelUp"}}{{/if}}"
                         data-action="levelManagement"
                     >
-                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <i class="fa-solid fa-angles-up"></i>
                     </button>
                 {{/if}}
                 {{localize 'DAGGERHEART.GENERAL.level'}}
@@ -31,25 +31,25 @@
             {{#if document.system.class.value}}
                 <span data-action="editDoc" data-item-uuid="{{document.system.class.value.uuid}}">{{document.system.class.value.name}}</span>
             {{else}}
-                <span data-action="openPack" data-key="daggerheart.classes">{{localize 'TYPES.Item.class'}}</span>
+                <span class="missing-header-feature" data-action="openPack" data-key="daggerheart.classes">{{localize 'TYPES.Item.class'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.class.subclass}}
                 <span data-action="editDoc" data-item-uuid="{{document.system.class.subclass.uuid}}">{{document.system.class.subclass.name}}</span>
             {{else}}
-                <span data-action="openPack" data-key="daggerheart.subclass">{{localize 'TYPES.Item.subclass'}}</span>
+                <span class="missing-header-feature" data-action="openPack" data-key="daggerheart.subclasses">{{localize 'TYPES.Item.subclass'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.community}}
                 <span data-action="editDoc" data-item-uuid="{{document.system.community.uuid}}">{{document.system.community.name}}</span>
             {{else}}
-                <span data-action="openPack" data-key="daggerheart.community">{{localize 'TYPES.Item.community'}}</span>
+                <span class="missing-header-feature" data-action="openPack" data-key="daggerheart.communities">{{localize 'TYPES.Item.community'}}</span>
             {{/if}}
             <span class="dot">•</span>
             {{#if document.system.ancestry}}
                 <span data-action="editDoc" data-item-uuid="{{document.system.ancestry.uuid}}">{{document.system.ancestry.name}}</span>
             {{else}}
-                <span data-action="openPack" data-key="daggerheart.ancestry">{{localize 'TYPES.Item.ancestry'}}</span>
+                <span class="missing-header-feature" data-action="openPack" data-key="daggerheart.ancestries">{{localize 'TYPES.Item.ancestry'}}</span>
             {{/if}}
         </div>
 
@@ -64,7 +64,7 @@
                 {{#if document.system.multiclass.subclass}}
                     <span data-action="editDoc" data-item-uuid="{{document.system.multiclass.subclass.uuid}}">{{document.system.multiclass.subclass.name}}</span>
                 {{else}}
-                    <span data-action="openPack" data-key="daggerheart.subclass">{{localize 'TYPES.Item.subclass'}}</span>
+                    <span class="missing-header-feature" data-action="openPack" data-key="daggerheart.subclasses">{{localize 'TYPES.Item.subclass'}}</span>
                 {{/if}}
             </div>
         {{/if}}
@@ -85,12 +85,23 @@
                 </span>
             {{/times}}
         </div>
-        <div class="threshold-section">
-            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
-            <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
-            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
-            <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
-            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
+        {{#if document.system.class.value}}
+            <div class="domains-section">
+                {{#each document.system.class.value.system.domains as |domain|}}
+                    <div class="domain">
+                        <span class="label">{{localize (concat 'DAGGERHEART.GENERAL.Domain.' domain '.label')}}</span>
+                        <img src="{{concat 'systems/daggerheart/assets/icons/domains/' domain '.svg'}}" alt="">
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+        <div class="downtime-section">
+            <button type="button" data-action="useDowntime" data-type="shortRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}">
+                <i class="fa-solid fa-utensils"></i>
+            </button>
+            <button type="button" data-action="useDowntime" data-type="longRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}">
+                <i class="fa-solid fa-bed"></i>
+            </button>
         </div>
     </div>
 
@@ -117,13 +128,6 @@
     </div>
 
     {{#> 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
-        <div class="character-downtime-container">
-            <button type="button" data-action="useDowntime" data-type="shortRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}">
-                <i class="fa-solid fa-chair"></i>
-            </button>
-            <button type="button" data-action="useDowntime" data-type="longRest" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}}">
-                <i class="fa-solid fa-bed"></i>
-            </button>
-        </div>
+        <button data-action="openSettings" data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.openSheetSettings"}}"><i class="fa-solid fa-wrench"></i></button>
     {{/'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs'}}
 </header>

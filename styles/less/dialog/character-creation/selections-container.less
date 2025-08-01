@@ -263,24 +263,36 @@
             gap: 8px;
 
             .experience-container {
-                position: relative;
                 display: flex;
-                align-items: center;
+                flex-direction: column;
+                gap: 5px;
 
-                .experience-description {
-                    border-color: light-dark(@dark-blue, @golden);
-                    padding-right: 24px;
-                }
-
-                .experience-value {
-                    position: absolute;
-                    right: 0;
-                    width: 22px;
-                    border-left: 1px solid light-dark(@dark-blue, @golden);
-                    height: 100%;
+                .experience-inner-container {
+                    position: relative;
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+
+                    .experience-description {
+                        border-color: light-dark(@dark-blue, @golden);
+                        padding-right: 24px;
+                    }
+
+                    .experience-value {
+                        position: absolute;
+                        right: 0;
+                        width: 22px;
+                        border-left: 1px solid light-dark(@dark-blue, @golden);
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                textarea {
+                    width: 100%;
+                    resize: none;
+                    border-color: light-dark(@dark-blue, @golden);
                 }
             }
         }

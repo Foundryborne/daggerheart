@@ -1,0 +1,23 @@
+<div>
+    <div class="multiclass-container">
+        <h5 class="multiclass-explanation">{{localize "DAGGERHEART.APPLICATIONS.MulticlassChoice.explanation" class=multiclass.parent.name }}</h5>
+        <h5 class="multiclass-explanation">{{localize "DAGGERHEART.APPLICATIONS.MulticlassChoice.selectDomainPrompt" }}</h5>
+
+        <div class="multiclass-domains-container">
+            {{#each domainChoices as | choice |}}
+                <div class="domain-choice-container">
+                    <button data-action="selectDomain" data-domain="{{choice.value}}" {{#if choice.selected}}class="selected"{{/if}} {{disabled choice.disabled}}>
+                        <label>{{choice.label}}</label>
+                        <img src="{{choice.src}}" />
+                    </button>
+                    <div class="domain-description">{{choice.description}}</div>
+                </div>
+            {{/each}}
+        </div>
+
+        <footer>
+            <button data-action="close">{{localize "Cancel"}}</button>
+            <button data-action="save" {{disabled multiclassDisabled}}>{{localize "DAGGERHEART.GENERAL.multiclass"}}</button>
+        </footer>
+    </div>
+</div>

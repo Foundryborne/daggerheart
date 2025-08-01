@@ -33,10 +33,15 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "horde",
     "notes": "",
-    "hordeHp": 1,
-    "experiences": {},
+    "hordeHp": 5,
+    "experiences": {
+      "4SUFXKZh33mFvNt9": {
+        "name": "Camouflage",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -64,22 +69,62 @@
       }
     },
     "tier": 1,
-    "description": "<p>Dozens of fist-sized mosquitoes, flying together for protection.</p>"
+    "description": "<p>Dozens of fist-sized mosquitoes, flying together for protection.</p>",
+    "motivesAndTactics": "Fly away, harass, steal blood",
+    "attack": {
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d4",
+              "bonus": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "resultBased": false,
+            "base": false
+          }
+        ]
+      },
+      "name": "Proboscis",
+      "img": "icons/skills/wounds/blood-cells-vessel-red.webp",
+      "roll": {
+        "bonus": -2,
+        "type": "attack"
+      },
+      "range": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784269,
-    "modifiedTime": 1753922784269,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754046262389,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "IIWV4ysJPFPnTP7W",
-  "sort": 3400000,
+  "sort": 2800000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -179,7 +224,233 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
-  "effects": [],
+  "items": [
+    {
+      "name": "Horde (1d4+1)",
+      "type": "feature",
+      "_id": "9RduwBLYcBaiouYk",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
+      "system": {
+        "description": "<p>When the Mosquitoes have marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754044549944,
+        "modifiedTime": 1754044591579,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!IIWV4ysJPFPnTP7W.9RduwBLYcBaiouYk"
+    },
+    {
+      "name": "Flying",
+      "type": "feature",
+      "_id": "gxYV6iTMM1S9Vv5v",
+      "img": "icons/commodities/biological/wing-insect-green.webp",
+      "system": {
+        "description": "<p>While flying, the Mosquitoes have a +2 bonus to their Difficulty.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Flying",
+          "type": "base",
+          "_id": "aATxfjeOzUYtKuU6",
+          "img": "icons/commodities/biological/wing-insect-green.webp",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.difficulty",
+              "mode": 2,
+              "value": "2",
+              "priority": null
+            }
+          ],
+          "disabled": true,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>While flying, the Mosquitoes have a +2 bonus to their Difficulty.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754046389966,
+            "modifiedTime": 1754046415469,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!IIWV4ysJPFPnTP7W.gxYV6iTMM1S9Vv5v.aATxfjeOzUYtKuU6"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754046355588,
+        "modifiedTime": 1754046387649,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!IIWV4ysJPFPnTP7W.gxYV6iTMM1S9Vv5v"
+    },
+    {
+      "name": "Bloodsucker",
+      "type": "feature",
+      "_id": "BTlMLjG65KQs0Jk2",
+      "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
+      "system": {
+        "description": "<p>When the Mosquitoes’ attack causes a target to mark HP, you can <strong>mark a Stress</strong> to force the target to mark an additional HP.</p>",
+        "resource": null,
+        "actions": {
+          "7ee6IhkKYDehjLmg": {
+            "type": "effect",
+            "_id": "7ee6IhkKYDehjLmg",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754046426987,
+        "modifiedTime": 1754046474428,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!IIWV4ysJPFPnTP7W.BTlMLjG65KQs0Jk2"
+    }
+  ],
+  "effects": [
+    {
+      "type": "horde",
+      "name": "Horde",
+      "img": "icons/magic/movement/chevrons-down-yellow.webp",
+      "disabled": true,
+      "_id": "dQgcYTz5vmV25Y6G",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "duration": {
+        "startTime": 0,
+        "combat": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754045860587,
+        "modifiedTime": 1754046339705,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.effects!IIWV4ysJPFPnTP7W.dQgcYTz5vmV25Y6G"
+    }
+  ],
   "_key": "!actors!IIWV4ysJPFPnTP7W"
 }

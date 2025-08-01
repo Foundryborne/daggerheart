@@ -311,8 +311,12 @@ export default function DHApplicationMixin(Base) {
                     name: 'CONTROLS.CommonEdit',
                     icon: 'fa-solid fa-pen-to-square',
                     condition: target => {
+                        const { dataset } = target.closest('[data-item-uuid]');
                         const doc = getDocFromElementSync(target);
-                        return !doc || !doc.hasOwnProperty('systemPath') || doc.inCollection;
+                        return (
+                            (!dataset.noCompendiumEdit && !doc) ||
+                            (doc && (!doc?.hasOwnProperty('systemPath') || doc?.inCollection))
+                        );
                     },
                     callback: async target => (await getDocFromElement(target)).sheet.render({ force: true })
                 }
@@ -413,17 +417,29 @@ export default function DHApplicationMixin(Base) {
             const { documentClass, type, inVault, disabled } = target.dataset;
             const parentIsItem = this.document.documentName === 'Item';
             const parent =
-                parentIsItem && documentClass === 'Item'
-                    ? type === 'action'
-                        ? this.document.system
-                        : null
-                    : this.document;
+                this.document.parent?.type === 'character'
+                    ? this.document.parent
+                    : parentIsItem && documentClass === 'Item'
+                      ? type === 'action'
+                          ? this.document.system
+                          : null
+                      : this.document;
+
+            let systemData = {};
+            if (parent?.type === 'character' && type === 'feature') {
+                systemData = {
+                    originItemType: this.document.type,
+                    originId: this.document.id,
+                    identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                };
+            }
 
             const cls =
                 type === 'action' ? game.system.api.models.actions.actionsTypes.base : getDocumentClass(documentClass);
             const data = {
                 name: cls.defaultName({ type, parent }),
-                type
+                type,
+                system: systemData
             };
             if (inVault) data['system.inVault'] = true;
             if (disabled) data.disabled = true;

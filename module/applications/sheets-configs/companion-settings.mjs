@@ -10,6 +10,8 @@ export default class DHCompanionSettings extends DHBaseActorSettings {
         classes: ['companion-settings'],
         position: { width: 455, height: 'auto' },
         actions: {
+            addExperience: DHCompanionSettings.#addExperience,
+            removeExperience: DHCompanionSettings.#removeExperience,
             levelUp: DHCompanionSettings.#levelUp
         }
     };
@@ -86,6 +88,38 @@ export default class DHCompanionSettings extends DHBaseActorSettings {
         await this.actor.update({ 'system.partner': value });
 
         if (!value) await this.actor.updateLevel(1);
+    }
+
+    /**
+     * Adds a new experience entry to the actor.
+     * @type {ApplicationClickAction}
+     */
+    static async #addExperience() {
+        const newExperience = {
+            name: 'Experience',
+            modifier: 0
+        };
+        await this.actor.update({ [`system.experiences.${foundry.utils.randomID()}`]: newExperience });
+    }
+
+    /**
+     * Removes an experience entry from the actor.
+     * @type {ApplicationClickAction}
+     */
+    static async #removeExperience(_, target) {
+        const experience = this.actor.system.experiences[target.dataset.experience];
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.title', {
+                    type: game.i18n.localize(`DAGGERHEART.GENERAL.Experience.single`),
+                    name: experience.name
+                })
+            },
+            content: game.i18n.format('DAGGERHEART.APPLICATIONS.DeleteConfirmation.text', { name: experience.name })
+        });
+        if (!confirmed) return;
+
+        await this.actor.update({ [`system.experiences.-=${target.dataset.experience}`]: null });
     }
 
     /**

@@ -4,12 +4,24 @@
 
 // Theme header backgrounds
 .appTheme({
-    .character-header-sheet .trait {
-        background: url(../assets/svg/trait-shield.svg) no-repeat;
+    .character-header-sheet {
+        .trait {
+            background: url(../assets/svg/trait-shield.svg) no-repeat;
+        }
+
+        .character-row .domains-section img {
+            filter: invert(88%) sepia(98%) saturate(1784%) hue-rotate(311deg) brightness(104%) contrast(91%);
+        }
     }
 }, {
-    .character-header-sheet .trait {
+    .character-header-sheet {
+        .trait {
             background: url('../assets/svg/trait-shield-light.svg') no-repeat;
+        }
+
+        .character-row .domains-section img {
+            filter: invert(87%) sepia(15%) saturate(343%) hue-rotate(333deg) brightness(110%) contrast(87%);
+        }
     }
 });
 
@@ -88,6 +100,11 @@
             font-size: 12px;
             color: light-dark(@dark-blue, @golden);
 
+            .missing-header-feature {
+                opacity: 0.5;
+                text-decoration: line-through;
+            }
+
             span {
                 padding: 3px;
                 border-radius: 3px;
@@ -107,14 +124,27 @@
 
         .character-row {
             display: flex;
-            gap: 20px;
             align-items: center;
-            justify-content: space-between;
             padding: 0;
             margin-bottom: 15px;
 
+            .hope-section {
+                margin-right: 20px;
+            }
+
+            .downtime-section {
+                display: flex;
+                align-items: center;
+                gap: 2px;
+                margin-left: auto;
+
+                button {
+                    flex: 1;
+                }
+            }
+
             .hope-section,
-            .threshold-section {
+            .domains-section {
                 position: relative;
                 display: flex;
                 gap: 10px;
@@ -132,21 +162,24 @@
                     font-weight: bold;
                     text-transform: uppercase;
                     color: light-dark(@dark-blue, @golden);
-
-                    &.threshold-value {
-                        color: light-dark(@dark, @beige);
-                    }
                 }
 
-                .threshold-legend {
-                    position: absolute;
-                    bottom: -21px;
-                    color: light-dark(@golden, @dark-blue);
-                    background-color: light-dark(@dark-blue, @golden);
-                    padding: 3px;
-                    justify-self: anchor-center;
-                    border-radius: 0 0 3px 3px;
-                    text-transform: capitalize;
+                .domain {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    .label {
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        color: light-dark(@dark-blue, @golden);
+                    }
+
+                    img {
+                        height: 20px;
+                        width: 20px;
+                    }
                 }
 
                 .hope-value {
@@ -191,15 +224,6 @@
                     font-size: 20px;
                     text-align: center;
                 }
-            }
-        }
-
-        .character-downtime-container {
-            display: flex;
-            gap: 2px;
-
-            button {
-                flex: 1;
             }
         }
     }

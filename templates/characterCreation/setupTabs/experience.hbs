@@ -9,8 +9,12 @@
             <div class="experiences-inner-container">
                 {{#each experience.values as |experience id|}}
                     <div class="experience-container">
-                        <input class="experience-description" type="text" name="{{concat "experiences." id ".name" }}" value="{{experience.name}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.newExperience"}}" />
-                        <div class="experience-value">{{numberFormat this.value sign=true}}</div>
+                        <div class="experience-inner-container">
+                            <input class="experience-description" type="text" name="{{concat "experiences." id ".name" }}" value="{{experience.name}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.newExperience"}}" />
+                            <div class="experience-value">{{numberFormat this.value sign=true}}</div>
+                        </div>
+
+                        <textarea name="{{concat "experiences." id ".description"}}">{{experience.description}}</textarea>
                     </div>
                 {{/each}}
             </div>

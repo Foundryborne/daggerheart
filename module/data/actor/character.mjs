@@ -4,6 +4,7 @@ import DhLevelData from '../levelData.mjs';
 import BaseDataActor from './base.mjs';
 import { attributeField, resourceField, stressDamageReductionRule, bonusField } from '../fields/actorField.mjs';
 import { ActionField } from '../fields/actionField.mjs';
+import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 
 export default class DhCharacter extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
@@ -12,6 +13,7 @@ export default class DhCharacter extends BaseDataActor {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.character',
             type: 'character',
+            settingSheet: DHCharacterSettings,
             isNPC: false
         });
     }
@@ -22,7 +24,12 @@ export default class DhCharacter extends BaseDataActor {
         return {
             ...super.defineSchema(),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
+                hitPoints: resourceField(
+                    0,
+                    'DAGGERHEART.GENERAL.HitPoints.plural',
+                    true,
+                    'DAGGERHEART.ACTORS.Character.maxHPBonus'
+                ),
                 stress: resourceField(6, 'DAGGERHEART.GENERAL.stress', true),
                 hope: resourceField(6, 'DAGGERHEART.GENERAL.hope')
             }),
@@ -56,7 +63,8 @@ export default class DhCharacter extends BaseDataActor {
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField(),
-                    value: new fields.NumberField({ integer: true, initial: 0 })
+                    value: new fields.NumberField({ integer: true, initial: 0 }),
+                    description: new fields.StringField()
                 })
             ),
             gold: new fields.SchemaField({
@@ -312,7 +320,7 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get needsCharacterSetup() {
-        return !this.class.value || !this.class.subclass;
+        return !(this.class.value || this.class.subclass || this.ancestry || this.community);
     }
 
     get spellcastModifier() {
@@ -399,11 +407,16 @@ export default class DhCharacter extends BaseDataActor {
             } else if (item.system.originItemType === CONFIG.DH.ITEM.featureTypes.subclass.id) {
                 if (this.class.subclass) {
                     const subclassState = this.class.subclass.system.featureState;
-                    const subType = item.system.subType;
+                    const subclass =
+                        item.system.identifier === 'multiclass' ? this.multiclass.subclass : this.class.subclass;
+                    const featureType = subclass
+                        ? (subclass.system.features.find(x => x.item?.uuid === item.uuid)?.type ?? null)
+                        : null;
+
                     if (
-                        subType === CONFIG.DH.ITEM.featureSubTypes.foundation ||
-                        (subType === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
-                        (subType === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
+                        featureType === CONFIG.DH.ITEM.featureSubTypes.foundation ||
+                        (featureType === CONFIG.DH.ITEM.featureSubTypes.specialization && subclassState >= 2) ||
+                        (featureType === CONFIG.DH.ITEM.featureSubTypes.mastery && subclassState >= 3)
                     ) {
                         subclassFeatures.push(item);
                     }
@@ -502,7 +515,7 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareBaseData() {
-        this.evasion = this.class.value?.system?.evasion ?? 0;
+        this.evasion += this.class.value?.system?.evasion ?? 0;
 
         const currentLevel = this.levelData.level.current;
         const currentTier =
@@ -511,37 +524,39 @@ export default class DhCharacter extends BaseDataActor {
                 : Object.values(game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LevelTiers).tiers).find(
                       tier => currentLevel >= tier.levels.start && currentLevel <= tier.levels.end
                   ).tier;
-        for (let levelKey in this.levelData.levelups) {
-            const level = this.levelData.levelups[levelKey];
+        if (game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto) {
+            for (let levelKey in this.levelData.levelups) {
+                const level = this.levelData.levelups[levelKey];
 
-            this.proficiency += level.achievements.proficiency;
+                this.proficiency += level.achievements.proficiency;
 
-            for (let selection of level.selections) {
-                switch (selection.type) {
-                    case 'trait':
-                        selection.data.forEach(data => {
-                            this.traits[data].value += 1;
-                            this.traits[data].tierMarked = selection.tier === currentTier;
-                        });
-                        break;
-                    case 'hitPoint':
-                        this.resources.hitPoints.max += selection.value;
-                        break;
-                    case 'stress':
-                        this.resources.stress.max += selection.value;
-                        break;
-                    case 'evasion':
-                        this.evasion += selection.value;
-                        break;
-                    case 'proficiency':
-                        this.proficiency += selection.value;
-                        break;
-                    case 'experience':
-                        Object.keys(this.experiences).forEach(key => {
-                            const experience = this.experiences[key];
-                            experience.value += selection.value;
-                        });
-                        break;
+                for (let selection of level.selections) {
+                    switch (selection.type) {
+                        case 'trait':
+                            selection.data.forEach(data => {
+                                this.traits[data].value += 1;
+                                this.traits[data].tierMarked = selection.tier === currentTier;
+                            });
+                            break;
+                        case 'hitPoint':
+                            this.resources.hitPoints.max += selection.value;
+                            break;
+                        case 'stress':
+                            this.resources.stress.max += selection.value;
+                            break;
+                        case 'evasion':
+                            this.evasion += selection.value;
+                            break;
+                        case 'proficiency':
+                            this.proficiency += selection.value;
+                            break;
+                        case 'experience':
+                            selection.data.forEach(id => {
+                                const experience = this.experiences[id];
+                                if (experience) experience.value += selection.value;
+                            });
+                            break;
+                    }
                 }
             }
         }

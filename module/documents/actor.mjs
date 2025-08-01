@@ -172,26 +172,30 @@ export default class DhpActor extends Actor {
     }
 
     async levelUp(levelupData) {
+        const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+
         const levelups = {};
         for (var levelKey of Object.keys(levelupData)) {
             const level = levelupData[levelKey];
 
-            for (var experienceKey in level.achievements.experiences) {
-                const experience = level.achievements.experiences[experienceKey];
-                await this.update({
-                    [`system.experiences.${experienceKey}`]: {
-                        name: experience.name,
-                        value: experience.modifier
-                    }
-                });
-
-                if (this.system.companion) {
-                    await this.system.companion.update({
+            if (levelupAuto) {
+                for (var experienceKey in level.achievements.experiences) {
+                    const experience = level.achievements.experiences[experienceKey];
+                    await this.update({
                         [`system.experiences.${experienceKey}`]: {
-                            name: '',
+                            name: experience.name,
                             value: experience.modifier
                         }
                     });
+
+                    if (this.system.companion) {
+                        await this.system.companion.update({
+                            [`system.experiences.${experienceKey}`]: {
+                                name: '',
+                                value: experience.modifier
+                            }
+                        });
+                    }
                 }
             }
 
@@ -250,74 +254,86 @@ export default class DhpActor extends Actor {
             }
 
             for (var addition of featureAdditions) {
-                for (var featureData of addition.features) {
-                    const feature = new DHFeature({
-                        ...featureData,
-                        description: game.i18n.localize(featureData.description)
-                    });
-
-                    const document = featureData.toPartner && this.system.partner ? this.system.partner : this;
-                    const embeddedItem = await document.createEmbeddedDocuments('Item', [
-                        {
+                if (levelupAuto) {
+                    for (var featureData of addition.features) {
+                        const feature = new DHFeature({
                             ...featureData,
-                            name: game.i18n.localize(featureData.name),
-                            type: 'feature',
-                            system: feature
-                        }
-                    ]);
-                    const newFeature = {
-                        onPartner: Boolean(featureData.toPartner && this.system.partner),
-                        id: embeddedItem[0].id
-                    };
-                    addition.checkbox.features = !addition.checkbox.features
-                        ? [newFeature]
-                        : [...addition.checkbox.features, newFeature];
+                            description: game.i18n.localize(featureData.description)
+                        });
+
+                        const document = featureData.toPartner && this.system.partner ? this.system.partner : this;
+                        const embeddedItem = await document.createEmbeddedDocuments('Item', [
+                            {
+                                ...featureData,
+                                name: game.i18n.localize(featureData.name),
+                                type: 'feature',
+                                system: feature
+                            }
+                        ]);
+                        const newFeature = {
+                            onPartner: Boolean(featureData.toPartner && this.system.partner),
+                            id: embeddedItem[0].id
+                        };
+                        addition.checkbox.features = !addition.checkbox.features
+                            ? [newFeature]
+                            : [...addition.checkbox.features, newFeature];
+                    }
                 }
 
                 selections.push(addition.checkbox);
             }
 
             if (multiclass) {
-                const subclassItem = await foundry.utils.fromUuid(multiclass.secondaryData.subclass);
-                const subclassData = subclassItem.toObject();
-                const multiclassItem = await foundry.utils.fromUuid(multiclass.data[0]);
-                const multiclassData = multiclassItem.toObject();
+                if (levelupAuto) {
+                    const subclassItem = await foundry.utils.fromUuid(multiclass.secondaryData.subclass);
+                    const subclassData = subclassItem.toObject();
+                    const multiclassItem = await foundry.utils.fromUuid(multiclass.data[0]);
+                    const multiclassData = multiclassItem.toObject();
 
-                const embeddedItem = await this.createEmbeddedDocuments('Item', [
-                    {
-                        ...multiclassData,
-                        system: {
-                            ...multiclassData.system,
-                            domains: [multiclass.secondaryData.domain],
-                            isMulticlass: true
+                    const embeddedItem = await this.createEmbeddedDocuments('Item', [
+                        {
+                            ...multiclassData,
+                            system: {
+                                ...multiclassData.system,
+                                domains: [multiclass.secondaryData.domain],
+                                isMulticlass: true
+                            }
                         }
-                    }
-                ]);
+                    ]);
 
-                await this.createEmbeddedDocuments('Item', [
-                    {
-                        ...subclassData,
-                        system: {
-                            ...subclassData.system,
-                            isMulticlass: true
+                    await this.createEmbeddedDocuments('Item', [
+                        {
+                            ...subclassData,
+                            system: {
+                                ...subclassData.system,
+                                isMulticlass: true
+                            }
                         }
-                    }
-                ]);
-                selections.push({ ...multiclass, itemUuid: embeddedItem[0].uuid });
+                    ]);
+                    selections.push({ ...multiclass, itemUuid: embeddedItem[0].uuid });
+                } else {
+                    selections.push({ ...multiclass });
+                }
             }
 
             for (var domainCard of domainCards) {
-                const item = await foundry.utils.fromUuid(domainCard.data[0]);
-                const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
-                selections.push({ ...domainCard, itemUuid: embeddedItem[0].uuid });
+                if (levelupAuto) {
+                    const item = await foundry.utils.fromUuid(domainCard.data[0]);
+                    const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                    selections.push({ ...domainCard, itemUuid: embeddedItem[0].uuid });
+                } else {
+                    selections.push({ ...domainCard });
+                }
             }
 
             const achievementDomainCards = [];
-            for (var card of Object.values(level.achievements.domainCards)) {
-                const item = await foundry.utils.fromUuid(card.uuid);
-                const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
-                card.itemUuid = embeddedItem[0].uuid;
-                achievementDomainCards.push(card);
+            if (levelupAuto) {
+                for (var card of Object.values(level.achievements.domainCards)) {
+                    const item = await foundry.utils.fromUuid(card.uuid);
+                    const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                    card.itemUuid = embeddedItem[0].uuid;
+                    achievementDomainCards.push(card);
+                }
             }
 
             if (subclassFeatureState.class) {

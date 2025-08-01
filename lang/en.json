@@ -162,11 +162,25 @@
                 },
                 "faith": "Faith",
                 "levelUp": "You can level up",
+                "maxEvasionBonus": "Max Evasion Increase",
+                "maxHPBonus": "Max HP Increase",
                 "pronouns": "Pronouns",
                 "story": {
                     "backgroundTitle": "Background",
                     "characteristics": "Characteristics",
                     "connectionsTitle": "Connections"
+                },
+                "experienceDataRemoveConfirmation": {
+                    "title": "Remove Experience Data",
+                    "text": "The experience you are about to remove has levelup data linked to it (assumably because you did levelups with the 'levelupAuto' automation setting on). Removing it will remove this automation data aswell. Do you want to proceed?"
+                },
+                "manualMulticlass": {
+                    "title": "Multiclass",
+                    "text": "Do you want to add this class as your multiclass?"
+                },
+                "manualMulticlassSubclass": {
+                    "title": "Multiclass Subclass",
+                    "text": "Do you want to add this subclass as your multiclass subclass?"
                 }
             },
             "Companion": {
@@ -459,6 +473,11 @@
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
                 "title": "{actor} Level Up"
+            },
+            "MulticlassChoice": {
+                "title": "Multiclassing - {actor}",
+                "explanation": "You are adding {class} as your multiclass",
+                "selectDomainPrompt": "Select your new domain"
             },
             "OwnershipSelection": {
                 "title": "Ownership Selection - {name}",
@@ -929,6 +948,14 @@
             "SelectAction": {
                 "selectType": "Select Action Type",
                 "selectAction": "Action Selection"
+            },
+            "TemplateTypes": {
+                "circle": "Circle",
+                "cone": "Cone",
+                "emanation": "Emanation",
+                "inFront": "In Front",
+                "rect": "Rectangle",
+                "ray": "Ray"
             },
             "Traits": {
                 "agility": {
@@ -1872,6 +1899,7 @@
                 "single": "Miss",
                 "plural": "Miss"
             },
+            "maxWithThing": "Max {thing}",
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "none": "None",
@@ -2028,6 +2056,10 @@
                         "label": "Hope & Fear",
                         "gm": { "label": "GM" },
                         "players": { "label": "Players" }
+                    },
+                    "levelupAuto": {
+                        "label": "Levelup Automation",
+                        "hint": "When you've made your choices and finish levelup, the numerical changes are automatically applied to your character."
                     },
                     "actionPoints": {
                         "label": "Action Points",
@@ -2216,7 +2248,9 @@
                 "tooHighLevel": "You cannot raise the character level past the maximum",
                 "tooLowLevel": "You cannot lower the character level below starting level",
                 "subclassNotInClass": "This subclass does not belong to your selected class.",
+                "subclassNotInMulticlass": "This subclass does not belong to your selected multiclass.",
                 "missingClass": "You don't have a class selected yet.",
+                "missingMulticlass": "Missing multiclass",
                 "wrongDomain": "The card isn't from one of your class domains.",
                 "cardTooHighLevel": "The card is too high level!",
                 "duplicateCard": "You cannot select the same card more than once.",
@@ -2246,7 +2280,9 @@
                 "beastformToManyFeatures": "You cannot select any more features.",
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
                 "loadoutMaxReached": "You already have {max} cards in your loadout. Move atleast one to your vault before adding a new one.",
-                "insufficientResources": "You have insufficient resources"
+                "insufficientResources": "You have insufficient resources",
+                "multiclassAlreadyPresent": "You already have a class and multiclass",
+                "subclassesAlreadyPresent": "You already have a class and multiclass subclass"
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
@@ -2254,6 +2290,8 @@
                 "openItemWorld": "Open Item World",
                 "openActorWorld": "Open Actor World",
                 "sendToChat": "Send to Chat",
+                "maxEvasionClassBound": "Your Evasion base is set on your class. This is the increase ontop of that.",
+                "maxHPClassBound": "Your max HP base is set on your class. This is the increase ontop of that.",
                 "moreOptions": "More Options",
                 "equip": "Equip",
                 "unequip": "Unequip",
@@ -2264,7 +2302,11 @@
                 "dragApplyEffect": "Drag effect to apply it to an actor",
                 "appliedEvenIfSuccessful": "Applied even if save succeeded",
                 "diceIsRerolled": "The dice has been rerolled (x{times})",
+<<<<<<< HEAD
                 "pendingSaves": "Pending Reaction Rolls"
+=======
+                "openSheetSettings": "Open Settings"
+>>>>>>> main
             }
         }
     }

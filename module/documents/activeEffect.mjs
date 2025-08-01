@@ -1,7 +1,6 @@
 import { itemAbleRollParse } from '../helpers/utils.mjs';
 
 export default class DhActiveEffect extends foundry.documents.ActiveEffect {
-
     /* -------------------------------------------- */
     /*  Properties                                  */
     /* -------------------------------------------- */
@@ -78,8 +77,8 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /**
      * Altered Foundry safeEval to allow non-numeric return
-     * @param {string} expression 
-     * @returns 
+     * @param {string} expression
+     * @returns
      */
     static effectSafeEval(expression) {
         let result;
@@ -95,13 +94,15 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
     }
 
     /**
-    * Generates a list of localized tags based on this item's type-specific properties.
-    * @returns {string[]} An array of localized tag strings.
-    */
+     * Generates a list of localized tags based on this item's type-specific properties.
+     * @returns {string[]} An array of localized tag strings.
+     */
     _getTags() {
         const tags = [
             `${game.i18n.localize(this.parent.system.metadata.label)}: ${this.parent.name}`,
-            game.i18n.localize(this.isTemporary ? 'DAGGERHEART.EFFECTS.Duration.temporary' : 'DAGGERHEART.EFFECTS.Duration.passive')
+            game.i18n.localize(
+                this.isTemporary ? 'DAGGERHEART.EFFECTS.Duration.temporary' : 'DAGGERHEART.EFFECTS.Duration.passive'
+            )
         ];
 
         for (const statusId of this.statuses) {

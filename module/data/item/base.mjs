@@ -125,18 +125,36 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         }
 
         if (this.actor && this.actor.type === 'character' && this.features) {
+            const featureUpdates = {};
             for (let f of this.features) {
-                const feature = f.item ?? f;
-                const createData = foundry.utils.mergeObject(feature.toObject(), {
-                    system: {
-                        originItemType: this.parent.type,
-                        originId: data._id,
-                        identifier: feature.identifier,
-                        subType: feature.item ? feature.type : undefined
-                    }
-                }, { inplace: false });
-                await this.actor.createEmbeddedDocuments('Item', [createData]);
+                const fBase = f.item ?? f;
+                const feature = fBase.system ? fBase : await foundry.utils.fromUuid(fBase.uuid);
+                const createData = foundry.utils.mergeObject(
+                    feature.toObject(),
+                    {
+                        system: {
+                            originItemType: this.parent.type,
+                            originId: data._id,
+                            identifier: this.isMulticlass ? 'multiclass' : null
+                        }
+                    },
+                    { inplace: false }
+                );
+                const [doc] = await this.actor.createEmbeddedDocuments('Item', [createData]);
+
+                if (!featureUpdates.features)
+                    featureUpdates.features = this.features.map(x => (x.item ? { ...x, item: x.item.uuid } : x.uuid));
+
+                if (f.item) {
+                    const existingFeature = featureUpdates.features.find(x => x.item === f.item.uuid);
+                    existingFeature.item = doc.uuid;
+                } else {
+                    const replaceIndex = featureUpdates.features.findIndex(x => x === f.uuid);
+                    featureUpdates.features.splice(replaceIndex, 1, doc.uuid);
+                }
             }
+
+            await this.updateSource(featureUpdates);
         }
     }
 

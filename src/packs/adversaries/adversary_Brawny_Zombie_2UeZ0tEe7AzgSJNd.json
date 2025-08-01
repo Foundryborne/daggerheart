@@ -34,10 +34,19 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "bruiser",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "BKNynHS8sUlJSt9P": {
+        "name": "Collateral Damage",
+        "value": 2
+      },
+      "Kq5ZfACqF0EIjKIq": {
+        "name": "Throw",
+        "value": 4
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,22 +74,61 @@
       }
     },
     "tier": 1,
-    "description": "<p>A large corpse, decay-bloated and angry.</p>"
+    "description": "<p>A large corpse, decay-bloated and angry.</p>",
+    "attack": {
+      "name": "Slam",
+      "roll": {
+        "bonus": 2,
+        "type": "attack"
+      },
+      "range": "veryClose",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d12",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784231,
-    "modifiedTime": 1753922784231,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754046150943,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "2UeZ0tEe7AzgSJNd",
-  "sort": 3400000,
+  "sort": 400000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +228,302 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Slow",
+      "type": "feature",
+      "_id": "yBaLF9DwPH2GSRKf",
+      "img": "icons/magic/time/hourglass-brown-orange.webp",
+      "system": {
+        "description": "<p>When you spotlight the Zombie and they don’t have a token on their stat block, they can’t act yet. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the Zombie and they have a token on their stat block, clear the token and they can act.</p>",
+        "resource": {
+          "type": "simple",
+          "value": 0,
+          "max": "1",
+          "icon": "fa-solid fa-hourglass-half"
+        },
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754013235761,
+        "modifiedTime": 1754013348057,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2UeZ0tEe7AzgSJNd.yBaLF9DwPH2GSRKf"
+    },
+    {
+      "name": "Rend Asunder",
+      "type": "feature",
+      "_id": "LP7xVLMTkJsmiIvl",
+      "img": "icons/skills/melee/strike-slashes-red.webp",
+      "system": {
+        "description": "<p>Make a standard attack with advantage against a target the Zombie has <em>Restrained</em>. On a success, the attack deals direct damage.</p>",
+        "resource": null,
+        "actions": {
+          "qCcWw60cPZnEWbpG": {
+            "type": "attack",
+            "_id": "qCcWw60cPZnEWbpG",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d12",
+                    "bonus": 3,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/melee/strike-slashes-red.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754013355113,
+        "modifiedTime": 1754013446559,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2UeZ0tEe7AzgSJNd.LP7xVLMTkJsmiIvl"
+    },
+    {
+      "name": "Rip and Tear",
+      "type": "feature",
+      "_id": "69reUZ5tv3splqyO",
+      "img": "icons/creatures/abilities/mouth-teeth-lamprey-red.webp",
+      "system": {
+        "description": "<p>When the Zombies makes a successful standard attack, you can <strong>mark a Stress</strong> to temporarily Restrain the target and force them to mark 2 Stress.</p>",
+        "resource": null,
+        "actions": {
+          "xV1z3dk9c7jIkk7v": {
+            "type": "damage",
+            "_id": "xV1z3dk9c7jIkk7v",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "2"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "CjMrSdL6kgD8mKRQ",
+                "onSave": false
+              }
+            ],
+            "name": "Damage",
+            "img": "icons/creatures/abilities/mouth-teeth-lamprey-red.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Rip and Tear",
+          "img": "icons/creatures/abilities/mouth-teeth-lamprey-red.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.2UeZ0tEe7AzgSJNd.Item.69reUZ5tv3splqyO",
+          "transfer": false,
+          "_id": "CjMrSdL6kgD8mKRQ",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrained"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754013588940,
+            "modifiedTime": 1754013596861,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!2UeZ0tEe7AzgSJNd.69reUZ5tv3splqyO.CjMrSdL6kgD8mKRQ"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754013473713,
+        "modifiedTime": 1754013614420,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2UeZ0tEe7AzgSJNd.69reUZ5tv3splqyO"
+    }
+  ],
   "effects": [],
   "_key": "!actors!2UeZ0tEe7AzgSJNd"
 }

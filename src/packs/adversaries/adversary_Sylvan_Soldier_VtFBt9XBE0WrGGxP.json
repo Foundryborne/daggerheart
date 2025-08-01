@@ -37,7 +37,12 @@
     "type": "standard",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "3HwCDcCvzVnicJKe": {
+        "name": "Tracker",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,22 +70,59 @@
       }
     },
     "tier": 1,
-    "description": "<p>A faerie warrior adorned in armor made of leaves and bark.</p>"
+    "description": "<p>A faerie warrior adorned in armor made of leaves and bark.</p>",
+    "attack": {
+      "name": "Scythe",
+      "img": "icons/weapons/sickles/scythe-bone-jagged.webp",
+      "roll": {
+        "bonus": 0
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 1,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784356,
-    "modifiedTime": 1753922784356,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754054370297,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "VtFBt9XBE0WrGGxP",
-  "sort": 3400000,
+  "sort": 3600000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +222,349 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Pack tactics",
+      "type": "feature",
+      "_id": "uo5DbPuQQ018Pyfd",
+      "img": "icons/creatures/abilities/wolf-howl-moon-purple.webp",
+      "system": {
+        "description": "<p>If the Soldier makes a standard attack and another Sylvan Soldier is within Melee range of the target, deal <strong>1d8+5</strong> physical damage instead of their standard damage.</p>",
+        "resource": null,
+        "actions": {
+          "dmlz83o2JOAoGiuK": {
+            "type": "attack",
+            "_id": "dmlz83o2JOAoGiuK",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d8",
+                    "bonus": 5,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/creatures/abilities/wolf-howl-moon-purple.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754054372208,
+        "modifiedTime": 1754054415661,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!VtFBt9XBE0WrGGxP.uo5DbPuQQ018Pyfd"
+    },
+    {
+      "name": "Forest Control",
+      "type": "feature",
+      "_id": "phtxvgptyvT3WoeK",
+      "img": "icons/environment/wilderness/tree-spruce.webp",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to pull down a tree within Close range. A creature hit by the tree must succeed on an Agility Reaction Roll (15) or take <strong>1d10</strong> physical damage.</p>",
+        "resource": null,
+        "actions": {
+          "UyL02IaAO3m8LgWI": {
+            "type": "attack",
+            "_id": "UyL02IaAO3m8LgWI",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d10",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": 15,
+              "damageMod": "none"
+            },
+            "name": "Pull Tree",
+            "img": "icons/environment/wilderness/tree-spruce.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754054421332,
+        "modifiedTime": 1754054505735,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!VtFBt9XBE0WrGGxP.phtxvgptyvT3WoeK"
+    },
+    {
+      "name": "Blend In",
+      "type": "feature",
+      "_id": "1dmKoSnV82sLc8xZ",
+      "img": "icons/magic/nature/root-vine-leaves-green.webp",
+      "system": {
+        "description": "<p>When the Soldier makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the Soldier’s next attack or a PC succeeds on an Instinct Roll (14) to fi nd them.</p>",
+        "resource": null,
+        "actions": {
+          "l32BjO9J0jFvD0Zy": {
+            "type": "effect",
+            "_id": "l32BjO9J0jFvD0Zy",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "xyXPmPIOtqXYF1TJ",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/magic/nature/root-vine-leaves-green.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Blend In",
+          "img": "icons/magic/nature/root-vine-leaves-green.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.VtFBt9XBE0WrGGxP.Item.1dmKoSnV82sLc8xZ",
+          "transfer": false,
+          "_id": "xyXPmPIOtqXYF1TJ",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Become Hidden until the Soldier’s next attack or a PC succeeds on an Instinct Roll (14) to fi nd them.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "hidden"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754054562723,
+            "modifiedTime": 1754054581921,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!VtFBt9XBE0WrGGxP.1dmKoSnV82sLc8xZ.xyXPmPIOtqXYF1TJ"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754054512042,
+        "modifiedTime": 1754054562730,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!VtFBt9XBE0WrGGxP.1dmKoSnV82sLc8xZ"
+    }
+  ],
   "effects": [],
   "_key": "!actors!VtFBt9XBE0WrGGxP"
 }

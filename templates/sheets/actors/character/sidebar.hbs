@@ -1,6 +1,17 @@
 <aside class="character-sidebar-sheet">
     <div class="portrait {{#if isDeath}}death-roll{{/if}}">
         <img src="{{document.img}}" alt="{{document.name}}" data-action='editImage' data-edit="img">
+        {{#if document.system.class.subclass.system.spellcastingTrait}}
+            <div class="icons-list">
+                <span class="spellcast-icon {{#if isDeath}}no-label{{/if}}">
+                    <span class="spellcast-label">
+                        {{localize "DAGGERHEART.ITEMS.Subclass.spellcastingTrait"}}: 
+                        {{localize (concat 'DAGGERHEART.CONFIG.Traits.' document.system.class.subclass.system.spellcastingTrait '.short')}}
+                    </span>
+                    <i class="fa-solid fa-wand-sparkles"></i>
+                </span>
+            </div>
+        {{/if}}
         <a class="death-roll-btn" data-tooltip="DAGGERHEART.UI.Tooltip.makeDeathMove" {{#if
             isDeath}}data-action="makeDeathMove" {{/if}}><i class="fas fa-skull death-save"></i></a>
     </div>
@@ -87,6 +98,13 @@
                 </div>
             </div>
         </div>
+        <div class="threshold-section">
+            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
+            <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
+            <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
+            <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
+        </div>
     </div>
 
     <div class="shortcut-items-section">
@@ -142,18 +160,17 @@
             </div>
             <div class="experience-list">
                 {{#each document.system.experiences as |experience id|}}
-                <div class="experience-row">
-                    <div class="experience-value">
-                        +{{experience.value}}
+                    <div class="experience-row" data-tooltip-text="{{experience.description}}">
+                        <div class="experience-value">
+                            +{{experience.value}}
+                        </div>
+                        <span>{{experience.name}}</span>
+                        <div class="controls">
+                            <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
+                                <i class="fa-regular fa-message"></i>
+                            </a>
+                        </div>
                     </div>
-                    <input name="system.experiences.{{id}}.name" data-experience={{id}}
-                        value="{{experience.name}}" type="text" />
-                    <div class="controls">
-                        <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">
-                            <i class="fa-regular fa-message"></i>
-                        </a>
-                    </div>
-                </div>
                 {{/each}}
             </div>
         </div>

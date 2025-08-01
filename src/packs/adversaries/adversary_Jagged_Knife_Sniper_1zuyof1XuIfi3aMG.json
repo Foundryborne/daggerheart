@@ -36,7 +36,12 @@
     "type": "standard",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "GLqSqPJcyKHQYMtO": {
+        "name": "Stealth",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -64,22 +69,61 @@
       }
     },
     "tier": 1,
-    "description": "<p>A lanky bandit striking from cover with a shortbow.</p>"
+    "description": "<p>A lanky bandit striking from cover with a shortbow.</p>",
+    "motivesAndTactics": "Ambush, hide, profi t, reposition",
+    "attack": {
+      "name": "Shortbow",
+      "img": "icons/weapons/bows/shortbow-leather.webp",
+      "roll": {
+        "bonus": -1
+      },
+      "range": "far",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d10",
+              "bonus": 2,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784296,
-    "modifiedTime": 1753922784296,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754049439023,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "1zuyof1XuIfi3aMG",
-  "sort": 3400000,
+  "sort": 300000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -179,7 +223,116 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Unseen Strike",
+      "type": "feature",
+      "_id": "adPXzpvLREjN3len",
+      "img": "icons/skills/ranged/arrow-flying-spiral-blue.webp",
+      "system": {
+        "description": "<p>If the Sniper is <em>Hidden</em> when they make a successful standard attack against a target, they deal <strong>1d10+4</strong> physical damage instead of their standard damage.</p>",
+        "resource": null,
+        "actions": {
+          "2eX7P0wSfbKKu8dJ": {
+            "type": "attack",
+            "_id": "2eX7P0wSfbKKu8dJ",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d10",
+                    "bonus": 4,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/ranged/arrow-flying-spiral-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754049443033,
+        "modifiedTime": 1754049483638,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!1zuyof1XuIfi3aMG.adPXzpvLREjN3len"
+    }
+  ],
   "effects": [],
   "_key": "!actors!1zuyof1XuIfi3aMG"
 }

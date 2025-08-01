@@ -12,17 +12,32 @@
         .experience-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+        }
 
-            .experience-item {
+        .experience-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .experience-inner-item {
                 display: grid;
                 grid-template-columns: 3fr 1fr 30px;
                 align-items: center;
                 gap: 5px;
 
+                &.no-controls {
+                    grid-template-columns: 3fr 1fr;
+                }
+
                 a {
                     text-align: center;
                 }
+            }
+
+            textarea {
+                width: 100%;
+                resize: none;
             }
         }
     }

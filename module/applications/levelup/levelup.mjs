@@ -46,7 +46,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         tabs: { template: 'systems/daggerheart/templates/levelup/tabs/tab-navigation.hbs' },
         advancements: { template: 'systems/daggerheart/templates/levelup/tabs/advancements.hbs' },
         selections: { template: 'systems/daggerheart/templates/levelup/tabs/selections.hbs' },
-        summary: { template: 'systems/daggerheart/templates/levelup/tabs/summary.hbs' }
+        summary: { template: 'systems/daggerheart/templates/levelup/tabs/summary.hbs' },
+        footer: { template: 'systems/daggerheart/templates/levelup/tabs/footer.hbs' }
     };
 
     static TABS = {
@@ -95,6 +96,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         const context = await super._prepareContext(_options);
         context.levelup = this.levelup;
         context.tabs = this._getTabs(this.constructor.TABS);
+        context.levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
 
         return context;
     }

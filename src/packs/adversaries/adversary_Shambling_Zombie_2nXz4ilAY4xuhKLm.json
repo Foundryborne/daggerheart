@@ -65,22 +65,59 @@
       }
     },
     "tier": 1,
-    "description": "<p>An animated corpse that moves shakily, driven only by hunger.</p>"
+    "description": "<p>An animated corpse that moves shakily, driven only by hunger.</p>",
+    "attack": {
+      "name": "Bite",
+      "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
+      "roll": {
+        "bonus": 0
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d6",
+              "bonus": 1,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784342,
-    "modifiedTime": 1753922784342,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754053203019,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "2nXz4ilAY4xuhKLm",
-  "sort": 3400000,
+  "sort": 600000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +217,129 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Too Many to Handle",
+      "type": "feature",
+      "_id": "IpUWqXjwP2Lp5Zhs",
+      "img": "icons/magic/death/undead-zombie-grave-green.webp",
+      "system": {
+        "description": "<p>When the Zombie is within Melee range of a creature and at least one other Zombie is within Close range, all attacks against that creature have advantage.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754053211277,
+        "modifiedTime": 1754053245814,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2nXz4ilAY4xuhKLm.IpUWqXjwP2Lp5Zhs"
+    },
+    {
+      "name": "Horrifying",
+      "type": "feature",
+      "_id": "iiOjamlZIuhpDC8W",
+      "img": "icons/magic/death/skull-energy-light-purple.webp",
+      "system": {
+        "description": "<p> Targets who mark HP from the Zombie’s attacks must also mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "JUw16Jag9uTfBmKZ": {
+            "type": "damage",
+            "_id": "JUw16Jag9uTfBmKZ",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "name": "Stress Damage",
+            "img": "icons/magic/death/skull-energy-light-purple.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754053249379,
+        "modifiedTime": 1754053287602,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2nXz4ilAY4xuhKLm.iiOjamlZIuhpDC8W"
+    }
+  ],
   "effects": [],
   "_key": "!actors!2nXz4ilAY4xuhKLm"
 }

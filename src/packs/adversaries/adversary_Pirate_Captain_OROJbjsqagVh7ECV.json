@@ -34,10 +34,19 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "leader",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "ndSzzasQ0JcMPJ6W": {
+        "name": "Commander",
+        "value": 2
+      },
+      "N0jWLtKmD5Cy6CjY": {
+        "name": "Sailor",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,22 +74,59 @@
       }
     },
     "tier": 1,
-    "description": "<p>A charismatic sea dog with an impressive hat, eager to raid and plunder.</p>"
+    "description": "<p>A charismatic sea dog with an impressive hat, eager to raid and plunder.</p>",
+    "attack": {
+      "name": "Cutlass",
+      "img": "icons/weapons/swords/scimitar-worn-blue.webp",
+      "roll": {
+        "bonus": 4
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d12",
+              "bonus": 2,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784325,
-    "modifiedTime": 1753922784325,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754052049963,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "OROJbjsqagVh7ECV",
-  "sort": 3400000,
+  "sort": 3200000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +226,308 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Swashbuckler",
+      "type": "feature",
+      "_id": "PsMA3x6giL8tixbf",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+      "system": {
+        "description": "<p>When the Captain marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "xYphrI8GtMHHuT9a": {
+            "type": "damage",
+            "_id": "xYphrI8GtMHHuT9a",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "name": "Damage Stress",
+            "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052051501,
+        "modifiedTime": 1754052096031,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!OROJbjsqagVh7ECV.PsMA3x6giL8tixbf"
+    },
+    {
+      "name": "Reinforcements",
+      "type": "feature",
+      "_id": "WGEGO0DSOs5cF0EL",
+      "img": "icons/environment/people/charge.webp",
+      "system": {
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon a Pirate Raiders Horde, which appears at Far range.</p>",
+        "resource": null,
+        "actions": {
+          "NlgIp0KrmZoS27Xy": {
+            "type": "effect",
+            "_id": "NlgIp0KrmZoS27Xy",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/environment/people/charge.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052100431,
+        "modifiedTime": 1754052144255,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!OROJbjsqagVh7ECV.WGEGO0DSOs5cF0EL"
+    },
+    {
+      "name": "No Quarter",
+      "type": "feature",
+      "_id": "brHnMc0TDiWVT4U6",
+      "img": "icons/magic/death/skull-energy-light-purple.webp",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to choose a target who has three or more Pirates within Melee range of them. The Captain leads the Pirates in hurling threats and promises of a watery grave. The target must make a Presence Reaction Roll. On a failure, the target marks <strong>1d4+1</strong> Stress. On a success, they must mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "h2vM7jDTeFttVJKN": {
+            "type": "attack",
+            "_id": "h2vM7jDTeFttVJKN",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": 1,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/death/skull-energy-light-purple.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052150420,
+        "modifiedTime": 1754052237336,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!OROJbjsqagVh7ECV.brHnMc0TDiWVT4U6"
+    },
+    {
+      "name": "Momentum",
+      "type": "feature",
+      "_id": "V4EcsqMd70BTrDNu",
+      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "system": {
+        "description": "<p>When the Captain makes a successful attack against a PC, you gain a Fear.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052246000,
+        "modifiedTime": 1754052257935,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!OROJbjsqagVh7ECV.V4EcsqMd70BTrDNu"
+    }
+  ],
   "effects": [],
   "_key": "!actors!OROJbjsqagVh7ECV"
 }

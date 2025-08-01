@@ -34,9 +34,9 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "horde",
     "notes": "",
-    "hordeHp": 1,
+    "hordeHp": 10,
     "experiences": {},
     "bonuses": {
       "roll": {
@@ -65,22 +65,59 @@
       }
     },
     "tier": 1,
-    "description": "<p>A skittering mass of ordinary rodents moving as one like a ravenous wave.</p>"
+    "description": "<p>A skittering mass of ordinary rodents moving as one like a ravenous wave.</p>",
+    "attack": {
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 2,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d4",
+              "bonus": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "resultBased": false,
+            "base": false
+          }
+        ]
+      },
+      "name": "Claws",
+      "img": "icons/creatures/claws/claw-straight-brown.webp",
+      "roll": {
+        "bonus": -3
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784356,
-    "modifiedTime": 1753922784356,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754054274609,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "qNgs3AbLyJrY19nt",
-  "sort": 3400000,
+  "sort": 4700000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +217,116 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
-  "effects": [],
+  "items": [
+    {
+      "name": "Horde (1d4+1)",
+      "type": "feature",
+      "_id": "9Zuu892SO5NmtI4w",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
+      "system": {
+        "description": "<p>When the Swarm has marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754054278838,
+        "modifiedTime": 1754054298798,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!qNgs3AbLyJrY19nt.9Zuu892SO5NmtI4w"
+    },
+    {
+      "name": "In Your Face",
+      "type": "feature",
+      "_id": "0O6ckwZE34RBnjpB",
+      "img": "icons/creatures/mammals/rodent-rat-green.webp",
+      "system": {
+        "description": "<p>All targets within Melee range have disadvantage on attacks against targets other than the Swarm.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754054301414,
+        "modifiedTime": 1754054322869,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!qNgs3AbLyJrY19nt.0O6ckwZE34RBnjpB"
+    }
+  ],
+  "effects": [
+    {
+      "type": "horde",
+      "name": "Horde",
+      "img": "icons/magic/movement/chevrons-down-yellow.webp",
+      "disabled": true,
+      "_id": "FOV6AzngiR0PZyuN",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "duration": {
+        "startTime": 0,
+        "combat": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754054244649,
+        "modifiedTime": 1754054244649,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.effects!qNgs3AbLyJrY19nt.FOV6AzngiR0PZyuN"
+    }
+  ],
   "_key": "!actors!qNgs3AbLyJrY19nt"
 }

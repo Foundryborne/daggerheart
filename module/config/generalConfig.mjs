@@ -43,6 +43,12 @@ export const range = {
     }
 };
 
+export const templateTypes = {
+    ...CONST.MEASURED_TEMPLATE_TYPES,
+    EMANATION: 'emanation',
+    INFRONT: 'inFront'
+};
+
 export const rangeInclusion = {
     withinRange: {
         id: 'withinRange',

@@ -1,0 +1,42 @@
+<section
+    class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
+    data-tab='{{tabs.details.id}}'
+    data-group='{{tabs.details.group}}'
+>
+    <fieldset class="one-column">
+        <legend>{{localize 'DAGGERHEART.GENERAL.Trait.plural'}}</legend>
+
+        <div class="nest-inputs">
+            <div class="traits-inner-container">
+                {{#each document._source.system.traits as | trait key |}}
+                    <div class="trait-container">
+                        <div>{{localize (concat "DAGGERHEART.CONFIG.Traits." key ".name" )}}</div>
+                        <input type="text" data-dtype="Number" name="{{concat "system.traits." key ".value"}}" value="{{trait.value}}" />
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="one-column">
+        <legend>{{localize 'DAGGERHEART.GENERAL.basics'}}</legend>
+
+        <div class="two-columns even">
+            {{formGroup systemFields.resources.fields.hitPoints.fields.value value=document._source.system.resources.hitPoints.value localize=true}}
+            <span data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.maxHPClassBound"}}">
+                {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document._source.system.resources.hitPoints.max localize=true}}
+            </span>
+
+            {{formGroup systemFields.resources.fields.stress.fields.value value=document._source.system.resources.stress.value localize=true}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=document._source.system.resources.stress.max localize=true}}
+
+            {{formGroup systemFields.resources.fields.hope.fields.value value=document._source.system.resources.hope.value localize=true}}
+            {{formGroup systemFields.resources.fields.hope.fields.max value=document._source.system.resources.hope.max localize=true}}
+
+            {{formGroup systemFields.proficiency value=document._source.system.proficiency localize=true}}
+            <span data-tooltip-text="{{localize "DAGGERHEART.UI.Tooltip.maxEvasionClassBound"}}">
+                {{formGroup systemFields.evasion value=document._source.system.evasion label="DAGGERHEART.ACTORS.Character.maxEvasionBonus" localize=true}}
+            </span>
+        </div>
+    </fieldset>
+</section>

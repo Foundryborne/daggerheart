@@ -17,10 +17,15 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "minion",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "tNLKSFvNBTfjwujs": {
+        "name": "Thief",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -49,22 +54,68 @@
     },
     "difficulty": 9,
     "tier": 1,
-    "description": "<p>A thief with simple clothes and small daggers, eager to prove themselves.</p>"
+    "description": "<p>A thief with simple clothes and small daggers, eager to prove themselves.</p>",
+    "attack": {
+      "name": "Daggers",
+      "img": "icons/weapons/daggers/dagger-twin-green.webp",
+      "roll": {
+        "bonus": -2
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": true,
+                "formula": "2"
+              },
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    },
+    "resources": {
+      "hitPoints": {
+        "max": 1
+      },
+      "stress": {
+        "max": 1
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784293,
-    "modifiedTime": 1753922784293,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754048849157,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "C0OMQqV7pN6t7ouR",
-  "sort": 3400000,
+  "sort": 2100000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -164,7 +215,107 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Minion (3)",
+      "type": "feature",
+      "_id": "hfP30YIlYDW9wkHe",
+      "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
+      "system": {
+        "description": "<p>The Lackey is defeated when they take any damage. For every 3 damage a PC deals to the Lackey, defeat an additional Minion within range the attack would succeed against.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754048850501,
+        "modifiedTime": 1754048890330,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!C0OMQqV7pN6t7ouR.hfP30YIlYDW9wkHe"
+    },
+    {
+      "name": "Group Attack",
+      "type": "feature",
+      "_id": "1k5TmQIAunM7Bv32",
+      "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Jagged Knife Lackeys within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 2 physical damage each. Combine this damage.</p>",
+        "resource": null,
+        "actions": {
+          "aoQDb2m32NDxE6ZP": {
+            "type": "effect",
+            "_id": "aoQDb2m32NDxE6ZP",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754048894188,
+        "modifiedTime": 1754048930970,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!C0OMQqV7pN6t7ouR.1k5TmQIAunM7Bv32"
+    }
+  ],
   "effects": [],
   "_key": "!actors!C0OMQqV7pN6t7ouR"
 }

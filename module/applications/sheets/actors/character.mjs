@@ -717,10 +717,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
         });
     }
 
+    /**
+     *  Open the downtime application.
+     * @type {ApplicationClickAction}
+     */
     static useDowntime(_, button) {
-        new game.system.api.applications.dialogs.Downtime(this.document, button.dataset.type === 'shortRest').render(
-            true
-        );
+        new game.system.api.applications.dialogs.Downtime(this.document, button.dataset.type === 'shortRest').render({
+            force: true
+        });
     }
 
     async _onDragStart(event) {

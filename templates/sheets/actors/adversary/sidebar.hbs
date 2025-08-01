@@ -59,8 +59,8 @@
             </div>
             <div class="status-number">
                 <div class='status-value armor-slots'>
-                    {{#if source.system.attack.target.amount}}
-                    <p>{{source.system.attack.target.amount}}</p>
+                    {{#if source.system.attack.roll.bonus}}
+                    <p>{{source.system.attack.roll.bonus}}</p>
                     {{else}}
                     <p>-</p>
                     {{/if}}
@@ -86,6 +86,7 @@
             hideTooltip=true
             hideResources=true
             noExtensible=true
+            noCompendiumEdit=true
             }}
         </ul>
     </div>
@@ -97,17 +98,17 @@
         </div>
         <div class="experience-list">
             {{#each source.system.experiences as |experience id|}}
-            <div class="experience-row">
-                <div class="experience-value">
-                    +{{experience.value}}
+                <div class="experience-row" data-tooltip-text="{{experience.description}}">
+                    <div class="experience-value">
+                        +{{experience.value}}
+                    </div>
+                    <span class="experience-name">{{experience.name}}</span>
+                    <div class="controls">
+                        <a data-action="sendExpToChat" data-id="{{id}}">
+                            <i class="fa-regular fa-message"></i>
+                        </a>
+                    </div>
                 </div>
-                <span class="experience-name">{{experience.name}}</span>
-                <div class="controls">
-                    <a data-action="sendExpToChat" data-id="{{id}}">
-                        <i class="fa-regular fa-message"></i>
-                    </a>
-                </div>
-            </div>
             {{/each}}
         </div>
     </div>
