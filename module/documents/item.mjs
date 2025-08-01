@@ -74,8 +74,8 @@ export default class DHItem extends foundry.documents.Item {
                     isInventoryItem === true
                         ? 'Inventory Items' //TODO localize
                         : isInventoryItem === false
-                            ? 'Character Items' //TODO localize
-                            : 'Other'; //TODO localize
+                          ? 'Character Items' //TODO localize
+                          : 'Other'; //TODO localize
 
                 return { value: type, label, group };
             }
@@ -102,9 +102,9 @@ export default class DHItem extends foundry.documents.Item {
      * Generate an array of localized tag.
      * @returns {string[]} An array of localized tag strings.
      */
-    getTags() {
+    _getTags() {
         const tags = [];
-        if (this.system.getTags) tags.push(...this.system.getTags());
+        if (this.system._getTags) tags.push(...this.system._getTags());
         return tags;
     }
 
@@ -137,20 +137,24 @@ export default class DHItem extends foundry.documents.Item {
                 this.type === 'ancestry'
                     ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.ancestryTitle')
                     : this.type === 'community'
-                        ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.communityTitle')
-                        : this.type === 'feature'
-                            ? game.i18n.localize('TYPES.Item.feature')
-                            : game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
+                      ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.communityTitle')
+                      : this.type === 'feature'
+                        ? game.i18n.localize('TYPES.Item.feature')
+                        : game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: origin,
             img: this.img,
-            item: { name: this.name, img: this.img, tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'] },
+            item: {
+                name: this.name,
+                img: this.img,
+                tags: this._getTags()
+            },
             description: this.system.description,
             actions: this.system.actions
         };
         const msg = {
             type: 'abilityUse',
             user: game.user.id,
-            actor: this.actor,
+            actor: game.actors.get(cls.getSpeaker().actor),
             author: this.author,
             speaker: cls.getSpeaker(),
             system: systemData,

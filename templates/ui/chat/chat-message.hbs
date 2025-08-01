@@ -7,6 +7,8 @@
                 <h4>{{ifThen message.title message.title alias}}</h4>
                 {{#if actor.name}}
                     <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
+                {{else unless (eq message.type 'base')}}
+                    <div>{{alias}}</div>
                 {{/if}}
             </div>
         </div>
