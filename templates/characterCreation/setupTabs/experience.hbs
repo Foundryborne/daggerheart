@@ -14,7 +14,7 @@
                             <div class="experience-value">{{numberFormat this.value sign=true}}</div>
                         </div>
 
-                        <textarea name="system.experiences.{{key}}.description">{{experience.description}}</textarea>
+                        <textarea name="{{concat "experiences." id ".description"}}">{{experience.description}}</textarea>
                     </div>
                 {{/each}}
             </div>
