@@ -187,7 +187,8 @@ Hooks.on('renderHandlebarsApplication', (_, element) => {
 
 Hooks.on('chatMessage', (_, message) => {
     if (message.startsWith('/dr')) {
-        const result = rollCommandToJSON(message.replace(/\/dr\s?/, ''));
+        const result =
+            message.trim().toLowerCase() === '/dr' ? { result: {} } : rollCommandToJSON(message.replace(/\/dr\s?/, ''));
         if (!result) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.dualityParsing'));
             return false;
