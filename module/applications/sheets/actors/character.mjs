@@ -611,7 +611,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             }),
             roll: {
                 trait: button.dataset.attribute
-            }
+            },
+            hasRoll: true
         };
         this.document.diceRoll(config);
     }

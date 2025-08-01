@@ -6,19 +6,20 @@ export default class DamageRoll extends DHRoll {
         super(formula, data, options);
     }
 
-    static messageType = 'damageRoll';
+    static messageType = 'dualityRoll';
 
     static DefaultDialog = DamageDialog;
 
     static async buildEvaluate(roll, config = {}, message = {}) {
-        if (config.evaluate !== false) {
-            // if (config.dialog.configure === false) roll.constructFormula(config);
+        console.log(roll,config)
+        if (config.evaluate !== false)
             for (const roll of config.roll) await roll.roll.evaluate();
-        }
+        
         roll._evaluated = true;
         const parts = config.roll.map(r => this.postEvaluate(r));
 
-        config.roll = this.unifyDamageRoll(parts);
+        config.damage = this.unifyDamageRoll(parts);
+        config.targetSelection = config.targets?.length
     }
 
     static postEvaluate(roll, config = {}) {
@@ -30,14 +31,6 @@ export default class DamageRoll extends DHRoll {
             type: config.type,
             modifierTotal: this.calculateTotalModifiers(roll.roll)
         };
-    }
-
-    static async buildPost(roll, config, message) {
-        await super.buildPost(roll, config, message);
-        if (config.source?.message) {
-            const chatMessage = ui.chat.collection.get(config.source.message);
-            chatMessage.update({ 'system.damage': config });
-        }
     }
 
     static unifyDamageRoll(rolls) {

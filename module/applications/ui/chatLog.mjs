@@ -24,7 +24,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.duality-action-damage').forEach(element =>
             element.addEventListener('click', event => this.onRollDamage(event, data.message))
         );
-        html.querySelectorAll('.target-save-container').forEach(element =>
+        html.querySelectorAll('.target-save').forEach(element =>
             element.addEventListener('click', event => this.onRollSave(event, data.message))
         );
         html.querySelectorAll('.roll-all-save-button').forEach(element =>
@@ -124,7 +124,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         event.stopPropagation();
         if (!game.user.isGM) return;
         const targets = event.target.parentElement.querySelectorAll(
-            '.target-section > [data-token] .target-save-container'
+            '[data-token] .target-save'
         );
         const actor = await this.getActor(message.system.source.actor),
             action = this.getAction(actor, message.system.source.item, message.system.source.action);
@@ -211,6 +211,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     async onDamage(event, message) {
         event.stopPropagation();
         const { isHit, targets } = this.getTargetList(event, message);
+        console.log(message, isHit, targets)
 
         if (message.system.onSave && isHit) {
             const pendingingSaves = message.system.targets.filter(
@@ -229,8 +230,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
         for (let target of targets) {
-            let damages = foundry.utils.deepClone(message.system.damage?.roll ?? message.system.roll);
+            let damages = foundry.utils.deepClone(message.system.damage);
             if (
+                !message.system.hasHealing &&
                 message.system.onSave &&
                 message.system.targets.find(t => t.id === target.id)?.saved?.success === true
             ) {

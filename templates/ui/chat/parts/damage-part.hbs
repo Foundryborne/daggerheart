@@ -1,8 +1,8 @@
-<div class="roll-part damage-section dice-roll" data-action="expandRoll">
+<div class="roll-part damage-section dice-roll" data-action="expandRoll">{{log this}}
     <div class="roll-part-header"><div><span>Damage</span></div></div>
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
-            {{#each damage.roll as | roll index | }}
+            {{#each damage as | roll index | }}
                 <div class="roll-formula">{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')}}: {{total}}</div>
             {{/each}}
         </div>
@@ -10,7 +10,7 @@
     <div class="roll-part-content dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">
-                {{#each damage.roll as | roll index | }}
+                {{#each damage as | roll index | }}
                     <fieldset>
                         <legend>
                             {{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')}} <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>

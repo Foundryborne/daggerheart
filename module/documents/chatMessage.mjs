@@ -17,7 +17,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
         if (this.type === 'dualityRoll') {
             html.classList.add('duality');
-            switch (this.system.roll.result.duality) {
+            switch (this.system.roll?.result?.duality) {
                 case 1:
                     html.classList.add('hope');
                     break;

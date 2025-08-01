@@ -26,6 +26,8 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
             hasHealing: new fields.BooleanField({ initial: false }),
             hasEffect: new fields.BooleanField({ initial: false }),
             hasSave: new fields.BooleanField({ initial: false }),
+            hasTarget: new fields.BooleanField({ initial: false }),
+            onSave: new fields.StringField(),
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
@@ -54,5 +56,8 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
                 return a;
             }, {hit: 0, miss: 0})
         }
+        this.pendingSaves = this.targets.filter(
+            target => target.hit && target.saved.success === null
+        ).length > 0;
     }
 }

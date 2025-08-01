@@ -34,11 +34,16 @@
         font-size: var(--font-size-12);
         padding: 0 20px;
 
+        > .roll-part-header {
+            font-size: var(--font-size-14);
+        }
+
         .roll-part-header {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
             color: light-dark(@dark, @beige);
+            margin: 5px 0;
 
             span {
                 display: flex;
@@ -169,12 +174,16 @@
 
                 .target-choice {
                     display: flex;
-                    justify-content: space-evenly;
                     font-size: var(--font-size-14);
                     color: var(--text-color);
                     padding: 5px 0;
 
-                    .target-selected {
+                    .button-target-selection {
+                        flex: 1;
+                        text-align: center;
+                    }
+
+                    .button-target-selection:hover, .target-selected {
                         font-weight: bold;
                         text-shadow: 0px 0px 8px var(--text-color);
                     }
@@ -200,6 +209,26 @@
 
                 .target-data {
                     flex: 1;
+                }
+
+                .target-save {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 22px;
+                    height: 22px;
+                    &:hover > i {
+                        scale: 1.2;
+                    }
+
+                    i {
+                        &.fa-check {
+                            color: @green;
+                        }
+                        &.fa-xmark {
+                            color: @medium-red;
+                        }
+                    }
                 }
             }
         }
@@ -277,6 +306,23 @@
     .target-section {
         .roll-part-content {
             gap: 10px;
+        }
+
+        .roll-part-extra {
+            position: relative;
+
+            .target-pending-saves {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 25px;
+                width: 25px;
+                &.is-absolute {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                }
+            }
         }
     }
     

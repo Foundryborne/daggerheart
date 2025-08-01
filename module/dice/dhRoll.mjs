@@ -52,8 +52,10 @@ export default class DHRoll extends Roll {
     }
 
     static async buildEvaluate(roll, config = {}, message = {}) {
-        if (config.evaluate !== false) await roll.evaluate();
-        config.roll = this.postEvaluate(roll, config);
+        if (config.evaluate !== false) {
+            await roll.evaluate();
+            config.roll = this.postEvaluate(roll, config);
+        }
     }
 
     static async buildPost(roll, config, message) {
@@ -62,15 +64,24 @@ export default class DHRoll extends Roll {
         }
 
         // Create Chat Message
-        if (roll instanceof CONFIG.Dice.daggerheart.DamageRoll && Object.values(config.roll)?.length) {
-            const pool = foundry.dice.terms.PoolTerm.fromRolls(
-                Object.values(config.roll).flatMap(r => r.parts.map(p => p.roll))
-            );
-            roll = Roll.fromTerms([pool]);
-        }
+        // if (roll instanceof CONFIG.Dice.daggerheart.DamageRoll && Object.values(config.roll)?.length) {
+        //     const pool = foundry.dice.terms.PoolTerm.fromRolls(
+        //         Object.values(config.roll).flatMap(r => r.parts.map(p => p.roll))
+        //     );
+        //     roll = Roll.fromTerms([pool]);
+        // }
         if (config.source?.message) {
             if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
-        } else config.message = await this.toMessage(roll, config);
+            const chatMessage = ui.chat.collection.get(config.source.message);
+            chatMessage.update({ 'system.damage': config.damage });
+        } else {
+            console.log(roll, config)
+            config.message = await this.toMessage(roll, config);
+            // if(roll._evaluated) {
+            //     const cls = getDocumentClass('ChatMessage');
+            //     await cls.create(config.message, { rollMode: config.selectedRollMode });
+            // }
+        }
     }
 
     static postEvaluate(roll, config = {}) {
@@ -97,7 +108,11 @@ export default class DHRoll extends Roll {
                 system: config,
                 rolls: [roll]
             };
-        return await cls.create(msg, { rollMode: config.selectedRollMode });
+        // msg.applyRollMode(config.selectedRollMode);
+        // return msg;
+        if(roll._evaluated) return await cls.create(msg, { rollMode: config.selectedRollMode });
+        return msg;
+        // return await cls.create(msg);
     }
 
     static applyKeybindings(config) {
