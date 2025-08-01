@@ -2302,11 +2302,8 @@
                 "dragApplyEffect": "Drag effect to apply it to an actor",
                 "appliedEvenIfSuccessful": "Applied even if save succeeded",
                 "diceIsRerolled": "The dice has been rerolled (x{times})",
-<<<<<<< HEAD
-                "pendingSaves": "Pending Reaction Rolls"
-=======
+                "pendingSaves": "Pending Reaction Rolls",
                 "openSheetSettings": "Open Settings"
->>>>>>> main
             }
         }
     }
