@@ -44,6 +44,7 @@ Parameters:
       </div>
       {{!-- Attack Tags End --}}
       {{else}}
+      {{!-- Other elements Tags Start --}}
         {{#with item}}
         {{#if (not ../hideTags)}}
         <div class="item-tags">
@@ -70,20 +71,7 @@ Parameters:
         {{/if}}
         {{/with}}
       {{/if}}
-
-
-      {{!-- Action Block Start --}}
-      {{#if (eq type 'action')}}
-      {{#if (not hideTags)}}
-      <div class="item-tags">
-        <div class="tag">{{localize (concat 'DAGGERHEART.ACTIONS.TYPES.' item.type '.name')}}</div>
-        <div class="tag">{{localize (concat 'DAGGERHEART.CONFIG.ActionType.' item.actionType)}}</div>
-      </div>
-      {{else if (not hideLabels)}}
-      {{!-- Empty --}}
-      {{/if}}
-      {{/if}}
-      {{!-- Action Block End --}}
+      {{!-- Other elements Tags End --}}
     </div>
 
     {{!-- Simple Resource --}}
