@@ -4,9 +4,40 @@
   "_id": "CiXwelozmBDcPY48",
   "img": "icons/commodities/leather/leather-patch-red.webp",
   "system": {
-    "description": "<p>While falling, you can mark a Stress to deploy this small parachute and glide safely to the ground.</p>",
+    "description": "<p>While falling, you can <strong>mark a Stress</strong> to deploy this small parachute and glide safely to the ground.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {
+      "Adz50oihGEMJxbyA": {
+        "type": "effect",
+        "_id": "Adz50oihGEMJxbyA",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/commodities/leather/leather-patch-red.webp",
+        "range": ""
+      }
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +51,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753637642501,
-    "modifiedTime": 1753637766985,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753989923053,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!CiXwelozmBDcPY48"
 }

@@ -1,0 +1,86 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Dread Visage",
+  "type": "feature",
+  "_id": "i92lYjDhVB0LyPid",
+  "img": "icons/magic/control/fear-fright-monster-red.webp",
+  "system": {
+    "description": "<p>You have advantage on rolls to intimidate hostile creatures.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Dread Visage",
+      "type": "base",
+      "_id": "2Gd6iHQX521aAZqC",
+      "img": "icons/magic/control/fear-fright-monster-red.webp",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Rolls to intimidate hostile creatures",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>You have advantage on rolls to intimidate hostile creatures</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754000031619,
+        "modifiedTime": 1754000179466,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!i92lYjDhVB0LyPid.2Gd6iHQX521aAZqC"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753999985847,
+    "modifiedTime": 1754000026405,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!i92lYjDhVB0LyPid"
+}

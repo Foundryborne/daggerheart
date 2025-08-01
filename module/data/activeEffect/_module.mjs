@@ -1,9 +1,11 @@
 import BaseEffect from './baseEffect.mjs';
 import BeastformEffect from './beastformEffect.mjs';
+import HordeEffect from './hordeEffect.mjs';
 
-export { BaseEffect, BeastformEffect };
+export { BaseEffect, BeastformEffect, HordeEffect };
 
 export const config = {
     base: BaseEffect,
-    beastform: BeastformEffect
+    beastform: BeastformEffect,
+    horde: HordeEffect
 };

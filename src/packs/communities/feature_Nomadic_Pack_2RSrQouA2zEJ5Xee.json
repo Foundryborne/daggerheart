@@ -1,0 +1,65 @@
+{
+  "folder": "KA1VSGslxkbvVeMp",
+  "name": "Nomadic Pack",
+  "type": "feature",
+  "_id": "2RSrQouA2zEJ5Xee",
+  "img": "icons/containers/bags/pack-leather-brown.webp",
+  "system": {
+    "description": "<p>Add a Nomadic Pack to your inventory. Once per session, you can spend a Hope to reach into this pack and pull out a mundane item that’s useful to your situation. Work with the GM to figure out what item you take out.</p>",
+    "resource": null,
+    "actions": {
+      "Jd9uVincqkIMAXgU": {
+        "type": "effect",
+        "_id": "Jd9uVincqkIMAXgU",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "session"
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Pull Item",
+        "img": "icons/containers/bags/pack-leather-brown.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754010247432,
+    "modifiedTime": 1754010247432,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "_key": "!items!2RSrQouA2zEJ5Xee"
+}

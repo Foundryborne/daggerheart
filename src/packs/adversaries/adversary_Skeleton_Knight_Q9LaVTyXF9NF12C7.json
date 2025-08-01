@@ -34,7 +34,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "bruiser",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -65,22 +65,59 @@
       }
     },
     "tier": 1,
-    "description": "<p>A large armored skeleton with a huge blade.</p>"
+    "description": "<p>A large armored skeleton with a huge blade.</p>",
+    "attack": {
+      "name": "Rusty Greatsword",
+      "img": "icons/weapons/swords/greatsword-crossguard-flanged-red.webp",
+      "roll": {
+        "bonus": 2
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d10",
+              "bonus": 2,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784348,
-    "modifiedTime": 1753922784348,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754053576422,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "Q9LaVTyXF9NF12C7",
-  "sort": 3400000,
+  "sort": 3300000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +217,344 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Terrifying",
+      "type": "feature",
+      "_id": "OZKEz4eK9h7zCbuf",
+      "img": "icons/magic/death/skull-energy-light-purple.webp",
+      "system": {
+        "description": "<p>When the Knight makes a successful attack, all PCs within Close range lose a Hope and you gain a Fear.</p>",
+        "resource": null,
+        "actions": {
+          "9EiPNrGzwLtuf9g0": {
+            "type": "damage",
+            "_id": "9EiPNrGzwLtuf9g0",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Damage Hope",
+            "img": "icons/magic/death/skull-energy-light-purple.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754053581860,
+        "modifiedTime": 1754053647447,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!Q9LaVTyXF9NF12C7.OZKEz4eK9h7zCbuf"
+    },
+    {
+      "name": "Cut to the Bone",
+      "type": "feature",
+      "_id": "WdVLwy9RNkVlZnCL",
+      "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the Knight succeeds against take <strong>1d8+2</strong> physical damage and must mark a Stress.</p><p>@Template[type:emanation|range:vc]</p>",
+        "resource": null,
+        "actions": {
+          "vMv4monku9LOSxUZ": {
+            "type": "attack",
+            "_id": "vMv4monku9LOSxUZ",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d8",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                },
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754053666861,
+        "modifiedTime": 1754053803001,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!Q9LaVTyXF9NF12C7.WdVLwy9RNkVlZnCL"
+    },
+    {
+      "name": "Dig Two Graves",
+      "type": "feature",
+      "_id": "STesKV2KB61PlwCh",
+      "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
+      "system": {
+        "description": "<p>When the Knight is defeated, they make an attack against a target within Very Close range (prioritizing the creature who killed them). On a success, the target takes <strong>1d4+8</strong> physical damage and loses <strong>1d4</strong> Hope.</p>",
+        "resource": null,
+        "actions": {
+          "NtGhAVVOJF6ZGBRv": {
+            "type": "attack",
+            "_id": "NtGhAVVOJF6ZGBRv",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": 8,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/death/hand-undead-skeleton-fire-pink.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754053741722,
+        "modifiedTime": 1754053792513,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!Q9LaVTyXF9NF12C7.STesKV2KB61PlwCh"
+    }
+  ],
   "effects": [],
   "_key": "!actors!Q9LaVTyXF9NF12C7"
 }

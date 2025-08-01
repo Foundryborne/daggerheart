@@ -1,0 +1,42 @@
+{
+  "folder": "KA1VSGslxkbvVeMp",
+  "name": "Know the Tide",
+  "type": "feature",
+  "_id": "07x6Qe6qMzDw2xN4",
+  "img": "icons/environment/wilderness/cave-entrance-island.webp",
+  "system": {
+    "description": "<p>You can sense the ebb and flow of life. When you roll with Fear, place a token on your community card. You can hold a number of tokens equal to your level. Before you make an action roll, you can spend any number of these tokens to gain a +1 bonus to the roll for each token spent. At the end of each session, clear all unspent tokens.</p>",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "icon": "",
+      "recovery": null,
+      "diceStates": {},
+      "dieFaces": "d4"
+    },
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754010247432,
+    "modifiedTime": 1754010247432,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "_key": "!items!07x6Qe6qMzDw2xN4"
+}

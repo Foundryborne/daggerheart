@@ -1,0 +1,65 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Quick Reactions",
+  "type": "feature",
+  "_id": "0NSPSuB8KSEYTJIP",
+  "img": "icons/skills/movement/feet-winged-boots-brown.webp",
+  "system": {
+    "description": "<p><strong>Mark a Stress</strong> to gain advantage on a reaction roll.</p>",
+    "resource": null,
+    "actions": {
+      "6Av1Y8JXWDkteLhc": {
+        "type": "effect",
+        "_id": "6Av1Y8JXWDkteLhc",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/skills/movement/feet-winged-boots-brown.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753994522468,
+    "modifiedTime": 1753994554455,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!0NSPSuB8KSEYTJIP"
+}

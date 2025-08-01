@@ -127,7 +127,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         if (this.actor && this.actor.type === 'character' && this.features) {
             const featureUpdates = {};
             for (let f of this.features) {
-                const feature = f.item ?? f;
+                const fBase = f.item ?? f;
+                const feature = fBase.system ? fBase : await foundry.utils.fromUuid(fBase.uuid);
                 const createData = foundry.utils.mergeObject(
                     feature.toObject(),
                     {

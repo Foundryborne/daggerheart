@@ -20,7 +20,12 @@
           "max": null,
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "IqlpqsgurXsUEQhs",
+            "onSave": false
+          }
+        ],
         "target": {
           "type": null,
           "amount": null
@@ -32,7 +37,52 @@
     },
     "consumeOnUse": true
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Death Tea",
+      "img": "icons/consumables/drinks/wine-amphora-clay-gray.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.xDnJeF1grkmKck8Q",
+      "transfer": false,
+      "_id": "IqlpqsgurXsUEQhs",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">After you drink this tea, you instantly kill your target when you critically succeed on an attack. If you don’t critically succeed on an attack before your next long rest, you die.</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753993240647,
+        "modifiedTime": 1753993244347,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!xDnJeF1grkmKck8Q.IqlpqsgurXsUEQhs"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -44,12 +94,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753592717630,
-    "modifiedTime": 1753592777582,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753993240672,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!xDnJeF1grkmKck8Q"
 }

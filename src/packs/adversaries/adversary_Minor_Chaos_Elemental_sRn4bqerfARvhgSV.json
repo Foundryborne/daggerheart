@@ -34,7 +34,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "solo",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -65,22 +65,59 @@
       }
     },
     "tier": 1,
-    "description": "<p>A coruscating mass of uncontrollable magic.</p>"
+    "description": "<p>A coruscating mass of uncontrollable magic.</p>",
+    "attack": {
+      "name": "Warp Blast",
+      "roll": {
+        "bonus": 3
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d12",
+              "bonus": 6,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "range": "close"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784307,
-    "modifiedTime": 1753922784307,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754049682687,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "sRn4bqerfARvhgSV",
-  "sort": 3400000,
+  "sort": 4800000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +217,405 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Arcane Form",
+      "type": "feature",
+      "_id": "4Rw5KC5klRseiLvn",
+      "img": "icons/magic/defensive/shield-barrier-flaming-diamond-blue.webp",
+      "system": {
+        "description": "<p>The Elemental is resistant to magic damage.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Arcane Form",
+          "type": "base",
+          "_id": "vwc93gtzFoFZj4XT",
+          "img": "icons/magic/defensive/shield-barrier-flaming-diamond-blue.webp",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.resistance.magical.resistance",
+              "mode": 2,
+              "value": "1",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>The Elemental is resistant to magic damage.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754049715134,
+            "modifiedTime": 1754049734456,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!sRn4bqerfARvhgSV.4Rw5KC5klRseiLvn.vwc93gtzFoFZj4XT"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754049689376,
+        "modifiedTime": 1754049704950,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!sRn4bqerfARvhgSV.4Rw5KC5klRseiLvn"
+    },
+    {
+      "name": "Sickening Flux",
+      "type": "feature",
+      "_id": "oAxhAawgcK7DAdpa",
+      "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
+      "system": {
+        "description": "<p><strong>Mark a HP</strong> to force all targets within Close range to mark a Stress and become <em>Vulnerable</em> until their next rest or they clear a HP.</p><p>@Template[type:emanation|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "g4CVwjDeJgTJ2oCw": {
+            "type": "damage",
+            "_id": "g4CVwjDeJgTJ2oCw",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "hitPoints",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "KIyV2eXDmmymXY5y",
+                "onSave": false
+              }
+            ],
+            "name": "Mark HP",
+            "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Sickening Flux",
+          "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.sRn4bqerfARvhgSV.Item.oAxhAawgcK7DAdpa",
+          "transfer": false,
+          "_id": "KIyV2eXDmmymXY5y",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><em>Vulnerable</em> until your next rest or you clear a HP.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754049820090,
+            "modifiedTime": 1754049838876,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!sRn4bqerfARvhgSV.oAxhAawgcK7DAdpa.KIyV2eXDmmymXY5y"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754049738720,
+        "modifiedTime": 1754049853494,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!sRn4bqerfARvhgSV.oAxhAawgcK7DAdpa"
+    },
+    {
+      "name": "Remake Reality",
+      "type": "feature",
+      "_id": "updQuIK8sybf4YmW",
+      "img": "icons/magic/light/explosion-glow-spiral-teal.webp",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to transform the area within Very Close range into a different biome. All targets within this area take <strong>2d6+3</strong> direct magic damage.</p><p>@Template[type:emanation|range:vc]</p>",
+        "resource": null,
+        "actions": {
+          "QzuQIAtSrgz9Zd5V": {
+            "type": "damage",
+            "_id": "QzuQIAtSrgz9Zd5V",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d6",
+                    "bonus": 3,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Spend Fear",
+            "img": "icons/magic/light/explosion-glow-spiral-teal.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754049858342,
+        "modifiedTime": 1754049963046,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!sRn4bqerfARvhgSV.updQuIK8sybf4YmW"
+    },
+    {
+      "name": "Magical Reflection",
+      "type": "feature",
+      "_id": "dnVB2DxbpYtwt0S0",
+      "img": "icons/magic/light/beam-impact-deflect-teal.webp",
+      "system": {
+        "description": "<p>When the Elemental takes damage from an attack within Close range, deal an amount of damage to the attacker equal to half the damage they dealt.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754049966321,
+        "modifiedTime": 1754049998059,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!sRn4bqerfARvhgSV.dnVB2DxbpYtwt0S0"
+    },
+    {
+      "name": "Momentum",
+      "type": "feature",
+      "_id": "JqRfb0IZ3aJrVazI",
+      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "system": {
+        "description": "<p>When the Elemental makes a successful attack against a PC, you gain a Fear.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754050010657,
+        "modifiedTime": 1754050027337,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!sRn4bqerfARvhgSV.JqRfb0IZ3aJrVazI"
+    }
+  ],
   "effects": [],
   "_key": "!actors!sRn4bqerfARvhgSV"
 }

@@ -33,10 +33,15 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "ranged",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "Gtr9I2G39GcXT2Si": {
+        "name": "Local Knowledge",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -64,22 +69,62 @@
       }
     },
     "tier": 1,
-    "description": "<p>A tall guard bearing a longbow and quiver with arrows fletched in the settlement’s colors.</p>"
+    "description": "<p>A tall guard bearing a longbow and quiver with arrows fletched in the settlement’s colors.</p>",
+    "motivesAndTactics": "Arrest, close gates, make it through the day, pin down",
+    "attack": {
+      "name": "Longbow",
+      "range": "far",
+      "roll": {
+        "bonus": 1,
+        "type": "attack"
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/weapons/bows/longbow-recurve-leather-brown.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784222,
-    "modifiedTime": 1753922784222,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754046151270,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "JRhrrEg5UroURiAD",
-  "sort": 3400000,
+  "sort": 2900000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -179,7 +224,173 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Hobbling Shot",
+      "type": "feature",
+      "_id": "DMtd1EXQPlPaoRmV",
+      "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
+      "system": {
+        "description": "<p>Make an attack against a target within Far range. On a success, <strong>mark a Stress</strong> to deal <strong>1d12+3</strong> physical damage. If the target marks HP from this attack, they have disadvantage on Agility Rolls until they clear at least 1 HP.</p>",
+        "resource": null,
+        "actions": {
+          "84rwldOFvTPrrHJJ": {
+            "type": "attack",
+            "_id": "84rwldOFvTPrrHJJ",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d12",
+                    "bonus": 3,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "wGuxOLokMqdxVSOo",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Hobbling Shot",
+          "img": "icons/skills/wounds/bone-broken-knee-beam.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.JRhrrEg5UroURiAD.Item.DMtd1EXQPlPaoRmV",
+          "transfer": false,
+          "_id": "wGuxOLokMqdxVSOo",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.disadvantageSources",
+              "mode": 2,
+              "value": "Agility Rolls",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>You have disadvantage on Agility Rolls until you clear at least 1 HP.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754012705802,
+            "modifiedTime": 1754012740752,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!JRhrrEg5UroURiAD.DMtd1EXQPlPaoRmV.wGuxOLokMqdxVSOo"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754012548341,
+        "modifiedTime": 1754012705815,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!JRhrrEg5UroURiAD.DMtd1EXQPlPaoRmV"
+    }
+  ],
   "effects": [],
   "_key": "!actors!JRhrrEg5UroURiAD"
 }

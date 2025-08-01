@@ -311,8 +311,12 @@ export default function DHApplicationMixin(Base) {
                     name: 'CONTROLS.CommonEdit',
                     icon: 'fa-solid fa-pen-to-square',
                     condition: target => {
+                        const { dataset } = target.closest('[data-item-uuid]');
                         const doc = getDocFromElementSync(target);
-                        return !doc || !doc.hasOwnProperty('systemPath') || doc.inCollection;
+                        return (
+                            (!dataset.noCompendiumEdit && !doc) ||
+                            (doc && (!doc?.hasOwnProperty('systemPath') || doc?.inCollection))
+                        );
                     },
                     callback: async target => (await getDocFromElement(target)).sheet.render({ force: true })
                 }

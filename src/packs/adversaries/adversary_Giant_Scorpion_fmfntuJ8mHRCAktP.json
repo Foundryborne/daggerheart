@@ -34,10 +34,15 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "bruiser",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "SZtO9UTincKiOlC4": {
+        "name": "Camouflage",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,22 +70,59 @@
       }
     },
     "tier": 1,
-    "description": "<p>A human-sized insect with tearing claws and a stinging tail.</p>"
+    "description": "<p>A human-sized insect with tearing claws and a stinging tail.</p>",
+    "attack": {
+      "name": "Pincers",
+      "img": "icons/creatures/claws/pincer-crab-brown.webp",
+      "roll": {
+        "bonus": 1
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d12",
+              "bonus": 2,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784272,
-    "modifiedTime": 1753922784272,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754046801101,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "fmfntuJ8mHRCAktP",
-  "sort": 3400000,
+  "sort": 4200000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +222,302 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Double Strike",
+      "type": "feature",
+      "_id": "4ct6XEXiTBFQKvXW",
+      "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to make a standard attack against two targets within Melee range.</p>",
+        "resource": null,
+        "actions": {
+          "PJbZ4ibLPle9BBRv": {
+            "type": "attack",
+            "_id": "PJbZ4ibLPle9BBRv",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d12",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754046803174,
+        "modifiedTime": 1754046863892,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!fmfntuJ8mHRCAktP.4ct6XEXiTBFQKvXW"
+    },
+    {
+      "name": "Venomous Stinger",
+      "type": "feature",
+      "_id": "lANiDkxxth2sGacT",
+      "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
+      "system": {
+        "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>spend a Fear</strong> to deal <strong>1d4+4</strong> physical damage and Poison them until their next rest or they succeed on a Knowledge Roll (16). While Poisoned, the target must roll a <strong>d6</strong> before they make an action roll. On a result of 4 or lower, they must mark a Stress. </p>",
+        "resource": null,
+        "actions": {
+          "RvsClkuSWILB0nYa": {
+            "type": "damage",
+            "_id": "RvsClkuSWILB0nYa",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": 4,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "cO2VDcRL8uDN7Uu6",
+                "onSave": false
+              }
+            ],
+            "name": "Spend Fear",
+            "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Poison",
+          "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.fmfntuJ8mHRCAktP.Item.lANiDkxxth2sGacT",
+          "transfer": false,
+          "_id": "cO2VDcRL8uDN7Uu6",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>You are <em>Poisoned</em> until your next rest or until you succeed on a Knowledge Roll (16). While Poisoned, you must roll a <strong>d6</strong> before you make an action roll. On a result of 4 or lower, you must mark a Stress. </p><p>[[/dr trait=knowledge difficulty=16]]</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754046921939,
+            "modifiedTime": 1754047011246,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!fmfntuJ8mHRCAktP.lANiDkxxth2sGacT.cO2VDcRL8uDN7Uu6"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754046868084,
+        "modifiedTime": 1754047035479,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!fmfntuJ8mHRCAktP.lANiDkxxth2sGacT"
+    },
+    {
+      "name": "Momentum",
+      "type": "feature",
+      "_id": "TmDpAY5t3PjhEv9K",
+      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "system": {
+        "description": "<p>When the Scorpion makes a successful attack against a PC, you gain a Fear.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754047039345,
+        "modifiedTime": 1754047066840,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!fmfntuJ8mHRCAktP.TmDpAY5t3PjhEv9K"
+    }
+  ],
   "effects": [],
   "_key": "!actors!fmfntuJ8mHRCAktP"
 }

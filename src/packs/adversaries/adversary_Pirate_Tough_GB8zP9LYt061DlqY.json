@@ -34,10 +34,15 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "bruiser",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "QEhfdx7HAbPay5Jy": {
+        "name": "Sailor",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,22 +70,29 @@
       }
     },
     "tier": 1,
-    "description": "<p>A thickly muscled and tattooed pirate with melon-sized fists.</p>"
+    "description": "<p>A thickly muscled and tattooed pirate with melon-sized fists.</p>",
+    "attack": {
+      "name": "Massive Fists",
+      "roll": {
+        "bonus": 1
+      },
+      "img": "icons/skills/melee/unarmed-punch-fist.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784331,
-    "modifiedTime": 1753922784331,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754052449162,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "GB8zP9LYt061DlqY",
-  "sort": 3400000,
+  "sort": 2700000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +192,201 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Swashbuckler",
+      "type": "feature",
+      "_id": "5t4fSW4mzVmLouhu",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+      "system": {
+        "description": "<p>When the Tough marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "ZNd0KWly09unKOFP": {
+            "type": "damage",
+            "_id": "ZNd0KWly09unKOFP",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Damage Stress",
+            "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052450615,
+        "modifiedTime": 1754052485623,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!GB8zP9LYt061DlqY.5t4fSW4mzVmLouhu"
+    },
+    {
+      "name": "Clear the Decks",
+      "type": "feature",
+      "_id": "z7pBdBGf9uWaWQvd",
+      "img": "icons/skills/melee/unarmed-punch-fist-blue.webp",
+      "system": {
+        "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>mark a Stress</strong> to move into Melee range of the target, dealing <strong>3d4</strong> physical damage and knocking the target back to Close range.</p>",
+        "resource": null,
+        "actions": {
+          "fmRwrsodZ16gSVOZ": {
+            "type": "attack",
+            "_id": "fmRwrsodZ16gSVOZ",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 3,
+                    "dice": "d4",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/melee/unarmed-punch-fist-blue.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052489263,
+        "modifiedTime": 1754052558382,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!GB8zP9LYt061DlqY.z7pBdBGf9uWaWQvd"
+    }
+  ],
   "effects": [],
   "_key": "!actors!GB8zP9LYt061DlqY"
 }

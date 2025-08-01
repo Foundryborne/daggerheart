@@ -34,10 +34,15 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "social",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "omqadwvxPY4xsd7K": {
+        "name": "Socialite",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,22 +70,60 @@
       }
     },
     "tier": 1,
-    "description": "<p>An ambitious and ostentatiously dressed socialite.</p>"
+    "description": "<p>An ambitious and ostentatiously dressed socialite.</p>",
+    "attack": {
+      "name": "Daggers",
+      "roll": {
+        "bonus": -4,
+        "type": "attack"
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d4",
+              "bonus": 2,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/weapons/daggers/dagger-twin-green.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784237,
-    "modifiedTime": 1753922784237,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754046151158,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "CBBuEXAlLKFMJdjg",
-  "sort": 3400000,
+  "sort": 2200000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +223,240 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Mockery",
+      "type": "feature",
+      "_id": "LYNaKEYcYMgvF4Rf",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to say something mocking and force a target within Close range to make a Presence Reaction Roll (14) to see if they can save face. On a failure, the target must mark 2 Stress and is Vulnerable until the scene ends.</p>",
+        "resource": null,
+        "actions": {
+          "Yi3rvjj0Umqt5Z8j": {
+            "type": "attack",
+            "_id": "Yi3rvjj0Umqt5Z8j",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "2"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "YNMhgBZW8ndrCjIp",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": 14,
+              "damageMod": "none"
+            },
+            "name": "Use",
+            "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [
+        {
+          "name": "Mockery",
+          "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.CBBuEXAlLKFMJdjg.Item.LYNaKEYcYMgvF4Rf",
+          "transfer": false,
+          "_id": "YNMhgBZW8ndrCjIp",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "statuses": [
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754014456918,
+            "modifiedTime": 1754014468386,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!CBBuEXAlLKFMJdjg.LYNaKEYcYMgvF4Rf.YNMhgBZW8ndrCjIp"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754014295058,
+        "modifiedTime": 1754014456928,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!CBBuEXAlLKFMJdjg.LYNaKEYcYMgvF4Rf"
+    },
+    {
+      "name": "Scapegoat",
+      "type": "feature",
+      "_id": "Ux42ELBBuSYwm4yW",
+      "img": "icons/skills/social/diplomacy-unity-alliance.webp",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> and target a PC. The Courtier convinces a crowd or prominent individual that the target is the cause of their current conflict or misfortune.</p>",
+        "resource": null,
+        "actions": {
+          "IwuFowlcXyjvfOxp": {
+            "type": "effect",
+            "_id": "IwuFowlcXyjvfOxp",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/skills/social/diplomacy-unity-alliance.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754014473825,
+        "modifiedTime": 1754014546519,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!CBBuEXAlLKFMJdjg.Ux42ELBBuSYwm4yW"
+    }
+  ],
   "effects": [],
   "_key": "!actors!CBBuEXAlLKFMJdjg"
 }

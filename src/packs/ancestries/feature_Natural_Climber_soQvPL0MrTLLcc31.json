@@ -1,0 +1,86 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Natural Climber",
+  "type": "feature",
+  "_id": "soQvPL0MrTLLcc31",
+  "img": "icons/magic/nature/root-vine-barrier-wall-brown.webp",
+  "system": {
+    "description": "<p>You have advantage on Agility Rolls that involve balancing and climbing.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Natural Climber",
+      "type": "base",
+      "_id": "HQeQH9gUfrjlWWcg",
+      "img": "icons/magic/nature/root-vine-barrier-wall-brown.webp",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Agility Rolls that involve balancing and climbing",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>You have advantage on Agility Rolls that involve balancing and climbing.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754001083828,
+        "modifiedTime": 1754001113548,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!soQvPL0MrTLLcc31.HQeQH9gUfrjlWWcg"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754001064223,
+    "modifiedTime": 1754001078029,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!soQvPL0MrTLLcc31"
+}

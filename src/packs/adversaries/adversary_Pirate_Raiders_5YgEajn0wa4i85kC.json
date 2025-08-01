@@ -34,10 +34,15 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "horde",
     "notes": "",
-    "hordeHp": 1,
-    "experiences": {},
+    "hordeHp": 3,
+    "experiences": {
+      "a2aFr2x2FEZp7dFx": {
+        "name": "Sailor",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,22 +70,59 @@
       }
     },
     "tier": 1,
-    "description": "<p>Seafaring scoundrels moving in a ravaging pack.</p>"
+    "description": "<p>Seafaring scoundrels moving in a ravaging pack.</p>",
+    "attack": {
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 2,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d4",
+              "bonus": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "resultBased": false,
+            "base": false
+          }
+        ]
+      },
+      "name": "Cutlass",
+      "img": "icons/weapons/swords/scimitar-worn-blue.webp",
+      "roll": {
+        "bonus": 1
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784326,
-    "modifiedTime": 1753922784326,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754052314538,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "5YgEajn0wa4i85kC",
-  "sort": 3400000,
+  "sort": 1000000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
@@ -180,7 +222,169 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
-  "effects": [],
+  "items": [
+    {
+      "name": "Horde (1d4+1)",
+      "type": "feature",
+      "_id": "Q7DRbWjHl64CNwag",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
+      "system": {
+        "description": "<p>When the Raiders have marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052315770,
+        "modifiedTime": 1754052347985,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!5YgEajn0wa4i85kC.Q7DRbWjHl64CNwag"
+    },
+    {
+      "name": "Swashbuckler",
+      "type": "feature",
+      "_id": "N401rF937fLXMuMA",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+      "system": {
+        "description": "<p>When the Raiders mark 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "ejadA9jjMnVNVczS": {
+            "type": "damage",
+            "_id": "ejadA9jjMnVNVczS",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Damage Stress",
+            "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052352218,
+        "modifiedTime": 1754052393630,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!5YgEajn0wa4i85kC.N401rF937fLXMuMA"
+    }
+  ],
+  "effects": [
+    {
+      "type": "horde",
+      "name": "Horde",
+      "img": "icons/magic/movement/chevrons-down-yellow.webp",
+      "disabled": true,
+      "_id": "OU05YZwFQffawtna",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "duration": {
+        "startTime": 0,
+        "combat": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052272993,
+        "modifiedTime": 1754052272993,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.effects!5YgEajn0wa4i85kC.OU05YZwFQffawtna"
+    }
+  ],
   "_key": "!actors!5YgEajn0wa4i85kC"
 }
