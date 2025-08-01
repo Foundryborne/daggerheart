@@ -1,0 +1,67 @@
+{
+  "name": "I Am Your Shield",
+  "img": "systems/daggerheart/assets/icons/domains/valor.svg",
+  "type": "domainCard",
+  "folder": "QpOL7jPbMBzH96qR",
+  "system": {
+    "description": "<p></p><p class=\"Body-Foundation\">When an ally within Very Close range would take damage, you can <strong>mark a </strong><strong>Stress</strong> to stand in the way and make yourself the target of the attack instead. When you take damage from this attack, you can mark any number of Armor Slots.        </p><p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 1,
+    "type": "ability",
+    "actions": {
+      "0rLdATV71dviB2MG": {
+        "type": "effect",
+        "_id": "0rLdATV71dviB2MG",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "friendly",
+          "amount": 1
+        },
+        "name": "Mark Stress",
+        "img": "icons/skills/melee/shield-block-fire-orange.webp",
+        "range": "veryClose"
+      }
+    },
+    "resource": null,
+    "inVault": false
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754067020844,
+    "modifiedTime": 1754067102011,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "_id": "KOf6LLpMRNwjezDx",
+  "sort": 100000,
+  "_key": "!items!KOf6LLpMRNwjezDx"
+}
