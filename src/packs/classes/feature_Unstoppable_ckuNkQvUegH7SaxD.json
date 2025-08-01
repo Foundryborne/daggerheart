@@ -1,0 +1,113 @@
+{
+  "folder": "S4dTxJcuo1VW8o1E",
+  "name": "Unstoppable",
+  "type": "feature",
+  "_id": "ckuNkQvUegH7SaxD",
+  "img": "systems/daggerheart/assets/icons/dice/hope/d6.svg",
+  "system": {
+    "description": "<p>Once per long rest, you can become Unstoppable. You gain an Unstoppable Die. At level 1, your Unstoppable Die is a d4. Place it on your character sheet in the space provided, starting with the 1 value facing up. After you make a damage roll that deals 1 or more Hit Points to a target, increase the Unstoppable Die value by one. When the die’s value would exceed its maximum value or when the scene ends, remove the die and drop out of Unstoppable. At level 5, your Unstoppable Die increases to a d6.</p><p>While Unstoppable, you gain the following benefits:</p><ul><li><p>You reduce the severity of physical damage by one threshold (Severe to Major, Major to Minor, Minor to None).</p></li><li><p>You add the current value of the Unstoppable Die to your damage roll.</p></li><li><p>You can’t be Restrained or Vulnerable.</p></li></ul><blockquote><p>Tip: If your Unstoppable Die is a d4 and the 4 is currently facing up, you remove the die the next time you would increase it. However, if your Unstoppable Die has increased to a d6 and the 4 is currently facing up, you’ll turn it to 5 the next time you would increase it. In this case, you’ll remove the die after you would need to increase it higher than 6</p></blockquote>",
+    "resource": null,
+    "actions": {
+      "huaR1xFL1SwZOyoU": {
+        "type": "effect",
+        "_id": "huaR1xFL1SwZOyoU",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "KDcWtYvuujEoUlIn",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Class Feature",
+        "img": "systems/daggerheart/assets/icons/dice/hope/d6.svg",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Unstoppable",
+      "img": "systems/daggerheart/assets/icons/dice/hope/d6.svg",
+      "origin": "Compendium.daggerheart.classes.Item.ckuNkQvUegH7SaxD",
+      "transfer": false,
+      "_id": "KDcWtYvuujEoUlIn",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "self"
+        }
+      },
+      "changes": [
+        {
+          "key": "",
+          "value": "",
+          "mode": 2
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753891223030,
+        "modifiedTime": 1753891240925,
+        "lastModifiedBy": "K33GF8jIT1j7GH5w"
+      },
+      "_key": "!items.effects!ckuNkQvUegH7SaxD.KDcWtYvuujEoUlIn"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "K33GF8jIT1j7GH5w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753889103243,
+    "modifiedTime": 1753891223057,
+    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+  },
+  "_key": "!items!ckuNkQvUegH7SaxD"
+}

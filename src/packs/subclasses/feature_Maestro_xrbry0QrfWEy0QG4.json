@@ -1,0 +1,114 @@
+{
+  "folder": "2yPU2tDTSukCvDgb",
+  "name": "Maestro",
+  "type": "feature",
+  "_id": "xrbry0QrfWEy0QG4",
+  "img": "systems/daggerheart/assets/icons/dice/hope/d10.svg",
+  "system": {
+    "description": "<p>Your rallying songs steel the courage of those who listen. When you give a Rally Die to an ally, they can gain a Hope or clear a Stress.</p>",
+    "resource": null,
+    "actions": {
+      "qnzQlXWgkUPFnWoG": {
+        "type": "effect",
+        "_id": "qnzQlXWgkUPFnWoG",
+        "systemPath": "actions",
+        "description": "<p>Your rallying songs steel the courage of those who listen. When you give a Rally Die to an ally, they can gain a Hope or clear a Stress.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "RHYLrKptJ8q0ZkCM",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Activate Feature",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Maestro",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.subclasses.Item.xrbry0QrfWEy0QG4",
+      "transfer": false,
+      "_id": "RHYLrKptJ8q0ZkCM",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.rally",
+          "mode": 2,
+          "value": "1d6",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754060044543,
+        "modifiedTime": 1754060057284,
+        "lastModifiedBy": "K33GF8jIT1j7GH5w"
+      },
+      "_key": "!items.effects!xrbry0QrfWEy0QG4.RHYLrKptJ8q0ZkCM"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "K33GF8jIT1j7GH5w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754059949300,
+    "modifiedTime": 1754060309619,
+    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+  },
+  "_key": "!items!xrbry0QrfWEy0QG4"
+}

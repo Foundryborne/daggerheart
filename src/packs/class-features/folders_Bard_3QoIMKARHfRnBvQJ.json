@@ -1,10 +1,10 @@
 {
   "type": "Item",
   "folder": null,
-  "name": "Class Features",
+  "name": "Bard",
   "color": null,
   "sorting": "a",
-  "_id": "S4dTxJcuo1VW8o1E",
+  "_id": "3QoIMKARHfRnBvQJ",
   "description": "",
   "sort": 0,
   "flags": {},
@@ -12,12 +12,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1752680679705,
-    "modifiedTime": 1754059491926,
-    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+    "createdTime": 1748709671341,
+    "modifiedTime": 1748709671341,
+    "lastModifiedBy": "MxkU9FQYKmOxbdzm"
   },
-  "_key": "!folders!S4dTxJcuo1VW8o1E"
+  "_key": "!folders!3QoIMKARHfRnBvQJ"
 }

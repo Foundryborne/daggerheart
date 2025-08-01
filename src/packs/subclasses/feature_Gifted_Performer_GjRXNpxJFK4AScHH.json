@@ -1,0 +1,221 @@
+{
+  "folder": "E1gLqcVXjD3HWHF5",
+  "name": "Gifted Performer",
+  "type": "feature",
+  "_id": "GjRXNpxJFK4AScHH",
+  "img": "systems/daggerheart/assets/icons/dice/hope/d6.svg",
+  "system": {
+    "description": "",
+    "resource": null,
+    "actions": {
+      "2iuxvAvc61LpW79m": {
+        "type": "healing",
+        "_id": "2iuxvAvc61LpW79m",
+        "systemPath": "actions",
+        "description": "<p>You and all allies within Close range clear a Hit Point.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": "longRest"
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "friendly",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Relaxing Song",
+        "img": "icons/svg/item-bag.svg",
+        "range": "close"
+      },
+      "4nq2yFX1EYvJ2N3G": {
+        "type": "damage",
+        "_id": "4nq2yFX1EYvJ2N3G",
+        "systemPath": "actions",
+        "description": "<p>Make a target within Close range temporarily Vulnerable.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "hostile",
+          "amount": 1
+        },
+        "effects": [
+          {
+            "_id": "b7EVCJ9Fd2MR0IkV",
+            "onSave": false
+          }
+        ],
+        "name": "Epic Song",
+        "img": "icons/svg/item-bag.svg",
+        "range": "close"
+      },
+      "7s6VPvEKEemTZsE8": {
+        "type": "healing",
+        "_id": "7s6VPvEKEemTZsE8",
+        "systemPath": "actions",
+        "description": "<p>You and all allies within Close range gain a Hope.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": "longRest"
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hope",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "friendly",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Heartbreaking Song",
+        "img": "icons/svg/item-bag.svg",
+        "range": "close"
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Vulnerable",
+      "img": "icons/svg/aura.svg",
+      "origin": "Compendium.daggerheart.subclasses.Item.GjRXNpxJFK4AScHH",
+      "transfer": false,
+      "_id": "b7EVCJ9Fd2MR0IkV",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "close"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "vulnerable"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754059731667,
+        "modifiedTime": 1754059844346,
+        "lastModifiedBy": "K33GF8jIT1j7GH5w"
+      },
+      "_key": "!items.effects!GjRXNpxJFK4AScHH.b7EVCJ9Fd2MR0IkV"
+    }
+  ],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "K33GF8jIT1j7GH5w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754059536235,
+    "modifiedTime": 1754060299897,
+    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+  },
+  "_key": "!items!GjRXNpxJFK4AScHH"
+}

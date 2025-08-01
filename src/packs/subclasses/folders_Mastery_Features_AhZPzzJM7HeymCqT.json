@@ -1,10 +1,10 @@
 {
   "type": "Item",
-  "folder": null,
-  "name": "Class Features",
+  "folder": "Sfpr4iK1cGrmncok",
+  "name": "Mastery Features",
   "color": null,
   "sorting": "a",
-  "_id": "S4dTxJcuo1VW8o1E",
+  "_id": "AhZPzzJM7HeymCqT",
   "description": "",
   "sort": 0,
   "flags": {},
@@ -15,9 +15,7 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1752680679705,
-    "modifiedTime": 1754059491926,
-    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+    "lastModifiedBy": null
   },
-  "_key": "!folders!S4dTxJcuo1VW8o1E"
+  "_key": "!folders!AhZPzzJM7HeymCqT"
 }

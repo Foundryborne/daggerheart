@@ -1,0 +1,57 @@
+{
+  "name": "Virtuoso",
+  "type": "feature",
+  "_id": "vygi1psu8e3gQeB5",
+  "img": "systems/daggerheart/assets/icons/dice/hope/d20.svg",
+  "system": {
+    "description": "<p>You are among the greatest of your craft and your skill is boundless. You can perform each of your “Gifted Performer” feature’s songs twice per long rest</p>",
+    "resource": null,
+    "actions": {
+      "y8Fe56UwXpHyN0Nz": {
+        "type": "effect",
+        "_id": "y8Fe56UwXpHyN0Nz",
+        "systemPath": "actions",
+        "description": "<p>You are among the greatest of your craft and your skill is boundless. You can perform each of your “Gifted Performer” feature’s songs twice per long rest.</p>",
+        "chatDisplay": false,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Activate Feature",
+        "img": "systems/daggerheart/assets/icons/dice/hope/d20.svg",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "folder": "AhZPzzJM7HeymCqT",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "K33GF8jIT1j7GH5w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754060169180,
+    "modifiedTime": 1754060312902,
+    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+  },
+  "_key": "!items!vygi1psu8e3gQeB5"
+}

@@ -1,0 +1,70 @@
+{
+  "name": "Bard",
+  "type": "class",
+  "_id": "0FcQGnI9ffZA67cV",
+  "img": "systems/daggerheart/assets/icons/classes/bard.png",
+  "system": {
+    "description": "<p>Bards are the most charismatic people in all the realms. Members of this class are masters of captivation and specialize in a variety of performance types, including singing, playing musical instruments, weaving tales, or telling jokes. Whether performing for an audience or speaking to an individual, bards thrive in social situations. Members of this profession bond and train at schools or guilds, but a current of egotism runs through those of the bardic persuasion. While they may be the most likely class to bring people together, a bard of ill temper can just as easily tear a party apart.</p>",
+    "domains": [
+      "codex",
+      "grace"
+    ],
+    "classItems": [],
+    "hitPoints": 5,
+    "evasion": 10,
+    "features": [
+      {
+        "type": "hope",
+        "item": "Compendium.daggerheart.classes.Item.UgzxqgsIyyjN616r"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.LyqJaJWO2nn2BCmv"
+      }
+    ],
+    "subclasses": [],
+    "inventory": {
+      "take": [],
+      "choiceA": [
+        "Compendium.daggerheart.classes.Item.T0ygMx3swL87WnoY"
+      ],
+      "choiceB": [
+        "Compendium.daggerheart.classes.Item.bmB9Yj4l5By4uZaj"
+      ]
+    },
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 0,
+        "strength": 0,
+        "finesse": 0,
+        "instinct": 0,
+        "presence": 0,
+        "knowledge": 0
+      },
+      "suggestedPrimaryWeapon": null,
+      "suggestedSecondaryWeapon": null,
+      "suggestedArmor": null
+    },
+    "isMulticlass": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "K33GF8jIT1j7GH5w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754059341551,
+    "modifiedTime": 1754059457338,
+    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+  },
+  "_key": "!items!0FcQGnI9ffZA67cV"
+}

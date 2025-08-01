@@ -1,0 +1,65 @@
+{
+  "folder": "S4dTxJcuo1VW8o1E",
+  "name": "Evolution",
+  "type": "feature",
+  "_id": "GzFcOr99C3Cm1s7e",
+  "img": "systems/daggerheart/assets/icons/dice/hope/d12.svg",
+  "system": {
+    "description": "<p>Spend <strong>3 Hope</strong> to transform into a <strong>Beastform without marking a Stress</strong>. When you do, choose one trait to <strong>raise by +1</strong> until you drop out of that Beastform.</p>",
+    "resource": null,
+    "actions": {
+      "SDsxENn11yKYEUxe": {
+        "type": "beastform",
+        "_id": "SDsxENn11yKYEUxe",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": false,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "beastform": {
+          "tierAccess": {
+            "exact": null
+          }
+        },
+        "name": "Hope Feature",
+        "img": "systems/daggerheart/assets/icons/dice/hope/d12.svg",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "K33GF8jIT1j7GH5w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753885649678,
+    "modifiedTime": 1753885905058,
+    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+  },
+  "_key": "!items!GzFcOr99C3Cm1s7e"
+}

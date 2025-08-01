@@ -1,0 +1,57 @@
+{
+  "folder": "S4dTxJcuo1VW8o1E",
+  "name": "Wildtouch",
+  "type": "feature",
+  "_id": "3xhruPGSYLBfxdtR",
+  "img": "systems/daggerheart/assets/icons/dice/hope/d6.svg",
+  "system": {
+    "description": "<p>You can perform harmless, subtle effects that involve nature—such as causing a flower to rapidly grow, summoning a slight gust of wind, or starting a campfire— at will.</p>",
+    "resource": null,
+    "actions": {
+      "NvuXTDh3JC2QE2ep": {
+        "type": "effect",
+        "_id": "NvuXTDh3JC2QE2ep",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": false,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Class Feature",
+        "img": "systems/daggerheart/assets/icons/dice/hope/d6.svg",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "K33GF8jIT1j7GH5w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753887101559,
+    "modifiedTime": 1753887191026,
+    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+  },
+  "_key": "!items!3xhruPGSYLBfxdtR"
+}

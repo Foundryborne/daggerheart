@@ -1,0 +1,46 @@
+{
+  "name": "Troubadour",
+  "type": "subclass",
+  "_id": "U2eICHTlNMVBmWBH",
+  "img": "systems/daggerheart/assets/icons/weapons/primary/tier_2/physical/bladed_whip.png",
+  "system": {
+    "description": "<p>You wish to play music to bolster your allies</p>",
+    "spellcastingTrait": null,
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.GjRXNpxJFK4AScHH"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.vygi1psu8e3gQeB5"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.xrbry0QrfWEy0QG4"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "K33GF8jIT1j7GH5w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754060331932,
+    "modifiedTime": 1754060436289,
+    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+  },
+  "_key": "!items!U2eICHTlNMVBmWBH"
+}

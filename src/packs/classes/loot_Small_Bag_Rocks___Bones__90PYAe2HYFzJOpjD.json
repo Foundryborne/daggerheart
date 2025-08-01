@@ -1,0 +1,31 @@
+{
+  "folder": "i4KbN4vGrmaQkVgu",
+  "name": "Small Bag(Rocks & Bones)",
+  "type": "loot",
+  "_id": "90PYAe2HYFzJOpjD",
+  "img": "systems/daggerheart/assets/icons/consumables/mythic_dust.png",
+  "system": {
+    "description": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "K33GF8jIT1j7GH5w": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753886760773,
+    "modifiedTime": 1753886910616,
+    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+  },
+  "_key": "!items!90PYAe2HYFzJOpjD"
+}
