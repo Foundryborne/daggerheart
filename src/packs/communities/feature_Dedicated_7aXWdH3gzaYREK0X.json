@@ -1,0 +1,57 @@
+{
+  "folder": "KA1VSGslxkbvVeMp",
+  "name": "Dedicated",
+  "type": "feature",
+  "_id": "7aXWdH3gzaYREK0X",
+  "img": "icons/environment/people/cleric-orange.webp",
+  "system": {
+    "description": "<p>Record three sayings or values your upbringing instilled in you. Once per rest, when you describe how you’re embodying one of these principles through your current action, you can roll a d20 as your Hope Die</p>",
+    "resource": null,
+    "actions": {
+      "ZBVqSlsDUKf8uGrI": {
+        "type": "effect",
+        "_id": "ZBVqSlsDUKf8uGrI",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest"
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use",
+        "img": "icons/environment/people/cleric-orange.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754010247432,
+    "modifiedTime": 1754010247432,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "_key": "!items!7aXWdH3gzaYREK0X"
+}

@@ -1,0 +1,86 @@
+{
+  "folder": "KA1VSGslxkbvVeMp",
+  "name": "Lightfoot",
+  "type": "feature",
+  "_id": "TQ1AIQjndC4mYmmU",
+  "img": "icons/magic/control/debuff-energy-snare-blue.webp",
+  "system": {
+    "description": "<p>Your movement is naturally silent. You have advantage on rolls to move without being heard.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Lightfoot",
+      "type": "base",
+      "_id": "4my9X5XC3uwDSx7B",
+      "img": "icons/magic/control/debuff-energy-snare-blue.webp",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Move without being heard.",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754020396302,
+        "modifiedTime": 1754020437585,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!TQ1AIQjndC4mYmmU.4my9X5XC3uwDSx7B"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754010247432,
+    "modifiedTime": 1754010247432,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "_key": "!items!TQ1AIQjndC4mYmmU"
+}

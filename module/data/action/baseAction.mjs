@@ -345,4 +345,17 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             });
         }
     }
+
+    /**
+     * Generates a list of localized tags for this action.
+     * @returns {string[]} An array of localized tag strings.
+     */
+    _getTags() {
+        const tags = [
+            game.i18n.localize(`DAGGERHEART.ACTIONS.TYPES.${this.type}.name`),
+            game.i18n.localize(`DAGGERHEART.CONFIG.ActionType.${this.actionType}`)
+        ];
+
+        return tags;
+    }
 }
