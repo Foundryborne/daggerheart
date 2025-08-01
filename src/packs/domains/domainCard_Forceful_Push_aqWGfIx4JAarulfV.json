@@ -1,0 +1,29 @@
+{
+  "name": "Forceful Push",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "QpOL7jPbMBzH96qR",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make an attack with your primary weapon against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range. On a success, you deal damage and knock them back to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. On a success with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>, add a <strong>d6</strong> to your damage roll.</p><p class=\"Body-Foundation\">Additionally, you can <strong>spend a Hope</strong> to make them temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>.</p></p>",
+    "domain": "valor",
+    "recallCost": 0,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784457,
+    "modifiedTime": 1753922784457,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "aqWGfIx4JAarulfV",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!aqWGfIx4JAarulfV"
+}

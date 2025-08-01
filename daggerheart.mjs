@@ -187,12 +187,15 @@ Hooks.on('renderHandlebarsApplication', (_, element) => {
 
 Hooks.on('chatMessage', (_, message) => {
     if (message.startsWith('/dr')) {
-        const rollCommand = rollCommandToJSON(message.replace(/\/dr\s?/, ''));
-        if (!rollCommand) {
+        const result = rollCommandToJSON(message.replace(/\/dr\s?/, ''));
+        if (!result) {
             ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.dualityParsing'));
             return false;
         }
 
+        const { result: rollCommand, flavor } = result;
+
+        const reaction = rollCommand.reaction;
         const traitValue = rollCommand.trait?.toLowerCase();
         const advantage = rollCommand.advantage
             ? CONFIG.DH.ACTIONS.advantageState.advantage.value
@@ -208,7 +211,16 @@ Hooks.on('chatMessage', (_, message) => {
               })
             : game.i18n.localize('DAGGERHEART.GENERAL.duality');
 
-        enrichedDualityRoll({ traitValue, target, difficulty, title, label: 'test', actionType: null, advantage });
+        enrichedDualityRoll({
+            reaction,
+            traitValue,
+            target,
+            difficulty,
+            title,
+            label: 'test',
+            actionType: null,
+            advantage
+        });
         return false;
     }
 });
@@ -240,12 +252,12 @@ Hooks.on('moveToken', async (movedToken, data) => {
     const effectsAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).effects;
     if (!effectsAutomation.rangeDependent) return;
 
-    const rangeDependantEffects = movedToken.actor.effects.filter(effect => effect.system.rangeDependence.enabled);
+    const rangeDependantEffects = movedToken.actor.effects.filter(effect => effect.system.rangeDependence?.enabled);
 
     const updateEffects = async (disposition, token, effects, effectUpdates) => {
         const rangeMeasurement = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement);
 
-        for (let effect of effects.filter(x => x.system.rangeDependence.enabled)) {
+        for (let effect of effects.filter(x => x.system.rangeDependence?.enabled)) {
             const { target, range, type } = effect.system.rangeDependence;
             if ((target === 'friendly' && disposition !== 1) || (target === 'hostile' && disposition !== -1))
                 return false;

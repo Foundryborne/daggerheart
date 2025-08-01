@@ -1,0 +1,65 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Increased Fortitude",
+  "type": "feature",
+  "_id": "0RN0baBxh95GT1cm",
+  "img": "icons/magic/control/buff-strength-muscle-damage-red.webp",
+  "system": {
+    "description": "<p><strong>Spend 3 Hope</strong> to halve incoming physical damage.</p>",
+    "resource": null,
+    "actions": {
+      "pFPbjyexOPx5gog6": {
+        "type": "effect",
+        "_id": "pFPbjyexOPx5gog6",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/control/buff-strength-muscle-damage-red.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753994395837,
+    "modifiedTime": 1753994468110,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!0RN0baBxh95GT1cm"
+}

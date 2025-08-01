@@ -1,0 +1,98 @@
+{
+  "folder": "KA1VSGslxkbvVeMp",
+  "name": "Steady",
+  "type": "feature",
+  "_id": "DYmmr5CknLtHnwuj",
+  "img": "icons/equipment/feet/boots-collared-simple-leather.webp",
+  "system": {
+    "description": "<p>You have advantage on rolls to traverse dangerous cliffs and ledges, navigate harsh environments, and use your survival knowledge.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Steady",
+      "type": "base",
+      "_id": "QDf9LD8Mhd0Cw0CB",
+      "img": "icons/equipment/feet/boots-collared-simple-leather.webp",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Traverse dangerous cliffs and ledges",
+          "priority": null
+        },
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Navigate harsh environment",
+          "priority": null
+        },
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Use your survival knowledge",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754020582449,
+        "modifiedTime": 1754020663104,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!DYmmr5CknLtHnwuj.QDf9LD8Mhd0Cw0CB"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754010247432,
+    "modifiedTime": 1754010247432,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "_key": "!items!DYmmr5CknLtHnwuj"
+}

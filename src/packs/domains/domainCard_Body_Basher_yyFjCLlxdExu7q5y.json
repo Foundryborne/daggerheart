@@ -1,0 +1,29 @@
+{
+  "name": "Body Basher",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "pk4xXE8D3vTawrqj",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">You use the full force of your body in a fight. On a successful attack using a weapon with a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range, gain a bonus to your damage roll equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"strength\" nexus=\"daggerheart\">Strength</tooltip>.</p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 2,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784417,
+    "modifiedTime": 1753922784417,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "yyFjCLlxdExu7q5y",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!yyFjCLlxdExu7q5y"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Death Grip",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "BJIiOIWAQUz5zuqo",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range and choose one of the following options:</p><ul class=\"\"><li class=\"vertical-card-list\">You pull the target into <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range or pull yourself into Melee range of them. </li><li class=\"vertical-card-list\">You constrict the target and force them to mark 2 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</li><li class=\"vertical-card-list\">All adversaries between you and the target must succeed on a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restraining</em></tooltip> the target. </p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 4,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784444,
+    "modifiedTime": 1753922784444,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "x0FVGE1YbfXalJiw",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!x0FVGE1YbfXalJiw"
+}

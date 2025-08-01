@@ -1,0 +1,29 @@
+{
+  "name": "Endless Charisma",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "W81LnTWzwmoaycTl",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">After you make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip> to persuade, lie, or garner favor, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to reroll the Hope or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> Die.        </p></p>",
+    "domain": "grace",
+    "recallCost": 1,
+    "level": 7,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784450,
+    "modifiedTime": 1753922784450,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "tNzFNlVHghloKsFi",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!tNzFNlVHghloKsFi"
+}

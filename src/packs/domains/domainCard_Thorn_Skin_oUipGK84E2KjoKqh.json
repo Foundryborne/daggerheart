@@ -1,0 +1,29 @@
+{
+  "name": "Thorn Skin",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "ZZHIbaynhzVArA1p",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card. When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you’re within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of the attacker, deal that amount of damage back to them.        </p><p class=\"Body-Foundation\">When you take a rest, clear all unspent tokens.</p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 5,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784531,
+    "modifiedTime": 1753922784531,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "oUipGK84E2KjoKqh",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!oUipGK84E2KjoKqh"
+}

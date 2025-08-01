@@ -17,7 +17,7 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [
@@ -27,7 +27,7 @@
           }
         ],
         "target": {
-          "type": null,
+          "type": "self",
           "amount": null
         },
         "name": "Drink",
@@ -73,12 +73,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753586918808,
-        "modifiedTime": 1753586928363,
-        "lastModifiedBy": "OFxauskoxcvVTVNA"
+        "modifiedTime": 1753991761053,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!FOPQNqXbiVO0ilYL.HVCJp9Tkhr1i4Oc1"
     }
@@ -94,12 +94,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753586850134,
-    "modifiedTime": 1753587920117,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753993272604,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!FOPQNqXbiVO0ilYL"
 }

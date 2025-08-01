@@ -1,0 +1,29 @@
+{
+  "name": "Cinder Grasp",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "u8Yz2hUTaF3N2fFT",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range. On a success, the target instantly bursts into flames, takes <strong>1d20+3</strong> magic damage, and is temporarily lit <em>On Fire</em>. </p><p class=\"Body-Foundation\">When a creature acts while <em>On Fire</em>, they must take an extra <strong>2d6</strong> magic damage if they are still <em>On Fire</em> at the end of their action.</p></p>",
+    "domain": "arcana",
+    "recallCost": 1,
+    "level": 2,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784434,
+    "modifiedTime": 1753922784434,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "5EP2Lgf7ojfrc0Is",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!5EP2Lgf7ojfrc0Is"
+}

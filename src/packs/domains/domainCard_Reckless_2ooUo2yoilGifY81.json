@@ -1,0 +1,29 @@
+{
+  "name": "Reckless",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "o7t2fsAmRxKLoHrO",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to gain <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on an attack.        </p></p>",
+    "domain": "blade",
+    "recallCost": 1,
+    "level": 2,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784500,
+    "modifiedTime": 1753922784500,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "2ooUo2yoilGifY81",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!2ooUo2yoilGifY81"
+}

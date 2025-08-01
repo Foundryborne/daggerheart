@@ -1,0 +1,29 @@
+{
+  "name": "Untouchable",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "PeeIjbkBv41613yZ",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Gain a bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"evasion\" nexus=\"daggerheart\">Evasion</tooltip> equal to half your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip>.</p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784538,
+    "modifiedTime": 1753922784538,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "9QElncQUDSakuSdR",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!9QElncQUDSakuSdR"
+}

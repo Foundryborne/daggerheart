@@ -1,0 +1,29 @@
+{
+  "name": "Battle Cry",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "me7ywrVh38j6T8Sm",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, while you’re charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> and gain a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>. Additionally, your allies gain <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack rolls</tooltip> until you or an ally rolls a failure with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>.</p></p>",
+    "domain": "blade",
+    "recallCost": 2,
+    "level": 8,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784413,
+    "modifiedTime": 1753922784413,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "Ef1JsUG50LIoKx2F",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!Ef1JsUG50LIoKx2F"
+}

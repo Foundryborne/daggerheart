@@ -1,0 +1,390 @@
+{
+  "name": "Pirate Raiders",
+  "img": "icons/svg/mystery-man.svg",
+  "type": "adversary",
+  "folder": "sxvlEwi25uAoB2C5",
+  "system": {
+    "difficulty": 12,
+    "damageThresholds": {
+      "major": 5,
+      "severe": 11
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 4,
+        "isReversed": true
+      },
+      "stress": {
+        "value": 0,
+        "max": 3,
+        "isReversed": true
+      }
+    },
+    "motivesAndTactics": "Gang up, plunder, raid",
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "type": "horde",
+    "notes": "",
+    "hordeHp": 3,
+    "experiences": {
+      "a2aFr2x2FEZp7dFx": {
+        "name": "Sailor",
+        "value": 3
+      }
+    },
+    "bonuses": {
+      "roll": {
+        "attack": {
+          "bonus": 0,
+          "dice": []
+        },
+        "action": {
+          "bonus": 0,
+          "dice": []
+        },
+        "reaction": {
+          "bonus": 0,
+          "dice": []
+        }
+      },
+      "damage": {
+        "physical": {
+          "bonus": 0,
+          "dice": []
+        },
+        "magical": {
+          "bonus": 0,
+          "dice": []
+        }
+      }
+    },
+    "tier": 1,
+    "description": "<p>Seafaring scoundrels moving in a ravaging pack.</p>",
+    "attack": {
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 2,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d4",
+              "bonus": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "resultBased": false,
+            "base": false
+          }
+        ]
+      },
+      "name": "Cutlass",
+      "img": "icons/weapons/swords/scimitar-worn-blue.webp",
+      "roll": {
+        "bonus": 1
+      }
+    }
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784326,
+    "modifiedTime": 1754052314538,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_id": "5YgEajn0wa4i85kC",
+  "sort": 1000000,
+  "ownership": {
+    "default": 0,
+    "ei8OkswTzyDp4IGC": 3,
+    "WafZqd6qLGpBRGTt": 3
+  },
+  "prototypeToken": {
+    "name": "Pirate Raiders",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "icons/svg/mystery-man.svg",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "resources.hitPoints"
+    },
+    "bar2": {
+      "attribute": "resources.stress"
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": false,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "items": [
+    {
+      "name": "Horde (1d4+1)",
+      "type": "feature",
+      "_id": "Q7DRbWjHl64CNwag",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
+      "system": {
+        "description": "<p>When the Raiders have marked half or more of their HP, their standard attack deals <strong>1d4+1</strong> physical damage instead.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052315770,
+        "modifiedTime": 1754052347985,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!5YgEajn0wa4i85kC.Q7DRbWjHl64CNwag"
+    },
+    {
+      "name": "Swashbuckler",
+      "type": "feature",
+      "_id": "N401rF937fLXMuMA",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+      "system": {
+        "description": "<p>When the Raiders mark 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "ejadA9jjMnVNVczS": {
+            "type": "damage",
+            "_id": "ejadA9jjMnVNVczS",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Damage Stress",
+            "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "subType": null,
+        "originId": null
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052352218,
+        "modifiedTime": 1754052393630,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!5YgEajn0wa4i85kC.N401rF937fLXMuMA"
+    }
+  ],
+  "effects": [
+    {
+      "type": "horde",
+      "name": "Horde",
+      "img": "icons/magic/movement/chevrons-down-yellow.webp",
+      "disabled": true,
+      "_id": "OU05YZwFQffawtna",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "duration": {
+        "startTime": 0,
+        "combat": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754052272993,
+        "modifiedTime": 1754052272993,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.effects!5YgEajn0wa4i85kC.OU05YZwFQffawtna"
+    }
+  ],
+  "_key": "!actors!5YgEajn0wa4i85kC"
+}

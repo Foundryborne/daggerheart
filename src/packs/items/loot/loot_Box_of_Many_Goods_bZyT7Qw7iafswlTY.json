@@ -7,9 +7,9 @@
     "description": "<p>Once per long rest, you can open this small box and roll a [[/r d12]]. On a result of 1–6, it’s empty. On a result of 7–10, it contains one random common consumable. On a result of 11–12, it contains two random common consumables.</p>",
     "quantity": 1,
     "actions": {
-      "5vW3p31WvGN6v8qc": {
-        "type": "effect",
-        "_id": "5vW3p31WvGN6v8qc",
+      "lt1iEma1OVUNZ77o": {
+        "type": "attack",
+        "_id": "lt1iEma1OVUNZ77o",
         "systemPath": "actions",
         "description": "",
         "chatDisplay": true,
@@ -17,13 +17,37 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": 1,
+          "max": "1",
           "recovery": "longRest"
         },
-        "effects": [],
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
         "target": {
           "type": "any",
           "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d12",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
         },
         "name": "Open",
         "img": "icons/containers/boxes/crate-heavy-yellow.webp",
@@ -43,12 +67,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753638361357,
-    "modifiedTime": 1753638425801,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753989365853,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!bZyT7Qw7iafswlTY"
 }

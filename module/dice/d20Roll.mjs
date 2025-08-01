@@ -145,6 +145,7 @@ export default class D20Roll extends DHRoll {
             data.difficulty = config.roll.difficulty;
             data.success = roll.isCritical || roll.total >= config.roll.difficulty;
         }
+        data.type = config.roll.type;
         data.advantage = {
             type: config.roll.advantage,
             dice: roll.dAdvantage?.denomination,

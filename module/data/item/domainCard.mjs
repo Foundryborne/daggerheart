@@ -1,5 +1,4 @@
 import BaseDataItem from './base.mjs';
-import { ActionField } from '../fields/actionField.mjs';
 
 export default class DHDomainCard extends BaseDataItem {
     /** @inheritDoc */
@@ -34,6 +33,7 @@ export default class DHDomainCard extends BaseDataItem {
         };
     }
 
+    /**@inheritdoc */
     async _preCreate(data, options, user) {
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return;
@@ -54,5 +54,36 @@ export default class DHDomainCard extends BaseDataItem {
                 return false;
             }
         }
+    }
+
+    /**
+     * Generates a list of localized tags based on this item's type-specific properties.
+     * @returns {string[]} An array of localized tag strings.
+     */
+    _getTags() {
+        const tags = [
+            game.i18n.localize(`DAGGERHEART.CONFIG.DomainCardTypes.${this.type}`),
+            game.i18n.localize(`DAGGERHEART.GENERAL.Domain.${this.domain}.label`),
+            `${game.i18n.localize('DAGGERHEART.ITEMS.DomainCard.recallCost')}: ${this.recallCost}`
+        ];
+
+        return tags;
+    }
+
+    /**
+     * Generate a localized label array for this item subtype.
+     * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
+     */
+    _getLabels() {
+        const labels = [
+            game.i18n.localize(`DAGGERHEART.CONFIG.DomainCardTypes.${this.type}`),
+            game.i18n.localize(`DAGGERHEART.GENERAL.Domain.${this.domain}.label`),
+            {
+                value: `${this.recallCost}`, //converts the number to a string
+                icons: ['fa-bolt']
+            }
+        ];
+
+        return labels;
     }
 }

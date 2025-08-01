@@ -1,0 +1,29 @@
+{
+  "name": "Bone-Touched",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "i5iDLXMZLc0ckWI5",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Bone domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">+1 bonus to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip></li><li class=\"vertical-card-list-found\">Once per rest, you can <strong>spend 3 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to cause an attack that succeeded against you to fail instead.            </li></ul></p>",
+    "domain": "bone",
+    "recallCost": 2,
+    "level": 7,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784419,
+    "modifiedTime": 1753922784419,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "ON5bvnoQBy0SYc9Y",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!ON5bvnoQBy0SYc9Y"
+}

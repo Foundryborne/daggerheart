@@ -1,0 +1,29 @@
+{
+  "name": "Rapid Riposte",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "pYEavNqteiQepvvD",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When an attack made against you from within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range fails, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> and seize the opportunity to deal the weapon damage of one of your active weapons to the attacker.        </p></p>",
+    "domain": "bone",
+    "recallCost": 0,
+    "level": 6,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784497,
+    "modifiedTime": 1753922784497,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "tceJDcCUefrMS2Ov",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!tceJDcCUefrMS2Ov"
+}

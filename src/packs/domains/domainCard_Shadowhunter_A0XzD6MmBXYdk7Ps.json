@@ -1,0 +1,29 @@
+{
+  "name": "Shadowhunter",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "taM81THa8h6Bv2Xa",
+  "system": {
+    "description": "<p><p class=\"Body\">Your prowess is enhanced under the cover of shadow. While you’re shrouded in low light or darkness, you gain a +1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"evasion\" nexus=\"daggerheart\">Evasion</tooltip> and make <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack rolls</tooltip> with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip>.</p></p>",
+    "domain": "midnight",
+    "recallCost": 2,
+    "level": 8,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784513,
+    "modifiedTime": 1753922784513,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "A0XzD6MmBXYdk7Ps",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!A0XzD6MmBXYdk7Ps"
+}

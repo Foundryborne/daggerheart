@@ -1,0 +1,29 @@
+{
+  "name": "Critical Inspiration",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Oo9EkkF7CDD3QZEG",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest, when you <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"critical-success\" nexus=\"daggerheart\">critically succeed</tooltip> on an attack, all allies within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range can clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress </tooltip>or gain a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>.</p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 3,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784441,
+    "modifiedTime": 1753922784441,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "ABp9pUfBS69NomTD",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!ABp9pUfBS69NomTD"
+}

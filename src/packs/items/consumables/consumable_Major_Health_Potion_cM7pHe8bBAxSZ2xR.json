@@ -6,7 +6,74 @@
   "system": {
     "description": "<p>Clear 1d4+2 HP.</p>",
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "Xm2ldAlmUQY4jlLb": {
+        "type": "healing",
+        "_id": "Xm2ldAlmUQY4jlLb",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "dice": "d4",
+                "bonus": 2,
+                "flatMultiplier": 1
+              },
+              "applyTo": "hitPoints",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/bottle-round-label-cork-red.webp",
+        "range": ""
+      }
+    },
     "consumeOnUse": true
   },
   "effects": [],
@@ -21,12 +88,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753591046168,
-    "modifiedTime": 1753623266522,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753993085839,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!cM7pHe8bBAxSZ2xR"
 }

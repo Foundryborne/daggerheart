@@ -1,0 +1,29 @@
+{
+  "name": "Final Words",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "2yh8wuYprOyswf0r",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">You can infuse a corpse with a moment of life to speak with it. Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong>. On a success with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>, the corpse answers up to three questions. On a success with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>, the corpse answers one question. The corpse answers truthfully, but it can’t impart information it didn’t know in life. On a failure, or once the corpse has finished answering your questions, the body turns to dust.</p></p>",
+    "domain": "splendor",
+    "recallCost": 1,
+    "level": 2,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784454,
+    "modifiedTime": 1753922784454,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "Nbw6Jnh1vRZzwHQI",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!Nbw6Jnh1vRZzwHQI"
+}

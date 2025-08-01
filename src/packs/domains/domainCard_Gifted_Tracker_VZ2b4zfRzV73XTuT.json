@@ -1,0 +1,29 @@
+{
+  "name": "Gifted Tracker",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "EJoXzO85rG5EiZsh",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you’re tracking a specific creature or group of creatures based on signs of their passage, you <strong>can spend any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> and ask the GM that many questions from the following list.        </p><ul class=\"\"><li class=\"vertical-card-list\">What direction did they go? </li><li class=\"vertical-card-list\">How long ago did they pass through? </li><li class=\"vertical-card-list\">What were they doing in this location?</li><li class=\"vertical-card-list\">How many of them were here?</li></ul><p class=\"Body-Foundation\">When you encounter creatures you’ve tracked in this way, gain a +1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"evasion\" nexus=\"daggerheart\">Evasion</tooltip> against them.</p></p>",
+    "domain": "sage",
+    "recallCost": 0,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784461,
+    "modifiedTime": 1753922784461,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "VZ2b4zfRzV73XTuT",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!VZ2b4zfRzV73XTuT"
+}

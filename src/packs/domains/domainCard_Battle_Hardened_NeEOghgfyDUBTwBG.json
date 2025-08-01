@@ -1,0 +1,29 @@
+{
+  "name": "Battle-Hardened",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "EiP5dLozOFZKIeWN",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> when you would make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"death-move\" nexus=\"daggerheart\">Death Move</tooltip>, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> instead.        </p></p>",
+    "domain": "blade",
+    "recallCost": 2,
+    "level": 6,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784415,
+    "modifiedTime": 1753922784415,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "NeEOghgfyDUBTwBG",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!NeEOghgfyDUBTwBG"
+}

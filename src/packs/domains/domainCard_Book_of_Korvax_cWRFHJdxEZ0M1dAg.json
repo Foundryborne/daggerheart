@@ -1,0 +1,29 @@
+{
+  "name": "Book of Korvax",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "7XeaYZPMB0SopAfo",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Levitation:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> to temporarily lift a target you can see up into the air and move them within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range of their original position.</p><p class=\"Card-Feature\"><em><strong>Recant:</strong></em> <strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to force a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range to make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (15). On a failure, they forget the last minute of your conversation.        </p><p class=\"Card-Feature\"><em><strong>Rune Circle:</strong></em> <strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to create a temporary magical circle on the ground where you stand. All adversaries within Melee range, or who enter Melee range, take <strong>2d12+4</strong> magic damage and are knocked back to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range.        </p></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 3,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784423,
+    "modifiedTime": 1753922784423,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "cWRFHJdxEZ0M1dAg",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!cWRFHJdxEZ0M1dAg"
+}

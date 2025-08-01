@@ -6,7 +6,74 @@
   "system": {
     "description": "<p>Clear 1d4+1 Stress.</p>",
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "BnYXCo5zr50Sw8gj": {
+        "type": "healing",
+        "_id": "BnYXCo5zr50Sw8gj",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d4",
+                "bonus": 1
+              },
+              "applyTo": "stress",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Drink",
+        "img": "icons/consumables/potions/bottle-corked-green.webp",
+        "range": ""
+      }
+    },
     "consumeOnUse": true
   },
   "effects": [],
@@ -21,12 +88,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588904835,
-    "modifiedTime": 1753623366482,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753992968712,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!hf3k1POoVSooJyN2"
 }

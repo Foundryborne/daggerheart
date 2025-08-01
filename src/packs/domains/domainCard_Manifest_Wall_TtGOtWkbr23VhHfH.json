@@ -1,0 +1,29 @@
+{
+  "name": "Manifest Wall",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "pDtffkb0SMv1O8pL",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. Once per rest on a success, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to create a temporary magical wall between two points within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. It can be up to 50 feet high and form at any angle. Creatures or objects in its path are shunted to a side of your choice. The wall stays up until your next rest or you cast Manifest Wall again.        </p></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 5,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784479,
+    "modifiedTime": 1753922784479,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "TtGOtWkbr23VhHfH",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!TtGOtWkbr23VhHfH"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Zone of Protection",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "OwsbTSWzKq2WJmQN",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (16)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, choose a point within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range and create a visible zone of protection there for all allies within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range of that point. When you do, place a <strong>d6</strong> on this card with the 1 value facing up. When an ally in this zone takes damage, they reduce it by the die’s value. You then increase the die’s value by one. When the die’s value would exceed 6, this effect ends.</p></p>",
+    "domain": "splendor",
+    "recallCost": 2,
+    "level": 6,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784549,
+    "modifiedTime": 1753922784549,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "lOZaRb4fCVgQsWB5",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!lOZaRb4fCVgQsWB5"
+}

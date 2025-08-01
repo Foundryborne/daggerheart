@@ -1,0 +1,29 @@
+{
+  "name": "Natural Familiar",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "xZrCYAd05ayNu1yW",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to summon a small nature spirit or forest critter to your side until your next rest, you cast Natural Familiar again, or the familiar is targeted by an attack. If you <strong>spend an additional Hope</strong>, you can summon a familiar that flies. You can communicate with them, make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> to command them to perform simple tasks, and <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to see through their eyes.        </p><p class=\"Body-Foundation\">When you deal damage to an adversary within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of your familiar, you add a <strong>d6</strong> to your damage roll.</p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 2,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784485,
+    "modifiedTime": 1753922784485,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "Tag303LoRNC5zGgl",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!Tag303LoRNC5zGgl"
+}

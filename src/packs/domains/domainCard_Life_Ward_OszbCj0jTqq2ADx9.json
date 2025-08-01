@@ -1,0 +1,29 @@
+{
+  "name": "Life Ward",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "vAZKNDtAafd7HDWV",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Spend 3 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> and choose an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. They are marked with a glowing sigil of protection. When this ally would make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"death\" nexus=\"daggerheart\">death</tooltip> move, they clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> instead.        </p><p class=\"Body-Foundation\">This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>.</p></p>",
+    "domain": "splendor",
+    "recallCost": 1,
+    "level": 4,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784478,
+    "modifiedTime": 1753922784478,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "OszbCj0jTqq2ADx9",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!OszbCj0jTqq2ADx9"
+}

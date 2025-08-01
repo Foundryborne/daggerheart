@@ -1,0 +1,29 @@
+{
+  "name": "Glancing Blow",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "HAGbPLHwm0UozDeG",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you fail an attack, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to deal weapon damage using half your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.        </p></p>",
+    "domain": "blade",
+    "recallCost": 1,
+    "level": 7,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784462,
+    "modifiedTime": 1753922784462,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "nCNCqSH7UgW4O3To",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!nCNCqSH7UgW4O3To"
+}

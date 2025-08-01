@@ -1,0 +1,29 @@
+{
+  "name": "Stunning Sunlight",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "A00z8Q8B3aKApKzI",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> to unleash powerful rays of burning sunlight against all adversaries in front of you within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. On a success, <strong>spend any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> and force that many targets you succeeded against to make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (14).        </p><p class=\"Body-Foundation\">Targets who succeed take <strong>3d20+3</strong> magic damage. Targets who fail take <strong>4d20+5</strong> magic damage and are temporarily <em>Stunned</em>. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip>.</p></p>",
+    "domain": "splendor",
+    "recallCost": 2,
+    "level": 8,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784524,
+    "modifiedTime": 1753922784524,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "lRHo6ZkK1zybeEoG",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!lRHo6ZkK1zybeEoG"
+}

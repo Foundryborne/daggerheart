@@ -1,0 +1,29 @@
+{
+  "name": "Preservation Blast",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "1e5Sn8OXxEQ57GSD",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range. Targets you succeed against are forced back to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range and take <strong>d8+3</strong> magic damage using your Spellcast trait. </p></p>",
+    "domain": "arcana",
+    "recallCost": 2,
+    "level": 4,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784495,
+    "modifiedTime": 1753922784495,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "1p1cOmbnRd5CoKBp",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!1p1cOmbnRd5CoKBp"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Stealth Expertise",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "WTdOLLkQyPdg0KWU",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you roll with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> while attempting to move unnoticed through a dangerous area, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to roll with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> instead.        </p><p class=\"Body-Foundation\">If an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range is also attempting to move unnoticed and rolls with Fear, you can <strong>mark a Stress</strong> to change their result to a roll with Hope.</p></p>",
+    "domain": "midnight",
+    "recallCost": 0,
+    "level": 4,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784523,
+    "modifiedTime": 1753922784523,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "NIUhmuQGwbb3UClZ",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!NIUhmuQGwbb3UClZ"
+}

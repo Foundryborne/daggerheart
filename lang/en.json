@@ -930,6 +930,14 @@
                 "selectType": "Select Action Type",
                 "selectAction": "Action Selection"
             },
+            "TemplateTypes": {
+                "circle": "Circle",
+                "cone": "Cone",
+                "emanation": "Emanation",
+                "inFront": "In Front",
+                "rect": "Rectangle",
+                "ray": "Ray"
+            },
             "Traits": {
                 "agility": {
                     "name": "Agility",
@@ -1821,7 +1829,6 @@
             "basics": "Basics",
             "bonus": "Bonus",
             "burden": "Burden",
-            "check": "{check} Check",
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
             "damage": "Damage",
@@ -1866,6 +1873,7 @@
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
+            "reactionRoll": "Reaction Roll",
             "recovery": "Recovery",
             "reroll": "Reroll",
             "rerollThing": "Reroll {thing}",
@@ -1873,6 +1881,7 @@
             "roll": "Roll",
             "rollAll": "Roll All",
             "rollDamage": "Roll Damage",
+            "rollWith": "{roll} Roll",
             "save": "Save",
             "scalable": "Scalable",
             "situationalBonus": "Situational Bonus",
@@ -2225,7 +2234,8 @@
                 "beastformToManyAdvantages": "You cannot select any more advantages.",
                 "beastformToManyFeatures": "You cannot select any more features.",
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
-                "loadoutMaxReached": "You already have {max} cards in your loadout. Move atleast one to your vault before adding a new one."
+                "loadoutMaxReached": "You already have {max} cards in your loadout. Move atleast one to your vault before adding a new one.",
+                "insufficientResources": "You have insufficient resources"
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",

@@ -10,10 +10,8 @@ export default class DHDamageAction extends DHBaseAction {
 
         const isAdversary = this.actor.type === 'adversary';
         if (isAdversary && this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
-            const hasHordeDamage = this.actor.effects.find(
-                x => x.name === game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label')
-            );
-            if (hasHordeDamage) return part.valueAlt;
+            const hasHordeDamage = this.actor.effects.find(x => x.type === 'horde');
+            if (hasHordeDamage && !hasHordeDamage.disabled) return part.valueAlt;
         }
 
         return formulaValue;
@@ -47,7 +45,9 @@ export default class DHDamageAction extends DHBaseAction {
         formulas = this.formatFormulas(formulas, systemData);
 
         const config = {
-            title: game.i18n.format(`DAGGERHEART.UI.Chat.${ this.type === 'healing' ? 'healing' : 'damage'}Roll.title`, { damage: game.i18n.localize(this.name) }),
+            title: game.i18n.format(`DAGGERHEART.UI.Chat.${this.type === 'healing' ? 'healing' : 'damage'}Roll.title`, {
+                damage: game.i18n.localize(this.name)
+            }),
             roll: formulas,
             targets: systemData.targets?.filter(t => t.hit) ?? data.targets,
             hasSave: this.hasSave,

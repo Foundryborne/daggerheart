@@ -1,0 +1,29 @@
+{
+  "name": "Notorious",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "wdhWWqWlPiBxtsvr",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">People know who you are and what you’ve done, and they treat you differently because of it. When you leverage your notoriety to get what you want, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> before you roll to gain a +10 bonus to the result. Your food and drinks are always free wherever you go, and everything else you buy is reduced in price by one <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"bag-gold\" nexus=\"daggerheart\">bag of gold</tooltip> (to a minimum of one <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"handful-gold\" nexus=\"daggerheart\">handful</tooltip>).        </p><p class=\"Body-Foundation\">This card doesn’t count against your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout’s</tooltip> domain card maximum of 5 and can’t be placed in your vault.</p></p>",
+    "domain": "grace",
+    "recallCost": 0,
+    "level": 10,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784489,
+    "modifiedTime": 1753922784489,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "IqxzvvjZiYbgx21A",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!IqxzvvjZiYbgx21A"
+}

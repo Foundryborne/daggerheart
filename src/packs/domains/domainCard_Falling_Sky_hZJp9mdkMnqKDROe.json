@@ -1,0 +1,29 @@
+{
+  "name": "Falling Sky",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "7Cs44YADBTmmtCw6",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. <strong>Mark any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to make shards of arcana rain down from above. Targets you succeed against take <strong>1d20+2</strong> magic damage for each Stress marked.        </p></p>",
+    "domain": "arcana",
+    "recallCost": 1,
+    "level": 10,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784452,
+    "modifiedTime": 1753922784452,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "hZJp9mdkMnqKDROe",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!hZJp9mdkMnqKDROe"
+}

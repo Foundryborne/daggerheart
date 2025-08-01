@@ -1,0 +1,29 @@
+{
+  "name": "Share the Burden",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "VgADdqYn9nS9G1Us",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest, take on the <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> from a willing creature within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range. The target describes what intimate knowledge or emotions telepathically leak from their mind in this moment between you. Transfer any number of their marked Stress to you, then gain a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> for each Stress transferred.</p></p>",
+    "domain": "grace",
+    "recallCost": 0,
+    "level": 6,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784515,
+    "modifiedTime": 1753922784515,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "8nRle10pw1HO8QVu",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!8nRle10pw1HO8QVu"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Unbreakable",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "D1MFCYakdFIKDmcD",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you mark your last <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip>, instead of making a death move, you can roll a <strong>d6</strong> and clear a number of Hit Points equal to the result. Then place this card in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">vault</tooltip>.</p></p>",
+    "domain": "valor",
+    "recallCost": 4,
+    "level": 10,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784536,
+    "modifiedTime": 1753922784536,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "CUIQmrPjf9VCHmwJ",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!CUIQmrPjf9VCHmwJ"
+}

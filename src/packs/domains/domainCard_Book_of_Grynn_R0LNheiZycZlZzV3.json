@@ -1,0 +1,29 @@
+{
+  "name": "Book of Grynn",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "rUGDM9JvGfhh9a2Y",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Arcane Deflection:</strong></em> Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to negate the damage of an attack targeting you or an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range.        </p><p class=\"Card-Feature\"><em><strong>Time Lock:</strong></em> Target an object within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. That object stops in time and space exactly where it is until your next rest. If a creature tries to move it, make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against them to maintain this spell.</p><p class=\"Card-Feature\"><em><strong>Wall of Flame:</strong></em> Make a <strong>Spellcast Roll (15)</strong>. On a success, create a wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage. </p></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 4,
+    "type": "grimoire"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784420,
+    "modifiedTime": 1753922784420,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "R0LNheiZycZlZzV3",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!R0LNheiZycZlZzV3"
+}

@@ -11,7 +11,7 @@ export default function DhTemplateEnricher(match, _options) {
         if (split.length === 2) {
             switch (split[0]) {
                 case 'type':
-                    const matchedType = Object.values(CONST.MEASURED_TEMPLATE_TYPES).find(
+                    const matchedType = Object.values(CONFIG.DH.GENERAL.templateTypes).find(
                         x => x.toLowerCase() === split[1]
                     );
                     type = matchedType;
@@ -28,10 +28,12 @@ export default function DhTemplateEnricher(match, _options) {
 
     if (!type || !range) return match[0];
 
+    const label = game.i18n.localize(`DAGGERHEART.CONFIG.TemplateTypes.${type}`);
+
     const templateElement = document.createElement('span');
     templateElement.innerHTML = `
         <button class="measured-template-button" data-type="${type}" data-range="${range}">
-            ${game.i18n.localize(`TEMPLATE.TYPES.${type}`)} - ${game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.name`)}
+            ${label} - ${game.i18n.localize(`DAGGERHEART.CONFIG.Range.${range}.name`)}
         </button>
     `;
 
@@ -45,16 +47,26 @@ export const renderMeasuredTemplate = async event => {
 
     if (!type || !range || !game.canvas.scene) return;
 
-    const distance = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement)[range];
+    const usedType = type === 'inFront' ? 'cone' : type === 'emanation' ? 'circle' : type;
+    const angle =
+        type === CONST.MEASURED_TEMPLATE_TYPES.CONE
+            ? CONFIG.MeasuredTemplate.defaults.angle
+            : type === CONFIG.DH.GENERAL.templateTypes.INFRONT
+              ? '180'
+              : undefined;
+
+    const baseDistance = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement)[range];
+    const distance = type === CONFIG.DH.GENERAL.templateTypes.EMANATION ? baseDistance + 2.5 : baseDistance;
+
     const { width, height } = game.canvas.scene.dimensions;
     canvas.scene.createEmbeddedDocuments('MeasuredTemplate', [
         {
             x: width / 2,
             y: height / 2,
-            t: type,
+            t: usedType,
             distance: distance,
             width: type === CONST.MEASURED_TEMPLATE_TYPES.RAY ? 5 : undefined,
-            angle: type === CONST.MEASURED_TEMPLATE_TYPES.CONE ? CONFIG.MeasuredTemplate.defaults.angle : undefined
+            angle: angle
         }
     ]);
 };

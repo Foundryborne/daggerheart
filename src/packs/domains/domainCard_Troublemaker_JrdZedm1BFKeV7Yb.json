@@ -1,0 +1,29 @@
+{
+  "name": "Troublemaker",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "pu3xD4rEkdfdAvGc",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you taunt or provoke a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range, make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"presence\" nexus=\"daggerheart\"><strong>Presence</strong></tooltip><strong> Roll</strong> against them. Once per rest on a success, roll a number of <strong>d4s</strong> equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. The target must mark <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> equal to the highest result rolled.</p></p>",
+    "domain": "grace",
+    "recallCost": 2,
+    "level": 2,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784535,
+    "modifiedTime": 1753922784535,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "JrdZedm1BFKeV7Yb",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!JrdZedm1BFKeV7Yb"
+}

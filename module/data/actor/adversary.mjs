@@ -117,29 +117,46 @@ export default class DhpAdversary extends BaseDataActor {
         if (allowed === false) return false;
 
         if (this.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
-            if (changes.system?.resources?.hitPoints?.value) {
-                const halfHP = Math.ceil(this.resources.hitPoints.max / 2);
-                const newHitPoints = changes.system.resources.hitPoints.value;
-                const previouslyAboveHalf = this.resources.hitPoints.value < halfHP;
-                const loweredBelowHalf = previouslyAboveHalf && newHitPoints >= halfHP;
-                const raisedAboveHalf = !previouslyAboveHalf && newHitPoints < halfHP;
-                if (loweredBelowHalf) {
-                    await this.parent.createEmbeddedDocuments('ActiveEffect', [
-                        {
-                            name: game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
-                            img: 'icons/magic/movement/chevrons-down-yellow.webp',
-                            disabled: !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation)
-                                .hordeDamage
-                        }
-                    ]);
-                } else if (raisedAboveHalf) {
-                    const hordeEffects = this.parent.effects.filter(
-                        x => x.name === game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label')
-                    );
-                    await this.parent.deleteEmbeddedDocuments(
-                        'ActiveEffect',
-                        hordeEffects.map(x => x.id)
-                    );
+            const autoHordeDamage = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.Automation
+            ).hordeDamage;
+            if (autoHordeDamage && changes.system?.resources?.hitPoints?.value) {
+                const hordeActiveEffect = this.parent.effects.find(x => x.type === 'horde');
+                if (hordeActiveEffect) {
+                    const halfHP = Math.ceil(this.resources.hitPoints.max / 2);
+                    const newHitPoints = changes.system.resources.hitPoints.value;
+                    const previouslyAboveHalf = this.resources.hitPoints.value < halfHP;
+                    const loweredBelowHalf = previouslyAboveHalf && newHitPoints >= halfHP;
+                    const raisedAboveHalf = !previouslyAboveHalf && newHitPoints < halfHP;
+                    if (loweredBelowHalf) {
+                        await hordeActiveEffect.update({ disabled: false });
+                    } else if (raisedAboveHalf) {
+                        await hordeActiveEffect.update({ disabled: true });
+                    }
+                }
+            }
+        }
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+
+        if (game.user.id === userId) {
+            if (changes.system.type) {
+                const existingHordeEffect = this.parent.effects.find(x => x.type === 'horde');
+                if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+                    if (!existingHordeEffect)
+                        this.parent.createEmbeddedDocuments('ActiveEffect', [
+                            {
+                                type: 'horde',
+                                name: game.i18n.localize('DAGGERHEART.CONFIG.AdversaryType.horde.label'),
+                                img: 'icons/magic/movement/chevrons-down-yellow.webp',
+                                disabled: true
+                            }
+                        ]);
+                } else {
+                    existingHordeEffect?.delete();
                 }
             }
         }

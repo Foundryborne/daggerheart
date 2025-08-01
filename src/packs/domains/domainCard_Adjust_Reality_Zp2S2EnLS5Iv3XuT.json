@@ -1,0 +1,29 @@
+{
+  "name": "Adjust Reality",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "7Cs44YADBTmmtCw6",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">After you or a willing ally make any roll, you can <strong>spend 5 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to change the numerical result of that roll to a result of your choice instead. The result must be plausible within the range of the dice.        </p></p>",
+    "domain": "arcana",
+    "recallCost": 1,
+    "level": 10,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784408,
+    "modifiedTime": 1753922784408,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "Zp2S2EnLS5Iv3XuT",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!Zp2S2EnLS5Iv3XuT"
+}

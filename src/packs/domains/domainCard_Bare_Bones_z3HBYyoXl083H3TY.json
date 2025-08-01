@@ -1,0 +1,29 @@
+{
+  "name": "Bare Bones",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "QpOL7jPbMBzH96qR",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you choose not to equip <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor\" nexus=\"daggerheart\">armor</tooltip>, you have a base <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-score\" nexus=\"daggerheart\">Armor Score</tooltip> of 3 + your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"strength\" nexus=\"daggerheart\">Strength </tooltip>and use the following as your base damage thresholds:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><em><strong>Tier 1:</strong></em> 9/19</li><li class=\"vertical-card-list-found\"><em><strong>Tier 2:</strong></em> 11/24</li><li class=\"vertical-card-list-found\"><em><strong>Tier 3:</strong></em> 13/31</li><li class=\"vertical-card-list-found\"><em><strong>Tier 4:</strong></em> 15/38</li></ul></p>",
+    "domain": "valor",
+    "recallCost": 0,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784412,
+    "modifiedTime": 1753922784412,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "z3HBYyoXl083H3TY",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!z3HBYyoXl083H3TY"
+}

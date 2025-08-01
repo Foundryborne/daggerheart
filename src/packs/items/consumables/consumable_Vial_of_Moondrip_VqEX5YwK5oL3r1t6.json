@@ -17,12 +17,17 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "548KAUPcSbQLsivh",
+            "onSave": false
+          }
+        ],
         "target": {
-          "type": null,
+          "type": "self",
           "amount": null
         },
         "name": "Drink",
@@ -32,7 +37,52 @@
     },
     "consumeOnUse": true
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Vial of Moondrip",
+      "img": "icons/consumables/potions/bottle-ornate-bat-teal.webp",
+      "origin": "Compendium.daggerheart.consumables.Item.VqEX5YwK5oL3r1t6",
+      "transfer": false,
+      "_id": "548KAUPcSbQLsivh",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You can see in total darkness until your next rest.</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753992869479,
+        "modifiedTime": 1753992876165,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!VqEX5YwK5oL3r1t6.548KAUPcSbQLsivh"
+    }
+  ],
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -44,12 +94,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753587590537,
-    "modifiedTime": 1753588714959,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753992914849,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!VqEX5YwK5oL3r1t6"
 }

@@ -1,0 +1,29 @@
+{
+  "name": "Strategic Approach",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Q9rmrfeKqcqBNnWc",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">After a long rest, place a number of tokens equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"knowledge\" nexus=\"daggerheart\">Knowledge</tooltip> on this card (minimum 1). The first time you move within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range of an adversary and make an attack against them, you can spend one token to choose one of the following options:</p><ul class=\"\"><li class=\"vertical-card-list-found\">You make the attack with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip>.</li><li class=\"vertical-card-list-found\">You clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> on an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of the adversary.</li><li class=\"vertical-card-list-found\">You add a <strong>d8</strong> to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"damage-roll\" nexus=\"daggerheart\">damage roll</tooltip>.</li></ul><p class=\"Body-Foundation\">When you take a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, clear all unspent tokens.</p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 2,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784523,
+    "modifiedTime": 1753922784523,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "5b1awkgTmMp3FVrm",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!5b1awkgTmMp3FVrm"
+}

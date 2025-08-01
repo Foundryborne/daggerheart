@@ -1,0 +1,29 @@
+{
+  "name": "Tactician",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "eR7sP5jQwfCLORUe",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"help-an-ally\" nexus=\"daggerheart\">Help an Ally</tooltip>, they can spend a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> to add one of your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"experience\" nexus=\"daggerheart\">Experiences</tooltip> to their roll alongside your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> die. </p><p class=\"Body-Foundation\">When making a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"tag-team-roll\" nexus=\"daggerheart\">Tag Team Roll</tooltip>, you can roll a <strong>d20</strong> as your Hope Die.</p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 3,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784526,
+    "modifiedTime": 1753922784526,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "WChWEH36lUpXAC0K",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!WChWEH36lUpXAC0K"
+}
