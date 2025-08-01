@@ -1,0 +1,34 @@
+{
+  "folder": "KA1VSGslxkbvVeMp",
+  "name": "Well-Read",
+  "type": "feature",
+  "_id": "JBZJmywisJg5X3tH",
+  "img": "icons/sundries/books/book-open-brown.webp",
+  "system": {
+    "description": "<p>You have advantage on rolls that involve the history, culture, or politics of a prominent person or place.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754010247432,
+    "modifiedTime": 1754010247432,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "_key": "!items!JBZJmywisJg5X3tH"
+}

@@ -1,0 +1,34 @@
+{
+  "folder": "KA1VSGslxkbvVeMp",
+  "name": "Lightfoot",
+  "type": "feature",
+  "_id": "TQ1AIQjndC4mYmmU",
+  "img": "icons/magic/control/debuff-energy-snare-blue.webp",
+  "system": {
+    "description": "<p>Your movement is naturally silent. You have advantage on rolls to move without being heard.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754010247432,
+    "modifiedTime": 1754010247432,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "_key": "!items!TQ1AIQjndC4mYmmU"
+}
