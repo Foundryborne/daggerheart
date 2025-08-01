@@ -33,7 +33,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "bruiser",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -64,19 +64,58 @@
       }
     },
     "tier": 2,
-    "description": "<p>A massive bull-headed firbolg with a quick temper.</p>"
+    "description": "<p>A massive bull-headed firbolg with a quick temper.</p>",
+    "motivesAndTactics": "Consume, gore, navigate, overpower, pursue",
+    "attack": {
+      "name": "Battleaxe",
+      "roll": {
+        "bonus": 2
+      },
+      "range": "veryClose",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 5,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/weapons/axes/axe-double.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784310,
-    "modifiedTime": 1753922784310,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754082401352,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "rM9qCIYeWg9I0B4l",
   "sort": 3400000,
@@ -179,7 +218,346 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Ramp Up",
+      "type": "feature",
+      "system": {
+        "description": "<p>You must <strong>spend a Fear</strong> to spotlight the Minotaur. While spotlighted, they can make their standard attack against all targets within range.</p>",
+        "resource": null,
+        "actions": {
+          "oVGqHl82zSjnlym3": {
+            "type": "effect",
+            "_id": "oVGqHl82zSjnlym3",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/unholy/orb-hands-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "RxTetAI1hmmxzJTg",
+      "img": "icons/weapons/clubs/club-spiked-glowing.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082044045,
+        "modifiedTime": 1754082161500,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!rM9qCIYeWg9I0B4l.RxTetAI1hmmxzJTg"
+    },
+    {
+      "name": "Charging Bull",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to charge through a group within Close range and make an attack against all targets in the Minotaur’s path. Targets the Minotaur succeeds against take <strong>2d6+8</strong> physical damage and are knocked back to Very Far range. If a target is knocked into a solid object or another creature, they take an extra <strong>1d6</strong> damage (combine the damage).</p>",
+        "resource": null,
+        "actions": {
+          "8fgkb7U2pxNyiHrB": {
+            "type": "attack",
+            "_id": "8fgkb7U2pxNyiHrB",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d6",
+                    "bonus": 8,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/creatures/mammals/bull-horned-blue.webp",
+            "range": "close"
+          },
+          "fZ8jWUdMKBf5xSPO": {
+            "type": "damage",
+            "_id": "fZ8jWUdMKBf5xSPO",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "2d6 + 8 + 1d6"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Collision Damage",
+            "img": "icons/magic/earth/barrier-stone-brown-green.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "b2QvDYOq1nreI2uD",
+      "img": "icons/creatures/mammals/bull-horned-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082167407,
+        "modifiedTime": 1754082303567,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!rM9qCIYeWg9I0B4l.b2QvDYOq1nreI2uD"
+    },
+    {
+      "name": "Gore",
+      "type": "feature",
+      "system": {
+        "description": "<p>Make an attack against a target within Very Close range, moving the Minotaur into Melee range of them. On a success, deal <strong>2d8</strong> direct physical damage.</p>",
+        "resource": null,
+        "actions": {
+          "3yqz7Gj34KBWMjwt": {
+            "type": "attack",
+            "_id": "3yqz7Gj34KBWMjwt",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d8",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/melee/strike-slashes-red.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "WxbHcbaeb6L7g8qN",
+      "img": "icons/skills/melee/strike-slashes-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082306467,
+        "modifiedTime": 1754082351713,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!rM9qCIYeWg9I0B4l.WxbHcbaeb6L7g8qN"
+    }
+  ],
   "effects": [],
   "_key": "!actors!rM9qCIYeWg9I0B4l"
 }

@@ -33,10 +33,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "leader",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "iDVbPwS24jkuGF8B": {
+        "name": "Ancient Knowledge",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -64,19 +70,57 @@
       }
     },
     "tier": 2,
-    "description": "<p>A ghostly commander leading their troops beyond death.</p>"
+    "description": "<p>A ghostly commander leading their troops beyond death.</p>",
+    "motivesAndTactics": "Move through solid objects, rally troops, rehash old battles",
+    "attack": {
+      "name": "Longbow",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d10",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "roll": {
+        "bonus": 3
+      },
+      "range": "far"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784352,
-    "modifiedTime": 1753922784352,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754084498358,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "65cSO3EQEh6ZH6Xk",
   "sort": 3400000,
@@ -179,7 +223,285 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Ghost",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Captain has resistance to physical damage. <strong>Mark a Stress</strong> to move up to Close range through solid objects.</p>",
+        "resource": null,
+        "actions": {
+          "k7RuXErgCsEBmhmk": {
+            "type": "effect",
+            "_id": "k7RuXErgCsEBmhmk",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "JU93RyfAB5XhZ6FN",
+      "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+      "effects": [
+        {
+          "name": "Ghost",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "_id": "kZhvwDvfcYQ10reO",
+          "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+          "changes": [
+            {
+              "key": "system.resistance.physical.resistance",
+              "mode": 5,
+              "value": "1",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>The Captain has resistance to physical damage.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754084251861,
+            "modifiedTime": 1754084272308,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!65cSO3EQEh6ZH6Xk.JU93RyfAB5XhZ6FN.kZhvwDvfcYQ10reO"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754084228113,
+        "modifiedTime": 1754084284677,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!65cSO3EQEh6ZH6Xk.JU93RyfAB5XhZ6FN"
+    },
+    {
+      "name": "Unending Battle",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend 2 Fear</strong> to return up to [[/r 1d4+1]] defeated Spectral allies to the battle at the points where they first appeared (with no marked HP or Stress).</p>",
+        "resource": null,
+        "actions": {
+          "eHmbN4aPLUuEoDQt": {
+            "type": "effect",
+            "_id": "eHmbN4aPLUuEoDQt",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 2,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/death/undead-skeleton-worn-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "7YVe4DfEWMNLXNvu",
+      "img": "icons/magic/death/undead-skeleton-worn-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754084289554,
+        "modifiedTime": 1754084346643,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!65cSO3EQEh6ZH6Xk.7YVe4DfEWMNLXNvu"
+    },
+    {
+      "name": "Hold Fast",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Captain’s Spectral allies are forced to make a reaction roll, you can <strong>mark a Stress</strong> to give those allies a +2 bonus to the roll.</p>",
+        "resource": null,
+        "actions": {
+          "aRg1bcPGUn69GPyB": {
+            "type": "effect",
+            "_id": "aRg1bcPGUn69GPyB",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "X0vtV30ACVVZ6NfF",
+      "img": "icons/magic/defensive/shield-barrier-flaming-diamond-teal.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754084350199,
+        "modifiedTime": 1754084392491,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!65cSO3EQEh6ZH6Xk.X0vtV30ACVVZ6NfF"
+    },
+    {
+      "name": "Momentum",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Captain makes a successful attack against a PC, you gain a Fear.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "b9wn9oVMne8E1OYx",
+      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754084396019,
+        "modifiedTime": 1754084409095,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!65cSO3EQEh6ZH6Xk.b9wn9oVMne8E1OYx"
+    }
+  ],
   "effects": [],
   "_key": "!actors!65cSO3EQEh6ZH6Xk"
 }

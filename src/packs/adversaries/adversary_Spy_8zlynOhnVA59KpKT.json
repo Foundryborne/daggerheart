@@ -33,10 +33,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "social",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "EhtLh4vyQvoZaL83": {
+        "name": "Espionage",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -64,19 +70,57 @@
       }
     },
     "tier": 2,
-    "description": "<p>A skilled espionage agent with a knack for being in the right place to overhear secrets.</p>"
+    "description": "<p>A skilled espionage agent with a knack for being in the right place to overhear secrets.</p>",
+    "motivesAndTactics": "Cut and run, disguise appearance, eavesdrop",
+    "attack": {
+      "name": "Dagger",
+      "roll": {
+        "bonus": -2
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d6",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/weapons/daggers/dagger-curved-purple.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784354,
-    "modifiedTime": 1753922784354,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754084717338,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "8zlynOhnVA59KpKT",
   "sort": 3400000,
@@ -179,7 +223,202 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Gathering Secrets",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to describe how the Spy knows a secret about a PC in the scene.</p>",
+        "resource": null,
+        "actions": {
+          "iq5KzP5hgA4377fO": {
+            "type": "effect",
+            "_id": "iq5KzP5hgA4377fO",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/perception/orb-eye-scrying.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "csCWQuSqic5ckHeO",
+      "img": "icons/magic/perception/orb-eye-scrying.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754084722024,
+        "modifiedTime": 1754084779191,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!8zlynOhnVA59KpKT.csCWQuSqic5ckHeO"
+    },
+    {
+      "name": "Fly on the Wall",
+      "type": "feature",
+      "system": {
+        "description": "<p>When a PC or group is discussing something sensitive, you can <strong>mark a Stress</strong> to reveal that the Spy is present in the scene, observing them. If the Spy escapes the scene to report their findings, you gain <strong>1d4</strong> Fear.</p>",
+        "resource": null,
+        "actions": {
+          "Ml8nt7SPNFc2iQno": {
+            "type": "effect",
+            "_id": "Ml8nt7SPNFc2iQno",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+            "range": ""
+          },
+          "qCA2hTMIYGW0FhGy": {
+            "type": "healing",
+            "_id": "qCA2hTMIYGW0FhGy",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "UvgVDn0YjISLdKE4",
+      "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754084782425,
+        "modifiedTime": 1754084860717,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!8zlynOhnVA59KpKT.UvgVDn0YjISLdKE4"
+    }
+  ],
   "effects": [],
   "_key": "!actors!8zlynOhnVA59KpKT"
 }

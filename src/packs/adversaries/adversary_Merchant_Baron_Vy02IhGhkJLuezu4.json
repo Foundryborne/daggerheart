@@ -34,10 +34,21 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "social",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "lL8dfULiYdmPhNI0": {
+        "name": "Nobility",
+        "description": "",
+        "value": 2
+      },
+      "gamLW8KZ5thFYf4v": {
+        "name": "Trade",
+        "description": "",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +76,56 @@
       }
     },
     "tier": 2,
-    "description": "<p>An accomplished merchant with a large operation under their command.</p>"
+    "description": "<p>An accomplished merchant with a large operation under their command.</p>",
+    "attack": {
+      "name": "Rapier",
+      "img": "icons/weapons/swords/sword-jeweled-red.webp",
+      "roll": {
+        "bonus": -2
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d6",
+              "bonus": 2,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784306,
-    "modifiedTime": 1753922784306,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754081870630,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "Vy02IhGhkJLuezu4",
   "sort": 3400000,
@@ -180,7 +228,178 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Everyone Has a Price",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to offer a target a dangerous bargain for something they want or need. If used on a PC, they must make a Presence Reaction Roll (17). On a failure, they must mark 2 Stress or take the deal.</p>",
+        "resource": null,
+        "actions": {
+          "T7N9rDCaB5VOm6AY": {
+            "type": "attack",
+            "_id": "T7N9rDCaB5VOm6AY",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "2"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": 17,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/commodities/currency/coins-plain-stack-gold-yellow.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "7dxToUpxOyISXXde",
+      "img": "icons/commodities/currency/coins-plain-stack-gold-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754081872693,
+        "modifiedTime": 1754081940858,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!Vy02IhGhkJLuezu4.7dxToUpxOyISXXde"
+    },
+    {
+      "name": "The Best Muscle Money Can Buy",
+      "type": "feature",
+      "system": {
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon 1d4+1 Tier 1 adversaries, who appear at Far range, to enforce the Baron’s will.</p>",
+        "resource": null,
+        "actions": {
+          "9NA6vgfsv0y2tX9v": {
+            "type": "effect",
+            "_id": "9NA6vgfsv0y2tX9v",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/environment/people/charge.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "QnDvERcyaq3XLCjF",
+      "img": "icons/environment/people/charge.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754081946463,
+        "modifiedTime": 1754082024659,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!Vy02IhGhkJLuezu4.QnDvERcyaq3XLCjF"
+    }
+  ],
   "effects": [],
   "_key": "!actors!Vy02IhGhkJLuezu4"
 }

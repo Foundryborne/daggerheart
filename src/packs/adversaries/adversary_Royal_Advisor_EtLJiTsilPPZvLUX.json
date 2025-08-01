@@ -33,10 +33,21 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "social",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "ivvhwc5gzTaSW3hY": {
+        "name": "Administration",
+        "description": "",
+        "value": 3
+      },
+      "fqQ0uTRen2S6WNR7": {
+        "name": "Courtier",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -64,19 +75,58 @@
       }
     },
     "tier": 2,
-    "description": "<p>A high-ranking courtier with the ear of the local nobility.</p>"
+    "description": "<p>A high-ranking courtier with the ear of the local nobility.</p>",
+    "motivesAndTactics": "Curry favor, manufacture evidence, scheme",
+    "attack": {
+      "name": "Wand",
+      "img": "icons/weapons/wands/wand-gem-violet.webp",
+      "roll": {
+        "bonus": -3
+      },
+      "range": "far",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d4",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784339,
-    "modifiedTime": 1753922784339,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754082870597,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "EtLJiTsilPPZvLUX",
   "sort": 3400000,
@@ -179,7 +229,222 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Devastating Retort",
+      "type": "feature",
+      "system": {
+        "description": "<p>A PC who rolls less than 17 on an action roll targeting the Advisor must mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "gtM7UPq6xHgJHPPp": {
+            "type": "damage",
+            "_id": "gtM7UPq6xHgJHPPp",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Stress Damage",
+            "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "XFpF0FfTdqCjbHHF",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082801892,
+        "modifiedTime": 1754082844602,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!EtLJiTsilPPZvLUX.XFpF0FfTdqCjbHHF"
+    },
+    {
+      "name": "Bend Ears",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to influence an NPC within Melee range with whispered words. That target’s opinion on one matter shifts toward the Advisor’s preference unless it is in direct opposition to the target’s motives.</p>",
+        "resource": null,
+        "actions": {
+          "JNFTnARlTAKermLx": {
+            "type": "effect",
+            "_id": "JNFTnARlTAKermLx",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/skills/social/diplomacy-handshake.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "lG6vMc0zUbijpvCM",
+      "img": "icons/skills/social/diplomacy-handshake.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082871968,
+        "modifiedTime": 1754082966587,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!EtLJiTsilPPZvLUX.lG6vMc0zUbijpvCM"
+    },
+    {
+      "name": "Scapegoat",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to convince a crowd or notable individual that one person or group is responsible for some problem facing the target. The target becomes hostile to the scapegoat until convinced of their innocence with a successful Presence Roll (17).</p><p>[[/dr trait=presence difficulty=17]]</p>",
+        "resource": null,
+        "actions": {
+          "6oaHwUVWTmF362vI": {
+            "type": "effect",
+            "_id": "6oaHwUVWTmF362vI",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/unholy/orb-hands-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "iwNrNBbvm3RMgSw5",
+      "img": "icons/skills/social/diplomacy-unity-alliance.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082968228,
+        "modifiedTime": 1754083033696,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!EtLJiTsilPPZvLUX.iwNrNBbvm3RMgSw5"
+    }
+  ],
   "effects": [],
   "_key": "!actors!EtLJiTsilPPZvLUX"
 }

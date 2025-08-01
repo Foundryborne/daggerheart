@@ -34,10 +34,21 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "ranged",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "OuRfGgT7o5CNerfK": {
+        "name": "Magical Knowledge",
+        "description": "",
+        "value": 2
+      },
+      "Vqu9ggHbSdSXM0XA": {
+        "name": "Strategize",
+        "description": "",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +76,57 @@
       }
     },
     "tier": 2,
-    "description": "<p>A battle-hardened mage trained in destructive magic.</p>"
+    "description": "<p>A battle-hardened mage trained in destructive magic.</p>",
+    "attack": {
+      "name": "Staff",
+      "range": "far",
+      "img": "icons/weapons/staves/staff-hooked-banded.webp",
+      "roll": {
+        "bonus": 4
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d10",
+              "bonus": 4,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784373,
-    "modifiedTime": 1753922784373,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754085241068,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "noDdT0tsN6FXSmC8",
   "sort": 3400000,
@@ -180,7 +229,458 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Battle Teleport",
+      "type": "feature",
+      "system": {
+        "description": "<p>Before or after making a standard attack, you can <strong>mark a Stress</strong> to teleport to a location within Far range.</p>",
+        "resource": null,
+        "actions": {
+          "39zC1I5DYozI47lP": {
+            "type": "effect",
+            "_id": "39zC1I5DYozI47lP",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/magic/movement/pinwheel-turning-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "PUUz48dsObawcSgp",
+      "img": "icons/magic/movement/pinwheel-turning-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754085243264,
+        "modifiedTime": 1754085284707,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!noDdT0tsN6FXSmC8.PUUz48dsObawcSgp"
+    },
+    {
+      "name": "Refresh Warding Sphere",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to refresh the Wizard’s “Warding Sphere” reaction.</p>",
+        "resource": null,
+        "actions": {
+          "FCuksmAGRC4061zm": {
+            "type": "effect",
+            "_id": "FCuksmAGRC4061zm",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "dI2MGjC7NFAru1Gd",
+      "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754085287538,
+        "modifiedTime": 1754085324562,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!noDdT0tsN6FXSmC8.dI2MGjC7NFAru1Gd"
+    },
+    {
+      "name": "Eruption",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. A Very Close area around that point erupts into impassable terrain. All targets within that area must make an Agility Reaction Roll (14). Targets who fail take <strong>2d10</strong> physical damage and are thrown out of the area. Targets who succeed take half damage and aren’t moved.</p><p>@Template[type:circle|range:vc]</p>",
+        "resource": null,
+        "actions": {
+          "vnMq4NuQO6GYxWhM": {
+            "type": "attack",
+            "_id": "vnMq4NuQO6GYxWhM",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": 14,
+              "damageMod": "half"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "PnQ0m0FLnpht7oE4",
+      "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754085334993,
+        "modifiedTime": 1754085423257,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!noDdT0tsN6FXSmC8.PnQ0m0FLnpht7oE4"
+    },
+    {
+      "name": "Arcane Artillery",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to unleash a precise hail of magical blasts. All targets in the scene must make an Agility Reaction Roll. Targets who fail take <strong>2d12</strong> magic damage. Targets who succeed take half damage.</p>",
+        "resource": null,
+        "actions": {
+          "DFHR8LtvjZjHP6BL": {
+            "type": "attack",
+            "_id": "DFHR8LtvjZjHP6BL",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d12",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "half"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/light/projectiles-trio-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "s2luvEVxJLZmOrdh",
+      "img": "icons/magic/light/projectiles-trio-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754085427830,
+        "modifiedTime": 1754085490170,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!noDdT0tsN6FXSmC8.s2luvEVxJLZmOrdh"
+    },
+    {
+      "name": "Warding Sphere",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Wizard takes damage from an attack within Close range, deal <strong>2d6</strong> magic damage to the attacker. This reaction can’t be used again until the Wizard refreshes it with their “Refresh Warding Sphere” action.</p>",
+        "resource": {
+          "type": "simple",
+          "value": 1,
+          "max": "1",
+          "icon": "fa-solid fa-hand-sparkles"
+        },
+        "actions": {
+          "2fHrpaZW9toi6nin": {
+            "type": "damage",
+            "_id": "2fHrpaZW9toi6nin",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d6",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "name": "Damage",
+            "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "9cPigHRcUfJC9gD8",
+      "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754085493649,
+        "modifiedTime": 1754085606011,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!noDdT0tsN6FXSmC8.9cPigHRcUfJC9gD8"
+    }
+  ],
   "effects": [],
   "_key": "!actors!noDdT0tsN6FXSmC8"
 }

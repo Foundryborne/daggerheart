@@ -34,10 +34,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "skulk",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "lRo2QTdqPE3kwCHW": {
+        "name": "Stonesense",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +71,56 @@
       }
     },
     "tier": 2,
-    "description": "<p>A prowling hunter, like a slinking mountain lion, with a slate-gray stone body.</p>"
+    "description": "<p>A prowling hunter, like a slinking mountain lion, with a slate-gray stone body.</p>",
+    "attack": {
+      "name": "Bite and Claws",
+      "img": "icons/creatures/claws/claw-curved-jagged-gray.webp",
+      "roll": {
+        "bonus": 3
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 6,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784355,
-    "modifiedTime": 1753922784355,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754084914591,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "3aAS2Qm3R6cgaYfE",
   "sort": 3400000,
@@ -180,7 +223,354 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Stonestrider",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Stonewraith can move through stone and earth as easily as air. While within stone or earth, they are Hidden and immune to all damage.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "SL5JOOefJEeWJCSz",
+      "img": "icons/commodities/stone/stone-pile-grey.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754084916163,
+        "modifiedTime": 1754084942629,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!3aAS2Qm3R6cgaYfE.SL5JOOefJEeWJCSz"
+    },
+    {
+      "name": "Rocky Ambush",
+      "type": "feature",
+      "system": {
+        "description": "<p>While <em>Hidden</em>, <strong>mark a Stress</strong> to leap into Melee range with a target within Very Close range. The target must succeed on an Agility or Instinct Reaction Roll (15) or take <strong>2d8</strong> physical damage and become temporarily Restrained.</p>",
+        "resource": null,
+        "actions": {
+          "E8C2Nd4mwcGTXoXb": {
+            "type": "attack",
+            "_id": "E8C2Nd4mwcGTXoXb",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d8",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "6UgMuuJ8ZygbCsDh",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": 15,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/creatures/abilities/mouth-teeth-rows-white.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "tQgxiSS48TJ3X1Dl",
+      "img": "icons/creatures/abilities/mouth-teeth-rows-white.webp",
+      "effects": [
+        {
+          "name": "Rocky Ambush",
+          "img": "icons/creatures/abilities/mouth-teeth-rows-white.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.3aAS2Qm3R6cgaYfE.Item.tQgxiSS48TJ3X1Dl",
+          "transfer": false,
+          "_id": "6UgMuuJ8ZygbCsDh",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrained"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754085052348,
+            "modifiedTime": 1754085055746,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!3aAS2Qm3R6cgaYfE.tQgxiSS48TJ3X1Dl.6UgMuuJ8ZygbCsDh"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754084946110,
+        "modifiedTime": 1754085052359,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!3aAS2Qm3R6cgaYfE.tQgxiSS48TJ3X1Dl"
+    },
+    {
+      "name": "Avalance Roar",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to roar while within a cave and cause a cave-in. All targets within Close range must succeed on an Agility Reaction Roll (14) or take <strong>2d10</strong> physical damage. The rubble can be cleared with a Progress Countdown (8).</p><p>@Template[type:emanation|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "4UGEEuK9XY8leCBV": {
+            "type": "attack",
+            "_id": "4UGEEuK9XY8leCBV",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": 14,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "9Z0i0uURfBMVIapJ",
+      "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754085059319,
+        "modifiedTime": 1754085157724,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!3aAS2Qm3R6cgaYfE.9Z0i0uURfBMVIapJ"
+    },
+    {
+      "name": "Momentum",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Stonewraith makes a successful attack against a PC, you gain a Fear.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "faM1UzclP0X3ZrkJ",
+      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754085161530,
+        "modifiedTime": 1754085176471,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!3aAS2Qm3R6cgaYfE.faM1UzclP0X3ZrkJ"
+    }
+  ],
   "effects": [],
   "_key": "!actors!3aAS2Qm3R6cgaYfE"
 }

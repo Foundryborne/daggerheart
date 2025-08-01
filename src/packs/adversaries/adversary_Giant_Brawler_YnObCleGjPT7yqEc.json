@@ -34,10 +34,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "bruiser",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "NMxJpVBxCUuIVcvq": {
+        "name": "Intrusion",
+        "description": "",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +71,57 @@
       }
     },
     "tier": 2,
-    "description": "<p>An especially muscular giant wielding a warhammer larger than a human.</p>"
+    "description": "<p>An especially muscular giant wielding a warhammer larger than a human.</p>",
+    "attack": {
+      "name": "Warhammer",
+      "img": "icons/weapons/hammers/hammer-double-simple-worn.webp",
+      "roll": {
+        "bonus": 2
+      },
+      "range": "veryClose",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d12",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784268,
-    "modifiedTime": 1753922784268,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754078621139,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "YnObCleGjPT7yqEc",
   "sort": 3400000,
@@ -180,7 +224,263 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Battering Ram",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to have the Brawler charge at an inanimate object within Close range they could feasibly smash (such as a wall, cart, or market stand) and destroy it. All targets within Very Close range of the object must succeed on an Agility Reaction Roll or take <strong>2d4+3</strong> physical damage from the shrapnel.</p><p>@Template[type:circle|range:vc]</p>",
+        "resource": null,
+        "actions": {
+          "zns57MqnZ6M1d4r0": {
+            "type": "attack",
+            "_id": "zns57MqnZ6M1d4r0",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d4",
+                    "bonus": 3,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/skills/melee/shield-damaged-broken-orange.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ro8AtBdgklyyuydK",
+      "img": "icons/skills/melee/shield-damaged-broken-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754078623104,
+        "modifiedTime": 1754081240943,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!YnObCleGjPT7yqEc.ro8AtBdgklyyuydK"
+    },
+    {
+      "name": "Bloody Reprisal",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Brawler marks 2 or more HP from an attack within Very Close range, you can make a standard attack against the attacker. On a success, the Brawler deals <strong>2d6+15</strong> physical damage instead of their standard damage.</p>",
+        "resource": null,
+        "actions": {
+          "D53yjFXoP5uFXe9M": {
+            "type": "attack",
+            "_id": "D53yjFXoP5uFXe9M",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d6",
+                    "bonus": 15,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "kKBbEAffbHxmHo15",
+      "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754078720546,
+        "modifiedTime": 1754078783279,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!YnObCleGjPT7yqEc.kKBbEAffbHxmHo15"
+    },
+    {
+      "name": "Momentum",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Brawler makes a successful attack against a PC, you gain a Fear.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "B0EniYxyLvjJSqYb",
+      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754078789986,
+        "modifiedTime": 1754078804616,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!YnObCleGjPT7yqEc.B0EniYxyLvjJSqYb"
+    }
+  ],
   "effects": [],
   "_key": "!actors!YnObCleGjPT7yqEc"
 }

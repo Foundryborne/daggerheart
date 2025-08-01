@@ -34,7 +34,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "solo",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -65,19 +65,57 @@
       }
     },
     "tier": 2,
-    "description": "<p>A horse-sized insect with iridescent scales and crystalline wings moving faster than the eye can see.</p>"
+    "description": "<p>A horse-sized insect with iridescent scales and crystalline wings moving faster than the eye can see.</p>",
+    "attack": {
+      "name": "Wing Slash",
+      "img": "icons/commodities/biological/wing-insect-blue.webp",
+      "roll": {
+        "bonus": 3
+      },
+      "range": "veryClose",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d10",
+              "bonus": 4,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784297,
-    "modifiedTime": 1753922784297,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754080159148,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "MYXmTx2FHcIjdfYZ",
   "sort": 3400000,
@@ -180,7 +218,389 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Relentless (3)",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Flickerfly can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "6SnqNCeSEY7Q2tSI",
+      "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754080169421,
+        "modifiedTime": 1754080186529,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!MYXmTx2FHcIjdfYZ.6SnqNCeSEY7Q2tSI"
+    },
+    {
+      "name": "Peerless Accuracy",
+      "type": "feature",
+      "system": {
+        "description": "<p>Before the Flickerfly makes an attack, roll a d6. On a result of 4 or higher, the target’s Evasion is halved against this attack.</p>",
+        "resource": null,
+        "actions": {
+          "RrKQktP8MI4YQR5k": {
+            "type": "attack",
+            "_id": "RrKQktP8MI4YQR5k",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "pZUEkMkCus4U7h8W",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": "aboveEqual",
+                "treshold": 4
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll d6",
+            "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "PHHEvM6IDFFZ8LSl",
+      "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
+      "effects": [
+        {
+          "name": "Peerless Accuracy",
+          "img": "icons/skills/targeting/crosshair-mark-rough-pink.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.MYXmTx2FHcIjdfYZ.Item.PHHEvM6IDFFZ8LSl",
+          "transfer": false,
+          "_id": "pZUEkMkCus4U7h8W",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.evasion",
+              "mode": 5,
+              "value": "@system.evasion / 2",
+              "priority": 10
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Your evasion is halved against this attack.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754080259424,
+            "modifiedTime": 1754080309274,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!MYXmTx2FHcIjdfYZ.PHHEvM6IDFFZ8LSl.pZUEkMkCus4U7h8W"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754080188281,
+        "modifiedTime": 1754080318705,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!MYXmTx2FHcIjdfYZ.PHHEvM6IDFFZ8LSl"
+    },
+    {
+      "name": "Mind Dance",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the Flickerfl y learns one of the target’s fears.</p><p>@Template[type:emanation|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "0wL3ieMrXEb2gcxe": {
+            "type": "attack",
+            "_id": "0wL3ieMrXEb2gcxe",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "instinct",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/light/explosion-glow-spiral-yellow.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "Bt7MqMkPpPpzWksK",
+      "img": "icons/magic/light/explosion-glow-spiral-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754080328898,
+        "modifiedTime": 1754081217532,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!MYXmTx2FHcIjdfYZ.Bt7MqMkPpPpzWksK"
+    },
+    {
+      "name": "Hallucinatory Breath",
+      "type": "feature",
+      "system": {
+        "description": "<p>Countdown (Loop 1d6). When the Flickerfl y takes damage for the fi rst time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "USEkCakSzYcZbBwY": {
+            "type": "attack",
+            "_id": "USEkCakSzYcZbBwY",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                },
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "instinct",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/air/fog-gas-smoke-purple.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "EjfM83eVCdcVGC3c",
+      "img": "icons/magic/air/fog-gas-smoke-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754080402680,
+        "modifiedTime": 1754081225309,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!MYXmTx2FHcIjdfYZ.EjfM83eVCdcVGC3c"
+    }
+  ],
   "effects": [],
   "_key": "!actors!MYXmTx2FHcIjdfYZ"
 }

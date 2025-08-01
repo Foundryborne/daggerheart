@@ -793,7 +793,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Save Roll",
+            "name": "Roll Save",
             "img": "icons/magic/lightning/bolt-strike-embers-teal.webp",
             "range": "close"
           }
@@ -819,7 +819,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754074364206,
-        "modifiedTime": 1754074451570,
+        "modifiedTime": 1754081281415,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.3bPURmuwQs06fThQ"

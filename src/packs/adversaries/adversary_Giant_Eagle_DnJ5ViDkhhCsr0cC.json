@@ -34,7 +34,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "skulk",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -65,19 +65,27 @@
       }
     },
     "tier": 2,
-    "description": "<p>A giant bird of prey with blood-stained talons.</p>"
+    "description": "<p>A giant bird of prey with blood-stained talons.</p>",
+    "attack": {
+      "name": "Claws and Beak",
+      "roll": {
+        "bonus": 1
+      },
+      "range": "veryClose",
+      "img": "icons/creatures/claws/claw-talons-glowing-orange.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784269,
-    "modifiedTime": 1753922784269,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754079249399,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "DnJ5ViDkhhCsr0cC",
   "sort": 3400000,
@@ -180,7 +188,506 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Flight",
+      "type": "feature",
+      "system": {
+        "description": "<p>While flying, the Eagle gains a +3 bonus to their Difficulty.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "wdNrstuoh4MFShYG",
+      "img": "icons/creatures/birds/raptor-hawk-flying.webp",
+      "effects": [
+        {
+          "name": "Flying",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "_id": "odAyKY0BSAkcO3Dd",
+          "img": "icons/creatures/birds/raptor-hawk-flying.webp",
+          "changes": [
+            {
+              "key": "system.difficulty",
+              "mode": 2,
+              "value": "3",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>While flying, the Eagle gains a +3 bonus to their Difficulty.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754078848978,
+            "modifiedTime": 1754078874110,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!DnJ5ViDkhhCsr0cC.wdNrstuoh4MFShYG.odAyKY0BSAkcO3Dd"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754078821853,
+        "modifiedTime": 1754078845842,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!DnJ5ViDkhhCsr0cC.wdNrstuoh4MFShYG"
+    },
+    {
+      "name": "Deadly Dive",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to attack a target within Far range. On a success, deal <strong>2d10+2</strong> physical damage and knock the target over, making them <em>Vulnerable</em> until they next act.</p>",
+        "resource": null,
+        "actions": {
+          "KwsxjI3jBzmxgkPu": {
+            "type": "attack",
+            "_id": "KwsxjI3jBzmxgkPu",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "m6qqQZxukDPVcGdQ",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/melee/strike-slashes-orange.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "MabIQE1Kjn60j08J",
+      "img": "icons/skills/melee/strike-slashes-orange.webp",
+      "effects": [
+        {
+          "name": "Deadly Dive",
+          "img": "icons/skills/melee/strike-slashes-orange.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.DnJ5ViDkhhCsr0cC.Item.MabIQE1Kjn60j08J",
+          "transfer": false,
+          "_id": "m6qqQZxukDPVcGdQ",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><em>Vulnerable</em> until the next time you act.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754079003612,
+            "modifiedTime": 1754079031518,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!DnJ5ViDkhhCsr0cC.MabIQE1Kjn60j08J.m6qqQZxukDPVcGdQ"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754078877040,
+        "modifiedTime": 1754079003622,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!DnJ5ViDkhhCsr0cC.MabIQE1Kjn60j08J"
+    },
+    {
+      "name": "Take Off",
+      "type": "feature",
+      "system": {
+        "description": "<p>Make an attack against a target within Very Close range. On a success, deal <strong>2d4+3</strong> physical damage and the target must succeed on an Agility Reaction Roll or become temporarily Restrained within the Eagle’s massive talons. If the target is Restrained, the Eagle immediately lifts into the air to Very Far range above the battlefi eld while holding them. </p>",
+        "resource": null,
+        "actions": {
+          "NtgA9EQPF2Rdb9KK": {
+            "type": "attack",
+            "_id": "NtgA9EQPF2Rdb9KK",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d4",
+                    "bonus": 3,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "Sd34xywRqiF5w9sX",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/movement/arrow-upward-yellow.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "NEOQ0E9AGSSIDm4v",
+      "img": "icons/skills/movement/arrow-upward-yellow.webp",
+      "effects": [
+        {
+          "name": "Take Off",
+          "img": "icons/skills/movement/arrow-upward-yellow.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.DnJ5ViDkhhCsr0cC.Item.NEOQ0E9AGSSIDm4v",
+          "transfer": false,
+          "_id": "Sd34xywRqiF5w9sX",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrain"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754079163877,
+            "modifiedTime": 1754079173093,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!DnJ5ViDkhhCsr0cC.NEOQ0E9AGSSIDm4v.Sd34xywRqiF5w9sX"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754079047407,
+        "modifiedTime": 1754079163892,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!DnJ5ViDkhhCsr0cC.NEOQ0E9AGSSIDm4v"
+    },
+    {
+      "name": "Deadly Drop",
+      "type": "feature",
+      "system": {
+        "description": "<p>While flying, the Eagle can drop a Restrained target they are holding. When dropped, the target is no longer Restrained but starts falling. If their fall isn’t prevented during the PCs’ next action, the target takes <strong>2d20</strong> physical damage when they land.</p>",
+        "resource": null,
+        "actions": {
+          "1tO018UgL0VG51ti": {
+            "type": "damage",
+            "_id": "1tO018UgL0VG51ti",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Damage",
+            "img": "icons/skills/movement/arrow-down-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "jY0ynjYvbS6E3NgJ",
+      "img": "icons/skills/movement/arrow-down-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754079182729,
+        "modifiedTime": 1754079229867,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!DnJ5ViDkhhCsr0cC.jY0ynjYvbS6E3NgJ"
+    }
+  ],
   "effects": [],
   "_key": "!actors!DnJ5ViDkhhCsr0cC"
 }

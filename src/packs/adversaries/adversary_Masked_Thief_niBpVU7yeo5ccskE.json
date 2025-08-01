@@ -34,10 +34,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "skulk",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "qJDagILvDYZfo9nI": {
+        "name": "Acrobatics",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +71,56 @@
       }
     },
     "tier": 2,
-    "description": "<p>A cunning thief with acrobatic skill and a flair for the dramatic.</p>"
+    "description": "<p>A cunning thief with acrobatic skill and a flair for the dramatic.</p>",
+    "attack": {
+      "name": "Backsword",
+      "img": "icons/weapons/swords/sword-hooked.webp",
+      "roll": {
+        "bonus": 3
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784304,
-    "modifiedTime": 1753922784304,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754080941487,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "niBpVU7yeo5ccskE",
   "sort": 3400000,
@@ -180,7 +223,246 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Quick Hands",
+      "type": "feature",
+      "system": {
+        "description": "<p>Make an attack against a target within Melee range. On a success, deal <strong>1d8+2</strong> physical damage and the Thief steals one item or consumable from the target’s inventory.</p>",
+        "resource": null,
+        "actions": {
+          "33xlM2ph77SSUfBs": {
+            "type": "attack",
+            "_id": "33xlM2ph77SSUfBs",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d8",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/melee/strike-sword-gray.webp",
+            "range": "melee"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "Cgk36WXthA9LwOYb",
+      "img": "icons/skills/melee/strike-sword-gray.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754080943420,
+        "modifiedTime": 1754081019757,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!niBpVU7yeo5ccskE.Cgk36WXthA9LwOYb"
+    },
+    {
+      "name": "Escape Plan",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to reveal a snare trap set anywhere on the battlefi eld by the Thief. All targets within Very Close range of the trap must succeed on an Agility Reaction Roll (13) or be pulled off  their feet and suspended upside down. A target is Restrained and Vulnerable until they break free, ending both conditions, with a successful Finesse or Strength Roll (13).</p><p>@Template[type:rect|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "sq0q1l2Go4GduR3B": {
+            "type": "attack",
+            "_id": "sq0q1l2Go4GduR3B",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "zMut1PRphlwE0xOa",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": 13,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/environment/traps/trap-jaw-tan.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "tP2DD751nOLxFVps",
+      "img": "icons/environment/traps/trap-jaw-tan.webp",
+      "effects": [
+        {
+          "name": "Escape Plan",
+          "img": "icons/environment/traps/trap-jaw-tan.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.niBpVU7yeo5ccskE.Item.tP2DD751nOLxFVps",
+          "transfer": false,
+          "_id": "zMut1PRphlwE0xOa",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>You are <em>Restrained</em> and <em>Vulnerable</em> until you break free, ending both conditions, with a successful Finesse or Strength Roll (13).</p><p>[[/dr trait=finesse difficulty=13]]<br />[[/dr trait=strength difficulty=13]]</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrain",
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754081140666,
+            "modifiedTime": 1754081194531,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!niBpVU7yeo5ccskE.tP2DD751nOLxFVps.zMut1PRphlwE0xOa"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754081025242,
+        "modifiedTime": 1754081140681,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!niBpVU7yeo5ccskE.tP2DD751nOLxFVps"
+    }
+  ],
   "effects": [],
   "_key": "!actors!niBpVU7yeo5ccskE"
 }

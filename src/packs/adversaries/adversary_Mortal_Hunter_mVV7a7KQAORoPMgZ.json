@@ -34,10 +34,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "leader",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "4toM5Vvml5Z32OcG": {
+        "name": "Bloodhound",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +71,56 @@
       }
     },
     "tier": 2,
-    "description": "<p>An undead figure wearing a heavy leather coat, with searching eyes and a casually cruel demeanor.</p>"
+    "description": "<p>An undead figure wearing a heavy leather coat, with searching eyes and a casually cruel demeanor.</p>",
+    "attack": {
+      "name": "Tear at Flesh",
+      "roll": {
+        "bonus": 5
+      },
+      "range": "veryClose",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d12",
+              "bonus": 1,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784313,
-    "modifiedTime": 1753922784313,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754082462696,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "mVV7a7KQAORoPMgZ",
   "sort": 3400000,
@@ -180,7 +223,403 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Terrifying",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Hunter makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "9T1g3FH38cnCRG8k": {
+            "type": "damage",
+            "_id": "9T1g3FH38cnCRG8k",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Lose Hope",
+            "img": "icons/magic/death/skull-energy-light-purple.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "cID8rYBYealYs7mO",
+      "img": "icons/magic/death/skull-energy-light-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082464443,
+        "modifiedTime": 1754082528689,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!mVV7a7KQAORoPMgZ.cID8rYBYealYs7mO"
+    },
+    {
+      "name": "Deathlock",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to curse a target within Very Close range with a necrotic Deathlock until the end of the scene. Attacks made by the Hunter against a Deathlocked target deal direct damage. The Hunter can only maintain one Deathlock at a time.</p>",
+        "resource": null,
+        "actions": {
+          "LUNsI29woLk4m2wo": {
+            "type": "effect",
+            "_id": "LUNsI29woLk4m2wo",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "YznseQP43jNrk07h",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "name": "Curse",
+            "img": "icons/magic/unholy/hand-marked-pink.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "r1T70u9n3bRfUTX5",
+      "img": "icons/magic/unholy/hand-marked-pink.webp",
+      "effects": [
+        {
+          "name": "Deathlock",
+          "img": "icons/magic/unholy/hand-marked-pink.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.mVV7a7KQAORoPMgZ.Item.r1T70u9n3bRfUTX5",
+          "transfer": false,
+          "_id": "YznseQP43jNrk07h",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Attacks made by the Hunter against a Deathlocked target deal direct damage.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754082586758,
+            "modifiedTime": 1754082601125,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!mVV7a7KQAORoPMgZ.r1T70u9n3bRfUTX5.YznseQP43jNrk07h"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082532133,
+        "modifiedTime": 1754082586776,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!mVV7a7KQAORoPMgZ.r1T70u9n3bRfUTX5"
+    },
+    {
+      "name": "Inevitable Death",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>1d4</strong> allies. Attacks they make while spotlighted in this way deal half damage.</p>",
+        "resource": null,
+        "actions": {
+          "wxOfNoEogH1EU0Jb": {
+            "type": "attack",
+            "_id": "wxOfNoEogH1EU0Jb",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d4",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spotlight Allies",
+            "img": "icons/skills/movement/arrows-up-trio-red.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "5AQTqW1GDidHfU3a",
+      "img": "icons/skills/movement/arrows-up-trio-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082607409,
+        "modifiedTime": 1754082662364,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!mVV7a7KQAORoPMgZ.5AQTqW1GDidHfU3a"
+    },
+    {
+      "name": "Rampage",
+      "type": "feature",
+      "system": {
+        "description": "<p>Countdown (Loop 1d6). When the Hunter is in the spotlight for the fi rst time, activate the countdown. When it triggers, move the Hunter in a straight line to a point within Far range and make an attack against all targets in their path. Targets the Hunter succeeds against take <strong>2d8+2</strong> physical damage.</p><p>@Template[type:ray|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "145xZxtiQjao3XKe": {
+            "type": "attack",
+            "_id": "145xZxtiQjao3XKe",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d8",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "IOCG3J20wUHvyvvh",
+      "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754082669471,
+        "modifiedTime": 1754082750517,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!mVV7a7KQAORoPMgZ.IOCG3J20wUHvyvvh"
+    }
+  ],
   "effects": [],
   "_key": "!actors!mVV7a7KQAORoPMgZ"
 }
