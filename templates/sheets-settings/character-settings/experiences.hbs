@@ -17,7 +17,6 @@
                         <input class="modifier" type="text" name="system.experiences.{{key}}.value" value="{{experience.value}}" data-dtype="Number" />
                         {{#unless @root.levelupAuto}}<a data-action="removeExperience" data-experience="{{key}}" data-tooltip="{{localize 'CONTROLS.CommonDelete'}}"><i class="fa-solid fa-trash"></i></a>{{/unless}}
                     </div>
-
                     <textarea name="system.experiences.{{key}}.description">{{experience.description}}</textarea>
                 </li>
             {{/each}}

@@ -5,22 +5,26 @@
     border: 1px solid light-dark(@dark-blue, @golden);
 
     input[type='text'],
-    input[type='number'] {
+    input[type='number'],
+    textarea {
         background: light-dark(transparent, transparent);
         border-radius: 6px;
         box-shadow: 0 4px 30px @soft-shadow;
         backdrop-filter: blur(9.5px);
         -webkit-backdrop-filter: blur(9.5px);
-        outline: none;
+        outline: 2px solid transparent;
         color: light-dark(@dark-blue, @golden);
         border: 1px solid light-dark(@dark, @beige);
+        transition: all 0.3s ease;
 
         &::placeholder {
             color: light-dark(@dark-40, @beige-50);
         }
 
+        &:hover,
         &:hover[type='text'],
         &:hover[type='number'],
+        &:focus,
         &:focus[type='text'],
         &:focus[type='number'] {
             background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
@@ -68,6 +72,13 @@
                 box-shadow: 0 0 8px light-dark(@dark-blue, @golden);
             }
         }
+    }
+
+    textarea {
+        color: light-dark(@dark, @beige);
+        font-family: @font-body;
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
     }
 
     button {

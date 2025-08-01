@@ -55,6 +55,62 @@
                 }
             }
         }
+
+        .icons-list {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: end;
+            justify-content: center;
+            top: 45px;
+            right: 10px;
+
+            .spellcast-icon {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                text-align: center;
+                padding-right: 8px;
+                max-width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                background: light-dark(@dark-blue-60, @dark-golden-80);
+                backdrop-filter: blur(8px);
+                border: 4px double light-dark(@beige, @golden);
+                color: light-dark(@beige, @golden);
+                border-radius: 999px;
+                transition: all 0.3s ease;
+
+                .spellcast-label {
+                    font-size: 14px;
+                    opacity: 0;
+                    margin-right: 0.3rem;
+                    transition: all 0.3s ease;
+                }
+
+                i {
+                    height: 24px;
+                    width: 24px;
+                    align-content: center;
+                    margin-right: 3px;
+                }
+
+                &:not(.no-label):hover {
+                    max-width: 300px;
+                    padding: 0 10px;
+                    border-radius: 60px;
+
+                    .spellcast-label {
+                        opacity: 1;
+                    }
+
+                    i {
+                        margin-right: 0px;
+                    }
+                }
+            }
+        }
     }
 
     .info-section {
@@ -62,12 +118,13 @@
         display: flex;
         flex-direction: column;
         top: -20px;
-        gap: 30px;
+        gap: 10px;
         margin-bottom: -16px;
 
         .resources-section {
             display: flex;
             justify-content: space-evenly;
+            margin-bottom: 20px;
 
             .status-bar {
                 display: flex;
@@ -345,6 +402,32 @@
                 }
             }
         }
+
+        .threshold-section {
+            position: relative;
+            display: flex;
+            align-self: center;
+            gap: 10px;
+            background-color: light-dark(transparent, @dark-blue);
+            color: light-dark(@dark-blue, @golden);
+            padding: 5px 10px;
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            align-items: center;
+            width: fit-content;
+            height: 30px;
+
+            h4 {
+                font-size: 14px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: light-dark(@dark-blue, @golden);
+
+                &.threshold-value {
+                    color: light-dark(@dark, @beige);
+                }
+            }
+        }
     }
 
     .items-sidebar-list {
@@ -360,7 +443,7 @@
     .shortcut-items-section {
         overflow-y: hidden;
         max-height: 56%;
-        padding-top: 16px;
+        padding-top: 10px;
         padding-bottom: 20px;
         mask-image: linear-gradient(0deg, transparent 0%, black 5%, black 95%, transparent 100%);
 
@@ -393,35 +476,24 @@
 
             .experience-row {
                 display: flex;
-                gap: 5px;
                 width: 250px;
                 align-items: center;
                 justify-content: space-between;
 
-                input[type='text'] {
-                    height: 32px;
-                    width: 180px;
-                    border: 1px solid transparent;
-                    outline: 2px solid transparent;
+                .experience-value {
+                    height: 25px;
+                    width: 35px;
                     font-size: 14px;
                     font-family: @font-body;
-                    transition: all 0.3s ease;
                     color: light-dark(@dark, @beige);
-
-                    &:hover {
-                        outline: 2px solid light-dark(@dark, @beige);
-                    }
+                    align-content: center;
+                    text-align: center;
+                    margin-right: 5px;
                 }
-            }
 
-            .experience-value {
-                height: 25px;
-                width: 35px;
-                font-size: 14px;
-                font-family: @font-body;
-                color: light-dark(@dark, @beige);
-                align-content: center;
-                text-align: center;
+                .controls {
+                    margin-left: auto;
+                }
             }
         }
     }
