@@ -126,15 +126,20 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         if (this.actor && this.actor.type === 'character' && this.features) {
             for (let f of this.features) {
-                const feature = f.item ?? f;
-                const createData = foundry.utils.mergeObject(feature.toObject(), {
-                    system: {
-                        originItemType: this.parent.type,
-                        originId: data._id,
-                        identifier: feature.identifier,
-                        subType: feature.item ? feature.type : undefined
-                    }
-                }, { inplace: false });
+                const fBase = f.item ?? f;
+                const feature = fBase.system ? fBase : await foundry.utils.fromUuid(fBase.uuid);
+                const createData = foundry.utils.mergeObject(
+                    feature.toObject(),
+                    {
+                        system: {
+                            originItemType: this.parent.type,
+                            originId: data._id,
+                            identifier: feature.identifier,
+                            subType: feature.item ? feature.type : undefined
+                        }
+                    },
+                    { inplace: false }
+                );
                 await this.actor.createEmbeddedDocuments('Item', [createData]);
             }
         }
