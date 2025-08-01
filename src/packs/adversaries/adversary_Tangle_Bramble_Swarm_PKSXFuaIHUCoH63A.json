@@ -1,26 +1,10 @@
 {
-  "name": "Spellblade",
+  "name": "Tangle Bramble Swarm",
   "img": "icons/svg/mystery-man.svg",
   "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
   "system": {
-    "difficulty": 14,
-    "damageThresholds": {
-      "major": 8,
-      "severe": 14
-    },
-    "resources": {
-      "hitPoints": {
-        "value": 0,
-        "max": 6,
-        "isReversed": true
-      },
-      "stress": {
-        "value": 0,
-        "max": 3,
-        "isReversed": true
-      }
-    },
+    "motivesAndTactics": "Digest, entangle, immobilize",
     "resistance": {
       "physical": {
         "resistance": false,
@@ -33,12 +17,12 @@
         "reduction": 0
       }
     },
-    "type": "leader",
+    "type": "horde",
     "notes": "",
-    "hordeHp": 1,
+    "hordeHp": 3,
     "experiences": {
-      "5K7W5e63iQNI0MdQ": {
-        "name": "Magical Knowledge",
+      "WWznKZbYf1O4dcNS": {
+        "name": "Camouflage",
         "value": 2
       }
     },
@@ -68,14 +52,51 @@
         }
       }
     },
+    "difficulty": 12,
     "tier": 1,
-    "description": "<p>A mercenary combining swordplay and magic to deadly effect.</p>",
-    "motivesAndTactics": "Blast, command, endure",
+    "description": "<p>A cluster of animate, blood-drinking tumbleweeds, each the size of a large gourd.</p>",
+    "damageThresholds": {
+      "major": 6,
+      "severe": 11
+    },
+    "resources": {
+      "hitPoints": {
+        "value": 0,
+        "max": 6,
+        "isReversed": true
+      },
+      "stress": {
+        "value": 0,
+        "max": 3,
+        "isReversed": true
+      }
+    },
     "attack": {
-      "name": "Empowered Longsword",
-      "img": "icons/weapons/swords/sword-broad-serrated-blue.webp",
+      "name": "Thorns",
+      "img": "icons/magic/nature/root-vine-entwined-thorns.webp",
+      "_id": "LEgXds9kkshd2Ytq",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "melee",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
       "roll": {
-        "bonus": 3
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "bonus": 0,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
         "parts": [
@@ -84,29 +105,43 @@
               "custom": {
                 "enabled": false
               },
-              "dice": "d8",
-              "bonus": 4,
+              "dice": "d6",
+              "bonus": 3,
               "multiplier": "flat",
               "flatMultiplier": 1
             },
             "applyTo": "hitPoints",
             "type": [
-              "physical",
-              "magical"
+              "physical"
             ],
-            "resultBased": false,
             "valueAlt": {
-              "multiplier": "prof",
+              "multiplier": "flat",
               "flatMultiplier": 1,
-              "dice": "d6",
-              "bonus": null,
+              "dice": "d4",
+              "bonus": 2,
               "custom": {
                 "enabled": false
               }
             },
+            "resultBased": false,
             "base": false
           }
-        ]
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
       }
     }
   },
@@ -118,19 +153,18 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753922784353,
-    "modifiedTime": 1754054040763,
+    "createdTime": 1754054959791,
+    "modifiedTime": 1754055134138,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
-  "_id": "ldbWEL7uZs84vyrR",
-  "sort": 4500000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
+    "WafZqd6qLGpBRGTt": 3,
+    "MQSznptE5yLT7kj8": 3
   },
   "prototypeToken": {
-    "name": "Spellblade",
+    "name": "Tangle Bramble Swarm",
     "displayName": 0,
     "actorLink": false,
     "width": 1,
@@ -205,7 +239,7 @@
         "ring": null,
         "background": null
       },
-      "effects": 1,
+      "effects": 0,
       "subject": {
         "scale": 1,
         "texture": null
@@ -225,12 +259,12 @@
   },
   "items": [
     {
-      "name": "Arcane Steel",
+      "name": "Horde (1d4+2)",
       "type": "feature",
-      "_id": "BwuoAv3EWT0m1apk",
-      "img": "icons/weapons/swords/sword-runed-glowing.webp",
+      "_id": "4dSzqtYvH385r9Ng",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
       "system": {
-        "description": "<p>Damage dealt by the Spellblade’s standard attack is considered both physical and magic.</p>",
+        "description": "<p>When the Swarm has marked half or more of their HP, their standard attack deals <strong>1d4+2</strong> physical damage instead.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -252,24 +286,22 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754054042580,
-        "modifiedTime": 1754054057217,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!ldbWEL7uZs84vyrR.BwuoAv3EWT0m1apk"
+      "_key": "!actors.items!PKSXFuaIHUCoH63A.4dSzqtYvH385r9Ng"
     },
     {
-      "name": "Supressing Blast",
+      "name": "Crush",
       "type": "feature",
-      "_id": "a76dNCrcoZOH1RRT",
-      "img": "icons/magic/sonic/projectile-shock-wave-blue.webp",
+      "_id": "2HlelvCZA00izcQa",
+      "img": "icons/magic/nature/root-vine-entangled-humanoid.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> and target a group within Far range. All targets must succeed on an Agility Reaction Roll or take <strong>1d8+2</strong> magic damage. You gain a Fear for each target who marked HP from this attack.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Mark a Stress</strong> to deal <strong>2d6+8</strong> direct physical damage to a target with 3 or more bramble tokens.</p>",
         "resource": null,
         "actions": {
-          "K4VnxigKTiu7hhZx": {
-            "type": "attack",
-            "_id": "K4VnxigKTiu7hhZx",
+          "CiA4K6py0eW6eihU": {
+            "type": "damage",
+            "_id": "CiA4K6py0eW6eihU",
             "systemPath": "actions",
             "description": "",
             "chatDisplay": true,
@@ -296,13 +328,13 @@
                       "enabled": false
                     },
                     "flatMultiplier": 1,
-                    "dice": "d8",
-                    "bonus": 2,
+                    "dice": "d6",
+                    "bonus": 8,
                     "multiplier": "flat"
                   },
                   "applyTo": "hitPoints",
                   "type": [
-                    "magical"
+                    "physical"
                   ],
                   "base": false,
                   "resultBased": false,
@@ -321,96 +353,11 @@
             },
             "target": {
               "type": "any",
-              "amount": null
+              "amount": 1
             },
             "effects": [],
-            "roll": {
-              "type": null,
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
-            "save": {
-              "trait": "agility",
-              "difficulty": null,
-              "damageMod": "none"
-            },
-            "name": "Attack",
-            "img": "icons/magic/sonic/projectile-shock-wave-blue.webp",
-            "range": "far"
-          }
-        },
-        "originItemType": null,
-        "subType": null,
-        "originId": null
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754054061492,
-        "modifiedTime": 1754054159859,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
-      },
-      "_key": "!actors.items!ldbWEL7uZs84vyrR.a76dNCrcoZOH1RRT"
-    },
-    {
-      "name": "Move as a Unit",
-      "type": "feature",
-      "_id": "piyJhdHzztabmZ8I",
-      "img": "icons/skills/movement/arrows-up-trio-red.webp",
-      "system": {
-        "description": "<p><strong>Spend 2 Fear</strong> to spotlight up to fi ve allies within Far range.</p>",
-        "resource": null,
-        "actions": {
-          "N42NPEu7fcVDXEvl": {
-            "type": "effect",
-            "_id": "N42NPEu7fcVDXEvl",
-            "systemPath": "actions",
-            "description": "",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [
-              {
-                "scalable": false,
-                "key": "fear",
-                "value": 2,
-                "keyIsID": false,
-                "step": null
-              }
-            ],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "effects": [],
-            "target": {
-              "type": "self",
-              "amount": null
-            },
-            "name": "Spend Fear",
-            "img": "icons/skills/movement/arrows-up-trio-red.webp",
+            "name": "Damage",
+            "img": "icons/magic/nature/root-vine-entangled-humanoid.webp",
             "range": ""
           }
         },
@@ -433,26 +380,97 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754054175855,
-        "modifiedTime": 1754054211540,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!ldbWEL7uZs84vyrR.piyJhdHzztabmZ8I"
+      "_key": "!actors.items!PKSXFuaIHUCoH63A.2HlelvCZA00izcQa"
     },
     {
-      "name": "Momentum",
+      "name": "Encumber",
       "type": "feature",
-      "_id": "P9nD5K2ztkZGo2I8",
-      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "_id": "JRSGc3ozDnKCAvCj",
+      "img": "icons/magic/nature/root-vine-entangled-hands.webp",
       "system": {
-        "description": "<p>When the Spellblade makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When the Swarm succeeds on an attack, give the target a bramble token. If a target has any bramble tokens, they are Restrained. If a target has 3 or more bramble tokens, they are also Vulnerable. All bramble tokens can be removed by succeeding on a Finesse Roll (12 + the number of bramble tokens) or dealing Major or greater damage to the Swarm. If bramble tokens are removed from a target using a Finesse Roll, a number of Tangle Bramble Minions spawn within Melee range equal to the number of tokens removed.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "Cdw2XxA5NhAQhQse": {
+            "type": "effect",
+            "_id": "Cdw2XxA5NhAQhQse",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "PdkhaTw2j15KJwBf",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "name": "Give Token",
+            "img": "icons/magic/nature/root-vine-entangled-hands.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "subType": null,
         "originId": null
       },
-      "effects": [],
+      "effects": [
+        {
+          "name": "Encumber",
+          "img": "icons/magic/nature/root-vine-entangled-hands.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.jd4MVRwy9zTfmRRE.Item.JRSGc3ozDnKCAvCj",
+          "transfer": true,
+          "_id": "PdkhaTw2j15KJwBf",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p> If a target has any bramble tokens, they are Restrained. If a target has 3 or more bramble tokens, they are also Vulnerable. All bramble tokens can be removed by succeeding on a Finesse Roll (12 + the number of bramble tokens) or dealing Major or greater damage to the Swarm. If bramble tokens are removed from a target using a Finesse Roll, a number of Tangle Bramble Minions spawn within Melee range equal to the number of tokens removed.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrained"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "lastModifiedBy": null
+          },
+          "_key": "!actors.items.effects!PKSXFuaIHUCoH63A.JRSGc3ozDnKCAvCj.PdkhaTw2j15KJwBf"
+        }
+      ],
       "folder": null,
       "sort": 0,
       "ownership": {
@@ -467,13 +485,51 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754054217134,
-        "modifiedTime": 1754054233931,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!ldbWEL7uZs84vyrR.P9nD5K2ztkZGo2I8"
+      "_key": "!actors.items!PKSXFuaIHUCoH63A.JRSGc3ozDnKCAvCj"
     }
   ],
-  "effects": [],
-  "_key": "!actors!ldbWEL7uZs84vyrR"
+  "effects": [
+    {
+      "type": "horde",
+      "name": "Horde",
+      "img": "icons/magic/movement/chevrons-down-yellow.webp",
+      "disabled": true,
+      "_id": "ki4vrzrFcEYtGeJu",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "duration": {
+        "startTime": 0,
+        "combat": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!actors.effects!PKSXFuaIHUCoH63A.ki4vrzrFcEYtGeJu"
+    }
+  ],
+  "_id": "PKSXFuaIHUCoH63A",
+  "sort": 0,
+  "_key": "!actors!PKSXFuaIHUCoH63A"
 }

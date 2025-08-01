@@ -1,26 +1,27 @@
 {
-  "name": "Spellblade",
+  "name": "Tangle Bramble",
   "img": "icons/svg/mystery-man.svg",
   "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
   "system": {
-    "difficulty": 14,
+    "difficulty": 11,
     "damageThresholds": {
-      "major": 8,
-      "severe": 14
+      "major": 0,
+      "severe": 0
     },
     "resources": {
       "hitPoints": {
         "value": 0,
-        "max": 6,
+        "max": 1,
         "isReversed": true
       },
       "stress": {
         "value": 0,
-        "max": 3,
+        "max": 1,
         "isReversed": true
       }
     },
+    "motivesAndTactics": "Combine, drain, entangle",
     "resistance": {
       "physical": {
         "resistance": false,
@@ -33,15 +34,10 @@
         "reduction": 0
       }
     },
-    "type": "leader",
+    "type": "minion",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {
-      "5K7W5e63iQNI0MdQ": {
-        "name": "Magical Knowledge",
-        "value": 2
-      }
-    },
+    "experiences": {},
     "bonuses": {
       "roll": {
         "attack": {
@@ -69,30 +65,50 @@
       }
     },
     "tier": 1,
-    "description": "<p>A mercenary combining swordplay and magic to deadly effect.</p>",
-    "motivesAndTactics": "Blast, command, endure",
+    "description": "<p>An animate, blood-drinking tumbleweed.</p>",
     "attack": {
-      "name": "Empowered Longsword",
-      "img": "icons/weapons/swords/sword-broad-serrated-blue.webp",
+      "name": "Thorns",
+      "img": "icons/magic/nature/root-vine-hand-strike.webp",
+      "_id": "LEgXds9kkshd2Ytq",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "melee",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
       "roll": {
-        "bonus": 3
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "bonus": -1,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "damage": {
         "parts": [
           {
             "value": {
               "custom": {
-                "enabled": false
+                "enabled": true,
+                "formula": "2"
               },
-              "dice": "d8",
-              "bonus": 4,
               "multiplier": "flat",
-              "flatMultiplier": 1
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null
             },
             "applyTo": "hitPoints",
             "type": [
-              "physical",
-              "magical"
+              "physical"
             ],
             "resultBased": false,
             "valueAlt": {
@@ -106,7 +122,22 @@
             },
             "base": false
           }
-        ]
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
       }
     }
   },
@@ -118,19 +149,18 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753922784353,
-    "modifiedTime": 1754054040763,
+    "createdTime": 1754055125822,
+    "modifiedTime": 1754055125822,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
-  "_id": "ldbWEL7uZs84vyrR",
-  "sort": 4500000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
+    "WafZqd6qLGpBRGTt": 3,
+    "MQSznptE5yLT7kj8": 3
   },
   "prototypeToken": {
-    "name": "Spellblade",
+    "name": "Tangle Bramble",
     "displayName": 0,
     "actorLink": false,
     "width": 1,
@@ -205,7 +235,7 @@
         "ring": null,
         "background": null
       },
-      "effects": 1,
+      "effects": 0,
       "subject": {
         "scale": 1,
         "texture": null
@@ -225,12 +255,12 @@
   },
   "items": [
     {
-      "name": "Arcane Steel",
+      "name": "Minion (4)",
       "type": "feature",
-      "_id": "BwuoAv3EWT0m1apk",
-      "img": "icons/weapons/swords/sword-runed-glowing.webp",
+      "_id": "jH1VMpj4dCUhKVCJ",
+      "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
       "system": {
-        "description": "<p>Damage dealt by the Spellblade’s standard attack is considered both physical and magic.</p>",
+        "description": "<p>The Bramble is defeated when they take any damage. For every 4 damage a PC deals to the Tangle Bramble, defeat an additional Minion within range the attack would succeed against.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -252,140 +282,22 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754054042580,
-        "modifiedTime": 1754054057217,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!ldbWEL7uZs84vyrR.BwuoAv3EWT0m1apk"
+      "_key": "!actors.items!XcAGOSmtCFLT1unN.jH1VMpj4dCUhKVCJ"
     },
     {
-      "name": "Supressing Blast",
+      "name": "Group Attack",
       "type": "feature",
-      "_id": "a76dNCrcoZOH1RRT",
-      "img": "icons/magic/sonic/projectile-shock-wave-blue.webp",
+      "_id": "WiobzuyvJ46zfsOv",
+      "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
       "system": {
-        "description": "<p><strong>Mark a Stress</strong> and target a group within Far range. All targets must succeed on an Agility Reaction Roll or take <strong>1d8+2</strong> magic damage. You gain a Fear for each target who marked HP from this attack.</p><p>@Template[type:emanation|range:f]</p>",
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Tangle Brambles within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 2 physical damage each. Combine this damage.</p>",
         "resource": null,
         "actions": {
-          "K4VnxigKTiu7hhZx": {
-            "type": "attack",
-            "_id": "K4VnxigKTiu7hhZx",
-            "systemPath": "actions",
-            "description": "",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [
-              {
-                "scalable": false,
-                "key": "stress",
-                "value": 1,
-                "keyIsID": false,
-                "step": null
-              }
-            ],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": [
-                {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d8",
-                    "bonus": 2,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "hitPoints",
-                  "type": [
-                    "magical"
-                  ],
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  }
-                }
-              ],
-              "includeBase": false
-            },
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "effects": [],
-            "roll": {
-              "type": null,
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
-            "save": {
-              "trait": "agility",
-              "difficulty": null,
-              "damageMod": "none"
-            },
-            "name": "Attack",
-            "img": "icons/magic/sonic/projectile-shock-wave-blue.webp",
-            "range": "far"
-          }
-        },
-        "originItemType": null,
-        "subType": null,
-        "originId": null
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 0,
-      "ownership": {
-        "default": 0,
-        "MQSznptE5yLT7kj8": 3
-      },
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754054061492,
-        "modifiedTime": 1754054159859,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
-      },
-      "_key": "!actors.items!ldbWEL7uZs84vyrR.a76dNCrcoZOH1RRT"
-    },
-    {
-      "name": "Move as a Unit",
-      "type": "feature",
-      "_id": "piyJhdHzztabmZ8I",
-      "img": "icons/skills/movement/arrows-up-trio-red.webp",
-      "system": {
-        "description": "<p><strong>Spend 2 Fear</strong> to spotlight up to fi ve allies within Far range.</p>",
-        "resource": null,
-        "actions": {
-          "N42NPEu7fcVDXEvl": {
+          "ZC5pKIb9N82vgMWu": {
             "type": "effect",
-            "_id": "N42NPEu7fcVDXEvl",
+            "_id": "ZC5pKIb9N82vgMWu",
             "systemPath": "actions",
             "description": "",
             "chatDisplay": true,
@@ -394,7 +306,7 @@
               {
                 "scalable": false,
                 "key": "fear",
-                "value": 2,
+                "value": 1,
                 "keyIsID": false,
                 "step": null
               }
@@ -410,7 +322,7 @@
               "amount": null
             },
             "name": "Spend Fear",
-            "img": "icons/skills/movement/arrows-up-trio-red.webp",
+            "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
             "range": ""
           }
         },
@@ -433,19 +345,17 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754054175855,
-        "modifiedTime": 1754054211540,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!ldbWEL7uZs84vyrR.piyJhdHzztabmZ8I"
+      "_key": "!actors.items!XcAGOSmtCFLT1unN.WiobzuyvJ46zfsOv"
     },
     {
-      "name": "Momentum",
+      "name": "Drain and Multiply",
       "type": "feature",
-      "_id": "P9nD5K2ztkZGo2I8",
-      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "_id": "KBMf7oBfFSHoafKN",
+      "img": "icons/magic/nature/root-vines-knot-brown.webp",
       "system": {
-        "description": "<p>When the Spellblade makes a successful attack against a PC, you gain a Fear.</p>",
+        "description": "<p>When an attack from the Bramble causes a target to mark HP and there are three or more Tangle Bramble Minions within Close range, you can combine the Minions into a Tangle Bramble Swarm Horde. The Horde’s HP is equal to the number of Minions combined.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -467,13 +377,13 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754054217134,
-        "modifiedTime": 1754054233931,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!ldbWEL7uZs84vyrR.P9nD5K2ztkZGo2I8"
+      "_key": "!actors.items!XcAGOSmtCFLT1unN.KBMf7oBfFSHoafKN"
     }
   ],
   "effects": [],
-  "_key": "!actors!ldbWEL7uZs84vyrR"
+  "_id": "XcAGOSmtCFLT1unN",
+  "sort": 0,
+  "_key": "!actors!XcAGOSmtCFLT1unN"
 }
