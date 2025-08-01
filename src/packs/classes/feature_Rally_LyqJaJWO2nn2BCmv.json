@@ -3,9 +3,9 @@
   "name": "Rally",
   "type": "feature",
   "_id": "LyqJaJWO2nn2BCmv",
-  "img": "systems/daggerheart/assets/icons/dice/hope/d6.svg",
+  "img": "icons/skills/social/diplomacy-unity-alliance.webp",
   "system": {
-    "description": "<p><strong>Once per session</strong>, describe how you rally the party and <strong>give yourself and each of your allies</strong> a Rally Die. At level 1, your Rally Die is a <strong>d6</strong>. A PC can spend their Rally Die to roll it, adding the result to their action roll, reaction roll, damage roll, or to clear a number of Stress equal to the result. At the end of each session, clear all unspent Rally Dice. <strong>At level 5</strong>, your Rally Die increases to a <strong>d8</strong>.</p>",
+    "description": "<p>Once per session, describe how you rally the party and give yourself and each of your allies a Rally Die. At level 1, your Rally Die is a <strong>d6</strong>. A PC can spend their Rally Die to roll it, adding the result to their action roll, reaction roll, damage roll, or to clear a number of Stress equal to the result. At the end of each session, clear all unspent Rally Dice. At level 5, your Rally Die increases to a <strong>d8</strong>.</p>",
     "resource": null,
     "actions": {
       "DjN4nrEgpDwqAZ11": {
@@ -31,8 +31,8 @@
           "type": "friendly",
           "amount": null
         },
-        "name": "Class Feature",
-        "img": "systems/daggerheart/assets/icons/dice/hope/d6.svg",
+        "name": "Give Dice",
+        "img": "icons/skills/social/diplomacy-unity-alliance.webp",
         "range": ""
       }
     },
@@ -42,8 +42,8 @@
   },
   "effects": [
     {
-      "name": "Rally",
-      "img": "systems/daggerheart/assets/icons/dice/hope/d6.svg",
+      "name": "Rally Dice",
+      "img": "icons/skills/social/diplomacy-unity-alliance.webp",
       "origin": "Compendium.daggerheart.classes.Item.LyqJaJWO2nn2BCmv",
       "transfer": false,
       "_id": "zC2nMD699V0i7r5r",
@@ -55,12 +55,6 @@
           "mode": 2,
           "value": "1d6",
           "priority": 1
-        },
-        {
-          "key": "system.bonuses.rally",
-          "mode": 2,
-          "value": "1d8",
-          "priority": 5
         }
       ],
       "disabled": false,
@@ -73,7 +67,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><strong>Once per session</strong>, describe how you rally the party and <strong>give yourself and each of your allies</strong> a Rally Die. At level 1, your Rally Die is a <strong>d6</strong>. A PC can spend their Rally Die to roll it, adding the result to their action roll, reaction roll, damage roll, or to clear a number of Stress equal to the result. At the end of each session, clear all unspent Rally Dice. <strong>At level 5</strong>, your Rally Die increases to a <strong>d8</strong>.</p>",
+      "description": "<p>A PC can spend their Rally Die to roll it, adding the result to their action roll, reaction roll, damage roll, or to clear a number of Stress equal to the result. At the end of each session, clear all unspent Rally Dice.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -86,8 +80,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753884428862,
-        "modifiedTime": 1753884577906,
-        "lastModifiedBy": "K33GF8jIT1j7GH5w"
+        "modifiedTime": 1754062990623,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!LyqJaJWO2nn2BCmv.zC2nMD699V0i7r5r"
     }
@@ -106,8 +100,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753882995665,
-    "modifiedTime": 1753884632784,
-    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+    "modifiedTime": 1754062937809,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!LyqJaJWO2nn2BCmv"
 }

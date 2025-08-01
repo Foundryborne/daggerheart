@@ -7,9 +7,9 @@
     "description": "<p>You can apply this venom to a weapon that deals physical damage to add a d8 to your next damage roll with that weapon.</p>",
     "quantity": 1,
     "actions": {
-      "KhZ4WVT9cLA1a1y8": {
-        "type": "effect",
-        "_id": "KhZ4WVT9cLA1a1y8",
+      "qCr94sRkuODpywiZ": {
+        "type": "damage",
+        "_id": "qCr94sRkuODpywiZ",
         "systemPath": "actions",
         "description": "",
         "chatDisplay": true,
@@ -17,79 +17,53 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
+          "max": null,
           "recovery": null
         },
-        "effects": [
-          {
-            "_id": "P7tbNjq58bQ9R1Cc",
-            "onSave": false
-          }
-        ],
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d8",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
         "target": {
-          "type": "self",
+          "type": null,
           "amount": null
         },
-        "name": "Apply",
+        "effects": [],
+        "name": "Apply Venom",
         "img": "icons/consumables/potions/potion-jar-corked-labeled-poison-skull-green.webp",
         "range": ""
       }
     },
     "consumeOnUse": true
   },
-  "effects": [
-    {
-      "name": "Improved Grindletooth Venom",
-      "img": "icons/consumables/potions/potion-jar-corked-labeled-poison-skull-green.webp",
-      "origin": "Compendium.daggerheart.consumables.Item.BqBWXXe9T07AMV4u",
-      "transfer": false,
-      "_id": "P7tbNjq58bQ9R1Cc",
-      "type": "base",
-      "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
-      },
-      "changes": [
-        {
-          "key": "system.bonuses.damage.physical.dice",
-          "mode": 2,
-          "value": "1d8",
-          "priority": null
-        }
-      ],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "combat": null,
-        "seconds": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You deal 1d8 additional physical damage on your next damage roll with the weapon the venom was applied to.</span></p>",
-      "tint": "#ffffff",
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1753992123122,
-        "modifiedTime": 1753992593459,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
-      },
-      "_key": "!items.effects!BqBWXXe9T07AMV4u.P7tbNjq58bQ9R1Cc"
-    }
-  ],
+  "effects": [],
   "folder": null,
   "sort": 0,
   "ownership": {
@@ -101,12 +75,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588170670,
-    "modifiedTime": 1753992123149,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1753588234520,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
   },
   "_key": "!items!BqBWXXe9T07AMV4u"
 }

@@ -17,7 +17,7 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
+          "max": null,
           "recovery": null
         },
         "damage": {
@@ -52,7 +52,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "self",
+          "type": null,
           "amount": null
         },
         "effects": [],
@@ -75,12 +75,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.344",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753590938047,
-    "modifiedTime": 1753993201934,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1753591027903,
+    "lastModifiedBy": "OFxauskoxcvVTVNA"
   },
   "_key": "!items!eU8VpbWB2NHIL47n"
 }

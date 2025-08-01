@@ -3,9 +3,9 @@
   "name": "Make a Scene",
   "type": "feature",
   "_id": "UgzxqgsIyyjN616r",
-  "img": "systems/daggerheart/assets/icons/dice/hope/d12.svg",
+  "img": "icons/environment/settlement/tent-flag.webp",
   "system": {
-    "description": "<p><strong>Spend 3 Hope</strong> to temporarily Distract a target within <strong>Close range</strong>, giving them a <strong>-2 penalty</strong> to their Difficulty.</p>",
+    "description": "<p><strong>Spend 3 Hope</strong> to temporarily Distract a target within Close range, giving them a -2 penalty to their Difficulty.</p>",
     "resource": null,
     "actions": {
       "QvosqFHSDTfnayAo": {
@@ -29,13 +29,18 @@
           "max": "",
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "RkGQ2mux4yZ6SOHu",
+            "onSave": false
+          }
+        ],
         "target": {
           "type": "any",
           "amount": 1
         },
-        "name": "Hope Feature",
-        "img": "systems/daggerheart/assets/icons/dice/hope/d12.svg",
+        "name": "Spend Hope",
+        "img": "icons/environment/settlement/tent-flag.webp",
         "range": "close"
       }
     },
@@ -43,7 +48,59 @@
     "subType": null,
     "originId": null
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Make a Scene",
+      "img": "icons/environment/settlement/tent-flag.webp",
+      "origin": "Compendium.daggerheart.classes.Item.UgzxqgsIyyjN616r",
+      "transfer": false,
+      "_id": "RkGQ2mux4yZ6SOHu",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.difficulty",
+          "mode": 2,
+          "value": "-2",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754062818987,
+        "modifiedTime": 1754062838911,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!UgzxqgsIyyjN616r.RkGQ2mux4yZ6SOHu"
+    }
+  ],
   "sort": 0,
   "ownership": {
     "default": 0,
@@ -58,8 +115,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753880823906,
-    "modifiedTime": 1753882840029,
-    "lastModifiedBy": "K33GF8jIT1j7GH5w"
+    "modifiedTime": 1754062819004,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!UgzxqgsIyyjN616r"
 }
