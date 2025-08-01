@@ -73,7 +73,8 @@
     "description": "<p>An armored guard bearing a sword and shield painted in the settlement’s colors.</p>",
     "attack": {
       "roll": {
-        "bonus": 1
+        "bonus": 1,
+        "type": "attack"
       },
       "name": "Longsword",
       "img": "icons/weapons/swords/sword-guard.webp",
@@ -118,7 +119,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784226,
-    "modifiedTime": 1754012821422,
+    "modifiedTime": 1754046151128,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "B4LZcGuBAHzyVdzy",

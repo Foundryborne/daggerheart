@@ -78,7 +78,8 @@
     "attack": {
       "name": "Claws",
       "roll": {
-        "bonus": 1
+        "bonus": 1,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -122,7 +123,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784226,
-    "modifiedTime": 1754012446332,
+    "modifiedTime": 1754046151030,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "71qKDLKO3CsrNkdy",

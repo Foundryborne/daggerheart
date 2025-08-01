@@ -68,7 +68,8 @@
     "description": "<p>A roughly humanoid being of stone and steel, assembled and animated by magic.</p>",
     "attack": {
       "roll": {
-        "bonus": 4
+        "bonus": 4,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -113,7 +114,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784236,
-    "modifiedTime": 1754013707483,
+    "modifiedTime": 1754046151560,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "uOP5oT9QzXPlnf3p",

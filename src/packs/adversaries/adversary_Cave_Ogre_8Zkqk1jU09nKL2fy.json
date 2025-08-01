@@ -73,7 +73,8 @@
     "motivesAndTactics": "Bite off  heads, feast, rip limbs, stomp, throw enemies",
     "attack": {
       "roll": {
-        "bonus": 1
+        "bonus": 1,
+        "type": "attack"
       },
       "range": "veryClose",
       "damage": {
@@ -119,7 +120,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784233,
-    "modifiedTime": 1754011301537,
+    "modifiedTime": 1754046151057,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "8Zkqk1jU09nKL2fy",

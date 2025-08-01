@@ -75,7 +75,8 @@
       "name": "Vines",
       "range": "close",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -119,7 +120,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784246,
-    "modifiedTime": 1754014598720,
+    "modifiedTime": 1754046151094,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "9x2xY9zwc3xzbXo5",

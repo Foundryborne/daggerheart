@@ -78,7 +78,8 @@
     "attack": {
       "name": "Slam",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "range": "veryClose",
       "damage": {
@@ -123,7 +124,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784231,
-    "modifiedTime": 1754013233323,
+    "modifiedTime": 1754046150943,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "2UeZ0tEe7AzgSJNd",
