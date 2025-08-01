@@ -1,0 +1,89 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Legendary Chainmail Armor",
+  "type": "armor",
+  "_id": "EsIN5OLKe9ZYFNXZ",
+  "img": "icons/equipment/chest/breastplate-banded-blue.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "baseScore": 7,
+    "armorFeatures": [
+      {
+        "value": "heavy",
+        "effectIds": [
+          "8Oa6Y375X8UpcPph"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 15,
+      "severe": 40
+    }
+  },
+  "effects": [
+    {
+      "name": "Heavy",
+      "description": "-1 to Evasion",
+      "img": "icons/commodities/metal/ingot-worn-iron.webp",
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "-1"
+        }
+      ],
+      "_id": "8Oa6Y375X8UpcPph",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753809139589,
+        "modifiedTime": 1753809139589,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!EsIN5OLKe9ZYFNXZ.8Oa6Y375X8UpcPph"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753809118507,
+    "modifiedTime": 1753809151454,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!EsIN5OLKe9ZYFNXZ"
+}

@@ -1,0 +1,200 @@
+{
+  "folder": "v3OQH9vwMVYsZvXS",
+  "name": "Buckler",
+  "type": "weapon",
+  "_id": "EmFTp9wzT6MHSaNz",
+  "img": "icons/equipment/shield/heater-wooden-worn.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "BspGQXodaANPEQcl": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Deflect",
+        "description": "When you are attacked, you can mark an Armor Slot to gain a bonus to your Evasion equal to your Armor Score against the attack.",
+        "img": "icons/skills/melee/hand-grip-sword-strike-orange.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "cost": [
+          {
+            "key": "armorStack",
+            "value": 1,
+            "keyIsID": false,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "effects": [
+          {
+            "_id": "Anbxt99bL9IWnlGh",
+            "onSave": false
+          }
+        ],
+        "_id": "BspGQXodaANPEQcl",
+        "systemPath": "actions",
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 3,
+    "equipped": false,
+    "secondary": true,
+    "burden": "oneHanded",
+    "weaponFeatures": [
+      {
+        "value": "deflecting",
+        "effectIds": [
+          "Anbxt99bL9IWnlGh"
+        ],
+        "actionIds": [
+          "BspGQXodaANPEQcl"
+        ]
+      }
+    ],
+    "attack": {
+      "name": "Attack",
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "_id": "qY9ylkwxFwRlPy6a",
+      "systemPath": "attack",
+      "type": "attack",
+      "range": "melee",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "trait": "agility",
+        "type": "attack",
+        "difficulty": null,
+        "bonus": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "dice": "d4",
+              "bonus": 4,
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": [
+              "physical"
+            ],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "rules": {
+      "attack": {
+        "roll": {
+          "trait": null
+        }
+      }
+    }
+  },
+  "effects": [
+    {
+      "name": "Deflecting",
+      "description": "Gain a bonus to your Evasion equal to your Armor Score against the attack",
+      "img": "icons/skills/melee/hand-grip-sword-strike-orange.webp",
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "@system.armorScore"
+        }
+      ],
+      "transfer": false,
+      "_id": "Anbxt99bL9IWnlGh",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753808413748,
+        "modifiedTime": 1753808413748,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!EmFTp9wzT6MHSaNz.Anbxt99bL9IWnlGh"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753795181779,
+    "modifiedTime": 1753808413753,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!EmFTp9wzT6MHSaNz"
+}

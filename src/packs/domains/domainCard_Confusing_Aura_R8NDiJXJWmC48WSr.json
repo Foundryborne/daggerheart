@@ -1,0 +1,29 @@
+{
+  "name": "Confusing Aura",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "KmaX6wNBLzkFevaG",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (14)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are. <strong>Mark any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to make that many additional layers. When an adversary makes an attack against you, roll a number of <strong>d6s</strong> equal to the number of layers currently active. If any roll a 5 or higher, one layer of the aura is destroyed and the attack fails. If all the results are 4 or lower, you take the damage and this spell ends.        </p></p>",
+    "domain": "arcana",
+    "recallCost": 2,
+    "level": 8,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784437,
+    "modifiedTime": 1753922784437,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "R8NDiJXJWmC48WSr",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!R8NDiJXJWmC48WSr"
+}

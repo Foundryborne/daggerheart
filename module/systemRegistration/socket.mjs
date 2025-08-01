@@ -60,7 +60,7 @@ export const registerSocketHooks = () => {
                 case GMUpdateEvent.UpdateSaveMessage:
                     const action = await fromUuid(data.update.action),
                         message = game.messages.get(data.update.message);
-                    if(!action || !message) return;
+                    if (!action || !message) return;
                     action.updateSaveMessage(data.update.result, message, data.update.token);
                     break;
             }
@@ -77,9 +77,9 @@ export const registerSocketHooks = () => {
 };
 
 export const registerUserQueries = () => {
-    CONFIG.queries.armorStack = DamageReductionDialog.armorStackQuery;
+    CONFIG.queries.armorSlot = DamageReductionDialog.armorSlotQuery;
     CONFIG.queries.reactionRoll = game.system.api.models.actions.actionsTypes.base.rollSaveQuery;
-}
+};
 
 export const emitAsGM = async (eventName, callback, update, uuid = null) => {
     if (!game.user.isGM) {

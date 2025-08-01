@@ -1,0 +1,104 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Dunamis Silkchain",
+  "type": "armor",
+  "_id": "hAY6UgdGT7dj22Pr",
+  "img": "icons/equipment/chest/robe-layered-red.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "8PD5JQuS05IA6HJT": {
+        "type": "attack",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Slow Time",
+        "description": "Mark an Armor Slot to roll a d4 and add its result as a bonus to your Evasion against an incoming attack.",
+        "img": "icons/magic/time/hourglass-brown-orange.webp",
+        "cost": [
+          {
+            "key": "armorStack",
+            "value": 1,
+            "keyIsID": false,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "roll": {
+          "type": "diceSet",
+          "diceRolling": {
+            "dice": "d4",
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "compare": null,
+            "treshold": null
+          },
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "useDefault": false
+        },
+        "_id": "8PD5JQuS05IA6HJT",
+        "effects": [],
+        "systemPath": "actions",
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        }
+      }
+    },
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "baseScore": 7,
+    "armorFeatures": [
+      {
+        "value": "timeslowing",
+        "effectIds": [],
+        "actionIds": [
+          "8PD5JQuS05IA6HJT"
+        ]
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 13,
+      "severe": 36
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753809264956,
+    "modifiedTime": 1753809422818,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!hAY6UgdGT7dj22Pr"
+}

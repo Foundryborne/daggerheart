@@ -1,0 +1,29 @@
+{
+  "name": "Astral Projection",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "7O1tTswJMNdPgLsx",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per long rest, <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to create a projected copy of yourself that can appear anywhere you’ve been before.        </p><p class=\"Body-Foundation\">You can see and hear through the projection as though it were you and affect the world as though you were there. A creature investigating the projection can tell it’s of magical origin. This effect lasts until your next rest or your projection takes any damage.</p></p>",
+    "domain": "grace",
+    "recallCost": 0,
+    "level": 8,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784409,
+    "modifiedTime": 1753922784409,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "YNOCNmZ96sCp9NEr",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!YNOCNmZ96sCp9NEr"
+}

@@ -1,0 +1,200 @@
+{
+  "folder": "ereMKW01MCYg0qUY",
+  "name": "Wand of Enthrallment",
+  "type": "weapon",
+  "_id": "tP6vmnrmTq2h5sj7",
+  "img": "icons/weapons/wands/wand-skull-feathers.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "vqTZBX2RHTG1h6hz": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Persuade",
+        "description": "Before you make a Presence Roll, you can mark a Stress to gain a +2 bonus to the result.",
+        "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "effects": [
+          {
+            "_id": "hrJJzzepVs2BPYf5",
+            "onSave": false
+          }
+        ],
+        "_id": "vqTZBX2RHTG1h6hz",
+        "systemPath": "actions",
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 2,
+    "equipped": false,
+    "secondary": false,
+    "burden": "oneHanded",
+    "weaponFeatures": [
+      {
+        "value": "persuasive",
+        "effectIds": [
+          "hrJJzzepVs2BPYf5"
+        ],
+        "actionIds": [
+          "vqTZBX2RHTG1h6hz"
+        ]
+      }
+    ],
+    "attack": {
+      "name": "Attack",
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "_id": "YHE291ruSIJAh44F",
+      "systemPath": "attack",
+      "type": "attack",
+      "range": "far",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "trait": "presence",
+        "type": "attack",
+        "difficulty": null,
+        "bonus": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "dice": "d6",
+              "bonus": 4,
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": [
+              "magical"
+            ],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "rules": {
+      "attack": {
+        "roll": {
+          "trait": null
+        }
+      }
+    }
+  },
+  "effects": [
+    {
+      "name": "Persuasive",
+      "description": "Gain a +2 bonus to the Presence roll",
+      "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
+      "changes": [
+        {
+          "key": "system.traits.presence.value",
+          "mode": 2,
+          "value": "2"
+        }
+      ],
+      "transfer": false,
+      "_id": "hrJJzzepVs2BPYf5",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753831397899,
+        "modifiedTime": 1753831397899,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!tP6vmnrmTq2h5sj7.hrJJzzepVs2BPYf5"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753831377291,
+    "modifiedTime": 1753831408550,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!tP6vmnrmTq2h5sj7"
+}

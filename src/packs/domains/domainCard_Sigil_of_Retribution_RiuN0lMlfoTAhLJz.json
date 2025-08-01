@@ -1,0 +1,29 @@
+{
+  "name": "Sigil of Retribution",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "FcMclsLDy86EicA6",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Mark an adversary within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range with a sigil of retribution. The GM gains a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>. When the marked adversary deals damage to you or your allies, place a <strong>d8</strong> on this card. You can hold a number of <strong>d8s</strong> equal to your level. When you successfully attack the marked adversary, roll the dice on this card and add the total to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"damage-roll\" nexus=\"daggerheart\">damage roll</tooltip>, then clear the dice. This effect ends when the marked adversary is defeated or you cast Sigil of Retribution again.</p></p>",
+    "domain": "codex",
+    "recallCost": 2,
+    "level": 6,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784517,
+    "modifiedTime": 1753922784517,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "RiuN0lMlfoTAhLJz",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!RiuN0lMlfoTAhLJz"
+}

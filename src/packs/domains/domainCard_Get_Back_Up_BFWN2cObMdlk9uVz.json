@@ -1,0 +1,29 @@
+{
+  "name": "Get Back Up",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "9Xc6KzNyjDtTGZkp",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you take <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe</tooltip> damage, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to reduce the severity by one threshold.        </p></p>",
+    "domain": "blade",
+    "recallCost": 1,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784460,
+    "modifiedTime": 1753922784460,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "BFWN2cObMdlk9uVz",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!BFWN2cObMdlk9uVz"
+}

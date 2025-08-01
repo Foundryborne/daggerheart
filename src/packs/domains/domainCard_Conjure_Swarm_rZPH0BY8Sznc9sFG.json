@@ -1,0 +1,29 @@
+{
+  "name": "Conjure Swarm",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "xZrCYAd05ayNu1yW",
+  "system": {
+    "description": "<p><p class=\"Card-Feature\"><em><strong>Tekaira Armored Beetles:</strong></em> <strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to conjure armored beetles that encircle you. When you next take damage, reduce the severity by one threshold. You can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to keep the beetles conjured after taking damage.        </p><p class=\"Card-Feature\"><em><strong>Fire Flies:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. <strong>Spend a Hope</strong> to deal <strong>2d8+3</strong> magic damage to targets you succeeded against.</p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 2,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784438,
+    "modifiedTime": 1753922784438,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "rZPH0BY8Sznc9sFG",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!rZPH0BY8Sznc9sFG"
+}

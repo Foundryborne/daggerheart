@@ -1,0 +1,29 @@
+{
+  "name": "Earthquake",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "fucNnucgoUjbzvcA",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (16)</strong>. Once per rest on a success, all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-far\" nexus=\"daggerheart\">Very Far</tooltip> range who aren’t flying must make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (18). Targets who fail take <strong>3d10+8</strong> physical damage and are temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>. Targets who succeed take half damage. </p><p class=\"Body-Foundation\">Additionally, when you succeed on the Spellcast Roll, all terrain within Very Far range becomes difficult to move through and structures within this range might sustain damage or crumble.</p></p>",
+    "domain": "arcana",
+    "recallCost": 2,
+    "level": 9,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784449,
+    "modifiedTime": 1753922784449,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "C0qLOwSSvZ6PG3Ws",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!C0qLOwSSvZ6PG3Ws"
+}

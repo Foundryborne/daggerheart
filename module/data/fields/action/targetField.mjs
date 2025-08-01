@@ -4,8 +4,8 @@ export default class TargetField extends fields.SchemaField {
     constructor(options = {}, context = {}) {
         const targetFields = {
             type: new fields.StringField({
-                choices: CONFIG.DH.ACTIONS.targetTypes,
-                initial: CONFIG.DH.ACTIONS.targetTypes.any.id,
+                choices: CONFIG.DH.GENERAL.targetTypes,
+                initial: CONFIG.DH.GENERAL.targetTypes.any.id,
                 nullable: true
             }),
             amount: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 })
@@ -16,11 +16,11 @@ export default class TargetField extends fields.SchemaField {
     static prepareConfig(config) {
         if (!this.target?.type) return [];
         let targets;
-        if (this.target?.type === CONFIG.DH.ACTIONS.targetTypes.self.id)
+        if (this.target?.type === CONFIG.DH.GENERAL.targetTypes.self.id)
             targets = [this.actor.token ?? this.actor.prototypeToken];
         else {
             targets = Array.from(game.user.targets);
-            if (this.target.type !== CONFIG.DH.ACTIONS.targetTypes.any.id) {
+            if (this.target.type !== CONFIG.DH.GENERAL.targetTypes.any.id) {
                 targets = targets.filter(t => TargetField.isTargetFriendly.call(this, t));
                 if (this.target.amount && targets.length > this.target.amount) targets = [];
             }
@@ -43,9 +43,9 @@ export default class TargetField extends fields.SchemaField {
                 : this.actor.prototypeToken.disposition,
             targetDisposition = target.document.disposition;
         return (
-            (this.target.type === CONFIG.DH.ACTIONS.targetTypes.friendly.id &&
+            (this.target.type === CONFIG.DH.GENERAL.targetTypes.friendly.id &&
                 actorDisposition === targetDisposition) ||
-            (this.target.type === CONFIG.DH.ACTIONS.targetTypes.hostile.id &&
+            (this.target.type === CONFIG.DH.GENERAL.targetTypes.hostile.id &&
                 actorDisposition + targetDisposition === 0)
         );
     }

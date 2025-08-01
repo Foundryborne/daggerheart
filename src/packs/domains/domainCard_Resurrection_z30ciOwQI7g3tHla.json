@@ -1,0 +1,29 @@
+{
+  "name": "Resurrection",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "nZr2hsu6Q6TlFXQn",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (20)</strong>. On a success, restore one creature who has been dead no longer than 100 years to full strength. Then roll a <strong>d6</strong>. On a result of 5 or lower, place this card in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">vault</tooltip> permanently.</p><p class=\"Body-Foundation\">On a failure, you can’t cast Resurrection again for a week.</p></p>",
+    "domain": "splendor",
+    "recallCost": 2,
+    "level": 10,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784503,
+    "modifiedTime": 1753922784503,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "z30ciOwQI7g3tHla",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!z30ciOwQI7g3tHla"
+}

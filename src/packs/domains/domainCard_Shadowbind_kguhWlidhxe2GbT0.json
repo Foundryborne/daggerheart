@@ -1,0 +1,29 @@
+{
+  "name": "Shadowbind",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Abn46nCQst6kpGeA",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. Targets you succeed against are temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restrained</em> </tooltip>as their shadow binds them in place.</p></p>",
+    "domain": "midnight",
+    "recallCost": 0,
+    "level": 2,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784512,
+    "modifiedTime": 1753922784512,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "kguhWlidhxe2GbT0",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!kguhWlidhxe2GbT0"
+}

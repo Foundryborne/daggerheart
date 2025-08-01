@@ -1,0 +1,96 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Harrowbone Armor",
+  "type": "armor",
+  "_id": "dvyQeUVRLc9y6rnt",
+  "img": "icons/equipment/chest/breastplate-gorget-steel.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "IzM88FIxQ35P5VB2": {
+        "type": "attack",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Resilient",
+        "description": "Before you mark your last Armor Slot, roll a d6. On a result of 6, reduce the severity by one threshold without marking an Armor Slot.",
+        "img": "icons/magic/life/heart-cross-purple-orange.webp",
+        "roll": {
+          "type": "diceSet",
+          "diceRolling": {
+            "compare": "equal",
+            "dice": "d6",
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "treshold": 6
+          },
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "useDefault": false
+        },
+        "_id": "IzM88FIxQ35P5VB2",
+        "effects": [],
+        "systemPath": "actions",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        }
+      }
+    },
+    "attached": [],
+    "tier": 2,
+    "equipped": false,
+    "baseScore": 4,
+    "armorFeatures": [
+      {
+        "value": "resilient",
+        "effectIds": [],
+        "actionIds": [
+          "IzM88FIxQ35P5VB2"
+        ]
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 9,
+      "severe": 21
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753805616349,
+    "modifiedTime": 1753807254838,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!dvyQeUVRLc9y6rnt"
+}

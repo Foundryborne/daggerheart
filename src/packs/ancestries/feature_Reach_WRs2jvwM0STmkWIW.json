@@ -1,0 +1,34 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Reach",
+  "type": "feature",
+  "_id": "WRs2jvwM0STmkWIW",
+  "img": "icons/weapons/staves/staff-simple.webp",
+  "system": {
+    "description": "<p>Treat any weapon, ability, spell, or other feature that has a Melee range as though it has a Very Close range instead.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753996802591,
+    "modifiedTime": 1753996830453,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!WRs2jvwM0STmkWIW"
+}

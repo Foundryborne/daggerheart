@@ -1,0 +1,89 @@
+{
+  "folder": "rkSdPu86ybLz6aKF",
+  "name": "Bellamoi Fine Armor",
+  "type": "armor",
+  "_id": "WuoVwZA53XRAIt6d",
+  "img": "icons/equipment/chest/breastplate-layered-gold.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 3,
+    "equipped": false,
+    "baseScore": 5,
+    "armorFeatures": [
+      {
+        "value": "gilded",
+        "effectIds": [
+          "Hy0sNtFS1JAXxgwC"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 11,
+      "severe": 27
+    }
+  },
+  "effects": [
+    {
+      "name": "Gilded",
+      "description": "+1 to Presence",
+      "img": "icons/magic/control/control-influence-crown-gold.webp",
+      "changes": [
+        {
+          "key": "system.traits.presence.value",
+          "mode": 2,
+          "value": "1"
+        }
+      ],
+      "_id": "Hy0sNtFS1JAXxgwC",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753807887679,
+        "modifiedTime": 1753807887679,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!WuoVwZA53XRAIt6d.Hy0sNtFS1JAXxgwC"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753807855787,
+    "modifiedTime": 1753807887685,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!WuoVwZA53XRAIt6d"
+}

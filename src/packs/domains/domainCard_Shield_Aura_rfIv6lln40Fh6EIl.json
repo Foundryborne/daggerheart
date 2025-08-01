@@ -1,0 +1,29 @@
+{
+  "name": "Shield Aura",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "A00z8Q8B3aKApKzI",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to cast a protective aura on a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. When the target marks an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>, they reduce the severity of the attack by an additional threshold. If this spell causes a creature who would be damaged to instead mark no <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>, the effect ends.        </p><p class=\"Body-Foundation\">You can only hold Shield Aura on one creature at a time.</p></p>",
+    "domain": "splendor",
+    "recallCost": 2,
+    "level": 8,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784516,
+    "modifiedTime": 1753922784516,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "rfIv6lln40Fh6EIl",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!rfIv6lln40Fh6EIl"
+}

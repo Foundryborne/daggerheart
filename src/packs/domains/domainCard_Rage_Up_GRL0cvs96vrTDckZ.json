@@ -1,0 +1,29 @@
+{
+  "name": "Rage Up",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "EiP5dLozOFZKIeWN",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Before you make an attack, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to gain a bonus to your damage roll equal to twice your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"strength\" nexus=\"daggerheart\">Strength</tooltip>.        </p><p class=\"Body-Foundation\">You can Rage Up twice per attack.</p></p>",
+    "domain": "blade",
+    "recallCost": 1,
+    "level": 6,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784496,
+    "modifiedTime": 1753922784496,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "GRL0cvs96vrTDckZ",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!GRL0cvs96vrTDckZ"
+}

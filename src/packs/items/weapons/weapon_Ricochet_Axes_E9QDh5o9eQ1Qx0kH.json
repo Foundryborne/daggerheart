@@ -1,0 +1,154 @@
+{
+  "folder": "cvhQpWXCo3YJhtwx",
+  "name": "Ricochet Axes",
+  "type": "weapon",
+  "_id": "E9QDh5o9eQ1Qx0kH",
+  "img": "icons/weapons/axes/axe-battle-green.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "x9cz8u1utQ6DtoKA": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Bounce",
+        "description": "Mark 1 or more Stress to hit that many targets in range of the attack.",
+        "img": "icons/skills/movement/ball-spinning-blue.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "scalable": true,
+            "step": 1,
+            "keyIsID": false
+          }
+        ],
+        "_id": "x9cz8u1utQ6DtoKA",
+        "effects": [],
+        "systemPath": "actions",
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "secondary": false,
+    "burden": "twoHanded",
+    "weaponFeatures": [
+      {
+        "value": "bouncing",
+        "effectIds": [],
+        "actionIds": [
+          "x9cz8u1utQ6DtoKA"
+        ]
+      }
+    ],
+    "attack": {
+      "name": "Attack",
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "_id": "31XEMDUyjpqFA7H9",
+      "systemPath": "attack",
+      "type": "attack",
+      "range": "far",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "trait": "agility",
+        "type": "attack",
+        "difficulty": null,
+        "bonus": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "dice": "d6",
+              "bonus": 11,
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": [
+              "physical"
+            ],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "rules": {
+      "attack": {
+        "roll": {
+          "trait": null
+        }
+      }
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753835247877,
+    "modifiedTime": 1753835276839,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!E9QDh5o9eQ1Qx0kH"
+}

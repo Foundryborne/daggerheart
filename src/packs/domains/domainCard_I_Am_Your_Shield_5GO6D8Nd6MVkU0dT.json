@@ -1,0 +1,29 @@
+{
+  "name": "I Am Your Shield",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "QpOL7jPbMBzH96qR",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range would take damage, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to stand in the way and make yourself the target of the attack instead. When you take damage from this attack, you can mark any number of <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slots</tooltip>.        </p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784471,
+    "modifiedTime": 1753922784471,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "5GO6D8Nd6MVkU0dT",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!5GO6D8Nd6MVkU0dT"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Flight",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "mOv6BGhJAeGrzA84",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. On a success, place a number of tokens equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip> on this card (minimum 1). When you make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip> while flying, spend a token from this card. After the action that spends the last token is resolved, you descend to the ground directly below you.</p></p>",
+    "domain": "arcana",
+    "recallCost": 1,
+    "level": 3,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784454,
+    "modifiedTime": 1753922784454,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "54GUjNuBEy7xdzMz",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!54GUjNuBEy7xdzMz"
+}

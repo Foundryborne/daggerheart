@@ -1,0 +1,29 @@
+{
+  "name": "Chokehold",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "hoDIPBzwYPxiSXGU",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you position yourself behind a creature who’s about your size, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to pull them into a chokehold, making them temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>.        </p><p class=\"Body-Foundation\">When a creature attacks a target who is <em>Vulnerable</em> in this way, they deal an extra <strong>2d6</strong> damage.</p></p>",
+    "domain": "midnight",
+    "recallCost": 1,
+    "level": 3,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784434,
+    "modifiedTime": 1753922784434,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "R5GYUalYXLLFRlNl",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!R5GYUalYXLLFRlNl"
+}

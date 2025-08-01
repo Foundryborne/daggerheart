@@ -1,0 +1,29 @@
+{
+  "name": "Battle Monster",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "7pKKYgRQAKlQAksV",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you make a successful attack against an adversary, you can <strong>mark 4 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to force the target to mark a number of <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> equal to the number of Hit Points you currently have marked instead of rolling for damage.        </p></p>",
+    "domain": "blade",
+    "recallCost": 0,
+    "level": 10,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784414,
+    "modifiedTime": 1753922784414,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "P0ezScyQ5t8ruByf",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!P0ezScyQ5t8ruByf"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Master of the Craft",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "yFcD1LOM3xKbkNYl",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Gain a permanent +2 bonus to two of your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"experience\" nexus=\"daggerheart\">Experiences</tooltip> or a permanent +3 bonus to one of your Experiences. Then place this card in your vault permanently.</p></p>",
+    "domain": "grace",
+    "recallCost": 0,
+    "level": 9,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784482,
+    "modifiedTime": 1753922784482,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "yAGTwXHUC3qxpTeK",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!yAGTwXHUC3qxpTeK"
+}

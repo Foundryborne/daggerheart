@@ -27,7 +27,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         header: { template: 'systems/daggerheart/templates/sheets/activeEffect/header.hbs' },
         tabs: { template: 'templates/generic/tab-navigation.hbs' },
         details: { template: 'systems/daggerheart/templates/sheets/activeEffect/details.hbs', scrollable: [''] },
-        duration: { template: 'systems/daggerheart/templates/sheets/activeEffect/duration.hbs' },
+        settings: { template: 'systems/daggerheart/templates/sheets/activeEffect/settings.hbs' },
         changes: {
             template: 'systems/daggerheart/templates/sheets/activeEffect/changes.hbs',
             scrollable: ['ol[data-changes]']
@@ -39,7 +39,7 @@ export default class DhActiveEffectConfig extends foundry.applications.sheets.Ac
         sheet: {
             tabs: [
                 { id: 'details', icon: 'fa-solid fa-book' },
-                { id: 'duration', icon: 'fa-solid fa-clock' },
+                { id: 'settings', icon: 'fa-solid fa-bars', label: 'DAGGERHEART.GENERAL.Tabs.settings' },
                 { id: 'changes', icon: 'fa-solid fa-gears' }
             ],
             initial: 'details',

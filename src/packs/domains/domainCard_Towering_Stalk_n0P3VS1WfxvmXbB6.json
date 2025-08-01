@@ -1,0 +1,29 @@
+{
+  "name": "Towering Stalk",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "uXGugK72AffddFdH",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest, you can conjure a thick, twisting stalk within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range that can be easily climbed. Its height can grow up to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range.</p><p class=\"Body-Foundation\"><strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to use this spell as an attack. Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against an adversary or group of adversaries within Close range. The erupting stalk lifts targets you succeed against into the air and drops them, dealing <strong>d8</strong> physical damage using your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.        </p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 3,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784534,
+    "modifiedTime": 1753922784534,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "n0P3VS1WfxvmXbB6",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!n0P3VS1WfxvmXbB6"
+}

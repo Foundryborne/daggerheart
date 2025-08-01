@@ -1,0 +1,154 @@
+{
+  "folder": "UNDVQEo6UtTuueNQ",
+  "name": "Bloodstaff",
+  "type": "weapon",
+  "_id": "IoMVDz92WVvfGGdc",
+  "img": "icons/weapons/staves/staff-ornate-orb-steel-red.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "Unom5L1XimxLcXSp": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Pain",
+        "description": "Each time you make a successful attack, you must mark a Stress.",
+        "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "_id": "Unom5L1XimxLcXSp",
+        "effects": [],
+        "systemPath": "actions",
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "secondary": false,
+    "burden": "twoHanded",
+    "weaponFeatures": [
+      {
+        "value": "painful",
+        "effectIds": [],
+        "actionIds": [
+          "Unom5L1XimxLcXSp"
+        ]
+      }
+    ],
+    "attack": {
+      "name": "Attack",
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "_id": "B2LewQYZb9Jhl4A6",
+      "systemPath": "attack",
+      "type": "attack",
+      "range": "far",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "trait": "instinct",
+        "type": "attack",
+        "difficulty": null,
+        "bonus": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "dice": "d20",
+              "bonus": 7,
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": [
+              "magical"
+            ],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "rules": {
+      "attack": {
+        "roll": {
+          "trait": null
+        }
+      }
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753836256052,
+    "modifiedTime": 1753836294025,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!IoMVDz92WVvfGGdc"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Reaper’s Strike",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "QYdeGsmVYIF34kZR",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack roll</tooltip>. The GM tells you which targets within range it would succeed against. Choose one of these targets and force them to mark 5 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>.        </p></p>",
+    "domain": "blade",
+    "recallCost": 3,
+    "level": 9,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784498,
+    "modifiedTime": 1753922784498,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "MCgNRlh0s5XUPCfl",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!MCgNRlh0s5XUPCfl"
+}

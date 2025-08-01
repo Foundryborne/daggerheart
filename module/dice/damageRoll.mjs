@@ -85,9 +85,9 @@ export default class DamageRoll extends DHRoll {
         const modifiers = [],
             type = this.options.messageType ?? (this.options.isHealing ? 'healing' : 'damage'),
             options = part ?? this.options;
-        
+
         modifiers.push(...this.getBonus(`${type}`, `${type.capitalize()} Bonus`));
-        if(!this.options.isHealing) {
+        if (!this.options.isHealing) {
             options.damageTypes?.forEach(t => {
                 modifiers.push(...this.getBonus(`${type}.${t}`, `${t.capitalize()} ${type.capitalize()} Bonus`));
             });

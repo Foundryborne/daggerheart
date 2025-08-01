@@ -1,0 +1,94 @@
+{
+  "folder": "rkSdPu86ybLz6aKF",
+  "name": "Advanced Full Plate Armor",
+  "type": "armor",
+  "_id": "crIbCb9NZ4K0VpoU",
+  "img": "icons/equipment/chest/breastplate-layered-steel-grey.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 3,
+    "equipped": false,
+    "baseScore": 6,
+    "armorFeatures": [
+      {
+        "value": "veryheavy",
+        "effectIds": [
+          "awdHgEaM54G3emOU"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 15,
+      "severe": 35
+    }
+  },
+  "effects": [
+    {
+      "name": "Very Heavy",
+      "description": "-2 to Evasion; -1 to Agility",
+      "img": "icons/commodities/metal/ingot-stamped-steel.webp",
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "-2"
+        },
+        {
+          "key": "system.traits.agility.value",
+          "mode": 2,
+          "value": "-1"
+        }
+      ],
+      "_id": "awdHgEaM54G3emOU",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753809243346,
+        "modifiedTime": 1753809243346,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!crIbCb9NZ4K0VpoU.awdHgEaM54G3emOU"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753809204693,
+    "modifiedTime": 1753809243349,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!crIbCb9NZ4K0VpoU"
+}

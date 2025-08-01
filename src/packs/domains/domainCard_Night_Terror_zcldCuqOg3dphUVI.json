@@ -1,0 +1,29 @@
+{
+  "name": "Night Terror",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "2rqOUxEglhhPKk2j",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, choose any targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range to perceive you as a nightmarish horror. The targets must succeed on a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (16) or become temporarily <em>Horrified</em>. While <em>Horrified</em>, they’re <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>. Steal a number of <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> from the GM equal to the number of targets that are <em>Horrified</em> (up to the number of Fear in the GM’s pool). Roll a number of <strong>d6s</strong> equal to the number of stolen Fear and deal the total damage to each <em>Horrified</em> target. Discard the stolen Fear.</p></p>",
+    "domain": "midnight",
+    "recallCost": 2,
+    "level": 9,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784487,
+    "modifiedTime": 1753922784487,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "zcldCuqOg3dphUVI",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!zcldCuqOg3dphUVI"
+}

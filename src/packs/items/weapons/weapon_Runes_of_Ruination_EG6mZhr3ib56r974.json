@@ -1,0 +1,154 @@
+{
+  "folder": "oreMpiiytMRaR9sy",
+  "name": "Runes of Ruination",
+  "type": "weapon",
+  "_id": "EG6mZhr3ib56r974",
+  "img": "icons/magic/symbols/mask-yellow-orange.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "pmnGErMlUT1lJFDL": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Pain",
+        "description": "Each time you make a successful attack, you must mark a Stress.",
+        "img": "icons/skills/wounds/injury-face-impact-orange.webp",
+        "cost": [
+          {
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "_id": "pmnGErMlUT1lJFDL",
+        "effects": [],
+        "systemPath": "actions",
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 3,
+    "equipped": false,
+    "secondary": false,
+    "burden": "oneHanded",
+    "weaponFeatures": [
+      {
+        "value": "painful",
+        "effectIds": [],
+        "actionIds": [
+          "pmnGErMlUT1lJFDL"
+        ]
+      }
+    ],
+    "attack": {
+      "name": "Attack",
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "_id": "8j3yjH0TiwwZsaBW",
+      "systemPath": "attack",
+      "type": "attack",
+      "range": "veryClose",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "trait": "knowledge",
+        "type": "attack",
+        "difficulty": null,
+        "bonus": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "dice": "d20",
+              "bonus": 4,
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": [
+              "magical"
+            ],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "rules": {
+      "attack": {
+        "roll": {
+          "trait": null
+        }
+      }
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753833802007,
+    "modifiedTime": 1753833831195,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!EG6mZhr3ib56r974"
+}

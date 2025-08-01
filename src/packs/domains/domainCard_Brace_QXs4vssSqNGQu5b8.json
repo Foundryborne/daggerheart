@@ -1,0 +1,29 @@
+{
+  "name": "Brace",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "eR7sP5jQwfCLORUe",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you mark an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip> to reduce incoming damage, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to mark an additional Armor Slot.        </p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 3,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784431,
+    "modifiedTime": 1753922784431,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "QXs4vssSqNGQu5b8",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!QXs4vssSqNGQu5b8"
+}

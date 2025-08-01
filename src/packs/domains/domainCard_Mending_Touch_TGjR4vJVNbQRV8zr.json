@@ -1,0 +1,29 @@
+{
+  "name": "Mending Touch",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "LlWJaBZOKh0Ot2kD",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">You lay your hands upon a creature and channel healing magic to close their wounds. When you can take a few minutes to focus on the target you’re helping, you can <strong>spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> or a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> on them.        </p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, when you spend this healing time learning something new about them or revealing something about yourself, you can clear 2 Hit Points or 2 Stress on them instead.</p></p>",
+    "domain": "splendor",
+    "recallCost": 1,
+    "level": 1,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784482,
+    "modifiedTime": 1753922784482,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "TGjR4vJVNbQRV8zr",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!TGjR4vJVNbQRV8zr"
+}

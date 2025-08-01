@@ -1,0 +1,29 @@
+{
+  "name": "Chain Lightning",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "l387HKojhqcDAV0b",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Mark 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip>, unleashing lightning on all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. Targets you succeed against must make a reaction roll with a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> equal to the result of your Spellcast Roll. Targets who fail take <strong>2d8+4</strong> magic damage. Additional adversaries not already targeted by Chain Lightning and within Close range of previous targets who took damage must also make the <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">reaction roll</tooltip>. Targets who fail take <strong>2d8+4</strong> magic damage. This chain continues until there are no more adversaries within range.        </p></p>",
+    "domain": "arcana",
+    "recallCost": 1,
+    "level": 5,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784433,
+    "modifiedTime": 1753922784433,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "0kAVO6rordCfZqYP",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!0kAVO6rordCfZqYP"
+}

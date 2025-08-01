@@ -1,0 +1,29 @@
+{
+  "name": "Rousing Strike",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "XDSp0FdiYDVO0tfw",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Once per rest, when you <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"critical-success\" nexus=\"daggerheart\">critically succeed</tooltip> on an attack, you and all allies who can see or hear you can clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> or <strong>1d4</strong> <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.        </p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 5,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784506,
+    "modifiedTime": 1753922784506,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "pcbYD33rBBdAo5f9",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!pcbYD33rBBdAo5f9"
+}

@@ -1,0 +1,72 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Veritas Opal Armor",
+  "type": "armor",
+  "_id": "OvzgUTYy2RCN85vV",
+  "img": "icons/equipment/chest/breastplate-collared-steel-green.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "sY3W5JYspN5Du5ag": {
+        "type": "effect",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Truthseeking",
+        "description": "This armor glows when another creature within Close range tells a lie.",
+        "img": "icons/magic/perception/orb-crystal-ball-scrying-blue.webp",
+        "_id": "sY3W5JYspN5Du5ag",
+        "effects": [],
+        "systemPath": "actions",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "baseScore": 6,
+    "armorFeatures": [
+      {
+        "value": "truthseeking",
+        "effectIds": [],
+        "actionIds": [
+          "sY3W5JYspN5Du5ag"
+        ]
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 13,
+      "severe": 36
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753809706360,
+    "modifiedTime": 1753809725217,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!OvzgUTYy2RCN85vV"
+}

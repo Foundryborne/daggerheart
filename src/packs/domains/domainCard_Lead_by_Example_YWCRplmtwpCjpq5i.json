@@ -1,0 +1,29 @@
+{
+  "name": "Lead by Example",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "8DOVMjTtZFKtwX4p",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you deal damage to an adversary, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> and describe how you encourage your allies. The next PC to make an attack against that adversary can clear a Stress or gain a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>.        </p></p>",
+    "domain": "valor",
+    "recallCost": 3,
+    "level": 9,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784475,
+    "modifiedTime": 1753922784475,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "YWCRplmtwpCjpq5i",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!YWCRplmtwpCjpq5i"
+}

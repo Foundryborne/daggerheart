@@ -1,0 +1,29 @@
+{
+  "name": "Vicious Entangle",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "EJoXzO85rG5EiZsh",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. On a success, roots and vines reach out from the ground, dealing <strong>1d8+1</strong> physical damage and temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restraining</em></tooltip> the target.</p><p class=\"Body-Foundation\">Additionally on a success, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to temporarily <em>Restrain</em> another adversary within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range of your target.        </p></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 1,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784541,
+    "modifiedTime": 1753922784541,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "qvpvTnkAoRn9vYO4",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!qvpvTnkAoRn9vYO4"
+}

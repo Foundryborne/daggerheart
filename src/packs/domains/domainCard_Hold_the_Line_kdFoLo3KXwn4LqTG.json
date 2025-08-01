@@ -1,0 +1,29 @@
+{
+  "name": "Hold the Line",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "8DOVMjTtZFKtwX4p",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Describe the defensive stance you take and <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip>. If an adversary moves within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range, they’re pulled into <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range and <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restrained</em></tooltip><em>.</em></p><p class=\"Body-Foundation\">This <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip> lasts until you move or fail a roll with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>, or the GM spends 2 Fear on their turn to clear it.</p></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 9,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784468,
+    "modifiedTime": 1753922784468,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "kdFoLo3KXwn4LqTG",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!kdFoLo3KXwn4LqTG"
+}

@@ -1,0 +1,86 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Nimble",
+  "type": "feature",
+  "_id": "3lNqft3LmOlEIEkw",
+  "img": "icons/skills/movement/arrows-up-trio-red.webp",
+  "system": {
+    "description": "<p>Gain a permanent +1 bonus to your Evasion at character creation.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Nimble",
+      "type": "base",
+      "_id": "zaxVYqKzUYDJ3SDq",
+      "img": "icons/skills/movement/arrows-up-trio-red.webp",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Gain a permanent +1 bonus to your Evasion at character creation.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754001151008,
+        "modifiedTime": 1754001176435,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!3lNqft3LmOlEIEkw.zaxVYqKzUYDJ3SDq"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754001125989,
+    "modifiedTime": 1754001147782,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!3lNqft3LmOlEIEkw"
+}

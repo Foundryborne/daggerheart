@@ -1,0 +1,89 @@
+{
+  "folder": "Hbjp64XzuyJs2hOs",
+  "name": "Legendary Gambeson Armor",
+  "type": "armor",
+  "_id": "c6tMXz4rPf9ioQrf",
+  "img": "icons/equipment/chest/breastplate-layered-leather-blue-gold.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "baseScore": 6,
+    "armorFeatures": [
+      {
+        "value": "flexible",
+        "effectIds": [
+          "3AUNxBoj7mp1ziJQ"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 11,
+      "severe": 32
+    }
+  },
+  "effects": [
+    {
+      "name": "Flexible",
+      "description": "+1 to Evasion",
+      "img": "icons/magic/movement/abstract-ribbons-red-orange.webp",
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "1"
+        }
+      ],
+      "_id": "3AUNxBoj7mp1ziJQ",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753809044811,
+        "modifiedTime": 1753809044811,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!c6tMXz4rPf9ioQrf.3AUNxBoj7mp1ziJQ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753809031184,
+    "modifiedTime": 1753809064934,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!c6tMXz4rPf9ioQrf"
+}

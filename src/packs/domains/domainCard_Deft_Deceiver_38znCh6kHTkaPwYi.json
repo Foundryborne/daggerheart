@@ -1,0 +1,29 @@
+{
+  "name": "Deft Deceiver",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "nVCKcZkcoEivYJaF",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to gain <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on a roll to deceive or trick someone into believing a lie you tell them.        </p></p>",
+    "domain": "grace",
+    "recallCost": 0,
+    "level": 1,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784445,
+    "modifiedTime": 1753922784445,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "38znCh6kHTkaPwYi",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!38znCh6kHTkaPwYi"
+}

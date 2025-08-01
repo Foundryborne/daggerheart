@@ -1,0 +1,29 @@
+{
+  "name": "Cruel Precision",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "i5iDLXMZLc0ckWI5",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"finesse\" nexus=\"daggerheart\">Finesse</tooltip> or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip>.</p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 7,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784442,
+    "modifiedTime": 1753922784442,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "bap1eCWryPNowbyo",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!bap1eCWryPNowbyo"
+}

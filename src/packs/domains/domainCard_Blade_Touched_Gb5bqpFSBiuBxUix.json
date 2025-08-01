@@ -1,0 +1,29 @@
+{
+  "name": "Blade-Touched",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "HAGbPLHwm0UozDeG",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Blade domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">+2 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack rolls</tooltip></li><li class=\"vertical-card-list-found\">+4 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe</tooltip> damage threshold</li></ul></p>",
+    "domain": "blade",
+    "recallCost": 1,
+    "level": 7,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784416,
+    "modifiedTime": 1753922784416,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "Gb5bqpFSBiuBxUix",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!Gb5bqpFSBiuBxUix"
+}

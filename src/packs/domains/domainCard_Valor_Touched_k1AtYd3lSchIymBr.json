@@ -1,0 +1,29 @@
+{
+  "name": "Valor-Touched",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "kj3gwg5bmCqwFYze",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Valor domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">+1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-score\" nexus=\"daggerheart\">Armor Score</tooltip></li><li class=\"vertical-card-list-found\">When you mark 1 or more <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> without marking an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>, clear an Armor Slot.</li></ul></p>",
+    "domain": "valor",
+    "recallCost": 1,
+    "level": 7,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784539,
+    "modifiedTime": 1753922784539,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "k1AtYd3lSchIymBr",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!k1AtYd3lSchIymBr"
+}

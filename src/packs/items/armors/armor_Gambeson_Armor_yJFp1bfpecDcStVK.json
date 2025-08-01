@@ -1,0 +1,89 @@
+{
+  "folder": "h4QgrovjVZ1oee7O",
+  "name": "Gambeson Armor",
+  "type": "armor",
+  "_id": "yJFp1bfpecDcStVK",
+  "img": "icons/equipment/chest/vest-leather-tattered-white.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 1,
+    "equipped": false,
+    "baseScore": 3,
+    "armorFeatures": [
+      {
+        "value": "flexible",
+        "effectIds": [
+          "v1FNEsypRF5W6vVc"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 5,
+      "severe": 11
+    }
+  },
+  "effects": [
+    {
+      "name": "Flexible",
+      "description": "+1 to Evasion",
+      "img": "icons/magic/movement/abstract-ribbons-red-orange.webp",
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "1"
+        }
+      ],
+      "_id": "v1FNEsypRF5W6vVc",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753805133921,
+        "modifiedTime": 1753805133921,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!yJFp1bfpecDcStVK.v1FNEsypRF5W6vVc"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753804995685,
+    "modifiedTime": 1753805399875,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!yJFp1bfpecDcStVK"
+}

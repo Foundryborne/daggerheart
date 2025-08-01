@@ -1,0 +1,29 @@
+{
+  "name": "Unleash Chaos",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "o7kvw9NRGvDZSce2",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">At the beginning of a session, place a number of tokens equal to your Spellcast trait on this card. </p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range and spend any number of tokens to channel raw energy from within yourself to unleash against them. On a success, roll a number of<strong> d10</strong><strong>s</strong> equal to the tokens you spent and deal that much magic damage to the target. <strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to replenish this card with tokens (up to your Spellcast trait).        </p><p class=\"Body-Foundation\">At the end of each session, clear all unspent tokens.</p></p>",
+    "domain": "arcana",
+    "recallCost": 1,
+    "level": 1,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784537,
+    "modifiedTime": 1753922784537,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "o62i0QdbUDIiAhSq",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!o62i0QdbUDIiAhSq"
+}

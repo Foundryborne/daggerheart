@@ -64,7 +64,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     setRallyChoices() {
-        return this.data?.parent?.effects.reduce((a, c) => {
+        return this.data?.parent?.appliedEffects.reduce((a, c) => {
             const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
             if (change) a.push({ value: c.id, label: change.value });
             return a;

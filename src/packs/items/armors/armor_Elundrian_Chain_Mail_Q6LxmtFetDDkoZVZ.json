@@ -1,0 +1,89 @@
+{
+  "folder": "hLn0v6ov6KuFgptu",
+  "name": "Elundrian Chain Mail",
+  "type": "armor",
+  "_id": "Q6LxmtFetDDkoZVZ",
+  "img": "icons/equipment/chest/breastplate-sculpted-green.webp",
+  "system": {
+    "description": "",
+    "actions": {},
+    "attached": [],
+    "tier": 2,
+    "equipped": false,
+    "baseScore": 4,
+    "armorFeatures": [
+      {
+        "value": "warded",
+        "effectIds": [
+          "xGxqTCO8MjNq5Cw6"
+        ],
+        "actionIds": []
+      }
+    ],
+    "marks": {
+      "value": 0
+    },
+    "baseThresholds": {
+      "major": 9,
+      "severe": 21
+    }
+  },
+  "effects": [
+    {
+      "name": "Warded",
+      "description": "You reduce incoming magic damage by your Armor Score before applying it to your damage thresholds.",
+      "img": "icons/magic/defensive/barrier-shield-dome-pink.webp",
+      "changes": [
+        {
+          "key": "system.resistance.magical.reduction",
+          "mode": 2,
+          "value": "@system.armorScore"
+        }
+      ],
+      "_id": "xGxqTCO8MjNq5Cw6",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753805566171,
+        "modifiedTime": 1753805566171,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!Q6LxmtFetDDkoZVZ.xGxqTCO8MjNq5Cw6"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753805557786,
+    "modifiedTime": 1753805605453,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!Q6LxmtFetDDkoZVZ"
+}

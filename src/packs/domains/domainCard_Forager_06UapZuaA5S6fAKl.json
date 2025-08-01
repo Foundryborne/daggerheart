@@ -1,0 +1,29 @@
+{
+  "name": "Forager",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "u5Lq2kfC8LlDAGDC",
+  "system": {
+    "description": "<p><p class=\"Domain-Ability\">As an additional <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"downtime\" class=\"tooltip-convert\">downtime</tooltip> move you can choose, roll a d6 to see what you forage. Work with the GM to describe it and add it to your inventory as a consumable. Your party can carry up to five foraged consumables at a time.</p>\n<ol>\n<li>A unique food (Clear 2 <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"stress\" class=\"tooltip-convert\">Stress</tooltip>)</li>\n<li>A beautiful relic (Gain 2 <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"hope\" class=\"tooltip-convert\">Hope</tooltip>)</li>\n<li>An arcane rune (+2 to a <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"spellcast-roll\" class=\"tooltip-convert\">Spellcast Roll</tooltip>)</li>\n<li>A healing vial (Clear 2 Hit Points)</li>\n<li>A luck charm (Reroll any die)</li>\n<li>Choose one of the options above.</li></ol></p>",
+    "domain": "sage",
+    "recallCost": 1,
+    "level": 6,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784456,
+    "modifiedTime": 1753922784456,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "06UapZuaA5S6fAKl",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!06UapZuaA5S6fAKl"
+}

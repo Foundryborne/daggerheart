@@ -1,0 +1,218 @@
+{
+  "folder": "cvhQpWXCo3YJhtwx",
+  "name": "Sledge Axe",
+  "type": "weapon",
+  "_id": "OxsEmffWriiQmqJK",
+  "img": "icons/weapons/axes/axe-battle-heavy-jagged.webp",
+  "system": {
+    "description": "",
+    "actions": {
+      "0qVTvNMfapVST3sQ": {
+        "type": "damage",
+        "actionType": "action",
+        "chatDisplay": true,
+        "name": "Destruction",
+        "description": "DAGGERHEART.CONFIG.WeaponFeature.destructive.actions.attack.descriptive",
+        "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
+        "range": "veryClose",
+        "target": {
+          "type": "hostile",
+          "amount": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "applyTo": "stress",
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "base": false,
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "_id": "0qVTvNMfapVST3sQ",
+        "effects": [],
+        "systemPath": "actions",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": null,
+          "recovery": null
+        }
+      }
+    },
+    "attached": [],
+    "tier": 4,
+    "equipped": false,
+    "secondary": false,
+    "burden": "oneHanded",
+    "weaponFeatures": [
+      {
+        "value": "destructive",
+        "effectIds": [
+          "dhhIibfRBwCGZ6Ab"
+        ],
+        "actionIds": [
+          "0qVTvNMfapVST3sQ"
+        ]
+      }
+    ],
+    "attack": {
+      "name": "Attack",
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "_id": "31XEMDUyjpqFA7H9",
+      "systemPath": "attack",
+      "type": "attack",
+      "range": "melee",
+      "target": {
+        "type": "any",
+        "amount": 1
+      },
+      "roll": {
+        "trait": "strength",
+        "type": "attack",
+        "difficulty": null,
+        "bonus": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "dice": "d12",
+              "bonus": 13,
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": [
+              "physical"
+            ],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
+    },
+    "rules": {
+      "attack": {
+        "roll": {
+          "trait": null
+        }
+      }
+    }
+  },
+  "effects": [
+    {
+      "name": "Destructive",
+      "description": "DAGGERHEART.CONFIG.WeaponFeature.destructive.effects.agility",
+      "img": "icons/skills/melee/strike-flail-spiked-pink.webp",
+      "changes": [
+        {
+          "key": "system.traits.agility.value",
+          "mode": 2,
+          "value": "-1"
+        }
+      ],
+      "_id": "dhhIibfRBwCGZ6Ab",
+      "type": "base",
+      "system": {},
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753835076783,
+        "modifiedTime": 1753835076783,
+        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+      },
+      "_key": "!items.effects!OxsEmffWriiQmqJK.dhhIibfRBwCGZ6Ab"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "FecEtPuoQh6MpjQ0": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753835064119,
+    "modifiedTime": 1753835089195,
+    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+  },
+  "_key": "!items!OxsEmffWriiQmqJK"
+}

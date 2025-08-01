@@ -1,0 +1,29 @@
+{
+  "name": "Deathrun",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "Hs6POmXKThDXQJBn",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\"><strong>Spend 3 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to run a straight path through the battlefield to a point within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range, making an attack against all adversaries within your weapon’s range along that path. Choose the order in which you deal damage to the targets you succeeded against. For the first, roll your weapon damage with a +1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. Then remove a die from your damage roll and deal the remaining damage to the next target. Continue to remove a die for each subsequent target until you have no more damage dice or adversaries.        </p><p class=\"Body-Foundation\">You can’t target the same adversary more than once per attack.</p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 10,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784445,
+    "modifiedTime": 1753922784445,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "xFOSn8IVVNizgHFq",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!xFOSn8IVVNizgHFq"
+}

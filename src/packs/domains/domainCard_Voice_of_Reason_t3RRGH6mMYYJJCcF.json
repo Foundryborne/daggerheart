@@ -1,0 +1,29 @@
+{
+  "name": "Voice of Reason",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "8ZfL09F8MiOEUzzw",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">You speak with an unmatched power and authority. You have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action rolls</tooltip> to de-escalate violent situations or convince someone to follow your lead.</p><p class=\"Body-Foundation\">Additionally, you’re emboldened in moments of duress. When all of your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> slots are marked, you gain a +1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip> for damage rolls.</p></p>",
+    "domain": "splendor",
+    "recallCost": 1,
+    "level": 3,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784542,
+    "modifiedTime": 1753922784542,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "t3RRGH6mMYYJJCcF",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!t3RRGH6mMYYJJCcF"
+}

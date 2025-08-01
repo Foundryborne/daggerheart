@@ -1,0 +1,29 @@
+{
+  "name": "On the Brink",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "eg2vM8j9xhya9Rwa",
+  "system": {
+    "description": "<p><p class=\"Body\">When you have 2 or fewer <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> unmarked, you don’t take <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"minor-damage\" nexus=\"daggerheart\">Minor</tooltip> damage.</p></p>",
+    "domain": "bone",
+    "recallCost": 1,
+    "level": 9,
+    "type": "ability"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784489,
+    "modifiedTime": 1753922784489,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "zbxPl81kbWEegKQN",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!zbxPl81kbWEegKQN"
+}

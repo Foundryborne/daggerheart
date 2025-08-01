@@ -1,0 +1,29 @@
+{
+  "name": "Invisibility",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "GhLhMfmSgGqS9bwU",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (10)</strong>. On a success, <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> and choose yourself or an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range to become <em>Invisible</em>. An <em>Invisible</em> creature can’t be seen except through magical means and <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack rolls</tooltip> against them are made with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">disadvantage</tooltip>. Place a number of tokens on this card equal to your Spellcast trait. When the <em>Invisible</em> creature takes an action, spend a token from this card. After the action that spends the last token is resolved, the effect ends.        </p><p class=\"Body-Foundation\">You can only hold Invisibility on one creature at a time.</p></p>",
+    "domain": "grace",
+    "recallCost": 1,
+    "level": 3,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784475,
+    "modifiedTime": 1753922784475,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "KHkzA4Zrw8EWN1CH",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!KHkzA4Zrw8EWN1CH"
+}

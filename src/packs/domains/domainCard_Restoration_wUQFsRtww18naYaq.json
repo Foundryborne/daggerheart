@@ -1,0 +1,29 @@
+{
+  "name": "Restoration",
+  "img": "icons/svg/item-bag.svg",
+  "type": "domainCard",
+  "folder": "OwsbTSWzKq2WJmQN",
+  "system": {
+    "description": "<p><p class=\"Body-Foundation\">After a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, place a number of tokens equal to your Spellcast trait on this card. Touch a creature and spend any number of tokens to clear 2 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> or 2 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> for each token spent. </p><p class=\"Body-Foundation\">You can also spend a token from this card when touching a creature to clear the <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip> condition or heal a physical or magical ailment (the GM might require additional tokens depending on the strength of the ailment). </p><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p></p>",
+    "domain": "splendor",
+    "recallCost": 2,
+    "level": 6,
+    "type": "spell"
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753922784502,
+    "modifiedTime": 1753922784502,
+    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+  },
+  "_id": "wUQFsRtww18naYaq",
+  "sort": 3400000,
+  "effects": [],
+  "_key": "!items!wUQFsRtww18naYaq"
+}
