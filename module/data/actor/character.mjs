@@ -566,7 +566,7 @@ export default class DhCharacter extends BaseDataActor {
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 
         this.resources.armor = {
-            value: this.armor.system.marks.value,
+            value: this.armor?.system?.marks?.value ?? 0,
             max: this.armorScore,
             isReversed: true
         };

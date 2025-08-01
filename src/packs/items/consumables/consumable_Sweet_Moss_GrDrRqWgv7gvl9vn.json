@@ -6,7 +6,140 @@
   "system": {
     "description": "<p>You can consume this moss during a rest to clear 1d10 HP or 1d10 Stress.</p>",
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "Sft4HkhlqsYH5qKI": {
+        "type": "healing",
+        "_id": "Sft4HkhlqsYH5qKI",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d10",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Clear Hit Points",
+        "img": "icons/consumables/plants/succulent-bundle-green.webp",
+        "range": ""
+      },
+      "IolxVguij8PjHSVt": {
+        "type": "healing",
+        "_id": "IolxVguij8PjHSVt",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "dice": "d10",
+                "bonus": null,
+                "flatMultiplier": 1
+              },
+              "applyTo": "stress",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Clear Stress",
+        "img": "icons/consumables/plants/succulent-bundle-green.webp",
+        "range": ""
+      }
+    },
     "consumeOnUse": true
   },
   "effects": [],
@@ -21,12 +154,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753592391195,
-    "modifiedTime": 1753623392811,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753992944498,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!GrDrRqWgv7gvl9vn"
 }

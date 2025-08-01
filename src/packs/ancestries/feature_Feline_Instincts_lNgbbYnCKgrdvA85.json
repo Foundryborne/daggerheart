@@ -1,0 +1,65 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Feline Instincts",
+  "type": "feature",
+  "_id": "lNgbbYnCKgrdvA85",
+  "img": "icons/magic/perception/eye-slit-orange.webp",
+  "system": {
+    "description": "<p>When you make an Agility Roll, you can <strong>spend 2 Hope</strong> to reroll your Hope Die.</p>",
+    "resource": null,
+    "actions": {
+      "ALsGHOy0q5THGxz5": {
+        "type": "effect",
+        "_id": "ALsGHOy0q5THGxz5",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 2,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/perception/eye-slit-orange.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754000245487,
+    "modifiedTime": 1754000291789,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!lNgbbYnCKgrdvA85"
+}

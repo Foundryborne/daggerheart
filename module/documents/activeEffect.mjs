@@ -1,6 +1,12 @@
 import { itemAbleRollParse } from '../helpers/utils.mjs';
 
-export default class DhActiveEffect extends ActiveEffect {
+export default class DhActiveEffect extends foundry.documents.ActiveEffect {
+
+    /* -------------------------------------------- */
+    /*  Properties                                  */
+    /* -------------------------------------------- */
+
+    /**@override */
     get isSuppressed() {
         // If this is a copied effect from an attachment, never suppress it
         // (These effects have attachmentSource metadata)
@@ -41,14 +47,11 @@ export default class DhActiveEffect extends ActiveEffect {
         });
     }
 
-    get localizedStatuses() {
-        const statusMap = new Map(foundry.CONFIG.statusEffects.map(status => [status.id, status.name]));
-        return this.statuses.map(x => ({
-            key: x,
-            name: game.i18n.localize(statusMap.get(x))
-        }));
-    }
+    /* -------------------------------------------- */
+    /*  Event Handlers                              */
+    /* -------------------------------------------- */
 
+    /**@inheritdoc*/
     async _preCreate(data, options, user) {
         const update = {};
         if (!data.img) {
@@ -62,13 +65,22 @@ export default class DhActiveEffect extends ActiveEffect {
         await super._preCreate(data, options, user);
     }
 
+    /* -------------------------------------------- */
+    /*  Methods                                     */
+    /* -------------------------------------------- */
+
+    /**@inheritdoc*/
     static applyField(model, change, field) {
         const evalValue = this.effectSafeEval(itemAbleRollParse(change.value, model, change.effect.parent));
         change.value = evalValue ?? change.value;
         super.applyField(model, change, field);
     }
 
-    /* Altered Foundry safeEval to allow non-numeric returns */
+    /**
+     * Altered Foundry safeEval to allow non-numeric return
+     * @param {string} expression 
+     * @returns 
+     */
     static effectSafeEval(expression) {
         let result;
         try {
@@ -80,6 +92,24 @@ export default class DhActiveEffect extends ActiveEffect {
         }
 
         return result;
+    }
+
+    /**
+    * Generates a list of localized tags based on this item's type-specific properties.
+    * @returns {string[]} An array of localized tag strings.
+    */
+    _getTags() {
+        const tags = [
+            `${game.i18n.localize(this.parent.system.metadata.label)}: ${this.parent.name}`,
+            game.i18n.localize(this.isTemporary ? 'DAGGERHEART.EFFECTS.Duration.temporary' : 'DAGGERHEART.EFFECTS.Duration.passive')
+        ];
+
+        for (const statusId of this.statuses) {
+            const status = CONFIG.statusEffects.find(s => s.id === statusId);
+            tags.push(game.i18n.localize(status.name));
+        }
+
+        return tags;
     }
 
     async toChat(origin) {

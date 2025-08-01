@@ -1,25 +1,38 @@
 {
   "name": "Drakona",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/creatures/reptiles/dragon-horned-blue.webp",
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Drakona resemble wingless dragons in humanoid form and possess a powerful elemental breath.<br><br><p>All drakona have thick scales that provide excellent natural armor against both attacks and the forces of nature. They are large in size, ranging from 5 feet to 7 feet on average, with long sharp teeth. New teeth grow throughout a Drakona’s approximately 350-year lifespan, so they are never in danger of permanently losing an incisor. Unlike their dragon ancestors, drakona don’t have wings and can’t fly without magical aid. Members of this ancestry pass down the element of their breath through generations, though in rare cases, a drakona’s elemental power will differ from the rest of their family’s.</p></p>"
+    "description": "<p>Drakona resemble wingless dragons in humanoid form and possess a powerful elemental breath.<br><br><p>All drakona have thick scales that provide excellent natural armor against both attacks and the forces of nature. They are large in size, ranging from 5 feet to 7 feet on average, with long sharp teeth. New teeth grow throughout a Drakona’s approximately 350-year lifespan, so they are never in danger of permanently losing an incisor. Unlike their dragon ancestors, drakona don’t have wings and can’t fly without magical aid. Members of this ancestry pass down the element of their breath through generations, though in rare cases, a drakona’s elemental power will differ from the rest of their family’s.</p></p>",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.u8ZhV962rNmUlzkp"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.sRaE3CgkgjBF1UpV"
+      }
+    ]
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784382,
-    "modifiedTime": 1753922784382,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1753994173339,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "VLeOEqkLS0RbF0tB",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!VLeOEqkLS0RbF0tB"
 }

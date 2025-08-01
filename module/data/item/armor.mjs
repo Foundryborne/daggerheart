@@ -117,4 +117,26 @@ export default class DHArmor extends AttachableItem {
             }
         }
     }
+
+    /**
+     * Generates a list of localized tags based on this item's type-specific properties.
+     * @returns {string[]} An array of localized tag strings.
+     */
+    _getTags() {
+        const tags = [
+            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`,
+            `${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseThresholds.base')}: ${this.baseThresholds.major} / ${this.baseThresholds.severe}`
+        ];
+
+        return tags;
+    }
+
+    /**
+     * Generate a localized label array for this item subtype.
+     * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
+     */
+    _getLabels() {
+        const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`];
+        return labels;
+    }
 }

@@ -6,7 +6,124 @@
   "system": {
     "description": "<p>You can eat this meal to clear all HP and Stress and gain 1d4 Hope.</p>",
     "quantity": 1,
-    "actions": {},
+    "actions": {
+      "TL1fJitAJmDzrnHT": {
+        "type": "healing",
+        "_id": "TL1fJitAJmDzrnHT",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "@system.resources.hitPoints.max"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            },
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "@system.resources.stress.max"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "stress",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            },
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d4",
+                "bonus": null
+              },
+              "applyTo": "hope",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Eat",
+        "img": "icons/consumables/food/bowl-stew-tofu-potato-red.webp",
+        "range": ""
+      }
+    },
     "consumeOnUse": true
   },
   "effects": [],
@@ -21,12 +138,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753591925502,
-    "modifiedTime": 1753623203098,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753993182306,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!aX6NyxkNzu0LcJpt"
 }

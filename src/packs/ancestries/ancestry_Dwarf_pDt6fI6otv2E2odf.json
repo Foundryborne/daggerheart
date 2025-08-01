@@ -1,25 +1,38 @@
 {
   "name": "Dwarf",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/equipment/head/helm-norman-engraved.webp",
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Dwarves are most easily recognized as short humanoids with square frames, dense musculature, and thick hair.<br><br><p>Their average height ranges from 4 to 5 ½ feet, and they are often broad in proportion to their stature. Their skin and nails contain a high amount of keratin, making them naturally resilient. This allows dwarves to embed gemstones into their bodies and decorate themselves with tattoos or piercings. Their hair grows thickly—usually on their heads, but some dwarves have thick hair across their bodies as well. Dwarves of all genders can grow facial hair, which they often style in elaborate arrangements. Typically, dwarves live up to 250 years of age, maintaining their muscle mass well into later life.</p></p>"
+    "description": "<p>Dwarves are most easily recognized as short humanoids with square frames, dense musculature, and thick hair.<br><br><p>Their average height ranges from 4 to 5 ½ feet, and they are often broad in proportion to their stature. Their skin and nails contain a high amount of keratin, making them naturally resilient. This allows dwarves to embed gemstones into their bodies and decorate themselves with tattoos or piercings. Their hair grows thickly—usually on their heads, but some dwarves have thick hair across their bodies as well. Dwarves of all genders can grow facial hair, which they often style in elaborate arrangements. Typically, dwarves live up to 250 years of age, maintaining their muscle mass well into later life.</p></p>",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.S0Ww7pYOSREt8qKg"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.0RN0baBxh95GT1cm"
+      }
+    ]
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784382,
-    "modifiedTime": 1753922784382,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1753994478754,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "pDt6fI6otv2E2odf",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!pDt6fI6otv2E2odf"
 }

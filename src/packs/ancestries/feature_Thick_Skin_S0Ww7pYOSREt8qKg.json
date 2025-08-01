@@ -1,0 +1,86 @@
+{
+  "folder": "dSAccOl5ccgXPyje",
+  "name": "Thick Skin",
+  "type": "feature",
+  "_id": "S0Ww7pYOSREt8qKg",
+  "img": "icons/magic/defensive/shield-barrier-glowing-triangle-orange.webp",
+  "system": {
+    "description": "<p>When you take Minor damage, you can <strong>mark 2 Stress</strong> instead of marking a Hit Point.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "subType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Thick Skin",
+      "type": "base",
+      "_id": "4Lc40mNnRInTKMC5",
+      "img": "icons/magic/defensive/shield-barrier-glowing-triangle-orange.webp",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.rules.damageReduction.stressDamageReduction.minor.cost",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When you take Minor damage, you can </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">mark 2 Stress</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> instead of marking a Hit Point.</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1753994342724,
+        "modifiedTime": 1753994373197,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!S0Ww7pYOSREt8qKg.4Lc40mNnRInTKMC5"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1753994247261,
+    "modifiedTime": 1753994338239,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!S0Ww7pYOSREt8qKg"
+}

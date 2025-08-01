@@ -7,9 +7,9 @@
     "description": "<p>Consume this sap to roll a [[/r d6]]. On a result of 5–6, clear 2 HP. On a result of 2–4, clear 3 Stress. On a result of 1, see through the veil of death and return changed, gaining one scar.</p>",
     "quantity": 1,
     "actions": {
-      "bxM1ig880ykRgmTl": {
-        "type": "effect",
-        "_id": "bxM1ig880ykRgmTl",
+      "Fh7OR8ZmiLNvRPHa": {
+        "type": "attack",
+        "_id": "Fh7OR8ZmiLNvRPHa",
         "systemPath": "actions",
         "description": "",
         "chatDisplay": true,
@@ -17,15 +17,39 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
-        "effects": [],
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
-        "name": "Drink",
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Consume",
         "img": "icons/consumables/drinks/wine-amphora-clay-pink.webp",
         "range": ""
       }
@@ -44,12 +68,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753590791260,
-    "modifiedTime": 1753590920951,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1753992739516,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!kwexUzdM9wm1Qums"
 }

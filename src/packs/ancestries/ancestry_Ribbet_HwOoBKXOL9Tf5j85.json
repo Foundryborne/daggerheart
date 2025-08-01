@@ -1,25 +1,38 @@
 {
   "name": "Ribbet",
-  "img": "icons/svg/item-bag.svg",
+  "img": "icons/creatures/amphibians/bullfrog-glass-teal.webp",
   "type": "ancestry",
   "folder": null,
   "system": {
-    "description": "<p>Ribbets resemble anthropomorphic frogs with protruding eyes and webbed hands and feet.<br><br><p>They have smooth (though sometimes warty) moist skin and eyes positioned on either side of their head. Some ribbets have hind legs more than twice the length of their torso, while others have short limbs. No matter their size (which ranges from about 3 feet to 4 ½ feet), ribbets primarily move by hopping. All ribbets have webbed appendages, allowing them to swim with ease. Some ribbets possess a natural green-and-brown camouflage, while others are vibrantly colored with bold patterns. No matter their appearance, all ribbets are born from eggs laid in the water, hatch into tadpoles, and after about 6 to 7 years, grow into amphibians that can move around on land. Ribbets live for approximately 100 years.</p></p>"
+    "description": "<p>Ribbets resemble anthropomorphic frogs with protruding eyes and webbed hands and feet.<br><br><p>They have smooth (though sometimes warty) moist skin and eyes positioned on either side of their head. Some ribbets have hind legs more than twice the length of their torso, while others have short limbs. No matter their size (which ranges from about 3 feet to 4 ½ feet), ribbets primarily move by hopping. All ribbets have webbed appendages, allowing them to swim with ease. Some ribbets possess a natural green-and-brown camouflage, while others are vibrantly colored with bold patterns. No matter their appearance, all ribbets are born from eggs laid in the water, hatch into tadpoles, and after about 6 to 7 years, grow into amphibians that can move around on land. Ribbets live for approximately 100 years.</p></p>",
+    "features": [
+      {
+        "type": "primary",
+        "item": "Compendium.daggerheart.ancestries.Item.GVhmLouGq9GWCsN8"
+      },
+      {
+        "type": "secondary",
+        "item": "Compendium.daggerheart.ancestries.Item.oWbdlh51ajn1Q5kL"
+      }
+    ]
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784389,
-    "modifiedTime": 1753922784389,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754000881040,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "HwOoBKXOL9Tf5j85",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!HwOoBKXOL9Tf5j85"
 }
