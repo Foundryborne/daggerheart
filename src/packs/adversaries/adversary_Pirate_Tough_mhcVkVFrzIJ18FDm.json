@@ -1,10 +1,28 @@
 {
-  "name": "Pirate Tough",
-  "img": "icons/svg/mystery-man.svg",
-  "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
+  "name": "Pirate Tough",
+  "type": "adversary",
+  "_id": "mhcVkVFrzIJ18FDm",
+  "img": "icons/svg/mystery-man.svg",
   "system": {
+    "description": "<p>A thickly muscled and tattooed pirate with melon-sized fists.</p>",
+    "resistance": {
+      "physical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      },
+      "magical": {
+        "resistance": false,
+        "immunity": false,
+        "reduction": 0
+      }
+    },
+    "tier": 1,
+    "type": "bruiser",
+    "notes": "",
     "difficulty": 13,
+    "hordeHp": 1,
     "damageThresholds": {
       "major": 8,
       "severe": 15
@@ -21,25 +39,83 @@
         "isReversed": true
       }
     },
-    "motivesAndTactics": "Plunder, raid, smash, terrorize",
-    "resistance": {
-      "physical": {
-        "resistance": false,
-        "immunity": false,
-        "reduction": 0
+    "attack": {
+      "name": "Massive Fists",
+      "img": "icons/skills/melee/unarmed-punch-fist.webp",
+      "_id": "pR2I5ChLv7KTamcG",
+      "systemPath": "attack",
+      "chatDisplay": false,
+      "type": "attack",
+      "range": "melee",
+      "target": {
+        "type": "any",
+        "amount": 1
       },
-      "magical": {
-        "resistance": false,
-        "immunity": false,
-        "reduction": 0
+      "roll": {
+        "type": "attack",
+        "trait": null,
+        "difficulty": null,
+        "bonus": 1,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 2,
+              "dice": "d6",
+              "bonus": null,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "description": "",
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
       }
     },
-    "type": "bruiser",
-    "notes": "",
-    "hordeHp": 1,
     "experiences": {
-      "QEhfdx7HAbPay5Jy": {
+      "x0b01e8D0dZ3NIyR": {
         "name": "Sailor",
+        "description": "",
         "value": 2
       }
     },
@@ -69,34 +145,7 @@
         }
       }
     },
-    "tier": 1,
-    "description": "<p>A thickly muscled and tattooed pirate with melon-sized fists.</p>",
-    "attack": {
-      "name": "Massive Fists",
-      "roll": {
-        "bonus": 1
-      },
-      "img": "icons/skills/melee/unarmed-punch-fist.webp"
-    }
-  },
-  "flags": {},
-  "_stats": {
-    "compendiumSource": null,
-    "duplicateSource": null,
-    "exportSource": null,
-    "coreVersion": "13.346",
-    "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
-    "createdTime": 1753922784331,
-    "modifiedTime": 1754052449162,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
-  },
-  "_id": "GB8zP9LYt061DlqY",
-  "sort": 2700000,
-  "ownership": {
-    "default": 0,
-    "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
+    "motivesAndTactics": "Plunder, raid, smash, terrorize"
   },
   "prototypeToken": {
     "name": "Pirate Tough",
@@ -196,15 +245,13 @@
     {
       "name": "Swashbuckler",
       "type": "feature",
-      "_id": "5t4fSW4mzVmLouhu",
-      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
       "system": {
         "description": "<p>When the Tough marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
         "resource": null,
         "actions": {
-          "ZNd0KWly09unKOFP": {
+          "xg3K78wfOhg8oCd3": {
             "type": "damage",
-            "_id": "ZNd0KWly09unKOFP",
+            "_id": "xg3K78wfOhg8oCd3",
             "systemPath": "actions",
             "description": "",
             "chatDisplay": true,
@@ -229,7 +276,6 @@
                     "bonus": null
                   },
                   "applyTo": "stress",
-                  "type": [],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -240,25 +286,27 @@
                     "custom": {
                       "enabled": false
                     }
-                  }
+                  },
+                  "type": []
                 }
               ],
               "includeBase": false
             },
             "target": {
               "type": "any",
-              "amount": null
+              "amount": 1
             },
             "effects": [],
-            "name": "Damage Stress",
+            "name": "Stress Damage",
             "img": "icons/magic/control/mouth-smile-deception-purple.webp",
             "range": "melee"
           }
         },
         "originItemType": null,
-        "subType": null,
         "originId": null
       },
+      "_id": "Zz5ITZOmPdtoLaUH",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
@@ -274,24 +322,22 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754052450615,
-        "modifiedTime": 1754052485623,
+        "createdTime": 1754089918298,
+        "modifiedTime": 1754089991383,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
-      "_key": "!actors.items!GB8zP9LYt061DlqY.5t4fSW4mzVmLouhu"
+      "_key": "!actors.items!mhcVkVFrzIJ18FDm.Zz5ITZOmPdtoLaUH"
     },
     {
       "name": "Clear the Decks",
       "type": "feature",
-      "_id": "z7pBdBGf9uWaWQvd",
-      "img": "icons/skills/melee/unarmed-punch-fist-blue.webp",
       "system": {
         "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>mark a Stress</strong> to move into Melee range of the target, dealing <strong>3d4</strong> physical damage and knocking the target back to Close range.</p>",
         "resource": null,
         "actions": {
-          "fmRwrsodZ16gSVOZ": {
+          "uJl1NJQ55yd9oCwz": {
             "type": "attack",
-            "_id": "fmRwrsodZ16gSVOZ",
+            "_id": "uJl1NJQ55yd9oCwz",
             "systemPath": "actions",
             "description": "",
             "chatDisplay": true,
@@ -315,7 +361,9 @@
                     "multiplier": "flat"
                   },
                   "applyTo": "hitPoints",
-                  "type": [],
+                  "type": [
+                    "physical"
+                  ],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -333,7 +381,7 @@
             },
             "target": {
               "type": "any",
-              "amount": 1
+              "amount": null
             },
             "effects": [],
             "roll": {
@@ -358,13 +406,14 @@
             },
             "name": "Attack",
             "img": "icons/skills/melee/unarmed-punch-fist-blue.webp",
-            "range": "veryClose"
+            "range": ""
           }
         },
         "originItemType": null,
-        "subType": null,
         "originId": null
       },
+      "_id": "uzlxE1Cxm9GGmrNs",
+      "img": "icons/skills/melee/unarmed-punch-fist-blue.webp",
       "effects": [],
       "folder": null,
       "sort": 0,
@@ -380,13 +429,30 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754052489263,
-        "modifiedTime": 1754052558382,
+        "createdTime": 1754090005821,
+        "modifiedTime": 1754090071032,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
-      "_key": "!actors.items!GB8zP9LYt061DlqY.z7pBdBGf9uWaWQvd"
+      "_key": "!actors.items!mhcVkVFrzIJ18FDm.uzlxE1Cxm9GGmrNs"
     }
   ],
   "effects": [],
-  "_key": "!actors!GB8zP9LYt061DlqY"
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754089855172,
+    "modifiedTime": 1754089915784,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!actors!mhcVkVFrzIJ18FDm"
 }

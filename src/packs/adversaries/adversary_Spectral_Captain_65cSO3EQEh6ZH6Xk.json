@@ -81,10 +81,10 @@
               "custom": {
                 "enabled": false
               },
+              "flatMultiplier": 2,
               "dice": "d10",
               "bonus": 3,
-              "multiplier": "flat",
-              "flatMultiplier": 1
+              "multiplier": "flat"
             },
             "applyTo": "hitPoints",
             "type": [
@@ -119,11 +119,11 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784352,
-    "modifiedTime": 1754084498358,
+    "modifiedTime": 1754090770938,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "65cSO3EQEh6ZH6Xk",
-  "sort": 3400000,
+  "sort": 600000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,

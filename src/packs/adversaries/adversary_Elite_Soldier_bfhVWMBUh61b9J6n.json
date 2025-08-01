@@ -70,9 +70,74 @@
       "name": "Spear",
       "range": "veryClose",
       "roll": {
-        "bonus": 1
+        "bonus": 1,
+        "type": null,
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
-      "img": "icons/weapons/polearms/spear-flared-steel.webp"
+      "img": "icons/weapons/polearms/spear-flared-steel.webp",
+      "_id": "jmrgFi8AUL6LTbtU",
+      "systemPath": "actions",
+      "type": "",
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 2,
+              "dice": "d8",
+              "bonus": 4,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     }
   },
   "flags": {},
@@ -83,16 +148,15 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753922784260,
-    "modifiedTime": 1754077711319,
+    "createdTime": 1754090776362,
+    "modifiedTime": 1754090776362,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
-  "_id": "9F1JdXtcmxfWyoKa",
-  "sort": 3400000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
+    "WafZqd6qLGpBRGTt": 3,
+    "MQSznptE5yLT7kj8": 3
   },
   "prototypeToken": {
     "name": "Elite Soldier",
@@ -298,11 +362,9 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754077629944,
-        "modifiedTime": 1754077757134,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!9F1JdXtcmxfWyoKa.ojiIZHBd0sMLxSUE"
+      "_key": "!actors.items!bfhVWMBUh61b9J6n.ojiIZHBd0sMLxSUE"
     },
     {
       "name": "Vassal's Loyalty",
@@ -362,13 +424,13 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754077762466,
-        "modifiedTime": 1754077812353,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!9F1JdXtcmxfWyoKa.zcfyEY29yWqJtZbl"
+      "_key": "!actors.items!bfhVWMBUh61b9J6n.zcfyEY29yWqJtZbl"
     }
   ],
   "effects": [],
-  "_key": "!actors!9F1JdXtcmxfWyoKa"
+  "_id": "bfhVWMBUh61b9J6n",
+  "sort": 0,
+  "_key": "!actors!bfhVWMBUh61b9J6n"
 }

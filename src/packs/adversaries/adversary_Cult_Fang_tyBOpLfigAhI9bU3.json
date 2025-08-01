@@ -79,10 +79,10 @@
               "custom": {
                 "enabled": false
               },
+              "flatMultiplier": 2,
               "dice": "d8",
               "bonus": 4,
-              "multiplier": "flat",
-              "flatMultiplier": 1
+              "multiplier": "flat"
             },
             "applyTo": "hitPoints",
             "type": [
@@ -101,7 +101,8 @@
             "base": false
           }
         ]
-      }
+      },
+      "range": ""
     }
   },
   "flags": {},
@@ -113,7 +114,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784239,
-    "modifiedTime": 1754076657675,
+    "modifiedTime": 1754090222049,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "tyBOpLfigAhI9bU3",

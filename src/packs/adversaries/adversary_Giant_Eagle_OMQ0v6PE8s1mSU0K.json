@@ -4,7 +4,7 @@
   "type": "adversary",
   "folder": "OgzrmfH1ZbpljX7k",
   "system": {
-    "difficulty": 14,
+    "difficulty": 20,
     "damageThresholds": {
       "major": 8,
       "severe": 19
@@ -69,10 +69,75 @@
     "attack": {
       "name": "Claws and Beak",
       "roll": {
-        "bonus": 1
+        "bonus": 1,
+        "type": null,
+        "trait": null,
+        "difficulty": null,
+        "advState": "neutral",
+        "diceRolling": {
+          "multiplier": "prof",
+          "flatMultiplier": 1,
+          "dice": "d6",
+          "compare": null,
+          "treshold": null
+        },
+        "useDefault": false
       },
       "range": "veryClose",
-      "img": "icons/creatures/claws/claw-talons-glowing-orange.webp"
+      "img": "icons/creatures/claws/claw-talons-glowing-orange.webp",
+      "_id": "W2KpXQNCg6Nnorbz",
+      "systemPath": "actions",
+      "type": "",
+      "description": "",
+      "chatDisplay": true,
+      "actionType": "action",
+      "cost": [],
+      "uses": {
+        "value": null,
+        "max": null,
+        "recovery": null
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 2,
+              "dice": "d6",
+              "bonus": 3,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ],
+        "includeBase": false
+      },
+      "target": {
+        "type": "any",
+        "amount": null
+      },
+      "effects": [],
+      "save": {
+        "trait": null,
+        "difficulty": null,
+        "damageMod": "none"
+      }
     }
   },
   "flags": {},
@@ -83,16 +148,15 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1753922784269,
-    "modifiedTime": 1754079249399,
+    "createdTime": 1754090770908,
+    "modifiedTime": 1754090770938,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
-  "_id": "DnJ5ViDkhhCsr0cC",
-  "sort": 3400000,
   "ownership": {
     "default": 0,
     "ei8OkswTzyDp4IGC": 3,
-    "WafZqd6qLGpBRGTt": 3
+    "WafZqd6qLGpBRGTt": 3,
+    "MQSznptE5yLT7kj8": 3
   },
   "prototypeToken": {
     "name": "Giant Eagle",
@@ -247,11 +311,9 @@
             "coreVersion": "13.346",
             "systemId": "daggerheart",
             "systemVersion": "0.0.1",
-            "createdTime": 1754078848978,
-            "modifiedTime": 1754078874110,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "lastModifiedBy": null
           },
-          "_key": "!actors.items.effects!DnJ5ViDkhhCsr0cC.wdNrstuoh4MFShYG.odAyKY0BSAkcO3Dd"
+          "_key": "!actors.items.effects!OMQ0v6PE8s1mSU0K.wdNrstuoh4MFShYG.odAyKY0BSAkcO3Dd"
         }
       ],
       "folder": null,
@@ -268,11 +330,9 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754078821853,
-        "modifiedTime": 1754078845842,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!DnJ5ViDkhhCsr0cC.wdNrstuoh4MFShYG"
+      "_key": "!actors.items!OMQ0v6PE8s1mSU0K.wdNrstuoh4MFShYG"
     },
     {
       "name": "Deadly Dive",
@@ -414,11 +474,9 @@
             "coreVersion": "13.346",
             "systemId": "daggerheart",
             "systemVersion": "0.0.1",
-            "createdTime": 1754079003612,
-            "modifiedTime": 1754079031518,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "lastModifiedBy": null
           },
-          "_key": "!actors.items.effects!DnJ5ViDkhhCsr0cC.MabIQE1Kjn60j08J.m6qqQZxukDPVcGdQ"
+          "_key": "!actors.items.effects!OMQ0v6PE8s1mSU0K.MabIQE1Kjn60j08J.m6qqQZxukDPVcGdQ"
         }
       ],
       "folder": null,
@@ -435,11 +493,9 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754078877040,
-        "modifiedTime": 1754079003622,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!DnJ5ViDkhhCsr0cC.MabIQE1Kjn60j08J"
+      "_key": "!actors.items!OMQ0v6PE8s1mSU0K.MabIQE1Kjn60j08J"
     },
     {
       "name": "Take Off",
@@ -573,11 +629,9 @@
             "coreVersion": "13.346",
             "systemId": "daggerheart",
             "systemVersion": "0.0.1",
-            "createdTime": 1754079163877,
-            "modifiedTime": 1754079173093,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "lastModifiedBy": null
           },
-          "_key": "!actors.items.effects!DnJ5ViDkhhCsr0cC.NEOQ0E9AGSSIDm4v.Sd34xywRqiF5w9sX"
+          "_key": "!actors.items.effects!OMQ0v6PE8s1mSU0K.NEOQ0E9AGSSIDm4v.Sd34xywRqiF5w9sX"
         }
       ],
       "folder": null,
@@ -594,11 +648,9 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754079047407,
-        "modifiedTime": 1754079163892,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!DnJ5ViDkhhCsr0cC.NEOQ0E9AGSSIDm4v"
+      "_key": "!actors.items!OMQ0v6PE8s1mSU0K.NEOQ0E9AGSSIDm4v"
     },
     {
       "name": "Deadly Drop",
@@ -681,13 +733,13 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754079182729,
-        "modifiedTime": 1754079229867,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "lastModifiedBy": null
       },
-      "_key": "!actors.items!DnJ5ViDkhhCsr0cC.jY0ynjYvbS6E3NgJ"
+      "_key": "!actors.items!OMQ0v6PE8s1mSU0K.jY0ynjYvbS6E3NgJ"
     }
   ],
   "effects": [],
-  "_key": "!actors!DnJ5ViDkhhCsr0cC"
+  "_id": "OMQ0v6PE8s1mSU0K",
+  "sort": 900000,
+  "_key": "!actors!OMQ0v6PE8s1mSU0K"
 }

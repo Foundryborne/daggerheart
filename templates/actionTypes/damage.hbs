@@ -74,7 +74,7 @@
                 {{#unless @root.isNPC}}
                     {{formField fields.multiplier value=source.multiplier name=(concat path "damage.parts." realIndex "." target ".multiplier") localize=true}}
                 {{/unless}}
-                {{#if (eq source.multiplier 'flat')}}{{formField fields.flatMultiplier value=source.flatMultiplier name=(concat ../path "damage.parts." realIndex "." target ".flatMultiplier") }}{{/if}}
+                {{#if (eq source.multiplier 'flat')}}{{formField fields.flatMultiplier value=source.flatMultiplier name=(concat path "damage.parts." realIndex "." target ".flatMultiplier") }}{{/if}}
                 {{formField fields.dice value=source.dice name=(concat path "damage.parts." realIndex "." target ".dice")}}
                 {{formField fields.bonus value=source.bonus name=(concat path "damage.parts." realIndex "." target ".bonus") localize=true}}
             </div>
