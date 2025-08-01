@@ -12,7 +12,71 @@
     "subType": null,
     "originId": null
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Privilege",
+      "type": "base",
+      "_id": "xgtjykfgvg142urA",
+      "img": "icons/commodities/currency/coins-plain-stack-gold.webp",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Consort with nobles",
+          "priority": null
+        },
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Negotiate prices",
+          "priority": null
+        },
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Leverage your reputation to get what you want",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754015237400,
+        "modifiedTime": 1754015289801,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!C7NR6qRatawZusmg.xgtjykfgvg142urA"
+    }
+  ],
   "flags": {},
   "_stats": {
     "compendiumSource": null,
