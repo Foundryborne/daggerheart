@@ -16,7 +16,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "minion",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -48,19 +48,66 @@
     },
     "difficulty": 12,
     "tier": 2,
-    "description": "<p>A poorly trained civilian pressed into war.</p>"
+    "description": "<p>A poorly trained civilian pressed into war.</p>",
+    "motivesAndTactics": "Follow orders, gang up, survive",
+    "resources": {
+      "hitPoints": {
+        "max": 1
+      },
+      "stress": {
+        "max": 1
+      }
+    },
+    "attack": {
+      "name": "Spears",
+      "range": "veryClose",
+      "roll": {
+        "bonus": 0
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": true,
+                "formula": "6"
+              },
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784234,
-    "modifiedTime": 1753922784234,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754075399074,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "99TqczuQipBmaB8i",
   "sort": 3400000,
@@ -163,7 +210,105 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Minion (6)",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Conscript is defeated when they take any damage. For every 6 damage a PC deals to the Conscript, defeat an additional Minion within range the attack would succeed against.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "DgzY4TV3FrxDvhhY",
+      "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754075360936,
+        "modifiedTime": 1754075373905,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!99TqczuQipBmaB8i.DgzY4TV3FrxDvhhY"
+    },
+    {
+      "name": "Group Attack",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Conscripts within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 6 physical damage each. Combine this damage.</p>",
+        "resource": null,
+        "actions": {
+          "cbAvPSIhwBMBTI3D": {
+            "type": "effect",
+            "_id": "cbAvPSIhwBMBTI3D",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "MWfKUGzT1YBmLvpn",
+      "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754075401268,
+        "modifiedTime": 1754075437940,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!99TqczuQipBmaB8i.MWfKUGzT1YBmLvpn"
+    }
+  ],
   "effects": [],
   "_key": "!actors!99TqczuQipBmaB8i"
 }

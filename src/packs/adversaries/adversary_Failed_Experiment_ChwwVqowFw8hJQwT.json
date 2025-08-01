@@ -36,7 +36,13 @@
     "type": "standard",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "e3LDEyTI4bAQgRKI": {
+        "name": "Copycat",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -64,19 +70,57 @@
       }
     },
     "tier": 2,
-    "description": "<p>A magical necromantic experiment gone wrong, leaving them warped and ungainly.</p>"
+    "description": "<p>A magical necromantic experiment gone wrong, leaving them warped and ungainly.</p>",
+    "motivesAndTactics": "Devour, hunt, track",
+    "attack": {
+      "name": "Bite and Claw",
+      "roll": {
+        "bonus": 1
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d6",
+              "bonus": 5,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/creatures/claws/claw-hooked-barbed.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784262,
-    "modifiedTime": 1753922784262,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754077871356,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "ChwwVqowFw8hJQwT",
   "sort": 3400000,
@@ -179,7 +223,190 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Warped Fortitude",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Experiment is resistant to physical damage.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "nCIGFPFOKzyznL0O",
+      "img": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",
+      "effects": [
+        {
+          "name": "Warped Fortitude",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "_id": "3QLH2EEtcUEZolFz",
+          "img": "icons/creatures/magical/humanoid-silhouette-glowing-pink.webp",
+          "changes": [
+            {
+              "key": "system.resistance.physical.resistance",
+              "mode": 5,
+              "value": "1",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>The Experiment is resistant to physical damage.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754077898647,
+            "modifiedTime": 1754077926996,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!ChwwVqowFw8hJQwT.nCIGFPFOKzyznL0O.3QLH2EEtcUEZolFz"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754077874345,
+        "modifiedTime": 1754077892913,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!ChwwVqowFw8hJQwT.nCIGFPFOKzyznL0O"
+    },
+    {
+      "name": "Overwhelm",
+      "type": "feature",
+      "system": {
+        "description": "<p>When a target the Experiment attacks has other adversaries within Very Close range, the Experiment deals double damage.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "1fE6xo8yIOmZkGNE",
+      "img": "icons/skills/melee/strike-slashes-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754077929911,
+        "modifiedTime": 1754077955031,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!ChwwVqowFw8hJQwT.1fE6xo8yIOmZkGNE"
+    },
+    {
+      "name": "Lurching Lunge",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to spotlight the Experiment as an additional GM move instead of spending Fear.</p>",
+        "resource": null,
+        "actions": {
+          "i3FANnO1t9AzJdTp": {
+            "type": "effect",
+            "_id": "i3FANnO1t9AzJdTp",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/skills/melee/strike-slashes-red.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "g0h3Zo6xqgfSlyxi",
+      "img": "icons/skills/melee/strike-slashes-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754077960964,
+        "modifiedTime": 1754078015297,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!ChwwVqowFw8hJQwT.g0h3Zo6xqgfSlyxi"
+    }
+  ],
   "effects": [],
   "_key": "!actors!ChwwVqowFw8hJQwT"
 }

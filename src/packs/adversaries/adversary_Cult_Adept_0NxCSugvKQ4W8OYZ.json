@@ -34,10 +34,21 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "support",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "Lt65O6BraCDSG6A9": {
+        "name": "Fallen Lore",
+        "description": "",
+        "value": 2
+      },
+      "zUrYeLaTh26XK19W": {
+        "name": "Rituals",
+        "description": "",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +76,56 @@
       }
     },
     "tier": 2,
-    "description": "<p>An experienced mage wielding shadow and fear.</p>"
+    "description": "<p>An experienced mage wielding shadow and fear.</p>",
+    "attack": {
+      "name": "Rune-Covered Rod",
+      "roll": {
+        "bonus": 2
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d4",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "range": "far"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784239,
-    "modifiedTime": 1753922784239,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754075952748,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "0NxCSugvKQ4W8OYZ",
   "sort": 3400000,
@@ -180,7 +228,492 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Enervating Blast",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to make a standard attack against a target within range. On a success, the target must mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "TQv3o9sRnlDNbPyu": {
+            "type": "attack",
+            "_id": "TQv3o9sRnlDNbPyu",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d4",
+                    "bonus": 3,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                },
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "kCffzM8rX8NEr9d2",
+      "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754075842447,
+        "modifiedTime": 1754075990327,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!0NxCSugvKQ4W8OYZ.kCffzM8rX8NEr9d2"
+    },
+    {
+      "name": "Shroud of the Fallen",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to wrap an ally within Close range in a shroud of Protection until the Adept marks their last HP. While Protected, the target has resistance to all damage.</p>",
+        "resource": null,
+        "actions": {
+          "8yRj7EpEI4PlKNhl": {
+            "type": "effect",
+            "_id": "8yRj7EpEI4PlKNhl",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "U9lWz1LgeAiK5L85",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Protect",
+            "img": "icons/magic/unholy/orb-contained-pink.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "IHWDn097sRgjlZXO",
+      "img": "icons/magic/unholy/orb-contained-pink.webp",
+      "effects": [
+        {
+          "name": "Shroud of the Fallen",
+          "img": "icons/magic/unholy/orb-contained-pink.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.0NxCSugvKQ4W8OYZ.Item.IHWDn097sRgjlZXO",
+          "transfer": false,
+          "_id": "U9lWz1LgeAiK5L85",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.resistance.magical.resistance",
+              "mode": 5,
+              "value": "1",
+              "priority": null
+            },
+            {
+              "key": "system.resistance.physical.resistance",
+              "mode": 5,
+              "value": "1",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Resistance to all damage until the Adept marks their last HP</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754076062015,
+            "modifiedTime": 1754076105398,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!0NxCSugvKQ4W8OYZ.IHWDn097sRgjlZXO.U9lWz1LgeAiK5L85"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754075995517,
+        "modifiedTime": 1754076062027,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!0NxCSugvKQ4W8OYZ.IHWDn097sRgjlZXO"
+    },
+    {
+      "name": "Shadow Shackles",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. All targets within Close range of that point are <em>Restrained</em> in smoky chains until they break free with a successful Strength or Instinct Roll. A target Restrained by this feature must spend a Hope to make an action roll.</p><p>@Template[type:circle|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "g4RDHrY0AEYXjH52": {
+            "type": "effect",
+            "_id": "g4RDHrY0AEYXjH52",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "lNH6srSPyEprXZ4o",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "JpSrduK3vjd9h098",
+      "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
+      "effects": [
+        {
+          "name": "Shadow Shackles",
+          "img": "icons/magic/air/fog-gas-smoke-dense-pink.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.0NxCSugvKQ4W8OYZ.Item.JpSrduK3vjd9h098",
+          "transfer": false,
+          "_id": "lNH6srSPyEprXZ4o",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>You are<em> Restrained</em> in smoky chains until you break free with a successful Strength or Instinct Roll. A target Restrained by this feature must spend a Hope to make an action roll.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrain"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754076347281,
+            "modifiedTime": 1754076389089,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!0NxCSugvKQ4W8OYZ.JpSrduK3vjd9h098.lNH6srSPyEprXZ4o"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754076110844,
+        "modifiedTime": 1754076347293,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!0NxCSugvKQ4W8OYZ.JpSrduK3vjd9h098"
+    },
+    {
+      "name": "Fear Is Fuel",
+      "type": "feature",
+      "system": {
+        "description": "<p> Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "3tibqB97ooJesxf0": {
+            "type": "healing",
+            "_id": "3tibqB97ooJesxf0",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Clear Stress",
+            "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "x6FbcrfOscb3er6P",
+      "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754076395683,
+        "modifiedTime": 1754076432247,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!0NxCSugvKQ4W8OYZ.x6FbcrfOscb3er6P"
+    }
+  ],
   "effects": [],
   "_key": "!actors!0NxCSugvKQ4W8OYZ"
 }

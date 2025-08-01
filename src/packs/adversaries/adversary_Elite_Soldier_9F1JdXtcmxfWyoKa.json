@@ -65,19 +65,27 @@
       }
     },
     "tier": 2,
-    "description": "<p>An armored squire or experienced commoner looking to advance.</p>"
+    "description": "<p>An armored squire or experienced commoner looking to advance.</p>",
+    "attack": {
+      "name": "Spear",
+      "range": "veryClose",
+      "roll": {
+        "bonus": 1
+      },
+      "img": "icons/weapons/polearms/spear-flared-steel.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784260,
-    "modifiedTime": 1753922784260,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754077711319,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "9F1JdXtcmxfWyoKa",
   "sort": 3400000,
@@ -180,7 +188,187 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Reinforce",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to move into Melee range of an ally and make a standard attack against a target within Very Close range. On a success, deal <strong>2d10+2</strong> physical damage and the ally can clear a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "XquYMA2xJZUKSmXQ": {
+            "type": "attack",
+            "_id": "XquYMA2xJZUKSmXQ",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "img": "icons/skills/melee/hand-grip-sword-orange.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ojiIZHBd0sMLxSUE",
+      "img": "icons/skills/melee/hand-grip-sword-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754077629944,
+        "modifiedTime": 1754077757134,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!9F1JdXtcmxfWyoKa.ojiIZHBd0sMLxSUE"
+    },
+    {
+      "name": "Vassal's Loyalty",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Soldier is within Very Close range of a knight or other noble who would take damage, you can mark a Stress to move into Melee range of them and take the damage instead.</p>",
+        "resource": null,
+        "actions": {
+          "dwpQNx63V6hL1mXZ": {
+            "type": "effect",
+            "_id": "dwpQNx63V6hL1mXZ",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/magic/defensive/shield-barrier-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "zcfyEY29yWqJtZbl",
+      "img": "icons/magic/defensive/shield-barrier-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754077762466,
+        "modifiedTime": 1754077812353,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!9F1JdXtcmxfWyoKa.zcfyEY29yWqJtZbl"
+    }
+  ],
   "effects": [],
   "_key": "!actors!9F1JdXtcmxfWyoKa"
 }

@@ -34,10 +34,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "skulk",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "t4LUkxg9fu3go5h4": {
+        "name": "Intrusion",
+        "description": "",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +71,57 @@
       }
     },
     "tier": 2,
-    "description": "<p>A cunning scoundrel skilled in both poisons and ambushing.</p>"
+    "description": "<p>A cunning scoundrel skilled in both poisons and ambushing.</p>",
+    "attack": {
+      "name": "Poisoned Throwing Dagger",
+      "img": "icons/skills/melee/blade-tip-acid-poison-green.webp",
+      "roll": {
+        "bonus": 3
+      },
+      "range": "close",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d8",
+              "bonus": 1,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784224,
-    "modifiedTime": 1753922784224,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754073065851,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "h5RuhzGL17dW5FBT",
   "sort": 3400000,
@@ -180,7 +224,307 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Grindletooth Venom",
+      "type": "feature",
+      "system": {
+        "description": "<p>Targets who mark HP from the Assassin’s attacks are Vulnerable until they clear a HP.</p>",
+        "resource": null,
+        "actions": {
+          "L83tU1TgmqoH9SSn": {
+            "type": "effect",
+            "_id": "L83tU1TgmqoH9SSn",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "2iBVUGHtGW3I9VIj",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Apply Venom",
+            "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "Fz2lnUEeBxsDpx0G",
+      "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
+      "effects": [
+        {
+          "name": "Grindletooth Venom",
+          "img": "icons/skills/toxins/poison-bottle-corked-fire-green.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.h5RuhzGL17dW5FBT.Item.Fz2lnUEeBxsDpx0G",
+          "transfer": false,
+          "_id": "2iBVUGHtGW3I9VIj",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p> <em>Vulnerable</em> until you clear a HP.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754073115997,
+            "modifiedTime": 1754073138695,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!h5RuhzGL17dW5FBT.Fz2lnUEeBxsDpx0G.2iBVUGHtGW3I9VIj"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754073069218,
+        "modifiedTime": 1754073116024,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!h5RuhzGL17dW5FBT.Fz2lnUEeBxsDpx0G"
+    },
+    {
+      "name": "Assassin Poisoner",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Assassin has advantage on attacks if they are <em>Hidden</em>.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "of6g4piugKzTI4dv",
+      "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
+      "effects": [
+        {
+          "name": "Out of Nowhere",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "_id": "qT5nh7OcQ6aGdiWS",
+          "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
+          "changes": [
+            {
+              "key": "system.advantageSources",
+              "mode": 2,
+              "value": "On attacks if they are Hidden.",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>The Assassin has advantage on attacks if they are <em>Hidden.</em></p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754073175871,
+            "modifiedTime": 1754073220488,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!h5RuhzGL17dW5FBT.of6g4piugKzTI4dv.qT5nh7OcQ6aGdiWS"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754073144490,
+        "modifiedTime": 1754073171491,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!h5RuhzGL17dW5FBT.of6g4piugKzTI4dv"
+    },
+    {
+      "name": "Fumigation",
+      "type": "feature",
+      "system": {
+        "description": "<p>Drop a smoke bomb that fi lls the air within Close range with smoke, Dizzying all targets in this area. Dizzied targets have disadvantage on their next action roll, then clear the condition.</p><p>@Template[type:emanation|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "sp7RfJRQJsEUm09m": {
+            "type": "effect",
+            "_id": "sp7RfJRQJsEUm09m",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "yP4ot8VqS56RnxnE",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Drop Bomb",
+            "img": "icons/magic/air/fog-gas-smoke-green.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "lAmiK8wVxjyHwKlp",
+      "img": "icons/magic/air/fog-gas-smoke-green.webp",
+      "effects": [
+        {
+          "name": "Dizzy",
+          "img": "icons/magic/control/silhouette-hold-change-green.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.h5RuhzGL17dW5FBT.Item.lAmiK8wVxjyHwKlp",
+          "transfer": false,
+          "_id": "yP4ot8VqS56RnxnE",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Dizzied targets have disadvantage on their next action roll, then clear the condition.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754073324162,
+            "modifiedTime": 1754073362021,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!h5RuhzGL17dW5FBT.lAmiK8wVxjyHwKlp.yP4ot8VqS56RnxnE"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754073225985,
+        "modifiedTime": 1754073324182,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!h5RuhzGL17dW5FBT.lAmiK8wVxjyHwKlp"
+    }
+  ],
   "effects": [],
   "_key": "!actors!h5RuhzGL17dW5FBT"
 }

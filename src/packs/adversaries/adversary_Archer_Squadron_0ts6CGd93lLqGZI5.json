@@ -34,9 +34,9 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "horde",
     "notes": "",
-    "hordeHp": 1,
+    "hordeHp": 2,
     "experiences": {},
     "bonuses": {
       "roll": {
@@ -65,19 +65,57 @@
       }
     },
     "tier": 2,
-    "description": "<p>A group of trained archers bearing massive bows.</p>"
+    "description": "<p>A group of trained archers bearing massive bows.</p>",
+    "attack": {
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "dice": "d6",
+              "bonus": 3,
+              "multiplier": "flat",
+              "flatMultiplier": 1
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "valueAlt": {
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": 3,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "resultBased": false,
+            "base": false
+          }
+        ]
+      },
+      "name": "Longbow",
+      "img": "icons/weapons/bows/longbow-recurve-leather-brown.webp",
+      "range": "far",
+      "roll": {
+        "bonus": 0
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784223,
-    "modifiedTime": 1753922784223,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754070633580,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "0ts6CGd93lLqGZI5",
   "sort": 3400000,
@@ -180,7 +218,299 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
-  "effects": [],
+  "items": [
+    {
+      "name": "Horde (1d6+3)",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Squadron has marked half or more of their HP, their standard attack deals <strong>1d6+3</strong> physical damage instead.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "uPwtE9d63PHtQitG",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754070637872,
+        "modifiedTime": 1754070657545,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!0ts6CGd93lLqGZI5.uPwtE9d63PHtQitG"
+    },
+    {
+      "name": "Focused Volley",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to target a point within Far range. Make an attack with advantage against all targets within Close range of that point. Targets the Squadron succeeds against take <strong>1d10+4</strong> physical damage.</p><p>@Template[type:circle|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "uG7Hl2DqaT69aNs1": {
+            "type": "attack",
+            "_id": "uG7Hl2DqaT69aNs1",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d10",
+                    "bonus": 4,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/skills/ranged/arrows-flying-triple-brown.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "Wuf5y9tJ88BwzLv2",
+      "img": "icons/skills/ranged/arrows-flying-triple-brown.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754070661520,
+        "modifiedTime": 1754070745015,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!0ts6CGd93lLqGZI5.Wuf5y9tJ88BwzLv2"
+    },
+    {
+      "name": "Supressing Fire",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to target a point within Far range. Until the next roll with Fear, a creature who moves within Close range of that point must make an Agility Reaction Roll. On a failure, they take <strong>2d6+3</strong> physical damage. On a success, they take half damage.</p><p>@Template[type:circle|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "mH6mmJIMM1fwzePt": {
+            "type": "attack",
+            "_id": "mH6mmJIMM1fwzePt",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d6",
+                    "bonus": 3,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "half"
+            },
+            "name": "Agility Roll",
+            "img": "icons/skills/ranged/arrows-flying-salvo-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ayGHTtyjSuIR4BrV",
+      "img": "icons/skills/ranged/arrows-flying-salvo-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754070760732,
+        "modifiedTime": 1754070860912,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!0ts6CGd93lLqGZI5.ayGHTtyjSuIR4BrV"
+    }
+  ],
+  "effects": [
+    {
+      "type": "horde",
+      "name": "Horde",
+      "img": "icons/magic/movement/chevrons-down-yellow.webp",
+      "disabled": true,
+      "_id": "bq8hTzQoCXmA3xad",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "duration": {
+        "startTime": 0,
+        "combat": null
+      },
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": false,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754070598535,
+        "modifiedTime": 1754070598535,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.effects!0ts6CGd93lLqGZI5.bq8hTzQoCXmA3xad"
+    }
+  ],
   "_key": "!actors!0ts6CGd93lLqGZI5"
 }
