@@ -266,9 +266,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                     const doc = await getDocFromElement(target);
                     const actorLoadout = doc.actor.system.loadoutSlot;
                     if (actorLoadout.available) return doc.update({ 'system.inVault': false });
-                    ui.notifications.warn(
-                        game.i18n.format('DAGGERHEART.UI.Notifications.loadoutMaxReached', { max: actorLoadout.max })
-                    );
+                    ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
                 }
             },
             {
@@ -686,6 +684,11 @@ export default class CharacterSheet extends DHBaseActorSheet {
      */
     static async #toggleVault(_event, button) {
         const doc = await getDocFromElement(button);
+        const { available } = this.document.system.loadoutSlot;
+        if (doc.system.inVault && !available) {
+            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.loadoutMaxReached'));
+        }
+
         await doc?.update({ 'system.inVault': !doc.system.inVault });
     }
 

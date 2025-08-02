@@ -1,5 +1,5 @@
 <div class="roll-part damage-section dice-roll" data-action="expandRoll">
-    <div class="roll-part-header"><div><span>Damage</span></div></div>
+    <div class="roll-part-header"><div><span>{{localize (ifThen hasHealing "DAGGERHEART.ACTIONS.TYPES.healing.name" "DAGGERHEART.ACTIONS.TYPES.damage.name")}}</span></div></div>
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
             {{#each damage as | roll index | }}

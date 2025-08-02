@@ -18,20 +18,4 @@
             <div>{{item.system.baseThresholds.severe}}</div>
         </div>
     </div>
-
-    {{#if (gt item.system.armorFeatures.length 0)}}<h4 class="tooltip-sub-title">{{localize "DAGGERHEART.GENERAL.features"}}</h4>{{/if}}
-    <div class="tooltip-tags">
-        {{#each item.system.armorFeatures}}
-            {{#with (lookup ../config.ITEM.armorFeatures this.value) as | feature | }}
-                <div class="tooltip-tag">
-                    <div class="tooltip-tag-label-container">
-                        <div class="tooltip-tag-label">{{localize feature.label}}</div>
-                    </div>
-                    <div class="tooltip-tag-description">{{{localize feature.description}}}</div>
-                </div>
-            {{/with}}
-        {{/each}}
-    </div>
-
-    {{> "systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs" features=item.system.customActions isAction=true label=(localize "DAGGERHEART.GENERAL.Action.plural")}}
 </div>

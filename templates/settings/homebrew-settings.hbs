@@ -3,7 +3,9 @@
         <h1>{{localize 'DAGGERHEART.SETTINGS.Menu.homebrew.name'}}</h1>
     </header>
     {{formGroup settingFields.schema.fields.maxFear value=settingFields._source.maxFear localize=true}}
+    {{formGroup settingFields.schema.fields.maxDomains value=settingFields._source.maxDomains localize=true}}
     {{formGroup settingFields.schema.fields.maxLoadout value=settingFields._source.maxLoadout localize=true}}
+    <div class="settings-hint"><label>{{localize "DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxLoadout.hint"}}</label></div>
 
     <h4>{{localize "DAGGERHEART.SETTINGS.Homebrew.FIELDS.traitArray.label"}}</h4>
     <div class="trait-array-container">

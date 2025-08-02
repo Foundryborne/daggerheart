@@ -318,8 +318,16 @@ export default class DhpActor extends Actor {
 
             for (var domainCard of domainCards) {
                 if (levelupAuto) {
-                    const item = await foundry.utils.fromUuid(domainCard.data[0]);
-                    const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                    const itemData = (await foundry.utils.fromUuid(domainCard.data[0])).toObject();
+                    const embeddedItem = await this.createEmbeddedDocuments('Item', [
+                        {
+                            ...itemData,
+                            system: {
+                                ...itemData.system,
+                                inVault: true
+                            }
+                        }
+                    ]);
                     selections.push({ ...domainCard, itemUuid: embeddedItem[0].uuid });
                 } else {
                     selections.push({ ...domainCard });
@@ -329,8 +337,16 @@ export default class DhpActor extends Actor {
             const achievementDomainCards = [];
             if (levelupAuto) {
                 for (var card of Object.values(level.achievements.domainCards)) {
-                    const item = await foundry.utils.fromUuid(card.uuid);
-                    const embeddedItem = await this.createEmbeddedDocuments('Item', [item.toObject()]);
+                    const itemData = (await foundry.utils.fromUuid(card.uuid)).toObject();
+                    const embeddedItem = await this.createEmbeddedDocuments('Item', [
+                        {
+                            ...itemData,
+                            system: {
+                                ...itemData.system,
+                                inVault: true
+                            }
+                        }
+                    ]);
                     card.itemUuid = embeddedItem[0].uuid;
                     achievementDomainCards.push(card);
                 }

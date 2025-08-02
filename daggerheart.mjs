@@ -8,7 +8,6 @@ import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
-import { DualityRollColor } from './module/data/settings/Appearance.mjs';
 import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
@@ -56,8 +55,8 @@ Hooks.once('init', () => {
     };
 
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, DHRoll, DualityRoll, D20Roll, DamageRoll];
-    Roll.CHAT_TEMPLATE = "systems/daggerheart/templates/ui/chat/foundryRoll.hbs";
-    Roll.TOOLTIP_TEMPLATE = "systems/daggerheart/templates/ui/chat/foundryRollTooltip.hbs";
+    Roll.CHAT_TEMPLATE = 'systems/daggerheart/templates/ui/chat/foundryRoll.hbs';
+    Roll.TOOLTIP_TEMPLATE = 'systems/daggerheart/templates/ui/chat/foundryRollTooltip.hbs';
     CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
     const { DocumentSheetConfig } = foundry.applications.apps;
@@ -161,12 +160,6 @@ Hooks.on('ready', () => {
     ui.resources = new CONFIG.ui.resources();
     if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
         ui.resources.render({ force: true });
-
-    document.body.classList.toggle(
-        'theme-colorful',
-        game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).dualityColorScheme ===
-            DualityRollColor.colorful.value
-    );
 
     registerCountdownHooks();
     socketRegistration.registerSocketHooks();

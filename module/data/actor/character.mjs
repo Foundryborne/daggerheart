@@ -362,13 +362,12 @@ export default class DhCharacter extends BaseDataActor {
 
     get loadoutSlot() {
         const loadoutCount = this.domainCards.loadout?.length ?? 0,
-            max =
-                game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout +
-                this.bonuses.maxLoadout;
+            worldSetting = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxLoadout,
+            max = !worldSetting ? null : worldSetting + this.bonuses.maxLoadout;
 
         return {
             current: loadoutCount,
-            available: Math.max(max - loadoutCount, 0),
+            available: !max ? true : Math.max(max - loadoutCount, 0),
             max
         };
     }
@@ -579,7 +578,7 @@ export default class DhCharacter extends BaseDataActor {
                 : this.levelData.level.current * 2
         };
         this.resources.hope.max -= Object.keys(this.scars).length;
-        this.resources.hitPoints.max = this.class.value?.system?.hitPoints ?? 0;
+        this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
     }
 
     prepareDerivedData() {

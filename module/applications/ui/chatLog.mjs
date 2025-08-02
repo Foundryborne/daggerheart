@@ -117,9 +117,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     async onRollAllSave(event, message) {
         event.stopPropagation();
         if (!game.user.isGM) return;
-        const targets = event.target.parentElement.querySelectorAll(
-            '[data-token] .target-save'
-        );
+        const targets = event.target.parentElement.querySelectorAll('[data-token] .target-save');
         const actor = await this.getActor(message.system.source.actor),
             action = this.getAction(actor, message.system.source.item, message.system.source.action);
         targets.forEach(async el => {
@@ -169,9 +167,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
 
     async onRollSimple(event, message) {
         const buttonType = event.target.dataset.type ?? 'damage',
-            total = message.rolls.reduce((a,c) => a + Roll.fromJSON(c).total, 0),
+            total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0),
             damages = {
-                'hitPoints': {
+                hitPoints: {
                     parts: [
                         {
                             applyTo: 'hitPoints',
@@ -186,20 +184,18 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
 
-       targets.forEach(target => {
-            if(buttonType === 'healing')
-                target.actor.takeHealing(damages);
-            else
-                target.actor.takeDamage(damages);
-        })
+        targets.forEach(target => {
+            if (buttonType === 'healing') target.actor.takeHealing(damages);
+            else target.actor.takeDamage(damages);
+        });
     }
 
     async abilityUseButton(event, message) {
         event.stopPropagation();
 
-        const action = message.system.actions[Number.parseInt(event.currentTarget.dataset.index)];
-        const actor = game.actors.get(message.system.source.actor);
-        await actor.use(action);
+        const item = await foundry.utils.fromUuid(message.system.origin);
+        const action = item.system.actions.get(event.currentTarget.id);
+        await item.use(action);
     }
 
     async actionUseButton(event, message) {

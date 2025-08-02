@@ -19,7 +19,7 @@ export default class DHClass extends BaseDataItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            domains: new fields.ArrayField(new fields.StringField(), { max: 2 }),
+            domains: new fields.ArrayField(new fields.StringField()),
             classItems: new ForeignDocumentUUIDArrayField({ type: 'Item', required: false }),
             hitPoints: new fields.NumberField({
                 required: true,
@@ -122,6 +122,14 @@ export default class DHClass extends BaseDataItem {
     async _preUpdate(changed, options, userId) {
         const allowed = await super._preUpdate(changed, options, userId);
         if (allowed === false) return false;
+
+        if (changed.system?.domains) {
+            const maxDomains = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxDomains;
+            if (changed.system.domains.length > maxDomains) {
+                ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.domainMaxReached'));
+                return false;
+            }
+        }
 
         const paths = [
             'subclasses',

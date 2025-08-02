@@ -144,7 +144,7 @@ export default class DhpAdversary extends BaseDataActor {
         super._onUpdate(changes, options, userId);
 
         if (game.user.id === userId) {
-            if (changes.system.type) {
+            if (changes.system?.type) {
                 const existingHordeEffect = this.parent.effects.find(x => x.type === 'horde');
                 if (changes.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
                     if (!existingHordeEffect)
