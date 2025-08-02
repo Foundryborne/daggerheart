@@ -3,14 +3,17 @@
     <header class="message-header flexrow">
         <div class="message-header-main">
             <img class="actor-img" src="{{actor.img}}" />
-            <div class="message-sub-header-container">
-                <h4>{{ifThen message.title message.title alias}}</h4>
-                {{#if actor.name}}
+            {{#if (eq message.type 'base')}}
+                <div class="message-sub-header-container">
+                    <h4>{{actor.name}}</h4>
+                    <div>{{author.name}}</div>
+                </div>
+            {{else}}
+                <div class="message-sub-header-container">
+                    <h4>{{ifThen message.title message.title alias}}</h4>
                     <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
-                {{else unless (eq message.type 'base')}}
-                    <div>{{alias}}</div>
-                {{/if}}
-            </div>
+                </div>
+            {{/if}}
         </div>
         <div class="message-header-metadata">
             <span class="message-metadata">

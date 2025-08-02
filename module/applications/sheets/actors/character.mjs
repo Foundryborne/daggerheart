@@ -614,7 +614,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
             },
             hasRoll: true
         };
-        this.document.diceRoll(config);
+        this.document.diceRoll({
+            ...config,
+            headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
+            title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: abilityLabel
+            })
+        });
     }
 
     //TODO: redo toggleEquipItem method

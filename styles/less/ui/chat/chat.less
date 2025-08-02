@@ -364,7 +364,8 @@
     }
 }
 
-.daggerheart, #chat-notifications {
+.daggerheart,
+#chat-notifications {
     .chat-message {
         --text-color: light-dark(@dark-blue, @golden);
         --bg-color: light-dark(@dark-blue-40, @golden-40);
@@ -373,7 +374,8 @@
             &.hope {
                 --text-color: @golden;
                 --bg-color: @golden-40;
-                .message-header, .message-content {
+                .message-header,
+                .message-content {
                     background-color: @golden-bg;
                 }
             }
@@ -381,7 +383,8 @@
             &.fear {
                 --text-color: @chat-blue;
                 --bg-color: @chat-blue-40;
-                .message-header, .message-content {
+                .message-header,
+                .message-content {
                     background-color: @chat-blue-bg;
                 }
             }
@@ -389,7 +392,8 @@
             &.critical {
                 --text-color: @chat-purple;
                 --bg-color: @chat-purple-40;
-                .message-header, .message-content {
+                .message-header,
+                .message-content {
                     background-color: @chat-purple-bg;
                 }
             }
@@ -418,17 +422,18 @@
                     padding: 0 10px;
                 }
 
-                &:before, &:after {
+                &:before,
+                &:after {
                     content: ' ';
                     height: 1px;
                 }
 
                 &:before {
-                    background: linear-gradient(90deg,rgba(0, 0, 0, 0) 0%, var(--text-color) 100%);
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, var(--text-color) 100%);
                 }
 
                 &:after {
-                    background: linear-gradient(90deg,var(--text-color) 0%, rgba(0, 0, 0, 0) 100%);
+                    background: linear-gradient(90deg, var(--text-color) 0%, rgba(0, 0, 0, 0) 100%);
                 }
             }
 
@@ -458,7 +463,7 @@
                         > :first-child:not(.target-selector) {
                             margin-top: 5px;
                         }
-                        
+
                         > :last-child {
                             margin-bottom: 5px;
                         }
@@ -468,6 +473,7 @@
                 .roll-result-container {
                     display: flex;
                     justify-content: center;
+                    align-items: center;
                     gap: 10px;
                     color: var(--text-color);
                     font-weight: 700;
@@ -550,13 +556,14 @@
                     text-align: center;
                 }
 
-                .button-target-selection:hover, .target-selected {
+                .button-target-selection:hover,
+                .target-selected {
                     font-weight: bold;
                     text-shadow: 0px 0px 8px var(--text-color);
                 }
             }
         }
-        
+
         i {
             text-align: center;
         }
@@ -608,7 +615,8 @@
             margin: auto;
         }
 
-        .roll-difficulty, .target-hit-status {
+        .roll-difficulty,
+        .target-hit-status {
             color: @green;
             background-color: @green-10;
             border: 1px solid currentColor;
@@ -628,9 +636,10 @@
             margin-top: 2px;
         }
 
-        div[data-action="expandRoll"] {
+        div[data-action='expandRoll'] {
             .roll-part-header > div > span {
-                &:before, &:after {
+                &:before,
+                &:after {
                     content: '\f078';
                     font-family: var(--font-awesome);
                     color: var(--text-color);
@@ -653,7 +662,8 @@
 
             &.expanded {
                 .roll-part-header > div > span {
-                    &:before, &:after {
+                    &:before,
+                    &:after {
                         transform: rotate(180deg);
                     }
                 }
@@ -690,7 +700,7 @@
                 }
             }
         }
-        
+
         .roll-buttons {
             display: flex;
             gap: 5px;

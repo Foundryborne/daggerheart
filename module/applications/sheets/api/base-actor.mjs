@@ -121,21 +121,37 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
      */
     static async #sendExpToChat(_, button) {
         const experience = this.document.system.experiences[button.dataset.id];
+        const cls = getDocumentClass('ChatMessage');
 
         const systemData = {
-            name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single'),
-            description: `${experience.name} ${experience.value.signedString()}`
+            actor: { name: this.actor.name, img: this.actor.img },
+            author: game.users.get(game.user.id),
+            action: {
+                name: `${experience.name} ${experience.value.signedString()}`,
+                img: '/icons/sundries/misc/admission-ticket-blue.webp'
+            },
+            itemOrigin: {
+                name: game.i18n.localize('DAGGERHEART.GENERAL.Experience.single')
+            },
+            description: experience.description
         };
 
-        foundry.documents.ChatMessage.implementation.create({
-            type: 'abilityUse',
+        const msg = {
             user: game.user.id,
-            system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
+                'systems/daggerheart/templates/ui/chat/action.hbs',
                 systemData
-            )
-        });
+            ),
+            title: game.i18n.localize('DAGGERHEART.ACTIONS.Config.displayInChat'),
+            speaker: cls.getSpeaker(),
+            flags: {
+                daggerheart: {
+                    cssClass: 'dh-chat-message dh-style'
+                }
+            }
+        };
+
+        cls.create(msg);
     }
 
     /* -------------------------------------------- */

@@ -115,20 +115,22 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     async toChat(origin) {
         const cls = getDocumentClass('ChatMessage');
+        const actor = game.actors.get(cls.getSpeaker().actor);
         const systemData = {
-            title: game.i18n.localize('DAGGERHEART.CONFIG.ActionType.action'),
+            action: { img: this.img, name: this.name },
+            actor: { name: actor.name, img: actor.img },
+            author: this.author,
+            speaker: cls.getSpeaker(),
             origin: origin,
-            img: this.img,
-            name: this.name,
             description: this.description,
             actions: []
         };
         const msg = {
-            type: 'abilityUse',
+            title: game.i18n.localize('DAGGERHEART.GENERAL.Effect.single'),
             user: game.user.id,
             system: systemData,
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/daggerheart/templates/ui/chat/ability-use.hbs',
+                'systems/daggerheart/templates/ui/chat/action.hbs',
                 systemData
             )
         };
