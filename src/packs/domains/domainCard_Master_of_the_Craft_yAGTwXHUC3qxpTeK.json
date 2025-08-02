@@ -1,6 +1,6 @@
 {
   "name": "Master of the Craft",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
   "type": "domainCard",
   "folder": "yFcD1LOM3xKbkNYl",
   "system": {
@@ -15,15 +15,18 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784482,
-    "modifiedTime": 1753922784482,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754093680967,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "yAGTwXHUC3qxpTeK",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!yAGTwXHUC3qxpTeK"
 }

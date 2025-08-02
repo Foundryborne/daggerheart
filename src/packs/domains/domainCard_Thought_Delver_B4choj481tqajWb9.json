@@ -1,6 +1,6 @@
 {
   "name": "Thought Delver",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
   "type": "domainCard",
   "folder": "6gA7SmNIblkMaYgr",
   "system": {
@@ -15,15 +15,18 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784532,
-    "modifiedTime": 1753922784532,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754093653766,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "B4choj481tqajWb9",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!B4choj481tqajWb9"
 }

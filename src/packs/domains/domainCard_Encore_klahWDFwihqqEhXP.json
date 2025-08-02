@@ -1,6 +1,6 @@
 {
   "name": "Encore",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
   "type": "domainCard",
   "folder": "wdhWWqWlPiBxtsvr",
   "system": {
@@ -15,15 +15,18 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784450,
-    "modifiedTime": 1753922784450,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754093684717,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "klahWDFwihqqEhXP",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!klahWDFwihqqEhXP"
 }
