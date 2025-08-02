@@ -1,12 +1,12 @@
 {
   "type": "Item",
-  "folder": null,
-  "name": "Subclass Features",
+  "folder": "7v4rk8aUOc9l81kD",
+  "name": "Standard Take",
   "color": null,
-  "sorting": "m",
-  "_id": "Sfpr4iK1cGrmncok",
+  "sorting": "a",
+  "_id": "rY8M3uLGRwuLhzk0",
   "description": "",
-  "sort": 100000,
+  "sort": 0,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -15,9 +15,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754174646170,
-    "modifiedTime": 1754174646202,
+    "createdTime": 1754174513416,
+    "modifiedTime": 1754174513416,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
-  "_key": "!folders!Sfpr4iK1cGrmncok"
+  "_key": "!folders!rY8M3uLGRwuLhzk0"
 }
