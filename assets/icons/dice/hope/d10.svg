@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 100 100" width="64" height="64">
+  <defs>
+    <linearGradient id="gold-gradient"
+                    gradientUnits="userSpaceOnUse"
+                    x1="200" y1="300" x2="450" y2="350">
+      <stop offset="3.51%" stop-color="#F3C267"/>
+      <stop offset="96.49%" stop-color="#4C3407"/>
+    </linearGradient>
+  </defs>
+
+  <g fill="url(#gold-gradient)">
+    <g transform="matrix(1.1679092,0,0,1.1679092,-274.931,-137.53749)">
+      <path d="M313.653,154.602l-26.488,55.612l24.356,15.89l26.354-15.928L313.653,154.602z"/>
+      <path d="M314.9,153.687l24.49,55.919l14.175-4.584l0.915-22.612L314.9,153.687z"/>
+      <path d="M312.359,227.393v8.568l40.76-28.762l-13.608,3.825L312.359,227.393z"/>
+      <path d="M312.359,153.927l-26.756,55.732l-13.925-5.99l-1.229-22.679L312.359,153.927z"/>
+      <path d="M310.517,227.213v8.75l-39.019-30.157l13.513,5.275L310.517,227.213z"/>
+    </g>
+  </g>
+</svg>
