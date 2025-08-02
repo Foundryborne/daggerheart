@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    border-width: 0;
 
     .tooltip-title-container {
         width: 100%;
@@ -30,6 +31,7 @@
 
     .tooltip-description {
         font-style: italic;
+        text-align: start;
     }
 
     .tooltip-sub-title {
@@ -45,12 +47,6 @@
 
         &.triple {
             grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        &.border {
-            border: 1px solid light-dark(@dark-blue, @golden);
-            border-radius: 6px;
-            padding: 2px;
         }
 
         .tooltip-information {
