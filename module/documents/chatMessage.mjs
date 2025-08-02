@@ -69,7 +69,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     getTargetList() {
         const targets = this.system.hitTargets;
         return targets.map(target => game.canvas.tokens.documentCollection.find(t => t.actor.uuid === target.actorId));
-
     }
 
     async onDamage(event) {
@@ -77,7 +76,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         const targets = this.getTargetList();
 
         if (this.system.onSave) {
-            const pendingingSaves =  this.system.hitTargets.filter(t => t.saved.success === null);
+            const pendingingSaves = this.system.hitTargets.filter(t => t.saved.success === null);
             if (pendingingSaves.length) {
                 const confirm = await foundry.applications.api.DialogV2.confirm({
                     window: { title: 'Pending Reaction Rolls found' },
@@ -110,6 +109,17 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             if (this.system.hasHealing) target.actor.takeHealing(damages);
             else target.actor.takeDamage(damages);
         }
+    }
+
+    getAction(actor, itemId, actionId) {
+        const item = actor.items.get(itemId),
+            action =
+                actor.system.attack?._id === actionId
+                    ? actor.system.attack
+                    : item.system.attack?._id === actionId
+                      ? item.system.attack
+                      : item?.system?.actions?.get(actionId);
+        return action;
     }
 
     async onApplyEffect(event) {

@@ -139,14 +139,14 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             config = await this.actor.diceRoll(config);
             if (!config) return;
         }
-        
+
         if (this.doFollowUp()) {
             if (this.rollDamage && this.damage.parts.length) await this.rollDamage(event, config);
             else if (this.trigger) await this.trigger(event, config);
-            else if(this.hasSave || this.hasEffect) {
+            else if (this.hasSave || this.hasEffect) {
                 const roll = new Roll('');
                 roll._evaluated = true;
-                if(this.hasTarget) config.targetSelection = config.targets.length > 0;
+                if (this.hasTarget) config.targetSelection = config.targets.length > 0;
                 await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
             }
         }
@@ -199,9 +199,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             formula: this.roll.getFormula(),
             advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
         };
-        if (this.roll?.type === 'diceSet'
-             || !this.hasRoll
-            ) roll.lite = true;
+        if (this.roll?.type === 'diceSet' || !this.hasRoll) roll.lite = true;
 
         return roll;
     }
@@ -284,8 +282,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     async applyEffect(effect, actor) {
+        const origin = effect.parent?.parent ? effect.parent.parent.uuid : effect.parent.uuid;
         // Enable an existing effect on the target if it originated from this effect
-        const existingEffect = actor.effects.find(e => e.origin === origin.uuid);
+        const existingEffect = actor.effects.find(e => e.origin === origin);
         if (existingEffect) {
             return existingEffect.update(
                 foundry.utils.mergeObject({
@@ -300,7 +299,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ...effect.toObject(),
             disabled: false,
             transfer: false,
-            origin: origin.uuid
+            origin: origin
         });
         await ActiveEffect.implementation.create(effectData, { parent: actor });
     }
@@ -312,8 +311,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const title = actor.isNPC
             ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
             : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                ability: game.i18n.localize(abilities[this.save.trait]?.label)
-            });
+                  ability: game.i18n.localize(abilities[this.save.trait]?.label)
+              });
         return actor.diceRoll({
             event,
             title,
@@ -329,7 +328,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     updateSaveMessage(result, message, targetId) {
-        if(!result) return;
+        if (!result) return;
         const updateMsg = this.updateChatMessage.bind(this, message, targetId, {
             result: result.roll.total,
             success: result.roll.success
@@ -352,16 +351,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     async updateChatMessage(message, targetId, changes, chain = true) {
         setTimeout(async () => {
             const chatMessage = ui.chat.collection.get(message._id),
-                msgTarget = chatMessage.system.targets.find(mt => mt.id === targetId) ?? chatMessage.system.oldTargets.find(mt => mt.id === targetId);
+                msgTarget =
+                    chatMessage.system.targets.find(mt => mt.id === targetId) ??
+                    chatMessage.system.oldTargets.find(mt => mt.id === targetId);
             msgTarget.saved = changes;
-            await chatMessage.update(
-                    {
-                        system: {
-                            targets: chatMessage.system.targets,
-                            oldTargets: chatMessage.system.oldTargets
-                        }
-                    }
-                );
+            await chatMessage.update({
+                system: {
+                    targets: chatMessage.system.targets,
+                    oldTargets: chatMessage.system.oldTargets
+                }
+            });
         }, 100);
         if (chain) {
             if (message.system.source.message)
