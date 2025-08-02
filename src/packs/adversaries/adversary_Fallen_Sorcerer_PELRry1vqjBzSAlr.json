@@ -34,10 +34,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "support",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "mLFLSWUgJIUIzrUi": {
+        "name": "Ancient Knowledge",
+        "description": "",
+        "value": 2
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +71,57 @@
       }
     },
     "tier": 4,
-    "description": "<p>A powerful mage bound by the bargains they made in life.</p>"
+    "description": "<p>A powerful mage bound by the bargains they made in life.</p>",
+    "attack": {
+      "name": "Corrupted Staff",
+      "roll": {
+        "bonus": 4
+      },
+      "range": "far",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 4,
+              "dice": "d6",
+              "bonus": 10,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/weapons/staves/staff-animal-skull-bull.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784265,
-    "modifiedTime": 1753922784265,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754133638121,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "PELRry1vqjBzSAlr",
   "sort": 3400000,
@@ -180,7 +224,425 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Conflagration",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to unleash an all-consuming f i restorm and make an attack against all targets within Close range. Targets the Sorcerer succeeds against take <strong>2d10+6</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "v7zZo52Dnj1e1i2G": {
+            "type": "attack",
+            "_id": "v7zZo52Dnj1e1i2G",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to unleash an all-consuming f i restorm and make an attack against all targets within Close range. Targets the Sorcerer succeeds against take <strong>2d10+6</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 6,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/fire/projectile-beams-salvo-red.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "s15sNyb3JYMzBLIU",
+      "img": "icons/magic/fire/projectile-beams-salvo-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754133639898,
+        "modifiedTime": 1754133720280,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!PELRry1vqjBzSAlr.s15sNyb3JYMzBLIU"
+    },
+    {
+      "name": "Nightmare Tableau",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to trap a target within Far range in a powerful illusion of their worst fears. While trapped, the target is <em>Restrained</em> and <em>Vulnerable</em> until they break free, ending both conditions, with a successful Instinct Roll.</p>",
+        "resource": null,
+        "actions": {
+          "mXWOpXcYALYqicTw": {
+            "type": "effect",
+            "_id": "mXWOpXcYALYqicTw",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> to trap a target within Far range in a powerful illusion of their worst fears. While trapped, the target is <em>Restrained</em> and <em>Vulnerable</em> until they break free, ending both conditions, with a successful Instinct Roll.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "Q99saHj6NOY2PSXf",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "name": "Generic",
+            "img": "icons/magic/death/skull-energy-light-white.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ecp9o8t1dQFXGsse",
+      "img": "icons/magic/death/skull-energy-light-white.webp",
+      "effects": [
+        {
+          "name": "Nightmare Tableau",
+          "img": "icons/magic/death/skull-energy-light-white.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.PELRry1vqjBzSAlr.Item.ecp9o8t1dQFXGsse",
+          "transfer": false,
+          "_id": "Q99saHj6NOY2PSXf",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><em>Restrained</em> and <em>Vulnerable</em> until you break free, ending both conditions, with a successful Instinct Roll.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrained",
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754133803435,
+            "modifiedTime": 1754133819473,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!PELRry1vqjBzSAlr.ecp9o8t1dQFXGsse.Q99saHj6NOY2PSXf"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754133724799,
+        "modifiedTime": 1754133803447,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!PELRry1vqjBzSAlr.ecp9o8t1dQFXGsse"
+    },
+    {
+      "name": "Slippery",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Sorcerer takes damage from an attack, they can teleport up to Far range.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "C74czwNeWF5vS1DZ",
+      "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754133825153,
+        "modifiedTime": 1754133842162,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!PELRry1vqjBzSAlr.C74czwNeWF5vS1DZ"
+    },
+    {
+      "name": "Shackles of Guilt",
+      "type": "feature",
+      "system": {
+        "description": "<p>Countdown (Loop 2d6). When the Sorcerer is in the spotlight for the first time, activate the countdown. When it triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "11mqihmiBK41aoDm": {
+            "type": "effect",
+            "_id": "11mqihmiBK41aoDm",
+            "systemPath": "actions",
+            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">Countdown (Loop 2d6). When the Sorcerer is in the spotlight for the first time, activate the countdown.</span></p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdown",
+            "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+            "range": ""
+          },
+          "7b0FkpAnWz9a5EWx": {
+            "type": "damage",
+            "_id": "7b0FkpAnWz9a5EWx",
+            "systemPath": "actions",
+            "description": "<p>When the countdown triggers, all targets within Far range become Vulnerable and must mark a Stress as they relive their greatest regrets. A target can break free from their regret with a successful Presence or Strength Roll. When a PC fails to break free, they lose a Hope.</p><p>@Template[type:emanation|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "pWDg0MADoohKu40O",
+                "onSave": false
+              }
+            ],
+            "name": "Mark Stress",
+            "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "gwSgBhkcekCGvXxz",
+      "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+      "effects": [
+        {
+          "name": "Shackles of Guilt",
+          "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.PELRry1vqjBzSAlr.Item.gwSgBhkcekCGvXxz",
+          "transfer": false,
+          "_id": "pWDg0MADoohKu40O",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><em>Vulnerable</em> until you break free from your regret with a successful Presence or Strength Roll. If you fail to break free, you lose a Hope.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754135342381,
+            "modifiedTime": 1754135347273,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!PELRry1vqjBzSAlr.gwSgBhkcekCGvXxz.pWDg0MADoohKu40O"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754133847132,
+        "modifiedTime": 1754135342391,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!PELRry1vqjBzSAlr.gwSgBhkcekCGvXxz"
+    }
+  ],
   "effects": [],
   "_key": "!actors!PELRry1vqjBzSAlr"
 }

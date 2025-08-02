@@ -41,7 +41,7 @@
     },
     "attack": {
       "name": "Lava-Coated Claws",
-      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "img": "icons/creatures/claws/claw-scaled-red.webp",
       "_id": "bAM5u66XszRmjaT8",
       "systemPath": "attack",
       "chatDisplay": false,
@@ -73,10 +73,10 @@
               "custom": {
                 "enabled": false
               },
+              "flatMultiplier": 4,
               "dice": "d12",
               "bonus": 4,
-              "multiplier": "flat",
-              "flatMultiplier": 1
+              "multiplier": "flat"
             },
             "applyTo": "hitPoints",
             "type": [
@@ -115,7 +115,8 @@
     "experiences": {
       "vHEB38ko8sY3S0ox": {
         "name": "Hunt from Above",
-        "value": 5
+        "value": 5,
+        "description": ""
       }
     },
     "bonuses": {
@@ -240,7 +241,653 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Relentless (3)",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Molten Scourge can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "DVtxHnbvNDz2POSD",
+      "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754140232475,
+        "modifiedTime": 1754140255711,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!eArAPuB38CNR0ZIM.DVtxHnbvNDz2POSD"
+    },
+    {
+      "name": "Cracked Scales",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Molten Scourge takes damage, roll a number of d6s equal to HP marked. For each result of 4 or higher, you gain a Fear.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "Tw3PBsg0Vo74N3pm",
+      "img": "icons/commodities/leather/scales-brown.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754140257789,
+        "modifiedTime": 1754140294240,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!eArAPuB38CNR0ZIM.Tw3PBsg0Vo74N3pm"
+    },
+    {
+      "name": "Shattering Might",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target takes <strong>4d8+1</strong> physical damage, loses a Hope, and is knocked back to Close range. The Molten Scourge clears a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "YNw3E6309te5JPoM": {
+            "type": "attack",
+            "_id": "YNw3E6309te5JPoM",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target takes <strong>4d8+1</strong> physical damage, loses a Hope, and is knocked back to Close range. The Molten Scourge clears a Stress.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 4,
+                    "dice": "d8",
+                    "bonus": 1,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/creatures/abilities/tail-swipe-green.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "bpjpHxf6tj4i3H4r",
+      "img": "icons/creatures/abilities/tail-swipe-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754140297853,
+        "modifiedTime": 1754140378198,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!eArAPuB38CNR0ZIM.bpjpHxf6tj4i3H4r"
+    },
+    {
+      "name": "Eruption",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to erupt lava from beneath the Molten Scourge’s scales, filling the area within Very Close range with molten lava. All targets in that area must succeed on an Agility Reaction Roll or take <strong>4d6+6</strong> physical damage and be knocked back to Close range. This area remains lava. When a creature other than the Molten Scourge enters that area or acts while inside of it, they must mark 6 HP.</p><p>@Template[type:emanation|range:vc]</p>",
+        "resource": null,
+        "actions": {
+          "OpwKa8tQQoaEIZiS": {
+            "type": "attack",
+            "_id": "OpwKa8tQQoaEIZiS",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to erupt lava from beneath the Molten Scourge’s scales, filling the area within Very Close range with molten lava. All targets in that area must succeed on an Agility Reaction Roll or take <strong>4d6+6</strong> physical damage and be knocked back to Close range. This area remains lava. When a creature other than the Molten Scourge enters that area or acts while inside of it, they must mark 6 HP.</p><p>@Template[type:emanation|range:vc]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 4,
+                    "dice": "d6",
+                    "bonus": 6,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/fire/blast-jet-stream-embers-red.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "NuksKUrbf4yj4vR2",
+      "img": "icons/magic/fire/blast-jet-stream-embers-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754140391422,
+        "modifiedTime": 1754140543080,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!eArAPuB38CNR0ZIM.NuksKUrbf4yj4vR2"
+    },
+    {
+      "name": "Volcanic Breath",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Molten Scourge takes Major damage, roll a <strong>d10</strong>. On a result of 8 or higher, the Molten Scourge breathes a flow of lava in front of them within Far range. All targets in that area must make an Agility Reaction Roll. Targets who fail take <strong>2d10+4</strong> physical damage, mark <strong>1d4</strong> Stress, and are Vulnerable until they clear a Stress. Targets who succeed take half damage and must mark a Stress.</p><p>@Template[type:inFront|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "OhrssSQhmciZt1Rm": {
+            "type": "attack",
+            "_id": "OhrssSQhmciZt1Rm",
+            "systemPath": "actions",
+            "description": "<p>When the Molten Scourge takes Major damage, roll a <strong>d10</strong>. On a result of 8 or higher, the Molten Scourge breathes a flow of lava in front of them within Far range.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d10",
+                "compare": "aboveEqual",
+                "treshold": 8
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll d10",
+            "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
+            "range": ""
+          },
+          "LBNvfABGWcrygpQM": {
+            "type": "attack",
+            "_id": "LBNvfABGWcrygpQM",
+            "systemPath": "actions",
+            "description": "<p>The Molten Scourge breathes a flow of lava in front of them within Far range. All targets in that area must make an Agility Reaction Roll. Targets who fail take <strong>2d10+4</strong> physical damage, mark <strong>1d4</strong> Stress, and are Vulnerable until they clear a Stress. Targets who succeed take half damage and must mark a Stress.</p><p>@Template[type:inFront|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 4,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                },
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "xmzA6NC9zrulhzQs",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "half"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "2mK8kxfp2WBUeBri",
+      "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
+      "effects": [
+        {
+          "name": "Volcanic Breath",
+          "img": "icons/magic/fire/blast-jet-stream-embers-orange.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.eArAPuB38CNR0ZIM.Item.2mK8kxfp2WBUeBri",
+          "transfer": false,
+          "_id": "xmzA6NC9zrulhzQs",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><em>Vulnerable</em> until you clear a Stress.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754140786179,
+            "modifiedTime": 1754140805212,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!eArAPuB38CNR0ZIM.2mK8kxfp2WBUeBri.xmzA6NC9zrulhzQs"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754140546944,
+        "modifiedTime": 1754140786191,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!eArAPuB38CNR0ZIM.2mK8kxfp2WBUeBri"
+    },
+    {
+      "name": "Lava Splash",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Molten Scourge takes Severe damage from an attack within Very Close range, molten blood gushes from the wound and deals <strong>2d10+4</strong> direct physical damage to the attacker.</p>",
+        "resource": null,
+        "actions": {
+          "WtrAv8peQ71OBoO1": {
+            "type": "damage",
+            "_id": "WtrAv8peQ71OBoO1",
+            "systemPath": "actions",
+            "description": "<p>When the Molten Scourge takes Severe damage from an attack within Very Close range, molten blood gushes from the wound and deals <strong>2d10+4</strong> direct physical damage to the attacker.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 4,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Damage",
+            "img": "icons/magic/fire/blast-jet-stream-embers-red.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "3VdQdUDULZCQPvLZ",
+      "img": "icons/magic/fire/blast-jet-stream-embers-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754140813164,
+        "modifiedTime": 1754140859092,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!eArAPuB38CNR0ZIM.3VdQdUDULZCQPvLZ"
+    },
+    {
+      "name": "Ashen Vengeance",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Molten Scourge marks their last HP, replace them with the @UUID[Compendium.daggerheart.adversaries.Actor.pMuXGCSOQaxpi5tb]{Ashen Tyrant} and immediately spotlight them.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "qYFoyDSdZ5X2h245",
+      "img": "icons/magic/fire/flame-burning-eye.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754140865887,
+        "modifiedTime": 1754141385999,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!eArAPuB38CNR0ZIM.qYFoyDSdZ5X2h245"
+    }
+  ],
   "effects": [],
   "sort": 0,
   "ownership": {
@@ -256,8 +903,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753929160832,
-    "modifiedTime": 1753929626056,
-    "lastModifiedBy": "99pQVoplilbkZnOk"
+    "modifiedTime": 1754140948614,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!actors!eArAPuB38CNR0ZIM"
 }

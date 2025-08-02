@@ -34,10 +34,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "solo",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "xbRa5L8BW3nCmroz": {
+        "name": "Boundless Knowledge",
+        "description": "",
+        "value": 4
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +71,57 @@
       }
     },
     "tier": 4,
-    "description": "<p>A towering immortal and incarnation of fate, cursed to only see bad outcomes.</p>"
+    "description": "<p>A towering immortal and incarnation of fate, cursed to only see bad outcomes.</p>",
+    "attack": {
+      "name": "Psychic Attack",
+      "roll": {
+        "bonus": 8
+      },
+      "range": "far",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 4,
+              "dice": "d8",
+              "bonus": 9,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/magic/symbols/rune-sigil-rough-white-teal.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784315,
-    "modifiedTime": 1753922784315,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754137085259,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "befIqd5IYKg6eUz2",
   "sort": 3400000,
@@ -180,7 +224,511 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Terrifying",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Oracle makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "VjdSO1lAdTIAlofM": {
+            "type": "damage",
+            "_id": "VjdSO1lAdTIAlofM",
+            "systemPath": "actions",
+            "description": "<p>When the Oracle makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Lose Hope",
+            "img": "icons/magic/death/skull-energy-light-purple.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "mKSk2GBYLoATQlVT",
+      "img": "icons/magic/death/skull-energy-light-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754137087890,
+        "modifiedTime": 1754137137634,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!befIqd5IYKg6eUz2.mKSk2GBYLoATQlVT"
+    },
+    {
+      "name": "Walls Closing In",
+      "type": "feature",
+      "system": {
+        "description": "<p>When a creature rolls a failure while within Very Far range of the Oracle, they must mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "u9iEsvV5ktvOxNp5": {
+            "type": "damage",
+            "_id": "u9iEsvV5ktvOxNp5",
+            "systemPath": "actions",
+            "description": "<p>When a creature rolls a failure while within Very Far range of the Oracle, they must mark a Stress.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "img": "icons/magic/death/skull-energy-light-white.webp",
+            "range": "veryFar"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "8xbzF3kIC6vPF9ya",
+      "img": "icons/magic/death/skull-energy-light-white.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754137140506,
+        "modifiedTime": 1754137203661,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!befIqd5IYKg6eUz2.8xbzF3kIC6vPF9ya"
+    },
+    {
+      "name": "Pronounce Fate",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to present a target within Far range with a vision of their personal nightmare. The target must make a Knowledge Reaction Roll. On a failure, they lose all Hope and take <strong>2d20+4</strong> direct magic damage. On a success, they take half damage and lose a Hope.</p>",
+        "resource": null,
+        "actions": {
+          "IiSgpy6Axfqo9f9V": {
+            "type": "attack",
+            "_id": "IiSgpy6Axfqo9f9V",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to present a target within Far range with a vision of their personal nightmare. The target must make a Knowledge Reaction Roll. On a failure, they lose all Hope and take <strong>2d20+4</strong> direct magic damage. On a success, they take half damage and lose a Hope.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 4,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "knowledge",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "QoFecwKWBFzrk4Wp",
+      "img": "icons/magic/death/skeleton-skull-soul-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754137212582,
+        "modifiedTime": 1754137307375,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!befIqd5IYKg6eUz2.QoFecwKWBFzrk4Wp"
+    },
+    {
+      "name": "Summon Tormentors",
+      "type": "feature",
+      "system": {
+        "description": "<p>Once per day, <strong>spend 2 Fear</strong> to summon <strong>2d4</strong> Tier 2 or below Minions relevant to one of the PC’s personal nightmares. They appear at Close range relative to that PC.</p>",
+        "resource": null,
+        "actions": {
+          "71UnFo3CBBPtbao3": {
+            "type": "attack",
+            "_id": "71UnFo3CBBPtbao3",
+            "systemPath": "actions",
+            "description": "<p>Once per day, <strong>spend 2 Fear</strong> to summon <strong>2d4</strong> Tier 2 or below Minions relevant to one of the PC’s personal nightmares. They appear at Close range relative to that PC.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 2,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 2,
+                "dice": "d4",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll 2d4",
+            "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "A4yI2RENCuLk6mg9",
+      "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754137311950,
+        "modifiedTime": 1754137401633,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!befIqd5IYKg6eUz2.A4yI2RENCuLk6mg9"
+    },
+    {
+      "name": "Ominous Knowledge",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Oracle sees a mortal creature, they instantly know one of their personal nightmares.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "IPoWZmSQ2kgWek5T",
+      "img": "icons/magic/symbols/mask-yellow-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754137408836,
+        "modifiedTime": 1754137442362,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!befIqd5IYKg6eUz2.IPoWZmSQ2kgWek5T"
+    },
+    {
+      "name": "Vengeful Fate",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Oracle marks HP from an attack within Very Close range, you can <strong>mark a Stress</strong> to knock the attacker back to Far range and deal <strong>2d10+4</strong> physical damage.</p>",
+        "resource": null,
+        "actions": {
+          "vJ7kARKL5H87T1BY": {
+            "type": "damage",
+            "_id": "vJ7kARKL5H87T1BY",
+            "systemPath": "actions",
+            "description": "<p>When the Oracle marks HP from an attack within Very Close range, you can <strong>mark a Stress</strong> to knock the attacker back to Far range and deal <strong>2d10+4</strong> physical damage.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 4,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "name": "Damage",
+            "img": "icons/magic/control/sihouette-hold-beam-green.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "kuxTMjy8lOmNSa8e",
+      "img": "icons/magic/control/sihouette-hold-beam-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754137445003,
+        "modifiedTime": 1754137522098,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!befIqd5IYKg6eUz2.kuxTMjy8lOmNSa8e"
+    }
+  ],
   "effects": [],
   "_key": "!actors!befIqd5IYKg6eUz2"
 }

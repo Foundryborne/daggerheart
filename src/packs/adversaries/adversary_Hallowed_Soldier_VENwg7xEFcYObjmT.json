@@ -17,7 +17,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "minion",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -49,19 +49,65 @@
     },
     "difficulty": 18,
     "tier": 4,
-    "description": "<p>Souls of the faithful, lifted up with divine weaponry.</p>"
+    "description": "<p>Souls of the faithful, lifted up with divine weaponry.</p>",
+    "resources": {
+      "hitPoints": {
+        "max": 1
+      },
+      "stress": {
+        "max": 1
+      }
+    },
+    "attack": {
+      "name": "Sword and Shield",
+      "roll": {
+        "bonus": 2
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": true,
+                "formula": "10"
+              },
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/skills/melee/sword-shield-stylized-white.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784279,
-    "modifiedTime": 1753922784279,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754136221909,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "VENwg7xEFcYObjmT",
   "sort": 3400000,
@@ -164,7 +210,169 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Minion (13)",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Soldier is defeated when they take any damage. For every 13 damage a PC deals to the Soldier, defeat an additional Minion within range the attack would succeed against.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "3QmaqgI6imRUvb7M",
+      "img": "icons/creatures/magical/humanoid-silhouette-aliens-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754136226340,
+        "modifiedTime": 1754136243103,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!VENwg7xEFcYObjmT.3QmaqgI6imRUvb7M"
+    },
+    {
+      "name": "Divine Flight",
+      "type": "feature",
+      "system": {
+        "description": "<p>While the Soldier is flying, <strong>spend a Fear</strong> to move up to Far range instead of Close range before taking an action.</p>",
+        "resource": null,
+        "actions": {
+          "aCRmnQ5n7FrbQykj": {
+            "type": "effect",
+            "_id": "aCRmnQ5n7FrbQykj",
+            "systemPath": "actions",
+            "description": "<p>While the Soldier is flying, <strong>spend a Fear</strong> to move up to Far range instead of Close range before taking an action.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/skills/movement/arrow-upward-yellow.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "6CvDtMEazJ35y2AA",
+      "img": "icons/skills/movement/arrow-upward-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754136250453,
+        "modifiedTime": 1754136300583,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!VENwg7xEFcYObjmT.6CvDtMEazJ35y2AA"
+    },
+    {
+      "name": "Group Attack",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Hallowed Soldiers within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 10 physical damage each. Combine this damage.</p>",
+        "resource": null,
+        "actions": {
+          "eo7J0v1B5zPHul1M": {
+            "type": "effect",
+            "_id": "eo7J0v1B5zPHul1M",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Hallowed Soldiers within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 10 physical damage each. Combine this damage.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ZpypjDbaurs1YSFb",
+      "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754136304256,
+        "modifiedTime": 1754136336717,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!VENwg7xEFcYObjmT.ZpypjDbaurs1YSFb"
+    }
+  ],
   "effects": [],
   "_key": "!actors!VENwg7xEFcYObjmT"
 }

@@ -34,10 +34,21 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "leader",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "aVeeI6FLlefju6FP": {
+        "name": "Forbidden Knowledge",
+        "description": "",
+        "value": 3
+      },
+      "XffQuZmRCeu0asqS": {
+        "name": "Wisdom of Centures",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +76,57 @@
       }
     },
     "tier": 4,
-    "description": "<p>A decaying mage adorned in dark, tattered robes.</p>"
+    "description": "<p>A decaying mage adorned in dark, tattered robes.</p>",
+    "attack": {
+      "name": "Necrotic Blast",
+      "roll": {
+        "bonus": 6
+      },
+      "range": "far",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 4,
+              "dice": "d12",
+              "bonus": 8,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/magic/unholy/beam-ringed-impact-purple.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784221,
-    "modifiedTime": 1753922784221,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754132257690,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "WPEOIGfclNJxWb87",
   "sort": 3400000,
@@ -180,7 +229,591 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Dance Of Death",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>1d4</strong> allies. Attacks they make while spotlighted in this way deal half damage, or full damage if you spend a Fear.</p>",
+        "resource": null,
+        "actions": {
+          "wi2DDvBhlg6sxQoc": {
+            "type": "attack",
+            "_id": "wi2DDvBhlg6sxQoc",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>1d4</strong> allies. Attacks they make while spotlighted in this way deal half damage, or full damage if you spend a Fear.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d4",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Spotlight Allies",
+            "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "jNmMyq5QI2HNgffy",
+      "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754132259208,
+        "modifiedTime": 1754132328745,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!WPEOIGfclNJxWb87.jNmMyq5QI2HNgffy"
+    },
+    {
+      "name": "Beam Of Decay",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark 2 Stress</strong> to cause all targets within Far range to make a Strength Reaction Roll. Targets who fail take <strong>2d20+12</strong> magic damage and you gain a Fear. Targets who succeed take half damage. A target who marks 2 or more HP must also <strong>mark 2 Stress</strong> and becomes <em>Vulnerable</em> until they roll with Hope.</p><p>@Template[type:emanation|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "vaXLESD4sRkQ3Ahn": {
+            "type": "attack",
+            "_id": "vaXLESD4sRkQ3Ahn",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark 2 Stress</strong> to cause all targets within Far range to make a Strength Reaction Roll. Targets who fail take <strong>2d20+12</strong> magic damage and you gain a Fear. Targets who succeed take half damage. A target who marks 2 or more HP must also <strong>mark 2 Stress</strong> and becomes <em>Vulnerable</em> until they roll with Hope.</p><p>@Template[type:emanation|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 2,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d20",
+                    "bonus": 12,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "KGdf2eqcXkdigg0u",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "strength",
+              "difficulty": null,
+              "damageMod": "half"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/unholy/projectile-missile-green.webp",
+            "range": "far"
+          },
+          "ME8AMAjgTAChHa3C": {
+            "type": "healing",
+            "_id": "ME8AMAjgTAChHa3C",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": false,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": ""
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "img": "icons/magic/unholy/orb-hands-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "4EECsXzHFG0RoIg0",
+      "img": "icons/magic/unholy/projectile-missile-green.webp",
+      "effects": [
+        {
+          "name": "Beam Of Decay",
+          "img": "icons/magic/unholy/projectile-missile-green.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.WPEOIGfclNJxWb87.Item.4EECsXzHFG0RoIg0",
+          "transfer": false,
+          "_id": "KGdf2eqcXkdigg0u",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><em>Vulnerable</em> until you roll with Hope.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754132456667,
+            "modifiedTime": 1754132472474,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!WPEOIGfclNJxWb87.4EECsXzHFG0RoIg0.KGdf2eqcXkdigg0u"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754132335603,
+        "modifiedTime": 1754132528280,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!WPEOIGfclNJxWb87.4EECsXzHFG0RoIg0"
+    },
+    {
+      "name": "Open the Gates of Death",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp]{Zombie Legion}, which appears at Close range and immediately takes the spotlight.</p>",
+        "resource": null,
+        "actions": {
+          "gZg3AkzCYUTExjE6": {
+            "type": "effect",
+            "_id": "gZg3AkzCYUTExjE6",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp]{Zombie Legion}, which appears at Close range and immediately takes the spotlight.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/death/undead-zombie-grave-green.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "XxXOrFovbCz9zFxR",
+      "img": "icons/magic/death/undead-zombie-grave-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754132531238,
+        "modifiedTime": 1754133089602,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!WPEOIGfclNJxWb87.XxXOrFovbCz9zFxR"
+    },
+    {
+      "name": "Not Today, My Dears",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Necromancer has marked 7 or more of their HP, you can <strong>spend a Fear</strong> to have them teleport away to a safe location to recover. A PC who succeeds on an Instinct Roll can trace the teleportation magic to their destination.</p>",
+        "resource": null,
+        "actions": {
+          "DX8WPeLVrRBB2CdM": {
+            "type": "attack",
+            "_id": "DX8WPeLVrRBB2CdM",
+            "systemPath": "actions",
+            "description": "<p>When the Necromancer has marked 7 or more of their HP, you can <strong>spend a Fear</strong> to have them teleport away to a safe location to recover. A PC who succeeds on an Instinct Roll can trace the teleportation magic to their destination.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "instinct",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "k4MSykLRoW3qp7Lk",
+      "img": "icons/magic/death/skull-horned-worn-fire-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754132587562,
+        "modifiedTime": 1754132653034,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!WPEOIGfclNJxWb87.k4MSykLRoW3qp7Lk"
+    },
+    {
+      "name": "Your Life Is Mine",
+      "type": "feature",
+      "system": {
+        "description": "<p>Countdown (Loop 2d6). When the Necromancer has marked 6 or more of their HP, activate the countdown. When it triggers, deal <strong>2d10+6</strong> direct magic damage to a target within Close range. The Necromancer then <strong>clears a number of Stress or HP</strong> equal to the number of HP marked by the target from this attack.</p>",
+        "resource": null,
+        "actions": {
+          "Gd70IsPckAFOw0ha": {
+            "type": "effect",
+            "_id": "Gd70IsPckAFOw0ha",
+            "systemPath": "actions",
+            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">Countdown (Loop 2d6). When the Necromancer has marked 6 or more of their HP, activate the countdown.</span></p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdown",
+            "img": "icons/magic/unholy/hand-claw-fire-green.webp",
+            "range": ""
+          },
+          "YzepYov9vEMcBPU1": {
+            "type": "damage",
+            "_id": "YzepYov9vEMcBPU1",
+            "systemPath": "actions",
+            "description": "<p>When the countdown triggers, deal <strong>2d10+6</strong> direct magic damage to a target within Close range. The Necromancer then <strong>clears a number of Stress or HP</strong> equal to the number of HP marked by the target from this attack.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 6,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [],
+            "name": "Damage",
+            "img": "icons/magic/unholy/hand-claw-fire-green.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "FKcuCo0v2U7fVkqq",
+      "img": "icons/magic/unholy/hand-claw-fire-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754132668836,
+        "modifiedTime": 1754135206850,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!WPEOIGfclNJxWb87.FKcuCo0v2U7fVkqq"
+    }
+  ],
   "effects": [],
   "_key": "!actors!WPEOIGfclNJxWb87"
 }

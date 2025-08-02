@@ -33,7 +33,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "support",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -64,19 +64,58 @@
       }
     },
     "tier": 4,
-    "description": "<p>A shifting, formless mass seemingly made of chromatic light.</p>"
+    "description": "<p>A shifting, formless mass seemingly made of chromatic light.</p>",
+    "motivesAndTactics": "Confuse, distract, overwhelm",
+    "attack": {
+      "name": "Corroding Pseudopod",
+      "range": "veryClose",
+      "roll": {
+        "bonus": 7
+      },
+      "img": "icons/creatures/tentacles/tentacles-thing-green.webp",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 4,
+              "dice": "d8",
+              "bonus": 5,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784320,
-    "modifiedTime": 1753922784320,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754139018736,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "ms6nuOl3NFkhPj1k",
   "sort": 3400000,
@@ -179,7 +218,200 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Will-Shattering Touch",
+      "type": "feature",
+      "system": {
+        "description": "<p>When a PC takes damage from the Corrupter, they lose a Hope.</p>",
+        "resource": null,
+        "actions": {
+          "q2PUiGoUQqsMghtW": {
+            "type": "damage",
+            "_id": "q2PUiGoUQqsMghtW",
+            "systemPath": "actions",
+            "description": "<p>When a PC takes damage from the Corrupter, they lose a Hope.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Lose Hope",
+            "img": "icons/magic/unholy/hand-claw-fog-green.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "Z4R768thOzKWzqOo",
+      "img": "icons/magic/unholy/hand-claw-fog-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754139029168,
+        "modifiedTime": 1754139080027,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!ms6nuOl3NFkhPj1k.Z4R768thOzKWzqOo"
+    },
+    {
+      "name": "Disgorge Realiy Flotsam",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to spew partially digested portions of consumed realities at all targets within Close range. Targets must succeed on a Knowledge Reaction Roll or mark 2 Stress.</p><p>@Template[type:emanation|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "6vX6VHpXX7OiGSWH": {
+            "type": "attack",
+            "_id": "6vX6VHpXX7OiGSWH",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> to spew partially digested portions of consumed realities at all targets within Close range. Targets must succeed on a Knowledge Reaction Roll or mark 2 Stress.</p><p>@Template[type:emanation|range:c]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "2"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "knowledge",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/unholy/barrier-shield-glowing-pink.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "gBLVvHbyekmIUITD",
+      "img": "icons/magic/unholy/barrier-shield-glowing-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754139083282,
+        "modifiedTime": 1754139138917,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!ms6nuOl3NFkhPj1k.gBLVvHbyekmIUITD"
+    }
+  ],
   "effects": [],
   "_key": "!actors!ms6nuOl3NFkhPj1k"
 }
