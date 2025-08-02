@@ -179,6 +179,40 @@
         }
     }
 
+    table {
+        font-family: @font-body;
+        border-radius: 3px;
+
+        thead {
+            background-color: light-dark(@dark-blue, @golden);
+            color: light-dark(@beige, @dark-blue);
+        }
+
+        tr:nth-child(odd) {
+            background-color: light-dark(@dark-blue-40, @golden-40);
+            border-color: light-dark(@golden, @dark-blue);
+        }
+        tr:nth-child(even) {
+            background-color: light-dark(@dark-blue-10, @golden-10);
+            border-color: light-dark(@golden, @dark-blue);
+        }
+    }
+
+    pre {
+        code {
+            border-radius: 6px;
+            background-color: @dark;
+            color: @beige;
+            border-color: @dark-blue;
+        }
+    }
+
+    blockquote {
+        border-radius: 3px;
+        border-left: 3px solid light-dark(@dark-blue-40, @golden-40);
+        background-color: light-dark(@dark-blue-10, @golden-10);
+    }
+
     p {
         margin: 0;
     }
