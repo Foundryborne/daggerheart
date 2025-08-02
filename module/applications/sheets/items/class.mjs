@@ -15,7 +15,10 @@ export default class ClassSheet extends DHBaseItemSheet {
             {
                 selector: '.domain-input',
                 options: () => CONFIG.DH.DOMAIN.domains,
-                callback: ClassSheet.#onDomainSelect
+                callback: ClassSheet.#onDomainSelect,
+                tagifyOptions: {
+                    maxTags: () => game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxDomains
+                }
             }
         ],
         dragDrop: [

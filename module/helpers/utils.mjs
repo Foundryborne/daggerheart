@@ -97,7 +97,7 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
                 description: option.description
             };
         }),
-        maxTags: maxTags,
+        maxTags: typeof maxTags === 'function' ? maxTags() : maxTags,
         dropdown: {
             mapValueTo: 'name',
             searchKeys: ['name'],
