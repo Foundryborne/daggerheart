@@ -416,17 +416,17 @@ export default function DHApplicationMixin(Base) {
         static async #createDoc(event, target) {
             const { documentClass, type, inVault, disabled } = target.dataset;
             const parentIsItem = this.document.documentName === 'Item';
-            const parent =
-                this.document.parent?.type === 'character'
-                    ? this.document.parent
-                    : parentIsItem && documentClass === 'Item'
-                      ? type === 'action'
-                          ? this.document.system
-                          : null
-                      : this.document;
+            const featureOnCharacter = this.document.parent?.type === 'character' && type === 'feature';
+            const parent = featureOnCharacter
+                ? this.document.parent
+                : parentIsItem && documentClass === 'Item'
+                  ? type === 'action'
+                      ? this.document.system
+                      : null
+                  : this.document;
 
             let systemData = {};
-            if (parent?.type === 'character' && type === 'feature') {
+            if (featureOnCharacter) {
                 systemData = {
                     originItemType: this.document.type,
                     originId: this.document.id,
