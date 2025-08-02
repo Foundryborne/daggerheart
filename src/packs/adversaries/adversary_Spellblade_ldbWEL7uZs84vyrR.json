@@ -271,7 +271,7 @@
             "type": "attack",
             "_id": "K4VnxigKTiu7hhZx",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> and target a group within Far range. All targets must succeed on an Agility Reaction Roll or take <strong>1d8+2</strong> magic damage. You gain a Fear for each target who marked HP from this attack.</p><p>@Template[type:emanation|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -369,7 +369,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754054061492,
-        "modifiedTime": 1754054159859,
+        "modifiedTime": 1754145003754,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!ldbWEL7uZs84vyrR.a76dNCrcoZOH1RRT"
@@ -387,7 +387,7 @@
             "type": "effect",
             "_id": "N42NPEu7fcVDXEvl",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend 2 Fear</strong> to spotlight up to fi ve allies within Far range.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -434,7 +434,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754054175855,
-        "modifiedTime": 1754054211540,
+        "modifiedTime": 1754145012244,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!ldbWEL7uZs84vyrR.piyJhdHzztabmZ8I"

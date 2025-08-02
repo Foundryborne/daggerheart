@@ -240,7 +240,7 @@
             "type": "damage",
             "_id": "xYphrI8GtMHHuT9a",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Captain marks 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -309,7 +309,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754052051501,
-        "modifiedTime": 1754052096031,
+        "modifiedTime": 1754144724207,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!OROJbjsqagVh7ECV.PsMA3x6giL8tixbf"
@@ -327,7 +327,7 @@
             "type": "effect",
             "_id": "NlgIp0KrmZoS27Xy",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon a Pirate Raiders Horde, which appears at Far range.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -374,7 +374,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754052100431,
-        "modifiedTime": 1754052144255,
+        "modifiedTime": 1754144730870,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!OROJbjsqagVh7ECV.WGEGO0DSOs5cF0EL"
@@ -392,7 +392,7 @@
             "type": "attack",
             "_id": "h2vM7jDTeFttVJKN",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to choose a target who has three or more Pirates within Melee range of them. The Captain leads the Pirates in hurling threats and promises of a watery grave. The target must make a Presence Reaction Roll. On a failure, the target marks <strong>1d4+1</strong> Stress. On a success, they must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -488,7 +488,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754052150420,
-        "modifiedTime": 1754052237336,
+        "modifiedTime": 1754144738313,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!OROJbjsqagVh7ECV.brHnMc0TDiWVT4U6"

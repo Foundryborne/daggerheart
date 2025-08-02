@@ -303,7 +303,7 @@
             "type": "attack",
             "_id": "4ppSeiTdbqnMzWAs",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to have the Burrower burst out of the ground. All creatures within Very Close range must succeed on an Agility Reaction Roll or be knocked over, making them Vulnerable until they next act.</p><p>@Template[type:emanation|range:vc]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -354,7 +354,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Use",
+            "name": "Roll Save",
             "img": "icons/magic/earth/barrier-stone-explosion-red.webp",
             "range": "veryClose"
           }
@@ -423,7 +423,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754143640417
       },
       "_key": "!actors.items!89yAh30vaNQOALlz.ctXYwil2D1zfsekT"
     },
@@ -440,7 +441,7 @@
             "type": "attack",
             "_id": "yd10HwK6Wa3OEvv2",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against all targets in front of the Burrower within Close range. Targets the Burrower succeeds against take <strong>2d6</strong> physical damage and must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP and you gain a Fear.</p><p>@Template[type:inFront|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -556,7 +557,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "lastModifiedBy": "MQSznptE5yLT7kj8",
-        "modifiedTime": 1754012083498
+        "modifiedTime": 1754143653876
       },
       "_key": "!actors.items!89yAh30vaNQOALlz.UpFsnlbZkyvM2Ftv"
     },
@@ -573,7 +574,7 @@
             "type": "damage",
             "_id": "XbtTzOBvlTaxOKTy",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Burrower takes Severe damage, all creatures within Close range are bathed in their acidic blood, taking <strong>1d10</strong> physical damage. This splash covers the ground within Very Close range with blood, and all creatures other than the Burrower who move through it take <strong>1d6</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -627,7 +628,7 @@
             "type": "damage",
             "_id": "xpcp1ECTWF20kxve",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>This splash covers the ground within Very Close range with blood, and all creatures other than the Burrower who move through it take <strong>1d6</strong> physical damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -697,7 +698,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754143695127
       },
       "_key": "!actors.items!89yAh30vaNQOALlz.aNIVT5LKhwLyjKpI"
     }

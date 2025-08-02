@@ -303,7 +303,7 @@
             "type": "damage",
             "_id": "CiA4K6py0eW6eihU",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to deal <strong>2d6+8</strong> direct physical damage to a target with 3 or more bramble tokens.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -380,7 +380,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754145096824
       },
       "_key": "!actors.items!PKSXFuaIHUCoH63A.2HlelvCZA00izcQa"
     },
@@ -397,7 +398,7 @@
             "type": "effect",
             "_id": "Cdw2XxA5NhAQhQse",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Swarm succeeds on an attack, give the target a bramble token. If a target has any bramble tokens, they are Restrained. If a target has 3 or more bramble tokens, they are also Vulnerable. All bramble tokens can be removed by succeeding on a Finesse Roll (12 + the number of bramble tokens) or dealing Major or greater damage to the Swarm. If bramble tokens are removed from a target using a Finesse Roll, a number of Tangle Bramble Minions spawn within Melee range equal to the number of tokens removed.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -485,7 +486,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754145109151
       },
       "_key": "!actors.items!PKSXFuaIHUCoH63A.JRSGc3ozDnKCAvCj"
     }

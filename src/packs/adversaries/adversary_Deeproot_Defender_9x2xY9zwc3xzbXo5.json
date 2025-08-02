@@ -238,7 +238,7 @@
             "type": "damage",
             "_id": "55hCZsJQhJNcZ0lX",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Slam the ground, knocking all targets within Very Close range back to Far range. Each target knocked back this way must mark a Stress.</p><p>@Template[type:emanation|range:vc]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -307,7 +307,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754014765553,
-        "modifiedTime": 1754014836251,
+        "modifiedTime": 1754143942478,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!9x2xY9zwc3xzbXo5.0DSCzAFXy0hV4afJ"
@@ -325,7 +325,7 @@
             "type": "attack",
             "_id": "nQ3vXrrKBizZoaDt",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a target within Close range. On a success, <strong>spend a Fear</strong> to pull them into Melee range, deal <strong>1d6+2</strong> physical damage, and <em>Restrain</em> them until the Defender takes Severe damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -465,7 +465,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754014840148,
-        "modifiedTime": 1754014907017,
+        "modifiedTime": 1754143956037,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!9x2xY9zwc3xzbXo5.rreGFW5TbhUoZf2T"

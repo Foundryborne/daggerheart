@@ -258,14 +258,14 @@
       "_id": "iiOjamlZIuhpDC8W",
       "img": "icons/magic/death/skull-energy-light-purple.webp",
       "system": {
-        "description": "<p> Targets who mark HP from the Zombie’s attacks must also mark a Stress.</p>",
+        "description": "<p>Targets who mark HP from the Zombie’s attacks must also mark a Stress.</p>",
         "resource": null,
         "actions": {
           "JUw16Jag9uTfBmKZ": {
             "type": "damage",
             "_id": "JUw16Jag9uTfBmKZ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Targets who mark HP from the Zombie’s attacks must also mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -309,7 +309,7 @@
               "amount": 1
             },
             "effects": [],
-            "name": "Stress Damage",
+            "name": "Mark Stress",
             "img": "icons/magic/death/skull-energy-light-purple.webp",
             "range": "melee"
           }
@@ -334,7 +334,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754053249379,
-        "modifiedTime": 1754053287602,
+        "modifiedTime": 1754144921344,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!2nXz4ilAY4xuhKLm.iiOjamlZIuhpDC8W"

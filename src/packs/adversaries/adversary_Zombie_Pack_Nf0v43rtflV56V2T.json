@@ -265,7 +265,7 @@
             "type": "effect",
             "_id": "0Im5AEgp8gJaVJHh",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Zombies mark HP from an attack within Melee range, you can <strong>mark a Stress</strong> to make a standard attack against the attacker.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -312,7 +312,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754056184398,
-        "modifiedTime": 1754056281089,
+        "modifiedTime": 1754145211964,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!Nf0v43rtflV56V2T.jQmltra0ovHE33Nx"

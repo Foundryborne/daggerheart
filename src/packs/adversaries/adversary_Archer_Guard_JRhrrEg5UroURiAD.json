@@ -238,7 +238,7 @@
             "type": "attack",
             "_id": "84rwldOFvTPrrHJJ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a target within Far range. On a success, <strong>mark a Stress</strong> to deal <strong>1d12+3</strong> physical damage. If the target marks HP from this attack, they have disadvantage on Agility Rolls until they clear at least 1 HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -385,7 +385,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754012548341,
-        "modifiedTime": 1754012705815,
+        "modifiedTime": 1754143709108,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!JRhrrEg5UroURiAD.DMtd1EXQPlPaoRmV"

@@ -227,7 +227,7 @@
             "type": "damage",
             "_id": "cHaEnBwinVKmoS9s",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When a creature within Melee range deals damage to the Ooze, they take <strong>1d6</strong> direct magic damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -297,7 +297,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754055288007,
-        "modifiedTime": 1754055327095,
+        "modifiedTime": 1754145142986,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!1fkLQXVtmILqfJ44.zsUMP2qNmNpVHwk0"

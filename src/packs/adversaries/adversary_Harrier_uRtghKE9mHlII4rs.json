@@ -271,7 +271,7 @@
             "type": "attack",
             "_id": "FiuiLUbNUL0YKq7w",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When a creature moves into Melee range to make an attack, you can <strong>mark a Stress</strong> before the attack roll to move anywhere within Close range and make an attack against that creature. On a success, deal <strong>1d10+2</strong> physical damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -369,7 +369,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754047898040,
-        "modifiedTime": 1754047992144,
+        "modifiedTime": 1754144359975,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!uRtghKE9mHlII4rs.v8TMp5ATyAjrmJJM"

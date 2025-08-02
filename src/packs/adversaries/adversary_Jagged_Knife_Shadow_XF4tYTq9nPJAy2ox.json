@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "6G5Dasl1pP8pfYkZ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Shadow succeeds on a standard attack that has advantage, they deal 1d6+6 physical damage instead of their standard damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -326,7 +326,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754049227184,
-        "modifiedTime": 1754049294295,
+        "modifiedTime": 1754144471790,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!XF4tYTq9nPJAy2ox.dhycdSd4NYdPOYbP"

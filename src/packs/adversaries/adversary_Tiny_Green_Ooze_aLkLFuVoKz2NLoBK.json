@@ -227,7 +227,7 @@
             "type": "damage",
             "_id": "HfK0u0c7NRppuF1Q",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefi ts (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -296,7 +296,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754055148507,
-        "modifiedTime": 1754055187632,
+        "modifiedTime": 1754145130460,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!aLkLFuVoKz2NLoBK.WpOh5kHHx7lcTvEY"

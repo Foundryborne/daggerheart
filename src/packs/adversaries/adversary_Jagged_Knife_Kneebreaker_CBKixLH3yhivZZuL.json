@@ -274,7 +274,7 @@
             "type": "attack",
             "_id": "uMNSQzNPVPhHT34T",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a target within Melee range. On a success, the target takes no damage but is Restrained and <em>Vulnerable</em>. The target can break free, clearing both conditions, with a successful Strength Roll or is freed automatically if the Kneebreaker takes Major or greater damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -390,7 +390,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754048736567,
-        "modifiedTime": 1754048778059,
+        "modifiedTime": 1754144425310,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!CBKixLH3yhivZZuL.Sa4Nt0eoDjirBKGf"

@@ -237,7 +237,7 @@
             "type": "attack",
             "_id": "FFQvt3sMfuwXxIrf",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>If the Wolf makes a successful standard attack and another Dire Wolf is within Melee range of the target, deal <strong>1d6+5</strong> physical damage instead of their standard damage and you gain a Fear.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -325,7 +325,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754044226022,
-        "modifiedTime": 1754044331531,
+        "modifiedTime": 1754143967972,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!wNzeuQLfLUMvgHlQ.wQXEnMqrl2jo91oy"
@@ -343,7 +343,7 @@
             "type": "attack",
             "_id": "Tvizq1jEfG8FyfNc",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Melee range. On a success, deal <strong>3d4+10</strong> direct physical damage and make them <em>Vulnerable</em> until they clear at least 1 HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -491,7 +491,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754044355011,
-        "modifiedTime": 1754044420728,
+        "modifiedTime": 1754143975342,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!wNzeuQLfLUMvgHlQ.85XrqDvLP30YOO43"

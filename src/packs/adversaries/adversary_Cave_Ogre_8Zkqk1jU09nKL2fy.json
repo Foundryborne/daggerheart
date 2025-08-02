@@ -238,7 +238,7 @@
             "type": "effect",
             "_id": "UoZ6vXRXvWYjpJpZ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>You must <strong>spend a Fear</strong> to spotlight the Ogre. While spotlighted, they can make their standard attack against all targets within range.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -285,7 +285,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754011303846,
-        "modifiedTime": 1754011580092,
+        "modifiedTime": 1754143837385,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8Zkqk1jU09nKL2fy.ynuyMl1sMQYINfcQ"
@@ -337,7 +337,7 @@
             "type": "attack",
             "_id": "3p1qfHy5uHe4H2hB",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to pick up heavy objects and throw them at all targets in front of the Ogre within Far range. Make an attack against these targets. Targets the Ogre succeeds against take <strong>1d10+2</strong> physical damage. If they succeed against more than one target, you gain a Fear.</p><p>@Template[type:inFront|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -419,7 +419,7 @@
             "_id": "pmeromzI4eQOilbp",
             "systemPath": "actions",
             "description": "",
-            "chatDisplay": true,
+            "chatDisplay": false,
             "actionType": "action",
             "cost": [],
             "uses": {
@@ -502,7 +502,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754011680074,
-        "modifiedTime": 1754011917159,
+        "modifiedTime": 1754143860893,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8Zkqk1jU09nKL2fy.zGvaBYJPOOnQVQEn"
@@ -520,7 +520,7 @@
             "type": "damage",
             "_id": "PtTu9bnCJKMySBSV",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Ogre marks 2 or more HP, they can rampage. Move the Ogre to a point within Close range and deal <strong>2d6+3</strong> direct physical damage to all targets in their path.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -590,7 +590,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754011925214,
-        "modifiedTime": 1754012026787,
+        "modifiedTime": 1754143873733,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8Zkqk1jU09nKL2fy.Qxkddj6nQc4RDExW"

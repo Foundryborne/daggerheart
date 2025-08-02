@@ -300,7 +300,7 @@
             "type": "attack",
             "_id": "OswphW4Z1B5oa4ts",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets in the Construct’s path when they move. Targets the Construct succeeds against take <strong>1d8</strong> physical damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -398,7 +398,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754013785248,
-        "modifiedTime": 1754013859298,
+        "modifiedTime": 1754143890173,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!uOP5oT9QzXPlnf3p.93m085bEaKFzvEWT"
@@ -416,7 +416,7 @@
             "type": "effect",
             "_id": "xYACTiZzApmCXXmf",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Before rolling damage for the Construct’s attack, you can <strong>mark a Stress</strong> to gain a +10 bonus to the damage roll. The Construct can then take the spotlight again.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -515,7 +515,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754013871234,
-        "modifiedTime": 1754013921817,
+        "modifiedTime": 1754143897693,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!uOP5oT9QzXPlnf3p.EF6YIDjQ0liFubGA"
@@ -533,7 +533,7 @@
             "type": "attack",
             "_id": "fkIWRdcGPgHgm6VC",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Construct marks their last HP, the magic powering them ruptures in an explosion of force. Make an attack with advantage against all targets within Very Close range. Targets the Construct succeeds against take <strong>1d12+2</strong> magic damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -623,7 +623,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754013980637,
-        "modifiedTime": 1754014038531,
+        "modifiedTime": 1754143905192,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!uOP5oT9QzXPlnf3p.UlGLuV1L33tDWkli"

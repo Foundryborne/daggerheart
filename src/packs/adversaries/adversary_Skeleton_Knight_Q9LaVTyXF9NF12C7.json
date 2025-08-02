@@ -231,7 +231,7 @@
             "type": "damage",
             "_id": "9EiPNrGzwLtuf9g0",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Knight makes a successful attack, all PCs within Close range lose a Hope and you gain a Fear.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -300,7 +300,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754053581860,
-        "modifiedTime": 1754053647447,
+        "modifiedTime": 1754144961490,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!Q9LaVTyXF9NF12C7.OZKEz4eK9h7zCbuf"
@@ -318,7 +318,7 @@
             "type": "attack",
             "_id": "vMv4monku9LOSxUZ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the Knight succeeds against take <strong>1d8+2</strong> physical damage and must mark a Stress.</p><p>@Template[type:emanation|range:vc]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -441,7 +441,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754053666861,
-        "modifiedTime": 1754053803001,
+        "modifiedTime": 1754144968936,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!Q9LaVTyXF9NF12C7.WdVLwy9RNkVlZnCL"
@@ -459,7 +459,7 @@
             "type": "attack",
             "_id": "NtGhAVVOJF6ZGBRv",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Knight is defeated, they make an attack against a target within Very Close range (prioritizing the creature who killed them). On a success, the target takes <strong>1d4+8</strong> physical damage and loses <strong>1d4</strong> Hope.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -549,7 +549,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754053741722,
-        "modifiedTime": 1754053792513,
+        "modifiedTime": 1754144976680,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!Q9LaVTyXF9NF12C7.STesKV2KB61PlwCh"

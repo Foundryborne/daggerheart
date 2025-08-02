@@ -270,7 +270,7 @@
             "type": "damage",
             "_id": "ejadA9jjMnVNVczS",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Raiders mark 2 or fewer HP from an attack within Melee range, the attacker must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -339,7 +339,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754052352218,
-        "modifiedTime": 1754052393630,
+        "modifiedTime": 1754144754380,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!5YgEajn0wa4i85kC.N401rF937fLXMuMA"

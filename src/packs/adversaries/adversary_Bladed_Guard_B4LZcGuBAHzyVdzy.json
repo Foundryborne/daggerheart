@@ -237,7 +237,7 @@
             "type": "attack",
             "_id": "3lbeEeJdjzPn0MoG",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>A creature who tries to move within Very Close range of the Guard must succeed on an Agility Roll. If additional Bladed Guards are standing in a line alongside the first, and each is within Melee range of another guard in the line, the Difficulty increases by the total number of guards in that line.</p>",
             "chatDisplay": true,
             "actionType": "passive",
             "cost": [],
@@ -275,7 +275,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Use",
+            "name": "Block",
             "img": "icons/equipment/shield/shield-round-boss-wood-brown.webp",
             "range": "veryClose"
           }
@@ -300,7 +300,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754012824140,
-        "modifiedTime": 1754012926434,
+        "modifiedTime": 1754143793947,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!B4LZcGuBAHzyVdzy.qEn4baWgkjKtmILp"
@@ -318,7 +318,7 @@
             "type": "attack",
             "_id": "TK5R00afB1RIA6gp",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>mark a Stress</strong> to Restrain the target until they break free with a successful attack, Finesse Roll, or Strength Roll.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -433,7 +433,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754012944888,
-        "modifiedTime": 1754013114603,
+        "modifiedTime": 1754143803011,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!B4LZcGuBAHzyVdzy.9gizFt9ovKL05DXu"

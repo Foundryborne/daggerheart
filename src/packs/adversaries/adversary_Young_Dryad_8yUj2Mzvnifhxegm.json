@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "0VOUNQKNjwlLhnRW",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>1d4</strong> allies within range of a target they can attack without moving. On a success, their attacks deal half damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -307,7 +307,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754055838842,
-        "modifiedTime": 1754055987216,
+        "modifiedTime": 1754145187760,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8yUj2Mzvnifhxegm.lXhVuh31S2N4NVPG"
@@ -325,7 +325,7 @@
             "type": "effect",
             "_id": "cXOjhfMgKh2yD1mc",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to form a cage around a target within Very Close range and Restrain them until they’re freed with a successful Strength Roll. When a creature makes an action roll against the cage, they must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -424,7 +424,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754055992231,
-        "modifiedTime": 1754056038239,
+        "modifiedTime": 1754145198821,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8yUj2Mzvnifhxegm.i8NoUGUTNY2C5NhC"

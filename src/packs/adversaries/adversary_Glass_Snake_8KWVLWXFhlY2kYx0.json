@@ -232,7 +232,7 @@
             "type": "damage",
             "_id": "H1nUSOudbtha1lnC",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>On a successful attack within Melee range against the Snake, the attacker must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -301,7 +301,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754047117565,
-        "modifiedTime": 1754047173751,
+        "modifiedTime": 1754144118922,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8KWVLWXFhlY2kYx0.Efa6t9Ow8b1DRyZV"
@@ -319,7 +319,7 @@
             "type": "attack",
             "_id": "2UzeQYL5HeyF3zwh",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Very Close range. Targets the Snake succeeds against take <strong>1d6+1</strong> physical damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -415,7 +415,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754047177610,
-        "modifiedTime": 1754047224249,
+        "modifiedTime": 1754144128032,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8KWVLWXFhlY2kYx0.Ro9XCeXsTOT9SXyo"
@@ -433,7 +433,7 @@
             "type": "effect",
             "_id": "yx5fjMLLwSnvSbqs",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to introduce a <strong>d6</strong> Spitter Die.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -468,7 +468,7 @@
             "type": "attack",
             "_id": "Ds6KlQKZCOhh5OMT",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>All targets in front of the Snake within Far range must succeed on an Agility Reaction Roll or take <strong>1d4</strong> physical damage.</p><p>@Template[type:inFront|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -536,6 +536,52 @@
             "name": "Spit Attack",
             "img": "icons/magic/acid/projectile-needles-salvo-green.webp",
             "range": "far"
+          },
+          "xccwknU2xHUwQSdn": {
+            "type": "attack",
+            "_id": "xccwknU2xHUwQSdn",
+            "systemPath": "actions",
+            "description": "<p>When the Snake is in the spotlight, roll the spitter die. On a result of 5 or higher, do a spit Attack.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": "aboveEqual",
+                "treshold": 5
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll d6",
+            "img": "icons/magic/acid/projectile-needles-salvo-green.webp",
+            "range": ""
           }
         },
         "originItemType": null,
@@ -603,7 +649,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754047231449,
-        "modifiedTime": 1754047430569,
+        "modifiedTime": 1754144287335,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8KWVLWXFhlY2kYx0.LR5XHauNtWcl18CY"
