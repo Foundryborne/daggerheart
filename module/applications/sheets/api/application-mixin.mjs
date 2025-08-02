@@ -480,7 +480,7 @@ export default function DHApplicationMixin(Base) {
          */
         static async #toChat(_event, target) {
             let doc = await getDocFromElement(target);
-            return doc.toChat(this.document.id);
+            return doc.toChat(doc.uuid);
         }
 
         /**

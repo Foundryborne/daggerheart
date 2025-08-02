@@ -15,8 +15,8 @@
         <div class="description">{{{description}}}</div>
     </details>
     <footer class="ability-card-footer">
-        {{#each actions as |action index|}}
-            <button class="ability-use-button" data-index="{{index}}">
+        {{#each actions as |action|}}
+            <button class="ability-use-button" id="{{action.id}}">
                 {{action.name}}
             </button>
             {{#if action.cost.value}}<div class="ability-card-action-cost">{{action.cost.value}} {{action.cost.type}}</div>{{/if}}            

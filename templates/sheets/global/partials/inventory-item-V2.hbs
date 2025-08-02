@@ -123,9 +123,11 @@ Parameters:
         <i class="fa-regular fa-message"></i>
       </a>
       {{/if}}
+      {{#unless hideContextMenu}}
       <a data-action="triggerContextMenu" data-tooltip="DAGGERHEART.UI.Tooltip.moreOptions">
         <i class="fa-solid fa-ellipsis-vertical"></i>
       </a>
+      {{/unless}}
       {{/if}}
     </div>
     {{/unless}}
