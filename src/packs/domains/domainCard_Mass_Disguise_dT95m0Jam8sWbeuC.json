@@ -34,7 +34,7 @@
           "amount": null
         },
         "name": "Cast",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/skills/social/diplomacy-unity-alliance.webp",
         "range": "close"
       }
     }
@@ -48,7 +48,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784480,
-    "modifiedTime": 1754167496382,
+    "modifiedTime": 1754173571050,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "dT95m0Jam8sWbeuC",

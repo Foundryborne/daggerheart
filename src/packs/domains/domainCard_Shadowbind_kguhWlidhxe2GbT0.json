@@ -58,7 +58,7 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/magic/control/debuff-energy-snare-blue.webp",
         "range": "veryClose"
       }
     }
@@ -72,7 +72,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784512,
-    "modifiedTime": 1754163012690,
+    "modifiedTime": 1754173148090,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "kguhWlidhxe2GbT0",
@@ -80,7 +80,7 @@
   "effects": [
     {
       "name": "Restrained",
-      "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+      "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
       "origin": "Compendium.daggerheart.domains.Item.kguhWlidhxe2GbT0",
       "transfer": false,
       "_id": "RFB4V0V4bDJ6vCL2",
@@ -119,7 +119,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754162763257,
-        "modifiedTime": 1754162780420,
+        "modifiedTime": 1754173285450,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!kguhWlidhxe2GbT0.RFB4V0V4bDJ6vCL2"

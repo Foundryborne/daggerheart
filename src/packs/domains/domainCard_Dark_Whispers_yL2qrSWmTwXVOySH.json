@@ -61,7 +61,7 @@
           "damageMod": "none"
         },
         "name": "Ask a question",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/magic/control/mouth-smile-deception-purple.webp",
         "range": ""
       }
     }
@@ -75,7 +75,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784442,
-    "modifiedTime": 1754167354439,
+    "modifiedTime": 1754173556084,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "yL2qrSWmTwXVOySH",

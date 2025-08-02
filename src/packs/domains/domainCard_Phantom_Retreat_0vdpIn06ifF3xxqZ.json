@@ -37,7 +37,7 @@
           "amount": null
         },
         "name": "Activate",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/magic/air/air-smoke-casting.webp",
         "range": ""
       },
       "1AJRAbFtDx8Pm26q": {
@@ -67,7 +67,7 @@
           "amount": null
         },
         "name": "Retreat",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/magic/control/silhouette-hold-beam-blue.webp",
         "range": ""
       }
     }
@@ -81,7 +81,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784491,
-    "modifiedTime": 1754167196913,
+    "modifiedTime": 1754173535317,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "0vdpIn06ifF3xxqZ",

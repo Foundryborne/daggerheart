@@ -53,7 +53,7 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/magic/symbols/runes-triangle-blue.webp",
         "range": "close"
       },
       "6jmgLC3wQweWSeLF": {
@@ -88,7 +88,7 @@
           "amount": null
         },
         "name": "Silence",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/magic/unholy/orb-glowing-purple.webp",
         "range": "veryClose"
       }
     }
@@ -102,7 +102,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784470,
-    "modifiedTime": 1754165807901,
+    "modifiedTime": 1754173492452,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "gwmYasmfgXZ7tFS6",
@@ -110,7 +110,7 @@
   "effects": [
     {
       "name": "Silenced",
-      "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+      "img": "icons/svg/sound-off.svg",
       "origin": "Compendium.daggerheart.domains.Item.gwmYasmfgXZ7tFS6",
       "transfer": false,
       "_id": "5hzzPTFccUSSNHgp",
@@ -149,7 +149,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754165807883,
-        "modifiedTime": 1754165861354,
+        "modifiedTime": 1754173508037,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!gwmYasmfgXZ7tFS6.5hzzPTFccUSSNHgp"

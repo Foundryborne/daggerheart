@@ -42,7 +42,7 @@
           "amount": null
         },
         "name": "Pull into Chokehold",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/skills/melee/hand-grip-staff-teal.webp",
         "range": ""
       },
       "IwiUBldoDTUgT6mh": {
@@ -76,7 +76,7 @@
         },
         "effects": [],
         "name": "Damage",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
         "range": ""
       }
     }
@@ -90,7 +90,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784434,
-    "modifiedTime": 1754163073494,
+    "modifiedTime": 1754173330136,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "R5GYUalYXLLFRlNl",
@@ -98,7 +98,7 @@
   "effects": [
     {
       "name": "Chokehold",
-      "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+      "img": "icons/skills/wounds/injury-pain-body-orange.webp",
       "origin": "Compendium.daggerheart.domains.Item.R5GYUalYXLLFRlNl",
       "transfer": false,
       "_id": "yzGem7IfViJdAv1H",
@@ -137,7 +137,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754162879103,
-        "modifiedTime": 1754162905044,
+        "modifiedTime": 1754173350355,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!R5GYUalYXLLFRlNl.yzGem7IfViJdAv1H"

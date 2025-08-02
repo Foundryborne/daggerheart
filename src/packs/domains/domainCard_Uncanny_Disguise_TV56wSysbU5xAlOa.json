@@ -38,7 +38,7 @@
           }
         ],
         "name": "Don Facade",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/magic/control/debuff-energy-hold-pink.webp",
         "range": ""
       },
       "OoNND7VcWoBQdtFK": {
@@ -68,7 +68,7 @@
           "amount": null
         },
         "name": "Spend Token",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp",
         "range": ""
       }
     },
@@ -88,7 +88,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784537,
-    "modifiedTime": 1754162049871,
+    "modifiedTime": 1754173066189,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "TV56wSysbU5xAlOa",
@@ -96,7 +96,7 @@
   "effects": [
     {
       "name": "Disguised",
-      "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+      "img": "icons/magic/control/mouth-smile-deception-purple.webp",
       "origin": "Compendium.daggerheart.domains.Item.TV56wSysbU5xAlOa",
       "transfer": false,
       "_id": "ZMDyDwI5RHe427O4",
@@ -140,7 +140,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754161815542,
-        "modifiedTime": 1754161855579,
+        "modifiedTime": 1754173051633,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!TV56wSysbU5xAlOa.ZMDyDwI5RHe427O4"

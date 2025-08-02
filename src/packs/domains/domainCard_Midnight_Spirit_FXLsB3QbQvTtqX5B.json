@@ -37,7 +37,7 @@
           "amount": null
         },
         "name": "Summon Spirit",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/creatures/magical/spirit-undead-ghost-blue.webp",
         "range": ""
       },
       "YVSMa2Igxp6DhNpG": {
@@ -118,7 +118,7 @@
           "damageMod": "none"
         },
         "name": "Attack Adversary",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/creatures/magical/spirit-undead-ghost-purple.webp",
         "range": "veryFar"
       }
     }
@@ -132,7 +132,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784482,
-    "modifiedTime": 1754162271046,
+    "modifiedTime": 1754173097924,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "FXLsB3QbQvTtqX5B",

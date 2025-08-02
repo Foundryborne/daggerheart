@@ -38,7 +38,7 @@
         }
       },
       "_id": "A6gMv7TbMu3nV3NT",
-      "img": "icons/magic/life/heart-cross-blue.webp",
+      "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
       "changes": [],
       "disabled": true,
       "duration": {
@@ -65,7 +65,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754167964426,
-        "modifiedTime": 1754168275198,
+        "modifiedTime": 1754173673528,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!A0XzD6MmBXYdk7Ps.A6gMv7TbMu3nV3NT"
@@ -82,7 +82,7 @@
         }
       },
       "_id": "a1hDCNYDvF4dWt58",
-      "img": "icons/magic/life/heart-cross-blue.webp",
+      "img": "icons/skills/targeting/crosshair-bars-yellow.webp",
       "changes": [
         {
           "key": "system.advantageSources",
@@ -116,7 +116,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754168154541,
-        "modifiedTime": 1754168265336,
+        "modifiedTime": 1754173683534,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!A0XzD6MmBXYdk7Ps.a1hDCNYDvF4dWt58"

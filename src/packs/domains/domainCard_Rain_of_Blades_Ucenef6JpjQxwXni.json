@@ -86,7 +86,7 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/skills/melee/spear-tips-three-green.webp",
         "range": "veryClose"
       },
       "CUKoYyDxQhNc0pLs": {
@@ -137,7 +137,7 @@
         },
         "effects": [],
         "name": "Damage Against Vulnerable",
-        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "img": "icons/skills/melee/spear-tips-three-purple.webp",
         "range": ""
       }
     }
@@ -151,7 +151,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784497,
-    "modifiedTime": 1754159524553,
+    "modifiedTime": 1754172953058,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "Ucenef6JpjQxwXni",

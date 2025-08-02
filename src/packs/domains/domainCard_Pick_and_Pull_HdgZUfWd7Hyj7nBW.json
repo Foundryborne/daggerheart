@@ -37,7 +37,7 @@
         }
       },
       "_id": "6IkjF8qNR0NVvvv8",
-      "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+      "img": "icons/tools/hand/lockpicks-steel-grey.webp",
       "changes": [
         {
           "key": "system.advantageSources",
@@ -83,7 +83,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754158749088,
-        "modifiedTime": 1754158980630,
+        "modifiedTime": 1754172908254,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!HdgZUfWd7Hyj7nBW.6IkjF8qNR0NVvvv8"
