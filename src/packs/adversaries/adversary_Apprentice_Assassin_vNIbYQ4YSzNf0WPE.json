@@ -262,7 +262,7 @@
             "type": "effect",
             "_id": "vgguNWz8vG8aoLXR",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Apprentice Assassins within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 4 physical damage each. Combine this damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -310,7 +310,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754070539112,
-        "modifiedTime": 1754070582456,
+        "modifiedTime": 1754142025997,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!vNIbYQ4YSzNf0WPE.4wT7CmM1DJEPcraF"

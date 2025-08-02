@@ -345,7 +345,7 @@
             "type": "attack",
             "_id": "KwsxjI3jBzmxgkPu",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to attack a target within Far range. On a success, deal <strong>2d10+2</strong> physical damage and knock the target over, making them <em>Vulnerable</em> until they next act.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -493,7 +493,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754142603575
       },
       "_key": "!actors.items!OMQ0v6PE8s1mSU0K.MabIQE1Kjn60j08J"
     },
@@ -508,7 +509,7 @@
             "type": "attack",
             "_id": "NtgA9EQPF2Rdb9KK",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a target within Very Close range. On a success, deal <strong>2d4+3</strong> physical damage and the target must succeed on an Agility Reaction Roll or become temporarily Restrained within the Eagle’s massive talons. If the target is Restrained, the Eagle immediately lifts into the air to Very Far range above the battlefi eld while holding them.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -648,7 +649,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754142613580
       },
       "_key": "!actors.items!OMQ0v6PE8s1mSU0K.NEOQ0E9AGSSIDm4v"
     },
@@ -663,7 +665,7 @@
             "type": "damage",
             "_id": "1tO018UgL0VG51ti",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>While flying, the Eagle can drop a Restrained target they are holding. When dropped, the target is no longer Restrained but starts falling. If their fall isn’t prevented during the PCs’ next action, the target takes <strong>2d20</strong> physical damage when they land.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -733,7 +735,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754142622906
       },
       "_key": "!actors.items!OMQ0v6PE8s1mSU0K.jY0ynjYvbS6E3NgJ"
     }

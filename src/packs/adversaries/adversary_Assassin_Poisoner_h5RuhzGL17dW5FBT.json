@@ -236,7 +236,7 @@
             "type": "effect",
             "_id": "L83tU1TgmqoH9SSn",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Targets who mark HP from the Assassin’s attacks are Vulnerable until they clear a HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -328,7 +328,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754073069218,
-        "modifiedTime": 1754073116024,
+        "modifiedTime": 1754142079163,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!h5RuhzGL17dW5FBT.Fz2lnUEeBxsDpx0G"
@@ -429,7 +429,7 @@
             "type": "effect",
             "_id": "sp7RfJRQJsEUm09m",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Drop a smoke bomb that fills the air within Close range with smoke, Dizzying all targets in this area. Dizzied targets have disadvantage on their next action roll, then clear the condition.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -519,7 +519,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754073225985,
-        "modifiedTime": 1754073324182,
+        "modifiedTime": 1754142105436,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!h5RuhzGL17dW5FBT.lAmiK8wVxjyHwKlp"

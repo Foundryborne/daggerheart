@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "33xlM2ph77SSUfBs",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a target within Melee range. On a success, deal <strong>1d8+2</strong> physical damage and the Thief steals one item or consumable from the target’s inventory.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -325,7 +325,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754080943420,
-        "modifiedTime": 1754081019757,
+        "modifiedTime": 1754142758679,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!niBpVU7yeo5ccskE.Cgk36WXthA9LwOYb"
@@ -341,7 +341,7 @@
             "type": "attack",
             "_id": "sq0q1l2Go4GduR3B",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to reveal a snare trap set anywhere on the battlefi eld by the Thief. All targets within Very Close range of the trap must succeed on an Agility Reaction Roll (13) or be pulled off their feet and suspended upside down. A target is Restrained and Vulnerable until they break free, ending both conditions, with a successful Finesse or Strength Roll (13).</p><p>@Template[type:rect|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -458,7 +458,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754081025242,
-        "modifiedTime": 1754081140681,
+        "modifiedTime": 1754142767652,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!niBpVU7yeo5ccskE.tP2DD751nOLxFVps"

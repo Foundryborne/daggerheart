@@ -235,7 +235,7 @@
             "type": "damage",
             "_id": "9T1g3FH38cnCRG8k",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Hunter makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -305,7 +305,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754082464443,
-        "modifiedTime": 1754082528689,
+        "modifiedTime": 1754142893376,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!mVV7a7KQAORoPMgZ.cID8rYBYealYs7mO"
@@ -321,7 +321,7 @@
             "type": "effect",
             "_id": "LUNsI29woLk4m2wo",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to curse a target within Very Close range with a necrotic Deathlock until the end of the scene. Attacks made by the Hunter against a Deathlocked target deal direct damage. The Hunter can only maintain one Deathlock at a time.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -419,7 +419,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754082532133,
-        "modifiedTime": 1754082586776,
+        "modifiedTime": 1754142902555,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!mVV7a7KQAORoPMgZ.r1T70u9n3bRfUTX5"
@@ -435,7 +435,7 @@
             "type": "attack",
             "_id": "wxOfNoEogH1EU0Jb",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>1d4</strong> allies. Attacks they make while spotlighted in this way deal half damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -507,7 +507,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754082607409,
-        "modifiedTime": 1754082662364,
+        "modifiedTime": 1754142911016,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!mVV7a7KQAORoPMgZ.5AQTqW1GDidHfU3a"
@@ -519,11 +519,33 @@
         "description": "<p>Countdown (Loop 1d6). When the Hunter is in the spotlight for the fi rst time, activate the countdown. When it triggers, move the Hunter in a straight line to a point within Far range and make an attack against all targets in their path. Targets the Hunter succeeds against take <strong>2d8+2</strong> physical damage.</p><p>@Template[type:ray|range:f]</p>",
         "resource": null,
         "actions": {
-          "145xZxtiQjao3XKe": {
-            "type": "attack",
-            "_id": "145xZxtiQjao3XKe",
+          "JGGTfZWI65nywjSu": {
+            "type": "effect",
+            "_id": "JGGTfZWI65nywjSu",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Countdown (Loop 1d6). When the Hunter is in the spotlight for the first time, activate the countdown.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdown",
+            "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
+            "range": ""
+          },
+          "VjiFxuzfAaq5N1jy": {
+            "type": "attack",
+            "_id": "VjiFxuzfAaq5N1jy",
+            "systemPath": "actions",
+            "description": "<p>When the countdown triggers, move the Hunter in a straight line to a point within Far range and make an attack against all targets in their path. Targets the Hunter succeeds against take <strong>2d8+2</strong> physical damage.</p><p>@Template[type:ray|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -614,7 +636,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754082669471,
-        "modifiedTime": 1754082750517,
+        "modifiedTime": 1754142979339,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!mVV7a7KQAORoPMgZ.IOCG3J20wUHvyvvh"

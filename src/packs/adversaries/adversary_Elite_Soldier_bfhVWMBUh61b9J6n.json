@@ -264,7 +264,7 @@
             "type": "attack",
             "_id": "XquYMA2xJZUKSmXQ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to move into Melee range of an ally and make a standard attack against a target within Very Close range. On a success, deal <strong>2d10+2</strong> physical damage and the ally can clear a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -362,7 +362,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754142511820
       },
       "_key": "!actors.items!bfhVWMBUh61b9J6n.ojiIZHBd0sMLxSUE"
     },
@@ -377,7 +378,7 @@
             "type": "effect",
             "_id": "dwpQNx63V6hL1mXZ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Soldier is within Very Close range of a knight or other noble who would take damage, you can mark a Stress to move into Melee range of them and take the damage instead.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -424,7 +425,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754142520242
       },
       "_key": "!actors.items!bfhVWMBUh61b9J6n.zcfyEY29yWqJtZbl"
     }

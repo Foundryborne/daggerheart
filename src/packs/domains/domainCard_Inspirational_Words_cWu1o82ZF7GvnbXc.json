@@ -9,7 +9,6 @@
     "recallCost": 1,
     "level": 1,
     "type": "ability",
-
     "resource": {
       "type": "simple",
       "value": 0,
@@ -244,7 +243,6 @@
         "range": ""
       }
     }
-
   },
   "flags": {},
   "_stats": {
@@ -255,9 +253,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784473,
-
     "modifiedTime": 1754101191119,
-
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "cWu1o82ZF7GvnbXc",

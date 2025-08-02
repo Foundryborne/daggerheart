@@ -263,7 +263,7 @@
             "type": "attack",
             "_id": "RrKQktP8MI4YQR5k",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Before the Flickerfly makes an attack, roll a d6. On a result of 4 or higher, the target’s Evasion is halved against this attack.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -384,7 +384,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754080188281,
-        "modifiedTime": 1754080318705,
+        "modifiedTime": 1754142700531,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!MYXmTx2FHcIjdfYZ.PHHEvM6IDFFZ8LSl"
@@ -400,7 +400,7 @@
             "type": "attack",
             "_id": "0wL3ieMrXEb2gcxe",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to create a magically dazzling display that grapples the minds of nearby foes. All targets within Close range must make an Instinct Reaction Roll. For each target who failed, you gain a Fear and the Flickerfl y learns one of the target’s fears.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -464,7 +464,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754080328898,
-        "modifiedTime": 1754081217532,
+        "modifiedTime": 1754142709272,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!MYXmTx2FHcIjdfYZ.Bt7MqMkPpPpzWksK"
@@ -480,7 +480,7 @@
             "type": "attack",
             "_id": "USEkCakSzYcZbBwY",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Countdown (Loop 1d6). When the Flickerfl y takes damage for the fi rst time, activate the countdown. When it triggers, the Flickerfly breathes hallucinatory gas on all targets in front of them up to Far range. Targets must succeed on an Instinct Reaction Roll or be tormented by fearful hallucinations. Targets whose fears are known to the Flickerfl y have disadvantage on this roll. Targets who fail must mark a Stress and lose a Hope.</p><p>@Template[type:inFront|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -595,7 +595,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754080402680,
-        "modifiedTime": 1754081225309,
+        "modifiedTime": 1754142717997,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!MYXmTx2FHcIjdfYZ.EjfM83eVCdcVGC3c"

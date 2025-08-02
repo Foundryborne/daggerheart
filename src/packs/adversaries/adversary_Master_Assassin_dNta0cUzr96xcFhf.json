@@ -274,7 +274,7 @@
             "type": "effect",
             "_id": "vKRDbD07bqR317Zv",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to spotlight a number of other Assassins equal to the Assassin’s unmarked Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -322,7 +322,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754081423583,
-        "modifiedTime": 1754081462564,
+        "modifiedTime": 1754142790359,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dNta0cUzr96xcFhf.za6Qr0CjI9Kb4I0U"
@@ -338,7 +338,7 @@
             "type": "effect",
             "_id": "tYkZ9BwjlOg61BhE",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Assassin successfully makes a standard attack against a <em>Vulnerable</em> target, you can <strong>spend a Fear</strong> to deal Severe damage instead of their standard damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -386,7 +386,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754081466397,
-        "modifiedTime": 1754081698475,
+        "modifiedTime": 1754142798924,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dNta0cUzr96xcFhf.s0WcpK43WN2ptqNc"

@@ -269,7 +269,7 @@
             "type": "attack",
             "_id": "FX9jwg5ZNjAWnti3",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Mark a Stress and roll a <strong>d6</strong>. The Box uses the corresponding move:</p><ol><li><p><strong>Mana Beam</strong></p></li><li><p><strong>Fire Jets</strong></p></li><li><p><strong>Trample</strong></p></li><li><p><strong>Shocking Gas</strong></p></li><li><p><strong>Stunning Clap</strong></p></li><li><p><strong>Psionic Whine</strong></p></li></ol>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -341,7 +341,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754073845291,
-        "modifiedTime": 1754074092816,
+        "modifiedTime": 1754142121782,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.ZqfLMjVkbUwDw4p6"
@@ -357,7 +357,7 @@
             "type": "attack",
             "_id": "Co09oXMw0yBjGaws",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>The Box fires a searing beam. Make an attack against a target within Far range. On a success, deal <strong>2d10+2</strong> magic damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -448,7 +448,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754074104758,
-        "modifiedTime": 1754074169215,
+        "modifiedTime": 1754142132743,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.lqyN4CQop53BzarW"
@@ -464,7 +464,7 @@
             "type": "attack",
             "_id": "hRAKaOdzQXLYBNVV",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>The Box shoots into the air, spinning and releasing jets of flame. Make an attack against all targets within Close range. Targets the Box succeeds against take <strong>2d8</strong> physical damage.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -555,7 +555,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754074175443,
-        "modifiedTime": 1754074254385,
+        "modifiedTime": 1754142142523,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.IHQoqt39T772FVMs"
@@ -571,7 +571,7 @@
             "type": "attack",
             "_id": "IOgPMu12Xnn33TfG",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>The Box rockets around erratically. Make an attack against all PCs within Close range. Targets the Box succeeds against take <strong>1d6+5</strong> physical damage and are Vulnerable until their next roll with Hope.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -714,7 +714,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754074260007,
-        "modifiedTime": 1754074361978,
+        "modifiedTime": 1754142151952,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.XtnByqUr9AuYU9Ip"
@@ -730,7 +730,7 @@
             "type": "attack",
             "_id": "ky4OMl558J5wCbDp",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>The Box sprays out a silver gas sparking with lightning. All targets within Close range must succeed on a Finesse Reaction Roll or mark 3 Stress.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -820,7 +820,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754074364206,
-        "modifiedTime": 1754081281415,
+        "modifiedTime": 1754142161096,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.3bPURmuwQs06fThQ"
@@ -836,7 +836,7 @@
             "type": "attack",
             "_id": "LQtopkrtSlCQ5MAr",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>The Box leaps and their sides clap, creating a small sonic boom. All targets within Very Close range must succeed on a Strength Reaction Roll or become <em>Vulnerable</em> until the cube is defeated.</p><p>@Template[type:emanation|range:vc]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -879,7 +879,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Attack",
+            "name": "Roll Save",
             "img": "icons/magic/sonic/explosion-impact-shock-wave.webp",
             "range": "veryClose"
           }
@@ -952,7 +952,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754074454965,
-        "modifiedTime": 1754074555182,
+        "modifiedTime": 1754142182845,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.ijIaKjroxq3xZd9Z"
@@ -968,7 +968,7 @@
             "type": "attack",
             "_id": "3R3pGOUj4rHaUzPK",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>The Box releases a cluster of mechanical bees whose buzz rattles mortal minds. All targets within Close range must succeed on a Presence Reaction Roll or take <strong>2d4+9</strong> direct magic damage.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -1059,7 +1059,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754074558281,
-        "modifiedTime": 1754074641366,
+        "modifiedTime": 1754142197090,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.JCue4ko61bjhedXv"
@@ -1075,7 +1075,7 @@
             "type": "healing",
             "_id": "3XOvKoYz4CqMNrU9",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Before rolling damage for the Box’s attack, you can <strong>mark a Stress</strong> to add a <strong>d6</strong> to the damage roll. Additionally, you gain a Fear.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -1168,7 +1168,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754074647690,
-        "modifiedTime": 1754074721984,
+        "modifiedTime": 1754142206511,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.ITzpRJr2jWK0Ksmp"
@@ -1184,7 +1184,7 @@
             "type": "attack",
             "_id": "oCpv4zi9jtEpo0K1",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Box marks their last HP, the magic powering them ruptures in an explosion of force. All targets within Close range must succeed on an Instinct Reaction Roll or take <strong>2d8+1</strong> magic damage</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -1275,7 +1275,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754074737929,
-        "modifiedTime": 1754074811945,
+        "modifiedTime": 1754142216691,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.YvfzPyJbbv2ia6Yp"

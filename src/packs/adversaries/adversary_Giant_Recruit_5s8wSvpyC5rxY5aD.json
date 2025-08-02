@@ -256,7 +256,7 @@
             "type": "effect",
             "_id": "DjbPQowW1OdBD9Zn",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Giant Recruits within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 5 physical damage each. Combine this damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -304,7 +304,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754079291678,
-        "modifiedTime": 1754079327480,
+        "modifiedTime": 1754142639306,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!5s8wSvpyC5rxY5aD.FMgB28X1LammRInU"

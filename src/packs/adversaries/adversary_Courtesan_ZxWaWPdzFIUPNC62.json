@@ -240,7 +240,7 @@
             "type": "damage",
             "_id": "dRtDCrAPLc1GYqBs",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When a PC within Close range makes a Presence Roll, you can <strong>mark a Stress</strong> to cast a gaze toward the aftermath. On the target’s failure, they must mark 2 Stress and are <em>Vulnerable</em> until the scene ends or they succeed on a social action against the Courtesan. On the target’s success, they must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -370,7 +370,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754075457515,
-        "modifiedTime": 1754075591784,
+        "modifiedTime": 1754142315839,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!ZxWaWPdzFIUPNC62.rSMUPC5GhR982ifg"

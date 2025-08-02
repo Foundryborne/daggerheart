@@ -416,7 +416,7 @@
             "type": "attack",
             "_id": "Mb079uPkaZgpo9y3",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>If the Knight is mounted, move up to Far range and make a standard attack against a target. On a success, deal <strong>2d8+4</strong> physical damage and the target must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -530,7 +530,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754080711147,
-        "modifiedTime": 1754080767205,
+        "modifiedTime": 1754142733317,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!7ai2opemrclQe3VF.djKDZawLnGF1zkbY"
@@ -546,7 +546,7 @@
             "type": "effect",
             "_id": "V5fLHHdTOita6u9f",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to spotlight <strong>[[/r 1d4+1]]</strong> allies. Attacks they make while spotlighted in this way deal half damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -594,7 +594,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754080771017,
-        "modifiedTime": 1754080864859,
+        "modifiedTime": 1754142743842,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!7ai2opemrclQe3VF.RoxNNIn0m9rHQDH8"

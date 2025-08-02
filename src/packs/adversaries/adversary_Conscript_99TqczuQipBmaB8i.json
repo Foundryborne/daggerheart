@@ -255,7 +255,7 @@
             "type": "effect",
             "_id": "cbAvPSIhwBMBTI3D",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Conscripts within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 6 physical damage each. Combine this damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -303,7 +303,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754075401268,
-        "modifiedTime": 1754075437940,
+        "modifiedTime": 1754142299386,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!99TqczuQipBmaB8i.MWfKUGzT1YBmLvpn"

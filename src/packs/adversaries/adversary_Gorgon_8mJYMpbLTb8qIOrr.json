@@ -269,7 +269,7 @@
             "type": "effect",
             "_id": "fnTd5BjBAK46vRRk",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Gorgon makes a successful standard attack, the target Glows until the end of the scene and can’t become <em>Hidden</em>. Attack rolls made against a Glowing target have advantage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -359,7 +359,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754079448870,
-        "modifiedTime": 1754079525294,
+        "modifiedTime": 1754142654062,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8mJYMpbLTb8qIOrr.NepVGKOo1lHYjA1F"
@@ -375,7 +375,7 @@
             "type": "attack",
             "_id": "ryfj8eiYYNGJPtBg",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack roll against a target within Melee range using the Gorgon’s protective snakes. On a success, mark a Stress to deal <strong>2d10+4</strong> physical damage and the target must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -491,7 +491,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754079563580,
-        "modifiedTime": 1754079636868,
+        "modifiedTime": 1754142664204,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8mJYMpbLTb8qIOrr.9SO2ov36lFH2YV0S"
@@ -507,7 +507,7 @@
             "type": "attack",
             "_id": "ySkX0wOpEFqtgeD9",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Gorgon takes damage from an attack within Close range, you can <strong>spend a Fear</strong> to force the attacker to make an Instinct Reaction Roll. On a failure, they begin to turn to stone, marking a HP and starting a Petrification Countdown (4). This countdown ticks down when the Gorgon is attacked. When it triggers, the target must make a death move. If the Gorgon is defeated, all petrification countdowns end.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -579,7 +579,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754079643285,
-        "modifiedTime": 1754079735211,
+        "modifiedTime": 1754142680813,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8mJYMpbLTb8qIOrr.047o6OtNlUwLG1H1"

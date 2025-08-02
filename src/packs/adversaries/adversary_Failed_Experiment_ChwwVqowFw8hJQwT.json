@@ -354,7 +354,7 @@
             "type": "effect",
             "_id": "i3FANnO1t9AzJdTp",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to spotlight the Experiment as an additional GM move instead of spending Fear.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -402,7 +402,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754077960964,
-        "modifiedTime": 1754078015297,
+        "modifiedTime": 1754142534263,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!ChwwVqowFw8hJQwT.g0h3Zo6xqgfSlyxi"
