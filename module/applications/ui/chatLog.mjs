@@ -33,6 +33,9 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.duality-action-effect').forEach(element =>
             element.addEventListener('click', event => this.onApplyEffect(event, data.message))
         );
+        html.querySelectorAll('.simple-roll-button').forEach(element =>
+            element.addEventListener('click', event => this.onRollSimple(event, data.message))
+        );
         html.querySelectorAll('.target-container').forEach(element => {
             element.addEventListener('mouseenter', this.hoverTarget);
             element.addEventListener('mouseleave', this.unhoverTarget);
@@ -211,7 +214,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     async onDamage(event, message) {
         event.stopPropagation();
         const { isHit, targets } = this.getTargetList(event, message);
-        console.log(message, isHit, targets)
 
         if (message.system.onSave && isHit) {
             const pendingingSaves = message.system.targets.filter(
@@ -249,6 +251,33 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (message.system.hasHealing) target.actor.takeHealing(damages);
             else target.actor.takeDamage(damages);
         }
+    }
+
+    async onRollSimple(event, message) {
+        const buttonType = event.target.dataset.type ?? 'damage',
+            total = message.rolls.reduce((a,c) => a + Roll.fromJSON(c).total, 0),
+            damages = {
+                'hitPoints': {
+                    parts: [
+                        {
+                            applyTo: 'hitPoints',
+                            damageTypes: [],
+                            total
+                        }
+                    ]
+                }
+            },
+            targets = Array.from(game.user.targets);
+
+        if (targets.length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+
+       targets.forEach(target => {
+            if(buttonType === 'healing')
+                target.actor.takeHealing(damages);
+            else
+                target.actor.takeDamage(damages);
+        })
     }
 
     /**

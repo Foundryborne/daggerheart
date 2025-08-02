@@ -32,7 +32,6 @@ export default class DHDamageAction extends DHBaseAction {
     }
 
     async rollDamage(event, data) {
-        // console.log(data)
         const systemData = data.system ?? data;
 
         let formulas = this.damage.parts.map(p => ({

@@ -2197,6 +2197,9 @@
                 "deathMove": {
                     "title": "Death Move"
                 },
+                "dicePool": {
+                    "title": "Dice Pool"
+                },
                 "domainCard": {
                     "title": "Domain Card"
                 },

@@ -56,6 +56,8 @@ Hooks.once('init', () => {
     };
 
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, DHRoll, DualityRoll, D20Roll, DamageRoll];
+    Roll.CHAT_TEMPLATE = "systems/daggerheart/templates/ui/chat/foundryRoll.hbs";
+    Roll.TOOLTIP_TEMPLATE = "systems/daggerheart/templates/ui/chat/foundryRollTooltip.hbs";
     CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
     const { DocumentSheetConfig } = foundry.applications.apps;

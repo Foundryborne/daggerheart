@@ -64,24 +64,8 @@ export default class DHRoll extends Roll {
         }
 
         // Create Chat Message
-        // if (roll instanceof CONFIG.Dice.daggerheart.DamageRoll && Object.values(config.roll)?.length) {
-        //     const pool = foundry.dice.terms.PoolTerm.fromRolls(
-        //         Object.values(config.roll).flatMap(r => r.parts.map(p => p.roll))
-        //     );
-        //     roll = Roll.fromTerms([pool]);
-        // }
-        if (config.source?.message) {
-            if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
-            const chatMessage = ui.chat.collection.get(config.source.message);
-            chatMessage.update({ 'system.damage': config.damage });
-        } else {
-            console.log(roll, config)
+        if (!config.source?.message)
             config.message = await this.toMessage(roll, config);
-            // if(roll._evaluated) {
-            //     const cls = getDocumentClass('ChatMessage');
-            //     await cls.create(config.message, { rollMode: config.selectedRollMode });
-            // }
-        }
     }
 
     static postEvaluate(roll, config = {}) {

@@ -1,0 +1,19 @@
+{{#if parts.length}}
+    <div class="dice-tooltip">
+        <div class="wrapper">
+            <fieldset>
+                <legend>
+                    {{localize "DAGGERHEART.UI.Chat.dicePool.title"}}
+                </legend>
+                <div class="roll-dice">
+                    {{#each parts}}
+                        {{#each rolls}}
+                            <div class="roll-die">
+                                <div class="dice {{classes}}">{{result}}</div>
+                            </div>
+                        {{/each}}
+                    {{/each}}
+                </div>
+        </div>
+    </div>
+{{/if}}
