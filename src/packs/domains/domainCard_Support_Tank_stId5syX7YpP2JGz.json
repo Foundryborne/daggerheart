@@ -8,22 +8,57 @@
     "domain": "valor",
     "recallCost": 2,
     "level": 4,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "YEzqOIIV4HqzCKx4": {
+        "type": "effect",
+        "_id": "YEzqOIIV4HqzCKx4",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 2,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "friendly",
+          "amount": 1
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
+        "range": "close"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784525,
-    "modifiedTime": 1753922784525,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754068394379,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "stId5syX7YpP2JGz",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!stId5syX7YpP2JGz"
 }

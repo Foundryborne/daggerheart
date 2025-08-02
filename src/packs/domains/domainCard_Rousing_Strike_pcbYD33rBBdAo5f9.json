@@ -8,22 +8,49 @@
     "domain": "valor",
     "recallCost": 1,
     "level": 5,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "rnt24R8xyeyBrJS0": {
+        "type": "effect",
+        "_id": "rnt24R8xyeyBrJS0",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest"
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Critically Succeed",
+        "img": "icons/magic/light/hand-sparks-glow-yellow.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784506,
-    "modifiedTime": 1753922784506,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754068578206,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "pcbYD33rBBdAo5f9",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!pcbYD33rBBdAo5f9"
 }

@@ -8,22 +8,57 @@
     "domain": "valor",
     "recallCost": 3,
     "level": 9,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "h5j4TcmhwtAhPScT": {
+        "type": "effect",
+        "_id": "h5j4TcmhwtAhPScT",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784475,
-    "modifiedTime": 1753922784475,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754069527612,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "YWCRplmtwpCjpq5i",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!YWCRplmtwpCjpq5i"
 }

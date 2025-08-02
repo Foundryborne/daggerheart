@@ -1,0 +1,36 @@
+{
+  "name": "Bare Bones",
+  "img": "systems/daggerheart/assets/icons/domains/valor.svg",
+  "type": "domainCard",
+  "folder": "QpOL7jPbMBzH96qR",
+  "system": {
+    "description": "<p></p><p class=\"Body-Foundation\">When you choose not to equip armor, you have a base Armor Score of 3 + your Strength and use the following as your base damage thresholds:</p><ul><li class=\"vertical-card-list-found\"><em><strong>Tier 1:</strong></em> 9/19</li><li class=\"vertical-card-list-found\"><em><strong>Tier 2:</strong></em> 11/24</li><li class=\"vertical-card-list-found\"><em><strong>Tier 3:</strong></em> 13/31</li><li class=\"vertical-card-list-found\"><em><strong>Tier 4:</strong></em> 15/38</li></ul><p>Equip the below armor to use Bare Bones.</p><p>@UUID[Compendium.daggerheart.armors.Item.ITAjcigTcUw5pMCN]{Bare Bones}</p>",
+    "domain": "valor",
+    "recallCost": 0,
+    "level": 1,
+    "type": "ability",
+    "resource": null,
+    "actions": {},
+    "inVault": false
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754067006722,
+    "modifiedTime": 1754067006722,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "_id": "l5D9kq901JDESaXw",
+  "sort": 0,
+  "_key": "!items!l5D9kq901JDESaXw"
+}

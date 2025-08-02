@@ -8,22 +8,68 @@
     "domain": "valor",
     "recallCost": 1,
     "level": 3,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "kyPCNwzwrbb3LhWm": {
+        "type": "healing",
+        "_id": "kyPCNwzwrbb3LhWm",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest"
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "friendly",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Critically Succeed",
+        "img": "icons/magic/light/hand-sparks-glow-yellow.webp",
+        "range": "veryClose"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784441,
-    "modifiedTime": 1753922784441,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754068077011,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "ABp9pUfBS69NomTD",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!ABp9pUfBS69NomTD"
 }

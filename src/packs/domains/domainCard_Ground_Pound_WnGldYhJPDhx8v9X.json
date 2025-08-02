@@ -4,26 +4,112 @@
   "type": "domainCard",
   "folder": "FUzQxkv4gFc46SIs",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to strike the ground where you stand and make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"strength\" nexus=\"daggerheart\"><strong>Strength</strong></tooltip><strong> Roll</strong> against all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. Targets you succeed against are thrown back to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range and must make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (17). Targets who fail take <strong>4d10+8</strong> damage. Targets who succeed take half damage.        </p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to strike the ground where you stand and make a <strong>Strength Roll</strong> against all targets within Very Close range. Targets you succeed against are thrown back to Far range and must make a Reaction Roll (17). Targets who fail take <strong>4d10+8</strong> damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
     "domain": "valor",
     "recallCost": 2,
     "level": 8,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "FOrohOCnzfdBl4sM": {
+        "type": "attack",
+        "_id": "FOrohOCnzfdBl4sM",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 2,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 4,
+                "dice": "d10",
+                "bonus": 8
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": "strength",
+          "difficulty": 17,
+          "damageMod": "half"
+        },
+        "name": "Strike Ground",
+        "img": "icons/magic/earth/barrier-stone-brown-green.webp",
+        "range": "veryClose"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784466,
-    "modifiedTime": 1753922784466,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754069309346,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "WnGldYhJPDhx8v9X",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!WnGldYhJPDhx8v9X"
 }
