@@ -8,7 +8,7 @@ import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
-import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/_module.mjs';
+import { DHRoll, DualityRoll, D20Roll, DamageRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
@@ -42,16 +42,10 @@ Hooks.once('init', () => {
     ];
 
     CONFIG.Dice.daggerheart = {
-        DualityDie: DualityDie,
         DHRoll: DHRoll,
         DualityRoll: DualityRoll,
         D20Roll: D20Roll,
         DamageRoll: DamageRoll
-    };
-
-    CONFIG.Dice.terms = {
-        ...CONFIG.Dice.terms,
-        DualityDie
     };
 
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, DHRoll, DualityRoll, D20Roll, DamageRoll];
