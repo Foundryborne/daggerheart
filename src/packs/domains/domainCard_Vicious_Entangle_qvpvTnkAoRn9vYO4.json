@@ -8,22 +8,233 @@
     "domain": "sage",
     "recallCost": 1,
     "level": 1,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "lrA95PnD2vOwwmgN": {
+        "type": "attack",
+        "_id": "lrA95PnD2vOwwmgN",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d8",
+                "bonus": 1
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "Xh0wrgRUuYpwChBU",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Cast",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      },
+      "vh1IKRvsU4w57lBt": {
+        "type": "effect",
+        "_id": "vh1IKRvsU4w57lBt",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "2xzOqTaPJQzGqFJv",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Restrain Another",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784541,
-    "modifiedTime": 1753922784541,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754115314027,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "qvpvTnkAoRn9vYO4",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Restrained",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
+      "transfer": false,
+      "_id": "Xh0wrgRUuYpwChBU",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "restrain"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754114720468,
+        "modifiedTime": 1754114732996,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!qvpvTnkAoRn9vYO4.Xh0wrgRUuYpwChBU"
+    },
+    {
+      "name": "Restrained",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
+      "transfer": false,
+      "_id": "2xzOqTaPJQzGqFJv",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "restrain"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754114785336,
+        "modifiedTime": 1754114795043,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!qvpvTnkAoRn9vYO4.2xzOqTaPJQzGqFJv"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!qvpvTnkAoRn9vYO4"
 }

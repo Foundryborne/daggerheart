@@ -8,22 +8,307 @@
     "domain": "sage",
     "recallCost": 1,
     "level": 6,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "bOjFayylsEZmRhmX": {
+        "type": "healing",
+        "_id": "bOjFayylsEZmRhmX",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "2"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "stress",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Unique Food (Stress)",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      },
+      "gNjJLRtEvKB9SCS2": {
+        "type": "healing",
+        "_id": "gNjJLRtEvKB9SCS2",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "2"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hope",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Beautiful Relic (Hope)",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      },
+      "mZGaBlk8JBcXVCrw": {
+        "type": "effect",
+        "_id": "mZGaBlk8JBcXVCrw",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "cTf5gEem5Gt4fLS4",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Arcane Rune (Spellcast Roll)",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      },
+      "8RE4q25nr2SJii0W": {
+        "type": "healing",
+        "_id": "8RE4q25nr2SJii0W",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "2"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Healing Vial (HP)",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784456,
-    "modifiedTime": 1753922784456,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754118728173,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "06UapZuaA5S6fAKl",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Arcane Rune",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.06UapZuaA5S6fAKl",
+      "transfer": false,
+      "_id": "cTf5gEem5Gt4fLS4",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.roll.spellcast.bonus",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">+2 to a </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Spellcast Roll</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754118672156,
+        "modifiedTime": 1754118695003,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!06UapZuaA5S6fAKl.cTf5gEem5Gt4fLS4"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!06UapZuaA5S6fAKl"
 }

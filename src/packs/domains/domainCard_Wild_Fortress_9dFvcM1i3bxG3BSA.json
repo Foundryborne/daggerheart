@@ -8,22 +8,109 @@
     "domain": "sage",
     "recallCost": 1,
     "level": 5,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "WlcAj8f6THUudbWp": {
+        "type": "attack",
+        "_id": "WlcAj8f6THUudbWp",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 13,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Cast",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      },
+      "C5hsjpOvsGJ6LU9R": {
+        "type": "effect",
+        "_id": "C5hsjpOvsGJ6LU9R",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 2,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Grow Barricade",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    },
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "3",
+      "icon": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784546,
-    "modifiedTime": 1753922784546,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754118079066,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "9dFvcM1i3bxG3BSA",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!9dFvcM1i3bxG3BSA"
 }

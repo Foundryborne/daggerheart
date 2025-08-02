@@ -8,22 +8,258 @@
     "domain": "sage",
     "recallCost": 2,
     "level": 7,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "JVrYhunJ2qr5uOcx": {
+        "type": "effect",
+        "_id": "JVrYhunJ2qr5uOcx",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "VOSFaQHZbmhMyXwi",
+            "value": 1,
+            "keyIsID": true,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "Mmax64mlLPYxJPB7",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Double Agility",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      },
+      "zdu8GkVWby3nz8Pa": {
+        "type": "effect",
+        "_id": "zdu8GkVWby3nz8Pa",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "VOSFaQHZbmhMyXwi",
+            "value": 1,
+            "keyIsID": true,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "p03IjcyigL4b2WD1",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Double Instinct",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    },
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "max": "1",
+      "icon": "",
+      "recovery": "shortRest"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784507,
-    "modifiedTime": 1753922784507,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754119059593,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "VOSFaQHZbmhMyXwi",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Increase Spellcasting",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "7zMpgedPII5GIYUl",
+      "img": "icons/magic/life/heart-cross-blue.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.roll.spellcast.bonus",
+          "mode": 2,
+          "value": "+2",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754118827696,
+        "modifiedTime": 1754119018524,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!VOSFaQHZbmhMyXwi.7zMpgedPII5GIYUl"
+    },
+    {
+      "name": "Double Agility",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.VOSFaQHZbmhMyXwi",
+      "transfer": false,
+      "_id": "Mmax64mlLPYxJPB7",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.traits.agility.value",
+          "mode": 1,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754118919916,
+        "modifiedTime": 1754118995885,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!VOSFaQHZbmhMyXwi.Mmax64mlLPYxJPB7"
+    },
+    {
+      "name": "Double Instinct",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.VOSFaQHZbmhMyXwi",
+      "transfer": false,
+      "_id": "p03IjcyigL4b2WD1",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.traits.instinct.value",
+          "mode": 1,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754119059577,
+        "modifiedTime": 1754119092441,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!VOSFaQHZbmhMyXwi.p03IjcyigL4b2WD1"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!VOSFaQHZbmhMyXwi"
 }

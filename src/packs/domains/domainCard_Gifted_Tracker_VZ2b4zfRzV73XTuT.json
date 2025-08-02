@@ -8,22 +8,114 @@
     "domain": "sage",
     "recallCost": 0,
     "level": 1,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "7rHfF3ck1FuixcIC": {
+        "type": "effect",
+        "_id": "7rHfF3ck1FuixcIC",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "step": 1,
+            "keyIsID": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "47Oh2weCdmuvKHM9",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Ask Questions",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784461,
-    "modifiedTime": 1753922784461,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754114056129,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "VZ2b4zfRzV73XTuT",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Gifted Tracker",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.VZ2b4zfRzV73XTuT",
+      "transfer": false,
+      "_id": "47Oh2weCdmuvKHM9",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "+1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">When you encounter creatures you’ve tracked in this way, gain a +1 bonus to your </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Evasion</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> against them.</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754114056078,
+        "modifiedTime": 1754114073478,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!VZ2b4zfRzV73XTuT.47Oh2weCdmuvKHM9"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!VZ2b4zfRzV73XTuT"
 }

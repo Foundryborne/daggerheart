@@ -8,22 +8,281 @@
     "domain": "sage",
     "recallCost": 1,
     "level": 2,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "qygTUSNldYNbP7vN": {
+        "type": "attack",
+        "_id": "qygTUSNldYNbP7vN",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "dImnF8ZT2rVybiIP",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Tekaira's Armored Beetles: Stress",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      },
+      "533qzPIjcccpiMey": {
+        "type": "effect",
+        "_id": "533qzPIjcccpiMey",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Keep Beetles",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      },
+      "nugW0yPOG08pqBAT": {
+        "type": "attack",
+        "_id": "nugW0yPOG08pqBAT",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Fire Flies: Cast",
+        "img": "icons/svg/item-bag.svg",
+        "range": "close"
+      },
+      "Q7EST1G1neHjL6ng": {
+        "type": "damage",
+        "_id": "Q7EST1G1neHjL6ng",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 2,
+                "dice": "d8",
+                "bonus": 3
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Fire Flies: Deal Damage",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784438,
-    "modifiedTime": 1753922784438,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754115340411,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "rZPH0BY8Sznc9sFG",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Reduced Damage",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.rZPH0BY8Sznc9sFG",
+      "transfer": false,
+      "_id": "dImnF8ZT2rVybiIP",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.resistance.magical.reduction",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.resistance.magical.reduction",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754115061694,
+        "modifiedTime": 1754115134882,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!rZPH0BY8Sznc9sFG.dImnF8ZT2rVybiIP"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!rZPH0BY8Sznc9sFG"
 }

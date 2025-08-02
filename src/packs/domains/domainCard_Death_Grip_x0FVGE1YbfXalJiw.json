@@ -8,22 +8,372 @@
     "domain": "sage",
     "recallCost": 1,
     "level": 4,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "wsXZCKqGKfOUHE1M": {
+        "type": "attack",
+        "_id": "wsXZCKqGKfOUHE1M",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "wMXCIQxqLS9IbsEK",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Pull",
+        "img": "icons/svg/item-bag.svg",
+        "range": "close"
+      },
+      "x62SXSpT9bjIEP5e": {
+        "type": "attack",
+        "_id": "x62SXSpT9bjIEP5e",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "2"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "stress",
+              "type": [],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "bZ0xgZ6TT2099OYp",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Constrict",
+        "img": "icons/svg/item-bag.svg",
+        "range": "close"
+      },
+      "9416a3EogNFLRdUX": {
+        "type": "attack",
+        "_id": "9416a3EogNFLRdUX",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "reaction",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 3,
+                "dice": "d6",
+                "bonus": 2
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "Oe95zWWY41nH8y5l",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Hit All Adversaries Between",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784444,
-    "modifiedTime": 1753922784444,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754117032268,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "x0FVGE1YbfXalJiw",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Restrained",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.x0FVGE1YbfXalJiw",
+      "transfer": false,
+      "_id": "wMXCIQxqLS9IbsEK",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "restrain"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754116402812,
+        "modifiedTime": 1754116413812,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!x0FVGE1YbfXalJiw.wMXCIQxqLS9IbsEK"
+    },
+    {
+      "name": "Restrained",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.x0FVGE1YbfXalJiw",
+      "transfer": false,
+      "_id": "bZ0xgZ6TT2099OYp",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "restrain"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754116465068,
+        "modifiedTime": 1754116474175,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!x0FVGE1YbfXalJiw.bZ0xgZ6TT2099OYp"
+    },
+    {
+      "name": "Restrained",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.x0FVGE1YbfXalJiw",
+      "transfer": false,
+      "_id": "Oe95zWWY41nH8y5l",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "restrain"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754117032244,
+        "modifiedTime": 1754117038968,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!x0FVGE1YbfXalJiw.Oe95zWWY41nH8y5l"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!x0FVGE1YbfXalJiw"
 }
