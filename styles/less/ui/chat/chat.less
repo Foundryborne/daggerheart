@@ -549,11 +549,11 @@
                 display: flex;
                 font-size: var(--font-size-14);
                 color: var(--text-color);
-                padding: 5px 0;
 
                 .button-target-selection {
                     flex: 1;
                     text-align: center;
+                    padding: 5px 0;
                 }
 
                 .button-target-selection:hover,
@@ -652,6 +652,7 @@
                 overflow: hidden;
                 grid-template-rows: 1fr;
                 transition: grid-template-rows 250ms ease;
+                margin: 0;
 
                 .wrapper {
                     display: flex;
@@ -692,7 +693,7 @@
                     justify-content: center;
                     height: 25px;
                     width: 25px;
-                    &.is-absolute {
+                    &:not(:first-child) {
                         position: absolute;
                         bottom: 0;
                         right: 0;

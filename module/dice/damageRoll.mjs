@@ -16,7 +16,7 @@ export default class DamageRoll extends DHRoll {
         const parts = config.roll.map(r => this.postEvaluate(r));
 
         config.damage = this.unifyDamageRoll(parts);
-        config.targetSelection = config.targets?.length
+        // config.targetSelection = config.targets?.length
     }
 
     static postEvaluate(roll, config = {}) {

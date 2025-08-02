@@ -114,7 +114,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     async use(event, ...args) {
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
-        if (this.chatDisplay) this.toChat();
+        if (this.chatDisplay) await this.toChat();
 
         let config = this.prepareConfig(event);
         for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
@@ -139,11 +139,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             config = await this.actor.diceRoll(config);
             if (!config) return;
         }
-
+        
         if (this.doFollowUp()) {
-            if (this.rollDamage) await this.rollDamage(event, config);
-            if (this.rollHealing) await this.rollHealing(event, config);
-            if (this.trigger) await this.trigger(event, config);
+            if (this.rollDamage && this.damage.parts.length) await this.rollDamage(event, config);
+            else if (this.trigger) await this.trigger(event, config);
+            else if(this.hasSave || this.hasEffect) {
+                const roll = new Roll('');
+                roll._evaluated = true;
+                if(this.hasTarget) config.targetSelection = config.targets.length > 0;
+                await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
+            }
         }
 
         // Consume resources
@@ -254,6 +259,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* SAVE */
 
     /* EFFECTS */
+    get hasEffect() {
+        return this.effects?.length > 0;
+    }
+
     async applyEffects(event, data, targets) {
         targets ??= data.system.targets;
         const force = true; /* Where should this come from? */
@@ -343,10 +352,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     async updateChatMessage(message, targetId, changes, chain = true) {
         setTimeout(async () => {
             const chatMessage = ui.chat.collection.get(message._id),
-                msgTargets = chatMessage.system.targets,
-                msgTarget = msgTargets.find(mt => mt.id === targetId);
+                msgTarget = chatMessage.system.targets.find(mt => mt.id === targetId) ?? chatMessage.system.oldTargets.find(mt => mt.id === targetId);
             msgTarget.saved = changes;
-            await chatMessage.update({ 'system.targets': msgTargets });
+            await chatMessage.update(
+                    {
+                        system: {
+                            targets: chatMessage.system.targets,
+                            oldTargets: chatMessage.system.oldTargets
+                        }
+                    }
+                );
         }, 100);
         if (chain) {
             if (message.system.source.message)

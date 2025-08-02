@@ -30,9 +30,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.roll-all-save-button').forEach(element =>
             element.addEventListener('click', event => this.onRollAllSave(event, data.message))
         );
-        html.querySelectorAll('.duality-action-effect').forEach(element =>
-            element.addEventListener('click', event => this.onApplyEffect(event, data.message))
-        );
         html.querySelectorAll('.simple-roll-button').forEach(element =>
             element.addEventListener('click', event => this.onRollSimple(event, data.message))
         );
@@ -44,14 +41,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.button-target-selection').forEach(element => {
             element.addEventListener('click', event => this.onTargetSelection(event, data.message));
         });
-        html.querySelectorAll('.damage-button').forEach(element =>
-            element.addEventListener('click', event => this.onDamage(event, data.message))
-        );
         html.querySelectorAll('.healing-button').forEach(element =>
             element.addEventListener('click', event => this.onHealing(event, data.message))
-        );
-        html.querySelectorAll('.target-indicator').forEach(element =>
-            element.addEventListener('click', this.onToggleTargets)
         );
         html.querySelectorAll('.ability-use-button').forEach(element =>
             element.addEventListener('click', event => this.abilityUseButton(event, data.message))
@@ -149,45 +140,10 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         });
     }
 
-    async onApplyEffect(event, message) {
-        event.stopPropagation();
-        const actor = await this.getActor(message.system.source.actor);
-        if (!actor || !game.user.isGM) return true;
-        if (message.system.source.item && message.system.source.action) {
-            const action = this.getAction(actor, message.system.source.item, message.system.source.action);
-            if (!action || !action?.applyEffects) return;
-            const { isHit, targets } = this.getTargetList(event, message);
-            if (targets.length === 0)
-                ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-            await action.applyEffects(event, message, targets);
-        }
-    }
-
     onTargetSelection(event, message) {
         event.stopPropagation();
-        const targetSelection = Boolean(event.target.dataset.targetHit),
-            msg = ui.chat.collection.get(message._id);
-        if (msg.system.targetSelection === targetSelection) return;
-        // if (targetSelection !== true && !Array.from(game.user.targets).length)
-        //     return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-        msg.system.targetSelection = targetSelection;
-        msg.system.prepareDerivedData();
-        ui.chat.updateMessage(msg);
-    }
-
-    getTargetList(event, message) {
-        const targetSelection = event.target
-                .closest('.message-content')
-                .querySelector('.button-target-selection.target-selected'),
-            isHit = Boolean(targetSelection?.dataset?.targetHit) ?? false;
-        return {
-            isHit,
-            targets: isHit
-                ? message.system.targets
-                      .filter(t => t.hit === true)
-                      .map(target => game.canvas.tokens.documentCollection.find(t => t.actor.uuid === target.actorId))
-                : Array.from(game.user.targets)
-        };
+        const msg = ui.chat.collection.get(message._id);
+        msg.system.targetMode = Boolean(event.target.dataset.targetHit);
     }
 
     hoverTarget(event) {
@@ -209,48 +165,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             return;
         }
         game.canvas.pan(token);
-    }
-
-    async onDamage(event, message) {
-        event.stopPropagation();
-        const { isHit, targets } = this.getTargetList(event, message);
-
-        if (message.system.onSave && isHit) {
-            const pendingingSaves = message.system.targets.filter(
-                target => target.hit && target.saved.success === null
-            );
-            if (pendingingSaves.length) {
-                const confirm = await foundry.applications.api.DialogV2.confirm({
-                    window: { title: 'Pending Reaction Rolls found' },
-                    content: `<p>Some Tokens still need to roll their Reaction Roll.</p><p>Are you sure you want to continue ?</p><p><i>Undone reaction rolls will be considered as failed</i></p>`
-                });
-                if (!confirm) return;
-            }
-        }
-
-        if (targets.length === 0)
-            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-
-        for (let target of targets) {
-            let damages = foundry.utils.deepClone(message.system.damage);
-            if (
-                !message.system.hasHealing &&
-                message.system.onSave &&
-                message.system.targets.find(t => t.id === target.id)?.saved?.success === true
-            ) {
-                const mod = CONFIG.DH.ACTIONS.damageOnSave[message.system.onSave]?.mod ?? 1;
-                Object.entries(damages).forEach(([k, v]) => {
-                    v.total = 0;
-                    v.parts.forEach(part => {
-                        part.total = Math.ceil(part.total * mod);
-                        v.total += part.total;
-                    });
-                });
-            }
-
-            if (message.system.hasHealing) target.actor.takeHealing(damages);
-            else target.actor.takeDamage(damages);
-        }
     }
 
     async onRollSimple(event, message) {
@@ -278,17 +192,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             else
                 target.actor.takeDamage(damages);
         })
-    }
-
-    /**
-     * Toggle visibility of target containers.
-     * @param {MouseEvent} event
-     */
-    onToggleTargets(event) {
-        event.stopPropagation();
-        event.currentTarget.parentElement
-            ?.querySelectorAll('.target-container')
-            .forEach(el => el.classList.toggle('hidden'));
     }
 
     async abilityUseButton(event, message) {

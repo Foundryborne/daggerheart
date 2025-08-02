@@ -30,6 +30,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             }
         }
 
+        this.enrichChatMessage(html);
+
         return html;
     }
 
@@ -52,5 +54,75 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         }
 
         return super._preCreate(data, options, rollActorOwner ?? user);
+    }
+
+    enrichChatMessage(html) {
+        html.querySelectorAll('.damage-button').forEach(element =>
+            element.addEventListener('click', this.onDamage.bind(this))
+        );
+
+        html.querySelectorAll('.duality-action-effect').forEach(element =>
+            element.addEventListener('click', this.onApplyEffect.bind(this))
+        );
+    }
+
+    getTargetList() {
+        const targets = this.system.hitTargets;
+        return targets.map(target => game.canvas.tokens.documentCollection.find(t => t.actor.uuid === target.actorId));
+
+    }
+
+    async onDamage(event) {
+        event.stopPropagation();
+        const targets = this.getTargetList();
+
+        if (this.system.onSave) {
+            const pendingingSaves =  this.system.hitTargets.filter(t => t.saved.success === null);
+            if (pendingingSaves.length) {
+                const confirm = await foundry.applications.api.DialogV2.confirm({
+                    window: { title: 'Pending Reaction Rolls found' },
+                    content: `<p>Some Tokens still need to roll their Reaction Roll.</p><p>Are you sure you want to continue ?</p><p><i>Undone reaction rolls will be considered as failed</i></p>`
+                });
+                if (!confirm) return;
+            }
+        }
+
+        if (targets.length === 0)
+            return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+
+        for (let target of targets) {
+            let damages = foundry.utils.deepClone(this.system.damage);
+            if (
+                !this.system.hasHealing &&
+                this.system.onSave &&
+                this.system.hitTargets.find(t => t.id === target.id)?.saved?.success === true
+            ) {
+                const mod = CONFIG.DH.ACTIONS.damageOnSave[this.system.onSave]?.mod ?? 1;
+                Object.entries(damages).forEach(([k, v]) => {
+                    v.total = 0;
+                    v.parts.forEach(part => {
+                        part.total = Math.ceil(part.total * mod);
+                        v.total += part.total;
+                    });
+                });
+            }
+
+            if (this.system.hasHealing) target.actor.takeHealing(damages);
+            else target.actor.takeDamage(damages);
+        }
+    }
+
+    async onApplyEffect(event) {
+        event.stopPropagation();
+        const actor = await foundry.utils.fromUuid(this.system.source.actor);
+        if (!actor || !game.user.isGM) return true;
+        if (this.system.source.item && this.system.source.action) {
+            const action = this.getAction(actor, this.system.source.item, this.system.source.action);
+            if (!action || !action?.applyEffects) return;
+            const targets = this.getTargetList();
+            if (targets.length === 0)
+                ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+            await action.applyEffects(event, this, targets);
+        }
     }
 }
