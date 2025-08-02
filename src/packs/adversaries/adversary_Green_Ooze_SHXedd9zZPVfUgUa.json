@@ -275,7 +275,7 @@
             "type": "damage",
             "_id": "nU4xpjruOvskcmiA",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Ooze makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -344,7 +344,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754047544158,
-        "modifiedTime": 1754047598393,
+        "modifiedTime": 1754144332281,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!SHXedd9zZPVfUgUa.gJWoUSTGwVsJwPmK"
@@ -362,7 +362,7 @@
             "type": "attack",
             "_id": "fSxq0AL6YwZs7OAH",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make a standard attack against a target within Melee range. On a success, the Ooze envelops them and the target must mark 2 Stress. The target must mark an additional Stress when they make an action roll. If the Ooze takes Severe damage, the target is freed.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -527,7 +527,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754047601843,
-        "modifiedTime": 1754047680632,
+        "modifiedTime": 1754144340446,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!SHXedd9zZPVfUgUa.Sm9Sk4mSvcq6PkmR"
@@ -538,14 +538,14 @@
       "_id": "qNhrEK2YF8e3ljU6",
       "img": "icons/creatures/slimes/slime-movement-pseudopods-green.webp",
       "system": {
-        "description": "<p>When the Ooze has 3 or more HP marked, you can <strong>spend a Fear</strong> to split them into two Tiny Green Oozes (with no marked HP or Stress). Immediately spotlight both of them.</p>",
+        "description": "<p>When the Ooze has 3 or more HP marked, you can <strong>spend a Fear</strong> to split them into two @UUID[Compendium.daggerheart.adversaries.Actor.aLkLFuVoKz2NLoBK]{Tiny Green Oozes} (with no marked HP or Stress). Immediately spotlight both of them.</p>",
         "resource": null,
         "actions": {
           "s5mLw6DRGd76MLcC": {
             "type": "effect",
             "_id": "s5mLw6DRGd76MLcC",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Ooze has 3 or more HP marked, you can <strong>spend a Fear</strong> to split them into two @UUID[Compendium.daggerheart.adversaries.Actor.aLkLFuVoKz2NLoBK]{Tiny Green Oozes} (with no marked HP or Stress). Immediately spotlight both of them.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -592,7 +592,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754047707170,
-        "modifiedTime": 1754047746968,
+        "modifiedTime": 1754145255991,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!SHXedd9zZPVfUgUa.qNhrEK2YF8e3ljU6"

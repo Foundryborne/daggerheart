@@ -269,7 +269,7 @@
             "type": "attack",
             "_id": "ErwQgU4dwBcmZIBX",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make a standard attack against a target. On a success, you can <strong>mark a Stress</strong> to pin them to a nearby surface. The pinned target is <em>Restrained</em> until they break free with a successful Finesse or Strength Roll.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -410,7 +410,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754078394872,
-        "modifiedTime": 1754078482791,
+        "modifiedTime": 1754142550948,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8VZIgU12cB3cvlyH.6ZrDjgnWufJohkp1"

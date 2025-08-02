@@ -275,7 +275,7 @@
             "type": "attack",
             "_id": "PXL3e51eBYZ4O2lb",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Melee range. On a success, deal <strong>3d4+10</strong> physical damage and the target is <em>Restrained</em> until they break free with a successful Strength Roll.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -425,7 +425,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754012195973,
-        "modifiedTime": 1754012285100,
+        "modifiedTime": 1754143721840,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!71qKDLKO3CsrNkdy.zgR0MEqyobKp2yXr"
@@ -438,75 +438,7 @@
       "system": {
         "description": "<p>When the Bear makes a successful attack against a PC, you gain a Fear.</p>",
         "resource": null,
-        "actions": {
-          "HawHNALF7mdigX4X": {
-            "type": "healing",
-            "_id": "HawHNALF7mdigX4X",
-            "systemPath": "actions",
-            "description": "",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": [
-                {
-                  "value": {
-                    "custom": {
-                      "enabled": true,
-                      "formula": "1"
-                    },
-                    "multiplier": "flat",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null
-                  },
-                  "applyTo": "fear",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              ],
-              "includeBase": false
-            },
-            "target": {
-              "type": "any",
-              "amount": null
-            },
-            "effects": [],
-            "roll": {
-              "type": null,
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
-            "name": "Gain Fear",
-            "img": "icons/magic/unholy/orb-hands-pink.webp",
-            "range": ""
-          }
-        },
+        "actions": {},
         "originItemType": null,
         "subType": null,
         "originId": null
@@ -527,7 +459,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754012330113,
-        "modifiedTime": 1754012418576,
+        "modifiedTime": 1754143729868,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!71qKDLKO3CsrNkdy.4hJbq9WCwJn78frt"

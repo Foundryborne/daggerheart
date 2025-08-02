@@ -17,7 +17,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "minion",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -49,19 +49,66 @@
     },
     "difficulty": 15,
     "tier": 3,
-    "description": "<p>A blazing mote of elemental fire.</p>"
+    "description": "<p>A blazing mote of elemental fire.</p>",
+    "resources": {
+      "hitPoints": {
+        "max": 1
+      },
+      "stress": {
+        "max": 1
+      }
+    },
+    "attack": {
+      "name": "Bursts of Fire",
+      "img": "icons/magic/fire/blast-jet-stream-splash.webp",
+      "roll": {
+        "bonus": 0
+      },
+      "range": "close",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": true,
+                "formula": "5"
+              },
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784259,
-    "modifiedTime": 1753922784259,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754127540262,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "P7h54ZePFPHpYwvB",
   "sort": 3400000,
@@ -164,7 +211,105 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Minion (9)",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Elemental is defeated when they take any damage. For every 9 damage a PC deals to the Elemental, defeat an additional Minion within range the attack would succeed against.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ZwQ2W90hoMe3KFxk",
+      "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754127542419,
+        "modifiedTime": 1754127559872,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!P7h54ZePFPHpYwvB.ZwQ2W90hoMe3KFxk"
+    },
+    {
+      "name": "Group Attack",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Elemental Sparks within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 5 physical damage each. Combine this damage.</p>",
+        "resource": null,
+        "actions": {
+          "vXHZVb0Y7Hqu3uso": {
+            "type": "effect",
+            "_id": "vXHZVb0Y7Hqu3uso",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/unholy/orb-hands-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "13OraSLq2YjpZqbm",
+      "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754127561572,
+        "modifiedTime": 1754127597955,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!P7h54ZePFPHpYwvB.13OraSLq2YjpZqbm"
+    }
+  ],
   "effects": [],
   "_key": "!actors!P7h54ZePFPHpYwvB"
 }

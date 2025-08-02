@@ -269,7 +269,7 @@
             "type": "attack",
             "_id": "E8C2Nd4mwcGTXoXb",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>While <em>Hidden</em>, <strong>mark a Stress</strong> to leap into Melee range with a target within Very Close range. The target must succeed on an Agility or Instinct Reaction Roll (15) or take <strong>2d8</strong> physical damage and become temporarily Restrained.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -418,7 +418,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754084946110,
-        "modifiedTime": 1754085052359,
+        "modifiedTime": 1754143356249,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!3aAS2Qm3R6cgaYfE.tQgxiSS48TJ3X1Dl"
@@ -434,7 +434,7 @@
             "type": "attack",
             "_id": "4UGEEuK9XY8leCBV",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to roar while within a cave and cause a cave-in. All targets within Close range must succeed on an Agility Reaction Roll (14) or take <strong>2d10</strong> physical damage. The rubble can be cleared with a Progress Countdown (8).</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -533,7 +533,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754085059319,
-        "modifiedTime": 1754085157724,
+        "modifiedTime": 1754143365810,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!3aAS2Qm3R6cgaYfE.9Z0i0uURfBMVIapJ"

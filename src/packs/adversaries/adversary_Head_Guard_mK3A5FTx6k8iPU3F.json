@@ -240,7 +240,7 @@
             "type": "attack",
             "_id": "lI0lnRb3xrUjqIYX",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend 2 Fear</strong> to spotlight the Head Guard and up to <strong>2d4</strong> allies within Far range.</p><p>@Template[type:emanation|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -311,7 +311,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754048051353,
-        "modifiedTime": 1754048138930,
+        "modifiedTime": 1754144371623,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!mK3A5FTx6k8iPU3F.SsgN2qSYpQLR43Cz"

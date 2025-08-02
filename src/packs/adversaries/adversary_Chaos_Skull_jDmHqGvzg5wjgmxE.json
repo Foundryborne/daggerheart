@@ -348,7 +348,7 @@
             "type": "attack",
             "_id": "iF0PD1t3yovKMTfy",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Skull succeeds against take <strong>2d6+4</strong> magic damage.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -447,7 +447,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754075150449,
-        "modifiedTime": 1754075227513,
+        "modifiedTime": 1754142237897,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!jDmHqGvzg5wjgmxE.Zn25zBr96y1hrmnr"
@@ -463,7 +463,7 @@
             "type": "attack",
             "_id": "872Fq88Hitwc6f3W",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to make an attack against a PC with a Spellcast trait within Very Close range. On a success, the target marks <strong>1d4</strong> Stress and the Skull clears that many Stress. Additionally, on a success, the Skull can immediately be spotlighted again.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -529,72 +529,6 @@
             "name": "Attack",
             "img": "icons/magic/control/sihouette-hold-beam-green.webp",
             "range": "veryClose"
-          },
-          "m71TUOhKkOLUj8FZ": {
-            "type": "healing",
-            "_id": "m71TUOhKkOLUj8FZ",
-            "systemPath": "actions",
-            "description": "",
-            "chatDisplay": true,
-            "actionType": "action",
-            "cost": [],
-            "uses": {
-              "value": null,
-              "max": "",
-              "recovery": null
-            },
-            "damage": {
-              "parts": [
-                {
-                  "value": {
-                    "custom": {
-                      "enabled": false
-                    },
-                    "flatMultiplier": 1,
-                    "dice": "d4",
-                    "bonus": null,
-                    "multiplier": "flat"
-                  },
-                  "applyTo": "stress",
-                  "base": false,
-                  "resultBased": false,
-                  "valueAlt": {
-                    "multiplier": "prof",
-                    "flatMultiplier": 1,
-                    "dice": "d6",
-                    "bonus": null,
-                    "custom": {
-                      "enabled": false
-                    }
-                  },
-                  "type": []
-                }
-              ],
-              "includeBase": false
-            },
-            "target": {
-              "type": "self",
-              "amount": null
-            },
-            "effects": [],
-            "roll": {
-              "type": null,
-              "trait": null,
-              "difficulty": null,
-              "bonus": null,
-              "advState": "neutral",
-              "diceRolling": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "compare": null,
-                "treshold": null
-              },
-              "useDefault": false
-            },
-            "name": "Clear Stress",
-            "img": "icons/magic/control/sihouette-hold-beam-green.webp",
-            "range": ""
           }
         },
         "originItemType": null,
@@ -618,7 +552,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754075230388,
-        "modifiedTime": 1754075325188,
+        "modifiedTime": 1754142272882,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!jDmHqGvzg5wjgmxE.urXRi4bdBfvl8U6K"

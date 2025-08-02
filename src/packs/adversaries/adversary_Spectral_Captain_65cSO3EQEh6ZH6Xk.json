@@ -235,7 +235,7 @@
             "type": "effect",
             "_id": "k7RuXErgCsEBmhmk",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to move up to Close range through solid objects.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -335,7 +335,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754084228113,
-        "modifiedTime": 1754084284677,
+        "modifiedTime": 1754143262316,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!65cSO3EQEh6ZH6Xk.JU93RyfAB5XhZ6FN"
@@ -351,7 +351,7 @@
             "type": "effect",
             "_id": "eHmbN4aPLUuEoDQt",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend 2 Fear</strong> to return up to [[/r 1d4+1]] defeated Spectral allies to the battle at the points where they first appeared (with no marked HP or Stress).</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -399,7 +399,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754084289554,
-        "modifiedTime": 1754084346643,
+        "modifiedTime": 1754143273976,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!65cSO3EQEh6ZH6Xk.7YVe4DfEWMNLXNvu"
@@ -415,7 +415,7 @@
             "type": "effect",
             "_id": "aRg1bcPGUn69GPyB",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Captain’s Spectral allies are forced to make a reaction roll, you can <strong>mark a Stress</strong> to give those allies a +2 bonus to the roll.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -463,7 +463,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754084350199,
-        "modifiedTime": 1754084392491,
+        "modifiedTime": 1754143281444,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!65cSO3EQEh6ZH6Xk.X0vtV30ACVVZ6NfF"

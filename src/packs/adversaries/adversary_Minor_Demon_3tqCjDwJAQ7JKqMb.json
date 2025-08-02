@@ -265,7 +265,7 @@
             "type": "damage",
             "_id": "XQ7QebA0iGvMti4A",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When a PC rolls a failure with Fear while within Close range of the Demon, they lose a Hope.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -334,7 +334,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754050091351,
-        "modifiedTime": 1754050150499,
+        "modifiedTime": 1754144539341,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!3tqCjDwJAQ7JKqMb.kD9kO92V7t3IqZu8"
@@ -352,7 +352,7 @@
             "type": "attack",
             "_id": "nOzLQ0NJzeB3vKiV",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to rain down hellfire within Far range. All targets within the area must make an Agility Reaction Roll. Targets who fail take <strong>1d20+3</strong> magic damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:f]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -450,7 +450,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754050154885,
-        "modifiedTime": 1754050246276,
+        "modifiedTime": 1754144548850,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!3tqCjDwJAQ7JKqMb.lA7vcvS7oGT9NTSy"
@@ -468,7 +468,7 @@
             "type": "effect",
             "_id": "vZq3iaJrMzLYbqQN",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Before rolling damage for the Demon’s attack, you can <strong>mark a Stress</strong> to gain a bonus to the damage roll equal to the Demon’s current number of marked HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -515,7 +515,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754050253435,
-        "modifiedTime": 1754050314370,
+        "modifiedTime": 1754144557513,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!3tqCjDwJAQ7JKqMb.bpLBGTW1DmXPgIcx"

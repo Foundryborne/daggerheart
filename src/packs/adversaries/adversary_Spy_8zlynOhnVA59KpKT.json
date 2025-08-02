@@ -236,7 +236,7 @@
             "type": "effect",
             "_id": "iq5KzP5hgA4377fO",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to describe how the Spy knows a secret about a PC in the scene.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -284,7 +284,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754084722024,
-        "modifiedTime": 1754084779191,
+        "modifiedTime": 1754143322352,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8zlynOhnVA59KpKT.csCWQuSqic5ckHeO"
@@ -300,7 +300,7 @@
             "type": "effect",
             "_id": "Ml8nt7SPNFc2iQno",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When a PC or group is discussing something sensitive, you can <strong>mark a Stress</strong> to reveal that the Spy is present in the scene, observing them. If the Spy escapes the scene to report their findings, you gain <strong>1d4</strong> Fear.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -330,7 +330,7 @@
             "type": "healing",
             "_id": "qCA2hTMIYGW0FhGy",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>If the Spy escapes the scene to report their findings, you gain <strong>1d4</strong> Fear.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -414,7 +414,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754084782425,
-        "modifiedTime": 1754084860717,
+        "modifiedTime": 1754143342129,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!8zlynOhnVA59KpKT.UvgVDn0YjISLdKE4"

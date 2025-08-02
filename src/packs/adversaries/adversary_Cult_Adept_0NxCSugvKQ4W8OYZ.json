@@ -112,7 +112,8 @@
           }
         ]
       },
-      "range": "far"
+      "range": "far",
+      "img": "icons/weapons/staves/staff-ornate-purple.webp"
     }
   },
   "flags": {},
@@ -124,7 +125,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784239,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754142403176,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "0NxCSugvKQ4W8OYZ",
@@ -240,7 +241,7 @@
             "type": "attack",
             "_id": "TQv3o9sRnlDNbPyu",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to make a standard attack against a target within range. On a success, the target must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -364,7 +365,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754075842447,
-        "modifiedTime": 1754075990327,
+        "modifiedTime": 1754142328561,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!0NxCSugvKQ4W8OYZ.kCffzM8rX8NEr9d2"
@@ -380,7 +381,7 @@
             "type": "effect",
             "_id": "8yRj7EpEI4PlKNhl",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to wrap an ally within Close range in a shroud of Protection until the Adept marks their last HP. While Protected, the target has resistance to all damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -491,7 +492,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754075995517,
-        "modifiedTime": 1754076062027,
+        "modifiedTime": 1754142338486,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!0NxCSugvKQ4W8OYZ.IHWDn097sRgjlZXO"
@@ -507,7 +508,7 @@
             "type": "effect",
             "_id": "g4RDHrY0AEYXjH52",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. All targets within Close range of that point are <em>Restrained</em> in smoky chains until they break free with a successful Strength or Instinct Roll. A target Restrained by this feature must spend a Hope to make an action roll.</p><p>@Template[type:circle|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -607,7 +608,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754076110844,
-        "modifiedTime": 1754076347293,
+        "modifiedTime": 1754142351045,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!0NxCSugvKQ4W8OYZ.JpSrduK3vjd9h098"
@@ -617,13 +618,18 @@
       "type": "feature",
       "system": {
         "description": "<p> Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
-        "resource": null,
+        "resource": {
+          "type": "simple",
+          "value": 0,
+          "max": "2",
+          "icon": ""
+        },
         "actions": {
           "3tibqB97ooJesxf0": {
             "type": "healing",
             "_id": "3tibqB97ooJesxf0",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -708,7 +714,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754076395683,
-        "modifiedTime": 1754076432247,
+        "modifiedTime": 1754142376642,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!0NxCSugvKQ4W8OYZ.x6FbcrfOscb3er6P"

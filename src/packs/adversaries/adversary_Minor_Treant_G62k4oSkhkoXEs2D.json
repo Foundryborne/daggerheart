@@ -258,7 +258,7 @@
             "type": "effect",
             "_id": "xTMNAHcoErKuR6TZ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Minor Treants within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 4 physical damage each. Combine this damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -305,7 +305,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754050805777,
-        "modifiedTime": 1754050841338,
+        "modifiedTime": 1754144625197,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!G62k4oSkhkoXEs2D.K08WlZwGqzEo4idT"

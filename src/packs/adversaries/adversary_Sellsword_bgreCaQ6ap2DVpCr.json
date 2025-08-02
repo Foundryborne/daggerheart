@@ -258,7 +258,7 @@
             "type": "effect",
             "_id": "ghgFZskDiizJDjcn",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Sellswords within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 3 physical damage each. Combine this damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -305,7 +305,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754053107600,
-        "modifiedTime": 1754053147721,
+        "modifiedTime": 1754144897730,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!bgreCaQ6ap2DVpCr.CQZQiEiRH70Br5Ge"

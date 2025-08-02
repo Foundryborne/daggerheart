@@ -237,7 +237,7 @@
             "type": "effect",
             "_id": "yzjCJyfGzZrEd0G3",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Choose a target within Far range and temporarily Curse them. While the target is Cursed, you can <strong>mark a Stress</strong> when that target rolls with Hope to make the roll be with Fear instead.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -326,7 +326,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754048453602,
-        "modifiedTime": 1754048512335,
+        "modifiedTime": 1754144401991,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!MbBPIOxaxXYNApXz.Bl8L0RCGOgVUzuXo"
@@ -344,7 +344,7 @@
             "type": "attack",
             "_id": "HmvmqoMli6oC2y2a",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against up to three targets within Very Close range. <strong>Mark a Stress</strong> to deal <strong>2d6+3</strong> magic damage to targets the Hexer succeeded against.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -434,7 +434,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754048558693,
-        "modifiedTime": 1754048626455,
+        "modifiedTime": 1754144410119,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!MbBPIOxaxXYNApXz.d8uVdKpTm9yw6TZS"

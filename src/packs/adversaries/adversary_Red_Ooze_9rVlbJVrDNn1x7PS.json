@@ -270,7 +270,7 @@
             "type": "attack",
             "_id": "b4g8XUIKLhxDlUPy",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a target within Very Close range. On a success, the target takes <strong>1d8</strong> magic damage and is Ignited until they’re extinguished with a successful Finesse Roll (14). While Ignited, the target takes <strong>1d4</strong> magic damage when they make an action roll.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -348,7 +348,7 @@
             "type": "damage",
             "_id": "6xYE9Zi8ce6bYjV8",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>While Ignited, the target takes <strong>1d4</strong> magic damage when they make an action roll.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -463,7 +463,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754052646207,
-        "modifiedTime": 1754052803213,
+        "modifiedTime": 1754144810550,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!9rVlbJVrDNn1x7PS.JU9uVwZSM0ItnZRq"
@@ -474,14 +474,14 @@
       "_id": "M9gAcPrgKfSg9Tjb",
       "img": "icons/creatures/slimes/slime-movement-splashing-red.webp",
       "system": {
-        "description": "<p>When the Ooze has 3 or more HP marked, you can <strong>spend a Fear</strong> to split them into two Tiny Red Oozes (with no marked HP or Stress). Immediately spotlight both of them.</p>",
+        "description": "<p>When the Ooze has 3 or more HP marked, you can <strong>spend a Fear</strong> to split them into two @UUID[Compendium.daggerheart.adversaries.Actor.1fkLQXVtmILqfJ44]{Tiny Red Oozes} (with no marked HP or Stress). Immediately spotlight both of them.</p>",
         "resource": null,
         "actions": {
           "dw6Juw8mriH7sg0e": {
             "type": "effect",
             "_id": "dw6Juw8mriH7sg0e",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Ooze has 3 or more HP marked, you can <strong>spend a Fear</strong> to split them into two @UUID[Compendium.daggerheart.adversaries.Actor.1fkLQXVtmILqfJ44]{Tiny Red Oozes} (with no marked HP or Stress). Immediately spotlight both of them.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -528,7 +528,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754052809157,
-        "modifiedTime": 1754052844133,
+        "modifiedTime": 1754144839066,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!9rVlbJVrDNn1x7PS.M9gAcPrgKfSg9Tjb"

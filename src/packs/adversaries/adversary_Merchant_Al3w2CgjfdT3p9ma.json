@@ -270,7 +270,7 @@
             "type": "damage",
             "_id": "sTHDvAggf1nUX4Ai",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When a PC rolls a 14 or lower on a Presence Roll made against the Merchant, they must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -339,7 +339,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754049578056,
-        "modifiedTime": 1754049645666,
+        "modifiedTime": 1754144497139,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!Al3w2CgjfdT3p9ma.Ksdgov6mYg7Og2ys"

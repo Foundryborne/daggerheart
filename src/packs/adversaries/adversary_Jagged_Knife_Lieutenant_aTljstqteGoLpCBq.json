@@ -237,7 +237,7 @@
             "type": "effect",
             "_id": "IfMFU67g4sfhSYtm",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When you spotlight the Lieutenant, <strong>mark a Stress</strong> to also spotlight two allies within Close range.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -284,7 +284,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754048989987,
-        "modifiedTime": 1754049036837,
+        "modifiedTime": 1754144449897,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!aTljstqteGoLpCBq.LIAbel7pMzAHpgF3"
@@ -336,7 +336,7 @@
             "type": "attack",
             "_id": "fzVyO0DUwIVEUCtg",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to make an attack against a Vulnerable target within Close range. On a success, deal <strong>2d6+12</strong> physical damage and the target must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -459,7 +459,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754049080786,
-        "modifiedTime": 1754049152990,
+        "modifiedTime": 1754144457672,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!aTljstqteGoLpCBq.qe94UdLZb0p3Gvxj"

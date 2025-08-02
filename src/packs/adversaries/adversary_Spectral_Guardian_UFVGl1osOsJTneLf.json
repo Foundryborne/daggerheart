@@ -236,7 +236,7 @@
             "type": "effect",
             "_id": "X1JlwWqyYHjahbpA",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to move up to Close range through solid objects.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -336,7 +336,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754084531966,
-        "modifiedTime": 1754084602322,
+        "modifiedTime": 1754143300180,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!UFVGl1osOsJTneLf.x3g1lM5S1W7DAKIc"
@@ -352,7 +352,7 @@
             "type": "attack",
             "_id": "AdfULyYsj9YPcCj6",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to make an attack against a target within Very Close range. On a success, deal <strong>2d10+6</strong> physical damage and the target must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -476,7 +476,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754084605936,
-        "modifiedTime": 1754084661003,
+        "modifiedTime": 1754143308994,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!UFVGl1osOsJTneLf.L48tQmj5O3s2pjBn"

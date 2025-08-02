@@ -232,7 +232,7 @@
             "type": "attack",
             "_id": "mlPgZJNL2TjykjUb",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make a standard attack against a target. On a success, <strong>mark a Stress</strong> to Taunt the target until their next successful attack. The next time the Taunted target attacks, they have disadvantage against targets other than the Weaponmaster.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -372,7 +372,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754055391558,
-        "modifiedTime": 1754055694529,
+        "modifiedTime": 1754145156618,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!ZNbQ2jg35LG4t9eH.tyGgOqQzDSIypoMz"
@@ -395,7 +395,7 @@
             "type": "healing",
             "_id": "WQ067ZFiG2QMBo2n",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Once per scene, spend a Fear to clear 2 HP and 2 Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -512,7 +512,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754055703816,
-        "modifiedTime": 1754055795306,
+        "modifiedTime": 1754145170728,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!ZNbQ2jg35LG4t9eH.UsC0vtOBbf9Kut4v"

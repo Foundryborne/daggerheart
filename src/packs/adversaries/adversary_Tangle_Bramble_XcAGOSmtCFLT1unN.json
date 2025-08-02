@@ -299,7 +299,7 @@
             "type": "effect",
             "_id": "ZC5pKIb9N82vgMWu",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Tangle Brambles within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 2 physical damage each. Combine this damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -345,7 +345,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754145071567
       },
       "_key": "!actors.items!XcAGOSmtCFLT1unN.WiobzuyvJ46zfsOv"
     },
@@ -355,7 +356,7 @@
       "_id": "KBMf7oBfFSHoafKN",
       "img": "icons/magic/nature/root-vines-knot-brown.webp",
       "system": {
-        "description": "<p>When an attack from the Bramble causes a target to mark HP and there are three or more Tangle Bramble Minions within Close range, you can combine the Minions into a Tangle Bramble Swarm Horde. The Horde’s HP is equal to the number of Minions combined.</p>",
+        "description": "<p>When an attack from the Bramble causes a target to mark HP and there are three or more Tangle Bramble Minions within Close range, you can combine the Minions into a @UUID[Compendium.daggerheart.adversaries.Actor.PKSXFuaIHUCoH63A]{Tangle Bramble Swarm Horde}. The Horde’s HP is equal to the number of Minions combined.</p>",
         "resource": null,
         "actions": {},
         "originItemType": null,
@@ -377,7 +378,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "MQSznptE5yLT7kj8",
+        "modifiedTime": 1754145296974
       },
       "_key": "!actors.items!XcAGOSmtCFLT1unN.KBMf7oBfFSHoafKN"
     }

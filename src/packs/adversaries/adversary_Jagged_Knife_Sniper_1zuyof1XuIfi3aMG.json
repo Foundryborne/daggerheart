@@ -237,7 +237,7 @@
             "type": "attack",
             "_id": "2eX7P0wSfbKKu8dJ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>If the Sniper is <em>Hidden</em> when they make a successful standard attack against a target, they deal <strong>1d10+4</strong> physical damage instead of their standard damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -327,7 +327,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754049443033,
-        "modifiedTime": 1754049483638,
+        "modifiedTime": 1754144483728,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!1zuyof1XuIfi3aMG.adPXzpvLREjN3len"

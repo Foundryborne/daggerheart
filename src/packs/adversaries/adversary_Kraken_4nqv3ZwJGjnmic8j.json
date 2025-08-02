@@ -34,10 +34,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "solo",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "auixJ5ypouNbU5iu": {
+        "name": "Swimming",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +71,57 @@
       }
     },
     "tier": 4,
-    "description": "<p>A legendary beast of the sea, bigger than the largest galleon, with sucker-laden tentacles and a terrifying maw.</p>"
+    "description": "<p>A legendary beast of the sea, bigger than the largest galleon, with sucker-laden tentacles and a terrifying maw.</p>",
+    "attack": {
+      "name": "Tentacles",
+      "roll": {
+        "bonus": 7
+      },
+      "range": "close",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 4,
+              "dice": "d12",
+              "bonus": 10,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784303,
-    "modifiedTime": 1753922784303,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754136771520,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "4nqv3ZwJGjnmic8j",
   "sort": 3400000,
@@ -180,7 +224,347 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Relentless (3)",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Kraken can be spotlighted up to three times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "1YxbPc8C0X64w1JN",
+      "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754136773170,
+        "modifiedTime": 1754136792851,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!4nqv3ZwJGjnmic8j.1YxbPc8C0X64w1JN"
+    },
+    {
+      "name": "Many Tentacles",
+      "type": "feature",
+      "system": {
+        "description": "<p>While the Kraken has 7 or fewer marked HP, they can make their standard attack against two targets within range.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "z01hq9CKFTupyRwT",
+      "img": "icons/creatures/tentacles/tentacles-suctioncups-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754136795146,
+        "modifiedTime": 1754136817153,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!4nqv3ZwJGjnmic8j.z01hq9CKFTupyRwT"
+    },
+    {
+      "name": "Grapple and Drown",
+      "type": "feature",
+      "system": {
+        "description": "<p>Make an attack roll against a target within Close range. On a success, <strong>mark a Stress</strong> to grab them with a tentacle and drag them beneath the water. The target is <em>Restrained</em> and <em>Vulnerable</em> until they break free with a successful Strength Roll or the Kraken takes Major or greater damage. While <em>Restrained</em> and <em>Vulnerable</em> in this way, a target must mark a Stress when they make an action roll.</p>",
+        "resource": null,
+        "actions": {
+          "SX2Y4OapGEawl17j": {
+            "type": "attack",
+            "_id": "SX2Y4OapGEawl17j",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "Xes6ZIE01CCN67KF",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/water/orb-water-bubbles-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "vz2BWhispgR7mSWF",
+      "img": "icons/magic/water/orb-water-bubbles-blue.webp",
+      "effects": [
+        {
+          "name": "Grapple and Drown",
+          "img": "icons/magic/water/orb-water-bubbles-blue.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.4nqv3ZwJGjnmic8j.Item.vz2BWhispgR7mSWF",
+          "transfer": false,
+          "_id": "Xes6ZIE01CCN67KF",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>You are <em>Restrained</em> and <em>Vulnerable</em> until you break free with a successful Strength Roll or the Kraken takes Major or greater damage. While <em>Restrained</em> and <em>Vulnerable</em> in this way, you must mark a Stress when you make an action roll.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrain",
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754136887881,
+            "modifiedTime": 1754136930002,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!4nqv3ZwJGjnmic8j.vz2BWhispgR7mSWF.Xes6ZIE01CCN67KF"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754136819936,
+        "modifiedTime": 1754136887890,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!4nqv3ZwJGjnmic8j.vz2BWhispgR7mSWF"
+    },
+    {
+      "name": "Boiling Blast",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to spew a line of boiling water at any number of targets in a line up to Far range. All targets must succeed on an Agility Reaction Roll or take <strong>4d6+9</strong> physical damage. If a target marks an Armor Slot to reduce the damage, they must also mark a Stress.</p><p>@Template[type:ray|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "pHZUiZRSj4FuG0uK": {
+            "type": "attack",
+            "_id": "pHZUiZRSj4FuG0uK",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to spew a line of boiling water at any number of targets in a line up to Far range. All targets must succeed on an Agility Reaction Roll or take <strong>4d6+9</strong> physical damage. If a target marks an Armor Slot to reduce the damage, they must also mark a Stress.</p><p>@Template[type:ray|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 4,
+                    "dice": "d6",
+                    "bonus": 9,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/water/projectile-icecicle-glowing.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "eksa3E2ecBgdib6h",
+      "img": "icons/magic/water/projectile-icecicle-glowing.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754136941716,
+        "modifiedTime": 1754137007877,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!4nqv3ZwJGjnmic8j.eksa3E2ecBgdib6h"
+    },
+    {
+      "name": "Momentum",
+      "type": "feature",
+      "system": {
+        "description": "<p> When the Kraken makes a successful attack against a PC, you gain a Fear.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "m4aybzb8tXWHelDU",
+      "img": "icons/skills/melee/strike-weapons-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754137017535,
+        "modifiedTime": 1754137033162,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!4nqv3ZwJGjnmic8j.m4aybzb8tXWHelDU"
+    }
+  ],
   "effects": [],
   "_key": "!actors!4nqv3ZwJGjnmic8j"
 }

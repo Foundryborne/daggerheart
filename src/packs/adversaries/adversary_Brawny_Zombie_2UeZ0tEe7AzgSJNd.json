@@ -281,7 +281,7 @@
             "type": "attack",
             "_id": "qCcWw60cPZnEWbpG",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make a standard attack with advantage against a target the Zombie has <em>Restrained</em>. On a success, the attack deals direct damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -371,7 +371,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754013355113,
-        "modifiedTime": 1754013446559,
+        "modifiedTime": 1754143817596,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!2UeZ0tEe7AzgSJNd.LP7xVLMTkJsmiIvl"
@@ -389,7 +389,7 @@
             "type": "damage",
             "_id": "xV1z3dk9c7jIkk7v",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Zombies makes a successful standard attack, you can <strong>mark a Stress</strong> to temporarily Restrain the target and force them to mark 2 Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -518,7 +518,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754013473713,
-        "modifiedTime": 1754013614420,
+        "modifiedTime": 1754143824712,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!2UeZ0tEe7AzgSJNd.69reUZ5tv3splqyO"

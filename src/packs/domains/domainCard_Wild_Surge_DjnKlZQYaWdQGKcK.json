@@ -8,22 +8,63 @@
     "domain": "sage",
     "recallCost": 2,
     "level": 7,
-    "type": "spell"
+    "type": "spell",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "6",
+      "icon": ""
+    },
+    "actions": {
+      "nYu6LRNVDKfWUJhx": {
+        "type": "effect",
+        "_id": "nYu6LRNVDKfWUJhx",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Channel Nature",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784547,
-    "modifiedTime": 1753922784547,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754119639338,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "DjnKlZQYaWdQGKcK",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!DjnKlZQYaWdQGKcK"
 }

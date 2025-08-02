@@ -230,7 +230,7 @@
             "type": "effect",
             "_id": "oVGqHl82zSjnlym3",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>You must <strong>spend a Fear</strong> to spotlight the Minotaur. While spotlighted, they can make their standard attack against all targets within range.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -278,7 +278,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754082044045,
-        "modifiedTime": 1754082161500,
+        "modifiedTime": 1754142834839,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!rM9qCIYeWg9I0B4l.RxTetAI1hmmxzJTg"
@@ -294,7 +294,7 @@
             "type": "attack",
             "_id": "8fgkb7U2pxNyiHrB",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to charge through a group within Close range and make an attack against all targets in the Minotaur’s path. Targets the Minotaur succeeds against take <strong>2d6+8</strong> physical damage and are knocked back to Very Far range. If a target is knocked into a solid object or another creature, they take an extra <strong>1d6</strong> damage (combine the damage).</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -375,7 +375,7 @@
             "type": "damage",
             "_id": "fZ8jWUdMKBf5xSPO",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>If a target is knocked into a solid object or another creature, they take an extra <strong>1d6</strong> damage (combine the damage).</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -447,7 +447,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754082167407,
-        "modifiedTime": 1754082303567,
+        "modifiedTime": 1754142855890,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!rM9qCIYeWg9I0B4l.b2QvDYOq1nreI2uD"
@@ -463,7 +463,7 @@
             "type": "attack",
             "_id": "3yqz7Gj34KBWMjwt",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a target within Very Close range, moving the Minotaur into Melee range of them. On a success, deal <strong>2d8</strong> direct physical damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -552,7 +552,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754082306467,
-        "modifiedTime": 1754082351713,
+        "modifiedTime": 1754142873493,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!rM9qCIYeWg9I0B4l.WxbHcbaeb6L7g8qN"

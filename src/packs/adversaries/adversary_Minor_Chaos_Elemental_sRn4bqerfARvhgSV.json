@@ -317,7 +317,7 @@
             "type": "damage",
             "_id": "g4CVwjDeJgTJ2oCw",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a HP</strong> to force all targets within Close range to mark a Stress and become <em>Vulnerable</em> until their next rest or they clear a HP.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -446,7 +446,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754049738720,
-        "modifiedTime": 1754049853494,
+        "modifiedTime": 1754144510716,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!sRn4bqerfARvhgSV.oAxhAawgcK7DAdpa"
@@ -464,7 +464,7 @@
             "type": "damage",
             "_id": "QzuQIAtSrgz9Zd5V",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to transform the area within Very Close range into a different biome. All targets within this area take <strong>2d6+3</strong> direct magic damage.</p><p>@Template[type:emanation|range:vc]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -542,7 +542,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754049858342,
-        "modifiedTime": 1754049963046,
+        "modifiedTime": 1754144523565,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!sRn4bqerfARvhgSV.updQuIK8sybf4YmW"

@@ -34,10 +34,15 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "skulk",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "ti3Z1mq2M92KK4GJ": {
+        "name": "Bloodthirsty",
+        "description": ""
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +70,56 @@
       }
     },
     "tier": 3,
-    "description": "<p>A wide-winged pet endlessly loyal to their vampire owner.</p>"
+    "description": "<p>A wide-winged pet endlessly loyal to their vampire owner.</p>",
+    "attack": {
+      "name": "Claws and Teeth",
+      "roll": {
+        "bonus": 2
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 2,
+              "dice": "d6",
+              "bonus": 7,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/creatures/claws/claw-hooked-curved.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784253,
-    "modifiedTime": 1753922784253,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754126214523,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "tBWHW00epmMnkawe",
   "sort": 3400000,
@@ -180,7 +222,293 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Flying",
+      "type": "feature",
+      "system": {
+        "description": "<p>While flying, the Bat gains a +3 bonus to their Difficulty.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "gx22MpD8fWoi8klZ",
+      "img": "icons/commodities/biological/wing-lizard-brown.webp",
+      "effects": [
+        {
+          "name": "Flying",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "_id": "qZfNiqw1iAIxeuYg",
+          "img": "icons/commodities/biological/wing-lizard-brown.webp",
+          "changes": [
+            {
+              "key": "system.difficulty",
+              "mode": 2,
+              "value": "3",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>While flying, the Bat gains a +3 bonus to their Difficulty.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754126247394,
+            "modifiedTime": 1754126268904,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!tBWHW00epmMnkawe.gx22MpD8fWoi8klZ.qZfNiqw1iAIxeuYg"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754126217979,
+        "modifiedTime": 1754126244872,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!tBWHW00epmMnkawe.gx22MpD8fWoi8klZ"
+    },
+    {
+      "name": "Screech",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to send a high-pitch screech out toward all targets in front of the Bat within Far range. Those targets must mark <strong>1d4</strong> Stress.</p><p>@Template[type:inFront|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "2ILfoiBoMyBCtBsL": {
+            "type": "damage",
+            "_id": "2ILfoiBoMyBCtBsL",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> to send a high-pitch screech out toward all targets in front of the Bat within Far range. Those targets must mark <strong>1d4</strong> Stress.</p><p>@Template[type:inFront|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d4",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "o69lipskvBwGVhe4",
+      "img": "icons/magic/sonic/projectile-sound-rings-wave.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754126400449,
+        "modifiedTime": 1754126592777,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!tBWHW00epmMnkawe.o69lipskvBwGVhe4"
+    },
+    {
+      "name": "Guardian",
+      "type": "feature",
+      "system": {
+        "description": "<p>When an allied Vampire marks HP, you can <strong>mark a Stress</strong> to fly into Melee range of the attacker and make an attack with advantage against them. On a success, deal <strong>2d6+2</strong> physical damage.</p>",
+        "resource": null,
+        "actions": {
+          "wW7WGisUBzyxjsH2": {
+            "type": "attack",
+            "_id": "wW7WGisUBzyxjsH2",
+            "systemPath": "actions",
+            "description": "<p>When an allied Vampire marks HP, you can <strong>mark a Stress</strong> to fl y into Melee range of the attacker and make an attack with advantage against them. On a success, deal <strong>2d6+2</strong> physical damage.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d6",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Mark Stress",
+            "img": "icons/skills/melee/strike-slashes-red.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "BQPGgbNzKbNkGDJb",
+      "img": "icons/skills/melee/strike-slashes-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754126469461,
+        "modifiedTime": 1754126575288,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!tBWHW00epmMnkawe.BQPGgbNzKbNkGDJb"
+    }
+  ],
   "effects": [],
   "_key": "!actors!tBWHW00epmMnkawe"
 }

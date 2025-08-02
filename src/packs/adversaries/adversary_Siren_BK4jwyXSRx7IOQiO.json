@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "FxWbdt0hRNv2k9Pm",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>If the Siren makes a standard attack against a target Entranced by their song, the attack deals <strong>2d10+1</strong> damage instead of their standard damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -327,7 +327,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754083726966,
-        "modifiedTime": 1754083784344,
+        "modifiedTime": 1754143194449,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!BK4jwyXSRx7IOQiO.Zc3PFPTgKRX03Fx6"
@@ -343,7 +343,7 @@
             "type": "attack",
             "_id": "FY8K8Nsg0TKAWok8",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to sing a song that affects all targets within Close range. Targets must succeed on an Instinct Reaction Roll or become Entranced until they mark 2 Stress. Other Sirens within Close range of the target can <strong>mark a Stress</strong> to each add a +1 bonus to the Difficulty of the reaction roll. While Entranced, a target can’t act and is <em>Vulnerable</em>.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -467,7 +467,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754083791012,
-        "modifiedTime": 1754083933087,
+        "modifiedTime": 1754143204465,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!BK4jwyXSRx7IOQiO.Ks3HpB4W1l5FqR7p"

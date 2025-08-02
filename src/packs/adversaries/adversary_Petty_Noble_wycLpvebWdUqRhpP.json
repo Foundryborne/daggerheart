@@ -263,14 +263,14 @@
       "_id": "ebdAPBso5ROmdFNO",
       "img": "icons/environment/people/infantry-armored.webp",
       "system": {
-        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon <strong>1d4</strong> Bladed Guards, who appear at Far range to enforce the Noble’s will.</p>",
+        "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon <strong>1d4</strong> @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guards}, who appear at Far range to enforce the Noble’s will.</p>",
         "resource": null,
         "actions": {
           "cUKwhq1imsTVru8D": {
             "type": "attack",
             "_id": "cUKwhq1imsTVru8D",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Once per scene, <strong>mark a Stress</strong> to summon <strong>1d4</strong> @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guards}, who appear at Far range to enforce the Noble’s will.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -341,7 +341,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754051802091,
-        "modifiedTime": 1754051889360,
+        "modifiedTime": 1754144696400,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!wycLpvebWdUqRhpP.ebdAPBso5ROmdFNO"
@@ -359,7 +359,7 @@
             "type": "effect",
             "_id": "dAHzRxf0iztyc1mI",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> and target a PC. The Noble proclaims that the target and their allies are exiled from the noble’s territory. While exiled, the target and their allies have disadvantage during social situations within the Noble’s domain.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -406,7 +406,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754051901804,
-        "modifiedTime": 1754052000961,
+        "modifiedTime": 1754144705317,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!wycLpvebWdUqRhpP.xN09fSsg33nURqpk"

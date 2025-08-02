@@ -263,7 +263,7 @@
             "type": "attack",
             "_id": "L4Rpg7fnFuxpD3im",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to make a standard attack against all targets within Very Close range. You gain a Fear for each target that marks HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -362,7 +362,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754077534109,
-        "modifiedTime": 1754077613127,
+        "modifiedTime": 1754142494905,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!TLzY1nDw0Bu9Ud40.u5NL1eUJeAkIEpgt"

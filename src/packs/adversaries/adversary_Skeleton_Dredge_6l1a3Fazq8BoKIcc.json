@@ -258,7 +258,7 @@
             "type": "effect",
             "_id": "Sz55uB8xkoNytLwJ",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Dredges within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 1 physical damage each. Combine this damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -305,7 +305,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754053501054,
-        "modifiedTime": 1754053534908,
+        "modifiedTime": 1754144949457,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!6l1a3Fazq8BoKIcc.wl9KKEpVWDBu62hU"

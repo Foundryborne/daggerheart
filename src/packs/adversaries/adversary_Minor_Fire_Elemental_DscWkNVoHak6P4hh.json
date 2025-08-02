@@ -266,7 +266,7 @@
             "type": "attack",
             "_id": "x1VCkfcSYiPyg8fk",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to choose a point within Far range. The ground within Very Close range of that point immediately bursts into fl ames. All creatures within this area must make an Agility Reaction Roll. Targets who fail take <strong>2d8</strong> magic damage from the fl ames. Targets who succeed take half damage.</p><p>@Template[type:circle|range:vc]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -364,7 +364,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754050413593,
-        "modifiedTime": 1754050528586,
+        "modifiedTime": 1754144579484,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!DscWkNVoHak6P4hh.7AXE86WNd68OySkD"
@@ -382,7 +382,7 @@
             "type": "attack",
             "_id": "JQgqyW8H7fugR7F0",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to erupt in a fi ery explosion. Make an attack against all targets within Close range. Targets the Elemental succeeds against take <strong>1d8</strong> magic damage and are knocked back to Far range.</p><p>@Template[type:emanation|range:c]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -480,7 +480,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754050532131,
-        "modifiedTime": 1754050622414,
+        "modifiedTime": 1754144587890,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!DscWkNVoHak6P4hh.ESnu3I89BmUdBZEk"
@@ -503,7 +503,7 @@
             "type": "healing",
             "_id": "CTWSVVisdgJgF7pd",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Three times per scene, when the Elemental moves onto objects that are highly flammable, consume them to clear a HP or a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -570,7 +570,7 @@
             "type": "healing",
             "_id": "e0fG0xtj6hOUp66o",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Three times per scene, when the Elemental moves onto objects that are highly flammable, consume them to clear a HP or a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -654,7 +654,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754050626054,
-        "modifiedTime": 1754050713454,
+        "modifiedTime": 1754144608536,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!DscWkNVoHak6P4hh.3u6wvKPJAS2v5nWV"

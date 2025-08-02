@@ -223,9 +223,62 @@
       "name": "Terrifying",
       "type": "feature",
       "system": {
-        "description": "<p>When the Shark makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p>",
+        "description": "<p>When the Shark makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "NoEb6qR3ktIu9kRJ": {
+            "type": "damage",
+            "_id": "NoEb6qR3ktIu9kRJ",
+            "systemPath": "actions",
+            "description": "<p>When the Shark makes a successful attack, all PCs within Far range lose a Hope and you gain a Fear.</p><p>@Template[type:emanation|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Lose Hope",
+            "img": "icons/magic/death/skull-energy-light-purple.webp",
+            "range": ""
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -247,7 +300,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754083474532,
-        "modifiedTime": 1754083489071,
+        "modifiedTime": 1754143155459,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!YmVAkdNsyuXWTtYp.w46d3D2gXUIJh2GH"
@@ -263,7 +316,7 @@
             "type": "attack",
             "_id": "a0gC7uWycUB2NgKS",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Shark makes a successful attack, the target must mark an Armor Slot without receiving its benefits (they can still use armor to reduce the damage). If they can’t mark an Armor Slot, they must mark an additional HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -379,7 +432,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754083491482,
-        "modifiedTime": 1754083557003,
+        "modifiedTime": 1754143165634,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!YmVAkdNsyuXWTtYp.zT4AOW20LPlDoncy"
@@ -395,7 +448,7 @@
             "type": "effect",
             "_id": "sE9KRd9siZeYHPhb",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When a creature within Close range of the Shark marks HP from another creature’s attack, you can <strong>mark a Stress</strong> to immediately spotlight the Shark, moving them into Melee range of the target and making a standard attack.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -443,7 +496,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754083562494,
-        "modifiedTime": 1754083655609,
+        "modifiedTime": 1754143174466,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!YmVAkdNsyuXWTtYp.LBKPfi8XktBAwbrt"

@@ -34,7 +34,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "support",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -65,19 +65,57 @@
       }
     },
     "tier": 3,
-    "description": "<p>A boxy, dust-covered construct with thick metallic swinging doors on their torso.</p>"
+    "description": "<p>A boxy, dust-covered construct with thick metallic swinging doors on their torso.</p>",
+    "attack": {
+      "name": "Body Bash",
+      "img": "icons/commodities/tech/metal-barrel.webp",
+      "roll": {
+        "bonus": 2
+      },
+      "range": "veryClose",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 3,
+              "dice": "d6",
+              "bonus": 2,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784367,
-    "modifiedTime": 1753922784367,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754130517663,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "JqYraOqNmmhHk4Yy",
   "sort": 3400000,
@@ -180,7 +218,181 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Blocking Shield",
+      "type": "feature",
+      "system": {
+        "description": "<p>Creatures within Melee range of the Gaoler have disadvantage on attack rolls against them. Creatures trapped inside the Gaoler are immune to this feature.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "YiF0i85DeRoP4lEs",
+      "img": "icons/magic/defensive/shield-barrier-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754130520190,
+        "modifiedTime": 1754130576902,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!JqYraOqNmmhHk4Yy.YiF0i85DeRoP4lEs"
+    },
+    {
+      "name": "Lock Up",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target is <em>Restrained</em> within the Gaoler until freed with a successful Strength Roll (18). While <em>Restrained</em>, the target can only attack the Gaoler. </p>",
+        "resource": null,
+        "actions": {
+          "NawX2Kuk4GXI5loW": {
+            "type": "attack",
+            "_id": "NawX2Kuk4GXI5loW",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> to make an attack against a target within Very Close range. On a success, the target is <em>Restrained</em> within the Gaoler until freed with a successful Strength Roll (18). While <em>Restrained</em>, the target can only attack the Gaoler. </p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "6TZlstmWJPbeoL7i",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/environment/traps/cage-grey-steel.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "VlHp8RjHy7MK8rqC",
+      "img": "icons/environment/traps/cage-grey-steel.webp",
+      "effects": [
+        {
+          "name": "Lock Up",
+          "img": "icons/environment/traps/cage-grey-steel.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.JqYraOqNmmhHk4Yy.Item.VlHp8RjHy7MK8rqC",
+          "transfer": false,
+          "_id": "6TZlstmWJPbeoL7i",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>You are<strong> </strong><em>Restrained</em> within the Gaoler until freed with a successful Strength Roll (18). While <em>Restrained</em>, you can only attack the Gaoler. </p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrain"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754130637275,
+            "modifiedTime": 1754130664152,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!JqYraOqNmmhHk4Yy.VlHp8RjHy7MK8rqC.6TZlstmWJPbeoL7i"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754130579909,
+        "modifiedTime": 1754130667604,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!JqYraOqNmmhHk4Yy.VlHp8RjHy7MK8rqC"
+    }
+  ],
   "effects": [],
   "_key": "!actors!JqYraOqNmmhHk4Yy"
 }

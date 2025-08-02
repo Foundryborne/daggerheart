@@ -269,7 +269,7 @@
             "type": "damage",
             "_id": "XyLlX9RWSxciZ7oV",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to make all targets within Very Close range lose a Hope. If a target is not able to lose a Hope, they must instead mark 2 Stress.</p><p>@Template[type:emanation|range:vc]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -339,7 +339,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754077020106,
-        "modifiedTime": 1754077111451,
+        "modifiedTime": 1754142474768,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!NoRZ1PqB8N5wcIw0.WEbHwamS5ZBphiKq"

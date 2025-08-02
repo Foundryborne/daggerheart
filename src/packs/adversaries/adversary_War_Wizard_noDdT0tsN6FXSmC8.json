@@ -241,7 +241,7 @@
             "type": "effect",
             "_id": "39zC1I5DYozI47lP",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Before or after making a standard attack, you can <strong>mark a Stress</strong> to teleport to a location within Far range.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -289,7 +289,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754085243264,
-        "modifiedTime": 1754085284707,
+        "modifiedTime": 1754143380458,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!noDdT0tsN6FXSmC8.PUUz48dsObawcSgp"
@@ -305,7 +305,7 @@
             "type": "effect",
             "_id": "FCuksmAGRC4061zm",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to refresh the Wizard’s “Warding Sphere” reaction.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -353,7 +353,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754085287538,
-        "modifiedTime": 1754085324562,
+        "modifiedTime": 1754143388156,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!noDdT0tsN6FXSmC8.dI2MGjC7NFAru1Gd"
@@ -369,7 +369,7 @@
             "type": "attack",
             "_id": "vnMq4NuQO6GYxWhM",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> and choose a point within Far range. A Very Close area around that point erupts into impassable terrain. All targets within that area must make an Agility Reaction Roll (14). Targets who fail take <strong>2d10</strong> physical damage and are thrown out of the area. Targets who succeed take half damage and aren’t moved.</p><p>@Template[type:circle|range:vc]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -468,7 +468,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754085334993,
-        "modifiedTime": 1754085423257,
+        "modifiedTime": 1754143396761,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!noDdT0tsN6FXSmC8.PnQ0m0FLnpht7oE4"
@@ -484,7 +484,7 @@
             "type": "attack",
             "_id": "DFHR8LtvjZjHP6BL",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Spend a Fear</strong> to unleash a precise hail of magical blasts. All targets in the scene must make an Agility Reaction Roll. Targets who fail take <strong>2d12</strong> magic damage. Targets who succeed take half damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -583,7 +583,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754085427830,
-        "modifiedTime": 1754085490170,
+        "modifiedTime": 1754143405896,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!noDdT0tsN6FXSmC8.s2luvEVxJLZmOrdh"
@@ -604,7 +604,7 @@
             "type": "damage",
             "_id": "2fHrpaZW9toi6nin",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Wizard takes damage from an attack within Close range, deal <strong>2d6</strong> magic damage to the attacker. This reaction can’t be used again until the Wizard refreshes it with their “Refresh Warding Sphere” action.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -675,7 +675,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754085493649,
-        "modifiedTime": 1754085606011,
+        "modifiedTime": 1754143416150,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!noDdT0tsN6FXSmC8.9cPigHRcUfJC9gD8"

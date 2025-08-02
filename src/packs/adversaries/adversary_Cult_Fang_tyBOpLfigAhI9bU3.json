@@ -230,7 +230,7 @@
             "type": "effect",
             "_id": "hjuqvsMB7KNLNvjg",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>The Fang can climb and walk on vertical surfaces. <strong>Mark a Stress</strong> to move from one shadow to another within Far range.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -278,7 +278,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754076664932,
-        "modifiedTime": 1754076695392,
+        "modifiedTime": 1754142423230,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!tyBOpLfigAhI9bU3.vX5FHwLvFjuc4JC1"
@@ -294,7 +294,7 @@
             "type": "attack",
             "_id": "QjQ04SAwfjrxliNI",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to cause a target within Melee range to make an Instinct Reaction Roll. On a failure, the target must mark 2 Stress and is teleported with the Fang to a shadow within Far range, making them temporarily Vulnerable. On a success, the target must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -371,7 +371,7 @@
               "difficulty": null,
               "damageMod": "none"
             },
-            "name": "Teleport",
+            "name": "Roll Save",
             "img": "icons/magic/unholy/barrier-fire-pink.webp",
             "range": "melee"
           }
@@ -444,7 +444,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754076697557,
-        "modifiedTime": 1754076794997,
+        "modifiedTime": 1754142442929,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!tyBOpLfigAhI9bU3.ohASSruBxcvuItIK"

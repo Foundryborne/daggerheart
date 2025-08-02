@@ -21,7 +21,7 @@
     "tier": 4,
     "type": "solo",
     "notes": "",
-    "difficulty": 18,
+    "difficulty": 20,
     "hordeHp": 1,
     "damageThresholds": {
       "major": 29,
@@ -41,7 +41,7 @@
     },
     "attack": {
       "name": "Claws and Teeth",
-      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "img": "icons/creatures/claws/claw-scaled-red.webp",
       "_id": "bAM5u66XszRmjaT8",
       "systemPath": "attack",
       "chatDisplay": false,
@@ -73,10 +73,10 @@
               "custom": {
                 "enabled": false
               },
+              "flatMultiplier": 4,
               "dice": "d12",
               "bonus": 15,
-              "multiplier": "flat",
-              "flatMultiplier": 1
+              "multiplier": "flat"
             },
             "applyTo": "hitPoints",
             "type": [
@@ -115,7 +115,8 @@
     "experiences": {
       "wOdWWjFaanbmRXYg": {
         "name": "Hunt from Above",
-        "value": 5
+        "value": 5,
+        "description": ""
       }
     },
     "bonuses": {
@@ -240,7 +241,653 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Relentless (4)",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Ashen Tyrant can be spotlighted up to four times per GM turn. Spend Fear as usual to spotlight them.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "saz3Vr0xgfAl10tU",
+      "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754139608923,
+        "modifiedTime": 1754139627030,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pMuXGCSOQaxpi5tb.saz3Vr0xgfAl10tU"
+    },
+    {
+      "name": "Cornered",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> instead of spending a Fear to spotlight the Ashen Tyrant.</p>",
+        "resource": null,
+        "actions": {
+          "nIBoqkOFWx0vpbnj": {
+            "type": "effect",
+            "_id": "nIBoqkOFWx0vpbnj",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> instead of spending a Fear to spotlight the Ashen Tyrant.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/magic/symbols/mask-metal-silver-white.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "8d4bCyFvNq3NymUK",
+      "img": "icons/magic/symbols/mask-metal-silver-white.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754139630931,
+        "modifiedTime": 1754139718088,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pMuXGCSOQaxpi5tb.8d4bCyFvNq3NymUK"
+    },
+    {
+      "name": "Injured Wings",
+      "type": "feature",
+      "system": {
+        "description": "<p>While flying, the Ashen Tyrant gains a +1 bonus to their Difficulty.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "jOojMjb779Kea1ZV",
+      "img": "icons/commodities/biological/wing-green.webp",
+      "effects": [
+        {
+          "name": "Injured Wings",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "_id": "zCi90lgFAaA7yrJG",
+          "img": "icons/commodities/biological/wing-green.webp",
+          "changes": [
+            {
+              "key": "system.difficulty",
+              "mode": 2,
+              "value": "1",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>While flying, the Ashen Tyrant gains a +1 bonus to their Difficulty.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754139762122,
+            "modifiedTime": 1754139779997,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!pMuXGCSOQaxpi5tb.jOojMjb779Kea1ZV.zCi90lgFAaA7yrJG"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754139721728,
+        "modifiedTime": 1754139759338,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pMuXGCSOQaxpi5tb.jOojMjb779Kea1ZV"
+    },
+    {
+      "name": "Ashes to Ashes",
+      "type": "feature",
+      "system": {
+        "description": "<p>When a PC rolls a failure while within Close range of the Ashen Tyrant, they lose a Hope and you gain a Fear. If the PC can’t lose a Hope, they must mark a HP.</p>",
+        "resource": null,
+        "actions": {
+          "q6gbeIrGMII6IeiM": {
+            "type": "damage",
+            "_id": "q6gbeIrGMII6IeiM",
+            "systemPath": "actions",
+            "description": "<p>When a PC rolls a failure while within Close range of the Ashen Tyrant, they lose a Hope and you gain a Fear. If the PC can’t lose a Hope, they must mark a HP.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Lose Hope",
+            "img": "icons/magic/fire/flame-burning-skull-orange.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "LeOYwp1GhN59NIHa",
+      "img": "icons/magic/fire/flame-burning-skull-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754139782372,
+        "modifiedTime": 1754139840839,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pMuXGCSOQaxpi5tb.LeOYwp1GhN59NIHa"
+    },
+    {
+      "name": "Desperate Rampage",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Ashen Tyrant succeeds against take <strong>2d20+2</strong> physical damage, are knocked back to Close range of where they were, and must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "3glUQAcsLBcCumnS": {
+            "type": "attack",
+            "_id": "3glUQAcsLBcCumnS",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> to make an attack against all targets within Close range. Targets the Ashen Tyrant succeeds against take <strong>2d20+2</strong> physical damage, are knocked back to Close range of where they were, and must mark a Stress.</p><p>@Template[type:emanation|range:c]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d20",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                },
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/creatures/abilities/tail-swipe-green.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "AXhSVGL33i0j6DAw",
+      "img": "icons/creatures/abilities/tail-swipe-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754139845901,
+        "modifiedTime": 1754139932338,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pMuXGCSOQaxpi5tb.AXhSVGL33i0j6DAw"
+    },
+    {
+      "name": "Ashen Cloud",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to smash the ground and kick up ash within Far range. While within the ash cloud, a target has disadvantage on action rolls. The ash cloud clears the next time an adversary is spotlighted.</p><p>@Template[type:emanation|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "UrD4A68IBJgyfvvt": {
+            "type": "effect",
+            "_id": "UrD4A68IBJgyfvvt",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to smash the ground and kick up ash within Far range. While within the ash cloud, a target has disadvantage on action rolls. The ash cloud clears the next time an adversary is spotlighted.</p><p>@Template[type:emanation|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/air/fog-gas-smoke-brown.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ggCol5LQ2ZpeQjly",
+      "img": "icons/magic/air/fog-gas-smoke-brown.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754139936255,
+        "modifiedTime": 1754140008159,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pMuXGCSOQaxpi5tb.ggCol5LQ2ZpeQjly"
+    },
+    {
+      "name": "Apocalyptic Thrasing",
+      "type": "feature",
+      "system": {
+        "description": "<p>Countdown (1d12). <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear.</p><p>When it triggers, the Ashen Tyrant thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the Ashen Tyrant is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "V6gTCvCcUXf3oKwF": {
+            "type": "effect",
+            "_id": "V6gTCvCcUXf3oKwF",
+            "systemPath": "actions",
+            "description": "<p>Countdown (1d12). <strong>Spend a Fear</strong> to activate. It ticks down when a PC rolls with Fear. </p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdown",
+            "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
+            "range": ""
+          },
+          "OznXxmwiPwzuFPQZ": {
+            "type": "attack",
+            "_id": "OznXxmwiPwzuFPQZ",
+            "systemPath": "actions",
+            "description": "<p>When the countdown triggers, the Ashen Tyrant thrashes about, causing environmental damage (such as an earthquake, avalanche, or collapsing walls). All targets within Far range must make a Strength Reaction Roll. Targets who fail take 2d10+10 physical damage and are Restrained by the rubble until they break free with a successful Strength Roll. Targets who succeed take half damage. If the Ashen Tyrant is defeated while this countdown is active, trigger the countdown immediately as the destruction caused by their death throes.</p><p>@Template[type:emanation|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d10",
+                    "bonus": 10,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "YUjdwrEZ4zn7WR9X",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "strength",
+              "difficulty": null,
+              "damageMod": "half"
+            },
+            "name": "Roll Save",
+            "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "uWiyaJPXcoW06pOM",
+      "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
+      "effects": [
+        {
+          "name": "Apocalyptic Thrasing",
+          "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.pMuXGCSOQaxpi5tb.Item.uWiyaJPXcoW06pOM",
+          "transfer": true,
+          "_id": "YUjdwrEZ4zn7WR9X",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><em>Restrained</em> by the rubble until you break free with a successful Strength Roll.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrain"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754140152911,
+            "modifiedTime": 1754140181136,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!pMuXGCSOQaxpi5tb.uWiyaJPXcoW06pOM.YUjdwrEZ4zn7WR9X"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754140011482,
+        "modifiedTime": 1754140152923,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pMuXGCSOQaxpi5tb.uWiyaJPXcoW06pOM"
+    }
+  ],
   "effects": [],
   "sort": 0,
   "ownership": {
@@ -256,8 +903,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753929252617,
-    "modifiedTime": 1753929642161,
-    "lastModifiedBy": "99pQVoplilbkZnOk"
+    "modifiedTime": 1754140214541,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!actors!pMuXGCSOQaxpi5tb"
 }

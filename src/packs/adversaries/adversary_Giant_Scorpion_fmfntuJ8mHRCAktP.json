@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "PJbZ4ibLPle9BBRv",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to make a standard attack against two targets within Melee range.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -334,7 +334,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754046803174,
-        "modifiedTime": 1754046863892,
+        "modifiedTime": 1754144015161,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!fmfntuJ8mHRCAktP.4ct6XEXiTBFQKvXW"
@@ -348,22 +348,14 @@
         "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>spend a Fear</strong> to deal <strong>1d4+4</strong> physical damage and Poison them until their next rest or they succeed on a Knowledge Roll (16). While Poisoned, the target must roll a <strong>d6</strong> before they make an action roll. On a result of 4 or lower, they must mark a Stress. </p>",
         "resource": null,
         "actions": {
-          "RvsClkuSWILB0nYa": {
-            "type": "damage",
-            "_id": "RvsClkuSWILB0nYa",
+          "ZkcplnqoMP7dH9F4": {
+            "type": "attack",
+            "_id": "ZkcplnqoMP7dH9F4",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a target within Very Close range. On a success, <strong>spend a Fear</strong> to deal <strong>1d4+4</strong> physical damage and Poison them until their next rest or they succeed on a Knowledge Roll (16). While Poisoned, the target must roll a <strong>d6</strong> before they make an action roll. On a result of 4 or lower, they must mark a Stress.</p>",
             "chatDisplay": true,
             "actionType": "action",
-            "cost": [
-              {
-                "scalable": false,
-                "key": "fear",
-                "value": 1,
-                "keyIsID": false,
-                "step": null
-              }
-            ],
+            "cost": [],
             "uses": {
               "value": null,
               "max": "",
@@ -382,7 +374,9 @@
                     "multiplier": "flat"
                   },
                   "applyTo": "hitPoints",
-                  "type": [],
+                  "type": [
+                    "physical"
+                  ],
                   "base": false,
                   "resultBased": false,
                   "valueAlt": {
@@ -400,17 +394,37 @@
             },
             "target": {
               "type": "any",
-              "amount": null
+              "amount": 1
             },
             "effects": [
               {
-                "_id": "cO2VDcRL8uDN7Uu6",
+                "_id": "oILkLJlGNZl7KI1R",
                 "onSave": false
               }
             ],
-            "name": "Spend Fear",
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
             "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
-            "range": ""
+            "range": "veryClose"
           }
         },
         "originItemType": null,
@@ -419,11 +433,11 @@
       },
       "effects": [
         {
-          "name": "Poison",
+          "name": "Poisoned",
           "img": "icons/creatures/abilities/stinger-poison-scorpion-brown.webp",
           "origin": "Compendium.daggerheart.adversaries.Actor.fmfntuJ8mHRCAktP.Item.lANiDkxxth2sGacT",
           "transfer": false,
-          "_id": "cO2VDcRL8uDN7Uu6",
+          "_id": "oILkLJlGNZl7KI1R",
           "type": "base",
           "system": {
             "rangeDependence": {
@@ -444,7 +458,7 @@
             "startRound": null,
             "startTurn": null
           },
-          "description": "<p>You are <em>Poisoned</em> until your next rest or until you succeed on a Knowledge Roll (16). While Poisoned, you must roll a <strong>d6</strong> before you make an action roll. On a result of 4 or lower, you must mark a Stress. </p><p>[[/dr trait=knowledge difficulty=16]]</p>",
+          "description": "<p>You are <em>Poisoned</em> until your next rest or until you succeed on a Knowledge Roll (16). While Poisoned, you must roll a <strong>d6</strong> before you make an action roll. On a result of 4 or lower, you must mark a Stress.</p><p>[[/dr trait=knowledge difficulty=16]]</p>",
           "tint": "#ffffff",
           "statuses": [],
           "sort": 0,
@@ -456,11 +470,11 @@
             "coreVersion": "13.346",
             "systemId": "daggerheart",
             "systemVersion": "0.0.1",
-            "createdTime": 1754046921939,
-            "modifiedTime": 1754047011246,
+            "createdTime": 1754144091498,
+            "modifiedTime": 1754144099382,
             "lastModifiedBy": "MQSznptE5yLT7kj8"
           },
-          "_key": "!actors.items.effects!fmfntuJ8mHRCAktP.lANiDkxxth2sGacT.cO2VDcRL8uDN7Uu6"
+          "_key": "!actors.items.effects!fmfntuJ8mHRCAktP.lANiDkxxth2sGacT.oILkLJlGNZl7KI1R"
         }
       ],
       "folder": null,
@@ -478,7 +492,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754046868084,
-        "modifiedTime": 1754047035479,
+        "modifiedTime": 1754144091512,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!fmfntuJ8mHRCAktP.lANiDkxxth2sGacT"

@@ -358,7 +358,7 @@
             "type": "effect",
             "_id": "7ee6IhkKYDehjLmg",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Mosquitoes’ attack causes a target to mark HP, you can <strong>mark a Stress</strong> to force the target to mark an additional HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -405,7 +405,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754046426987,
-        "modifiedTime": 1754046474428,
+        "modifiedTime": 1754143988475,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!IIWV4ysJPFPnTP7W.BTlMLjG65KQs0Jk2"

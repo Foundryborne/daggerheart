@@ -317,7 +317,7 @@
             "type": "attack",
             "_id": "QnuFrptj8oARaA3i",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Warrior is defeated, you can spotlight them and roll a <strong>d6</strong>. On a result of 6, if there are other adversaries on the battlefi eld, the Warrior re-forms with no marked HP.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -380,7 +380,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754053904083,
-        "modifiedTime": 1754053962878,
+        "modifiedTime": 1754144989858,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!10YIQl0lvCJXZLfX.hYl31ThCmZdc0MFa"

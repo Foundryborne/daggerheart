@@ -236,7 +236,7 @@
             "type": "attack",
             "_id": "zns57MqnZ6M1d4r0",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p><strong>Mark a Stress</strong> to have the Brawler charge at an inanimate object within Close range they could feasibly smash (such as a wall, cart, or market stand) and destroy it. All targets within Very Close range of the object must succeed on an Agility Reaction Roll or take <strong>2d4+3</strong> physical damage from the shrapnel.</p><p>@Template[type:circle|range:vc]</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -335,7 +335,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754078623104,
-        "modifiedTime": 1754081240943,
+        "modifiedTime": 1754142564481,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!YnObCleGjPT7yqEc.ro8AtBdgklyyuydK"
@@ -351,7 +351,7 @@
             "type": "attack",
             "_id": "D53yjFXoP5uFXe9M",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>When the Brawler marks 2 or more HP from an attack within Very Close range, you can make a standard attack against the attacker. On a success, the Brawler deals <strong>2d6+15</strong> physical damage instead of their standard damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -442,7 +442,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754078720546,
-        "modifiedTime": 1754078783279,
+        "modifiedTime": 1754142579703,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!YnObCleGjPT7yqEc.kKBbEAffbHxmHo15"

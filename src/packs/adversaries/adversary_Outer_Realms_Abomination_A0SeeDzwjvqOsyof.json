@@ -33,7 +33,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "bruiser",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -64,19 +64,58 @@
       }
     },
     "tier": 4,
-    "description": "<p>A chaotic mockery of life, constantly in flux.</p>"
+    "description": "<p>A chaotic mockery of life, constantly in flux.</p>",
+    "motivesAndTactics": "Demolish, devour, undermine",
+    "attack": {
+      "name": "Massive Pseudopod",
+      "range": "veryClose",
+      "roll": {
+        "bonus": 4
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 4,
+              "dice": "d6",
+              "bonus": 13,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/creatures/tentacles/tentacle-earth-green.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784319,
-    "modifiedTime": 1753922784319,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754138928049,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "A0SeeDzwjvqOsyof",
   "sort": 3400000,
@@ -179,7 +218,388 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Chaotic Form",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Abomination attacks, roll <strong>2d4</strong> and use the result as their attack modifi er.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "yGeHxe8Loe21QSgH",
+      "img": "icons/magic/symbols/question-stone-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754138249882,
+        "modifiedTime": 1754138281805,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!A0SeeDzwjvqOsyof.yGeHxe8Loe21QSgH"
+    },
+    {
+      "name": "Disorienting Presence",
+      "type": "feature",
+      "system": {
+        "description": "<p>When a target takes damage from the Abomination, they must make an Instinct Reaction Roll. On a failure, they gain disadvantage on their next action roll and you gain a Fear.</p>",
+        "resource": null,
+        "actions": {
+          "4diIu0AzPjitQ94k": {
+            "type": "attack",
+            "_id": "4diIu0AzPjitQ94k",
+            "systemPath": "actions",
+            "description": "<p>When a target takes damage from the Abomination, they must make an Instinct Reaction Roll. On a failure, they gain disadvantage on their next action roll and you gain a Fear.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "rpkjVdlJYI5dB99B",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "instinct",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/perception/eye-slit-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "CoWjh12FkhDGYIie",
+      "img": "icons/magic/perception/eye-slit-pink.webp",
+      "effects": [
+        {
+          "name": "Disorienting Presence",
+          "img": "icons/magic/perception/eye-slit-pink.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof.Item.CoWjh12FkhDGYIie",
+          "transfer": false,
+          "_id": "rpkjVdlJYI5dB99B",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.disadvantageSources",
+              "mode": 2,
+              "value": "On your next action roll.",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Disadvantage on your next action roll.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754138344004,
+            "modifiedTime": 1754138374275,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!A0SeeDzwjvqOsyof.CoWjh12FkhDGYIie.rpkjVdlJYI5dB99B"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754138284433,
+        "modifiedTime": 1754138344015,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!A0SeeDzwjvqOsyof.CoWjh12FkhDGYIie"
+    },
+    {
+      "name": "Reality Quake",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to rattle the edges of reality within Far range of the Abomination. All targets within that area must succeed on a Knowledge Reaction Roll or become Unstuck from reality until the end of the scene. When an Unstuck target spends Hope or marks Armor Slots, HP, or Stress, they must double the amount spent or marked.</p><p>@Template[type:emanation|range:f]</p>",
+        "resource": null,
+        "actions": {
+          "7apNSLz8m7sxyLhU": {
+            "type": "attack",
+            "_id": "7apNSLz8m7sxyLhU",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to rattle the edges of reality within Far range of the Abomination. All targets within that area must succeed on a Knowledge Reaction Roll or become Unstuck from reality until the end of the scene. When an Unstuck target spends Hope or marks Armor Slots, HP, or Stress, they must double the amount spent or marked.</p><p>@Template[type:emanation|range:f]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "edEZER9ImWicMwRb",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "knowledge",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "K3MQO1I42nmfM2F2",
+      "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
+      "effects": [
+        {
+          "name": "Unstuck From Reality",
+          "img": "icons/magic/sonic/explosion-shock-sound-wave.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof.Item.K3MQO1I42nmfM2F2",
+          "transfer": false,
+          "_id": "edEZER9ImWicMwRb",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Signika, 'Palatino Linotype', sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Unstuck from reality until the end of the scene. When you spend Hope or mark Armor Slots, HP, or Stress, you must double the amount spent or marked.</span></p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754138721209,
+            "modifiedTime": 1754138748105,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!A0SeeDzwjvqOsyof.K3MQO1I42nmfM2F2.edEZER9ImWicMwRb"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754138378860,
+        "modifiedTime": 1754138721222,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!A0SeeDzwjvqOsyof.K3MQO1I42nmfM2F2"
+    },
+    {
+      "name": "Unreal Form",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Abomination takes damage, reduce it by <strong>1d20</strong>. If the Abomination marks 1 or fewer Hit Points from a successful attack against them, you gain a Fear.</p>",
+        "resource": null,
+        "actions": {
+          "ohpbyDEgSTVJ7qaF": {
+            "type": "attack",
+            "_id": "ohpbyDEgSTVJ7qaF",
+            "systemPath": "actions",
+            "description": "<p>When the Abomination takes damage, reduce it by <strong>1d20</strong>. If the Abomination marks 1 or fewer Hit Points from a successful attack against them, you gain a Fear.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d20",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll d20",
+            "img": "icons/magic/unholy/orb-contained-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "u9dR2Qh3swHZalXj",
+      "img": "icons/magic/unholy/orb-contained-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754138752915,
+        "modifiedTime": 1754138848011,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!A0SeeDzwjvqOsyof.u9dR2Qh3swHZalXj"
+    }
+  ],
   "effects": [],
   "_key": "!actors!A0SeeDzwjvqOsyof"
 }

@@ -266,7 +266,7 @@
             "type": "attack",
             "_id": "nKmxl3D7g4p7Zcub",
             "systemPath": "actions",
-            "description": "",
+            "description": "<p>Make an attack against a Vulnerable target within Far range. On a success, <strong>mark a Stress</strong> to deal <strong>3d4+8</strong> physical damage.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [],
@@ -356,7 +356,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754053364547,
-        "modifiedTime": 1754053413477,
+        "modifiedTime": 1754144936679,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!actors.items!7X5q7a6ueeHs5oA9.4w20xpEo6L1fgro3"

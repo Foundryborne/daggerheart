@@ -8,22 +8,135 @@
     "domain": "sage",
     "recallCost": 1,
     "level": 5,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "vGgUNZMcchMsQoYb": {
+        "type": "effect",
+        "_id": "vGgUNZMcchMsQoYb",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      },
+      "IVAyyVf8gqFWB7bP": {
+        "type": "effect",
+        "_id": "IVAyyVf8gqFWB7bP",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": true,
+            "key": "oUipGK84E2KjoKqh",
+            "value": 1,
+            "step": 1,
+            "keyIsID": true
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use Tokens",
+        "img": "icons/svg/item-bag.svg",
+        "range": ""
+      }
+    },
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "recovery": "shortRest",
+      "max": "@cast",
+      "icon": "",
+      "dieFaces": "d6"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784531,
-    "modifiedTime": 1753922784531,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754121046420,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "oUipGK84E2KjoKqh",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Thorn Skin",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.oUipGK84E2KjoKqh",
+      "transfer": false,
+      "_id": "KPA1okccsR7AQH0x",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754117446751,
+        "modifiedTime": 1754117446751,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!oUipGK84E2KjoKqh.KPA1okccsR7AQH0x"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!oUipGK84E2KjoKqh"
 }
