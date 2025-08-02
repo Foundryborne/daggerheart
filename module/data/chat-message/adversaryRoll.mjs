@@ -1,6 +1,6 @@
 const fields = foundry.data.fields;
 
-export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
+export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         return {
             title: new fields.StringField(),
@@ -27,13 +27,17 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
             hasEffect: new fields.BooleanField({ initial: false }),
             hasSave: new fields.BooleanField({ initial: false }),
             hasTarget: new fields.BooleanField({ initial: false }),
+            isCritical: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
                 action: new fields.StringField()
             }),
-            damage: new fields.ObjectField()
+            damage: new fields.ObjectField(),
+            costs: new fields.ArrayField(
+                new fields.ObjectField()
+            )
         };
     }
 

@@ -108,17 +108,15 @@ export default class AdversarySheet extends DHBaseActorSheet {
      */
     static #reactionRoll(event) {
         const config = {
-            event: event,
+            event,
             title: `Reaction Roll: ${this.actor.name}`,
             headerTitle: 'Adversary Reaction Roll',
             roll: {
                 type: 'reaction'
             },
-            chatMessage: {
-                type: 'adversaryRoll',
-                template: 'systems/daggerheart/templates/ui/chat/adversary-roll.hbs',
-                mute: true
-            }
+            type: 'trait',
+            hasRoll: true,
+            data: this.actor.getRollData()
         };
 
         this.actor.diceRoll(config);

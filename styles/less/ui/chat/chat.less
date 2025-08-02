@@ -364,7 +364,7 @@
     }
 }
 
-.daggerheart {
+.daggerheart, #chat-notifications {
     .chat-message {
         --text-color: light-dark(@dark-blue, @golden);
         --bg-color: light-dark(@dark-blue-40, @golden-40);
@@ -489,186 +489,184 @@
             }
         }
 
-                .roll-dice {
+        .roll-dice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-weight: 700;
+            font-family: 'Cinzel', sans-serif;
+            flex-wrap: wrap;
+
+            .roll-die {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+
+                label {
+                    text-align: center;
+                    height: var(--font-size-12);
+                }
+
+                > div {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     gap: 5px;
-                    font-weight: 700;
-                    font-family: 'Cinzel', sans-serif;
-                    flex-wrap: wrap;
-
-                    .roll-die {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 3px;
-
-                        label {
-                            text-align: center;
-                            height: var(--font-size-12);
-                        }
-
-                        > div {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            gap: 5px;
-                            // font-size: var(--font-size-20);
-                        }
-                    }
+                    // font-size: var(--font-size-20);
                 }
+            }
+        }
 
-                fieldset {
-                    display: flex;
-                    flex-direction: column;
-                    // gap: 10px;
-                    border-color: var(--text-color);
-                    border-radius: 5px;
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            // gap: 10px;
+            border-color: var(--text-color);
+            border-radius: 5px;
 
-                    legend {
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        padding: 0 5px;
-                        color: var(--text-color);
-                    }
-                }
+            legend {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 0 5px;
+                color: var(--text-color);
+            }
+        }
 
-                .target-selector {
-                    + .roll-part-extra {
-                        margin: 0;
-                    }
+        .target-selector {
+            + .roll-part-extra {
+                margin: 0;
+            }
 
-                    .target-choice {
-                        display: flex;
-                        font-size: var(--font-size-14);
-                        color: var(--text-color);
-                        padding: 5px 0;
+            .target-choice {
+                display: flex;
+                font-size: var(--font-size-14);
+                color: var(--text-color);
+                padding: 5px 0;
 
-                        .button-target-selection {
-                            flex: 1;
-                            text-align: center;
-                        }
-
-                        .button-target-selection:hover, .target-selected {
-                            font-weight: bold;
-                            text-shadow: 0px 0px 8px var(--text-color);
-                        }
-                    }
-                }
-                
-                i {
+                .button-target-selection {
+                    flex: 1;
                     text-align: center;
                 }
 
-                .roll-target {
+                .button-target-selection:hover, .target-selected {
+                    font-weight: bold;
+                    text-shadow: 0px 0px 8px var(--text-color);
+                }
+            }
+        }
+        
+        i {
+            text-align: center;
+        }
+
+        .roll-target {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+            align-items: center;
+
+            .target-img {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+            }
+
+            .target-data {
+                flex: 1;
+            }
+
+            .target-save {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 22px;
+                height: 22px;
+                &:hover > i {
+                    scale: 1.2;
+                }
+
+                i {
+                    &.fa-check {
+                        color: @green;
+                    }
+                    &.fa-xmark {
+                        color: @medium-red;
+                    }
+                }
+            }
+        }
+
+        .roll-formula {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            padding: 3px 5px;
+            width: fit-content;
+            margin: auto;
+        }
+
+        .roll-difficulty, .target-hit-status {
+            color: @green;
+            background-color: @green-10;
+            border: 1px solid currentColor;
+            border-radius: 4px;
+            padding: 3px 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+
+            &.is-miss {
+                color: @medium-red;
+                background-color: @medium-red-10;
+            }
+        }
+
+        .target-hit-status {
+            width: fit-content;
+            margin-top: 2px;
+        }
+
+        div[data-action="expandRoll"] {
+            .roll-part-header > div > span {
+                &:before, &:after {
+                    content: '\f078';
+                    font-family: var(--font-awesome);
+                    color: var(--text-color);
+                    transition: all 0.3s ease;
+                }
+            }
+
+            .on-reduced {
+                display: grid;
+                overflow: hidden;
+                grid-template-rows: 1fr;
+                transition: grid-template-rows 250ms ease;
+
+                .wrapper {
                     display: flex;
-                    width: 100%;
                     gap: 10px;
-                    align-items: center;
-
-                    .target-img {
-                        border-radius: 50%;
-                        width: 40px;
-                        height: 40px;
-                        object-fit: cover;
-                    }
-
-                    .target-data {
-                        flex: 1;
-                    }
-
-                    .target-save {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 22px;
-                        height: 22px;
-                        &:hover > i {
-                            scale: 1.2;
-                        }
-
-                        i {
-                            &.fa-check {
-                                color: @green;
-                            }
-                            &.fa-xmark {
-                                color: @medium-red;
-                            }
-                        }
-                    }
-                }
-            // }
-
-            .roll-formula {
-                background-color: var(--bg-color);
-                color: var(--text-color);
-                border-radius: 4px;
-                padding: 3px 5px;
-                width: fit-content;
-                margin: auto;
-            }
-
-            .roll-difficulty, .target-hit-status {
-                color: @green;
-                background-color: @green-10;
-                border: 1px solid currentColor;
-                border-radius: 4px;
-                padding: 3px 5px;
-                text-transform: uppercase;
-                font-weight: 600;
-
-                &.is-miss {
-                    color: @medium-red;
-                    background-color: @medium-red-10;
+                    overflow: hidden;
                 }
             }
 
-            .target-hit-status {
-                width: fit-content;
-                margin-top: 2px;
-            }
-
-            div[data-action="expandRoll"] {
+            &.expanded {
                 .roll-part-header > div > span {
                     &:before, &:after {
-                        content: '\f078';
-                        font-family: var(--font-awesome);
-                        color: var(--text-color);
-                        transition: all 0.3s ease;
+                        transform: rotate(180deg);
                     }
                 }
 
                 .on-reduced {
-                    display: grid;
-                    overflow: hidden;
-                    grid-template-rows: 1fr;
-                    transition: grid-template-rows 250ms ease;
-
-                    .wrapper {
-                        display: flex;
-                        gap: 10px;
-                        overflow: hidden;
-                    }
-                }
-
-                &.expanded {
-                    .roll-part-header > div > span {
-                        &:before, &:after {
-                            transform: rotate(180deg);
-                        }
-                    }
-
-                    .on-reduced {
-                        grid-template-rows: 0fr;
-                    }
+                    grid-template-rows: 0fr;
                 }
             }
+        }
 
-            .roll-part + .roll-part {
-                margin-top: 0;
-            }
-        // }
+        .roll-part + .roll-part {
+            margin-top: 0;
+        }
 
         .target-section {
             .roll-part-content {

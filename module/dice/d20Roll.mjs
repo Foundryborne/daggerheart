@@ -13,8 +13,6 @@ export default class D20Roll extends DHRoll {
         DISADVANTAGE: -1
     };
 
-    static messageType = 'adversaryRoll';
-
     static CRITICAL_TRESHOLD = 20;
 
     static DefaultDialog = D20RollDialog;
@@ -153,7 +151,6 @@ export default class D20Roll extends DHRoll {
             data.difficulty = config.roll.difficulty;
             data.success = roll.isCritical || roll.total >= config.roll.difficulty;
         }
-        data.type = config.roll.type;
         data.advantage = {
             type: config.roll.advantage,
             dice: roll.dAdvantage?.denomination,
@@ -167,7 +164,7 @@ export default class D20Roll extends DHRoll {
                 rerolls: dice.results.filter(x => x.rerolled)
             }
         }));
-        data.isCritical = roll.isCritical;
+        data.isCritical = config.isCritical = roll.isCritical;
         data.extra = roll.dice
             .filter(d => !roll.baseTerms.includes(d))
             .map(d => {

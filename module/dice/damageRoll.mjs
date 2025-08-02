@@ -6,8 +6,6 @@ export default class DamageRoll extends DHRoll {
         super(formula, data, options);
     }
 
-    static messageType = 'dualityRoll';
-
     static DefaultDialog = DamageDialog;
 
     static async buildEvaluate(roll, config = {}, message = {}) {
