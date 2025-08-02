@@ -34,10 +34,16 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "support",
     "notes": "",
     "hordeHp": 1,
-    "experiences": {},
+    "experiences": {
+      "nXs1RXkwCvr3O9J0": {
+        "name": "Manipulation",
+        "description": "",
+        "value": 3
+      }
+    },
     "bonuses": {
       "roll": {
         "attack": {
@@ -65,19 +71,56 @@
       }
     },
     "tier": 3,
-    "description": "<p>A regal cloaked monstrosity with circular horns adorned with treasure.</p>"
+    "description": "<p>A regal cloaked monstrosity with circular horns adorned with treasure.</p>",
+    "attack": {
+      "name": "Hungry Maw",
+      "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
+      "roll": {
+        "bonus": 2
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 3,
+              "dice": "d6",
+              "bonus": 5,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784247,
-    "modifiedTime": 1753922784247,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754123854047,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "pnyjIGxxvurcWmTv",
   "sort": 3400000,
@@ -180,7 +223,164 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Money Talks",
+      "type": "feature",
+      "system": {
+        "description": "<p>Attacks against the Demon are made with disadvantage unless the attacker spends a handful of gold. This Demon starts with a number of handfuls equal to the number of PCs. When a target marks HP from the Demon’s standard attack, they can spend a handful of gold instead of marking HP (1 handful per HP). Add a handful of gold to the Demon for each handful of gold spent by PCs on this feature.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "qoQinutpe4Itohp0",
+      "img": "icons/commodities/currency/coin-engraved-skull-gold.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754123855331,
+        "modifiedTime": 1754124357369,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pnyjIGxxvurcWmTv.qoQinutpe4Itohp0"
+    },
+    {
+      "name": "Number Must Go Up",
+      "type": "feature",
+      "system": {
+        "description": "<p>Add a bonus to the Demon’s attack rolls equal to the number of handfuls of gold they have.</p>",
+        "resource": {
+          "type": "simple",
+          "value": 0,
+          "max": "",
+          "icon": "fa-solid fa-coins"
+        },
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ILocyy5hvyQXXjhs",
+      "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
+      "effects": [
+        {
+          "name": "Numbers Must Go Up",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "_id": "iLeiOlUtWvYsgbDQ",
+          "img": "icons/magic/control/fear-fright-monster-grin-red-orange.webp",
+          "changes": [
+            {
+              "key": "system.bonuses.roll.attack.bonus",
+              "mode": 2,
+              "value": "ITEM.@system.resource.value",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Add a bonus to the Demon’s attack rolls equal to the number of handfuls of gold they have.</p>",
+          "origin": null,
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754124286848,
+            "modifiedTime": 1754124718184,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!pnyjIGxxvurcWmTv.ILocyy5hvyQXXjhs.iLeiOlUtWvYsgbDQ"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754124071735,
+        "modifiedTime": 1754124275885,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pnyjIGxxvurcWmTv.ILocyy5hvyQXXjhs"
+    },
+    {
+      "name": "Money Is Time",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend 3 handfuls of gold (or a Fear)</strong> to spotlight [[/r 1d4+1]] allies.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "BKgv2D1IdI813R8k",
+      "img": "icons/skills/movement/arrows-up-trio-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754124362017,
+        "modifiedTime": 1754124404064,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pnyjIGxxvurcWmTv.BKgv2D1IdI813R8k"
+    }
+  ],
   "effects": [],
   "_key": "!actors!pnyjIGxxvurcWmTv"
 }

@@ -34,7 +34,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "ranged",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -65,19 +65,57 @@
       }
     },
     "tier": 3,
-    "description": "<p>A massive living turret with reinforced armor and twelve piston-driven mechanical legs.</p>"
+    "description": "<p>A massive living turret with reinforced armor and twelve piston-driven mechanical legs.</p>",
+    "attack": {
+      "name": "Magitech Cannon",
+      "roll": {
+        "bonus": 3
+      },
+      "range": "far",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 3,
+              "dice": "d10",
+              "bonus": 3,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/commodities/tech/metal-joint.webp"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784368,
-    "modifiedTime": 1753922784368,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754131062531,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "c5hGdvY5UnSjlHws",
   "sort": 3400000,
@@ -180,7 +218,338 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Slow Firing",
+      "type": "feature",
+      "system": {
+        "description": "<p>When you spotlight the Turret and they don’t have a token on their stat block, they can’t make a standard attack. Place a token on their stat block and describe what they’re preparing to do. When you spotlight the Turret and they have a token on their stat block, clear the token and they can attack.</p>",
+        "resource": {
+          "type": "simple",
+          "value": 0,
+          "max": "1",
+          "icon": "fa-solid fa-hourglass-half"
+        },
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "TwVkBln6URoPHvlC",
+      "img": "icons/magic/time/hourglass-brown-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754131068287,
+        "modifiedTime": 1754131092978,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!c5hGdvY5UnSjlHws.TwVkBln6URoPHvlC"
+    },
+    {
+      "name": "Mark Target",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to Mark a target within Far range until the Turret is destroyed or the Marked target becomes Hidden. While the target is Marked, their Evasion is halved.</p>",
+        "resource": null,
+        "actions": {
+          "1SfYAIIr5znuHCKX": {
+            "type": "effect",
+            "_id": "1SfYAIIr5znuHCKX",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to Mark a target within Far range until the Turret is destroyed or the Marked target becomes Hidden. While the target is Marked, their Evasion is halved.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "yQ85C0JHRG1pwu8a",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "uwAr6wR4k7ppI2cW",
+      "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
+      "effects": [
+        {
+          "name": "Marked",
+          "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.c5hGdvY5UnSjlHws.Item.uwAr6wR4k7ppI2cW",
+          "transfer": false,
+          "_id": "yQ85C0JHRG1pwu8a",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.evasion",
+              "mode": 5,
+              "value": "@system.evasion / 2",
+              "priority": 10
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Marked until the Turret is destroyed or you become <em>Hidden</em>. While you are Marked, your Evasion is halved.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754131163901,
+            "modifiedTime": 1754131219218,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!c5hGdvY5UnSjlHws.uwAr6wR4k7ppI2cW.yQ85C0JHRG1pwu8a"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754131095685,
+        "modifiedTime": 1754131234992,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!c5hGdvY5UnSjlHws.uwAr6wR4k7ppI2cW"
+    },
+    {
+      "name": "Concentrate Fire",
+      "type": "feature",
+      "system": {
+        "description": "<p>When another adversary deals damage to a target within Far range of the Turret, you can <strong>mark a Stress</strong> to add the Turret’s standard attack damage to the damage roll.</p>",
+        "resource": null,
+        "actions": {
+          "3cqPKBRtwxtLwDpN": {
+            "type": "effect",
+            "_id": "3cqPKBRtwxtLwDpN",
+            "systemPath": "actions",
+            "description": "<p>When another adversary deals damage to a target within Far range of the Turret, you can <strong>mark a Stress</strong> to add the Turret’s standard attack damage to the damage roll.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/commodities/tech/cog-brass.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "G7qZ9RHPyNns3axX",
+      "img": "icons/commodities/tech/cog-brass.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754131239186,
+        "modifiedTime": 1754131338237,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!c5hGdvY5UnSjlHws.G7qZ9RHPyNns3axX"
+    },
+    {
+      "name": "Detonation",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Turret is destroyed, they explode. All targets within Close range must make an Agility Reaction Roll. Targets who fail take <strong>3d20</strong> physical damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:c]</p>",
+        "resource": null,
+        "actions": {
+          "i1PZ9ddYdOOs2xSb": {
+            "type": "attack",
+            "_id": "i1PZ9ddYdOOs2xSb",
+            "systemPath": "actions",
+            "description": "<p>When the Turret is destroyed, they explode. All targets within Close range must make an Agility Reaction Roll. Targets who fail take <strong>3d20</strong> physical damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:c]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 3,
+                    "dice": "d20",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
+            "range": "close"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ALDtQci3ktq9cajU",
+      "img": "icons/magic/sonic/explosion-shock-wave-teal.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754131341591,
+        "modifiedTime": 1754131415170,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!c5hGdvY5UnSjlHws.ALDtQci3ktq9cajU"
+    }
+  ],
   "effects": [],
   "_key": "!actors!c5hGdvY5UnSjlHws"
 }

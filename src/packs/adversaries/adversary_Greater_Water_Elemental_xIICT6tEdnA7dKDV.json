@@ -34,7 +34,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "support",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -65,19 +65,57 @@
       }
     },
     "tier": 3,
-    "description": "<p>A huge living wave that crashes down upon enemies.</p>"
+    "description": "<p>A huge living wave that crashes down upon enemies.</p>",
+    "attack": {
+      "name": "Crashing Wave",
+      "img": "icons/magic/water/wave-water-blue.webp",
+      "roll": {
+        "bonus": 3
+      },
+      "range": "veryClose",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": false
+              },
+              "flatMultiplier": 3,
+              "dice": "d4",
+              "bonus": 1,
+              "multiplier": "flat"
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "magical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784278,
-    "modifiedTime": 1753922784278,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754127980927,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "xIICT6tEdnA7dKDV",
   "sort": 3400000,
@@ -180,7 +218,385 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Water Jet",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Mark a Stress</strong> to attack a target within Very Close range. On a success, deal <strong>2d4+7</strong> physical damage and the target’s next action has disadvantage. On a failure, the target must mark a Stress.</p>",
+        "resource": null,
+        "actions": {
+          "Gk5tcqshtwP4JsKS": {
+            "type": "attack",
+            "_id": "Gk5tcqshtwP4JsKS",
+            "systemPath": "actions",
+            "description": "<p><strong>Mark a Stress</strong> to attack a target within Very Close range. On a success, deal <strong>2d4+7</strong> physical damage and the target’s next action has disadvantage. On a failure, the target must mark a Stress.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d4",
+                    "bonus": 7,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "WYqjt1tVqPEdVV5l",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/water/projectile-icecicle-glowing.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "B8ZrtRCZrwwwWJOE",
+      "img": "icons/magic/water/projectile-icecicle-glowing.webp",
+      "effects": [
+        {
+          "name": "Water Jet",
+          "img": "icons/magic/water/projectile-icecicle-glowing.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.B8ZrtRCZrwwwWJOE",
+          "transfer": false,
+          "_id": "WYqjt1tVqPEdVV5l",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.disadvantageSources",
+              "mode": 2,
+              "value": "Your next action",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Your next action has disadvantage. On a failure, you must mark a Stress.</p>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754128068382,
+            "modifiedTime": 1754128098949,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!xIICT6tEdnA7dKDV.B8ZrtRCZrwwwWJOE.WYqjt1tVqPEdVV5l"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754127986771,
+        "modifiedTime": 1754128068401,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!xIICT6tEdnA7dKDV.B8ZrtRCZrwwwWJOE"
+    },
+    {
+      "name": "Drowning Embrace",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the Elemental succeeds against become <em>Restrained</em> and <em>Vulnerable</em> as they begin drowning. A target can break free, ending both conditions, with a successful Strength or Instinct Roll.</p><p>@Template[type:emanation|range:vc]</p>",
+        "resource": null,
+        "actions": {
+          "ooYbiLrYjoWXIfe9": {
+            "type": "attack",
+            "_id": "ooYbiLrYjoWXIfe9",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to make an attack against all targets within Very Close range. Targets the Elemental succeeds against become <em>Restrained</em> and <em>Vulnerable</em> as they begin drowning. A target can break free, ending both conditions, with a successful Strength or Instinct Roll.</p><p>@Template[type:emanation|range:vc]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "X8NF2OB23mSpDvlx",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": "attack",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Attack",
+            "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "bcwFQeuU6ZfIGjau",
+      "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
+      "effects": [
+        {
+          "name": "Drowning Embrace",
+          "img": "icons/magic/water/vortex-water-whirlpool-blue.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.xIICT6tEdnA7dKDV.Item.bcwFQeuU6ZfIGjau",
+          "transfer": true,
+          "_id": "X8NF2OB23mSpDvlx",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>You are<em> Restrained</em> and <em>Vulnerable</em> as you are drowning. You can break free, ending both conditions, with a successful Strength or Instinct Roll.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrained",
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754128187997,
+            "modifiedTime": 1754128236862,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!xIICT6tEdnA7dKDV.bcwFQeuU6ZfIGjau.X8NF2OB23mSpDvlx"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754128102409,
+        "modifiedTime": 1754128188009,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!xIICT6tEdnA7dKDV.bcwFQeuU6ZfIGjau"
+    },
+    {
+      "name": "High Tide",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the Elemental makes a successful standard attack, you can <strong>mark a Stress</strong> to knock the target back to Close range.</p>",
+        "resource": null,
+        "actions": {
+          "MXSyEGbaHeFgyOsB": {
+            "type": "effect",
+            "_id": "MXSyEGbaHeFgyOsB",
+            "systemPath": "actions",
+            "description": "<p>When the Elemental makes a successful standard attack, you can <strong>mark a Stress</strong> to knock the target back to Close range.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "stress",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Mark Stress",
+            "img": "icons/magic/water/tendrils-ice-thorns.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "BGE42W1XPd0vpimR",
+      "img": "icons/magic/water/tendrils-ice-thorns.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754128249213,
+        "modifiedTime": 1754128316652,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!xIICT6tEdnA7dKDV.BGE42W1XPd0vpimR"
+    }
+  ],
   "effects": [],
   "_key": "!actors!xIICT6tEdnA7dKDV"
 }

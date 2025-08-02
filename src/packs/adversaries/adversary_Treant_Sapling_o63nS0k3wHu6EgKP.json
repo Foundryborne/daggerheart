@@ -17,7 +17,7 @@
         "reduction": 0
       }
     },
-    "type": "standard",
+    "type": "minion",
     "notes": "",
     "hordeHp": 1,
     "experiences": {},
@@ -49,19 +49,65 @@
     },
     "difficulty": 14,
     "tier": 3,
-    "description": "<p>A small, sentient tree sapling.</p>"
+    "description": "<p>A small, sentient tree sapling.</p>",
+    "resources": {
+      "hitPoints": {
+        "max": 1
+      },
+      "stress": {
+        "max": 1
+      }
+    },
+    "attack": {
+      "name": "Branches",
+      "img": "icons/magic/nature/root-vine-hand-strike.webp",
+      "roll": {
+        "bonus": 0
+      },
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "custom": {
+                "enabled": true,
+                "formula": "8"
+              },
+              "multiplier": "flat",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null
+            },
+            "applyTo": "hitPoints",
+            "type": [
+              "physical"
+            ],
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784360,
-    "modifiedTime": 1753922784360,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754127381995,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "o63nS0k3wHu6EgKP",
   "sort": 3400000,
@@ -164,7 +210,105 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Minion (6)",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Sapling is defeated when they take any damage. For every 6 damage a PC deals to the Sapling, defeat an additional Minion within range the attack would succeed against.</p>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "OlJpLaFanzspeShi",
+      "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754127386305,
+        "modifiedTime": 1754127405741,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!o63nS0k3wHu6EgKP.OlJpLaFanzspeShi"
+    },
+    {
+      "name": "Group Attack",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to choose a target and spotlight all Treant Saplings within Close range of them. Those Minions move into Melee range of the target and make one shared attack roll. On a success, they deal 8 physical damage each. Combine this damage.</p>",
+        "resource": null,
+        "actions": {
+          "euP8VA4wvfsCpwN1": {
+            "type": "effect",
+            "_id": "euP8VA4wvfsCpwN1",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/unholy/orb-hands-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "fh8ehANkVOnxEKVa",
+      "img": "icons/creatures/abilities/tail-strike-bone-orange.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754127407748,
+        "modifiedTime": 1754127448935,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!o63nS0k3wHu6EgKP.fh8ehANkVOnxEKVa"
+    }
+  ],
   "effects": [],
   "_key": "!actors!o63nS0k3wHu6EgKP"
 }
