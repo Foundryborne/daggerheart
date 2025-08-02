@@ -323,9 +323,16 @@ export default class DhCharacter extends BaseDataActor {
         return !(this.class.value || this.class.subclass || this.ancestry || this.community);
     }
 
-    get spellcastModifier() {
+    get spellcastModifierTrait() {
         const subClasses = this.parent.items.filter(x => x.type === 'subclass') ?? [];
-        return Math.max(subClasses?.map(sc => this.traits[sc.system.spellcastingTrait]?.value));
+        const modifiers = subClasses
+            ?.map(sc => ({ ...this.traits[sc.system.spellcastingTrait], key: sc.system.spellcastingTrait }))
+            .filter(x => x);
+        return modifiers.sort((a, b) => a.value - b.value)[0];
+    }
+
+    get spellcastModifier() {
+        return this.spellcastModifierTrait?.value ?? 0;
     }
 
     get spellcastingModifiers() {
