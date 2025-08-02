@@ -1,6 +1,6 @@
 {
   "name": "Spellcharge",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
   "type": "domainCard",
   "folder": "taM81THa8h6Bv2Xa",
   "system": {
@@ -8,22 +8,63 @@
     "domain": "midnight",
     "recallCost": 1,
     "level": 8,
-    "type": "spell"
+    "type": "spell",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "@cast",
+      "icon": ""
+    },
+    "actions": {
+      "jCgZ0yCoIhSAVEw3": {
+        "type": "effect",
+        "_id": "jCgZ0yCoIhSAVEw3",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": true,
+            "key": "ewhIzXQ2h9fS9I8c",
+            "value": 1,
+            "keyIsID": true,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Tokens",
+        "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784521,
-    "modifiedTime": 1753922784521,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754168425626,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "ewhIzXQ2h9fS9I8c",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!ewhIzXQ2h9fS9I8c"
 }
