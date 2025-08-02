@@ -26,7 +26,6 @@ export default class CostField extends fields.ArrayField {
     }
 
     static calcCosts(costs) {
-        // console.log(costs, CostField.getResources.call(this, costs));
         const resources = CostField.getResources.call(this, costs);
         return costs.map(c => {
             c.scale = c.scale ?? 1;

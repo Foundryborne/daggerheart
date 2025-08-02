@@ -45,12 +45,12 @@ export default class DHDamageAction extends DHBaseAction {
         formulas = this.formatFormulas(formulas, systemData);
 
         delete systemData.evaluate;
-        systemData.targets.forEach(t => t.hit = true);
         const config = {
             ...systemData,
             roll: formulas,
             dialog: {},
-            data: this.getRollData()
+            data: this.getRollData(),
+            targetSelection: systemData.targets.length > 0
         }
         if (this.hasSave) config.onSave = this.save.damageMod;
         if (data.system) {

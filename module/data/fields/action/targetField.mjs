@@ -57,7 +57,11 @@ export default class TargetField extends fields.SchemaField {
             name: actor.actor.name,
             img: actor.actor.img,
             difficulty: actor.actor.system.difficulty,
-            evasion: actor.actor.system.evasion
+            evasion: actor.actor.system.evasion,
+            saved: {
+                value: null,
+                success: null
+            }
         };
     }
 }

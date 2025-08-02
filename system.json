@@ -247,8 +247,7 @@
             "dualityRoll": {},
             "adversaryRoll": {},
             "damageRoll": {},
-            "abilityUse": {},
-            "applyEffect": {}
+            "abilityUse": {}
         }
     },
     "primaryTokenAttribute": "resources.hitPoints",
