@@ -72,9 +72,13 @@ export class DHActionRollData extends foundry.abstract.DataModel {
         if (!this.parent?.actor) return modifiers;
         switch (this.parent.actor.type) {
             case 'character':
+                const spellcastingTrait =
+                    this.type === 'spellcast'
+                        ? (this.parent.actor?.system?.spellcastModifierTrait?.key ?? 'agility')
+                        : null;
                 const trait =
                     this.useDefault || !this.trait
-                        ? (this.parent.item.system.attack.roll.trait ?? 'agility')
+                        ? (spellcastingTrait ?? this.parent.item.system.attack.roll.trait ?? 'agility')
                         : this.trait;
                 if (
                     this.type === CONFIG.DH.GENERAL.rollTypes.attack.id ||
