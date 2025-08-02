@@ -47,16 +47,13 @@ export default class DHSubclass extends BaseDataItem {
                     ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassesAlreadyPresent'));
                     return false;
                 } else {
-                    if (!this.actor.system.multiclass.value) {
+                    const multiclass = this.actor.items.find(x => x.type === 'class' && x.system.isMulticlass);
+                    if (!multiclass) {
                         ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.missingMulticlass'));
                         return false;
                     }
 
-                    if (
-                        this.actor.system.multiclass.value.system.subclasses.every(
-                            x => x.uuid !== (data.uuid ?? `Item.${data._id}`)
-                        )
-                    ) {
+                    if (multiclass.system.subclasses.every(x => x.uuid !== (data.uuid ?? `Item.${data._id}`))) {
                         ui.notifications.error(
                             game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInMulticlass')
                         );
@@ -66,15 +63,12 @@ export default class DHSubclass extends BaseDataItem {
                     await this.updateSource({ isMulticlass: true });
                 }
             } else {
-                if (!this.actor.system.class.value) {
+                const actorClass = this.actor.items.find(x => x.type === 'class' && !x.system.isMulticlass);
+                if (!actorClass) {
                     ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClass'));
                     return false;
                 }
-                if (
-                    this.actor.system.class.value.system.subclasses.every(
-                        x => x.uuid !== (data.uuid ?? `Item.${data._id}`)
-                    )
-                ) {
+                if (actorClass.system.subclasses.every(x => x.uuid !== (data.uuid ?? `Item.${data._id}`))) {
                     ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInClass'));
                     return false;
                 }
