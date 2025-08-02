@@ -70,7 +70,17 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
     /**@inheritdoc*/
     static applyField(model, change, field) {
-        const evalValue = this.effectSafeEval(itemAbleRollParse(change.value, model, change.effect.parent));
+        const isOriginTarget = change.value.toLowerCase().includes('origin.@');
+        let parseModel = model;
+        if (isOriginTarget && change.effect.origin) {
+            change.value = change.value.replaceAll(/origin\.@/gi, '@');
+            try {
+                const doc = foundry.utils.fromUuidSync(change.effect.origin);
+                if (doc) parseModel = doc;
+            } catch (_) {}
+        }
+
+        const evalValue = this.effectSafeEval(itemAbleRollParse(change.value, parseModel, change.effect.parent));
         change.value = evalValue ?? change.value;
         super.applyField(model, change, field);
     }
