@@ -10,12 +10,6 @@ export default class DhAppearance extends foundry.abstract.DataModel {
                 initial: fearDisplay.token.value,
                 label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.displayFear.label'
             }),
-            dualityColorScheme: new fields.StringField({
-                required: true,
-                choices: DualityRollColor,
-                initial: DualityRollColor.normal.value,
-                label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.dualityColorScheme.label'
-            }),
             diceSoNice: new fields.SchemaField({
                 hope: new fields.SchemaField({
                     foreground: new fields.ColorField({ required: true, initial: '#ffffff' }),
@@ -65,14 +59,3 @@ export default class DhAppearance extends foundry.abstract.DataModel {
         };
     }
 }
-
-export const DualityRollColor = {
-    colorful: {
-        value: 'colorful',
-        label: 'DAGGERHEART.SETTINGS.DualityRollColor.options.colorful'
-    },
-    normal: {
-        value: 'normal',
-        label: 'DAGGERHEART.SETTINGS.DualityRollColor.options.normal'
-    }
-};

@@ -2077,12 +2077,6 @@
                     }
                 }
             },
-            "DualityRollColor": {
-                "options": {
-                    "colorful": "Colorful",
-                    "normal": "Normal"
-                }
-            },
             "Homebrew": {
                 "newDowntimeMove": "Downtime Move",
                 "downtimeMoves": "Downtime Moves",

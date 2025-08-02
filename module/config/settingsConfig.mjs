@@ -29,14 +29,3 @@ export const gameSettings = {
     LevelTiers: 'LevelTiers',
     Countdowns: 'Countdowns'
 };
-
-export const DualityRollColor = {
-    colorful: {
-        value: 0,
-        label: 'DAGGERHEART.SETTINGS.DualityRollColor.options.colorful'
-    },
-    normal: {
-        value: 1,
-        label: 'DAGGERHEART.SETTINGS.DualityRollColor.options.normal'
-    }
-};
