@@ -579,7 +579,7 @@ export default class DhCharacter extends BaseDataActor {
                 : this.levelData.level.current * 2
         };
         this.resources.hope.max -= Object.keys(this.scars).length;
-        this.resources.hitPoints.max = this.class.value?.system?.hitPoints ?? 0;
+        this.resources.hitPoints.max += this.class.value?.system?.hitPoints ?? 0;
     }
 
     prepareDerivedData() {
