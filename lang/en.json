@@ -2086,7 +2086,7 @@
                 "FIELDS": {
                     "maxFear": { "label": "Max Fear" },
                     "traitArray": { "label": "Initial Trait Modifiers" },
-                    "maxLoadout": { "label": "Max Cards in Loadout" }
+                    "maxLoadout": { "label": "Max Cards in Loadout", "hint": "Set to blank or 0 for unlimited maximum" }
                 },
                 "currency": {
                     "enabled": "Enable Overrides",
@@ -2276,7 +2276,7 @@
                 "beastformToManyAdvantages": "You cannot select any more advantages.",
                 "beastformToManyFeatures": "You cannot select any more features.",
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
-                "loadoutMaxReached": "You already have {max} cards in your loadout. Move atleast one to your vault before adding a new one.",
+                "loadoutMaxReached": "You've reached maximum loadout. Move atleast one domain card to the vault.",
                 "insufficientResources": "You have insufficient resources",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass"
