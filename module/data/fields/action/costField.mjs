@@ -11,7 +11,8 @@ export default class CostField extends fields.ArrayField {
             keyIsID: new fields.BooleanField(),
             value: new fields.NumberField({ nullable: true, initial: 1 }),
             scalable: new fields.BooleanField({ initial: false }),
-            step: new fields.NumberField({ nullable: true, initial: null })
+            step: new fields.NumberField({ nullable: true, initial: null }),
+            consumeOnSuccess: new fields.BooleanField({ initial: false, label: "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.label" })
         });
         super(element, options, context);
     }

@@ -85,6 +85,9 @@
                 },
                 "applyTo": {
                     "label": "Targeted Resource"
+                },
+                "consumeOnSuccess": {
+                    "label": "Consume on Success only"
                 }
             }
         },
