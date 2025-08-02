@@ -8,10 +8,6 @@ export default class DHAttackAction extends DHDamageAction {
         return parent.parent.type === 'weapon' ? 'attack' : 'spellcast';
     }
 
-    get chatTemplate() {
-        return 'systems/daggerheart/templates/ui/chat/duality-roll.hbs';
-    }
-
     prepareData() {
         super.prepareData();
         if (!!this.item?.system?.attack) {

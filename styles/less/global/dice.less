@@ -1,0 +1,80 @@
+.dice {
+    position: relative;
+    height: 2rem;
+    aspect-ratio: 1;
+    font-size: 1rem;
+    paint-order: stroke fill;
+    -webkit-text-stroke: 2px black;
+    z-index: 1;
+
+    &.xxs {
+        height: 1rem;
+        font-size: .5rem;
+        -webkit-text-stroke: 1px black;
+    }
+
+    &.xs {
+        height: 1.5rem;
+        font-size: .75rem;
+    }
+
+    &.lg {
+        height: 2.5rem;
+        font-size: 1.25rem;
+    }
+
+    &.xl {
+        height: 3rem;
+        font-size: 1.5rem;
+    }
+
+    &.discarded {
+        opacity: .5;
+    }
+
+    &:before {
+        content: ' ';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        mask: var(--svg-die) no-repeat center;
+        mask-size: contain;
+        background: linear-gradient(139.01deg, #EFE6D8 3.51%, #372E1F 96.49%);
+    }
+
+    &.d4:before {
+        --svg-die: url(../assets/icons/dice/default/d4.svg);
+    }
+    &.d6:before {
+        --svg-die: url(../assets/icons/dice/default/d6.svg);
+    }
+    &.d8:before {
+        --svg-die: url(../assets/icons/dice/default/d8.svg);
+    }
+    &.d10:before {
+        --svg-die: url(../assets/icons/dice/default/d10.svg);
+    }
+    &.d12:before {
+        --svg-die: url('../assets/icons/dice/default/d12.svg');
+    }
+    &.d20:before {
+        --svg-die: url(../assets/icons/dice/default/d20.svg);
+    }
+
+    &.color-hope:before {
+        background: linear-gradient(139.01deg, #F3C267 3.51%, #4C3407 96.49%);
+    }
+
+    &.color-fear:before {
+        background: linear-gradient(151.21deg, #352AB2 7.21%, #18162E 92.79%);
+    }
+
+    &.color-adv:before {
+        background: linear-gradient(139.01deg, #40A640 3.51%, #011B01 96.49%);
+    }
+
+    &.color-dis:before {
+        background: linear-gradient(139.01deg, #E54E4E 3.51%, #3C0000 82.19%);
+    }
+}

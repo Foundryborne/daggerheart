@@ -44,19 +44,14 @@ export default class DHDamageAction extends DHBaseAction {
 
         formulas = this.formatFormulas(formulas, systemData);
 
+        delete systemData.evaluate;
+        systemData.targets.forEach(t => t.hit = true);
         const config = {
-            title: game.i18n.format(`DAGGERHEART.UI.Chat.${this.type === 'healing' ? 'healing' : 'damage'}Roll.title`, {
-                damage: game.i18n.localize(this.name)
-            }),
+            ...systemData,
             roll: formulas,
-            targets: systemData.targets?.filter(t => t.hit) ?? data.targets,
-            hasSave: this.hasSave,
-            isCritical: systemData.roll?.isCritical ?? false,
-            isHealing: this.type === 'healing',
-            source: systemData.source,
-            data: this.getRollData(),
-            event
-        };
+            dialog: {},
+            data: this.getRollData()
+        }
         if (this.hasSave) config.onSave = this.save.damageMod;
         if (data.system) {
             config.source.message = data._id;

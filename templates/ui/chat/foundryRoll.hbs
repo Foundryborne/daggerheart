@@ -1,0 +1,14 @@
+<div class="dice-roll" data-action="expandRoll">
+    {{#if flavor}}
+    <div class="dice-flavor">{{flavor}}</div>
+    {{/if}}
+    <div class="dice-result">
+        <div class="dice-formula">{{formula}}</div>
+        {{{tooltip}}}
+        <h4 class="dice-total">{{total}}</h4>
+    </div>
+</div>
+<div class="roll-buttons">
+    <button class="simple-roll-button">{{localize "DAGGERHEART.UI.Chat.damageRoll.dealDamage"}}</button>
+    <button class="simple-roll-button" data-type="healing">{{localize "DAGGERHEART.UI.Chat.healingRoll.applyHealing"}}</button>
+</div>

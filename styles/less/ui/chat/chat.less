@@ -1,31 +1,8 @@
 @import '../../utils/colors.less';
+@import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
 .daggerheart.chat {
-    &.downtime {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .downtime-title-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            .downtime-subtitle {
-                font-size: 17px;
-            }
-        }
-
-        .downtime-image {
-            width: 80px;
-        }
-
-        .action-use-button {
-            width: 100%;
-        }
-    }
-
     &.resource-roll {
         .reroll-message {
             text-align: center;
@@ -34,7 +11,7 @@
         }
     }
 
-    &.roll {
+    /* &.roll {
         .dice-flavor {
             text-align: center;
             font-weight: bold;
@@ -342,6 +319,9 @@
 
             button {
                 flex: 1;
+                height: 40px;
+                font-family: @font-body;
+                font-weight: 600;
             }
         }
 
@@ -356,59 +336,7 @@
         &:not(.expanded) .dice-tooltip {
             grid-template-rows: 0fr;
         }
-    }
-
-    &.domain-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .domain-card-title {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            div {
-                font-size: 20px;
-                font-variant: small-caps;
-                font-weight: bold;
-            }
-
-            h2 {
-                width: 100%;
-                text-align: center;
-                margin: 0;
-            }
-        }
-
-        .ability-card-footer {
-            display: flex;
-            width: 100%;
-            margin-top: @fullMargin;
-            flex-wrap: wrap;
-
-            button {
-                border-radius: 6px;
-                background: @positive;
-                border-color: black;
-                flex-basis: calc(50% - 2px);
-
-                &:nth-of-type(n + 3) {
-                    margin-top: @tinyMargin;
-                }
-            }
-
-            .ability-card-action-cost {
-                margin: auto;
-                font-size: 1.5em;
-            }
-        }
-
-        img {
-            width: 80px;
-        }
-    }
+    } */
 
     button {
         &.inner-button {
@@ -432,6 +360,365 @@
         }
         &::after {
             content: '??';
+        }
+    }
+}
+
+.daggerheart,
+#chat-notifications {
+    .chat-message {
+        --text-color: light-dark(@dark-blue, @golden);
+        --bg-color: light-dark(@dark-blue-40, @golden-40);
+
+        &.duality {
+            &.hope {
+                --text-color: @golden;
+                --bg-color: @golden-40;
+                .message-header,
+                .message-content {
+                    background-color: @golden-bg;
+                }
+            }
+
+            &.fear {
+                --text-color: @chat-blue;
+                --bg-color: @chat-blue-40;
+                .message-header,
+                .message-content {
+                    background-color: @chat-blue-bg;
+                }
+            }
+
+            &.critical {
+                --text-color: @chat-purple;
+                --bg-color: @chat-purple-40;
+                .message-header,
+                .message-content {
+                    background-color: @chat-purple-bg;
+                }
+            }
+        }
+
+        .chat-roll {
+            font-size: var(--font-size-12);
+            padding: 0 20px;
+
+            > .roll-part-header {
+                font-size: var(--font-size-14);
+            }
+
+            .roll-part-header {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+                color: light-dark(@dark, @beige);
+                margin: 5px 0;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    text-transform: capitalize;
+                    padding: 0 10px;
+                }
+
+                &:before,
+                &:after {
+                    content: ' ';
+                    height: 1px;
+                }
+
+                &:before {
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, var(--text-color) 100%);
+                }
+
+                &:after {
+                    background: linear-gradient(90deg, var(--text-color) 0%, rgba(0, 0, 0, 0) 100%);
+                }
+            }
+
+            .roll-part-extra {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                margin-top: 8px;
+            }
+
+            .roll-part-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                padding: 5px 0;
+
+                .dice-tooltip {
+                    width: 100%;
+
+                    .wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                        > :first-child:not(.target-selector) {
+                            margin-top: 5px;
+                        }
+
+                        > :last-child {
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+
+                .roll-result-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    color: var(--text-color);
+                    font-weight: 700;
+                    font-family: 'Cinzel', sans-serif;
+
+                    .roll-result-value {
+                        font-size: var(--font-size-24);
+                    }
+
+                    .roll-result-desc {
+                        font-size: var(--font-size-16);
+                        margin-top: 2px;
+                    }
+                }
+
+                .roll-difficulty {
+                    margin-top: -5px;
+                }
+            }
+        }
+
+        .roll-dice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-weight: 700;
+            font-family: 'Cinzel', sans-serif;
+            flex-wrap: wrap;
+
+            .roll-die {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+
+                label {
+                    text-align: center;
+                    height: var(--font-size-12);
+                }
+
+                > div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 5px;
+                    // font-size: var(--font-size-20);
+                }
+            }
+        }
+
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            // gap: 10px;
+            border-color: var(--text-color);
+            border-radius: 5px;
+
+            legend {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 0 5px;
+                color: var(--text-color);
+            }
+        }
+
+        .target-selector {
+            + .roll-part-extra {
+                margin: 0;
+            }
+
+            .target-choice {
+                display: flex;
+                font-size: var(--font-size-14);
+                color: var(--text-color);
+                padding: 5px 0;
+
+                .button-target-selection {
+                    flex: 1;
+                    text-align: center;
+                }
+
+                .button-target-selection:hover,
+                .target-selected {
+                    font-weight: bold;
+                    text-shadow: 0px 0px 8px var(--text-color);
+                }
+            }
+        }
+
+        i {
+            text-align: center;
+        }
+
+        .roll-target {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+            align-items: center;
+
+            .target-img {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+            }
+
+            .target-data {
+                flex: 1;
+            }
+
+            .target-save {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 22px;
+                height: 22px;
+                &:hover > i {
+                    scale: 1.2;
+                }
+
+                i {
+                    &.fa-check {
+                        color: @green;
+                    }
+                    &.fa-xmark {
+                        color: @medium-red;
+                    }
+                }
+            }
+        }
+
+        .roll-formula {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            padding: 3px 5px;
+            width: fit-content;
+            margin: auto;
+        }
+
+        .roll-difficulty,
+        .target-hit-status {
+            color: @green;
+            background-color: @green-10;
+            border: 1px solid currentColor;
+            border-radius: 4px;
+            padding: 3px 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+
+            &.is-miss {
+                color: @medium-red;
+                background-color: @medium-red-10;
+            }
+        }
+
+        .target-hit-status {
+            width: fit-content;
+            margin-top: 2px;
+        }
+
+        div[data-action='expandRoll'] {
+            .roll-part-header > div > span {
+                &:before,
+                &:after {
+                    content: '\f078';
+                    font-family: var(--font-awesome);
+                    color: var(--text-color);
+                    transition: all 0.3s ease;
+                }
+            }
+
+            .on-reduced {
+                display: grid;
+                overflow: hidden;
+                grid-template-rows: 1fr;
+                transition: grid-template-rows 250ms ease;
+
+                .wrapper {
+                    display: flex;
+                    gap: 10px;
+                    overflow: hidden;
+                }
+            }
+
+            &.expanded {
+                .roll-part-header > div > span {
+                    &:before,
+                    &:after {
+                        transform: rotate(180deg);
+                    }
+                }
+
+                .on-reduced {
+                    grid-template-rows: 0fr;
+                }
+            }
+        }
+
+        .roll-part + .roll-part {
+            margin-top: 0;
+        }
+
+        .target-section {
+            .roll-part-content {
+                gap: 10px;
+            }
+
+            .roll-part-extra {
+                position: relative;
+
+                .target-pending-saves {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 25px;
+                    width: 25px;
+                    &.is-absolute {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        .roll-buttons {
+            display: flex;
+            gap: 5px;
+            margin-top: 8px;
+            button {
+                flex: 1;
+            }
+        }
+
+        .font-20 {
+            font-size: var(--font-size-20);
+        }
+
+        .dice-roll .dice-tooltip fieldset {
+            margin-bottom: 5px;
+            .roll-dice {
+                gap: 10px;
+            }
         }
     }
 }

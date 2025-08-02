@@ -541,12 +541,12 @@ export default class DhpActor extends Actor {
     }
 
     canResist(type, resistance) {
-        if (!type) return 0;
+        if (!type?.length) return false;
         return type.every(t => this.system.resistance[t]?.[resistance] === true);
     }
 
     getDamageTypeReduction(type) {
-        if (!type) return 0;
+        if (!type?.length) return 0;
         const reduction = Object.entries(this.system.resistance).reduce(
             (a, [index, value]) => (type.includes(index) ? Math.min(value.reduction, a) : a),
             Infinity

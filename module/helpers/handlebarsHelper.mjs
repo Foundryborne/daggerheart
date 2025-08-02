@@ -11,7 +11,8 @@ export default class RegisterHandlebarsHelpers {
             damageSymbols: this.damageSymbols,
             rollParsed: this.rollParsed,
             hasProperty: foundry.utils.hasProperty,
-            setVar: this.setVar
+            setVar: this.setVar,
+            empty: this.empty
         });
     }
     static add(a, b) {
@@ -64,5 +65,10 @@ export default class RegisterHandlebarsHelpers {
 
     static setVar(name, value, context) {
         this[name] = value;
+    }
+
+    static empty(object) {
+        if(!(typeof object === 'object')) return true;
+        return Object.keys(object).length === 0;
     }
 }

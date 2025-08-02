@@ -102,9 +102,9 @@ export default class DHItem extends foundry.documents.Item {
      * Generate an array of localized tag.
      * @returns {string[]} An array of localized tag strings.
      */
-    getTags() {
+    _getTags() {
         const tags = [];
-        if (this.system.getTags) tags.push(...this.system.getTags());
+        if (this.system._getTags) tags.push(...this.system._getTags());
         return tags;
     }
 
@@ -143,20 +143,33 @@ export default class DHItem extends foundry.documents.Item {
                         : game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: origin,
             img: this.img,
-            name: this.name,
+            item: {
+                name: this.name,
+                img: this.img,
+                tags: this._getTags()
+            },
             description: this.system.description,
-            actions: []
+            actions: this.system.actions
         };
-        const msg = new cls({
+        const msg = {
             type: 'abilityUse',
             user: game.user.id,
+            actor: game.actors.get(cls.getSpeaker().actor),
+            author: this.author,
+            speaker: cls.getSpeaker(),
             system: systemData,
+            title: game.i18n.localize('DAGGERHEART.ACTIONS.Config.displayInChat'),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/ability-use.hbs',
                 systemData
-            )
-        });
+            ),
+            flags: {
+                daggerheart: {
+                    cssClass: 'dh-chat-message dh-style'
+                }
+            }
+        };
 
-        cls.create(msg.toObject());
+        cls.create(msg);
     }
 }

@@ -56,6 +56,8 @@ Hooks.once('init', () => {
     };
 
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, DHRoll, DualityRoll, D20Roll, DamageRoll];
+    Roll.CHAT_TEMPLATE = "systems/daggerheart/templates/ui/chat/foundryRoll.hbs";
+    Roll.TOOLTIP_TEMPLATE = "systems/daggerheart/templates/ui/chat/foundryRollTooltip.hbs";
     CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
     const { DocumentSheetConfig } = foundry.applications.apps;
@@ -129,6 +131,7 @@ Hooks.once('init', () => {
 
     CONFIG.ChatMessage.dataModels = models.chatMessages.config;
     CONFIG.ChatMessage.documentClass = documents.DhChatMessage;
+    CONFIG.ChatMessage.template = 'systems/daggerheart/templates/ui/chat/chat-message.hbs';
 
     CONFIG.Canvas.rulerClass = placeables.DhRuler;
     CONFIG.Canvas.layers.templates.layerClass = placeables.DhTemplateLayer;
@@ -173,8 +176,10 @@ Hooks.on('ready', () => {
 
 Hooks.once('dicesoniceready', () => {});
 
-Hooks.on('renderChatMessageHTML', (_, element) => {
+Hooks.on('renderChatMessageHTML', (_, element, message) => {
     enricherRenderSetup(element);
+    const cssClass = message.message.flags?.daggerheart?.cssClass;
+    if (cssClass) cssClass.split(' ').forEach(cls => element.classList.add(cls));
 });
 
 Hooks.on('renderJournalEntryPageProseMirrorSheet', (_, element) => {

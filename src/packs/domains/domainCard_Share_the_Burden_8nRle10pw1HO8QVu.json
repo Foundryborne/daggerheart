@@ -1,6 +1,6 @@
 {
   "name": "Share the Burden",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
   "type": "domainCard",
   "folder": "VgADdqYn9nS9G1Us",
   "system": {
@@ -8,22 +8,26 @@
     "domain": "grace",
     "recallCost": 0,
     "level": 6,
-    "type": "spell"
+    "type": "spell",
+    "actions": {}
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784515,
-    "modifiedTime": 1753922784515,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754106101756,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "8nRle10pw1HO8QVu",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!8nRle10pw1HO8QVu"
 }

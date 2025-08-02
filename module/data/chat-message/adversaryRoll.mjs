@@ -1,6 +1,6 @@
 const fields = foundry.data.fields;
 
-export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
+export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     static defineSchema() {
         return {
             title: new fields.StringField(),
@@ -20,22 +20,29 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
                     })
                 })
             ),
-            targetSelection: new fields.BooleanField({ initial: true }),
+            targetSelection: new fields.BooleanField({ initial: false }),
+            hasRoll: new fields.BooleanField({ initial: false }),
             hasDamage: new fields.BooleanField({ initial: false }),
             hasHealing: new fields.BooleanField({ initial: false }),
             hasEffect: new fields.BooleanField({ initial: false }),
             hasSave: new fields.BooleanField({ initial: false }),
+            hasTarget: new fields.BooleanField({ initial: false }),
+            isCritical: new fields.BooleanField({ initial: false }),
+            onSave: new fields.StringField(),
             source: new fields.SchemaField({
                 actor: new fields.StringField(),
                 item: new fields.StringField(),
                 action: new fields.StringField()
             }),
-            damage: new fields.ObjectField()
+            damage: new fields.ObjectField(),
+            costs: new fields.ArrayField(
+                new fields.ObjectField()
+            )
         };
     }
 
     get messageTemplate() {
-        return 'systems/daggerheart/templates/ui/chat/adversary-roll.hbs';
+        return 'systems/daggerheart/templates/ui/chat/roll.hbs';
     }
 
     prepareDerivedData() {
@@ -46,5 +53,15 @@ export default class DHAdversaryRoll extends foundry.abstract.TypeDataModel {
                       game.system.api.fields.ActionFields.TargetField.formatTarget(t)
                   )
                 : this.targets;
+        if(this.targetSelection === true) {
+            this.targetShort = this.targets.reduce((a,c) => {
+                if(c.hit) a.hit += 1;
+                else c.miss += 1;
+                return a;
+            }, {hit: 0, miss: 0})
+        }
+        this.pendingSaves = this.targets.filter(
+            target => target.hit && target.saved.success === null
+        ).length > 0;
     }
 }

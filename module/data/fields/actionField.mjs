@@ -252,19 +252,27 @@ export function ActionMixin(Base) {
             const systemData = {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.ActionType.action'),
                 origin: origin,
-                img: this.img,
-                name: this.name,
-                description: this.description,
-                actions: []
+                action: { name: this.name, img: this.img, tags: this.tags ? this.tags : ['Spell', 'Arcana', 'Lv 10'] },
+                itemOrigin: this.item,
+                description: this.description
             };
             const msg = {
                 type: 'abilityUse',
                 user: game.user.id,
+                actor: { name: this.actor.name, img: this.actor.img },
+                author: this.author,
+                speaker: cls.getSpeaker(),
+                title: game.i18n.localize('DAGGERHEART.UI.Chat.action.title'),
                 system: systemData,
                 content: await foundry.applications.handlebars.renderTemplate(
-                    'systems/daggerheart/templates/ui/chat/ability-use.hbs',
+                    'systems/daggerheart/templates/ui/chat/action.hbs',
                     systemData
-                )
+                ),
+                flags: {
+                    daggerheart: {
+                        cssClass: 'dh-chat-message dh-style'
+                    }
+                }
             };
 
             cls.create(msg);

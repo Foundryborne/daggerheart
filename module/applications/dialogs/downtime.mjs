@@ -133,22 +133,34 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         });
 
         const cls = getDocumentClass('ChatMessage');
-        const msg = new cls({
+        const msg = {
             user: game.user.id,
             system: {
                 moves: moves,
                 actor: this.actor.uuid
             },
+            speaker: cls.getSpeaker(),
+            title: game.i18n.localize(
+                `DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`
+            ),
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/daggerheart/templates/ui/chat/downtime.hbs',
                 {
-                    title: `${this.actor.name} - ${game.i18n.localize(`DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`)}`,
+                    title: game.i18n.localize(
+                        `DAGGERHEART.APPLICATIONS.Downtime.${this.shortrest ? 'shortRest' : 'longRest'}.title`
+                    ),
+                    actor: { name: this.actor.name, img: this.actor.img },
                     moves: moves
                 }
-            )
-        });
+            ),
+            flags: {
+                daggerheart: {
+                    cssClass: 'dh-chat-message dh-style'
+                }
+            }
+        };
 
-        cls.create(msg.toObject());
+        cls.create(msg);
 
         // Reset selection and update number of taken moves
         for (const [catName, category] of Object.entries(this.moveData)) {

@@ -7,6 +7,12 @@ export default class DHRoll extends Roll {
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
+    get title() {
+        return game.i18n.localize(
+            "DAGGERHEART.GENERAL.Roll.basic"
+        );
+    }
+
     static messageType = 'adversaryRoll';
 
     static DefaultDialog = D20RollDialog;
@@ -46,8 +52,10 @@ export default class DHRoll extends Roll {
     }
 
     static async buildEvaluate(roll, config = {}, message = {}) {
-        if (config.evaluate !== false) await roll.evaluate();
-        config.roll = this.postEvaluate(roll, config);
+        if (config.evaluate !== false) {
+            await roll.evaluate();
+            config.roll = this.postEvaluate(roll, config);
+        }
     }
 
     static async buildPost(roll, config, message) {
@@ -56,15 +64,8 @@ export default class DHRoll extends Roll {
         }
 
         // Create Chat Message
-        if (roll instanceof CONFIG.Dice.daggerheart.DamageRoll && Object.values(config.roll)?.length) {
-            const pool = foundry.dice.terms.PoolTerm.fromRolls(
-                Object.values(config.roll).flatMap(r => r.parts.map(p => p.roll))
-            );
-            roll = Roll.fromTerms([pool]);
-        }
-        if (config.source?.message) {
-            if (game.modules.get('dice-so-nice')?.active) await game.dice3d.showForRoll(roll, game.user, true);
-        } else config.message = await this.toMessage(roll, config);
+        if (!config.source?.message)
+            config.message = await this.toMessage(roll, config);
     }
 
     static postEvaluate(roll, config = {}) {
@@ -85,11 +86,14 @@ export default class DHRoll extends Roll {
             msg = {
                 type: this.messageType,
                 user: game.user.id,
+                title: roll.title,
+                speaker: cls.getSpeaker(),
                 sound: config.mute ? null : CONFIG.sounds.dice,
                 system: config,
                 rolls: [roll]
             };
-        return await cls.create(msg, { rollMode: config.selectedRollMode });
+        if(roll._evaluated) return await cls.create(msg, { rollMode: config.selectedRollMode });
+        return msg;
     }
 
     static applyKeybindings(config) {
@@ -178,7 +182,7 @@ export default class DHRoll extends Roll {
 
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async (config, message) => {
-        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;
+        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;    
         if (
             !config.source?.actor ||
             (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||

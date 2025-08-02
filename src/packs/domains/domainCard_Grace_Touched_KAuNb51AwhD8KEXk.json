@@ -1,6 +1,6 @@
 {
   "name": "Grace-Touched",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
   "type": "domainCard",
   "folder": "W81LnTWzwmoaycTl",
   "system": {
@@ -8,22 +8,109 @@
     "domain": "grace",
     "recallCost": 2,
     "level": 7,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "VkPMSuoowd7hnsR5": {
+        "type": "effect",
+        "_id": "VkPMSuoowd7hnsR5",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "armor",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Armor Slot",
+        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "range": ""
+      },
+      "YzrQmUhNZoDYawo0": {
+        "type": "damage",
+        "_id": "YzrQmUhNZoDYawo0",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "stress",
+              "type": [],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Mark 1 Stress",
+        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784465,
-    "modifiedTime": 1753922784465,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754106506325,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "KAuNb51AwhD8KEXk",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!KAuNb51AwhD8KEXk"
 }

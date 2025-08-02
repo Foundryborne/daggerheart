@@ -17,6 +17,12 @@ export default class DualityRoll extends D20Roll {
 
     static DefaultDialog = D20RollDialog;
 
+    get title() {
+        return game.i18n.localize(
+            "DAGGERHEART.GENERAL.dualityRoll"
+        );
+    }
+
     get dHope() {
         // if ( !(this.terms[0] instanceof foundry.dice.terms.Die) ) return;
         if (!(this.dice[0] instanceof CONFIG.Dice.daggerheart.DualityDie)) this.createBaseDice();

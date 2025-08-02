@@ -1,0 +1,118 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+@import '../../utils/spacing.less';
+
+.daggerheart.chat {
+    &.domain-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            mask-image: linear-gradient(0deg, transparent 0%, black 10%, black 90%, transparent 100%);
+            object-fit: cover;
+        }
+
+        details[open] {
+            .fa-chevron-down {
+                transform: rotate(180deg);
+                transition: all 0.3s ease;
+            }
+        }
+
+        .domain-card-move {
+            width: 100%;
+
+            .fa-chevron-down {
+                transition: all 0.3s ease;
+                margin-left: auto;
+            }
+
+            .domain-card-header {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin: 8px;
+                padding-bottom: 5px;
+                width: -webkit-fill-available;
+                gap: 5px;
+                border-bottom: 1px solid @golden;
+
+                &:hover {
+                    background: light-dark(@dark-blue-10, @golden-10);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                .domain-label {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    padding-bottom: 5px;
+                    width: -webkit-fill-available;
+                    gap: 5px;
+
+                    .title {
+                        font-size: 20px;
+                        color: @golden;
+                        font-family: @font-subtitle;
+                        margin: 0;
+                    }
+
+                    .tags {
+                        display: flex;
+                        gap: 10px;
+                        flex-wrap: wrap;
+
+                        .tag {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 3px 5px;
+                            font-size: 12px;
+                            font-family: @font-body;
+
+                            background: light-dark(@dark-15, @beige-15);
+                            border: 1px solid light-dark(@dark, @beige);
+                            color: light-dark(@dark, @beige);
+                            border-radius: 3px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .description {
+            color: @beige;
+            padding: 8px;
+            font-family: @font-body;
+        }
+
+        .ability-card-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            width: 100%;
+            padding: 0 8px;
+
+            button {
+                font-family: @font-body;
+                font-weight: 600;
+                height: 40px;
+                flex: 1 1 calc(50% - 5px);
+
+                &:nth-last-child(1):nth-child(odd) {
+                    flex-basis: 100%;
+                }
+            }
+
+            .ability-card-action-cost {
+                margin: auto;
+                font-size: 1.5em;
+            }
+        }
+    }
+}

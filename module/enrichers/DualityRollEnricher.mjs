@@ -93,9 +93,8 @@ export const enrichedDualityRoll = async (
             advantage,
             type: reaction ? 'reaction' : null
         },
-        chatMessage: {
-            template: 'systems/daggerheart/templates/ui/chat/duality-roll.hbs'
-        }
+        type: 'trait',
+        hasRoll: true
     };
 
     if (target) {

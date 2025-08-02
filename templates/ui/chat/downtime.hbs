@@ -1,13 +1,22 @@
 <div class="daggerheart chat downtime">
-    <h2 class="downtime-title-container">
-        <div>{{title}}</div>
-    </h2>
-    {{#each moves as | move index |}}
-        <strong>{{move.name}}</strong>
-        <img class="downtime-image" src="{{move.img}}" />
-        <div>{{{move.description}}}</div>
-        {{#each move.actions as | action index |}}
-            <button class="action-use-button" data-move-index="{{@../key}}" data-action-index="{{index}}">{{localize action.name}}</button>
+    <ul class="downtime-moves-list">
+        {{#each moves as | move index |}}
+            <details class="downtime-move">
+                <summary class="downtime-label">
+                    <img class="downtime-image" src="{{move.img}}" />
+                    <div class="header-label">
+                        <h2 class="title">{{move.name}}</h2>
+                        <span class="label">{{localize 'DAGGERHEART.GENERAL.Bonuses.rest.downtimeAction'}}</span>
+                    </div>
+                     <i class="fa-solid fa-chevron-down"></i>
+                </summary>
+                <div class="description">
+                    {{{move.description}}}
+                </div>
+            </details>
+            {{#each move.actions as | action index |}}
+                <button class="action-use-button" data-move-index="{{@../key}}" data-action-index="{{index}}">{{localize action.name}}</button>
+            {{/each}}
         {{/each}}
-    {{/each}}
+    </ul>
 </div>

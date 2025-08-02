@@ -54,7 +54,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
                     this.diceRolling.multiplier === 'flat'
                         ? this.diceRolling.flatMultiplier
                         : `@${this.diceRolling.multiplier}`;
-                if (this.diceRolling.compare && this.diceRolling.threshold) {
+                if (this.diceRolling.compare && this.diceRolling.treshold) {
                     formula = `${multiplier}${this.diceRolling.dice}cs${CONFIG.DH.ACTIONS.diceCompare[this.diceRolling.compare].operator}${this.diceRolling.treshold}`;
                 } else {
                     formula = `${multiplier}${this.diceRolling.dice}`;

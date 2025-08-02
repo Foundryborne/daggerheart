@@ -1,6 +1,6 @@
 {
   "name": "Never Upstaged",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
   "type": "domainCard",
   "folder": "VgADdqYn9nS9G1Us",
   "system": {
@@ -8,22 +8,430 @@
     "domain": "grace",
     "recallCost": 2,
     "level": 6,
-    "type": "ability"
+    "type": "ability",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "4",
+      "icon": ""
+    },
+    "actions": {
+      "R5wGBhMUcnhCsfH2": {
+        "type": "effect",
+        "_id": "R5wGBhMUcnhCsfH2",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "McdncxmO9K1YNP7Y",
+            "value": 1,
+            "keyIsID": true,
+            "step": null
+          },
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "C6e1T2oEx6PFoRUP",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress (1 token)",
+        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "range": ""
+      },
+      "Mne0mqkibrTGwPYR": {
+        "type": "effect",
+        "_id": "Mne0mqkibrTGwPYR",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          },
+          {
+            "scalable": false,
+            "key": "McdncxmO9K1YNP7Y",
+            "value": 2,
+            "keyIsID": true,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "bMMxsBungVYB1rI8",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress (2 tokens)",
+        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "range": ""
+      },
+      "En7AF3g51P9ud9qj": {
+        "type": "effect",
+        "_id": "En7AF3g51P9ud9qj",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          },
+          {
+            "scalable": false,
+            "key": "McdncxmO9K1YNP7Y",
+            "value": 3,
+            "keyIsID": true,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "tsQRbrurzi8iqs0o",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress (3 tokens)",
+        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "range": ""
+      },
+      "WuPJlQ0wSRlGGIkh": {
+        "type": "effect",
+        "_id": "WuPJlQ0wSRlGGIkh",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "McdncxmO9K1YNP7Y",
+            "value": 4,
+            "keyIsID": true,
+            "step": null
+          },
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "3eTaSgHlmNDcymnW",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress (4 tokens)",
+        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784486,
-    "modifiedTime": 1753922784486,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754105577038,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "McdncxmO9K1YNP7Y",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Never Upstaged (1 token)",
+      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "origin": "Compendium.daggerheart.domains.Item.McdncxmO9K1YNP7Y",
+      "transfer": false,
+      "_id": "C6e1T2oEx6PFoRUP",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.physical.bonus",
+          "mode": 2,
+          "value": "+5",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.magical.bonus",
+          "mode": 2,
+          "value": "+5",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +5 bonus to your damage roll</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754105163050,
+        "modifiedTime": 1754105263055,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!McdncxmO9K1YNP7Y.C6e1T2oEx6PFoRUP"
+    },
+    {
+      "name": "Never Upstaged (2 tokens)",
+      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "origin": "Compendium.daggerheart.domains.Item.McdncxmO9K1YNP7Y",
+      "transfer": false,
+      "_id": "bMMxsBungVYB1rI8",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.magical.bonus",
+          "mode": 2,
+          "value": "+10",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.physical.bonus",
+          "mode": 2,
+          "value": "+10",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +10 bonus to your damage roll</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754105390279,
+        "modifiedTime": 1754105466079,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!McdncxmO9K1YNP7Y.bMMxsBungVYB1rI8"
+    },
+    {
+      "name": "Never Upstaged (3 tokens)",
+      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "origin": "Compendium.daggerheart.domains.Item.McdncxmO9K1YNP7Y",
+      "transfer": false,
+      "_id": "tsQRbrurzi8iqs0o",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.magical.bonus",
+          "mode": 2,
+          "value": "+15",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.physical.bonus",
+          "mode": 2,
+          "value": "+15",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +15 bonus to your damage roll</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754105499913,
+        "modifiedTime": 1754105625942,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!McdncxmO9K1YNP7Y.tsQRbrurzi8iqs0o"
+    },
+    {
+      "name": "Never Upstaged (4 tokens)",
+      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "origin": "Compendium.daggerheart.domains.Item.McdncxmO9K1YNP7Y",
+      "transfer": false,
+      "_id": "3eTaSgHlmNDcymnW",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.magical.bonus",
+          "mode": 2,
+          "value": "+20",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.physical.bonus",
+          "mode": 2,
+          "value": "+20",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +20 bonus to your damage roll</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754105577012,
+        "modifiedTime": 1754105615102,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!McdncxmO9K1YNP7Y.3eTaSgHlmNDcymnW"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!McdncxmO9K1YNP7Y"
 }

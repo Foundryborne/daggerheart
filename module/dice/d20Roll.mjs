@@ -13,11 +13,15 @@ export default class D20Roll extends DHRoll {
         DISADVANTAGE: -1
     };
 
-    static messageType = 'adversaryRoll';
-
     static CRITICAL_TRESHOLD = 20;
 
     static DefaultDialog = D20RollDialog;
+
+    get title() {
+        return game.i18n.localize(
+            "DAGGERHEART.GENERAL.d20Roll"
+        );
+    }
 
     get d20() {
         if (!(this.terms[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
@@ -136,7 +140,9 @@ export default class D20Roll extends DHRoll {
 
     static postEvaluate(roll, config = {}) {
         const data = super.postEvaluate(roll, config);
+        data.type = config.roll?.type;
         if (config.targets?.length) {
+            config.targetSelection = true;
             config.targets.forEach(target => {
                 const difficulty = config.roll.difficulty ?? target.difficulty ?? target.evasion;
                 target.hit = this.isCritical || roll.total >= difficulty;
@@ -145,7 +151,6 @@ export default class D20Roll extends DHRoll {
             data.difficulty = config.roll.difficulty;
             data.success = roll.isCritical || roll.total >= config.roll.difficulty;
         }
-        data.type = config.roll.type;
         data.advantage = {
             type: config.roll.advantage,
             dice: roll.dAdvantage?.denomination,
@@ -159,7 +164,7 @@ export default class D20Roll extends DHRoll {
                 rerolls: dice.results.filter(x => x.rerolled)
             }
         }));
-        data.isCritical = roll.isCritical;
+        data.isCritical = config.isCritical = roll.isCritical;
         data.extra = roll.dice
             .filter(d => !roll.baseTerms.includes(d))
             .map(d => {

@@ -1,0 +1,45 @@
+<li class="chat-message message flexcol {{cssClass}}" data-message-id="{{message._id}}"
+    {{#if borderColor}}style="border-color:{{borderColor}}"{{/if}}>
+    <header class="message-header flexrow">
+        <div class="message-header-main">
+            <img class="actor-img" src="{{actor.img}}" />
+            {{#if (eq message.type 'base')}}
+                <div class="message-sub-header-container">
+                    <h4>{{actor.name}}</h4>
+                    <div>{{author.name}}</div>
+                </div>
+            {{else}}
+                <div class="message-sub-header-container">
+                    <h4>{{ifThen message.title message.title alias}}</h4>
+                    <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
+                </div>
+            {{/if}}
+        </div>
+        <div class="message-header-metadata">
+            <span class="message-metadata">
+                <time class="message-timestamp">{{timeSince message.timestamp}}</time>
+                {{#if canDelete}}
+                <a aria-label="{{localize 'Delete'}}" class="message-delete" data-action="deleteMessage">
+                    <i class="fa-solid fa-trash" inert></i>
+                </a>
+                {{/if}}
+                {{#if canClose}}
+                <a aria-label="{{ localize "CHAT.Dismiss" }}" class="message-dismiss" data-action="dismissMessage">
+                    <i class="fa-solid fa-xmark" inert></i>
+                </a>
+                {{/if}}
+            </span>
+
+            {{#if isWhisper}}
+            <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
+            {{/if}}
+
+            {{#if message.flavor}}
+            <span class="flavor-text">{{{message.flavor}}}</span>
+            {{/if}}
+        </div>
+    </header>
+    <div class="message-content">
+        {{{message.content}}}
+    </div>
+</li>

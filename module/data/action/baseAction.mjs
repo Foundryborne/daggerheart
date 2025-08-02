@@ -1,6 +1,7 @@
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
+import { abilities } from '../../config/actorConfig.mjs';
 
 const fields = foundry.data.fields;
 
@@ -67,10 +68,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             : this.item?.parent instanceof DhpActor
               ? this.item.parent
               : this.item?.actor;
-    }
-
-    get chatTemplate() {
-        return 'systems/daggerheart/templates/ui/chat/duality-roll.hbs';
     }
 
     static getRollType(parent) {
@@ -161,21 +158,26 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     prepareConfig(event) {
         return {
             event,
-            title: this.item.name,
+            title: `${this.item.name}: ${this.name}`,
             source: {
                 item: this.item._id,
                 action: this._id,
                 actor: this.actor.uuid
             },
-            dialog: {},
+            dialog: {
+                configure: this.hasRoll
+            },
             type: this.type,
+            hasRoll: this.hasRoll,
             hasDamage: this.damage?.parts?.length && this.type !== 'healing',
             hasHealing: this.damage?.parts?.length && this.type === 'healing',
             hasEffect: !!this.effects?.length,
             hasSave: this.hasSave,
+            hasTarget: true,
             selectedRollMode: game.settings.get('core', 'rollMode'),
             isFastForward: event.shiftKey,
-            data: this.getRollData()
+            data: this.getRollData(),
+            evaluate: this.hasRoll
         };
     }
 
@@ -192,7 +194,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             formula: this.roll.getFormula(),
             advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
         };
-        if (this.roll?.type === 'diceSet') roll.lite = true;
+        if (this.roll?.type === 'diceSet'
+             || !this.hasRoll
+            ) roll.lite = true;
 
         return roll;
     }
@@ -296,19 +300,27 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* SAVE */
     async rollSave(actor, event, message) {
         if (!actor) return;
+        const title = actor.isNPC
+            ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
+            : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                ability: game.i18n.localize(abilities[this.save.trait]?.label)
+            });
         return actor.diceRoll({
             event,
-            title: 'Roll Save',
+            title,
             roll: {
                 trait: this.save.trait,
                 difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
                 type: 'reaction'
             },
+            type: 'trait',
+            hasRoll: true,
             data: actor.getRollData()
         });
     }
 
     updateSaveMessage(result, message, targetId) {
+        if(!result) return;
         const updateMsg = this.updateChatMessage.bind(this, message, targetId, {
             result: result.roll.total,
             success: result.roll.success

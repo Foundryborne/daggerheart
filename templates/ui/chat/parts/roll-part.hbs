@@ -1,0 +1,102 @@
+<div class="roll-part roll-section">
+    <div class="roll-part-content">
+        <div class="roll-result-container">
+            <span class="roll-result-value">{{roll.total}}</span>
+            <span class="roll-result-desc">
+                {{#if roll.isCritical}}
+                    {{localize "DAGGERHEART.GENERAL.criticalShort"}}
+                {{else}}
+                    {{#if roll.result}}
+                        {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}
+                    {{/if}}
+                {{/if}}
+            </span>
+        </div>
+        {{#if roll.difficulty}}<span class="roll-difficulty{{#unless roll.success}} is-miss{{/unless}}">difficulty {{roll.difficulty}}</span>{{/if}}
+    </div>
+    <div class="dice-roll" data-action="expandRoll">
+        <div class="roll-part-header"><div><span>Formula</span></div></div>
+        <div class="roll-part-content dice-result">
+            <div class="dice-tooltip">
+                <div class="wrapper">
+                    <div class="roll-dice">
+                        {{#if roll.hope}}
+                            <div class="roll-die">
+                                <label>{{localize "DAGGERHEART.GENERAL.hope"}}</label>
+                                <div class="dice {{roll.hope.dice}} color-hope">{{roll.hope.value}}</div>
+                            </div>
+                            <div class="roll-die">
+                                <label></label>
+                                <div class="font-20">+</div>
+                            </div>
+                            <div class="roll-die">
+                                <label>{{localize "DAGGERHEART.GENERAL.fear"}}</label>
+                                <div class="dice {{roll.fear.dice}} color-fear" style="--svg-folder: 'fear';">{{roll.fear.value}}</div>
+                            </div>
+                            {{#if roll.advantage.type}}
+                                <div class="roll-die">
+                                    <label></label>
+                                    <div class="font-20">+</div>
+                                </div>
+                                <div class="roll-die">
+                                    {{#if (eq roll.advantage.type 1)}}
+                                        <label>{{localize "DAGGERHEART.GENERAL.Advantage.short"}}</label>
+                                        <div class="dice {{roll.advantage.dice}} color-adv">{{roll.advantage.value}}</div>
+                                    {{else}}
+                                        <label>{{localize "DAGGERHEART.GENERAL.Disadvantage.short"}}</label>
+                                        <div class="dice {{roll.advantage.dice}} color-dis">{{roll.advantage.value}}</div>
+                                    {{/if}}
+                                </div>
+                            {{/if}}
+                            {{#if roll.rally.dice}}
+                                <div class="roll-die">
+                                    <label></label>
+                                    <div class="font-20">+</div>
+                                </div>
+                                <div class="roll-die">
+                                    <label>{{localize "DAGGERHEART.GENERAL.fear"}}</label>
+                                    <div class="dice {{roll.rally.dice}}">{{roll.rally.value}}</div>
+                                </div>
+                            {{/if}}
+                            {{#each roll.extra}}
+                                <div class="roll-die">
+                                    <label></label>
+                                    <div class="font-20">+</div>
+                                </div>
+                                <div class="roll-die">
+                                    <label></label>
+                                    <div class="dice {{dice}}">{{value}}</div>
+                                </div>
+                                {{#unless @last}}
+                                    <div class="roll-die">
+                                        <label></label>
+                                        <div class="font-20">+</div>
+                                    </div>
+                                {{/unless}}
+                            {{/each}}
+                        {{else}}
+                            {{#each roll.dice}}
+                                {{#each results}}
+                                    <div class="roll-die">
+                                        <div class="dice {{../dice}}{{#if discarded}} discarded{{else}}{{#if (and (eq @index 0) ../../roll.advantage.type)}}{{#if (eq ../../roll.advantage.type 1)}} color-adv{{else}} color-dis{{/if}}{{/if}}{{#if success}} color-adv{{/if}}{{/if}}">{{result}}</div>
+                                    </div>
+                                    {{#unless (or @last (not discarded))}}
+                                        <div class="roll-die">
+                                            <div class="font-20">+</div>
+                                        </div>
+                                    {{/unless}}
+                                {{/each}}
+                                {{#unless @last}}
+                                    <div class="roll-die">
+                                        <div class="font-20">+</div>
+                                    </div>
+                                {{/unless}}
+                            {{/each}}
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="roll-formula">{{roll.formula}}</div>
+            </div>
+        </div>
+    </div>
+</div>

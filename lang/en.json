@@ -1577,6 +1577,7 @@
             },
             "Bonuses": {
                 "rest": {
+                    "downtimeAction": "Downtime Action",
                     "shortRest": {
                         "shortRestMoves": {
                             "label": "Short Rest: Bonus Short Rest Moves",
@@ -1743,6 +1744,7 @@
             },
             "Roll": {
                 "attack": "Attack Roll",
+                "basic": "Roll",
                 "difficulty": "Roll (Difficulty {difficulty})",
                 "primaryWeaponAttack": "Primary Weapon Attack Roll",
                 "secondaryWeaponAttack": "Secondary Weapon Attack Roll",
@@ -1850,7 +1852,10 @@
             "burden": "Burden",
             "continue": "Continue",
             "criticalSuccess": "Critical Success",
+            "criticalShort": "Critical",
+            "d20Roll": "D20 Roll",
             "damage": "Damage",
+            "damageRoll": "Damage Roll",
             "damageType": "Damage Type",
             "description": "Description",
             "difficulty": "Difficulty",
@@ -1869,6 +1874,11 @@
             "features": "Features",
             "formula": "Formula",
             "healing": "Healing",
+            "healingRoll": "Healing Roll",
+            "hit": {
+                "single": "Hit",
+                "plural": "Hits"
+            },
             "HitPoints": {
                 "single": "Hit Point",
                 "plural": "Hit Points",
@@ -1885,10 +1895,15 @@
             "levelUp": "Level Up",
             "loadout": "Loadout",
             "max": "Max",
+            "miss": {
+                "single": "Miss",
+                "plural": "Miss"
+            },
             "maxWithThing": "Max {thing}",
             "multiclass": "Multiclass",
             "newCategory": "New Category",
             "none": "None",
+            "noTarget": "No current target",
             "partner": "Partner",
             "proficiency": "Proficiency",
             "quantity": "Quantity",
@@ -2158,6 +2173,9 @@
         },
         "UI": {
             "Chat": {
+                "action": {
+                    "title": "Action"
+                },
                 "applyEffect": {
                     "title": "Apply Effects - {name}"
                 },
@@ -2172,11 +2190,15 @@
                     "dealDamageToTargets": "Damage Hit Targets",
                     "dealDamage": "Deal Damage",
                     "rollDamage": "Roll Damage",
-                    "hitTarget": "Hit Targets",
-                    "selectedTarget": "Selected"
+                    "hitTarget": "Hit",
+                    "selectedTarget": "Selected",
+                    "currentTarget": "Current"
                 },
                 "deathMove": {
                     "title": "Death Move"
+                },
+                "dicePool": {
+                    "title": "Dice Pool"
                 },
                 "domainCard": {
                     "title": "Domain Card"
@@ -2283,6 +2305,7 @@
                 "dragApplyEffect": "Drag effect to apply it to an actor",
                 "appliedEvenIfSuccessful": "Applied even if save succeeded",
                 "diceIsRerolled": "The dice has been rerolled (x{times})",
+                "pendingSaves": "Pending Reaction Rolls",
                 "openSheetSettings": "Open Settings"
             }
         }
