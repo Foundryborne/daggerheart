@@ -1,0 +1,240 @@
+{
+  "folder": "QBeb6IqRnhTXzRtd",
+  "name": "Gifted Performer",
+  "type": "feature",
+  "img": "icons/tools/instruments/harp-yellow-teal.webp",
+  "system": {
+    "description": "<p>You can play three different types of songs, once each per long rest; describe how you perform for others to gain the listed benefit: </p><ul><li><p><strong>Relaxing Song:</strong> You and all allies within Close range clear a Hit Point.</p></li><li><p><strong>Epic Song:</strong> Make a target within Close range temporarily Vulnerable. </p></li><li><p><strong>Heartbreaking Song:</strong> You and all allies within Close range gain a Hope.</p></li></ul>",
+    "resource": null,
+    "actions": {
+      "xvs7ZKm93AlnZD3F": {
+        "type": "healing",
+        "_id": "xvs7ZKm93AlnZD3F",
+        "systemPath": "actions",
+        "description": "<p><strong>You and all allies</strong> within <strong>Close</strong> range <strong>clear a Hit Point</strong>.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Relaxing Song",
+        "img": "icons/environment/wilderness/tree-oak.webp",
+        "range": ""
+      },
+      "nvfJ8rOx8baI6POZ": {
+        "type": "effect",
+        "_id": "nvfJ8rOx8baI6POZ",
+        "systemPath": "actions",
+        "description": "<p>Make <strong>a target</strong> within <strong>Close</strong> range temporarily <strong>Vulnerable</strong>.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "FK4IdbxluRErfYor",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "hostile",
+          "amount": null
+        },
+        "name": "Epic Song",
+        "img": "icons/skills/targeting/target-strike-triple-blue.webp",
+        "range": "close"
+      },
+      "QTTgKnhpNE2XHz4u": {
+        "type": "healing",
+        "_id": "QTTgKnhpNE2XHz4u",
+        "systemPath": "actions",
+        "description": "<p><strong>You and all allies</strong> within <strong>Close</strong> range <strong>gain a Hope</strong>.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": "longRest"
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hope",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "friendly",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Heartbreaking Song",
+        "img": "icons/magic/life/heart-cross-strong-flame-purple-orange.webp",
+        "range": "close"
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Vulnerable",
+      "img": "icons/svg/ice-aura.svg",
+      "origin": "Compendium.daggerheart.subclasses.Item.6j1RP4fz3BwSfoli",
+      "transfer": false,
+      "_id": "FK4IdbxluRErfYor",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "close"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "vulnerable"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!99U7YWNCxFZHCiT0.FK4IdbxluRErfYor"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.daggerheart.subclasses.Item.6j1RP4fz3BwSfoli",
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754174646194,
+    "modifiedTime": 1754221198032,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "_id": "99U7YWNCxFZHCiT0",
+  "sort": 100000,
+  "_key": "!items!99U7YWNCxFZHCiT0"
+}

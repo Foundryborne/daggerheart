@@ -4,24 +4,34 @@
   "type": "environment",
   "folder": "IKumu5HTLqONLYqb",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "2E8iPHwHt7srzJRS": {
+        "label": "Outer Realm Monstrosities",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof",
+          "Compendium.daggerheart.adversaries.Actor.ms6nuOl3NFkhPj1k",
+          "Compendium.daggerheart.adversaries.Actor.moJhHgKqTKPS2WYS"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 20,
     "tier": 4,
     "description": "<p>An otherworldly space where the laws of reality are unstable and dangerous.</p>",
-    "type": "<p>Traversal</p>"
+    "type": "traversal",
+    "impulses": "Annihilate certainty, consume power, defy logic"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784556,
-    "modifiedTime": 1753922784556,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754219630584,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "2Z1mKc65LxNk2PqR",
   "sort": 3400000,
@@ -124,7 +134,485 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Impossible Architecture",
+      "type": "feature",
+      "system": {
+        "description": "<p>Up is down, down is right, right is starward. Gravity and directionality themselves are in fl ux, and any attempt to move through this realm is an odyssey unto itself, requiring a Progress Countdown (8). On a failure, a PC must mark a Stress in addition to the roll’s other consequences. </p><section id=\"secret-j76pJfYX7Cbt61Pq\" class=\"secret\"><p><em>What does it feel like to move in a space so alien to the Mortal Realm? What landmark or point do you fi xate on to maintain your balance? What bizarre landmarks do you traverse on your journey?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "hli84bleKqYoU7YL": {
+            "type": "damage",
+            "_id": "hli84bleKqYoU7YL",
+            "systemPath": "actions",
+            "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">On a failure, a PC must mark a Stress in addition to the roll’s other consequences.</span></p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "img": "icons/magic/symbols/squares-3d-green.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "yXCBy1MQuh5GwH5Q",
+      "img": "icons/magic/symbols/squares-3d-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754219060775,
+        "modifiedTime": 1754219140788,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2Z1mKc65LxNk2PqR.yXCBy1MQuh5GwH5Q"
+    },
+    {
+      "name": "Everything You Are This Place Will Take from You",
+      "type": "feature",
+      "system": {
+        "description": "<p>Countdown (Loop 1d4). Activate the countdown. When it triggers, all PCs must succeed on a Presence Reaction Roll or their highest trait is temporarily reduced by [[/r 1d4]] unless they mark a number of Stress equal to its value. Any lost trait points are regained if the PC critically succeeds or escapes the Chaos Realm. </p><section id=\"secret-uG9quQrfVqBYix6p\" class=\"secret\"><p><em>How does this place try to steal from you that which makes you legendary? What does it feel like to have this power taken from you?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "IexEUqnefrcD0VCz": {
+            "type": "attack",
+            "_id": "IexEUqnefrcD0VCz",
+            "systemPath": "actions",
+            "description": "<p>Countdown (Loop 1d4). Activate the countdown.</p><section class=\"secret\" id=\"secret-dFnoVgNh7bMpAQF1\"><p><em>How does this place try to steal from you that which makes you legendary? What does it feel like to have this power taken from you?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Countdown",
+            "img": "icons/magic/control/sihouette-hold-beam-green.webp",
+            "range": ""
+          },
+          "zOQMo13vSiX3QReJ": {
+            "type": "attack",
+            "_id": "zOQMo13vSiX3QReJ",
+            "systemPath": "actions",
+            "description": "<p>When the countdown triggers, all PCs must succeed on a Presence Reaction Roll or their highest trait is temporarily reduced by [[/r 1d4]] unless they mark a number of Stress equal to its value. Any lost trait points are regained if the PC critically succeeds or escapes the Chaos Realm. </p><section class=\"secret\" id=\"secret-nXjHVXTDY3UzkRVb\"><p><em>How does this place try to steal from you that which makes you legendary? What does it feel like to have this power taken from you?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "presence",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/control/sihouette-hold-beam-green.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "0OYHJZqT0DlVz5be",
+      "img": "icons/magic/control/sihouette-hold-beam-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754219142956,
+        "modifiedTime": 1754219278386,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2Z1mKc65LxNk2PqR.0OYHJZqT0DlVz5be"
+    },
+    {
+      "name": "Unmaking",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to force a PC to make a Strength Reaction Roll. On a failure, they take <strong>4d10</strong> direct magic damage. On a success, they must mark a Stress. </p><section id=\"secret-HGAS3UaO0JcUPdlT\" class=\"secret\"><p><em>What glimpse of other worlds do you catch while this place tries to unmake you? What core facet of your personality does the unmaking try to erase?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "6AT7qvUE6I6eVHU8": {
+            "type": "attack",
+            "_id": "6AT7qvUE6I6eVHU8",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to force a PC to make a Strength Reaction Roll. On a failure, they take <strong>4d10</strong> direct magic damage. On a success, they must mark a Stress. </p><section class=\"secret\" id=\"secret-ycMBQOJJjDI4wEwK\"><p><em>What glimpse of other worlds do you catch while this place tries to unmake you? What core facet of your personality does the unmaking try to erase?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 4,
+                    "dice": "d10",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "strength",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/unholy/energy-smoke-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "RNbAdBZM6gDNaRPn",
+      "img": "icons/magic/unholy/energy-smoke-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754219294860,
+        "modifiedTime": 1754219400958,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2Z1mKc65LxNk2PqR.RNbAdBZM6gDNaRPn"
+    },
+    {
+      "name": "Outer Realms Predators",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to summon an @UUID[Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof]{Outer Realms Abomination}, an@UUID[Compendium.daggerheart.adversaries.Actor.ms6nuOl3NFkhPj1k]{Outer Realms Corrupter}, and [[/r 2d6]] @UUID[Compendium.daggerheart.adversaries.Actor.moJhHgKqTKPS2WYS]{Outer Realms Thrall}, who appear at Close range of a chosen PC in defiance of logic and causality. Immediately spotlight one of these adversaries, and you can spend an additional Fear to automatically succeed on that adversary’s standard attack.</p><section class=\"secret\" id=\"secret-psXRRXLoibTKFpaW\"><p><em>What halfconsumed remnants of the shattered world do these monstrosities cast aside in pursuit of living flesh? What jagged refl ections of former personhood do you catch between moments of unquestioning malice?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "5a8ESNroEQHAm7rO": {
+            "type": "effect",
+            "_id": "5a8ESNroEQHAm7rO",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to summon an @UUID[Compendium.daggerheart.adversaries.Actor.A0SeeDzwjvqOsyof]{Outer Realms Abomination}, an@UUID[Compendium.daggerheart.adversaries.Actor.ms6nuOl3NFkhPj1k]{Outer Realms Corrupter}, and [[/r 2d6]] @UUID[Compendium.daggerheart.adversaries.Actor.moJhHgKqTKPS2WYS]{Outer Realms Thrall}, who appear at Close range of a chosen PC in defiance of logic and causality. Immediately spotlight one of these adversaries, and you can spend an additional Fear to automatically succeed on that adversary’s standard attack.</p><section class=\"secret\" id=\"secret-ADMZbUwBRqcZNks5\"><p><em>What halfconsumed remnants of the shattered world do these monstrosities cast aside in pursuit of living flesh? What jagged refl ections of former personhood do you catch between moments of unquestioning malice?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/creatures/unholy/demons-horned-glowing-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "SZpUJeJETVQtZwae",
+      "img": "icons/creatures/unholy/demons-horned-glowing-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754219403831,
+        "modifiedTime": 1754219531293,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2Z1mKc65LxNk2PqR.SZpUJeJETVQtZwae"
+    },
+    {
+      "name": "Disorientating Reality",
+      "type": "feature",
+      "system": {
+        "description": "<p>On a result with Fear, you can ask the PC to describe which of their fears the Chaos Realm evokes as a vision of reality unmakes and reconstitutes itself to the PC. The PC loses a Hope. If it is their last Hope, you gain a Fear. </p><section id=\"secret-0TIAabOXzWKwGdZ4\" class=\"secret\"><p><em>What moment do they see? If it’s a memory how is it warped by this place? How hard will it be to hold on to the real memory?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "YIOvMuMMML7WeMWs": {
+            "type": "damage",
+            "_id": "YIOvMuMMML7WeMWs",
+            "systemPath": "actions",
+            "description": "<p>On a result with Fear, you can ask the PC to describe which of their fears the Chaos Realm evokes as a vision of reality unmakes and reconstitutes itself to the PC. The PC loses a Hope. If it is their last Hope, you gain a Fear. </p><section class=\"secret\" id=\"secret-2PNCQTvkwRTu3IYz\"><p><em>What moment do they see? If it’s a memory how is it warped by this place? How hard will it be to hold on to the real memory?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Lose Hope",
+            "img": "icons/magic/perception/hand-eye-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "MyIh4CJsDnkjmeYs",
+      "img": "icons/magic/perception/hand-eye-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754219535744,
+        "modifiedTime": 1754219607245,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!2Z1mKc65LxNk2PqR.MyIh4CJsDnkjmeYs"
+    }
+  ],
   "effects": [],
   "_key": "!actors!2Z1mKc65LxNk2PqR"
 }

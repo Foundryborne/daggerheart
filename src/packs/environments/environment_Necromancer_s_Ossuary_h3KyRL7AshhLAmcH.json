@@ -4,24 +4,33 @@
   "type": "environment",
   "folder": "IKumu5HTLqONLYqb",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "eYaDM6WMAmdzysKZ": {
+        "label": "Arch-Necromancer's Host",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.CP6iRfHdyFWniTHY",
+          "Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 19,
     "tier": 4,
     "description": "<p>A dusty crypt with a library, twisting corridors, and abundant sarcophagi, spattered with the blood of ill-fated invaders.</p>",
-    "type": "<p>Exploration</p>"
+    "type": "exploration",
+    "impulses": "Confound intruders, delve into secrets best left buried, manifest unlife, unleash a tide of undead"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784563,
-    "modifiedTime": 1753922784563,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754221404218,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "h3KyRL7AshhLAmcH",
   "sort": 3400000,
@@ -124,7 +133,376 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "No Place for the Living",
+      "type": "feature",
+      "system": {
+        "description": "<p>A feature or action that clears HP requires spending a Hope to use. If it already costs Hope, a PC must spend an additional Hope.</p><section class=\"secret\" id=\"secret-kxbv8Ju7dkBJnduH\"><p><em>What does it feel like to try to heal in a place so antithetical to life?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "jVY198vniaTSlgsX": {
+            "type": "damage",
+            "_id": "jVY198vniaTSlgsX",
+            "systemPath": "actions",
+            "description": "<p>A feature or action that clears HP requires spending a Hope to use. If it already costs Hope, a PC must spend an additional Hope.</p><section class=\"secret\" id=\"secret-Ls4rMO6N9zzuR2Ib\"><p><em>What does it feel like to try to heal in a place so antithetical to life?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hope",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Lose Hope",
+            "img": "icons/magic/unholy/orb-swirling-teal.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "SJo1Pw0fE4vKnisr",
+      "img": "icons/magic/unholy/orb-swirling-teal.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754220983196,
+        "modifiedTime": 1754221063808,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!h3KyRL7AshhLAmcH.SJo1Pw0fE4vKnisr"
+    },
+    {
+      "name": "Centuries of Knowledge",
+      "type": "feature",
+      "system": {
+        "description": "<p>A PC can investigate the library and laboratory and make a Knowledge Roll to learn information related to arcana, local history, and the Necromancer’s plans. </p><section id=\"secret-HAWRKErLm6NSqzHc\" class=\"secret\"><p><em>What are the names of the tomes? What project is the necromancer working on and what does it communicate about their plans?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "Egi337jsYlldHzEH",
+      "img": "icons/sundries/documents/document-symbol-skull-tan.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754221066722,
+        "modifiedTime": 1754221105396,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!h3KyRL7AshhLAmcH.Egi337jsYlldHzEH"
+    },
+    {
+      "name": "Skeletal Burst",
+      "type": "feature",
+      "system": {
+        "description": "<p>All targets within Close range of a point you choose in this environment must succeed on an Agility Reaction Roll or take <strong>4d8+8</strong> physical damage from skeletal shrapnel as part of the ossuary detonates around them. </p><p>@Template[type:circle|range:c]</p><section id=\"secret-b6zF5gClmMcrmeVT\" class=\"secret\"><p><em>What ancient skeletal architecture is destroyed? What bones stick in your armor?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "M1mOwi4Limw2hRwL": {
+            "type": "attack",
+            "_id": "M1mOwi4Limw2hRwL",
+            "systemPath": "actions",
+            "description": "<p>All targets within Close range of a point you choose in this environment must succeed on an Agility Reaction Roll or take <strong>4d8+8</strong> physical damage from skeletal shrapnel as part of the ossuary detonates around them. </p><p>@Template[type:circle|range:c]</p><section class=\"secret\" id=\"secret-xjKFOtdFFWAgx2Cv\"><p><em>What ancient skeletal architecture is destroyed? What bones stick in your armor?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 4,
+                    "dice": "d8",
+                    "bonus": 8,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/death/bones-crossed-gray.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "asSGMUdf4gG4PO8F",
+      "img": "icons/magic/death/bones-crossed-gray.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754221109411,
+        "modifiedTime": 1754221197023,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!h3KyRL7AshhLAmcH.asSGMUdf4gG4PO8F"
+    },
+    {
+      "name": "Aura of Death",
+      "type": "feature",
+      "system": {
+        "description": "<p>Once per scene, roll a <strong>d4</strong>. Each undead within Far range of the Necromancer can clear HP and Stress equal to the result rolled. The undead can choose how that number is divided between HP and Stress. </p><section id=\"secret-LzevSyHyOxNxLwwh\" class=\"secret\"><p><em>How does their renewed vigor manifest? Do they look more lifelike or paradoxically are they more decayed but vigorous?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "UWCibXbQZG22PJ3l": {
+            "type": "attack",
+            "_id": "UWCibXbQZG22PJ3l",
+            "systemPath": "actions",
+            "description": "<p>Once per scene, roll a <strong>d4</strong>. Each undead within Far range of the Necromancer can clear HP and Stress equal to the result rolled. The undead can choose how that number is divided between HP and Stress. </p><section class=\"secret\" id=\"secret-frj3OBrXCjpKtWSg\"><p><em>How does their renewed vigor manifest? Do they look more lifelike or paradoxically are they more decayed but vigorous?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": "diceSet",
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d4",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": null,
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll d4",
+            "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "mnpqMpYCjdlwtvBp",
+      "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754221206511,
+        "modifiedTime": 1754221265522,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!h3KyRL7AshhLAmcH.mnpqMpYCjdlwtvBp"
+    },
+    {
+      "name": "They Just Keep Coming!",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to summon [[/r 1d6]] @UUID[Compendium.daggerheart.adversaries.Actor.gP3fWTLzSFnpA8EJ]{Rotted Zombie}, two @UUID[Compendium.daggerheart.adversaries.Actor.CP6iRfHdyFWniTHY]{Perfected Zombie}, or a @UUID[Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp]{Zombie Legion}, who appear at Close range of a chosen PC.</p><section class=\"secret\" id=\"secret-O5DKa2eIgNp51OVK\"><p><em>Who were these people before they became the necromancer’s pawns? What vestiges of those lives remain for the heroes to see?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "hFeTdiHWeCYkb8Hg": {
+            "type": "effect",
+            "_id": "hFeTdiHWeCYkb8Hg",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to summon [[/r 1d6]] @UUID[Compendium.daggerheart.adversaries.Actor.gP3fWTLzSFnpA8EJ]{Rotted Zombie}, two @UUID[Compendium.daggerheart.adversaries.Actor.CP6iRfHdyFWniTHY]{Perfected Zombie}, or a @UUID[Compendium.daggerheart.adversaries.Actor.YhJrP7rTBiRdX5Fp]{Zombie Legion}, who appear at Close range of a chosen PC.</p><section class=\"secret\" id=\"secret-Du2785Ih29RVrHpG\"><p><em>Who were these people before they became the necromancer’s pawns? What vestiges of those lives remain for the heroes to see?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/death/undead-zombie-grave-green.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "chJRXNg5zyTGbcG5",
+      "img": "icons/magic/death/undead-zombie-grave-green.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754221271110,
+        "modifiedTime": 1754221379341,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!h3KyRL7AshhLAmcH.chJRXNg5zyTGbcG5"
+    }
+  ],
   "effects": [],
   "_key": "!actors!h3KyRL7AshhLAmcH"
 }

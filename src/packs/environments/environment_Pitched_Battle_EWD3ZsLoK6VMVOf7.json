@@ -4,24 +4,44 @@
   "type": "environment",
   "folder": "MfrIkJK12PAEfbPL",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "tGf8mFL6DiGaOzxS": {
+        "label": "Mercenaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.bgreCaQ6ap2DVpCr",
+          "Compendium.daggerheart.adversaries.Actor.uRtghKE9mHlII4rs",
+          "Compendium.daggerheart.adversaries.Actor.ldbWEL7uZs84vyrR",
+          "Compendium.daggerheart.adversaries.Actor.ZNbQ2jg35LG4t9eH"
+        ]
+      },
+      "E13BxwBg4sKl01IR": {
+        "label": "Noble Forces",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.0ts6CGd93lLqGZI5",
+          "Compendium.daggerheart.adversaries.Actor.99TqczuQipBmaB8i",
+          "Compendium.daggerheart.adversaries.Actor.bfhVWMBUh61b9J6n",
+          "Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 17,
     "tier": 3,
     "description": "<p>A massive combat between two large groups of armed combatants.</p>",
-    "type": "<p>Event</p>"
+    "type": "event",
+    "impulses": "Seize people, land, and wealth, spill blood for greed and glory"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784565,
-    "modifiedTime": 1753922784565,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754219040722,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "EWD3ZsLoK6VMVOf7",
   "sort": 3400000,
@@ -124,7 +144,222 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Pitched Battle",
+      "type": "feature",
+      "system": {
+        "description": "<p>Traversing a battlefield during an active combat is extremely dangerous. A PC must succeed on an Agility Roll to move at all, and can only go up to Close range on a success. If an adversary is within Melee range of them, they must mark a Stress to make an Agility Roll to move. </p><section id=\"secret-c0pwA8OrITyfhrCX\" class=\"secret\"><p><em>Do the combatants mistake you for the enemy or consider you interlopers? Can you tell the diff erence between friend and foe in the fray?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "HG9GwIZoCDcqOEOc",
+      "img": "icons/skills/melee/weapons-crossed-swords-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754218688227,
+        "modifiedTime": 1754218745084,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!EWD3ZsLoK6VMVOf7.HG9GwIZoCDcqOEOc"
+    },
+    {
+      "name": "Raze and Pillage",
+      "type": "feature",
+      "system": {
+        "description": "<p>The attacking force raises the stakes by lighting a fire, stealing a valuable asset, kidnapping an important person, or killing the populace. </p><section id=\"secret-5JBRdq8QJcmurvLp\" class=\"secret\"><p><em>What is valuable here? Who is most vulnerable?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "fnvOiHKsd34EaLqG",
+      "img": "icons/magic/fire/flame-burning-building.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754218761813,
+        "modifiedTime": 1754218807876,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!EWD3ZsLoK6VMVOf7.fnvOiHKsd34EaLqG"
+    },
+    {
+      "name": "War Magic",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> as a mage from one side uses large-scale destructive magic. Pick a point on the battlefield within Very Far range of the mage. All targets within Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>3d12+8</strong> magic damage and must mark a Stress. </p><p>@Template[type:circle|range:c]</p><section id=\"secret-PpyF0dXMEudYnFqh\" class=\"secret\"><p><em>What form does the attack take—fireball raining acid a storm of blades? What tactical objective is this attack meant to accomplish and what comes next?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "1giAFbu3tGqXwi8g": {
+            "type": "attack",
+            "_id": "1giAFbu3tGqXwi8g",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> as a mage from one side uses large-scale destructive magic. Pick a point on the battlefield within Very Far range of the mage. All targets within Close range of that point must make an Agility Reaction Roll. Targets who fail take <strong>3d12+8</strong> magic damage and must mark a Stress. </p><p>@Template[type:circle|range:c]</p><section class=\"secret\" id=\"secret-jbI9lwrzP59CTRUt\"><p><em>What form does the attack take—fireball raining acid a storm of blades? What tactical objective is this attack meant to accomplish and what comes next?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 3,
+                    "dice": "d12",
+                    "bonus": 8,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "magical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/fire/explosion-flame-lightning-strike.webp",
+            "range": "far"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "r9kkodHghWm01mje",
+      "img": "icons/magic/fire/explosion-flame-lightning-strike.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754218810456,
+        "modifiedTime": 1754218947511,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!EWD3ZsLoK6VMVOf7.r9kkodHghWm01mje"
+    },
+    {
+      "name": "Reinforcements",
+      "type": "feature",
+      "system": {
+        "description": "<p>Summon a @UUID[Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF]{Knight of the Realm}, a number of Tier 3 Minions equal to the number of PCs, and two adversaries of your choice within Far range of a chosen PC as reinforcements. The Knight of the Realm immediately takes the spotlight. </p><section id=\"secret-ZNhg3daBKekzABSQ\" class=\"secret\"><p><em>Who are they targeting first? What formation do they take?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ZAIvH5CfhehW48EY",
+      "img": "icons/environment/people/charge.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754218951527,
+        "modifiedTime": 1754218992671,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!EWD3ZsLoK6VMVOf7.ZAIvH5CfhehW48EY"
+    }
+  ],
   "effects": [],
   "_key": "!actors!EWD3ZsLoK6VMVOf7"
 }

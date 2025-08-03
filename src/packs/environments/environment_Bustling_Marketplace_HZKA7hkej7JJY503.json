@@ -4,24 +4,40 @@
   "type": "environment",
   "folder": "GQ0VnOLrKBIHR6Us",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "4rGNjVN6eT9xjsAa": {
+        "label": "Guards",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy",
+          "Compendium.daggerheart.adversaries.Actor.mK3A5FTx6k8iPU3F"
+        ]
+      },
+      "ucd2xJvPBS43bybO": {
+        "label": "Other",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.niBpVU7yeo5ccskE",
+          "Compendium.daggerheart.adversaries.Actor.Al3w2CgjfdT3p9ma"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 10,
     "tier": 1,
     "description": "<p>The economic heart of the settlement, with local artisans, traveling merchants, and patrons across social classes.</p>",
-    "type": "<p>Social</p>"
+    "type": "social",
+    "impulses": "Buy low, and sell high, tempt and tantalize with wares from near and far"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784554,
-    "modifiedTime": 1753922784554,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754212085334,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "HZKA7hkej7JJY503",
   "sort": 3400000,
@@ -124,7 +140,209 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Tip the Scales",
+      "type": "feature",
+      "system": {
+        "description": "<p>PCs can gain advantage on a Presence Roll by off ering a handful of gold as part of the interaction. </p><section id=\"secret-SkvXxhBWKBtYdJaq\" class=\"secret\"><p><em>Will any coin be accepted or only local currency? How overt are the PCs in offering this bribe?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "w8YmhoWPGc66Wrx3",
+      "img": "icons/commodities/currency/coins-assorted-mix-copper-silver-gold.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754211580192,
+        "modifiedTime": 1754211631995,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!HZKA7hkej7JJY503.w8YmhoWPGc66Wrx3"
+    },
+    {
+      "name": "Unexpected Find",
+      "type": "feature",
+      "system": {
+        "description": "<p>Reveal to the PCs that one of the merchants has something they want or need, such as food from their home, a rare book, magical components, a dubious treasure map, or a magical key. </p><section id=\"secret-vuqosTt63aXllb93\" class=\"secret\"><p><em>What cost beyond gold will the merchant ask for in exchange for this rarity?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "60uDqt9omFifZ7xd",
+      "img": "icons/commodities/treasure/brooch-jeweled-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754211636824,
+        "modifiedTime": 1754211680840,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!HZKA7hkej7JJY503.60uDqt9omFifZ7xd"
+    },
+    {
+      "name": "Sticky Fingers",
+      "type": "feature",
+      "system": {
+        "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM’s choice as the thief escapes to a Close distance. To retrieve the stolen item, the PCs must complete a Progress Countdown (6) to chase down the thief before the thief completes a Consequence Countdown (4) and escapes to their hideout.</p><section id=\"secret-UHBqg2AqmIAxgB15\" class=\"secret\"><p><em>What drove this person to pickpocketing? Where is the thief’s hideout and how has it avoided notice?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "GMy6OcMQnNJDDmtV": {
+            "type": "attack",
+            "_id": "GMy6OcMQnNJDDmtV",
+            "systemPath": "actions",
+            "description": "<p>A thief tries to steal something from a PC. The PC must succeed on an Instinct Roll to notice the thief or lose an item of the GM’s choice as the thief escapes to a Close distance.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "instinct",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
+            "range": ""
+          },
+          "0V36HDEb9gpLubGL": {
+            "type": "effect",
+            "_id": "0V36HDEb9gpLubGL",
+            "systemPath": "actions",
+            "description": "<p>To retrieve the stolen item, the PCs must complete a Progress Countdown (6) to chase down the thief before the thief completes a Consequence Countdown (4) and escapes to their hideout.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdowns",
+            "img": "icons/magic/time/hourglass-tilted-glowing-gold.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "56qjiKMoN6S9riI6",
+      "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754211683813,
+        "modifiedTime": 1754211879643,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!HZKA7hkej7JJY503.56qjiKMoN6S9riI6"
+    },
+    {
+      "name": "Crowd Closes In",
+      "type": "feature",
+      "system": {
+        "description": "<p> When one of the PCs splits from the group, the crowds shift and cut them off  from the party. </p><section id=\"secret-JECVv19GdEo8ngkq\" class=\"secret\"><p><em>Where does the crowd’s movement carry them? How do they feel about being alone but surrounded?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "l2FzZpR2reVmlkdp",
+      "img": "icons/skills/movement/arrow-upward-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754211886933,
+        "modifiedTime": 1754211933545,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!HZKA7hkej7JJY503.l2FzZpR2reVmlkdp"
+    }
+  ],
   "effects": [],
   "_key": "!actors!HZKA7hkej7JJY503"
 }

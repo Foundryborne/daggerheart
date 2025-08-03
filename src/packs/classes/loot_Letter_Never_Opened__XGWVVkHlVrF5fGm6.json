@@ -1,0 +1,31 @@
+{
+  "folder": "7v4rk8aUOc9l81kD",
+  "name": "Letter(Never Opened)",
+  "type": "loot",
+  "img": "icons/sundries/documents/envelope-sealed-red-tan.webp",
+  "system": {
+    "description": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.daggerheart.classes.Item.z5NCi87SkY5oCOwW",
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754174513423,
+    "modifiedTime": 1754222210132,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "_id": "XGWVVkHlVrF5fGm6",
+  "sort": 300000,
+  "_key": "!items!XGWVVkHlVrF5fGm6"
+}

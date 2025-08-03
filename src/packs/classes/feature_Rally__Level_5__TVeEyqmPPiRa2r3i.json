@@ -1,0 +1,127 @@
+{
+  "folder": "S4dTxJcuo1VW8o1E",
+  "name": "Rally (Level 5)",
+  "type": "feature",
+  "img": "icons/tools/instruments/drum-hand-tan.webp",
+  "system": {
+    "description": "<p>Once per session, describe how you rally the party and give yourself and each of your allies a Rally Die. At level 1, your Rally Die is a d6. A PC can spend their Rally Die to roll it, adding the result to their action roll, reaction roll, damage roll, or to clear a number of Stress equal to the result. At the end of each session, clear all unspent Rally Dice. At level 5, your Rally Die increases to a d8.</p>",
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "max": "1",
+      "icon": "",
+      "recovery": "session",
+      "diceStates": {},
+      "dieFaces": "d4"
+    },
+    "actions": {
+      "Z1KWFrpXOqZWuZD1": {
+        "type": "effect",
+        "_id": "Z1KWFrpXOqZWuZD1",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "oxv0m8AFUQVFKtZ4",
+            "value": 1,
+            "keyIsID": true,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": "session"
+        },
+        "effects": [
+          {
+            "_id": "8CFxYJV8zE6Wabwj",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Rally your Allies",
+        "img": "icons/tools/instruments/drum-hand-tan.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Rally (Level 5)",
+      "img": "icons/tools/instruments/drum-hand-tan.webp",
+      "origin": "Compendium.daggerheart.classes.Item.oxv0m8AFUQVFKtZ4",
+      "transfer": false,
+      "_id": "8CFxYJV8zE6Wabwj",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.rally",
+          "mode": 2,
+          "value": "1d8",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!TVeEyqmPPiRa2r3i.8CFxYJV8zE6Wabwj"
+    }
+  ],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754174499893,
+    "modifiedTime": 1754174592441,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "_id": "TVeEyqmPPiRa2r3i",
+  "sort": 300000,
+  "_key": "!items!TVeEyqmPPiRa2r3i"
+}

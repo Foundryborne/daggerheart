@@ -1,0 +1,115 @@
+{
+  "folder": "Br5kHZnnjGzz4RJ9",
+  "name": "Warden’s Protection",
+  "type": "feature",
+  "_id": "2F1bUFY80oce97C9",
+  "img": "icons/magic/nature/barrier-shield-wood-vines.webp",
+  "system": {
+    "description": "<p>Once per long rest, spend 2 Hope to clear 2 Hit Points on 1d4 allies within Close range.</p>",
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "max": "1",
+      "icon": "",
+      "recovery": "longRest"
+    },
+    "actions": {
+      "an5CBts4S3DoN8h7": {
+        "type": "healing",
+        "_id": "an5CBts4S3DoN8h7",
+        "systemPath": "actions",
+        "description": "<p>Once per long rest, spend 2 Hope to clear 2 Hit Points on 1d4 allies within Close range.</p>",
+        "chatDisplay": false,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 2,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "2"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "friendly",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Spend Hope",
+        "img": "icons/commodities/currency/coin-embossed-ruby-gold.webp",
+        "range": "close"
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 450000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754183079986,
+    "modifiedTime": 1754221421608,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!2F1bUFY80oce97C9"
+}

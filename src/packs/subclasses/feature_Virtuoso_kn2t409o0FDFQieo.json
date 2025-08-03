@@ -1,0 +1,33 @@
+{
+  "folder": "37B1HLu8gv8sSDNI",
+  "name": "Virtuoso",
+  "type": "feature",
+  "img": "icons/magic/light/explosion-star-small-teal.webp",
+  "system": {
+    "description": "<p>You are among the greatest of your craft and your skill is boundless. You can perform each of your <strong>\"Gifted Performer\"</strong> feature’s songs <strong>twice per long rest.</strong></p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "compendiumSource": "Compendium.daggerheart.subclasses.Item.lmUplK4FSH6EOTKJ",
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754174646194,
+    "modifiedTime": 1754174646194,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "_id": "kn2t409o0FDFQieo",
+  "sort": 0,
+  "_key": "!items!kn2t409o0FDFQieo"
+}

@@ -223,7 +223,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
             if (!confirmed) return;
         }
 
-        const target = event.target.closest('button[data-die-index]');
+        const target = event.target.closest('[data-die-index]');
         let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
         const rollClass =
             game.system.api.dice[

@@ -4,24 +4,42 @@
   "type": "environment",
   "folder": "XMeecO3IRvu5ck6F",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "f08TnNkCjPIzmQHh": {
+        "label": "Beasts",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.71qKDLKO3CsrNkdy",
+          "Compendium.daggerheart.adversaries.Actor.OMQ0v6PE8s1mSU0K",
+          "Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0"
+        ]
+      },
+      "8aqHp1uxtxvnuNSU": {
+        "label": "Other",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.jDmHqGvzg5wjgmxE",
+          "Compendium.daggerheart.adversaries.Actor.rM9qCIYeWg9I0B4l",
+          "Compendium.daggerheart.adversaries.Actor.mVV7a7KQAORoPMgZ"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 15,
     "tier": 2,
     "description": "<p>Stony peaks that pierce the clouds, with a twisting path winding its way up and over through many switchbacks.</p>",
-    "type": "<p>Traversal</p>"
+    "type": "traversal",
+    "impulses": "Exact a chilling toll in supplies and stamina, reveal magical tampering, slow down travel"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784562,
-    "modifiedTime": 1753922784562,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754217303533,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "acMu9wJrMZZzLSTJ",
   "sort": 3400000,
@@ -124,7 +142,287 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Engraved Sigils",
+      "type": "feature",
+      "system": {
+        "description": "<p>Large markings and engravings have been made in the mountainside. A PC with a relevant background or Experience identifi es them as weather magic increasing the power of the icy winds. A PC who succeeds on a Knowledge Roll can recall information about the sigils, potential information about their creators, and the knowledge of how to dispel them. If a PC critically succeeds, they recognize that the sigils are of a style created by ridgeborne enchanters and they gain advantage on a roll to dispel the sigils. </p><section id=\"secret-5FNK8Z7pIo0nEyCA\" class=\"secret\"><p><em>Who laid this enchantment? Are they nearby? Why did they want the weather to be more daunting?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "cIAMenvMXHPTpOFn",
+      "img": "icons/magic/symbols/star-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754216971017,
+        "modifiedTime": 1754217016445,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!acMu9wJrMZZzLSTJ.cIAMenvMXHPTpOFn"
+    },
+    {
+      "name": "Avalance",
+      "type": "feature",
+      "system": {
+        "description": "<p>Spend a Fear to carve the mountain with an icy torrent, causing an avalanche. All PCs in its path must succeed on an Agility or Strength Reaction Roll or be bowled over and carried down the mountain. A PC using rope, pitons, or other climbing gear gains advantage on this roll. Targets who fail are knocked down the mountain to Far range, take <strong>2d20</strong> physical damage, and must mark a Stress. Targets who succeed must mark a Stress. </p><section id=\"secret-3gM8fEJj1vD9W88k\" class=\"secret\"><p><em>How do the PCs try to weather the avalanche? What approach do the characters take to fi nd one another when their companions go hurtling down the mountainside?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "P2fHddwfyEGUwpCH": {
+            "type": "damage",
+            "_id": "P2fHddwfyEGUwpCH",
+            "systemPath": "actions",
+            "description": "<p>Spend a Fear to carve the mountain with an icy torrent, causing an avalanche. All PCs in its path must succeed on an Agility or Strength Reaction Roll or be bowled over and carried down the mountain. A PC using rope, pitons, or other climbing gear gains advantage on this roll. Targets who fail are knocked down the mountain to Far range, take <strong>2d20</strong> physical damage, and must mark a Stress. Targets who succeed must mark a Stress.</p><section class=\"secret\" id=\"secret-scxxru7P29oZ1dt8\"><p><em>How do the PCs try to weather the avalanche? What approach do the characters take to fi nd one another when their companions go hurtling down the mountainside?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d20",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Damage",
+            "img": "icons/magic/earth/projectile-boulder-dust.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "jkm03DXYYajsRk2j",
+      "img": "icons/magic/earth/projectile-boulder-dust.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754217019442,
+        "modifiedTime": 1754217102897,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!acMu9wJrMZZzLSTJ.jkm03DXYYajsRk2j"
+    },
+    {
+      "name": "Raptor Nest",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the PCs enter the raptors’ hunting grounds, two @UUID[Compendium.daggerheart.adversaries.Actor.OMQ0v6PE8s1mSU0K]{Giant Eagles} appear at Very Far range of a chosen PC, identifying the PCs as likely prey. </p><section id=\"secret-aU19zKlmhVBdS2oF\" class=\"secret\"><p><em>How long has it been since the eagles last found prey? Do they have eggs in their nest or unfl edged young?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "hkZVEduCWJFR0h2S",
+      "img": "icons/creatures/birds/corvid-flying-wings-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754217106960,
+        "modifiedTime": 1754217151815,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!acMu9wJrMZZzLSTJ.hkZVEduCWJFR0h2S"
+    },
+    {
+      "name": "Icy Winds",
+      "type": "feature",
+      "system": {
+        "description": "<p>Countdown (Loop 4). When the PCs enter the mountain pass, activate the countdown. When it triggers, all characters traveling through the pass must succeed on a Strength Reaction Roll or mark a Stress. A PC wearing clothes appropriate for extreme cold gains advantage on these rolls. </p><section id=\"secret-FsJMzj3ZZuf134s2\" class=\"secret\"><p><em>What parts of the PC’s bodies go numb fi rst? How do they try to keep warm as they press forward?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "P6U45vsXJmEW6BBj": {
+            "type": "effect",
+            "_id": "P6U45vsXJmEW6BBj",
+            "systemPath": "actions",
+            "description": "<p>Countdown (Loop 4). When the PCs enter the mountain pass, activate the countdown. </p><section class=\"secret\" id=\"secret-v5D1PTyNviMNTlIO\"><p><em>What parts of the PC’s bodies go numb fi rst? How do they try to keep warm as they press forward?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdown",
+            "img": "icons/magic/water/snowflake-ice-blue-white.webp",
+            "range": ""
+          },
+          "kDV2h9DhO6fEDcjl": {
+            "type": "attack",
+            "_id": "kDV2h9DhO6fEDcjl",
+            "systemPath": "actions",
+            "description": "<p>When the countdown triggers, all characters traveling through the pass must succeed on a Strength Reaction Roll or mark a Stress. A PC wearing clothes appropriate for extreme cold gains advantage on these rolls. </p><section class=\"secret\" id=\"secret-nEZRdWaqMAIUoQG0\"><p><em>What parts of the PC’s bodies go numb fi rst? How do they try to keep warm as they press forward?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "strength",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/water/snowflake-ice-blue-white.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "K8ld4m5yTA6WZwUs",
+      "img": "icons/magic/water/snowflake-ice-blue-white.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754217155443,
+        "modifiedTime": 1754217244471,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!acMu9wJrMZZzLSTJ.K8ld4m5yTA6WZwUs"
+    }
+  ],
   "effects": [],
   "_key": "!actors!acMu9wJrMZZzLSTJ"
 }

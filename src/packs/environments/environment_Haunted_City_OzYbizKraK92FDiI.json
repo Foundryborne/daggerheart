@@ -4,24 +4,34 @@
   "type": "environment",
   "folder": "XMeecO3IRvu5ck6F",
   "system": {
-    "potentialAdversaries": {},
-    "notes": "",
+    "potentialAdversaries": {
+      "h07vZopQbVt6dlY6": {
+        "label": "Ghosts",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.5tCkhnBByUIN5UdG",
+          "Compendium.daggerheart.adversaries.Actor.65cSO3EQEh6ZH6Xk",
+          "Compendium.daggerheart.adversaries.Actor.UFVGl1osOsJTneLf"
+        ]
+      }
+    },
+    "notes": "<p>Potential Adversaries also includes:</p><p><em><strong>Ghostly versions of other adversaries (see “Ghostly Form”)</strong></em> </p>",
     "difficulty": 14,
     "tier": 2,
     "description": "<p>An abandoned city populated by the restless spirits of eras past.</p>",
-    "type": "<p>Exploration</p>"
+    "type": "exploration",
+    "impulses": "Misdirect and disorient, replay apocalypses both public and personal"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784559,
-    "modifiedTime": 1753922784559,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754216926766,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "OzYbizKraK92FDiI",
   "sort": 3400000,
@@ -124,7 +134,243 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Buried Knowledge",
+      "type": "feature",
+      "system": {
+        "description": "<p>The city has countless mysteries to unfold. A PC who seeks knowledge about the fallen city can make an Instinct or Knowledge Roll to learn about this place and discover (potentially haunted) loot. </p><ul><li><p><strong>Critical Success</strong>: Gain valuable information and a related useful item. </p></li><li><p><strong>Success with Hope:</strong> Gain valuable information.</p></li><li><p><strong>Success with Fear:</strong> Uncover vague or incomplete information.</p></li><li><p><strong>Any Failure:</strong> Mark a Stress to find a lead after an exhaustive search.</p></li></ul><section id=\"secret-b7Tkr2KzblSvwAPj\" class=\"secret\"><p><em>What greater secrets does the city contain? Why have so many ghosts lingered here? What doomed adventurers have met a bad fate here already?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "h8Dv8pToiCVklPhv",
+      "img": "icons/sundries/documents/document-writing-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754216528212,
+        "modifiedTime": 1754216614619,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!OzYbizKraK92FDiI.h8Dv8pToiCVklPhv"
+    },
+    {
+      "name": "Ghostly Form",
+      "type": "feature",
+      "system": {
+        "description": "<p>Adversaries who appear here are of a ghostly form. They have resistance to physical damage and can <strong>mark a Stress</strong> to move up to Close range through solid objects. </p><section id=\"secret-P15mCN36Cns7QUHw\" class=\"secret\"><p><em>What injuries to their physical form speak to their cause of death? What unfulfi lled purpose holds them in the Mortal Plane?</em> </p></section>",
+        "resource": null,
+        "actions": {
+          "VCWX0P9kq2oGTpUo": {
+            "type": "effect",
+            "_id": "VCWX0P9kq2oGTpUo",
+            "systemPath": "actions",
+            "description": "<p>Adversaries who appear here are of a ghostly form. They have resistance to physical damage and can <strong>mark a Stress</strong> to move up to Close range through solid objects.</p><section class=\"secret\" id=\"secret-Ol8146pzjrPjVjqt\"><p><em>What injuries to their physical form speak to their cause of death? What unfulfi lled purpose holds them in the Mortal Plane?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "S9gl4jqdrziC1F0h",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Ghostly Form",
+            "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "gRpkBU3CLJvDnB7I",
+      "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+      "effects": [
+        {
+          "name": "Ghostly Form",
+          "img": "icons/magic/death/undead-ghost-scream-teal.webp",
+          "origin": "Compendium.daggerheart.environments.Actor.OzYbizKraK92FDiI.Item.gRpkBU3CLJvDnB7I",
+          "transfer": false,
+          "_id": "S9gl4jqdrziC1F0h",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.resistance.physical.resistance",
+              "mode": 5,
+              "value": "1",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>Adversaries who appear here are of a ghostly form. They have resistance to physical damage and can <strong>mark a Stress</strong> to move up to Close range through solid objects.</p><section class=\"secret\" id=\"secret-o5a4SMwemuVEfDMq\"><p><em>What injuries to their physical form speak to their cause of death? What unfulfi lled purpose holds them in the Mortal Plane?</em></p></section>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754216708580,
+            "modifiedTime": 1754216728509,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!OzYbizKraK92FDiI.gRpkBU3CLJvDnB7I.S9gl4jqdrziC1F0h"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754216627238,
+        "modifiedTime": 1754216708590,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!OzYbizKraK92FDiI.gRpkBU3CLJvDnB7I"
+    },
+    {
+      "name": "Dead Ends",
+      "type": "feature",
+      "system": {
+        "description": "<p>The ghosts of an earlier era manifest scenes from their bygone era, such as a street festival, a revolution, or a heist. These hauntings change the layout of the city around the PCs, blocking the way behind them, forcing a detour, or presenting them with a challenge, such as mistaking them for rival thieves during the heist.</p><section id=\"secret-ttpwol0cvVxPyK7e\" class=\"secret\"><p><em>What do the ghosts want from you? What do you need from them?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "ZA2RzxH5FlnrcYLN",
+      "img": "icons/magic/death/undead-ghosts-trio-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754216732561,
+        "modifiedTime": 1754216779367,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!OzYbizKraK92FDiI.ZA2RzxH5FlnrcYLN"
+    },
+    {
+      "name": "Apocalypse Then",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to manifest the echo of a past disaster that ravaged the city. Activate a Progress Countdown (5) as the disaster replays around the PCs. To complete the countdown and escape the catastrophe, the PCs must overcome threats such as rampaging fires, stampeding civilians, collapsing buildings, or crumbling streets, while recalling history and finding clues to escape the inevitable. </p><section id=\"secret-3MamLVZP4l2SxHzO\" class=\"secret\"><p><em>Is this the disaster that led the city to be abandoned? What is known about this disaster and how could that help the PCs escape?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "7H16PYHHgK0Z34NU": {
+            "type": "effect",
+            "_id": "7H16PYHHgK0Z34NU",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to manifest the echo of a past disaster that ravaged the city. Activate a Progress Countdown (5) as the disaster replays around the PCs. </p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdown",
+            "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "i0FV2Djaq0vB57cq",
+      "img": "icons/magic/death/skull-weapon-staff-glow-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754216782337,
+        "modifiedTime": 1754216854366,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!OzYbizKraK92FDiI.i0FV2Djaq0vB57cq"
+    }
+  ],
   "effects": [],
   "_key": "!actors!OzYbizKraK92FDiI"
 }

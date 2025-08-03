@@ -1,0 +1,33 @@
+{
+  "folder": "Br5kHZnnjGzz4RJ9",
+  "name": "Regenerative Reach",
+  "type": "feature",
+  "_id": "oLO3VjGkMcK1uvB9",
+  "img": "icons/magic/nature/root-vines-entwined-leaves.webp",
+  "system": {
+    "description": "<p>You can target creatures within Very Close range with your “Regeneration” feature.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 425000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754182966287,
+    "modifiedTime": 1754221428612,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!oLO3VjGkMcK1uvB9"
+}
