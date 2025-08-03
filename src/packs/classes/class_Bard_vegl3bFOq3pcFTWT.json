@@ -11,7 +11,7 @@
     ],
     "classItems": [],
     "hitPoints": 5,
-    "evasion": 0,
+    "evasion": 10,
     "features": [
       {
         "type": "hope",
@@ -31,9 +31,19 @@
       "Compendium.daggerheart.subclasses.Item.XTSODVM8st75Os8M"
     ],
     "inventory": {
-      "take": [],
-      "choiceA": [],
-      "choiceB": []
+      "take": [
+        "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
+        "Compendium.daggerheart.classes.Item.uoG5iq09mxJPXfmk",
+        "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw"
+      ],
+      "choiceA": [
+        "Compendium.daggerheart.loot.Item.PQxvxAVBbkt0TleC",
+        "Compendium.daggerheart.loot.Item.1TLpFsp3PLDsqoTw"
+      ],
+      "choiceB": [
+        "Compendium.daggerheart.classes.Item.Bvr6wjf44EvCdidC",
+        "Compendium.daggerheart.classes.Item.XGWVVkHlVrF5fGm6"
+      ]
     },
     "characterGuide": {
       "suggestedTraits": {
@@ -44,9 +54,9 @@
         "presence": 2,
         "knowledge": 1
       },
-      "suggestedPrimaryWeapon": null,
-      "suggestedSecondaryWeapon": null,
-      "suggestedArmor": null
+      "suggestedPrimaryWeapon": "Compendium.daggerheart.weapons.Item.zkAgEW6zMkRZalEm",
+      "suggestedSecondaryWeapon": "Compendium.daggerheart.weapons.Item.wKklDxs5nkzILNp4",
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.yJFp1bfpecDcStVK"
     },
     "isMulticlass": false
   },
@@ -64,7 +74,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174600538,
-    "modifiedTime": 1754174781577,
+    "modifiedTime": 1754182286813,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_id": "vegl3bFOq3pcFTWT",

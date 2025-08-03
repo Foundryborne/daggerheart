@@ -1,0 +1,83 @@
+{
+  "name": "Druid",
+  "type": "class",
+  "_id": "ZNwUTCyGCEcidZFv",
+  "img": "icons/creatures/mammals/wolf-howl-moon-black.webp",
+  "system": {
+    "description": "<p>Becoming a druid is more than an occupation; it’s a calling for those who wish to learn from and protect the magic of the wilderness. While one might underestimate a gentle druid who practices the often-quiet work of cultivating flora, druids who channel the untamed forces of nature are terrifying to behold. Druids cultivate their abilities in small groups, often connected by a specific ethos or locale, but some choose to work alone. Through years of study and dedication, druids can learn to transform into beasts and shape nature itself.</p>",
+    "domains": [
+      "sage",
+      "arcana"
+    ],
+    "classItems": [],
+    "hitPoints": 6,
+    "evasion": 10,
+    "features": [
+      {
+        "type": "hope",
+        "item": "Compendium.daggerheart.classes.Item.6rlxhrRwFaVgq9fe"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.P1K0jcnH2RiS6TLd"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.fqSdfUYUK9QUcVE4"
+      }
+    ],
+    "subclasses": [
+      "Compendium.daggerheart.subclasses.Item.W9hs5kxOWeY7eA4Q",
+      "Compendium.daggerheart.subclasses.Item.xp0XMjYT85Q7E90o"
+    ],
+    "inventory": {
+      "take": [
+        "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
+        "Compendium.daggerheart.classes.Item.uoG5iq09mxJPXfmk",
+        "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw"
+      ],
+      "choiceA": [
+        "Compendium.daggerheart.consumables.Item.tPfKtKRRjv8qdSqy",
+        "Compendium.daggerheart.consumables.Item.b6vGSPFWOlzZZDLO"
+      ],
+      "choiceB": [
+        "Compendium.daggerheart.classes.Item.todlyATSZzLPTqnU",
+        "Compendium.daggerheart.classes.Item.LriTeh9hkwzEaCr1"
+      ]
+    },
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 1,
+        "strength": 0,
+        "finesse": 1,
+        "instinct": 2,
+        "presence": -1,
+        "knowledge": 0
+      },
+      "suggestedPrimaryWeapon": "Compendium.daggerheart.weapons.Item.vHDHG3STcxTEfYAM",
+      "suggestedSecondaryWeapon": "Compendium.daggerheart.weapons.Item.mxwWKDujgsRcZWPT",
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.nibfdNtp2PtxvbVz"
+    },
+    "isMulticlass": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754222247012,
+    "modifiedTime": 1754222490887,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!ZNwUTCyGCEcidZFv"
+}

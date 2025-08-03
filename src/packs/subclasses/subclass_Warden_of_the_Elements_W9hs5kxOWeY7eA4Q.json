@@ -1,29 +1,31 @@
 {
-  "folder": null,
-  "name": "Troubadour",
+  "name": "Warden of the Elements",
   "type": "subclass",
-  "img": "icons/tools/instruments/harp-gold-glowing.webp",
+  "_id": "W9hs5kxOWeY7eA4Q",
+  "img": "icons/magic/nature/root-vines-face-glow-green.webp",
   "system": {
-    "description": "<p>You wish to play music to bolster your allies.</p>",
-    "spellcastingTrait": "presence",
+    "description": "<p>You wish to embody the natural elements of the wild.</p>",
+    "spellcastingTrait": "instinct",
     "features": [
       {
         "type": "foundation",
-        "item": "Compendium.daggerheart.subclasses.Item.99U7YWNCxFZHCiT0"
+        "item": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1"
       },
       {
         "type": "specialization",
-        "item": "Compendium.daggerheart.subclasses.Item.ZFkCz8XV1EtMoJ1w"
+        "item": "Compendium.daggerheart.subclasses.Item.2JH9NaOh69yN80Gw"
       },
       {
         "type": "mastery",
-        "item": "Compendium.daggerheart.subclasses.Item.kn2t409o0FDFQieo"
+        "item": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l"
       }
     ],
     "featureState": 1,
     "isMulticlass": false
   },
   "effects": [],
+  "folder": null,
+  "sort": 300000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -36,11 +38,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754174653653,
+    "createdTime": 1754221102716,
     "modifiedTime": 1754221291344,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
-  "_id": "ld8MIvk0xVJydSBz",
-  "sort": 200000,
-  "_key": "!items!ld8MIvk0xVJydSBz"
+  "_key": "!items!W9hs5kxOWeY7eA4Q"
 }

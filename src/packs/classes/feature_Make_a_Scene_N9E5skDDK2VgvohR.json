@@ -106,7 +106,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174534518,
-    "modifiedTime": 1754174592441,
+    "modifiedTime": 1754221574661,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "ownership": {
@@ -114,6 +114,6 @@
     "LgnbNMLaxandgMQq": 3
   },
   "_id": "N9E5skDDK2VgvohR",
-  "sort": 200000,
+  "sort": 0,
   "_key": "!items!N9E5skDDK2VgvohR"
 }

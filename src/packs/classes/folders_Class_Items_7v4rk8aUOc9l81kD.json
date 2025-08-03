@@ -3,7 +3,7 @@
   "folder": null,
   "name": "Class Items",
   "color": null,
-  "sorting": "a",
+  "sorting": "m",
   "_id": "7v4rk8aUOc9l81kD",
   "description": "",
   "sort": 100000,
@@ -16,7 +16,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "lastModifiedBy": "LgnbNMLaxandgMQq",
-    "modifiedTime": 1754174522250
+    "modifiedTime": 1754222228827
   },
   "_key": "!folders!7v4rk8aUOc9l81kD"
 }
