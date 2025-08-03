@@ -1,29 +1,66 @@
 {
   "name": "Rapid Riposte",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "pYEavNqteiQepvvD",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When an attack made against you from within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range fails, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> and seize the opportunity to deal the weapon damage of one of your active weapons to the attacker.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When an attack made against you from within Melee range fails, you can <strong>mark a Stress</strong> and seize the opportunity to deal the weapon damage of one of your active weapons to the attacker.</p>",
     "domain": "bone",
     "recallCost": 0,
     "level": 6,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "4mdm2rcPDfm8tEIA": {
+        "type": "effect",
+        "_id": "4mdm2rcPDfm8tEIA",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">When an attack made against you from within Melee range fails, you can <strong>mark a Stress</strong> and seize the opportunity to deal the weapon damage of one of your active weapons to the attacker.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/skills/melee/maneuver-greatsword-yellow.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784497,
-    "modifiedTime": 1753922784497,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252487558,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "tceJDcCUefrMS2Ov",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!tceJDcCUefrMS2Ov"
 }

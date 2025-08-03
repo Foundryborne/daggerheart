@@ -1,29 +1,90 @@
 {
   "name": "I See It Coming",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "PeeIjbkBv41613yZ",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you’re targeted by an attack made from beyond <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"melee\" class=\"tooltip-convert\">Melee</tooltip> range, you can <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"marking-stress\" class=\"tooltip-convert\"><strong>mark a Stress</strong></tooltip> to roll a <strong>d4</strong> and gain a bonus to your <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"evasion\" class=\"tooltip-convert\">Evasion</tooltip> equal to the result against the attack.    </p></p>",
+    "description": "<p class=\"Body-Foundation\">When you’re targeted by an attack made from beyond Melee range, you can <strong>mark a Stress</strong> to roll a <strong>d4</strong> and gain a bonus to your Evasion equal to the result against the attack.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 1,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "lVyTDd44pGJgF3w7": {
+        "type": "attack",
+        "_id": "lVyTDd44pGJgF3w7",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">When you’re targeted by an attack made from beyond Melee range, you can <strong>mark a Stress</strong> to roll a <strong>d4</strong> and gain a bonus to your Evasion equal to the result against the attack.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "consumeOnSuccess": false,
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d4",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Roll d4",
+        "img": "icons/skills/melee/maneuver-sword-katana-yellow.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784472,
-    "modifiedTime": 1753922784472,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754249651973,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "Kp6RejHGimnuoBom",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!Kp6RejHGimnuoBom"
 }

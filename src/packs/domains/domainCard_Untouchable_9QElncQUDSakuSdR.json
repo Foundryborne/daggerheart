@@ -1,10 +1,10 @@
 {
   "name": "Untouchable",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "PeeIjbkBv41613yZ",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Gain a bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"evasion\" nexus=\"daggerheart\">Evasion</tooltip> equal to half your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Gain a bonus to your Evasion equal to half your Agility.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 1,
@@ -15,15 +15,70 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784538,
-    "modifiedTime": 1753922784538,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754249654207,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "9QElncQUDSakuSdR",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Untouchable",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "H8hazlQe4Wj4JFO6",
+      "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "@system.traits.agility.value / 2",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation\">Gain a bonus to your Evasion equal to half your Agility.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754247027320,
+        "modifiedTime": 1754247067643,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!9QElncQUDSakuSdR.H8hazlQe4Wj4JFO6"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!9QElncQUDSakuSdR"
 }

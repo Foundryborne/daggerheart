@@ -1,29 +1,66 @@
 {
   "name": "Splintering Strike",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "eg2vM8j9xhya9Rwa",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> and make an attack against all adversaries within your weapon’s range. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, on a success against any targets, add up the damage dealt, then redistribute that damage however you wish between the targets you succeeded against. When you deal damage to a target, roll an additional damage die and add its result to the damage you deal to that target.        </p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> and make an attack against all adversaries within your weapon’s range. Once per long rest, on a success against any targets, add up the damage dealt, then redistribute that damage however you wish between the targets you succeeded against. When you deal damage to a target, roll an additional damage die and add its result to the damage you deal to that target.</p>",
     "domain": "bone",
     "recallCost": 3,
     "level": 9,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "B4vyaTibK0GiRBCW": {
+        "type": "effect",
+        "_id": "B4vyaTibK0GiRBCW",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> and make an attack against all adversaries within your weapon’s range. Once per long rest, on a success against any targets, add up the damage dealt, then redistribute that damage however you wish between the targets you succeeded against. When you deal damage to a target, roll an additional damage die and add its result to the damage you deal to that target.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784522,
-    "modifiedTime": 1753922784522,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252510860,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "TYKfM3H9vBXyWiH4",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!TYKfM3H9vBXyWiH4"
 }

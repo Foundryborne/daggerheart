@@ -1,29 +1,118 @@
 {
   "name": "Bone-Touched",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "i5iDLXMZLc0ckWI5",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Bone domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">+1 bonus to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip></li><li class=\"vertical-card-list-found\">Once per rest, you can <strong>spend 3 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to cause an attack that succeeded against you to fail instead.            </li></ul></p>",
+    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your loadout are from the Bone domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to Agility</p></li><li class=\"vertical-card-list-found\"><p>Once per rest, you can <strong>spend 3 Hope</strong> to cause an attack that succeeded against you to fail instead.</p></li></ul>",
     "domain": "bone",
     "recallCost": 2,
     "level": 7,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "pRSiIoh4Bzk5I9ej": {
+        "type": "effect",
+        "_id": "pRSiIoh4Bzk5I9ej",
+        "systemPath": "actions",
+        "description": "<p>Once per rest, you can <strong>spend 3 Hope</strong> to cause an attack that succeeded against you to fail instead.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784419,
-    "modifiedTime": 1753922784419,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252494658,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "ON5bvnoQBy0SYc9Y",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Bone Touched",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "P6hYkkI64FqIcMoP",
+      "img": "icons/magic/death/bones-crossed-orange.webp",
+      "changes": [
+        {
+          "key": "system.traits.agility.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">+1 bonus to Agility</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754250944849,
+        "modifiedTime": 1754250980546,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!ON5bvnoQBy0SYc9Y.P6hYkkI64FqIcMoP"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!ON5bvnoQBy0SYc9Y"
 }

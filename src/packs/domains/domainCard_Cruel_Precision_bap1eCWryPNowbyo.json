@@ -1,10 +1,10 @@
 {
   "name": "Cruel Precision",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "i5iDLXMZLc0ckWI5",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"finesse\" nexus=\"daggerheart\">Finesse</tooltip> or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your Finesse or Agility.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 7,
@@ -15,15 +15,133 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784442,
-    "modifiedTime": 1753922784442,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252496659,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "bap1eCWryPNowbyo",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cruel Precision (Agi)",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "t5D10AL2W9LMGsX4",
+      "img": "icons/skills/melee/strike-dagger-arcane-pink.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.primaryWeapon.bonus",
+          "mode": 2,
+          "value": "@system.traits.agility.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.secondaryWeapon.bonus",
+          "mode": 2,
+          "value": "@system.traits.agility.value",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation\">When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your Finesse or Agility.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754251018030,
+        "modifiedTime": 1754251148008,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!bap1eCWryPNowbyo.t5D10AL2W9LMGsX4"
+    },
+    {
+      "name": "Cruel Precision (Fin)",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "Ha7c4XgmN5zGMSHG",
+      "img": "icons/skills/melee/strike-dagger-arcane-pink.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.primaryWeapon.bonus",
+          "mode": 2,
+          "value": "@system.traits.finesse.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.secondaryWeapon.bonus",
+          "mode": 2,
+          "value": "@system.traits.finesse.value",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation\">When you make a successful attack with a weapon, gain a bonus to your damage roll equal to either your Finesse or Agility.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754251104476,
+        "modifiedTime": 1754251149275,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!bap1eCWryPNowbyo.Ha7c4XgmN5zGMSHG"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!bap1eCWryPNowbyo"
 }

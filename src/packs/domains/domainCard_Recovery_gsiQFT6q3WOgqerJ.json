@@ -1,29 +1,177 @@
 {
   "name": "Recovery",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "pYEavNqteiQepvvD",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">During a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"short-rest\" nexus=\"daggerheart\">short rest</tooltip>, you can choose a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> downtime move instead. You can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to let an ally do the same.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">During a short rest, you can choose a long rest downtime move instead. You can <strong>spend a Hope</strong> to let an ally do the same.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 6,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "ASZpyf3WqjgbjBl6": {
+        "type": "effect",
+        "_id": "ASZpyf3WqjgbjBl6",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">During a short rest, you can choose a long rest downtime move instead. You can <strong>spend a Hope</strong> to let an ally do the same.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "smTjINqIldErFD3q",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/life/cross-beam-green.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784500,
-    "modifiedTime": 1753922784500,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252490411,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "gsiQFT6q3WOgqerJ",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Recovery (Ally)",
+      "img": "icons/magic/life/cross-beam-green.webp",
+      "origin": "Compendium.daggerheart.domains.Item.gsiQFT6q3WOgqerJ",
+      "transfer": false,
+      "_id": "smTjINqIldErFD3q",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.rest.shortRest.longMoves",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.rest.shortRest.shortMoves",
+          "mode": 2,
+          "value": "-1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation\">During this short rest, you can choose a long rest downtime move instead.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754250766595,
+        "modifiedTime": 1754250875891,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!gsiQFT6q3WOgqerJ.smTjINqIldErFD3q"
+    },
+    {
+      "name": "Recovery",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "7GsHTQCtNB8PEVgr",
+      "img": "icons/magic/life/cross-beam-green.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.rest.shortRest.longMoves",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.rest.shortRest.shortMoves",
+          "mode": 2,
+          "value": "-1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation\">During a short rest, you can choose a long rest downtime move instead.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754250835881,
+        "modifiedTime": 1754250863883,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!gsiQFT6q3WOgqerJ.7GsHTQCtNB8PEVgr"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!gsiQFT6q3WOgqerJ"
 }
