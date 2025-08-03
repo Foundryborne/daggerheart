@@ -1,0 +1,50 @@
+{
+  "folder": "aTyhcJgENR9uI7u4",
+  "name": "Call Of The Brave",
+  "type": "subclass",
+  "_id": "NAFU9roaVG7f3RNJ",
+  "img": "icons/magic/life/heart-cross-strong-flame-purple-orange.webp",
+  "system": {
+    "description": "<p>Play the Call of the Brave if you want to use the might of your enemies to fuel your own power. </p>",
+    "spellcastingTrait": null,
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.o5j2vjXU8NicYlXx"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.qqb5acyUSl1sCpWW"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.dcutk8RVOJ2sEkO1"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.dArl2cxKIEGTicXU"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754256077777,
+    "modifiedTime": 1754256954656,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!NAFU9roaVG7f3RNJ"
+}

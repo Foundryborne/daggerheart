@@ -289,7 +289,10 @@ export default class DhCharacter extends BaseDataActor {
                     */
                     flipMinDiceValue: new fields.BooleanField({ intial: false })
                 }),
-                runeWard: new fields.BooleanField({ initial: false })
+                runeWard: new fields.BooleanField({ initial: false }),
+                burden: new fields.SchemaField({
+                    ignore: new fields.BooleanField()
+                })
             })
         };
     }

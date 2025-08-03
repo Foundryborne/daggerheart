@@ -1,0 +1,89 @@
+{
+  "folder": "yMp2Hj8av6IWJahF",
+  "name": "Weapon Specialist",
+  "type": "feature",
+  "_id": "HAqtoKUTrk8Mip1n",
+  "img": "icons/weapons/axes/axe-double-short-orange.webp",
+  "system": {
+    "description": "<p>You can wield multiple weapons with dangerous ease. When you succeed on an attack, you can <strong>spend a Hope</strong> to add one of the damage dice from your secondary weapon to the damage roll. Additionally, once per long rest when you roll your Slayer Dice, reroll any 1s.</p>",
+    "resource": null,
+    "actions": {
+      "vay9rVXJS3iksaVR": {
+        "type": "effect",
+        "_id": "vay9rVXJS3iksaVR",
+        "systemPath": "actions",
+        "description": "<p>You can wield multiple weapons with dangerous ease. When you succeed on an attack, you can <strong>spend a Hope</strong> to add one of the damage dice from your secondary weapon to the damage roll.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
+        "range": ""
+      },
+      "1bBFfxmywJpx5tfk": {
+        "type": "effect",
+        "_id": "1bBFfxmywJpx5tfk",
+        "systemPath": "actions",
+        "description": "<p>Additionally, once per long rest when you roll your Slayer Dice, reroll any 1s.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Reroll",
+        "img": "icons/commodities/currency/emblem-skull-steel-purple.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754256525016,
+    "modifiedTime": 1754256712476,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!HAqtoKUTrk8Mip1n"
+}

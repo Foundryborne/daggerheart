@@ -1,0 +1,91 @@
+{
+  "folder": "A7yYfCMQ8NMwDLX1",
+  "name": "Combat Training",
+  "type": "feature",
+  "_id": "eoSmuAJmgHUyULtp",
+  "img": "icons/skills/melee/hand-grip-sword-red.webp",
+  "system": {
+    "description": "<p>You ignore burden when equipping weapons. When you deal physical damage, you gain a bonus to your damage roll equal to your level.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Combat Training",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "Y7sTM0tw0VpgU6pC",
+      "img": "icons/skills/melee/spear-tips-quintuple-orange.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.physical.bonus",
+          "mode": 2,
+          "value": "@system.levelData.level.current",
+          "priority": null
+        },
+        {
+          "key": "system.rules.burden.ignore",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>You ignore burden when equipping weapons. When you deal physical damage, you gain a bonus to your damage roll equal to your level.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754257517884,
+        "modifiedTime": 1754257790010,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!eoSmuAJmgHUyULtp.Y7sTM0tw0VpgU6pC"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754257489875,
+    "modifiedTime": 1754257512503,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!eoSmuAJmgHUyULtp"
+}

@@ -1,0 +1,31 @@
+{
+  "folder": "RAxu4Kr7NzexDJVb",
+  "name": "A Sharpening Stone",
+  "type": "loot",
+  "_id": "LoQH7wpfyKsuMJ5l",
+  "img": "icons/commodities/metal/ingot-steel.webp",
+  "system": {
+    "description": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754255987604,
+    "modifiedTime": 1754256035640,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!LoQH7wpfyKsuMJ5l"
+}

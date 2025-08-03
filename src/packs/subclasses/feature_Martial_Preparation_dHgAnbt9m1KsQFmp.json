@@ -1,0 +1,33 @@
+{
+  "folder": "2lqz1Vao2brbVfIH",
+  "name": "Martial Preparation",
+  "type": "feature",
+  "_id": "dHgAnbt9m1KsQFmp",
+  "img": "icons/skills/melee/sword-winged-holy-orange.webp",
+  "system": {
+    "description": "<p>You’re an inspirational warrior to all who travel with you. Your party gains access to the Martial Preparation downtime move. To use this move during a rest, describe how you instruct and train with your party. You and each ally who chooses this downtime move gain a <strong>d6</strong> Slayer Die. A PC with a Slayer Die can spend it to roll the die and add the result to an attack or damage roll of their choice.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754256861952,
+    "modifiedTime": 1754256903587,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!dHgAnbt9m1KsQFmp"
+}

@@ -1,0 +1,57 @@
+{
+  "folder": "2lqz1Vao2brbVfIH",
+  "name": "Comaraderie",
+  "type": "feature",
+  "_id": "dArl2cxKIEGTicXU",
+  "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
+  "system": {
+    "description": "<p>Your unwavering bravery is a rallying point for your allies. You can initiate a Tag Team Roll one additional time per session. Additionally, when an ally initiates a Tag Team Roll with you, they only need to spend 2 Hope to do so.</p>",
+    "resource": null,
+    "actions": {
+      "eBSXC0l2IrRb1F8f": {
+        "type": "effect",
+        "_id": "eBSXC0l2IrRb1F8f",
+        "systemPath": "actions",
+        "description": "<p>You can initiate a Tag Team Roll one additional time per session.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "session",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Comaraderie",
+        "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754256748303,
+    "modifiedTime": 1754256845527,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!dArl2cxKIEGTicXU"
+}
