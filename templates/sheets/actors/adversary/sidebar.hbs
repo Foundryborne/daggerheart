@@ -71,49 +71,51 @@
             </div>
         </div>
     </div>
-    <div class="attack-section">
-        <div class="title">
-            <side-line-div class="invert"></side-line-div>
-            <h3>{{localize "DAGGERHEART.GENERAL.attack"}}</h3>
-            <side-line-div></side-line-div>
+    <div class="shortcut-items-section">
+        <div class="attack-section">
+            <div class="title">
+                <side-line-div class="invert"></side-line-div>
+                <h3>{{localize "DAGGERHEART.GENERAL.attack"}}</h3>
+                <side-line-div></side-line-div>
+            </div>
+            <ul class="items-sidebar-list">
+                {{> 'daggerheart.inventory-item'
+                item=document.system.attack
+                type='action'
+                hideTags=true
+                hideDescription=true
+                hideTooltip=true
+                hideResources=true
+                noExtensible=true
+                noCompendiumEdit=true
+                }}
+            </ul>
         </div>
-        <ul class="items-sidebar-list">
-            {{> 'daggerheart.inventory-item'
-            item=document.system.attack
-            type='action'
-            hideTags=true
-            hideDescription=true
-            hideTooltip=true
-            hideResources=true
-            noExtensible=true
-            noCompendiumEdit=true
-            }}
-        </ul>
-    </div>
-    <div class="experience-section">
-        <div class="title">
-            <side-line-div class="invert"></side-line-div>
-            <h3>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</h3>
-            <side-line-div></side-line-div>
-        </div>
-        <div class="experience-list">
-            {{#each source.system.experiences as |experience id|}}
-                <div class="experience-row" data-tooltip-text="{{experience.description}}">
-                    <div class="experience-value">
-                        +{{experience.value}}
+        <div class="experience-section">
+            <div class="title">
+                <side-line-div class="invert"></side-line-div>
+                <h3>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</h3>
+                <side-line-div></side-line-div>
+            </div>
+            <div class="experience-list">
+                {{#each source.system.experiences as |experience id|}}
+                    <div class="experience-row" data-tooltip-text="{{experience.description}}">
+                        <div class="experience-value">
+                            +{{experience.value}}
+                        </div>
+                        <span class="experience-name">{{experience.name}}</span>
+                        <div class="controls">
+                            <a data-action="sendExpToChat" data-id="{{id}}">
+                                <i class="fa-regular fa-message"></i>
+                            </a>
+                        </div>
                     </div>
-                    <span class="experience-name">{{experience.name}}</span>
-                    <div class="controls">
-                        <a data-action="sendExpToChat" data-id="{{id}}">
-                            <i class="fa-regular fa-message"></i>
-                        </a>
-                    </div>
-                </div>
-            {{/each}}
+                {{/each}}
+            </div>
         </div>
-    </div>
-    <line-div></line-div>
-    <div class="reaction-section">
-        <button type="button" data-action="reactionRoll">{{localize "DAGGERHEART.GENERAL.Roll.reaction"}}</button>
+        <line-div></line-div>
+        <div class="reaction-section">
+            <button type="button" data-action="reactionRoll">{{localize "DAGGERHEART.GENERAL.Roll.reaction"}}</button>
+        </div>
     </div>
 </aside>

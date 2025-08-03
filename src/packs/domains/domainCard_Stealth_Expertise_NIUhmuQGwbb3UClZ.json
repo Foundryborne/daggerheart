@@ -1,6 +1,6 @@
 {
   "name": "Stealth Expertise",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
   "type": "domainCard",
   "folder": "WTdOLLkQyPdg0KWU",
   "system": {
@@ -8,22 +8,57 @@
     "domain": "midnight",
     "recallCost": 0,
     "level": 4,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "Auocpi3okFJyXRS5": {
+        "type": "effect",
+        "_id": "Auocpi3okFJyXRS5",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Change Fear to Hope",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
+        "range": "close"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784523,
-    "modifiedTime": 1753922784523,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754173455685,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "NIUhmuQGwbb3UClZ",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!NIUhmuQGwbb3UClZ"
 }

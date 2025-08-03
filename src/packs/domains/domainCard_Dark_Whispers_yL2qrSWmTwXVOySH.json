@@ -1,6 +1,6 @@
 {
   "name": "Dark Whispers",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
   "type": "domainCard",
   "folder": "xuGz0QPNlkTOV0rV",
   "system": {
@@ -8,22 +8,81 @@
     "domain": "midnight",
     "recallCost": 0,
     "level": 6,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "3F2zSCsdMMeztQye": {
+        "type": "attack",
+        "_id": "3F2zSCsdMMeztQye",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Ask a question",
+        "img": "icons/magic/control/mouth-smile-deception-purple.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784442,
-    "modifiedTime": 1753922784442,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754173556084,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "yL2qrSWmTwXVOySH",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!yL2qrSWmTwXVOySH"
 }

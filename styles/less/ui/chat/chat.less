@@ -467,14 +467,25 @@
                         > :last-child {
                             margin-bottom: 5px;
                         }
+
+                        .roll-die {
+                            position: relative;
+
+                            .dice-rerolled {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                font-size: 10px;
+                                z-index: 2;
+                                filter: drop-shadow(0 0 3px black);
+                            }
+                        }
                     }
                 }
 
                 .roll-result-container {
                     display: flex;
                     justify-content: center;
-                    align-items: center;
-                    gap: 10px;
                     color: var(--text-color);
                     font-weight: 700;
                     font-family: 'Cinzel', sans-serif;
@@ -486,6 +497,10 @@
                     .roll-result-desc {
                         font-size: var(--font-size-16);
                         margin-top: 2px;
+
+                        span {
+                            margin-left: 10px;
+                        }
                     }
                 }
 
@@ -505,13 +520,16 @@
             flex-wrap: wrap;
 
             .roll-die {
-                display: flex;
-                flex-direction: column;
+                display: grid;
+                grid-template-areas:
+                    ". a a"
+                    "c b b";
                 gap: 3px;
 
                 label {
                     text-align: center;
                     height: var(--font-size-12);
+                    grid-area: a;
                 }
 
                 > div {
@@ -519,7 +537,17 @@
                     align-items: center;
                     justify-content: center;
                     gap: 5px;
-                    // font-size: var(--font-size-20);
+                    grid-area: b;
+                }
+
+                &.has-plus:before {
+                    content: '+';
+                    font-size: var(--font-size-20);
+                    grid-area: c;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 15px;
                 }
             }
         }
@@ -527,7 +555,6 @@
         fieldset {
             display: flex;
             flex-direction: column;
-            // gap: 10px;
             border-color: var(--text-color);
             border-radius: 5px;
 
@@ -717,9 +744,6 @@
 
         .dice-roll .dice-tooltip fieldset {
             margin-bottom: 5px;
-            .roll-dice {
-                gap: 10px;
-            }
         }
     }
 }

@@ -1,0 +1,354 @@
+{
+  "folder": "QBeb6IqRnhTXzRtd",
+  "name": "Elemental Incarnation",
+  "type": "feature",
+  "_id": "f37TTgCc0Q3Ih1A1",
+  "img": "icons/magic/nature/thorns-hand-glow-green.webp",
+  "system": {
+    "description": "<p>Mark a Stress to Channel one of the following elements until you take Severe damage or until your next rest:</p><ul><li><p><strong>Fire</strong>: When an adversary within Melee range deals damage to you, they take 1d10 magic damage.</p></li><li><p><strong>Earth</strong>: Gain a bonus to your damage thresholds equal to your Proficiency.</p></li><li><p><strong>Wate</strong>r: When you deal damage to an adversary within Melee range, all other adversaries within Very Close range must mark a Stress. </p></li><li><p><strong>Air</strong>: You can hover, gaining advantage on Agility Rolls.</p></li></ul>",
+    "resource": null,
+    "actions": {
+      "wVGSzAnJGs5eXKqI": {
+        "type": "attack",
+        "_id": "wVGSzAnJGs5eXKqI",
+        "systemPath": "actions",
+        "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">When an adversary within Melee range deals damage to you, they take 1d10 magic damage. </span></p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 1,
+                "dice": "d10",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "hostile",
+          "amount": 1
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d10",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Fire",
+        "img": "icons/magic/fire/elemental-fire-flying.webp",
+        "range": "melee"
+      },
+      "6QXTThhnJpGDIvhJ": {
+        "type": "effect",
+        "_id": "6QXTThhnJpGDIvhJ",
+        "systemPath": "actions",
+        "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">Gain a bonus to your damage thresholds equal to your Proficiency.</span></p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "7xyUtUbBk5jbNnqY",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Earth",
+        "img": "icons/magic/earth/construct-stone.webp",
+        "range": "self"
+      },
+      "pY2EdEMoyLGYWjK5": {
+        "type": "damage",
+        "_id": "pY2EdEMoyLGYWjK5",
+        "systemPath": "actions",
+        "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">When you deal damage to an adversary within Melee range, all other adversaries within Very Close range must mark a Stress.</span></p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "stress",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Water",
+        "img": "icons/magic/water/wave-water-blue.webp",
+        "range": ""
+      },
+      "uk8EgHMxCgoWENzt": {
+        "type": "effect",
+        "_id": "uk8EgHMxCgoWENzt",
+        "systemPath": "actions",
+        "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">You can hover, gaining advantage on Agility Rolls.</span></p>",
+        "chatDisplay": false,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "3ck6CeapLxQVjE2W",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Air",
+        "img": "icons/magic/air/fog-gas-smoke-dense-white.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Earth",
+      "img": "icons/magic/earth/construct-stone.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
+      "transfer": false,
+      "_id": "7xyUtUbBk5jbNnqY",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "any",
+          "range": "self"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.damageThresholds.major",
+          "mode": 2,
+          "value": "@system.proficiency",
+          "priority": null
+        },
+        {
+          "key": "system.damageThresholds.severe",
+          "mode": 2,
+          "value": "@system.proficiency",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754177069880,
+        "modifiedTime": 1754177289226,
+        "lastModifiedBy": "LgnbNMLaxandgMQq"
+      },
+      "_key": "!items.effects!f37TTgCc0Q3Ih1A1.7xyUtUbBk5jbNnqY"
+    },
+    {
+      "name": "Air",
+      "img": "icons/magic/air/fog-gas-smoke-dense-white.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
+      "transfer": false,
+      "_id": "3ck6CeapLxQVjE2W",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Advantage on Agility Rolls",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754178115976,
+        "modifiedTime": 1754178173880,
+        "lastModifiedBy": "LgnbNMLaxandgMQq"
+      },
+      "_key": "!items.effects!f37TTgCc0Q3Ih1A1.3ck6CeapLxQVjE2W"
+    }
+  ],
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754176169510,
+    "modifiedTime": 1754221198032,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!f37TTgCc0Q3Ih1A1"
+}

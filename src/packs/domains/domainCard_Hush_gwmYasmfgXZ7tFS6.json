@@ -1,29 +1,162 @@
 {
   "name": "Hush",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
   "type": "domainCard",
   "folder": "8erksbTp7ic6in4I",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. On a success, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to conjure suppressive magic around the target that encompasses everything within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range of them and follows them as they move.        </p><p class=\"Body-Foundation\">The target and anything within the area is <em>Silenced </em>until the GM spends a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> on their turn to clear this <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip>, you cast Hush again, or you take <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"major-damage\" nexus=\"daggerheart\">Major</tooltip> damage. While <em>Silenced</em>, they can’t make noise and can’t cast spells.</p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, <strong>spend a Hope</strong> to conjure suppressive magic around the target that encompasses everything within Very Close range of them and follows them as they move.</p><p class=\"Body-Foundation\">The target and anything within the area is <em>Silenced </em>until the GM spends a Fear on their turn to clear this condition, you cast Hush again, or you take Major damage. While <em>Silenced</em>, they can’t make noise and can’t cast spells.</p><p></p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 5,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "GrblHtCL5fOD2OQ7": {
+        "type": "attack",
+        "_id": "GrblHtCL5fOD2OQ7",
+        "systemPath": "actions",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Close range.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Cast",
+        "img": "icons/magic/symbols/runes-triangle-blue.webp",
+        "range": "close"
+      },
+      "6jmgLC3wQweWSeLF": {
+        "type": "effect",
+        "_id": "6jmgLC3wQweWSeLF",
+        "systemPath": "actions",
+        "description": "<p>On a success, <strong>spend a Hope</strong> to conjure suppressive magic around the target that encompasses everything within Very Close range of them and follows them as they move.</p><p class=\"Body-Foundation\">The target and anything within the area is <em>Silenced </em>until the GM spends a Fear on their turn to clear this condition, you cast Hush again, or you take Major damage. While <em>Silenced</em>, they can’t make noise and can’t cast spells.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "5hzzPTFccUSSNHgp",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Silence",
+        "img": "icons/magic/unholy/orb-glowing-purple.webp",
+        "range": "veryClose"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784470,
-    "modifiedTime": 1753922784470,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754173492452,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "gwmYasmfgXZ7tFS6",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Silenced",
+      "img": "icons/svg/sound-off.svg",
+      "origin": "Compendium.daggerheart.domains.Item.gwmYasmfgXZ7tFS6",
+      "transfer": false,
+      "_id": "5hzzPTFccUSSNHgp",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Signika, 'Palatino Linotype', sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Auppressive magic around the target that encompasses everything within Very Close range of them and follows them as they move. </span><span class=\"Body-Foundation\" style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Signika, 'Palatino Linotype', sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">The target and anything within the area is <em style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0)\">Silenced </em>until the GM spends a Fear on their turn to clear this condition, you cast Hush again, or you take Major damage. While <em style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0)\">Silenced</em>, they can’t make noise and can’t cast spells.</span></p>",
+      "tint": "#ffffff",
+      "statuses": [
+        "silence"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754165807883,
+        "modifiedTime": 1754173508037,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!gwmYasmfgXZ7tFS6.5hzzPTFccUSSNHgp"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!gwmYasmfgXZ7tFS6"
 }

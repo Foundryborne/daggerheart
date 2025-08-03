@@ -1,0 +1,33 @@
+{
+  "folder": "S4dTxJcuo1VW8o1E",
+  "name": "Wildtouch",
+  "type": "feature",
+  "_id": "fqSdfUYUK9QUcVE4",
+  "img": "icons/magic/nature/beam-hand-leaves-green.webp",
+  "system": {
+    "description": "<p>You can perform harmless, subtle effects that involve nature—such as causing a flower to rapidly grow, summoning a slight gust of wind, or starting a campfire— at will.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 600000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754221970100,
+    "modifiedTime": 1754222317664,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!fqSdfUYUK9QUcVE4"
+}

@@ -25,26 +25,26 @@ export default class DualityRoll extends D20Roll {
 
     get dHope() {
         // if ( !(this.terms[0] instanceof foundry.dice.terms.Die) ) return;
-        if (!(this.dice[0] instanceof CONFIG.Dice.daggerheart.DualityDie)) this.createBaseDice();
+        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         return this.dice[0];
         // return this.#hopeDice;
     }
 
     set dHope(faces) {
-        if (!(this.dice[0] instanceof CONFIG.Dice.daggerheart.DualityDie)) this.createBaseDice();
+        if (!(this.dice[0] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         this.terms[0].faces = this.getFaces(faces);
         // this.#hopeDice = `d${face}`;
     }
 
     get dFear() {
         // if ( !(this.terms[1] instanceof foundry.dice.terms.Die) ) return;
-        if (!(this.dice[1] instanceof CONFIG.Dice.daggerheart.DualityDie)) this.createBaseDice();
+        if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         return this.dice[1];
         // return this.#fearDice;
     }
 
     set dFear(faces) {
-        if (!(this.dice[1] instanceof CONFIG.Dice.daggerheart.DualityDie)) this.createBaseDice();
+        if (!(this.dice[1] instanceof foundry.dice.terms.Die)) this.createBaseDice();
         this.dice[1].faces = this.getFaces(faces);
         // this.#fearDice = `d${face}`;
     }
@@ -119,22 +119,22 @@ export default class DualityRoll extends D20Roll {
 
     /** @inheritDoc */
     static fromData(data) {
-        data.terms[0].class = game.system.api.dice.DualityDie.name;
-        data.terms[2].class = game.system.api.dice.DualityDie.name;
+        data.terms[0].class = foundry.dice.terms.Die.name;
+        data.terms[2].class = foundry.dice.terms.Die.name;
         return super.fromData(data);
     }
 
     createBaseDice() {
         if (
-            this.dice[0] instanceof CONFIG.Dice.daggerheart.DualityDie &&
-            this.dice[1] instanceof CONFIG.Dice.daggerheart.DualityDie
+            this.dice[0] instanceof foundry.dice.terms.Die &&
+            this.dice[1] instanceof foundry.dice.terms.Die
         ) {
             this.terms = [this.terms[0], this.terms[1], this.terms[2]];
             return;
         }
-        this.terms[0] = new CONFIG.Dice.daggerheart.DualityDie();
+        this.terms[0] = new foundry.dice.terms.Die({ faces: 12 });
         this.terms[1] = new foundry.dice.terms.OperatorTerm({ operator: '+' });
-        this.terms[2] = new CONFIG.Dice.daggerheart.DualityDie();
+        this.terms[2] = new foundry.dice.terms.Die({ faces: 12 });
     }
 
     applyAdvantage() {

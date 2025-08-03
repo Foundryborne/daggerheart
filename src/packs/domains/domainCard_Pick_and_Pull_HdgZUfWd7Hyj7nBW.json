@@ -1,6 +1,6 @@
 {
   "name": "Pick and Pull",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
   "type": "domainCard",
   "folder": "sCiN7DoysdKceIMd",
   "system": {
@@ -15,15 +15,82 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784492,
-    "modifiedTime": 1753922784492,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754158064843,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "HdgZUfWd7Hyj7nBW",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Pick and Pull",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "6IkjF8qNR0NVvvv8",
+      "img": "icons/tools/hand/lockpicks-steel-grey.webp",
+      "changes": [
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Pick nonmagical locks",
+          "priority": null
+        },
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Disarm nonmagical traps",
+          "priority": null
+        },
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "Steal items from a target (either through stealth or by force)",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">You have </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">advantage</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> on action rolls to pick nonmagical locks, disarm nonmagical traps, or steal items from a target (either through stealth or by force).</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754158749088,
+        "modifiedTime": 1754172908254,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!HdgZUfWd7Hyj7nBW.6IkjF8qNR0NVvvv8"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!HdgZUfWd7Hyj7nBW"
 }

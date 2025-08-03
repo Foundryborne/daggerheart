@@ -69,7 +69,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     get hitTargets() {
-        return this.currentTargets.filter(t => (t.hit || !this.targetSelection));
+        return this.currentTargets.filter(t => (t.hit || !this.hasRoll || !this.targetSelection));
     }
 
     async updateTargets() {
@@ -120,6 +120,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             }
             if(this.hasSave) this.setPendingSaves();
         }
+        
+        this.canViewSecret = this.parent.speakerActor?.testUserPermission(game.user, 'OBSERVER');
     }
 
     getTargetList() {

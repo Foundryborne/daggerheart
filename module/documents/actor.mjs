@@ -597,7 +597,7 @@ export default class DhpActor extends Actor {
     async modifyResource(resources) {
         if (!resources.length) return;
 
-        if (resources.find(r => r.type === 'stress')) this.convertStressDamageToHP(resources);
+        if (resources.find(r => r.key === 'stress')) this.convertStressDamageToHP(resources);
         let updates = {
             actor: { target: this, resources: {} },
             armor: { target: this.system.armor, resources: {} },
@@ -664,14 +664,14 @@ export default class DhpActor extends Actor {
     }
 
     convertStressDamageToHP(resources) {
-        const stressDamage = resources.find(r => r.type === 'stress'),
+        const stressDamage = resources.find(r => r.key === 'stress'),
             newValue = this.system.resources.stress.value + stressDamage.value;
         if (newValue <= this.system.resources.stress.max) return;
-        const hpDamage = resources.find(r => r.type === 'hitPoints');
+        const hpDamage = resources.find(r => r.key === 'hitPoints');
         if (hpDamage) hpDamage.value++;
         else
             resources.push({
-                type: 'hitPoints',
+                key: 'hitPoints',
                 value: 1
             });
     }

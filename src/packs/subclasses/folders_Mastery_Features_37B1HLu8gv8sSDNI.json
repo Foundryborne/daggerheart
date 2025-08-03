@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "Sfpr4iK1cGrmncok",
+  "name": "Mastery Features",
+  "color": null,
+  "sorting": "m",
+  "_id": "37B1HLu8gv8sSDNI",
+  "description": "",
+  "sort": 200000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754174646170,
+    "modifiedTime": 1754174646170,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!folders!37B1HLu8gv8sSDNI"
+}

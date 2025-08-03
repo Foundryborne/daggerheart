@@ -146,6 +146,15 @@
             "flags": {}
         },
         {
+            "name": "journals",
+            "label": "Journals",
+            "system": "daggerheart",
+            "path": "packs/journals.db",
+            "type": "JournalEntry",
+            "private": false,
+            "flags": {}
+        },
+        {
             "name": "beastforms",
             "label": "Beastforms",
             "system": "daggerheart",
@@ -160,7 +169,7 @@
             "name": "Daggerheart",
             "sorting": "m",
             "color": "#08718c",
-            "packs": ["adversaries", "environments"],
+            "packs": ["adversaries", "environments", "journals"],
             "folders": [
                 {
                     "name": "Character Options",

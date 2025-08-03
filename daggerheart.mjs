@@ -8,7 +8,7 @@ import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
-import { DHRoll, DualityRoll, D20Roll, DamageRoll, DualityDie } from './module/dice/_module.mjs';
+import { DHRoll, DualityRoll, D20Roll, DamageRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
@@ -42,16 +42,10 @@ Hooks.once('init', () => {
     ];
 
     CONFIG.Dice.daggerheart = {
-        DualityDie: DualityDie,
         DHRoll: DHRoll,
         DualityRoll: DualityRoll,
         D20Roll: D20Roll,
         DamageRoll: DamageRoll
-    };
-
-    CONFIG.Dice.terms = {
-        ...CONFIG.Dice.terms,
-        DualityDie
     };
 
     CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, DHRoll, DualityRoll, D20Roll, DamageRoll];
@@ -156,7 +150,7 @@ Hooks.once('init', () => {
     return handlebarsRegistration();
 });
 
-Hooks.on('ready', () => {
+Hooks.on('ready', async () => {
     ui.resources = new CONFIG.ui.resources();
     if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
         ui.resources.render({ force: true });
@@ -165,6 +159,14 @@ Hooks.on('ready', () => {
     socketRegistration.registerSocketHooks();
     registerRollDiceHooks();
     socketRegistration.registerUserQueries();
+
+    if (!game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage)) {
+        const welcomeMessage = await foundry.utils.fromUuid(CONFIG.DH.GENERAL.compendiumJournals.welcome);
+        if (welcomeMessage) {
+            welcomeMessage.sheet.render({ force: true });
+            game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage, true);
+        }
+    }
 });
 
 Hooks.once('dicesoniceready', () => {});

@@ -4,24 +4,44 @@
   "type": "environment",
   "folder": "GQ0VnOLrKBIHR6Us",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "UUdCj6oiRrJ4QWWD": {
+        "label": "Beasts",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.71qKDLKO3CsrNkdy",
+          "Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0"
+        ]
+      },
+      "IOPWkNbGuLvPgnSy": {
+        "label": "Jagged Knife Bandits",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.MbBPIOxaxXYNApXz",
+          "Compendium.daggerheart.adversaries.Actor.CBKixLH3yhivZZuL",
+          "Compendium.daggerheart.adversaries.Actor.C0OMQqV7pN6t7ouR",
+          "Compendium.daggerheart.adversaries.Actor.aTljstqteGoLpCBq",
+          "Compendium.daggerheart.adversaries.Actor.XF4tYTq9nPJAy2ox",
+          "Compendium.daggerheart.adversaries.Actor.1zuyof1XuIfi3aMG"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 10,
     "tier": 1,
     "description": "<p>A swift-moving river without a bridge crossing, deep enough to sweep away most people.</p>",
-    "type": "<p>Traversal</p>"
+    "type": "traversal",
+    "impulses": "Bar crossing, carry away the unready, divide the land"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784565,
-    "modifiedTime": 1753922784565,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754214189395,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "t4cdqTfzcqP3H1vJ",
   "sort": 3400000,
@@ -124,7 +144,295 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Dangerous Crossing",
+      "type": "feature",
+      "system": {
+        "description": "<p>Crossing the river requires the party to complete a Progress Countdown (4).</p><section class=\"secret\" id=\"secret-l7tHfgFFOGdvlnll\"><p>A PC who rolls a failure with Fear is immediately targeted by the “Undertow” action without requiring a Fear to be spent on the feature.</p></section><p></p><section id=\"secret-VF0r7nXxQlmuwMpj\" class=\"secret\"><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "miodf3TMFrGRCvj6": {
+            "type": "effect",
+            "_id": "miodf3TMFrGRCvj6",
+            "systemPath": "actions",
+            "description": "<p>Crossing the river requires the party to complete a Progress Countdown (4). </p><section id=\"secret-mrmEGWrNJvoobYFZ\" class=\"secret\"><p>A PC who rolls a failure with Fear is immediately targeted by the “Undertow” action without requiring a Fear to be spent on the feature. </p><p><em>Have any of the PCs forded rivers like this before? Are any of them afraid of drowning?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdown",
+            "img": "icons/magic/water/wave-water-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "4ILX7BCinmsGqrJM",
+      "img": "icons/magic/water/wave-water-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754213872081,
+        "modifiedTime": 1754214257220,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!t4cdqTfzcqP3H1vJ.4ILX7BCinmsGqrJM"
+    },
+    {
+      "name": "Undertow",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to catch a PC in the undertow. They must make an Agility Reaction Roll. On a failure, they take <strong>1d6+1</strong> physical damage and are moved a Close distance down the river, becoming Vulnerable until they get out of the river. On a success, they must mark a Stress. </p><section id=\"secret-H6i1kuyHdtq9Eqgw\" class=\"secret\"><p><em>What trinkets and baubles lie along the bottom of the riverbed? Do predators swim these rivers?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "f2e3gbhzD7z8BdCc": {
+            "type": "attack",
+            "_id": "f2e3gbhzD7z8BdCc",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to catch a PC in the undertow. They must make an Agility Reaction Roll. On a failure, they take <strong>1d6+1</strong> physical damage and are moved a Close distance down the river, becoming Vulnerable until they get out of the river. On a success, they must mark a Stress.</p><section class=\"secret\" id=\"secret-FmZbu6m2gtachqyE\"><p><em>What trinkets and baubles lie along the bottom of the riverbed? Do predators swim these rivers?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": 1,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": 1
+            },
+            "effects": [
+              {
+                "_id": "T0ouSQyR8cVpAn79",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/water/wave-water-teal.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "WsNoSwwtv0r80BMj",
+      "img": "icons/magic/water/wave-water-teal.webp",
+      "effects": [
+        {
+          "name": "Undertow",
+          "img": "icons/magic/water/wave-water-teal.webp",
+          "origin": "Compendium.daggerheart.environments.Actor.t4cdqTfzcqP3H1vJ.Item.WsNoSwwtv0r80BMj",
+          "transfer": false,
+          "_id": "T0ouSQyR8cVpAn79",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><em>Vulnerable</em> until you get out of the river.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "vulnerable"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754214052231,
+            "modifiedTime": 1754214071300,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!t4cdqTfzcqP3H1vJ.WsNoSwwtv0r80BMj.T0ouSQyR8cVpAn79"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754213973393,
+        "modifiedTime": 1754214052244,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!t4cdqTfzcqP3H1vJ.WsNoSwwtv0r80BMj"
+    },
+    {
+      "name": "Patient Hunter",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0]{Glass Snake} within Close range of a chosen PC. The Snake appears in or near the river and immediately takes the spotlight to use their “Spinning Serpent” action.</p><section class=\"secret\" id=\"secret-F8zsJQg3xWOPpH5v\"><p><em>What treasures does the beast have in their burrow? What travelers have already fallen victim to this predator?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "Mnp0Yzc7EPVXm8So": {
+            "type": "effect",
+            "_id": "Mnp0Yzc7EPVXm8So",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0]{Glass Snake} within Close range of a chosen PC. The Snake appears in or near the river and immediately takes the spotlight to use their “Spinning Serpent” action.</p><section class=\"secret\" id=\"secret-YIc1Y8jgJKanim7f\"><p><em>What treasures does the beast have in their burrow? What travelers have already fallen victim to this predator?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/creatures/reptiles/snake-fangs-bite-green-yellow.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "SDTS3LOPMVJOt1S1",
+      "img": "icons/creatures/reptiles/snake-fangs-bite-green-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754214076107,
+        "modifiedTime": 1754214146772,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!t4cdqTfzcqP3H1vJ.SDTS3LOPMVJOt1S1"
+    }
+  ],
   "effects": [],
   "_key": "!actors!t4cdqTfzcqP3H1vJ"
 }

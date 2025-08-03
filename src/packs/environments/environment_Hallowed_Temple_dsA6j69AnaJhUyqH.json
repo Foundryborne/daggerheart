@@ -4,24 +4,34 @@
   "type": "environment",
   "folder": "XMeecO3IRvu5ck6F",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "4oKNnCRPuWEFni6D": {
+        "label": "Guards",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.JRhrrEg5UroURiAD",
+          "Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy",
+          "Compendium.daggerheart.adversaries.Actor.mK3A5FTx6k8iPU3F"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 13,
     "tier": 2,
     "description": "<p>A bustling but well-kept temple that provides healing and hosts regular services, overseen by a priest or seraph.</p>",
-    "type": "<p>Social</p>"
+    "type": "social",
+    "impulses": "Connect the Mortal Realm with the Hallows Above, display the power of the divine, provide aid and succor to the faithful"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784558,
-    "modifiedTime": 1753922784558,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754216032747,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "dsA6j69AnaJhUyqH",
   "sort": 3400000,
@@ -124,7 +134,292 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "A Place of Healing",
+      "type": "feature",
+      "system": {
+        "description": "<p>A PC who takes a rest in the Hallowed Temple automatically clears all HP.</p><section class=\"secret\" id=\"secret-L4xPjXbsFBvAJkG3\"><p><em>What does the incense smell like? What kinds of songs do the acolytes sing?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "uLCoTKa7Jn2HaRqR": {
+            "type": "healing",
+            "_id": "uLCoTKa7Jn2HaRqR",
+            "systemPath": "actions",
+            "description": "<p>A PC who takes a rest in the Hallowed Temple automatically clears all HP.</p><section class=\"secret\" id=\"secret-vN4UFTYIQW8nd2mC\"><p><em>What does the incense smell like? What kinds of songs do the acolytes sing?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "@system.resources.hitPoints.max"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "hitPoints",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Healing",
+            "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "hgHpS2k1sVxHKiG1",
+      "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754215631233,
+        "modifiedTime": 1754215723867,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!dsA6j69AnaJhUyqH.hgHpS2k1sVxHKiG1"
+    },
+    {
+      "name": "Divine Guidance",
+      "type": "feature",
+      "system": {
+        "description": "<p>A PC who prays to a deity while in the Hallowed Temple can make an Instinct Roll to receive answers. If the god they beseech isn’t welcome in this temple, the roll is made with disadvantage.</p><ul><li><p><strong>Critical Success:</strong> The PC gains clear information. Additionally, they gain [[/r 1d4]] Hope, which can be distributed between the party if they share the vision and guidance they received. </p></li><li><p><strong>Success with Hope:</strong> The PC receives clear information. </p></li><li><p><strong>Success with Fear:</strong> The PC receives brief flashes of insight and an emotional impression conveying an answer. </p></li><li><p><strong>Any Failure:</strong> The PC receives only vague flashes. They can mark a Stress to receive one clear image without context.</p></li></ul><pre><code>What does it feel like as you are touched by this vision? What feeling lingers after the images have passed?</code></pre>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "uqV1mTkJmXJwMYue",
+      "img": "icons/magic/holy/chalice-glowing-yellow-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754215727707,
+        "modifiedTime": 1754215816007,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!dsA6j69AnaJhUyqH.uqV1mTkJmXJwMYue"
+    },
+    {
+      "name": "Relentless Hope",
+      "type": "feature",
+      "system": {
+        "description": "<p>Once per scene, each PC can mark a Stress to turn a result with Fear into a result with Hope. </p><section id=\"secret-z2wMjfAVnSoTHSlR\" class=\"secret\"><p><em>What emotions or memories do you connect with when fear presses in?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "VlBjJ32dXlboSANv": {
+            "type": "damage",
+            "_id": "VlBjJ32dXlboSANv",
+            "systemPath": "actions",
+            "description": "<p>Once per scene, each PC can mark a Stress to turn a result with Fear into a result with Hope.</p><section class=\"secret\" id=\"secret-1BKTtBh9igK1y871\"><p><em>What emotions or memories do you connect with when fear presses in?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "vICfHK2urDQ2Jm8s",
+      "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754215819086,
+        "modifiedTime": 1754215871949,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!dsA6j69AnaJhUyqH.vICfHK2urDQ2Jm8s"
+    },
+    {
+      "name": "Divine Censure",
+      "type": "feature",
+      "system": {
+        "description": "<p>When the PCs have trespassed, blasphemed, or offended the clergy, you can <strong>spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.r1mbfSSwKWdcFdAU]{High Seraph} and [[/r 1d4]] @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guard} within Close range of the senior priest to reinforce their will.</p><section class=\"secret\" id=\"secret-bJG5Vk2KPgau6rQB\"><p><em>What symbols or icons do they bear that signal they are anointed agents of the divinity? Who leads the group and what led them to this calling?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "pJVipg7CbA9CB0Um": {
+            "type": "effect",
+            "_id": "pJVipg7CbA9CB0Um",
+            "systemPath": "actions",
+            "description": "<p>When the PCs have trespassed, blasphemed, or offended the clergy, you can <strong>spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.r1mbfSSwKWdcFdAU]{High Seraph} and [[/r 1d4]] @UUID[Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy]{Bladed Guard} within Close range of the senior priest to reinforce their will.</p><section class=\"secret\" id=\"secret-tG902NbtYpyK0NFi\"><p><em>What symbols or icons do they bear that signal they are anointed agents of the divinity? Who leads the group and what led them to this calling?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Generic",
+            "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "8tGAuFRyM4onvQ2o",
+      "img": "icons/magic/holy/projectiles-blades-salvo-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754215874972,
+        "modifiedTime": 1754216002924,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!dsA6j69AnaJhUyqH.8tGAuFRyM4onvQ2o"
+    }
+  ],
   "effects": [],
   "_key": "!actors!dsA6j69AnaJhUyqH"
 }

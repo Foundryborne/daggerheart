@@ -1,29 +1,150 @@
 {
   "name": "Chokehold",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
   "type": "domainCard",
   "folder": "hoDIPBzwYPxiSXGU",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you position yourself behind a creature who’s about your size, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to pull them into a chokehold, making them temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>.        </p><p class=\"Body-Foundation\">When a creature attacks a target who is <em>Vulnerable</em> in this way, they deal an extra <strong>2d6</strong> damage.</p></p>",
+    "description": "<p></p><p class=\"Body-Foundation\">When you position yourself behind a creature who’s about your size, you can <strong>mark a Stress</strong> to pull them into a chokehold, making them temporarily <em>Vulnerable</em>.</p><p class=\"Body-Foundation\">When a creature attacks a target who is <em>Vulnerable</em> in this way, they deal an extra <strong>2d6</strong> damage.</p><p></p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 3,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "QCMkze8rU0VB1VYL": {
+        "type": "effect",
+        "_id": "QCMkze8rU0VB1VYL",
+        "systemPath": "actions",
+        "description": "<p><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">When you position yourself behind a creature who’s about your size, you can </span><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">mark a </span><span class=\"tooltip-convert\" style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0);\">Stress</strong></span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\"> to pull them into a chokehold, making them temporarily </span><span class=\"tooltip-convert\" style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\"><em style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0);\">Vulnerable</em></span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">.</span></p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "yzGem7IfViJdAv1H",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Pull into Chokehold",
+        "img": "icons/skills/melee/hand-grip-staff-teal.webp",
+        "range": ""
+      },
+      "IwiUBldoDTUgT6mh": {
+        "type": "damage",
+        "_id": "IwiUBldoDTUgT6mh",
+        "systemPath": "actions",
+        "description": "<p>When a creature attacks a target who is <em>Vulnerable</em> in this way, they deal an extra <strong>2d6</strong> damage.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Damage",
+        "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784434,
-    "modifiedTime": 1753922784434,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754173330136,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "R5GYUalYXLLFRlNl",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Chokehold",
+      "img": "icons/skills/wounds/injury-pain-body-orange.webp",
+      "origin": "Compendium.daggerheart.domains.Item.R5GYUalYXLLFRlNl",
+      "transfer": false,
+      "_id": "yzGem7IfViJdAv1H",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Temporarily Vulnerable</p>",
+      "tint": "#ffffff",
+      "statuses": [
+        "vulnerable"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754162879103,
+        "modifiedTime": 1754173350355,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!R5GYUalYXLLFRlNl.yzGem7IfViJdAv1H"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!R5GYUalYXLLFRlNl"
 }

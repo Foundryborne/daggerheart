@@ -4,24 +4,35 @@
   "type": "environment",
   "folder": "XMeecO3IRvu5ck6F",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "hNREaghvi4LqHQ06": {
+        "label": "Cult of the Fallen",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.0NxCSugvKQ4W8OYZ",
+          "Compendium.daggerheart.adversaries.Actor.tyBOpLfigAhI9bU3",
+          "Compendium.daggerheart.adversaries.Actor.zx99sOGTXicP4SSD",
+          "Compendium.daggerheart.adversaries.Actor.sLAccjvCWfeedbpI"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 14,
     "tier": 2,
     "description": "<p>A Fallen cult assembles around a sigil of the defeated gods and a bonfire that burns a sickly shade of green.</p>",
-    "type": "<p>Event</p>"
+    "type": "event",
+    "impulses": "Profane the land, unite the Mortal Realm with the Circles Below"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784557,
-    "modifiedTime": 1753922784557,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754215595854,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "QAXXiOKBDmCTauHD",
   "sort": 3400000,
@@ -124,7 +135,274 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Desecrated Ground",
+      "type": "feature",
+      "system": {
+        "description": "<p>Cultists dedicated this place to the Fallen Gods, and their foul influence seeps into it. Reduce the PCs’ Hope Die to a d10 while in this environment. The desecration can be removed with a Progress Countdown (6).</p><section class=\"secret\" id=\"secret-iPgKjrXJYw4cy0EX\"><p><em>How do the PCs fist notice that something is wrong about this place? What fears resurface while hope is kept at bay?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "iiHjguQG2aBn9g8i",
+      "img": "icons/magic/unholy/orb-contained-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754215115407,
+        "modifiedTime": 1754215176068,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!QAXXiOKBDmCTauHD.iiHjguQG2aBn9g8i"
+    },
+    {
+      "name": "Blashemous Might",
+      "type": "feature",
+      "system": {
+        "description": "<p>A portion of the ritual’s power is diverted into a cult member to fight off interlopers. Choose one adversary to become Imbued with terrible magic until the scene ends or they’re defeated. An Imbued adversary immediately takes the spotlight and gains one of the following benefits, or all three if you <strong>spend a Fear</strong>:</p><ul><li><p>They gain advantage on all attacks.</p></li><li><p>They deal an extra <strong>1d10</strong> damage on a successful attack.</p></li><li><p>They gain the following feature: <strong>Relentless (2) - Passive</strong>. This adversary can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p></li></ul><section class=\"secret\" id=\"secret-600LhfEy1uNSxWdJ\"><p><em>How does the enemy change in appearance? What fears do their blows bring to the surface?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "EATw4ZkcuGeDfgLZ": {
+            "type": "effect",
+            "_id": "EATw4ZkcuGeDfgLZ",
+            "systemPath": "actions",
+            "description": "<p>A portion of the ritual’s power is diverted into a cult member to fight off interlopers. Choose one adversary to become Imbued with terrible magic until the scene ends or they’re defeated. An Imbued adversary immediately takes the spotlight and gains one of the following benefits, or all three if you <strong>spend a Fear</strong>:</p><ul><li><p>They gain advantage on all attacks.</p></li><li><p>They deal an extra <strong>1d10</strong> damage on a successful attack.</p></li><li><p>They gain the following feature: <strong>Relentless (2) - Passive</strong>. This adversary can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p></li></ul><section class=\"secret\" id=\"secret-5wFIFufzFAPrIDaq\"><p><em>How does the enemy change in appearance? What fears do their blows bring to the surface?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [
+              {
+                "_id": "dYQBQq1xIysM0qLo",
+                "onSave": false
+              },
+              {
+                "_id": "Hxw5lXE77bGzuaOu",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Imbue",
+            "img": "icons/magic/unholy/orb-swirling-teal.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "0Rgqw1kUPeJ11ldd",
+      "img": "icons/magic/unholy/orb-swirling-teal.webp",
+      "effects": [
+        {
+          "name": "Blashemous Might",
+          "img": "icons/magic/unholy/orb-swirling-teal.webp",
+          "origin": "Compendium.daggerheart.environments.Actor.QAXXiOKBDmCTauHD.Item.0Rgqw1kUPeJ11ldd",
+          "transfer": false,
+          "_id": "dYQBQq1xIysM0qLo",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p>An Imbued adversary immediately takes the spotlight and gains one of the following benefits, or all three if you <strong>spend a Fear</strong>:</p><ul><li><p>They gain advantage on all attacks.</p></li><li><p>They deal an extra <strong>1d10</strong> damage on a successful attack.</p></li><li><p>They gain the following feature: <strong>Relentless (2) - Passive</strong>. This adversary can be spotlighted up to two times per GM turn. Spend Fear as usual to spotlight them.</p></li></ul><section class=\"secret\" id=\"secret-YOHA68Na64uXDAxu\"><p><em>How does the enemy change in appearance? What fears do their blows bring to the surface?</em></p></section>",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754215336818,
+            "modifiedTime": 1754215365748,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!QAXXiOKBDmCTauHD.0Rgqw1kUPeJ11ldd.dYQBQq1xIysM0qLo"
+        },
+        {
+          "name": "Blashemous Might - Damage",
+          "img": "icons/magic/unholy/orb-swirling-teal.webp",
+          "origin": "Compendium.daggerheart.environments.Actor.QAXXiOKBDmCTauHD.Item.0Rgqw1kUPeJ11ldd",
+          "transfer": false,
+          "_id": "Hxw5lXE77bGzuaOu",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [
+            {
+              "key": "system.bonuses.damage.physical.dice",
+              "mode": 2,
+              "value": "1d10",
+              "priority": null
+            },
+            {
+              "key": "system.bonuses.damage.magical.dice",
+              "mode": 2,
+              "value": "1d10",
+              "priority": null
+            }
+          ],
+          "disabled": true,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754215384942,
+            "modifiedTime": 1754215453061,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!QAXXiOKBDmCTauHD.0Rgqw1kUPeJ11ldd.Hxw5lXE77bGzuaOu"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754215180426,
+        "modifiedTime": 1754215384953,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!QAXXiOKBDmCTauHD.0Rgqw1kUPeJ11ldd"
+    },
+    {
+      "name": "The Summoning",
+      "type": "feature",
+      "system": {
+        "description": "<p>Countdown (6). When the PCs enter the scene or the cult begins the ritual to summon a demon, activate the countdown. Designate one adversary to lead the ritual. The countdown ticks down when a PC rolls with Fear. When it triggers, summon a Minor Demon within Very Close range of the ritual’s leader. If the leader is defeated, the countdown ends with no effect as the ritual fails.</p><section class=\"secret\" id=\"secret-OXdRqIZ0R8wGn3Gm\"><p><em>What will the cult do with this leashed demon if they succeed? What will they try to summon next?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "oFfu3hUhp4ta4qwT",
+      "img": "icons/magic/unholy/barrier-fire-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754215458731,
+        "modifiedTime": 1754215511070,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!QAXXiOKBDmCTauHD.oFfu3hUhp4ta4qwT"
+    },
+    {
+      "name": "Complete the Ritual",
+      "type": "feature",
+      "system": {
+        "description": "<p>If the ritual’s leader is targeted by an attack or spell, an ally within Very Close range of them can <strong>mark a Stress</strong> to be targeted by that attack or spell instead. </p><section id=\"secret-4QYQNJKFywfwkGGp\" class=\"secret\"><p><em>What does it feel like to see such devotion turned to the pursuit of fear and domination?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "WltEUhtYwfnX8WCc",
+      "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754215513249,
+        "modifiedTime": 1754215561317,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!QAXXiOKBDmCTauHD.WltEUhtYwfnX8WCc"
+    }
+  ],
   "effects": [],
   "_key": "!actors!QAXXiOKBDmCTauHD"
 }

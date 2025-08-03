@@ -1,3 +1,7 @@
+export const compendiumJournals = {
+    welcome: 'Compendium.daggerheart.journals.JournalEntry.g7NhKvwltwafmMyR'
+};
+
 export const range = {
     self: {
         id: 'self',
