@@ -23,7 +23,8 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -146,7 +147,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784420,
-    "modifiedTime": 1754231357860,
+    "modifiedTime": 1754240392592,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "R0LNheiZycZlZzV3",

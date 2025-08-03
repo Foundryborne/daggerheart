@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "D1MFCYakdFIKDmcD",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you mark your last <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip>, instead of making a death move, you can roll a <strong>d6</strong> and clear a number of Hit Points equal to the result. Then place this card in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">vault</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">When you mark your last Hit Point, instead of making a death move, you can roll a <strong>d6</strong> and clear a number of Hit Points equal to the result. Then place this card in your vault.</p>",
     "domain": "valor",
     "recallCost": 4,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "NXWbijHKKgqgcAMB",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">When you mark your last Hit Point, instead of making a death move, you can roll a <strong>d6</strong> and clear a number of Hit Points equal to the result. Then place this card in your vault.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -67,8 +67,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784536,
-    "modifiedTime": 1754229325447,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754242513278,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "CUIQmrPjf9VCHmwJ",
   "sort": 3400000,

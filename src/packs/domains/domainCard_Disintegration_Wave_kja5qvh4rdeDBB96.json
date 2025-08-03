@@ -20,8 +20,9 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": true
         },
         "damage": {
           "parts": [],
@@ -57,13 +58,7 @@
         "range": "far"
       }
     },
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "max": "1",
-      "icon": "fa-solid fa-hand-sparkles",
-      "recovery": "longRest"
-    }
+    "resource": null
   },
   "flags": {},
   "_stats": {
@@ -74,7 +69,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784447,
-    "modifiedTime": 1754233664664,
+    "modifiedTime": 1754240832214,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "kja5qvh4rdeDBB96",

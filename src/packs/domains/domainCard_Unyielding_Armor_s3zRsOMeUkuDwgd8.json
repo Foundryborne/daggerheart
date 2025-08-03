@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "D1MFCYakdFIKDmcD",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you would mark an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>, roll a number of <strong>d6s</strong> equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. If any roll a 6, reduce the severity by one threshold without marking an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">When you would mark an Armor Slot, roll a number of <strong>d6s</strong> equal to your Proficiency. If any roll a 6, reduce the severity by one threshold without marking an Armor Slot.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 10,
@@ -19,8 +19,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784538,
-    "modifiedTime": 1754229312641,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754242525301,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "s3zRsOMeUkuDwgd8",
   "sort": 3400000,

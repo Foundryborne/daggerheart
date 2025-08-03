@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "XDSp0FdiYDVO0tfw",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per rest, when you <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"critical-success\" nexus=\"daggerheart\">critically succeed</tooltip> on an attack, you and all allies who can see or hear you can clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> or <strong>1d4</strong> <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per rest, when you critically succeed on an attack, you and all allies who can see or hear you can clear a Hit Point or <strong>1d4</strong> Stress.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 5,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "rnt24R8xyeyBrJS0",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per rest, when you critically succeed on an attack, you and all allies who can see or hear you can clear a Hit Point or <strong>1d4</strong> Stress.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -43,8 +43,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784506,
-    "modifiedTime": 1754229479327,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754242030472,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "pcbYD33rBBdAo5f9",
   "sort": 3400000,

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "QpOL7jPbMBzH96qR",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">When an ally within Very Close range would take damage, you can <strong>mark a </strong><strong>Stress</strong> to stand in the way and make yourself the target of the attack instead. When you take damage from this attack, you can mark any number of Armor Slots.        </p><p></p>",
+    "description": "<p class=\"Body-Foundation\">When an ally within Very Close range would take damage, you can <strong>mark a Stress</strong> to stand in the way and make yourself the target of the attack instead. When you take damage from this attack, you can mark any number of Armor Slots.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "0rLdATV71dviB2MG",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">When an ally within Very Close range would take damage, you can <strong>mark a Stress</strong> to stand in the way and make yourself the target of the attack instead. When you take damage from this attack, you can mark any number of Armor Slots.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -53,8 +53,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754067020844,
-    "modifiedTime": 1754229504325,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754241453261,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "effects": [],
   "ownership": {

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "tqhasjtHBX0F20lN",
   "system": {
-    "description": "<p class=\"Card-Feature\"><em><strong>Wild Flame:</strong></em>  Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p><p class=\"Card-Feature\"><em><strong>Magic Hand:</strong></em>  You conjure a magical hand with the same size and strength as your own within Far range.</p><p class=\"Card-Feature\"><em><strong>Mysterious Mist:</strong></em>  Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p>@Template[type:emanation|range:vc]</p><p></p>",
+    "description": "<p class=\"Card-Feature\"><em><strong>Wild Flame:</strong></em> Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p><p class=\"Card-Feature\"><em><strong>Magic Hand:</strong></em> You conjure a magical hand with the same size and strength as your own within Far range.</p><p class=\"Card-Feature\"><em><strong>Mysterious Mist:</strong></em> Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p></p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 1,
@@ -187,7 +187,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784426,
-    "modifiedTime": 1754228810027,
+    "modifiedTime": 1754241041570,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "1VXzwRbvbBj5bd5V",

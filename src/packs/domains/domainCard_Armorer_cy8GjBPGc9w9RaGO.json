@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "XDSp0FdiYDVO0tfw",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">While you’re wearing armor, gain a +1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-score\" nexus=\"daggerheart\">Armor Score</tooltip>.</p><p class=\"Body-Foundation\">During a rest, when you choose to repair your armor as a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"downtime\" nexus=\"daggerheart\">downtime</tooltip> move, your allies also clear an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">While you’re wearing armor, gain a +1 bonus to your Armor Score.</p><p class=\"Body-Foundation\">During a rest, when you choose to repair your armor as a downtime move, your allies also clear an Armor Slot.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 5,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "Z864RtY6fR5Cnrx9",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">During a rest, when you choose to repair your armor as a downtime move, your allies also clear an Armor Slot.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -88,8 +88,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784409,
-    "modifiedTime": 1754229481872,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754241866049,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "cy8GjBPGc9w9RaGO",
   "sort": 3400000,

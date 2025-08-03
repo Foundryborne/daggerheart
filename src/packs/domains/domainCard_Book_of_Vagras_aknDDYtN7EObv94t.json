@@ -20,8 +20,9 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": true
         },
         "damage": {
           "parts": [],
@@ -65,10 +66,11 @@
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
+            "consumeOnSuccess": true,
+            "scalable": false,
             "key": "hope",
             "value": 1,
-            "scalable": false,
+            "keyIsID": false,
             "step": null
           }
         ],
@@ -167,7 +169,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784427,
-    "modifiedTime": 1754229777971,
+    "modifiedTime": 1754240299795,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "aknDDYtN7EObv94t",
