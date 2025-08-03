@@ -1,6 +1,6 @@
 {
   "name": "Glancing Blow",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
   "type": "domainCard",
   "folder": "HAGbPLHwm0UozDeG",
   "system": {
@@ -8,22 +8,63 @@
     "domain": "blade",
     "recallCost": 1,
     "level": 7,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "DUojhK0OtvsotiE6": {
+        "type": "damage",
+        "_id": "DUojhK0OtvsotiE6",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Mark a Stress",
+        "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784462,
-    "modifiedTime": 1753922784462,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754247275114,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "nCNCqSH7UgW4O3To",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!nCNCqSH7UgW4O3To"
 }

@@ -1,6 +1,6 @@
 {
   "name": "Onslaught",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
   "type": "domainCard",
   "folder": "7pKKYgRQAKlQAksV",
   "system": {
@@ -8,22 +8,63 @@
     "domain": "blade",
     "recallCost": 3,
     "level": 10,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "MxaqNvY9IfWnFe5P": {
+        "type": "damage",
+        "_id": "MxaqNvY9IfWnFe5P",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Mark a Stress",
+        "img": "icons/skills/melee/strike-axe-blood-red.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784490,
-    "modifiedTime": 1753922784490,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754248295075,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "I7pNsQ9Yx6mRJX4V",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!I7pNsQ9Yx6mRJX4V"
 }

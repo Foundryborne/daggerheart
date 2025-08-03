@@ -1,6 +1,6 @@
 {
   "name": "Rage Up",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
   "type": "domainCard",
   "folder": "EiP5dLozOFZKIeWN",
   "system": {
@@ -8,22 +8,204 @@
     "domain": "blade",
     "recallCost": 1,
     "level": 6,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "LmjwPg03xLnoGTHm": {
+        "type": "effect",
+        "_id": "LmjwPg03xLnoGTHm",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": true,
+            "key": "stress",
+            "value": 1,
+            "step": 1,
+            "keyIsID": false,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "bq1MhcmoP6Wo5CXF",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark 1 Stress",
+        "img": "icons/magic/control/silhouette-aura-energy.webp",
+        "range": ""
+      },
+      "fKY9NcYBwCFwMsgV": {
+        "type": "effect",
+        "_id": "fKY9NcYBwCFwMsgV",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 2,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "t6SIjQxB6UBUJ98f",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark 2 Stress",
+        "img": "icons/magic/control/silhouette-aura-energy.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784496,
-    "modifiedTime": 1753922784496,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754246820890,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "GRL0cvs96vrTDckZ",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Rage Up (1)",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
+      "origin": "Compendium.daggerheart.domains.Item.GRL0cvs96vrTDckZ",
+      "transfer": false,
+      "_id": "bq1MhcmoP6Wo5CXF",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.roll.attack.bonus",
+          "mode": 2,
+          "value": "2*@system.traits.strength.value",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754246159246,
+        "modifiedTime": 1754246767854,
+        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+      },
+      "_key": "!items.effects!GRL0cvs96vrTDckZ.bq1MhcmoP6Wo5CXF"
+    },
+    {
+      "name": "Rage Up (2)",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
+      "origin": "Compendium.daggerheart.domains.Item.GRL0cvs96vrTDckZ",
+      "transfer": false,
+      "_id": "t6SIjQxB6UBUJ98f",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.roll.attack.bonus",
+          "mode": 2,
+          "value": "4*@system.traits.strength.value",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754246675511,
+        "modifiedTime": 1754246707418,
+        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+      },
+      "_key": "!items.effects!GRL0cvs96vrTDckZ.t6SIjQxB6UBUJ98f"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!GRL0cvs96vrTDckZ"
 }

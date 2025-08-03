@@ -1,6 +1,6 @@
 {
   "name": "Battle Cry",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
   "type": "domainCard",
   "folder": "me7ywrVh38j6T8Sm",
   "system": {
@@ -8,22 +8,177 @@
     "domain": "blade",
     "recallCost": 2,
     "level": 8,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "jakoB9n8KSgvYVZv": {
+        "type": "healing",
+        "_id": "jakoB9n8KSgvYVZv",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "stress",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            },
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hope",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "s7ma4TNgAvt0ZgEW",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Clear Stress & Gain Hope",
+        "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784413,
-    "modifiedTime": 1753922784413,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754247384173,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "Ef1JsUG50LIoKx2F",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Battle Cry",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
+      "origin": "Compendium.daggerheart.domains.Item.Ef1JsUG50LIoKx2F",
+      "transfer": false,
+      "_id": "s7ma4TNgAvt0ZgEW",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.advantageSources",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754247384148,
+        "modifiedTime": 1754247399500,
+        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+      },
+      "_key": "!items.effects!Ef1JsUG50LIoKx2F.s7ma4TNgAvt0ZgEW"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!Ef1JsUG50LIoKx2F"
 }
