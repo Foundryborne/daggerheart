@@ -150,7 +150,7 @@ Hooks.once('init', () => {
     return handlebarsRegistration();
 });
 
-Hooks.on('ready', () => {
+Hooks.on('ready', async () => {
     ui.resources = new CONFIG.ui.resources();
     if (game.settings.get(SYSTEM.id, SYSTEM.SETTINGS.gameSettings.appearance).displayFear !== 'hide')
         ui.resources.render({ force: true });
@@ -159,6 +159,14 @@ Hooks.on('ready', () => {
     socketRegistration.registerSocketHooks();
     registerRollDiceHooks();
     socketRegistration.registerUserQueries();
+
+    if (!game.user.getFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage)) {
+        const welcomeMessage = await foundry.utils.fromUuid(CONFIG.DH.GENERAL.compendiumJournals.welcome);
+        if (welcomeMessage) {
+            welcomeMessage.sheet.render({ force: true });
+            game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage, true);
+        }
+    }
 });
 
 Hooks.once('dicesoniceready', () => {});

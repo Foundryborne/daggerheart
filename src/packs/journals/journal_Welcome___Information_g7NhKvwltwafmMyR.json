@@ -1,0 +1,104 @@
+{
+  "name": "Welcome - Information",
+  "_id": "g7NhKvwltwafmMyR",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "The Daggerheart System",
+      "type": "text",
+      "_id": "Qn12vkbvV4m8LW3E",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Greetings prospective GM or Player. The Foundryborne team hopes you'll have a great time using the system and enjoying Daggerheart.</p><p>We've included some good to know information here as a first time message. You refer back to this journal in the Compendium Journals.</p><ul><li><p>@UUID[Compendium.daggerheart.journals.JournalEntry.g7NhKvwltwafmMyR.JournalEntryPage.VBhZyON3eZi6dfo7]{Automation / Manual}</p></li><li><p><a href=\"https://github.com/Foundryborne/daggerheart/wiki/Dice-Rolls-&amp;-Chat-Commands\">Chat Commands &amp; Enrichment</a></p></li></ul>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754223650079,
+        "modifiedTime": 1754223942641,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!journal.pages!g7NhKvwltwafmMyR.Qn12vkbvV4m8LW3E"
+    },
+    {
+      "sort": 200000,
+      "name": "Automation / Manual",
+      "type": "text",
+      "_id": "VBhZyON3eZi6dfo7",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>The system supports various levels of automation. You find these settings in the <strong>Automation</strong> system settings.</p><p>The most immediate choice you should make is if you want to use the game setting for `Levelup Automation`. You should make a choice there, and then not change it during play to avoid potential unwanted oddities.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754223746740,
+        "modifiedTime": 1754223862937,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!journal.pages!g7NhKvwltwafmMyR.VBhZyON3eZi6dfo7"
+    }
+  ],
+  "folder": null,
+  "categories": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754223645043,
+    "modifiedTime": 1754223645043,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!journal!g7NhKvwltwafmMyR"
+}

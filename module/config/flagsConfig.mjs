@@ -9,3 +9,7 @@ export const encounterCountdown = {
 };
 
 export const itemAttachmentSource = 'attachmentSource';
+
+export const userFlags = {
+    welcomeMessage: 'welcome-message'
+};
