@@ -12,7 +12,15 @@
                 {{/if}}
             </span>
         </div>
-        {{#if roll.difficulty}}<span class="roll-difficulty{{#unless roll.success}} is-miss{{/unless}}">difficulty {{roll.difficulty}}</span>{{/if}}
+        {{#if roll.difficulty}}
+            <span class="roll-difficulty{{#unless roll.success}} is-miss{{/unless}}">
+                {{#if canViewSecret}}
+                    difficulty {{roll.difficulty}}
+                {{else}}
+                    {{localize (ifThen roll.success "DAGGERHEART.GENERAL.success" "DAGGERHEART.GENERAL.failure")}}
+                {{/if}}
+            </span>
+        {{/if}}
     </div>
     <div class="dice-roll" data-action="expandRoll">
         <div class="roll-part-header"><div><span>Formula</span></div></div>
@@ -25,20 +33,12 @@
                                 <label>{{localize "DAGGERHEART.GENERAL.hope"}}</label>
                                 <div class="dice {{roll.hope.dice}} color-hope">{{roll.hope.value}}</div>
                             </div>
-                            <div class="roll-die">
-                                <label></label>
-                                <div class="font-20">+</div>
-                            </div>
-                            <div class="roll-die">
+                            <div class="roll-die has-plus">
                                 <label>{{localize "DAGGERHEART.GENERAL.fear"}}</label>
                                 <div class="dice {{roll.fear.dice}} color-fear" style="--svg-folder: 'fear';">{{roll.fear.value}}</div>
                             </div>
                             {{#if roll.advantage.type}}
-                                <div class="roll-die">
-                                    <label></label>
-                                    <div class="font-20">+</div>
-                                </div>
-                                <div class="roll-die">
+                                <div class="roll-die has-plus">
                                     {{#if (eq roll.advantage.type 1)}}
                                         <label>{{localize "DAGGERHEART.GENERAL.Advantage.short"}}</label>
                                         <div class="dice {{roll.advantage.dice}} color-adv">{{roll.advantage.value}}</div>
@@ -49,48 +49,30 @@
                                 </div>
                             {{/if}}
                             {{#if roll.rally.dice}}
-                                <div class="roll-die">
-                                    <label></label>
-                                    <div class="font-20">+</div>
-                                </div>
-                                <div class="roll-die">
+                                <div class="roll-die has-plus">
                                     <label>{{localize "DAGGERHEART.GENERAL.fear"}}</label>
                                     <div class="dice {{roll.rally.dice}}">{{roll.rally.value}}</div>
                                 </div>
                             {{/if}}
                             {{#each roll.extra}}
-                                <div class="roll-die">
-                                    <label></label>
-                                    <div class="font-20">+</div>
-                                </div>
-                                <div class="roll-die">
-                                    <label></label>
-                                    <div class="dice {{dice}}">{{value}}</div>
-                                </div>
-                                {{#unless @last}}
-                                    <div class="roll-die">
-                                        <label></label>
-                                        <div class="font-20">+</div>
-                                    </div>
-                                {{/unless}}
+                                {{#each results}}
+                                    {{#unless discarded}}
+                                        <div class="roll-die has-plus">
+                                            <label></label>
+                                            <div class="dice {{../dice}}">{{result}}</div>
+                                        </div>
+                                    {{/unless}}
+                                {{/each}}
                             {{/each}}
                         {{else}}
                             {{#each roll.dice}}
                                 {{#each results}}
-                                    <div class="roll-die">
-                                        <div class="dice {{../dice}}{{#if discarded}} discarded{{else}}{{#if (and (eq @index 0) ../../roll.advantage.type)}}{{#if (eq ../../roll.advantage.type 1)}} color-adv{{else}} color-dis{{/if}}{{/if}}{{#if success}} color-adv{{/if}}{{/if}}">{{result}}</div>
-                                    </div>
-                                    {{#unless (or @last (not discarded))}}
-                                        <div class="roll-die">
-                                            <div class="font-20">+</div>
+                                    <div class="roll-die {{#unless (or @../first discarded)}} has-plus{{/unless}}">
+                                        <div class="dice {{../dice}}{{#if discarded}} discarded{{else}}{{#if (and @../first ../../roll.advantage.type)}}{{#if (eq ../../roll.advantage.type 1)}} color-adv{{else}} color-dis{{/if}}{{/if}}{{#if success}} color-adv{{/if}}{{/if}}">
+                                            {{result}}
                                         </div>
-                                    {{/unless}}
-                                {{/each}}
-                                {{#unless @last}}
-                                    <div class="roll-die">
-                                        <div class="font-20">+</div>
                                     </div>
-                                {{/unless}}
+                                {{/each}}
                             {{/each}}
                         {{/if}}
                     </div>

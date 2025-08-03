@@ -170,7 +170,8 @@ export default class D20Roll extends DHRoll {
             .map(d => {
                 return {
                     dice: d.denomination,
-                    value: d.total
+                    value: d.total,
+                    results: d.results
                 };
             });
         data.modifierTotal = this.calculateTotalModifiers(roll);

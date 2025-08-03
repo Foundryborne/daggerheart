@@ -505,13 +505,16 @@
             flex-wrap: wrap;
 
             .roll-die {
-                display: flex;
-                flex-direction: column;
+                display: grid;
+                grid-template-areas:
+                    ". a a"
+                    "c b b";
                 gap: 3px;
 
                 label {
                     text-align: center;
                     height: var(--font-size-12);
+                    grid-area: a;
                 }
 
                 > div {
@@ -519,7 +522,17 @@
                     align-items: center;
                     justify-content: center;
                     gap: 5px;
-                    // font-size: var(--font-size-20);
+                    grid-area: b;
+                }
+
+                &.has-plus:before {
+                    content: '+';
+                    font-size: var(--font-size-20);
+                    grid-area: c;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 15px;
                 }
             }
         }
@@ -527,7 +540,6 @@
         fieldset {
             display: flex;
             flex-direction: column;
-            // gap: 10px;
             border-color: var(--text-color);
             border-radius: 5px;
 
@@ -717,9 +729,9 @@
 
         .dice-roll .dice-tooltip fieldset {
             margin-bottom: 5px;
-            .roll-dice {
-                gap: 10px;
-            }
+            // .roll-dice {
+            //     gap: 10px;
+            // }
         }
     }
 }

@@ -28,29 +28,14 @@
                                 {{#each dice}}
                                     {{#each results}}
                                         {{#unless discarded}}
-                                            <div class="roll-die">
+                                            <div class="roll-die{{#unless @../first}} has-plus{{/unless}}">
                                                 <div class="dice {{../dice}}">{{result}}</div>
                                             </div>
-                                            {{#unless @last}}
-                                                <div class="roll-die">
-                                                    <div class="font-20">+</div>
-                                                </div>
-                                            {{/unless}}
                                         {{/unless}}
                                     {{/each}}
-                                    {{#unless @last}}
-                                        <div class="roll-die">
-                                            <div class="font-20">+</div>
-                                        </div>
-                                    {{/unless}}
                                 {{/each}}
                                 {{#if modifierTotal}}
-                                    {{#if (gt modifierTotal 0)}}
-                                        <div class="roll-die">
-                                            <div class="font-20">+</div>
-                                        </div>
-                                    {{/if}}
-                                    <div class="roll-die">
+                                    <div class="roll-die{{#if (gt modifierTotal 0)}} has-plus{{/if}}">
                                         <div class="font-20">{{modifierTotal}}</div>
                                     </div>
                                 {{/if}}
