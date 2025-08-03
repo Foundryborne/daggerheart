@@ -1,6 +1,6 @@
 {
   "name": "Conjured Steeds",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "u5Lq2kfC8LlDAGDC",
   "system": {
@@ -56,8 +56,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784438,
-    "modifiedTime": 1754118365685,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229233675,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "Jkp6cMDiHHaBZQRS",
   "sort": 3400000,

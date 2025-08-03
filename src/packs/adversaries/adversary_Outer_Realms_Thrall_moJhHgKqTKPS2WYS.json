@@ -92,7 +92,8 @@
       },
       "name": "Claws and Teeth",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "img": "icons/creatures/claws/claw-talons-yellow-red.webp"
     }
@@ -106,7 +107,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784321,
-    "modifiedTime": 1754219468339,
+    "modifiedTime": 1754236375320,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "moJhHgKqTKPS2WYS",

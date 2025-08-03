@@ -76,7 +76,8 @@
       "name": "Backsword",
       "img": "icons/weapons/swords/sword-hooked.webp",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784304,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236375343,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "niBpVU7yeo5ccskE",

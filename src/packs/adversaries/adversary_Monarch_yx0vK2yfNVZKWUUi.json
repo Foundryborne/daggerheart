@@ -81,7 +81,8 @@
       "name": "Warhammer",
       "img": "icons/weapons/hammers/hammer-double-engraved-gold.webp",
       "roll": {
-        "bonus": 0
+        "bonus": 0,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -124,7 +125,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784312,
-    "modifiedTime": 1754129881483,
+    "modifiedTime": 1754236375521,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "yx0vK2yfNVZKWUUi",

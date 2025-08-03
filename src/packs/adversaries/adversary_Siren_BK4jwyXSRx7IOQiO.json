@@ -75,7 +75,8 @@
     "attack": {
       "name": "Distended Jaw Bite",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784344,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374255,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "BK4jwyXSRx7IOQiO",

@@ -1,6 +1,6 @@
 {
   "name": "Rejuvenation Barrier",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "qY4Zqc1Ch6p317uK",
   "system": {
@@ -138,8 +138,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784502,
-    "modifiedTime": 1754120208326,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229218423,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "HtWx5IIemCoorMj2",
   "sort": 3400000,

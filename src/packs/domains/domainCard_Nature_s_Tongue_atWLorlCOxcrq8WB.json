@@ -1,6 +1,6 @@
 {
   "name": "Nature’s Tongue",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "EJoXzO85rG5EiZsh",
   "system": {
@@ -102,8 +102,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784485,
-    "modifiedTime": 1754114564482,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229262913,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "atWLorlCOxcrq8WB",
   "sort": 3400000,

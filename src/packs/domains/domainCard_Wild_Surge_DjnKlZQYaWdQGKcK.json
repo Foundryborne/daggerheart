@@ -1,6 +1,6 @@
 {
   "name": "Wild Surge",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "gEVGjjPrjqxxZkb5",
   "system": {
@@ -57,8 +57,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784547,
-    "modifiedTime": 1754119639338,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229223806,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "DjnKlZQYaWdQGKcK",
   "sort": 3400000,

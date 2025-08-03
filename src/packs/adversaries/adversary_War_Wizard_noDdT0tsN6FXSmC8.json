@@ -82,7 +82,8 @@
       "range": "far",
       "img": "icons/weapons/staves/staff-hooked-banded.webp",
       "roll": {
-        "bonus": 4
+        "bonus": 4,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -125,7 +126,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784373,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236375356,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "noDdT0tsN6FXSmC8",

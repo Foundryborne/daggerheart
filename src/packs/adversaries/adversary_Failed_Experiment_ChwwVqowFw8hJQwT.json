@@ -75,7 +75,8 @@
     "attack": {
       "name": "Bite and Claw",
       "roll": {
-        "bonus": 1
+        "bonus": 1,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784262,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374339,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "ChwwVqowFw8hJQwT",

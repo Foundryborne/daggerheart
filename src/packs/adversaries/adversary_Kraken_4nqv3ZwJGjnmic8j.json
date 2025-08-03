@@ -75,7 +75,8 @@
     "attack": {
       "name": "Tentacles",
       "roll": {
-        "bonus": 7
+        "bonus": 7,
+        "type": "attack"
       },
       "range": "close",
       "damage": {
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784303,
-    "modifiedTime": 1754219468339,
+    "modifiedTime": 1754236373932,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "4nqv3ZwJGjnmic8j",

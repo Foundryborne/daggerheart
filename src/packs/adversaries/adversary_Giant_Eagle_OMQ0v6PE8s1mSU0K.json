@@ -70,7 +70,7 @@
       "name": "Claws and Beak",
       "roll": {
         "bonus": 1,
-        "type": null,
+        "type": "attack",
         "trait": null,
         "difficulty": null,
         "advState": "neutral",
@@ -149,7 +149,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754090770908,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374596,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "ownership": {

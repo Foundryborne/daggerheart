@@ -70,7 +70,8 @@
       "name": "Bite",
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "range": "close",
       "damage": {
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784285,
-    "modifiedTime": 1754129471407,
+    "modifiedTime": 1754236374476,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "MI126iMOOobQ1Obn",

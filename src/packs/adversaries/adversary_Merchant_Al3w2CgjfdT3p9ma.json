@@ -74,7 +74,8 @@
     "attack": {
       "name": "Club",
       "roll": {
-        "bonus": -4
+        "bonus": -4,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -118,7 +119,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784305,
-    "modifiedTime": 1754049539761,
+    "modifiedTime": 1754236374230,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "Al3w2CgjfdT3p9ma",

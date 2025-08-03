@@ -80,7 +80,8 @@
     "attack": {
       "name": "Necrotic Blast",
       "roll": {
-        "bonus": 6
+        "bonus": 6,
+        "type": "attack"
       },
       "range": "far",
       "damage": {
@@ -125,7 +126,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784221,
-    "modifiedTime": 1754219468339,
+    "modifiedTime": 1754236374832,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "WPEOIGfclNJxWb87",

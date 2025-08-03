@@ -70,7 +70,8 @@
       "name": "Wing Slash",
       "img": "icons/commodities/biological/wing-insect-blue.webp",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "range": "veryClose",
       "damage": {
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784219,
-    "modifiedTime": 1754121931543,
+    "modifiedTime": 1754236374441,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "G7jiltRjgvVhZewm",

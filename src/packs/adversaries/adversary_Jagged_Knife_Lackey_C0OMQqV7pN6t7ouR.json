@@ -59,7 +59,8 @@
       "name": "Daggers",
       "img": "icons/weapons/daggers/dagger-twin-green.webp",
       "roll": {
-        "bonus": -2
+        "bonus": -2,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -111,7 +112,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784293,
-    "modifiedTime": 1754048849157,
+    "modifiedTime": 1754236374283,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "C0OMQqV7pN6t7ouR",

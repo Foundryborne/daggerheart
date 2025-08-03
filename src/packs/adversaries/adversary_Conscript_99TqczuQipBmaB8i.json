@@ -62,7 +62,8 @@
       "name": "Spears",
       "range": "veryClose",
       "roll": {
-        "bonus": 0
+        "bonus": 0,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -106,7 +107,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784234,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374185,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "99TqczuQipBmaB8i",

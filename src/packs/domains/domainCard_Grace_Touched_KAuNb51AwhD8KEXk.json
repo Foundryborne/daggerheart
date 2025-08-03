@@ -1,6 +1,6 @@
 {
   "name": "Grace-Touched",
-  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
   "type": "domainCard",
   "folder": "W81LnTWzwmoaycTl",
   "system": {
@@ -103,8 +103,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784465,
-    "modifiedTime": 1754106506325,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229100834,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "KAuNb51AwhD8KEXk",
   "sort": 3400000,

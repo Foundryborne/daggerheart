@@ -1,6 +1,6 @@
 {
   "name": "Ground Pound",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/valor.png",
   "type": "domainCard",
   "folder": "FUzQxkv4gFc46SIs",
   "system": {
@@ -102,8 +102,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784466,
-    "modifiedTime": 1754069309346,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754229335929,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "WnGldYhJPDhx8v9X",
   "sort": 3400000,

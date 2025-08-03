@@ -76,7 +76,8 @@
       "name": "Deadfall Shortbow",
       "img": "icons/weapons/bows/longbow-recurve-skull-brown.webp",
       "roll": {
-        "bonus": 4
+        "bonus": 4,
+        "type": "attack"
       },
       "range": "far",
       "damage": {
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784258,
-    "modifiedTime": 1754126923288,
+    "modifiedTime": 1754236375484,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "wR7cFKrHvRzbzhBT",

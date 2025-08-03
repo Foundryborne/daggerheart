@@ -75,7 +75,8 @@
       "name": "Javelin",
       "img": "icons/weapons/polearms/spear-hooked-rounded.webp",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "range": "close",
       "damage": {
@@ -119,7 +120,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784294,
-    "modifiedTime": 1754048988454,
+    "modifiedTime": 1754236375013,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "aTljstqteGoLpCBq",

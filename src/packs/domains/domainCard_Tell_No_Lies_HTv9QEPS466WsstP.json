@@ -1,6 +1,6 @@
 {
   "name": "Tell No Lies",
-  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
   "type": "domainCard",
   "folder": "pu3xD4rEkdfdAvGc",
   "system": {
@@ -93,8 +93,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784529,
-    "modifiedTime": 1754098485841,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229144317,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "HTv9QEPS466WsstP",
   "sort": 3400000,

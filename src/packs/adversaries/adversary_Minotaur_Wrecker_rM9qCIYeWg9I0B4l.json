@@ -69,7 +69,8 @@
     "attack": {
       "name": "Battleaxe",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "range": "veryClose",
       "damage": {
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784310,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236375407,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "rM9qCIYeWg9I0B4l",

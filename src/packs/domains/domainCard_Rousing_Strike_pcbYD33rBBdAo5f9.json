@@ -1,6 +1,6 @@
 {
   "name": "Rousing Strike",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/valor.png",
   "type": "domainCard",
   "folder": "XDSp0FdiYDVO0tfw",
   "system": {
@@ -43,8 +43,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784506,
-    "modifiedTime": 1754068578206,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754229479327,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "pcbYD33rBBdAo5f9",
   "sort": 3400000,

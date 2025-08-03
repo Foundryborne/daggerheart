@@ -62,7 +62,8 @@
       "name": "Clawed Branch",
       "img": "icons/magic/nature/root-vine-hand-strike.webp",
       "roll": {
-        "bonus": -2
+        "bonus": -2,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -106,7 +107,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784309,
-    "modifiedTime": 1754050771646,
+    "modifiedTime": 1754236374420,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "G62k4oSkhkoXEs2D",

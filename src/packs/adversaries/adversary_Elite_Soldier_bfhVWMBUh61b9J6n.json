@@ -71,7 +71,7 @@
       "range": "veryClose",
       "roll": {
         "bonus": 1,
-        "type": null,
+        "type": "attack",
         "trait": null,
         "difficulty": null,
         "advState": "neutral",
@@ -149,7 +149,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754090776362,
-    "modifiedTime": 1754090776362,
+    "modifiedTime": 1754236375037,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "ownership": {
