@@ -4,18 +4,18 @@
             <span class="roll-result-value">{{roll.total}}</span>
             <span class="roll-result-desc">
                 {{#if roll.isCritical}}
-                    {{localize "DAGGERHEART.GENERAL.criticalShort"}}
+                    <span>{{localize "DAGGERHEART.GENERAL.criticalShort"}}</span>
                 {{else}}
                     {{#if roll.result}}
-                        {{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}
+                        <span>{{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}</span>
                     {{/if}}
                 {{/if}}
             </span>
         </div>
-        {{#if roll.difficulty}}<span class="roll-difficulty{{#unless roll.success}} is-miss{{/unless}}">difficulty {{roll.difficulty}}</span>{{/if}}
+        {{#if roll.difficulty}}<span class="roll-difficulty{{#unless roll.success}} is-miss{{/unless}}">{{localize "DAGGERHEART.GENERAL.difficulty"}} {{roll.difficulty}}</span>{{/if}}
     </div>
     <div class="dice-roll" data-action="expandRoll">
-        <div class="roll-part-header"><div><span>Formula</span></div></div>
+        <div class="roll-part-header"><div><span>{{localize "DAGGERHEART.GENERAL.formula"}}</span></div></div>
         <div class="roll-part-content dice-result">
             <div class="dice-tooltip">
                 <div class="wrapper">
@@ -23,7 +23,10 @@
                         {{#if roll.hope}}
                             <div class="roll-die">
                                 <label>{{localize "DAGGERHEART.GENERAL.hope"}}</label>
-                                <div class="dice {{roll.hope.dice}} color-hope">{{roll.hope.value}}</div>
+                                <div class="dice {{roll.hope.dice}} color-hope reroll-button" data-die-index="0" data-type="hope" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.hope")}}">
+                                    {{#if roll.hope.rerolled.any}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.diceIsRerolled" times=roll.hope.rerolled.rerolls.length}}"></i>{{/if}}
+                                    {{roll.hope.value}}
+                                </div>
                             </div>
                             <div class="roll-die">
                                 <label></label>
@@ -31,7 +34,10 @@
                             </div>
                             <div class="roll-die">
                                 <label>{{localize "DAGGERHEART.GENERAL.fear"}}</label>
-                                <div class="dice {{roll.fear.dice}} color-fear" style="--svg-folder: 'fear';">{{roll.fear.value}}</div>
+                                <div class="dice {{roll.fear.dice}} color-fear reroll-button" data-die-index="2" data-type="fear" style="--svg-folder: 'fear';" data-tooltip="{{localize "DAGGERHEART.GENERAL.rerollThing" thing=(localize "DAGGERHEART.GENERAL.fear")}}">
+                                    {{#if roll.fear.rerolled.any}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "DAGGERHEART.UI.Tooltip.diceIsRerolled" times=roll.fear.rerolled.rerolls.length}}"></i>{{/if}}
+                                    {{roll.fear.value}}
+                                </div>
                             </div>
                             {{#if roll.advantage.type}}
                                 <div class="roll-die">
