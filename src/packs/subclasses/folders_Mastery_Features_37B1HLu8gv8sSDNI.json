@@ -2,7 +2,7 @@
   "type": "Item",
   "folder": "Sfpr4iK1cGrmncok",
   "name": "Mastery Features",
-  "color": null,
+  "color": "#000078",
   "sorting": "m",
   "_id": "37B1HLu8gv8sSDNI",
   "description": "",
@@ -16,7 +16,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174646170,
-    "modifiedTime": 1754174646170,
+    "modifiedTime": 1754243041032,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!folders!37B1HLu8gv8sSDNI"

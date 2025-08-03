@@ -1,5 +1,5 @@
 {
-  "folder": null,
+  "folder": "0DMzpFZB8A6vwpRX",
   "name": "Troubadour",
   "type": "subclass",
   "img": "icons/tools/instruments/harp-gold-glowing.webp",
@@ -37,10 +37,10 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174653653,
-    "modifiedTime": 1754221291344,
+    "modifiedTime": 1754236659263,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_id": "ld8MIvk0xVJydSBz",
-  "sort": 200000,
+  "sort": 100000,
   "_key": "!items!ld8MIvk0xVJydSBz"
 }

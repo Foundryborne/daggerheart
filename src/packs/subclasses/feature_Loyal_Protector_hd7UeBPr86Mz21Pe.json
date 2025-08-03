@@ -1,0 +1,64 @@
+{
+  "folder": "PD8T5cWuSzaoPdl5",
+  "name": "Loyal Protector",
+  "type": "feature",
+  "_id": "hd7UeBPr86Mz21Pe",
+  "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+  "system": {
+    "description": "<p>When an ally within Close range has 2 or fewer Hit Points and would take damage, you can <strong>mark a Stress</strong> to sprint to their side and take the damage instead.</p>",
+    "resource": null,
+    "actions": {
+      "Dxnu3gPSTSysJnb8": {
+        "type": "effect",
+        "_id": "Dxnu3gPSTSysJnb8",
+        "systemPath": "actions",
+        "description": "<p>When an ally within Close range has 2 or fewer Hit Points and would take damage, you can <strong>mark a Stress</strong> to sprint to their side and take the damage instead.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754244826486,
+    "modifiedTime": 1754244944871,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!hd7UeBPr86Mz21Pe"
+}

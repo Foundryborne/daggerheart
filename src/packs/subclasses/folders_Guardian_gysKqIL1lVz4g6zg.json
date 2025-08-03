@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "QBeb6IqRnhTXzRtd",
+  "name": "Guardian",
+  "color": null,
+  "sorting": "m",
+  "_id": "gysKqIL1lVz4g6zg",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754236925395,
+    "modifiedTime": 1754236934726,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!folders!gysKqIL1lVz4g6zg"
+}

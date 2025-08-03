@@ -1,5 +1,5 @@
 {
-  "folder": "7v4rk8aUOc9l81kD",
+  "folder": "9mO4hIBDnL2RFUuz",
   "name": "Letter(Never Opened)",
   "type": "loot",
   "img": "icons/sundries/documents/envelope-sealed-red-tan.webp",
@@ -18,7 +18,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174513423,
-    "modifiedTime": 1754222210132,
+    "modifiedTime": 1754246246930,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "ownership": {
@@ -26,6 +26,6 @@
     "LgnbNMLaxandgMQq": 3
   },
   "_id": "XGWVVkHlVrF5fGm6",
-  "sort": 300000,
+  "sort": 200000,
   "_key": "!items!XGWVVkHlVrF5fGm6"
 }

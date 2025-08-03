@@ -1,0 +1,33 @@
+{
+  "folder": "lddhMu0Dzts6eJc2",
+  "name": "Unstoppable",
+  "type": "feature",
+  "_id": "PnD2UCgzIlwX6cY3",
+  "img": "icons/magic/defensive/shield-barrier-glowing-blue.webp",
+  "system": {
+    "description": "<p><strong>(Note: This needs to be manually implemented. Unstoppable die feature is not implemented as of this time)</strong><br /><br />Once per long rest, you can become Unstoppable. You gain an Unstoppable Die. At level 1, your Unstoppable Die is a d4. Place it on your character sheet in the space provided, starting with the 1 value facing up. After you make a damage roll that deals 1 or more Hit Points to a target, increase the Unstoppable Die value by one. When the die’s value would exceed its maximum value or when the scene ends, remove the die and drop out of Unstoppable. At level 5, your Unstoppable Die increases to a d6. While Unstoppable, you gain the following benefits:</p><ul><li><p>You reduce the severity of physical damage by one threshold (Severe to Major, Major to Minor, Minor to None).</p></li><li><p>You add the current value of the Unstoppable Die to your damage roll.</p></li><li><p>You can’t be Restrained or Vulnerable.</p></li></ul><blockquote><p>Tip: If your Unstoppable Die is a d4 and the 4 is currently facing up, you remove the die the next time you would increase it. However, if your Unstoppable Die has increased to a d6 and the 4 is currently facing up, you’ll turn it to 5 the next time you would increase it. In this case, you’ll remove the die after you would need to increase it higher than 6.</p></blockquote>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754246498657,
+    "modifiedTime": 1754246649352,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!PnD2UCgzIlwX6cY3"
+}

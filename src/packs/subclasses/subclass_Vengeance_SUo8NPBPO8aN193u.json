@@ -1,0 +1,50 @@
+{
+  "folder": "WMlU3baiUdMgfuak",
+  "name": "Vengeance",
+  "type": "subclass",
+  "_id": "SUo8NPBPO8aN193u",
+  "img": "icons/magic/unholy/silhouette-evil-horned-giant.webp",
+  "system": {
+    "description": "<p>You wish to strike down enemies who harm you or your allies.</p>",
+    "spellcastingTrait": null,
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.xPWFvGvtUjIcqgJq"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.oNfA5F9cKwNR7joq"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.k7vvMJtEcxMWUUrW"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.DPKmipNRlSAMs2Cg"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754246011733,
+    "modifiedTime": 1754246076491,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!SUo8NPBPO8aN193u"
+}

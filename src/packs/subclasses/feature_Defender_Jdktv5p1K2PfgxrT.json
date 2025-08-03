@@ -1,5 +1,5 @@
 {
-  "folder": "37B1HLu8gv8sSDNI",
+  "folder": "QFWUKG7xwO5bJyln",
   "name": "Defender",
   "type": "feature",
   "_id": "Jdktv5p1K2PfgxrT",
@@ -43,7 +43,7 @@
     "originId": null
   },
   "effects": [],
-  "sort": 0,
+  "sort": 400000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -57,7 +57,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754220872809,
-    "modifiedTime": 1754221053694,
+    "modifiedTime": 1754236539067,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!Jdktv5p1K2PfgxrT"

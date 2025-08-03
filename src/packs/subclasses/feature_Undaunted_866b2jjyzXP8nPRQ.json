@@ -1,0 +1,91 @@
+{
+  "folder": "PD8T5cWuSzaoPdl5",
+  "name": "Undaunted",
+  "type": "feature",
+  "_id": "866b2jjyzXP8nPRQ",
+  "img": "icons/skills/melee/shield-block-gray-yellow.webp",
+  "system": {
+    "description": "<p>Gain a permanent +3 bonus to your damage thresholds.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Undaunted",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "any",
+          "range": "self"
+        }
+      },
+      "_id": "zggFRaerHCj1e5F5",
+      "img": "icons/skills/melee/shield-block-gray-yellow.webp",
+      "changes": [
+        {
+          "key": "system.damageThresholds.severe",
+          "mode": 2,
+          "value": "3",
+          "priority": null
+        },
+        {
+          "key": "system.damageThresholds.major",
+          "mode": 2,
+          "value": "3",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Gain a permanent +3 bonus to your damage thresholds.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754243650080,
+        "modifiedTime": 1754243716920,
+        "lastModifiedBy": "LgnbNMLaxandgMQq"
+      },
+      "_key": "!items.effects!866b2jjyzXP8nPRQ.zggFRaerHCj1e5F5"
+    }
+  ],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754243538688,
+    "modifiedTime": 1754244861863,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!866b2jjyzXP8nPRQ"
+}

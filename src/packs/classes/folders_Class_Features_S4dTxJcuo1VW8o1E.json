@@ -2,7 +2,7 @@
   "type": "Item",
   "folder": null,
   "name": "Class Features",
-  "color": null,
+  "color": "#7d7d7d",
   "sorting": "m",
   "_id": "S4dTxJcuo1VW8o1E",
   "description": "",
@@ -16,7 +16,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1752680679705,
-    "modifiedTime": 1754221570310,
+    "modifiedTime": 1754246784051,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!folders!S4dTxJcuo1VW8o1E"

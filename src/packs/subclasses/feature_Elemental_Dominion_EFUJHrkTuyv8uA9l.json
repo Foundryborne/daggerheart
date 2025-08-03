@@ -1,5 +1,5 @@
 {
-  "folder": "37B1HLu8gv8sSDNI",
+  "folder": "QFWUKG7xwO5bJyln",
   "name": "Elemental Dominion",
   "type": "feature",
   "_id": "EFUJHrkTuyv8uA9l",
@@ -273,7 +273,7 @@
       "_key": "!items.effects!EFUJHrkTuyv8uA9l.edF2zvvlcGf54r2n"
     }
   ],
-  "sort": 0,
+  "sort": 300000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -287,7 +287,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754219959517,
-    "modifiedTime": 1754220756079,
+    "modifiedTime": 1754236534716,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!EFUJHrkTuyv8uA9l"

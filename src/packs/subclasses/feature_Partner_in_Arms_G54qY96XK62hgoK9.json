@@ -1,0 +1,64 @@
+{
+  "folder": "DO1MpBfTgnAblNNz",
+  "name": "Partner-in-Arms",
+  "type": "feature",
+  "_id": "G54qY96XK62hgoK9",
+  "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
+  "system": {
+    "description": "<p>When an ally within Very Close range takes damage, you can mark an Armor Slot to reduce the severity by one threshold.</p>",
+    "resource": null,
+    "actions": {
+      "D6ClOGDgu6cLanjE": {
+        "type": "effect",
+        "_id": "D6ClOGDgu6cLanjE",
+        "systemPath": "actions",
+        "description": "<p>When an ally within Very Close range takes damage, you can mark an Armor Slot to reduce the severity by one threshold.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "armor",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Armor Slot",
+        "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754242808363,
+    "modifiedTime": 1754242937117,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!G54qY96XK62hgoK9"
+}

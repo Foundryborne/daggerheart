@@ -37,8 +37,8 @@
         "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw"
       ],
       "choiceA": [
-        "Compendium.daggerheart.loot.Item.PQxvxAVBbkt0TleC",
-        "Compendium.daggerheart.loot.Item.1TLpFsp3PLDsqoTw"
+        "Compendium.daggerheart.consumables.Item.tPfKtKRRjv8qdSqy",
+        "Compendium.daggerheart.consumables.Item.b6vGSPFWOlzZZDLO"
       ],
       "choiceB": [
         "Compendium.daggerheart.classes.Item.Bvr6wjf44EvCdidC",
@@ -74,7 +74,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174600538,
-    "modifiedTime": 1754182286813,
+    "modifiedTime": 1754234842298,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_id": "vegl3bFOq3pcFTWT",
