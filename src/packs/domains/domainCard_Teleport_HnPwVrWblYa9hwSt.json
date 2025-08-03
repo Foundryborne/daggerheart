@@ -1,29 +1,80 @@
 {
   "name": "Teleport",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "pDtffkb0SMv1O8pL",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, you can instantly teleport yourself and any number of willing targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range to a place you’ve been before. Choose one of the following options, then make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (16)</strong>:</p><ul class=\"\"><li class=\"vertical-card-list\">If you know the place very well, gain a +3 bonus. </li><li class=\"vertical-card-list\">If you’ve visited the place frequently, gain a +1 bonus. </li><li class=\"vertical-card-list\">If you’ve visited the place infrequently, gain no modifier. </li><li class=\"vertical-card-list\">If you’ve only been there once, gain a −2 penalty.</li></ul><p class=\"Body-Foundation\">On a success, you appear where you were intending to go. On a failure, you appear off course, with the range of failure determining how far off course.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, you can instantly teleport yourself and any number of willing targets within Close range to a place you’ve been before. Choose one of the following options, then make a <strong>Spellcast Roll (16)</strong>:</p><ul><li class=\"vertical-card-list\">If you know the place very well, gain a +3 bonus.</li><li class=\"vertical-card-list\">If you’ve visited the place frequently, gain a +1 bonus.</li><li class=\"vertical-card-list\">If you’ve visited the place infrequently, gain no modifier.</li><li class=\"vertical-card-list\">If you’ve only been there once, gain a −2 penalty.</li></ul><p class=\"Body-Foundation\">On a success, you appear where you were intending to go. On a failure, you appear off course, with the range of failure determining how far off course.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 5,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "Fc38nN8i4z2VYW2T": {
+        "type": "attack",
+        "_id": "Fc38nN8i4z2VYW2T",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">Once per long rest, you can instantly teleport yourself and any number of willing targets within Close range to a place you’ve been before. Choose one of the following options, then make a <strong>Spellcast Roll (16)</strong>:</p><ul class=\"\"><li class=\"vertical-card-list\">If you know the place very well, gain a +3 bonus.</li><li class=\"vertical-card-list\">If you’ve visited the place frequently, gain a +1 bonus.</li><li class=\"vertical-card-list\">If you’ve visited the place infrequently, gain no modifier.</li><li class=\"vertical-card-list\">If you’ve only been there once, gain a −2 penalty.</li></ul><p class=\"Body-Foundation\">On a success, you appear where you were intending to go. On a failure, you appear off course, with the range of failure determining how far off course.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest"
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 16,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Spellcast Roll",
+        "img": "icons/magic/movement/pinwheel-turning-blue.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784528,
-    "modifiedTime": 1753922784528,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754231629691,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "HnPwVrWblYa9hwSt",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!HnPwVrWblYa9hwSt"
 }

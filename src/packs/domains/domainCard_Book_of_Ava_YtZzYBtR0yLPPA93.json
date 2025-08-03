@@ -1,29 +1,313 @@
 {
   "name": "Book of Ava",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "tqhasjtHBX0F20lN",
   "system": {
-    "description": "<p><p class=\"Card-Feature\"><em><strong>Power Push:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range. On a success, they’re knocked back to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range and take <strong>d10+2</strong> magic damage using your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.</p><p class=\"Card-Feature\"><em><strong>Tava’s Armor:</strong></em> <strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to give a target you can touch a +1 bonus to their <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-score\" nexus=\"daggerheart\">Armor Score</tooltip> until their next rest or you cast Tava’s Armor again.        </p><p class=\"Card-Feature\"><em><strong>Ice Spike:</strong></em> Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target’s <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p></p>",
+    "description": "<p class=\"Card-Feature\"><em><strong>Power Push:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Melee range. On a success, they’re knocked back to Far range and take <strong>d10+2</strong> magic damage using your Proficiency.</p><p class=\"Card-Feature\"><em><strong>Tava’s Armor:</strong></em> <strong>Spend a Hope</strong> to give a target you can touch a +1 bonus to their Armor Score until their next rest or you cast Tava’s Armor again.</p><p class=\"Card-Feature\"><em><strong>Ice Spike:</strong></em> Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target’s Difficulty instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 1,
-    "type": "grimoire"
+    "type": "grimoire",
+    "actions": {
+      "jX4wg2HR2xkdtbIU": {
+        "type": "attack",
+        "_id": "jX4wg2HR2xkdtbIU",
+        "systemPath": "actions",
+        "description": "<p></p><p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against a target within Melee range. On a success, they’re knocked back to Far range and take <strong>d10+2</strong> magic damage using your Proficiency.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "prof",
+                "dice": "d10",
+                "bonus": 2,
+                "flatMultiplier": 1
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Power Push",
+        "img": "icons/magic/movement/trail-streak-impact-blue.webp",
+        "range": "melee"
+      },
+      "4N7ViDYt9Na3zwzi": {
+        "type": "effect",
+        "_id": "4N7ViDYt9Na3zwzi",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\"><strong>Spend a Hope</strong> to give a target you can touch a +1 bonus to their Armor Score until their next rest or you cast Tava’s Armor again.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "LdcT1nrkd5ORCU4n",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "name": "Tava's Armor",
+        "img": "icons/magic/defensive/shield-barrier-glowing-triangle-blue.webp",
+        "range": ""
+      },
+      "XU1joyIDFZrQiToF": {
+        "type": "attack",
+        "_id": "XU1joyIDFZrQiToF",
+        "systemPath": "actions",
+        "description": "<p>Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target’s Difficulty instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 12,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Ice Spike",
+        "img": "icons/magic/water/projectile-icecicle.webp",
+        "range": ""
+      },
+      "enit3ZkPp0nY5lN1": {
+        "type": "attack",
+        "_id": "enit3ZkPp0nY5lN1",
+        "systemPath": "actions",
+        "description": "<p>Make a <strong>Spellcast Roll (12)</strong> to summon a large ice spike within Far range. If you use it as a weapon, make the Spellcast Roll against the target’s Difficulty instead. On a success, deal <strong>d6</strong> physical damage using your Proficiency.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "prof",
+                "dice": "d6",
+                "bonus": null,
+                "flatMultiplier": 1
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Ice Spike (Attack)",
+        "img": "icons/magic/water/projectile-icecicle.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784419,
-    "modifiedTime": 1753922784419,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754228833533,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "YtZzYBtR0yLPPA93",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Tava's Armor",
+      "img": "icons/magic/defensive/shield-barrier-glowing-triangle-blue.webp",
+      "origin": "Compendium.daggerheart.domains.Item.YtZzYBtR0yLPPA93",
+      "transfer": false,
+      "_id": "LdcT1nrkd5ORCU4n",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.armorScore",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>+1 bonus to your Armor Score until your next rest, or the caster cast's Tava’s Armor again.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754226654731,
+        "modifiedTime": 1754226719950,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!YtZzYBtR0yLPPA93.LdcT1nrkd5ORCU4n"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!YtZzYBtR0yLPPA93"
 }

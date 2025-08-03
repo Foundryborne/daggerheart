@@ -1,6 +1,6 @@
 {
   "name": "Book of Yarrow",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "IIVaYseNJbA2ta1B",
   "system": {
@@ -8,22 +8,160 @@
     "domain": "codex",
     "recallCost": 2,
     "level": 10,
-    "type": "grimoire"
+    "type": "grimoire",
+    "actions": {
+      "IxoglRervMx9YdVn": {
+        "type": "attack",
+        "_id": "IxoglRervMx9YdVn",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (18)</strong>. On a success, time temporarily slows to a halt for everyone within Far range except for you. It resumes the next time you make an action roll that targets another creature.</p><p>@Template[type:emanation|range:f]</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 18,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Timejammer",
+        "img": "icons/magic/time/hourglass-tilted-glowing-gold.webp",
+        "range": "far"
+      },
+      "ZcQfbtGet0KQWjWS": {
+        "type": "effect",
+        "_id": "ZcQfbtGet0KQWjWS",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\"><strong>Spend 5 Hope</strong> to become immune to magic damage until your next rest.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 5,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "HWJYhSegVLeAa3dE",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Magic Immunity",
+        "img": "icons/magic/defensive/barrier-shield-dome-deflect-teal.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784429,
-    "modifiedTime": 1753922784429,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754234029921,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "J1ovx2FpNDvPq1o6",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Magic Immunity",
+      "img": "icons/magic/defensive/barrier-shield-dome-deflect-teal.webp",
+      "origin": "Compendium.daggerheart.domains.Item.J1ovx2FpNDvPq1o6",
+      "transfer": false,
+      "_id": "HWJYhSegVLeAa3dE",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.resistance.magical.immunity",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Card-Feature\"><strong>I</strong>mmune to magic damage until your next rest.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754234029896,
+        "modifiedTime": 1754234059934,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!J1ovx2FpNDvPq1o6.HWJYhSegVLeAa3dE"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!J1ovx2FpNDvPq1o6"
 }

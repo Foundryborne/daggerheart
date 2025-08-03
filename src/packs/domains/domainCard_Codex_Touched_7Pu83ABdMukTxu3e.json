@@ -1,6 +1,6 @@
 {
   "name": "Codex-Touched",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "hh2vkggcAQ0QUE6C",
   "system": {
@@ -8,22 +8,136 @@
     "domain": "codex",
     "recallCost": 2,
     "level": 7,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "OV23p0uWuzmrQsZi": {
+        "type": "effect",
+        "_id": "OV23p0uWuzmrQsZi",
+        "systemPath": "actions",
+        "description": "<p>You can <strong>mark a Stress</strong> to add your Proficiency to a Spellcast Roll.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "oWs00mBY3onxGjF9",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/magic/light/hand-sparks-glow-yellow.webp",
+        "range": ""
+      },
+      "TGOGkEzH3HluH6YK": {
+        "type": "effect",
+        "_id": "TGOGkEzH3HluH6YK",
+        "systemPath": "actions",
+        "description": "<p>Once per rest, replace this card with any card from your vault without paying its Recall Cost.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest"
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Replace Card",
+        "img": "icons/magic/symbols/star-inverted-yellow.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784435,
-    "modifiedTime": 1753922784435,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754232995094,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "7Pu83ABdMukTxu3e",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Codex-Touched",
+      "img": "icons/magic/light/hand-sparks-glow-yellow.webp",
+      "origin": "Compendium.daggerheart.domains.Item.7Pu83ABdMukTxu3e",
+      "transfer": true,
+      "_id": "oWs00mBY3onxGjF9",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.roll.spellcast.bonus",
+          "mode": 2,
+          "value": "@system.proficiency",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Add your Proficiency to a Spellcast Roll.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754232846270,
+        "modifiedTime": 1754232933742,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!7Pu83ABdMukTxu3e.oWs00mBY3onxGjF9"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!7Pu83ABdMukTxu3e"
 }
