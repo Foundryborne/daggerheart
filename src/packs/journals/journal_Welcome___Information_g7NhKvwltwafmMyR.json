@@ -15,7 +15,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>Greetings prospective GM or Player. The Foundryborne team hopes you'll have a great time using the system and enjoying Daggerheart.</p><p>We've included some good to know information here as a first time message. You refer back to this journal in the Compendium Journals.</p><ul><li><p>@UUID[Compendium.daggerheart.journals.JournalEntry.g7NhKvwltwafmMyR.JournalEntryPage.VBhZyON3eZi6dfo7]{Automation / Manual}</p></li><li><p><a href=\"https://github.com/Foundryborne/daggerheart/wiki/Dice-Rolls-&amp;-Chat-Commands\">Chat Commands &amp; Enrichment</a></p></li></ul>"
+        "content": "<p>Greetings prospective GM or Player. The Foundryborne team hopes you'll have a great time using the system and enjoying Daggerheart.</p><p>We've included some good to know information here as a first time message. You refer back to this journal in the Compendium Journals.</p><p></p><p>You can find the comprehensive documentation for the system here:</p><p><a href=\"https://github.com/Foundryborne/daggerheart/wiki\" title=\"System Documentation\">System Documentation</a></p>"
       },
       "video": {
         "controls": true,
@@ -36,8 +36,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754223650079,
-        "modifiedTime": 1754223942641,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1754225785759,
+        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
       },
       "_key": "!journal.pages!g7NhKvwltwafmMyR.Qn12vkbvV4m8LW3E"
     },
@@ -79,11 +79,89 @@
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!journal.pages!g7NhKvwltwafmMyR.VBhZyON3eZi6dfo7"
+    },
+    {
+      "sort": 300000,
+      "name": "Dice Rolling",
+      "type": "text",
+      "_id": "PQdKJiorsBUEcPLk",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>This system includes support for the <a href=\"https://foundryvtt.com/packages/dice-so-nice\" title=\"Dice so Nice! Module\">Dice so Nice!</a> module.</p><p>It is not required to use this module, but when it is installed <em>and enabled</em> you will find additional Appearance Settings in the settings for this system, where you can customize the look of your Hope, Fear, Advantage, and Disadvantage Dice.</p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "l5jB3XmcVXOTQpRZ": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754225823379,
+        "modifiedTime": 1754225935779,
+        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+      },
+      "_key": "!journal.pages!g7NhKvwltwafmMyR.PQdKJiorsBUEcPLk"
+    },
+    {
+      "sort": 400000,
+      "name": "Credits",
+      "type": "text",
+      "_id": "dP6xSKEld4TSqHhK",
+      "system": {},
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<blockquote><p>This product includes materials from the Daggerheart System Reference Document 1.0, © Critical Role, LLC. under the terms of the Darrington Press Community Gaming (DPCGL) License. More information can be found at <a href=\"https://www.daggerheart.com/\" title=\"Daggerheart Official Website\">https://www.daggerheart.com</a>. There are no previous modifications by others.</p><p></p></blockquote><h1>The Foundryborne Team</h1><p></p><p>The Foundryborne Team consists of:</p><p></p><ul><li><p><strong>@harryfuralle</strong></p></li><li><p><strong>@cptn_cosmo</strong></p></li><li><p><strong>@molilo</strong></p></li><li><p><strong>@joaquinp98</strong></p></li><li><p><strong>@dapoulp</strong></p></li><li><p>@ikraik</p></li><li><p>@irktheimp</p></li><li><p>@jacobwojo</p></li><li><p>@vyrth</p></li><li><p>@.ontaro</p></li><li><p>@saatsin</p></li><li><p>@david.xyz</p></li></ul><p></p><p>With Art from:</p><p></p><ul><li><p>UsernameIsInUse</p></li></ul><p></p><p>We would also like to thank the FoundryVTT team for their support in publishing this system.</p><p>And, of course, special thanks to the teams at Critical Role and Darrington Press for making such a wonderful game and updating the license to allow a FoundryVTT version of the system.</p><p></p><h1>The Foundryborne Community</h1><p></p><p>Without our amazing community this project would not have been possible.</p><p>You kept us going with both direct contributions and just endless support!</p><p>We thank you with all our hearts.</p><p><a href=\"https://foundryborne.online/\" title=\"Foundryborne official website\">Come join us!</a></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "category": null,
+      "ownership": {
+        "default": -1,
+        "l5jB3XmcVXOTQpRZ": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754225939902,
+        "modifiedTime": 1754226994508,
+        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+      },
+      "_key": "!journal.pages!g7NhKvwltwafmMyR.dP6xSKEld4TSqHhK"
     }
   ],
   "folder": null,
   "categories": [],
-  "sort": 0,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "MQSznptE5yLT7kj8": 3
@@ -97,8 +175,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754223645043,
-    "modifiedTime": 1754223645043,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754225234581,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_key": "!journal!g7NhKvwltwafmMyR"
 }
