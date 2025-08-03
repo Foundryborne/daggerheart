@@ -25,7 +25,7 @@ export default class DhCompanion extends BaseDataActor {
             ...super.defineSchema(),
             partner: new ForeignDocumentUUIDField({ type: 'Actor' }),
             resources: new fields.SchemaField({
-                stress: resourceField(3, 'DAGGERHEART.GENERAL.stress', true),
+                stress: resourceField(3, 0, 'DAGGERHEART.GENERAL.stress', true),
                 hope: new fields.NumberField({ initial: 0, integer: true, label: 'DAGGERHEART.GENERAL.hope' })
             }),
             evasion: new fields.NumberField({

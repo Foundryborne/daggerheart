@@ -26,12 +26,13 @@ export default class DhCharacter extends BaseDataActor {
             resources: new fields.SchemaField({
                 hitPoints: resourceField(
                     0,
+                    0,
                     'DAGGERHEART.GENERAL.HitPoints.plural',
                     true,
                     'DAGGERHEART.ACTORS.Character.maxHPBonus'
                 ),
-                stress: resourceField(6, 'DAGGERHEART.GENERAL.stress', true),
-                hope: resourceField(6, 'DAGGERHEART.GENERAL.hope')
+                stress: resourceField(6, 0, 'DAGGERHEART.GENERAL.stress', true),
+                hope: resourceField(6, 2, 'DAGGERHEART.GENERAL.hope')
             }),
             traits: new fields.SchemaField({
                 agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
