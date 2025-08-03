@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "S4dTxJcuo1VW8o1E",
+  "name": "Bard",
+  "color": null,
+  "sorting": "m",
+  "_id": "C9y59fIkq50d3SyD",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754246208911,
+    "modifiedTime": 1754246286692,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!folders!C9y59fIkq50d3SyD"
+}

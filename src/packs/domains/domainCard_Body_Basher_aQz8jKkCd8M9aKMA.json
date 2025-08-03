@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pk4xXE8D3vTawrqj",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">You use the full force of your body in a fight. On a successful attack using a weapon with a Melee range, gain a bonus to your damage roll equal to your Strength.</p><p></p>",
+    "description": "<p class=\"Body-Foundation\">You use the full force of your body in a fight. On a successful attack using a weapon with a Melee range, gain a bonus to your damage roll equal to your Strength.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 2,
@@ -22,8 +22,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754067167343,
-    "modifiedTime": 1754229499748,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754241470721,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "effects": [
     {

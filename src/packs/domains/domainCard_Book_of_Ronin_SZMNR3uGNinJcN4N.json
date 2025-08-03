@@ -1,29 +1,227 @@
 {
   "name": "Book of Ronin",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "KwZYrsSUYnHiNtPl",
   "system": {
-    "description": "<p><p class=\"Card-Feature\"><em><strong>Transform:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. On a success, transform into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p><p class=\"Card-Feature\"><em><strong>Eternal Enervation:</strong> </em>Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, make a <strong>Spellcast Roll</strong> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. On a success, they become permanently <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>. They can’t clear this <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip> by any means.</p></p>",
+    "description": "<p class=\"Card-Feature\"><em><strong>Transform:</strong></em> Make a <strong>Spellcast Roll (15)</strong>. On a success, transform into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p><p class=\"Card-Feature\"><em><strong>Eternal Enervation:</strong> </em>Once per long rest, make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become permanently <em>Vulnerable</em>. They can’t clear this condition by any means.</p>",
     "domain": "codex",
     "recallCost": 4,
     "level": 9,
-    "type": "grimoire"
+    "type": "grimoire",
+    "actions": {
+      "etnR1OKzpLWrx2os": {
+        "type": "attack",
+        "_id": "etnR1OKzpLWrx2os",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (15)</strong>. On a success, transform into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "ntQfpTcXyEL76vCK",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 15,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Transform",
+        "img": "icons/containers/barrels/barrel-reinforced-cherry-brown.webp",
+        "range": ""
+      },
+      "h7i4ZuDYuYLnjze6": {
+        "type": "attack",
+        "_id": "h7i4ZuDYuYLnjze6",
+        "systemPath": "actions",
+        "description": "<p>Once per long rest, make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, they become permanently <em>Vulnerable</em>. They can’t clear this condition by any means.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "y44r3c91m06WKSiq",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Eternal Enervation",
+        "img": "icons/magic/unholy/hand-light-green.webp",
+        "range": "close"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784424,
-    "modifiedTime": 1753922784424,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754233533128,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "SZMNR3uGNinJcN4N",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Transform",
+      "img": "icons/containers/barrels/barrel-reinforced-cherry-brown.webp",
+      "origin": "Compendium.daggerheart.domains.Item.SZMNR3uGNinJcN4N",
+      "transfer": false,
+      "_id": "ntQfpTcXyEL76vCK",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>You've transformed into an inanimate object no larger than twice your normal size. You can remain in this shape until you take damage.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754233419584,
+        "modifiedTime": 1754233456124,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!SZMNR3uGNinJcN4N.ntQfpTcXyEL76vCK"
+    },
+    {
+      "name": "Eternal Enervation",
+      "img": "icons/magic/unholy/hand-light-green.webp",
+      "origin": "Compendium.daggerheart.domains.Item.SZMNR3uGNinJcN4N",
+      "transfer": false,
+      "_id": "y44r3c91m06WKSiq",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Permanently <em>Vulnerable</em>. They can’t clear this condition by any means.</p>",
+      "tint": "#ffffff",
+      "statuses": [
+        "vulnerable"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754233533111,
+        "modifiedTime": 1754233559989,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!SZMNR3uGNinJcN4N.y44r3c91m06WKSiq"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!SZMNR3uGNinJcN4N"
 }

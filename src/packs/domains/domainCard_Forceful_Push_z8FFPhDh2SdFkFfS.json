@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "QpOL7jPbMBzH96qR",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\">Make an attack with your primary weapon against a target within Melee range. On a success, you deal damage and knock them back to Close range. On a success with Hope, add a <strong>d6</strong> to your damage roll.</p><p class=\"Body-Foundation\">Additionally, you can <strong>spend a Hope</strong> to make them temporarily <em>Vulnerable</em>.</p><p></p>",
+    "description": "<p class=\"Body-Foundation\">Make an attack with your primary weapon against a target within Melee range. On a success, you deal damage and knock them back to Close range. On a success with Hope, add a <strong>d6</strong> to your damage roll.</p><p class=\"Body-Foundation\">Additionally, you can <strong>spend a Hope</strong> to make them temporarily <em>Vulnerable</em>.</p>",
     "domain": "valor",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "LT5173FgPoF81v7o",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Make an attack with your primary weapon against a target within Melee range. On a success, you deal damage and knock them back to Close range. On a success with Hope, add a <strong>d6</strong> to your damage roll.</p><p>Additionally, you can <strong>spend a Hope</strong> to make them temporarily <em>Vulnerable</em>.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -23,7 +23,8 @@
             "key": "hope",
             "value": 1,
             "scalable": false,
-            "step": null
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -58,8 +59,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754067019520,
-    "modifiedTime": 1754229507757,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754241411518,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "effects": [
     {

@@ -1,0 +1,109 @@
+{
+  "folder": "lddhMu0Dzts6eJc2",
+  "name": "Frontline Tank",
+  "type": "feature",
+  "_id": "YS1g7YdWwOaS629x",
+  "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-orange.webp",
+  "system": {
+    "description": "<p><strong>Spend 3 Hope</strong> to clear 2 Armor Slots</p>",
+    "resource": null,
+    "actions": {
+      "pRMSzC9XDSKmmLqT": {
+        "type": "healing",
+        "_id": "pRMSzC9XDSKmmLqT",
+        "systemPath": "actions",
+        "description": "<p><strong>Spend 3 Hope</strong> to clear 2 Armor Slots</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "2"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "armorSlot",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/defensive/shield-barrier-flaming-pentagon-orange.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754246687097,
+    "modifiedTime": 1754246740977,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!YS1g7YdWwOaS629x"
+}

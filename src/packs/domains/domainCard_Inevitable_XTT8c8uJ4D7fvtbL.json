@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nKCmeAn7ESsb4byE",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you fail an action roll, your next <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip> has <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">When you fail an action roll, your next action roll has advantage.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 6,
@@ -19,8 +19,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784472,
-    "modifiedTime": 1754229477042,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754242058119,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "XTT8c8uJ4D7fvtbL",
   "sort": 3400000,

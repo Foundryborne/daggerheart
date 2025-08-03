@@ -1,5 +1,5 @@
 {
-  "folder": "QBeb6IqRnhTXzRtd",
+  "folder": "dWQSVhtwClSdRHDK",
   "name": "Regeneration",
   "type": "feature",
   "_id": "KRyrbSLVGreIOTZe",
@@ -87,7 +87,7 @@
     "originId": null
   },
   "effects": [],
-  "sort": 600000,
+  "sort": 300000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -101,7 +101,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754180232243,
-    "modifiedTime": 1754221198032,
+    "modifiedTime": 1754236435606,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!KRyrbSLVGreIOTZe"

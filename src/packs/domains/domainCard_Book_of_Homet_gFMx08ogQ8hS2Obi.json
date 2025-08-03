@@ -1,29 +1,129 @@
 {
   "name": "Book of Homet",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "hh2vkggcAQ0QUE6C",
   "system": {
-    "description": "<p><p class=\"Card-Feature\"><em><strong>Pass Through:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong>. Once per rest on a success, you and all creatures touching you can pass through a wall or door within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. The effect ends once everyone is on the other side.</p><p class=\"Card-Feature\"><em><strong>Plane Gate:</strong></em> Make a <strong>Spellcast Roll (14)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, open a gateway to a location in another dimension or plane of existence you’ve been to before. This gateway lasts until your next rest.</p></p>",
+    "description": "<p class=\"Card-Feature\"><em><strong>Pass Through:</strong></em> Make a <strong>Spellcast Roll (13)</strong>. Once per rest on a success, you and all creatures touching you can pass through a wall or door within Close range. The effect ends once everyone is on the other side.</p><p class=\"Card-Feature\"><em><strong>Plane Gate:</strong></em> Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, open a gateway to a location in another dimension or plane of existence you’ve been to before. This gateway lasts until your next rest.</p>",
     "domain": "codex",
     "recallCost": 0,
     "level": 7,
-    "type": "grimoire"
+    "type": "grimoire",
+    "actions": {
+      "4cKqwH2jWsYylzI7": {
+        "type": "attack",
+        "_id": "4cKqwH2jWsYylzI7",
+        "systemPath": "actions",
+        "description": "<p>Make a <strong>Spellcast Roll (13)</strong>. Once per rest on a success, you and all creatures touching you can pass through a wall or door within Close range. The effect ends once everyone is on the other side.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": true
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 13,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Pass Through",
+        "img": "icons/magic/symbols/cross-circle-blue.webp",
+        "range": "close"
+      },
+      "RTUxVXUyRM6mNwUX": {
+        "type": "attack",
+        "_id": "RTUxVXUyRM6mNwUX",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, open a gateway to a location in another dimension or plane of existence you’ve been to before. This gateway lasts until your next rest.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": true
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 14,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Plane Gate",
+        "img": "icons/magic/movement/portal-vortex-orange.webp",
+        "range": ""
+      }
+    },
+    "resource": null
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784421,
-    "modifiedTime": 1753922784421,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754240751151,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "gFMx08ogQ8hS2Obi",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!gFMx08ogQ8hS2Obi"
 }

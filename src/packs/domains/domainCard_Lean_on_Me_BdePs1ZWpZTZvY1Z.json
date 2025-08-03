@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Oo9EkkF7CDD3QZEG",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, when you console or inspire an ally who failed an action roll, you can both clear 2 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, when you console or inspire an ally who failed an action roll, you can both clear 2 Stress.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "ByT4FdZX9YSLmKcL",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per long rest, when you console or inspire an ally who failed an action roll, you can both clear 2 Stress.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -88,8 +88,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784477,
-    "modifiedTime": 1754229489716,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754241703151,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "BdePs1ZWpZTZvY1Z",
   "sort": 3400000,

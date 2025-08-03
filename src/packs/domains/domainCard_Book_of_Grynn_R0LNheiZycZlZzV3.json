@@ -1,29 +1,160 @@
 {
   "name": "Book of Grynn",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "rUGDM9JvGfhh9a2Y",
   "system": {
-    "description": "<p><p class=\"Card-Feature\"><em><strong>Arcane Deflection:</strong></em> Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to negate the damage of an attack targeting you or an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range.        </p><p class=\"Card-Feature\"><em><strong>Time Lock:</strong></em> Target an object within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. That object stops in time and space exactly where it is until your next rest. If a creature tries to move it, make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against them to maintain this spell.</p><p class=\"Card-Feature\"><em><strong>Wall of Flame:</strong></em> Make a <strong>Spellcast Roll (15)</strong>. On a success, create a wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage. </p></p>",
+    "description": "<p class=\"Card-Feature\"><em><strong>Arcane Deflection:</strong></em> Once per long rest, <strong>spend a Hope</strong> to negate the damage of an attack targeting you or an ally within Very Close range.</p><p class=\"Card-Feature\"><em><strong>Time Lock:</strong></em> Target an object within Far range. That object stops in time and space exactly where it is until your next rest. If a creature tries to move it, make a <strong>Spellcast Roll</strong> against them to maintain this spell.</p><p class=\"Card-Feature\"><em><strong>Wall of Flame:</strong></em> Make a <strong>Spellcast Roll (15)</strong>. On a success, create a wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 4,
-    "type": "grimoire"
+    "type": "grimoire",
+    "actions": {
+      "2pyqgdVZDCUQPYaj": {
+        "type": "effect",
+        "_id": "2pyqgdVZDCUQPYaj",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Once per long rest, <strong>spend a Hope</strong> to negate the damage of an attack targeting you or an ally within Very Close range.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest"
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Arcane Deflection",
+        "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
+        "range": "veryClose"
+      },
+      "0vUkyQiGHTFS3Api": {
+        "type": "effect",
+        "_id": "0vUkyQiGHTFS3Api",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Target an object within Far range. That object stops in time and space exactly where it is until your next rest. If a creature tries to move it, make a <strong>Spellcast Roll</strong> against them to maintain this spell.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Time Lock",
+        "img": "icons/magic/time/hourglass-yellow-green.webp",
+        "range": "far"
+      },
+      "K26kfjmTEH9zPMMO": {
+        "type": "attack",
+        "_id": "K26kfjmTEH9zPMMO",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (15)</strong>. On a success, create a wall of magical flame between two points within Far range. All creatures in its path must choose a side to be on, and anything that subsequently passes through the wall takes <strong>4d10+3</strong> magic damage.</p><p>@Template[type:ray|range:f]</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 4,
+                "dice": "d10",
+                "bonus": 3
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 15,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Wall Of Flame",
+        "img": "icons/magic/fire/barrier-wall-flame-ring-yellow.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784420,
-    "modifiedTime": 1753922784420,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754240392592,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "R0LNheiZycZlZzV3",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!R0LNheiZycZlZzV3"
 }

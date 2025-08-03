@@ -1,5 +1,5 @@
 {
-  "folder": null,
+  "folder": "0DMzpFZB8A6vwpRX",
   "name": "Wordsmith",
   "type": "subclass",
   "img": "icons/tools/scribal/ink-quill-red.webp",
@@ -41,10 +41,10 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174655078,
-    "modifiedTime": 1754221292543,
+    "modifiedTime": 1754236660088,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_id": "XTSODVM8st75Os8M",
-  "sort": 250000,
+  "sort": 200000,
   "_key": "!items!XTSODVM8st75Os8M"
 }

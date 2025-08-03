@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "cOZgzLQRGNnBzsHT",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When an ally within<tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\"> Close</tooltip> range fails a roll, you can <strong>spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to allow them to reroll either their Hope or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> Die.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When an ally within Close range fails a roll, you can <strong>spend 2 Hope</strong> to allow them to reroll either their Hope or Fear Die.</p>",
     "domain": "valor",
     "recallCost": 2,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "YEzqOIIV4HqzCKx4",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">When an ally within Close range fails a roll, you can <strong>spend 2 Hope</strong> to allow them to reroll either their Hope or Fear Die.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -51,8 +51,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784525,
-    "modifiedTime": 1754229484661,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754241759840,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "stId5syX7YpP2JGz",
   "sort": 3400000,

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "FUzQxkv4gFc46SIs",
   "system": {
-    "description": "<p></p><p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to strike the ground where you stand and make a <strong>Strength Roll</strong> against all targets within Very Close range. Targets you succeed against are thrown back to Far range and must make a Reaction Roll (17). Targets who fail take <strong>4d10+8</strong> damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to strike the ground where you stand and make a <strong>Strength Roll</strong> against all targets within Very Close range. Targets you succeed against are thrown back to Far range and must make a Reaction Roll (17). Targets who fail take <strong>4d10+8</strong> damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
     "domain": "valor",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "FOrohOCnzfdBl4sM",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to strike the ground where you stand and make a <strong>Strength Roll</strong> against all targets within Very Close range. Targets you succeed against are thrown back to Far range and must make a Reaction Roll (17). Targets who fail take <strong>4d10+8</strong> damage. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -102,8 +102,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784466,
-    "modifiedTime": 1754229335929,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754242257735,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "WnGldYhJPDhx8v9X",
   "sort": 3400000,

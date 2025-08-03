@@ -1,0 +1,79 @@
+{
+  "name": "Guardian",
+  "type": "class",
+  "_id": "nRAyoC0fOzXPDa4z",
+  "img": "icons/equipment/shield/heater-wooden-sword-green.webp",
+  "system": {
+    "description": "<p>The title of guardian represents an array of martial professions, speaking more to their moral compass and unshakeable fortitude than the means by which they fight. While many guardians join groups of militants for either a country or cause, they’re more likely to follow those few they truly care for, majority be damned. Guardians are known for fighting with remarkable ferocity even against overwhelming odds, defending their cohort above all else. Woe betide those who harm the ally of a guardian, as the guardian will answer this injury in kind.</p>",
+    "domains": [
+      "valor",
+      "blade"
+    ],
+    "classItems": [],
+    "hitPoints": 7,
+    "evasion": 9,
+    "features": [
+      {
+        "type": "hope",
+        "item": "Compendium.daggerheart.classes.Item.YS1g7YdWwOaS629x"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.PnD2UCgzIlwX6cY3"
+      }
+    ],
+    "subclasses": [
+      "Compendium.daggerheart.subclasses.Item.rKRxFBlkbh9cDK8K",
+      "Compendium.daggerheart.subclasses.Item.SUo8NPBPO8aN193u"
+    ],
+    "inventory": {
+      "take": [
+        "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
+        "Compendium.daggerheart.classes.Item.uoG5iq09mxJPXfmk",
+        "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw"
+      ],
+      "choiceA": [
+        "Compendium.daggerheart.consumables.Item.tPfKtKRRjv8qdSqy",
+        "Compendium.daggerheart.consumables.Item.b6vGSPFWOlzZZDLO"
+      ],
+      "choiceB": [
+        "Compendium.daggerheart.classes.Item.d3VdAtW65oO8j14Y",
+        "Compendium.daggerheart.classes.Item.VVvIPx1cduyAb8jr"
+      ]
+    },
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 1,
+        "strength": 2,
+        "finesse": -1,
+        "instinct": 0,
+        "presence": 1,
+        "knowledge": 0
+      },
+      "suggestedPrimaryWeapon": "Compendium.daggerheart.weapons.Item.fbDYUja3ll9vCtrB",
+      "suggestedSecondaryWeapon": null,
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.haULhuEg37zUUvhb"
+    },
+    "isMulticlass": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754246931974,
+    "modifiedTime": 1754247171296,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!nRAyoC0fOzXPDa4z"
+}

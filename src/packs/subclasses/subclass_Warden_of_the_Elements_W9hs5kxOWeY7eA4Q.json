@@ -24,8 +24,8 @@
     "isMulticlass": false
   },
   "effects": [],
-  "folder": null,
-  "sort": 300000,
+  "folder": "AZWrSJzGXltzQhAJ",
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -39,7 +39,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754221102716,
-    "modifiedTime": 1754221291344,
+    "modifiedTime": 1754236671090,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!W9hs5kxOWeY7eA4Q"

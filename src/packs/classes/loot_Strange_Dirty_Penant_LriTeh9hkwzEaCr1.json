@@ -1,5 +1,5 @@
 {
-  "folder": "7v4rk8aUOc9l81kD",
+  "folder": "1gQpPaxdgvCxYlLs",
   "name": "Strange Dirty Penant",
   "type": "loot",
   "_id": "LriTeh9hkwzEaCr1",
@@ -10,7 +10,7 @@
     "actions": {}
   },
   "effects": [],
-  "sort": 500000,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -24,7 +24,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754222150005,
-    "modifiedTime": 1754222231125,
+    "modifiedTime": 1754246254311,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!LriTeh9hkwzEaCr1"

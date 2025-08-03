@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "kj3gwg5bmCqwFYze",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Valor domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">+1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-score\" nexus=\"daggerheart\">Armor Score</tooltip></li><li class=\"vertical-card-list-found\">When you mark 1 or more <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> without marking an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>, clear an Armor Slot.</li></ul></p>",
+    "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Valor domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Armor Score</p></li><li class=\"vertical-card-list-found\"><p>When you mark 1 or more Hit Points without marking an Armor Slot, clear an Armor Slot.</p></li></ul>",
     "domain": "valor",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "F04596OgMgpnhpQp",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you mark 1 or more Hit Points without marking an Armor Slot, clear an Armor Slot.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -88,8 +88,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784539,
-    "modifiedTime": 1754229464831,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754242143242,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "k1AtYd3lSchIymBr",
   "sort": 3400000,

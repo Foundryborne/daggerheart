@@ -1,29 +1,116 @@
 {
   "name": "Transcendent Union",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "IIVaYseNJbA2ta1B",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, <strong>spend 5 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to cast this spell on two or more willing creatures. Until your next rest, when a creature connected by this union would mark <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>, the connected creatures can choose who marks it.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>spend 5 Hope</strong> to cast this spell on two or more willing creatures. Until your next rest, when a creature connected by this union would mark Stress or Hit Points, the connected creatures can choose who marks it.</p>",
     "domain": "codex",
     "recallCost": 1,
     "level": 10,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "FhpWZpXoyXxB13BM": {
+        "type": "effect",
+        "_id": "FhpWZpXoyXxB13BM",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>spend 5 Hope</strong> to cast this spell on two or more willing creatures. Until your next rest, when a creature connected by this union would mark Stress or Hit Points, the connected creatures can choose who marks it.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 5,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "kMcvp2QKmBP4uinB",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "friendly",
+          "amount": 2
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/light/explosion-beam-impact-silhouette.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784534,
-    "modifiedTime": 1753922784534,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754240901607,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "kVkoCLBXLAIifqpz",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Transcendent Union",
+      "img": "icons/magic/light/explosion-beam-impact-silhouette.webp",
+      "origin": "Compendium.daggerheart.domains.Item.kVkoCLBXLAIifqpz",
+      "transfer": false,
+      "_id": "kMcvp2QKmBP4uinB",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation\">Until your next rest, when a creature connected by this union would mark Stress or Hit Points, the connected creatures can choose who marks it.</p><p></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754240901572,
+        "modifiedTime": 1754240925089,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!kVkoCLBXLAIifqpz.kMcvp2QKmBP4uinB"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!kVkoCLBXLAIifqpz"
 }

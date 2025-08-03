@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "kj3gwg5bmCqwFYze",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">vault</tooltip>.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 7,
@@ -14,10 +14,19 @@
         "type": "attack",
         "_id": "h9odg7Tk94O0M5l1",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "consumeOnSuccess": false,
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -67,8 +76,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784516,
-    "modifiedTime": 1754229468207,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754242112465,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "JwfhtgmmuRxg4zhI",
   "sort": 3400000,

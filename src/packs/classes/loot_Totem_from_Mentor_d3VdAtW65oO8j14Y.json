@@ -1,0 +1,31 @@
+{
+  "folder": "RVUiPVdWhR4lQxmM",
+  "name": "Totem from Mentor",
+  "type": "loot",
+  "_id": "d3VdAtW65oO8j14Y",
+  "img": "icons/commodities/treasure/totem-wooden-glowing-yellow.webp",
+  "system": {
+    "description": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754246839143,
+    "modifiedTime": 1754246869476,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!d3VdAtW65oO8j14Y"
+}

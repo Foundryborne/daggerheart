@@ -1,5 +1,5 @@
 {
-  "folder": "QBeb6IqRnhTXzRtd",
+  "folder": "dWQSVhtwClSdRHDK",
   "name": "Clarity of Nature",
   "type": "feature",
   "_id": "etaQ01yGJhBLDUqZ",
@@ -94,7 +94,7 @@
     "originId": null
   },
   "effects": [],
-  "sort": 500000,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -108,7 +108,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754179740310,
-    "modifiedTime": 1754221219723,
+    "modifiedTime": 1754236434756,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!etaQ01yGJhBLDUqZ"

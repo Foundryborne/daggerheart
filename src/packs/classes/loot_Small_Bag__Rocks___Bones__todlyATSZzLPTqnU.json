@@ -1,5 +1,5 @@
 {
-  "folder": "7v4rk8aUOc9l81kD",
+  "folder": "1gQpPaxdgvCxYlLs",
   "name": "Small Bag (Rocks & Bones)",
   "type": "loot",
   "_id": "todlyATSZzLPTqnU",
@@ -10,7 +10,7 @@
     "actions": {}
   },
   "effects": [],
-  "sort": 400000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -24,7 +24,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754222078723,
-    "modifiedTime": 1754222210132,
+    "modifiedTime": 1754246253688,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!todlyATSZzLPTqnU"

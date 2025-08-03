@@ -1,0 +1,64 @@
+{
+  "folder": "gysKqIL1lVz4g6zg",
+  "name": "Iron Will",
+  "type": "feature",
+  "_id": "7AVRNyBcd1Nffjtn",
+  "img": "icons/equipment/shield/heater-steel-worn.webp",
+  "system": {
+    "description": "<p>When you take physical damage, you can <strong>mark an additional Armor Slot</strong> to reduce the severity.</p>",
+    "resource": null,
+    "actions": {
+      "MTCPiEn7Y8ioZ5nc": {
+        "type": "effect",
+        "_id": "MTCPiEn7Y8ioZ5nc",
+        "systemPath": "actions",
+        "description": "<p>When you take physical damage, you can mark an additional Armor Slot to reduce the severity.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "armor",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Armor Slot",
+        "img": "icons/equipment/shield/heater-steel-worn.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 250000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754237297894,
+    "modifiedTime": 1754245936410,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!7AVRNyBcd1Nffjtn"
+}

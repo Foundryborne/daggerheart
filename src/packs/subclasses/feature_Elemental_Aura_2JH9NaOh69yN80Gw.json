@@ -1,5 +1,5 @@
 {
-  "folder": "Br5kHZnnjGzz4RJ9",
+  "folder": "fJQhss1obELmJ7cK",
   "name": "Elemental Aura",
   "type": "feature",
   "_id": "2JH9NaOh69yN80Gw",
@@ -250,7 +250,7 @@
       "_key": "!items.effects!2JH9NaOh69yN80Gw.AaaAIqPtSkzBn8kU"
     }
   ],
-  "sort": 400000,
+  "sort": 100000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -264,7 +264,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754180638227,
-    "modifiedTime": 1754221416957,
+    "modifiedTime": 1754236485950,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!2JH9NaOh69yN80Gw"

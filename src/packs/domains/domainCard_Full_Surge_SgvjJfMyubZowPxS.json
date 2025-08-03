@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "FUzQxkv4gFc46SIs",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, <strong>mark 3 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to push your body to its limits. Gain a +2 bonus to all of your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"character-traits\" nexus=\"daggerheart\">character traits</tooltip> until your next rest.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark 3 Stress</strong> to push your body to its limits. Gain a +2 bonus to all of your character traits until your next rest.</p>",
     "domain": "valor",
     "recallCost": 1,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "GB1MKw1nnkSgDhBd",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark 3 Stress</strong> to push your body to its limits. Gain a +2 bonus to all of your character traits until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -31,7 +31,12 @@
           "max": "",
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "H5q5iYImr69TfZcp",
+            "onSave": false
+          }
+        ],
         "target": {
           "type": "self",
           "amount": null
@@ -51,14 +56,18 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784460,
-    "modifiedTime": 1754229340848,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754242182536,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "SgvjJfMyubZowPxS",
   "sort": 3400000,
   "effects": [
     {
       "name": "Full Surge",
+      "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
+      "origin": "Compendium.daggerheart.domains.Item.SgvjJfMyubZowPxS",
+      "transfer": true,
+      "_id": "H5q5iYImr69TfZcp",
       "type": "base",
       "system": {
         "rangeDependence": {
@@ -68,9 +77,13 @@
           "range": "melee"
         }
       },
-      "_id": "vylJM3jABs0ZH8oE",
-      "img": "icons/magic/symbols/ring-circle-smoke-blue.webp",
       "changes": [
+        {
+          "key": "system.traits.strength.value",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
         {
           "key": "system.traits.agility.value",
           "mode": 2,
@@ -84,7 +97,7 @@
           "priority": null
         },
         {
-          "key": "system.traits.strength.value",
+          "key": "system.traits.instinct.value",
           "mode": 2,
           "value": "2",
           "priority": null
@@ -97,12 +110,6 @@
         },
         {
           "key": "system.traits.knowledge.value",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        },
-        {
-          "key": "system.traits.instinct.value",
           "mode": 2,
           "value": "2",
           "priority": null
@@ -119,9 +126,7 @@
         "startTurn": null
       },
       "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Gain a +2 bonus to all of your </span><span class=\"tooltip-convert\" style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">character traits</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\"> until your next rest.</span></p>",
-      "origin": null,
       "tint": "#ffffff",
-      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -132,11 +137,11 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754069129565,
-        "modifiedTime": 1754069189060,
+        "createdTime": 1754242182511,
+        "modifiedTime": 1754242229676,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
-      "_key": "!items.effects!SgvjJfMyubZowPxS.vylJM3jABs0ZH8oE"
+      "_key": "!items.effects!SgvjJfMyubZowPxS.H5q5iYImr69TfZcp"
     }
   ],
   "ownership": {

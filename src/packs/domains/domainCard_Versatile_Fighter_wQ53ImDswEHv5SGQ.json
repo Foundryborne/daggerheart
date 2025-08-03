@@ -1,6 +1,6 @@
 {
   "name": "Versatile Fighter",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
   "type": "domainCard",
   "folder": "wWL9mV6i2EGX5xHS",
   "system": {
@@ -8,22 +8,59 @@
     "domain": "blade",
     "recallCost": 1,
     "level": 3,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "XAaygVE635axvBX7": {
+        "type": "effect",
+        "_id": "XAaygVE635axvBX7",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark a Stress",
+        "img": "icons/magic/control/silhouette-aura-energy.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784541,
-    "modifiedTime": 1753922784541,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754244901236,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "wQ53ImDswEHv5SGQ",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!wQ53ImDswEHv5SGQ"
 }

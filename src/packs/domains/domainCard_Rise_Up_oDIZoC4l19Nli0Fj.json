@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nKCmeAn7ESsb4byE",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Gain a bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe </tooltip>threshold equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.</p><p class=\"Body-Foundation\">When you mark 1 or more <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> from an attack, clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Gain a bonus to your Severe threshold equal to your Proficiency.</p><p class=\"Body-Foundation\">When you mark 1 or more Hit Points from an attack, clear a Stress.</p>",
     "domain": "valor",
     "recallCost": 2,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "DAsnjDomrlupo1aw",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">When you mark 1 or more Hit Points from an attack, clear a Stress.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -88,8 +88,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784504,
-    "modifiedTime": 1754229471122,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754242078238,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "oDIZoC4l19Nli0Fj",
   "sort": 3400000,

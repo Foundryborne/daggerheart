@@ -1,29 +1,200 @@
 {
   "name": "Book of Tyfar",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "tqhasjtHBX0F20lN",
   "system": {
-    "description": "<p><p class=\"Card-Feature\"><em><strong>Wild Flame:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against up to three adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> as flames erupt from your hand.</p><p class=\"Card-Feature\"><em><strong>Magic Hand:</strong></em> You conjure a magical hand with the same size and strength as your own within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range.</p><p class=\"Card-Feature\"><em><strong>Mysterious Mist:</strong></em> Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. The fog <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"line-of-sight\" nexus=\"daggerheart\">heavily obscures</tooltip> this area and everything in it.</p></p>",
+    "description": "<p class=\"Card-Feature\"><em><strong>Wild Flame:</strong></em> Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p><p class=\"Card-Feature\"><em><strong>Magic Hand:</strong></em> You conjure a magical hand with the same size and strength as your own within Far range.</p><p class=\"Card-Feature\"><em><strong>Mysterious Mist:</strong></em> Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p></p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 1,
-    "type": "grimoire"
+    "type": "grimoire",
+    "actions": {
+      "E3AnyfI7LDL0z9tT": {
+        "type": "attack",
+        "_id": "E3AnyfI7LDL0z9tT",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against up to three adversaries within Melee range. Targets you succeed against take <strong>2d6</strong> magic damage and must mark a Stress as flames erupt from your hand.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 2,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            },
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "stress",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": 3
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Wild Flame",
+        "img": "icons/magic/fire/projectile-feathers-embers-gold.webp",
+        "range": "melee"
+      },
+      "MYZWoU0clYEcsYDb": {
+        "type": "effect",
+        "_id": "MYZWoU0clYEcsYDb",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">You conjure a magical hand with the same size and strength as your own within Far range.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Magic Hand",
+        "img": "icons/magic/death/hand-withered-gray.webp",
+        "range": "far"
+      },
+      "WQ9XzpbtXl4SmVet": {
+        "type": "attack",
+        "_id": "WQ9XzpbtXl4SmVet",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll (13)</strong> to cast a temporary thick fog that gathers in a stationary area within Very Close range. The fog heavily obscures this area and everything in it.</p><p>@Template[type:emanation|range:vc]</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Mysterious Mist",
+        "img": "icons/magic/air/fog-gas-smoke-dense-gray.webp",
+        "range": "veryClose"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784426,
-    "modifiedTime": 1753922784426,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754241041570,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "1VXzwRbvbBj5bd5V",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!1VXzwRbvbBj5bd5V"
 }

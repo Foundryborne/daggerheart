@@ -1,5 +1,5 @@
 {
-  "folder": "S4dTxJcuo1VW8o1E",
+  "folder": "GzNP2ejA3XoGSDRu",
   "name": "Beastform",
   "type": "feature",
   "_id": "P1K0jcnH2RiS6TLd",
@@ -43,7 +43,7 @@
     "originId": null
   },
   "effects": [],
-  "sort": 500000,
+  "sort": 200000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -57,7 +57,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754221796297,
-    "modifiedTime": 1754221862730,
+    "modifiedTime": 1754246230370,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!P1K0jcnH2RiS6TLd"

@@ -1,29 +1,184 @@
 {
   "name": "Book of Exota",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "rUGDM9JvGfhh9a2Y",
   "system": {
-    "description": "<p><p class=\"Card-Feature\"><em><strong>Repudiate:</strong></em> You can interrupt a magical effect taking place. Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">reaction roll</tooltip> using your Spellcast trait. Once per rest on a success, the effect stops and any consequences are avoided. </p><p class=\"Card-Feature\"><em><strong>Create Construct:</strong></em> <strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to choose a group of objects around you and create an animated construct from them that obeys basic commands. Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> to command them to take action. When necessary, they share your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"evasion\" nexus=\"daggerheart\">Evasion</tooltip> and traits and their attacks deal <strong>2d10+3</strong> physical damage. You can only maintain one construct at a time, and they fall apart when they take any amount of damage.        </p></p>",
+    "description": "<p class=\"Card-Feature\"><em><strong>Repudiate:</strong></em> You can interrupt a magical effect taking place. Make a reaction roll using your Spellcast trait. Once per rest on a success, the effect stops and any consequences are avoided.</p><p class=\"Card-Feature\"><em><strong>Create Construct:</strong></em> <strong>Spend a Hope</strong> to choose a group of objects around you and create an animated construct from them that obeys basic commands. Make a <strong>Spellcast Roll</strong> to command them to take action. When necessary, they share your Evasion and traits and their attacks deal <strong>2d10+3</strong> physical damage. You can only maintain one construct at a time, and they fall apart when they take any amount of damage.</p>",
     "domain": "codex",
     "recallCost": 3,
     "level": 4,
-    "type": "grimoire"
+    "type": "grimoire",
+    "actions": {
+      "6eioK8CoAPfObBP2": {
+        "type": "attack",
+        "_id": "6eioK8CoAPfObBP2",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">You can interrupt a magical effect taking place. Make a reaction roll using your Spellcast trait. Once per rest on a success, the effect stops and any consequences are avoided.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": true
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Repudiate",
+        "img": "icons/magic/light/orbs-hand-gray.webp",
+        "range": ""
+      },
+      "6JWhxevxbL0sOcbv": {
+        "type": "effect",
+        "_id": "6JWhxevxbL0sOcbv",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\"><strong>Spend a Hope</strong> to choose a group of objects around you and create an animated construct from them that obeys basic commands.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Create Construct",
+        "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
+        "range": ""
+      },
+      "MGVKJ8wVac1v8eJv": {
+        "type": "attack",
+        "_id": "MGVKJ8wVac1v8eJv",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> to command the constructs to take action. When necessary, they share your Evasion and traits and their attacks deal <strong>2d10+3</strong> physical damage. You can only maintain one construct at a time, and they fall apart when they take any amount of damage.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 2,
+                "dice": "d10",
+                "bonus": 3
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "physical"
+              ],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Construct (Take Action)",
+        "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784420,
-    "modifiedTime": 1753922784420,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754240355163,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "oVs2MSC6Uf5GbgEG",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!oVs2MSC6Uf5GbgEG"
 }

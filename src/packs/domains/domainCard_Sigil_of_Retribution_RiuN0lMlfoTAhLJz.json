@@ -1,29 +1,113 @@
 {
   "name": "Sigil of Retribution",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "FcMclsLDy86EicA6",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Mark an adversary within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range with a sigil of retribution. The GM gains a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>. When the marked adversary deals damage to you or your allies, place a <strong>d8</strong> on this card. You can hold a number of <strong>d8s</strong> equal to your level. When you successfully attack the marked adversary, roll the dice on this card and add the total to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"damage-roll\" nexus=\"daggerheart\">damage roll</tooltip>, then clear the dice. This effect ends when the marked adversary is defeated or you cast Sigil of Retribution again.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Mark an adversary within Close range with a sigil of retribution. The GM gains a Fear. When the marked adversary deals damage to you or your allies, place a <strong>d8</strong> on this card. You can hold a number of <strong>d8s</strong> equal to your level. When you successfully attack the marked adversary, roll the dice on this card and add the total to your damage roll, then clear the dice. This effect ends when the marked adversary is defeated or you cast Sigil of Retribution again.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 6,
-    "type": "spell"
+    "type": "spell",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "@system.levelData.level.current",
+      "icon": "fa-solid fa-hand-sparkles",
+      "dieFaces": "d8"
+    },
+    "actions": {
+      "Nhp93LBwnBg5DyY9": {
+        "type": "effect",
+        "_id": "Nhp93LBwnBg5DyY9",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">Mark an adversary within Close range with a sigil of retribution. The GM gains a Fear. When the marked adversary deals damage to you or your allies, place a <strong>d8</strong> on this card. You can hold a number of <strong>d8s</strong> equal to your level. When you successfully attack the marked adversary, roll the dice on this card and add the total to your damage roll, then clear the dice. This effect ends when the marked adversary is defeated or you cast Sigil of Retribution again.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "pJntjutNO7bYX6td",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "name": "Mark",
+        "img": "icons/magic/symbols/triangle-glow-purple.webp",
+        "range": "close"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784517,
-    "modifiedTime": 1753922784517,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754232249140,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "RiuN0lMlfoTAhLJz",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Sigil of Retribution",
+      "img": "icons/magic/symbols/triangle-glow-purple.webp",
+      "origin": "Compendium.daggerheart.domains.Item.RiuN0lMlfoTAhLJz",
+      "transfer": false,
+      "_id": "pJntjutNO7bYX6td",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation\">When the marked adversary deals damage to you or your allies, place a <strong>d8</strong> on this card. You can hold a number of <strong>d8s</strong> equal to your level. When you successfully attack the marked adversary, roll the dice on this card and add the total to your damage roll, then clear the dice. This effect ends when the marked adversary is defeated or you cast Sigil of Retribution again.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754232137303,
+        "modifiedTime": 1754232174373,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!RiuN0lMlfoTAhLJz.pJntjutNO7bYX6td"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!RiuN0lMlfoTAhLJz"
 }

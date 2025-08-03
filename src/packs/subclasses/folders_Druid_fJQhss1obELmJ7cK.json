@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": "Br5kHZnnjGzz4RJ9",
+  "name": "Druid",
+  "color": null,
+  "sorting": "m",
+  "_id": "fJQhss1obELmJ7cK",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754236482874,
+    "modifiedTime": 1754236482874,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!folders!fJQhss1obELmJ7cK"
+}

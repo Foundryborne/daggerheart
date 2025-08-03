@@ -1,29 +1,231 @@
 {
   "name": "Book of Norai",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "7XeaYZPMB0SopAfo",
   "system": {
-    "description": "<p><p class=\"Card-Feature\"><em><strong>Mystic Tether:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. On a success, they’re temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restrained</em></tooltip> and must mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>. If you target a flying creature, this spell grounds and temporarily <em>Restrains</em> them.</p><p class=\"Card-Feature\"><em><strong>Fireball:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-far\" nexus=\"daggerheart\">Very Far</tooltip> range. On a success, hurl a sphere of fire toward them that explodes on impact. The target and all creatures within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range of them must make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (13). Targets who fail take<strong> d20+5</strong> magic damage using your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. Targets who succeed take half damage.</p></p>",
+    "description": "<p class=\"Card-Feature\"><em><strong>Mystic Tether:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, they’re temporarily <em>Restrained</em> and must mark a Stress. If you target a flying creature, this spell grounds and temporarily <em>Restrains</em> them.</p><p class=\"Card-Feature\"><em><strong>Fireball:</strong></em> Make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, hurl a sphere of fire toward them that explodes on impact. The target and all creatures within Very Close range of them must make a Reaction Roll (13). Targets who fail take<strong> d20+5</strong> magic damage using your Proficiency. Targets who succeed take half damage.</p>",
     "domain": "codex",
     "recallCost": 2,
     "level": 3,
-    "type": "grimoire"
+    "type": "grimoire",
+    "actions": {
+      "ywBVT5mbDKr485Jg": {
+        "type": "attack",
+        "_id": "ywBVT5mbDKr485Jg",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, they’re temporarily <em>Restrained</em> and must mark a Stress. If you target a flying creature, this spell grounds and temporarily <em>Restrains</em> them.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "stress",
+              "type": [],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "iPnT02apql16Zhjf",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Mystic Tether",
+        "img": "icons/magic/control/energy-stream-link-white.webp",
+        "range": "far"
+      },
+      "GI2VkIcGDOjFRxpT": {
+        "type": "attack",
+        "_id": "GI2VkIcGDOjFRxpT",
+        "systemPath": "actions",
+        "description": "<p class=\"Card-Feature\">Make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, hurl a sphere of fire toward them that explodes on impact. The target and all creatures within Very Close range of them must make a Reaction Roll (13). Targets who fail take<strong> d20+5</strong> magic damage using your Proficiency. Targets who succeed take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "prof",
+                "dice": "d20",
+                "bonus": 5,
+                "flatMultiplier": 1
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": "agility",
+          "difficulty": 13,
+          "damageMod": "half"
+        },
+        "name": "Fireball",
+        "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
+        "range": "veryFar"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784423,
-    "modifiedTime": 1753922784423,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754231026933,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "WtwSWXTRZa7QVvmo",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Mystic Tether",
+      "img": "icons/magic/control/energy-stream-link-white.webp",
+      "origin": "Compendium.daggerheart.domains.Item.WtwSWXTRZa7QVvmo",
+      "transfer": false,
+      "_id": "iPnT02apql16Zhjf",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [
+        "restrain"
+      ],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754230873405,
+        "modifiedTime": 1754230914860,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!WtwSWXTRZa7QVvmo.iPnT02apql16Zhjf"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!WtwSWXTRZa7QVvmo"
 }

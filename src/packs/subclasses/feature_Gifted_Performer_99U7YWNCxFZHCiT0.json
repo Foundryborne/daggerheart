@@ -1,5 +1,5 @@
 {
-  "folder": "QBeb6IqRnhTXzRtd",
+  "folder": "Ih9KaoVY4bhZPjsn",
   "name": "Gifted Performer",
   "type": "feature",
   "img": "icons/tools/instruments/harp-yellow-teal.webp",
@@ -174,7 +174,7 @@
   },
   "effects": [
     {
-      "name": "Vulnerable",
+      "name": "Epic Song",
       "img": "icons/svg/ice-aura.svg",
       "origin": "Compendium.daggerheart.subclasses.Item.6j1RP4fz3BwSfoli",
       "transfer": false,
@@ -199,7 +199,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>Make a target within Close range temporarily Vulnerable.</p>",
       "tint": "#ffffff",
       "statuses": [
         "vulnerable"
@@ -213,7 +213,8 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "LgnbNMLaxandgMQq",
+        "modifiedTime": 1754239949068
       },
       "_key": "!items.effects!99U7YWNCxFZHCiT0.FK4IdbxluRErfYor"
     }
@@ -227,7 +228,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174646194,
-    "modifiedTime": 1754221198032,
+    "modifiedTime": 1754236401349,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "ownership": {

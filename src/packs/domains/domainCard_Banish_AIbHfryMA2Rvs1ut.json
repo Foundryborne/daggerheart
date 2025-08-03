@@ -1,6 +1,6 @@
 {
   "name": "Banish",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "FcMclsLDy86EicA6",
   "system": {
@@ -8,22 +8,80 @@
     "domain": "codex",
     "recallCost": 0,
     "level": 6,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "pgBalKb5NeRFQ9rt": {
+        "type": "attack",
+        "_id": "pgBalKb5NeRFQ9rt",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Close range. On a success, roll a number of <strong>d20</strong>s equal to your Spellcast trait. The target must make a reaction roll with a Difficulty equal to your highest result. On a success, the target must mark a Stress but isn’t banished. Once per rest on a failure, they are banished from this realm.</p><p class=\"Body-Foundation\">When the PCs roll with Fear, the Difficulty gains a −1 penalty and the target makes another reaction roll. On a success, they return from banishment.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Spellcast Roll",
+        "img": "icons/magic/control/encase-creature-humanoid-hold.webp",
+        "range": "close"
+      }
+    },
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "max": "1",
+      "icon": "fa-solid fa-hand-sparkles",
+      "recovery": "shortRest"
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784411,
-    "modifiedTime": 1753922784411,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754240991601,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "AIbHfryMA2Rvs1ut",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!AIbHfryMA2Rvs1ut"
 }

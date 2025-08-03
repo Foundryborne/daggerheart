@@ -2,7 +2,7 @@
   "type": "Item",
   "folder": "Sfpr4iK1cGrmncok",
   "name": "Specialization Features",
-  "color": null,
+  "color": "#007800",
   "sorting": "m",
   "_id": "Br5kHZnnjGzz4RJ9",
   "description": "",
@@ -16,7 +16,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174646170,
-    "modifiedTime": 1754174646170,
+    "modifiedTime": 1754243030137,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!folders!Br5kHZnnjGzz4RJ9"

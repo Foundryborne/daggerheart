@@ -1,29 +1,82 @@
 {
   "name": "Disintegration Wave",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/codex.png",
   "type": "domainCard",
   "folder": "KwZYrsSUYnHiNtPl",
   "system": {
-    "description": "<p><p class=\"Body\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (18)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, the GM tells you which adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range have a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> of 18 or lower. <strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> for each one you wish to hit with this spell. They are killed and can’t come back to life by any means.        </p></p>",
+    "description": "<p class=\"Body\">Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, the GM tells you which adversaries within Far range have a Difficulty of 18 or lower. <strong>Mark a Stress</strong> for each one you wish to hit with this spell. They are killed and can’t come back to life by any means.</p>",
     "domain": "codex",
     "recallCost": 4,
     "level": 9,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "38A4Q7WVvGCFlRpc": {
+        "type": "attack",
+        "_id": "38A4Q7WVvGCFlRpc",
+        "systemPath": "actions",
+        "description": "<p class=\"Body\">Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, the GM tells you which adversaries within Far range have a Difficulty of 18 or lower. <strong>Mark a Stress</strong> for each one you wish to hit with this spell. They are killed and can’t come back to life by any means.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": true
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 18,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Spellcast Roll",
+        "img": "icons/magic/light/beam-rays-teal-large.webp",
+        "range": "far"
+      }
+    },
+    "resource": null
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784447,
-    "modifiedTime": 1753922784447,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754240832214,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "kja5qvh4rdeDBB96",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!kja5qvh4rdeDBB96"
 }
