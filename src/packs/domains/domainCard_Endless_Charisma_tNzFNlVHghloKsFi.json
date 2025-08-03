@@ -1,6 +1,6 @@
 {
   "name": "Endless Charisma",
-  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
   "type": "domainCard",
   "folder": "W81LnTWzwmoaycTl",
   "system": {
@@ -51,8 +51,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784450,
-    "modifiedTime": 1754106238885,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229104416,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "tNzFNlVHghloKsFi",
   "sort": 3400000,

@@ -1,6 +1,6 @@
 {
   "name": "Forager",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "u5Lq2kfC8LlDAGDC",
   "system": {
@@ -249,8 +249,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784456,
-    "modifiedTime": 1754118728173,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229230642,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "06UapZuaA5S6fAKl",
   "sort": 3400000,

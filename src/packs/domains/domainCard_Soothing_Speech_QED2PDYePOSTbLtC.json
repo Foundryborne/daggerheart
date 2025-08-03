@@ -1,6 +1,6 @@
 {
   "name": "Soothing Speech",
-  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
   "type": "domainCard",
   "folder": "thP6nUk0nkrNcpXY",
   "system": {
@@ -155,8 +155,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784519,
-    "modifiedTime": 1754103354386,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229127767,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "QED2PDYePOSTbLtC",
   "sort": 3400000,

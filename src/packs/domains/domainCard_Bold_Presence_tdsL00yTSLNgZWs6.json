@@ -1,6 +1,6 @@
 {
   "name": "Bold Presence",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/valor.png",
   "type": "domainCard",
   "folder": "pk4xXE8D3vTawrqj",
   "system": {
@@ -73,8 +73,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784418,
-    "modifiedTime": 1754067972268,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754229495387,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "tdsL00yTSLNgZWs6",
   "sort": 3400000,

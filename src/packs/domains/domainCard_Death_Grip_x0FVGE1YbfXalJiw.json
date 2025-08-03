@@ -1,6 +1,6 @@
 {
   "name": "Death Grip",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "BJIiOIWAQUz5zuqo",
   "system": {
@@ -227,8 +227,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784444,
-    "modifiedTime": 1754117032268,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229245846,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "x0FVGE1YbfXalJiw",
   "sort": 3400000,

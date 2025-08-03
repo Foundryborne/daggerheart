@@ -1,6 +1,6 @@
 {
   "name": "Tempest",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "pPzU9WOQNv3ckO1w",
   "system": {
@@ -255,8 +255,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784530,
-    "modifiedTime": 1754120893090,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229206232,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "X7YaZgFieBlqaPdZ",
   "sort": 3400000,

@@ -1,6 +1,6 @@
 {
   "name": "Inevitable",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/valor.png",
   "type": "domainCard",
   "folder": "nKCmeAn7ESsb4byE",
   "system": {
@@ -15,12 +15,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784472,
-    "modifiedTime": 1753922784472,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754229477042,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "XTT8c8uJ4D7fvtbL",
   "sort": 3400000,
