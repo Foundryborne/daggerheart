@@ -4,24 +4,42 @@
   "type": "environment",
   "folder": "GQ0VnOLrKBIHR6Us",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "VbbsqTQkmScgraqy": {
+        "label": "Beasts",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.71qKDLKO3CsrNkdy",
+          "Compendium.daggerheart.adversaries.Actor.wNzeuQLfLUMvgHlQ",
+          "Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0"
+        ]
+      },
+      "oKq6LhpXvSWnmqyS": {
+        "label": "Grove Guardians",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.G62k4oSkhkoXEs2D",
+          "Compendium.daggerheart.adversaries.Actor.VtFBt9XBE0WrGGxP",
+          "Compendium.daggerheart.adversaries.Actor.8yUj2Mzvnifhxegm"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 11,
     "tier": 1,
     "description": "<p>A former druidic grove lying fallow and fully reclaimed by nature.</p>",
-    "type": "<p>Exploration</p>"
+    "type": "exploration",
+    "impulses": "Draw in the curious, echo the past"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784553,
-    "modifiedTime": 1753922784553,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754208922163,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "pGEdzdLkqYtBhxnG",
   "sort": 3400000,
@@ -124,7 +142,289 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Overgrown Battlefield",
+      "type": "feature",
+      "system": {
+        "description": "<p>There has been a battle here. A PC can make an Instinct Roll to identify evidence of that fight. On a success with Hope, learn all three pieces of information below. On a success with Fear, learn two. On a failure, a PC can mark a Stress to learn one and gain advantage on the next action roll to investigate this environment. A PC with an appropriate background or Experience can learn an additional detail and ask a follow-up question about the scene and get a truthful (if not always complete) answer.</p><ul><li><p>Traces of a battle (broken weapons and branches, gouges in the ground) litter the ground.</p></li><li><p>A moss-covered tree trunk is actually the corpse of a treant.</p></li><li><p>Still-standing trees are twisted in strange ways, as if by powerful magic.</p></li></ul><section id=\"secret-eSdgCltFm45vLh9H\" class=\"secret\"><p><em>Why did these groups come to blows? Why is the grove unused now?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "MX4q2xxuWts9gBfT",
+      "img": "icons/environment/wilderness/cave-entrance.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754207888492,
+        "modifiedTime": 1754208774573,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pGEdzdLkqYtBhxnG.MX4q2xxuWts9gBfT"
+    },
+    {
+      "name": "Barbed Vines",
+      "type": "feature",
+      "system": {
+        "description": "<p>Pick a point within the grove. All targets within Very Close range of that point must succeed on an Agility Reaction Roll or take <strong>1d8+3</strong> physical damage and become Restrained by barbed vines. Restrained lasts until they’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p><section id=\"secret-WVGl1YkqOicSEwlf\" class=\"secret\"><p><em>How many vines are there? Where do they grab you? Do they pull you down or lift you off the ground?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "47fcdhe1FDdm9rQU": {
+            "type": "attack",
+            "_id": "47fcdhe1FDdm9rQU",
+            "systemPath": "actions",
+            "description": "<p>Pick a point within the grove. All targets within Very Close range of that point must succeed on an Agility Reaction Roll or take 1d8+3 physical damage and become Restrained by barbed vines. Restrained lasts until they’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p><p>@Template[type:rect|range:vc]</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d8",
+                    "bonus": 3,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [
+              {
+                "_id": "LSeftEwgBbXXkLw3",
+                "onSave": false
+              }
+            ],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
+            "range": "veryClose"
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "maK5OyfrOxcjCoPt",
+      "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
+      "effects": [
+        {
+          "name": "Barbed Vines",
+          "img": "icons/magic/nature/root-vine-spiral-thorns-teal.webp",
+          "origin": "Compendium.daggerheart.environments.Actor.pGEdzdLkqYtBhxnG.Item.maK5OyfrOxcjCoPt",
+          "transfer": false,
+          "_id": "LSeftEwgBbXXkLw3",
+          "type": "base",
+          "system": {
+            "rangeDependence": {
+              "enabled": false,
+              "type": "withinRange",
+              "target": "hostile",
+              "range": "melee"
+            }
+          },
+          "changes": [],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "<p><em>Restrained</em> lasts until you’re freed with a successful Finesse or Strength roll or by dealing at least 6 damage to the vines.</p>",
+          "tint": "#ffffff",
+          "statuses": [
+            "restrain"
+          ],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null,
+            "coreVersion": "13.346",
+            "systemId": "daggerheart",
+            "systemVersion": "0.0.1",
+            "createdTime": 1754208174079,
+            "modifiedTime": 1754208199002,
+            "lastModifiedBy": "MQSznptE5yLT7kj8"
+          },
+          "_key": "!actors.items.effects!pGEdzdLkqYtBhxnG.maK5OyfrOxcjCoPt.LSeftEwgBbXXkLw3"
+        }
+      ],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754207991518,
+        "modifiedTime": 1754208789740,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pGEdzdLkqYtBhxnG.maK5OyfrOxcjCoPt"
+    },
+    {
+      "name": "You Are Not Welcome Here",
+      "type": "feature",
+      "system": {
+        "description": "<p>A @UUID[Compendium.daggerheart.adversaries.Actor.8yUj2Mzvnifhxegm]{Young Dryad}, two @UUID[Compendium.daggerheart.adversaries.Actor.VtFBt9XBE0WrGGxP]{Sylvan Soldiers}, and a number of @UUID[Compendium.daggerheart.adversaries.Actor.G62k4oSkhkoXEs2D]{Minor Treants} equal to the number of PCs appear to confront the party for their intrusion.</p><section id=\"secret-01hkXuVJc5Kei4QW\" class=\"secret\"><p><em>What are the grove guardians concealing? What threat to the forest could the PCs confront to appease the Dryad?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "uG5A2XQuUcPsXzgP",
+      "img": "icons/magic/nature/hand-weapon-wood-bark-brown.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754208209059,
+        "modifiedTime": 1754208803157,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pGEdzdLkqYtBhxnG.uG5A2XQuUcPsXzgP"
+    },
+    {
+      "name": "Defiler",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.sRn4bqerfARvhgSV]{Minor Chaos Elemental} drawn to the echoes of violence and discord. They appear within Far range of a chosen PC and immediately take the spotlight.</p><section id=\"secret-ChOafrgiTeYqsqoe\" class=\"secret\"><p><em>What color does the grass turn as the elemental appears? How does the chaos warp insects and small wildlife within the grove?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "p6V4k4yMwJ1UPZMz": {
+            "type": "effect",
+            "_id": "p6V4k4yMwJ1UPZMz",
+            "systemPath": "actions",
+            "description": "<p><strong>Spend a Fear</strong> to summon a @UUID[Compendium.daggerheart.adversaries.Actor.sRn4bqerfARvhgSV]{Minor Chaos Elemental} drawn to the echoes of violence and discord. They appear within Far range of a chosen PC and immediately take the spotlight.</p><section id=\"secret-iCbXJnMeqDXXOc8n\" class=\"secret\"><p><em>What color does the grass turn as the elemental appears? How does the chaos warp insects and small wildlife within the grove?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "3kkkbnWEvXk5TPK8",
+      "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754208338191,
+        "modifiedTime": 1754208475513,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!pGEdzdLkqYtBhxnG.3kkkbnWEvXk5TPK8"
+    }
+  ],
   "effects": [],
   "_key": "!actors!pGEdzdLkqYtBhxnG"
 }

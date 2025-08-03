@@ -4,24 +4,48 @@
   "type": "environment",
   "folder": "GQ0VnOLrKBIHR6Us",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "H53IurNOv7hOTz88": {
+        "label": "Guards",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.B4LZcGuBAHzyVdzy",
+          "Compendium.daggerheart.adversaries.Actor.mK3A5FTx6k8iPU3F"
+        ]
+      },
+      "2g6jJtdA8WiA0ihA": {
+        "label": "Mercenaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.uRtghKE9mHlII4rs",
+          "Compendium.daggerheart.adversaries.Actor.bgreCaQ6ap2DVpCr",
+          "Compendium.daggerheart.adversaries.Actor.ldbWEL7uZs84vyrR",
+          "Compendium.daggerheart.adversaries.Actor.ZNbQ2jg35LG4t9eH"
+        ]
+      },
+      "TzAxfdQKMVRRx5z5": {
+        "label": "Other",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.Al3w2CgjfdT3p9ma"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 10,
     "tier": 1,
     "description": "<p>A lively tavern that serves as the social hub for its town.</p>",
-    "type": "<p>Social</p>"
+    "type": "social",
+    "impulses": "Provide opportunities for adventurers, nurture community"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784561,
-    "modifiedTime": 1753922784561,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754213299544,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "cM4X81DOyvxNIi52",
   "sort": 3400000,
@@ -124,7 +148,225 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "What's the Talk of the Town?",
+      "type": "feature",
+      "system": {
+        "description": "<p>A PC can ask the bartender, staff , or patrons about local events, rumors, and potential work with a Presence Roll. On a success, they can pick two of the below details to learn—or three if they critically succeed. On a failure, they can pick one and mark a Stress as the local carries on about something irrelevant. </p><ul><li><p>A fascinating rumor with a connection to a PC’s background</p></li><li><p>A promising job for the party involving a nearby threat or situation </p></li><li><p>Local folklore that relates to something they’ve seen</p></li><li><p>Town gossip that hints at a community problem</p></li></ul><section id=\"secret-x6IPMS6Z4MFBE65u\" class=\"secret\"><p><em>Who has what kind of information? What gossip do the locals start spreading about the PCs?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "7to5Zu0lNycExCQi",
+      "img": "icons/skills/social/wave-halt-stop.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754212687286,
+        "modifiedTime": 1754212809812,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!cM4X81DOyvxNIi52.7to5Zu0lNycExCQi"
+    },
+    {
+      "name": "Sing For Your Supper",
+      "type": "feature",
+      "system": {
+        "description": "<p>A PC can perform one time for the guests by making a Presence Roll. On a success, they earn <strong>[[/r 1d4]]</strong> handfuls of gold (<strong>[[/r 2d4]]</strong> if they critically succeed). On a failure, they mark a Stress.</p><section id=\"secret-vrH9YdQGP2sTa3cV\" class=\"secret\"><p><em>What piece do you perform? What does that piece mean to you? When’s the last time you performed it for a crowd?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "oLn3co1mN83OiFWo",
+      "img": "icons/tools/instruments/bell-gold.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754212837626,
+        "modifiedTime": 1754212910714,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!cM4X81DOyvxNIi52.oLn3co1mN83OiFWo"
+    },
+    {
+      "name": "Mysterious Stranger",
+      "type": "feature",
+      "system": {
+        "description": "<p> Reveal a stranger concealing their identity, lurking in a shaded booth.</p><section id=\"secret-tgxS9TgbDCpI1kZC\" class=\"secret\"><p><em>What do they want? What’s their impression of the PCs? What mannerisms or accessories do they have?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "cAbSo5VQHxJqJPKm",
+      "img": "icons/magic/unholy/silhouette-robe-evil-power.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754212913527,
+        "modifiedTime": 1754212942862,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!cM4X81DOyvxNIi52.cAbSo5VQHxJqJPKm"
+    },
+    {
+      "name": "Someone Comes to Town",
+      "type": "feature",
+      "system": {
+        "description": "<p>Introduce a signifi cant NPC who wants to hire the party for something or who relates to a PC’s background. </p><section id=\"secret-DB6Th0yGCjAsAZp6\" class=\"secret\"><p><em>Did they know the PCs were here? What do they want in this town?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "QPezCAC18vIc5xRC",
+      "img": "icons/environment/people/commoner.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754212945860,
+        "modifiedTime": 1754212975536,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!cM4X81DOyvxNIi52.QPezCAC18vIc5xRC"
+    },
+    {
+      "name": "Bar Fight",
+      "type": "feature",
+      "system": {
+        "description": "<p><strong>Spend a Fear</strong> to have a bar fight erupt in the tavern. When a PC tries to move through the tavern while the fight persists, they must succeed on an Agility or Presence Roll or take <strong>1d6+2</strong> physical damage from a wild swing or thrown object. A PC can try to activate this feature by succeeding on an action roll that would provoke tavern patrons.</p><section class=\"secret\" id=\"secret-xLK8VSKLM6JQRySG\"><p><em>Who started the fight? What will it take to stop it?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "4UjyjYaMdcnFmVrL": {
+            "type": "damage",
+            "_id": "4UjyjYaMdcnFmVrL",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": false,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": 2,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Damage",
+            "img": "icons/skills/melee/unarmed-punch-fist-white.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "H3LNvVrUbsAkgjni",
+      "img": "icons/skills/melee/unarmed-punch-fist-white.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754212978783,
+        "modifiedTime": 1754213065125,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!cM4X81DOyvxNIi52.H3LNvVrUbsAkgjni"
+    }
+  ],
   "effects": [],
   "_key": "!actors!cM4X81DOyvxNIi52"
 }

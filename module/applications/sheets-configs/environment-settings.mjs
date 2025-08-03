@@ -93,7 +93,7 @@ export default class DHEnvironmentSettings extends DHBaseActorSettings {
 
         const adversaries = foundry.utils.getProperty(this.actor, path);
         const newAdversaries = adversaries.filter(a => a.uuid !== doc.uuid);
-        await this.actor.update({ [path]: newAdversaries });
+        await this.actor.update({ [path]: newAdversaries.map(x => x.uuid) });
     }
 
     async _onDragStart(event) {

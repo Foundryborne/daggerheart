@@ -4,24 +4,44 @@
   "type": "environment",
   "folder": "MfrIkJK12PAEfbPL",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "yNuW3h5S2tsbgLm4": {
+        "label": "Mercenaries",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.uRtghKE9mHlII4rs",
+          "Compendium.daggerheart.adversaries.Actor.bgreCaQ6ap2DVpCr",
+          "Compendium.daggerheart.adversaries.Actor.ldbWEL7uZs84vyrR",
+          "Compendium.daggerheart.adversaries.Actor.ZNbQ2jg35LG4t9eH"
+        ]
+      },
+      "djL6ySNZ1A0skdMT": {
+        "label": "Noble Forces",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.0ts6CGd93lLqGZI5",
+          "Compendium.daggerheart.adversaries.Actor.99TqczuQipBmaB8i",
+          "Compendium.daggerheart.adversaries.Actor.bfhVWMBUh61b9J6n",
+          "Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 17,
     "tier": 3,
     "description": "<p>An active siege with an attacking force fighting to gain entry to a fortified castle.</p>",
-    "type": "<p>Event</p>"
+    "type": "event",
+    "impulses": "Bleed out the will to fi ght, breach the walls, build tension"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784555,
-    "modifiedTime": 1753922784555,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754218654354,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "1eZ32Esq7rfZOjlu",
   "sort": 3400000,
@@ -124,7 +144,304 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Secret Entrance",
+      "type": "feature",
+      "system": {
+        "description": "<p>A PC can find or recall a secret way into the castle with a successful Instinct or Knowledge Roll. </p><section id=\"secret-6U0wYxm3kM3G7mAX\" class=\"secret\"><p><em>How do they get in without revealing the pathway to the attackers? Are any of the defenders monitoring this path?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "2qUw5c3e22eywSwg",
+      "img": "icons/environment/settlement/castle.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754218169441,
+        "modifiedTime": 1754218198936,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!1eZ32Esq7rfZOjlu.2qUw5c3e22eywSwg"
+    },
+    {
+      "name": "Siege Weapons (Environment Change)",
+      "type": "feature",
+      "system": {
+        "description": "<p>Consequence Countdown (6). The attacking force deploys siege weapons to try to raze the defenders’ fortifi cations. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead). When it triggers, the defenders’ fortifi cations have been breached and the attackers fl ood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it. </p><section id=\"secret-P5oJplxVBVJGtggb\" class=\"secret\"><p><em>What siege weapons are being deployed? Are they magical mundane or a mixture of both? What defenses must the characters overcome to storm the castle?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "F89TDp557TJ1vvgm": {
+            "type": "effect",
+            "_id": "F89TDp557TJ1vvgm",
+            "systemPath": "actions",
+            "description": "<p>Consequence Countdown (6). The attacking force deploys siege weapons to try to raze the defenders’ fortifi cations. Activate the countdown when the siege begins (for a protracted siege, make this a long-term countdown instead).</p><section class=\"secret\" id=\"secret-rgITC5rHTbEfm5Q2\"><p><em>What siege weapons are being deployed? Are they magical mundane or a mixture of both? What defenses must the characters overcome to storm the castle?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdown",
+            "img": "icons/weapons/artillery/catapult-simple.webp",
+            "range": ""
+          },
+          "TGWI1Kvw4ZEP3QEo": {
+            "type": "healing",
+            "_id": "TGWI1Kvw4ZEP3QEo",
+            "systemPath": "actions",
+            "description": "<p>When the cooldown triggers, the defenders’ fortifications have been breached and the attackers flood inside. You gain 2 Fear, then shift to the Pitched Battle environment and spotlight it.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "2"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "img": "icons/weapons/artillery/catapult-simple.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "eSTq8Y0v4Dwd13XU",
+      "img": "icons/weapons/artillery/catapult-simple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754218202018,
+        "modifiedTime": 1754218357097,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!1eZ32Esq7rfZOjlu.eSTq8Y0v4Dwd13XU"
+    },
+    {
+      "name": "Reinforcements!",
+      "type": "feature",
+      "system": {
+        "description": "<p>Summon a @UUID[Compendium.daggerheart.adversaries.Actor.7ai2opemrclQe3VF]{Knight of the Realm}, a number of Tier 3 Minions equal to the number of PCs, and two adversaries of your choice within Far range of a chosen PC as reinforcements. The Knight of the Realm immediately takes the spotlight. </p><section id=\"secret-qYx1WuL81hHF5XW8\" class=\"secret\"><p><em>Who are they targeting first? What formation do they take?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "U59K0WKVjwbgzMZU",
+      "img": "icons/environment/people/charge.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754218361531,
+        "modifiedTime": 1754218426936,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!1eZ32Esq7rfZOjlu.U59K0WKVjwbgzMZU"
+    },
+    {
+      "name": "Collateral Damage",
+      "type": "feature",
+      "system": {
+        "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll. </p><p>@Template[type:circle|range:vc]</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress. </p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section id=\"secret-JdhetLsgL626ouo7\" class=\"secret\"><p><em>What debris is scattered by the attack? What is broken by the strike that can’t be easily mended?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "r5JN5oFYL5DC6Qqw": {
+            "type": "attack",
+            "_id": "r5JN5oFYL5DC6Qqw",
+            "systemPath": "actions",
+            "description": "<p>When an adversary is defeated, you can <strong>spend a Fear</strong> to have a stray attack from a siege weapon hit a point on the battlefield. All targets within Very Close range of that point must make an Agility Reaction Roll. </p><p>@Template[type:circle|range:vc]</p><ul><li><p>Targets who fail take <strong>3d8+3</strong> physical or magic damage and must mark a Stress. </p></li><li><p>Targets who succeed must mark a Stress.</p></li></ul><section class=\"secret\" id=\"secret-qe1DM7HUSefRAplk\"><p><em>What debris is scattered by the attack? What is broken by the strike that can’t be easily mended?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 3,
+                    "dice": "d8",
+                    "bonus": 3,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [
+                    "physical"
+                  ],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "save": {
+              "trait": "agility",
+              "difficulty": null,
+              "damageMod": "none"
+            },
+            "name": "Roll Save",
+            "img": "icons/magic/earth/projectile-stone-boulder-brown.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "bemKmwjBtbEFVWXM",
+      "img": "icons/magic/earth/projectile-stone-boulder-brown.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754218429103,
+        "modifiedTime": 1754218591250,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!1eZ32Esq7rfZOjlu.bemKmwjBtbEFVWXM"
+    }
+  ],
   "effects": [],
   "_key": "!actors!1eZ32Esq7rfZOjlu"
 }

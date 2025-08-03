@@ -794,7 +794,7 @@
     }
   ],
   "effects": [],
-  "sort": 0,
+  "sort": 400000,
   "ownership": {
     "default": 0,
     "99pQVoplilbkZnOk": 3
@@ -808,7 +808,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753929001531,
-    "modifiedTime": 1754140936177,
+    "modifiedTime": 1754219468339,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!actors!ladm7wykhZczYzrQ"

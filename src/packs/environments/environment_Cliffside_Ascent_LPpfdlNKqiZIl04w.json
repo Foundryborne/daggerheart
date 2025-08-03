@@ -4,24 +4,35 @@
   "type": "environment",
   "folder": "GQ0VnOLrKBIHR6Us",
   "system": {
-    "potentialAdversaries": {},
+    "potentialAdversaries": {
+      "hWhlWzJ8nNKAMmXx": {
+        "label": "Other",
+        "adversaries": [
+          "Compendium.daggerheart.adversaries.Actor.uOP5oT9QzXPlnf3p",
+          "Compendium.daggerheart.adversaries.Actor.9x2xY9zwc3xzbXo5",
+          "Compendium.daggerheart.adversaries.Actor.fmfntuJ8mHRCAktP",
+          "Compendium.daggerheart.adversaries.Actor.8KWVLWXFhlY2kYx0"
+        ]
+      }
+    },
     "notes": "",
     "difficulty": 12,
     "tier": 1,
     "description": "<p>A steep, rocky cliffside tall enough to make traversal dangerous.</p>",
-    "type": "<p>Traversal</p>"
+    "type": "traversal",
+    "impulses": "Cast the unready down to a rocky doom, draw people in with promise of what lies at the top"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784557,
-    "modifiedTime": 1753922784557,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754212638870,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "LPpfdlNKqiZIl04w",
   "sort": 3400000,
@@ -124,7 +135,367 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "The Climb",
+      "type": "feature",
+      "system": {
+        "description": "<p>Climbing up the cliff side uses a Progress Countdown (12). It ticks down according to the following criteria when the PCs make an action roll to climb: </p><ul><li><p><strong>Critical Success</strong>: Tick down 3</p></li><li><p><strong>Success with Hope</strong>: Tick down 2</p></li><li><p><strong>Success with Fear</strong>: Tick down 1</p></li><li><p><strong>Failure with Hope</strong>: No Advancement</p></li><li><p><strong>Failure with Fear</strong>: Tick up 1</p></li></ul><p>When the countdown triggers, the party has made it to the top of the cliff .</p><section id=\"secret-TUIXsJs6D65YsP9f\" class=\"secret\"><p><em>What strange formations are the stones arranged in? What ominous warnings did previous adventurers leave?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "6GVdM7pIOpieLRA8": {
+            "type": "effect",
+            "_id": "6GVdM7pIOpieLRA8",
+            "systemPath": "actions",
+            "description": "<p>Climbing up the cliff side uses a Progress Countdown (12). It ticks down according to the following criteria when the PCs make an action roll to climb: </p><ul><li><p><strong>Critical Success</strong>: Tick down 3</p></li><li><p><strong>Success with Hope</strong>: Tick down 2</p></li><li><p><strong>Success with Fear</strong>: Tick down 1</p></li><li><p><strong>Failure with Hope</strong>: No Advancement</p></li><li><p><strong>Failure with Fear</strong>: Tick up 1</p></li></ul><p>When the countdown triggers, the party has made it to the top of the cliff .</p><section class=\"secret\" id=\"secret-U5QekZcpE7tSEBy2\"><p><em>What strange formations are the stones arranged in? What ominous warnings did previous adventurers leave?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Countdown",
+            "img": "icons/environment/wilderness/terrain-rocks-brown.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "bKBwM72OwVnlsHG6",
+      "img": "icons/environment/wilderness/terrain-rocks-brown.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754212143089,
+        "modifiedTime": 1754212255805,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!LPpfdlNKqiZIl04w.bKBwM72OwVnlsHG6"
+    },
+    {
+      "name": "Pitons Left Behind",
+      "type": "feature",
+      "system": {
+        "description": "<p>Previous climbers left behind large metal rods that climbers can use to aid their ascent. If a PC using the pitons fails an action roll to climb, they can <strong>mark a Stress</strong> instead of ticking the countdown up.</p><section class=\"secret\" id=\"secret-qk9dYgHaJUBCtFBR\"><p><em>What do the shape and material of these pitons tell you about the previous climbers? How far apart are they from one another?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "p1UiGEiGyl6r7PrA": {
+            "type": "damage",
+            "_id": "p1UiGEiGyl6r7PrA",
+            "systemPath": "actions",
+            "description": "<p>Previous climbers left behind large metal rods that climbers can use to aid their ascent. If a PC using the pitons fails an action roll to climb, they can <strong>mark a Stress</strong> instead of ticking the countdown up.</p><section class=\"secret\" id=\"secret-fWHkzBQAxCLDmV6H\"><p><em>What do the shape and material of these pitons tell you about the previous climbers? How far apart are they from one another?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "1"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "stress",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Mark Stress",
+            "img": "icons/tools/fasteners/pin-spiked.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "t8ZbtlGiYC8MKqqu",
+      "img": "icons/tools/fasteners/pin-spiked.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754212267542,
+        "modifiedTime": 1754212368613,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!LPpfdlNKqiZIl04w.t8ZbtlGiYC8MKqqu"
+    },
+    {
+      "name": "Fall",
+      "type": "feature",
+      "system": {
+        "description": "<p>Spend a Fear to have a PC’s handhold fail, plummeting them toward the ground. If they aren’t saved on the next action, they hit the ground and tick up the countdown by 2. The PC takes <strong>1d12</strong> physical damage if the countdown is between 8 and 12, <strong>2d12</strong> between 4 and 7, and <strong>3d12</strong> at 3 or lower.</p><section class=\"secret\" id=\"secret-M5AEA24dk07O00FA\"><p><em>How can you tell many others have fallen here before? What lives in these walls that might try to scare adventurers into falling for an easy meal?</em></p></section>",
+        "resource": null,
+        "actions": {
+          "LVEPUPIAJJMiCtbV": {
+            "type": "damage",
+            "_id": "LVEPUPIAJJMiCtbV",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": false,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 1,
+                    "dice": "d12",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Roll 1d12",
+            "img": "icons/skills/movement/arrow-down-pink.webp",
+            "range": ""
+          },
+          "F9B1uVeil6z1ZWoz": {
+            "type": "damage",
+            "_id": "F9B1uVeil6z1ZWoz",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": false,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 2,
+                    "dice": "d12",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Roll 2d12",
+            "img": "icons/skills/movement/arrow-down-pink.webp",
+            "range": ""
+          },
+          "gx8HEZvgf3yO9WOp": {
+            "type": "damage",
+            "_id": "gx8HEZvgf3yO9WOp",
+            "systemPath": "actions",
+            "description": "",
+            "chatDisplay": false,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": false
+                    },
+                    "flatMultiplier": 3,
+                    "dice": "d12",
+                    "bonus": null,
+                    "multiplier": "flat"
+                  },
+                  "applyTo": "hitPoints",
+                  "type": [],
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  }
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "effects": [],
+            "name": "Roll 3d12",
+            "img": "icons/skills/movement/arrow-down-pink.webp",
+            "range": ""
+          },
+          "M8MfD2qBfYCwNKvH": {
+            "type": "effect",
+            "_id": "M8MfD2qBfYCwNKvH",
+            "systemPath": "actions",
+            "description": "<p>Spend a Fear to have a PC’s handhold fail, plummeting them toward the ground. If they aren’t saved on the next action, they hit the ground and tick up the countdown by 2. The PC takes <strong>1d12</strong> physical damage if the countdown is between 8 and 12, <strong>2d12</strong> between 4 and 7, and <strong>3d12</strong> at 3 or lower.</p><section class=\"secret\" id=\"secret-ufZ6ifPWxU4MkKow\"><p><em>How can you tell many others have fallen here before? What lives in these walls that might try to scare adventurers into falling for an easy meal?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [
+              {
+                "scalable": false,
+                "key": "fear",
+                "value": 1,
+                "keyIsID": false,
+                "step": null
+              }
+            ],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "effects": [],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Spend Fear",
+            "img": "icons/skills/movement/arrow-down-pink.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "EP4FXeQqbqFGQoIX",
+      "img": "icons/skills/movement/arrow-down-pink.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754212373011,
+        "modifiedTime": 1754212589500,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!LPpfdlNKqiZIl04w.EP4FXeQqbqFGQoIX"
+    }
+  ],
   "effects": [],
   "_key": "!actors!LPpfdlNKqiZIl04w"
 }

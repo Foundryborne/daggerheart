@@ -9,19 +9,20 @@
     "difficulty": 0,
     "tier": 1,
     "description": "<p>An ambush is set to catch an unsuspecting party off-guard.</p>",
-    "type": "<p>Event</p>"
+    "type": "event",
+    "impulses": "Overwhelm, scatter, surround"
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784553,
-    "modifiedTime": 1753922784553,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754211171895,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "uGEdNYERCTJBEjc5",
   "sort": 3400000,
@@ -124,7 +125,142 @@
     "appendNumber": false,
     "prependAdjective": false
   },
-  "items": [],
+  "items": [
+    {
+      "name": "Relative Strength",
+      "type": "feature",
+      "system": {
+        "description": "<p>The Difficulty of this environment equals that of the adversary with the highest Difficulty.</p><section class=\"secret\" id=\"secret-FZokhR7CFr2tXkGn\"><p><em>Who cues the ambush? What makes it clear they’re in charge?</em></p></section>",
+        "resource": null,
+        "actions": {},
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "NMErq9B4NS3NSiMy",
+      "img": "icons/skills/melee/weapons-crossed-swords-white-blue.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754211181916,
+        "modifiedTime": 1754211255101,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!uGEdNYERCTJBEjc5.NMErq9B4NS3NSiMy"
+    },
+    {
+      "name": "Surprise",
+      "type": "feature",
+      "system": {
+        "description": "<p>The ambushers reveal themselves to the party, you gain 2 Fear, and the spotlight immediately shifts to one of the ambushing adversaries.</p><section id=\"secret-LcyhfZXPS4MD9dMC\" class=\"secret\"><p><em>What do the ambushers want from the party? How do their tactics in the ambush refl ect that?</em> </p></section>",
+        "resource": null,
+        "actions": {
+          "TRSiqdwc1mYTHv4d": {
+            "type": "healing",
+            "_id": "TRSiqdwc1mYTHv4d",
+            "systemPath": "actions",
+            "description": "<p>The ambushers reveal themselves to the party, you gain 2 Fear, and the spotlight immediately shifts to one of the ambushing adversaries.</p><section class=\"secret\" id=\"secret-HTrPBtn99ANW7ON7\"><p><em>What do the ambushers want from the party? How do their tactics in the ambush refl ect that?</em></p></section>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null
+            },
+            "damage": {
+              "parts": [
+                {
+                  "value": {
+                    "custom": {
+                      "enabled": true,
+                      "formula": "2"
+                    },
+                    "multiplier": "flat",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null
+                  },
+                  "applyTo": "fear",
+                  "base": false,
+                  "resultBased": false,
+                  "valueAlt": {
+                    "multiplier": "prof",
+                    "flatMultiplier": 1,
+                    "dice": "d6",
+                    "bonus": null,
+                    "custom": {
+                      "enabled": false
+                    }
+                  },
+                  "type": []
+                }
+              ],
+              "includeBase": false
+            },
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "effects": [],
+            "roll": {
+              "type": null,
+              "trait": null,
+              "difficulty": null,
+              "bonus": null,
+              "advState": "neutral",
+              "diceRolling": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "compare": null,
+                "treshold": null
+              },
+              "useDefault": false
+            },
+            "name": "Gain Fear",
+            "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
+            "range": ""
+          }
+        },
+        "originItemType": null,
+        "originId": null
+      },
+      "_id": "HfuVxgVidIVsapvI",
+      "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "MQSznptE5yLT7kj8": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754211260197,
+        "modifiedTime": 1754211363725,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!actors.items!uGEdNYERCTJBEjc5.HfuVxgVidIVsapvI"
+    }
+  ],
   "effects": [],
   "_key": "!actors!uGEdNYERCTJBEjc5"
 }
