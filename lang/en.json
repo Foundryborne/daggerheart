@@ -87,7 +87,11 @@
                     "label": "Targeted Resource"
                 },
                 "consumeOnSuccess": {
-                    "label": "Consume on Success only"
+                    "label": "Consume on Success only",
+                    "short": "(on Success only)"
+                },
+                "cost": {
+                    "stepTooltip": "+{step} per step"
                 }
             }
         },

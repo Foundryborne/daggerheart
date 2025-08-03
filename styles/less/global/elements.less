@@ -381,7 +381,9 @@
         }
 
         .scalable-input {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            // display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 10px;
@@ -394,6 +396,9 @@
             }
 
             label {
+                display: flex;
+                flex-direction: column;
+                white-space: nowrap;
                 font-family: @font-body;
                 font-size: 14px;
                 font-weight: 400;
@@ -401,6 +406,11 @@
                 &.modifier-label {
                     width: 6ch;
                     text-align: end;
+                }
+
+                .hint {
+                    font-size: var(--font-size-10);
+                    font-style: italic;
                 }
             }
         }

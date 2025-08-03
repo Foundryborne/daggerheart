@@ -42,8 +42,26 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             damage: new fields.ObjectField(),
             costs: new fields.ArrayField(
                 new fields.ObjectField()
-            )
+            ),
+            successConsumed: new fields.BooleanField({ initial: false })
         };
+    }
+
+    get actionActor() {
+        if(!this.source.actor) return null;
+        return fromUuidSync(this.source.actor);
+    }
+
+    get actionItem() {
+        const actionActor = this.actionActor;
+        if(!actionActor || !this.source.item) return null;
+        return actionActor.items.get(this.source.item);
+    }
+
+    get action() {
+        const actionItem = this.actionItem;
+        if(!actionItem || !this.source.action) return null;
+        return actionItem.system.actionsList?.find(a => a.id === this.source.action);
     }
 
     get messageTemplate() {
@@ -74,14 +92,14 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
     async updateTargets() {
         this.currentTargets = this.getTargetList();
-        if(!this.targetSelection && this.hasSave) {
+        if(!this.targetSelection) {
             this.currentTargets.forEach(ct => {
                 if(this.targets.find(t => t.actorId === ct.actorId)) return;
                 const indexTarget = this.oldTargets.findIndex(ot => ot.actorId === ct.actorId);
                 if(indexTarget === -1)
                     this.oldTargets.push(ct);
             });
-            this.setPendingSaves();
+            if(this.hasSave) this.setPendingSaves();
             if(this.currentTargets.length) {
                 if(!this.parent._id) return;
                 const updates = await this.parent.update(
@@ -91,7 +109,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                         }
                     }
                 );
-                if(!updates)
+                if(!updates && ui.chat.collection.get(this.parent.id))
                     ui.chat.updateMessage(this.parent);
             }
         }
