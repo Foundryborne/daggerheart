@@ -1,0 +1,33 @@
+{
+  "folder": "8dyHGlppj08jYLIO",
+  "name": "Face Your Fear",
+  "type": "feature",
+  "_id": "D3ffFWSXCza4WGcM",
+  "img": "icons/magic/light/orb-hand-green.webp",
+  "system": {
+    "description": "<p>When you succeed with Fear on an attack roll, you deal an extra <strong>1d10</strong> magic damage.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754253863023,
+    "modifiedTime": 1754253898944,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!D3ffFWSXCza4WGcM"
+}

@@ -1,0 +1,33 @@
+{
+  "folder": "IIW7boHWq1QoYwOQ",
+  "name": "Accomplished",
+  "type": "feature",
+  "_id": "0wCctRupJAv5hTuE",
+  "img": "icons/sundries/scrolls/scroll-writing-orange-black.webp",
+  "system": {
+    "description": "<p>Take an additional domain card of your level or lower from a domain you have access to.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754253943924,
+    "modifiedTime": 1754253975014,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!0wCctRupJAv5hTuE"
+}

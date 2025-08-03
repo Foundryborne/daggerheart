@@ -1,0 +1,57 @@
+{
+  "folder": "IIW7boHWq1QoYwOQ",
+  "name": "Perfect Recall",
+  "type": "feature",
+  "_id": "HzPa5U0EQhDfFTqW",
+  "img": "icons/magic/perception/third-eye-blue-red.webp",
+  "system": {
+    "description": "<p>Once per rest, when you recall a domain card in your vault, you can reduce its Recall Cost by 1.</p>",
+    "resource": null,
+    "actions": {
+      "rFZj0ZsnJCc0PS3h": {
+        "type": "effect",
+        "_id": "rFZj0ZsnJCc0PS3h",
+        "systemPath": "actions",
+        "description": "<p>Once per rest, when you recall a domain card in your vault, you can reduce its Recall Cost by 1.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Recall",
+        "img": "icons/magic/perception/third-eye-blue-red.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754254320808,
+    "modifiedTime": 1754254522728,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!HzPa5U0EQhDfFTqW"
+}

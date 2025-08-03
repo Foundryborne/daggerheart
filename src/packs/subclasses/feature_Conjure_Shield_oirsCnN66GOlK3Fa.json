@@ -1,0 +1,85 @@
+{
+  "folder": "IIW7boHWq1QoYwOQ",
+  "name": "Conjure Shield",
+  "type": "feature",
+  "_id": "oirsCnN66GOlK3Fa",
+  "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
+  "system": {
+    "description": "<p>You can maintain a protective barrier of magic. While you have at least 2 Hope, you add your Proficiency to your Evasion. </p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Conjure Shield",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "0i7GVOvjH6bK5AUM",
+      "img": "icons/magic/defensive/barrier-shield-dome-blue-purple.webp",
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "@system.proficiency",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>While you have at least 2 Hope, you add your Proficiency to your Evasion.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754254098652,
+        "modifiedTime": 1754254137016,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!oirsCnN66GOlK3Fa.0i7GVOvjH6bK5AUM"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754254077810,
+    "modifiedTime": 1754254095589,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!oirsCnN66GOlK3Fa"
+}

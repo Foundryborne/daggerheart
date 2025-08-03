@@ -1,0 +1,31 @@
+{
+  "folder": "utPGR3Z1uORKlNQw",
+  "name": "Tiny Elemental Pet",
+  "type": "loot",
+  "_id": "UUp0YGFj7E4x7Z6Z",
+  "img": "icons/creatures/magical/spirit-fire-orange.webp",
+  "system": {
+    "description": "<p>A tiny elemental pet</p>",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754255336799,
+    "modifiedTime": 1754255356067,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!UUp0YGFj7E4x7Z6Z"
+}

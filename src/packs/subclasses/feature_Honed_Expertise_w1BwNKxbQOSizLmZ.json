@@ -1,0 +1,81 @@
+{
+  "folder": "t8AkyVM60h7WuLOD",
+  "name": "Honed Expertise",
+  "type": "feature",
+  "_id": "w1BwNKxbQOSizLmZ",
+  "img": "icons/skills/trades/academics-book-study-runes.webp",
+  "system": {
+    "description": "<p>When you use an Experience, roll a <strong>d6</strong>. On a result of 5 or higher, you can use it without spending Hope.</p>",
+    "resource": null,
+    "actions": {
+      "zCTrqPtGARSZ06CU": {
+        "type": "attack",
+        "_id": "zCTrqPtGARSZ06CU",
+        "systemPath": "actions",
+        "description": "<p>When you use an Experience, roll a <strong>d6</strong>. On a result of 5 or higher, you can use it without spending Hope.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": "aboveEqual",
+            "treshold": 5
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Roll d6",
+        "img": "icons/skills/trades/academics-book-study-runes.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754253988597,
+    "modifiedTime": 1754254310242,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!w1BwNKxbQOSizLmZ"
+}

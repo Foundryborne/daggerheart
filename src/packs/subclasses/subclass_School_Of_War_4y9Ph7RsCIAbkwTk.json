@@ -1,0 +1,58 @@
+{
+  "folder": "Bb9SLVpYHGBrOB59",
+  "name": "School Of War",
+  "type": "subclass",
+  "_id": "4y9Ph7RsCIAbkwTk",
+  "img": "icons/magic/fire/dagger-rune-enchant-flame-strong-blue.webp",
+  "system": {
+    "description": "<p><em>Play the School of War if you want to utilize trained magic for violence.</em></p>",
+    "spellcastingTrait": "knowledge",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.Y9eGMewnFZgPvX0M"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.D3ffFWSXCza4WGcM"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.oirsCnN66GOlK3Fa"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.hNqLf3zEfKRzSbvq"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.1nmFmkNXY6OYyyju"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.8TH6h6a36h09mf6d"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754253587683,
+    "modifiedTime": 1754254721869,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!4y9Ph7RsCIAbkwTk"
+}

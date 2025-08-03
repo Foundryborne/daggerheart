@@ -1,0 +1,33 @@
+{
+  "folder": "SwEjiVLbnXT2x9Lz",
+  "name": "Prestidigitation",
+  "type": "feature",
+  "_id": "SG2uw8h5YuwDviCn",
+  "img": "icons/weapons/staves/broom-yellow-purple.webp",
+  "system": {
+    "description": "<p>You can perform harmless, subtle magical effects at will. For example, you can change an object’s color, create a smell, light a candle, cause a tiny object to f loat, illuminate a room, or repair a small object.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754254907799,
+    "modifiedTime": 1754254926599,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!SG2uw8h5YuwDviCn"
+}
