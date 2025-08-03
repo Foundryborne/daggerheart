@@ -1,6 +1,6 @@
 {
   "name": "Premonition",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "l387HKojhqcDAV0b",
   "system": {
@@ -8,22 +8,66 @@
     "domain": "arcana",
     "recallCost": 2,
     "level": 5,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "OR0EkGeqY25BhO1h": {
+        "type": "effect",
+        "_id": "OR0EkGeqY25BhO1h",
+        "systemPath": "actions",
+        "description": "<p>Once per long rest, immediately after the GM conveys the consequences of a roll you made, you can rescind the move and consequences like they never happened and make another move instead.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "aC43NiFQLpOADyjO",
+            "value": 1,
+            "keyIsID": true,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Rescind Move",
+        "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
+        "range": ""
+      }
+    },
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "recovery": "longRest",
+      "max": "1",
+      "icon": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784494,
-    "modifiedTime": 1753922784494,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754253731528,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "aC43NiFQLpOADyjO",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!aC43NiFQLpOADyjO"
 }

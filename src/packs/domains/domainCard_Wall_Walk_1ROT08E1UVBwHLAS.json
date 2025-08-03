@@ -1,29 +1,116 @@
 {
   "name": "Wall Walk",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "o7kvw9NRGvDZSce2",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to allow a creature you can touch to climb on walls and ceilings as easily as walking on the ground. This lasts until the end of the scene or you cast Wall Walk again.        </p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to allow a creature you can touch to climb on walls and ceilings as easily as walking on the ground. This lasts until the end of the scene or you cast Wall Walk again.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 1,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "iqFrWFRVPnR1fYf4": {
+        "type": "effect",
+        "_id": "iqFrWFRVPnR1fYf4",
+        "systemPath": "actions",
+        "description": "<p><strong>Spend a Hope</strong> to allow a creature you can touch to climb on walls and ceilings as easily as walking on the ground. This lasts until the end of the scene or you cast Wall Walk again.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "s1q4O65vtoEDvvUF",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Cast",
+        "img": "icons/creatures/invertebrates/spider-pink-purple.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784543,
-    "modifiedTime": 1753922784543,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754253399849,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "1ROT08E1UVBwHLAS",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Wall Walk",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
+      "origin": "Compendium.daggerheart.domains.Item.1ROT08E1UVBwHLAS",
+      "transfer": false,
+      "_id": "s1q4O65vtoEDvvUF",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Can <span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">climb on walls and ceilings as easily as walking on the ground. </span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">This lasts until the end of the scene or you cast Wall Walk again.</span></p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754242138461,
+        "modifiedTime": 1754242179921,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!1ROT08E1UVBwHLAS.s1q4O65vtoEDvvUF"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!1ROT08E1UVBwHLAS"
 }

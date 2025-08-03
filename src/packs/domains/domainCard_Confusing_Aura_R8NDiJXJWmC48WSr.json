@@ -1,29 +1,141 @@
 {
   "name": "Confusing Aura",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "KmaX6wNBLzkFevaG",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (14)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are. <strong>Mark any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to make that many additional layers. When an adversary makes an attack against you, roll a number of <strong>d6s</strong> equal to the number of layers currently active. If any roll a 5 or higher, one layer of the aura is destroyed and the attack fails. If all the results are 4 or lower, you take the damage and this spell ends.        </p></p>",
+    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are. <strong>Mark any number of Stress</strong> to make that many additional layers. When an adversary makes an attack against you, roll a number of <strong>d6s</strong> equal to the number of layers currently active. If any roll a 5 or higher, one layer of the aura is destroyed and the attack fails. If all the results are 4 or lower, you take the damage and this spell ends.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 8,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "L2hCs7xXO6sD4tUa": {
+        "type": "attack",
+        "_id": "L2hCs7xXO6sD4tUa",
+        "systemPath": "actions",
+        "description": "<p>Make a <strong>Spellcast Roll (14)</strong>. Once per long rest on a success, you create a layer of illusion over your body that makes it hard to tell exactly where you are. </p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 14,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Create First Layer",
+        "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+        "range": ""
+      },
+      "oB5tyd2a7bmcJJmm": {
+        "type": "attack",
+        "_id": "oB5tyd2a7bmcJJmm",
+        "systemPath": "actions",
+        "description": "<p><span style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">Mark any number of Stress</span><span style=\"color: rgb(239, 230, 216); font-family: Montserrat, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\"> to make that many additional layers. </span></p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": true,
+            "key": "stress",
+            "value": 1,
+            "step": 1,
+            "keyIsID": false,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Create Extra Layers",
+        "img": "icons/skills/wounds/anatomy-organ-brain-pink-red.webp",
+        "range": ""
+      }
+    },
+    "resource": {
+      "type": "simple",
+      "value": 0
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784437,
-    "modifiedTime": 1753922784437,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754254161910,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "R8NDiJXJWmC48WSr",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!R8NDiJXJWmC48WSr"
 }

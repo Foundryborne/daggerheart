@@ -1,29 +1,116 @@
 {
   "name": "Cloaking Blast",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "bCjkysrofWPiZqNh",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you make a successful <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> to cast a different spell, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to become <em>Cloaked</em>. While <em>Cloaked</em>, you remain unseen if you are stationary when an adversary moves to where they would normally see you. When you move into or within an adversary’s line of sight or make an attack, you are no longer <em>Cloaked</em>.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When you make a successful <strong>Spellcast Roll</strong> to cast a different spell, you can <strong>spend a Hope</strong> to become <em>Cloaked</em>. While <em>Cloaked</em>, you remain unseen if you are stationary when an adversary moves to where they would normally see you. When you move into or within an adversary’s line of sight or make an attack, you are no longer <em>Cloaked</em>.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 7,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "A12J0jyQrOaQoLf7": {
+        "type": "effect",
+        "_id": "A12J0jyQrOaQoLf7",
+        "systemPath": "actions",
+        "description": "",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "twCBqXytmRkMz0kV",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Become Cloaked",
+        "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784435,
-    "modifiedTime": 1753922784435,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754254076729,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "Zhw7PtK8nMPlsOqD",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Cloaked",
+      "img": "icons/magic/perception/shadow-stealth-eyes-purple.webp",
+      "origin": "Compendium.daggerheart.domains.Item.Zhw7PtK8nMPlsOqD",
+      "transfer": false,
+      "_id": "twCBqXytmRkMz0kV",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>While <em>Cloaked</em>, you remain unseen if you are stationary when an adversary moves to where they would normally see you. When you move into or within an adversary’s line of sight or make an attack, you are no longer <em>Cloaked</em>.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754245983439,
+        "modifiedTime": 1754254085779,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!Zhw7PtK8nMPlsOqD.twCBqXytmRkMz0kV"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!Zhw7PtK8nMPlsOqD"
 }

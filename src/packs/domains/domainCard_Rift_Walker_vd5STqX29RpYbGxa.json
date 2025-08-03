@@ -1,29 +1,81 @@
 {
   "name": "Rift Walker",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "gqnmAgerh7HhNo7t",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. On a success, you place an arcane marking on the ground where you currently stand. The next time you successfully cast Rift Walker, a rift in space opens up, providing safe passage back to the exact spot where the marking was placed. This rift stays open until you choose to close it or you cast another spell.</p><p class=\"Body-Foundation-No-BOLDITALIC\">You can drop the spell at any time to cast Rift Walker again and place the marking somewhere new.</p></p>",
+    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll (15)</strong>. On a success, you place an arcane marking on the ground where you currently stand. The next time you successfully cast Rift Walker, a rift in space opens up, providing safe passage back to the exact spot where the marking was placed. This rift stays open until you choose to close it or you cast another spell.</p><p class=\"Body-Foundation-No-BOLDITALIC\">You can drop the spell at any time to cast Rift Walker again and place the marking somewhere new.</p>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 6,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "KV6Vt4prS15q2UV9": {
+        "type": "attack",
+        "_id": "KV6Vt4prS15q2UV9",
+        "systemPath": "actions",
+        "description": "<p>Make a <strong>Spellcast Roll (15)</strong>. On a success, you place an arcane marking on the ground where you currently stand. The next time you successfully cast Rift Walker, a rift in space opens up, providing safe passage back to the exact spot where the marking was placed. This rift stays open until you choose to close it or you cast another spell.</p><p>You can drop the spell at any time to cast Rift Walker again and place the marking somewhere new.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 15,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Cast",
+        "img": "icons/magic/earth/projectile-stone-bullet-pink.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784503,
-    "modifiedTime": 1753922784503,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754253784334,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "vd5STqX29RpYbGxa",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!vd5STqX29RpYbGxa"
 }

@@ -1,6 +1,6 @@
 {
   "name": "Blink Out",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "1e5Sn8OXxEQ57GSD",
   "system": {
@@ -8,22 +8,83 @@
     "domain": "arcana",
     "recallCost": 1,
     "level": 4,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "LsAdmSinOiNr9jH8": {
+        "type": "attack",
+        "_id": "LsAdmSinOiNr9jH8",
+        "systemPath": "actions",
+        "description": "<p>Make a <strong>Spellcast Roll (12)</strong>. On a success, <strong>spend a Hope</strong> to teleport to another point you can see within Far range. If any willing creatures are within Very Close range, <strong>spend an additional Hope</strong> for each creature to bring them with you.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "consumeOnSuccess": true,
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 12,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Teleport",
+        "img": "icons/magic/symbols/runes-star-orange-purple.webp",
+        "range": "veryClose"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784416,
-    "modifiedTime": 1753922784416,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754253600839,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "Qu0iA4s3Xov10Erd",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!Qu0iA4s3Xov10Erd"
 }
