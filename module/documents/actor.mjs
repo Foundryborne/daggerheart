@@ -597,7 +597,6 @@ export default class DhpActor extends Actor {
     async modifyResource(resources) {
         if (!resources.length) return;
 
-        console.log(resources)
         if (resources.find(r => r.key === 'stress')) this.convertStressDamageToHP(resources);
         let updates = {
             actor: { target: this, resources: {} },
