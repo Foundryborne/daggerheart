@@ -75,7 +75,8 @@
       "name": "Pincers",
       "img": "icons/creatures/claws/pincer-crab-brown.webp",
       "roll": {
-        "bonus": 1
+        "bonus": 1,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -118,7 +119,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784272,
-    "modifiedTime": 1754046801101,
+    "modifiedTime": 1754236375100,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "fmfntuJ8mHRCAktP",

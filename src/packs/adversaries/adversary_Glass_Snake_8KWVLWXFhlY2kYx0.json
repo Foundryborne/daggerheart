@@ -70,7 +70,8 @@
       "name": "Glass Fangs",
       "img": "icons/creatures/abilities/fang-tooth-blood-red.webp",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "range": "veryClose",
       "damage": {
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784273,
-    "modifiedTime": 1754047110424,
+    "modifiedTime": 1754236374083,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "8KWVLWXFhlY2kYx0",

@@ -62,7 +62,8 @@
       "name": "Branches",
       "img": "icons/magic/nature/root-vine-hand-strike.webp",
       "roll": {
-        "bonus": 0
+        "bonus": 0,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -106,7 +107,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784360,
-    "modifiedTime": 1754127381995,
+    "modifiedTime": 1754236375369,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "o63nS0k3wHu6EgKP",

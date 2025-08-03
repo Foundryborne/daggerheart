@@ -69,7 +69,8 @@
     "attack": {
       "name": "Magitech Cannon",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "range": "far",
       "damage": {
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784368,
-    "modifiedTime": 1754131062531,
+    "modifiedTime": 1754236375053,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "c5hGdvY5UnSjlHws",

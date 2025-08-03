@@ -70,7 +70,8 @@
       "name": "Elemental Blast",
       "img": "icons/magic/fire/flame-burning-earth-orange.webp",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "range": "far",
       "damage": {
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784308,
-    "modifiedTime": 1754050387942,
+    "modifiedTime": 1754236374357,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "DscWkNVoHak6P4hh",

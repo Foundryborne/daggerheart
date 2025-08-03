@@ -69,7 +69,8 @@
     "attack": {
       "name": "Shortbow",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "range": "far",
       "damage": {
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784345,
-    "modifiedTime": 1754053336193,
+    "modifiedTime": 1754236374038,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "7X5q7a6ueeHs5oA9",

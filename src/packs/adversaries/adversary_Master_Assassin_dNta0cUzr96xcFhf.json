@@ -81,7 +81,8 @@
       "name": "Serrated Dagger",
       "img": "icons/weapons/daggers/dagger-jagged-handguard-black.webp",
       "roll": {
-        "bonus": 5
+        "bonus": 5,
+        "type": "attack"
       },
       "range": "close",
       "damage": {
@@ -125,7 +126,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784305,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236375063,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "dNta0cUzr96xcFhf",

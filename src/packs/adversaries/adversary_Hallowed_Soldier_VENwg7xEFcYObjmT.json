@@ -61,7 +61,8 @@
     "attack": {
       "name": "Sword and Shield",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -106,7 +107,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784279,
-    "modifiedTime": 1754219468339,
+    "modifiedTime": 1754236374772,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "VENwg7xEFcYObjmT",

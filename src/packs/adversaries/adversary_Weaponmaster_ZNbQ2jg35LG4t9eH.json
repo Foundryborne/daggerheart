@@ -68,7 +68,8 @@
     "motivesAndTactics": "Act fi rst, aim for the weakest, intimidate",
     "attack": {
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "name": "Claymore",
       "img": "icons/weapons/swords/greatsword-guard-gold-worn.webp",
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784373,
-    "modifiedTime": 1754055465391,
+    "modifiedTime": 1754236374946,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "ZNbQ2jg35LG4t9eH",

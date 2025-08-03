@@ -100,7 +100,8 @@
       "name": "Shocking Bite",
       "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
       "roll": {
-        "bonus": 0
+        "bonus": 0,
+        "type": "attack"
       },
       "range": ""
     }
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784258,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374738,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "TLzY1nDw0Bu9Ud40",

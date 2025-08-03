@@ -75,7 +75,8 @@
       "name": "Empowered Longsword",
       "img": "icons/weapons/swords/sword-broad-serrated-blue.webp",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -119,7 +120,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784353,
-    "modifiedTime": 1754054040763,
+    "modifiedTime": 1754236375260,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "ldbWEL7uZs84vyrR",

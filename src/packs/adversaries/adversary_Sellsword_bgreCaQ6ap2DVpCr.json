@@ -92,7 +92,8 @@
         ]
       },
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "img": "icons/weapons/swords/sword-guard.webp"
     }
@@ -106,7 +107,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784341,
-    "modifiedTime": 1754053085697,
+    "modifiedTime": 1754236375045,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "bgreCaQ6ap2DVpCr",

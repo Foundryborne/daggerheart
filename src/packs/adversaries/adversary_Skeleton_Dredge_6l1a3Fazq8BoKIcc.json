@@ -54,7 +54,8 @@
       "name": "Bone Claws",
       "img": "icons/magic/death/hand-undead-skeleton-fire-green.webp",
       "roll": {
-        "bonus": -1
+        "bonus": -1,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -106,7 +107,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784347,
-    "modifiedTime": 1754053476707,
+    "modifiedTime": 1754236374029,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "6l1a3Fazq8BoKIcc",

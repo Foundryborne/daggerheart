@@ -75,7 +75,8 @@
     "attack": {
       "name": "Psychic Attack",
       "roll": {
-        "bonus": 8
+        "bonus": 8,
+        "type": "attack"
       },
       "range": "far",
       "damage": {
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784315,
-    "modifiedTime": 1754219468339,
+    "modifiedTime": 1754236375025,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "befIqd5IYKg6eUz2",

@@ -76,7 +76,8 @@
       "name": "Warhammer",
       "img": "icons/weapons/hammers/hammer-double-simple-worn.webp",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "range": "veryClose",
       "damage": {
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784268,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374935,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "YnObCleGjPT7yqEc",

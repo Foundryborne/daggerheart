@@ -80,7 +80,8 @@
     "attack": {
       "name": "Rune-Covered Rod",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -125,7 +126,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784239,
-    "modifiedTime": 1754142403176,
+    "modifiedTime": 1754236373793,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "0NxCSugvKQ4W8OYZ",

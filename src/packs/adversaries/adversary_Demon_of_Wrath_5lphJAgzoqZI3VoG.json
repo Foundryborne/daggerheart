@@ -76,7 +76,8 @@
       "name": "Fists",
       "range": "veryClose",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
       "damage": {
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784252,
-    "modifiedTime": 1754125870154,
+    "modifiedTime": 1754236373976,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "5lphJAgzoqZI3VoG",
