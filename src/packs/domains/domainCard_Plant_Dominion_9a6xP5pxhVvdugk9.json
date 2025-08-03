@@ -1,6 +1,6 @@
 {
   "name": "Plant Dominion",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "R5afi5bhq9ccnYY2",
   "system": {
@@ -67,8 +67,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784493,
-    "modifiedTime": 1754120459446,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229212514,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "9a6xP5pxhVvdugk9",
   "sort": 3400000,

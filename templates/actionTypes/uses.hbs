@@ -1,5 +1,8 @@
 <fieldset class="one-column">
     <legend>{{localize "DAGGERHEART.GENERAL.uses"}}</legend>
+    {{#if hasRoll}}
+        {{formField fields.consumeOnSuccess value=source.consumeOnSuccess name="uses.consumeOnSuccess" classes="checkbox" rootId=partId localize=true}}
+    {{/if}}
     <div class="nest-inputs">
         {{formField fields.value label="Spent" value=source.value name="uses.value" rootId=partId}}
         {{formField fields.max label="Max" value=source.max name="uses.max" rootId=partId}}

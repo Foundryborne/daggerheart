@@ -75,7 +75,8 @@
       "name": "Scythe",
       "img": "icons/weapons/sickles/scythe-bone-jagged.webp",
       "roll": {
-        "bonus": 0
+        "bonus": 0,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -118,7 +119,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784356,
-    "modifiedTime": 1754054370297,
+    "modifiedTime": 1754236374783,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "VtFBt9XBE0WrGGxP",

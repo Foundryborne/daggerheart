@@ -70,7 +70,8 @@
       "name": "Crashing Wave",
       "img": "icons/magic/water/wave-water-blue.webp",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "range": "veryClose",
       "damage": {
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784278,
-    "modifiedTime": 1754127980927,
+    "modifiedTime": 1754236375512,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "xIICT6tEdnA7dKDV",

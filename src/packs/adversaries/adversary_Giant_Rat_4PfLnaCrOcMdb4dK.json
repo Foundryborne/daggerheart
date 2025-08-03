@@ -65,7 +65,8 @@
     },
     "attack": {
       "roll": {
-        "bonus": -4
+        "bonus": -4,
+        "type": "attack"
       },
       "name": "Claws",
       "img": "icons/creatures/claws/claw-straight-brown.webp",
@@ -111,7 +112,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784270,
-    "modifiedTime": 1754046551239,
+    "modifiedTime": 1754236373924,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "4PfLnaCrOcMdb4dK",

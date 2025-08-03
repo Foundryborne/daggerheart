@@ -79,7 +79,8 @@
       "name": "Mace",
       "img": "icons/weapons/maces/mace-round-ornate-purple.webp",
       "roll": {
-        "bonus": 4
+        "bonus": 4,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -122,7 +123,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784282,
-    "modifiedTime": 1754048050272,
+    "modifiedTime": 1754236375275,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "mK3A5FTx6k8iPU3F",

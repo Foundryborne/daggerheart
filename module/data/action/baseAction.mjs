@@ -208,7 +208,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return !this.hasRoll;
     }
 
-    async consume(config) {
+    async consume(config, successCost = false) {
         const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
 
         for (var cost of config.costs) {
@@ -220,8 +220,17 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 };
             }
         }
+        
         const resources = config.costs
-            .filter(c => c.enabled !== false)
+            .filter(c =>
+                c.enabled !== false
+                &&
+                (
+                    (!successCost && (!c.consumeOnSuccess || config.roll?.success))
+                    ||
+                    (successCost && c.consumeOnSuccess)
+                )
+            )
             .map(c => {
                 const resource = usefulResources[c.key];
                 return {
@@ -233,7 +242,17 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             });
 
         await this.actor.modifyResource(resources);
-        if (config.uses?.enabled) this.update({ 'uses.value': this.uses.value + 1 });
+        if (config.uses?.enabled
+            &&
+            (
+                (!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success))
+                ||
+                (successCost && config.uses?.consumeOnSuccess)
+            )
+        ) this.update({ 'uses.value': this.uses.value + 1 });
+
+        if(config.roll?.success || successCost)
+            (config.message ?? config.parent).update({'system.successConsumed': true})
     }
     /* */
 

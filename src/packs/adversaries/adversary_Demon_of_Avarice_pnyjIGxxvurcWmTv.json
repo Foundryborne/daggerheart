@@ -76,7 +76,8 @@
       "name": "Hungry Maw",
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -119,7 +120,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784247,
-    "modifiedTime": 1754123854047,
+    "modifiedTime": 1754236375381,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "pnyjIGxxvurcWmTv",

@@ -79,7 +79,8 @@
       "name": "Club",
       "img": "icons/weapons/clubs/club-barbed-steel.webp",
       "roll": {
-        "bonus": -3
+        "bonus": -3,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -122,7 +123,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784292,
-    "modifiedTime": 1754048705930,
+    "modifiedTime": 1754236374304,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "CBKixLH3yhivZZuL",

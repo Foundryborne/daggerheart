@@ -70,7 +70,8 @@
       "name": "Toothy Maw",
       "img": "icons/creatures/abilities/mouth-teeth-lamprey-red.webp",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "range": "veryClose",
       "damage": {
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784342,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374913,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "YmVAkdNsyuXWTtYp",

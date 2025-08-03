@@ -70,7 +70,8 @@
       "name": "Bite",
       "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
       "roll": {
-        "bonus": 0
+        "bonus": 0,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -113,7 +114,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784342,
-    "modifiedTime": 1754053203019,
+    "modifiedTime": 1754236373883,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "2nXz4ilAY4xuhKLm",

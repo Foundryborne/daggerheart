@@ -76,7 +76,8 @@
       "name": "Bramble Sword",
       "img": "icons/magic/nature/root-vine-hand-strike.webp",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -119,7 +120,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784355,
-    "modifiedTime": 1754130177245,
+    "modifiedTime": 1754236374465,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "KGVwnLq85ywP9xvB",

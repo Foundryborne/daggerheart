@@ -106,7 +106,8 @@
       "name": "Claws and Fangs",
       "img": "icons/creatures/abilities/mouth-teeth-rows-red.webp",
       "roll": {
-        "bonus": 0
+        "bonus": 0,
+        "type": "attack"
       },
       "range": ""
     }
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784253,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374571,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "NoRZ1PqB8N5wcIw0",

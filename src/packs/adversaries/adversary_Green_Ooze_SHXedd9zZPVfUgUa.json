@@ -74,7 +74,8 @@
     "attack": {
       "name": "Ooze Appendage",
       "roll": {
-        "bonus": 1
+        "bonus": 1,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -118,7 +119,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784278,
-    "modifiedTime": 1754047493989,
+    "modifiedTime": 1754236374705,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "SHXedd9zZPVfUgUa",

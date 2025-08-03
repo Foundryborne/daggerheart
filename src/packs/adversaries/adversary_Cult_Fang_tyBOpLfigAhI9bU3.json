@@ -70,7 +70,8 @@
       "name": "Long Knife",
       "img": "icons/weapons/daggers/dagger-ritual-simple-green.webp",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784239,
-    "modifiedTime": 1754090222049,
+    "modifiedTime": 1754236375454,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "tyBOpLfigAhI9bU3",

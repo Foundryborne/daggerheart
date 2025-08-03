@@ -1,6 +1,6 @@
 {
   "name": "Forceful Push",
-  "img": "systems/daggerheart/assets/icons/domains/valor.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/valor.png",
   "type": "domainCard",
   "folder": "QpOL7jPbMBzH96qR",
   "system": {
@@ -58,8 +58,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754067019520,
-    "modifiedTime": 1754067096493,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754229507757,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "effects": [
     {

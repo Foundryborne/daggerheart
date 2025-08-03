@@ -99,7 +99,8 @@
       },
       "name": "Tentacles",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "range": "close",
       "img": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp"
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784375,
-    "modifiedTime": 1754219468339,
+    "modifiedTime": 1754236374894,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "YhJrP7rTBiRdX5Fp",

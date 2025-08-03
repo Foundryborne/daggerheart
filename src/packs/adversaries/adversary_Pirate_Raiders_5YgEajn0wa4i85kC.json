@@ -105,7 +105,8 @@
       "name": "Cutlass",
       "img": "icons/weapons/swords/scimitar-worn-blue.webp",
       "roll": {
-        "bonus": 1
+        "bonus": 1,
+        "type": "attack"
       }
     }
   },
@@ -118,7 +119,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784326,
-    "modifiedTime": 1754052314538,
+    "modifiedTime": 1754236373965,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "5YgEajn0wa4i85kC",

@@ -76,7 +76,8 @@
       "name": "Miasma Bolt",
       "img": "icons/magic/acid/projectile-smoke-glowing.webp",
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -119,7 +120,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784248,
-    "modifiedTime": 1754124805912,
+    "modifiedTime": 1754236375236,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "kE4dfhqmIQpNd44e",

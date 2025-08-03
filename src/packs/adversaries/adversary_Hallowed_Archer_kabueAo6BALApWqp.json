@@ -69,7 +69,8 @@
     "attack": {
       "range": "far",
       "roll": {
-        "bonus": 4
+        "bonus": 4,
+        "type": "attack"
       },
       "name": "Sanctified Longbow",
       "img": "icons/weapons/bows/shortbow-recurve-yellow.webp",
@@ -114,7 +115,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784279,
-    "modifiedTime": 1754219468339,
+    "modifiedTime": 1754236375250,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "kabueAo6BALApWqp",

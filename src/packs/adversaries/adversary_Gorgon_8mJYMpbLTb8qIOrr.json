@@ -75,7 +75,8 @@
     "attack": {
       "name": "Sunsear Shortbow",
       "roll": {
-        "bonus": 4
+        "bonus": 4,
+        "type": "attack"
       },
       "range": "far",
       "damage": {
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784274,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374109,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "8mJYMpbLTb8qIOrr",

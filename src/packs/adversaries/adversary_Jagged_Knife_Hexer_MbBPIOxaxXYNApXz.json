@@ -75,7 +75,8 @@
       "name": "Staff",
       "range": "far",
       "roll": {
-        "bonus": 2
+        "bonus": 2,
+        "type": "attack"
       },
       "img": "icons/weapons/staves/staff-blue-jewel.webp",
       "damage": {
@@ -119,7 +120,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784291,
-    "modifiedTime": 1754048452205,
+    "modifiedTime": 1754236374521,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "MbBPIOxaxXYNApXz",

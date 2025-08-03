@@ -1,6 +1,6 @@
 {
   "name": "Never Upstaged",
-  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
   "type": "domainCard",
   "folder": "VgADdqYn9nS9G1Us",
   "system": {
@@ -195,8 +195,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784486,
-    "modifiedTime": 1754105577038,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229111457,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "McdncxmO9K1YNP7Y",
   "sort": 3400000,

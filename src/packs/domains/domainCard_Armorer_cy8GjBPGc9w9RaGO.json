@@ -1,6 +1,6 @@
 {
   "name": "Armorer",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/valor.png",
   "type": "domainCard",
   "folder": "XDSp0FdiYDVO0tfw",
   "system": {
@@ -88,8 +88,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784409,
-    "modifiedTime": 1754068472083,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754229481872,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "cy8GjBPGc9w9RaGO",
   "sort": 3400000,

@@ -88,7 +88,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
         if (targets.length === 0)
             return ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
-
+        
         for (let target of targets) {
             let damages = foundry.utils.deepClone(this.system.damage);
             if (
@@ -106,6 +106,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 });
             }
 
+            this.consumeOnSuccess();
             if (this.system.hasHealing) target.actor.takeHealing(damages);
             else target.actor.takeDamage(damages);
         }
@@ -132,7 +133,15 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const targets = this.getTargetList();
             if (targets.length === 0)
                 ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noTargetsSelected'));
+            this.consumeOnSuccess();
             await action.applyEffects(event, this, targets);
+        }
+    }
+
+    consumeOnSuccess() {
+        if(!this.system.successConsumed && !this.system.targetSelection) {
+            const action = this.system.action;
+            if(action) action.consume(this.system, true);
         }
     }
 }

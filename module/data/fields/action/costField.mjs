@@ -9,9 +9,10 @@ export default class CostField extends fields.ArrayField {
                 initial: 'hope'
             }),
             keyIsID: new fields.BooleanField(),
-            value: new fields.NumberField({ nullable: true, initial: 1 }),
+            value: new fields.NumberField({ nullable: true, initial: 1, min: 0 }),
             scalable: new fields.BooleanField({ initial: false }),
-            step: new fields.NumberField({ nullable: true, initial: null })
+            step: new fields.NumberField({ nullable: true, initial: null }),
+            consumeOnSuccess: new fields.BooleanField({ initial: false, label: "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.label" })
         });
         super(element, options, context);
     }
@@ -28,9 +29,9 @@ export default class CostField extends fields.ArrayField {
     static calcCosts(costs) {
         const resources = CostField.getResources.call(this, costs);
         return costs.map(c => {
-            c.scale = c.scale ?? 1;
+            c.scale = c.scale ?? 0;
             c.step = c.step ?? 1;
-            c.total = c.value + (c.scale - 1) * c.step;
+            c.total = c.value + c.scale * c.step;
             c.enabled = c.hasOwnProperty('enabled') ? c.enabled : true;
             c.max =
                 c.key === 'fear'
@@ -38,7 +39,7 @@ export default class CostField extends fields.ArrayField {
                     : resources[c.key].isReversed
                       ? resources[c.key].max
                       : resources[c.key].value;
-            if (c.scalable) c.maxStep = Math.floor(c.max / c.step);
+            if (c.scalable) c.maxStep = Math.floor((c.max - c.value) / c.step);
             return c;
         });
     }

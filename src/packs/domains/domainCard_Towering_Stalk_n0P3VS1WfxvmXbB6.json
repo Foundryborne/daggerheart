@@ -1,6 +1,6 @@
 {
   "name": "Towering Stalk",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
   "type": "domainCard",
   "folder": "uXGugK72AffddFdH",
   "system": {
@@ -146,8 +146,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784534,
-    "modifiedTime": 1754116329023,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229248847,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "n0P3VS1WfxvmXbB6",
   "sort": 3400000,

@@ -77,7 +77,8 @@
       "img": "icons/weapons/polearms/spear-flared-gold.webp",
       "range": "veryClose",
       "roll": {
-        "bonus": 4
+        "bonus": 4,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784249,
-    "modifiedTime": 1754125152223,
+    "modifiedTime": 1754236373869,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "2VN3BftageoTTIzu",

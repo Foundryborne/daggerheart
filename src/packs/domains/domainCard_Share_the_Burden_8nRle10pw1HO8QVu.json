@@ -1,6 +1,6 @@
 {
   "name": "Share the Burden",
-  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
   "type": "domainCard",
   "folder": "VgADdqYn9nS9G1Us",
   "system": {
@@ -20,8 +20,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784515,
-    "modifiedTime": 1754106101756,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229107806,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "8nRle10pw1HO8QVu",
   "sort": 3400000,

@@ -80,7 +80,8 @@
     "attack": {
       "name": "Dagger",
       "roll": {
-        "bonus": -3
+        "bonus": -3,
+        "type": "attack"
       },
       "damage": {
         "parts": [
@@ -124,7 +125,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784237,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374964,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "ZxWaWPdzFIUPNC62",

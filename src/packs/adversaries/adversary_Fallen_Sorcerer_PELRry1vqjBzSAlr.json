@@ -75,7 +75,8 @@
     "attack": {
       "name": "Corrupted Staff",
       "roll": {
-        "bonus": 4
+        "bonus": 4,
+        "type": "attack"
       },
       "range": "far",
       "damage": {
@@ -120,7 +121,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784265,
-    "modifiedTime": 1754219468339,
+    "modifiedTime": 1754236374668,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "PELRry1vqjBzSAlr",

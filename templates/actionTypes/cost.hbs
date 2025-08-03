@@ -4,6 +4,9 @@
         <a><i class="fa-solid fa-plus icon-button" data-action="addElement"></i></a>
     </legend>
     {{#each source as |cost index|}}
+        {{#if @root.hasRoll}}
+            {{formField ../fields.consumeOnSuccess value=cost.consumeOnSuccess name=(concat "cost." index ".consumeOnSuccess") classes="checkbox" rootId=partId localize=true}}
+        {{/if}}
         <div class="nest-inputs">
             {{formField ../fields.scalable label="Scalable" value=cost.scalable name=(concat "cost." index ".scalable") classes="checkbox"}}
             {{formField ../fields.key choices=(@root.disableOption index @root.costOptions ../source) label="Resource" value=cost.key name=(concat "cost." index ".key") localize=true blank=false}}

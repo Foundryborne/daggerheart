@@ -1,6 +1,6 @@
 {
   "name": "Words of Discord",
-  "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
   "type": "domainCard",
   "folder": "6gA7SmNIblkMaYgr",
   "system": {
@@ -98,8 +98,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784548,
-    "modifiedTime": 1754104567918,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754229115471,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "ZjAdi1FSNCDDHI3X",
   "sort": 3400000,

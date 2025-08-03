@@ -1,6 +1,6 @@
 {
   "name": "Shrug It Off",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/valor.png",
   "type": "domainCard",
   "folder": "kj3gwg5bmCqwFYze",
   "system": {
@@ -67,8 +67,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784516,
-    "modifiedTime": 1754068945512,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754229468207,
+    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
   },
   "_id": "JwfhtgmmuRxg4zhI",
   "sort": 3400000,

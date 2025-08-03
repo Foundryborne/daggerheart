@@ -105,7 +105,8 @@
         ]
       },
       "roll": {
-        "bonus": 3
+        "bonus": 3,
+        "type": "attack"
       },
       "range": "far"
     }
@@ -119,7 +120,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784352,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374005,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "65cSO3EQEh6ZH6Xk",

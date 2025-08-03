@@ -81,7 +81,8 @@
       "name": "Wand",
       "img": "icons/weapons/wands/wand-gem-violet.webp",
       "roll": {
-        "bonus": -3
+        "bonus": -3,
+        "type": "attack"
       },
       "range": "far",
       "damage": {
@@ -125,7 +126,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784339,
-    "modifiedTime": 1754090770938,
+    "modifiedTime": 1754236374390,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "EtLJiTsilPPZvLUX",

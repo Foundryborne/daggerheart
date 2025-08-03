@@ -11,7 +11,8 @@ export default class UsesField extends fields.SchemaField {
                 choices: CONFIG.DH.GENERAL.refreshTypes,
                 initial: null,
                 nullable: true
-            })
+            }),
+            consumeOnSuccess: new fields.BooleanField({ initial: false, label: "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.label" })
         };
         super(usesFields, options, context);
     }
