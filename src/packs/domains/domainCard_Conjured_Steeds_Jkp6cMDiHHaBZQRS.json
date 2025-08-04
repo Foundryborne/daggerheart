@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "u5Lq2kfC8LlDAGDC",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to conjure that many magical steeds (such as horses, camels, or elephants) that you and your allies can ride until your next long rest or the steeds take any damage. The steeds double your land speed while traveling and, when in danger, allow you to move within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range without having to roll. Creatures riding a steed gain a −2 penalty to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack</tooltip> rolls and a +2 bonus to damage rolls.        </p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend any number of Hope</strong> to conjure that many magical steeds (such as horses, camels, or elephants) that you and your allies can ride until your next long rest or the steeds take any damage. The steeds double your land speed while traveling and, when in danger, allow you to move within Far range without having to roll. Creatures riding a steed gain a −2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
     "domain": "sage",
     "recallCost": 0,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "xMIMyRto9jgYLN3S",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\"><strong>Spend any number of Hope</strong> to conjure that many magical steeds (such as horses, camels, or elephants) that you and your allies can ride until your next long rest or the steeds take any damage. The steeds double your land speed while traveling and, when in danger, allow you to move within Far range without having to roll. Creatures riding a steed gain a −2 penalty to attack rolls and a +2 bonus to damage rolls.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -56,14 +56,14 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784438,
-    "modifiedTime": 1754229233675,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754333933972,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "Jkp6cMDiHHaBZQRS",
   "sort": 3400000,
   "effects": [
     {
-      "name": "rIDING",
+      "name": "Riding",
       "img": "icons/svg/item-bag.svg",
       "origin": "Compendium.daggerheart.domains.Item.Jkp6cMDiHHaBZQRS",
       "transfer": false,
@@ -120,7 +120,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754118365665,
-        "modifiedTime": 1754118459648,
+        "modifiedTime": 1754333942700,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!Jkp6cMDiHHaBZQRS.cNSlGBGPKKBNnlH8"

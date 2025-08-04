@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "R5afi5bhq9ccnYY2",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">After a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, place a number of tokens equal to the number of Sage domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout and vault</tooltip> on this card. </p><p class=\"Body-Foundation\">When you would make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Roll</tooltip>, you can spend any number of tokens after the roll to gain a +1 bonus for each token spent.</p><p class=\"Body-Foundation\">When you <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"critical-success\" nexus=\"daggerheart\">critically succeed</tooltip> on a Spellcast Roll for a Sage domain spell, gain a token.</p><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p></p>",
+    "description": "<p class=\"Body-Foundation\">After a long rest, place a number of tokens equal to the number of Sage domain cards in your loadout and vault on this card.</p><p class=\"Body-Foundation\">When you would make a Spellcast Roll, you can spend any number of tokens after the roll to gain a +1 bonus for each token spent.</p><p class=\"Body-Foundation\">When you critically succeed on a Spellcast Roll for a Sage domain spell, gain a token.</p><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p>",
     "domain": "sage",
     "recallCost": 2,
     "level": 9,
@@ -26,8 +26,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784452,
-    "modifiedTime": 1754229215289,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754336327302,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "F2m9wvZ3v5c3yCtv",
   "sort": 3400000,

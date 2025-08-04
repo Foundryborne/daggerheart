@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EJoXzO85rG5EiZsh",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"instinct\" nexus=\"daggerheart\"><strong>Instinct</strong></tooltip><strong> Roll (12)</strong>. On a success, they’ll give you the information they know. On a roll with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>, their knowledge might be limited or come at a cost.</p><p class=\"Body-Foundation\">Additionally, before you make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Roll</tooltip> while within a natural environment, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to gain a +2 bonus to the roll.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <strong>Instinct Roll (12)</strong>. On a success, they’ll give you the information they know. On a roll with Fear, their knowledge might be limited or come at a cost.</p><p class=\"Body-Foundation\">Additionally, before you make a Spellcast Roll while within a natural environment, you can <strong>spend a Hope</strong> to gain a +2 bonus to the roll.</p>",
     "domain": "sage",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "qQEeyIGs0wKjW3a1",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <strong>Instinct Roll (12)</strong>. On a success, they’ll give you the information they know. On a roll with Fear, their knowledge might be limited or come at a cost.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -102,8 +102,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784485,
-    "modifiedTime": 1754229262913,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754332525790,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "atWLorlCOxcrq8WB",
   "sort": 3400000,
