@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Abn46nCQst6kpGeA",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to summon a humanoid-sized spirit that can move or carry things for you until your next rest.        </p><p class=\"Body-Foundation\">You can also send it to attack an adversary. When you do, make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-far\" nexus=\"daggerheart\">Very Far</tooltip> range. On a success, the spirit moves into <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range with that target. Roll a number of <strong>d6s</strong> equal to your Spellcast trait and deal that much magic damage to the target. The spirit then dissipates. You can only have one spirit at a time.</p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to summon a humanoid-sized spirit that can move or carry things for you until your next rest.</p><p class=\"Body-Foundation\">You can also send it to attack an adversary. When you do, make a <strong>Spellcast Roll</strong> against a target within Very Far range. On a success, the spirit moves into Melee range with that target. Roll a number of <strong>d6s</strong> equal to your Spellcast trait and deal that much magic damage to the target. The spirit then dissipates. You can only have one spirit at a time.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 2,
@@ -132,7 +132,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784482,
-    "modifiedTime": 1754173097924,
+    "modifiedTime": 1754330630881,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "FXLsB3QbQvTtqX5B",

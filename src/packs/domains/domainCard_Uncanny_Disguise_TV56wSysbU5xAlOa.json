@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "sCiN7DoysdKceIMd",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you have a few minutes to prepare, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to don the facade of any humanoid you can picture clearly in your mind. While disguised, you have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"presence\" nexus=\"daggerheart\">Presence</tooltip> Rolls to avoid scrutiny.        </p><p class=\"Body-Foundation\">Place a number of tokens equal to your Spellcast trait on this card. When you take an action while disguised, spend a token from this card. After the action that spends the last token is resolved, the disguise drops.</p></p>",
+    "description": "<p class=\"Body-Foundation\">When you have a few minutes to prepare, you can <strong>mark a Stress</strong> to don the facade of any humanoid you can picture clearly in your mind. While disguised, you have advantage on Presence Rolls to avoid scrutiny.</p><p class=\"Body-Foundation\">Place a number of tokens equal to your Spellcast trait on this card. When you take an action while disguised, spend a token from this card. After the action that spends the last token is resolved, the disguise drops.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 1,
@@ -88,7 +88,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784537,
-    "modifiedTime": 1754173066189,
+    "modifiedTime": 1754330615594,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "TV56wSysbU5xAlOa",

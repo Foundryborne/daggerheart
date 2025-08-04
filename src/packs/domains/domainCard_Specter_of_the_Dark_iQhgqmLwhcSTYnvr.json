@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8qr1Y2tW3vLwNZOg",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to become <em>Spectral </em>until you make an action roll targeting another creature. While <em>Spectral</em>, you’re immune to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"physical-damage-type\" nexus=\"daggerheart\">physical</tooltip> damage and can float and pass through solid objects. Other creatures can still see you while you’re in this form.        </p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to become <em>Spectral </em>until you make an action roll targeting another creature. While <em>Spectral</em>, you’re immune to physical damage and can float and pass through solid objects. Other creatures can still see you while you’re in this form.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 10,
@@ -56,7 +56,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784520,
-    "modifiedTime": 1754173894980,
+    "modifiedTime": 1754331335651,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "iQhgqmLwhcSTYnvr",
