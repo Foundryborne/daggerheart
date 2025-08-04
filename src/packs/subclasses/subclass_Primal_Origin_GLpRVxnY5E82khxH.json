@@ -9,16 +9,16 @@
     "spellcastingTrait": "instinct",
     "features": [
       {
-        "type": "foundation",
-        "item": "Compendium.daggerheart.subclasses.Item.UNg4eyNfEQrMdD7G"
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.yA4MKQ1tbKFiJoDB"
       },
       {
         "type": "specialization",
         "item": "Compendium.daggerheart.subclasses.Item.4pVBN8cuKePI423V"
       },
       {
-        "type": "mastery",
-        "item": "Compendium.daggerheart.subclasses.Item.yA4MKQ1tbKFiJoDB"
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.UNg4eyNfEQrMdD7G"
       }
     ],
     "featureState": 1,
@@ -38,8 +38,8 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754347182758,
-    "modifiedTime": 1754348343012,
+    "createdTime": 1754349604941,
+    "modifiedTime": 1754349673276,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_key": "!items!GLpRVxnY5E82khxH"

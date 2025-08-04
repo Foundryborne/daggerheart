@@ -10,7 +10,10 @@
       "type": "simple",
       "value": 0,
       "max": "",
-      "icon": ""
+      "icon": "",
+      "recovery": null,
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {},
     "originItemType": null,
@@ -62,9 +65,7 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754348174608,
-        "modifiedTime": 1754348311396,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "lastModifiedBy": null
       },
       "_key": "!items.effects!yA4MKQ1tbKFiJoDB.z49V45ir45HGHOBB"
     }
@@ -82,8 +83,8 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754348133502,
-    "modifiedTime": 1754348333524,
+    "createdTime": 1754349515898,
+    "modifiedTime": 1754349515898,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_key": "!items!yA4MKQ1tbKFiJoDB"

@@ -1,0 +1,33 @@
+{
+  "folder": "eykEGWrxYWGmwPDM",
+  "name": "Well-Connected",
+  "type": "feature",
+  "_id": "7KnSOazixXXSnspj",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "system": {
+    "description": "<p>When you arrive in a prominent town or environment, you know somebody who calls this place home. Give them a name, note how you think they could be useful, and choose one fact from the following list: </p><ul><li><p>They owe me a favor, but they’ll be hard to find.</p></li><li><p>They’re going to ask for something in exchange. </p></li><li><p>They’re always in a great deal of trouble. </p></li><li><p>We used to be together. It’s a long story. </p></li><li><p>We didn’t part on great terms.</p></li></ul>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754319141863,
+    "modifiedTime": 1754319354348,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!7KnSOazixXXSnspj"
+}

@@ -1,7 +1,7 @@
 {
   "name": "Sorcerer",
   "type": "class",
-  "_id": "GHSgAO21lmxubPJf",
+  "_id": "DchOzHcWIJE9FKcR",
   "img": "icons/magic/symbols/rune-sigil-horned-white-purple.webp",
   "system": {
     "description": "<p>Not all innate magic users choose to hone their craft, but those who do can become powerful sorcerers. The gifts of these wielders are passed down through families, even if the family is unaware of or reluctant to practice them. A sorcerer’s abilities can range from the elemental to the illusionary and beyond, and many practitioners band together into collectives based on their talents. The act of becoming a formidable sorcerer is not the practice of acquiring power, but learning to cultivate and control the power one already possesses. The magic of a misguided or undisciplined sorcerer is a dangerous</p><p>force indeed.</p>",
@@ -79,9 +79,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754344117010,
-    "modifiedTime": 1754348367973,
+    "createdTime": 1754349743129,
+    "modifiedTime": 1754350005553,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
-  "_key": "!items!GHSgAO21lmxubPJf"
+  "_key": "!items!DchOzHcWIJE9FKcR"
 }

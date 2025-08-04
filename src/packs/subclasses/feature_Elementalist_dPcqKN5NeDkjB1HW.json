@@ -132,9 +132,7 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754346067861,
-        "modifiedTime": 1754346177159,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "lastModifiedBy": null
       },
       "_key": "!items.effects!dPcqKN5NeDkjB1HW.EY87mY6ULfIt3XC8"
     },
@@ -189,9 +187,7 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754346122704,
-        "modifiedTime": 1754346186813,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "lastModifiedBy": null
       },
       "_key": "!items.effects!dPcqKN5NeDkjB1HW.WwibpgaO6Kkks7aZ"
     }
@@ -209,8 +205,8 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754345677066,
-    "modifiedTime": 1754346236616,
+    "createdTime": 1754349507020,
+    "modifiedTime": 1754349507020,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_key": "!items!dPcqKN5NeDkjB1HW"

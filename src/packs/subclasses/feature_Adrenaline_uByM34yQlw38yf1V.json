@@ -1,0 +1,33 @@
+{
+  "folder": "Ej8GpWNX79Fw5XTP",
+  "name": "Adrenaline",
+  "type": "feature",
+  "_id": "uByM34yQlw38yf1V",
+  "img": "icons/magic/unholy/hand-marked-pink.webp",
+  "system": {
+    "description": "<p>While you're Vulnerable, add your level to your damage rolls.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754319984350,
+    "modifiedTime": 1754320021016,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!uByM34yQlw38yf1V"
+}

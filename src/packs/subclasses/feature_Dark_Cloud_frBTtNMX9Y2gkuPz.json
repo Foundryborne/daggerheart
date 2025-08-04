@@ -1,26 +1,25 @@
 {
-  "folder": "oNhnBt8HZ2oaSnSn",
-  "name": "Minor Illusion",
+  "folder": "Ej8GpWNX79Fw5XTP",
+  "name": "Dark Cloud",
   "type": "feature",
-  "_id": "cshTYdtz9yoXYYB3",
-  "img": "icons/magic/unholy/hands-cloud-light-pink.webp",
+  "_id": "frBTtNMX9Y2gkuPz",
+  "img": "icons/magic/air/wind-vortex-swirl-purple.webp",
   "system": {
-    "description": "<p>Make a <strong>Spellcast Roll (10)</strong>. On a success, you create a minor visual illusion no larger than yourself within Close range. This illusion is convincing to anyone at Close range or farther.</p>",
+    "description": "<p>Make <strong>a Spellcast Roll (15)</strong>. On a success, create a temporary dark cloud that covers any area within Close range. Anyone in this cloud can’t see outside of it, and anyone outside of it can’t see in. You’re considered Cloaked from any adversary for whom the cloud blocks line of sight.</p>",
     "resource": null,
     "actions": {
-      "gLjqQ6KgxVeJljRt": {
+      "nIgBwYfAVAJ98lzb": {
         "type": "attack",
-        "_id": "gLjqQ6KgxVeJljRt",
+        "_id": "nIgBwYfAVAJ98lzb",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Make <strong>a Spellcast Roll (15)</strong>. On a success, create a temporary dark cloud that covers any area within Close range. Anyone in this cloud can’t see outside of it, and anyone outside of it can’t see in. You’re considered Cloaked from any adversary for whom the cloud blocks line of sight.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "",
-          "recovery": null,
-          "consumeOnSuccess": false
+          "recovery": null
         },
         "damage": {
           "parts": [],
@@ -34,7 +33,7 @@
         "roll": {
           "type": "spellcast",
           "trait": null,
-          "difficulty": 10,
+          "difficulty": 15,
           "bonus": null,
           "advState": "neutral",
           "diceRolling": {
@@ -51,8 +50,8 @@
           "difficulty": null,
           "damageMod": "none"
         },
-        "name": "Cast",
-        "img": "icons/magic/unholy/hands-cloud-light-pink.webp",
+        "name": "SpellCast: Dark Cloud",
+        "img": "icons/magic/air/wind-vortex-swirl-purple.webp",
         "range": ""
       }
     },
@@ -63,7 +62,7 @@
   "sort": 0,
   "ownership": {
     "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
+    "LgnbNMLaxandgMQq": 3
   },
   "flags": {},
   "_stats": {
@@ -73,9 +72,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754349703843,
-    "modifiedTime": 1754349703843,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "createdTime": 1754319411878,
+    "modifiedTime": 1754319648922,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
-  "_key": "!items!cshTYdtz9yoXYYB3"
+  "_key": "!items!frBTtNMX9Y2gkuPz"
 }

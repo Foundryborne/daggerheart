@@ -1,9 +1,9 @@
 {
-  "folder": "ZTh1tNA9cAwDhaJD",
-  "name": "Whispering Orb",
+  "folder": "07ZMng4a2Z1kdqMq",
+  "name": "Grappling Hook",
   "type": "loot",
-  "_id": "9AM1YsPeuWSysdDo",
-  "img": "icons/magic/unholy/orb-glowing-yellow-purple.webp",
+  "_id": "J1c708r5L9TYckER",
+  "img": "icons/tools/fasteners/chain-hook-grey.webp",
   "system": {
     "description": "",
     "quantity": 1,
@@ -13,7 +13,7 @@
   "sort": 0,
   "ownership": {
     "default": 0,
-    "Q9NoTaEarn3VMS6Z": 3
+    "LgnbNMLaxandgMQq": 3
   },
   "flags": {},
   "_stats": {
@@ -23,9 +23,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754349932502,
-    "modifiedTime": 1754349932502,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "createdTime": 1754325228507,
+    "modifiedTime": 1754325249791,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
-  "_key": "!items!9AM1YsPeuWSysdDo"
+  "_key": "!items!J1c708r5L9TYckER"
 }

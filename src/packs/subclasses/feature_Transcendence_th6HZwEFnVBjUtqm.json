@@ -11,7 +11,9 @@
       "value": 1,
       "max": "1",
       "icon": "",
-      "recovery": "longRest"
+      "recovery": "longRest",
+      "diceStates": {},
+      "dieFaces": "d4"
     },
     "actions": {
       "RIbyJjEkCgqoDmyn": {
@@ -96,9 +98,7 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754346783105,
-        "modifiedTime": 1754347077178,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "lastModifiedBy": null
       },
       "_key": "!items.effects!th6HZwEFnVBjUtqm.zFOpzO3tBJPcZcRc"
     },
@@ -140,9 +140,7 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754346833899,
-        "modifiedTime": 1754346995912,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "lastModifiedBy": null
       },
       "_key": "!items.effects!th6HZwEFnVBjUtqm.cTgSmxkTi89y6sbc"
     },
@@ -191,9 +189,7 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754346850214,
-        "modifiedTime": 1754347017148,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "lastModifiedBy": null
       },
       "_key": "!items.effects!th6HZwEFnVBjUtqm.oWf3iXf4dawdbmzd"
     },
@@ -235,9 +231,7 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754346857540,
-        "modifiedTime": 1754347057456,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "lastModifiedBy": null
       },
       "_key": "!items.effects!th6HZwEFnVBjUtqm.2LCF6lSnWFqNiPs5"
     }
@@ -255,8 +249,8 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754346629777,
-    "modifiedTime": 1754347112374,
+    "createdTime": 1754349515898,
+    "modifiedTime": 1754349515898,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_key": "!items!th6HZwEFnVBjUtqm"

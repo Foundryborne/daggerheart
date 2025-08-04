@@ -1,0 +1,121 @@
+{
+  "folder": "5pExRcJAOymlMX9D",
+  "name": "Rogue's Dodge",
+  "type": "feature",
+  "_id": "hVaaPIjxoextIgSL",
+  "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
+  "system": {
+    "description": "<p><strong>Spend 3 Hope</strong> to gain a +2 bonus to your Evasion until the next time an attack succeeds against you. Otherwise, this bonus lasts until your next rest.</p>",
+    "resource": null,
+    "actions": {
+      "GbQca7YphTh7skHG": {
+        "type": "effect",
+        "_id": "GbQca7YphTh7skHG",
+        "systemPath": "actions",
+        "description": "<p><strong>Spend 3 Hope</strong> to gain a +2 bonus to your Evasion until the next time an attack succeeds against you. Otherwise, this bonus lasts until your next rest.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "hhVjBro2osGDTT5g",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
+        "range": "self"
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Rogue's Dodge",
+      "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
+      "origin": "Compendium.daggerheart.classes.Item.hVaaPIjxoextIgSL",
+      "transfer": false,
+      "_id": "hhVjBro2osGDTT5g",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "any",
+          "range": "self"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.evasion",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><strong>Spend 3 Hope</strong> to gain a +2 bonus to your Evasion until the next time an attack succeeds against you. Otherwise, this bonus lasts until your next rest.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754323997794,
+        "modifiedTime": 1754324067589,
+        "lastModifiedBy": "LgnbNMLaxandgMQq"
+      },
+      "_key": "!items.effects!hVaaPIjxoextIgSL.hhVjBro2osGDTT5g"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754323951411,
+    "modifiedTime": 1754324053728,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!hVaaPIjxoextIgSL"
+}
