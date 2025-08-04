@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "Et9JXoAULa2EAZfa",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Make a <strong>Spellcast Roll </strong>against a target within Very Close range. On a success, they can’t lie to you while they remain within Close range, but they are not compelled to speak. If you ask them a question and they refuse to answer, they must mark a Stress and the effect ends. The target is typically unaware this spell has been cast on them until it causes them to utter the truth.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -93,8 +93,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784529,
-    "modifiedTime": 1754229144317,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754326489820,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "HTv9QEPS466WsstP",
   "sort": 3400000,

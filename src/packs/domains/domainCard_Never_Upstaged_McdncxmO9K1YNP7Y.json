@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "VgADdqYn9nS9G1Us",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you mark 1 or more <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> from an attack, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
     "domain": "grace",
     "recallCost": 2,
     "level": 6,
@@ -20,7 +20,7 @@
         "type": "effect",
         "_id": "R5wGBhMUcnhCsfH2",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -62,7 +62,7 @@
         "type": "effect",
         "_id": "Mne0mqkibrTGwPYR",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -104,7 +104,7 @@
         "type": "effect",
         "_id": "En7AF3g51P9ud9qj",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -146,7 +146,7 @@
         "type": "effect",
         "_id": "WuPJlQ0wSRlGGIkh",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you mark 1 or more Hit Points from an attack, you can <strong>mark a Stress</strong> to place a number of tokens equal to the number of Hit Points you marked on this card. On your next successful attack, gain a +5 bonus to your damage roll for each token on this card, then clear all tokens.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -195,8 +195,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784486,
-    "modifiedTime": 1754229111457,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754327475109,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "McdncxmO9K1YNP7Y",
   "sort": 3400000,
