@@ -6,15 +6,15 @@
     <fieldset class="two-columns">
         <legend>{{localize tabs.settings.label}}</legend>
         <span>{{localize "DAGGERHEART.GENERAL.Tiers.singular"}}</span>
-        {{formField systemFields.tier value=source.system.tier}}
+        {{formInput systemFields.tier value=source.system.tier}}
         <span>{{localize "DAGGERHEART.ITEMS.Weapon.secondaryWeapon"}}</span>
-        {{formField systemFields.secondary value=source.system.secondary}}
+        {{formInput systemFields.secondary value=source.system.secondary}}
         <span>{{localize "DAGGERHEART.GENERAL.Trait.single"}}</span>
         {{formInput systemFields.attack.fields.roll.fields.trait value=document.system.attack.roll.trait name="system.attack.roll.trait" label="DAGGERHEART.GENERAL.Trait.single" localize=true}}
         <span>{{localize "DAGGERHEART.GENERAL.range"}}</span>
         {{formInput systemFields.attack.fields.range value=document.system.attack.range label="Range" name="system.attack.range" localize=true}}
         <span>{{localize "DAGGERHEART.GENERAL.burden"}}</span>
-        {{formField systemFields.burden value=source.system.burden localize=true}}
+        {{formInput systemFields.burden value=source.system.burden localize=true}}
     </fieldset>
 
     <fieldset class="two-columns">

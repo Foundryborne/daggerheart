@@ -11,6 +11,7 @@ export default class RegisterHandlebarsHelpers {
             damageSymbols: this.damageSymbols,
             rollParsed: this.rollParsed,
             hasProperty: foundry.utils.hasProperty,
+            getProperty: foundry.utils.getProperty,
             setVar: this.setVar,
             empty: this.empty
         });

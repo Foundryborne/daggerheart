@@ -5,7 +5,7 @@ export class DHActionRollData extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
             type: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.GENERAL.rollTypes }),
-            trait: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.ACTOR.abilities }),
+            trait: new fields.StringField({ nullable: true, initial: null, choices: CONFIG.DH.ACTOR.abilities, label: "DAGGERHEART.GENERAL.Trait.single" }),
             difficulty: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
             bonus: new fields.NumberField({ nullable: true, initial: null, integer: true }),
             advState: new fields.StringField({

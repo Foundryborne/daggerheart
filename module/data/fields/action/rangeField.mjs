@@ -5,7 +5,8 @@ export default class RangeField extends fields.StringField {
         const options = {
             choices: CONFIG.DH.GENERAL.range,
             required: false,
-            blank: true
+            blank: true,
+            label: "DAGGERHEART.GENERAL.range"
         };
         super(options, context);
     }

@@ -5,6 +5,7 @@ import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
+import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -25,7 +26,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
-            useDowntime: this.useDowntime
+            useDowntime: this.useDowntime,
+            tempBrowser: CharacterSheet.#tempBrowser,
         },
         window: {
             resizable: true
@@ -705,6 +707,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
         await item.update({
             [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
         });
+    }
+
+    /**
+     * Temp
+     */
+    static async #tempBrowser(_, target) {
+        new ItemBrowser().render({ force: true });
     }
 
     /**

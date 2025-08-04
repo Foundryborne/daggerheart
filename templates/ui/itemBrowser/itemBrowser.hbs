@@ -1,0 +1,80 @@
+<div>
+    {{#if menu.data }}
+        <div class="menu-path">
+            {{#each menu.path}}
+                {{#unless (eq this "folders")}}
+                    <span>{{this}}</span>
+                    {{#unless @last}}
+                        <span class="path-link"> > </span>
+                    {{/unless}}
+                {{/unless}}
+            {{/each}}
+        </div>
+        <fieldset class="item-filter glassy">
+            <div class="filter-header">
+                <input type="search" name="search" class="search-browser" placeholder="Search...">
+                {{#if fieldFilter}}
+                    <button type="button" data-action="expandContent">Filters</button>
+                {{/if}}
+                <button type="button" data-action="resetFilters">Reset</button>
+            </div>
+            <div class="filter-content extensible">
+                <div class="wrapper">
+                    {{#each fieldFilter}}
+                        {{#if choices }}
+                            <div class="form-group">
+                                <label>{{localize label}}</label>
+                                <div class="form-fields">
+                                    <select name="{{key}}">
+                                        {{selectOptions choices valueAttr="value" blank="" }}
+                                    </select>
+                                </div>
+                            </div>
+                        {{else}}
+                            {{#if filtered }}
+                                {{formField field localize=true blank="" choices=(@root.formatChoices this) valueAttr="value" name=key}}
+                            {{else}}
+                                {{#if field.label}}
+                                    {{formField field localize=true blank="" name=key}}
+                                {{else}}
+                                    {{formField field localize=true blank="" name=key label=label}}
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </fieldset>
+        {{!-- <div class="item-list-container"> --}}
+            {{#if menu.data.columns.length}}
+                <div class="item-list-header">
+                    <div></div>
+                    <div>Name</div>
+                    {{#each menu.data.columns}}
+                        <div>{{label}}</div>
+                    {{/each}}
+                </div>
+            {{/if}}
+            <div class="item-list">
+                {{#each items}}
+                    <div class="item-container" data-item-uuid="{{uuid}}" draggable="true">
+                        <div class="item-header">
+                            <div data-action="expandContent">
+                                <img src="{{img}}" data-item-key="img">
+                                <div data-item-key="name">{{name}}</div>
+                                {{#each ../menu.data.columns}}
+                                    <div data-item-key="{{@key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{label}}{{/with}}</div>
+                                {{/each}}
+                            </div>
+                        </div>
+                        <div class="item-desc extensible">
+                            <div class="wrapper">{{{system.description}}}</div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{!-- </div> --}}
+    {{else}}
+        <h2 class="welcome-message">Welcome to DAGGERHEART Items Browser</h2>
+    {{/if}}
+</div>
