@@ -1863,6 +1863,7 @@
             "actorName": "Actor Name",
             "amount": "Amount",
             "any": "Any",
+            "armor": "Armor",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
@@ -2098,6 +2099,10 @@
                             "label": "Effect Range Dependent",
                             "hint": "Effects with defined range dependency will automatically turn on/off depending on range"
                         }
+                    },
+                    "resourceScrollTexts": {
+                        "label": "Show Resource Change Scrolltexts",
+                        "hint": "When a character is damaged, uses armor etc, a scrolling text will briefly appear by the token to signify this."
                     }
                 }
             },

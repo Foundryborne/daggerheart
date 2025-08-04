@@ -40,6 +40,11 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 choices: CONFIG.DH.GENERAL.ruleChoice,
                 initial: CONFIG.DH.GENERAL.ruleChoice.onWithToggle.id,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.damageReductionRulesDefault.label'
+            }),
+            resourceScrollTexts: new fields.BooleanField({
+                required: true,
+                initial: true,
+                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.resourceScrollTexts.label'
             })
         };
     }

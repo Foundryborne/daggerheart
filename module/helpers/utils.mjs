@@ -324,3 +324,34 @@ export const arraysEqual = (a, b) =>
     [...new Set([...a, ...b])].every(v => a.filter(e => e === v).length === b.filter(e => e === v).length);
 
 export const setsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
+
+export function getScrollTextData(resources, resource, key) {
+    const { reversed, label } = CONFIG.DH.ACTOR.scrollingTextResource[key];
+    const { BOTTOM, TOP } = CONST.TEXT_ANCHOR_POINTS;
+    const increased = resources[key].value < resource.value;
+    const value = -1 * (resources[key].value - resource.value);
+
+    const text = `${game.i18n.localize(label)} ${value.signedString()}`;
+
+    const stroke = increased ? (reversed ? 0xffffff : 0x000000) : reversed ? 0x000000 : 0xffffff;
+    const fill = increased ? (reversed ? 0x0032b1 : 0xffe760) : reversed ? 0xffe760 : 0x0032b1;
+    const direction = increased ? (reversed ? BOTTOM : TOP) : reversed ? TOP : BOTTOM;
+
+    return { text, stroke, fill, direction };
+}
+
+export function createScrollText(actor, optionsData) {
+    if (actor && optionsData?.length) {
+        actor.getDependentTokens().forEach(token => {
+            optionsData.forEach(data => {
+                const { text, ...options } = data;
+                canvas.interface.createScrollingText(token.getCenterPoint(), data.text, {
+                    duration: 2000,
+                    distance: token.h,
+                    jitter: 0,
+                    ...options
+                });
+            });
+        });
+    }
+}
