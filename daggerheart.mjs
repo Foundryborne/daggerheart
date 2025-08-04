@@ -19,6 +19,7 @@ import {
 import { placeables } from './module/canvas/_module.mjs';
 import { registerRollDiceHooks } from './module/dice/dhRoll.mjs';
 import './node_modules/@yaireo/tagify/dist/tagify.css';
+import TemplateManager from './module/documents/templateManager.mjs';
 
 Hooks.once('init', () => {
     CONFIG.DH = SYSTEM;
@@ -138,6 +139,8 @@ Hooks.once('init', () => {
     CONFIG.ui.resources = applications.ui.DhFearTracker;
     CONFIG.ux.ContextMenu = applications.ux.DHContextMenu;
     CONFIG.ux.TooltipManager = documents.DhTooltipManager;
+
+    CONFIG.ux.TemplateManager = new TemplateManager();
 
     game.socket.on(`system.${SYSTEM.id}`, socketRegistration.handleSocketEvent);
 
