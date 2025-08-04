@@ -4,11 +4,36 @@
   "type": "domainCard",
   "folder": "wWL9mV6i2EGX5xHS",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per rest, when a creature within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range would deal damage to you, you can avoid the attack and safely move out of Melee range of the enemy. </p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per rest, when a creature within Melee range would deal damage to you, you can avoid the attack and safely move out of Melee range of the enemy.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 3,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "lcEmS1XXO5wH54cQ": {
+        "type": "effect",
+        "_id": "lcEmS1XXO5wH54cQ",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">Once per rest, when a creature within Melee range would deal damage to you, you can avoid the attack and safely move out of Melee range of the enemy.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Avoid",
+        "img": "icons/skills/movement/feet-winged-boots-brown.webp",
+        "range": "melee"
+      }
+    }
   },
   "flags": {},
   "_stats": {
@@ -19,8 +44,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784509,
-    "modifiedTime": 1754244800614,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304188850,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "5bBU9jWHOuOY12lR",
   "sort": 3400000,

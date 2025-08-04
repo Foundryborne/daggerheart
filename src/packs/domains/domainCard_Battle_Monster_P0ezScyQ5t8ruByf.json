@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7pKKYgRQAKlQAksV",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you make a successful attack against an adversary, you can <strong>mark 4 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to force the target to mark a number of <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> equal to the number of Hit Points you currently have marked instead of rolling for damage.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When you make a successful attack against an adversary, you can <strong>mark 4 Stress</strong> to force the target to mark a number of Hit Points equal to the number of Hit Points you currently have marked instead of rolling for damage.</p>",
     "domain": "blade",
     "recallCost": 0,
     "level": 10,
@@ -14,10 +14,19 @@
         "type": "effect",
         "_id": "lekCIrTCQ2FhwGd1",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">When you make a successful attack against an adversary, you can <strong>mark 4 Stress</strong> to force the target to mark a number of Hit Points equal to the number of Hit Points you currently have marked instead of rolling for damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 4,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -44,8 +53,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784414,
-    "modifiedTime": 1754248024583,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304799641,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "P0ezScyQ5t8ruByf",
   "sort": 3400000,

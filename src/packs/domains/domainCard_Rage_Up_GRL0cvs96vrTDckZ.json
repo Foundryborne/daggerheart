@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EiP5dLozOFZKIeWN",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Before you make an attack, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to gain a bonus to your damage roll equal to twice your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"strength\" nexus=\"daggerheart\">Strength</tooltip>.        </p><p class=\"Body-Foundation\">You can Rage Up twice per attack.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Before you make an attack, you can <strong>mark a Stress</strong> to gain a bonus to your damage roll equal to twice your Strength.</p><p class=\"Body-Foundation\">You can Rage Up twice per attack.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 6,
@@ -95,8 +95,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784496,
-    "modifiedTime": 1754246820890,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304556054,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "GRL0cvs96vrTDckZ",
   "sort": 3400000,
@@ -105,7 +105,7 @@
       "name": "Rage Up (1)",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
       "origin": "Compendium.daggerheart.domains.Item.GRL0cvs96vrTDckZ",
-      "transfer": false,
+      "transfer": true,
       "_id": "bq1MhcmoP6Wo5CXF",
       "type": "base",
       "system": {
@@ -124,7 +124,7 @@
           "priority": null
         }
       ],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -147,8 +147,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754246159246,
-        "modifiedTime": 1754246767854,
-        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+        "modifiedTime": 1754304575352,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!GRL0cvs96vrTDckZ.bq1MhcmoP6Wo5CXF"
     },
@@ -156,7 +156,7 @@
       "name": "Rage Up (2)",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
       "origin": "Compendium.daggerheart.domains.Item.GRL0cvs96vrTDckZ",
-      "transfer": false,
+      "transfer": true,
       "_id": "t6SIjQxB6UBUJ98f",
       "type": "base",
       "system": {
@@ -175,7 +175,7 @@
           "priority": null
         }
       ],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -198,8 +198,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754246675511,
-        "modifiedTime": 1754246707418,
-        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+        "modifiedTime": 1754304583724,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!GRL0cvs96vrTDckZ.t6SIjQxB6UBUJ98f"
     }

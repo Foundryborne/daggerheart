@@ -81,7 +81,65 @@
   },
   "_id": "JwfhtgmmuRxg4zhI",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Shrug It Off",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "5DTQDVU8Jy5Nnp5V",
+      "img": "icons/magic/defensive/shield-barrier-deflect-teal.webp",
+      "changes": [
+        {
+          "key": "system.rules.damageReduction.stressDamageReduction.any.cost",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "system.rules.damageReduction.stressDamageReduction.any.enabled",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation\">When you would take damage, you can <strong>mark a Stress</strong> to reduce the severity of the damage by one threshold. When you do, roll a <strong>d6</strong>. On a result of 3 or lower, place this card in your vault.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754306645903,
+        "modifiedTime": 1754306703368,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!JwfhtgmmuRxg4zhI.5DTQDVU8Jy5Nnp5V"
+    }
+  ],
   "ownership": {
     "default": 0
   },

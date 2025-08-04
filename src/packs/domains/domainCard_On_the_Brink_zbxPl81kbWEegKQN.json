@@ -24,7 +24,59 @@
   },
   "_id": "zbxPl81kbWEegKQN",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "On The Brink",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "UJTsJlnhi5Zi0XQ2",
+      "img": "icons/magic/life/heart-cross-blue.webp",
+      "changes": [
+        {
+          "key": "system.rules.damageReduction.thresholdImmunities.minor",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body\">When you have 2 or fewer Hit Points unmarked, you don’t take Minor damage.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754303484332,
+        "modifiedTime": 1754303570504,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!zbxPl81kbWEegKQN.UJTsJlnhi5Zi0XQ2"
+    }
+  ],
   "ownership": {
     "default": 0
   },

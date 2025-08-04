@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "me7ywrVh38j6T8Sm",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, you can go into a <em>Frenzy</em> until there are no more adversaries within sight. </p><p class=\"Body-Foundation\">While <em>Frenzied</em>, you can’t use <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slots</tooltip>, and you gain a +10 bonus to your damage rolls and a +8 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe</tooltip> damage threshold.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, you can go into a <em>Frenzy</em> until there are no more adversaries within sight.</p><p class=\"Body-Foundation\">While <em>Frenzied</em>, you can’t use Armor Slots, and you gain a +10 bonus to your damage rolls and a +8 bonus to your Severe damage threshold.</p>",
     "domain": "blade",
     "recallCost": 3,
     "level": 8,
@@ -49,8 +49,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784459,
-    "modifiedTime": 1754247528112,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304635322,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "MMl7abdGRLl7TJLO",
   "sort": 3400000,
@@ -72,19 +72,13 @@
       },
       "changes": [
         {
-          "key": "system.bonuses.damage.primaryWeapon.bonus",
-          "mode": 2,
-          "value": "10",
-          "priority": null
-        },
-        {
           "key": "system.bonuses.damage.physical.bonus",
           "mode": 2,
           "value": "10",
           "priority": null
         },
         {
-          "key": "system.bonuses.damage.secondaryWeapon.bonus",
+          "key": "system.bonuses.damage.magical.bonus",
           "mode": 2,
           "value": "10",
           "priority": null
@@ -93,6 +87,12 @@
           "key": "system.damageThresholds.severe",
           "mode": 2,
           "value": "8",
+          "priority": null
+        },
+        {
+          "key": "system.rules.damageReduction.disabledArmor",
+          "mode": 5,
+          "value": "1",
           "priority": null
         }
       ],
@@ -106,7 +106,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p class=\"Body-Foundation\">Once per long rest, you can go into a <em>Frenzy</em> until there are no more adversaries within sight.</p><p class=\"Body-Foundation\">While <em>Frenzied</em>, you can’t use Armor Slots, and you gain a +10 bonus to your damage rolls and a +8 bonus to your Severe damage threshold.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -119,8 +119,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754247528086,
-        "modifiedTime": 1754247639266,
-        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+        "modifiedTime": 1754304880762,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!MMl7abdGRLl7TJLO.1POoAgObPOWDpUco"
     }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "yalAnCU3SndrYImF",
   "system": {
-    "description": "<p><p class=\"Body\">While you are wearing <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor\" nexus=\"daggerheart\">armor</tooltip>, gain a +2 bonus to your damage thresholds.</p></p>",
+    "description": "<p class=\"Body\">While you are wearing armor, gain a +2 bonus to your damage thresholds.</p>",
     "domain": "blade",
     "recallCost": 0,
     "level": 4,
@@ -19,8 +19,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784458,
-    "modifiedTime": 1754244852896,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304268859,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "oVa49lI107eZILZr",
   "sort": 3400000,

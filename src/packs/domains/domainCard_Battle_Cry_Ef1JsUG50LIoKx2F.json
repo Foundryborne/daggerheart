@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "me7ywrVh38j6T8Sm",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, while you’re charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> and gain a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>. Additionally, your allies gain <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack rolls</tooltip> until you or an ally rolls a failure with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, while you’re charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a Stress and gain a Hope. Additionally, your allies gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
     "domain": "blade",
     "recallCost": 2,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "jakoB9n8KSgvYVZv",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per long rest, while you’re charging into danger, you can muster a rousing call that inspires your allies. All allies who can hear you each clear a Stress and gain a Hope. Additionally, your allies gain advantage on attack rolls until you or an ally rolls a failure with Fear.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -119,8 +119,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784413,
-    "modifiedTime": 1754247384173,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304622040,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "Ef1JsUG50LIoKx2F",
   "sort": 3400000,

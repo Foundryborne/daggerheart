@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EiP5dLozOFZKIeWN",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> when you would make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"death-move\" nexus=\"daggerheart\">Death Move</tooltip>, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> instead.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest when you would make a Death Move, you can <strong>spend a Hope</strong> to clear a Hit Point instead.</p>",
     "domain": "blade",
     "recallCost": 2,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "iucXKML1P8Q7nmcp",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per long rest when you would make a Death Move, you can <strong>spend a Hope</strong> to clear a Hit Point instead.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -89,8 +89,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784415,
-    "modifiedTime": 1754246132892,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304541810,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "NeEOghgfyDUBTwBG",
   "sort": 3400000,

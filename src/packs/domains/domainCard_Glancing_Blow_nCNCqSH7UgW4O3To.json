@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "HAGbPLHwm0UozDeG",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you fail an attack, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to deal weapon damage using half your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When you fail an attack, you can <strong>mark a Stress</strong> to deal weapon damage using half your Proficiency.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "damage",
         "_id": "DUojhK0OtvsotiE6",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">When you fail an attack, you can <strong>mark a Stress</strong> to deal weapon damage using half your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -57,8 +57,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784462,
-    "modifiedTime": 1754247275114,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304608102,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "nCNCqSH7UgW4O3To",
   "sort": 3400000,

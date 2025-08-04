@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "wWL9mV6i2EGX5xHS",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">You can use a different <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"character-traits\" nexus=\"daggerheart\">character trait</tooltip> for an equipped weapon, rather than the trait the weapon calls for. </p><p class=\"Body-Foundation\">When you deal damage, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to use the maximum result of one of your damage dice instead of rolling it.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">You can use a different character trait for an equipped weapon, rather than the trait the weapon calls for.</p><p class=\"Body-Foundation\">When you deal damage, you can <strong>mark a Stress</strong> to use the maximum result of one of your damage dice instead of rolling it.</p>",
     "domain": "blade",
     "recallCost": 1,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "XAaygVE635axvBX7",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">You can use a different character trait for an equipped weapon, rather than the trait the weapon calls for.</p><p class=\"Body-Foundation\">When you deal damage, you can <strong>mark a Stress</strong> to use the maximum result of one of your damage dice instead of rolling it.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -53,8 +53,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784541,
-    "modifiedTime": 1754244901236,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304293769,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "wQ53ImDswEHv5SGQ",
   "sort": 3400000,
