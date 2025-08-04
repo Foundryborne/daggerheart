@@ -1,0 +1,114 @@
+{
+  "folder": "w6agWszBQCnHTo5p",
+  "name": "Vanishing Act",
+  "type": "feature",
+  "_id": "iyIg1VLwO8C6jvFZ",
+  "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+  "system": {
+    "description": "<p><strong>Mark a Stress</strong> to become Cloaked at any time. When Cloaked from this feature, you automatically clear the Restrained condition if you have it. You remain Cloaked in this way until you roll with Fear or until your next rest.</p>",
+    "resource": null,
+    "actions": {
+      "BjAECQULugmbVqXU": {
+        "type": "effect",
+        "_id": "BjAECQULugmbVqXU",
+        "systemPath": "actions",
+        "description": "<p><strong>Mark a Stress</strong> to become Cloaked at any time. When Cloaked from this feature, you automatically clear the Restrained condition if you have it. You remain Cloaked in this way until you roll with Fear or until your next rest.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "czrwqq44sEr0uJ8O",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Vanishing Act: Cloaked",
+      "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.iyIg1VLwO8C6jvFZ",
+      "transfer": false,
+      "_id": "czrwqq44sEr0uJ8O",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>When Cloaked from this feature, you automatically clear the Restrained condition if you have it. You remain Cloaked in this way until you roll with Fear or until your next rest.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754322584884,
+        "modifiedTime": 1754322625710,
+        "lastModifiedBy": "LgnbNMLaxandgMQq"
+      },
+      "_key": "!items.effects!iyIg1VLwO8C6jvFZ.czrwqq44sEr0uJ8O"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754321406972,
+    "modifiedTime": 1754322584899,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!iyIg1VLwO8C6jvFZ"
+}

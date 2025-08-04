@@ -1,0 +1,119 @@
+{
+  "folder": "5pExRcJAOymlMX9D",
+  "name": "Sneak Attack",
+  "type": "feature",
+  "_id": "5QqpEwmwkPfZHpMW",
+  "img": "icons/skills/melee/strike-dagger-skull-white.webp",
+  "system": {
+    "description": "<p>When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of d6s equal to your tier to your damage roll. </p><ul><li><p>Level 1 -&gt; Tier 1</p></li><li><p>Levels 2–4 -&gt; Tier 2 </p></li><li><p>Levels 5–7 -&gt; Tier 3 </p></li><li><p>Levels 8–10 -&gt; Tier 4</p></li></ul>",
+    "resource": null,
+    "actions": {
+      "SfctrIW5KjH4nq5G": {
+        "type": "effect",
+        "_id": "SfctrIW5KjH4nq5G",
+        "systemPath": "actions",
+        "description": "<p>When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of d6s equal to your tier to your damage roll.</p><ul><li><p>Level 1 -&gt; Tier 1</p></li><li><p>Levels 2–4 -&gt; Tier 2</p></li><li><p>Levels 5–7 -&gt; Tier 3</p></li><li><p>Levels 8–10 -&gt; Tier 4</p></li></ul>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "380jFzw756qSy5ae",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use Sneak Attack",
+        "img": "icons/skills/melee/strike-dagger-skull-white.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Sneak Attack",
+      "img": "icons/skills/melee/strike-dagger-skull-white.webp",
+      "origin": "Compendium.daggerheart.classes.Item.5QqpEwmwkPfZHpMW",
+      "transfer": true,
+      "_id": "380jFzw756qSy5ae",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.physical.dice",
+          "mode": 2,
+          "value": "@system.tierd6",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.magical.dice",
+          "mode": 2,
+          "value": "@system.tierd6",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>When you succeed on an attack while Cloaked or while an ally is within Melee range of your target, add a number of d6s equal to your tier to your damage roll.</p><ul><li><p>Level 1 -&gt; Tier 1</p></li><li><p>Levels 2–4 -&gt; Tier 2</p></li><li><p>Levels 5–7 -&gt; Tier 3</p></li><li><p>Levels 8–10 -&gt; Tier 4</p></li></ul>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754324821680,
+        "modifiedTime": 1754325658116,
+        "lastModifiedBy": "LgnbNMLaxandgMQq"
+      },
+      "_key": "!items.effects!5QqpEwmwkPfZHpMW.380jFzw756qSy5ae"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754324216454,
+    "modifiedTime": 1754324890997,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!5QqpEwmwkPfZHpMW"
+}

@@ -1,12 +1,12 @@
 {
   "type": "Item",
-  "folder": "Br5kHZnnjGzz4RJ9",
-  "name": "Guardian",
+  "folder": null,
+  "name": "Rogue",
   "color": null,
   "sorting": "m",
-  "_id": "DO1MpBfTgnAblNNz",
+  "_id": "36dtJE1CPjPt76pP",
   "description": "",
-  "sort": 312500,
+  "sort": 550000,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -15,9 +15,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754241974524,
-    "modifiedTime": 1754320935429,
+    "createdTime": 1754322803534,
+    "modifiedTime": 1754322806911,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
-  "_key": "!folders!DO1MpBfTgnAblNNz"
+  "_key": "!folders!36dtJE1CPjPt76pP"
 }

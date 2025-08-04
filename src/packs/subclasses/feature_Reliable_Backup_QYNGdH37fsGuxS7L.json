@@ -1,0 +1,33 @@
+{
+  "folder": "w6agWszBQCnHTo5p",
+  "name": "Reliable Backup",
+  "type": "feature",
+  "_id": "QYNGdH37fsGuxS7L",
+  "img": "icons/magic/control/energy-stream-link-white.webp",
+  "system": {
+    "description": "<p>You can use your “Contacts Everywhere” feature three times per session. The following options are added to the list of benefits you can choose from when you use that feature: </p><ul><li><p>When you mark 1 or more Hit Points, they can rush out to shield you, reducing the Hit Points marked by 1.</p></li><li><p>When you make a Presence Roll in conversation, they back you up. You can roll a d20 as your Hope Die.</p></li></ul>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754322198870,
+    "modifiedTime": 1754322328469,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!QYNGdH37fsGuxS7L"
+}
