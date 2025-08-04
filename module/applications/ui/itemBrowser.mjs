@@ -36,7 +36,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             resetFilters: this.resetFilters
         },
         position: {
-            width: 1000,
+            width: 1100,
             height: 800
             // top: "200px",
             // left: "120px"
