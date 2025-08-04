@@ -103,7 +103,7 @@ class DhCountdown extends foundry.abstract.DataModel {
                         required: true,
                         choices: CONFIG.DH.GENERAL.countdownTypes,
                         initial: CONFIG.DH.GENERAL.countdownTypes.custom.id,
-                        label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.type.value.label'
+                        label: 'DAGGERHEART.GENERAL.type'
                     }),
                     label: new fields.StringField({
                         label: 'DAGGERHEART.APPLICATIONS.Countdown.FIELDS.countdowns.element.progress.type.label.label'

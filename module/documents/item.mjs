@@ -112,9 +112,9 @@ export default class DHItem extends foundry.documents.Item {
      * Generate a localized label array for this item.
      * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
      */
-    getLabels() {
+    _getLabels() {
         const labels = [];
-        if (this.system.getLabels) labels.push(...this.system.getLabels());
+        if (this.system._getLabels) labels.push(...this.system._getLabels());
         return labels;
     }
 
