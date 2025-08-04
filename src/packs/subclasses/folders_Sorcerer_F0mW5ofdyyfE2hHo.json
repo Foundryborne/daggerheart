@@ -1,12 +1,12 @@
 {
   "type": "Item",
-  "folder": "S4dTxJcuo1VW8o1E",
-  "name": "Rogue",
+  "folder": null,
+  "name": "Sorcerer",
   "color": null,
-  "sorting": "m",
-  "_id": "5pExRcJAOymlMX9D",
+  "sorting": "a",
+  "_id": "F0mW5ofdyyfE2hHo",
   "description": "",
-  "sort": 368750,
+  "sort": 0,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -15,8 +15,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "lastModifiedBy": "LgnbNMLaxandgMQq",
-    "modifiedTime": 1754323902514
+    "createdTime": 1754345488597,
+    "modifiedTime": 1754345488597,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
-  "_key": "!folders!5pExRcJAOymlMX9D"
+  "_key": "!folders!F0mW5ofdyyfE2hHo"
 }

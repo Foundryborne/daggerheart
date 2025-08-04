@@ -1,9 +1,9 @@
 {
-  "folder": "07ZMng4a2Z1kdqMq",
-  "name": "Set of Forgery Tools",
+  "folder": "ZTh1tNA9cAwDhaJD",
+  "name": "Family Heirloom",
   "type": "loot",
-  "_id": "yqoO5aqDd4aD13pc",
-  "img": "icons/tools/hand/lockpicks-steel-grey.webp",
+  "_id": "Yum0uBtnEtTBcpax",
+  "img": "icons/commodities/treasure/trinket-totem-bone-green.webp",
   "system": {
     "description": "",
     "quantity": 1,
@@ -13,7 +13,7 @@
   "sort": 0,
   "ownership": {
     "default": 0,
-    "LgnbNMLaxandgMQq": 3
+    "Q9NoTaEarn3VMS6Z": 3
   },
   "flags": {},
   "_stats": {
@@ -23,9 +23,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754325190389,
-    "modifiedTime": 1754325209078,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "createdTime": 1754345223656,
+    "modifiedTime": 1754345262865,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
-  "_key": "!items!yqoO5aqDd4aD13pc"
+  "_key": "!items!Yum0uBtnEtTBcpax"
 }
