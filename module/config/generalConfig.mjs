@@ -2,6 +2,25 @@ export const compendiumJournals = {
     welcome: 'Compendium.daggerheart.journals.JournalEntry.g7NhKvwltwafmMyR'
 };
 
+export const ruleChoice = {
+    on: {
+        id: 'on',
+        label: 'DAGGERHEART.CONFIG.RuleChoice.on'
+    },
+    of: {
+        id: 'off',
+        label: 'DAGGERHEART.CONFIG.RuleChoice.off'
+    },
+    onWithToggle: {
+        id: 'onWithToggle',
+        label: 'DAGGERHEART.CONFIG.RuleChoice.onWithToggle'
+    },
+    offWithToggle: {
+        id: 'offWithToggle',
+        label: 'DAGGERHEART.CONFIG.RuleChoice.offWithToggle'
+    }
+};
+
 export const range = {
     self: {
         id: 'self',

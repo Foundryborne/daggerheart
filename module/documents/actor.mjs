@@ -464,14 +464,17 @@ export default class DhpActor extends Actor {
     }
 
     #canReduceDamage(hpDamage, type) {
+        const { stressDamageReduction, disabledArmor } = this.system.rules.damageReduction;
+        if (disabledArmor) return false;
+
         const availableStress = this.system.resources.stress.max - this.system.resources.stress.value;
 
         const canUseArmor =
             this.system.armor &&
             this.system.armor.system.marks.value < this.system.armorScore &&
             type.every(t => this.system.armorApplicableDamageTypes[t] === true);
-        const canUseStress = Object.keys(this.system.rules.damageReduction.stressDamageReduction).reduce((acc, x) => {
-            const rule = this.system.rules.damageReduction.stressDamageReduction[x];
+        const canUseStress = Object.keys(stressDamageReduction).reduce((acc, x) => {
+            const rule = stressDamageReduction[x];
             if (damageKeyToNumber(x) <= hpDamage) return acc || (rule.enabled && availableStress >= rule.cost);
             return acc;
         }, false);

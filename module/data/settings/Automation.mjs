@@ -34,6 +34,12 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     initial: true,
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.effects.rangeDependent.label'
                 })
+            }),
+            damageReductionRulesDefault: new fields.StringField({
+                required: true,
+                choices: CONFIG.DH.GENERAL.ruleChoice,
+                initial: CONFIG.DH.GENERAL.ruleChoice.onWithToggle.id,
+                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.damageReductionRulesDefault.label'
             })
         };
     }

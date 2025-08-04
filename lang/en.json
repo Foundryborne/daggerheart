@@ -318,6 +318,7 @@
             "DamageReduction": {
                 "armorMarks": "Armor Marks",
                 "armorWithStress": "Spend 1 stress to use an extra mark",
+                "thresholdImmunities": "Threshold Immunities",
                 "stress": "Stress",
                 "stressReduction": "Reduce By Stress",
                 "title": "Damage Reduction",
@@ -951,6 +952,12 @@
                 "diceSet": {
                     "name": "Dice Set"
                 }
+            },
+            "RuleChoice": {
+                "off": "Off",
+                "offWithToggle": "Off With Toggle",
+                "on": "On",
+                "onWithToggle": "On With Toggle"
             },
             "SelectAction": {
                 "selectType": "Select Action Type",
@@ -1662,7 +1669,8 @@
                 "major": "Major",
                 "severe": "Severe",
                 "majorThreshold": "Major Damage Threshold",
-                "severeThreshold": "Severe Damage Threshold"
+                "severeThreshold": "Severe Damage Threshold",
+                "with": "{threshold} Damage Threshold"
             },
             "Dice": {
                 "single": "Die",
@@ -1772,6 +1780,10 @@
                         "hint": "If this value is set you can use up to that much stress to spend additional Armor Marks beyond your normal maximum."
                     },
                     "stress": {
+                        "any": {
+                            "label": "Stress Damage Reduction: Any",
+                            "hint": "The cost in stress you can pay to reduce incoming damage down one threshold"
+                        },
                         "severe": {
                             "label": "Stress Damage Reduction: Severe",
                             "hint": "The cost in stress you can pay to reduce severe damage down to major."
@@ -1850,6 +1862,7 @@
             },
             "actorName": "Actor Name",
             "amount": "Amount",
+            "any": "Any",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
@@ -2059,6 +2072,10 @@
                     "hint": "Automatically increase the GM's fear pool on a fear duality roll result."
                 },
                 "FIELDS": {
+                    "damageReductionRulesDefault": {
+                        "label": "Damage Reduction Rules Default",
+                        "hint": "Wether using armor and reductions has rules on by default"
+                    },
                     "hopeFear": {
                         "label": "Hope & Fear",
                         "gm": { "label": "GM" },
@@ -2312,7 +2329,9 @@
                 "appliedEvenIfSuccessful": "Applied even if save succeeded",
                 "diceIsRerolled": "The dice has been rerolled (x{times})",
                 "pendingSaves": "Pending Reaction Rolls",
-                "openSheetSettings": "Open Settings"
+                "openSheetSettings": "Open Settings",
+                "rulesOn": "Rules On",
+                "rulesOff": "Rules Off"
             }
         }
     }

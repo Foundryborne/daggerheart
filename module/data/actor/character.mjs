@@ -239,7 +239,8 @@ export default class DhCharacter extends BaseDataActor {
                     stressDamageReduction: new fields.SchemaField({
                         severe: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.severe'),
                         major: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.major'),
-                        minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor')
+                        minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor'),
+                        any: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.any')
                     }),
                     increasePerArmorMark: new fields.NumberField({
                         integer: true,
@@ -248,7 +249,11 @@ export default class DhCharacter extends BaseDataActor {
                         hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
                     }),
                     magical: new fields.BooleanField({ initial: false }),
-                    physical: new fields.BooleanField({ initial: false })
+                    physical: new fields.BooleanField({ initial: false }),
+                    thresholdImmunities: new fields.SchemaField({
+                        minor: new fields.BooleanField({ initial: false })
+                    }),
+                    disabledArmor: new fields.BooleanField({ intial: false })
                 }),
                 attack: new fields.SchemaField({
                     damage: new fields.SchemaField({

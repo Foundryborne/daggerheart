@@ -10,14 +10,18 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.reject = reject;
         this.actor = actor;
         this.damage = damage;
+        this.rulesDefault = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.Automation
+        ).damageReductionRulesDefault;
+
+        this.rulesOn = [CONFIG.DH.GENERAL.ruleChoice.on.id, CONFIG.DH.GENERAL.ruleChoice.onWithToggle.id].includes(
+            this.rulesDefault
+        );
 
         const canApplyArmor = damageType.every(t => actor.system.armorApplicableDamageTypes[t] === true);
-        const maxArmorMarks = canApplyArmor
-            ? Math.min(
-                  actor.system.armorScore - actor.system.armor.system.marks.value,
-                  actor.system.rules.damageReduction.maxArmorMarked.value
-              )
-            : 0;
+        const availableArmor = actor.system.armorScore - actor.system.armor.system.marks.value;
+        const maxArmorMarks = canApplyArmor ? availableArmor : 0;
 
         const armor = [...Array(maxArmorMarks).keys()].reduce((acc, _) => {
             acc[foundry.utils.randomID()] = { selected: false };
@@ -42,6 +46,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
                     acc[damage] = {
                         cost: dr.cost,
                         selected: false,
+                        any: key === 'any',
                         from: getDamageLabel(damage),
                         to: getDamageLabel(damage - 1)
                     };
@@ -51,16 +56,28 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             },
             null
         );
+
+        this.thresholdImmunities = Object.keys(actor.system.rules.damageReduction.thresholdImmunities).reduce(
+            (acc, key) => {
+                if (actor.system.rules.damageReduction.thresholdImmunities[key])
+                    acc[damageKeyToNumber(key)] = game.i18n.format(`DAGGERHEART.GENERAL.DamageThresholds.with`, {
+                        threshold: game.i18n.localize(`DAGGERHEART.GENERAL.DamageThresholds.${key}`)
+                    });
+                return acc;
+            },
+            {}
+        );
     }
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
         classes: ['daggerheart', 'views', 'damage-reduction'],
         position: {
-            width: 240,
+            width: 280,
             height: 'auto'
         },
         actions: {
+            toggleRules: this.toggleRules,
             setMarks: this.setMarks,
             useStressReduction: this.useStressReduction,
             takeDamage: this.takeDamage
@@ -89,6 +106,12 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
+        context.rulesOn = this.rulesOn;
+        context.rulesToggleable = [
+            CONFIG.DH.GENERAL.ruleChoice.onWithToggle.id,
+            CONFIG.DH.GENERAL.ruleChoice.offWithToggle.id
+        ].includes(this.rulesDefault);
+        context.thresholdImmunities = this.thresholdImmunities;
 
         const { selectedArmorMarks, selectedStressMarks, stressReductions, currentMarks, currentDamage } =
             this.getDamageInfo();
@@ -110,12 +133,22 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
                   }
                 : null;
 
-        context.marks = this.marks;
+        const maxArmor = this.actor.system.rules.damageReduction.maxArmorMarked.value;
+        context.marks = {
+            armor: Object.keys(this.marks.armor).reduce((acc, key, index) => {
+                const mark = this.marks.armor[key];
+                if (!this.rulesOn || index + 1 <= maxArmor) acc[key] = mark;
+
+                return acc;
+            }, {}),
+            stress: this.marks.stress
+        };
         context.availableStressReductions = this.availableStressReductions;
 
         context.damage = getDamageLabel(this.damage);
         context.reducedDamage = currentDamage !== this.damage ? getDamageLabel(currentDamage) : null;
         context.currentDamage = context.reducedDamage ?? context.damage;
+        context.currentDamageNr = currentDamage;
 
         return context;
     }
@@ -136,22 +169,48 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
 
         const armorMarkReduction =
             selectedArmorMarks.length * this.actor.system.rules.damageReduction.increasePerArmorMark;
-        const currentDamage = this.damage - armorMarkReduction - selectedStressMarks.length - stressReductions.length;
+        let currentDamage = Math.max(
+            this.damage - armorMarkReduction - selectedStressMarks.length - stressReductions.length,
+            0
+        );
+
+        if (this.thresholdImmunities[currentDamage]) currentDamage = 0;
 
         return { selectedArmorMarks, selectedStressMarks, stressReductions, currentMarks, currentDamage };
     };
 
+    static toggleRules() {
+        this.rulesOn = !this.rulesOn;
+
+        const maxArmor = this.actor.system.rules.damageReduction.maxArmorMarked.value;
+        this.marks = {
+            armor: Object.keys(this.marks.armor).reduce((acc, key, index) => {
+                const mark = this.marks.armor[key];
+                const keepSelectValue = !this.rulesOn || index + 1 <= maxArmor;
+                acc[key] = { ...mark, selected: keepSelectValue ? mark.selected : false };
+
+                return acc;
+            }, {}),
+            stress: this.marks.stress
+        };
+
+        this.render();
+    }
+
     static setMarks(_, target) {
         const currentMark = this.marks[target.dataset.type][target.dataset.key];
         const { selectedStressMarks, stressReductions, currentMarks, currentDamage } = this.getDamageInfo();
+
         if (!currentMark.selected && currentDamage === 0) {
             ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.damageAlreadyNone'));
             return;
         }
 
-        if (!currentMark.selected && currentMarks === this.actor.system.armorScore) {
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noAvailableArmorMarks'));
-            return;
+        if (this.rulesOn) {
+            if (!currentMark.selected && currentMarks === this.actor.system.armorScore) {
+                ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.noAvailableArmorMarks'));
+                return;
+            }
         }
 
         if (currentMark.selected) {

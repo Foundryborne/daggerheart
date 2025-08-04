@@ -1,4 +1,9 @@
 <div class="damage-reduction-container">
+    {{#if rulesToggleable}}
+        <button type="button" class="rules-button {{#unless rulesOn}}inactive{{/unless}}" data-action="toggleRules" data-tooltip-text="{{#if rulesOn}}{{localize "DAGGERHEART.UI.Tooltip.rulesOn"}}{{else}}{{localize "DAGGERHEART.UI.Tooltip.rulesOff"}}{{/if}}">
+            <i class="fa-solid fa-book"></i>
+        </button>
+    {{/if}}
     <div class="section-container padded">
         <div class="resources-container">
             <div class="resource-container">
@@ -25,8 +30,6 @@
                         <i class="fa-solid fa-shield"></i>    
                     </div>
                 {{/each}}
-            </div>
-             <div class="mark-selection-inner">
                 {{#each marks.stress}}
                     <div 
                         class="mark-container {{#if this.selected}}selected{{/if}} {{#if (not @root.basicMarksUsed)}}inactive{{/if}}" 
@@ -40,19 +43,25 @@
         <div class="markers-subtitle bold">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.usedMarks"}}</div>
     </div>
 
+    {{#if availableStressReductions}}
     <div class="resources-container">
         <div class="resource-container">
             <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.stressReduction"}}</h4>
         </div>
     </div>
+    {{/if}}
 
     {{#each availableStressReductions}}
         <div class="section-container">
-            <h4 class="stress-reduction-container divider">
-                <div class="stress-reduction {{#if (eq this.from @root.currentDamage)}}active{{/if}} {{#if this.selected}}selected{{/if}}" data-action="useStressReduction" data-reduction="{{@key}}">
-                    {{this.from}}
-                    <i class="fa-solid fa-arrow-right-long"></i>
-                    {{this.to}}
+            <h4 class="chip-container divider">
+                <div class="chip-inner-container selectable {{#if (or this.any (eq this.from @root.currentDamage))}}active{{/if}} {{#if this.selected}}selected{{/if}}" data-action="useStressReduction" data-reduction="{{@key}}">
+                    {{#if this.any}}
+                        {{localize "DAGGERHEART.GENERAL.any"}}
+                    {{else}}
+                        {{this.from}}
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                        {{this.to}}
+                    {{/if}}
                     <div class="stress-reduction-cost">
                         {{this.cost}}
                         <i class="fa-solid fa-bolt"></i>
@@ -60,6 +69,18 @@
                 </div>
             </h4>
         </div>
+    {{/each}}
+
+    {{#if thresholdImmunities}}
+    <div class="resources-container">
+        <div class="resource-container">
+            <h4 class="armor-title">{{localize "DAGGERHEART.APPLICATIONS.DamageReduction.thresholdImmunities"}}</h4>
+        </div>
+    </div>
+    {{/if}}
+
+    {{#each thresholdImmunities as | immunity key |}}
+        <div class="threshold-label {{#if (gte key @root.currentDamageNr)}}active{{/if}}">{{immunity}}</div>
     {{/each}}
 
     <footer class="padded">
