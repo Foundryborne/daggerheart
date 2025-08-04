@@ -1,6 +1,6 @@
 {
   "name": "Life Ward",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/splendor.png",
   "type": "domainCard",
   "folder": "vAZKNDtAafd7HDWV",
   "system": {
@@ -8,22 +8,109 @@
     "domain": "splendor",
     "recallCost": 1,
     "level": 4,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "i99aNWZqVC8PHAIx": {
+        "type": "effect",
+        "_id": "i99aNWZqVC8PHAIx",
+        "systemPath": "actions",
+        "description": "<p><strong>Spend 3 Hope</strong> and choose an ally within Close range. They are marked with a glowing sigil of protection. When this ally would make a death move, they clear a Hit Point instead.</p><p class=\"Body-Foundation\">This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a long rest.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "E7Ou4OMEy3TeK1Gf",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark with Sigil",
+        "img": "icons/magic/defensive/shield-barrier-deflect-gold.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784478,
-    "modifiedTime": 1753922784478,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754269642386,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "OszbCj0jTqq2ADx9",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Life Ward",
+      "img": "icons/svg/item-bag.svg",
+      "origin": "Compendium.daggerheart.domains.Item.OszbCj0jTqq2ADx9",
+      "transfer": false,
+      "_id": "E7Ou4OMEy3TeK1Gf",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Marked with a glowing sigil of protection. When this ally would make a death move, they clear a Hit Point instead.</p><p class=\"Body-Foundation\">This effect ends when it saves the target from a death move, you cast Life Ward on another target, or you take a long rest.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754264687962,
+        "modifiedTime": 1754264717646,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!OszbCj0jTqq2ADx9.E7Ou4OMEy3TeK1Gf"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!OszbCj0jTqq2ADx9"
 }

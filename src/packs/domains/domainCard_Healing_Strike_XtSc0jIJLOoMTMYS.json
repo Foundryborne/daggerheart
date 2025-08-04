@@ -1,29 +1,111 @@
 {
   "name": "Healing Strike",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/splendor.png",
   "type": "domainCard",
   "folder": "Z6oglw8LIOrtBcN6",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you deal damage to an adversary, you can <strong>spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> on an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When you deal damage to an adversary, you can <strong>spend 2 Hope</strong> to clear a Hit Point on an ally within Close range.</p>",
     "domain": "splendor",
     "recallCost": 1,
     "level": 7,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "ECYp5SeXDAQzRTgC": {
+        "type": "healing",
+        "_id": "ECYp5SeXDAQzRTgC",
+        "systemPath": "actions",
+        "description": "<p>When you deal damage to an adversary, you can <strong>spend 2 Hope</strong> to clear a Hit Point on an ally within Close range.</p><p></p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 2,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hitPoints",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Clear Hit Point",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
+        "range": "close"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784468,
-    "modifiedTime": 1753922784468,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754269824514,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "XtSc0jIJLOoMTMYS",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!XtSc0jIJLOoMTMYS"
 }
