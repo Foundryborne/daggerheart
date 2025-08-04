@@ -1,0 +1,33 @@
+{
+  "folder": "D1rRX2AQ9wzVOsKy",
+  "name": "Path Forward",
+  "type": "feature",
+  "_id": "uPPBOpoulUmSLlzr",
+  "img": "icons/environment/wilderness/terrain-river-road-gray.webp",
+  "system": {
+    "description": "<p>When you’re traveling to a place you’ve previously visited or you carry an object that has been at the location before, you can identify the shortest, most direct path to your destination.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754267110974,
+    "modifiedTime": 1754267209120,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!uPPBOpoulUmSLlzr"
+}

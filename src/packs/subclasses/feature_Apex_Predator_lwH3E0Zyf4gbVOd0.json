@@ -1,0 +1,64 @@
+{
+  "folder": "vIdORiocrNibqNFF",
+  "name": "Apex Predator",
+  "type": "feature",
+  "_id": "lwH3E0Zyf4gbVOd0",
+  "img": "icons/creatures/mammals/bat-giant-tattered-purple.webp",
+  "system": {
+    "description": "<p>Before you make an attack roll against your Focus, you can spend a Hope. On a successful attack, you remove a Fear from the GM’s Fear pool.</p>",
+    "resource": null,
+    "actions": {
+      "LHDsuveQznbcFUhV": {
+        "type": "effect",
+        "_id": "LHDsuveQznbcFUhV",
+        "systemPath": "actions",
+        "description": "<p>Before you make an attack roll against your Focus, you can spend a Hope. On a successful attack, you remove a Fear from the GM’s Fear pool.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/creatures/mammals/bat-giant-tattered-purple.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754268013491,
+    "modifiedTime": 1754268190654,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!lwH3E0Zyf4gbVOd0"
+}

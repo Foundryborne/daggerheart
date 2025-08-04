@@ -1,0 +1,33 @@
+{
+  "folder": "vIdORiocrNibqNFF",
+  "name": "Advanced Training",
+  "type": "feature",
+  "_id": "uGcs785h94RMtueH",
+  "img": "icons/creatures/mammals/wolf-howl-moon-gray.webp",
+  "system": {
+    "description": "<p>Choose two additional level-up options for your companion.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754267928272,
+    "modifiedTime": 1754267942465,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!uGcs785h94RMtueH"
+}

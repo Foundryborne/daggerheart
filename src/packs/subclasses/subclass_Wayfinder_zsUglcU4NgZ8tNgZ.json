@@ -1,0 +1,50 @@
+{
+  "folder": "ArVAtkgkm5bYpKHL",
+  "name": "Wayfinder",
+  "type": "subclass",
+  "_id": "zsUglcU4NgZ8tNgZ",
+  "img": "icons/environment/wilderness/mine-interior-dungeon-door.webp",
+  "system": {
+    "description": "<p>You wish to hunt your prey and strike with deadly force.</p>",
+    "spellcastingTrait": "agility",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.Qny2J3R35bvC0Cey"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.uPPBOpoulUmSLlzr"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.Cjtc43V3IzAmfIFG"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.lwH3E0Zyf4gbVOd0"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754268318903,
+    "modifiedTime": 1754268377047,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!zsUglcU4NgZ8tNgZ"
+}

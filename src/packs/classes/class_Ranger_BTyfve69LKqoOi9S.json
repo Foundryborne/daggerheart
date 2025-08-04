@@ -1,0 +1,79 @@
+{
+  "name": "Ranger",
+  "type": "class",
+  "_id": "BTyfve69LKqoOi9S",
+  "img": "icons/weapons/bows/shortbow-recurve-yellow-blue.webp",
+  "system": {
+    "description": "<p>Rangers are highly skilled hunters who, despite their martial abilities, rarely lend their skills to an army. Through mastery of the body and a deep understanding of the wilderness, rangers become sly tacticians, pursuing their quarry with cunning and patience. Many rangers track and fight alongside an animal companion with whom they’ve forged a powerful spiritual bond. By honing their skills in the wild, rangers become expert trackers, as likely to ensnare their foes in a trap as they are to assail them head-on.</p>",
+    "domains": [
+      "bone",
+      "sage"
+    ],
+    "classItems": [],
+    "hitPoints": 6,
+    "evasion": 12,
+    "features": [
+      {
+        "type": "hope",
+        "item": "Compendium.daggerheart.classes.Item.2Cyb9ZeuAesf5Sb3"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.ncLx2P8BOUtrAD38"
+      }
+    ],
+    "subclasses": [
+      "Compendium.daggerheart.subclasses.Item.TIUsIlTS1WkK5vr2",
+      "Compendium.daggerheart.subclasses.Item.zsUglcU4NgZ8tNgZ"
+    ],
+    "inventory": {
+      "take": [
+        "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
+        "Compendium.daggerheart.classes.Item.uoG5iq09mxJPXfmk",
+        "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw"
+      ],
+      "choiceA": [
+        "Compendium.daggerheart.consumables.Item.tPfKtKRRjv8qdSqy",
+        "Compendium.daggerheart.consumables.Item.b6vGSPFWOlzZZDLO"
+      ],
+      "choiceB": [
+        "Compendium.daggerheart.classes.Item.eslejbiZRH6ODh9U",
+        "Compendium.daggerheart.classes.Item.8k76EgktQXFWHf8r"
+      ]
+    },
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 2,
+        "strength": 0,
+        "finesse": 1,
+        "instinct": 1,
+        "presence": -1,
+        "knowledge": 0
+      },
+      "suggestedPrimaryWeapon": "Compendium.daggerheart.weapons.Item.p9tdjQr2AZP19RYm",
+      "suggestedSecondaryWeapon": null,
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.nibfdNtp2PtxvbVz"
+    },
+    "isMulticlass": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754268869310,
+    "modifiedTime": 1754269028428,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!BTyfve69LKqoOi9S"
+}
