@@ -67,43 +67,8 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/creatures/magical/humanoid-silhouette-dashing-blue.webp",
         "range": ""
-      },
-      "DwqUgUZu6Nn6puad": {
-        "type": "effect",
-        "_id": "DwqUgUZu6Nn6puad",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "scalable": true,
-            "key": "hope",
-            "value": 1,
-            "step": 1,
-            "keyIsID": false
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "effects": [
-          {
-            "_id": "qqoRQPTBU3pICvSN",
-            "onSave": false
-          }
-        ],
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "name": "Create Sprites",
-        "img": "icons/svg/item-bag.svg",
-        "range": "far"
       }
     }
   },
@@ -116,7 +81,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784457,
-    "modifiedTime": 1754335144321,
+    "modifiedTime": 1754339713793,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "JrkUMTzaFmQNBHVm",

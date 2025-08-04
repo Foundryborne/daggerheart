@@ -85,7 +85,7 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/vines-thorned-curled-glow-teal.webp",
         "range": ""
       },
       "vh1IKRvsU4w57lBt": {
@@ -120,7 +120,7 @@
           "amount": null
         },
         "name": "Restrain Another",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
         "range": ""
       }
     }
@@ -134,7 +134,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784541,
-    "modifiedTime": 1754332634953,
+    "modifiedTime": 1754338467256,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "qvpvTnkAoRn9vYO4",
@@ -142,7 +142,7 @@
   "effects": [
     {
       "name": "Restrained",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
       "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "Xh0wrgRUuYpwChBU",
@@ -181,14 +181,14 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754114720468,
-        "modifiedTime": 1754114732996,
+        "modifiedTime": 1754337816677,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!qvpvTnkAoRn9vYO4.Xh0wrgRUuYpwChBU"
     },
     {
       "name": "Restrained",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
       "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "2xzOqTaPJQzGqFJv",
@@ -227,7 +227,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754114785336,
-        "modifiedTime": 1754114795043,
+        "modifiedTime": 1754337833036,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!qvpvTnkAoRn9vYO4.2xzOqTaPJQzGqFJv"

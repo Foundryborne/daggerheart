@@ -42,7 +42,7 @@
           "amount": null
         },
         "name": "Transform",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/elemental-plant-humanoid.webp",
         "range": ""
       },
       "1rLoYS90AZizJujS": {
@@ -72,7 +72,7 @@
           "amount": null
         },
         "name": "Spend Hope for Action",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
         "range": ""
       }
     }
@@ -86,7 +86,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784456,
-    "modifiedTime": 1754336617976,
+    "modifiedTime": 1754340347669,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "LzVpMkD5I4QeaIHf",
@@ -94,7 +94,7 @@
   "effects": [
     {
       "name": "Force of Nature",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/nature/elemental-plant-humanoid.webp",
       "origin": "Compendium.daggerheart.domains.Item.LzVpMkD5I4QeaIHf",
       "transfer": false,
       "_id": "ptBC882plZW39Ld9",
@@ -144,7 +144,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754120504134,
-        "modifiedTime": 1754336653633,
+        "modifiedTime": 1754340362524,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!LzVpMkD5I4QeaIHf.ptBC882plZW39Ld9"

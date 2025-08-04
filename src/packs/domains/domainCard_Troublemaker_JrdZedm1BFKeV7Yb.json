@@ -80,7 +80,7 @@
           "damageMod": "none"
         },
         "name": "Provoke",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/control/fear-fright-monster-purple-blue.webp",
         "range": "far"
       }
     }
@@ -94,7 +94,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784535,
-    "modifiedTime": 1754326545219,
+    "modifiedTime": 1754341260325,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "JrdZedm1BFKeV7Yb",

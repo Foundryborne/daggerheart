@@ -78,7 +78,7 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/acid/projectile-smoke-glowing.webp",
         "range": "far"
       },
       "maf0whws7wgRnFsH": {
@@ -113,7 +113,7 @@
           "amount": null
         },
         "name": "Corrode",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/acid/dissolve-bone-white.webp",
         "range": ""
       }
     }
@@ -127,7 +127,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784439,
-    "modifiedTime": 1754333051916,
+    "modifiedTime": 1754338276907,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "qJaSNTuDfbPVr8Lb",
@@ -135,7 +135,7 @@
   "effects": [
     {
       "name": "Corroded (1 stack)",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/acid/dissolve-bone-white.webp",
       "origin": "Compendium.daggerheart.domains.Item.qJaSNTuDfbPVr8Lb",
       "transfer": false,
       "_id": "zB95bjSSdVlApQnR",
@@ -181,7 +181,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754115900734,
-        "modifiedTime": 1754115959643,
+        "modifiedTime": 1754338294266,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!qJaSNTuDfbPVr8Lb.zB95bjSSdVlApQnR"

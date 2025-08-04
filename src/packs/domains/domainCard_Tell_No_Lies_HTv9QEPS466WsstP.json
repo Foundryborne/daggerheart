@@ -79,7 +79,7 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/control/voodoo-doll-pain-damage-red.webp",
         "range": "close"
       }
     }
@@ -93,7 +93,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784529,
-    "modifiedTime": 1754326489820,
+    "modifiedTime": 1754341185897,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "HTv9QEPS466WsstP",
@@ -111,7 +111,7 @@
         }
       },
       "_id": "5L6fC80VfbPfGmcA",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/magic/control/voodoo-doll-pain-damage-red.webp",
       "changes": [],
       "disabled": false,
       "duration": {
@@ -138,7 +138,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754098358492,
-        "modifiedTime": 1754098549846,
+        "modifiedTime": 1754341203961,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!HTv9QEPS466WsstP.5L6fC80VfbPfGmcA"

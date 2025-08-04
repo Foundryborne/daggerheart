@@ -95,7 +95,7 @@
           "damageMod": "none"
         },
         "name": "Use as attack",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/root-vine-entangled-humanoid.webp",
         "range": "close"
       },
       "I6eSBTpuYDU1nEgr": {
@@ -125,7 +125,7 @@
           "amount": null
         },
         "name": "Conjure Stalk",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/root-vine-beanstolk-green.webp",
         "range": ""
       }
     },
@@ -146,7 +146,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784534,
-    "modifiedTime": 1754333118070,
+    "modifiedTime": 1754338673637,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "n0P3VS1WfxvmXbB6",

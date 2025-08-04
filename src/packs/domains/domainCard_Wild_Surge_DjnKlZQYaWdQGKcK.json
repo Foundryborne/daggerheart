@@ -43,7 +43,7 @@
           "amount": null
         },
         "name": "Channel Nature",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/control/debuff-energy-hold-levitate-green.webp",
         "range": ""
       }
     }
@@ -57,7 +57,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784547,
-    "modifiedTime": 1754334709147,
+    "modifiedTime": 1754340095871,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "DjnKlZQYaWdQGKcK",

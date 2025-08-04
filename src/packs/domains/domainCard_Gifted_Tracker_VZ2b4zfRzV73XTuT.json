@@ -42,7 +42,7 @@
           "amount": null
         },
         "name": "Ask Questions",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/stealth-hide-eyes-green.webp",
         "range": ""
       }
     }
@@ -56,7 +56,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784461,
-    "modifiedTime": 1754332491691,
+    "modifiedTime": 1754337461017,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "VZ2b4zfRzV73XTuT",

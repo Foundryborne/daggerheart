@@ -53,7 +53,7 @@
           "damageMod": "none"
         },
         "name": "Reshape Natural World",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/tree-elm-roots-brown.webp",
         "range": "far"
       }
     }
@@ -67,7 +67,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784493,
-    "modifiedTime": 1754336356398,
+    "modifiedTime": 1754340285152,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "9a6xP5pxhVvdugk9",

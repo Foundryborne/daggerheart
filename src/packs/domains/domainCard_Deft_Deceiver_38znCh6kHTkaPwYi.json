@@ -42,7 +42,7 @@
           "amount": null
         },
         "name": "Gain Advantage",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/life/heart-pink.webp",
         "range": ""
       }
     }
@@ -56,7 +56,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784445,
-    "modifiedTime": 1754326147926,
+    "modifiedTime": 1754340779197,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "38znCh6kHTkaPwYi",
@@ -64,7 +64,7 @@
   "effects": [
     {
       "name": "Deft Deceiver",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/magic/life/heart-pink.webp",
       "origin": "Compendium.daggerheart.domains.Item.38znCh6kHTkaPwYi",
       "transfer": false,
       "_id": "qtHDKXJ1pH8Cu7by",
@@ -108,7 +108,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754094114894,
-        "modifiedTime": 1754094189363,
+        "modifiedTime": 1754340806603,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!38znCh6kHTkaPwYi.qtHDKXJ1pH8Cu7by"

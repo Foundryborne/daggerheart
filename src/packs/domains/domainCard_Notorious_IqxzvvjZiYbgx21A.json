@@ -37,7 +37,7 @@
           "amount": null
         },
         "name": "Gain Bonus",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/light/explosion-star-glow-silhouette.webp",
         "range": ""
       }
     }
@@ -51,7 +51,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784489,
-    "modifiedTime": 1754329764685,
+    "modifiedTime": 1754342229231,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "IqxzvvjZiYbgx21A",

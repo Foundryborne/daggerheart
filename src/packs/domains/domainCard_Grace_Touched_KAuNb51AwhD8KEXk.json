@@ -37,7 +37,7 @@
           "amount": null
         },
         "name": "Mark Armor Slot",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/equipment/shield/kite-wooden-sigil-purple.webp",
         "range": ""
       },
       "YzrQmUhNZoDYawo0": {
@@ -89,7 +89,7 @@
         },
         "effects": [],
         "name": "Mark 1 Stress",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
         "range": ""
       }
     }
@@ -103,7 +103,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784465,
-    "modifiedTime": 1754327641291,
+    "modifiedTime": 1754341871438,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "KAuNb51AwhD8KEXk",

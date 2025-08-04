@@ -82,7 +82,7 @@
           "useDefault": false
         },
         "name": "Heal 1 Hit Point",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
         "range": "close"
       },
       "EqamWsxO86ZjY8WV": {
@@ -164,7 +164,7 @@
           "useDefault": false
         },
         "name": "Heal 2 Hit Points",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
         "range": "close"
       }
     },
@@ -185,7 +185,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784466,
-    "modifiedTime": 1754333796007,
+    "modifiedTime": 1754338717920,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "GlRm1Dxlc0Z1b04o",

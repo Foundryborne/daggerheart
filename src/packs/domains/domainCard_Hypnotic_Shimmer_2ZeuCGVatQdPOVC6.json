@@ -85,7 +85,7 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
         "range": "close"
       }
     }
@@ -99,7 +99,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784471,
-    "modifiedTime": 1754326690220,
+    "modifiedTime": 1754341315075,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "2ZeuCGVatQdPOVC6",
@@ -107,7 +107,7 @@
   "effects": [
     {
       "name": "Stunned",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
       "origin": "Compendium.daggerheart.domains.Item.2ZeuCGVatQdPOVC6",
       "transfer": false,
       "_id": "xAG75UWUz3aDZH3m",
@@ -146,7 +146,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754099673462,
-        "modifiedTime": 1754102182618,
+        "modifiedTime": 1754341332582,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!2ZeuCGVatQdPOVC6.xAG75UWUz3aDZH3m"

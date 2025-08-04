@@ -74,7 +74,7 @@
           "useDefault": false
         },
         "name": "Heal Another",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
         "range": ""
       },
       "s4KRqnNHNrSsOoNi": {
@@ -141,7 +141,7 @@
           "useDefault": false
         },
         "name": "Heal Self",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
         "range": ""
       }
     }
@@ -155,7 +155,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784519,
-    "modifiedTime": 1754327133899,
+    "modifiedTime": 1754341467905,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "QED2PDYePOSTbLtC",

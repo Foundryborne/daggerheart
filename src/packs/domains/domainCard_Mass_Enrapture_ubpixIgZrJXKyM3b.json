@@ -58,7 +58,7 @@
           "damageMod": "none"
         },
         "name": "Enrapture",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
         "range": "far"
       },
       "QhBaM0LU9tmSI3IO": {
@@ -118,7 +118,7 @@
         },
         "effects": [],
         "name": "Mark Stress",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
         "range": ""
       }
     }
@@ -132,7 +132,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784481,
-    "modifiedTime": 1754329197608,
+    "modifiedTime": 1754342040215,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "ubpixIgZrJXKyM3b",
@@ -140,7 +140,7 @@
   "effects": [
     {
       "name": "Enraptured",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
       "origin": "Compendium.daggerheart.domains.Item.ubpixIgZrJXKyM3b",
       "transfer": false,
       "_id": "QNbnelRylVB0yCm0",
@@ -177,7 +177,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754106766101,
-        "modifiedTime": 1754106805564,
+        "modifiedTime": 1754342055429,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!ubpixIgZrJXKyM3b.QNbnelRylVB0yCm0"

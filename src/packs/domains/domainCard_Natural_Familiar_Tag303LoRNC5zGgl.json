@@ -43,7 +43,7 @@
           "amount": null
         },
         "name": "Summon Familiar",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/creatures/amphibians/bullfrog-glass-teal.webp",
         "range": ""
       },
       "kHAwq8lfsEPd9Qga": {
@@ -89,7 +89,7 @@
           "damageMod": "none"
         },
         "name": "Perform Task",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/creatures/amphibians/treefrog-leaf-green.webp",
         "range": ""
       },
       "8Y03LcPgXF30DfzZ": {
@@ -119,7 +119,7 @@
           "amount": null
         },
         "name": "See Through Eyes",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/perception/eye-ringed-green.webp",
         "range": ""
       }
     }
@@ -133,7 +133,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784485,
-    "modifiedTime": 1754332974765,
+    "modifiedTime": 1754338204263,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "Tag303LoRNC5zGgl",
@@ -141,7 +141,7 @@
   "effects": [
     {
       "name": "Familiar Damage",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/sundries/gaming/dice-pair-white-green.webp",
       "origin": "Compendium.daggerheart.domains.Item.Tag303LoRNC5zGgl",
       "transfer": false,
       "_id": "0BumAWKw2aK4A5al",
@@ -191,7 +191,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754115507909,
-        "modifiedTime": 1754115603485,
+        "modifiedTime": 1754338087104,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!Tag303LoRNC5zGgl.0BumAWKw2aK4A5al"
