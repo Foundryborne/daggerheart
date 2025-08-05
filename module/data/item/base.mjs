@@ -106,7 +106,7 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return this.actions;
     }
 
-    get features() {
+    get itemFeatures() {
         return [];
     }
 

@@ -148,7 +148,7 @@ export default class DHArmor extends AttachableItem {
         return labels;
     }
 
-    get features() {
+    get itemFeatures() {
         return this.armorFeatures;
     }
 }

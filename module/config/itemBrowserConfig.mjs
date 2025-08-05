@@ -130,7 +130,7 @@ export const typeConfig = {
                 operator: "lte"
             },
             {
-                key: "system.features",
+                key: "system.itemFeatures",
                 label: "Features",
                 choices: () => [...Object.entries(CONFIG.DH.ITEM.weaponFeatures), ...Object.entries(CONFIG.DH.ITEM.armorFeatures)].map(([k,v]) => ({ value: k, label: v.label})),
                 operator: "contains3"

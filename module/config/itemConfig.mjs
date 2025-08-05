@@ -380,7 +380,7 @@ export const armorFeatures = {
                 img: 'icons/magic/time/hourglass-brown-orange.webp',
                 cost: [
                     {
-                        key: 'armorStack',
+                        key: 'armorSlot',
                         value: 1
                     }
                 ],
