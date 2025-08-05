@@ -7,8 +7,10 @@ import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 
 export default class DhCharacter extends BaseDataActor {
+    /**@override */
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
 
+    /**@inheritdoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.character',
@@ -18,6 +20,7 @@ export default class DhCharacter extends BaseDataActor {
         });
     }
 
+    /**@inheritdoc */
     static defineSchema() {
         const fields = foundry.data.fields;
 
@@ -302,6 +305,8 @@ export default class DhCharacter extends BaseDataActor {
             })
         };
     }
+
+    /* -------------------------------------------- */
 
     get tier() {
         const currentLevel = this.levelData.level.current;

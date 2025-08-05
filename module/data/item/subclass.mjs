@@ -28,6 +28,13 @@ export default class DHSubclass extends BaseDataItem {
         };
     }
 
+    /* -------------------------------------------- */
+
+    /**@override */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/laurels.svg';
+
+    /* -------------------------------------------- */
+
     get foundationFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.foundation).map(x => x.item);
     }

@@ -105,6 +105,13 @@ export default class DhpAdversary extends BaseDataActor {
         };
     }
 
+    /* -------------------------------------------- */
+
+    /**@inheritdoc */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg';
+
+    /* -------------------------------------------- */
+
     get attackBonus() {
         return this.attack.roll.bonus;
     }

@@ -79,6 +79,16 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return schema;
     }
 
+    /* -------------------------------------------- */
+
+    /**
+     * The default icon used for newly created Item documents
+     * @type {string}
+     */
+    static DEFAULT_ICON = null;
+
+    /* -------------------------------------------- */
+
     /**
      * Convenient access to the item's actor, if it exists.
      * @returns {foundry.documents.Actor | null}

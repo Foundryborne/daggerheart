@@ -69,6 +69,16 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         return schema;
     }
 
+    /* -------------------------------------------- */
+
+    /**
+     * The default icon used for newly created Actors documents
+     * @type {string}
+     */
+    static DEFAULT_ICON = null;
+
+    /* -------------------------------------------- */
+
     /**
      * Obtain a data object used to evaluate any dice rolls associated with this Item Type
      * @param {object} [options] - Options which modify the getRollData method.

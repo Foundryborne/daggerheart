@@ -13,10 +13,15 @@ export default class DHCommunity extends BaseDataItem {
 
     /** @inheritDoc */
     static defineSchema() {
-        const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
             features: new ForeignDocumentUUIDArrayField({ type: 'Item' })
         };
     }
+
+    /* -------------------------------------------- */
+
+    /**@override */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/village.svg';
+
 }

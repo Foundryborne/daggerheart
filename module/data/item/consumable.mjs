@@ -22,4 +22,10 @@ export default class DHConsumable extends BaseDataItem {
             consumeOnUse: new fields.BooleanField({ initial: false })
         };
     }
+
+    /* -------------------------------------------- */
+
+    /**@override */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/round-potion.svg';
+
 }

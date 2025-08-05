@@ -33,6 +33,13 @@ export default class DHDomainCard extends BaseDataItem {
         };
     }
 
+    /* -------------------------------------------- */
+
+    /**@override */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/card-play.svg';
+
+    /* -------------------------------------------- */
+
     /**@inheritdoc */
     async _preCreate(data, options, user) {
         const allowed = await super._preCreate(data, options, user);

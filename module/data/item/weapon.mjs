@@ -80,6 +80,13 @@ export default class DHWeapon extends AttachableItem {
         };
     }
 
+    /* -------------------------------------------- */
+
+    /**@override */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/battered-axe.svg';
+
+    /* -------------------------------------------- */
+
     get actionsList() {
         return [this.attack, ...this.actions];
     }

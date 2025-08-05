@@ -42,12 +42,20 @@ export default class DHArmor extends AttachableItem {
         };
     }
 
+    /* -------------------------------------------- */
+
+    /**@override */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/chest-armor.svg';
+
+    /* -------------------------------------------- */
+
     get customActions() {
         return this.actions.filter(
             action => !this.armorFeatures.some(feature => feature.actionIds.includes(action.id))
         );
     }
 
+    /**@inheritdoc */
     async _preUpdate(changes, options, user) {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
@@ -68,7 +76,7 @@ export default class DHArmor extends AttachableItem {
                 return acc;
             }, {});
 
-            for (var feature of added) {
+            for (const feature of added) {
                 const featureData = armorFeatures[feature.value];
                 if (featureData.effects?.length > 0) {
                     const embeddedItems = await this.parent.createEmbeddedDocuments(

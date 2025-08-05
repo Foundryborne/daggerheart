@@ -9,6 +9,7 @@ import { resourceField, bonusField } from '../fields/actorField.mjs';
 export default class DhCompanion extends BaseDataActor {
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Companion'];
 
+    /**@inheritdoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.companion',
@@ -18,6 +19,7 @@ export default class DhCompanion extends BaseDataActor {
         });
     }
 
+    /**@inheritdoc */
     static defineSchema() {
         const fields = foundry.data.fields;
 
@@ -86,6 +88,13 @@ export default class DhCompanion extends BaseDataActor {
             })
         };
     }
+
+    /* -------------------------------------------- */
+
+    /**@inheritdoc */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/actors/capybara.svg';
+
+    /* -------------------------------------------- */
 
     get proficiency() {
         return this.partner?.system?.proficiency ?? 1;

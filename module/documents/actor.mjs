@@ -22,6 +22,23 @@ export default class DhpActor extends Actor {
         return this.system.metadata.isNPC;
     }
 
+    /* -------------------------------------------- */
+
+    /**@inheritdoc */
+    static getDefaultArtwork(actorData) {
+        const { type } = actorData;
+        const Model = CONFIG.Actor.dataModels[type];
+        const img = Model.DEFAULT_ICON ?? this.DEFAULT_ICON;
+        return {
+            img,
+            texture: {
+                src: img
+            }
+        };
+    }
+
+    /* -------------------------------------------- */
+
     /** @inheritDoc */
     getEmbeddedDocument(embeddedName, id, options) {
         let doc;
@@ -39,6 +56,7 @@ export default class DhpActor extends Actor {
         return doc;
     }
 
+    /**@inheritdoc */
     async _preCreate(data, options, user) {
         if ((await super._preCreate(data, options, user)) === false) return false;
 
@@ -455,6 +473,7 @@ export default class DhpActor extends Actor {
         return ActiveEffect.implementation.create(effect, { parent: this, keepId: true });
     }
 
+    /**@inheritdoc */
     getRollData() {
         const rollData = super.getRollData();
         rollData.system = this.system.getRollData();
@@ -540,8 +559,8 @@ export default class DhpActor extends Actor {
 
         updates.forEach(
             u =>
-                (u.value =
-                    u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value)
+            (u.value =
+                u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value)
         );
 
         await this.modifyResource(updates);
@@ -587,9 +606,9 @@ export default class DhpActor extends Actor {
 
         updates.forEach(
             u =>
-                (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
-                    ? u.value * -1
-                    : u.value)
+            (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
+                ? u.value * -1
+                : u.value)
         );
 
         await this.modifyResource(updates);
