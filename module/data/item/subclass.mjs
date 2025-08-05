@@ -42,6 +42,7 @@ export default class DHSubclass extends BaseDataItem {
 
     async _preCreate(data, options, user) {
         if (this.actor?.type === 'character') {
+            const dataUuid = data.uuid ?? data._stats?.compendiumSource ?? `Item.${data._id}`;
             if (this.actor.system.class.subclass) {
                 if (this.actor.system.multiclass.subclass) {
                     ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassesAlreadyPresent'));
@@ -53,7 +54,7 @@ export default class DHSubclass extends BaseDataItem {
                         return false;
                     }
 
-                    if (multiclass.system.subclasses.every(x => x.uuid !== (data.uuid ?? `Item.${data._id}`))) {
+                    if (multiclass.system.subclasses.every(x => x.uuid !== dataUuid)) {
                         ui.notifications.error(
                             game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInMulticlass')
                         );
@@ -68,7 +69,7 @@ export default class DHSubclass extends BaseDataItem {
                     ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClass'));
                     return false;
                 }
-                if (actorClass.system.subclasses.every(x => x.uuid !== (data.uuid ?? `Item.${data._id}`))) {
+                if (actorClass.system.subclasses.every(x => x.uuid !== dataUuid)) {
                     ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassNotInClass'));
                     return false;
                 }
