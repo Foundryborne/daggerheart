@@ -63,6 +63,36 @@
         }
     }
 
+    .refreshables-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        font-size: 12px;
+
+        &.wide {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .refreshable-container {
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 6px;
+            color: light-dark(@dark, @beige);
+            background-image: url('../assets/parchments/dh-parchment-dark.png');
+            padding: 0 2px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            .refreshable-title {
+                font-weight: bold;
+            }
+
+            .refreshable-name {
+            }
+        }
+    }
+
     footer {
         margin-top: 8px;
         display: flex;

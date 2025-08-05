@@ -9,9 +9,13 @@
     </legend>
 
     {{#if source.system.resource}}
-        <div class="two-columns even">
+        <div class="{{#if (eq source.system.resource.type 'simple')}}nest-inputs{{else}}two-columns{{/if}} even">
             {{formGroup systemFields.resource.fields.type value=source.system.resource.type localize=true blank=false}}
             {{formGroup systemFields.resource.fields.recovery value=source.system.resource.recovery localize=true}}
+
+            {{#if (eq source.system.resource.type 'simple')}}
+                {{formGroup systemFields.resource.fields.progression value=source.system.resource.progression localize=true}}
+            {{/if}}
         </div>
 
             <div class="two-columns even">

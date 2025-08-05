@@ -24,6 +24,8 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                     actor.system.bonuses.rest[`${shortrest ? 'short' : 'long'}Rest`].longMoves
             }
         };
+
+        this.refreshables = this.getRefreshables();
     }
 
     get title() {
@@ -81,9 +83,54 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         context.shortRestMoves = this.nrChoices.shortRest.max > 0 ? this.moveData.shortRest : null;
         context.longRestMoves = this.nrChoices.longRest.max > 0 ? this.moveData.longRest : null;
 
+        context.refreshables = this.refreshables;
+
         context.disabledDowntime = shortRestMovesSelected === 0 && longRestMovesSelected === 0;
 
         return context;
+    }
+
+    getRefreshables() {
+        const actionItems = this.actor.items.reduce((acc, x) => {
+            if (x.system.actions) {
+                const recoverable = x.system.actions.reduce((acc, action) => {
+                    if (action.uses.recovery && (action.uses.recovery === 'shortRest') === this.shortrest) {
+                        acc.push({
+                            title: x.name,
+                            name: action.name,
+                            uuid: action.uuid
+                        });
+                    }
+
+                    return acc;
+                }, []);
+
+                if (recoverable) {
+                    acc.push(...recoverable);
+                }
+            }
+
+            return acc;
+        }, []);
+        const resourceItems = this.actor.items.reduce((acc, x) => {
+            if (
+                x.system.resource &&
+                x.system.resource.type &&
+                (x.system.resource.recovery === 'shortRest') === this.shortrest
+            ) {
+                acc.push({
+                    title: game.i18n.localize(`TYPES.Item.${x.type}`),
+                    name: x.name,
+                    uuid: x.uuid
+                });
+            }
+
+            return acc;
+        }, []);
+        return {
+            actionItems,
+            resourceItems
+        };
     }
 
     static selectMove(_, target) {
@@ -172,11 +219,24 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             }
         }
 
-        // We can close the window when all moves are taken
+        // We can close the window and refresh resources when all moves are taken
         if (
             this.nrChoices.shortRest.taken >= this.nrChoices.shortRest.max &&
             this.nrChoices.longRest.taken >= this.nrChoices.longRest.max
         ) {
+            for (var data of this.refreshables.actionItems) {
+                const action = await foundry.utils.fromUuid(data.uuid);
+                await action.parent.parent.update({ [`system.actions.${action.id}.uses.value`]: action.uses.max ?? 1 });
+            }
+
+            for (var data of this.refreshables.resourceItems) {
+                const feature = await foundry.utils.fromUuid(data.uuid);
+                const increasing =
+                    feature.system.resource.progression === CONFIG.DH.ITEM.itemResourceProgression.increasing.id;
+                const resetValue = increasing ? 0 : (feature.system.resource.max ?? 0);
+                await feature.update({ 'system.resource.value': resetValue });
+            }
+
             this.close();
         } else {
             this.render();

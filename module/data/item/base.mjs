@@ -56,6 +56,11 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                         initial: null,
                         nullable: true
                     }),
+                    progression: new fields.StringField({
+                        required: true,
+                        choices: CONFIG.DH.ITEM.itemResourceProgression,
+                        initial: CONFIG.DH.ITEM.itemResourceProgression.increasing.id
+                    }),
                     diceStates: new fields.TypedObjectField(
                         new fields.SchemaField({
                             value: new fields.NumberField({ integer: true, initial: 1, min: 1 }),

@@ -1473,6 +1473,17 @@ export const itemResourceTypes = {
     }
 };
 
+export const itemResourceProgression = {
+    increasing: {
+        id: 'increasing',
+        label: 'DAGGERHEART.CONFIG.ItemResourceProgression.increasing'
+    },
+    decreasing: {
+        id: 'decreasing',
+        label: 'DAGGERHEART.CONFIG.ItemResourceProgression.decreasing'
+    }
+};
+
 export const beastformTypes = {
     normal: {
         id: 'normal',

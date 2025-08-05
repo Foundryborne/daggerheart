@@ -375,6 +375,9 @@
                         "description": "Describe how you prepare yourself for the path ahead, then gain a Hope. If you choose to Prepare with one or more members of your party, you each gain 2 Hope."
                     }
                 },
+                "refreshable": {
+                    "title": "Refreshing Resources"
+                },
                 "takeDowntime": "Take Downtime"
             },
             "HUD": {
@@ -902,6 +905,10 @@
                     "name": "Fear",
                     "abbreviation": "FR"
                 }
+            },
+            "ItemResourceProgression": {
+                "increasing": "Increasing",
+                "decreasing": "Decreasing"
             },
             "ItemResourceType": {
                 "simple": "Simple",
@@ -1968,6 +1975,7 @@
                     "dieFaces": { "label": "Die Faces" },
                     "icon": { "label": "Icon" },
                     "max": { "label": "Max" },
+                    "progression": { "label": "Progression" },
                     "recovery": { "label": "Recovery" },
                     "type": { "label": "Type" },
                     "value": { "label": "Value" }
