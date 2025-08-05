@@ -7,29 +7,56 @@
   "system": {
     "description": "",
     "actions": {
-      "dmOSrd6R6EIQyZ0r": {
+      "o18UvqLPWLe1A8XJ": {
         "type": "healing",
         "actionType": "action",
         "chatDisplay": true,
         "name": "Heal",
         "description": "During downtime, automatically clear a Hit Point.",
         "img": "icons/magic/life/cross-beam-green.webp",
-        "_id": "dmOSrd6R6EIQyZ0r",
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "damage": {
+          "parts": [
+            {
+              "applyTo": "hitPoints",
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "base": false,
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "_id": "o18UvqLPWLe1A8XJ",
         "effects": [],
         "systemPath": "actions",
         "cost": [],
         "uses": {
           "value": null,
           "max": null,
-          "recovery": null
-        },
-        "damage": {
-          "parts": [],
-          "includeBase": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "roll": {
           "type": null,
@@ -58,7 +85,7 @@
         "value": "healing",
         "effectIds": [],
         "actionIds": [
-          "dmOSrd6R6EIQyZ0r"
+          "o18UvqLPWLe1A8XJ"
         ]
       }
     ],
@@ -158,8 +185,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753833663905,
-    "modifiedTime": 1753833710722,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1754406631151,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!n1oPTk5czTIGTkVj"
 }

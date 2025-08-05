@@ -886,14 +886,21 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.healing.actions.heal.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.healing.actions.heal.description',
                 img: 'icons/magic/life/cross-beam-green.webp',
-                healing: {
-                    type: 'health',
-                    value: {
-                        custom: {
-                            enabled: true,
-                            formula: '1'
+                target: {
+                    type: 'self'
+                },
+                damage: {
+                    parts: [
+                        {
+                            applyTo: 'hitPoints',
+                            value: {
+                                custom: {
+                                    enabled: true,
+                                    formula: 1
+                                }
+                            }
                         }
-                    }
+                    ]
                 }
             }
         ]
