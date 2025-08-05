@@ -14,26 +14,19 @@
       "recovery": "longRest"
     },
     "actions": {
-      "an5CBts4S3DoN8h7": {
+      "ozYzhQfRt5sp19di": {
         "type": "healing",
-        "_id": "an5CBts4S3DoN8h7",
+        "_id": "ozYzhQfRt5sp19di",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, spend 2 Hope to clear 2 Hit Points on 1d4 allies within Close range.</p>",
-        "chatDisplay": false,
+        "description": "<p>Once per long rest, spend 2 Hope to clear 2 Hit Points on [[/r 1d4]] allies within Close range.</p>",
+        "chatDisplay": true,
         "actionType": "action",
-        "cost": [
-          {
-            "scalable": false,
-            "key": "hope",
-            "value": 2,
-            "keyIsID": false,
-            "step": null
-          }
-        ],
+        "cost": [],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
         },
         "damage": {
           "parts": [
@@ -66,7 +59,7 @@
           "includeBase": false
         },
         "target": {
-          "type": "friendly",
+          "type": "any",
           "amount": null
         },
         "effects": [],
@@ -85,9 +78,9 @@
           },
           "useDefault": false
         },
-        "name": "Spend Hope",
+        "name": "Healing",
         "img": "icons/commodities/currency/coin-embossed-ruby-gold.webp",
-        "range": "close"
+        "range": ""
       }
     },
     "originItemType": null,
@@ -108,8 +101,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754183079986,
-    "modifiedTime": 1754236487527,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754353582707,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!2F1bUFY80oce97C9"
 }

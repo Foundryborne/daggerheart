@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7O1tTswJMNdPgLsx",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. Targets you succeed against become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice. <strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to force all <em>Enraptured</em> targets to mark a Stress, ending this spell.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice. <strong>Mark a Stress</strong> to force all <em>Enraptured</em> targets to mark a Stress, ending this spell.</p>",
     "domain": "grace",
     "recallCost": 3,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "r5eA3tAH7EplOQCP",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -58,14 +58,14 @@
           "damageMod": "none"
         },
         "name": "Enrapture",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
         "range": "far"
       },
       "QhBaM0LU9tmSI3IO": {
         "type": "damage",
         "_id": "QhBaM0LU9tmSI3IO",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><strong>Mark a Stress</strong> to force all <em>Enraptured</em> targets to mark a Stress, ending this spell.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -118,7 +118,7 @@
         },
         "effects": [],
         "name": "Mark Stress",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
         "range": ""
       }
     }
@@ -132,15 +132,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784481,
-    "modifiedTime": 1754229092895,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754342040215,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "ubpixIgZrJXKyM3b",
   "sort": 3400000,
   "effects": [
     {
       "name": "Enraptured",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
       "origin": "Compendium.daggerheart.domains.Item.ubpixIgZrJXKyM3b",
       "transfer": false,
       "_id": "QNbnelRylVB0yCm0",
@@ -177,7 +177,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754106766101,
-        "modifiedTime": 1754106805564,
+        "modifiedTime": 1754342055429,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!ubpixIgZrJXKyM3b.QNbnelRylVB0yCm0"

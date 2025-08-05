@@ -1,29 +1,147 @@
 {
   "name": "Overwhelming Aura",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/splendor.png",
   "type": "domainCard",
   "folder": "sGCKwmomutMTv0Xs",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong> to magically empower your aura. On a success, <strong>spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to make your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"presence\" nexus=\"daggerheart\">Presence</tooltip> equal to your Spellcast trait until your next <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>.        </p><p class=\"Body-Foundation\">While this spell is active, an adversary must mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> when they target you with an attack.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong> to magically empower your aura. On a success, <strong>spend 2 Hope</strong> to make your Presence equal to your Spellcast trait until your next long rest.</p><p class=\"Body-Foundation\">While this spell is active, an adversary must mark a Stress when they target you with an attack.</p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 9,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "r2XblKJyZyamOOXq": {
+        "type": "attack",
+        "_id": "r2XblKJyZyamOOXq",
+        "systemPath": "actions",
+        "description": "<p><span class=\"Body-Foundation\" style=\"box-sizing: border-box; margin: 0px; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif; color: rgb(239, 230, 216); font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(24, 22, 46, 0.376); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial\">Make a <strong style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0);\">Spellcast Roll (15)</strong> to magically empower your aura. On a success, <strong style=\"box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0);\">spend 2 Hope</strong> to make your Presence equal to your Spellcast trait until your next long rest.While this spell is active, an adversary must mark a Stress when they target you with an attack.</span></p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "consumeOnSuccess": true,
+            "scalable": false,
+            "key": "hope",
+            "value": 2,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [
+          {
+            "_id": "ba9GO4NtQHYkaRR9",
+            "onSave": false
+          }
+        ],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": 15,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Cast",
+        "img": "icons/magic/holy/angel-winged-humanoid-blue.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784491,
-    "modifiedTime": 1753922784491,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754270006714,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "iEBLySZD9z8CLdz7",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Overwhelming Aura",
+      "img": "icons/magic/holy/angel-winged-humanoid-blue.webp",
+      "origin": "Compendium.daggerheart.domains.Item.iEBLySZD9z8CLdz7",
+      "transfer": false,
+      "_id": "ba9GO4NtQHYkaRR9",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.traits.presence.value",
+          "mode": 5,
+          "value": "@cast",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Your Presence is equal to your Spellcast trait until your next long rest.<br />While this spell is active, an adversary must mark a Stress when they target you with an attack.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754267815179,
+        "modifiedTime": 1754270016603,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!iEBLySZD9z8CLdz7.ba9GO4NtQHYkaRR9"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!iEBLySZD9z8CLdz7"
 }

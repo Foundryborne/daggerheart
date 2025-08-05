@@ -59,14 +59,14 @@ export const renderMeasuredTemplate = async event => {
     const distance = type === CONFIG.DH.GENERAL.templateTypes.EMANATION ? baseDistance + 2.5 : baseDistance;
 
     const { width, height } = game.canvas.scene.dimensions;
-    canvas.scene.createEmbeddedDocuments('MeasuredTemplate', [
-        {
-            x: width / 2,
-            y: height / 2,
-            t: usedType,
-            distance: distance,
-            width: type === CONST.MEASURED_TEMPLATE_TYPES.RAY ? 5 : undefined,
-            angle: angle
-        }
-    ]);
+    const data = {
+        x: width / 2,
+        y: height / 2,
+        t: usedType,
+        distance: distance,
+        width: type === CONST.MEASURED_TEMPLATE_TYPES.RAY ? 5 : undefined,
+        angle: angle
+    };
+
+    CONFIG.ux.TemplateManager.createPreview(data);
 };

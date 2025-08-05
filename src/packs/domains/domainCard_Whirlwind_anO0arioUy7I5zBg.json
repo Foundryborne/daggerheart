@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "9Xc6KzNyjDtTGZkp",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you make a successful attack against a target within <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"very-close\" class=\"tooltip-convert\">Very Close</tooltip> range, you can <strong>spend a <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"hope\" class=\"tooltip-convert\">Hope</tooltip></strong> to use the attack against all other targets within Very Close range. All additional adversaries you succeed against with this ability take half damage.</p></p>",
+    "description": "<p class=\"Body-Foundation\">When you make a successful attack against a target within Very Close range, you can <strong>spend a Hope</strong> to use the attack against all other targets within Very Close range. All additional adversaries you succeed against with this ability take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
     "domain": "blade",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "g9X0wRuCtAYzF576",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">When you make a successful attack against a target within Very Close range, you can <strong>spend a Hope</strong> to use the attack against all other targets within Very Close range. All additional adversaries you succeed against with this ability take half damage.</p><p>@Template[type:emanation|range:vc]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -53,8 +53,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784545,
-    "modifiedTime": 1754244586174,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304354572,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "anO0arioUy7I5zBg",
   "sort": 3400000,

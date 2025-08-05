@@ -4,11 +4,18 @@
   "type": "domainCard",
   "folder": "yFcD1LOM3xKbkNYl",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, this card can mimic the features of another domain card of level 8 or lower in another player’s <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip>. <strong>Spend </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip><strong> equal to half the card’s level</strong> to gain access to the feature. It lasts until your next rest or they place the card in their vault.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, this card can mimic the features of another domain card of level 8 or lower in another player’s loadout. <strong>Spend Hope equal to half the card’s level</strong> to gain access to the feature. It lasts until your next rest or they place the card in their vault.</p>",
     "domain": "grace",
     "recallCost": 3,
     "level": 9,
-    "type": "spell"
+    "type": "spell",
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "recovery": "longRest",
+      "max": "1",
+      "icon": ""
+    }
   },
   "flags": {},
   "_stats": {
@@ -19,8 +26,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784439,
-    "modifiedTime": 1754229088078,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754329311656,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "3A7LZ1xmDEMGa165",
   "sort": 3400000,

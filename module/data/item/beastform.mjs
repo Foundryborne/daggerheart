@@ -81,6 +81,13 @@ export default class DHBeastform extends BaseDataItem {
         };
     }
 
+    /* -------------------------------------------- */
+
+    /**@override */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/wolf-head.svg';
+
+    /* -------------------------------------------- */
+
     async _preCreate() {
         if (!this.actor) return;
 

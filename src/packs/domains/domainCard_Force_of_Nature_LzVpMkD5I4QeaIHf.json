@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pPzU9WOQNv3ckO1w",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\"><strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to transform into a hulking nature spirit, gaining the following benefits:        </p><ul class=\"\"><li class=\"vertical-card-list\">When you succeed on an attack or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Roll</tooltip>, gain a +10 bonus to the damage roll.</li><li class=\"vertical-card-list\">When you deal enough damage to defeat a creature within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range, you absorb them and clear an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip>.</li><li class=\"vertical-card-list\">You can’t be <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restrained</em></tooltip>.</li></ul><p class=\"Body-Foundation\">Before you make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip>, you must <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip>. If you can’t, you revert to your normal form.        </p></p>",
+    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\"><strong>Mark a Stress</strong> to transform into a hulking nature spirit, gaining the following benefits:</p><ul><li class=\"vertical-card-list\"><p>When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</p></li><li class=\"vertical-card-list\"><p>When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</p></li><li class=\"vertical-card-list\"><p>You can’t be <em>Restrained</em>.</p></li></ul><p class=\"Body-Foundation\">Before you make an action roll, you must <strong>spend a Hope</strong>. If you can’t, you revert to your normal form.</p>",
     "domain": "sage",
     "recallCost": 2,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "Yf4L0fo5vq4dIZFM",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\"><strong>Mark a Stress</strong> to transform into a hulking nature spirit, gaining the following benefits:</p><ul><li class=\"vertical-card-list\"><p>When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</p></li><li class=\"vertical-card-list\"><p>When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</p></li><li class=\"vertical-card-list\"><p>You can’t be <em>Restrained</em>.</p></li></ul><p class=\"Body-Foundation\">Before you make an action roll, you must <strong>spend a Hope</strong>. If you can’t, you revert to your normal form.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -42,14 +42,14 @@
           "amount": null
         },
         "name": "Transform",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/elemental-plant-humanoid.webp",
         "range": ""
       },
       "1rLoYS90AZizJujS": {
         "type": "effect",
         "_id": "1rLoYS90AZizJujS",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Before you make an action roll, you must <strong>spend a Hope</strong>. If you can’t, you revert to your normal form.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -72,7 +72,7 @@
           "amount": null
         },
         "name": "Spend Hope for Action",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
         "range": ""
       }
     }
@@ -86,15 +86,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784456,
-    "modifiedTime": 1754229209091,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754340347669,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "LzVpMkD5I4QeaIHf",
   "sort": 3400000,
   "effects": [
     {
       "name": "Force of Nature",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/nature/elemental-plant-humanoid.webp",
       "origin": "Compendium.daggerheart.domains.Item.LzVpMkD5I4QeaIHf",
       "transfer": false,
       "_id": "ptBC882plZW39Ld9",
@@ -131,7 +131,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</span></p><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</span></p><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">You can’t be <em style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0)\">Restrained</em>.</span></p>",
+      "description": "<ul><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you succeed on an attack or Spellcast Roll, gain a +10 bonus to the damage roll.</span></p></li><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">When you deal enough damage to defeat a creature within Close range, you absorb them and clear an Armor Slot.</span></p></li><li><p><span class=\"vertical-card-list\" style=\"box-sizing:border-box;margin:0px 0px 0.25rem;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">You can’t be <em style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0)\">Restrained</em>.</span></p></li><li><p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Before you make an action roll, you must </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">spend a Hope</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">. If you can’t, you revert to your normal form.</span></p></li></ul>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -144,7 +144,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754120504134,
-        "modifiedTime": 1754120577792,
+        "modifiedTime": 1754340362524,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!LzVpMkD5I4QeaIHf.ptBC882plZW39Ld9"

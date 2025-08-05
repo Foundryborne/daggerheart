@@ -31,12 +31,12 @@
         },
         "effects": [],
         "target": {
-          "type": "any",
-          "amount": null
+          "type": "friendly",
+          "amount": 1
         },
         "name": "Mark Armor Slot",
         "img": "icons/skills/social/diplomacy-handshake-yellow.webp",
-        "range": ""
+        "range": "veryClose"
       }
     },
     "originItemType": null,
@@ -57,8 +57,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754242808363,
-    "modifiedTime": 1754242937117,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754350282699,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!G54qY96XK62hgoK9"
 }

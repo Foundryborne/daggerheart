@@ -80,10 +80,17 @@ export default class ClassSheet extends DHBaseItemSheet {
             'inventory.choiceB'
         ];
 
-        paths.forEach(path => {
-            const docs = [].concat(foundry.utils.getProperty(this.document, `system.${path}`) ?? []);
-            docs.forEach(doc => (doc.apps[this.id] = this));
-        });
+        for (let path of paths) {
+            const docDatas = [].concat(foundry.utils.getProperty(this.document, `system.${path}`) ?? []);
+
+            const docs = [];
+            for (var docData of docDatas) {
+                const doc = await foundry.utils.fromUuid(docData.uuid);
+                docs.push(doc);
+            }
+
+            docs.filter(doc => doc).forEach(doc => (doc.apps[this.id] = this));
+        }
     }
 
     /**@inheritdoc */

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "ML2JusN36oJoR8QA",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Midnight domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">Once per rest, when you have 0 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> and the GM would gain a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>, you can gain a Hope instead.</li><li class=\"vertical-card-list-found\">When you make a successful attack, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to add the result of your Fear Die to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"damage-roll\" nexus=\"daggerheart\">damage roll</tooltip>.            </li></ul></p>",
+    "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Midnight domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>Once per rest, when you have 0 Hope and the GM would gain a Fear, you can gain a Hope instead.</p></li><li class=\"vertical-card-list-found\"><p>When you make a successful attack, you can <strong>mark a Stress</strong> to add the result of your Fear Die to your damage roll.</p></li></ul>",
     "domain": "midnight",
     "recallCost": 2,
     "level": 7,
@@ -118,12 +118,57 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784484,
-    "modifiedTime": 1754173596933,
+    "modifiedTime": 1754331118511,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "uSyGKVxOJcnp28po",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Midnight-Touched",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "sNBuI2xIZAI4RgZy",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/midnight.png",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Midnight domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>Once per rest, when you have 0 Hope and the GM would gain a Fear, you can gain a Hope instead.</p></li><li class=\"vertical-card-list-found\"><p>When you make a successful attack, you can <strong>mark a Stress</strong> to add the result of your Fear Die to your damage roll.</p></li></ul>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754331127864,
+        "modifiedTime": 1754331154078,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!uSyGKVxOJcnp28po.sNBuI2xIZAI4RgZy"
+    }
+  ],
   "ownership": {
     "default": 0
   },

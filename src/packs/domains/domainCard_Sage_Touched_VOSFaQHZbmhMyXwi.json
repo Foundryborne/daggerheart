@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "gEVGjjPrjqxxZkb5",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Sage domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list\">While you’re in a natural environment, you gain a +2 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Rolls</tooltip>.</li><li class=\"vertical-card-list\">Once per rest, you can double your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"agility\" nexus=\"daggerheart\">Agility</tooltip> or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"instinct\" nexus=\"daggerheart\">Instinct</tooltip> when making a roll that uses that trait. You must choose to do this before you roll.</li></ul></p>",
+    "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Sage domain, gain the following benefits:</p><ul><li class=\"vertical-card-list\"><p>While you’re in a natural environment, you gain a +2 bonus to your Spellcast Rolls.</p></li><li class=\"vertical-card-list\"><p>Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p><p></p></li></ul>",
     "domain": "sage",
     "recallCost": 2,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "JVrYhunJ2qr5uOcx",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -42,14 +42,14 @@
           "amount": null
         },
         "name": "Double Agility",
-        "img": "icons/svg/item-bag.svg",
+        "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
         "range": ""
       },
       "zdu8GkVWby3nz8Pa": {
         "type": "effect",
         "_id": "zdu8GkVWby3nz8Pa",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Once per rest, you can double your Agility or Instinct when making a roll that uses that trait. You must choose to do this before you roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -77,7 +77,7 @@
           "amount": null
         },
         "name": "Double Instinct",
-        "img": "icons/svg/item-bag.svg",
+        "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
         "range": ""
       }
     },
@@ -98,8 +98,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784507,
-    "modifiedTime": 1754229226546,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754339963905,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "VOSFaQHZbmhMyXwi",
   "sort": 3400000,
@@ -116,7 +116,7 @@
         }
       },
       "_id": "7zMpgedPII5GIYUl",
-      "img": "icons/magic/life/heart-cross-blue.webp",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
       "changes": [
         {
           "key": "system.bonuses.roll.spellcast.bonus",
@@ -150,16 +150,16 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754118827696,
-        "modifiedTime": 1754119018524,
+        "modifiedTime": 1754334543508,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!VOSFaQHZbmhMyXwi.7zMpgedPII5GIYUl"
     },
     {
       "name": "Double Agility",
-      "img": "icons/svg/item-bag.svg",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
       "origin": "Compendium.daggerheart.domains.Item.VOSFaQHZbmhMyXwi",
-      "transfer": false,
+      "transfer": true,
       "_id": "Mmax64mlLPYxJPB7",
       "type": "base",
       "system": {
@@ -178,7 +178,7 @@
           "priority": null
         }
       ],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -201,16 +201,16 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754118919916,
-        "modifiedTime": 1754118995885,
+        "modifiedTime": 1754334559295,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!VOSFaQHZbmhMyXwi.Mmax64mlLPYxJPB7"
     },
     {
       "name": "Double Instinct",
-      "img": "icons/svg/item-bag.svg",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
       "origin": "Compendium.daggerheart.domains.Item.VOSFaQHZbmhMyXwi",
-      "transfer": false,
+      "transfer": true,
       "_id": "p03IjcyigL4b2WD1",
       "type": "base",
       "system": {
@@ -229,7 +229,7 @@
           "priority": null
         }
       ],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -252,7 +252,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754119059577,
-        "modifiedTime": 1754119092441,
+        "modifiedTime": 1754334563219,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!VOSFaQHZbmhMyXwi.p03IjcyigL4b2WD1"

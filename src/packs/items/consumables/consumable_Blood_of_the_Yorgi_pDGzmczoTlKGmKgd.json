@@ -11,18 +11,18 @@
         "type": "effect",
         "_id": "6QGfkGkFqqzuVOOY",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can drink this blood to disappear from where you are and immediately reappear at a point you can see within Very Far range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Drink",
@@ -44,12 +44,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753589954973,
-    "modifiedTime": 1753589985716,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394423870,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!pDGzmczoTlKGmKgd"
 }

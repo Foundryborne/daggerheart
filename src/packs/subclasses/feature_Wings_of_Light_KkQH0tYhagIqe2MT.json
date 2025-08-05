@@ -1,0 +1,152 @@
+{
+  "folder": "nVfL09Rh27H0aAqS",
+  "name": "Wings of Light",
+  "type": "feature",
+  "_id": "KkQH0tYhagIqe2MT",
+  "img": "icons/magic/light/projectile-beam-yellow.webp",
+  "system": {
+    "description": "<p>You can fly. While flying, you can do the following:</p><ul><li><p>Mark a Stress to pick up and carry another willing creature approximately your size or smaller.</p></li><li><p>Spend a Hope to deal an extra 1d8 damage on a successful attack.</p></li></ul>",
+    "resource": null,
+    "actions": {
+      "rg2sLCTqY2rTo861": {
+        "type": "effect",
+        "_id": "rg2sLCTqY2rTo861",
+        "systemPath": "actions",
+        "description": "<p>Mark a Stress to pick up and carry another willing creature approximately your size or smaller.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/magic/light/projectile-beam-yellow.webp",
+        "range": ""
+      },
+      "1qjnoz5I7NqrWMkp": {
+        "type": "effect",
+        "_id": "1qjnoz5I7NqrWMkp",
+        "systemPath": "actions",
+        "description": "<p>Spend a Hope to deal an extra 1d8 damage on a successful attack.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "PfCwuVbKLxhnrm9X",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/light/projectile-beam-yellow.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Wings of Light",
+      "img": "icons/magic/light/projectile-beam-yellow.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.KkQH0tYhagIqe2MT",
+      "transfer": false,
+      "_id": "PfCwuVbKLxhnrm9X",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.physical.dice",
+          "mode": 2,
+          "value": "+1d8",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.magical.dice",
+          "mode": 2,
+          "value": "+1d8",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>Deal an extra 1d8 damage on a successful attack.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754355070342,
+        "modifiedTime": 1754355121666,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!KkQH0tYhagIqe2MT.PfCwuVbKLxhnrm9X"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754354510934,
+    "modifiedTime": 1754355070373,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!KkQH0tYhagIqe2MT"
+}

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "HAGbPLHwm0UozDeG",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Blade domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">+2 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">attack rolls</tooltip></li><li class=\"vertical-card-list-found\">+4 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe</tooltip> damage threshold</li></ul></p>",
+    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">When 4 or more of the domain cards in your loadout are from the Blade domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+2 bonus to your attack rolls</p></li><li class=\"vertical-card-list-found\"><p>+4 bonus to your Severe damage threshold</p></li></ul>",
     "domain": "blade",
     "recallCost": 1,
     "level": 7,
@@ -19,8 +19,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784416,
-    "modifiedTime": 1754244839691,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304595818,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "Gb5bqpFSBiuBxUix",
   "sort": 3400000,

@@ -53,6 +53,13 @@ export default class DHClass extends BaseDataItem {
         };
     }
 
+    /* -------------------------------------------- */
+
+    /**@override */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/laurel-crown.svg';
+
+    /* -------------------------------------------- */
+
     get hopeFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.hope).map(x => x.item);
     }

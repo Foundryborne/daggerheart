@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "6Ny75zR1b8I8Ycsb",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you drink the contents of this vial, you can see in total darkness until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -98,7 +98,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753587590537,
-    "modifiedTime": 1753992914849,
+    "modifiedTime": 1754394940997,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!VqEX5YwK5oL3r1t6"

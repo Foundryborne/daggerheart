@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "sCiN7DoysdKceIMd",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">You have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on action rolls to pick nonmagical locks, disarm nonmagical traps, or steal items from a target (either through stealth or by force).</p></p>",
+    "description": "<p class=\"Body-Foundation\">You have advantage on action rolls to pick nonmagical locks, disarm nonmagical traps, or steal items from a target (either through stealth or by force).</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 1,
@@ -19,7 +19,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784492,
-    "modifiedTime": 1754158064843,
+    "modifiedTime": 1754330601777,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "HdgZUfWd7Hyj7nBW",

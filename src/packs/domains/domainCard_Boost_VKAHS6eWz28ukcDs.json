@@ -1,29 +1,66 @@
 {
   "name": "Boost",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "3e8kCsLzLxiACJDb",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to boost off a willing ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range, fling yourself into the air, and perform an aerial attack against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. You have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on the attack, add a<strong> d10</strong> to the <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"damage-roll\" nexus=\"daggerheart\">damage roll</tooltip>, and end your move within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of the target.        </p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to boost off a willing ally within Close range, fling yourself into the air, and perform an aerial attack against a target within Far range. You have advantage on the attack, add a<strong> d10</strong> to the damage roll, and end your move within Melee range of the target.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 4,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "EA3lGjFhJAX1xoT4": {
+        "type": "effect",
+        "_id": "EA3lGjFhJAX1xoT4",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to boost off a willing ally within Close range, fling yourself into the air, and perform an aerial attack against a target within Far range. You have advantage on the attack, add a<strong> d10</strong> to the damage roll, and end your move within Melee range of the target.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": 1
+        },
+        "name": "Mark Stress",
+        "img": "icons/skills/movement/arrow-upward-yellow.webp",
+        "range": "far"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784430,
-    "modifiedTime": 1753922784430,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252472924,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "VKAHS6eWz28ukcDs",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!VKAHS6eWz28ukcDs"
 }

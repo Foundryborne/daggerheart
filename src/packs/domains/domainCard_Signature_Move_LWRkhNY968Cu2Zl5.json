@@ -1,6 +1,6 @@
 {
   "name": "Signature Move",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "BQ1L4EiwOs84Xysp",
   "system": {
@@ -15,15 +15,18 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784518,
-    "modifiedTime": 1753922784518,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252482524,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "LWRkhNY968Cu2Zl5",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!LWRkhNY968Cu2Zl5"
 }

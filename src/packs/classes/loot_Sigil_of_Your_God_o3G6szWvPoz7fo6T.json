@@ -1,0 +1,31 @@
+{
+  "folder": "e1YJUjmPjY0vZ6BJ",
+  "name": "Sigil of Your God",
+  "type": "loot",
+  "_id": "o3G6szWvPoz7fo6T",
+  "img": "icons/commodities/treasure/statue-bust-stone-grey.webp",
+  "system": {
+    "description": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754351952157,
+    "modifiedTime": 1754351975883,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!o3G6szWvPoz7fo6T"
+}

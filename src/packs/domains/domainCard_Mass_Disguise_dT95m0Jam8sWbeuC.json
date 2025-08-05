@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "xuGz0QPNlkTOV0rV",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you have a few minutes of silence to focus, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to change the appearance of all willing creatures within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. Their new forms must share a general body structure and size, and can be somebody or something you’ve seen before or entirely fabricated. A disguised creature has advantage on <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"presence\" nexus=\"daggerheart\">Presence</tooltip> Rolls to avoid scrutiny.        </p><p class=\"Body-Foundation\">Activate a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"countdown\" nexus=\"daggerheart\">Countdown</tooltip> (8). It ticks down as a consequence the GM chooses. When it triggers, the disguise drops.</p></p>",
+    "description": "<p class=\"Body-Foundation\">When you have a few minutes of silence to focus, you can <strong>mark a Stress</strong> to change the appearance of all willing creatures within Close range. Their new forms must share a general body structure and size, and can be somebody or something you’ve seen before or entirely fabricated. A disguised creature has advantage on Presence Rolls to avoid scrutiny.</p><p class=\"Body-Foundation\">Activate a Countdown (8). It ticks down as a consequence the GM chooses. When it triggers, the disguise drops.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 6,
@@ -48,7 +48,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784480,
-    "modifiedTime": 1754173571050,
+    "modifiedTime": 1754331105670,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "dT95m0Jam8sWbeuC",

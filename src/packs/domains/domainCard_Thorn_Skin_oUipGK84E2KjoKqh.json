@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "ZZHIbaynhzVArA1p",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per rest, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card. When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you’re within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of the attacker, deal that amount of damage back to them.        </p><p class=\"Body-Foundation\">When you take a rest, clear all unspent tokens.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card. When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you’re within Melee range of the attacker, deal that amount of damage back to them.</p><p class=\"Body-Foundation\">When you take a rest, clear all unspent tokens.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 5,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "vGgUNZMcchMsQoYb",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per rest, <strong>spend a Hope</strong> to sprout thorns all over your body. When you do, place a number of tokens equal to your Spellcast trait on this card.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -37,14 +37,14 @@
           "amount": null
         },
         "name": "Spend Hope",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/thorns-hand-glow-green.webp",
         "range": ""
       },
       "IVAyyVf8gqFWB7bP": {
         "type": "effect",
         "_id": "IVAyyVf8gqFWB7bP",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you take damage, you can spend any number of tokens to roll that number of <strong>d6s</strong>. Add the results together and reduce the incoming damage by that amount. If you’re within Melee range of the attacker, deal that amount of damage back to them.</p><p class=\"Body-Foundation\">When you take a rest, clear all unspent tokens.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -67,7 +67,7 @@
           "amount": null
         },
         "name": "Use Tokens",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-blue.webp",
         "range": ""
       }
     },
@@ -89,15 +89,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784531,
-    "modifiedTime": 1754229239255,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754338832102,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "oUipGK84E2KjoKqh",
   "sort": 3400000,
   "effects": [
     {
       "name": "Thorn Skin",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/nature/thorns-hand-glow-green.webp",
       "origin": "Compendium.daggerheart.domains.Item.oUipGK84E2KjoKqh",
       "transfer": false,
       "_id": "KPA1okccsR7AQH0x",
@@ -114,7 +114,12 @@
       "disabled": false,
       "duration": {
         "startTime": null,
-        "combat": null
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "description": "",
       "tint": "#ffffff",
@@ -129,7 +134,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754117446751,
-        "modifiedTime": 1754117446751,
+        "modifiedTime": 1754338809617,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!oUipGK84E2KjoKqh.KPA1okccsR7AQH0x"

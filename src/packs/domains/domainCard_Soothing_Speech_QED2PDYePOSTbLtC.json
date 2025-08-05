@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "thP6nUk0nkrNcpXY",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">During a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"short-rest\" nexus=\"daggerheart\">short rest</tooltip>, when you take the time to comfort another character while using the <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"tend-to-wounds\" nexus=\"daggerheart\">Tend to Wounds</tooltip> <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"downtime\" nexus=\"daggerheart\">downtime</tooltip> move on them, clear an additional <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip> on that character. When you do, you also clear 2 Hit Points.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">During a short rest, when you take the time to comfort another character while using the Tend to Wounds downtime move on them, clear an additional Hit Point on that character. When you do, you also clear 2 Hit Points.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "r9mQqwdwL6J15IEf",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>During a short rest, when you take the time to comfort another character while using the Tend to Wounds downtime move on them, clear an additional Hit Point on that character.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -74,14 +74,14 @@
           "useDefault": false
         },
         "name": "Heal Another",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
         "range": ""
       },
       "s4KRqnNHNrSsOoNi": {
         "type": "healing",
         "_id": "s4KRqnNHNrSsOoNi",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you do, you also clear 2 Hit Points.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -141,7 +141,7 @@
           "useDefault": false
         },
         "name": "Heal Self",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
         "range": ""
       }
     }
@@ -155,8 +155,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784519,
-    "modifiedTime": 1754229127767,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754341467905,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "QED2PDYePOSTbLtC",
   "sort": 3400000,

@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "Et9JXoAULa2EAZfa",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Make a <strong>Spellcast Roll </strong>against a target within Very Close range. On a success, they can’t lie to you while they remain within Close range, but they are not compelled to speak. If you ask them a question and they refuse to answer, they must mark a Stress and the effect ends. The target is typically unaware this spell has been cast on them until it causes them to utter the truth.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -79,7 +79,7 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/control/voodoo-doll-pain-damage-red.webp",
         "range": "close"
       }
     }
@@ -93,8 +93,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784529,
-    "modifiedTime": 1754229144317,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754341185897,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "HTv9QEPS466WsstP",
   "sort": 3400000,
@@ -111,7 +111,7 @@
         }
       },
       "_id": "5L6fC80VfbPfGmcA",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/magic/control/voodoo-doll-pain-damage-red.webp",
       "changes": [],
       "disabled": false,
       "duration": {
@@ -138,7 +138,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754098358492,
-        "modifiedTime": 1754098549846,
+        "modifiedTime": 1754341203961,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!HTv9QEPS466WsstP.5L6fC80VfbPfGmcA"

@@ -1,0 +1,33 @@
+{
+  "folder": "yMp2Hj8av6IWJahF",
+  "name": "Rise to the Challenge",
+  "type": "feature",
+  "_id": "dcutk8RVOJ2sEkO1",
+  "img": "icons/magic/control/debuff-energy-hold-levitate-yellow.webp",
+  "system": {
+    "description": "<p>You are vigilant in the face of mounting danger. While you have 2 or fewer Hit Points unmarked, you can roll a <strong>d20</strong> as your Hope Die.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754256466148,
+    "modifiedTime": 1754256510431,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!dcutk8RVOJ2sEkO1"
+}

@@ -1,0 +1,123 @@
+{
+  "folder": "A7yYfCMQ8NMwDLX1",
+  "name": "No Mercy",
+  "type": "feature",
+  "_id": "njj2C3tMDeCHHOoh",
+  "img": "icons/skills/melee/blade-tip-chipped-blood-red.webp",
+  "system": {
+    "description": "<p><strong>Spend 3 Hope</strong> to gain a +1 bonus to your attack rolls until your next rest.</p>",
+    "resource": null,
+    "actions": {
+      "Kwav1cV1xvVO13sR": {
+        "type": "effect",
+        "_id": "Kwav1cV1xvVO13sR",
+        "systemPath": "actions",
+        "description": "<p><strong>Spend 3 Hope</strong> to gain a +1 bonus to your attack rolls until your next rest.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "XK4cCcz9sRGDJr0q",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "No Mercy",
+      "img": "icons/skills/melee/blade-tip-chipped-blood-red.webp",
+      "origin": "Compendium.daggerheart.classes.Item.njj2C3tMDeCHHOoh",
+      "transfer": false,
+      "_id": "XK4cCcz9sRGDJr0q",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.roll.attack.bonus",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><strong>G</strong>ain a +1 bonus to your attack rolls until your next rest.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754257373200,
+        "modifiedTime": 1754257387570,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!njj2C3tMDeCHHOoh.XK4cCcz9sRGDJr0q"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754257270096,
+    "modifiedTime": 1754257373211,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!njj2C3tMDeCHHOoh"
+}

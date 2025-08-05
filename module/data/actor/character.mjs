@@ -7,8 +7,10 @@ import { ActionField } from '../fields/actionField.mjs';
 import DHCharacterSettings from '../../applications/sheets-configs/character-settings.mjs';
 
 export default class DhCharacter extends BaseDataActor {
+    /**@override */
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Character'];
 
+    /**@inheritdoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.character',
@@ -18,6 +20,7 @@ export default class DhCharacter extends BaseDataActor {
         });
     }
 
+    /**@inheritdoc */
     static defineSchema() {
         const fields = foundry.data.fields;
 
@@ -26,12 +29,13 @@ export default class DhCharacter extends BaseDataActor {
             resources: new fields.SchemaField({
                 hitPoints: resourceField(
                     0,
+                    0,
                     'DAGGERHEART.GENERAL.HitPoints.plural',
                     true,
                     'DAGGERHEART.ACTORS.Character.maxHPBonus'
                 ),
-                stress: resourceField(6, 'DAGGERHEART.GENERAL.stress', true),
-                hope: resourceField(6, 'DAGGERHEART.GENERAL.hope')
+                stress: resourceField(6, 0, 'DAGGERHEART.GENERAL.stress', true),
+                hope: resourceField(6, 2, 'DAGGERHEART.GENERAL.hope')
             }),
             traits: new fields.SchemaField({
                 agility: attributeField('DAGGERHEART.CONFIG.Traits.agility.name'),
@@ -239,7 +243,8 @@ export default class DhCharacter extends BaseDataActor {
                     stressDamageReduction: new fields.SchemaField({
                         severe: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.severe'),
                         major: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.major'),
-                        minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor')
+                        minor: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.minor'),
+                        any: stressDamageReductionRule('DAGGERHEART.GENERAL.Rules.damageReduction.stress.any')
                     }),
                     increasePerArmorMark: new fields.NumberField({
                         integer: true,
@@ -248,7 +253,11 @@ export default class DhCharacter extends BaseDataActor {
                         hint: 'DAGGERHEART.GENERAL.Rules.damageReduction.increasePerArmorMark.hint'
                     }),
                     magical: new fields.BooleanField({ initial: false }),
-                    physical: new fields.BooleanField({ initial: false })
+                    physical: new fields.BooleanField({ initial: false }),
+                    thresholdImmunities: new fields.SchemaField({
+                        minor: new fields.BooleanField({ initial: false })
+                    }),
+                    disabledArmor: new fields.BooleanField({ intial: false })
                 }),
                 attack: new fields.SchemaField({
                     damage: new fields.SchemaField({
@@ -289,10 +298,15 @@ export default class DhCharacter extends BaseDataActor {
                     */
                     flipMinDiceValue: new fields.BooleanField({ intial: false })
                 }),
-                runeWard: new fields.BooleanField({ initial: false })
+                runeWard: new fields.BooleanField({ initial: false }),
+                burden: new fields.SchemaField({
+                    ignore: new fields.BooleanField()
+                })
             })
         };
     }
+
+    /* -------------------------------------------- */
 
     get tier() {
         const currentLevel = this.levelData.level.current;

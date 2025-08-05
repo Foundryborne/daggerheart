@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EJoXzO85rG5EiZsh",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. On a success, roots and vines reach out from the ground, dealing <strong>1d8+1</strong> physical damage and temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restraining</em></tooltip> the target.</p><p class=\"Body-Foundation\">Additionally on a success, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to temporarily <em>Restrain</em> another adversary within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range of your target.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, roots and vines reach out from the ground, dealing <strong>1d8+1</strong> physical damage and temporarily <em>Restraining</em> the target.</p><p class=\"Body-Foundation\">Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "lrA95PnD2vOwwmgN",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, roots and vines reach out from the ground, dealing <strong>1d8+1</strong> physical damage and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -85,14 +85,14 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/vines-thorned-curled-glow-teal.webp",
         "range": ""
       },
       "vh1IKRvsU4w57lBt": {
         "type": "effect",
         "_id": "vh1IKRvsU4w57lBt",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Additionally on a success, you can <strong>spend a Hope</strong> to temporarily <em>Restrain</em> another adversary within Very Close range of your target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -120,7 +120,7 @@
           "amount": null
         },
         "name": "Restrain Another",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
         "range": ""
       }
     }
@@ -134,15 +134,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784541,
-    "modifiedTime": 1754229259906,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754338467256,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "qvpvTnkAoRn9vYO4",
   "sort": 3400000,
   "effects": [
     {
       "name": "Restrained",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
       "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "Xh0wrgRUuYpwChBU",
@@ -181,14 +181,14 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754114720468,
-        "modifiedTime": 1754114732996,
+        "modifiedTime": 1754337816677,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!qvpvTnkAoRn9vYO4.Xh0wrgRUuYpwChBU"
     },
     {
       "name": "Restrained",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
       "origin": "Compendium.daggerheart.domains.Item.qvpvTnkAoRn9vYO4",
       "transfer": false,
       "_id": "2xzOqTaPJQzGqFJv",
@@ -227,7 +227,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754114785336,
-        "modifiedTime": 1754114795043,
+        "modifiedTime": 1754337833036,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!qvpvTnkAoRn9vYO4.2xzOqTaPJQzGqFJv"

@@ -18,7 +18,7 @@
         "type": "healing",
         "_id": "az7YUpxy1ysn12tO",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Once per long rest, you can create a space of natural serenity within Close range. When you spend a few minutes resting within the space, clear Stress equal to your Instinct, distributed as you choose between you and your allies.</p>",
         "chatDisplay": false,
         "actionType": "action",
         "cost": [
@@ -32,8 +32,8 @@
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "longRest"
         },
         "damage": {
           "parts": [
@@ -108,8 +108,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754179740310,
-    "modifiedTime": 1754236434756,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754353339637,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!etaQ01yGJhBLDUqZ"
 }

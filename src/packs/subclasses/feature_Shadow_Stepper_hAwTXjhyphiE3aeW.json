@@ -1,0 +1,114 @@
+{
+  "folder": "eykEGWrxYWGmwPDM",
+  "name": "Shadow Stepper",
+  "type": "feature",
+  "_id": "hAwTXjhyphiE3aeW",
+  "img": "icons/magic/unholy/projectile-smoke-trail-pink.webp",
+  "system": {
+    "description": "<p>You can move from shadow to shadow. When you move into an area of darkness or a shadow cast by another creature or object, you can mark a Stress to disappear from where you are and reappear inside another shadow within Far range. When you reappear, you are Cloaked.</p>",
+    "resource": null,
+    "actions": {
+      "g1VIG6VjYKkm11qJ": {
+        "type": "effect",
+        "_id": "g1VIG6VjYKkm11qJ",
+        "systemPath": "actions",
+        "description": "<p>You can move from shadow to shadow. When you move into an area of darkness or a shadow cast by another creature or object, you can mark a Stress to disappear from where you are and reappear inside another shadow within Far range. When you reappear, you are Cloaked.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [
+          {
+            "_id": "RYri0b9z5kq74U5n",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/magic/unholy/projectile-smoke-trail-pink.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Shadow Stepper: Cloaked",
+      "img": "icons/magic/unholy/projectile-smoke-trail-pink.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.hAwTXjhyphiE3aeW",
+      "transfer": false,
+      "_id": "RYri0b9z5kq74U5n",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>You can move from shadow to shadow. When you move into an area of darkness or a shadow cast by another creature or object, you can mark a Stress to disappear from where you are and reappear inside another shadow within Far range. When you reappear, you are Cloaked.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754323456447,
+        "modifiedTime": 1754323477675,
+        "lastModifiedBy": "LgnbNMLaxandgMQq"
+      },
+      "_key": "!items.effects!hAwTXjhyphiE3aeW.RYri0b9z5kq74U5n"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754318976447,
+    "modifiedTime": 1754323456453,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!hAwTXjhyphiE3aeW"
+}

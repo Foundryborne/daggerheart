@@ -1,0 +1,46 @@
+{
+  "folder": "F0mW5ofdyyfE2hHo",
+  "name": "Primal Origin",
+  "type": "subclass",
+  "_id": "GLpRVxnY5E82khxH",
+  "img": "icons/magic/fire/flame-burning-hand-purple.webp",
+  "system": {
+    "description": "<p>Play the Primal Origin if you want to extend the versatility of your spells in powerful ways.</p>",
+    "spellcastingTrait": "instinct",
+    "features": [
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.yA4MKQ1tbKFiJoDB"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.4pVBN8cuKePI423V"
+      },
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.UNg4eyNfEQrMdD7G"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349604941,
+    "modifiedTime": 1754349673276,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!GLpRVxnY5E82khxH"
+}

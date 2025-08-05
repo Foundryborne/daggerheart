@@ -28,7 +28,7 @@
       },
       "changes": [
         {
-          "key": "system.resources.hitPoints.value",
+          "key": "system.resources.hitPoints.max",
           "mode": 2,
           "value": "1",
           "priority": null
@@ -59,7 +59,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753996768847,
-        "modifiedTime": 1753999765864,
+        "modifiedTime": 1754310930764,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!tXWEMdLXafUSZTbK.db8W2Q0Qty84XV0x"

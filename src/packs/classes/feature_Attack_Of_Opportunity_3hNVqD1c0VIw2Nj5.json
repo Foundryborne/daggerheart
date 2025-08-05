@@ -1,0 +1,33 @@
+{
+  "folder": "A7yYfCMQ8NMwDLX1",
+  "name": "Attack Of Opportunity",
+  "type": "feature",
+  "_id": "3hNVqD1c0VIw2Nj5",
+  "img": "icons/skills/melee/strike-sword-slashing-red.webp",
+  "system": {
+    "description": "<p>If an adversary within Melee range attempts to leave that range, make a reaction roll using a trait of your choice against their Difficulty. Choose one effect on a success, or two if you critically succeed:</p><ul><li><p>They can’t move from where they are.</p></li><li><p>You deal damage to them equal to your primary weapon’s damage.</p></li><li><p>You move with them.</p></li></ul>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754257407143,
+    "modifiedTime": 1754257470399,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!3hNVqD1c0VIw2Nj5"
+}

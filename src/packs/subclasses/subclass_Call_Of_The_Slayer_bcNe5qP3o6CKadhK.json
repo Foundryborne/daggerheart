@@ -1,0 +1,46 @@
+{
+  "folder": "aTyhcJgENR9uI7u4",
+  "name": "Call Of The Slayer",
+  "type": "subclass",
+  "_id": "bcNe5qP3o6CKadhK",
+  "img": "icons/skills/melee/weapons-crossed-swords-yellow.webp",
+  "system": {
+    "description": "<p>Play the Call of the Slayer if you want to strike down adversaries with immense force.</p>",
+    "spellcastingTrait": null,
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.1hF5KGKQc2VKT5O8"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.HAqtoKUTrk8Mip1n"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.dHgAnbt9m1KsQFmp"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754256112978,
+    "modifiedTime": 1754256959532,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!bcNe5qP3o6CKadhK"
+}

@@ -1,0 +1,33 @@
+{
+  "folder": "IIW7boHWq1QoYwOQ",
+  "name": "Fueled by Fear",
+  "type": "feature",
+  "_id": "hNqLf3zEfKRzSbvq",
+  "img": "icons/magic/symbols/rune-sigil-hook-white-red.webp",
+  "system": {
+    "description": "<p>The extra magic damage from your “Face Your Fear” feature increases to <strong>2d10</strong>.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754254160964,
+    "modifiedTime": 1754254207526,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!hNqLf3zEfKRzSbvq"
+}

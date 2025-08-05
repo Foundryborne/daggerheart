@@ -318,6 +318,7 @@
             "DamageReduction": {
                 "armorMarks": "Armor Marks",
                 "armorWithStress": "Spend 1 stress to use an extra mark",
+                "thresholdImmunities": "Threshold Immunities",
                 "stress": "Stress",
                 "stressReduction": "Reduce By Stress",
                 "title": "Damage Reduction",
@@ -373,6 +374,9 @@
                         "name": "Prepare",
                         "description": "Describe how you prepare yourself for the path ahead, then gain a Hope. If you choose to Prepare with one or more members of your party, you each gain 2 Hope."
                     }
+                },
+                "refreshable": {
+                    "title": "Refreshing Resources"
                 },
                 "takeDowntime": "Take Downtime"
             },
@@ -893,7 +897,7 @@
                     "name": "Hope",
                     "abbreviation": "HO"
                 },
-                "armorSlot": {
+                "armor": {
                     "name": "Armor Slot",
                     "abbreviation": "AS"
                 },
@@ -901,6 +905,10 @@
                     "name": "Fear",
                     "abbreviation": "FR"
                 }
+            },
+            "ItemResourceProgression": {
+                "increasing": "Increasing",
+                "decreasing": "Decreasing"
             },
             "ItemResourceType": {
                 "simple": "Simple",
@@ -951,6 +959,12 @@
                 "diceSet": {
                     "name": "Dice Set"
                 }
+            },
+            "RuleChoice": {
+                "off": "Off",
+                "offWithToggle": "Off With Toggle",
+                "on": "On",
+                "onWithToggle": "On With Toggle"
             },
             "SelectAction": {
                 "selectType": "Select Action Type",
@@ -1662,7 +1676,8 @@
                 "major": "Major",
                 "severe": "Severe",
                 "majorThreshold": "Major Damage Threshold",
-                "severeThreshold": "Severe Damage Threshold"
+                "severeThreshold": "Severe Damage Threshold",
+                "with": "{threshold} Damage Threshold"
             },
             "Dice": {
                 "single": "Die",
@@ -1772,6 +1787,10 @@
                         "hint": "If this value is set you can use up to that much stress to spend additional Armor Marks beyond your normal maximum."
                     },
                     "stress": {
+                        "any": {
+                            "label": "Stress Damage Reduction: Any",
+                            "hint": "The cost in stress you can pay to reduce incoming damage down one threshold"
+                        },
                         "severe": {
                             "label": "Stress Damage Reduction: Severe",
                             "hint": "The cost in stress you can pay to reduce severe damage down to major."
@@ -1850,6 +1869,8 @@
             },
             "actorName": "Actor Name",
             "amount": "Amount",
+            "any": "Any",
+            "armor": "Armor",
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
@@ -1954,6 +1975,7 @@
                     "dieFaces": { "label": "Die Faces" },
                     "icon": { "label": "Icon" },
                     "max": { "label": "Max" },
+                    "progression": { "label": "Progression" },
                     "recovery": { "label": "Recovery" },
                     "type": { "label": "Type" },
                     "value": { "label": "Value" }
@@ -2059,6 +2081,10 @@
                     "hint": "Automatically increase the GM's fear pool on a fear duality roll result."
                 },
                 "FIELDS": {
+                    "damageReductionRulesDefault": {
+                        "label": "Damage Reduction Rules Default",
+                        "hint": "Wether using armor and reductions has rules on by default"
+                    },
                     "hopeFear": {
                         "label": "Hope & Fear",
                         "gm": { "label": "GM" },
@@ -2081,6 +2107,10 @@
                             "label": "Effect Range Dependent",
                             "hint": "Effects with defined range dependency will automatically turn on/off depending on range"
                         }
+                    },
+                    "resourceScrollTexts": {
+                        "label": "Show Resource Change Scrolltexts",
+                        "hint": "When a character is damaged, uses armor etc, a scrolling text will briefly appear by the token to signify this."
                     }
                 }
             },
@@ -2291,7 +2321,8 @@
                 "domainMaxReached": "You've reached the maximum domains for the class. Increase the limit in homebrew settings if desired.",
                 "insufficientResources": "You have insufficient resources",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
-                "subclassesAlreadyPresent": "You already have a class and multiclass subclass"
+                "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
+                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice"
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",
@@ -2313,7 +2344,9 @@
                 "diceIsRerolled": "The dice has been rerolled (x{times})",
                 "pendingSaves": "Pending Reaction Rolls",
                 "openSheetSettings": "Open Settings",
-                "compendiumBrowser": "Compendium Browser"
+                "compendiumBrowser": "Compendium Browser",
+                "rulesOn": "Rules On",
+                "rulesOff": "Rules Off"
             }
         }
     }

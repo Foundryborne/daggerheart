@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "BJIiOIWAQUz5zuqo",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range and choose one of the following options:</p><ul class=\"\"><li class=\"vertical-card-list\">You pull the target into <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range or pull yourself into Melee range of them. </li><li class=\"vertical-card-list\">You constrict the target and force them to mark 2 <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</li><li class=\"vertical-card-list\">All adversaries between you and the target must succeed on a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">Reaction Roll</tooltip> (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restraining</em></tooltip> the target. </p></p>",
+    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range and choose one of the following options:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "wsXZCKqGKfOUHE1M",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range, and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You pull the target into Melee range or pull yourself into Melee range of them.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -58,14 +58,14 @@
           "damageMod": "none"
         },
         "name": "Pull",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/root-vine-entangled-hand.webp",
         "range": "close"
       },
       "x62SXSpT9bjIEP5e": {
         "type": "attack",
         "_id": "x62SXSpT9bjIEP5e",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>You constrict the target and force them to mark 2 Stress.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -135,14 +135,14 @@
           "damageMod": "none"
         },
         "name": "Constrict",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/root-vines-knot-brown.webp",
         "range": "close"
       },
       "9416a3EogNFLRdUX": {
         "type": "attack",
         "_id": "9416a3EogNFLRdUX",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Make a <strong>Spellcast Roll</strong> against a target within Close range and choose the following option:</p><ul><li class=\"vertical-card-list\"><p>All adversaries between you and the target must succeed on a Reaction Roll (13) or be hit by vines, taking <strong>3d6+2</strong> physical damage.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">On a success, vines reach out from your hands, causing the chosen effect and temporarily <em>Restraining</em> the target.</p>",
         "chatDisplay": true,
         "actionType": "reaction",
         "cost": [],
@@ -213,7 +213,7 @@
           "damageMod": "none"
         },
         "name": "Hit All Adversaries Between",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/root-vine-beanstalk-moon.webp",
         "range": ""
       }
     }
@@ -227,15 +227,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784444,
-    "modifiedTime": 1754229245846,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754338651654,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "x0FVGE1YbfXalJiw",
   "sort": 3400000,
   "effects": [
     {
       "name": "Restrained",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
       "origin": "Compendium.daggerheart.domains.Item.x0FVGE1YbfXalJiw",
       "transfer": false,
       "_id": "wMXCIQxqLS9IbsEK",
@@ -274,14 +274,14 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754116402812,
-        "modifiedTime": 1754116413812,
+        "modifiedTime": 1754338538962,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!x0FVGE1YbfXalJiw.wMXCIQxqLS9IbsEK"
     },
     {
       "name": "Restrained",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
       "origin": "Compendium.daggerheart.domains.Item.x0FVGE1YbfXalJiw",
       "transfer": false,
       "_id": "bZ0xgZ6TT2099OYp",
@@ -320,14 +320,14 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754116465068,
-        "modifiedTime": 1754116474175,
+        "modifiedTime": 1754338547840,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!x0FVGE1YbfXalJiw.bZ0xgZ6TT2099OYp"
     },
     {
       "name": "Restrained",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/control/debuff-chains-shackle-movement-red.webp",
       "origin": "Compendium.daggerheart.domains.Item.x0FVGE1YbfXalJiw",
       "transfer": false,
       "_id": "Oe95zWWY41nH8y5l",
@@ -366,7 +366,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754117032244,
-        "modifiedTime": 1754117038968,
+        "modifiedTime": 1754338556070,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!x0FVGE1YbfXalJiw.Oe95zWWY41nH8y5l"

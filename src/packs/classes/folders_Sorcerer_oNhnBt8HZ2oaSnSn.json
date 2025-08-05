@@ -1,0 +1,22 @@
+{
+  "type": "Item",
+  "folder": "S4dTxJcuo1VW8o1E",
+  "name": "Sorcerer",
+  "color": null,
+  "sorting": "a",
+  "_id": "oNhnBt8HZ2oaSnSn",
+  "description": "",
+  "sort": 500000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z",
+    "modifiedTime": 1754349706650
+  },
+  "_key": "!folders!oNhnBt8HZ2oaSnSn"
+}

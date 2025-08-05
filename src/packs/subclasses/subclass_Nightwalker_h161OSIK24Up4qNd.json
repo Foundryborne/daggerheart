@@ -1,0 +1,54 @@
+{
+  "folder": "36dtJE1CPjPt76pP",
+  "name": "Nightwalker",
+  "type": "subclass",
+  "_id": "h161OSIK24Up4qNd",
+  "img": "icons/magic/control/buff-flight-wings-blue.webp",
+  "system": {
+    "description": "<p>You wish to manipulate shadows to maneuver through the environment.</p>",
+    "spellcastingTrait": "finesse",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.hAwTXjhyphiE3aeW"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.frBTtNMX9Y2gkuPz"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.uByM34yQlw38yf1V"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.EY7Eo6hNGppVL3dR"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.iyIg1VLwO8C6jvFZ"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754322815758,
+    "modifiedTime": 1754323509061,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!h161OSIK24Up4qNd"
+}

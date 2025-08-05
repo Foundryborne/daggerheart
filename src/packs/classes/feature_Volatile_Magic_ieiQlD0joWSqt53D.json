@@ -1,0 +1,66 @@
+{
+  "name": "Volatile Magic",
+  "type": "feature",
+  "_id": "ieiQlD0joWSqt53D",
+  "img": "icons/magic/lightning/barrier-shield-orb-pink.webp",
+  "system": {
+    "description": "<p><strong>Spend 3 Hope</strong> to reroll any number of your damage dice on an attack that deals magic damage.</p>",
+    "resource": null,
+    "actions": {
+      "JQPMlMLYMs84rWIy": {
+        "type": "effect",
+        "_id": "JQPMlMLYMs84rWIy",
+        "systemPath": "actions",
+        "description": "<p><strong>Spend 3 Hope</strong> to reroll any number of your damage dice on an attack that deals magic damage.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend 3 Hope",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "folder": "oNhnBt8HZ2oaSnSn",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349703843,
+    "modifiedTime": 1754349703843,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!ieiQlD0joWSqt53D"
+}

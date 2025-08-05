@@ -1,0 +1,31 @@
+{
+  "folder": "ZTh1tNA9cAwDhaJD",
+  "name": "Family Heirloom",
+  "type": "loot",
+  "_id": "Yum0uBtnEtTBcpax",
+  "img": "icons/commodities/treasure/trinket-totem-bone-green.webp",
+  "system": {
+    "description": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349932502,
+    "modifiedTime": 1754349932502,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!Yum0uBtnEtTBcpax"
+}

@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "YqbQKTgblItoZOm8",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You gain a +1 bonus to your next Strength Roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -98,7 +98,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753586850134,
-    "modifiedTime": 1753993272604,
+    "modifiedTime": 1754394431654,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!FOPQNqXbiVO0ilYL"

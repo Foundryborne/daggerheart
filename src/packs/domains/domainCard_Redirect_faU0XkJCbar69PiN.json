@@ -1,29 +1,66 @@
 {
   "name": "Redirect",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "3e8kCsLzLxiACJDb",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When an attack made against you from beyond <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range fails, roll a number of <strong>d6s</strong> equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. If any roll a 6, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to redirect the attack to damage an adversary within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range instead.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When an attack made against you from beyond Melee range fails, roll a number of <strong>d6s</strong> equal to your Proficiency. If any roll a 6, you can <strong>mark a Stress</strong> to redirect the attack to damage an adversary within Very Close range instead.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 4,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "DRluINMGyhCR84ok": {
+        "type": "effect",
+        "_id": "DRluINMGyhCR84ok",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">When an attack made against you from beyond Melee range fails, roll a number of <strong>d6s</strong> equal to your Proficiency. If any roll a 6, you can <strong>mark a Stress</strong> to redirect the attack to damage an adversary within Very Close range instead.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/skills/melee/sword-twirl-orange.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784500,
-    "modifiedTime": 1753922784500,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252475141,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "faU0XkJCbar69PiN",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!faU0XkJCbar69PiN"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "EJoXzO85rG5EiZsh",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"instinct\" nexus=\"daggerheart\"><strong>Instinct</strong></tooltip><strong> Roll (12)</strong>. On a success, they’ll give you the information they know. On a roll with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip>, their knowledge might be limited or come at a cost.</p><p class=\"Body-Foundation\">Additionally, before you make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Roll</tooltip> while within a natural environment, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to gain a +2 bonus to the roll.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <strong>Instinct Roll (12)</strong>. On a success, they’ll give you the information they know. On a roll with Fear, their knowledge might be limited or come at a cost.</p><p class=\"Body-Foundation\">Additionally, before you make a Spellcast Roll while within a natural environment, you can <strong>spend a Hope</strong> to gain a +2 bonus to the roll.</p>",
     "domain": "sage",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "qQEeyIGs0wKjW3a1",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can speak the language of the natural world. When you want to speak to the plants and animals around you, make an <strong>Instinct Roll (12)</strong>. On a success, they’ll give you the information they know. On a roll with Fear, their knowledge might be limited or come at a cost.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -53,14 +53,14 @@
           "damageMod": "none"
         },
         "name": "Speak with Nature",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/creatures/birds/corvid-call-sound-blue.webp",
         "range": ""
       },
       "IIJC4HGdilVv3YMo": {
         "type": "effect",
         "_id": "IIJC4HGdilVv3YMo",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Additionally, before you make a Spellcast Roll while within a natural environment, you can <strong>spend a Hope</strong> to gain a +2 bonus to the roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -88,7 +88,7 @@
           "amount": null
         },
         "name": "Gain Bonus",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/beam-hand-leaves-green.webp",
         "range": ""
       }
     }
@@ -102,15 +102,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784485,
-    "modifiedTime": 1754229262913,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754337595015,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "atWLorlCOxcrq8WB",
   "sort": 3400000,
   "effects": [
     {
       "name": "Bonus to Spellcast",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/nature/beam-hand-leaves-green.webp",
       "origin": "Compendium.daggerheart.domains.Item.atWLorlCOxcrq8WB",
       "transfer": false,
       "_id": "0JYDk5CQ66bHGQO0",
@@ -154,7 +154,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754114564455,
-        "modifiedTime": 1754114631112,
+        "modifiedTime": 1754337611599,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!atWLorlCOxcrq8WB.0JYDk5CQ66bHGQO0"

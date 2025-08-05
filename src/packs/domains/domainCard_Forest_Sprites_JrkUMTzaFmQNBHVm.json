@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "qY4Zqc1Ch6p317uK",
   "system": {
-    "description": "<p><p class=\"Body\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong>. On a success, <strong>spend any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to create an equal number of small forest sprites who appear at points you choose within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range, providing the following benefits:        </p><ul class=\"\"><li class=\"vertical-card-list\">Your allies gain a +3 bonus to attack rolls against adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of a sprite. </li><li class=\"vertical-card-list\">An ally who marks an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\">Armor Slot</tooltip> while within Melee range of a sprite can mark an additional Armor Slot. </li></ul><p class=\"Body\">A sprite vanishes after granting a benefit or taking any damage.</p></p>",
+    "description": "<p class=\"Body\">Make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend any number of Hope</strong> to create an equal number of small forest sprites who appear at points you choose within Far range, providing the following benefits:</p><ul><li class=\"vertical-card-list\"><p>Your allies gain a +3 bonus to attack rolls against adversaries within Melee range of a sprite.</p></li><li class=\"vertical-card-list\"><p>An ally who marks an Armor Slot while within Melee range of a sprite can mark an additional Armor Slot.</p></li></ul><p class=\"Body\">A sprite vanishes after granting a benefit or taking any damage.</p>",
     "domain": "sage",
     "recallCost": 2,
     "level": 8,
@@ -14,10 +14,19 @@
         "type": "attack",
         "_id": "TVepLgRNQLhZWDu6",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body\">Make a <strong>Spellcast Roll (13)</strong>. On a success, <strong>spend any number of Hope</strong> to create an equal number of small forest sprites who appear at points you choose within Far range, providing the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list\"><p>Your allies gain a +3 bonus to attack rolls against adversaries within Melee range of a sprite.</p></li><li class=\"vertical-card-list\"><p>An ally who marks an Armor Slot while within Melee range of a sprite can mark an additional Armor Slot.</p></li></ul><p class=\"Body\">A sprite vanishes after granting a benefit or taking any damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "consumeOnSuccess": true,
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "step": 1,
+            "keyIsID": false
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
@@ -31,7 +40,12 @@
           "type": "any",
           "amount": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "SuiUFAPyB37Qr6sO",
+            "onSave": false
+          }
+        ],
         "roll": {
           "type": "spellcast",
           "trait": null,
@@ -53,43 +67,8 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/creatures/magical/humanoid-silhouette-dashing-blue.webp",
         "range": ""
-      },
-      "DwqUgUZu6Nn6puad": {
-        "type": "effect",
-        "_id": "DwqUgUZu6Nn6puad",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "scalable": true,
-            "key": "hope",
-            "value": 1,
-            "step": 1,
-            "keyIsID": false
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "effects": [
-          {
-            "_id": "qqoRQPTBU3pICvSN",
-            "onSave": false
-          }
-        ],
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "name": "Create Sprites",
-        "img": "icons/svg/item-bag.svg",
-        "range": "far"
       }
     }
   },
@@ -102,18 +81,18 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784457,
-    "modifiedTime": 1754229221155,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754339713793,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "JrkUMTzaFmQNBHVm",
   "sort": 3400000,
   "effects": [
     {
       "name": "Sprite",
-      "img": "icons/svg/item-bag.svg",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
       "origin": "Compendium.daggerheart.domains.Item.JrkUMTzaFmQNBHVm",
       "transfer": false,
-      "_id": "qqoRQPTBU3pICvSN",
+      "_id": "SuiUFAPyB37Qr6sO",
       "type": "base",
       "system": {
         "rangeDependence": {
@@ -153,11 +132,11 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754119891517,
-        "modifiedTime": 1754120027494,
+        "createdTime": 1754335144302,
+        "modifiedTime": 1754335195819,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
-      "_key": "!items.effects!JrkUMTzaFmQNBHVm.qqoRQPTBU3pICvSN"
+      "_key": "!items.effects!JrkUMTzaFmQNBHVm.SuiUFAPyB37Qr6sO"
     }
   ],
   "ownership": {

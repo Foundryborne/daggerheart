@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7O1tTswJMNdPgLsx",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per long rest, <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to create a projected copy of yourself that can appear anywhere you’ve been before.        </p><p class=\"Body-Foundation\">You can see and hear through the projection as though it were you and affect the world as though you were there. A creature investigating the projection can tell it’s of magical origin. This effect lasts until your next rest or your projection takes any damage.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark a Stress</strong> to create a projected copy of yourself that can appear anywhere you’ve been before.</p><p class=\"Body-Foundation\">You can see and hear through the projection as though it were you and affect the world as though you were there. A creature investigating the projection can tell it’s of magical origin. This effect lasts until your next rest or your projection takes any damage.</p>",
     "domain": "grace",
     "recallCost": 0,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "jhEOXtmSiwm4AX1R",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark a Stress</strong> to create a projected copy of yourself that can appear anywhere you’ve been before.</p><p class=\"Body-Foundation\">You can see and hear through the projection as though it were you and affect the world as though you were there. A creature investigating the projection can tell it’s of magical origin. This effect lasts until your next rest or your projection takes any damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -37,7 +37,7 @@
           "amount": null
         },
         "name": "Project",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/perception/orb-crystal-ball-scrying.webp",
         "range": ""
       }
     }
@@ -51,8 +51,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784409,
-    "modifiedTime": 1754229096668,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754342271751,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "YNOCNmZ96sCp9NEr",
   "sort": 3400000,

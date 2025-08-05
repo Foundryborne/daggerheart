@@ -1,5 +1,6 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { burden } from '../../config/generalConfig.mjs';
+import { createEmbeddedItemWithEffects } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -550,34 +551,46 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             }
         };
 
-        await this.character.createEmbeddedDocuments('Item', [ancestry]);
-        await this.character.createEmbeddedDocuments('Item', [this.setup.community]);
-        await this.character.createEmbeddedDocuments('Item', [this.setup.class]);
-        await this.character.createEmbeddedDocuments('Item', [this.setup.subclass]);
-        await this.character.createEmbeddedDocuments('Item', Object.values(this.setup.domainCards));
-
-        if (this.equipment.armor.uuid)
-            await this.character.createEmbeddedDocuments('Item', [
-                { ...this.equipment.armor, system: { ...this.equipment.armor.system, equipped: true } }
-            ]);
-        if (this.equipment.primaryWeapon.uuid)
-            await this.character.createEmbeddedDocuments('Item', [
-                { ...this.equipment.primaryWeapon, system: { ...this.equipment.primaryWeapon.system, equipped: true } }
-            ]);
-        if (this.equipment.secondaryWeapon.uuid)
-            await this.character.createEmbeddedDocuments('Item', [
-                {
-                    ...this.equipment.secondaryWeapon,
-                    system: { ...this.equipment.secondaryWeapon.system, equipped: true }
-                }
-            ]);
-        if (this.equipment.inventory.choiceA.uuid)
-            await this.character.createEmbeddedDocuments('Item', [this.equipment.inventory.choiceA]);
-        if (this.equipment.inventory.choiceB.uuid)
-            await this.character.createEmbeddedDocuments('Item', [this.equipment.inventory.choiceB]);
+        await createEmbeddedItemWithEffects(this.character, ancestry);
+        await createEmbeddedItemWithEffects(this.character, this.setup.community);
+        await createEmbeddedItemWithEffects(this.character, this.setup.class);
+        await createEmbeddedItemWithEffects(this.character, this.setup.subclass);
         await this.character.createEmbeddedDocuments(
             'Item',
-            this.setup.class.system.inventory.take.filter(x => x)
+            Object.values(this.setup.domainCards).map(x => ({
+                ...x,
+                effects: x.effects?.map(effect => effect.toObject())
+            }))
+        );
+
+        if (this.equipment.armor.uuid)
+            await createEmbeddedItemWithEffects(this.character, this.equipment.armor, {
+                ...this.equipment.armor,
+                system: { ...this.equipment.armor.system, equipped: true }
+            });
+        if (this.equipment.primaryWeapon.uuid)
+            await createEmbeddedItemWithEffects(this.character, this.equipment.primaryWeapon, {
+                ...this.equipment.primaryWeapon,
+                system: { ...this.equipment.primaryWeapon.system, equipped: true }
+            });
+        if (this.equipment.secondaryWeapon.uuid)
+            await createEmbeddedItemWithEffects(this.character, this.equipment.secondaryWeapon, {
+                ...this.equipment.secondaryWeapon,
+                system: { ...this.equipment.secondaryWeapon.system, equipped: true }
+            });
+        if (this.equipment.inventory.choiceA.uuid)
+            await createEmbeddedItemWithEffects(this.character, this.equipment.inventory.choiceA);
+        if (this.equipment.inventory.choiceB.uuid)
+            await createEmbeddedItemWithEffects(this.character, this.equipment.inventory.choiceB);
+
+        await this.character.createEmbeddedDocuments(
+            'Item',
+            this.setup.class.system.inventory.take
+                .filter(x => x)
+                .map(x => ({
+                    ...x,
+                    effects: x.effects?.map(effect => effect.toObject())
+                }))
         );
 
         await this.character.update({

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "pPzU9WOQNv3ckO1w",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Choose one of the following tempests and make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. Targets you succeed against experience its effects until the GM spends a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><em><strong>Blizzard:</strong></em> Deal <strong>2d20+8</strong> magic damage and targets are temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>.</li><li class=\"vertical-card-list\"><strong><em>Hurricane: </em></strong>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can’t move against the wind.</li><li class=\"vertical-card-list\"><em><strong>Sandstorm:</strong></em> Deal <strong>5d6+9</strong> magic damage. Attacks made from beyond <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">disadvantage</tooltip>.</li></ul></p>",
+    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Choose one of the following tempests and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul><li class=\"vertical-card-list\"><p><em><strong>Blizzard:</strong></em> Deal <strong>2d20+8</strong> magic damage and targets are temporarily <em>Vulnerable</em>.</p></li><li class=\"vertical-card-list\"><em><strong>Hurricane: </strong></em>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can’t move against the wind.</li><li class=\"vertical-card-list\"><p><em><strong>Sandstorm:</strong></em> Deal <strong>5d6+9</strong> magic damage. Attacks made from beyond Melee range have disadvantage.</p><p></p></li></ul>",
     "domain": "sage",
     "recallCost": 2,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "ZqnziDBlh5Re7SKs",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><p><em><strong>Blizzard:</strong></em> Deal <strong>2d20+8</strong> magic damage and targets are temporarily <em>Vulnerable</em>.</p><p></p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -85,14 +85,14 @@
           "damageMod": "none"
         },
         "name": "Blizzard",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/water/projectiles-ice-faceted-shard-salvo-blue.webp",
         "range": "far"
       },
       "FEPhujGa5lvu5fXr": {
         "type": "attack",
         "_id": "FEPhujGa5lvu5fXr",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><em><strong>Hurricane: </strong></em>Deal <strong>3d10+10</strong> magic damage and choose a direction the wind is blowing. Targets can’t move against the wind.</li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -163,14 +163,14 @@
           "damageMod": "none"
         },
         "name": "Hurricane",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/air/wind-tornado-cyclone-purple-blue.webp",
         "range": "far"
       },
       "CzMlqo91kuTgg1As": {
         "type": "attack",
         "_id": "CzMlqo91kuTgg1As",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Choose the following tempest and make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against experience its effects until the GM spends a Fear on their turn to end this spell.</p><ul class=\"\"><li class=\"vertical-card-list\"><p><em><strong>Sandstorm:</strong></em> Deal <strong>5d6+9</strong> magic damage. Attacks made from beyond Melee range have disadvantage.</p><p></p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -240,8 +240,8 @@
           "difficulty": null,
           "damageMod": "none"
         },
-        "name": "Attack",
-        "img": "icons/svg/item-bag.svg",
+        "name": "Sandstorm",
+        "img": "icons/magic/air/air-wave-gust-smoke-yellow.webp",
         "range": "far"
       }
     }
@@ -255,15 +255,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784530,
-    "modifiedTime": 1754229206232,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754340540933,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "X7YaZgFieBlqaPdZ",
   "sort": 3400000,
   "effects": [
     {
       "name": "Vulnerable",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/skills/wounds/injury-pain-body-orange.webp",
       "origin": "Compendium.daggerheart.domains.Item.X7YaZgFieBlqaPdZ",
       "transfer": false,
       "_id": "oqPY3I9oO9J6l5Aj",
@@ -302,53 +302,14 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754120695927,
-        "modifiedTime": 1754120710678,
+        "modifiedTime": 1754340645104,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!X7YaZgFieBlqaPdZ.oqPY3I9oO9J6l5Aj"
     },
     {
-      "name": "Tempest",
-      "img": "icons/svg/item-bag.svg",
-      "origin": "Compendium.daggerheart.domains.Item.X7YaZgFieBlqaPdZ",
-      "transfer": false,
-      "_id": "rE9aBoDgJgKfoPZS",
-      "type": "base",
-      "system": {
-        "rangeDependence": {
-          "enabled": false,
-          "type": "withinRange",
-          "target": "hostile",
-          "range": "melee"
-        }
-      },
-      "changes": [],
-      "disabled": false,
-      "duration": {
-        "startTime": null,
-        "combat": null
-      },
-      "description": "",
-      "tint": "#ffffff",
-      "statuses": [],
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.346",
-        "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1754120746779,
-        "modifiedTime": 1754120746779,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
-      },
-      "_key": "!items.effects!X7YaZgFieBlqaPdZ.rE9aBoDgJgKfoPZS"
-    },
-    {
       "name": "Wind",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/air/wind-tornado-cyclone-purple-blue.webp",
       "origin": "Compendium.daggerheart.domains.Item.X7YaZgFieBlqaPdZ",
       "transfer": false,
       "_id": "tB7AyDy0pbE9q5hM",
@@ -385,14 +346,14 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754120821648,
-        "modifiedTime": 1754120840207,
+        "modifiedTime": 1754340673117,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!X7YaZgFieBlqaPdZ.tB7AyDy0pbE9q5hM"
     },
     {
       "name": "Sand",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/air/air-wave-gust-smoke-yellow.webp",
       "origin": "Compendium.daggerheart.domains.Item.X7YaZgFieBlqaPdZ",
       "transfer": false,
       "_id": "S4Vpgf3FMmq8MGrb",
@@ -429,7 +390,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754120893069,
-        "modifiedTime": 1754120904697,
+        "modifiedTime": 1754340693972,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!X7YaZgFieBlqaPdZ.S4Vpgf3FMmq8MGrb"

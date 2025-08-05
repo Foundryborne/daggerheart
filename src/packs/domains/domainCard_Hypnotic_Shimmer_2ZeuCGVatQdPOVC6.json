@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "GhLhMfmSgGqS9bwU",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all adversaries in front of you within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries in front of you within Close range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a Stress. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 3,
@@ -14,14 +14,15 @@
         "type": "attack",
         "_id": "kLMAuyZktmohOSXa",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries in front of you within Close range. Once per rest on a success, create an illusion of flashing colors and lights that temporarily <em>Stuns</em> targets you succeed against and forces them to mark a Stress. While <em>Stunned</em>, they can’t use reactions and can’t take any other actions until they clear this condition.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "shortRest"
+          "recovery": "shortRest",
+          "consumeOnSuccess": true
         },
         "damage": {
           "parts": [
@@ -84,7 +85,7 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
         "range": "close"
       }
     }
@@ -98,15 +99,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784471,
-    "modifiedTime": 1754229136572,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754341315075,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "2ZeuCGVatQdPOVC6",
   "sort": 3400000,
   "effects": [
     {
       "name": "Stunned",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/magic/control/hypnosis-mesmerism-swirl.webp",
       "origin": "Compendium.daggerheart.domains.Item.2ZeuCGVatQdPOVC6",
       "transfer": false,
       "_id": "xAG75UWUz3aDZH3m",
@@ -145,7 +146,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754099673462,
-        "modifiedTime": 1754102182618,
+        "modifiedTime": 1754341332582,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!2ZeuCGVatQdPOVC6.xAG75UWUz3aDZH3m"

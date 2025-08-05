@@ -1,0 +1,38 @@
+{
+  "folder": "mmCmlh5x1cE4EbhN",
+  "name": "Slayer",
+  "type": "feature",
+  "_id": "1hF5KGKQc2VKT5O8",
+  "img": "icons/skills/melee/strike-axe-red.webp",
+  "system": {
+    "description": "<p>You gain a pool of dice called Slayer Dice. On a roll with Hope, you can place a <strong>d6</strong> on this card instead of gaining a Hope, adding the die to the pool. You can store a number of Slayer Dice equal to your Proficiency. When you make an attack roll or damage roll, you can spend any number of these Slayer Dice, rolling them and adding their result to the roll. At the end of each session, clear any unspent Slayer Dice on this card and gain a Hope per die cleared.</p>",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "@system.proficiency",
+      "icon": "fa-solid fa-skull"
+    },
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754256326320,
+    "modifiedTime": 1754256425506,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!1hF5KGKQc2VKT5O8"
+}

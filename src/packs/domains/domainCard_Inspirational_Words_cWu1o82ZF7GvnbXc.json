@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nVCKcZkcoEivYJaF",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">Your speech is imbued with power. After a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, place a number of tokens on this card equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"presence\" nexus=\"daggerheart\">Presence</tooltip>. When you speak with an ally, you can spend a token from this card to give them one benefit from the following options:</p><ul class=\"\"><li class=\"vertical-card-list-found\">Your ally clears a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</li><li class=\"vertical-card-list-found\">Your ally clears a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip>.</li><li class=\"vertical-card-list-found\">Your ally gains a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip>.</li></ul><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p></p>",
+    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Your speech is imbued with power. After a long rest, place a number of tokens on this card equal to your Presence. When you speak with an ally, you can spend a token from this card to give them one benefit from the following options:</p><ul><li class=\"vertical-card-list-found\"><p>Your ally clears a Stress.</p></li><li class=\"vertical-card-list-found\"><p>Your ally clears a Hit Point.</p></li><li class=\"vertical-card-list-found\"><p>Your ally gains a Hope.</p></li></ul><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 1,
@@ -13,7 +13,7 @@
       "type": "simple",
       "value": 0,
       "recovery": "longRest",
-      "max": "",
+      "max": "@system.traits.presence.value",
       "icon": ""
     },
     "actions": {
@@ -21,7 +21,7 @@
         "type": "healing",
         "_id": "5sGMd6m6Ltahit4h",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p>Your ally clears a Stress.</p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -89,14 +89,14 @@
           "useDefault": false
         },
         "name": "Clear Stress",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
         "range": ""
       },
       "QKS3vo3Nf5CK8rkF": {
         "type": "healing",
         "_id": "QKS3vo3Nf5CK8rkF",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p><span style=\"box-sizing: border-box; margin: 0px; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Your ally clears a Hit Point.</span></p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -164,14 +164,14 @@
           "useDefault": false
         },
         "name": "Clear Hitpoint",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
         "range": ""
       },
       "5xn70wYZW7k9aiVl": {
         "type": "healing",
         "_id": "5xn70wYZW7k9aiVl",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Spend a token from this card to give them the following:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p><span style=\"box-sizing: border-box; margin: 0px; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Your ally gains a Hope.</span></p></li></ul>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -239,7 +239,7 @@
           "useDefault": false
         },
         "name": "Give Hope",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
         "range": ""
       }
     }
@@ -253,8 +253,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784473,
-    "modifiedTime": 1754229147634,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754340989544,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "cWu1o82ZF7GvnbXc",
   "sort": 3400000,

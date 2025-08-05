@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "GwQgdB3E1HogFKvD",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You gain a +1 bonus to your next Agility Roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -98,7 +98,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753585993187,
-    "modifiedTime": 1753992957300,
+    "modifiedTime": 1754394862377,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!lNtcrkgFGOJNaroE"

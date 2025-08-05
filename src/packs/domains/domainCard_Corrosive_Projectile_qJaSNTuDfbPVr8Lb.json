@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "uXGugK72AffddFdH",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. On a success, deal <strong>d6+4</strong> magic damage using your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. Additionally, <strong>mark 2 or more </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a −1 penalty to their <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> for every 2 Stress you spent. This <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"condition\" nexus=\"daggerheart\">condition</tooltip> can stack.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency. Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a −1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "WqHLiHxP2enmJaHx",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against a target within Far range. On a success, deal <strong>d6+4</strong> magic damage using your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -78,14 +78,14 @@
           "damageMod": "none"
         },
         "name": "Cast",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/acid/projectile-smoke-glowing.webp",
         "range": "far"
       },
       "maf0whws7wgRnFsH": {
         "type": "effect",
         "_id": "maf0whws7wgRnFsH",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Additionally, <strong>mark 2 or more Stress</strong> to make them permanently <em>Corroded</em>. While a target is <em>Corroded</em>, they gain a −1 penalty to their Difficulty for every 2 Stress you spent. This condition can stack.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -113,7 +113,7 @@
           "amount": null
         },
         "name": "Corrode",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/acid/dissolve-bone-white.webp",
         "range": ""
       }
     }
@@ -127,15 +127,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784439,
-    "modifiedTime": 1754229251465,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754338276907,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "qJaSNTuDfbPVr8Lb",
   "sort": 3400000,
   "effects": [
     {
       "name": "Corroded (1 stack)",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/acid/dissolve-bone-white.webp",
       "origin": "Compendium.daggerheart.domains.Item.qJaSNTuDfbPVr8Lb",
       "transfer": false,
       "_id": "zB95bjSSdVlApQnR",
@@ -181,7 +181,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754115900734,
-        "modifiedTime": 1754115959643,
+        "modifiedTime": 1754338294266,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!qJaSNTuDfbPVr8Lb.zB95bjSSdVlApQnR"

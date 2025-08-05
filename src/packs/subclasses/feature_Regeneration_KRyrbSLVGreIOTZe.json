@@ -12,7 +12,7 @@
         "type": "healing",
         "_id": "kD2kWWj0oR7ZxyVs",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Touch a creature and spend 3 Hope. That creature clears 1d4 Hit Points.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -101,8 +101,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754180232243,
-    "modifiedTime": 1754236435606,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754353321403,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!KRyrbSLVGreIOTZe"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "W81LnTWzwmoaycTl",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Grace domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">You can <strong>mark an </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"armor-slot\" nexus=\"daggerheart\"><strong>Armor Slot</strong></tooltip> instead of marking a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.            </li><li class=\"vertical-card-list-found\">When you would force a target to mark a number of <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>, you can choose instead to force them to mark that number of Stress.</li></ul></p>",
+    "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Grace domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>You can <strong>mark an Armor Slot</strong> instead of marking a Stress.</p></li><li class=\"vertical-card-list-found\"><p>When you would force a target to mark a number of Hit Points, you can choose instead to force them to mark that number of Stress.</p></li></ul>",
     "domain": "grace",
     "recallCost": 2,
     "level": 7,
@@ -37,7 +37,7 @@
           "amount": null
         },
         "name": "Mark Armor Slot",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/equipment/shield/kite-wooden-sigil-purple.webp",
         "range": ""
       },
       "YzrQmUhNZoDYawo0": {
@@ -89,7 +89,7 @@
         },
         "effects": [],
         "name": "Mark 1 Stress",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/commodities/gems/gem-faceted-navette-red.webp",
         "range": ""
       }
     }
@@ -103,12 +103,57 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784465,
-    "modifiedTime": 1754229100834,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754341871438,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "KAuNb51AwhD8KEXk",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Grace-Touched",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "KK5m2slpFuXDxFaL",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>When 4 or more of the domain cards in your loadout are from the Grace domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>You can <strong>mark an Armor Slot</strong> instead of marking a Stress.</p></li><li class=\"vertical-card-list-found\"><p>When you would force a target to mark a number of Hit Points, you can choose instead to force them to mark that number of Stress.</p></li></ul>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754327595635,
+        "modifiedTime": 1754327656807,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!KAuNb51AwhD8KEXk.KK5m2slpFuXDxFaL"
+    }
+  ],
   "ownership": {
     "default": 0
   },

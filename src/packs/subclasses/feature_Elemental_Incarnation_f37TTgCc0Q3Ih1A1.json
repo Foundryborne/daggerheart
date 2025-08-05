@@ -12,7 +12,7 @@
         "type": "attack",
         "_id": "wVGSzAnJGs5eXKqI",
         "systemPath": "actions",
-        "description": "<p>When an adversary within Melee range deals damage to you, they take 1d10 magic damage.</p>",
+        "description": "<p>When an adversary within Melee range deals damage to you, they take @Damage[type:magical|value:1d10].</p>",
         "chatDisplay": true,
         "actionType": "reaction",
         "cost": [
@@ -64,7 +64,12 @@
           "type": "hostile",
           "amount": 1
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "ANle8tuOEZIevTWv",
+            "onSave": false
+          }
+        ],
         "roll": {
           "type": null,
           "trait": null,
@@ -128,7 +133,7 @@
         "type": "damage",
         "_id": "pY2EdEMoyLGYWjK5",
         "systemPath": "actions",
-        "description": "<p>When you deal damage to an adversary within Melee range, all other adversaries within Very Close range must mark a Stress.</p>",
+        "description": "<p>When you deal damage to an adversary within Melee range, all other adversaries within Very Close range must mark a Stress.</p><p>@Template[type:emanation|range:vc]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -179,7 +184,12 @@
           "type": "any",
           "amount": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "Jy6dpEbzkZ2eRDf5",
+            "onSave": false
+          }
+        ],
         "name": "Water",
         "img": "icons/magic/water/wave-water-blue.webp",
         "range": ""
@@ -225,7 +235,7 @@
   },
   "effects": [
     {
-      "name": "Earth",
+      "name": "Elemental Incarnation (Earth)",
       "img": "icons/magic/earth/construct-stone.webp",
       "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
       "transfer": false,
@@ -276,13 +286,13 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754177069880,
-        "modifiedTime": 1754177289226,
-        "lastModifiedBy": "LgnbNMLaxandgMQq"
+        "modifiedTime": 1754352335991,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!f37TTgCc0Q3Ih1A1.7xyUtUbBk5jbNnqY"
     },
     {
-      "name": "Air",
+      "name": "Elemental Incarnation (Air)",
       "img": "icons/magic/air/fog-gas-smoke-dense-white.webp",
       "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
       "transfer": false,
@@ -314,7 +324,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "",
+      "description": "<p>You can hover, gaining advantage on Agility Rolls.</p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -327,10 +337,98 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754178115976,
-        "modifiedTime": 1754178173880,
-        "lastModifiedBy": "LgnbNMLaxandgMQq"
+        "modifiedTime": 1754352345491,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!f37TTgCc0Q3Ih1A1.3ck6CeapLxQVjE2W"
+    },
+    {
+      "name": "Elemental Incarnation (Water)",
+      "img": "icons/magic/water/wave-water-blue.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
+      "transfer": false,
+      "_id": "Jy6dpEbzkZ2eRDf5",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754352177743,
+        "modifiedTime": 1754352209753,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!f37TTgCc0Q3Ih1A1.Jy6dpEbzkZ2eRDf5"
+    },
+    {
+      "name": "Elemental Incarnation (Fire)",
+      "img": "icons/magic/fire/elemental-fire-flying.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.f37TTgCc0Q3Ih1A1",
+      "transfer": false,
+      "_id": "ANle8tuOEZIevTWv",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754352293596,
+        "modifiedTime": 1754352318518,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!f37TTgCc0Q3Ih1A1.ANle8tuOEZIevTWv"
     }
   ],
   "sort": 100000,
@@ -347,8 +445,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754176169510,
-    "modifiedTime": 1754239500149,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754352293609,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!f37TTgCc0Q3Ih1A1"
 }

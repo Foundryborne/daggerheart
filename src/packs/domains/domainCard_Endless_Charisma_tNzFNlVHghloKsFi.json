@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "W81LnTWzwmoaycTl",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">After you make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip> to persuade, lie, or garner favor, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to reroll the Hope or <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> Die.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">After you make an action roll to persuade, lie, or garner favor, you can <strong>spend a Hope</strong> to reroll the Hope or Fear Die.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 7,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "EPhd2d8lHEnBd1pO",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">After you make an action roll to persuade, lie, or garner favor, you can <strong>spend a Hope</strong> to reroll the Hope or Fear Die.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -37,7 +37,7 @@
           "amount": null
         },
         "name": "Spend Hope to Reroll",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/sundries/gaming/dice-runed-tan.webp",
         "range": ""
       }
     }
@@ -51,8 +51,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784450,
-    "modifiedTime": 1754229104416,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754341790725,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "tNzFNlVHghloKsFi",
   "sort": 3400000,

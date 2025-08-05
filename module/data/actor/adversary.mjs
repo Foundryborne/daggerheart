@@ -53,8 +53,8 @@ export default class DhpAdversary extends BaseDataActor {
                 })
             }),
             resources: new fields.SchemaField({
-                hitPoints: resourceField(0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
-                stress: resourceField(0, 'DAGGERHEART.GENERAL.stress', true)
+                hitPoints: resourceField(0, 0, 'DAGGERHEART.GENERAL.HitPoints.plural', true),
+                stress: resourceField(0, 0, 'DAGGERHEART.GENERAL.stress', true)
             }),
             attack: new ActionField({
                 initial: {
@@ -104,6 +104,13 @@ export default class DhpAdversary extends BaseDataActor {
             })
         };
     }
+
+    /* -------------------------------------------- */
+
+    /**@inheritdoc */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/actors/dragon-head.svg';
+
+    /* -------------------------------------------- */
 
     get attackBonus() {
         return this.attack.roll.bonus;

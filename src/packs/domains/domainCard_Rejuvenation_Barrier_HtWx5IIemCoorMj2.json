@@ -4,74 +4,30 @@
   "type": "domainCard",
   "folder": "qY4Zqc1Ch6p317uK",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>. While the barrier is up, you and all allies within have resistance to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"physical-damage-type\" nexus=\"daggerheart\">physical</tooltip> damage from outside the barrier.        </p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 8,
     "type": "spell",
     "actions": {
-      "21tCRdka6crFrYns": {
-        "type": "attack",
-        "_id": "21tCRdka6crFrYns",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "damage": {
-          "parts": [],
-          "includeBase": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "effects": [],
-        "roll": {
-          "type": "spellcast",
-          "trait": null,
-          "difficulty": 15,
-          "bonus": null,
-          "advState": "neutral",
-          "diceRolling": {
-            "multiplier": "prof",
-            "flatMultiplier": 1,
-            "dice": "d6",
-            "compare": null,
-            "treshold": null
-          },
-          "useDefault": false
-        },
-        "save": {
-          "trait": null,
-          "difficulty": null,
-          "damageMod": "none"
-        },
-        "name": "Cast",
-        "img": "icons/svg/item-bag.svg",
-        "range": ""
-      },
-      "PYvK0chrV6WmFaVU": {
+      "XdAwXl2uWNinInFe": {
         "type": "healing",
-        "_id": "PYvK0chrV6WmFaVU",
+        "_id": "XdAwXl2uWNinInFe",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "longRest"
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
         },
         "damage": {
           "parts": [
             {
+              "resultBased": false,
               "value": {
                 "custom": {
                   "enabled": false
@@ -83,7 +39,6 @@
               },
               "applyTo": "hitPoints",
               "base": false,
-              "resultBased": false,
               "valueAlt": {
                 "multiplier": "prof",
                 "flatMultiplier": 1,
@@ -104,14 +59,14 @@
         },
         "effects": [
           {
-            "_id": "k3dw8UifKT7Vpwyg",
+            "_id": "obul9k0P4CjFuxJD",
             "onSave": false
           }
         ],
         "roll": {
-          "type": null,
+          "type": "spellcast",
           "trait": null,
-          "difficulty": null,
+          "difficulty": 15,
           "bonus": null,
           "advState": "neutral",
           "diceRolling": {
@@ -123,8 +78,8 @@
           },
           "useDefault": false
         },
-        "name": "Create Barrier",
-        "img": "icons/svg/item-bag.svg",
+        "name": "Cast",
+        "img": "icons/magic/nature/leaf-hand-green.webp",
         "range": "veryClose"
       }
     }
@@ -138,18 +93,18 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784502,
-    "modifiedTime": 1754229218423,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754339870857,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "HtWx5IIemCoorMj2",
   "sort": 3400000,
   "effects": [
     {
       "name": "Rejuvenation Barrier",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/nature/leaf-elm-sparkle-glow-green.webp",
       "origin": "Compendium.daggerheart.domains.Item.HtWx5IIemCoorMj2",
       "transfer": false,
-      "_id": "k3dw8UifKT7Vpwyg",
+      "_id": "obul9k0P4CjFuxJD",
       "type": "base",
       "system": {
         "rangeDependence": {
@@ -162,7 +117,7 @@
       "changes": [
         {
           "key": "system.resistance.physical.resistance",
-          "mode": 2,
+          "mode": 5,
           "value": "true",
           "priority": null
         }
@@ -189,11 +144,11 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754120208302,
-        "modifiedTime": 1754120311530,
+        "createdTime": 1754336272258,
+        "modifiedTime": 1754340200301,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
-      "_key": "!items.effects!HtWx5IIemCoorMj2.k3dw8UifKT7Vpwyg"
+      "_key": "!items.effects!HtWx5IIemCoorMj2.obul9k0P4CjFuxJD"
     }
   ],
   "ownership": {

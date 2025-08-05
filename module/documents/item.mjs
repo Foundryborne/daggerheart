@@ -74,8 +74,8 @@ export default class DHItem extends foundry.documents.Item {
                     isInventoryItem === true
                         ? 'Inventory Items' //TODO localize
                         : isInventoryItem === false
-                          ? 'Character Items' //TODO localize
-                          : 'Other'; //TODO localize
+                            ? 'Character Items' //TODO localize
+                            : 'Other'; //TODO localize
 
                 return { value: type, label, group };
             }
@@ -112,11 +112,24 @@ export default class DHItem extends foundry.documents.Item {
      * Generate a localized label array for this item.
      * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
      */
-    getLabels() {
+    _getLabels() {
         const labels = [];
-        if (this.system.getLabels) labels.push(...this.system.getLabels());
+        if (this.system._getLabels) labels.push(...this.system._getLabels());
         return labels;
     }
+
+    /* -------------------------------------------- */
+
+    /**@inheritdoc */
+    static getDefaultArtwork(itemData) {
+        const { type } = itemData;
+        const Model = CONFIG.Item.dataModels[type];
+        const img = Model.DEFAULT_ICON ?? this.DEFAULT_ICON;
+        return { img };
+    }
+
+    /* -------------------------------------------- */
+
 
     async use(event) {
         const actions = new Set(this.system.actionsList);
@@ -139,10 +152,10 @@ export default class DHItem extends foundry.documents.Item {
                 this.type === 'ancestry'
                     ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.ancestryTitle')
                     : this.type === 'community'
-                      ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.communityTitle')
-                      : this.type === 'feature'
-                        ? game.i18n.localize('TYPES.Item.feature')
-                        : game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
+                        ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.communityTitle')
+                        : this.type === 'feature'
+                            ? game.i18n.localize('TYPES.Item.feature')
+                            : game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: origin,
             img: this.img,
             item: {

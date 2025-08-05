@@ -1,29 +1,122 @@
 {
   "name": "Know Thy Enemy",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "BQ1L4EiwOs84Xysp",
   "system": {
-    "description": "<p><p class=\"Body-Foundation-No-BOLDITALIC\">When observing a creature, you can make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"instinct\" nexus=\"daggerheart\"><strong>Instinct</strong></tooltip><strong> Roll</strong> against them. On a success, <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> and ask the GM for one set of information about the target from the following options:        </p><ul class=\"\"><li class=\"vertical-card-list-found\">Their unmarked <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip> and <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</li><li class=\"vertical-card-list-found\">Their <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> and damage thresholds.</li><li class=\"vertical-card-list-found\">Their tactics and standard attack damage dice.</li><li class=\"vertical-card-list-found\">Their features and <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"experience\" nexus=\"daggerheart\">Experiences</tooltip>.</li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">Additionally on a success, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to remove a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> from the GM’s Fear Pool.        </p></p>",
+    "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">When observing a creature, you can make an <strong>Instinct Roll</strong> against them. On a success, <strong>spend a Hope</strong> and ask the GM for one set of information about the target from the following options:</p><ul><li class=\"vertical-card-list-found\"><p>Their unmarked Hit Points and Stress.</p></li><li class=\"vertical-card-list-found\"><p>Their Difficulty and damage thresholds.</p></li><li class=\"vertical-card-list-found\">Their tactics and standard attack damage dice.</li><li class=\"vertical-card-list-found\"><p>Their features and Experiences.</p></li></ul><p class=\"Body-Foundation-No-BOLDITALIC\">Additionally on a success, you can <strong>mark a Stress</strong> to remove a Fear from the GM’s Fear Pool.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 5,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "CTIjJn5xFME0DCWm": {
+        "type": "attack",
+        "_id": "CTIjJn5xFME0DCWm",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation-No-BOLDITALIC\">When observing a creature, you can make an <strong>Instinct Roll</strong> against them. On a success, <strong>spend a Hope</strong> and ask the GM for one set of information about the target from the following options:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p>Their unmarked Hit Points and Stress.</p></li><li class=\"vertical-card-list-found\"><p>Their Difficulty and damage thresholds.</p></li><li class=\"vertical-card-list-found\">Their tactics and standard attack damage dice.</li><li class=\"vertical-card-list-found\"><p>Their features and Experiences.</p></li></ul>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "consumeOnSuccess": true,
+            "scalable": false,
+            "key": "hope",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "trait",
+          "trait": "instinct",
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Instinct Roll",
+        "img": "icons/magic/perception/eye-ringed-glow-angry-small-teal.webp",
+        "range": ""
+      },
+      "ADRUe0WJktpHFz1o": {
+        "type": "effect",
+        "_id": "ADRUe0WJktpHFz1o",
+        "systemPath": "actions",
+        "description": "<p>On a success, you can <strong>mark a Stress</strong> to remove a Fear from the GM’s Fear Pool.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Stress",
+        "img": "icons/magic/perception/eye-ringed-glow-angry-small-teal.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784475,
-    "modifiedTime": 1753922784475,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252480391,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "O38MQMhJWdZnXi6b",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!O38MQMhJWdZnXi6b"
 }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "xZrCYAd05ayNu1yW",
   "system": {
-    "description": "<p><p class=\"Card-Feature\"><em><strong>Tekaira Armored Beetles:</strong></em> <strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to conjure armored beetles that encircle you. When you next take damage, reduce the severity by one threshold. You can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to keep the beetles conjured after taking damage.        </p><p class=\"Card-Feature\"><em><strong>Fire Flies:</strong></em> Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. <strong>Spend a Hope</strong> to deal <strong>2d8+3</strong> magic damage to targets you succeeded against.</p></p>",
+    "description": "<p class=\"Card-Feature\"><em><strong>Tekaira Armored Beetles:</strong></em> <strong>Mark a Stress</strong> to conjure armored beetles that encircle you. When you next take damage, reduce the severity by one threshold. You can <strong>spend a Hope</strong> to keep the beetles conjured after taking damage.</p><p class=\"Card-Feature\"><em><strong>Fire Flies:</strong></em> Make a <strong>Spellcast Roll</strong> against all adversaries within Close range. <strong>Spend a Hope</strong> to deal <strong>2d8+3</strong> magic damage to targets you succeeded against.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 2,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "qygTUSNldYNbP7vN",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><em><strong>Tekaira Armored Beetles:</strong></em> <strong>Mark a Stress</strong> to conjure armored beetles that encircle you. When you next take damage, reduce the severity by one threshold.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -66,14 +66,14 @@
           "damageMod": "none"
         },
         "name": "Tekaira's Armored Beetles: Stress",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/creatures/invertebrates/wasp-swarm-attack.webp",
         "range": ""
       },
       "533qzPIjcccpiMey": {
         "type": "effect",
         "_id": "533qzPIjcccpiMey",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can <strong>spend a Hope</strong> to keep the beetles conjured after taking damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -96,24 +96,60 @@
           "amount": null
         },
         "name": "Keep Beetles",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
         "range": ""
       },
       "nugW0yPOG08pqBAT": {
         "type": "attack",
         "_id": "nugW0yPOG08pqBAT",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><em><strong>Fire Flies:</strong></em> Make a <strong>Spellcast Roll</strong> against all adversaries within Close range. <strong>Spend a Hope</strong> to deal <strong>2d8+3</strong> magic damage to targets you succeeded against.</p>",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [],
+        "cost": [
+          {
+            "consumeOnSuccess": true,
+            "scalable": false,
+            "key": "hope",
+            "value": 1,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
         "uses": {
           "value": null,
           "max": "",
           "recovery": null
         },
         "damage": {
-          "parts": [],
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 2,
+                "dice": "d6",
+                "bonus": 3
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
           "includeBase": false
         },
         "target": {
@@ -142,69 +178,8 @@
           "damageMod": "none"
         },
         "name": "Fire Flies: Cast",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/creatures/invertebrates/wasp-swarm-movement.webp",
         "range": "close"
-      },
-      "Q7EST1G1neHjL6ng": {
-        "type": "damage",
-        "_id": "Q7EST1G1neHjL6ng",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "keyIsID": false,
-            "key": "hope",
-            "value": 1,
-            "scalable": false,
-            "step": null
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "damage": {
-          "parts": [
-            {
-              "value": {
-                "custom": {
-                  "enabled": false
-                },
-                "multiplier": "flat",
-                "flatMultiplier": 2,
-                "dice": "d8",
-                "bonus": 3
-              },
-              "applyTo": "hitPoints",
-              "type": [
-                "magical"
-              ],
-              "base": false,
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              }
-            }
-          ],
-          "includeBase": false
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "effects": [],
-        "name": "Fire Flies: Deal Damage",
-        "img": "icons/svg/item-bag.svg",
-        "range": ""
       }
     }
   },
@@ -217,15 +192,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784438,
-    "modifiedTime": 1754229257272,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754338003443,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "rZPH0BY8Sznc9sFG",
   "sort": 3400000,
   "effects": [
     {
       "name": "Reduced Damage",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/defensive/shield-barrier-flaming-diamond-acid.webp",
       "origin": "Compendium.daggerheart.domains.Item.rZPH0BY8Sznc9sFG",
       "transfer": false,
       "_id": "dImnF8ZT2rVybiIP",
@@ -275,7 +250,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754115061694,
-        "modifiedTime": 1754115134882,
+        "modifiedTime": 1754338023216,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!rZPH0BY8Sznc9sFG.dImnF8ZT2rVybiIP"

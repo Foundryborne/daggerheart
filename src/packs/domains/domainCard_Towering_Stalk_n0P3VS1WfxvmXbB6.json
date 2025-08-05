@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "uXGugK72AffddFdH",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per rest, you can conjure a thick, twisting stalk within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range that can be easily climbed. Its height can grow up to <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range.</p><p class=\"Body-Foundation\"><strong>Mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to use this spell as an attack. Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against an adversary or group of adversaries within Close range. The erupting stalk lifts targets you succeed against into the air and drops them, dealing <strong>d8</strong> physical damage using your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p><p class=\"Body-Foundation\"><strong>Mark a Stress</strong> to use this spell as an attack. Make a <strong>Spellcast Roll</strong> against an adversary or group of adversaries within Close range. The erupting stalk lifts targets you succeed against into the air and drops them, dealing <strong>d8</strong> physical damage using your Proficiency.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 3,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "KzEDeofyjxeg3pV5",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><strong>Mark a Stress</strong> to use this spell as an attack. Make a <strong>Spellcast Roll</strong> against an adversary or group of adversaries within Close range. The erupting stalk lifts targets you succeed against into the air and drops them, dealing <strong>d8</strong> physical damage using your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -95,14 +95,14 @@
           "damageMod": "none"
         },
         "name": "Use as attack",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/root-vine-entangled-humanoid.webp",
         "range": "close"
       },
       "I6eSBTpuYDU1nEgr": {
         "type": "effect",
         "_id": "I6eSBTpuYDU1nEgr",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per rest, you can conjure a thick, twisting stalk within Close range that can be easily climbed. Its height can grow up to Far range.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -125,7 +125,7 @@
           "amount": null
         },
         "name": "Conjure Stalk",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/root-vine-beanstolk-green.webp",
         "range": ""
       }
     },
@@ -146,8 +146,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784534,
-    "modifiedTime": 1754229248847,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754338673637,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "n0P3VS1WfxvmXbB6",
   "sort": 3400000,

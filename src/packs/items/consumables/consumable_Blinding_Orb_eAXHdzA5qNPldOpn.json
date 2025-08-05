@@ -4,20 +4,20 @@
   "_id": "eAXHdzA5qNPldOpn",
   "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
   "system": {
-    "description": "<p>You can activate this orb to create a flash of bright light. All targets within Close range become Vulnerable until they mark HP.</p>",
+    "description": "<p>You can activate this orb to create a flash of bright light. All targets within Close range become Vulnerable until they mark HP.</p><p>@Template[type:emanation|range:c]</p>",
     "quantity": 1,
     "actions": {
       "vk4dE0C8bjNdTwAF": {
         "type": "effect",
         "_id": "vk4dE0C8bjNdTwAF",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can activate this orb to create a flash of bright light. All targets within Close range become Vulnerable until they mark HP.</p><p>@Template[type:emanation|range:c]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [
@@ -89,12 +89,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753592512731,
-    "modifiedTime": 1753592689875,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394410769,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!eAXHdzA5qNPldOpn"
 }

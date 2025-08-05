@@ -3,19 +3,18 @@
     <ul>
         {{#if uses}}
             <li class="scalable-input">
-                <div class="form-group">
+                <div class="form-group span-2">
                     <div class="form-fields nest-inputs">
                         <input name="uses.enabled" type="checkbox"{{#if uses.enabled}} checked{{/if}}>
                         <label for="uses.enabled">Uses{{#if uses.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}{{/if}}</span></label>
                     </div>
                 </div>
-                <div></div>
                 <label class="modifier-label">{{uses.value}}/{{formulaValue uses.max @root.rollConfig.data}}</label>
             </li>
         {{/if}}
         {{#each costs as | cost index |}}
         <li class="scalable-input">
-            <div class="form-group">
+            <div class="form-group{{#unless (and scalable (gt maxStep 1))}} span-2{{/unless}}">
                 <div class="form-fields nest-inputs">
                     <input name="costs.{{index}}.enabled" type="checkbox"{{#if enabled}} checked{{/if}}>
                     <label>{{label}}{{#if cost.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}</span>{{/if}}</label>
@@ -23,8 +22,6 @@
             </div>
             {{#if (and scalable (gt maxStep 1))}}
                 <input type="range" value="{{scale}}" min="0" max="{{maxStep}}" step="1" name="costs.{{index}}.scale" data-tooltip="{{localize "DAGGERHEART.ACTIONS.Settings.cost.stepTooltip" step=step}}" data-tooltip-direction="UP">
-            {{else}}
-                <div></div>
             {{/if}}
             <label class="modifier-label">{{total}}/{{max}}</label>
         </li>

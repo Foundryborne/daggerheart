@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "WTdOLLkQyPdg0KWU",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you roll with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> while attempting to move unnoticed through a dangerous area, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to roll with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> instead.        </p><p class=\"Body-Foundation\">If an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range is also attempting to move unnoticed and rolls with Fear, you can <strong>mark a Stress</strong> to change their result to a roll with Hope.</p></p>",
+    "description": "<p class=\"Body-Foundation\">When you roll with Fear while attempting to move unnoticed through a dangerous area, you can <strong>mark a Stress</strong> to roll with Hope instead.</p><p class=\"Body-Foundation\">If an ally within Close range is also attempting to move unnoticed and rolls with Fear, you can <strong>mark a Stress</strong> to change their result to a roll with Hope.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 4,
@@ -51,7 +51,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784523,
-    "modifiedTime": 1754173455685,
+    "modifiedTime": 1754330848539,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "NIUhmuQGwbb3UClZ",

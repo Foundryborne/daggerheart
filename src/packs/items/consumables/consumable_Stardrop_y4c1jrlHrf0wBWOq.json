@@ -4,20 +4,20 @@
   "_id": "y4c1jrlHrf0wBWOq",
   "img": "icons/magic/light/projectiles-star-purple.webp",
   "system": {
-    "description": "<p>You can use this stardrop to summon a hailstorm of comets that deals 8d20 physical damage to all targets within Very Far range.</p>",
+    "description": "<p>You can use this stardrop to summon a hailstorm of comets that deals 8d20 physical damage to all targets within Very Far range.</p><p>@Template[type:emanation|range:vf]</p>",
     "quantity": 1,
     "actions": {
       "pt5U6hlyx4T7MUOa": {
         "type": "damage",
         "_id": "pt5U6hlyx4T7MUOa",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can use this stardrop to summon a hailstorm of comets that deals 8d20 physical damage to all targets within Very Far range.</p><p>@Template[type:emanation|range:vf]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "damage": {
@@ -75,12 +75,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753592933782,
-    "modifiedTime": 1753593062814,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394853714,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!y4c1jrlHrf0wBWOq"
 }

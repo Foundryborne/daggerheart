@@ -53,7 +53,7 @@
           "damageMod": "none"
         },
         "name": "Repeat Attack",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/light/explosion-impact-purple.webp",
         "range": ""
       }
     }
@@ -67,8 +67,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784450,
-    "modifiedTime": 1754229080594,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754342166865,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "klahWDFwihqqEhXP",
   "sort": 3400000,

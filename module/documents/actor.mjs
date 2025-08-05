@@ -22,6 +22,23 @@ export default class DhpActor extends Actor {
         return this.system.metadata.isNPC;
     }
 
+    /* -------------------------------------------- */
+
+    /**@inheritdoc */
+    static getDefaultArtwork(actorData) {
+        const { type } = actorData;
+        const Model = CONFIG.Actor.dataModels[type];
+        const img = Model.DEFAULT_ICON ?? this.DEFAULT_ICON;
+        return {
+            img,
+            texture: {
+                src: img
+            }
+        };
+    }
+
+    /* -------------------------------------------- */
+
     /** @inheritDoc */
     getEmbeddedDocument(embeddedName, id, options) {
         let doc;
@@ -39,6 +56,7 @@ export default class DhpActor extends Actor {
         return doc;
     }
 
+    /**@inheritdoc */
     async _preCreate(data, options, user) {
         if ((await super._preCreate(data, options, user)) === false) return false;
 
@@ -455,6 +473,7 @@ export default class DhpActor extends Actor {
         return ActiveEffect.implementation.create(effect, { parent: this, keepId: true });
     }
 
+    /**@inheritdoc */
     getRollData() {
         const rollData = super.getRollData();
         rollData.system = this.system.getRollData();
@@ -464,14 +483,17 @@ export default class DhpActor extends Actor {
     }
 
     #canReduceDamage(hpDamage, type) {
+        const { stressDamageReduction, disabledArmor } = this.system.rules.damageReduction;
+        if (disabledArmor) return false;
+
         const availableStress = this.system.resources.stress.max - this.system.resources.stress.value;
 
         const canUseArmor =
             this.system.armor &&
             this.system.armor.system.marks.value < this.system.armorScore &&
             type.every(t => this.system.armorApplicableDamageTypes[t] === true);
-        const canUseStress = Object.keys(this.system.rules.damageReduction.stressDamageReduction).reduce((acc, x) => {
-            const rule = this.system.rules.damageReduction.stressDamageReduction[x];
+        const canUseStress = Object.keys(stressDamageReduction).reduce((acc, x) => {
+            const rule = stressDamageReduction[x];
             if (damageKeyToNumber(x) <= hpDamage) return acc || (rule.enabled && availableStress >= rule.cost);
             return acc;
         }, false);
@@ -537,8 +559,8 @@ export default class DhpActor extends Actor {
 
         updates.forEach(
             u =>
-                (u.value =
-                    u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value)
+            (u.value =
+                u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value)
         );
 
         await this.modifyResource(updates);
@@ -584,9 +606,9 @@ export default class DhpActor extends Actor {
 
         updates.forEach(
             u =>
-                (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
-                    ? u.value * -1
-                    : u.value)
+            (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
+                ? u.value * -1
+                : u.value)
         );
 
         await this.modifyResource(updates);

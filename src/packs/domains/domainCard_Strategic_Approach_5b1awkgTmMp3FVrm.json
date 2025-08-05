@@ -1,29 +1,73 @@
 {
   "name": "Strategic Approach",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "Q9rmrfeKqcqBNnWc",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">After a long rest, place a number of tokens equal to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"knowledge\" nexus=\"daggerheart\">Knowledge</tooltip> on this card (minimum 1). The first time you move within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range of an adversary and make an attack against them, you can spend one token to choose one of the following options:</p><ul class=\"\"><li class=\"vertical-card-list-found\">You make the attack with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip>.</li><li class=\"vertical-card-list-found\">You clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> on an ally within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of the adversary.</li><li class=\"vertical-card-list-found\">You add a <strong>d8</strong> to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"damage-roll\" nexus=\"daggerheart\">damage roll</tooltip>.</li></ul><p class=\"Body-Foundation\">When you take a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, clear all unspent tokens.</p></p>",
+    "description": "<p class=\"Body-Foundation\">After a long rest, place a number of tokens equal to your Knowledge on this card (minimum 1). The first time you move within Close range of an adversary and make an attack against them, you can spend one token to choose one of the following options:</p><ul><li class=\"vertical-card-list-found\"><p>You make the attack with advantage.</p></li><li class=\"vertical-card-list-found\"><p>You clear a Stress on an ally within Melee range of the adversary.</p></li><li class=\"vertical-card-list-found\"><p>You add a <strong>d8</strong> to your damage roll.</p></li></ul><p class=\"Body-Foundation\">When you take a long rest, clear all unspent tokens.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 2,
-    "type": "ability"
+    "type": "ability",
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "max": "",
+      "icon": "fa-solid fa-bullseye",
+      "recovery": "longRest"
+    },
+    "actions": {
+      "jTC0GbsBpGmaQLi7": {
+        "type": "effect",
+        "_id": "jTC0GbsBpGmaQLi7",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">The first time you move within Close range of an adversary and make an attack against them, you can spend one token to choose one of the following options:</p><ul class=\"\"><li class=\"vertical-card-list-found\"><p>You make the attack with advantage.</p></li><li class=\"vertical-card-list-found\"><p>You clear a Stress on an ally within Melee range of the adversary.</p></li><li class=\"vertical-card-list-found\"><p>You add a <strong>d8</strong> to your damage roll.</p></li></ul>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "5b1awkgTmMp3FVrm",
+            "value": 1,
+            "keyIsID": true,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Token",
+        "img": "icons/skills/targeting/crosshair-arrowhead-blue.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784523,
-    "modifiedTime": 1753922784523,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754249661976,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "5b1awkgTmMp3FVrm",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!5b1awkgTmMp3FVrm"
 }

@@ -19,4 +19,11 @@ export default class DHLoot extends BaseDataItem {
             ...super.defineSchema()
         };
     }
+
+    /* -------------------------------------------- */
+
+    /**@override */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/items/open-treasure-chest.svg';
+
+    /* -------------------------------------------- */
 }

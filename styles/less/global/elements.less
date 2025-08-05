@@ -383,13 +383,17 @@
         .scalable-input {
             display: grid;
             grid-template-columns: 1fr 1fr auto;
-            // display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 10px;
 
             .form-group {
                 width: fit-content;
+
+                &.span-2 {
+                    grid-column: 1 / span 2;
+                }
+
                 .nest-inputs {
                     width: fit-content;
                 }

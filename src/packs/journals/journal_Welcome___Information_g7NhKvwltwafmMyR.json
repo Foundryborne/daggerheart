@@ -54,7 +54,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p>The system supports various levels of automation. You find these settings in the <strong>Automation</strong> system settings.</p><p>The most immediate choice you should make is if you want to use the game setting for `Levelup Automation`. You should make a choice there, and then not change it during play to avoid potential unwanted oddities.</p>"
+        "content": "<p>The system supports various levels of automation. You find these settings in the <strong>Automation</strong> system settings.</p><p>The most immediate choice you should make is if you want to use the game setting for `Levelup Automation`. You should make a choice there, and then not change it during play to avoid potential unwanted oddities.</p><p></p><hr /><blockquote><p>Some parts of the system are not currently automated due to technical limitations. If something is not working correctly you always have the option to manually adjust things to be correct.</p><p>We plan to find a solution for these cases in the future.</p><p>This especially includes things that need a check for specific inventory/loadout conditions, or some actions that have complex conditions or scaling. We hope to find a solution for all of these cases in the future.</p></blockquote><hr />"
       },
       "video": {
         "controls": true,
@@ -75,8 +75,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754223746740,
-        "modifiedTime": 1754223862937,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1754321125413,
+        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
       },
       "_key": "!journal.pages!g7NhKvwltwafmMyR.VBhZyON3eZi6dfo7"
     },

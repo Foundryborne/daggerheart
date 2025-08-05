@@ -1,29 +1,90 @@
 {
   "name": "Arcane Reflection",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "KmaX6wNBLzkFevaG",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you would take magic damage, you can <strong>spend any number of </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to roll that many <strong>d6s</strong>. If any roll a 6, the attack is reflected back to the caster, dealing the damage to them instead.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When you would take magic damage, you can <strong>spend any number of Hope</strong> to roll that many <strong>d6s</strong>. If any roll a 6, the attack is reflected back to the caster, dealing the damage to them instead.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 8,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "45ywf6Juwz4mmn9j": {
+        "type": "attack",
+        "_id": "45ywf6Juwz4mmn9j",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">When you would take magic damage, you can <strong>spend any number of Hope</strong> to roll that many <strong>d6s</strong>. If any roll a 6, the attack is reflected back to the caster, dealing the damage to them instead.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": true,
+            "key": "hope",
+            "value": 1,
+            "step": 1,
+            "keyIsID": false,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "scale",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Reflect Back",
+        "img": "icons/magic/defensive/barrier-shield-dome-deflect-blue.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784409,
-    "modifiedTime": 1753922784409,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754254134197,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "JzSvxy9Mu3RJp1jV",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!JzSvxy9Mu3RJp1jV"
 }

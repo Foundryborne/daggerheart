@@ -1,0 +1,70 @@
+{
+  "folder": "Ej8GpWNX79Fw5XTP",
+  "name": "Contacts Everywhere",
+  "type": "feature",
+  "_id": "cXbRm744mW6UXGam",
+  "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
+  "system": {
+    "description": "<p>Once per session, you can briefly call on a shady contact. Choose one of the following benefits and describe what brought them here to help you in this moment: </p><ul><li><p>They provide 1 handful of gold, a unique tool, or a mundane object that the situation requires.</p></li><li><p>On your next action roll, their help provides a +3 bonus to the result of your Hope or Fear Die. </p></li><li><p>The next time you deal damage, they snipe from the shadows, adding 2d8 to your damage roll.</p></li></ul>",
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "max": "",
+      "icon": "",
+      "recovery": "session"
+    },
+    "actions": {
+      "GZDYjtPh0lCJ5VNq": {
+        "type": "effect",
+        "_id": "GZDYjtPh0lCJ5VNq",
+        "systemPath": "actions",
+        "description": "<p>Once per session, you can briefly call on a shady contact. Choose one of the following benefits and describe what brought them here to help you in this moment:</p><ul><li><p>They provide 1 handful of gold, a unique tool, or a mundane object that the situation requires.</p></li><li><p>On your next action roll, their help provides a +3 bonus to the result of your Hope or Fear Die.</p></li><li><p>The next time you deal damage, they snipe from the shadows, adding 2d8 to your damage roll.</p></li></ul>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "cXbRm744mW6UXGam",
+            "value": 1,
+            "keyIsID": true,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Use Feature",
+        "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754320389008,
+    "modifiedTime": 1754322535699,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!cXbRm744mW6UXGam"
+}

@@ -7,11 +7,80 @@
   "system": {
     "description": "<p>When an adversary damages an ally within Melee range, you gain a +1 bonus to your Proficiency for the next successful attack you make against that adversary.</p>",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "yalzg4VRmZvakshJ": {
+        "type": "effect",
+        "_id": "yalzg4VRmZvakshJ",
+        "systemPath": "actions",
+        "description": "<p>When an adversary damages an ally within Melee range, you gain a +1 bonus to your Proficiency for the next successful attack you make against that adversary.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "9Uo0yOYGn3vandPp",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mark Adversary",
+        "img": "icons/skills/targeting/crosshair-arrowhead-blue.webp",
+        "range": "melee"
+      }
+    },
     "originItemType": null,
     "originId": null
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Act of Reprisal",
+      "img": "icons/skills/targeting/crosshair-arrowhead-blue.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.k7vvMJtEcxMWUUrW",
+      "transfer": false,
+      "_id": "9Uo0yOYGn3vandPp",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754351612885,
+        "modifiedTime": 1754351612885,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!k7vvMJtEcxMWUUrW.9Uo0yOYGn3vandPp"
+    }
+  ],
   "sort": 400000,
   "ownership": {
     "default": 0,
@@ -26,8 +95,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754243143650,
-    "modifiedTime": 1754243725513,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754351612905,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!k7vvMJtEcxMWUUrW"
 }

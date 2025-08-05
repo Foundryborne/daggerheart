@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "thP6nUk0nkrNcpXY",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Choose a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-far\" nexus=\"daggerheart\">Very Far</tooltip> range. You can see through their eyes and hear through their ears. You can transition between using your own senses or the target’s freely until you cast another spell or until your next rest.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Choose a target within Very Far range. You can see through their eyes and hear through their ears. You can transition between using your own senses or the target’s freely until you cast another spell or until your next rest.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "8ACwa5tqAGyNZ0sR",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Choose a target within Very Far range. You can see through their eyes and hear through their ears. You can transition between using your own senses or the target’s freely until you cast another spell or until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -33,8 +33,8 @@
           "type": "any",
           "amount": null
         },
-        "name": "See Through Eyes",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "name": "Cast",
+        "img": "icons/magic/perception/eye-slit-pink.webp",
         "range": "veryFar"
       }
     }
@@ -48,15 +48,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784533,
-    "modifiedTime": 1754229123377,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754341493606,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "7b0mzV5QMPjVPT4o",
   "sort": 3400000,
   "effects": [
     {
       "name": "Seeing, Hearing",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/magic/perception/eye-slit-pink.webp",
       "origin": "Compendium.daggerheart.domains.Item.7b0mzV5QMPjVPT4o",
       "transfer": false,
       "_id": "TCOHV7tWpunCZDxn",
@@ -93,7 +93,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754103458332,
-        "modifiedTime": 1754103537159,
+        "modifiedTime": 1754341504675,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!7b0mzV5QMPjVPT4o.TCOHV7tWpunCZDxn"

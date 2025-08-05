@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "Abn46nCQst6kpGeA",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> against all adversaries within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. Targets you succeed against are temporarily <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"restrained\" nexus=\"daggerheart\"><em>Restrained</em> </tooltip>as their shadow binds them in place.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries within Very Close range. Targets you succeed against are temporarily <em>Restrained</em> as their shadow binds them in place.</p>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 2,
@@ -72,7 +72,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784512,
-    "modifiedTime": 1754173148090,
+    "modifiedTime": 1754330643864,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "kguhWlidhxe2GbT0",

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "6gA7SmNIblkMaYgr",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Whisper words of discord to an adversary within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range and make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (13)</strong>. On a success, the target must mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> and make an attack against another adversary instead of against you or your allies. </p><p class=\"Body-Foundation\">Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll. </p></p>",
+    "description": "<p class=\"Body-Foundation\">Whisper words of discord to an adversary within Melee range and make a <strong>Spellcast Roll (13)</strong>. On a success, the target must mark a Stress and make an attack against another adversary instead of against you or your allies.</p><p class=\"Body-Foundation\">Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll.</p>",
     "domain": "grace",
     "recallCost": 1,
     "level": 5,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "8BKvS2s0IPMA8wF9",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Whisper words of discord to an adversary within Melee range and make a <strong>Spellcast Roll (13)</strong>. On a success, the target must mark a Stress and make an attack against another adversary instead of against you or your allies.</p><p class=\"Body-Foundation\">Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -83,8 +83,8 @@
           "difficulty": null,
           "damageMod": "none"
         },
-        "name": "Whisper Words of Discord",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "name": "Cast",
+        "img": "icons/skills/melee/strike-axe-energy-pink.webp",
         "range": "melee"
       }
     }
@@ -98,15 +98,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784548,
-    "modifiedTime": 1754229115471,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754341685992,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "ZjAdi1FSNCDDHI3X",
   "sort": 3400000,
   "effects": [
     {
       "name": "Words of Discord",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/skills/melee/strike-axe-energy-pink.webp",
       "origin": "Compendium.daggerheart.domains.Item.ZjAdi1FSNCDDHI3X",
       "transfer": false,
       "_id": "DGp7TSriFWotAvP6",
@@ -130,7 +130,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span class=\"Body-Foundation\" style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif;color:rgb(239, 230, 216);font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">The target must  make an attack against another adversary instead of against you or your allies. Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll.</span></p>",
+      "description": "<p><span class=\"Body-Foundation\" style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif;color:rgb(239, 230, 216);font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">The target must make an attack against another adversary instead of against you or your allies. Once this attack is over, the target realizes what happened. The next time you cast Words of Discord on them, gain a −5 penalty to the Spellcast Roll.</span></p>",
       "tint": "#ffffff",
       "statuses": [],
       "sort": 0,
@@ -143,7 +143,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754104486214,
-        "modifiedTime": 1754104558692,
+        "modifiedTime": 1754341697328,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!ZjAdi1FSNCDDHI3X.DGp7TSriFWotAvP6"

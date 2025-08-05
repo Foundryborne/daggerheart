@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "htoGx8qrv8trds81",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can use this stitcher to spend any number of Hope and clear that many Armor Slots.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -56,7 +56,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588973384,
-    "modifiedTime": 1753990471152,
+    "modifiedTime": 1754394381368,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!VlbsCjvvLNfTzNXb"

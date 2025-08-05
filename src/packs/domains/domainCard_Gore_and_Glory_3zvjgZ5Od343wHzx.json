@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "QYdeGsmVYIF34kZR",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"critical-success\" nexus=\"daggerheart\">critically succeed</tooltip> on a weapon attack, gain an additional <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> or clear an additional <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>. </p><p class=\"Body-Foundation\">Additionally, when you deal enough damage to defeat an enemy, gain a Hope or clear a Stress.</p></p>",
+    "description": "<p class=\"Body-Foundation\">When you critically succeed on a weapon attack, gain an additional Hope or clear an additional Stress.</p><p class=\"Body-Foundation\">Additionally, when you deal enough damage to defeat an enemy, gain a Hope or clear a Stress.</p>",
     "domain": "blade",
     "recallCost": 2,
     "level": 9,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "crvDbD8V8linpzeg",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">When you critically succeed on a weapon attack, gain an additional Hope or clear an additional Stress.</p><p class=\"Body-Foundation\">Additionally, when you deal enough damage to defeat an enemy, gain a Hope or clear a Stress.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -38,31 +38,6 @@
                 "bonus": null
               },
               "applyTo": "stress",
-              "base": false,
-              "resultBased": false,
-              "valueAlt": {
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null,
-                "custom": {
-                  "enabled": false
-                }
-              },
-              "type": []
-            },
-            {
-              "value": {
-                "custom": {
-                  "enabled": true,
-                  "formula": "1"
-                },
-                "multiplier": "prof",
-                "flatMultiplier": 1,
-                "dice": "d6",
-                "bonus": null
-              },
-              "applyTo": "hope",
               "base": false,
               "resultBased": false,
               "valueAlt": {
@@ -99,8 +74,76 @@
           },
           "useDefault": false
         },
-        "name": "Gain Hope & Clear Stress",
+        "name": "Clear Stress",
         "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
+        "range": ""
+      },
+      "r7MFU8khXqsEpx16": {
+        "type": "healing",
+        "_id": "r7MFU8khXqsEpx16",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">When you critically succeed on a weapon attack, gain an additional Hope or clear an additional Stress.</p><p class=\"Body-Foundation\">Additionally, when you deal enough damage to defeat an enemy, gain a Hope or clear a Stress.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": true,
+                  "formula": "1"
+                },
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null
+              },
+              "applyTo": "hope",
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              },
+              "type": []
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": null,
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "name": "Gain Hope",
+        "img": "icons/magic/holy/barrier-shield-winged-blue.webp",
         "range": ""
       }
     }
@@ -114,8 +157,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784464,
-    "modifiedTime": 1754247713267,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304753469,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "3zvjgZ5Od343wHzx",
   "sort": 3400000,

@@ -7,6 +7,26 @@
         {{#if shortRestMoves.moves}}{{> "systems/daggerheart/templates/dialogs/downtime/activities.hbs" moves=shortRestMoves.moves category='shortRest' nrChoices=nrChoices.shortRest}}{{/if}}
         {{#if longRestMoves.moves}}{{> "systems/daggerheart/templates/dialogs/downtime/activities.hbs" moves=longRestMoves.moves category='longRest' nrChoices=nrChoices.longRest}}{{/if}}
     </div>
+
+    <fieldset>
+        <legend>{{localize "DAGGERHEART.APPLICATIONS.Downtime.refreshable.title"}}</legend>
+
+        <div class="refreshables-container {{#if (and shortRestMoves longRestMoves)}}wide{{/if}}">
+            {{#each this.refreshables.actionItems as | item |}}
+                <div class="refreshable-container">
+                    <div class="refreshable-title">{{item.title}}</div>
+                    <div class="refreshable-name">{{item.name}}</div>
+                </div>
+            {{/each}}
+            {{#each this.refreshables.resourceItems as | item |}}
+                <div class="refreshable-container">
+                    <div class="refreshable-title">{{item.title}}</div>
+                    <div class="refreshable-name">{{item.name}}</div>
+                </div>
+            {{/each}}
+        </div>
+    </fieldset>
+
     <footer>
         <button type="button" data-action="close">{{localize "Cancel"}}</button>
         <button type="button" data-action="takeDowntime" {{#if disabledDowntime}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.Downtime.takeDowntime"}}</button>

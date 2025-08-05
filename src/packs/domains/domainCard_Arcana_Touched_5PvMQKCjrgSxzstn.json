@@ -1,29 +1,125 @@
 {
   "name": "Arcana-Touched",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "bCjkysrofWPiZqNh",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When 4 or more of the domain cards in your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"loadout-and-vault\" nexus=\"daggerheart\">loadout</tooltip> are from the Arcana domain, gain the following benefits:</p><ul class=\"\"><li class=\"vertical-card-list-found\">+1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\">Spellcast Rolls</tooltip></li><li class=\"vertical-card-list-found\">Once per rest, you can switch the results of your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> and <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\">Fear</tooltip> Dice.</li></ul></p>",
+    "description": "<p class=\"Body-Foundation\">When 4 or more of the domain cards in your loadout are from the Arcana domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Spellcast Rolls</p></li><li class=\"vertical-card-list-found\"><p>Once per rest, you can switch the results of your Hope and Fear Dice.</p></li></ul>",
     "domain": "arcana",
     "recallCost": 2,
     "level": 7,
-    "type": "ability"
+    "type": "ability",
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "recovery": "shortRest",
+      "max": "1",
+      "icon": ""
+    },
+    "actions": {
+      "hBh4Lt0Bdd9CtJY7": {
+        "type": "effect",
+        "_id": "hBh4Lt0Bdd9CtJY7",
+        "systemPath": "actions",
+        "description": "<p><span class=\"vertical-card-list-found\" style=\"box-sizing: border-box; margin: 0px 0px 0.25rem; scrollbar-width: thin; scrollbar-color: rgb(93, 20, 43) rgba(0, 0, 0, 0); font-family: Montserrat, sans-serif\">Once per rest, you can switch the results of your Hope and Fear Dice.</span></p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "5PvMQKCjrgSxzstn",
+            "value": 1,
+            "keyIsID": true,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Switch Duality Results",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784408,
-    "modifiedTime": 1753922784408,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754253919218,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "5PvMQKCjrgSxzstn",
   "sort": 3400000,
-  "effects": [],
+  "effects": [
+    {
+      "name": "Arcana-Touched",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "vTW98Xha0HP8ITrs",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
+      "changes": [
+        {
+          "key": "system.bonuses.roll.spellcast.bonus",
+          "mode": 2,
+          "value": "+1",
+          "priority": null
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>When 4 or more of the domain cards in your loadout are from the Arcana domain, gain the following benefits:</p><ul><li class=\"vertical-card-list-found\"><p>+1 bonus to your Spellcast Rolls</p></li><li class=\"vertical-card-list-found\"><p>Once per rest, you can switch the results of your Hope and Fear Dice.</p></li></ul>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754245132384,
+        "modifiedTime": 1754254055998,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+      },
+      "_key": "!items.effects!5PvMQKCjrgSxzstn.vTW98Xha0HP8ITrs"
+    }
+  ],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!5PvMQKCjrgSxzstn"
 }

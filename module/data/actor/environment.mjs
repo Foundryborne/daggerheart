@@ -3,8 +3,10 @@ import ForeignDocumentUUIDArrayField from '../fields/foreignDocumentUUIDArrayFie
 import DHEnvironmentSettings from '../../applications/sheets-configs/environment-settings.mjs';
 
 export default class DhEnvironment extends BaseDataActor {
+    /**@override */
     static LOCALIZATION_PREFIXES = ['DAGGERHEART.ACTORS.Environment'];
 
+    /**@inheritdoc */
     static get metadata() {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.environment',
@@ -14,6 +16,7 @@ export default class DhEnvironment extends BaseDataActor {
         });
     }
 
+    /**@inheritdoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
@@ -36,6 +39,13 @@ export default class DhEnvironment extends BaseDataActor {
             notes: new fields.HTMLField()
         };
     }
+
+    /* -------------------------------------------- */
+
+    /**@inheritdoc */
+    static DEFAULT_ICON = 'systems/daggerheart/assets/icons/documents/actors/forest.svg';
+
+    /* -------------------------------------------- */
 
     get features() {
         return this.parent.items.filter(x => x.type === 'feature');

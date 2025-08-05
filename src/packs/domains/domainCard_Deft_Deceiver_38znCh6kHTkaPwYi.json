@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "nVCKcZkcoEivYJaF",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to gain <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">advantage</tooltip> on a roll to deceive or trick someone into believing a lie you tell them.        </p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to gain advantage on a roll to deceive or trick someone into believing a lie you tell them</p><p></p>",
     "domain": "grace",
     "recallCost": 0,
     "level": 1,
@@ -14,7 +14,7 @@
         "type": "effect",
         "_id": "8upofDpPl8wqSl77",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><strong>Spend a Hope</strong> to gain advantage on a roll to deceive or trick someone into believing a lie you tell them</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -42,7 +42,7 @@
           "amount": null
         },
         "name": "Gain Advantage",
-        "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+        "img": "icons/magic/life/heart-pink.webp",
         "range": ""
       }
     }
@@ -56,15 +56,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784445,
-    "modifiedTime": 1754229051800,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754340779197,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "38znCh6kHTkaPwYi",
   "sort": 3400000,
   "effects": [
     {
       "name": "Deft Deceiver",
-      "img": "systems/daggerheart/assets/icons/domains/grace.svg",
+      "img": "icons/magic/life/heart-pink.webp",
       "origin": "Compendium.daggerheart.domains.Item.38znCh6kHTkaPwYi",
       "transfer": false,
       "_id": "qtHDKXJ1pH8Cu7by",
@@ -108,7 +108,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754094114894,
-        "modifiedTime": 1754094189363,
+        "modifiedTime": 1754340806603,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!38znCh6kHTkaPwYi.qtHDKXJ1pH8Cu7by"

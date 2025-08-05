@@ -5,3 +5,4 @@ export { default as DhActiveEffect } from './activeEffect.mjs';
 export { default as DhChatMessage } from './chatMessage.mjs';
 export { default as DhToken } from './token.mjs';
 export { default as DhTooltipManager } from './tooltipManager.mjs';
+export { default as DhTemplateManager } from './templateManager.mjs';

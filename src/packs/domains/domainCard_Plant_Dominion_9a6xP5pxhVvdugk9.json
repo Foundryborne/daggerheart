@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "R5afi5bhq9ccnYY2",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (18)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, you reshape the natural world, changing the surrounding plant life anywhere within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range of you. For example, you can grow trees instantly, clear a path through dense vines, or create a wall of roots.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, you reshape the natural world, changing the surrounding plant life anywhere within Far range of you. For example, you can grow trees instantly, clear a path through dense vines, or create a wall of roots.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 9,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "7yUMXSJVnDBB25jP",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (18)</strong>. Once per long rest on a success, you reshape the natural world, changing the surrounding plant life anywhere within Far range of you. For example, you can grow trees instantly, clear a path through dense vines, or create a wall of roots.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -53,7 +53,7 @@
           "damageMod": "none"
         },
         "name": "Reshape Natural World",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/nature/tree-elm-roots-brown.webp",
         "range": "far"
       }
     }
@@ -67,8 +67,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784493,
-    "modifiedTime": 1754229212514,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754340285152,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "9a6xP5pxhVvdugk9",
   "sort": 3400000,

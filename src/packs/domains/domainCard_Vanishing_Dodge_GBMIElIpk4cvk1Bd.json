@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "ML2JusN36oJoR8QA",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When an attack made against you that would deal <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"physical-damage-type\" nexus=\"daggerheart\">physical</tooltip> damage fails, you can <strong>spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to envelop yourself in shadow, becoming <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hidden\" nexus=\"daggerheart\"><em>Hidden</em></tooltip> and teleporting to a point within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range of the attacker. You remain <em>Hidden</em> until the next time you make an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip>.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When an attack made against you that would deal physical damage fails, you can <strong>spend a Hope</strong> to envelop yourself in shadow, becoming <em>Hidden</em> and teleporting to a point within Close range of the attacker. You remain <em>Hidden</em> until the next time you make an action roll.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 7,
@@ -56,7 +56,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784539,
-    "modifiedTime": 1754173621467,
+    "modifiedTime": 1754331169719,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "GBMIElIpk4cvk1Bd",

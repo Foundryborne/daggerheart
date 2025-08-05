@@ -1,0 +1,31 @@
+{
+  "folder": "07ZMng4a2Z1kdqMq",
+  "name": "Set of Forgery Tools",
+  "type": "loot",
+  "_id": "yqoO5aqDd4aD13pc",
+  "img": "icons/tools/hand/lockpicks-steel-grey.webp",
+  "system": {
+    "description": "",
+    "quantity": 1,
+    "actions": {}
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754325190389,
+    "modifiedTime": 1754325209078,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!yqoO5aqDd4aD13pc"
+}

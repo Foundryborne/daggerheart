@@ -1,0 +1,33 @@
+{
+  "folder": "mmCmlh5x1cE4EbhN",
+  "name": "Courage",
+  "type": "feature",
+  "_id": "o5j2vjXU8NicYlXx",
+  "img": "icons/magic/control/silhouette-hold-change-blue.webp",
+  "system": {
+    "description": "<p>When you fail a roll with Fear, you gain a Hope.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754256184552,
+    "modifiedTime": 1754256222832,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!o5j2vjXU8NicYlXx"
+}

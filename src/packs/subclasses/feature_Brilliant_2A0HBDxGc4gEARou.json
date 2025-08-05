@@ -1,0 +1,33 @@
+{
+  "folder": "t8AkyVM60h7WuLOD",
+  "name": "Brilliant",
+  "type": "feature",
+  "_id": "2A0HBDxGc4gEARou",
+  "img": "icons/sundries/scrolls/scroll-yellow-teal.webp",
+  "system": {
+    "description": "<p>Take an additional domain card of your level or lower from a domain you have access to.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "MQSznptE5yLT7kj8": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754254253864,
+    "modifiedTime": 1754254310242,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
+  },
+  "_key": "!items!2A0HBDxGc4gEARou"
+}

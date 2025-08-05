@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8qr1Y2tW3vLwNZOg",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip><strong> (16)</strong>. Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip> on a success, plunge the entire area within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range into complete darkness only you and your allies can see through. <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"attack-roll\" nexus=\"daggerheart\">Attack rolls</tooltip> have <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"advantage-and-disadvantage\" nexus=\"daggerheart\">disadvantage</tooltip> when targeting you or an ally within this shadow.</p><p class=\"Body-Foundation\">Additionally, when you or an ally succeeds with <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> against an adversary within this shadow, the target must mark a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip>.</p><p class=\"Body-Foundation\">This spell lasts until the GM spends a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"fear\" nexus=\"daggerheart\"><strong>Fear</strong></tooltip> on their turn to clear this effect or you take <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"severe-damage\" nexus=\"daggerheart\">Severe</tooltip> damage.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (16)</strong>. Once per long rest on a success, plunge the entire area within Far range into complete darkness only you and your allies can see through. Attack rolls have disadvantage when targeting you or an ally within this shadow.</p><p class=\"Body-Foundation\">Additionally, when you or an ally succeeds with Hope against an adversary within this shadow, the target must mark a Stress.</p><p class=\"Body-Foundation\">This spell lasts until the GM spends a <strong>Fear</strong> on their turn to clear this effect or you take Severe damage.</p>",
     "domain": "midnight",
     "recallCost": 2,
     "level": 10,
@@ -21,7 +21,8 @@
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "longRest"
+          "recovery": "longRest",
+          "consumeOnSuccess": true
         },
         "damage": {
           "parts": [],
@@ -124,7 +125,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784449,
-    "modifiedTime": 1754173847230,
+    "modifiedTime": 1754331279468,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "62Sj67PdPFzwWVe3",

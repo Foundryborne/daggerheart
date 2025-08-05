@@ -58,7 +58,7 @@
   },
   "effects": [],
   "folder": null,
-  "sort": 200000,
+  "sort": 700000,
   "ownership": {
     "default": 0,
     "LgnbNMLaxandgMQq": 3
@@ -72,7 +72,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754246931974,
-    "modifiedTime": 1754247171296,
+    "modifiedTime": 1754325498779,
     "lastModifiedBy": "LgnbNMLaxandgMQq"
   },
   "_key": "!items!nRAyoC0fOzXPDa4z"

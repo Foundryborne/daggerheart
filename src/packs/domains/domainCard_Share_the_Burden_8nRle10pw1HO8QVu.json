@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "VgADdqYn9nS9G1Us",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per rest, take on the <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\">Stress</tooltip> from a willing creature within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range. The target describes what intimate knowledge or emotions telepathically leak from their mind in this moment between you. Transfer any number of their marked Stress to you, then gain a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\">Hope</tooltip> for each Stress transferred.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per rest, take on the Stress from a willing creature within Melee range. The target describes what intimate knowledge or emotions telepathically leak from their mind in this moment between you. Transfer any number of their marked Stress to you, then gain a Hope for each Stress transferred.</p>",
     "domain": "grace",
     "recallCost": 0,
     "level": 6,
@@ -20,8 +20,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784515,
-    "modifiedTime": 1754229107806,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754327488946,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "8nRle10pw1HO8QVu",
   "sort": 3400000,

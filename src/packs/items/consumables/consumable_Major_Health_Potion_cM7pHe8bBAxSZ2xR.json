@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "Xm2ldAlmUQY4jlLb",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Clear 1d4+2 HP.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -92,7 +92,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753591046168,
-    "modifiedTime": 1753993085839,
+    "modifiedTime": 1754394726288,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!cM7pHe8bBAxSZ2xR"

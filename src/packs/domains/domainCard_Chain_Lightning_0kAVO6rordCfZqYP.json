@@ -1,29 +1,171 @@
 {
   "name": "Chain Lightning",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "l387HKojhqcDAV0b",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Mark 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip>, unleashing lightning on all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range. Targets you succeed against must make a reaction roll with a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"difficulty\" nexus=\"daggerheart\">Difficulty</tooltip> equal to the result of your Spellcast Roll. Targets who fail take <strong>2d8+4</strong> magic damage. Additional adversaries not already targeted by Chain Lightning and within Close range of previous targets who took damage must also make the <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"reaction-roll\" nexus=\"daggerheart\">reaction roll</tooltip>. Targets who fail take <strong>2d8+4</strong> magic damage. This chain continues until there are no more adversaries within range.        </p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Mark 2 Stress</strong> to make a <strong>Spellcast Roll</strong>, unleashing lightning on all targets within Close range. Targets you succeed against must make a reaction roll with a Difficulty equal to the result of your Spellcast Roll. Targets who fail take <strong>2d8+4</strong> magic damage. Additional adversaries not already targeted by Chain Lightning and within Close range of previous targets who took damage must also make the reaction roll. Targets who fail take <strong>2d8+4</strong> magic damage. This chain continues until there are no more adversaries within range.</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 5,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "2jjOspoj5HGgUBmE": {
+        "type": "attack",
+        "_id": "2jjOspoj5HGgUBmE",
+        "systemPath": "actions",
+        "description": "<p><strong>Mark 2 Stress</strong> to make a <strong>Spellcast Roll</strong>, unleashing lightning on all targets within Close range. Targets you succeed against must make a reaction roll with a Difficulty equal to the result of your Spellcast Roll. Targets who fail take <strong>2d8+4</strong> magic damage. </p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 2,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [
+            {
+              "resultBased": false,
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 2,
+                "dice": "d8",
+                "bonus": 4
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "spellcast",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": "agility",
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Cast",
+        "img": "icons/magic/lightning/bolts-forked-large-blue-yellow.webp",
+        "range": "close"
+      },
+      "tRJNO3DVvVYwW3tt": {
+        "type": "damage",
+        "_id": "tRJNO3DVvVYwW3tt",
+        "systemPath": "actions",
+        "description": "<p>Additional adversaries not already targeted by Chain Lightning and within Close range of previous targets who took damage must also make the reaction roll. Targets who fail take <strong>2d8+4</strong> magic damage. This chain continues until there are no more adversaries within range.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [
+            {
+              "value": {
+                "custom": {
+                  "enabled": false
+                },
+                "multiplier": "flat",
+                "flatMultiplier": 2,
+                "dice": "d8",
+                "bonus": 4
+              },
+              "applyTo": "hitPoints",
+              "type": [
+                "magical"
+              ],
+              "base": false,
+              "resultBased": false,
+              "valueAlt": {
+                "multiplier": "prof",
+                "flatMultiplier": 1,
+                "dice": "d6",
+                "bonus": null,
+                "custom": {
+                  "enabled": false
+                }
+              }
+            }
+          ],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "name": "Chain Damage",
+        "img": "icons/magic/lightning/bolt-forked-large-magenta.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784433,
-    "modifiedTime": 1753922784433,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754253714828,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "0kAVO6rordCfZqYP",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!0kAVO6rordCfZqYP"
 }

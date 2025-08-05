@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "8erksbTp7ic6in4I",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to activate Phantom Retreat where you’re currently standing. <strong>Spend another Hope</strong> at any time before your next rest to disappear from where you are and reappear where you were standing when you activated Phantom Retreat. This spell ends after you reappear.        </p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to activate Phantom Retreat where you’re currently standing. <strong>Spend another Hope</strong> at any time before your next rest to disappear from where you are and reappear where you were standing when you activated Phantom Retreat. This spell ends after you reappear.</p>",
     "domain": "midnight",
     "recallCost": 2,
     "level": 5,
@@ -81,7 +81,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784491,
-    "modifiedTime": 1754173535317,
+    "modifiedTime": 1754331063221,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "0vdpIn06ifF3xxqZ",

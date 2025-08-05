@@ -130,7 +130,7 @@ export default function DHApplicationMixin(Base) {
                 docs.push(doc);
             }
 
-            docs.filter(doc => doc).map(doc => (doc.apps[this.id] = this));
+            docs.filter(doc => doc).forEach(doc => (doc.apps[this.id] = this));
 
             if (!!this.options.contextMenus.length) this._createContextMenus();
         }

@@ -1,0 +1,83 @@
+{
+  "name": "Rogue",
+  "type": "class",
+  "_id": "CvHlkHZfpMiCz5uT",
+  "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
+  "system": {
+    "description": "<p>Rogues are scoundrels, often in both attitude and practice. Broadly known as liars and thieves, the best among this class move through the world anonymously. Utilizing their sharp wits and blades, rogues trick their foes through social manipulation as easily as breaking locks, climbing through windows, or dealing underhanded blows. These masters of magical craft manipulate shadow and movement, adding an array of useful and deadly tools to their repertoire. Rogues frequently establish guilds to meet future accomplices, hire out jobs, and hone secret skills, proving that there’s honor among thieves for those who know where to look.</p>",
+    "domains": [
+      "midnight",
+      "grace"
+    ],
+    "classItems": [],
+    "hitPoints": 6,
+    "evasion": 12,
+    "features": [
+      {
+        "type": "hope",
+        "item": "Compendium.daggerheart.classes.Item.hVaaPIjxoextIgSL"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.5IT8wYa0m1EFw8Zp"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.5QqpEwmwkPfZHpMW"
+      }
+    ],
+    "subclasses": [
+      "Compendium.daggerheart.subclasses.Item.h161OSIK24Up4qNd",
+      "Compendium.daggerheart.subclasses.Item.95QxNZwgyEm1LqdG"
+    ],
+    "inventory": {
+      "take": [
+        "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
+        "Compendium.daggerheart.classes.Item.uoG5iq09mxJPXfmk",
+        "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw"
+      ],
+      "choiceA": [
+        "Compendium.daggerheart.consumables.Item.tPfKtKRRjv8qdSqy",
+        "Compendium.daggerheart.consumables.Item.b6vGSPFWOlzZZDLO"
+      ],
+      "choiceB": [
+        "Compendium.daggerheart.classes.Item.yqoO5aqDd4aD13pc",
+        "Compendium.daggerheart.classes.Item.J1c708r5L9TYckER"
+      ]
+    },
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 1,
+        "strength": -1,
+        "finesse": 0,
+        "instinct": 2,
+        "presence": 1,
+        "knowledge": 0
+      },
+      "suggestedPrimaryWeapon": "Compendium.daggerheart.weapons.Item.iStO0BbeMTTR0rQi",
+      "suggestedSecondaryWeapon": "Compendium.daggerheart.weapons.Item.wKklDxs5nkzILNp4",
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.yJFp1bfpecDcStVK"
+    },
+    "isMulticlass": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 725000,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754325275832,
+    "modifiedTime": 1754325686143,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!CvHlkHZfpMiCz5uT"
+}

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "xuGz0QPNlkTOV0rV",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">You can speak into the mind of any person with whom you’ve made physical contact. Once you’ve opened a channel with them, they can speak back into your mind. Additionally, you can <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong> </tooltip>against them. On a success, you can ask the GM one of the following questions and receive an answer:        </p><ul class=\"\"><li class=\"vertical-card-list-found\">Where are they?</li><li class=\"vertical-card-list-found\">What are they doing?</li><li class=\"vertical-card-list-found\">What are they afraid of?</li><li class=\"vertical-card-list-found\">What do they cherish most in the world?</li></ul></p>",
+    "description": "<p class=\"Body-Foundation\">You can speak into the mind of any person with whom you’ve made physical contact. Once you’ve opened a channel with them, they can speak back into your mind. Additionally, you can <strong>mark a Stress</strong> to make a <strong>Spellcast Roll</strong> against them. On a success, you can ask the GM one of the following questions and receive an answer:</p><ul><li class=\"vertical-card-list-found\">Where are they?</li><li class=\"vertical-card-list-found\">What are they doing?</li><li class=\"vertical-card-list-found\">What are they afraid of?</li><li class=\"vertical-card-list-found\">What do they cherish most in the world?</li></ul>",
     "domain": "midnight",
     "recallCost": 0,
     "level": 6,
@@ -75,7 +75,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784442,
-    "modifiedTime": 1754173556084,
+    "modifiedTime": 1754331078647,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "yL2qrSWmTwXVOySH",

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "yalAnCU3SndrYImF",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
     "domain": "blade",
     "recallCost": 2,
     "level": 4,
@@ -14,14 +14,14 @@
         "type": "effect",
         "_id": "xdNbP1ggDxpXZ1HP",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per rest, you can apply all your focus toward a target of your choice. Until you attack another creature, you defeat the target, or the battle ends, gain a +1 bonus to your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null,
+          "max": "1",
+          "recovery": "shortRest",
           "consumeOnSuccess": false
         },
         "effects": [
@@ -49,8 +49,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784443,
-    "modifiedTime": 1754244951595,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754304260916,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "xxZOXC4tiZQ6kg1e",
   "sort": 3400000,
@@ -59,7 +59,7 @@
       "name": "Deadly Focus",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
       "origin": "Compendium.daggerheart.domains.Item.xxZOXC4tiZQ6kg1e",
-      "transfer": false,
+      "transfer": true,
       "_id": "6sR46Hd554DiLHy4",
       "type": "base",
       "system": {
@@ -78,7 +78,7 @@
           "priority": null
         }
       ],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -101,8 +101,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754244951545,
-        "modifiedTime": 1754244958779,
-        "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+        "modifiedTime": 1754304242570,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!xxZOXC4tiZQ6kg1e.6sR46Hd554DiLHy4"
     }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "2rqOUxEglhhPKk2j",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Choose a target within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range. When you succeed on an <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"action-roll\" nexus=\"daggerheart\">action roll</tooltip> against them that doesn’t result in making a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"damage-roll\" nexus=\"daggerheart\">damage roll</tooltip>, place a token on this card. When you deal damage to this target, spend any number of tokens to add a<strong> d12</strong> for each token spent to your damage roll. You can only hold Twilight Toll on one creature at a time.</p><p class=\"Body-Foundation\">When you choose a new target or take a rest, clear all unspent tokens.</p></p>",
+    "description": "<p class=\"Body-Foundation\">Choose a target within Far range. When you succeed on an action roll against them that doesn’t result in making a damage roll, place a token on this card. When you deal damage to this target, spend any number of tokens to add a<strong> d12</strong> for each token spent to your damage roll. You can only hold Twilight Toll on one creature at a time.</p><p class=\"Body-Foundation\">When you choose a new target or take a rest, clear all unspent tokens.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 9,
@@ -87,7 +87,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784535,
-    "modifiedTime": 1754173782698,
+    "modifiedTime": 1754331253303,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "SDjjV61TC1NceV1m",

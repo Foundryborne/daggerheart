@@ -1,29 +1,66 @@
 {
   "name": "Deathrun",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "Hs6POmXKThDXQJBn",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend 3 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to run a straight path through the battlefield to a point within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"far\" nexus=\"daggerheart\">Far</tooltip> range, making an attack against all adversaries within your weapon’s range along that path. Choose the order in which you deal damage to the targets you succeeded against. For the first, roll your weapon damage with a +1 bonus to your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>. Then remove a die from your damage roll and deal the remaining damage to the next target. Continue to remove a die for each subsequent target until you have no more damage dice or adversaries.        </p><p class=\"Body-Foundation\">You can’t target the same adversary more than once per attack.</p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend 3 Hope</strong> to run a straight path through the battlefield to a point within Far range, making an attack against all adversaries within your weapon’s range along that path. Choose the order in which you deal damage to the targets you succeeded against. For the first, roll your weapon damage with a +1 bonus to your Proficiency. Then remove a die from your damage roll and deal the remaining damage to the next target. Continue to remove a die for each subsequent target until you have no more damage dice or adversaries.</p><p class=\"Body-Foundation\">You can’t target the same adversary more than once per attack.</p>",
     "domain": "bone",
     "recallCost": 1,
     "level": 10,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "Eo4z2ns80222m7lO": {
+        "type": "effect",
+        "_id": "Eo4z2ns80222m7lO",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\"><strong>Spend 3 Hope</strong> to run a straight path through the battlefield to a point within Far range, making an attack against all adversaries within your weapon’s range along that path. Choose the order in which you deal damage to the targets you succeeded against. For the first, roll your weapon damage with a +1 bonus to your Proficiency. Then remove a die from your damage roll and deal the remaining damage to the next target. Continue to remove a die for each subsequent target until you have no more damage dice or adversaries.</p><p class=\"Body-Foundation\">You can’t target the same adversary more than once per attack.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/movement/trail-streak-zigzag-yellow.webp",
+        "range": "far"
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784445,
-    "modifiedTime": 1753922784445,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754252515126,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "xFOSn8IVVNizgHFq",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!xFOSn8IVVNizgHFq"
 }

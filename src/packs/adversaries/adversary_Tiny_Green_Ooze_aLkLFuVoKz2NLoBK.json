@@ -250,7 +250,7 @@
                     "dice": "d6",
                     "bonus": null
                   },
-                  "applyTo": "armorSlot",
+                  "applyTo": "armor",
                   "type": [],
                   "base": false,
                   "resultBased": false,

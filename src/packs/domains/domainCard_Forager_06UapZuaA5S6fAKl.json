@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "u5Lq2kfC8LlDAGDC",
   "system": {
-    "description": "<p><p class=\"Domain-Ability\">As an additional <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"downtime\" class=\"tooltip-convert\">downtime</tooltip> move you can choose, roll a d6 to see what you forage. Work with the GM to describe it and add it to your inventory as a consumable. Your party can carry up to five foraged consumables at a time.</p>\n<ol>\n<li>A unique food (Clear 2 <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"stress\" class=\"tooltip-convert\">Stress</tooltip>)</li>\n<li>A beautiful relic (Gain 2 <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"hope\" class=\"tooltip-convert\">Hope</tooltip>)</li>\n<li>An arcane rune (+2 to a <tooltip nexus=\"daggerheart\" category=\"rule\" element=\"spellcast-roll\" class=\"tooltip-convert\">Spellcast Roll</tooltip>)</li>\n<li>A healing vial (Clear 2 Hit Points)</li>\n<li>A luck charm (Reroll any die)</li>\n<li>Choose one of the options above.</li></ol></p>",
+    "description": "<p class=\"Domain-Ability\">As an additional downtime move you can choose, roll a d6 to see what you forage. Work with the GM to describe it and add it to your inventory as a consumable. Your party can carry up to five foraged consumables at a time.</p><ol><li><p>A unique food (Clear 2 Stress)</p></li><li><p>A beautiful relic (Gain 2 Hope)</p></li><li><p>An arcane rune (+2 to a Spellcast Roll)</p></li><li>A healing vial (Clear 2 Hit Points)</li><li>A luck charm (Reroll any die)</li><li>Choose one of the options above.</li></ol>",
     "domain": "sage",
     "recallCost": 1,
     "level": 6,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "bOjFayylsEZmRhmX",
         "systemPath": "actions",
-        "description": "",
+        "description": "<ol><li><p>A unique food (Clear 2 Stress)</p></li></ol>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -73,15 +73,15 @@
           },
           "useDefault": false
         },
-        "name": "Unique Food (Stress)",
-        "img": "icons/svg/item-bag.svg",
+        "name": "1. Unique Food (Stress)",
+        "img": "icons/consumables/fruit/apple-ripe-red.webp",
         "range": ""
       },
       "gNjJLRtEvKB9SCS2": {
         "type": "healing",
         "_id": "gNjJLRtEvKB9SCS2",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p></p><ol start=\"2\"><li><p>A beautiful relic (Gain 2 Hope)</p></li></ol>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -140,15 +140,15 @@
           },
           "useDefault": false
         },
-        "name": "Beautiful Relic (Hope)",
-        "img": "icons/svg/item-bag.svg",
+        "name": "2. Beautiful Relic (Hope)",
+        "img": "icons/commodities/gems/gem-faceted-octagon-yellow.webp",
         "range": ""
       },
       "mZGaBlk8JBcXVCrw": {
         "type": "effect",
         "_id": "mZGaBlk8JBcXVCrw",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p></p><ol start=\"3\"><li><p>An arcane rune (+2 to a Spellcast Roll)</p></li></ol>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -167,15 +167,15 @@
           "type": "any",
           "amount": null
         },
-        "name": "Arcane Rune (Spellcast Roll)",
-        "img": "icons/svg/item-bag.svg",
+        "name": "3. Arcane Rune (Spellcast Roll)",
+        "img": "icons/magic/symbols/runes-carved-stone-green.webp",
         "range": ""
       },
       "8RE4q25nr2SJii0W": {
         "type": "healing",
         "_id": "8RE4q25nr2SJii0W",
         "systemPath": "actions",
-        "description": "",
+        "description": "<ol start=\"4\"><li><p>A healing vial (Clear 2 Hit Points)</p></li></ol>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -234,8 +234,8 @@
           },
           "useDefault": false
         },
-        "name": "Healing Vial (HP)",
-        "img": "icons/svg/item-bag.svg",
+        "name": "4. Healing Vial (HP)",
+        "img": "icons/consumables/potions/bottle-bulb-corked-green.webp",
         "range": ""
       }
     }
@@ -249,15 +249,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784456,
-    "modifiedTime": 1754229230642,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754339631526,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "06UapZuaA5S6fAKl",
   "sort": 3400000,
   "effects": [
     {
       "name": "Arcane Rune",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/magic/symbols/runes-carved-stone-green.webp",
       "origin": "Compendium.daggerheart.domains.Item.06UapZuaA5S6fAKl",
       "transfer": false,
       "_id": "cTf5gEem5Gt4fLS4",
@@ -301,7 +301,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754118672156,
-        "modifiedTime": 1754118695003,
+        "modifiedTime": 1754339590891,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!06UapZuaA5S6fAKl.cTf5gEem5Gt4fLS4"

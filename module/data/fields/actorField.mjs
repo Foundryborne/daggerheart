@@ -6,9 +6,9 @@ const attributeField = label =>
         tierMarked: new fields.BooleanField({ initial: false })
     });
 
-const resourceField = (max = 0, label, reverse = false, maxLabel) =>
+const resourceField = (max = 0, initial = 0, label, reverse = false, maxLabel) =>
     new fields.SchemaField({
-        value: new fields.NumberField({ initial: 0, min: 0, integer: true, label }),
+        value: new fields.NumberField({ initial: initial, min: 0, integer: true, label }),
         max: new fields.NumberField({
             initial: max,
             integer: true,

@@ -8,7 +8,7 @@
  * @property {boolean} isInventoryItem- Indicates whether items of this type is a Inventory Item
  */
 
-import { addLinkedItemsDiff, updateLinkedItemApps } from '../../helpers/utils.mjs';
+import { addLinkedItemsDiff, createScrollText, getScrollTextData, updateLinkedItemApps } from '../../helpers/utils.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 import FormulaField from '../fields/formulaField.mjs';
 
@@ -56,6 +56,11 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
                         initial: null,
                         nullable: true
                     }),
+                    progression: new fields.StringField({
+                        required: true,
+                        choices: CONFIG.DH.ITEM.itemResourceProgression,
+                        initial: CONFIG.DH.ITEM.itemResourceProgression.increasing.id
+                    }),
                     diceStates: new fields.TypedObjectField(
                         new fields.SchemaField({
                             value: new fields.NumberField({ integer: true, initial: 1, min: 1 }),
@@ -78,6 +83,16 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
         return schema;
     }
+
+    /* -------------------------------------------- */
+
+    /**
+     * The default icon used for newly created Item documents
+     * @type {string}
+     */
+    static DEFAULT_ICON = null;
+
+    /* -------------------------------------------- */
 
     /**
      * Convenient access to the item's actor, if it exists.
@@ -178,11 +193,20 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         if (allowed === false) return false;
 
         addLinkedItemsDiff(changed.system?.features, this.features, options);
+
+        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        const armorChanged =
+            changed.system?.marks?.value !== undefined && changed.system.marks.value !== this.marks.value;
+        if (armorChanged && autoSettings.resourceScrollTexts && this.parent.parent?.type === 'character') {
+            const armorData = getScrollTextData(this.parent.parent.system.resources, changed.system.marks, 'armor');
+            options.scrollingTextData = [armorData];
+        }
     }
 
     _onUpdate(changed, options, userId) {
         super._onUpdate(changed, options, userId);
 
         updateLinkedItemApps(options, this.parent.sheet);
+        createScrollText(this.parent?.parent, options.scrollingTextData);
     }
 }

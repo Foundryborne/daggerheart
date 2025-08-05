@@ -1,6 +1,6 @@
 {
   "name": "Rune Ward",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/arcana.png",
   "type": "domainCard",
   "folder": "o7kvw9NRGvDZSce2",
   "system": {
@@ -8,22 +8,81 @@
     "domain": "arcana",
     "recallCost": 0,
     "level": 1,
-    "type": "spell"
+    "type": "spell",
+    "actions": {
+      "VwtkvnNeU9tZQMDT": {
+        "type": "attack",
+        "_id": "VwtkvnNeU9tZQMDT",
+        "systemPath": "actions",
+        "description": "<p> The ward’s holder can spend a Hope to reduce incoming damage by <strong>1d8</strong>.</p><p class=\"Body-Foundation\">If the Ward Die result is 8, the ward’s power ends after it reduces damage this turn. It can be recharged for free on your next rest.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d8",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Reduce Damage",
+        "img": "icons/commodities/gems/gem-faceted-diamond-pink-gold.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784506,
-    "modifiedTime": 1753922784506,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754253212120,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "GEhBUmv9Bj7oJfHk",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!GEhBUmv9Bj7oJfHk"
 }

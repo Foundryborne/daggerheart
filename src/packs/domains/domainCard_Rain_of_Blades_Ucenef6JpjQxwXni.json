@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "sCiN7DoysdKceIMd",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> and conjure throwing blades that strike out at all targets within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"very-close\" nexus=\"daggerheart\">Very Close</tooltip> range. Targets you succeed against take <strong>d8+2</strong> magic damage using your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"proficiency\" nexus=\"daggerheart\">Proficiency</tooltip>.        </p><p class=\"Body-Foundation\">If a target you hit is <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"vulnerable\" nexus=\"daggerheart\"><em>Vulnerable</em></tooltip>, they take an extra <strong>1d8</strong> damage.</p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to make a <strong>Spellcast Roll</strong> and conjure throwing blades that strike out at all targets within Very Close range. Targets you succeed against take <strong>d8+2</strong> magic damage using your Proficiency.</p><p class=\"Body-Foundation\">If a target you hit is <em>Vulnerable</em>, they take an extra <strong>1d8</strong> damage.</p>",
     "domain": "midnight",
     "recallCost": 1,
     "level": 1,
@@ -151,7 +151,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784497,
-    "modifiedTime": 1754172953058,
+    "modifiedTime": 1754330607042,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "Ucenef6JpjQxwXni",

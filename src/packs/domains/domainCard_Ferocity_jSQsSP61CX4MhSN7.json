@@ -1,29 +1,57 @@
 {
   "name": "Ferocity",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
   "type": "domainCard",
   "folder": "Q9rmrfeKqcqBNnWc",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">When you cause an adversary to mark 1 or more <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Points</tooltip>, you can <strong>spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to increase your <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"evasion\" nexus=\"daggerheart\">Evasion</tooltip> by the number of Hit Points they marked. This bonus lasts until after the next attack made against you.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">When you cause an adversary to mark 1 or more Hit Points, you can <strong>spend 2 Hope</strong> to increase your Evasion by the number of Hit Points they marked. This bonus lasts until after the next attack made against you.</p>",
     "domain": "bone",
     "recallCost": 2,
     "level": 2,
-    "type": "ability"
+    "type": "ability",
+    "actions": {
+      "2X4CqDTpEQjfSE8r": {
+        "type": "effect",
+        "_id": "2X4CqDTpEQjfSE8r",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">When you cause an adversary to mark 1 or more Hit Points, you can <strong>spend 2 Hope</strong> to increase your Evasion by the number of Hit Points they marked. This bonus lasts until after the next attack made against you.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/skills/melee/maneuver-daggers-paired-orange.webp",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784453,
-    "modifiedTime": 1753922784453,
-    "lastModifiedBy": "WafZqd6qLGpBRGTt"
+    "modifiedTime": 1754249658710,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "jSQsSP61CX4MhSN7",
   "sort": 3400000,
   "effects": [],
+  "ownership": {
+    "default": 0
+  },
   "_key": "!items!jSQsSP61CX4MhSN7"
 }

@@ -1,4 +1,5 @@
 import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
+import { createScrollText, getScrollTextData } from '../../helpers/utils.mjs';
 
 const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
     new foundry.data.fields.SchemaField({
@@ -69,6 +70,16 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         return schema;
     }
 
+    /* -------------------------------------------- */
+
+    /**
+     * The default icon used for newly created Actors documents
+     * @type {string}
+     */
+    static DEFAULT_ICON = null;
+
+    /* -------------------------------------------- */
+
     /**
      * Obtain a data object used to evaluate any dice rolls associated with this Item Type
      * @param {object} [options] - Options which modify the getRollData method.
@@ -77,5 +88,29 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
     getRollData() {
         const data = { ...this };
         return data;
+    }
+
+    async _preUpdate(changes, options, userId) {
+        const allowed = await super._preUpdate(changes, options, userId);
+        if (allowed === false) return;
+
+        const autoSettings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation);
+        if (changes.system?.resources && autoSettings.resourceScrollTexts) {
+            const textData = Object.keys(changes.system.resources).reduce((acc, key) => {
+                const resource = changes.system.resources[key];
+                if (resource.value !== undefined && resource.value !== this.resources[key].value) {
+                    acc.push(getScrollTextData(this.resources, resource, key));
+                }
+
+                return acc;
+            }, []);
+            options.scrollingTextData = textData;
+        }
+    }
+
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+
+        createScrollText(this.parent, options.scrollingTextData);
     }
 }

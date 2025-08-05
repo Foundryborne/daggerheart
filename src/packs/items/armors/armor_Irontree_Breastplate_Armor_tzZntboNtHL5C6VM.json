@@ -31,18 +31,20 @@
   "effects": [
     {
       "name": "Reinforced",
-      "description": "When you mark your last Armor Slot, increase your damage thresholds by +2 until you clear at least 1 Armor Slot.",
+      "description": "<p>When you mark your last Armor Slot, increase your damage thresholds by +2 until you clear at least 1 Armor Slot.</p>",
       "img": "icons/magic/defensive/shield-barrier-glowing-triangle-green.webp",
       "changes": [
         {
-          "key": "system.bunuses.damageThresholds.major",
+          "key": "system.damageThresholds.major",
           "mode": 2,
-          "value": "2"
+          "value": "2",
+          "priority": null
         },
         {
-          "key": "system.bunuses.damageThresholds.severe",
+          "key": "system.damageThresholds.severe",
           "mode": 2,
-          "value": "2"
+          "value": "2",
+          "priority": null
         }
       ],
       "_id": "P3aCN8PQgPXP4C9M",
@@ -51,7 +53,12 @@
       "disabled": false,
       "duration": {
         "startTime": null,
-        "combat": null
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "origin": null,
       "tint": "#ffffff",
@@ -67,8 +74,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1753807455490,
-        "modifiedTime": 1753807455490,
-        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+        "modifiedTime": 1754297884536,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!tzZntboNtHL5C6VM.P3aCN8PQgPXP4C9M"
     }

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "xZrCYAd05ayNu1yW",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\"><strong>Spend a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to summon a small nature spirit or forest critter to your side until your next rest, you cast Natural Familiar again, or the familiar is targeted by an attack. If you <strong>spend an additional Hope</strong>, you can summon a familiar that flies. You can communicate with them, make a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"spellcast-roll\" nexus=\"daggerheart\"><strong>Spellcast Roll</strong></tooltip> to command them to perform simple tasks, and <strong>mark a </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"stress\" nexus=\"daggerheart\"><strong>Stress</strong></tooltip> to see through their eyes.        </p><p class=\"Body-Foundation\">When you deal damage to an adversary within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"melee\" nexus=\"daggerheart\">Melee</tooltip> range of your familiar, you add a <strong>d6</strong> to your damage roll.</p></p>",
+    "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> to summon a small nature spirit or forest critter to your side until your next rest, you cast Natural Familiar again, or the familiar is targeted by an attack. If you <strong>spend an additional Hope</strong>, you can summon a familiar that flies. You can communicate with them, make a <strong>Spellcast Roll</strong> to command them to perform simple tasks, and <strong>mark a Stress</strong> to see through their eyes.</p><p class=\"Body-Foundation\">When you deal damage to an adversary within Melee range of your familiar, you add a <strong>d6</strong> to your damage roll.</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 2,
@@ -14,16 +14,17 @@
         "type": "effect",
         "_id": "BhVDgty2nqoOhn97",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><strong>Spend a Hope</strong> to summon a small nature spirit or forest critter to your side until your next rest, you cast Natural Familiar again, or the familiar is targeted by an attack. If you <strong>spend an additional Hope</strong>, you can summon a familiar that flies.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
           {
-            "keyIsID": false,
+            "scalable": true,
             "key": "hope",
             "value": 1,
-            "scalable": false,
-            "step": null
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
@@ -42,44 +43,14 @@
           "amount": null
         },
         "name": "Summon Familiar",
-        "img": "icons/svg/item-bag.svg",
-        "range": ""
-      },
-      "1dR8iS15CcdjMamZ": {
-        "type": "effect",
-        "_id": "1dR8iS15CcdjMamZ",
-        "systemPath": "actions",
-        "description": "",
-        "chatDisplay": true,
-        "actionType": "action",
-        "cost": [
-          {
-            "scalable": false,
-            "key": "hope",
-            "value": 2,
-            "keyIsID": false,
-            "step": null
-          }
-        ],
-        "uses": {
-          "value": null,
-          "max": "",
-          "recovery": null
-        },
-        "effects": [],
-        "target": {
-          "type": "any",
-          "amount": null
-        },
-        "name": "Summon Flying Familiar",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/creatures/amphibians/bullfrog-glass-teal.webp",
         "range": ""
       },
       "kHAwq8lfsEPd9Qga": {
         "type": "attack",
         "_id": "kHAwq8lfsEPd9Qga",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can communicate with them, make a <strong>Spellcast Roll</strong> to command them to perform simple tasks.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -118,14 +89,14 @@
           "damageMod": "none"
         },
         "name": "Perform Task",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/creatures/amphibians/treefrog-leaf-green.webp",
         "range": ""
       },
       "8Y03LcPgXF30DfzZ": {
         "type": "effect",
         "_id": "8Y03LcPgXF30DfzZ",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p><strong>Mark a Stress</strong> to see through their eyes.</p><p class=\"Body-Foundation\"></p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -148,7 +119,7 @@
           "amount": null
         },
         "name": "See Through Eyes",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/magic/perception/eye-ringed-green.webp",
         "range": ""
       }
     }
@@ -162,15 +133,15 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784485,
-    "modifiedTime": 1754229254605,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754338204263,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "Tag303LoRNC5zGgl",
   "sort": 3400000,
   "effects": [
     {
       "name": "Familiar Damage",
-      "img": "icons/svg/item-bag.svg",
+      "img": "icons/sundries/gaming/dice-pair-white-green.webp",
       "origin": "Compendium.daggerheart.domains.Item.Tag303LoRNC5zGgl",
       "transfer": false,
       "_id": "0BumAWKw2aK4A5al",
@@ -220,7 +191,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754115507909,
-        "modifiedTime": 1754115603485,
+        "modifiedTime": 1754338087104,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!Tag303LoRNC5zGgl.0BumAWKw2aK4A5al"

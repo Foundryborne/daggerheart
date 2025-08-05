@@ -1,0 +1,90 @@
+{
+  "folder": "3PV3wn7IGmusnf4p",
+  "name": "Natural Evasion",
+  "type": "feature",
+  "_id": "TnuLBtHQGbqyzn82",
+  "img": "icons/magic/movement/trail-streak-impact-blue.webp",
+  "system": {
+    "description": "<p>You can call forth your element to protect you from harm. When an attack roll against you succeeds, you can <strong>mark a Stress</strong> and describe how you use your element to defend you. When you do, roll a <strong>d6</strong> and add its result to your Evasion against the attack.</p>",
+    "resource": null,
+    "actions": {
+      "amJMKDdSgJHsOsOB": {
+        "type": "attack",
+        "_id": "amJMKDdSgJHsOsOB",
+        "systemPath": "actions",
+        "description": "<p>You can call forth your element to protect you from harm. When an attack roll against you succeeds, you can <strong>mark a Stress</strong> and describe how you use your element to defend you. When you do, roll a <strong>d6</strong> and add its result to your Evasion against the attack.</p>",
+        "chatDisplay": false,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "diceSet",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "flat",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
+        },
+        "name": "Evade",
+        "img": "icons/magic/movement/trail-streak-impact-blue.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349511084,
+    "modifiedTime": 1754349511084,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!TnuLBtHQGbqyzn82"
+}

@@ -1,0 +1,64 @@
+{
+  "folder": "onLJZkd7ZOMBaFMG",
+  "name": "Hold Them Off",
+  "type": "feature",
+  "_id": "2Cyb9ZeuAesf5Sb3",
+  "img": "icons/magic/defensive/barrier-shield-dome-deflect-teal.webp",
+  "system": {
+    "description": "<p>Spend 3 Hope when you succeed on an attack with a weapon to use that same roll against two additional adversaries within range of the attack.</p>",
+    "resource": null,
+    "actions": {
+      "yhVUna5biFAN0o2Y": {
+        "type": "effect",
+        "_id": "yhVUna5biFAN0o2Y",
+        "systemPath": "actions",
+        "description": "<p>Spend 3 Hope when you succeed on an attack with a weapon to use that same roll against two additional adversaries within range of the attack.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "hope",
+            "value": 3,
+            "keyIsID": false,
+            "step": null
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Spend Hope",
+        "img": "icons/magic/defensive/barrier-shield-dome-deflect-teal.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "LgnbNMLaxandgMQq": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754268431889,
+    "modifiedTime": 1754268481364,
+    "lastModifiedBy": "LgnbNMLaxandgMQq"
+  },
+  "_key": "!items!2Cyb9ZeuAesf5Sb3"
+}

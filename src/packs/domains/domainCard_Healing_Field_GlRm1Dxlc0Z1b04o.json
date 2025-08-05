@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "BJIiOIWAQUz5zuqo",
   "system": {
-    "description": "<p><p class=\"Body-Foundation\">Once per <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"long-rest\" nexus=\"daggerheart\">long rest</tooltip>, you can conjure a field of healing plants around you. Everywhere within <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"close\" nexus=\"daggerheart\">Close</tooltip> range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a <tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hit-points\" nexus=\"daggerheart\">Hit Point</tooltip>. </p><p class=\"Body-Foundation\"><strong>Spend 2 </strong><tooltip category=\"rule\" class=\"tooltip-convert\" element=\"hope\" nexus=\"daggerheart\"><strong>Hope</strong></tooltip> to allow you and all allies to clear 2 Hit Points instead.        </p></p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, you can conjure a field of healing plants around you. Everywhere within Close range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a Hit Point.</p><p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to allow you and all allies to clear 2 Hit Points instead.</p>",
     "domain": "sage",
     "recallCost": 2,
     "level": 4,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "oQ4nCYdwCXqd7NWt",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Once per long rest, you can conjure a field of healing plants around you. Everywhere within Close range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a Hit Point.</p><p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to allow you and all allies to clear 2 Hit Points instead.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -82,14 +82,14 @@
           "useDefault": false
         },
         "name": "Heal 1 Hit Point",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
         "range": "close"
       },
       "EqamWsxO86ZjY8WV": {
         "type": "healing",
         "_id": "EqamWsxO86ZjY8WV",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Once per long rest, you can conjure a field of healing plants around you. Everywhere within Close range of you bursts to life with vibrant nature, allowing you and all allies in the area to clear a Hit Point.</p><p class=\"Body-Foundation\"><strong>Spend 2 Hope</strong> to allow you and all allies to clear 2 Hit Points instead.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -164,7 +164,7 @@
           "useDefault": false
         },
         "name": "Heal 2 Hit Points",
-        "img": "icons/svg/item-bag.svg",
+        "img": "icons/commodities/gems/gem-faceted-diamond-green.webp",
         "range": "close"
       }
     },
@@ -185,8 +185,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784466,
-    "modifiedTime": 1754229242796,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1754338717920,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "GlRm1Dxlc0Z1b04o",
   "sort": 3400000,
