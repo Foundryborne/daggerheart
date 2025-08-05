@@ -34,9 +34,18 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     };
 
     static PARTS = {
+        tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
+        settings: { template: 'systems/daggerheart/templates/settings/homebrew-settings/settings.hbs' },
+        domains: { template: 'systems/daggerheart/templates/settings/homebrew-settings/domains.hbs' },
+        downtime: { template: 'systems/daggerheart/templates/settings/homebrew-settings/downtime.hbs' }
+    };
+
+    /** @inheritdoc */
+    static TABS = {
         main: {
-            template: 'systems/daggerheart/templates/settings/homebrew-settings.hbs',
-            scrollable: ['']
+            tabs: [{ id: 'settings' }, { id: 'domains' }, { id: 'downtime' }],
+            initial: 'settings',
+            labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }
     };
 
@@ -199,5 +208,14 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             }
         }
         return obj;
+    }
+
+    _getTabs(tabs) {
+        for (const v of Object.values(tabs)) {
+            v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
+            v.cssClass = v.active ? 'active' : '';
+        }
+
+        return tabs;
     }
 }
