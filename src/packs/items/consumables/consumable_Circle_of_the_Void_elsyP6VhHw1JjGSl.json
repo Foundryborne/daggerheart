@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "ovR11FWCpXaFMPVx",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Mark a Stress to create a void that extends up to Far range. No magic can be cast inside the void, and creatures within the void are immune to magic damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -25,12 +25,12 @@
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Use",
@@ -52,12 +52,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753590692159,
-    "modifiedTime": 1753590776732,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394477728,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!elsyP6VhHw1JjGSl"
 }

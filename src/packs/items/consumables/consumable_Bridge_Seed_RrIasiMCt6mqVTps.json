@@ -11,18 +11,18 @@
         "type": "effect",
         "_id": "dk7fhkfA4m5lqNWB",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Thick vines grow from your location to a point of your choice within Far range, allowing you to climb up or across them. The vines dissipate on your next short rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Plant",
@@ -44,12 +44,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753591685990,
-    "modifiedTime": 1753591826807,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394450971,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!RrIasiMCt6mqVTps"
 }

@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "cZL1A3hNXHbjfwi3",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You gain a +1 bonus to your Knowledge until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -98,7 +98,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753589874661,
-    "modifiedTime": 1753993094810,
+    "modifiedTime": 1754394718504,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!SDdv1G2veMLKrxcJ"

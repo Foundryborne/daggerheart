@@ -11,18 +11,18 @@
         "type": "effect",
         "_id": "FQ2Ty0pP3z6JrBr6",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>This paste eats away walls and other surfaces in bright flashes.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Use",
@@ -44,12 +44,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753590344700,
-    "modifiedTime": 1753590379629,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394373835,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!cfVFmS8vT9dbq9s1"
 }

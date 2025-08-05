@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "FVn1NAbzHHyX2lsM",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Mark a Stress and clear a HP.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -101,7 +101,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588752841,
-    "modifiedTime": 1753992977908,
+    "modifiedTime": 1754394825942,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!cg6VtQ0eVZjDdcK0"

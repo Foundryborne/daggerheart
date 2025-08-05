@@ -11,18 +11,18 @@
         "type": "effect",
         "_id": "j5gIVHXvcGu7PEZZ",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>By touching this piece of parchment to another, you can perfectly copy the second parchment’s contents. Once used, this parchment becomes mundane paper.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Use",
@@ -44,12 +44,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753589306667,
-    "modifiedTime": 1753589388523,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394802909,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!yJkwz4AP6yhGo8Vj"
 }

@@ -11,18 +11,18 @@
         "type": "effect",
         "_id": "X4KtBG5Uve09hRoj",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can use this stone to take a spell or grimoire from your vault, use it once, and return it to your vault.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Use",
@@ -44,12 +44,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753590192533,
-    "modifiedTime": 1753590231535,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394463123,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!IKMVQ6VwtapwoUim"
 }

@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "F9vKFVwtJfR4Q8Kh",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can drink this potion to halve your size until you choose to drop this form or your next rest. While in this form, you have a +2 bonus to Agility and a −1 penalty to your Proficiency.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -104,7 +104,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753592077792,
-    "modifiedTime": 1753992994457,
+    "modifiedTime": 1754394810891,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!HGixKenQwhyRAYNk"

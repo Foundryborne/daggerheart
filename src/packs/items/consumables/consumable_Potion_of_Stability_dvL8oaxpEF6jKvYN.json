@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "ifj42z5FhfMVyyd1",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can drink this potion to choose one additional downtime move.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -104,7 +104,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588038000,
-    "modifiedTime": 1753992490244,
+    "modifiedTime": 1754394786974,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!dvL8oaxpEF6jKvYN"

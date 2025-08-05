@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "EPN43cQmNC97cCw9",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When you take damage, you can spend a Hope to negate that damage, after which the mirror shatters.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -25,12 +25,12 @@
         ],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Use",
@@ -52,12 +52,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753592792213,
-    "modifiedTime": 1753592919887,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394753189,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!UFQVwgYOUZ88UxcH"
 }

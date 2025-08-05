@@ -11,18 +11,18 @@
         "type": "effect",
         "_id": "57IIcyhEs2ByoENx",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can apply this salve to your neck to breathe underwater for a number of minutes equal to your level.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Apply",
@@ -44,12 +44,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753589241094,
-    "modifiedTime": 1753589295204,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394537845,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!Nvbb9mze6o5D0AEg"
 }

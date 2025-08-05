@@ -11,18 +11,18 @@
         "type": "effect",
         "_id": "4nFnAoyH5dENizsx",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>When an adversary attacks you, use this vial and roll a number of d6s equal to your Agility. Add the highest result to your Evasion against the attack.</p>",
         "chatDisplay": true,
         "actionType": "reaction",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Use",
@@ -48,7 +48,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588345314,
-    "modifiedTime": 1753992848674,
+    "modifiedTime": 1754394933247,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!Nwv5ydGf0MWnzq1n"

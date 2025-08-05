@@ -11,7 +11,7 @@
         "type": "effect",
         "_id": "fk272mE2zHIHq8qR",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You gain a +1 bonus to your Finesse until your next rest.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -98,7 +98,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753589675185,
-    "modifiedTime": 1753993102418,
+    "modifiedTime": 1754394710253,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!80s1FLmTLtohZ5GH"

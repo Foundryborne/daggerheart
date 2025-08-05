@@ -4,20 +4,20 @@
   "_id": "yUol6M5b8jsbk9za",
   "img": "icons/containers/kitchenware/jug-wrapped-red.webp",
   "system": {
-    "description": "<p>You can open this jar to release a deafening echo of voices for a number of minutes equal to your Instinct. Creatures within Far range unprepared for the sound take 6d8 magic damage.</p>",
+    "description": "<p>You can open this jar to release a deafening echo of voices for a number of minutes equal to your Instinct. Creatures within Far range unprepared for the sound take 6d8 magic damage.</p><p>@Template[type:emanation|range:f]</p>",
     "quantity": 1,
     "actions": {
       "QEk4TaJeN9FX8cZN": {
         "type": "damage",
         "_id": "QEk4TaJeN9FX8cZN",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can open this jar to release a deafening echo of voices for a number of minutes equal to your Instinct. Creatures within Far range unprepared for the sound take 6d8 magic damage.</p><p>@Template[type:emanation|range:f]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "damage": {
@@ -52,7 +52,7 @@
           "includeBase": false
         },
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "effects": [],
@@ -75,12 +75,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753591372075,
-    "modifiedTime": 1753591514408,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394648049,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!yUol6M5b8jsbk9za"
 }

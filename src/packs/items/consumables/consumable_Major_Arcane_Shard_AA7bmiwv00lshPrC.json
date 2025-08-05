@@ -11,13 +11,13 @@
         "type": "attack",
         "_id": "8JHqtEYD0uOGwHdd",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can make a Finesse Roll to throw this shard at a group of adversaries within Far range. Targets you succeed against take 4d20 magic damage.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "damage": {
@@ -93,12 +93,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753590515261,
-    "modifiedTime": 1753590588765,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394676288,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!AA7bmiwv00lshPrC"
 }

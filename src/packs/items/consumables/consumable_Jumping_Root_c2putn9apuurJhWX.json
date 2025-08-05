@@ -11,18 +11,18 @@
         "type": "effect",
         "_id": "TT4jzve7o2ykPcQO",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Eat this root to leap up to Far range once without needing to roll.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Eat",
@@ -44,12 +44,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753588566489,
-    "modifiedTime": 1753588625439,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1754394659649,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!c2putn9apuurJhWX"
 }

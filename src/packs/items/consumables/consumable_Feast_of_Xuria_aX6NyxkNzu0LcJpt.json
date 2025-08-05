@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "TL1fJitAJmDzrnHT",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>You can eat this meal to clear all HP and Stress and gain 1d4 Hope.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -142,7 +142,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753591925502,
-    "modifiedTime": 1753993182306,
+    "modifiedTime": 1754394521825,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!aX6NyxkNzu0LcJpt"

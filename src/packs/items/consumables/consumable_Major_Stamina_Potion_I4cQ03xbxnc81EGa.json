@@ -11,7 +11,7 @@
         "type": "healing",
         "_id": "3duuNVqCeQaUUKTo",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>Clear 1d4+2 Stress.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -92,7 +92,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753591113317,
-    "modifiedTime": 1753993078821,
+    "modifiedTime": 1754394330048,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!I4cQ03xbxnc81EGa"

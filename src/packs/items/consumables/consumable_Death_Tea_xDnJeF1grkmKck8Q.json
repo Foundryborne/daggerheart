@@ -11,13 +11,13 @@
         "type": "effect",
         "_id": "U7da5R4pgVkEQJVj",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p>After you drink this tea, you instantly kill your target when you critically succeed on an attack. If you don’t critically succeed on an attack before your next long rest, you die.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": null,
+          "max": "",
           "recovery": null
         },
         "effects": [
@@ -27,7 +27,7 @@
           }
         ],
         "target": {
-          "type": null,
+          "type": "any",
           "amount": null
         },
         "name": "Drink",
@@ -98,7 +98,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753592717630,
-    "modifiedTime": 1753993240672,
+    "modifiedTime": 1754394494474,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!xDnJeF1grkmKck8Q"
