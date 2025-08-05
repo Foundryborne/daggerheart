@@ -355,3 +355,17 @@ export function createScrollText(actor, optionsData) {
         });
     }
 }
+
+export async function createEmbeddedItemWithEffects(actor, baseData, update) {
+    const data = baseData.uuid.startsWith('Compendium') ? await foundry.utils.fromUuid(baseData.uuid) : baseData;
+    const [doc] = await actor.createEmbeddedDocuments('Item', [
+        {
+            ...(update ?? data),
+            id: data.id,
+            uuid: data.uuid,
+            effects: data.effects?.map(effect => effect.toObject())
+        }
+    ]);
+
+    return doc;
+}

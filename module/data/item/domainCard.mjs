@@ -46,12 +46,13 @@ export default class DHDomainCard extends BaseDataItem {
         if (allowed === false) return;
 
         if (this.actor?.type === 'character') {
-            if (!this.actor.system.class.value) {
+            const actorClasses = this.actor.items.filter(x => x.type === 'class');
+            if (!actorClasses.length) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.noClassSelected'));
                 return false;
             }
 
-            if (!this.actor.system.domains.find(x => x === this.domain)) {
+            if (!actorClasses.some(c => c.system.domains.find(x => x === this.domain))) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.lacksDomain'));
                 return false;
             }

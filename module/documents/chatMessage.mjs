@@ -40,6 +40,8 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         elements.forEach(e => {
             const uuid = e.dataset.permId,
                 document = fromUuidSync(uuid);
+            if (!document) return;
+
             e.setAttribute('data-view-perm', document.testUserPermission(game.user, 'OBSERVER'));
             e.setAttribute('data-use-perm', document.testUserPermission(game.user, 'OWNER'));
         });

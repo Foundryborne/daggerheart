@@ -42,7 +42,7 @@
         {
           "key": "system.evasion",
           "mode": 2,
-          "value": "@system.traits.agility.value / 2",
+          "value": "ceil(@system.traits.agility.value / 2)",
           "priority": null
         }
       ],
@@ -71,7 +71,7 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754247027320,
-        "modifiedTime": 1754247067643,
+        "modifiedTime": 1754403424797,
         "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!9QElncQUDSakuSdR.H8hazlQe4Wj4JFO6"
