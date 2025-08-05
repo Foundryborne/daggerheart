@@ -52,7 +52,7 @@
       "name": "Vanishing Act: Cloaked",
       "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
       "origin": "Compendium.daggerheart.subclasses.Item.iyIg1VLwO8C6jvFZ",
-      "transfer": false,
+      "transfer": true,
       "_id": "czrwqq44sEr0uJ8O",
       "type": "base",
       "system": {
@@ -64,7 +64,7 @@
         }
       },
       "changes": [],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -87,8 +87,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754322584884,
-        "modifiedTime": 1754322625710,
-        "lastModifiedBy": "LgnbNMLaxandgMQq"
+        "modifiedTime": 1754352062188,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!iyIg1VLwO8C6jvFZ.czrwqq44sEr0uJ8O"
     }

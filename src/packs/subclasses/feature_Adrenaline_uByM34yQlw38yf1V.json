@@ -7,11 +7,98 @@
   "system": {
     "description": "<p>While you're Vulnerable, add your level to your damage rolls.</p>",
     "resource": null,
-    "actions": {},
+    "actions": {
+      "UgffABhuobRDP7MQ": {
+        "type": "effect",
+        "_id": "UgffABhuobRDP7MQ",
+        "systemPath": "actions",
+        "description": "<p>While you're Vulnerable, add your level to your damage rolls.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "HMx9uZ54mvMiH95x",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "self",
+          "amount": null
+        },
+        "name": "Apply",
+        "img": "icons/magic/unholy/hand-marked-pink.webp",
+        "range": ""
+      }
+    },
     "originItemType": null,
     "originId": null
   },
-  "effects": [],
+  "effects": [
+    {
+      "name": "Adrenaline",
+      "img": "icons/magic/unholy/hand-marked-pink.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.uByM34yQlw38yf1V",
+      "transfer": true,
+      "_id": "HMx9uZ54mvMiH95x",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.physical.bonus",
+          "mode": 2,
+          "value": "@system.levelData.level.current",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.magical.bonus",
+          "mode": 2,
+          "value": "@system.levelData.level.current",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>While you're Vulnerable, add your level to your damage rolls.</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754351983776,
+        "modifiedTime": 1754352026131,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!uByM34yQlw38yf1V.HMx9uZ54mvMiH95x"
+    }
+  ],
   "sort": 0,
   "ownership": {
     "default": 0,
@@ -26,8 +113,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754319984350,
-    "modifiedTime": 1754320021016,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754351983791,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!uByM34yQlw38yf1V"
 }

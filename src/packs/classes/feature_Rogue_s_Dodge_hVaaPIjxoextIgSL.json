@@ -71,7 +71,7 @@
           "priority": null
         }
       ],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -94,8 +94,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754323997794,
-        "modifiedTime": 1754324067589,
-        "lastModifiedBy": "LgnbNMLaxandgMQq"
+        "modifiedTime": 1754351805065,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!hVaaPIjxoextIgSL.hhVjBro2osGDTT5g"
     }

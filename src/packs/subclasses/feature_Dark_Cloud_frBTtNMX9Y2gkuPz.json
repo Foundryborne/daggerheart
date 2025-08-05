@@ -5,14 +5,14 @@
   "_id": "frBTtNMX9Y2gkuPz",
   "img": "icons/magic/air/wind-vortex-swirl-purple.webp",
   "system": {
-    "description": "<p>Make <strong>a Spellcast Roll (15)</strong>. On a success, create a temporary dark cloud that covers any area within Close range. Anyone in this cloud can’t see outside of it, and anyone outside of it can’t see in. You’re considered Cloaked from any adversary for whom the cloud blocks line of sight.</p>",
+    "description": "<p>Make <strong>a Spellcast Roll (15)</strong>. On a success, create a temporary dark cloud that covers any area within Close range. Anyone in this cloud can’t see outside of it, and anyone outside of it can’t see in. You’re considered Cloaked from any adversary for whom the cloud blocks line of sight.</p><p>@Template[type:emanation|range:c]</p>",
     "resource": null,
     "actions": {
       "nIgBwYfAVAJ98lzb": {
         "type": "attack",
         "_id": "nIgBwYfAVAJ98lzb",
         "systemPath": "actions",
-        "description": "<p>Make <strong>a Spellcast Roll (15)</strong>. On a success, create a temporary dark cloud that covers any area within Close range. Anyone in this cloud can’t see outside of it, and anyone outside of it can’t see in. You’re considered Cloaked from any adversary for whom the cloud blocks line of sight.</p>",
+        "description": "<p>Make <strong>a Spellcast Roll (15)</strong>. On a success, create a temporary dark cloud that covers any area within Close range. Anyone in this cloud can’t see outside of it, and anyone outside of it can’t see in. You’re considered Cloaked from any adversary for whom the cloud blocks line of sight.</p><p>@Template[type:emanation|range:c]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -73,8 +73,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754319411878,
-    "modifiedTime": 1754319648922,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754351939150,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!frBTtNMX9Y2gkuPz"
 }

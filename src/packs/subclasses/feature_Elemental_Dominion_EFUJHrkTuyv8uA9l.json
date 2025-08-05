@@ -48,7 +48,12 @@
           "max": "",
           "recovery": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "p5FoUb4JKQFP405d",
+            "onSave": false
+          }
+        ],
         "target": {
           "type": "any",
           "amount": null
@@ -125,8 +130,8 @@
   },
   "effects": [
     {
-      "name": "Elemental Dominion: Fire",
-      "img": "icons/magic/nature/meteorite-purple.webp",
+      "name": "Elemental Dominion (Fire)",
+      "img": "icons/magic/fire/flame-burning-fist-strike.webp",
       "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "FoBFRSXRfGa1zkiX",
@@ -170,14 +175,14 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754220142535,
-        "modifiedTime": 1754220679398,
-        "lastModifiedBy": "LgnbNMLaxandgMQq"
+        "modifiedTime": 1754353215650,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!EFUJHrkTuyv8uA9l.FoBFRSXRfGa1zkiX"
     },
     {
-      "name": "Elemental Dominion: Water",
-      "img": "icons/magic/nature/meteorite-purple.webp",
+      "name": "Elemental Dominion (Water)",
+      "img": "icons/magic/water/heart-ice-freeze.webp",
       "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "bGwFZZT4juuaIRmZ",
@@ -216,14 +221,14 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754220553326,
-        "modifiedTime": 1754220637880,
-        "lastModifiedBy": "LgnbNMLaxandgMQq"
+        "modifiedTime": 1754353227575,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!EFUJHrkTuyv8uA9l.bGwFZZT4juuaIRmZ"
     },
     {
-      "name": "Elemental Dominion: Air",
-      "img": "icons/magic/nature/meteorite-purple.webp",
+      "name": "Elemental Dominion (Air)",
+      "img": "icons/magic/air/air-smoke-casting.webp",
       "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
       "transfer": false,
       "_id": "edF2zvvlcGf54r2n",
@@ -267,10 +272,54 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754220756066,
-        "modifiedTime": 1754220794564,
-        "lastModifiedBy": "LgnbNMLaxandgMQq"
+        "modifiedTime": 1754353239076,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
       "_key": "!items.effects!EFUJHrkTuyv8uA9l.edF2zvvlcGf54r2n"
+    },
+    {
+      "name": "Elemental Dominion (Earth)",
+      "img": "icons/magic/earth/strike-fist-stone.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.EFUJHrkTuyv8uA9l",
+      "transfer": false,
+      "_id": "p5FoUb4JKQFP405d",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "createdTime": 1754353189959,
+        "modifiedTime": 1754353202649,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
+      },
+      "_key": "!items.effects!EFUJHrkTuyv8uA9l.p5FoUb4JKQFP405d"
     }
   ],
   "sort": 300000,
@@ -287,8 +336,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754219959517,
-    "modifiedTime": 1754236534716,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754353189971,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!EFUJHrkTuyv8uA9l"
 }

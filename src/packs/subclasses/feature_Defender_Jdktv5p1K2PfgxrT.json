@@ -12,7 +12,7 @@
         "type": "effect",
         "_id": "9WxcZ3BuXUKfqUMz",
         "systemPath": "actions",
-        "description": "<p>You can mark a Stress to reduce the number of Hit Points they mark by 1.</p>",
+        "description": "<p>When you’re in Beastform and an ally within Close range marks 2 or more Hit Points, you can mark a Stress to reduce the number of Hit Points they mark by 1.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -57,8 +57,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754220872809,
-    "modifiedTime": 1754236539067,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754353606220,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!Jdktv5p1K2PfgxrT"
 }
