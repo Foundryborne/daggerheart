@@ -1,0 +1,46 @@
+{
+  "folder": "F0mW5ofdyyfE2hHo",
+  "name": "Elemental Origin",
+  "type": "subclass",
+  "_id": "wg1H0hROc2acHwZh",
+  "img": "icons/magic/water/orb-water-ice-pink.webp",
+  "system": {
+    "description": "<p>Play the Elemental Origin if you want to channel raw magic to</p><p>take the shape of a particular element</p>",
+    "spellcastingTrait": "instinct",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.dPcqKN5NeDkjB1HW"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.TnuLBtHQGbqyzn82"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.th6HZwEFnVBjUtqm"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349604941,
+    "modifiedTime": 1754349648910,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!wg1H0hROc2acHwZh"
+}

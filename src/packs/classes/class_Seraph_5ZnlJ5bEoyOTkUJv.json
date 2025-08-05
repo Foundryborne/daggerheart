@@ -1,0 +1,79 @@
+{
+  "name": "Seraph",
+  "type": "class",
+  "_id": "5ZnlJ5bEoyOTkUJv",
+  "img": "icons/magic/holy/barrier-shield-winged-cross.webp",
+  "system": {
+    "description": "<p>Seraphs are divine fighters and healers imbued with sacred purpose. A wide array of deities exist within the realms, and thus numerous kinds of seraphs are appointed by these gods. Their ethos traditionally aligns with the domain or goals of their god, such as defending the weak, exacting vengeance, protecting a land or artifact, or upholding a particular faith. Some seraphs ally themselves with an army or locale, much to the satisfaction of their rulers, but other crusaders fight in opposition to the follies of the Mortal Realm. It is better to be a seraph’s ally than their enemy, as they are terrifying foes to those who defy their purpose.</p>",
+    "domains": [
+      "valor",
+      "splendor"
+    ],
+    "classItems": [],
+    "hitPoints": 7,
+    "evasion": 9,
+    "features": [
+      {
+        "type": "hope",
+        "item": "Compendium.daggerheart.classes.Item.lSlvSUHbOoX36q2j"
+      },
+      {
+        "type": "class",
+        "item": "Compendium.daggerheart.classes.Item.Xd7RYhfTxIj9aWI2"
+      }
+    ],
+    "subclasses": [
+      "Compendium.daggerheart.subclasses.Item.M5mpGoAj8LRkylrY",
+      "Compendium.daggerheart.subclasses.Item.y7ERWRIpJsdP9Re4"
+    ],
+    "inventory": {
+      "take": [
+        "Compendium.daggerheart.classes.Item.hMST9iizQP1yz0MG",
+        "Compendium.daggerheart.classes.Item.uoG5iq09mxJPXfmk",
+        "Compendium.daggerheart.classes.Item.zqeXrJTd1geX73Pw"
+      ],
+      "choiceA": [
+        "Compendium.daggerheart.consumables.Item.tPfKtKRRjv8qdSqy",
+        "Compendium.daggerheart.consumables.Item.b6vGSPFWOlzZZDLO"
+      ],
+      "choiceB": [
+        "Compendium.daggerheart.classes.Item.aLvek22hb5kNg9MF",
+        "Compendium.daggerheart.classes.Item.o3G6szWvPoz7fo6T"
+      ]
+    },
+    "characterGuide": {
+      "suggestedTraits": {
+        "agility": 0,
+        "strength": 2,
+        "finesse": 0,
+        "instinct": 1,
+        "presence": 1,
+        "knowledge": -1
+      },
+      "suggestedPrimaryWeapon": "Compendium.daggerheart.weapons.Item.Vayg7CnRTFBrunjM",
+      "suggestedSecondaryWeapon": "Compendium.daggerheart.weapons.Item.mxwWKDujgsRcZWPT",
+      "suggestedArmor": "Compendium.daggerheart.armors.Item.haULhuEg37zUUvhb"
+    },
+    "isMulticlass": false
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754351482530,
+    "modifiedTime": 1754355938087,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!5ZnlJ5bEoyOTkUJv"
+}

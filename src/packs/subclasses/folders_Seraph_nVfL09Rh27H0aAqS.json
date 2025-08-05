@@ -1,0 +1,21 @@
+{
+  "type": "Item",
+  "folder": "QBeb6IqRnhTXzRtd",
+  "name": "Seraph",
+  "color": null,
+  "sorting": "a",
+  "_id": "nVfL09Rh27H0aAqS",
+  "description": "",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!nVfL09Rh27H0aAqS"
+}

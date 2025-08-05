@@ -1,0 +1,257 @@
+{
+  "folder": "G0anvImB7zZBUe8a",
+  "name": "Transcendence",
+  "type": "feature",
+  "_id": "th6HZwEFnVBjUtqm",
+  "img": "icons/magic/fire/elemental-fire-flying.webp",
+  "system": {
+    "description": "<p>Once per long rest, you can transform into a physical manifestation of your element. When you do, describe your transformation and choose two of the following benefits to gain until your next rest:</p><ul><li><p>+4 bonus to your Severe threshold</p></li><li><p>+1 bonus to a character trait of your choice</p></li><li><p>+1 bonus to your Proficiency</p></li><li><p>+2 bonus to your Evasion</p></li></ul>",
+    "resource": {
+      "type": "simple",
+      "value": 1,
+      "max": "1",
+      "icon": "",
+      "recovery": "longRest",
+      "diceStates": {},
+      "dieFaces": "d4"
+    },
+    "actions": {
+      "RIbyJjEkCgqoDmyn": {
+        "type": "effect",
+        "_id": "RIbyJjEkCgqoDmyn",
+        "systemPath": "actions",
+        "description": "<p>Once per long rest, you can transform into a physical manifestation of your element. When you do, describe your transformation and choose two of the following benefits to gain until your next rest:</p><ul><li><p>+4 bonus to your Severe threshold</p></li><li><p>+1 bonus to a character trait of your choice</p></li><li><p>+1 bonus to your Proficiency</p></li><li><p>+2 bonus to your Evasion</p></li></ul>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "th6HZwEFnVBjUtqm",
+            "value": 1,
+            "keyIsID": true,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Transform",
+        "img": "icons/magic/fire/elemental-fire-flying.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Bonus to Threshold",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "zFOpzO3tBJPcZcRc",
+      "img": "icons/magic/fire/elemental-fire-flying.webp",
+      "changes": [
+        {
+          "key": "system.damageThresholds.severe",
+          "mode": 2,
+          "value": "+4",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+4 bonus to your Severe threshold</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!th6HZwEFnVBjUtqm.zFOpzO3tBJPcZcRc"
+    },
+    {
+      "name": "Bonus to Trait",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "cTgSmxkTi89y6sbc",
+      "img": "icons/magic/fire/elemental-fire-flying.webp",
+      "changes": [],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to a character trait of your choice</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!th6HZwEFnVBjUtqm.cTgSmxkTi89y6sbc"
+    },
+    {
+      "name": "Bonus to Proficiency",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "oWf3iXf4dawdbmzd",
+      "img": "icons/magic/fire/elemental-fire-flying.webp",
+      "changes": [
+        {
+          "key": "system.proficiency",
+          "mode": 2,
+          "value": "+1",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+1 bonus to your Proficiency</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!th6HZwEFnVBjUtqm.oWf3iXf4dawdbmzd"
+    },
+    {
+      "name": "Bonus to Evasion",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "2LCF6lSnWFqNiPs5",
+      "img": "icons/magic/fire/elemental-fire-flying.webp",
+      "changes": [],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p><span style=\"box-sizing:border-box;margin:0px;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);font-family:Montserrat, sans-serif\">+2 bonus to your Evasion</span></p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!th6HZwEFnVBjUtqm.2LCF6lSnWFqNiPs5"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349515898,
+    "modifiedTime": 1754349515898,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!th6HZwEFnVBjUtqm"
+}

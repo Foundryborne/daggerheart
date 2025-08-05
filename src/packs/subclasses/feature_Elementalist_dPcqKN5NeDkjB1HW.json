@@ -1,0 +1,213 @@
+{
+  "folder": "sRNZtEniwaOIQ2rY",
+  "name": "Elementalist",
+  "type": "feature",
+  "_id": "dPcqKN5NeDkjB1HW",
+  "img": "icons/magic/fire/flame-burning-hand-white.webp",
+  "system": {
+    "description": "<p>Choose one of the following elements at character creation: air, earth, fire, lightning, water.</p><p>You can shape this element into harmless effects. Additionally, <strong>spend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, then either gain a +2 bonus to the roll or a +3 bonus to the roll’s damage.</p>",
+    "resource": null,
+    "actions": {
+      "rxuFLfHP1FILDpds": {
+        "type": "effect",
+        "_id": "rxuFLfHP1FILDpds",
+        "systemPath": "actions",
+        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, gain a +2 bonus to the roll.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "EY87mY6ULfIt3XC8",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Bonus to Roll",
+        "img": "icons/sundries/gaming/dice-runed-tan.webp",
+        "range": ""
+      },
+      "S7HvFD3qIR3ifJRL": {
+        "type": "effect",
+        "_id": "S7HvFD3qIR3ifJRL",
+        "systemPath": "actions",
+        "description": "<p>S<strong>pend a Hope</strong> and describe how your control over this element helps an action roll you’re about to make, gain a +3 bonus to the roll’s damage.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "keyIsID": false,
+            "key": "hope",
+            "value": 1,
+            "scalable": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [
+          {
+            "_id": "WwibpgaO6Kkks7aZ",
+            "onSave": false
+          }
+        ],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Bonus to Damage",
+        "img": "icons/sundries/gaming/dice-runed-tan.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Bonus to Roll",
+      "img": "icons/magic/fire/flame-burning-hand-white.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.dPcqKN5NeDkjB1HW",
+      "transfer": false,
+      "_id": "EY87mY6ULfIt3XC8",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.roll.action.bonus",
+          "mode": 2,
+          "value": "+2",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>+2 to an action roll</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!dPcqKN5NeDkjB1HW.EY87mY6ULfIt3XC8"
+    },
+    {
+      "name": "Bonus to Damage",
+      "img": "icons/magic/fire/flame-burning-hand-white.webp",
+      "origin": "Compendium.daggerheart.subclasses.Item.dPcqKN5NeDkjB1HW",
+      "transfer": false,
+      "_id": "WwibpgaO6Kkks7aZ",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.damage.magical.bonus",
+          "mode": 2,
+          "value": "+3",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.physical.bonus",
+          "mode": 2,
+          "value": "+3",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>+3 to damage</p>",
+      "tint": "#ffffff",
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!dPcqKN5NeDkjB1HW.WwibpgaO6Kkks7aZ"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349507020,
+    "modifiedTime": 1754349507020,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!dPcqKN5NeDkjB1HW"
+}

@@ -1,0 +1,66 @@
+{
+  "folder": "sRNZtEniwaOIQ2rY",
+  "name": "Manipulate Magic",
+  "type": "feature",
+  "_id": "UNg4eyNfEQrMdD7G",
+  "img": "icons/magic/unholy/orb-hands-pink.webp",
+  "system": {
+    "description": "<p>Your primal origin allows you to modify the essence of magic itself. After you cast a spell or make an attack using a weapon that deals magic damage, you can mark a Stress to do one of the following:</p><ul><li><p>Extend the spell or attack’s reach by one range</p></li><li><p>Gain a +2 bonus to the action roll’s result</p></li><li><p>Double a damage die of your choice</p></li><li><p>Hit an additional target within range</p></li></ul>",
+    "resource": null,
+    "actions": {
+      "KL5l4QJjPtDiDBSv": {
+        "type": "effect",
+        "_id": "KL5l4QJjPtDiDBSv",
+        "systemPath": "actions",
+        "description": "<p>Your primal origin allows you to modify the essence of magic itself. After you cast a spell or make an attack using a weapon that deals magic damage, you can mark a Stress to do one of the following:</p><ul><li><p>Extend the spell or attack’s reach by one range</p></li><li><p>Gain a +2 bonus to the action roll’s result</p></li><li><p>Double a damage die of your choice</p></li><li><p>Hit an additional target within range</p></li></ul>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [
+          {
+            "scalable": false,
+            "key": "stress",
+            "value": 1,
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
+          }
+        ],
+        "uses": {
+          "value": null,
+          "max": "",
+          "recovery": null,
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Manipulate",
+        "img": "icons/magic/unholy/orb-hands-pink.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349507020,
+    "modifiedTime": 1754349507020,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!UNg4eyNfEQrMdD7G"
+}

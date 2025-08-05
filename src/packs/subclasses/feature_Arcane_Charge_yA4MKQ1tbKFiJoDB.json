@@ -1,0 +1,91 @@
+{
+  "folder": "G0anvImB7zZBUe8a",
+  "name": "Arcane Charge",
+  "type": "feature",
+  "_id": "yA4MKQ1tbKFiJoDB",
+  "img": "icons/magic/unholy/barrier-fire-pink.webp",
+  "system": {
+    "description": "<p>You can gather magical energy to enhance your capabilities. When you take magic damage, you become Charged. Alternatively, you can spend 2 Hope to become Charged. When you successfully make an attack that deals magic damage while Charged, you can clear your Charge to either gain a +10 bonus to the damage roll or gain a +3 bonus to the Difficulty of a reaction roll the spell causes the target to make. You stop being Charged at your next long rest.</p>",
+    "resource": {
+      "type": "simple",
+      "value": 0,
+      "max": "",
+      "icon": "",
+      "recovery": null,
+      "diceStates": {},
+      "dieFaces": "d4"
+    },
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [
+    {
+      "name": "Charged",
+      "type": "base",
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
+      "_id": "z49V45ir45HGHOBB",
+      "img": "icons/magic/unholy/strike-hand-glow-pink.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.damage.magical.bonus",
+          "mode": 2,
+          "value": "+10",
+          "priority": null
+        }
+      ],
+      "disabled": true,
+      "duration": {
+        "startTime": null,
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "<p>When you successfully make an attack that deals magic damage while Charged, you can clear your Charge to either gain a +10 bonus to the damage roll or gain a +3 bonus to the Difficulty of a reaction roll the spell causes the target to make. You stop being Charged at your next long rest.</p>",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "statuses": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.346",
+        "systemId": "daggerheart",
+        "systemVersion": "0.0.1",
+        "lastModifiedBy": null
+      },
+      "_key": "!items.effects!yA4MKQ1tbKFiJoDB.z49V45ir45HGHOBB"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349515898,
+    "modifiedTime": 1754349515898,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!yA4MKQ1tbKFiJoDB"
+}

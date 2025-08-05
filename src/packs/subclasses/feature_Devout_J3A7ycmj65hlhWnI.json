@@ -1,0 +1,33 @@
+{
+  "folder": "cwVcmK9rWmi3LMLK",
+  "name": "Devout",
+  "type": "feature",
+  "_id": "J3A7ycmj65hlhWnI",
+  "img": "icons/magic/holy/prayer-hands-glowing-yellow-white.webp",
+  "system": {
+    "description": "<p>When you roll your Prayer Dice, you can roll an additional die and discard the lowest result. Additionally, you can use your “Sparing Touch” feature twice instead of once per long rest.</p>",
+    "resource": null,
+    "actions": {},
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754353798475,
+    "modifiedTime": 1754353830966,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!J3A7ycmj65hlhWnI"
+}

@@ -1,10 +1,10 @@
 {
   "type": "Item",
-  "folder": "7v4rk8aUOc9l81kD",
-  "name": "Standard Take",
-  "color": "#383838",
-  "sorting": "m",
-  "_id": "rY8M3uLGRwuLhzk0",
+  "folder": null,
+  "name": "Sorcerer",
+  "color": null,
+  "sorting": "a",
+  "_id": "F0mW5ofdyyfE2hHo",
   "description": "",
   "sort": 800000,
   "flags": {},
@@ -15,9 +15,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754174513416,
-    "modifiedTime": 1754351875141,
+    "createdTime": 1754349604935,
+    "modifiedTime": 1754349604956,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
-  "_key": "!folders!rY8M3uLGRwuLhzk0"
+  "_key": "!folders!F0mW5ofdyyfE2hHo"
 }

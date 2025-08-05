@@ -1,12 +1,12 @@
 {
   "type": "Item",
-  "folder": "7v4rk8aUOc9l81kD",
-  "name": "Standard Take",
-  "color": "#383838",
-  "sorting": "m",
-  "_id": "rY8M3uLGRwuLhzk0",
+  "folder": null,
+  "name": "Seraph",
+  "color": null,
+  "sorting": "a",
+  "_id": "RZOEu0ZYQNPs6O2c",
   "description": "",
-  "sort": 800000,
+  "sort": 0,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -15,9 +15,9 @@
     "coreVersion": "13.346",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
-    "createdTime": 1754174513416,
-    "modifiedTime": 1754351875141,
+    "createdTime": 1754352793139,
+    "modifiedTime": 1754352793139,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
-  "_key": "!folders!rY8M3uLGRwuLhzk0"
+  "_key": "!folders!RZOEu0ZYQNPs6O2c"
 }

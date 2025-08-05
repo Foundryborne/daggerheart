@@ -1,0 +1,57 @@
+{
+  "folder": "3PV3wn7IGmusnf4p",
+  "name": "Enchanted Aid",
+  "type": "feature",
+  "_id": "4pVBN8cuKePI423V",
+  "img": "icons/magic/movement/trail-streak-zigzag-teal.webp",
+  "system": {
+    "description": "<p>You can enhance the magic of others with your essence. When you Help an Ally with a Spellcast Roll, you can roll a <strong>d8</strong> as your advantage die. Once per long rest, after an ally has made a Spellcast Roll with your help, you can swap the results of their Duality Dice.</p>",
+    "resource": null,
+    "actions": {
+      "n8wSqR967o0pZDLR": {
+        "type": "effect",
+        "_id": "n8wSqR967o0pZDLR",
+        "systemPath": "actions",
+        "description": "<p>Once per long rest, after an ally has made a Spellcast Roll with your help, you can swap the results of their Duality Dice.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Swap Dice Results",
+        "img": "icons/sundries/gaming/dice-pair-white-green.webp",
+        "range": ""
+      }
+    },
+    "originItemType": null,
+    "originId": null
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754349511084,
+    "modifiedTime": 1754349511084,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!4pVBN8cuKePI423V"
+}

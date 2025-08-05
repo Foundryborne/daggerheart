@@ -1,0 +1,50 @@
+{
+  "folder": "RZOEu0ZYQNPs6O2c",
+  "name": "Winged Sentinel",
+  "type": "subclass",
+  "_id": "y7ERWRIpJsdP9Re4",
+  "img": "icons/magic/holy/angel-winged-humanoid-blue.webp",
+  "system": {
+    "description": "<p>Play the Winged Sentinel if you want to take flight and strike crushing blows from the sky.</p>",
+    "spellcastingTrait": "strength",
+    "features": [
+      {
+        "type": "foundation",
+        "item": "Compendium.daggerheart.subclasses.Item.KkQH0tYhagIqe2MT"
+      },
+      {
+        "type": "specialization",
+        "item": "Compendium.daggerheart.subclasses.Item.tyGB6wRKjYdIBK1i"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.fefLgx6kcYWusjBb"
+      },
+      {
+        "type": "mastery",
+        "item": "Compendium.daggerheart.subclasses.Item.Yij5sNyP1Ii7BAbc"
+      }
+    ],
+    "featureState": 1,
+    "isMulticlass": false
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "Q9NoTaEarn3VMS6Z": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.346",
+    "systemId": "daggerheart",
+    "systemVersion": "0.0.1",
+    "createdTime": 1754354451615,
+    "modifiedTime": 1754355901649,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+  },
+  "_key": "!items!y7ERWRIpJsdP9Re4"
+}
