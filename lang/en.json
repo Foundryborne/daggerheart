@@ -2141,6 +2141,14 @@
                     "handfullName": "Handfull Name",
                     "bagName": "Bag Name",
                     "chestName": "Chest Name"
+                },
+                "domains": {
+                    "domainsTitle": "Base Domains",
+                    "homebrewDomains": "Homebrew Domains",
+                    "newDomain": "New Domain",
+                    "editDomain": "Active Domain",
+                    "deleteDomain": "Delete Domain",
+                    "deleteDomainText": "Are you sure you want to delete the {name} domain?"
                 }
             },
             "Menu": {

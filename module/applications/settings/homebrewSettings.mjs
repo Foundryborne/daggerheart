@@ -8,6 +8,10 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         this.settings = new DhHomebrew(
             game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).toObject()
         );
+
+        this.selected = {
+            domain: null
+        };
     }
 
     get title() {
@@ -17,7 +21,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     static DEFAULT_OPTIONS = {
         tag: 'form',
         id: 'daggerheart-homebrew-settings',
-        classes: ['daggerheart', 'dh-style', 'dialog', 'setting'],
+        classes: ['daggerheart', 'dh-style', 'dialog', 'setting', 'homebrew-settings'],
         position: { width: '600', height: 'auto' },
         window: {
             icon: 'fa-solid fa-gears'
@@ -27,6 +31,9 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             editItem: this.editItem,
             removeItem: this.removeItem,
             resetMoves: this.resetMoves,
+            addDomain: this.addDomain,
+            toggleSelectedDomain: this.toggleSelectedDomain,
+            deleteDomain: this.deleteDomain,
             save: this.save,
             reset: this.reset
         },
@@ -37,7 +44,8 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         tabs: { template: 'systems/daggerheart/templates/sheets/global/tabs/tab-navigation.hbs' },
         settings: { template: 'systems/daggerheart/templates/settings/homebrew-settings/settings.hbs' },
         domains: { template: 'systems/daggerheart/templates/settings/homebrew-settings/domains.hbs' },
-        downtime: { template: 'systems/daggerheart/templates/settings/homebrew-settings/downtime.hbs' }
+        downtime: { template: 'systems/daggerheart/templates/settings/homebrew-settings/downtime.hbs' },
+        footer: { template: 'systems/daggerheart/templates/settings/homebrew-settings/footer.hbs' }
     };
 
     /** @inheritdoc */
@@ -52,6 +60,25 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
         context.settingFields = this.settings;
+
+        return context;
+    }
+
+    async _preparePartContext(partId, context) {
+        await super._preparePartContext(partId, context);
+
+        switch (partId) {
+            case 'domains':
+                const selectedDomain = this.selected.domain ? this.settings.domains[this.selected.domain] : null;
+                const enrichedDescription = selectedDomain
+                    ? await foundry.applications.ux.TextEditor.implementation.enrichHTML(selectedDomain.description)
+                    : null;
+
+                if (enrichedDescription !== null) context.selectedDomain = { ...selectedDomain, enrichedDescription };
+                context.configDomains = CONFIG.DH.DOMAIN.domains;
+                context.homebrewDomains = this.settings.domains;
+                break;
+        }
 
         return context;
     }
@@ -169,6 +196,34 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
             }
         });
 
+        this.render();
+    }
+
+    static async addDomain(_, target) {
+        const id = foundry.utils.randomID();
+        this.settings.updateSource({
+            [`domains.${id}`]: {
+                id: id,
+                label: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.domains.newDomain'),
+                src: 'icons/svg/portal.svg'
+            }
+        });
+
+        this.selected.domain = id;
+        this.render();
+    }
+
+    static toggleSelectedDomain(_, target) {
+        this.selected.domain = this.selected.domain === target.id ? null : target.id;
+        this.render();
+    }
+
+    static async deleteDomain() {
+        await this.settings.updateSource({
+            [`domains.-=${this.selected.domain}`]: null
+        });
+
+        this.selected.domain = null;
         this.render();
     }
 
