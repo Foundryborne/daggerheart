@@ -209,14 +209,21 @@ export const defaultRestOptions = {
                     img: 'icons/magic/life/cross-worn-green.webp',
                     actionType: 'action',
                     chatDisplay: false,
-                    healing: {
-                        applyTo: healingTypes.hitPoints.id,
-                        value: {
-                            custom: {
-                                enabled: true,
-                                formula: '1d4 + @tier'
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.hitPoints.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '1d4 + @tier'
+                                    }
+                                }
                             }
-                        }
+                        ]
                     }
                 }
             }
@@ -235,14 +242,21 @@ export const defaultRestOptions = {
                     img: 'icons/magic/perception/eye-ringed-green.webp',
                     actionType: 'action',
                     chatDisplay: false,
-                    healing: {
-                        applyTo: healingTypes.stress.id,
-                        value: {
-                            custom: {
-                                enabled: true,
-                                formula: '1d4 + @tier'
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.stress.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '1d4 + @tier'
+                                    }
+                                }
                             }
-                        }
+                        ]
                     }
                 }
             }
@@ -261,14 +275,21 @@ export const defaultRestOptions = {
                     img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
                     actionType: 'action',
                     chatDisplay: false,
-                    healing: {
-                        applyTo: healingTypes.armor.id,
-                        value: {
-                            custom: {
-                                enabled: true,
-                                formula: '1d4 + @tier'
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.armor.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '1d4 + @tier'
+                                    }
+                                }
                             }
-                        }
+                        ]
                     }
                 }
             }
@@ -297,14 +318,21 @@ export const defaultRestOptions = {
                     img: 'icons/magic/life/cross-worn-green.webp',
                     actionType: 'action',
                     chatDisplay: false,
-                    healing: {
-                        applyTo: healingTypes.hitPoints.id,
-                        value: {
-                            custom: {
-                                enabled: true,
-                                formula: '@system.resources.hitPoints.max'
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.hitPoints.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '@system.resources.hitPoints.max'
+                                    }
+                                }
                             }
-                        }
+                        ]
                     }
                 }
             }
@@ -323,14 +351,21 @@ export const defaultRestOptions = {
                     img: 'icons/magic/perception/eye-ringed-green.webp',
                     actionType: 'action',
                     chatDisplay: false,
-                    healing: {
-                        applyTo: healingTypes.stress.id,
-                        value: {
-                            custom: {
-                                enabled: true,
-                                formula: '@system.resources.stress.max'
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.stress.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '@system.resources.stress.max'
+                                    }
+                                }
                             }
-                        }
+                        ]
                     }
                 }
             }
@@ -349,14 +384,21 @@ export const defaultRestOptions = {
                     img: 'icons/skills/trades/smithing-anvil-silver-red.webp',
                     actionType: 'action',
                     chatDisplay: false,
-                    healing: {
-                        applyTo: healingTypes.armor.id,
-                        value: {
-                            custom: {
-                                enabled: true,
-                                formula: '@system.armorScore'
+                    target: {
+                        type: 'self'
+                    },
+                    damage: {
+                        parts: [
+                            {
+                                applyTo: healingTypes.armor.id,
+                                value: {
+                                    custom: {
+                                        enabled: true,
+                                        formula: '@system.armorScore'
+                                    }
+                                }
                             }
-                        }
+                        ]
                     }
                 }
             }
