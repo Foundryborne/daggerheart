@@ -2313,7 +2313,8 @@
                 "domainMaxReached": "You've reached the maximum domains for the class. Increase the limit in homebrew settings if desired.",
                 "insufficientResources": "You have insufficient resources",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
-                "subclassesAlreadyPresent": "You already have a class and multiclass subclass"
+                "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
+                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice"
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",

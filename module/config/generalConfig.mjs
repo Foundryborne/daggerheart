@@ -451,8 +451,20 @@ export const getDiceSoNicePresets = async (hopeFaces, fearFaces, advantageFaces 
     const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
     const getPreset = async (type, faces) => {
         const system = game.dice3d.DiceFactory.systems.get(type.system).dice.get(faces);
-        if (!system.modelLoaded) {
+        if (!system) {
+            ui.notifications.error(
+                game.i18n.format('DAGGERHEART.UI.Notifications.noDiceSystem', {
+                    system: game.dice3d.DiceFactory.systems.get(type.system).name,
+                    faces: faces
+                })
+            );
+            return;
+        }
+
+        if (system.modelFile && !system.modelLoaded) {
             await system.loadModel(game.dice3d.DiceFactory.loaderGLTF);
+        } else {
+            await system.loadTextures();
         }
 
         return {
