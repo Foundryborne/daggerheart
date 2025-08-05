@@ -158,6 +158,9 @@
             }
 
             .item-desc .wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
                 padding: 0 10px;
             }
 
@@ -168,6 +171,10 @@
 
         .filter-content {
             padding: 0 10px;
+            .wrapper {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .filter-content, .item-desc {
@@ -176,8 +183,6 @@
             transition: all 0.3s ease-in-out;
             .wrapper {
                 overflow: hidden;
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
 
                 .form-group {
                     label {
@@ -199,6 +204,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .glassy {
+            background-color: light-dark(#18162e10, #f3c26710);
+            border-color: transparent;
+            border-radius: 6px;
+            padding-block: 0.35em 0.625em;
+            padding-inline: 0.75em;
         }
     }
 }

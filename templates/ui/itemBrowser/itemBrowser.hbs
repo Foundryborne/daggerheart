@@ -2,12 +2,11 @@
     {{#if menu.data }}
         <div class="menu-path">
             {{#each menu.path}}
-                {{#unless (eq this "folders")}}
+                {{#if (eq this "folders")}}
+                    <span class="path-link"> > </span>
+                {{else}}
                     <span>{{this}}</span>
-                    {{#unless @last}}
-                        <span class="path-link"> > </span>
-                    {{/unless}}
-                {{/unless}}
+                {{/if}}
             {{/each}}
         </div>
         <fieldset class="item-filter glassy">
@@ -55,7 +54,7 @@
                     {{/each}}
                 </div>
             {{/if}}
-            <div class="item-list">
+            <div class="item-list glassy">
                 {{#each items}}
                     <div class="item-container" data-item-uuid="{{uuid}}" draggable="true">
                         <div class="item-header">
