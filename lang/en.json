@@ -2312,7 +2312,8 @@
                 "appliedEvenIfSuccessful": "Applied even if save succeeded",
                 "diceIsRerolled": "The dice has been rerolled (x{times})",
                 "pendingSaves": "Pending Reaction Rolls",
-                "openSheetSettings": "Open Settings"
+                "openSheetSettings": "Open Settings",
+                "compediumBrowser": "Compedium Browser"
             }
         }
     }

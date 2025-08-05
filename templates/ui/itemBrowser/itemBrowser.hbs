@@ -1,22 +1,29 @@
-<div>
+<div class="compedium-results">
     {{#if menu.data }}
         <div class="menu-path">
             {{#each menu.path}}
                 {{#unless (eq this "folders")}}
-                    <span>{{this}}</span>
+                    <span class="item-path">{{this}}</span>
                     {{#unless @last}}
-                        <span class="path-link"> > </span>
+                        <span class="path-link">
+                            /
+                        </span>
                     {{/unless}}
                 {{/unless}}
             {{/each}}
         </div>
-        <fieldset class="item-filter glassy">
+        <div class="item-filter">
             <div class="filter-header">
-                <input type="search" name="search" class="search-browser" placeholder="Search...">
+                <div class="search-bar">
+                    <div class="icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="search" name="search" class="search-input" placeholder="Search...">
+                </div>
                 {{#if fieldFilter}}
-                    <button type="button" data-action="expandContent">Filters</button>
+                    <a data-tooltip="Filters" data-action="expandContent"><i class="fa-solid fa-filter"></i></a>
                 {{/if}}
-                <button type="button" data-action="resetFilters">Reset</button>
+                <a data-tooltip="Erase" data-action="resetFilters"><i class="fa-solid fa-eraser"></i></a>
             </div>
             <div class="filter-content extensible">
                 <div class="wrapper">
@@ -44,7 +51,7 @@
                     {{/each}}
                 </div>
             </div>
-        </fieldset>
+        </div>
         {{!-- <div class="item-list-container"> --}}
             {{#if menu.data.columns.length}}
                 <div class="item-list-header">
@@ -75,6 +82,9 @@
             </div>
         {{!-- </div> --}}
     {{else}}
-        <h2 class="welcome-message">Welcome to DAGGERHEART Items Browser</h2>
+        <div class="welcome-message">
+            <h2 class="title">Daggerheart Compedium Browser</h2>
+            <span class="hint"><i>Select a Folder in sidebar to start browsing trought the compedium</i></span>
+        </div>
     {{/if}}
 </div>

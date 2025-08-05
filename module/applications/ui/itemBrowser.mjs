@@ -1,4 +1,3 @@
-
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 /**
@@ -21,12 +20,13 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         id: 'itemBrowser',
-        classes: ['dh-style'],
+        classes: ['daggerheart', 'dh-style', 'dialog', 'compendium-browser'],
         tag: 'div',
         // title: 'Item Browser',
         window: {
             frame: true,
-            title: 'Item Browser',
+            title: 'Compedium Browser',
+            icon: 'fa-solid fa-book-atlas',
             positioned: true,
             resizable: true
         },
@@ -62,7 +62,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
      * @type {foundry.applications.ux.SearchFilter}
      */
     #search = {};
-    
+
     #input = {};
 
     /**
@@ -84,7 +84,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @inheritDoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        
+
         this._createSearchFilter();
         this._createFilterInputs();
         this._createDragProcess();
@@ -104,7 +104,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         context.formatChoices = this.formatChoices;
         context.fieldFilter = this.fieldFilter = this.selectedMenu.data?.filters ? this._createFieldFilter() : [];
         context.items = this.items;
-        console.log(this.items)
+        console.log(this.items);
         return context;
     }
 
@@ -115,11 +115,13 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 id: c.id,
                 label: c.label,
                 selected: (!parent || parent.selected) && this.selectedMenu.path[depth] === c.id
-            }
-            folder.folders = c.folders ? ItemBrowser.sortBy(this.getCompendiumFolders(c.folders, folder, depth + 2), 'label') : [];
+            };
+            folder.folders = c.folders
+                ? ItemBrowser.sortBy(this.getCompendiumFolders(c.folders, folder, depth + 2), 'label')
+                : [];
             // sortBy(Object.values(c.folders), 'label')
-            folders.push(folder)
-        })
+            folders.push(folder);
+        });
 
         // console.log(folders)
         return folders;
@@ -135,12 +137,12 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this.selectedMenu = {
             path: folderPath.split('.'),
             data: folderData
-        }
-        
+        };
+
         let items = [];
-        for(const key of folderData.keys) {
+        for (const key of folderData.keys) {
             const comp = game.packs.get(`${compendium}.${key}`);
-            if(!comp) return;
+            if (!comp) return;
             items = items.concat(await comp.getDocuments({ type__in: folderData.type }));
         }
 
@@ -150,37 +152,37 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static expandContent(_, target) {
         const parent = target.parentElement;
-        parent.classList.toggle("expanded");
+        parent.classList.toggle('expanded');
     }
 
     static sortBy(data, property) {
-        return data.sort((a, b) => a[property] > b[property] ? 1 : -1)
+        return data.sort((a, b) => (a[property] > b[property] ? 1 : -1));
     }
 
     formatLabel(item, field) {
         const property = foundry.utils.getProperty(item, field.key);
-        if(typeof field.format !== 'function') return property;
+        if (typeof field.format !== 'function') return property;
         return field.format(property);
     }
 
     formatChoices(data) {
-        if(!data.field.choices) return null;
+        if (!data.field.choices) return null;
         const config = {
             choices: data.field.choices
         };
         foundry.data.fields.StringField._prepareChoiceConfig(config);
-        return config.options.filter(c => data.filtered.includes(c.value) || data.filtered.includes(c.label.toLowerCase()));
+        return config.options.filter(
+            c => data.filtered.includes(c.value) || data.filtered.includes(c.label.toLowerCase())
+        );
     }
 
     _createFieldFilter() {
         const filters = [];
         this.selectedMenu.data.filters.forEach(f => {
-            if(typeof f.field === 'string')
-                f.field = foundry.utils.getProperty(game, f.field);
-            else if(typeof f.choices === 'function')
-                f.choices = f.choices();
-            filters.push(f)
-        })
+            if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
+            else if (typeof f.choices === 'function') f.choices = f.choices();
+            filters.push(f);
+        });
         return filters;
     }
 
@@ -201,7 +203,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         const filters = [
             {
                 key: 'browser',
-                input: 'input[type="search"].search-browser',
+                input: 'input[type="search"].search-input',
                 content: '[data-application-part="list"] .item-list',
                 callback: this._onSearchFilterBrowser.bind(this)
             }
@@ -217,7 +219,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             this.#search[key] = filter;
         }
     }
-    
+
     /* -------------------------------------------- */
     /*  Filter Inputs                                */
     /* -------------------------------------------- */
@@ -228,7 +230,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 key: 'browser',
                 container: '[data-application-part="list"] .filter-content .wrapper',
                 content: '[data-application-part="list"] .item-list',
-                callback: this._onInputFilterBrowser.bind(this),
+                callback: this._onInputFilterBrowser.bind(this)
                 // target: '.filter-button',
                 // filters: FilterMenu.invetoryFilters
             }
@@ -236,16 +238,16 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         inputs.forEach(m => {
             const container = this.element.querySelector(m.container);
-            if(!container) return this.#input[m.key] = {};
+            if (!container) return (this.#input[m.key] = {});
             const inputs = container.querySelectorAll('input, select');
             inputs.forEach(input => {
-                input.addEventListener('change', this._onInputFilterBrowser.bind(this))
+                input.addEventListener('change', this._onInputFilterBrowser.bind(this));
             });
             this.#filteredItems[m.key].input = new Set(this.items.map(i => i.id));
             this.#input[m.key] = inputs;
         });
     }
-    
+
     /**
      * Handle invetory items search and filtering.
      * @param {KeyboardEvent} event  The keyboard input event.
@@ -267,7 +269,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             // li.hidden = !(matchesSearch);
         }
     }
-    
+
     /**
      * Callback when filters change
      * @param {PointerEvent} event
@@ -276,7 +278,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     async _onInputFilterBrowser(event) {
         this.#filteredItems.browser.input.clear();
 
-        console.log(event.target.name)
+        console.log(event.target.name);
 
         this.fieldFilter.find(f => f.key === event.target.name).value = event.target.value;
 
@@ -287,8 +289,12 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 item = this.items.find(i => i.uuid === itemUUID);
 
             const matchesMenu =
-                this.fieldFilter.length === 0 || this.fieldFilter.every(f => {
-                    return (!f.value && f.value !== false) || foundry.applications.ux.SearchFilter.evaluateFilter(item, this.createFilterData(f))
+                this.fieldFilter.length === 0 ||
+                this.fieldFilter.every(f => {
+                    return (
+                        (!f.value && f.value !== false) ||
+                        foundry.applications.ux.SearchFilter.evaluateFilter(item, this.createFilterData(f))
+                    );
                 });
             if (matchesMenu) this.#filteredItems.browser.input.add(item.id);
 
@@ -301,10 +307,14 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     createFilterData(filter) {
         return {
             field: filter.key,
-            value: isNaN(filter.value) ? (["true", "false"].includes(filter.value) ? filter.value === "true" : filter.value) : Number(filter.value),
+            value: isNaN(filter.value)
+                ? ['true', 'false'].includes(filter.value)
+                    ? filter.value === 'true'
+                    : filter.value
+                : Number(filter.value),
             operator: filter.operator,
             negate: filter.negate
-        }
+        };
     }
 
     static resetFilters() {
@@ -324,15 +334,15 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     _createDragProcess() {
         new foundry.applications.ux.DragDrop.implementation({
-            dragSelector: ".item-container",
+            dragSelector: '.item-container',
             // dropSelector: ".directory-list",
             permissions: {
-                dragstart: this._canDragStart.bind(this),
+                dragstart: this._canDragStart.bind(this)
                 // drop: this._canDragDrop.bind(this)
             },
             callbacks: {
                 // dragover: this._onDragOver.bind(this),
-                dragstart: this._onDragStart.bind(this),
+                dragstart: this._onDragStart.bind(this)
                 // drop: this._onDrop.bind(this)
             }
         }).bind(this.element);
@@ -349,7 +359,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         const dragData = foundry.utils.fromUuidSync(itemUuid).toDragData();
         // console.log(dragData)
         // const dragData = { UUID: itemUuid };
-        event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+        event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
     }
 
     _canDragStart() {
