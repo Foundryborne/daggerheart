@@ -2313,7 +2313,7 @@
                 "diceIsRerolled": "The dice has been rerolled (x{times})",
                 "pendingSaves": "Pending Reaction Rolls",
                 "openSheetSettings": "Open Settings",
-                "compediumBrowser": "Compedium Browser"
+                "compendiumBrowser": "Compendium Browser"
             }
         }
     }

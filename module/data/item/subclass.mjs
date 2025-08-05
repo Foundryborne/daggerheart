@@ -20,7 +20,8 @@ export default class DHSubclass extends BaseDataItem {
                 choices: CONFIG.DH.ACTOR.abilities,
                 integer: false,
                 nullable: true,
-                initial: null
+                initial: null,
+                label: "DAGGERHEART.ITEMS.Subclass.spellcastingTrait"
             }),
             features: new ItemLinkFields(),
             featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),

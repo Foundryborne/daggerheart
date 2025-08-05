@@ -91,6 +91,10 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return this.actions;
     }
 
+    get features() {
+        return [];
+    }
+
     /**
      * Obtain a data object used to evaluate any dice rolls associated with this Item Type
      * @param {object} [options] - Options which modify the getRollData method.

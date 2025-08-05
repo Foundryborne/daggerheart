@@ -1,15 +1,14 @@
-<div class="compedium-results">
+<div class="compendium-results">
     {{#if menu.data }}
         <div class="menu-path">
             {{#each menu.path}}
-                {{#unless (eq this "folders")}}
+                {{#if (eq this "folders")}}
+                    <span class="path-link">
+                        /
+                    </span>
+                {{else}}
                     <span class="item-path">{{this}}</span>
-                    {{#unless @last}}
-                        <span class="path-link">
-                            /
-                        </span>
-                    {{/unless}}
-                {{/unless}}
+                {{/if}}
             {{/each}}
         </div>
         <div class="item-filter">
@@ -32,19 +31,19 @@
                             <div class="form-group">
                                 <label>{{localize label}}</label>
                                 <div class="form-fields">
-                                    <select name="{{key}}">
-                                        {{selectOptions choices valueAttr="value" blank="" }}
+                                    <select data-key="{{key}}" name={{name}}>
+                                        {{selectOptions choices valueAttr="value" blank="" localize=true}}
                                     </select>
                                 </div>
                             </div>
                         {{else}}
                             {{#if filtered }}
-                                {{formField field localize=true blank="" choices=(@root.formatChoices this) valueAttr="value" name=key}}
+                                {{formField field localize=true blank="" name=name choices=(@root.formatChoices this) valueAttr="value"  dataset=(object key=key)}}
                             {{else}}
                                 {{#if field.label}}
-                                    {{formField field localize=true blank="" name=key}}
+                                    {{formField field localize=true blank="" name=name dataset=(object key=key) value=""}}
                                 {{else}}
-                                    {{formField field localize=true blank="" name=key label=label}}
+                                    {{formField field localize=true blank="" name=name dataset=(object key=key) label=label value=""}}
                                 {{/if}}
                             {{/if}}
                         {{/if}}
@@ -55,10 +54,10 @@
         {{!-- <div class="item-list-container"> --}}
             {{#if menu.data.columns.length}}
                 <div class="item-list-header">
-                    <div></div>
-                    <div>Name</div>
+                    <div class="item-list-img"></div>
+                    <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">Name</div>
                     {{#each menu.data.columns}}
-                        <div>{{label}}</div>
+                        <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{label}}</div>
                     {{/each}}
                 </div>
             {{/if}}
@@ -67,10 +66,10 @@
                     <div class="item-container" data-item-uuid="{{uuid}}" draggable="true">
                         <div class="item-header">
                             <div data-action="expandContent">
-                                <img src="{{img}}" data-item-key="img">
-                                <div data-item-key="name">{{name}}</div>
+                                <img src="{{img}}" data-item-key="img" class="item-list-img">
+                                <div data-item-key="name" class="item-list-name">{{name}}</div>
                                 {{#each ../menu.data.columns}}
-                                    <div data-item-key="{{@key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{label}}{{/with}}</div>
+                                    <div data-item-key="{{key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</div>
                                 {{/each}}
                             </div>
                         </div>
@@ -83,8 +82,8 @@
         {{!-- </div> --}}
     {{else}}
         <div class="welcome-message">
-            <h2 class="title">Daggerheart Compedium Browser</h2>
-            <span class="hint"><i>Select a Folder in sidebar to start browsing trought the compedium</i></span>
+            <h2 class="title">Daggerheart Compendium Browser</h2>
+            <span class="hint"><i>Select a Folder in sidebar to start browsing trought the compendium</i></span>
         </div>
     {{/if}}
 </div>

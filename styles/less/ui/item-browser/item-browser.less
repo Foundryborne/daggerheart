@@ -20,7 +20,7 @@
             gap: 10px;
         }
 
-        .compedium-sidebar {
+        .compendium-sidebar {
             position: relative;
             width: 200px;
             padding: 16px;
@@ -70,7 +70,7 @@
             }
         }
 
-        .compedium-results {
+        .compendium-results {
             padding: 16px;
         }
 
@@ -219,12 +219,43 @@
             scrollbar-color: light-dark(@dark-blue, @golden) transparent;
         }
 
+        .item-list-header,
+        .item-list [data-action="expandContent"] {
+            display: flex;
+
+            > * {
+                flex: 1;
+            }
+            .item-list-img {
+                width: 40px;
+                flex: unset;
+            }
+            .item-list-name {
+                flex-grow: 3 !important;
+            }
+        }
+
         .item-list-header {
             background-color: light-dark(transparent, #18162e);
             color: light-dark(#18162e, #f3c267);
             border: 1px solid light-dark(#18162e, #f3c267);
             border-radius: 6px;
             min-height: 30px;
+
+            div[data-sort-key] {
+                &:after {
+                    font-family: "Font Awesome 6 Pro";
+                    margin-left: 5px;
+                }
+
+                &[data-sort-type="ASC"]:after {
+                    content : "\f0d7";
+                }
+
+                &[data-sort-type="DESC"]:after {
+                    content : "\f0d8";
+                }
+            }
         }
 
         .item-list {
@@ -240,6 +271,7 @@
 
             .item-desc .wrapper {
                 padding: 0 10px;
+                display: flex;
             }
 
             img {

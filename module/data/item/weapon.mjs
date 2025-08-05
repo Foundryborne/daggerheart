@@ -227,4 +227,8 @@ export default class DHWeapon extends AttachableItem {
 
         return labels;
     }
+
+    get features() {
+        return this.weaponFeatures;
+    }
 }

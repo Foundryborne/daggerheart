@@ -25,7 +25,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         // title: 'Item Browser',
         window: {
             frame: true,
-            title: 'Compedium Browser',
+            title: 'Compendium Browser',
             icon: 'fa-solid fa-book-atlas',
             positioned: true,
             resizable: true
@@ -33,7 +33,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         actions: {
             selectFolder: this.selectFolder,
             expandContent: this.expandContent,
-            resetFilters: this.resetFilters
+            resetFilters: this.resetFilters,
+            sortList: this.sortList
         },
         position: {
             width: 1000,
@@ -102,7 +103,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         context.menu = this.selectedMenu;
         context.formatLabel = this.formatLabel;
         context.formatChoices = this.formatChoices;
-        context.fieldFilter = this.fieldFilter = this.selectedMenu.data?.filters ? this._createFieldFilter() : [];
+        context.fieldFilter = this.fieldFilter = this._createFieldFilter();
         context.items = this.items;
         console.log(this.items);
         return context;
@@ -136,7 +137,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         this.selectedMenu = {
             path: folderPath.split('.'),
-            data: folderData
+            data: {
+                ...folderData,
+                columns: ItemBrowser.getFolderConfig(folderData)
+            }
         };
 
         let items = [];
@@ -161,7 +165,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     formatLabel(item, field) {
         const property = foundry.utils.getProperty(item, field.key);
-        if (typeof field.format !== 'function') return property;
+        if (typeof field.format !== 'function') return property ?? '-';
         return field.format(property);
     }
 
@@ -177,11 +181,15 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     _createFieldFilter() {
-        const filters = [];
-        this.selectedMenu.data.filters.forEach(f => {
+        const filters = ItemBrowser.getFolderConfig(this.selectedMenu.data, 'filters');
+        filters.forEach(f => {
             if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
-            else if (typeof f.choices === 'function') f.choices = f.choices();
-            filters.push(f);
+            else if (typeof f.choices === 'function') {
+                f.choices = f.choices();
+                console.log(f.choices)
+            }
+            f.name ??= f.key;
+            // filters.push(f);
         });
         return filters;
     }
@@ -278,30 +286,54 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     async _onInputFilterBrowser(event) {
         this.#filteredItems.browser.input.clear();
 
-        console.log(event.target.name);
-
-        this.fieldFilter.find(f => f.key === event.target.name).value = event.target.value;
+        this.fieldFilter.find(f => f.name === event.target.name).value = event.target.value;
 
         // console.log(_event, html, filters)
 
         for (const li of event.target.closest('[data-application-part="list"]').querySelectorAll('.item-container')) {
             const itemUUID = li.dataset.itemUuid,
                 item = this.items.find(i => i.uuid === itemUUID);
+            
+            if(!item) continue;
 
             const matchesMenu =
                 this.fieldFilter.length === 0 ||
-                this.fieldFilter.every(f => {
-                    return (
-                        (!f.value && f.value !== false) ||
-                        foundry.applications.ux.SearchFilter.evaluateFilter(item, this.createFilterData(f))
-                    );
-                });
+                this.fieldFilter.every(f => (
+                    !f.value && f.value !== false) ||
+                    ItemBrowser.evaluateFilter(item, this.createFilterData(f))
+                );
             if (matchesMenu) this.#filteredItems.browser.input.add(item.id);
 
             const { search } = this.#filteredItems.browser;
             li.hidden = !(search.has(item.id) && matchesMenu);
             // li.hidden = !(matchesMenu);
         }
+    }
+    
+    /**
+     * Foundry evaluateFilter doesn't allow you to match if filter values are included into item data
+     * @param {*} obj 
+     * @param {*} filter 
+     */
+    static evaluateFilter(obj, filter) {
+        const docValue = foundry.utils.getProperty(obj, filter.field);
+        const filterValue = filter.value;
+        switch (filter.operator) {
+            case "contains2":
+                return Array.isArray(docValue) ? docValue.includes(filterValue) : [docValue].includes(filterValue);
+                break;
+            case "contains3":
+                return docValue.some(f => f.value === filterValue);
+                break;
+            default:
+                return foundry.applications.ux.SearchFilter.evaluateFilter(obj, filter);
+                break;
+        }
+        if(filter.operator === "contains2") {
+            const docValue = foundry.utils.getProperty(obj, filter.field);
+            const filterValue = filter.value;
+            return Array.isArray(docValue) ? docValue.includes(filterValue) : [docValue].includes(filterValue);
+        } return foundry.applications.ux.SearchFilter.evaluateFilter(obj, filter)
     }
 
     createFilterData(filter) {
@@ -319,6 +351,33 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     static resetFilters() {
         this.render({ force: true });
+    }
+
+    static getFolderConfig(folder, property = "columns") {
+        if(!folder) return [];
+        return folder[property] ?? CONFIG.DH.ITEMBROWSER.typeConfig[folder.listType]?.[property] ?? [];
+    }
+
+    static sortList(_, target) {
+        const key = target.dataset.sortKey,
+            type = !target.dataset.sortType || target.dataset.sortType === "DESC" ? "ASC" : "DESC",
+            itemListContainer = target.closest(".compendium-results").querySelector(".item-list"),
+            itemList = itemListContainer.querySelectorAll(".item-container");
+
+        target.closest(".item-list-header").querySelectorAll('[data-sort-key]').forEach(b => b.dataset.sortType = "");
+        target.dataset.sortType = type;
+        
+        const newOrder = [...itemList].reverse().sort((a, b) => {
+            const aProp = a.querySelector(`[data-item-key="${key}"]`),
+                bProp = b.querySelector(`[data-item-key="${key}"]`)
+            if(type === "DESC") {
+                return aProp.innerText < bProp.innerText ? 1 : -1;
+            } else {
+                return aProp.innerText > bProp.innerText ? 1 : -1;
+            }
+        });
+        
+        itemListContainer.replaceChildren(...newOrder);
     }
 
     /**
