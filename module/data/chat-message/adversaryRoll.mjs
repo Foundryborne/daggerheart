@@ -132,7 +132,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             if(this.targetSelection === true) {
                 this.targetShort = this.targets.reduce((a,c) => {
                     if(c.hit) a.hit += 1;
-                    else c.miss += 1;
+                    else a.miss += 1;
                     return a;
                 }, {hit: 0, miss: 0})
             }

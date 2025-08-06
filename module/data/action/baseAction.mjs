@@ -111,7 +111,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return actorData;
     }
 
-    async use(event, options) {
+    async use(event, options = {}) {
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
         if (this.chatDisplay) await this.toChat();
