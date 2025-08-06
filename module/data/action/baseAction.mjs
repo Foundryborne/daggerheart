@@ -115,7 +115,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
         if (this.chatDisplay) await this.toChat();
-        
+
         let { byPassRoll } = options,
             config = this.prepareConfig(event, byPassRoll);
         for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
@@ -222,16 +222,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 };
             }
         }
-        
+
         const resources = config.costs
-            .filter(c =>
-                c.enabled !== false
-                &&
-                (
-                    (!successCost && (!c.consumeOnSuccess || config.roll?.success))
-                    ||
-                    (successCost && c.consumeOnSuccess)
-                )
+            .filter(
+                c =>
+                    c.enabled !== false &&
+                    ((!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
+                        (successCost && c.consumeOnSuccess))
             )
             .map(c => {
                 const resource = usefulResources[c.key];
@@ -244,17 +241,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             });
 
         await this.actor.modifyResource(resources);
-        if (config.uses?.enabled
-            &&
-            (
-                (!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success))
-                ||
-                (successCost && config.uses?.consumeOnSuccess)
-            )
-        ) this.update({ 'uses.value': this.uses.value + 1 });
+        if (
+            config.uses?.enabled &&
+            ((!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success)) ||
+                (successCost && config.uses?.consumeOnSuccess))
+        )
+            this.update({ 'uses.value': this.uses.value + 1 });
 
-        if(config.roll?.success || successCost)
-            (config.message ?? config.parent).update({'system.successConsumed': true})
+        if (config.roll?.success || successCost)
+            (config.message ?? config.parent).update({ 'system.successConsumed': true });
     }
     /* */
 
@@ -307,11 +302,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     async applyEffect(effect, actor) {
-        const origin = effect.parent?.parent ? effect.parent.parent.uuid : effect.parent.uuid;
+        const actorOrigin = effect.parent?.parent ? effect.parent.parent.uuid : effect.parent.uuid;
         // Enable an existing effect on the target if it originated from this effect
-        const existingEffect = actor.effects.find(e => e.origin === origin);
-        if (existingEffect) {
-            return existingEffect.update(
+        if (effect.transfer) {
+            return effect.update(
                 foundry.utils.mergeObject({
                     ...effect.constructor.getInitialDuration(),
                     disabled: false
@@ -324,7 +318,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ...effect.toObject(),
             disabled: false,
             transfer: false,
-            origin: origin
+            origin: actorOrigin
         });
         await ActiveEffect.implementation.create(effectData, { parent: actor });
     }

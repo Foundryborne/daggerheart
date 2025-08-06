@@ -479,7 +479,8 @@ export const multiplierTypes = {
     cast: 'Spellcast',
     scale: 'Cost Scaling',
     result: 'Roll Result',
-    flat: 'Flat'
+    flat: 'Flat',
+    tier: 'Tier'
 };
 
 export const diceSetNumbers = {
