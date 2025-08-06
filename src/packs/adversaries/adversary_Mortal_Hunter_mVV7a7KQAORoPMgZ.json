@@ -74,6 +74,7 @@
     "description": "<p>An undead figure wearing a heavy leather coat, with searching eyes and a casually cruel demeanor.</p>",
     "attack": {
       "name": "Tear at Flesh",
+      "img": "icons/skills/melee/strike-slashes-red.webp",
       "roll": {
         "bonus": 5,
         "type": "attack"

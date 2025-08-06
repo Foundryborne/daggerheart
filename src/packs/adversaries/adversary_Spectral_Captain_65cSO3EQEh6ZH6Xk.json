@@ -74,6 +74,7 @@
     "motivesAndTactics": "Move through solid objects, rally troops, rehash old battles",
     "attack": {
       "name": "Longbow",
+      "img": "icons/weapons/bows/longbow-recurve-skull-brown.webp",
       "damage": {
         "parts": [
           {
