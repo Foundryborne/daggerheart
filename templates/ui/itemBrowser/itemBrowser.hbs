@@ -1,33 +1,29 @@
 <div class="compendium-results">
     {{#if menu.data }}
-        {{#unless (or presets.render.lite presets.render.noFolder)}}
-            <div class="menu-path">
-                {{#each menu.path}}
-                    {{#if (eq this "folders")}}
-                        <span class="path-link">
-                            /
-                        </span>
-                    {{else}}
-                        <span class="item-path">{{this}}</span>
-                    {{/if}}
-                {{/each}}
-            </div>
-        {{/unless}}
+        <div class="menu-path">
+            {{#each menu.path}}
+                {{#if (eq this "folders")}}
+                    <span class="path-link">
+                        /
+                    </span>
+                {{else}}
+                    <span class="item-path">{{this}}</span>
+                {{/if}}
+            {{/each}}
+        </div>
         <div class="item-filter">
-            {{#unless presets.render.lite}}
-                <div class="filter-header">
-                    <div class="search-bar">
-                        <div class="icon">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </div>
-                        <input type="search" name="search" class="search-input" placeholder="Search...">
+            <div class="filter-header">
+                <div class="search-bar">
+                    <div class="icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    {{#if (and fieldFilter (not presets.render.noFilter))}}
-                        <a data-tooltip="Filters" data-action="expandContent"><i class="fa-solid fa-filter"></i></a>
-                    {{/if}}
-                    <a data-tooltip="Erase" data-action="resetFilters"><i class="fa-solid fa-eraser"></i></a>
+                    <input type="search" name="search" class="search-input" placeholder="Search...">
                 </div>
-            {{/unless}}
+                {{#if fieldFilter.length}}
+                    <a data-tooltip="Filters" data-action="expandContent"><i class="fa-solid fa-filter"></i></a>
+                {{/if}}
+                <a data-tooltip="Erase" data-action="resetFilters"><i class="fa-solid fa-eraser"></i></a>
+            </div>
             <div class="filter-content extensible">
                 <div class="wrapper">
                     {{#each fieldFilter}}

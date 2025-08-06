@@ -242,6 +242,10 @@
             border-radius: 6px;
             min-height: 30px;
 
+            > * {
+                white-space: nowrap;
+            }
+
             div[data-sort-key] {
                 &:after {
                     font-family: "Font Awesome 6 Pro";
@@ -272,6 +276,8 @@
             .item-desc .wrapper {
                 padding: 0 10px;
                 display: flex;
+                flex-direction: column;
+                gap: 5px;
             }
 
             img {
@@ -328,6 +334,7 @@
             .title {
                 font-family: @font-subtitle;
                 margin: 0;
+                text-align: center;
             }
             .hint {
                 font-family: @font-body;
@@ -337,6 +344,26 @@
         [disabled] {
             opacity: .5;
             pointer-events: none;
+        }
+    }
+
+    &.lite, &.no-folder {
+        .menu-path {
+            display: none;
+        }
+    }
+
+    &.lite {
+        .filter-header {
+            display: none;
+        }
+    }
+
+    &.no-filter {
+        .filter-header {
+            a[data-action="expandContent"] {
+                display: none;
+            }
         }
     }
 }

@@ -13,6 +13,8 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
         this._dragDrop = this._createDragDropHandlers();
         this.tabGroups.primary = 'advancements';
+
+        this.itemBrowser = null;
     }
 
     get title() {
@@ -537,13 +539,20 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
             }
         };
 
-        // if(type == "domains")
-        //     presets.filter = {
-        //         'level.max': { key: 'level.max', value: 1 },
-        //         'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null },
-        //     };
+        if(type == "domains") {
+            const domains = this.actor.system.domains,
+                multiclassDomain = this.levelup.classUpgradeChoices?.multiclass?.domain;
+            if (multiclassDomain) {
+                if (!domains.includes(x => x === multiclassDomain))
+                    domains.push(multiclassDomain);
+            }
+            presets.filter = {
+                'level.max': { key: 'level.max', value: this.levelup.currentLevel },
+                'system.domain': { key: 'system.domain', value: domains },
+            };
+        }
 
-        return new ItemBrowser({ presets }).render({ force: true });
+        return this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true });
     }
 
     static async selectPreview(_, button) {
@@ -644,6 +653,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         }, {});
 
         await this.actor.levelUp(levelupData);
+        if(this.itemBrowser) this.itemBrowser.close();
         this.close();
     }
 }

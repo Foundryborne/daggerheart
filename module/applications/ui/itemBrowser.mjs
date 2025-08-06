@@ -17,7 +17,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this.config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
         this.presets = options.presets;
 
-        if(this.presets?.folder)
+        if(this.presets?.compendium && this.presets?.folder)
             ItemBrowser.selectFolder.call(this, null, null, this.presets.compendium, this.presets.folder);
     }
 
@@ -41,7 +41,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             sortList: this.sortList
         },
         position: {
-            top: 70,
+            top: 330,
             left: 120,
             width: 800,
             height: 600
@@ -87,12 +87,38 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     };
 
     /** @inheritDoc */
+    async _preFirstRender(context, options) {
+        if(context.presets?.render?.noFolder || context.presets?.render?.lite)
+            options.position.width = 600;
+        
+        await super._preFirstRender(context, options);
+    }
+
+    /** @inheritDoc */
+    async _preRender(context, options) {
+
+        if(context.presets?.render?.noFolder || context.presets?.render?.lite)
+            options.parts.splice(options.parts.indexOf('sidebar'), 1);
+
+        await super._preRender(context, options);
+    }
+
+    /** @inheritDoc */
     async _onRender(context, options) {
         await super._onRender(context, options);
 
         this._createSearchFilter();
         this._createFilterInputs();
         this._createDragProcess();
+        
+        if(context.presets?.render?.lite)
+            this.element.classList.add('lite');
+        
+        if(context.presets?.render?.noFolder)
+            this.element.classList.add('no-folder');
+        
+        if(context.presets?.render?.noFilter)
+            this.element.classList.add('no-filter');
 
         if(this.presets?.filter) {
             Object.entries(this.presets.filter).forEach(([k,v]) => this.fieldFilter.find(c => c.name === k).value = v.value);
@@ -129,11 +155,9 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             folder.folders = c.folders
                 ? ItemBrowser.sortBy(this.getCompendiumFolders(c.folders, folder, depth + 2), 'label')
                 : [];
-            // sortBy(Object.values(c.folders), 'label')
             folders.push(folder);
         });
 
-        // console.log(folders)
         return folders;
     }
 
@@ -197,8 +221,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 f.choices = f.choices();
             }
             f.name ??= f.key;
-            f.value = this.presets.filter?.[f.name]?.value ?? null;
-            // filters.push(f);
+            f.value = this.presets?.filter?.[f.name]?.value ?? null;
         });
         return filters;
     }
@@ -248,8 +271,6 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 container: '[data-application-part="list"] .filter-content .wrapper',
                 content: '[data-application-part="list"] .item-list',
                 callback: this._onInputFilterBrowser.bind(this)
-                // target: '.filter-button',
-                // filters: FilterMenu.invetoryFilters
             }
         ];
 
@@ -283,7 +304,6 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             if (matchesSearch) this.#filteredItems.browser.search.add(item.id);
             const { input } = this.#filteredItems.browser;
             li.hidden = !(input.has(item.id) && matchesSearch);
-            // li.hidden = !(matchesSearch);
         }
     }
 
@@ -313,10 +333,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
             const { search } = this.#filteredItems.browser;
             li.hidden = !(search.has(item.id) && matchesMenu);
-            // li.hidden = !(matchesMenu);
         }
-
-        console.log(this.fieldFilter)
     }
     
     /**
@@ -383,45 +400,22 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         itemListContainer.replaceChildren(...newOrder);
     }
 
-    /**
-     * Serialize salient information about this Document when dragging it.
-     * @returns {object}  An object of drag data.
-     */
-    // toDragData() {
-    //   const dragData = {type: this.documentName};
-    //   if ( this.id ) dragData.uuid = this.uuid;
-    //   else dragData.data = this.toObject();
-    //   return dragData;
-    // }
-
     _createDragProcess() {
         new foundry.applications.ux.DragDrop.implementation({
             dragSelector: '.item-container',
-            // dropSelector: ".directory-list",
             permissions: {
                 dragstart: this._canDragStart.bind(this)
-                // drop: this._canDragDrop.bind(this)
             },
             callbacks: {
-                // dragover: this._onDragOver.bind(this),
                 dragstart: this._onDragStart.bind(this)
-                // drop: this._onDrop.bind(this)
             }
         }).bind(this.element);
-        // this.element.querySelectorAll(".directory-item.folder").forEach(folder => {
-        //     folder.addEventListener("dragenter", this._onDragHighlight.bind(this));
-        //     folder.addEventListener("dragleave", this._onDragHighlight.bind(this));
-        // });
     }
 
     async _onDragStart(event) {
-        // console.log(event)
-        // ui.context?.close({ animate: false });
         const { itemUuid } = event.target.closest('[data-item-uuid]').dataset,
             item = await foundry.utils.fromUuid(itemUuid),
             dragData = item.toDragData();
-        // console.log(dragData)
-        // const dragData = { UUID: itemUuid };
         event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
     }
 

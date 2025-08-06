@@ -43,6 +43,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
 
         this._dragDrop = this._createDragDropHandlers();
+
+        this.itemBrowser = null;
     }
 
     get title() {
@@ -503,7 +505,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null },
             };
 
-        return new ItemBrowser({ presets }).render({ force: true });
+        return this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true });
     }
 
     static async viewItem(_, target) {
@@ -617,6 +619,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             }
         });
 
+        if(this.itemBrowser) this.itemBrowser.close();
         this.close();
     }
 
