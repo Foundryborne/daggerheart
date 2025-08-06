@@ -7,10 +7,11 @@
   "system": {
     "description": "<p>Choose a number between 1 and 12. When you roll that number on a Duality Die, gain a Hope or clear a Stress.</p><p></p><p>You can change this number when you take a long rest.</p>",
     "resource": {
-      "type": "simple",
+      "type": "diceValue",
       "value": 1,
-      "max": "",
-      "icon": "fa-solid fa-hashtag"
+      "max": "1",
+      "icon": "fa-solid fa-hashtag",
+      "dieFaces": "d12"
     },
     "actions": {
       "RkqPzF1bdWzPPMml": {
@@ -100,7 +101,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754254942995,
-    "modifiedTime": 1754255067467,
+    "modifiedTime": 1754498121727,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!6YsfFjmCGuFYVhT4"

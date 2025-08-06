@@ -338,9 +338,10 @@
     "resource": {
       "type": "simple",
       "value": 1,
-      "recovery": "longRest",
+      "progression": "decreasing",
       "max": "1",
-      "icon": ""
+      "icon": "fa-solid fa-hands-praying",
+      "recovery": "longRest"
     }
   },
   "flags": {},
@@ -352,8 +353,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784482,
-    "modifiedTime": 1754269394280,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754498631054,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "TGjR4vJVNbQRV8zr",
   "sort": 3400000,

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "OwsbTSWzKq2WJmQN",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (16)</strong>. Once per long rest on a success, choose a point within Far range and create a visible zone of protection there for all allies within Very Close range of that point. When you do, place a <strong>d6</strong> on this card with the 1 value facing up. When an ally in this zone takes damage, they reduce it by the die’s value. You then increase the die’s value by one. When the die’s value would exceed 6, this effect ends.</p><p></p><p><span style=\"color:oklab(0.952331 0.000418991 -0.00125992);font-family:'gg mono', 'Source Code Pro', Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace;font-size:13.6px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:pre-wrap;background-color:oklab(0.57738 0.0140701 -0.208587 / 0.0784314);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">@Template[type:emanation|range:vc]</span></p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (16)</strong>. Once per long rest on a success, choose a point within Far range and create a visible zone of protection there for all allies within Very Close range of that point. When you do, place a <strong>d6</strong> on this card with the 1 value facing up. When an ally in this zone takes damage, they reduce it by the die’s value. You then increase the die’s value by one. When the die’s value would exceed 6, this effect ends.</p><p><span style=\"color:oklab(0.952331 0.000418991 -0.00125992);font-family:'gg mono', 'Source Code Pro', Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace;font-size:13.6px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:left;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:pre-wrap;background-color:oklab(0.57738 0.0140701 -0.208587 / 0.0784314);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">@Template[type:emanation|range:vc]</span></p>",
     "domain": "splendor",
     "recallCost": 2,
     "level": 6,
@@ -58,13 +58,7 @@
         "range": "far"
       }
     },
-    "resource": {
-      "type": "simple",
-      "value": 0,
-      "max": "6",
-      "icon": "",
-      "recovery": "longRest"
-    }
+    "resource": null
   },
   "flags": {},
   "_stats": {
@@ -75,8 +69,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784549,
-    "modifiedTime": 1754269795161,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754498786877,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "lOZaRb4fCVgQsWB5",
   "sort": 3400000,

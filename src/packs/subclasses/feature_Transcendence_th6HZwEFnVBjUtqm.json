@@ -6,15 +6,7 @@
   "img": "icons/magic/fire/elemental-fire-flying.webp",
   "system": {
     "description": "<p>Once per long rest, you can transform into a physical manifestation of your element. When you do, describe your transformation and choose two of the following benefits to gain until your next rest:</p><ul><li><p>+4 bonus to your Severe threshold</p></li><li><p>+1 bonus to a character trait of your choice</p></li><li><p>+1 bonus to your Proficiency</p></li><li><p>+2 bonus to your Evasion</p></li></ul>",
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "max": "1",
-      "icon": "",
-      "recovery": "longRest",
-      "diceStates": {},
-      "dieFaces": "d4"
-    },
+    "resource": null,
     "actions": {
       "RIbyJjEkCgqoDmyn": {
         "type": "effect",
@@ -26,17 +18,17 @@
         "cost": [
           {
             "scalable": false,
-            "key": "th6HZwEFnVBjUtqm",
+            "key": "hitPoints",
             "value": 1,
-            "keyIsID": true,
+            "keyIsID": false,
             "step": null,
             "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null,
+          "max": "1",
+          "recovery": "longRest",
           "consumeOnSuccess": false
         },
         "effects": [],
@@ -250,8 +242,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754349515898,
-    "modifiedTime": 1754349515898,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754497438787,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!th6HZwEFnVBjUtqm"
 }

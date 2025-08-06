@@ -21,7 +21,8 @@
         "uses": {
           "value": null,
           "max": "1",
-          "recovery": "longRest"
+          "recovery": "longRest",
+          "consumeOnSuccess": true
         },
         "damage": {
           "parts": [],
@@ -67,8 +68,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784493,
-    "modifiedTime": 1754340285152,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499238543,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "9a6xP5pxhVvdugk9",
   "sort": 3400000,

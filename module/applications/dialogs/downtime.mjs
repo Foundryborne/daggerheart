@@ -233,7 +233,11 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
                 const feature = await foundry.utils.fromUuid(data.uuid);
                 const increasing =
                     feature.system.resource.progression === CONFIG.DH.ITEM.itemResourceProgression.increasing.id;
-                const resetValue = increasing ? 0 : (feature.system.resource.max ?? 0);
+                const resetValue = increasing
+                    ? 0
+                    : feature.system.resource.max
+                      ? Roll.replaceFormulaData(feature.system.resource.max, this.actor)
+                      : 0;
                 await feature.update({ 'system.resource.value': resetValue });
             }
 

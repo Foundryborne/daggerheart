@@ -9,7 +9,31 @@
     "recallCost": 0,
     "level": 6,
     "type": "spell",
-    "actions": {}
+    "actions": {
+      "MjSx44ovuKBGVKGs": {
+        "type": "effect",
+        "_id": "MjSx44ovuKBGVKGs",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">Once per rest, take on the Stress from a willing creature within Melee range. The target describes what intimate knowledge or emotions telepathically leak from their mind in this moment between you. Transfer any number of their marked Stress to you, then gain a Hope for each Stress transferred.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Take Stress",
+        "img": "systems/daggerheart/assets/icons/domains/domain-card/grace.png",
+        "range": ""
+      }
+    }
   },
   "flags": {},
   "_stats": {
@@ -20,8 +44,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784515,
-    "modifiedTime": 1754327488946,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499760780,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "8nRle10pw1HO8QVu",
   "sort": 3400000,
