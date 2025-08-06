@@ -5,15 +5,7 @@
   "img": "icons/skills/social/diplomacy-writing-letter.webp",
   "system": {
     "description": "<p>Your moving words boost morale. Once per session, when you encourage an ally, you can do one of the following: </p><ul><li><p>Allow them to find a mundane object or tool they need.</p></li><li><p>Help an Ally without spending Hope.</p></li><li><p>Give them an additional downtime move during their next rest.</p></li></ul>",
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "recovery": "session",
-      "max": "1",
-      "icon": "",
-      "diceStates": {},
-      "dieFaces": "d4"
-    },
+    "resource": null,
     "actions": {
       "o1MWnafbLsXnvSUl": {
         "type": "effect",
@@ -25,8 +17,8 @@
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "session"
         },
         "effects": [],
         "target": {
@@ -51,8 +43,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174646194,
-    "modifiedTime": 1754236474581,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754494786779,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "ownership": {
     "default": 0,

@@ -6,13 +6,7 @@
   "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
   "system": {
     "description": "<p>Once per session, you can briefly call on a shady contact. Choose one of the following benefits and describe what brought them here to help you in this moment: </p><ul><li><p>They provide 1 handful of gold, a unique tool, or a mundane object that the situation requires.</p></li><li><p>On your next action roll, their help provides a +3 bonus to the result of your Hope or Fear Die. </p></li><li><p>The next time you deal damage, they snipe from the shadows, adding 2d8 to your damage roll.</p></li></ul>",
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "max": "",
-      "icon": "",
-      "recovery": "session"
-    },
+    "resource": null,
     "actions": {
       "GZDYjtPh0lCJ5VNq": {
         "type": "effect",
@@ -24,16 +18,17 @@
         "cost": [
           {
             "scalable": false,
-            "key": "cXbRm744mW6UXGam",
+            "key": "hitPoints",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "session"
         },
         "effects": [],
         "target": {
@@ -63,8 +58,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754320389008,
-    "modifiedTime": 1754322535699,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754496752362,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!cXbRm744mW6UXGam"
 }

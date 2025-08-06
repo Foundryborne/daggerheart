@@ -66,7 +66,7 @@
           }
         ],
         "roll": {
-          "type": null,
+          "type": "spellcast",
           "trait": null,
           "difficulty": null,
           "bonus": null,
@@ -154,8 +154,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784434,
-    "modifiedTime": 1754253433766,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754475145346,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "5EP2Lgf7ojfrc0Is",
   "sort": 3400000,
