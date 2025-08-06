@@ -371,6 +371,21 @@ export async function createEmbeddedItemWithEffects(actor, baseData, update) {
     return doc;
 }
 
+export async function createEmbeddedItemsWithEffects(actor, baseData) {
+    const effectData = [];
+    for (let d of baseData) {
+        const data = d.uuid.startsWith('Compendium') ? await foundry.utils.fromUuid(d.uuid) : d;
+        effectData.push({
+            ...data,
+            id: data.id,
+            uuid: data.uuid,
+            effects: data.effects?.map(effect => effect.toObject())
+        });
+    }
+
+    await actor.createEmbeddedDocuments('Item', effectData);
+}
+
 export const slugify = name => {
     return name.toLowerCase().replaceAll(' ', '-').replaceAll('.', '');
 };

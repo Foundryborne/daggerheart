@@ -1,6 +1,6 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { burden } from '../../config/generalConfig.mjs';
-import { createEmbeddedItemWithEffects } from '../../helpers/utils.mjs';
+import { createEmbeddedItemsWithEffects, createEmbeddedItemWithEffects } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -555,13 +555,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         await createEmbeddedItemWithEffects(this.character, this.setup.community);
         await createEmbeddedItemWithEffects(this.character, this.setup.class);
         await createEmbeddedItemWithEffects(this.character, this.setup.subclass);
-        await this.character.createEmbeddedDocuments(
-            'Item',
-            Object.values(this.setup.domainCards).map(x => ({
-                ...x,
-                effects: x.effects?.map(effect => effect.toObject())
-            }))
-        );
+        await createEmbeddedItemsWithEffects(this.character, Object.values(this.setup.domainCards));
 
         if (this.equipment.armor.uuid)
             await createEmbeddedItemWithEffects(this.character, this.equipment.armor, {
@@ -583,14 +577,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         if (this.equipment.inventory.choiceB.uuid)
             await createEmbeddedItemWithEffects(this.character, this.equipment.inventory.choiceB);
 
-        await this.character.createEmbeddedDocuments(
-            'Item',
-            this.setup.class.system.inventory.take
-                .filter(x => x)
-                .map(x => ({
-                    ...x,
-                    effects: x.effects?.map(effect => effect.toObject())
-                }))
+        await createEmbeddedItemsWithEffects(
+            this.character,
+            this.setup.class.system.inventory.take.filter(x => x)
         );
 
         await this.character.update({

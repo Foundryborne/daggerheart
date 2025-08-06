@@ -83,10 +83,15 @@
                         background: grey;
                         padding: 0 12px;
                         border-radius: 6px;
+                        z-index: 2;
                     }
 
                     img {
                         height: 124px;
+
+                        &.svg {
+                            filter: @beige-filter;
+                        }
                     }
 
                     .levelup-domain-selected {
@@ -136,6 +141,10 @@
             font-size: 22px;
             font-weight: bold;
             padding: 0 12px;
+        }
+
+        .levelup-trait-increases {
+            width: 100%;
         }
 
         .levelup-radio-choices {

@@ -44,10 +44,12 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/levelup/tabs/tab-navigation.hbs' },
-        advancements: { template: 'systems/daggerheart/templates/levelup/tabs/advancements.hbs' },
+        advancements: {
+            template: 'systems/daggerheart/templates/levelup/tabs/advancements.hbs'
+        },
         selections: {
             template: 'systems/daggerheart/templates/levelup/tabs/selections.hbs',
-            scrollable: ['.selections']
+            scrollable: ['.levelup-selections-container']
         },
         summary: { template: 'systems/daggerheart/templates/levelup/tabs/summary.hbs' },
         footer: { template: 'systems/daggerheart/templates/levelup/tabs/footer.hbs' }
