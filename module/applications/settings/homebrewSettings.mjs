@@ -83,7 +83,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         return context;
     }
 
-    static async updateData(event, element, formData) {
+    static async updateData(_event, _element, formData) {
         const updatedSettings = foundry.utils.expandObject(formData.object);
 
         await this.settings.updateSource({
@@ -199,7 +199,7 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
         this.render();
     }
 
-    static async addDomain(_, target) {
+    static async addDomain() {
         const id = foundry.utils.randomID();
         this.settings.updateSource({
             [`domains.${id}`]: {
@@ -219,6 +219,40 @@ export default class DhHomebrewSettings extends HandlebarsApplicationMixin(Appli
     }
 
     static async deleteDomain() {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: {
+                title: game.i18n.localize('DAGGERHEART.SETTINGS.Homebrew.domains.deleteDomain')
+            },
+            content: game.i18n.format('DAGGERHEART.SETTINGS.Homebrew.domains.deleteDomainText', {
+                name: this.settings.domains[this.selected.domain].label
+            })
+        });
+
+        if (!confirmed) return;
+
+        const updateClasses = game.items.filter(
+            x => x.type === 'class' && x.system.domains.includes(this.selected.domain)
+        );
+        for (let actor of game.actors) {
+            updateClasses.push(
+                ...actor.items.filter(x => x.type === 'class' && x.system.domains.includes(this.selected.domain))
+            );
+        }
+
+        for (let c of updateClasses) {
+            const newDomains = c.system.domains.map(x =>
+                x === this.selected.domain ? CONFIG.DH.DOMAIN.domains.arcana.id : x
+            );
+            await c.update({ 'system.domains': newDomains });
+        }
+
+        const updateDomainCards = game.items.filter(
+            x => x.type === 'domainCard' && x.system.domain === this.selected.domain
+        );
+        for (let d of updateDomainCards) {
+            await d.update({ 'system.domain': CONFIG.DH.DOMAIN.domains.arcana.id });
+        }
+
         await this.settings.updateSource({
             [`domains.-=${this.selected.domain}`]: null
         });

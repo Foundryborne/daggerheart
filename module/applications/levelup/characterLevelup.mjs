@@ -1,6 +1,5 @@
 import LevelUpBase from './levelup.mjs';
 import { DhLevelup } from '../../data/levelup.mjs';
-import { domains } from '../../config/domainConfig.mjs';
 import { abilities, subclassFeatureLabels } from '../../config/actorConfig.mjs';
 
 export default class DhCharacterLevelUp extends LevelUpBase {
@@ -113,7 +112,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                 : levelBase;
 
                             return game.i18n.format('DAGGERHEART.APPLICATIONS.Levelup.selections.emptyDomainCardHint', {
-                                domain: game.i18n.localize(domains[domain.domain].label),
+                                domain: game.i18n.localize(CONFIG.DH.DOMAIN.allDomains()[domain.domain].label),
                                 level: levelMax
                             });
                         }),
@@ -170,7 +169,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                         uuid: multiclass.uuid,
                         domains:
                             multiclass?.system?.domains.map(key => {
-                                const domain = domains[key];
+                                const domain = CONFIG.DH.DOMAIN.allDomains()[key];
                                 const alreadySelected = this.actor.system.class.value.system.domains.includes(key);
 
                                 return {
@@ -315,7 +314,10 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                         ? {
                                               ...multiclassItem.toObject(),
                                               domain: checkbox.secondaryData.domain
-                                                  ? game.i18n.localize(domains[checkbox.secondaryData.domain].label)
+                                                  ? game.i18n.localize(
+                                                        CONFIG.DH.DOMAIN.allDomains()[checkbox.secondaryData.domain]
+                                                            .label
+                                                    )
                                                   : null,
                                               subclass: subclass ? subclass.name : null
                                           }

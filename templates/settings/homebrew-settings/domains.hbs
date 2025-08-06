@@ -4,22 +4,26 @@
     data-group="{{tabs.domains.group}}"
 >
     <div class="title-wrapper">
-        <h4>{{localize "DAGGERHEART.SETTINGS.Homebrew.domains.domainsTitle"}}</h4>
+        <side-line-div class="invert top-lines"></side-line-div>
+        <h2>{{localize "DAGGERHEART.SETTINGS.Homebrew.domains.domainsTitle"}}</h2>
+        <side-line-div class="top-lines"></side-line-div>
     </div>
     <div class="domains-container">
         {{#each configDomains as | domain |}}
             <div class="domain-container">
                 <div class="domain-label">{{localize domain.label}}</div>
-                <img src="{{domain.src}}" class="domain-icon" style="--domain-icon: url({{domain.src}})" />
+                <img src="{{domain.src}}" class="domain-icon" />
             </div>
         {{/each}}
     </div>
 
     <div class="title-wrapper">
-        <h4>
+        <side-line-div class="invert"></side-line-div>
+        <h2>
             {{localize "DAGGERHEART.SETTINGS.Homebrew.domains.homebrewDomains"}}
             <button class="add-button" data-action="addDomain"><i class="fa-solid fa-plus"></i></button>
-        </h4>
+        </h2>
+        <side-line-div></side-line-div>
     </div>
     <div class="domains-container">
         {{#each homebrewDomains as | domain id |}}

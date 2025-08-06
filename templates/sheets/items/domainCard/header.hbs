@@ -7,8 +7,8 @@
             <i class="fa-solid fa-bolt"></i>
         </span>
         <span class="item-icon">
-            <span class="recall-label">{{localize (concat 'DAGGERHEART.GENERAL.Domain.' source.system.domain '.label')}}</span>
-            <img src="{{concat 'systems/daggerheart/assets/icons/domains/' source.system.domain '.svg'}}" alt="">
+            <span class="recall-label">{{localize @root.domain.label}}</span>
+            <img src="{{@root.domain.src}}" alt="">
         </span>
     </div>
     <div class='item-info'>
@@ -18,7 +18,7 @@
             <h3>
                 {{localize (concat 'DAGGERHEART.CONFIG.DomainCardTypes.' source.system.type)}}
                 <span>-</span>
-                {{localize (concat 'DAGGERHEART.GENERAL.Domain.' source.system.domain '.label')}}
+                {{localize @root.domain.label}}
                 <span>-</span>
                 {{localize "DAGGERHEART.GENERAL.level"}}:
                 {{source.system.level}}

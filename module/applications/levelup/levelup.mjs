@@ -1,5 +1,4 @@
 import { abilities, subclassFeatureLabels } from '../../config/actorConfig.mjs';
-import { domains } from '../../config/domainConfig.mjs';
 import { getDeleteKeys, tagifyElement } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -249,7 +248,10 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                                         ? {
                                               ...multiclassItem.toObject(),
                                               domain: checkbox.secondaryData.domain
-                                                  ? game.i18n.localize(domains[checkbox.secondaryData.domain].label)
+                                                  ? game.i18n.localize(
+                                                        CONFIG.DH.DOMAIN.allDomains()[checkbox.secondaryData.domain]
+                                                            .label
+                                                    )
                                                   : null,
                                               subclass: subclass ? subclass.name : null
                                           }
@@ -353,10 +355,10 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
                 experienceIncreaseTagify,
                 Object.keys(this.actor.system.experiences).reduce((acc, id) => {
                     const experience = this.actor.system.experiences[id];
-                    acc[id] = { label: experience.name };
+                    acc.push({ id: id, label: experience.name });
 
                     return acc;
-                }, {}),
+                }, []),
                 this.tagifyUpdate('experience').bind(this)
             );
         }

@@ -2148,7 +2148,7 @@
                     "newDomain": "New Domain",
                     "editDomain": "Active Domain",
                     "deleteDomain": "Delete Domain",
-                    "deleteDomainText": "Are you sure you want to delete the {name} domain?"
+                    "deleteDomainText": "Are you sure you want to delete the {name} domain? It will be removed from all Actors in this world where it's currently used."
                 }
             },
             "Menu": {
