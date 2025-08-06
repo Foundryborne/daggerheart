@@ -19,7 +19,7 @@
         "actionType": "action",
         "cost": [
           {
-            "scalable": true,
+            "scalable": false,
             "key": "stress",
             "value": 1,
             "step": 1,
@@ -95,8 +95,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784496,
-    "modifiedTime": 1754304556054,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754445106667,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "GRL0cvs96vrTDckZ",
   "sort": 3400000,
@@ -105,7 +105,7 @@
       "name": "Rage Up (1)",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
       "origin": "Compendium.daggerheart.domains.Item.GRL0cvs96vrTDckZ",
-      "transfer": true,
+      "transfer": false,
       "_id": "bq1MhcmoP6Wo5CXF",
       "type": "base",
       "system": {
@@ -118,13 +118,19 @@
       },
       "changes": [
         {
-          "key": "system.bonuses.roll.attack.bonus",
+          "key": "system.bonuses.damage.magical.bonus",
+          "mode": 2,
+          "value": "2*@system.traits.strength.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.physical.bonus",
           "mode": 2,
           "value": "2*@system.traits.strength.value",
           "priority": null
         }
       ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -147,8 +153,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754246159246,
-        "modifiedTime": 1754304575352,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1754446417671,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!GRL0cvs96vrTDckZ.bq1MhcmoP6Wo5CXF"
     },
@@ -156,7 +162,7 @@
       "name": "Rage Up (2)",
       "img": "systems/daggerheart/assets/icons/domains/domain-card/blade.png",
       "origin": "Compendium.daggerheart.domains.Item.GRL0cvs96vrTDckZ",
-      "transfer": true,
+      "transfer": false,
       "_id": "t6SIjQxB6UBUJ98f",
       "type": "base",
       "system": {
@@ -169,13 +175,19 @@
       },
       "changes": [
         {
-          "key": "system.bonuses.roll.attack.bonus",
+          "key": "system.bonuses.damage.magical.bonus",
+          "mode": 2,
+          "value": "4*@system.traits.strength.value",
+          "priority": null
+        },
+        {
+          "key": "system.bonuses.damage.physical.bonus",
           "mode": 2,
           "value": "4*@system.traits.strength.value",
           "priority": null
         }
       ],
-      "disabled": true,
+      "disabled": false,
       "duration": {
         "startTime": null,
         "combat": null,
@@ -198,8 +210,8 @@
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754246675511,
-        "modifiedTime": 1754304583724,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1754446412834,
+        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
       "_key": "!items.effects!GRL0cvs96vrTDckZ.t6SIjQxB6UBUJ98f"
     }
