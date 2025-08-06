@@ -302,9 +302,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     async applyEffect(effect, actor) {
-        const actorOrigin = effect.parent?.parent ? effect.parent.parent.uuid : effect.parent.uuid;
-        // Enable an existing effect on the target if it originated from this effect
-        if (effect.transfer) {
+        const existingEffect = actor.effects.find(e => e.origin === effect.uuid);
+        if (existingEffect) {
             return effect.update(
                 foundry.utils.mergeObject({
                     ...effect.constructor.getInitialDuration(),
@@ -318,7 +317,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ...effect.toObject(),
             disabled: false,
             transfer: false,
-            origin: actorOrigin
+            origin: effect.uuid
         });
         await ActiveEffect.implementation.create(effectData, { parent: actor });
     }
