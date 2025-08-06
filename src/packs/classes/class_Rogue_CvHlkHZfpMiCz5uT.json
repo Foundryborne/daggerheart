@@ -49,8 +49,8 @@
       "suggestedTraits": {
         "agility": 1,
         "strength": -1,
-        "finesse": 0,
-        "instinct": 2,
+        "finesse": 2,
+        "instinct": 0,
         "presence": 1,
         "knowledge": 0
       },
@@ -76,8 +76,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754325275832,
-    "modifiedTime": 1754325686143,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754500637635,
+    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_key": "!items!CvHlkHZfpMiCz5uT"
 }
