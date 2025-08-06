@@ -1,0 +1,45 @@
+<section
+    class="tab {{tabs.domains.cssClass}} {{tabs.domains.id}}"
+    data-tab="{{tabs.domains.id}}"
+    data-group="{{tabs.domains.group}}"
+>
+    <div class="title-wrapper">
+        <side-line-div class="invert top-lines"></side-line-div>
+        <h2>{{localize "DAGGERHEART.SETTINGS.Homebrew.domains.domainsTitle"}}</h2>
+        <side-line-div class="top-lines"></side-line-div>
+    </div>
+    <div class="domains-container">
+        {{#each configDomains as | domain |}}
+            <div class="domain-container">
+                <div class="domain-label">{{localize domain.label}}</div>
+                <img src="{{domain.src}}" class="domain-icon" />
+            </div>
+        {{/each}}
+    </div>
+
+    <div class="title-wrapper">
+        <side-line-div class="invert"></side-line-div>
+        <h2>
+            {{localize "DAGGERHEART.SETTINGS.Homebrew.domains.homebrewDomains"}}
+            <button class="add-button" data-action="addDomain"><i class="fa-solid fa-plus"></i></button>
+        </h2>
+        <side-line-div></side-line-div>
+    </div>
+    <div class="domains-container">
+        {{#each homebrewDomains as | domain id |}}
+            <button class="domain-container selectable {{#unless (eq @root.selectedDomain.id id)}}inactive{{/unless}}" id="{{id}}" data-action="toggleSelectedDomain">
+                <div class="domain-label">{{localize domain.label}}</div>
+                <img src="{{domain.src}}" class="domain-icon" style="--domain-icon: url({{domain.src}})" />
+            </button>
+        {{/each}}
+    </div>
+
+    <div class="domain-edit-container {{#if @root.selectedDomain}}extended{{/if}}">
+        <fieldset>
+            <legend>{{localize "DAGGERHEART.SETTINGS.Homebrew.domains.editDomain"}} <button class="add-button" data-action="deleteDomain"><i class="fa-solid fa-x"></i></button></legend>
+
+            <div class="domain-filepicker-row">{{formGroup settingFields.schema.fields.domains.element.fields.src value=selectedDomain.src name=(concat "domains." selectedDomain.id ".src") localize=true}}</div>
+            <textarea name="{{concat "domains." selectedDomain.id ".description"}}">{{selectedDomain.description}}</textarea>
+        </fieldset>
+    </div>
+</section>

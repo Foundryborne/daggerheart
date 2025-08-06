@@ -1854,7 +1854,9 @@
                 "tier1": "Tier 1",
                 "tier2": "Tier 2",
                 "tier3": "Tier 3",
-                "tier4": "tier 4"
+                "tier4": "tier 4",
+                "domains": "Domains",
+                "downtime": "Downtime"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -1887,6 +1889,7 @@
             "damageType": "Damage Type",
             "description": "Description",
             "difficulty": "Difficulty",
+            "downtime": "Downtime",
             "dropActorsHere": "Drop Actors here",
             "duality": "Duality",
             "dualityRoll": "Duality Roll",
@@ -1919,6 +1922,7 @@
             "inactiveEffects": "Inactive Effects",
             "inventory": "Inventory",
             "itemResource": "Item Resource",
+            "label": "Label",
             "level": "Level",
             "levelUp": "Level Up",
             "loadout": "Loadout",
@@ -2137,6 +2141,18 @@
                     "handfullName": "Handfull Name",
                     "bagName": "Bag Name",
                     "chestName": "Chest Name"
+                },
+                "domains": {
+                    "domainsTitle": "Base Domains",
+                    "homebrewDomains": "Homebrew Domains",
+                    "newDomain": "New Domain",
+                    "newDomainInputTitle": "Create Homebrew Domain",
+                    "newDomainInputLabel": "New Domain Name",
+                    "newDomainInputHint": "This cannot be altered later",
+                    "editDomain": "Active Domain",
+                    "deleteDomain": "Delete Domain",
+                    "deleteDomainText": "Are you sure you want to delete the {name} domain? It will be immediately removed from all Actors in this world where it's currently used. Compendiums are not cleared.",
+                    "duplicateDomain": "There is already a domain with this identification."
                 }
             },
             "Menu": {

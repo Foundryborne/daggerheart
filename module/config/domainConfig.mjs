@@ -55,8 +55,17 @@ export const domains = {
     }
 };
 
-export const classDomainMap = {
-    rogue: [domains.midnight, domains.grace]
+export const allDomains = () => ({
+    ...domains,
+    ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).domains
+});
+
+export const orderedDomains = () => {
+    const all = {
+        ...domains,
+        ...game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).domains
+    };
+    return Object.values(all).sort((a, b) => game.i18n.localize(a.label).localeCompare(game.i18n.localize(b.label)));
 };
 
 export const subclassMap = {

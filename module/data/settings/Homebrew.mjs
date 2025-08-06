@@ -2,8 +2,6 @@ import { defaultRestOptions } from '../../config/generalConfig.mjs';
 import { ActionsField } from '../fields/actionField.mjs';
 
 export default class DhHomebrew extends foundry.abstract.DataModel {
-    static LOCALIZATION_PREFIXES = ['DAGGERHEART.SETTINGS.Homebrew']; // Doesn't work for some reason
-
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
@@ -98,7 +96,19 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                         { initial: defaultRestOptions.shortRest() }
                     )
                 })
-            })
+            }),
+            domains: new fields.TypedObjectField(
+                new fields.SchemaField({
+                    id: new fields.StringField({ required: true }),
+                    label: new fields.StringField({ required: true, initial: '', label: 'DAGGERHEART.GENERAL.label' }),
+                    src: new fields.FilePathField({
+                        categories: ['IMAGE'],
+                        base64: false,
+                        label: 'Image'
+                    }),
+                    description: new fields.HTMLField()
+                })
+            )
         };
     }
 }

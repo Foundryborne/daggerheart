@@ -9,7 +9,7 @@
                 {{#with (lookup @root.config.GENERAL.healingTypes applyTo)}}
                     {{localize label}}
                 {{/with}}
-                {{#unless @root.isHealing}}
+                {{#unless @root.hasHealing}}
                     {{#if damageTypes}}
                         {{#each damageTypes as | type | }}
                             {{#with (lookup @root.config.GENERAL.damageTypes type)}}

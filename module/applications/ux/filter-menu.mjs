@@ -219,7 +219,7 @@ export default class FilterMenu extends foundry.applications.ux.ContextMenu {
             }
         }));
 
-        const domainFilter = Object.values(CONFIG.DH.DOMAIN.domains).map(({ id, label }) => ({
+        const domainFilter = Object.values(CONFIG.DH.DOMAIN.allDomains()).map(({ id, label }) => ({
             group: game.i18n.localize('DAGGERHEART.GENERAL.Domain.single'),
             name: game.i18n.localize(label),
             filter: {

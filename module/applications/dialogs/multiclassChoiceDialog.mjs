@@ -34,7 +34,7 @@ export default class MulticlassChoiceDialog extends HandlebarsApplicationMixin(A
         const context = await super._prepareContext(_options);
         context.multiclass = this.multiclass;
         context.domainChoices = this.multiclass.domains.map(value => {
-            const domain = CONFIG.DH.DOMAIN.domains[value];
+            const domain = CONFIG.DH.DOMAIN.allDomains()[value];
             return {
                 value: value,
                 label: game.i18n.localize(domain.label),

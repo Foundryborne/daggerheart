@@ -83,15 +83,16 @@ export const chunkify = (array, chunkSize, mappingFunc) => {
     return chunkifiedArray;
 };
 
-export const tagifyElement = (element, options, onChange, tagifyOptions = {}) => {
+export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}) => {
     const { maxTags } = tagifyOptions;
+    const options = typeof baseOptions === 'object' ? Object.values(baseOptions) : baseOptions;
+
     const tagifyElement = new Tagify(element, {
         tagTextProp: 'name',
         enforceWhitelist: true,
-        whitelist: Object.keys(options).map(key => {
-            const option = options[key];
+        whitelist: options.map(option => {
             return {
-                value: key,
+                value: option.id,
                 name: game.i18n.localize(option.label),
                 src: option.src,
                 description: option.description
@@ -100,7 +101,7 @@ export const tagifyElement = (element, options, onChange, tagifyOptions = {}) =>
         maxTags: typeof maxTags === 'function' ? maxTags() : maxTags,
         dropdown: {
             mapValueTo: 'name',
-            searchKeys: ['name'],
+            searchKeys: ['value'],
             enabled: 0,
             maxItems: 100,
             closeOnSelect: true,
@@ -369,3 +370,7 @@ export async function createEmbeddedItemWithEffects(actor, baseData, update) {
 
     return doc;
 }
+
+export const slugify = name => {
+    return name.toLowerCase().replaceAll(' ', '-').replaceAll('.', '');
+};
