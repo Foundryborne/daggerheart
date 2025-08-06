@@ -1,4 +1,4 @@
-<div class="compendium-sidebar">
+<div class="compendium-sidebar" {{#if (or presets.render.lite presets.render.noFolder)}}style="display: none;"{{/if}}>
     {{#each compendiums}}
         <details class="compendium-container" data-compendium-id="{{id}}" open>
             <summary>

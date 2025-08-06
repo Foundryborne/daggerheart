@@ -594,7 +594,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
      */
     static async #openPack(_event, button) {
         const { key } = button.dataset;
-        game.packs.get(key)?.render(true);
+
+        const presets = {
+            compendium: "daggerheart",
+            folder: key,
+            render: {
+                noFolder: true
+            }
+        };
+
+        return new ItemBrowser({ presets }).render({ force: true });
     }
 
     /**

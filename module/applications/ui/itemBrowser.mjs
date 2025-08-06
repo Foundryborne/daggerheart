@@ -15,6 +15,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this.fieldFilter = [];
         this.selectedMenu = { path: [], data: null };
         this.config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
+        this.presets = options.presets;
+
+        if(this.presets?.folder)
+            ItemBrowser.selectFolder.call(this, null, null, this.presets.compendium, this.presets.folder);
     }
 
     /** @inheritDoc */
@@ -37,10 +41,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             sortList: this.sortList
         },
         position: {
-            width: 1000,
-            height: 800
-            // top: "200px",
-            // left: "120px"
+            top: 70,
+            left: 120,
+            width: 800,
+            height: 600
         }
     };
 
@@ -89,6 +93,11 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this._createSearchFilter();
         this._createFilterInputs();
         this._createDragProcess();
+
+        if(this.presets?.filter) {
+            Object.entries(this.presets.filter).forEach(([k,v]) => this.fieldFilter.find(c => c.name === k).value = v.value);
+            await this._onInputFilterBrowser();
+        }
     }
 
     /* -------------------------------------------- */
@@ -105,7 +114,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         context.formatChoices = this.formatChoices;
         context.fieldFilter = this.fieldFilter = this._createFieldFilter();
         context.items = this.items;
-        console.log(this.items);
+        context.presets = this.presets;
         return context;
     }
 
@@ -128,10 +137,10 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         return folders;
     }
 
-    static async selectFolder(_, target) {
+    static async selectFolder(_, target, compend, folder) {
         const config = foundry.utils.deepClone(this.config),
-            compendium = target.closest('[data-compendium-id]').dataset.compendiumId,
-            folderId = target.dataset.folderId,
+            compendium = compend ?? target.closest('[data-compendium-id]').dataset.compendiumId,
+            folderId = folder ?? target.dataset.folderId,
             folderPath = `${compendium}.folders.${folderId}`,
             folderData = foundry.utils.getProperty(config, folderPath);
 
@@ -186,9 +195,9 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             if (typeof f.field === 'string') f.field = foundry.utils.getProperty(game, f.field);
             else if (typeof f.choices === 'function') {
                 f.choices = f.choices();
-                console.log(f.choices)
             }
             f.name ??= f.key;
+            f.value = this.presets.filter?.[f.name]?.value ?? null;
             // filters.push(f);
         });
         return filters;
@@ -286,11 +295,9 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     async _onInputFilterBrowser(event) {
         this.#filteredItems.browser.input.clear();
 
-        this.fieldFilter.find(f => f.name === event.target.name).value = event.target.value;
+        if(event) this.fieldFilter.find(f => f.name === event.target.name).value = event.target.value;
 
-        // console.log(_event, html, filters)
-
-        for (const li of event.target.closest('[data-application-part="list"]').querySelectorAll('.item-container')) {
+        for (const li of this.element.querySelectorAll('.item-container')) {
             const itemUUID = li.dataset.itemUuid,
                 item = this.items.find(i => i.uuid === itemUUID);
             
@@ -308,6 +315,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             li.hidden = !(search.has(item.id) && matchesMenu);
             // li.hidden = !(matchesMenu);
         }
+
+        console.log(this.fieldFilter)
     }
     
     /**
@@ -316,24 +325,18 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
      * @param {*} filter 
      */
     static evaluateFilter(obj, filter) {
-        const docValue = foundry.utils.getProperty(obj, filter.field);
-        const filterValue = filter.value;
+        let docValue = foundry.utils.getProperty(obj, filter.field);
+        let filterValue = filter.value;
         switch (filter.operator) {
             case "contains2":
-                return Array.isArray(docValue) ? docValue.includes(filterValue) : [docValue].includes(filterValue);
-                break;
+                filterValue = Array.isArray(filterValue) ? filterValue : [filterValue];
+                docValue = Array.isArray(docValue) ? docValue : [docValue];
+                return docValue.some(dv => filterValue.includes(dv));
             case "contains3":
                 return docValue.some(f => f.value === filterValue);
-                break;
             default:
                 return foundry.applications.ux.SearchFilter.evaluateFilter(obj, filter);
-                break;
         }
-        if(filter.operator === "contains2") {
-            const docValue = foundry.utils.getProperty(obj, filter.field);
-            const filterValue = filter.value;
-            return Array.isArray(docValue) ? docValue.includes(filterValue) : [docValue].includes(filterValue);
-        } return foundry.applications.ux.SearchFilter.evaluateFilter(obj, filter)
     }
 
     createFilterData(filter) {
@@ -414,8 +417,9 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     async _onDragStart(event) {
         // console.log(event)
         // ui.context?.close({ animate: false });
-        const { itemUuid } = event.target.closest('[data-item-uuid]').dataset;
-        const dragData = foundry.utils.fromUuidSync(itemUuid).toDragData();
+        const { itemUuid } = event.target.closest('[data-item-uuid]').dataset,
+            item = await foundry.utils.fromUuid(itemUuid),
+            dragData = item.toDragData();
         // console.log(dragData)
         // const dragData = { UUID: itemUuid };
         event.dataTransfer.setData('text/plain', JSON.stringify(dragData));

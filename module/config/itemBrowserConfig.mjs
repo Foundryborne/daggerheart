@@ -169,7 +169,8 @@ export const typeConfig = {
             {
                 key: "system.domain",
                 label: "Domain",
-                field: 'system.api.models.items.DHDomainCard.schema.fields.domain'
+                field: 'system.api.models.items.DHDomainCard.schema.fields.domain',
+                operator: "contains2"
             },
             {
                 key: "system.level",
