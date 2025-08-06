@@ -22,7 +22,8 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         },
         actions: {
             openSettings: DHBaseActorSheet.#openSettings,
-            sendExpToChat: DHBaseActorSheet.#sendExpToChat
+            sendExpToChat: DHBaseActorSheet.#sendExpToChat,
+            increaseActionUses: event => DHBaseActorSheet.#modifyActionUses(event, true)
         },
         contextMenus: [
             {
@@ -68,6 +69,15 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
                 break;
         }
         return context;
+    }
+
+    /**@inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement.querySelectorAll('.item-button .action-uses-button').forEach(element => {
+            element.addEventListener('contextmenu', DHBaseActorSheet.#modifyActionUses);
+        });
     }
 
     /**
@@ -152,6 +162,20 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
         };
 
         cls.create(msg);
+    }
+
+    /**
+     *
+     */
+    static async #modifyActionUses(event, increase) {
+        event.stopPropagation();
+        event.preventDefault();
+        const actionId = event.target.dataset.itemUuid;
+        const action = await foundry.utils.fromUuid(actionId);
+
+        const newValue = (action.uses.value ?? 0) + (increase ? 1 : -1);
+        await action.update({ 'uses.value': Math.min(Math.max(newValue, 0), action.uses.max ?? 0) });
+        this.render();
     }
 
     /* -------------------------------------------- */

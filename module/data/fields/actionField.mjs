@@ -164,6 +164,12 @@ export function ActionMixin(Base) {
             return foundry.utils.getProperty(this.parent, this.systemPath) instanceof Collection;
         }
 
+        get remainingUses() {
+            if (!this.uses) return null;
+
+            return Math.max((this.uses.max ?? 0) - (this.uses.value ?? 0), 0);
+        }
+
         static async create(data, operation = {}) {
             const { parent, renderSheet } = operation;
             let { type } = data;

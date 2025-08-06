@@ -146,9 +146,17 @@ Parameters:
   {{#if (and showActions (eq item.type 'feature'))}}
   <div class="item-buttons">
     {{#each item.system.actions as | action |}}
-    <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
-      {{action.name}}
-    </button>
+    <div class="item-button">
+      <button type="button" data-action="useItem" data-item-uuid="{{action.uuid}}">
+        {{action.name}}
+      </button>
+      {{#if action.uses.max}}
+        <div class="spacer"></div>
+        <button type="button" class="action-uses-button" data-action="increaseActionUses" data-item-uuid="{{action.uuid}}">
+          {{action.remainingUses}}/{{action.uses.max}}
+        </button>
+      {{/if}}
+    </div>
     {{/each}}
   </div>
   {{/if}}

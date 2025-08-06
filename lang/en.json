@@ -2345,7 +2345,8 @@
                 "pendingSaves": "Pending Reaction Rolls",
                 "openSheetSettings": "Open Settings",
                 "rulesOn": "Rules On",
-                "rulesOff": "Rules Off"
+                "rulesOff": "Rules Off",
+                "remainingUses": "Uses refresh on {type}"
             }
         }
     }
