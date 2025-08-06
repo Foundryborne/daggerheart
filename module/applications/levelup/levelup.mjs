@@ -20,10 +20,11 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        classes: ['daggerheart', 'levelup'],
+        classes: ['daggerheart', 'dialog', 'dh-style', 'levelup'],
         position: { width: 1000, height: 'auto' },
         window: {
-            resizable: true
+            resizable: true,
+            icon: 'fa-solid fa-arrow-turn-up'
         },
         actions: {
             save: this.save,
@@ -45,7 +46,10 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/levelup/tabs/tab-navigation.hbs' },
         advancements: { template: 'systems/daggerheart/templates/levelup/tabs/advancements.hbs' },
-        selections: { template: 'systems/daggerheart/templates/levelup/tabs/selections.hbs' },
+        selections: {
+            template: 'systems/daggerheart/templates/levelup/tabs/selections.hbs',
+            scrollable: ['.selections']
+        },
         summary: { template: 'systems/daggerheart/templates/levelup/tabs/summary.hbs' },
         footer: { template: 'systems/daggerheart/templates/levelup/tabs/footer.hbs' }
     };

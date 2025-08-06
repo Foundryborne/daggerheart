@@ -3,6 +3,13 @@
     data-tab='{{tabs.summary.id}}'
     data-group='{{tabs.summary.group}}'
 >
+
+    <div class="summary-header">
+        <side-line-div class="invert"></side-line-div>
+        <h3>{{localize tabs.summary.label}}</h3>
+        <side-line-div></side-line-div>
+    </div>
+
     <div class="section-container levelup-summary-container">
         {{#if this.achievements}}
             <fieldset>
@@ -35,7 +42,7 @@
                     {{/if}}
                     {{#if this.achievements.domainCards.shown}}
                         <div>
-                            <h5>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCards"}}</h5>
+                            <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCards"}}</h5>
                             <div class="summary-selection-container">
                                 {{#each this.achievements.domainCards.values}}
                                     <div class="summary-selection">{{this.name}}</div>
@@ -45,7 +52,7 @@
                     {{/if}}
                     {{#if this.achievements.experiences.shown}}
                         <div>
-                            <h5>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.newExperiences"}}</h5>
+                            <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.newExperiences"}}</h5>
                             <div class="summary-selection-container">
                                 {{#each this.achievements.experiences.values}}
                                     <div class="summary-selection">{{this.name}} {{numberFormat this.modifier sign=true}}</div>
@@ -97,7 +104,7 @@
 
                 {{#if this.advancements.traits}}
                     <div>
-                        <h5>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.traits"}}</h5>
+                        <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.traits"}}</h5>
   
                             {{#each this.advancements.traits}}
                                 <div class="increase-container">
@@ -111,7 +118,7 @@
 
                 {{#if this.advancements.domainCards}}
                     <div>
-                        <h5>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCards"}}</h5>
+                        <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCards"}}</h5>
                         <div class="summary-selection-container">
                             {{#each this.advancements.domainCards}}
                                 <div class="summary-selection">{{this.name}}</div>
@@ -122,7 +129,7 @@
 
                 {{#if this.advancements.experiences}}
                     <div>
-                        <h5>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.experienceIncreases"}}</h5>
+                        <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.experienceIncreases"}}</h5>
                         <div class="summary-selection-container">
                             {{#each this.advancements.experiences}}
                                 <div class="summary-selection">{{this.name}} {{numberFormat this.modifier sign=true}}</div>
@@ -133,7 +140,7 @@
 
                 {{#if this.advancements.subclass}}
                     <div>
-                        <h5>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.subclass"}}</h5>
+                        <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.subclass"}}</h5>
                         <div class="summary-selection-container">
                             {{#each this.advancements.subclass}}
                                 <div class="summary-selection">{{this.name}} - {{this.featureLabel}}</div>
@@ -145,7 +152,7 @@
                 {{#if this.advancements.multiclass}}
                     {{#with this.advancements.multiclass}}
                         <div>
-                            <h5>{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.multiclass"}}</h5>
+                            <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.multiclass"}}</h5>
                             <div class="summary-selection-container">
                                 <div class="summary-selection">{{this.name}}</div>
                                 <div class="summary-selection">{{this.domain}}</div>
@@ -176,9 +183,5 @@
                 {{/each}}
             </div>
         </fieldset>
-
-        <footer class="levelup-footer">
-            <button data-action="save" {{#if (not this.levelup.allLevelsFinished)}}disabled{{/if}}>{{localize "Finish Levelup"}}</button>
-        </footer>
     </div>
 </section>

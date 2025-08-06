@@ -1,3 +1,6 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
 .daggerheart.levelup {
     .tiers-container {
         display: flex;
@@ -38,7 +41,7 @@
                         height: min-content;
 
                         &.multi {
-                            border: 2px solid grey;
+                            border: 2px solid light-dark(@dark-blue-40, @golden-40);
                             padding: 2.4px 2.5px 0;
                             border-radius: 4px;
                             gap: 2px;
@@ -56,7 +59,8 @@
                 }
 
                 .checkbox-group-label {
-                    font-size: 14px;
+                    font-family: @font-body;
+                    font-size: 12px;
                     font-style: italic;
                 }
             }
