@@ -127,13 +127,20 @@
                 }
 
                 .domain-filepicker-row {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: 8px;
+                    width: 100%;
 
                     .form-group {
                         flex: 1;
                         gap: 8px;
+
+                        .form-fields {
+                            flex: 1;
+                            display: flex;
+
+                            file-picker {
+                                flex: 1;
+                            }
+                        }
                     }
                 }
 

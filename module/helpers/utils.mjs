@@ -370,3 +370,7 @@ export async function createEmbeddedItemWithEffects(actor, baseData, update) {
 
     return doc;
 }
+
+export const slugify = name => {
+    return name.toLowerCase().replaceAll(' ', '-').replaceAll('.', '');
+};

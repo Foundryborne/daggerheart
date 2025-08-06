@@ -2146,9 +2146,13 @@
                     "domainsTitle": "Base Domains",
                     "homebrewDomains": "Homebrew Domains",
                     "newDomain": "New Domain",
+                    "newDomainInputTitle": "Create Homebrew Domain",
+                    "newDomainInputLabel": "New Domain Name",
+                    "newDomainInputHint": "This cannot be altered later",
                     "editDomain": "Active Domain",
                     "deleteDomain": "Delete Domain",
-                    "deleteDomainText": "Are you sure you want to delete the {name} domain? It will be removed from all Actors in this world where it's currently used."
+                    "deleteDomainText": "Are you sure you want to delete the {name} domain? It will be immediately removed from all Actors in this world where it's currently used. Compendiums are not cleared.",
+                    "duplicateDomain": "There is already a domain with this identification."
                 }
             },
             "Menu": {

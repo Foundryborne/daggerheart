@@ -38,11 +38,7 @@
         <fieldset>
             <legend>{{localize "DAGGERHEART.SETTINGS.Homebrew.domains.editDomain"}} <button class="add-button" data-action="deleteDomain"><i class="fa-solid fa-x"></i></button></legend>
 
-            <div class="domain-filepicker-row">
-                {{formGroup settingFields.schema.fields.domains.element.fields.label value=selectedDomain.label name=(concat "domains." selectedDomain.id ".label") localize=true}}
-                {{formGroup settingFields.schema.fields.domains.element.fields.src value=selectedDomain.src name=(concat "domains." selectedDomain.id ".src") localize=true}}
-            </div>
-
+            <div class="domain-filepicker-row">{{formGroup settingFields.schema.fields.domains.element.fields.src value=selectedDomain.src name=(concat "domains." selectedDomain.id ".src") localize=true}}</div>
             <textarea name="{{concat "domains." selectedDomain.id ".description"}}">{{selectedDomain.description}}</textarea>
         </fieldset>
     </div>
