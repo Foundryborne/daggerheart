@@ -14,13 +14,13 @@
         {{/if}}
         {{#each costs as | cost index |}}
         <li class="scalable-input">
-            <div class="form-group{{#unless (and scalable (gt maxStep 1))}} span-2{{/unless}}">
+            <div class="form-group{{#unless (and scalable maxStep)}} span-2{{/unless}}">
                 <div class="form-fields nest-inputs">
                     <input name="costs.{{index}}.enabled" type="checkbox"{{#if enabled}} checked{{/if}}>
                     <label>{{label}}{{#if cost.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}</span>{{/if}}</label>
                 </div>
             </div>
-            {{#if (and scalable (gt maxStep 1))}}
+            {{#if (and scalable maxStep)}}
                 <input type="range" value="{{scale}}" min="0" max="{{maxStep}}" step="1" name="costs.{{index}}.scale" data-tooltip="{{localize "DAGGERHEART.ACTIONS.Settings.cost.stepTooltip" step=step}}" data-tooltip-direction="UP">
             {{/if}}
             <label class="modifier-label">{{total}}/{{max}}</label>
