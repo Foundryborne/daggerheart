@@ -194,8 +194,11 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         event.stopPropagation();
 
         const item = await foundry.utils.fromUuid(message.system.origin);
-        const action = item.system.actions.get(event.currentTarget.id);
-        await item.use(action);
+        const action = item.system.attack?.id === event.currentTarget.id ? item.system.attack : item.system.actions.get(event.currentTarget.id);
+        if(event.currentTarget.dataset.directDamage)
+            action.use(event, { byPassRoll: true })
+        else
+            action.use(event);
     }
 
     async actionUseButton(event, message) {

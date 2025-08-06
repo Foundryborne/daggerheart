@@ -324,6 +324,20 @@ export default function DHApplicationMixin(Base) {
 
             if (usable)
                 options.unshift({
+                    name: 'DAGGERHEART.GENERAL.damage',
+                    icon: 'fa-solid fa-explosion',
+                    condition: target => {
+                        const doc = getDocFromElementSync(target);
+                        return doc?.system?.attack?.damage.parts.length || doc?.damage?.parts.length;
+                    },
+                    callback: async (target, event) => {
+                        const doc = await getDocFromElement(target),
+                            action = doc?.system?.attack ?? doc;
+                        return action && action.use(event, { byPassRoll: true })
+                    }
+                });
+
+                options.unshift({
                     name: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
                     icon: 'fa-solid fa-burst',
                     condition: target => {
@@ -334,7 +348,7 @@ export default function DHApplicationMixin(Base) {
                 });
 
             if (toChat)
-                options.unshift({
+                options.push({
                     name: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
                     icon: 'fa-solid fa-message',
                     callback: async target => (await getDocFromElement(target)).toChat(this.document.id)

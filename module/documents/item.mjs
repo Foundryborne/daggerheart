@@ -163,7 +163,7 @@ export default class DHItem extends foundry.documents.Item {
                 img: this.img,
                 tags: this._getTags()
             },
-            actions: item.system.actions,
+            actions: item.system.actionsList,
             description: this.system.description
         };
 

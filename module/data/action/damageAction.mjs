@@ -6,7 +6,7 @@ export default class DHDamageAction extends DHBaseAction {
 
     getFormulaValue(part, data) {
         let formulaValue = part.value;
-        if (this.hasRoll && part.resultBased && data.system.roll.result.duality === -1) return part.valueAlt;
+        if (data.hasRoll && part.resultBased && data.system.roll.result.duality === -1) return part.valueAlt;
 
         const isAdversary = this.actor.type === 'adversary';
         if (isAdversary && this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
