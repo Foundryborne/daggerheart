@@ -1,5 +1,28 @@
+@import '../../utils/colors.less';
+@import '../../utils/fonts.less';
+
 .daggerheart.levelup {
+    .summary-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 10px;
+
+        h3 {
+            font-family: @font-subtitle;
+            color: light-dark(@dark, @beige);
+            margin: 0;
+            white-space: nowrap;
+        }
+    }
     .levelup-summary-container {
+        overflow: auto;
+        padding: 10px 0;
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+        max-height: 700px;
+        mask-image: linear-gradient(0deg, transparent 0%, black 5%, black 95%, transparent 100%);
+
         .level-achievements-container,
         .level-advancements-container {
             display: flex;
@@ -11,7 +34,7 @@
             h4,
             h5 {
                 margin: 0;
-                color: var(--color-text-secondary);
+                color: light-dark(@dark, @beige);
             }
         }
 
@@ -19,7 +42,19 @@
             display: flex;
             align-items: center;
             gap: 4px;
-            font-size: 20px;
+            font-size: 14px;
+            font-family: @font-body;
+            color: light-dark(@dark, @beige);
+        }
+
+        h5.summary-section {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 16px;
+            font-family: @font-subtitle;
+            color: light-dark(@dark, @beige);
+            margin-bottom: 5px;
         }
 
         .summary-selection-container {
@@ -28,9 +63,11 @@
 
             .summary-selection {
                 border: 2px solid;
-                border-radius: 6px;
+                border-radius: 3px;
                 padding: 0 4px;
-                font-size: 18px;
+                font-size: 14px;
+                font-family: @font-body;
+                color: light-dark(@dark, @beige);
             }
         }
     }

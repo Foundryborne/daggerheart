@@ -1,0 +1,51 @@
+<section
+    class="tab {{tabs.downtime.cssClass}} {{tabs.downtime.id}}"
+    data-tab="{{tabs.downtime.id}}"
+    data-group="{{tabs.downtime.group}}"
+>
+    <fieldset class="two-columns even">
+        <legend>{{localize "DAGGERHEART.SETTINGS.Homebrew.downtimeMoves"}}</legend>
+
+        <fieldset class="start-align">
+            <legend>
+                {{localize "DAGGERHEART.APPLICATIONS.Downtime.longRest.title"}} 
+                <a data-action="addItem" data-type="longRest"><i class="fa-solid fa-plus"></i></a>
+                <a data-action="resetMoves" data-type="longRest"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+            </legend>
+
+            <div class="form-group setting-group-field">
+                <label>{{localize "DAGGERHEART.SETTINGS.Homebrew.nrChoices"}}</label>
+                <div class="form-fields">
+                    <input type="text" name="restMoves.longRest.nrChoices" value="{{settingFields._source.restMoves.longRest.nrChoices}}" />
+                </div>
+            </div>
+            
+            <div class="settings-items">
+                {{#each settingFields._source.restMoves.longRest.moves as |move id|}}
+                    {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" this type="longRest" id=id }}
+                {{/each}}
+            </div>
+        </fieldset>
+
+        <fieldset class="start-align">
+            <legend>
+                {{localize "DAGGERHEART.APPLICATIONS.Downtime.shortRest.title"}}
+                <a data-action="addItem" data-type="shortRest"><i class="fa-solid fa-plus"></i></a>
+                <a data-action="resetMoves" data-type="shortRest"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+            </legend>
+
+            <div class="form-group setting-group-field">
+                <label>{{localize "DAGGERHEART.SETTINGS.Homebrew.nrChoices"}}</label>
+                <div class="form-fields">
+                    <input type="text" name="restMoves.shortRest.nrChoices" value="{{settingFields._source.restMoves.shortRest.nrChoices}}" />
+                </div>
+            </div>
+
+            <div class="settings-items">
+                {{#each settingFields._source.restMoves.shortRest.moves as |move id|}}
+                    {{> "systems/daggerheart/templates/settings/components/settings-item-line.hbs" this type="shortRest" id=id }}
+                {{/each}}
+            </div>
+        </fieldset>
+    </fieldset>
+</section>

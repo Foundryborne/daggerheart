@@ -1,18 +1,38 @@
+@import '../../utils/fonts.less';
+@import '../../utils/colors.less';
+
 .daggerheart.levelup {
     .levelup-selections-container {
+        overflow: auto;
+        padding: 10px 0;
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+        max-height: 500px;
+        mask-image: linear-gradient(0deg, transparent 0%, black 5%, black 95%, transparent 100%);
+
         .achievement-experience-cards {
             display: flex;
             gap: 8px;
 
             .achievement-experience-card {
-                border: 1px solid;
-                border-radius: 4px;
-                padding-right: 4px;
-                font-size: 18px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                background: light-dark(@dark-blue-40, @golden-40);
+                border-radius: 3px;
+                padding: 5px;
+                font-size: 16px;
                 gap: 4px;
+                width: 100%;
+
+                input {
+                    background: light-dark(@soft-shadow, @semi-transparent-dark-blue);
+                    width: 80%;
+                }
+
+                span {
+                    font-family: @font-body;
+                }
 
                 .achievement-experience-marker {
                     border: 1px solid;
@@ -30,10 +50,13 @@
         .levelup-card-selection {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 40px;
+            height: 190px;
 
             .card-preview-container {
-                width: calc(100% * (1 / 5));
+                height: 100%;
+                max-width: 200px;
             }
 
             .levelup-domains-selection-container {
@@ -89,10 +112,30 @@
             }
         }
 
+        .card-section {
+            flex: 1 1 100%;
+
+            .card-section-header {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                margin-bottom: 10px;
+
+                h3 {
+                    font-family: @font-subtitle;
+                    color: light-dark(@dark, @beige);
+                    margin: 0;
+                    white-space: nowrap;
+                }
+            }
+        }
+
         .levelup-selections-title {
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 0 12px;
         }
 
         .levelup-radio-choices {

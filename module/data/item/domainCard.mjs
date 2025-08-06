@@ -18,7 +18,7 @@ export default class DHDomainCard extends BaseDataItem {
         return {
             ...super.defineSchema(),
             domain: new fields.StringField({
-                choices: CONFIG.DH.DOMAIN.domains,
+                choices: CONFIG.DH.DOMAIN.allDomains,
                 required: true,
                 initial: CONFIG.DH.DOMAIN.domains.arcana.id
             }),

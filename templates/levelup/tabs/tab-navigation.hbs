@@ -1,3 +1,4 @@
+{{#unless tabs.summary.active}}
 <section class='tab-navigation'>
     {{#if levelupAuto}}
         <line-div></line-div>
@@ -9,36 +10,19 @@
                             <div class="levelup-tab-container">
                                 <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
                                     {{localize tab.label}}
+                                    {{#if tab.progress}}
+                                        <span>{{tab.progress.selected}}/{{tab.progress.max}}</span>
+                                    {{/if}}
                                 </a>
-                                {{#if tab.progress}}
-                                    <div>{{tab.progress.selected}}/{{tab.progress.max}}</div>
-                                {{/if}}
                             </div>
                         {{/if}}
                     {{/each}}
                 </nav>
             {{/if}}
-            {{#if this.levelupAuto}}
-                <div class="levelup-navigation-actions {{#if (not this.showTabs)}}test{{/if}}">       
-                    {{#if this.navigate.previous.fromSummary}}
-                        <button data-action="activatePart" data-part="advancements">{{localize "DAGGERHEART.APPLICATIONS.Levelup.navigateToLevelup"}}</button>
-                    {{else}}
-                        {{#if (not this.navigate.previous.disabled)}}
-                            <button data-action="updateCurrentLevel" >{{this.navigate.previous.label}}</button>
-                        {{/if}}
-                    {{/if}}
-                    {{#if this.navigate.next.show}}
-                        {{#if this.navigate.next.toSummary}}
-                            <button data-action="activatePart" data-part="summary"  {{#if this.navigate.next.disabled}}disabled{{/if}}>{{localize "DAGGERHEART.APPLICATIONS.Levelup.navigateToSummary"}}</button>
-                        {{else}}
-                            <button data-action="updateCurrentLevel" data-forward="true" {{#if this.navigate.next.disabled}}disabled{{/if}}>{{this.navigate.next.label}}</button>
-                        {{/if}}
-                    {{else}}
-                        <div></div>
-                    {{/if}}
-                </div>
-            {{/if}}
         </div>
         <line-div></line-div>
     {{/if}}
 </section>
+{{else}}
+<section></section>
+{{/unless}}

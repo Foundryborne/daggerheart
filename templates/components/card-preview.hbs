@@ -3,13 +3,15 @@
     {{#if (not disabled)}}data-action="viewCompendium"{{/if}} data-compendium="{{this.compendium}}" data-path="{{this.path}}" data-limit="{{this.limit}}"
 >
     {{#if this.img}}
-        <img class="preview-image-container" src="{{this.img}}" />
-        <div class="preview-text-container">
-            {{#if altPartialBlock}}
-                {{> @partial-block }}
-            {{else}}
-                {{this.name}}
-            {{/if}}
+        <div class="preview-selected-container">
+            <img class="preview-image-container" src="{{this.img}}" />
+            <div class="preview-text-container">
+                {{#if altPartialBlock}}
+                    {{> @partial-block }}
+                {{else}}
+                    {{this.name}}
+                {{/if}}
+            </div>
         </div>
     {{else}}
         <div class="preview-empty-container">

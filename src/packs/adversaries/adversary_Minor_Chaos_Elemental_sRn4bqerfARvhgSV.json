@@ -68,6 +68,7 @@
     "description": "<p>A coruscating mass of uncontrollable magic.</p>",
     "attack": {
       "name": "Warp Blast",
+      "img": "icons/magic/light/beam-rays-magenta.webp",
       "roll": {
         "bonus": 3,
         "type": "attack"

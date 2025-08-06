@@ -14,7 +14,7 @@ export default class ClassSheet extends DHBaseItemSheet {
         tagifyConfigs: [
             {
                 selector: '.domain-input',
-                options: () => CONFIG.DH.DOMAIN.domains,
+                options: () => CONFIG.DH.DOMAIN.orderedDomains(),
                 callback: ClassSheet.#onDomainSelect,
                 tagifyOptions: {
                     maxTags: () => game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxDomains
