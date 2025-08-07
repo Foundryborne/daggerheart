@@ -67,7 +67,7 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
 
         // Determine the color to use
         const fillColor =
-            number === 0 ? foundry.utils.Color.fromRGB([1, 0, 0]) : foundry.utils.Color.fromRGB([0, 0, 1]);
+            number === 0 ? foundry.utils.Color.fromRGB([1, 0, 0]) : foundry.utils.Color.fromString('#0032b1');
 
         // Draw the bar
         const widthUnit = bw / data.max;
