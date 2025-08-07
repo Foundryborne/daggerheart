@@ -1,0 +1,180 @@
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 1px 1px #f3c267;
+  }
+  100% {
+    box-shadow: 0 0 2px 2px #f3c267;
+  }
+}
+@keyframes glow-dark {
+  0% {
+    box-shadow: 0 0 1px 1px #18162e;
+  }
+  100% {
+    box-shadow: 0 0 2px 2px #18162e;
+  }
+}
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cinzel/v25/8vIU7ww63mVu7gtR-kwKxNvkNOjw-tbnTYo.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cinzel/v25/8vIU7ww63mVu7gtR-kwKxNvkNOjw-jHgTYo.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Cinzel Decorative';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v18/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v30/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v30/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-.ttf) format('truetype');
+}
+.application.sheet.daggerheart.dh-style h1 {
+  font-family: 'Cinzel Decorative', serif;
+  margin: 0;
+  border: none;
+  font-weight: normal;
+}
+.application.sheet.daggerheart.dh-style h2,
+.application.sheet.daggerheart.dh-style h3 {
+  font-family: 'Cinzel', serif;
+  margin: 0;
+  border: none;
+  font-weight: normal;
+}
+.application.sheet.daggerheart.dh-style h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border: none;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: none;
+  color: #f3c267;
+  font-weight: normal;
+}
+.application.sheet.daggerheart.dh-style h5 {
+  font-size: 14px;
+  color: #f3c267;
+  margin: 0;
+  font-weight: normal;
+}
+.application.sheet.daggerheart.dh-style p,
+.application.sheet.daggerheart.dh-style span {
+  font-family: 'Montserrat', sans-serif;
+}
+.application.sheet.daggerheart.dh-style small {
+  font-family: 'Montserrat', sans-serif;
+  opacity: 0.8;
+}
+/**
+ * Applies theme-specific styles.
+ * @param {Rules}    @darkRules  - Styles to apply when `.theme-dark` is present
+ * @param {Rules}    @lightRules - Styles to apply when `.theme-light` is present
+ */
+/**
+ * Apply a style to sidebar titles.
+ */
+/**
+ * Apply default item list style.
+ * @param {Length} @gap - The vertical spacing between elements (e.g., 10px, 1rem)
+ */
+.themed.theme-dark .application.daggerheart.sheet.dh-style.dialog,
+.themed.theme-dark.application.daggerheart.sheet.dh-style.dialog,
+body.theme-dark .application.daggerheart.dialog,
+body.theme-dark.application.daggerheart.dialog {
+  background-image: url('../assets/parchments/dh-parchment-dark.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.themed.theme-light .application.daggerheart.sheet.dh-style.dialog,
+.themed.theme-light.application.daggerheart.sheet.dh-style.dialog,
+body.theme-light .application.daggerheart.dialog,
+body.theme-light.application.daggerheart.dialog {
+  background-image: url('../assets/parchments/dh-parchment-light.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.application.dialog.dh-style {
+  border: none;
+}
+.application.dialog.dh-style .window-header {
+  background: transparent;
+  border-bottom: none;
+  color: light-dark(#18162e, #efe6d8);
+}
+.application.dialog.dh-style .window-header h1 {
+  color: light-dark(#18162e, #efe6d8);
+  font-family: 'Montserrat', sans-serif;
+}
+.application.dialog.dh-style .window-header button {
+  color: light-dark(#18162e, #efe6d8);
+  background: light-dark(transparent, #0e0d15);
+  border: 1px solid light-dark(#18162e, transparent);
+  padding: 0;
+}
+.application.dialog.dh-style .window-header button:hover {
+  border: 1px solid light-dark(#18162e, #f3c267);
+  color: light-dark(#18162e, #f3c267);
+}
+.application.dialog.dh-style .submit-btn {
+  width: 100%;
+  height: 38px;
+}
+.application.dialog.dh-style .formula-label {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: light-dark(#222, #efe6d8);
+}
+.application.dialog.dh-style .damage-formula {
+  display: flex;
+  justify-content: space-between;
+}
+.application.dialog.dh-style .damage-formula .damage-details {
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.application.dialog.dh-style.two-big-buttons .window-content {
+  padding-top: 0;
+}
+.application.dialog.dh-style.two-big-buttons .window-content .form-footer {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+}
+.application.dialog.dh-style.two-big-buttons .window-content button[type='submit'] {
+  gap: 5px;
+  flex-direction: row;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: var(--font-size-14);
+  height: 40px;
+  white-space: nowrap;
+}
+.application.dialog.dh-style.two-big-buttons .window-content button[type='submit'] i {
+  font-size: var(--font-size-16);
+}

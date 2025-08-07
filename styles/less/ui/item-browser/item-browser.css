@@ -1,0 +1,423 @@
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 1px 1px #f3c267;
+  }
+  100% {
+    box-shadow: 0 0 2px 2px #f3c267;
+  }
+}
+@keyframes glow-dark {
+  0% {
+    box-shadow: 0 0 1px 1px #18162e;
+  }
+  100% {
+    box-shadow: 0 0 2px 2px #18162e;
+  }
+}
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cinzel/v25/8vIU7ww63mVu7gtR-kwKxNvkNOjw-tbnTYo.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cinzel/v25/8vIU7ww63mVu7gtR-kwKxNvkNOjw-jHgTYo.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Cinzel Decorative';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/cinzeldecorative/v18/daaHSScvJGqLYhG8nNt8KPPswUAPniZoaelD.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v30/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v30/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-.ttf) format('truetype');
+}
+.application.sheet.daggerheart.dh-style h1 {
+  font-family: 'Cinzel Decorative', serif;
+  margin: 0;
+  border: none;
+  font-weight: normal;
+}
+.application.sheet.daggerheart.dh-style h2,
+.application.sheet.daggerheart.dh-style h3 {
+  font-family: 'Cinzel', serif;
+  margin: 0;
+  border: none;
+  font-weight: normal;
+}
+.application.sheet.daggerheart.dh-style h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border: none;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: none;
+  color: #f3c267;
+  font-weight: normal;
+}
+.application.sheet.daggerheart.dh-style h5 {
+  font-size: 14px;
+  color: #f3c267;
+  margin: 0;
+  font-weight: normal;
+}
+.application.sheet.daggerheart.dh-style p,
+.application.sheet.daggerheart.dh-style span {
+  font-family: 'Montserrat', sans-serif;
+}
+.application.sheet.daggerheart.dh-style small {
+  font-family: 'Montserrat', sans-serif;
+  opacity: 0.8;
+}
+.application.daggerheart.dh-style.compendium-browser {
+  border: initial;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content {
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content > div {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content div[data-application-part='list'] {
+  flex: 1;
+  gap: 10px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .compendium-sidebar {
+  position: relative;
+  width: 200px;
+  padding: 16px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .compendium-sidebar::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  background: #f3c267;
+  mask-image: linear-gradient(180deg, transparent 0%, black 50%, transparent 100%);
+  width: 1px;
+  height: 100%;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .compendium-sidebar .compendium-container summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  padding: 2px 12px;
+  color: light-dark(#222, #efe6d8);
+  list-style: none;
+  cursor: pointer;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .compendium-sidebar .compendium-container summary::marker,
+.application.daggerheart.dh-style.compendium-browser .window-content .compendium-sidebar .compendium-container summary::-webkit-details-marker {
+  display: none;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .compendium-sidebar .compendium-container > .folder-list {
+  padding: 10px;
+  gap: 0;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .compendium-sidebar .compendium-container > .folder-list > div.folder-list > div {
+  margin-top: 5px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .compendium-results {
+  padding: 16px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .menu-path,
+.application.daggerheart.dh-style.compendium-browser .window-content option,
+.application.daggerheart.dh-style.compendium-browser .window-content select {
+  text-transform: capitalize;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .menu-path > :first-child {
+  font-weight: bold;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .menu-path {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .menu-path .item-path {
+  font-family: 'Montserrat', sans-serif;
+  color: light-dark(#222, #efe6d8);
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .menu-path .item-path.path-link {
+  color: light-dark(#222, #efe6d8);
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .folder-list,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-header > div {
+  gap: 10px;
+  cursor: pointer;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .wrapper,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .form-group {
+  white-space: nowrap;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .filter-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .filter-header .search-bar {
+  position: relative;
+  color: light-dark(#18162e50, #efe6d850);
+  width: 100%;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .filter-header .search-bar input {
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  background: light-dark(#18162e10, #f3c26710);
+  border: none;
+  outline: 2px solid transparent;
+  transition: all 0.3s ease;
+  padding: 0 20px;
+  width: 100%;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .filter-header .search-bar input:hover {
+  outline: 2px solid light-dark(#222, #f3c267);
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .filter-header .search-bar input:placeholder {
+  color: light-dark(#18162e50, #efe6d850);
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .filter-header .search-bar input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-filter .filter-header .search-bar .icon {
+  align-content: center;
+  height: 32px;
+  position: absolute;
+  right: 20px;
+  font-size: 16px;
+  z-index: 1;
+  color: light-dark(#18162e50, #efe6d850);
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .folder-list {
+  display: flex;
+  flex-direction: column;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .folder-list [data-folder-id] {
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.1s ease;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .folder-list .is-selected,
+.application.daggerheart.dh-style.compendium-browser .window-content .folder-list [data-folder-id]:hover {
+  font-weight: bold;
+  border-radius: 3px;
+  background-color: light-dark(#18162e40, #f3c26740);
+  color: light-dark(#18162e, #f3c267);
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .folder-list .subfolder-list {
+  margin: 5px 0;
+  gap: 0;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .folder-list .subfolder-list .is-selected,
+.application.daggerheart.dh-style.compendium-browser .window-content .folder-list .subfolder-list [data-folder-id]:hover {
+  font-weight: bold;
+  border-radius: 3px;
+  background-color: light-dark(#18162e10, #f3c26710);
+  color: light-dark(#18162e, #f3c267);
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header .item-info,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-header .item-info {
+  display: grid;
+  grid-template-columns: 40px 400px repeat(auto-fit, minmax(100px, 1fr));
+  align-items: center;
+  text-transform: capitalize;
+  font-family: 'Montserrat', sans-serif;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: light-dark(#18162e, #f3c267) transparent;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list [data-action='expandContent'] {
+  display: flex;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header > *,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list [data-action='expandContent'] > * {
+  flex: 1;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header .item-list-img,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list [data-action='expandContent'] .item-list-img {
+  width: 40px;
+  flex: unset;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header .item-list-name,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list [data-action='expandContent'] .item-list-name {
+  flex-grow: 3 !important;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header {
+  align-items: center;
+  background-color: light-dark(#22222215, #2b1d0380);
+  color: light-dark(#18162e, #f3c267);
+  border: 1px solid light-dark(#18162e, #f3c267);
+  border-radius: 3px;
+  min-height: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header > * {
+  white-space: nowrap;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header div[data-sort-key]:after {
+  font-family: 'Font Awesome 6 Pro';
+  margin-left: 5px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header div[data-sort-key][data-sort-type='ASC']:after {
+  content: '\f0d7';
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list-header div[data-sort-key][data-sort-type='DESC']:after {
+  content: '\f0d8';
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-container:hover {
+  background: light-dark(#18162e10, #f3c26710);
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper h1 {
+  font-size: 32px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper h2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper h4 {
+  font-size: 16px;
+  color: #efe6d8;
+  font-weight: 600;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper ul,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper ol {
+  margin: 1rem 0;
+  padding: 0 0 0 1.25rem;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper ul li,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper ol li {
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 0.25rem;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list .item-desc .wrapper ul {
+  list-style: disc;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .item-list img {
+  border-radius: 5px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .filter-content {
+  padding: 0px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .filter-content,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-desc {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: all 0.3s ease-in-out;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .filter-content .wrapper,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-desc .wrapper {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .filter-content .wrapper .form-group label,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-desc .wrapper .form-group label {
+  flex: 1;
+  font-family: 'Montserrat', sans-serif;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .filter-content .wrapper .form-group .form-fields,
+.application.daggerheart.dh-style.compendium-browser .window-content .item-desc .wrapper .form-group .form-fields {
+  width: 100%;
+  flex: 2;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .filter-content .wrapper .form-group .form-fields input[type='number'],
+.application.daggerheart.dh-style.compendium-browser .window-content .item-desc .wrapper .form-group .form-fields input[type='number'] {
+  text-align: center;
+  color: light-dark(#222, #efe6d8);
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .expanded + .extensible {
+  grid-template-rows: 1fr;
+  padding-top: 10px;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .welcome-message {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  height: -webkit-fill-available;
+  margin: 0;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .welcome-message .title {
+  font-family: 'Cinzel', serif;
+  margin: 0;
+  text-align: center;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content .welcome-message .hint {
+  font-family: 'Montserrat', sans-serif;
+}
+.application.daggerheart.dh-style.compendium-browser .window-content [disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.application.daggerheart.dh-style.compendium-browser.lite .menu-path,
+.application.daggerheart.dh-style.compendium-browser.no-folder .menu-path {
+  display: none;
+}
+.application.daggerheart.dh-style.compendium-browser.lite .filter-header {
+  display: none;
+}
+.application.daggerheart.dh-style.compendium-browser.no-filter .filter-header a[data-action='expandContent'] {
+  display: none;
+}

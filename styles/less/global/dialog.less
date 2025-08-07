@@ -78,16 +78,17 @@
                 grid-auto-flow: column;
             }
 
-            button[type="submit"] {
-                flex-direction: column-reverse;
+            button[type='submit'] {
+                gap: 5px;
+                flex-direction: row;
                 font-family: @font-body;
+                font-weight: bold;
                 font-size: var(--font-size-14);
-                    height: unset;
-                    padding: .5rem 1rem;
-                    white-space: nowrap;
+                height: 40px;
+                white-space: nowrap;
 
                 i {
-                    font-size: var(--font-size-20);
+                    font-size: var(--font-size-16);
                 }
             }
         }

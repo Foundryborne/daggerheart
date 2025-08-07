@@ -114,7 +114,8 @@
             .wrapper,
             .form-group {
                 display: flex;
-                align-items: center;
+                flex-direction: column;
+                align-items: start;
                 gap: 10px;
             }
 
@@ -203,12 +204,14 @@
         }
 
         .item-list-header,
-        .item-header > div {
-            display: grid;
-            grid-template-columns: 40px 400px repeat(auto-fit, minmax(100px, 1fr));
-            align-items: center;
-            text-transform: capitalize;
-            // gap: 10px;
+        .item-header {
+            .item-info {
+                display: grid;
+                grid-template-columns: 40px 400px repeat(auto-fit, minmax(100px, 1fr));
+                align-items: center;
+                text-transform: capitalize;
+                font-family: @font-body;
+            }
         }
 
         .item-list-header,
@@ -220,7 +223,7 @@
         }
 
         .item-list-header,
-        .item-list [data-action="expandContent"] {
+        .item-list [data-action='expandContent'] {
             display: flex;
 
             > * {
@@ -236,11 +239,14 @@
         }
 
         .item-list-header {
-            background-color: light-dark(transparent, #18162e);
-            color: light-dark(#18162e, #f3c267);
-            border: 1px solid light-dark(#18162e, #f3c267);
-            border-radius: 6px;
+            align-items: center;
+            background-color: light-dark(@dark-15, @dark-golden-80);
+            color: light-dark(@dark-blue, @golden);
+            border: 1px solid light-dark(@dark-blue, @golden);
+            border-radius: 3px;
             min-height: 30px;
+            font-family: @font-body;
+            font-weight: bold;
 
             > * {
                 white-space: nowrap;
@@ -248,16 +254,16 @@
 
             div[data-sort-key] {
                 &:after {
-                    font-family: "Font Awesome 6 Pro";
+                    font-family: 'Font Awesome 6 Pro';
                     margin-left: 5px;
                 }
 
-                &[data-sort-type="ASC"]:after {
-                    content : "\f0d7";
+                &[data-sort-type='ASC']:after {
+                    content: '\f0d7';
                 }
 
-                &[data-sort-type="DESC"]:after {
-                    content : "\f0d8";
+                &[data-sort-type='DESC']:after {
+                    content: '\f0d8';
                 }
             }
         }
@@ -269,7 +275,7 @@
 
             .item-container {
                 &:hover {
-                    background: rgba(255, 255, 255, 0.1);
+                    background: light-dark(@dark-blue-10, @golden-10);
                 }
             }
 
@@ -278,6 +284,39 @@
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
+                font-family: @font-body;
+
+                h1 {
+                    font-size: 32px;
+                }
+                h2 {
+                    font-size: 28px;
+                    font-weight: 600;
+                }
+                h3 {
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+                h4 {
+                    font-size: 16px;
+                    color: @beige;
+                    font-weight: 600;
+                }
+
+                ul,
+                ol {
+                    margin: 1rem 0;
+                    padding: 0 0 0 1.25rem;
+
+                    li {
+                        font-family: @font-body;
+                        margin-bottom: 0.25rem;
+                    }
+                }
+
+                ul {
+                    list-style: disc;
+                }
             }
 
             img {
@@ -306,6 +345,7 @@
                         font-family: @font-body;
                     }
                     .form-fields {
+                        width: 100%;
                         flex: 2;
 
                         input[type='number'] {
@@ -342,12 +382,13 @@
         }
 
         [disabled] {
-            opacity: .5;
+            opacity: 0.5;
             pointer-events: none;
         }
     }
 
-    &.lite, &.no-folder {
+    &.lite,
+    &.no-folder {
         .menu-path {
             display: none;
         }
@@ -361,7 +402,7 @@
 
     &.no-filter {
         .filter-header {
-            a[data-action="expandContent"] {
+            a[data-action='expandContent'] {
                 display: none;
             }
         }
