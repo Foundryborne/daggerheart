@@ -88,7 +88,10 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             }
         }
 
-        await this.viewed.update({ turn: this.viewed.turn === toggleTurn ? null : toggleTurn });
+        await this.viewed.update({
+            turn: this.viewed.turn === toggleTurn ? null : toggleTurn,
+            round: this.viewed.round + 1
+        });
         await combatant.update(update);
     }
 
