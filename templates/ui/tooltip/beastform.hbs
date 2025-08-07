@@ -2,4 +2,7 @@
     <h2 class="tooltip-title">{{item.name}}</h2>
     <img class="tooltip-image" src="{{item.img}}" />
     <div class="tooltip-description">{{{description}}}</div>
+
+    {{> "systems/daggerheart/templates/ui/tooltip/parts/tooltipChips.hbs" chips=item.system.advantageOn label=(localize "DAGGERHEART.ITEMS.Beastform.FIELDS.advantageOn.label")}}
+    {{> "systems/daggerheart/templates/ui/tooltip/parts/tooltipTags.hbs" features=item.system.features label=(localize "DAGGERHEART.GENERAL.features")}}
 </div>
