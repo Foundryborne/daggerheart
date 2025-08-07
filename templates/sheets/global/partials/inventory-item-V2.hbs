@@ -19,7 +19,7 @@ Parameters:
   data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}" draggable="true">
   <div class="inventory-item-header" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
-    <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type ' attack')) "useItem" (ifThen
+    <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type 'attack')) "useItem" (ifThen
       (hasProperty item "toChat" ) "toChat" "editDoc" ) }}' {{#unless hideTooltip}} {{#if (eq type 'attack' )}}
       data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
       <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
