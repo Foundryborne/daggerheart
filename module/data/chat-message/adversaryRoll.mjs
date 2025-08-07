@@ -64,9 +64,9 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return actionItem.system.actionsList?.find(a => a.id === this.source.action);
     }
 
-    get messageTemplate() {
-        return 'systems/daggerheart/templates/ui/chat/roll.hbs';
-    }
+    // get messageTemplate() {
+    //     return 'systems/daggerheart/templates/ui/chat/roll.hbs';
+    // }
 
     get targetMode() {
         return this.targetSelection;
@@ -100,7 +100,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                     this.oldTargets.push(ct);
             });
             if(this.hasSave) this.setPendingSaves();
-            if(this.currentTargets.length) {
+            // if(this.currentTargets.length) {
                 if(!this.parent._id) return;
                 const updates = await this.parent.update(
                     {
@@ -111,7 +111,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 );
                 if(!updates && ui.chat.collection.get(this.parent.id))
                     ui.chat.updateMessage(this.parent);
-            }
+            // }
         }
     }
 

@@ -22,6 +22,7 @@
             </span>
         {{/if}}
     </div>
+    {{#unless isPrivate}}
     <div class="dice-roll" data-action="expandRoll">
         <div class="roll-part-header"><div><span>{{localize "DAGGERHEART.GENERAL.formula"}}</span></div></div>
         <div class="roll-part-content dice-result">
@@ -87,4 +88,5 @@
             </div>
         </div>
     </div>
+    {{/unless}}
 </div>

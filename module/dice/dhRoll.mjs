@@ -15,6 +15,8 @@ export default class DHRoll extends Roll {
 
     static messageType = 'adversaryRoll';
 
+    static CHAT_TEMPLATE = 'systems/daggerheart/templates/ui/chat/roll.hbs';
+
     static DefaultDialog = D20RollDialog;
 
     static async build(config = {}, message = {}) {
@@ -94,6 +96,39 @@ export default class DHRoll extends Roll {
             };
         if(roll._evaluated) return await cls.create(msg, { rollMode: config.selectedRollMode });
         return msg;
+    }
+    
+    /** @inheritDoc */
+    async render({flavor, template=this.constructor.CHAT_TEMPLATE, isPrivate=false, ...options}={}) {
+        if ( !this._evaluated ) return;
+        const chatData = await this._prepareChatRenderContext({flavor, isPrivate, ...options});
+        return foundry.applications.handlebars.renderTemplate(template, chatData);
+    }
+    
+    /** @inheritDoc */
+    async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
+        if(isPrivate) {
+            return {
+                user: game.user.id,
+                flavor: null,
+                title: "???",
+                roll: {
+                    total: "??"
+                },
+                hasRoll: true,
+                isPrivate
+            }
+        } else {
+            options.message.system.user = game.user.id;
+            return options.message.system;
+        }
+        // return {
+        //     formula: isPrivate ? "???" : this._formula,
+        //     flavor: isPrivate ? null : flavor ?? this.options.flavor,
+        //     user: game.user.id,
+        //     tooltip: isPrivate ? "" : await this.getTooltip(),
+        //     total: isPrivate ? "?" : Math.round(this.total * 100) / 100
+        // };
     }
 
     static applyKeybindings(config) {
