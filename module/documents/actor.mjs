@@ -202,7 +202,8 @@ export default class DhpActor extends Actor {
                     await this.update({
                         [`system.experiences.${experienceKey}`]: {
                             name: experience.name,
-                            value: experience.modifier
+                            value: experience.modifier,
+                            core: true
                         }
                     });
 
@@ -210,7 +211,8 @@ export default class DhpActor extends Actor {
                         await this.system.companion.update({
                             [`system.experiences.${experienceKey}`]: {
                                 name: '',
-                                value: experience.modifier
+                                value: experience.modifier,
+                                core: true
                             }
                         });
                     }
@@ -559,8 +561,8 @@ export default class DhpActor extends Actor {
 
         updates.forEach(
             u =>
-            (u.value =
-                u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value)
+                (u.value =
+                    u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false ? u.value * -1 : u.value)
         );
 
         await this.modifyResource(updates);
@@ -606,9 +608,9 @@ export default class DhpActor extends Actor {
 
         updates.forEach(
             u =>
-            (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
-                ? u.value * -1
-                : u.value)
+                (u.value = !(u.key === 'fear' || this.system?.resources?.[u.key]?.isReversed === false)
+                    ? u.value * -1
+                    : u.value)
         );
 
         await this.modifyResource(updates);

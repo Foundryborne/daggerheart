@@ -20,8 +20,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             class: this.character.system.class?.value ?? {},
             subclass: this.character.system.class?.subclass ?? {},
             experiences: {
-                [foundry.utils.randomID()]: { name: '', value: 2 },
-                [foundry.utils.randomID()]: { name: '', value: 2 }
+                [foundry.utils.randomID()]: { name: '', value: 2, core: true },
+                [foundry.utils.randomID()]: { name: '', value: 2, core: true }
             },
             domainCards: {
                 [foundry.utils.randomID()]: {},
@@ -588,12 +588,21 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             this.setup.class.system.inventory.take.filter(x => x)
         );
 
-        await this.character.update({
-            system: {
-                traits: this.setup.traits,
-                experiences: this.setup.experiences
-            }
-        });
+        await this.character.update(
+            {
+                system: {
+                    traits: this.setup.traits,
+                    experiences: {
+                        ...this.setup.experiences,
+                        ...Object.keys(this.character.system.experiences).reduce((acc, key) => {
+                            acc[`-=${key}`] = null;
+                            return acc;
+                        }, {})
+                    }
+                }
+            },
+            { overwrite: true }
+        );
 
         this.close();
     }

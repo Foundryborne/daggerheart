@@ -175,7 +175,6 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
 
         const newValue = (action.uses.value ?? 0) + (increase ? 1 : -1);
         await action.update({ 'uses.value': Math.min(Math.max(newValue, 0), action.uses.max ?? 0) });
-        this.render();
     }
 
     /* -------------------------------------------- */

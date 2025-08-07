@@ -188,7 +188,8 @@
                 "manualMulticlassSubclass": {
                     "title": "Multiclass Subclass",
                     "text": "Do you want to add this subclass as your multiclass subclass?"
-                }
+                },
+                "cannotRemoveCoreExperience": "You are using Levelup Auto. You cannot remove an experience given to you by the rule progression."
             },
             "Companion": {
                 "FIELDS": {
@@ -2115,6 +2116,10 @@
                     "resourceScrollTexts": {
                         "label": "Show Resource Change Scrolltexts",
                         "hint": "When a character is damaged, uses armor etc, a scrolling text will briefly appear by the token to signify this."
+                    },
+                    "playerCanEditSheet": {
+                        "label": "Players Can Manually Edit Character Settings",
+                        "hint": "Players are allowed to access the manual Character Settings and change their statistics beyond the rules."
                     }
                 }
             },

@@ -178,6 +178,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
+            case 'header':
+                const { playerCanEditSheet, levelupAuto } = game.settings.get(
+                    CONFIG.DH.id,
+                    CONFIG.DH.SETTINGS.gameSettings.Automation
+                );
+                context.showSettings = game.user.isGM || !levelupAuto || (levelupAuto && playerCanEditSheet);
+                break;
             case 'loadout':
                 await this._prepareLoadoutContext(context, options);
                 break;
@@ -188,6 +195,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 await this._prepareBiographyContext(context, options);
                 break;
         }
+
         return context;
     }
 

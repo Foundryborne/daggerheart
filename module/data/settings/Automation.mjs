@@ -45,6 +45,11 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 required: true,
                 initial: true,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.resourceScrollTexts.label'
+            }),
+            playerCanEditSheet: new fields.BooleanField({
+                required: true,
+                initial: false,
+                label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.playerCanEditSheet.label'
             })
         };
     }

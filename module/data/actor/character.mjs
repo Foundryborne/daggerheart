@@ -68,7 +68,8 @@ export default class DhCharacter extends BaseDataActor {
                 new fields.SchemaField({
                     name: new fields.StringField(),
                     value: new fields.NumberField({ integer: true, initial: 0 }),
-                    description: new fields.StringField()
+                    description: new fields.StringField(),
+                    core: new fields.BooleanField({ initial: false })
                 })
             ),
             gold: new fields.SchemaField({
@@ -573,7 +574,10 @@ export default class DhCharacter extends BaseDataActor {
                         case 'experience':
                             selection.data.forEach(id => {
                                 const experience = this.experiences[id];
-                                if (experience) experience.value += selection.value;
+                                if (experience) {
+                                    experience.value += selection.value;
+                                    experience.leveledUp = true;
+                                }
                             });
                             break;
                     }
@@ -618,6 +622,23 @@ export default class DhCharacter extends BaseDataActor {
             tier: this.tier,
             level: this.levelData.level.current
         };
+    }
+
+    async _preUpdate(changes, options, userId) {
+        const allowed = await super._preUpdate(changes, options, userId);
+        if (allowed === false) return;
+
+        /* The first two experiences are always marked as core */
+        if (changes.system?.experiences && Object.keys(this.experiences).length < 2) {
+            const experiences = new Set(Object.keys(this.experiences));
+            const changeExperiences = new Set(Object.keys(changes.system.experiences));
+            const newExperiences = Array.from(changeExperiences.difference(experiences));
+
+            for (var i = 0; i < Math.min(newExperiences.length, 2 - experiences.size); i++) {
+                const experience = newExperiences[i];
+                changes.system.experiences[experience].core = true;
+            }
+        }
     }
 
     async _preDelete() {

@@ -495,7 +495,6 @@
             border-radius: 6px;
 
             button {
-                padding: 6px 6px 6px 10px;
                 border-radius: 3px 0px 0px 3px;
                 color: light-dark(@dark-blue, @dark-blue);
                 white-space: nowrap;
@@ -506,7 +505,7 @@
                     color: light-dark(@dark-blue, @golden);
                 }
 
-                &:last-child {
+                &:not(:first-child) {
                     padding: 6px;
                     background: light-dark(@dark-blue-10, @golden-secondary);
                     border-radius: 0px 3px 3px 0px;
