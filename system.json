@@ -169,7 +169,7 @@
     ],
     "packFolders": [
         {
-            "name": "Daggerheart",
+            "name": "Daggerheart SRD",
             "sorting": "m",
             "color": "#08718c",
             "packs": ["adversaries", "environments", "journals"],
