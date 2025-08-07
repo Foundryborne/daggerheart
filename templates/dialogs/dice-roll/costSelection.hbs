@@ -9,7 +9,7 @@
                         <label for="uses.enabled">Uses{{#if uses.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}{{/if}}</span></label>
                     </div>
                 </div>
-                <label class="modifier-label">{{uses.value}}/{{formulaValue uses.max @root.rollConfig.data}}</label>
+                <label class="modifier-label">1/{{uses.remaining}}</label>
             </li>
         {{/if}}
         {{#each costs as | cost index |}}

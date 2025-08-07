@@ -1,4 +1,5 @@
 import DHActionConfig from '../../applications/sheets-configs/action-config.mjs';
+import { itemAbleRollParse } from '../../helpers/utils.mjs';
 import MappingField from './mappingField.mjs';
 
 /**
@@ -167,7 +168,10 @@ export function ActionMixin(Base) {
         get remainingUses() {
             if (!this.uses) return null;
 
-            return Math.max((this.uses.max ?? 0) - (this.uses.value ?? 0), 0);
+            return Math.max(
+                (this.uses.max ? itemAbleRollParse(this.uses.max, this.actor) : 0) - (this.uses.value ?? 0),
+                0
+            );
         }
 
         static async create(data, operation = {}) {
