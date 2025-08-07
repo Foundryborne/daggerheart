@@ -1,5 +1,3 @@
-import { range as configRange } from '../config/generalConfig.mjs';
-
 export default function DhTemplateEnricher(match, _options) {
     const parts = match[1].split('|').map(x => x.trim());
 
@@ -17,7 +15,7 @@ export default function DhTemplateEnricher(match, _options) {
                     type = matchedType;
                     break;
                 case 'range':
-                    const matchedRange = Object.values(configRange).find(
+                    const matchedRange = Object.values(CONFIG.DH.GENERAL.templateRanges).find(
                         x => x.id.toLowerCase() === split[1] || x.short === split[1]
                     );
                     range = matchedRange?.id;
@@ -55,7 +53,9 @@ export const renderMeasuredTemplate = async event => {
               ? '180'
               : undefined;
 
-    const baseDistance = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement)[range];
+    const baseDistance = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.variantRules).rangeMeasurement[
+        range
+    ];
     const distance = type === CONFIG.DH.GENERAL.templateTypes.EMANATION ? baseDistance + 2.5 : baseDistance;
 
     const { width, height } = game.canvas.scene.dimensions;

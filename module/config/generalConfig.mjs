@@ -21,7 +21,7 @@ export const ruleChoice = {
     }
 };
 
-export const range = {
+export const templateRanges = {
     self: {
         id: 'self',
         short: 's',
@@ -56,7 +56,11 @@ export const range = {
         label: 'DAGGERHEART.CONFIG.Range.far.name',
         description: 'DAGGERHEART.CONFIG.Range.far.description',
         distance: 20
-    },
+    }
+};
+
+export const range = {
+    ...templateRanges,
     veryFar: {
         id: 'veryFar',
         short: 'vf',

@@ -2210,10 +2210,6 @@
                     "actionTokens": {
                         "enabled": { "label": "Enabled" },
                         "tokens": { "label": "Tokens" }
-                    },
-                    "useCoins": {
-                        "label": "Use Coins",
-                        "hint": "test"
                     }
                 }
             },
