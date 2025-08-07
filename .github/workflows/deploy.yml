@@ -15,7 +15,7 @@ jobs:
 
     - name: Build Packs
       run: |
-        npm run pullYMLtoLDB
+        npm run pullYMLtoLDBBuild
         mv --force src/packs/LICENSE packs/LICENSE
 
     - name: Build daggerheart.js
