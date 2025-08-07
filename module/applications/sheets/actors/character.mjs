@@ -156,7 +156,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             currency: {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
                 coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
-                handfulls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfulls'),
+                handfuls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfuls'),
                 bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
                 chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
             }

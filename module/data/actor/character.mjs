@@ -73,7 +73,7 @@ export default class DhCharacter extends BaseDataActor {
             ),
             gold: new fields.SchemaField({
                 coins: new fields.NumberField({ initial: 0, integer: true }),
-                handfulls: new fields.NumberField({ initial: 1, integer: true }),
+                handfuls: new fields.NumberField({ initial: 1, integer: true }),
                 bags: new fields.NumberField({ initial: 0, integer: true }),
                 chests: new fields.NumberField({ initial: 0, integer: true })
             }),

@@ -880,7 +880,7 @@
             "Gold": {
                 "title": "Gold",
                 "coins": "Coins",
-                "handfulls": "Handfulls",
+                "handfuls": "Handfuls",
                 "bags": "Bags",
                 "chests": "Chests"
             },
@@ -2138,7 +2138,7 @@
                     "title": "Currency Overrides",
                     "currencyName": "Currency Name",
                     "coinName": "Coin Name",
-                    "handfullName": "Handfull Name",
+                    "handfulName": "Handful Name",
                     "bagName": "Bag Name",
                     "chestName": "Chest Name"
                 },
