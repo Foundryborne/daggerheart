@@ -108,16 +108,17 @@
         "cost": [
           {
             "scalable": false,
-            "key": "n0P3VS1WfxvmXbB6",
+            "key": "hitPoints",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "shortRest"
         },
         "effects": [],
         "target": {
@@ -129,13 +130,7 @@
         "range": ""
       }
     },
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "recovery": "shortRest",
-      "max": "1",
-      "icon": ""
-    }
+    "resource": null
   },
   "flags": {},
   "_stats": {
@@ -146,8 +141,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784534,
-    "modifiedTime": 1754338673637,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499113867,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "n0P3VS1WfxvmXbB6",
   "sort": 3400000,

@@ -75,7 +75,8 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         if (isOriginTarget && change.effect.origin) {
             change.value = change.value.replaceAll(/origin\.@/gi, '@');
             try {
-                const doc = foundry.utils.fromUuidSync(change.effect.origin);
+                const effect = foundry.utils.fromUuidSync(change.effect.origin);
+                const doc = effect.parent?.parent;
                 if (doc) parseModel = doc;
             } catch (_) {}
         }

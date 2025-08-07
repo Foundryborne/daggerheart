@@ -313,8 +313,10 @@ export const itemAbleRollParse = (value, actor, item) => {
 
     const isItemTarget = value.toLowerCase().includes('item.@');
     const slicedValue = isItemTarget ? value.replaceAll(/item\.@/gi, '@') : value;
+    const model = isItemTarget ? item : actor;
+
     try {
-        return Roll.replaceFormulaData(slicedValue, isItemTarget ? item : actor);
+        return Roll.replaceFormulaData(slicedValue, model?.getRollData?.() ?? model);
     } catch (_) {
         return '';
     }
@@ -362,6 +364,7 @@ export async function createEmbeddedItemWithEffects(actor, baseData, update) {
     const [doc] = await actor.createEmbeddedDocuments('Item', [
         {
             ...(update ?? data),
+            ...baseData,
             id: data.id,
             uuid: data.uuid,
             effects: data.effects?.map(effect => effect.toObject())
@@ -369,6 +372,21 @@ export async function createEmbeddedItemWithEffects(actor, baseData, update) {
     ]);
 
     return doc;
+}
+
+export async function createEmbeddedItemsWithEffects(actor, baseData) {
+    const effectData = [];
+    for (let d of baseData) {
+        const data = d.uuid.startsWith('Compendium') ? await foundry.utils.fromUuid(d.uuid) : d;
+        effectData.push({
+            ...data,
+            id: data.id,
+            uuid: data.uuid,
+            effects: data.effects?.map(effect => effect.toObject())
+        });
+    }
+
+    await actor.createEmbeddedDocuments('Item', effectData);
 }
 
 export const slugify = name => {

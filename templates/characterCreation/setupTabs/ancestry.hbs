@@ -19,7 +19,7 @@
                 <input type="range" id="volume" class="mixed-ancestry-slider" value="{{mixedAncestry}}" min="0" max="1" />
             </div>
 
-            <div class="selections-outer-container">
+            <div class="selections-outer-container enlarged">
                 <div class="selections-container primary-ancestry-card">
                     {{#> "systems/daggerheart/templates/components/card-preview.hbs" primaryAncestry altPartialBlock=true secondaryDisabled=secondaryAncestry.uuid mixedAncestry=mixedAncestry }}
                         {{#if uuid}} 

@@ -7,7 +7,11 @@ export default class DhpEnvironment extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['environment'],
         position: {
-            width: 500
+            width: 500,
+            height: 725
+        },
+        window: {
+            resizable: true
         },
         actions: {},
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]

@@ -11,7 +11,6 @@ export default class DHSummonAction extends DHBaseAction {
 
     async trigger(event, ...args) {
         if (!this.canSummon || !canvas.scene) return;
-        // const config = await super.use(event, args);
     }
 
     get canSummon() {

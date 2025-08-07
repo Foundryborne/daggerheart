@@ -6,13 +6,7 @@
   "img": "icons/magic/nature/tree-twisted-glow-yellow.webp",
   "system": {
     "description": "<p>Once per long rest, you can create a space of natural serenity within Close range. When you spend a few minutes resting within the space, clear Stress equal to your Instinct, distributed as you choose between you and your allies.</p>",
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "recovery": "longRest",
-      "max": "1",
-      "icon": ""
-    },
+    "resource": null,
     "actions": {
       "az7YUpxy1ysn12tO": {
         "type": "healing",
@@ -108,7 +102,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754179740310,
-    "modifiedTime": 1754353339637,
+    "modifiedTime": 1754496518048,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!etaQ01yGJhBLDUqZ"

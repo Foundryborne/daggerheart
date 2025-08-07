@@ -1,7 +1,7 @@
 import { abilities } from '../../config/actorConfig.mjs';
 import { burden } from '../../config/generalConfig.mjs';
-import { createEmbeddedItemWithEffects } from '../../helpers/utils.mjs';
 import { ItemBrowser } from '../ui/itemBrowser.mjs';
+import { createEmbeddedItemsWithEffects, createEmbeddedItemWithEffects } from '../../helpers/utils.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -21,8 +21,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             class: this.character.system.class?.value ?? {},
             subclass: this.character.system.class?.subclass ?? {},
             experiences: {
-                [foundry.utils.randomID()]: { name: '', value: 2 },
-                [foundry.utils.randomID()]: { name: '', value: 2 }
+                [foundry.utils.randomID()]: { name: '', value: 2, core: true },
+                [foundry.utils.randomID()]: { name: '', value: 2, core: true }
             },
             domainCards: {
                 [foundry.utils.randomID()]: {},
@@ -373,13 +373,18 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 );
                 context.armor = {
                     ...this.equipment.armor,
-                    suggestion: { ...suggestions.armor, taken: suggestions.armor?.uuid === this.equipment.armor?.uuid },
+                    suggestion: {
+                        ...suggestions.armor,
+                        uuid: suggestions.armor?.uuid,
+                        taken: suggestions.armor?.uuid === this.equipment.armor?.uuid
+                    },
                     compendium: 'armors'
                 };
                 context.primaryWeapon = {
                     ...this.equipment.primaryWeapon,
                     suggestion: {
                         ...suggestions.primaryWeapon,
+                        uuid: suggestions.primaryWeapon?.uuid,
                         taken: suggestions.primaryWeapon?.uuid === this.equipment.primaryWeapon?.uuid
                     },
                     compendium: 'weapons'
@@ -388,6 +393,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     ...this.equipment.secondaryWeapon,
                     suggestion: {
                         ...suggestions.secondaryWeapon,
+                        uuid: suggestions.secondaryWeapon?.uuid,
                         taken: suggestions.secondaryWeapon?.uuid === this.equipment.secondaryWeapon?.uuid
                     },
                     disabled: this.equipment.primaryWeapon?.system?.burden === burden.twoHanded.value,
@@ -490,22 +496,22 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
     static async viewCompendium(event, target) {
         const type = target.dataset.compendium ?? target.dataset.type;
-        
+
         const presets = {
-            compendium: "daggerheart",
+            compendium: 'daggerheart',
             folder: type,
             render: {
                 noFolder: true
             }
         };
 
-        if(type == "domains")
+        if (type == 'domains')
             presets.filter = {
                 'level.max': { key: 'level.max', value: 1 },
-                'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null },
+                'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null }
             };
 
-        return this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true });
+        return (this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true }));
     }
 
     static async viewItem(_, target) {
@@ -574,13 +580,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         await createEmbeddedItemWithEffects(this.character, this.setup.community);
         await createEmbeddedItemWithEffects(this.character, this.setup.class);
         await createEmbeddedItemWithEffects(this.character, this.setup.subclass);
-        await this.character.createEmbeddedDocuments(
-            'Item',
-            Object.values(this.setup.domainCards).map(x => ({
-                ...x,
-                effects: x.effects?.map(effect => effect.toObject())
-            }))
-        );
+        await createEmbeddedItemsWithEffects(this.character, Object.values(this.setup.domainCards));
 
         if (this.equipment.armor.uuid)
             await createEmbeddedItemWithEffects(this.character, this.equipment.armor, {
@@ -602,24 +602,28 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         if (this.equipment.inventory.choiceB.uuid)
             await createEmbeddedItemWithEffects(this.character, this.equipment.inventory.choiceB);
 
-        await this.character.createEmbeddedDocuments(
-            'Item',
-            this.setup.class.system.inventory.take
-                .filter(x => x)
-                .map(x => ({
-                    ...x,
-                    effects: x.effects?.map(effect => effect.toObject())
-                }))
+        await createEmbeddedItemsWithEffects(
+            this.character,
+            this.setup.class.system.inventory.take.filter(x => x)
         );
 
-        await this.character.update({
-            system: {
-                traits: this.setup.traits,
-                experiences: this.setup.experiences
-            }
-        });
+        await this.character.update(
+            {
+                system: {
+                    traits: this.setup.traits,
+                    experiences: {
+                        ...this.setup.experiences,
+                        ...Object.keys(this.character.system.experiences).reduce((acc, key) => {
+                            acc[`-=${key}`] = null;
+                            return acc;
+                        }, {})
+                    }
+                }
+            },
+            { overwrite: true }
+        );
 
-        if(this.itemBrowser) this.itemBrowser.close();
+        if (this.itemBrowser) this.itemBrowser.close();
         this.close();
     }
 
@@ -708,6 +712,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             if (item.system.tier > 1) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.itemTooHighTier'));
                 return;
+            }
+
+            if (item.system.burden === CONFIG.DH.GENERAL.burden.twoHanded.value) {
+                this.equipment.secondaryWeapon = {};
             }
 
             this.equipment.primaryWeapon = { ...item, uuid: item.uuid };

@@ -26,8 +26,8 @@
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "session"
         },
         "effects": [],
         "target": {
@@ -58,7 +58,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753994658436,
-    "modifiedTime": 1753994711690,
+    "modifiedTime": 1754498186961,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!U6iFjZgLYawlOlQZ"

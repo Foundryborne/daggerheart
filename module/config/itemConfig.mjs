@@ -857,7 +857,7 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.description',
                 img: 'icons/commodities/currency/coins-crown-stack-gold.webp',
-                // Should cost handfull of gold,
+                // Should cost handful of gold,
                 effects: [
                     {
                         name: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.actions.greed.name',

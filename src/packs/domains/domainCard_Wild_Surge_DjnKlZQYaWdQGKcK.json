@@ -20,7 +20,7 @@
         "type": "effect",
         "_id": "nYu6LRNVDKfWUJhx",
         "systemPath": "actions",
-        "description": "",
+        "description": "<p class=\"Body-Foundation\">Once per long rest, <strong>mark a Stress</strong> to channel the natural world around you and enhance yourself. Describe how your appearance changes, then place a <strong>d6</strong> on this card with the 1 value facing up.</p><p class=\"Body-Foundation\">While the Wild Surge Die is active, you add its value to every action roll you make. After you add its value to a roll, increase the Wild Surge Die’s value by one. When the die’s value would exceed 6 or you take a rest, this form drops and you must <strong>mark an additional Stress</strong>.</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -34,8 +34,8 @@
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "longRest"
         },
         "effects": [],
         "target": {
@@ -57,8 +57,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784547,
-    "modifiedTime": 1754340095871,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499199811,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "DjnKlZQYaWdQGKcK",
   "sort": 3400000,

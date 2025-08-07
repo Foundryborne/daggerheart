@@ -9,12 +9,31 @@
     "recallCost": 3,
     "level": 9,
     "type": "spell",
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "recovery": "longRest",
-      "max": "1",
-      "icon": ""
+    "resource": null,
+    "actions": {
+      "RKEceNKiQirYwN45": {
+        "type": "effect",
+        "_id": "RKEceNKiQirYwN45",
+        "systemPath": "actions",
+        "description": "<p class=\"Body-Foundation\">Once per long rest, this card can mimic the features of another domain card of level 8 or lower in another player’s loadout. <strong>Spend Hope equal to half the card’s level</strong> to gain access to the feature. It lasts until your next rest or they place the card in their vault.</p>",
+        "chatDisplay": true,
+        "actionType": "action",
+        "cost": [],
+        "uses": {
+          "value": null,
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": false
+        },
+        "effects": [],
+        "target": {
+          "type": "any",
+          "amount": null
+        },
+        "name": "Mimic",
+        "img": "icons/magic/perception/hand-eye-black.webp",
+        "range": ""
+      }
     }
   },
   "flags": {},
@@ -26,8 +45,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784439,
-    "modifiedTime": 1754329311656,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499898585,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "3A7LZ1xmDEMGa165",
   "sort": 3400000,

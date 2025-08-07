@@ -289,7 +289,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                                         const experience = Object.keys(this.actor.system.experiences).find(
                                             x => x === data
                                         );
-                                        return this.actor.system.experiences[experience]?.description ?? '';
+                                        return this.actor.system.experiences[experience]?.name ?? '';
                                     });
                                     advancement[choiceKey].push({ data: data, value: checkbox.value });
                                     break;

@@ -74,8 +74,8 @@ export default class DHItem extends foundry.documents.Item {
                     isInventoryItem === true
                         ? 'Inventory Items' //TODO localize
                         : isInventoryItem === false
-                            ? 'Character Items' //TODO localize
-                            : 'Other'; //TODO localize
+                          ? 'Character Items' //TODO localize
+                          : 'Other'; //TODO localize
 
                 return { value: type, label, group };
             }
@@ -130,7 +130,6 @@ export default class DHItem extends foundry.documents.Item {
 
     /* -------------------------------------------- */
 
-
     async use(event) {
         const actions = new Set(this.system.actionsList);
         if (actions?.size) {
@@ -152,10 +151,10 @@ export default class DHItem extends foundry.documents.Item {
                 this.type === 'ancestry'
                     ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.ancestryTitle')
                     : this.type === 'community'
-                        ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.communityTitle')
-                        : this.type === 'feature'
-                            ? game.i18n.localize('TYPES.Item.feature')
-                            : game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
+                      ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.communityTitle')
+                      : this.type === 'feature'
+                        ? game.i18n.localize('TYPES.Item.feature')
+                        : game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: origin,
             img: this.img,
             item: {
@@ -163,7 +162,7 @@ export default class DHItem extends foundry.documents.Item {
                 img: this.img,
                 tags: this._getTags()
             },
-            actions: item.system.actions,
+            actions: item.system.actionsList,
             description: this.system.description
         };
 

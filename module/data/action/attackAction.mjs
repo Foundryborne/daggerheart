@@ -34,8 +34,8 @@ export default class DHAttackAction extends DHDamageAction {
         };
     }
 
-    async use(event, ...args) {
-        const result = await super.use(event, args);
+    async use(event, options) {
+        const result = await super.use(event, options);
 
         const { updateCountdowns } = game.system.api.applications.ui.DhCountdowns;
         await updateCountdowns(CONFIG.DH.GENERAL.countdownTypes.characterAttack.id);

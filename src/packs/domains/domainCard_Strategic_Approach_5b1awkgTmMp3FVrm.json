@@ -11,10 +11,11 @@
     "type": "ability",
     "resource": {
       "type": "simple",
-      "value": 1,
-      "max": "",
+      "value": 0,
+      "max": "max(@system.traits.knowledge.value, 1)",
       "icon": "fa-solid fa-bullseye",
-      "recovery": "longRest"
+      "recovery": "longRest",
+      "progression": "decreasing"
     },
     "actions": {
       "jTC0GbsBpGmaQLi7": {
@@ -60,7 +61,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784523,
-    "modifiedTime": 1754249661976,
+    "modifiedTime": 1754501630846,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "5b1awkgTmMp3FVrm",

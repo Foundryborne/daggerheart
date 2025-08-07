@@ -28,8 +28,8 @@
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "longRest"
         },
         "effects": [
           {
@@ -56,7 +56,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784460,
-    "modifiedTime": 1754242182536,
+    "modifiedTime": 1754498928489,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "SgvjJfMyubZowPxS",

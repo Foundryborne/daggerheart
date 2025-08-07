@@ -259,7 +259,10 @@ Hooks.on('moveToken', async (movedToken, data) => {
     const rangeDependantEffects = movedToken.actor.effects.filter(effect => effect.system.rangeDependence?.enabled);
 
     const updateEffects = async (disposition, token, effects, effectUpdates) => {
-        const rangeMeasurement = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement);
+        const rangeMeasurement = game.settings.get(
+            CONFIG.DH.id,
+            CONFIG.DH.SETTINGS.gameSettings.variantRules
+        ).rangeMeasurement;
 
         for (let effect of effects.filter(x => x.system.rangeDependence?.enabled)) {
             const { target, range, type } = effect.system.rangeDependence;

@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "qY4Zqc1Ch6p317uK",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p><p>@Template[type:emanation|range:vc]</p>",
     "domain": "sage",
     "recallCost": 1,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "healing",
         "_id": "XdAwXl2uWNinInFe",
         "systemPath": "actions",
-        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p>",
+        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll (15)</strong>. Once per rest on a success, create a temporary barrier of protective energy around you at Very Close range. You and all allies within the barrier when this spell is cast clear <strong>1d4</strong> Hit Points. While the barrier is up, you and all allies within have resistance to physical damage from outside the barrier.</p><p class=\"Body-Foundation\">When you move, the barrier follows you.</p><p>@Template[type:emanation|range:vc]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -22,7 +22,7 @@
           "value": null,
           "max": "1",
           "recovery": "shortRest",
-          "consumeOnSuccess": false
+          "consumeOnSuccess": true
         },
         "damage": {
           "parts": [
@@ -93,8 +93,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784502,
-    "modifiedTime": 1754339870857,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499308449,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "HtWx5IIemCoorMj2",
   "sort": 3400000,

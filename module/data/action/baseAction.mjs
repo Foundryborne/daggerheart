@@ -111,12 +111,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return actorData;
     }
 
-    async use(event, ...args) {
+    async use(event, options = {}) {
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
         if (this.chatDisplay) await this.toChat();
 
-        let config = this.prepareConfig(event);
+        let { byPassRoll } = options,
+            config = this.prepareConfig(event, byPassRoll);
         for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
             let clsField = this.constructor.getActionField(this.constructor.extraSchemas[i]);
             if (clsField?.prepareConfig) {
@@ -133,14 +134,14 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             if (!config) return;
         }
 
-        if (this.hasRoll) {
+        if (config.hasRoll) {
             const rollConfig = this.prepareRoll(config);
             config.roll = rollConfig;
             config = await this.actor.diceRoll(config);
             if (!config) return;
         }
 
-        if (this.doFollowUp()) {
+        if (this.doFollowUp(config)) {
             if (this.rollDamage && this.damage.parts.length) await this.rollDamage(event, config);
             else if (this.trigger) await this.trigger(event, config);
             else if (this.hasSave || this.hasEffect) {
@@ -160,7 +161,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /* */
-    prepareConfig(event) {
+    prepareConfig(event, byPass = false) {
+        const hasRoll = this.getUseHasRoll(byPass);
         return {
             event,
             title: `${this.item.name}: ${this.name}`,
@@ -170,10 +172,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 actor: this.actor.uuid
             },
             dialog: {
-                configure: this.hasRoll
+                configure: hasRoll
             },
             type: this.type,
-            hasRoll: this.hasRoll,
+            hasRoll: hasRoll,
             hasDamage: this.damage?.parts?.length && this.type !== 'healing',
             hasHealing: this.damage?.parts?.length && this.type === 'healing',
             hasEffect: !!this.effects?.length,
@@ -182,12 +184,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             selectedRollMode: game.settings.get('core', 'rollMode'),
             isFastForward: event.shiftKey,
             data: this.getRollData(),
-            evaluate: this.hasRoll
+            evaluate: hasRoll
         };
     }
 
     requireConfigurationDialog(config) {
-        return !config.event.shiftKey && !this.hasRoll && (config.costs?.length || config.uses);
+        return !config.event.shiftKey && !config.hasRoll && (config.costs?.length || config.uses);
     }
 
     prepareRoll() {
@@ -205,7 +207,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     doFollowUp(config) {
-        return !this.hasRoll;
+        return !config.hasRoll;
     }
 
     async consume(config, successCost = false) {
@@ -220,16 +222,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 };
             }
         }
-        
+
         const resources = config.costs
-            .filter(c =>
-                c.enabled !== false
-                &&
-                (
-                    (!successCost && (!c.consumeOnSuccess || config.roll?.success))
-                    ||
-                    (successCost && c.consumeOnSuccess)
-                )
+            .filter(
+                c =>
+                    c.enabled !== false &&
+                    ((!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
+                        (successCost && c.consumeOnSuccess))
             )
             .map(c => {
                 const resource = usefulResources[c.key];
@@ -242,21 +241,23 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             });
 
         await this.actor.modifyResource(resources);
-        if (config.uses?.enabled
-            &&
-            (
-                (!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success))
-                ||
-                (successCost && config.uses?.consumeOnSuccess)
-            )
-        ) this.update({ 'uses.value': this.uses.value + 1 });
+        if (
+            config.uses?.enabled &&
+            ((!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success)) ||
+                (successCost && config.uses?.consumeOnSuccess))
+        )
+            this.update({ 'uses.value': this.uses.value + 1 });
 
-        if(config.roll?.success || successCost)
-            (config.message ?? config.parent).update({'system.successConsumed': true})
+        if (config.roll?.success || successCost)
+            (config.message ?? config.parent).update({ 'system.successConsumed': true });
     }
     /* */
 
     /* ROLL */
+    getUseHasRoll(byPass = false) {
+        return this.hasRoll && !byPass;
+    }
+
     get hasRoll() {
         return !!this.roll?.type;
     }
@@ -301,11 +302,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     async applyEffect(effect, actor) {
-        const origin = effect.parent?.parent ? effect.parent.parent.uuid : effect.parent.uuid;
-        // Enable an existing effect on the target if it originated from this effect
-        const existingEffect = actor.effects.find(e => e.origin === origin);
+        const existingEffect = actor.effects.find(e => e.origin === effect.uuid);
         if (existingEffect) {
-            return existingEffect.update(
+            return effect.update(
                 foundry.utils.mergeObject({
                     ...effect.constructor.getInitialDuration(),
                     disabled: false
@@ -318,7 +317,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             ...effect.toObject(),
             disabled: false,
             transfer: false,
-            origin: origin
+            origin: effect.uuid
         });
         await ActiveEffect.implementation.create(effectData, { parent: actor });
     }

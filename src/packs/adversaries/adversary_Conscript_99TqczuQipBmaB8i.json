@@ -60,6 +60,7 @@
     },
     "attack": {
       "name": "Spears",
+      "img": "icons/weapons/polearms/spear-flared-worn.webp",
       "range": "veryClose",
       "roll": {
         "bonus": 0,

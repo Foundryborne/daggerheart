@@ -5,15 +5,7 @@
   "img": "icons/tools/instruments/megaphone.webp",
   "system": {
     "description": "<p><strong>Once per long rest</strong>, you can give a heartfelt, inspiring speech. <strong>All allies</strong> within <strong>Far</strong> range <strong>clear 2 Stress</strong>.</p>",
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "max": "1",
-      "icon": "",
-      "recovery": "longRest",
-      "diceStates": {},
-      "dieFaces": "d4"
-    },
+    "resource": null,
     "actions": {
       "WNtHiko4DRGbxKnm": {
         "type": "healing",
@@ -25,15 +17,16 @@
         "cost": [
           {
             "scalable": false,
-            "key": "iLytX899psvrPRnG",
+            "key": "hitPoints",
             "value": 1,
-            "keyIsID": true,
-            "step": null
+            "keyIsID": false,
+            "step": null,
+            "consumeOnSuccess": false
           }
         ],
         "uses": {
           "value": null,
-          "max": "",
+          "max": "1",
           "recovery": "longRest"
         },
         "damage": {
@@ -104,8 +97,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754174646194,
-    "modifiedTime": 1754236406644,
-    "lastModifiedBy": "LgnbNMLaxandgMQq"
+    "modifiedTime": 1754494763682,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "ownership": {
     "default": 0,

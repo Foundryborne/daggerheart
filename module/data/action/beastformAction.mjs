@@ -4,7 +4,7 @@ import DHBaseAction from './baseAction.mjs';
 export default class DhBeastformAction extends DHBaseAction {
     static extraSchemas = [...super.extraSchemas, 'beastform'];
 
-    async use(event, ...args) {
+    async use(event, options) {
         const beastformConfig = this.prepareBeastformConfig();
 
         const abort = await this.handleActiveTransformations();
@@ -20,7 +20,7 @@ export default class DhBeastformAction extends DHBaseAction {
         const { selected, evolved, hybrid } = await BeastformDialog.configure(beastformConfig, this.item);
         if (!selected) return;
 
-        const result = await super.use(event, args);
+        const result = await super.use(event, options);
         if (!result) return;
 
         await this.transform(selected, evolved, hybrid);

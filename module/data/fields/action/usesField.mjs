@@ -12,7 +12,10 @@ export default class UsesField extends fields.SchemaField {
                 initial: null,
                 nullable: true
             }),
-            consumeOnSuccess: new fields.BooleanField({ initial: false, label: "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.label" })
+            consumeOnSuccess: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.label'
+            })
         };
         super(usesFields, options, context);
     }
@@ -30,6 +33,7 @@ export default class UsesField extends fields.SchemaField {
         if (!uses) return null;
         return {
             ...uses,
+            remaining: this.remainingUses,
             enabled: uses.hasOwnProperty('enabled') ? uses.enabled : true
         };
     }

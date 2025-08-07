@@ -85,7 +85,7 @@ export default function DHApplicationMixin(Base) {
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended,
                 addNewItem: DHSheetV2.#addNewItem,
-                browseItem: DHSheetV2.#browseItem,
+                browseItem: DHSheetV2.#browseItem
             },
             contextMenus: [
                 {
@@ -327,17 +327,31 @@ export default function DHApplicationMixin(Base) {
 
             if (usable)
                 options.unshift({
-                    name: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
-                    icon: 'fa-solid fa-burst',
+                    name: 'DAGGERHEART.GENERAL.damage',
+                    icon: 'fa-solid fa-explosion',
                     condition: target => {
                         const doc = getDocFromElementSync(target);
-                        return doc && !(doc.type === 'domainCard' && doc.system.inVault);
+                        return doc?.system?.attack?.damage.parts.length || doc?.damage?.parts.length;
                     },
-                    callback: async (target, event) => (await getDocFromElement(target)).use(event)
+                    callback: async (target, event) => {
+                        const doc = await getDocFromElement(target),
+                            action = doc?.system?.attack ?? doc;
+                        return action && action.use(event, { byPassRoll: true });
+                    }
                 });
 
+            options.unshift({
+                name: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
+                icon: 'fa-solid fa-burst',
+                condition: target => {
+                    const doc = getDocFromElementSync(target);
+                    return doc && !(doc.type === 'domainCard' && doc.system.inVault);
+                },
+                callback: async (target, event) => (await getDocFromElement(target)).use(event)
+            });
+
             if (toChat)
-                options.unshift({
+                options.push({
                     name: 'DAGGERHEART.APPLICATIONS.ContextMenu.sendToChat',
                     icon: 'fa-solid fa-message',
                     callback: async target => (await getDocFromElement(target)).toChat(this.document.id)
@@ -419,25 +433,22 @@ export default function DHApplicationMixin(Base) {
                 classes: ['dh-style', 'two-big-buttons'],
                 buttons: [
                     {
-                        action: "create",
-                        label: "Create Item",
-                        icon: "fa-solid fa-plus"
+                        action: 'create',
+                        label: 'Create Item',
+                        icon: 'fa-solid fa-plus'
                     },
                     {
-                        action: "browse",
-                        label: "Browse Compendium",
-                        icon: "fa-solid fa-book"
+                        action: 'browse',
+                        label: 'Browse Compendium',
+                        icon: 'fa-solid fa-book'
                     }
                 ]
             });
 
-            if(!createChoice) return;
+            if (!createChoice) return;
 
-            if(createChoice === "browse") 
-                return DHSheetV2.#browseItem.call(this, event, target);
-            else
-                return DHSheetV2.#createDoc.call(this, event, target);
-
+            if (createChoice === 'browse') return DHSheetV2.#browseItem.call(this, event, target);
+            else return DHSheetV2.#createDoc.call(this, event, target);
         }
 
         static async #browseItem(event, target) {
@@ -450,8 +461,8 @@ export default function DHApplicationMixin(Base) {
                 case 'consumable':
                 case 'armor':
                 case 'weapon':
-                    presets.compendium = "daggerheart";
-                    presets.folder = "equipments";
+                    presets.compendium = 'daggerheart';
+                    presets.folder = 'equipments';
                     presets.render = {
                         noFolder: true
                     };
@@ -460,14 +471,14 @@ export default function DHApplicationMixin(Base) {
                     };
                     break;
                 case 'domainCard':
-                    presets.compendium = "daggerheart";
-                    presets.folder = "domains";
+                    presets.compendium = 'daggerheart';
+                    presets.folder = 'domains';
                     presets.render = {
                         noFolder: true
                     };
                     presets.filter = {
                         'level.max': { key: 'level.max', value: this.document.system.levelData.level.current },
-                        'system.domain': { key: 'system.domain', value: this.document.system.domains },
+                        'system.domain': { key: 'system.domain', value: this.document.system.domains }
                     };
                     break;
                 default:

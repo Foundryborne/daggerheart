@@ -10,9 +10,9 @@
     "level": 9,
     "type": "ability",
     "actions": {
-      "B4vyaTibK0GiRBCW": {
-        "type": "effect",
-        "_id": "B4vyaTibK0GiRBCW",
+      "yjEcSlzsWGX79gpB": {
+        "type": "attack",
+        "_id": "yjEcSlzsWGX79gpB",
         "systemPath": "actions",
         "description": "<p class=\"Body-Foundation\"><strong>Spend a Hope</strong> and make an attack against all adversaries within your weapon’s range. Once per long rest, on a success against any targets, add up the damage dealt, then redistribute that damage however you wish between the targets you succeeded against. When you deal damage to a target, roll an additional damage die and add its result to the damage you deal to that target.</p>",
         "chatDisplay": true,
@@ -29,14 +29,38 @@
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null,
-          "consumeOnSuccess": false
+          "max": "1",
+          "recovery": "longRest",
+          "consumeOnSuccess": true
         },
-        "effects": [],
+        "damage": {
+          "parts": [],
+          "includeBase": false
+        },
         "target": {
           "type": "any",
           "amount": null
+        },
+        "effects": [],
+        "roll": {
+          "type": "attack",
+          "trait": null,
+          "difficulty": null,
+          "bonus": null,
+          "advState": "neutral",
+          "diceRolling": {
+            "multiplier": "prof",
+            "flatMultiplier": 1,
+            "dice": "d6",
+            "compare": null,
+            "treshold": null
+          },
+          "useDefault": false
+        },
+        "save": {
+          "trait": null,
+          "difficulty": null,
+          "damageMod": "none"
         },
         "name": "Spend Hope",
         "img": "icons/skills/melee/strike-sword-steel-yellow.webp",
@@ -53,7 +77,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784522,
-    "modifiedTime": 1754252510860,
+    "modifiedTime": 1754501075258,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "TYKfM3H9vBXyWiH4",

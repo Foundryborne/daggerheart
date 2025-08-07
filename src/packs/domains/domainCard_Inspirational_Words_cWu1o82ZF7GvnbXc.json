@@ -14,7 +14,8 @@
       "value": 0,
       "recovery": "longRest",
       "max": "@system.traits.presence.value",
-      "icon": ""
+      "icon": "",
+      "progression": "decreasing"
     },
     "actions": {
       "5sGMd6m6Ltahit4h": {
@@ -253,8 +254,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784473,
-    "modifiedTime": 1754340989544,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499693699,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "cWu1o82ZF7GvnbXc",
   "sort": 3400000,

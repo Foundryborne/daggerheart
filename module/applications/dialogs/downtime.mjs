@@ -94,7 +94,10 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         const actionItems = this.actor.items.reduce((acc, x) => {
             if (x.system.actions) {
                 const recoverable = x.system.actions.reduce((acc, action) => {
-                    if (action.uses.recovery && (action.uses.recovery === 'shortRest') === this.shortrest) {
+                    if (
+                        (action.uses.recovery && (action.uses.recovery === 'longRest') === !this.shortrest) ||
+                        action.uses.recovery === 'shortRest'
+                    ) {
                         acc.push({
                             title: x.name,
                             name: action.name,
@@ -116,7 +119,8 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             if (
                 x.system.resource &&
                 x.system.resource.type &&
-                (x.system.resource.recovery === 'shortRest') === this.shortrest
+                ((x.system.resource.recovery === 'longRest') === !this.shortrest ||
+                    x.system.resource.recovery === 'shortRest')
             ) {
                 acc.push({
                     title: game.i18n.localize(`TYPES.Item.${x.type}`),
@@ -226,14 +230,18 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
         ) {
             for (var data of this.refreshables.actionItems) {
                 const action = await foundry.utils.fromUuid(data.uuid);
-                await action.parent.parent.update({ [`system.actions.${action.id}.uses.value`]: action.uses.max ?? 1 });
+                await action.parent.parent.update({ [`system.actions.${action.id}.uses.value`]: 0 });
             }
 
             for (var data of this.refreshables.resourceItems) {
                 const feature = await foundry.utils.fromUuid(data.uuid);
                 const increasing =
                     feature.system.resource.progression === CONFIG.DH.ITEM.itemResourceProgression.increasing.id;
-                const resetValue = increasing ? 0 : (feature.system.resource.max ?? 0);
+                const resetValue = increasing
+                    ? 0
+                    : feature.system.resource.max
+                      ? Roll.replaceFormulaData(feature.system.resource.max, this.actor)
+                      : 0;
                 await feature.update({ 'system.resource.value': resetValue });
             }
 

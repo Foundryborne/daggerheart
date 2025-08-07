@@ -99,7 +99,7 @@
                             {{#each this.multiclass.domains}}
                                 <div class="levelup-domain-selection-container {{#if this.disabled}}disabled{{/if}}" {{#if (not this.disabled)}}data-action="selectDomain" data-uuid="{{../multiclass.uuid}}" data-domain="{{this.id}}" data-path="{{../multiclass.path}}" {{/if}}>
                                     <div class="levelup-domain-label">{{localize this.label}}</div>
-                                    <img src="{{this.src}}" />
+                                    <img class="svg" src="{{this.src}}" />
                                     {{#if this.selected}}
                                         <div class="levelup-domain-selected">
                                             <i class="fa-solid fa-check"></i>

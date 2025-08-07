@@ -47,10 +47,12 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/levelup/tabs/tab-navigation.hbs' },
-        advancements: { template: 'systems/daggerheart/templates/levelup/tabs/advancements.hbs' },
+        advancements: {
+            template: 'systems/daggerheart/templates/levelup/tabs/advancements.hbs'
+        },
         selections: {
             template: 'systems/daggerheart/templates/levelup/tabs/selections.hbs',
-            scrollable: ['.selections']
+            scrollable: ['.levelup-selections-container']
         },
         summary: { template: 'systems/daggerheart/templates/levelup/tabs/summary.hbs' },
         footer: { template: 'systems/daggerheart/templates/levelup/tabs/footer.hbs' }
@@ -536,29 +538,28 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
 
     static async viewCompendium(event, target) {
         const type = target.dataset.compendium ?? target.dataset.type;
-        
+
         const presets = {
-            compendium: "daggerheart",
+            compendium: 'daggerheart',
             folder: type,
             render: {
                 noFolder: true
             }
         };
 
-        if(type == "domains") {
+        if (type == 'domains') {
             const domains = this.actor.system.domains,
                 multiclassDomain = this.levelup.classUpgradeChoices?.multiclass?.domain;
             if (multiclassDomain) {
-                if (!domains.includes(x => x === multiclassDomain))
-                    domains.push(multiclassDomain);
+                if (!domains.includes(x => x === multiclassDomain)) domains.push(multiclassDomain);
             }
             presets.filter = {
                 'level.max': { key: 'level.max', value: this.levelup.currentLevel },
-                'system.domain': { key: 'system.domain', value: domains },
+                'system.domain': { key: 'system.domain', value: domains }
             };
         }
 
-        return this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true });
+        return (this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true }));
     }
 
     static async selectPreview(_, button) {
@@ -659,7 +660,7 @@ export default class DhlevelUp extends HandlebarsApplicationMixin(ApplicationV2)
         }, {});
 
         await this.actor.levelUp(levelupData);
-        if(this.itemBrowser) this.itemBrowser.close();
+        if (this.itemBrowser) this.itemBrowser.close();
         this.close();
     }
 }

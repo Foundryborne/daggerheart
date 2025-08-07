@@ -45,10 +45,10 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     initial: 'Coins',
                     label: 'DAGGERHEART.SETTINGS.Homebrew.currency.coinName'
                 }),
-                handfulls: new fields.StringField({
+                handfuls: new fields.StringField({
                     required: true,
-                    initial: 'Handfulls',
-                    label: 'DAGGERHEART.SETTINGS.Homebrew.currency.handfullName'
+                    initial: 'Handfuls',
+                    label: 'DAGGERHEART.SETTINGS.Homebrew.currency.handfulName'
                 }),
                 bags: new fields.StringField({
                     required: true,

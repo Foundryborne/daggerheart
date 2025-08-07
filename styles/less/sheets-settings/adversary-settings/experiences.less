@@ -26,12 +26,19 @@
                 align-items: center;
                 gap: 5px;
 
-                &.no-controls {
-                    grid-template-columns: 3fr 1fr;
-                }
+                span {
+                    display: flex;
+                    justify-content: center;
 
-                a {
-                    text-align: center;
+                    a {
+                        text-align: center;
+
+                        &.disabled {
+                            i {
+                                opacity: 0.4;
+                            }
+                        }
+                    }
                 }
             }
 

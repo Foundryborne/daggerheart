@@ -5,7 +5,7 @@ export default class SubclassSheet extends DHBaseItemSheet {
     static DEFAULT_OPTIONS = {
         classes: ['subclass'],
         position: { width: 600 },
-        window: { resizable: false }
+        window: { resizable: true }
     };
 
     /**@override */

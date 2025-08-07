@@ -14,7 +14,8 @@
       "value": 0,
       "recovery": "longRest",
       "max": "@cast",
-      "icon": ""
+      "icon": "",
+      "progression": "decreasing"
     },
     "actions": {
       "udmHKUtCDClxeB4h": {
@@ -214,8 +215,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784502,
-    "modifiedTime": 1754269768509,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754498742091,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "wUQFsRtww18naYaq",
   "sort": 3400000,
