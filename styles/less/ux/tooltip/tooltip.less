@@ -34,6 +34,10 @@
         text-align: start;
     }
 
+    .simple-info {
+        font-style: italic;
+    }
+
     .tooltip-sub-title {
         margin: 0;
         color: light-dark(@dark-blue, @beige);
@@ -44,6 +48,10 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 4px;
+
+        &.spaced {
+            margin-top: 8px;
+        }
 
         &.triple {
             grid-template-columns: 1fr 1fr 1fr;
