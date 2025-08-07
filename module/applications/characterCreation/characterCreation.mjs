@@ -370,13 +370,18 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 );
                 context.armor = {
                     ...this.equipment.armor,
-                    suggestion: { ...suggestions.armor, taken: suggestions.armor?.uuid === this.equipment.armor?.uuid },
+                    suggestion: {
+                        ...suggestions.armor,
+                        uuid: suggestions.armor?.uuid,
+                        taken: suggestions.armor?.uuid === this.equipment.armor?.uuid
+                    },
                     compendium: 'armors'
                 };
                 context.primaryWeapon = {
                     ...this.equipment.primaryWeapon,
                     suggestion: {
                         ...suggestions.primaryWeapon,
+                        uuid: suggestions.primaryWeapon?.uuid,
                         taken: suggestions.primaryWeapon?.uuid === this.equipment.primaryWeapon?.uuid
                     },
                     compendium: 'weapons'
@@ -385,6 +390,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     ...this.equipment.secondaryWeapon,
                     suggestion: {
                         ...suggestions.secondaryWeapon,
+                        uuid: suggestions.secondaryWeapon?.uuid,
                         taken: suggestions.secondaryWeapon?.uuid === this.equipment.secondaryWeapon?.uuid
                     },
                     disabled: this.equipment.primaryWeapon?.system?.burden === burden.twoHanded.value,
@@ -677,6 +683,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             if (item.system.tier > 1) {
                 ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.itemTooHighTier'));
                 return;
+            }
+
+            if (item.system.burden === CONFIG.DH.GENERAL.burden.twoHanded.value) {
+                this.equipment.secondaryWeapon = {};
             }
 
             this.equipment.primaryWeapon = { ...item, uuid: item.uuid };

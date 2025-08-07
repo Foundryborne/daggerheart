@@ -362,6 +362,7 @@ export async function createEmbeddedItemWithEffects(actor, baseData, update) {
     const [doc] = await actor.createEmbeddedDocuments('Item', [
         {
             ...(update ?? data),
+            ...baseData,
             id: data.id,
             uuid: data.uuid,
             effects: data.effects?.map(effect => effect.toObject())
