@@ -40,7 +40,6 @@ export default class DamageRoll extends DHRoll {
         }
         await super.buildPost(roll, config, message);
         if (config.source?.message) {
-            // const chatMessage = ui.chat.collection.get(config.source.message);
             chatMessage.update({ 'system.damage': config.damage });
         }
     }

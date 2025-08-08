@@ -123,13 +123,6 @@ export default class DHRoll extends Roll {
             options.message.system.user = game.user.id;
             return options.message.system;
         }
-        // return {
-        //     formula: isPrivate ? "???" : this._formula,
-        //     flavor: isPrivate ? null : flavor ?? this.options.flavor,
-        //     user: game.user.id,
-        //     tooltip: isPrivate ? "" : await this.getTooltip(),
-        //     total: isPrivate ? "?" : Math.round(this.total * 100) / 100
-        // };
     }
 
     static applyKeybindings(config) {
