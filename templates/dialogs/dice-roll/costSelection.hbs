@@ -17,7 +17,10 @@
             <div class="form-group{{#unless (and scalable maxStep)}} span-2{{/unless}}">
                 <div class="form-fields nest-inputs">
                     <input name="costs.{{index}}.enabled" type="checkbox"{{#if enabled}} checked{{/if}}>
-                    <label>{{label}}{{#if cost.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}</span>{{/if}}</label>
+                    <label>{{label}}
+                        {{#if cost.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}</span>{{/if}}
+                        {{#if cost.extKey}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}</span>{{/if}}
+                    </label>
                 </div>
             </div>
             {{#if (and scalable maxStep)}}

@@ -47,6 +47,7 @@ export default class CostField extends fields.ArrayField {
     static hasCost(costs) {
         const realCosts = CostField.getRealCosts.call(this, costs),
             hasFearCost = realCosts.findIndex(c => c.key === 'fear');
+        CostField.mergeCost.call(this, realCosts)
         if (hasFearCost > -1) {
             const fearCost = realCosts.splice(hasFearCost, 1)[0];
             if (
@@ -99,5 +100,9 @@ export default class CostField extends fields.ArrayField {
             max = roll.total;
         }
         return Number(max);
+    }
+
+    static mergeCost(costs) {
+        console.log(costs)
     }
 }

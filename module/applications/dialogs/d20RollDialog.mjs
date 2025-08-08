@@ -69,6 +69,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             icon
         }));
 
+        this.config.costs ??= [];
         if (this.config.costs?.length) {
             const updatedCosts = game.system.api.fields.ActionFields.CostField.calcCosts.call(
                 this.action,
@@ -143,6 +144,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             this.config.experiences.indexOf(button.dataset.key) > -1
                 ? this.config.experiences.filter(x => x !== button.dataset.key)
                 : [...this.config.experiences, button.dataset.key];
+        this.config.costs =
+            this.config.costs.indexOf(this.config.costs.find(c => c.extKey === button.dataset.key)) > -1
+                ? this.config.costs.filter(x => x.extKey !== button.dataset.key)
+                : [...this.config.costs, { extKey: button.dataset.key, key: 'hope', value: 1}];
         this.render();
     }
 
