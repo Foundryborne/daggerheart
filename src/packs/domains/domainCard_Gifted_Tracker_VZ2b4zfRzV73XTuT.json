@@ -64,7 +64,7 @@
   "effects": [
     {
       "name": "Gifted Tracker",
-      "img": "icons/svg/item-bag.svg",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/sage.png",
       "origin": "Compendium.daggerheart.domains.Item.VZ2b4zfRzV73XTuT",
       "transfer": false,
       "_id": "47Oh2weCdmuvKHM9",
@@ -104,12 +104,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754114056078,
-        "modifiedTime": 1754114073478,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "modifiedTime": 1754670410126,
+        "lastModifiedBy": "49DaecTcBSc5d0DA"
       },
       "_key": "!items.effects!VZ2b4zfRzV73XTuT.47Oh2weCdmuvKHM9"
     }
