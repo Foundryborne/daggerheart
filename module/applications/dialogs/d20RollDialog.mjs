@@ -45,6 +45,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         return this.config.title;
     }
 
+    get actor() {
+        return this.config?.data?.parent;
+    }
+
     /** @override */
     static PARTS = {
         header: {
@@ -72,7 +76,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         this.config.costs ??= [];
         if (this.config.costs?.length) {
             const updatedCosts = game.system.api.fields.ActionFields.CostField.calcCosts.call(
-                this.action,
+                this.action ?? { actor: this.actor },
                 this.config.costs
             );
             context.costs = updatedCosts.map(x => ({
@@ -81,7 +85,10 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
                     ? this.action.parent.parent.name
                     : game.i18n.localize(CONFIG.DH.GENERAL.abilityCosts[x.key].label)
             }));
-            context.canRoll = game.system.api.fields.ActionFields.CostField.hasCost.call(this.action, updatedCosts);
+            context.canRoll = game.system.api.fields.ActionFields.CostField.hasCost.call(
+                this.action ?? { actor: this.actor },
+                updatedCosts
+            );
             this.config.data.scale = this.config.costs[0].total;
         }
         if (this.config.uses?.max) {
@@ -144,10 +151,12 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
             this.config.experiences.indexOf(button.dataset.key) > -1
                 ? this.config.experiences.filter(x => x !== button.dataset.key)
                 : [...this.config.experiences, button.dataset.key];
-        this.config.costs =
-            this.config.costs.indexOf(this.config.costs.find(c => c.extKey === button.dataset.key)) > -1
-                ? this.config.costs.filter(x => x.extKey !== button.dataset.key)
-                : [...this.config.costs, { extKey: button.dataset.key, key: 'hope', value: 1}];
+        if(this.config?.data?.parent?.type === 'character' || this.config?.data?.parent?.type === 'companion') {
+            this.config.costs =
+                this.config.costs.indexOf(this.config.costs.find(c => c.extKey === button.dataset.key)) > -1
+                    ? this.config.costs.filter(x => x.extKey !== button.dataset.key)
+                    : [...this.config.costs, { extKey: button.dataset.key, key: 'hope', value: 1, name: this.config.data?.experiences?.[button.dataset.key]?.name }];
+        }
         this.render();
     }
 

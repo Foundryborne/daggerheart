@@ -47,7 +47,7 @@ export default class CostField extends fields.ArrayField {
     static hasCost(costs) {
         const realCosts = CostField.getRealCosts.call(this, costs),
             hasFearCost = realCosts.findIndex(c => c.key === 'fear');
-        CostField.mergeCost.call(this, realCosts)
+        
         if (hasFearCost > -1) {
             const fearCost = realCosts.splice(hasFearCost, 1)[0];
             if (
@@ -71,7 +71,8 @@ export default class CostField extends fields.ArrayField {
     }
 
     static getResources(costs) {
-        const actorResources = this.actor.system.resources;
+        const actorResources = foundry.utils.deepClone(this.actor.system.resources);
+        if(this.actor.system.partner) actorResources.hope = foundry.utils.deepClone(this.actor.system.partner.system.resources.hope);
         const itemResources = {};
         for (let itemResource of costs) {
             if (itemResource.keyIsID) {
@@ -90,7 +91,13 @@ export default class CostField extends fields.ArrayField {
 
     static getRealCosts(costs) {
         const realCosts = costs?.length ? costs.filter(c => c.enabled) : [];
-        return realCosts;
+        let mergedCosts = [];
+        realCosts.forEach(c =>  {
+            const getCost = Object.values(mergedCosts).find(gc => gc.key === c.key);
+            if(getCost) getCost.total += c.total;
+            else mergedCosts.push(c);
+        });
+        return mergedCosts;
     }
 
     static formatMax(max) {
@@ -100,9 +107,5 @@ export default class CostField extends fields.ArrayField {
             max = roll.total;
         }
         return Number(max);
-    }
-
-    static mergeCost(costs) {
-        console.log(costs)
     }
 }

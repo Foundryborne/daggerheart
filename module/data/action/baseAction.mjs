@@ -223,12 +223,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             }
         }
 
-        const resources = config.costs
+        const resources = game.system.api.fields.ActionFields.CostField.getRealCosts(config.costs)
             .filter(
                 c =>
-                    c.enabled !== false &&
-                    ((!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
-                        (successCost && c.consumeOnSuccess))
+                    (!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
+                        (successCost && c.consumeOnSuccess)
             )
             .map(c => {
                 const resource = usefulResources[c.key];
@@ -240,7 +239,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 };
             });
 
-        await this.actor.modifyResource(resources);
+        await (this.actor.system.partner ?? this.actor).modifyResource(resources);
         if (
             config.uses?.enabled &&
             ((!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success)) ||

@@ -631,13 +631,34 @@ export default class CharacterSheet extends DHBaseActorSheet {
             },
             hasRoll: true
         };
-        this.document.diceRoll({
+        const result = await this.document.diceRoll({
             ...config,
             headerTitle: `${game.i18n.localize('DAGGERHEART.GENERAL.dualityRoll')}: ${this.actor.name}`,
             title: game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
                 ability: abilityLabel
             })
         });
+
+        setTimeout(() => {
+            this.consumeResource(result?.costs);
+        }, 50);
+    }
+
+    async consumeResource(costs) {
+        if(!costs?.length) return;
+        const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
+        const resources = game.system.api.fields.ActionFields.CostField.getRealCosts(costs)
+            .map(c => {
+                const resource = usefulResources[c.key];
+                return {
+                    key: c.key,
+                    value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
+                    target: resource.target,
+                    keyIsID: resource.keyIsID
+                };
+            });
+
+        await this.actor.modifyResource(resources);
     }
 
     //TODO: redo toggleEquipItem method
