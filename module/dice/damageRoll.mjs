@@ -139,24 +139,36 @@ export default class DamageRoll extends DHRoll {
         const { damageType, part, dice, result } = target.dataset;
         const rollPart = message.system.damage[damageType].parts[part];
 
+        let diceIndex = 0;
         let parsedRoll = game.system.api.dice.DamageRoll.fromData({
             ...rollPart.roll,
-            terms: rollPart.roll.terms.map((term, index) => ({
-                ...term,
-                ...(term.class === 'Die' ? { results: rollPart.dice[index].results } : {})
-            })),
+            terms: rollPart.roll.terms.map(term => {
+                const isDie = term.class === 'Die';
+                const fixedTerm = {
+                    ...term,
+                    ...(isDie ? { results: rollPart.dice[diceIndex].results } : {})
+                };
+
+                if (isDie) diceIndex++;
+                return fixedTerm;
+            }),
             class: 'DamageRoll',
             evaluated: false
         });
 
-        const term = parsedRoll.terms[dice];
-        const termResult = parsedRoll.terms[dice].results[result];
+        const parsedDiceTerms = Object.keys(parsedRoll.terms).reduce((acc, key) => {
+            const term = parsedRoll.terms[key];
+            if (term instanceof CONFIG.Dice.termTypes.DiceTerm) acc[Object.keys(acc).length] = term;
+            return acc;
+        }, {});
+        const term = parsedDiceTerms[dice];
+        const termResult = parsedDiceTerms[dice].results[result];
 
-        const newIndex = parsedRoll.terms[dice].results.length;
+        const newIndex = parsedDiceTerms[dice].results.length;
         await term.reroll(`/r1=${termResult.result}`);
 
         if (game.modules.get('dice-so-nice')?.active) {
-            const newResult = parsedRoll.terms[dice].results[newIndex];
+            const newResult = parsedDiceTerms[dice].results[newIndex];
             const diceSoNiceRoll = {
                 _evaluated: true,
                 dice: [
@@ -182,18 +194,25 @@ export default class DamageRoll extends DHRoll {
         const newResult = results.splice(results.length - 1, 1);
         results.splice(Number(result) + 1, 0, newResult[0]);
 
-        const rerolledDice = {
-            dice: parsedRoll.dice[dice].denomination,
-            total: parsedRoll.dice[dice].total,
-            results: results
-        };
+        const rerolledDice = parsedRoll.dice.map((x, index) => {
+            if (index !== Number(dice)) return { ...x, dice: x.denomination };
+            return {
+                dice: parsedRoll.dice[dice].denomination,
+                total: parsedRoll.dice[dice].total,
+                results: results
+            };
+        });
 
-        await game.messages.get(message._id).update({
-            [`system.damage.${damageType}.parts.${part}`]: {
-                ...rollPart,
+        const updateMessage = game.messages.get(message._id);
+        await updateMessage.update({
+            [`system.damage.${damageType}`]: {
+                ...updateMessage,
                 total: parsedRoll.total,
-                dice: [rerolledDice],
-                [`dice.${dice}`]: rerolledDice
+                [`parts.${part}`]: {
+                    ...rollPart,
+                    total: parsedRoll.total,
+                    dice: rerolledDice
+                }
             }
         });
     }
