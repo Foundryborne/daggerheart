@@ -228,19 +228,28 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
 
         const target = event.target.closest('[data-die-index]');
-        let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
-        const rollClass =
-            game.system.api.dice[
-                message.type === 'dualityRoll' ? 'DualityRoll' : target.dataset.type === 'damage' ? 'DHRoll' : 'D20Roll'
-            ];
 
-        if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+        if (target.dataset.type === 'damage') {
+            game.system.api.dice.DamageRoll.reroll(target, message);
+        } else {
+            let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
+            const rollClass =
+                game.system.api.dice[
+                    message.type === 'dualityRoll'
+                        ? 'DualityRoll'
+                        : target.dataset.type === 'damage'
+                          ? 'DHRoll'
+                          : 'D20Roll'
+                ];
 
-        const { newRoll, parsedRoll } = await rollClass.reroll(originalRoll_parsed, target, message);
+            if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
 
-        await game.messages.get(message._id).update({
-            'system.roll': newRoll,
-            'rolls': [parsedRoll]
-        });
+            const { newRoll, parsedRoll } = await rollClass.reroll(originalRoll_parsed, target, message);
+
+            await game.messages.get(message._id).update({
+                'system.roll': newRoll,
+                'rolls': [parsedRoll]
+            });
+        }
     }
 }

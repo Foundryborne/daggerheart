@@ -522,9 +522,13 @@
             .roll-die {
                 display: grid;
                 grid-template-areas:
-                    ". a a"
-                    "c b b";
+                    '. a a'
+                    'c b b';
                 gap: 3px;
+
+                .reroll-button:hover {
+                    filter: drop-shadow(0 0 3px @golden);
+                }
 
                 label {
                     text-align: center;

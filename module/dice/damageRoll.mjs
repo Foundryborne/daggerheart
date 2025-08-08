@@ -134,4 +134,67 @@ export default class DamageRoll extends DHRoll {
         }
         return (part.roll._formula = this.constructor.getFormula(part.roll.terms));
     }
+
+    static async reroll(target, message) {
+        const { damageType, part, dice, result } = target.dataset;
+        const rollPart = message.system.damage[damageType].parts[part];
+
+        let parsedRoll = game.system.api.dice.DamageRoll.fromData({
+            ...rollPart.roll,
+            terms: rollPart.roll.terms.map((term, index) => ({
+                ...term,
+                ...(term.class === 'Die' ? { results: rollPart.dice[index].results } : {})
+            })),
+            class: 'DamageRoll',
+            evaluated: false
+        });
+
+        const term = parsedRoll.terms[dice];
+        const termResult = parsedRoll.terms[dice].results[result];
+
+        const newIndex = parsedRoll.terms[dice].results.length;
+        await term.reroll(`/r1=${termResult.result}`);
+
+        if (game.modules.get('dice-so-nice')?.active) {
+            const newResult = parsedRoll.terms[dice].results[newIndex];
+            const diceSoNiceRoll = {
+                _evaluated: true,
+                dice: [
+                    new foundry.dice.terms.Die({
+                        ...term,
+                        total: newResult.result,
+                        faces: term._faces,
+                        results: [newResult]
+                    })
+                ],
+                options: { appearance: {} }
+            };
+
+            await game.dice3d.showForRoll(diceSoNiceRoll, game.user, true);
+        }
+
+        await parsedRoll.evaluate();
+
+        const results = parsedRoll.dice[dice].results.map(result => ({
+            ...result,
+            discarded: !result.active
+        }));
+        const newResult = results.splice(results.length - 1, 1);
+        results.splice(Number(result) + 1, 0, newResult[0]);
+
+        const rerolledDice = {
+            dice: parsedRoll.dice[dice].denomination,
+            total: parsedRoll.dice[dice].total,
+            results: results
+        };
+
+        await game.messages.get(message._id).update({
+            [`system.damage.${damageType}.parts.${part}`]: {
+                ...rollPart,
+                total: parsedRoll.total,
+                dice: [rerolledDice],
+                [`dice.${dice}`]: rerolledDice
+            }
+        });
+    }
 }
