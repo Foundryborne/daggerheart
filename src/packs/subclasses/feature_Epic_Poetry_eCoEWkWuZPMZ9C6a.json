@@ -23,7 +23,7 @@
         }
       },
       "_id": "RSmscgGyuHJucF6C",
-      "img": "icons/magic/life/heart-cross-blue.webp",
+      "img": "icons/sundries/documents/document-letter-blue.webp",
       "changes": [
         {
           "key": "system.bonuses.rally",
@@ -53,10 +53,11 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "lastModifiedBy": "49DaecTcBSc5d0DA",
+        "modifiedTime": 1754669077252
       },
       "_key": "!items.effects!eCoEWkWuZPMZ9C6a.RSmscgGyuHJucF6C"
     }

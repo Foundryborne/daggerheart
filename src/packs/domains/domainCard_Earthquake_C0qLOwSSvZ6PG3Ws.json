@@ -29,9 +29,9 @@
         ],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null,
-          "consumeOnSuccess": false
+          "max": "1",
+          "recovery": "shortRest",
+          "consumeOnSuccess": true
         },
         "damage": {
           "parts": [
@@ -99,13 +99,7 @@
         "range": "veryFar"
       }
     },
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "recovery": "shortRest",
-      "max": "1",
-      "icon": ""
-    }
+    "resource": null
   },
   "flags": {},
   "_stats": {
@@ -116,8 +110,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784449,
-    "modifiedTime": 1754254262215,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754501560924,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "C0qLOwSSvZ6PG3Ws",
   "sort": 3400000,

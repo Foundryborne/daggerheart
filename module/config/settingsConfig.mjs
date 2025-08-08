@@ -20,7 +20,6 @@ export const menu = {
 export const gameSettings = {
     Automation: 'Automation',
     Homebrew: 'Homebrew',
-    RangeMeasurement: 'RangeMeasurement',
     appearance: 'Appearance',
     variantRules: 'VariantRules',
     Resources: {

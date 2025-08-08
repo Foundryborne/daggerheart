@@ -1,0 +1,89 @@
+<div class="compendium-results">
+    {{#if menu.data }}
+        <div class="menu-path">
+            {{#each menu.path}}
+                {{#if (eq this "folders")}}
+                    <span class="path-link">
+                        /
+                    </span>
+                {{else}}
+                    <span class="item-path">{{this}}</span>
+                {{/if}}
+            {{/each}}
+        </div>
+        <div class="item-filter">
+            <div class="filter-header">
+                <div class="search-bar">
+                    <div class="icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="search" name="search" class="search-input" placeholder="Search...">
+                </div>
+                {{#if fieldFilter.length}}
+                    <a data-tooltip="Filters" data-action="expandContent"><i class="fa-solid fa-filter"></i></a>
+                {{/if}}
+                <a data-tooltip="Erase" data-action="resetFilters"><i class="fa-solid fa-eraser"></i></a>
+            </div>
+            <div class="filter-content extensible">
+                <div class="wrapper">
+                    {{#each fieldFilter}}
+                        {{#if choices }}
+                            <div class="form-group"{{#with (lookup @root.presets.filter key)}}{{#if forced}} disabled{{/if}}{{/with}}>
+                                <label>{{localize label}}</label>
+                                <div class="form-fields">
+                                    <select data-key="{{key}}" name={{name}}>
+                                        {{selectOptions choices valueAttr="value" blank="" localize=true selected=value}}
+                                    </select>
+                                </div>
+                            </div>
+                        {{else}}
+                            {{#if filtered }}
+                                {{formField field localize=true blank="" name=name choices=(@root.formatChoices this) valueAttr="value" dataset=(object key=key) value=value}}
+                            {{else}}
+                                {{#if field.label}}
+                                    {{formField field localize=true blank="" name=name dataset=(object key=key) value=value}}
+                                {{else}}
+                                    {{formField field localize=true blank="" name=name dataset=(object key=key) label=label value=value}}
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{!-- <div class="item-list-container"> --}}
+            {{#if menu.data.columns.length}}
+                <div class="item-list-header">
+                    <div class="item-list-img"></div>
+                    <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">Name</div>
+                    {{#each menu.data.columns}}
+                        <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{label}}</div>
+                    {{/each}}
+                </div>
+            {{/if}}
+            <div class="item-list">
+                {{#each items}}
+                    <div class="item-container" data-item-uuid="{{uuid}}" draggable="true">
+                        <div class="item-header">
+                            <div class="item-info" data-action="expandContent">
+                                <img src="{{img}}" data-item-key="img" class="item-list-img">
+                                <div data-item-key="name" class="item-list-name">{{name}}</div>
+                                {{#each ../menu.data.columns}}
+                                    <div data-item-key="{{key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</div>
+                                {{/each}}
+                            </div>
+                        </div>
+                        <div class="item-desc extensible">
+                            <div class="wrapper">{{{system.description}}}</div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{!-- </div> --}}
+    {{else}}
+        <div class="welcome-message">
+            <h2 class="title">Daggerheart Compendium Browser</h2>
+            <span class="hint"><i>Select a Folder in sidebar to start browsing trought the compendium</i></span>
+        </div>
+    {{/if}}
+</div>

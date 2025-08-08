@@ -18,12 +18,12 @@ export default class DHWeapon extends AttachableItem {
         const fields = foundry.data.fields;
         return {
             ...super.defineSchema(),
-            tier: new fields.NumberField({ required: true, integer: true, initial: 1, min: 1 }),
+            tier: new fields.NumberField({ required: true, integer: true, initial: 1, min: 1, label: "DAGGERHEART.GENERAL.Tiers.singular" }),
             equipped: new fields.BooleanField({ initial: false }),
 
             //SETTINGS
-            secondary: new fields.BooleanField({ initial: false }),
-            burden: new fields.StringField({ required: true, choices: CONFIG.DH.GENERAL.burden, initial: 'oneHanded' }),
+            secondary: new fields.BooleanField({ initial: false, label: "DAGGERHEART.ITEMS.Weapon.secondaryWeapon" }),
+            burden: new fields.StringField({ required: true, choices: CONFIG.DH.GENERAL.burden, initial: 'oneHanded', label: "DAGGERHEART.GENERAL.burden" }),
             weaponFeatures: new fields.ArrayField(
                 new fields.SchemaField({
                     value: new fields.StringField({
@@ -233,5 +233,9 @@ export default class DHWeapon extends AttachableItem {
         }
 
         return labels;
+    }
+
+    get itemFeatures() {
+        return this.weaponFeatures;
     }
 }

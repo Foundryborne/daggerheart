@@ -1,17 +1,10 @@
 import { defaultLevelTiers, DhLevelTiers } from '../data/levelTier.mjs';
 import DhCountdowns from '../data/countdowns.mjs';
-import {
-    DhAppearance,
-    DhAutomation,
-    DhHomebrew,
-    DhRangeMeasurement,
-    DhVariantRules
-} from '../data/settings/_module.mjs';
+import { DhAppearance, DhAutomation, DhHomebrew, DhVariantRules } from '../data/settings/_module.mjs';
 import {
     DhAppearanceSettings,
     DhAutomationSettings,
     DhHomebrewSettings,
-    DhRangeMeasurementSettings,
     DhVariantRuleSettings
 } from '../applications/settings/_module.mjs';
 
@@ -58,12 +51,6 @@ const registerMenuSettings = () => {
             }
         }
     });
-
-    game.settings.register(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement, {
-        scope: 'world',
-        config: false,
-        type: DhRangeMeasurement
-    });
 };
 
 const registerMenus = () => {
@@ -81,14 +68,6 @@ const registerMenus = () => {
         hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.homebrew.hint'),
         icon: CONFIG.DH.SETTINGS.menu.Homebrew.Icon,
         type: DhHomebrewSettings,
-        restricted: true
-    });
-    game.settings.registerMenu(CONFIG.DH.id, CONFIG.DH.SETTINGS.menu.Range.Name, {
-        name: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.range.name'),
-        label: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.range.label'),
-        hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.range.hint'),
-        icon: CONFIG.DH.SETTINGS.menu.Range.Icon,
-        type: DhRangeMeasurementSettings,
         restricted: true
     });
 

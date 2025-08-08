@@ -380,7 +380,7 @@ export const armorFeatures = {
                 img: 'icons/magic/time/hourglass-brown-orange.webp',
                 cost: [
                     {
-                        key: 'armorStack',
+                        key: 'armorSlot',
                         value: 1
                     }
                 ],
@@ -857,7 +857,7 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.description',
                 img: 'icons/commodities/currency/coins-crown-stack-gold.webp',
-                // Should cost handfull of gold,
+                // Should cost handful of gold,
                 effects: [
                     {
                         name: 'DAGGERHEART.CONFIG.WeaponFeature.greedy.actions.greed.name',

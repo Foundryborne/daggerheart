@@ -1,5 +1,6 @@
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 import { getDocFromElement, getDocFromElementSync, tagifyElement } from '../../../helpers/utils.mjs';
+import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
 /**
  * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction
@@ -82,7 +83,9 @@ export default function DHApplicationMixin(Base) {
                 toChat: DHSheetV2.#toChat,
                 useItem: DHSheetV2.#useItem,
                 toggleEffect: DHSheetV2.#toggleEffect,
-                toggleExtended: DHSheetV2.#toggleExtended
+                toggleExtended: DHSheetV2.#toggleExtended,
+                addNewItem: DHSheetV2.#addNewItem,
+                browseItem: DHSheetV2.#browseItem
             },
             contextMenus: [
                 {
@@ -342,10 +345,24 @@ export default function DHApplicationMixin(Base) {
                     icon: 'fa-solid fa-burst',
                     condition: target => {
                         const doc = getDocFromElementSync(target);
-                        return doc && !(doc.type === 'domainCard' && doc.system.inVault);
+                        return doc?.system?.attack?.damage.parts.length || doc?.damage?.parts.length;
                     },
-                    callback: async (target, event) => (await getDocFromElement(target)).use(event)
+                    callback: async (target, event) => {
+                        const doc = await getDocFromElement(target),
+                            action = doc?.system?.attack ?? doc;
+                        return action && action.use(event, { byPassRoll: true });
+                    }
                 });
+
+            options.unshift({
+                name: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
+                icon: 'fa-solid fa-burst',
+                condition: target => {
+                    const doc = getDocFromElementSync(target);
+                    return doc && !(doc.type === 'domainCard' && doc.system.inVault);
+                },
+                callback: async (target, event) => (await getDocFromElement(target)).use(event)
+            });
 
             if (toChat)
                 options.push({
@@ -422,6 +439,68 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
         /*  Application Clicks Actions                  */
         /* -------------------------------------------- */
+
+        static async #addNewItem(event, target) {
+            const { type } = target.dataset;
+
+            const createChoice = await foundry.applications.api.DialogV2.wait({
+                classes: ['dh-style', 'two-big-buttons'],
+                buttons: [
+                    {
+                        action: 'create',
+                        label: 'Create Item',
+                        icon: 'fa-solid fa-plus'
+                    },
+                    {
+                        action: 'browse',
+                        label: 'Browse Compendium',
+                        icon: 'fa-solid fa-book'
+                    }
+                ]
+            });
+
+            if (!createChoice) return;
+
+            if (createChoice === 'browse') return DHSheetV2.#browseItem.call(this, event, target);
+            else return DHSheetV2.#createDoc.call(this, event, target);
+        }
+
+        static async #browseItem(event, target) {
+            const type = target.dataset.compendium ?? target.dataset.type;
+
+            const presets = {};
+
+            switch (type) {
+                case 'loot':
+                case 'consumable':
+                case 'armor':
+                case 'weapon':
+                    presets.compendium = 'daggerheart';
+                    presets.folder = 'equipments';
+                    presets.render = {
+                        noFolder: true
+                    };
+                    presets.filter = {
+                        type: { key: 'type', value: type, forced: true }
+                    };
+                    break;
+                case 'domainCard':
+                    presets.compendium = 'daggerheart';
+                    presets.folder = 'domains';
+                    presets.render = {
+                        noFolder: true
+                    };
+                    presets.filter = {
+                        'level.max': { key: 'level.max', value: this.document.system.levelData.level.current },
+                        'system.domain': { key: 'system.domain', value: this.document.system.domains }
+                    };
+                    break;
+                default:
+                    return;
+            }
+
+            return new ItemBrowser({ presets }).render({ force: true });
+        }
 
         /**
          * Create an embedded document.

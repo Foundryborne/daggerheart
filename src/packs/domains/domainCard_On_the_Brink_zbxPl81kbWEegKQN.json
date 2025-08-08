@@ -37,7 +37,7 @@
         }
       },
       "_id": "UJTsJlnhi5Zi0XQ2",
-      "img": "icons/magic/life/heart-cross-blue.webp",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/bone.png",
       "changes": [
         {
           "key": "system.rules.damageReduction.thresholdImmunities.minor",
@@ -67,12 +67,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754303484332,
-        "modifiedTime": 1754303570504,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1754670012467,
+        "lastModifiedBy": "49DaecTcBSc5d0DA"
       },
       "_key": "!items.effects!zbxPl81kbWEegKQN.UJTsJlnhi5Zi0XQ2"
     }

@@ -6,13 +6,7 @@
   "img": "icons/magic/nature/barrier-shield-wood-vines.webp",
   "system": {
     "description": "<p>Once per long rest, spend 2 Hope to clear 2 Hit Points on 1d4 allies within Close range.</p>",
-    "resource": {
-      "type": "simple",
-      "value": 1,
-      "max": "1",
-      "icon": "",
-      "recovery": "longRest"
-    },
+    "resource": null,
     "actions": {
       "ozYzhQfRt5sp19di": {
         "type": "healing",
@@ -23,7 +17,7 @@
         "actionType": "action",
         "cost": [],
         "uses": {
-          "value": null,
+          "value": 0,
           "max": "1",
           "recovery": "longRest",
           "consumeOnSuccess": false
@@ -101,7 +95,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754183079986,
-    "modifiedTime": 1754353582707,
+    "modifiedTime": 1754496541966,
     "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!2F1bUFY80oce97C9"

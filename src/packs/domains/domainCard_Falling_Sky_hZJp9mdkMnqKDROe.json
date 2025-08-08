@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7Cs44YADBTmmtCw6",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries within Far range. <strong>Mark any number of Stress</strong> to make shards of arcana rain down from above. Targets you succeed against take <strong>1d20+2</strong> magic damage for each Stress marked.</p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries within Far range. <strong>Mark any number of Stress</strong> to make shards of arcana rain down from above. Targets you succeed against take <strong>1d20+2</strong> magic damage for each Stress marked.</p><p>@Template[type:emanation|range:f]</p>",
     "domain": "arcana",
     "recallCost": 1,
     "level": 10,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "xJfXJDVsBayGaqkr",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against all adversaries within Far range. <strong>Mark any number of Stress</strong> to make shards of arcana rain down from above. Targets you succeed against take <strong>1d20+2</strong> magic damage for each Stress marked.</p>",
+        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all adversaries within Far range. <strong>Mark any number of Stress</strong> to make shards of arcana rain down from above. Targets you succeed against take <strong>1d20+2</strong> magic damage for each Stress marked.</p><p>@Template[type:emanation|range:f]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [
@@ -103,8 +103,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784452,
-    "modifiedTime": 1754254370187,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754501517016,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "hZJp9mdkMnqKDROe",
   "sort": 3400000,

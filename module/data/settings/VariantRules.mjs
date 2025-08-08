@@ -17,9 +17,28 @@ export default class DhVariantRules extends foundry.abstract.DataModel {
                     label: 'DAGGERHEART.SETTINGS.VariantRules.FIELDS.actionTokens.tokens.label'
                 })
             }),
-            useCoins: new fields.BooleanField({
-                initial: false,
-                label: 'DAGGERHEART.SETTINGS.VariantRules.FIELDS.useCoins.label'
+            rangeMeasurement: new fields.SchemaField({
+                enabled: new fields.BooleanField({
+                    required: true,
+                    initial: true,
+                    label: 'DAGGERHEART.GENERAL.enabled'
+                }),
+                melee: new fields.NumberField({
+                    required: true,
+                    initial: 5,
+                    label: 'DAGGERHEART.CONFIG.Range.melee.name'
+                }),
+                veryClose: new fields.NumberField({
+                    required: true,
+                    initial: 15,
+                    label: 'DAGGERHEART.CONFIG.Range.veryClose.name'
+                }),
+                close: new fields.NumberField({
+                    required: true,
+                    initial: 30,
+                    label: 'DAGGERHEART.CONFIG.Range.close.name'
+                }),
+                far: new fields.NumberField({ required: true, initial: 60, label: 'DAGGERHEART.CONFIG.Range.far.name' })
             })
         };
     }

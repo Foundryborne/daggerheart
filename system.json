@@ -2,10 +2,10 @@
     "id": "daggerheart",
     "title": "Daggerheart",
     "description": "An unofficial implementation of the Daggerheart system",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "compatibility": {
         "minimum": "13",
-        "verified": "13.346",
+        "verified": "13.347",
         "maximum": "13"
     },
     "authors": [
@@ -169,7 +169,7 @@
     ],
     "packFolders": [
         {
-            "name": "Daggerheart",
+            "name": "Daggerheart SRD",
             "sorting": "m",
             "color": "#08718c",
             "packs": ["adversaries", "environments", "journals"],

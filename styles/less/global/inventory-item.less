@@ -24,13 +24,15 @@
         width: 100%;
         list-style-type: none;
 
-        &:not(.single-img):hover {
-            .inventory-item-header .img-portait {
-                .roll-img {
-                    opacity: 1;
-                }
-                .item-img {
-                    opacity: 0;
+        &:not(.single-img) {
+            .inventory-item-header:hover {
+                .img-portait {
+                    .roll-img {
+                        opacity: 1;
+                    }
+                    .item-img {
+                        opacity: 0;
+                    }
                 }
             }
         }

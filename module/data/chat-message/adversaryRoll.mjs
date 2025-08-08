@@ -1,20 +1,21 @@
 const fields = foundry.data.fields;
 
-const targetsField = () => new fields.ArrayField(
-    new fields.SchemaField({
-        id: new fields.StringField({}),
-        actorId: new fields.StringField({}),
-        name: new fields.StringField({}),
-        img: new fields.StringField({}),
-        difficulty: new fields.NumberField({ integer: true, nullable: true }),
-        evasion: new fields.NumberField({ integer: true }),
-        hit: new fields.BooleanField({ initial: false }),
-        saved: new fields.SchemaField({
-            result: new fields.NumberField(),
-            success: new fields.BooleanField({ nullable: true, initial: null })
+const targetsField = () =>
+    new fields.ArrayField(
+        new fields.SchemaField({
+            id: new fields.StringField({}),
+            actorId: new fields.StringField({}),
+            name: new fields.StringField({}),
+            img: new fields.StringField({}),
+            difficulty: new fields.NumberField({ integer: true, nullable: true }),
+            evasion: new fields.NumberField({ integer: true }),
+            hit: new fields.BooleanField({ initial: false }),
+            saved: new fields.SchemaField({
+                result: new fields.NumberField(),
+                success: new fields.BooleanField({ nullable: true, initial: null })
+            })
         })
-    })
-)
+    );
 
 export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     targetHook = null;
@@ -39,27 +40,25 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                 action: new fields.StringField()
             }),
             damage: new fields.ObjectField(),
-            costs: new fields.ArrayField(
-                new fields.ObjectField()
-            ),
+            costs: new fields.ArrayField(new fields.ObjectField()),
             successConsumed: new fields.BooleanField({ initial: false })
         };
     }
 
     get actionActor() {
-        if(!this.source.actor) return null;
+        if (!this.source.actor) return null;
         return fromUuidSync(this.source.actor);
     }
 
     get actionItem() {
         const actionActor = this.actionActor;
-        if(!actionActor || !this.source.item) return null;
+        if (!actionActor || !this.source.item) return null;
         return actionActor.items.get(this.source.item);
     }
 
     get action() {
         const actionItem = this.actionItem;
-        if(!actionItem || !this.source.action) return null;
+        if (!actionItem || !this.source.action) return null;
         return actionItem.system.actionsList?.find(a => a.id === this.source.action);
     }
 
@@ -74,7 +73,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     get hitTargets() {
-        return this.currentTargets.filter(t => (t.hit || !this.hasRoll || !this.targetSelection));
+        return this.currentTargets.filter(t => t.hit || !this.hasRoll || !this.targetSelection);
     }
 
     async updateTargets() {
@@ -98,13 +97,13 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         if(this.targetSelection && this.targetHook !== null) {
             Hooks.off("targetToken", this.targetHook);
             this.targetHook = null;
-        } else if(!this.targetSelection && this.targetHook === null) {
-            this.targetHook = Hooks.on("targetToken", foundry.utils.debounce(this.updateTargets.bind(this), 50));
+        } else if (!this.targetSelection && this.targetHook === null) {
+            this.targetHook = Hooks.on('targetToken', foundry.utils.debounce(this.updateTargets.bind(this), 50));
         }
     }
 
     prepareDerivedData() {
-        if(this.hasTarget) {
+        if (this.hasTarget) {
             this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
             this.currentTargets = this.getTargetList();
             this. registerTargetHook();
@@ -116,9 +115,9 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
                     return a;
                 }, {hit: 0, miss: 0})
             }
-            if(this.hasSave) this.setPendingSaves();
+            if (this.hasSave) this.setPendingSaves();
         }
-        
+
         this.canViewSecret = this.parent.speakerActor?.testUserPermission(game.user, 'OBSERVER');
         this.canButtonApply = game.user.isGM;
     }
@@ -139,11 +138,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
     setPendingSaves() {
         this.pendingSaves = this.targetSelection
-            ? this.targets.filter(
-                target => target.hit && target.saved.success === null
-            ).length > 0
-            : this.currentTargets.filter(
-                target => target.saved.success === null
-            ).length > 0;
+            ? this.targets.filter(target => target.hit && target.saved.success === null).length > 0
+            : this.currentTargets.filter(target => target.saved.success === null).length > 0;
     }
 }

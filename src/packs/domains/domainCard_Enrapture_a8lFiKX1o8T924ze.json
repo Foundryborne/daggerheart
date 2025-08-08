@@ -31,7 +31,12 @@
           "type": "any",
           "amount": null
         },
-        "effects": [],
+        "effects": [
+          {
+            "_id": "EYG5dLImk6GkmfRd",
+            "onSave": false
+          }
+        ],
         "roll": {
           "type": "spellcast",
           "trait": null,
@@ -127,7 +132,7 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784451,
-    "modifiedTime": 1754340901029,
+    "modifiedTime": 1754500747453,
     "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
   },
   "_id": "a8lFiKX1o8T924ze",
@@ -135,6 +140,10 @@
   "effects": [
     {
       "name": "Enraptured",
+      "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
+      "origin": "Compendium.daggerheart.domains.Item.a8lFiKX1o8T924ze",
+      "transfer": false,
+      "_id": "EYG5dLImk6GkmfRd",
       "type": "base",
       "system": {
         "rangeDependence": {
@@ -144,8 +153,6 @@
           "range": "melee"
         }
       },
-      "_id": "FOQ2yqrpl2TPVxvt",
-      "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
       "changes": [],
       "disabled": false,
       "duration": {
@@ -157,10 +164,8 @@
         "startRound": null,
         "startTurn": null
       },
-      "description": "<p><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">While </span><span style=\"box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgb(93, 20, 43) rgba(0, 0, 0, 0);color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial\">Enraptured</span><span style=\"color:rgb(239, 230, 216);font-family:Montserrat, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(24, 22, 46, 0.376);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</span></p>",
-      "origin": null,
+      "description": "<p>While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
       "tint": "#ffffff",
-      "transfer": true,
       "statuses": [],
       "sort": 0,
       "flags": {},
@@ -171,11 +176,11 @@
         "coreVersion": "13.346",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
-        "createdTime": 1754106690796,
-        "modifiedTime": 1754340886910,
+        "createdTime": 1754500747406,
+        "modifiedTime": 1754500810477,
         "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
       },
-      "_key": "!items.effects!a8lFiKX1o8T924ze.FOQ2yqrpl2TPVxvt"
+      "_key": "!items.effects!a8lFiKX1o8T924ze.EYG5dLImk6GkmfRd"
     }
   ],
   "ownership": {

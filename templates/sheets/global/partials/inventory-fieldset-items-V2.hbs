@@ -26,7 +26,7 @@ Parameters:
   <legend>
     {{localize title}}
     {{#if canCreate}}
-    <a data-action="createDoc" data-document-class="{{ifThen (eq type 'effect') 'ActiveEffect' 'Item' }}"
+    <a data-action="{{ifThen (or (eq type 'effect') (eq type 'feature')) 'createDoc' 'addNewItem' }}" data-document-class="{{ifThen (eq type 'effect') 'ActiveEffect' 'Item' }}"
       data-type="{{ifThen (eq type 'effect') 'base' type}}"
       {{#if inVault}}data-in-vault="{{inVault}}"{{/if}}
       {{#if disabled}} data-disabled="{{disabled}}"{{/if}}

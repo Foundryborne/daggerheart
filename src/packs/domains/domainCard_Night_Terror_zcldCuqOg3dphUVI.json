@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "2rqOUxEglhhPKk2j",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Once per long rest, choose any targets within Very Close range to perceive you as a nightmarish horror. The targets must succeed on a Reaction Roll (16) or become temporarily <em>Horrified</em>. While <em>Horrified</em>, they’re <em>Vulnerable</em>. Steal a number of Fear from the GM equal to the number of targets that are <em>Horrified</em> (up to the number of Fear in the GM’s pool). Roll a number of <strong>d6s</strong> equal to the number of stolen Fear and deal the total damage to each <em>Horrified</em> target. Discard the stolen Fear.</p>",
+    "description": "<p class=\"Body-Foundation\">Once per long rest, choose any targets within Very Close range to perceive you as a nightmarish horror. The targets must succeed on a Reaction Roll (16) or become temporarily <em>Horrified</em>. While <em>Horrified</em>, they’re <em>Vulnerable</em>. Steal a number of Fear from the GM equal to the number of targets that are <em>Horrified</em> (up to the number of Fear in the GM’s pool). Roll a number of <strong>d6s</strong> equal to the number of stolen Fear and deal the total damage to each <em>Horrified</em> target. Discard the stolen Fear.</p><p>@Template[type:emanation|range:vc]</p>",
     "domain": "midnight",
     "recallCost": 2,
     "level": 9,
@@ -14,14 +14,14 @@
         "type": "attack",
         "_id": "e4A6GQERsn08IBby",
         "systemPath": "actions",
-        "description": "<p>Once per long rest, choose any targets within Very Close range to perceive you as a nightmarish horror. The targets must succeed on a Reaction Roll (16) or become temporarily <em>Horrified</em>. While <em>Horrified</em>, they’re <em>Vulnerable</em>. Steal a number of Fear from the GM equal to the number of targets that are <em>Horrified</em> (up to the number of Fear in the GM’s pool). Roll a number of <strong>d6s</strong> equal to the number of stolen Fear and deal the total damage to each <em>Horrified</em> target. Discard the stolen Fear.</p><p></p>",
+        "description": "<p class=\"Body-Foundation\">Once per long rest, choose any targets within Very Close range to perceive you as a nightmarish horror. The targets must succeed on a Reaction Roll (16) or become temporarily <em>Horrified</em>. While <em>Horrified</em>, they’re <em>Vulnerable</em>. Steal a number of Fear from the GM equal to the number of targets that are <em>Horrified</em> (up to the number of Fear in the GM’s pool). Roll a number of <strong>d6s</strong> equal to the number of stolen Fear and deal the total damage to each <em>Horrified</em> target. Discard the stolen Fear.</p><p>@Template[type:emanation|range:vc]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
         "uses": {
           "value": null,
-          "max": "",
-          "recovery": null
+          "max": "1",
+          "recovery": "longRest"
         },
         "damage": {
           "parts": [],
@@ -121,12 +121,7 @@
         "range": ""
       }
     },
-    "resource": {
-      "type": "simple",
-      "value": 0,
-      "max": "",
-      "icon": ""
-    }
+    "resource": null
   },
   "flags": {},
   "_stats": {
@@ -137,8 +132,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784487,
-    "modifiedTime": 1754331219352,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499654051,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "zcldCuqOg3dphUVI",
   "sort": 3400000,

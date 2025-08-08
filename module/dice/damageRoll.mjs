@@ -9,9 +9,8 @@ export default class DamageRoll extends DHRoll {
     static DefaultDialog = DamageDialog;
 
     static async buildEvaluate(roll, config = {}, message = {}) {
-        if (config.evaluate !== false)
-            for (const roll of config.roll) await roll.roll.evaluate();
-        
+        if (config.evaluate !== false) for (const roll of config.roll) await roll.roll.evaluate();
+
         roll._evaluated = true;
         const parts = config.roll.map(r => this.postEvaluate(r));
 
@@ -43,7 +42,7 @@ export default class DamageRoll extends DHRoll {
         if (config.source?.message) {
             // const chatMessage = ui.chat.collection.get(config.source.message);
             chatMessage.update({ 'system.damage': config.damage });
-        } 
+        }
     }
 
     static unifyDamageRoll(rolls) {

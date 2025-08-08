@@ -10,5 +10,5 @@
     {{#if fields.resource}}{{> 'systems/daggerheart/templates/actionTypes/resource.hbs' fields=fields.resource.fields source=source.resource}}{{/if}}
     {{#if fields.documentUUID}}{{> 'systems/daggerheart/templates/actionTypes/uuid.hbs' fields=fields.documentUUID source=source.documentUUID}}{{/if}}
     {{#if fields.effects}}{{> 'systems/daggerheart/templates/actionTypes/effect.hbs' fields=fields.effects.element.fields source=source.effects}}{{/if}}
-    {{#if fields.beastform}}{{> 'systems/daggerheart/templates/actionTypes/beastform.hbs' fields=fields.effects.element.fields source=source.beastform}}{{/if}}
+    {{#if fields.beastform}}{{> 'systems/daggerheart/templates/actionTypes/beastform.hbs' fields=fields.beastform.fields source=source.beastform}}{{/if}}
 </section>

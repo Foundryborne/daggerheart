@@ -173,7 +173,8 @@
       "value": 1,
       "recovery": "longRest",
       "max": "1",
-      "icon": ""
+      "icon": "",
+      "progression": "decreasing"
     }
   },
   "flags": {},
@@ -185,8 +186,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784466,
-    "modifiedTime": 1754338717920,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499077474,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "GlRm1Dxlc0Z1b04o",
   "sort": 3400000,

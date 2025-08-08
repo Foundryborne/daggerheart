@@ -38,7 +38,9 @@ export default class DamageDialog extends HandlebarsApplicationMixin(Application
     };
 
     get title() {
-        return game.i18n.localize(`DAGGERHEART.EFFECTS.ApplyLocations.${this.config.hasHealing ? 'healing' : 'damage'}Roll.name`);
+        return game.i18n.localize(
+            `DAGGERHEART.EFFECTS.ApplyLocations.${this.config.hasHealing ? 'healing' : 'damage'}Roll.name`
+        );
     }
 
     async _prepareContext(_options) {

@@ -3,7 +3,6 @@ import DHBaseItemSheet from '../api/base-item.mjs';
 export default class FeatureSheet extends DHBaseItemSheet {
     /** @inheritDoc */
     static DEFAULT_OPTIONS = {
-        id: 'daggerheart-feature',
         classes: ['feature'],
         actions: {}
     };

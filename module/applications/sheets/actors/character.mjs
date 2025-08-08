@@ -5,6 +5,7 @@ import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
+import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
@@ -25,7 +26,8 @@ export default class CharacterSheet extends DHBaseActorSheet {
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
-            useDowntime: this.useDowntime
+            useDowntime: this.useDowntime,
+            tempBrowser: CharacterSheet.#tempBrowser
         },
         window: {
             resizable: true
@@ -156,7 +158,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             currency: {
                 title: game.i18n.localize('DAGGERHEART.CONFIG.Gold.title'),
                 coins: game.i18n.localize('DAGGERHEART.CONFIG.Gold.coins'),
-                handfulls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfulls'),
+                handfuls: game.i18n.localize('DAGGERHEART.CONFIG.Gold.handfuls'),
                 bags: game.i18n.localize('DAGGERHEART.CONFIG.Gold.bags'),
                 chests: game.i18n.localize('DAGGERHEART.CONFIG.Gold.chests')
             }
@@ -178,6 +180,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
     async _preparePartContext(partId, context, options) {
         context = await super._preparePartContext(partId, context, options);
         switch (partId) {
+            case 'header':
+                const { playerCanEditSheet, levelupAuto } = game.settings.get(
+                    CONFIG.DH.id,
+                    CONFIG.DH.SETTINGS.gameSettings.Automation
+                );
+                context.showSettings = game.user.isGM || !levelupAuto || (levelupAuto && playerCanEditSheet);
+                break;
             case 'loadout':
                 await this._prepareLoadoutContext(context, options);
                 break;
@@ -188,6 +197,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 await this._prepareBiographyContext(context, options);
                 break;
         }
+
         return context;
     }
 
@@ -592,7 +602,16 @@ export default class CharacterSheet extends DHBaseActorSheet {
      */
     static async #openPack(_event, button) {
         const { key } = button.dataset;
-        game.packs.get(key)?.render(true);
+
+        const presets = {
+            compendium: 'daggerheart',
+            folder: key,
+            render: {
+                noFolder: true
+            }
+        };
+
+        return new ItemBrowser({ presets }).render({ force: true });
     }
 
     /**
@@ -705,6 +724,13 @@ export default class CharacterSheet extends DHBaseActorSheet {
         await item.update({
             [`system.resource.diceStates.${dice}.used`]: diceState ? !diceState.used : true
         });
+    }
+
+    /**
+     * Temp
+     */
+    static async #tempBrowser(_, target) {
+        new ItemBrowser().render({ force: true });
     }
 
     /**

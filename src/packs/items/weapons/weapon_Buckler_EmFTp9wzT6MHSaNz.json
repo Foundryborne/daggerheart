@@ -20,7 +20,7 @@
         },
         "cost": [
           {
-            "key": "armorStack",
+            "key": "armorSlot",
             "value": 1,
             "keyIsID": false,
             "scalable": false,

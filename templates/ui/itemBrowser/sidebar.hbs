@@ -1,0 +1,28 @@
+<div class="compendium-sidebar">
+    {{#each compendiums}}
+        <details class="compendium-container" data-compendium-id="{{id}}" open>
+            <summary>
+                {{label}}
+                <line-div></line-div>
+            </summary>
+            <div class="folder-list">
+                {{#each folders}}
+                    <div class="{{#if selected}} is-selected{{/if}}" data-action="selectFolder" data-folder-id="{{id}}">{{label}}</div>
+                    {{!-- <div data-action="selectFolder" data-folder-id="{{id}}">{{label}}</div> --}}
+                    <div class="subfolder-list">
+                        {{#each folders}}
+                            <div
+                                class="subfolder-item {{#if selected}} is-selected{{/if}}"
+                                data-action="selectFolder"
+                                data-folder-id="{{../id}}.folders.{{id}}"
+                            >
+                                • {{label}}
+                            </div>
+                        {{/each}}
+                    </div>
+                {{/each}}
+            </div>
+        <line-div></line-div>
+        </details>
+    {{/each}}
+</div>

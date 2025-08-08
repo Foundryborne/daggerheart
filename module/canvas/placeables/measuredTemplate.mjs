@@ -4,8 +4,8 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
 
         const rangeMeasurementSettings = game.settings.get(
             CONFIG.DH.id,
-            CONFIG.DH.SETTINGS.gameSettings.RangeMeasurement
-        );
+            CONFIG.DH.SETTINGS.gameSettings.variantRules
+        ).rangeMeasurement;
         if (rangeMeasurementSettings.enabled) {
             const splitRulerText = this.ruler.text.split(' ');
             if (splitRulerText.length > 0) {
@@ -29,7 +29,7 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
         if (distance <= settings.far) {
             return game.i18n.localize('DAGGERHEART.CONFIG.Range.far.name');
         }
-        if (distance <= settings.veryFar) {
+        if (distance > settings.far) {
             return game.i18n.localize('DAGGERHEART.CONFIG.Range.veryFar.name');
         }
 

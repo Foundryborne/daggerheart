@@ -88,6 +88,26 @@ export default class DHBeastform extends BaseDataItem {
 
     /* -------------------------------------------- */
 
+    get beastformAttackData() {
+        const effect = this.parent.effects.find(x => x.type === 'beastform');
+        if (!effect) return null;
+
+        const traitBonus = effect.changes.find(x => x.key === `system.traits.${this.mainTrait}.value`)?.value ?? 0;
+        const evasionBonus = effect.changes.find(x => x.key === 'system.evasion')?.value ?? 0;
+
+        const damageDiceIndex = effect.changes.find(x => x.key === 'system.rules.attack.damage.diceIndex');
+        const damageDice = damageDiceIndex ? Object.keys(CONFIG.DH.GENERAL.diceTypes)[damageDiceIndex.value] : null;
+        const damageBonus = effect.changes.find(x => x.key === 'system.rules.attack.damage.bonus')?.value ?? 0;
+
+        return {
+            trait: game.i18n.localize(CONFIG.DH.ACTOR.abilities[this.mainTrait].label),
+            traitBonus: traitBonus ? Number(traitBonus).signedString() : '',
+            evasionBonus: evasionBonus ? Number(evasionBonus).signedString() : '',
+            damageDice: damageDice,
+            damageBonus: damageBonus ? `${Number(damageBonus).signedString()}` : ''
+        };
+    }
+
     async _preCreate() {
         if (!this.actor) return;
 

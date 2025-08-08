@@ -113,6 +113,10 @@
             text-align: center;
 
             .card-preview-container {
+                flex: 1;
+            }
+
+            .card-preview-container {
                 border-color: light-dark(@dark-blue, @golden);
             }
 
@@ -157,7 +161,10 @@
         .selections-outer-container {
             display: flex;
             justify-content: space-evenly;
-            height: 210px;
+
+            &.enlarged {
+                height: 240px;
+            }
         }
 
         .section-container {

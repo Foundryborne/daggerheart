@@ -67,4 +67,30 @@
             gap: 5px;
         }
     }
+
+    &.two-big-buttons {
+        .window-content {
+            padding-top: 0;
+
+            .form-footer {
+                display: grid;
+                grid-auto-columns: 1fr;
+                grid-auto-flow: column;
+            }
+
+            button[type='submit'] {
+                gap: 5px;
+                flex-direction: row;
+                font-family: @font-body;
+                font-weight: bold;
+                font-size: var(--font-size-14);
+                height: 40px;
+                white-space: nowrap;
+
+                i {
+                    font-size: var(--font-size-16);
+                }
+            }
+        }
+    }
 }

@@ -486,8 +486,42 @@
         flex-wrap: wrap;
         margin-top: 2px;
 
-        button {
-            white-space: nowrap;
+        .item-button {
+            display: flex;
+            border: 1px solid light-dark(#18162e, #18162e);
+            color: light-dark(#18162e, #18162e);
+            outline: none;
+            box-shadow: none;
+            border-radius: 6px;
+
+            button {
+                border-radius: 3px 0px 0px 3px;
+                color: light-dark(@dark-blue, @dark-blue);
+                white-space: nowrap;
+                border: 0;
+                font-family: @font-body;
+
+                &:hover {
+                    color: light-dark(@dark-blue, @golden);
+                }
+
+                &:not(:first-child) {
+                    padding: 6px;
+                    background: light-dark(@dark-blue-10, @golden-secondary);
+                    border-radius: 0px 3px 3px 0px;
+                    color: light-dark(@dark-blue, @dark-golden);
+
+                    &:hover {
+                        background: light-dark(@light-black, @dark-blue);
+                        color: light-dark(@dark-blue, @golden-secondary);
+                    }
+                }
+            }
+
+            .spacer {
+                border-right: 1px solid black;
+                content: '';
+            }
         }
     }
 }
@@ -644,6 +678,12 @@
     }
 
     &.theme-light {
+        .tagify {
+            tag div img {
+                filter: @beige-filter;
+            }
+        }
+
         .tagify__dropdown {
             .tagify__dropdown__wrapper {
                 background-image: url(../assets/parchments/dh-parchment-light.png);

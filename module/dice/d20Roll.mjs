@@ -18,9 +18,7 @@ export default class D20Roll extends DHRoll {
     static DefaultDialog = D20RollDialog;
 
     get title() {
-        return game.i18n.localize(
-            "DAGGERHEART.GENERAL.d20Roll"
-        );
+        return game.i18n.localize('DAGGERHEART.GENERAL.d20Roll');
     }
 
     get d20() {

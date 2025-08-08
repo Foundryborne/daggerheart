@@ -4,7 +4,7 @@
   "type": "domainCard",
   "folder": "7O1tTswJMNdPgLsx",
   "system": {
-    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice. <strong>Mark a Stress</strong> to force all <em>Enraptured</em> targets to mark a Stress, ending this spell.</p>",
+    "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice. <strong>Mark a Stress</strong> to force all <em>Enraptured</em> targets to mark a Stress, ending this spell.</p><p>@Template[type:emanation|range:f]</p>",
     "domain": "grace",
     "recallCost": 3,
     "level": 8,
@@ -14,7 +14,7 @@
         "type": "attack",
         "_id": "r5eA3tAH7EplOQCP",
         "systemPath": "actions",
-        "description": "<p>Make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice.</p>",
+        "description": "<p class=\"Body-Foundation\">Make a <strong>Spellcast Roll</strong> against all targets within Far range. Targets you succeed against become temporarily <em>Enraptured</em>. While <em>Enraptured</em>, a target’s attention is fixed on you, narrowing their field of view and drowning out any sound but your voice. <strong>Mark a Stress</strong> to force all <em>Enraptured</em> targets to mark a Stress, ending this spell.</p><p>@Template[type:emanation|range:f]</p>",
         "chatDisplay": true,
         "actionType": "action",
         "cost": [],
@@ -132,8 +132,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784481,
-    "modifiedTime": 1754342040215,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754499825008,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "ubpixIgZrJXKyM3b",
   "sort": 3400000,

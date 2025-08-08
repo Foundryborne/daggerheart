@@ -147,4 +147,8 @@ export default class DHArmor extends AttachableItem {
         const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`];
         return labels;
     }
+
+    get itemFeatures() {
+        return this.armorFeatures;
+    }
 }

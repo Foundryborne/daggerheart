@@ -6,7 +6,7 @@
   "sorting": "a",
   "_id": "RZOEu0ZYQNPs6O2c",
   "description": "",
-  "sort": 0,
+  "sort": 1500000,
   "flags": {},
   "_stats": {
     "compendiumSource": null,
@@ -16,8 +16,8 @@
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754352793139,
-    "modifiedTime": 1754352793139,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754501855742,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!folders!RZOEu0ZYQNPs6O2c"
 }
