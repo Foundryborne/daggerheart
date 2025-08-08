@@ -24,7 +24,6 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             title: new fields.StringField(),
             roll: new fields.ObjectField(),
             targets: targetsField(),
-            oldTargets: targetsField(),
             targetSelection: new fields.BooleanField({ initial: false }),
             hasRoll: new fields.BooleanField({ initial: false }),
             hasDamage: new fields.BooleanField({ initial: false }),
@@ -64,26 +63,14 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         return actionItem.system.actionsList?.find(a => a.id === this.source.action);
     }
 
-    // get messageTemplate() {
-    //     return 'systems/daggerheart/templates/ui/chat/roll.hbs';
-    // }
-
     get targetMode() {
         return this.targetSelection;
     }
 
     set targetMode(mode) {
         this.targetSelection = mode;
-        this.updateTargets();
         this.registerTargetHook();
-        this.parent.update(
-            {
-                system: {
-                    targetSelection: this.targetSelection,
-                    oldTargets: this.oldTargets
-                }
-            }
-        );
+        this.updateTargets();
     }
 
     get hitTargets() {
@@ -91,31 +78,23 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     }
 
     async updateTargets() {
-        this.currentTargets = this.getTargetList();
-        if(!this.targetSelection) {
-            this.currentTargets.forEach(ct => {
-                if(this.targets.find(t => t.actorId === ct.actorId)) return;
-                const indexTarget = this.oldTargets.findIndex(ot => ot.actorId === ct.actorId);
-                if(indexTarget === -1)
-                    this.oldTargets.push(ct);
-            });
-            if(this.hasSave) this.setPendingSaves();
-            // if(this.currentTargets.length) {
-                if(!this.parent._id) return;
-                const updates = await this.parent.update(
-                    {
-                        system: {
-                            oldTargets: this.oldTargets
-                        }
-                    }
-                );
-                if(!updates && ui.chat.collection.get(this.parent.id))
-                    ui.chat.updateMessage(this.parent);
-            // }
-        }
+        if(!ui.chat.collection.get(this.parent.id)) return;
+        let targets;
+        if(this.targetSelection)
+            targets = this.targets;
+        else
+            targets = Array.from(game.user.targets).map(t => game.system.api.fields.ActionFields.TargetField.formatTarget(t));
+        
+        this.parent.setFlag(game.system.id, "targets", targets);
+        await this.parent.updateSource({
+            system: {
+                targetSelection: this.targetSelection
+            }
+        });
     }
 
     registerTargetHook() {
+        if(!this.parent.isAuthor) return;
         if(this.targetSelection && this.targetHook !== null) {
             Hooks.off("targetToken", this.targetHook);
             this.targetHook = null;
@@ -127,9 +106,10 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
     prepareDerivedData() {
         if(this.hasTarget) {
             this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
-            this.updateTargets();
-            this.registerTargetHook();
-            if(this.targetSelection === true) {
+            this.currentTargets = this.getTargetList();
+            this. registerTargetHook();
+            
+            if(this.targetSelection === true && this.hasRoll) {
                 this.targetShort = this.targets.reduce((a,c) => {
                     if(c.hit) a.hit += 1;
                     else a.miss += 1;
@@ -140,17 +120,21 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         }
         
         this.canViewSecret = this.parent.speakerActor?.testUserPermission(game.user, 'OBSERVER');
+        this.canButtonApply = game.user.isGM;
     }
 
     getTargetList() {
-        return this.targetSelection !== true
-            ? Array.from(game.user.targets).map(t =>{
-                    const target = game.system.api.fields.ActionFields.TargetField.formatTarget(t),
-                        oldTarget = this.targets.find(ot => ot.actorId === target.actorId) ?? this.oldTargets.find(ot => ot.actorId === target.actorId);
-                    if(oldTarget) return oldTarget;
-                    return target;
-                })
-            : this.targets;
+        const targets = this.targetSelection && this.parent.isAuthor ? this.targets : (this.parent.getFlag(game.system.id, "targets") ?? this.targets),
+            reactionRolls = this.parent.getFlag(game.system.id, "reactionRolls");
+
+        if(reactionRolls) {
+            Object.entries(reactionRolls).forEach(([k, r]) => {
+                const target = targets.find(t => t.id === k);
+                if(target) target.saved  = r;
+            });
+        }
+
+        return targets;
     }
 
     setPendingSaves() {

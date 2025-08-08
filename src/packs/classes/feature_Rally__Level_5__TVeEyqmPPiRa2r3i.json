@@ -22,15 +22,7 @@
         "description": "",
         "chatDisplay": true,
         "actionType": "action",
-        "cost": [
-          {
-            "scalable": false,
-            "key": "oxv0m8AFUQVFKtZ4",
-            "value": 1,
-            "keyIsID": true,
-            "step": null
-          }
-        ],
+        "cost": [],
         "uses": {
           "value": null,
           "max": "",
@@ -74,7 +66,7 @@
         {
           "key": "system.bonuses.rally",
           "mode": 2,
-          "value": "1d8",
+          "value": "d8",
           "priority": null
         }
       ],

@@ -14,7 +14,7 @@
     <div class="roll-part-content dice-result">
         <div class="dice-tooltip">
             <div class="wrapper">
-                {{#if targets.length}}
+                {{#if (and parent.isAuthor targets.length)}}
                     <div class="target-selector">
                         <div class="roll-part-header"><div></div></div>
                         <div class="target-choice">
@@ -29,7 +29,7 @@
                     <div class="roll-target" data-token="{{id}}">
                         <img class="target-img" src="{{img}}">
                         <div class="target-data">
-                            <div class="target-name" data-perm-id="{{actorId}}">{{name}}</div>
+                            <div class="target-name" data-perm-id="{{actorId}}"><span>{{name}}</span></div>
                             {{#if (and ../targetSelection ../hasRoll)}}
                                 <div class="target-hit-status {{#if hit}}is-hit{{else}}is-miss{{/if}}">
                                     {{#if hit}}
@@ -40,7 +40,7 @@
                                 </div>
                             {{/if}}
                         </div>
-                        {{#if (and ../hasSave (or hit (not @root.targetSelection)))}}
+                        {{#if (and ../hasSave (or hit (not @root.hasRoll)))}}
                             <div class="target-save{{#if saved.result includeZero=true}} is-rolled{{/if}}" data-perm-id="{{actorId}}">
                                 <i class="fa-solid {{#if saved.result includeZero=true}}{{#if saved.success}}fa-check{{else}}fa-xmark{{/if}}{{else}}fa-shield{{/if}} fa-lg"></i>
                             </div>

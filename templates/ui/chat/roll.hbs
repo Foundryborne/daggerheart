@@ -5,4 +5,4 @@
     {{#if hasTarget}}{{> 'systems/daggerheart/templates/ui/chat/parts/target-part.hbs'}}{{/if}}
     <div class="roll-part-header"><div></div></div>
 </div>
-{{> 'systems/daggerheart/templates/ui/chat/parts/button-part.hbs'}}
+{{#if (or parent.isAuthor canButtonApply)}}{{> 'systems/daggerheart/templates/ui/chat/parts/button-part.hbs'}}{{/if}}

@@ -22,19 +22,6 @@
             }
         }
     }
-
-    [data-use-perm='false'] {
-        pointer-events: none;
-        border-color: transparent;
-    }
-    [data-view-perm='false'] {
-        > * {
-            display: none;
-        }
-        &::after {
-            content: '??';
-        }
-    }
 }
 
 .daggerheart,
@@ -42,6 +29,19 @@
     .chat-message {
         --text-color: light-dark(@dark-blue, @golden);
         --bg-color: light-dark(@dark-blue-40, @golden-40);
+
+        [data-use-perm='false'] {
+            pointer-events: none;
+            border-color: transparent;
+        }
+        [data-view-perm='false'] {
+            &[data-perm-hidden='true'], > * {
+                display: none;
+            }
+            &::after {
+                content: '??';
+            }
+        }
 
         &.duality {
             &.hope {
@@ -177,10 +177,6 @@
                         }
                     }
                 }
-
-                .roll-difficulty {
-                    margin-top: -5px;
-                }
             }
         }
 
@@ -254,7 +250,7 @@
                 .button-target-selection {
                     flex: 1;
                     text-align: center;
-                    padding: 5px 0;
+                    margin: -5px 0;
                 }
 
                 .button-target-selection:hover,

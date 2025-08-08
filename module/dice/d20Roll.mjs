@@ -141,6 +141,7 @@ export default class D20Roll extends DHRoll {
     static postEvaluate(roll, config = {}) {
         const data = super.postEvaluate(roll, config);
         data.type = config.roll?.type;
+        data.difficulty = config.roll.difficulty;
         if (config.targets?.length) {
             config.targetSelection = true;
             config.targets.forEach(target => {
@@ -148,10 +149,9 @@ export default class D20Roll extends DHRoll {
                 target.hit = roll.isCritical || roll.total >= difficulty;
             });
             data.success = config.targets.some(target => target.hit)
-        } else if (config.roll.difficulty) {
-            data.difficulty = config.roll.difficulty;
+        } else if (config.roll.difficulty)
             data.success = roll.isCritical || roll.total >= config.roll.difficulty;
-        }
+        
         data.advantage = {
             type: config.roll.advantage,
             dice: roll.dAdvantage?.denomination,

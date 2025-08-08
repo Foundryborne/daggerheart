@@ -1,11 +1,5 @@
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async renderHTML() {
-        // if (this.system.messageTemplate)
-        //     this.content = await foundry.applications.handlebars.renderTemplate(this.system.messageTemplate, {
-        //         ...this.system,
-        //         _source: this.system._source
-        //     });
-
         const actor = game.actors.get(this.speaker.actor);
         const actorData = actor && this.isContentVisible ? actor : {
             img: this.author.avatar ? this.author.avatar : 'icons/svg/mystery-man.svg',
@@ -19,17 +13,6 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
         return html;
     }
-
-    /* async _preCreate(data, options, user) {
-        options.speaker = ChatMessage.getSpeaker();
-        const rollActorOwner = data.rolls?.[0]?.data?.parent?.owner;
-        if (rollActorOwner) {
-            data.author = rollActorOwner ? rollActorOwner.id : data.author;
-            await this.updateSource({ author: rollActorOwner ?? user });
-        }
-
-        return super._preCreate(data, options, rollActorOwner ?? user);
-    } */
 
     enrichChatMessage(html) {
         const elements = html.querySelectorAll('[data-perm-id]');
@@ -71,6 +54,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('mouseenter', this.hoverTarget);
             element.addEventListener('mouseleave', this.unhoverTarget);
             element.addEventListener('click', this.clickTarget);
+        });
+        
+        html.querySelectorAll('.button-target-selection').forEach(element => {
+            element.addEventListener('click', this.onTargetSelection.bind(this));
         });
     }
 
@@ -172,5 +159,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             return;
         }
         game.canvas.pan(token);
+    }
+
+    onTargetSelection(event) {
+        event.stopPropagation();
+        this.system.targetMode = Boolean(event.target.dataset.targetHit);
     }
 }
