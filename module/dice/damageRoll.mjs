@@ -195,11 +195,15 @@ export default class DamageRoll extends DHRoll {
         results.splice(Number(result) + 1, 0, newResult[0]);
 
         const rerolledDice = parsedRoll.dice.map((x, index) => {
-            if (index !== Number(dice)) return { ...x, dice: x.denomination };
+            const isRerollDice = index === Number(dice);
+            if (!isRerollDice) return { ...x, dice: x.denomination };
             return {
                 dice: parsedRoll.dice[dice].denomination,
                 total: parsedRoll.dice[dice].total,
-                results: results
+                results: results.map(result => ({
+                    ...result,
+                    hasRerolls: result.hasRerolls || isRerollDice
+                }))
             };
         });
 
