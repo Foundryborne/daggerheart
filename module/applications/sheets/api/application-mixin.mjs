@@ -51,9 +51,8 @@ import { ItemBrowser } from '../../ui/itemBrowser.mjs';
  */
 
 /**
- * @template {Constructor<foundry.applications.api.DocumentSheet>} BaseDocumentSheet
- * @param {BaseDocumentSheet} Base - The base class to extend.
- * @returns {BaseDocumentSheet}
+ * @template {new (...args: any[]) => {}} T
+ * @arg Base {T}
  */
 export default function DHApplicationMixin(Base) {
     class DHSheetV2 extends HandlebarsApplicationMixin(Base) {
@@ -123,12 +122,13 @@ export default function DHApplicationMixin(Base) {
             super._attachPartListeners(partId, htmlElement, options);
             this._dragDrop.forEach(d => d.bind(htmlElement));
         }
+
         /**@inheritdoc */
         async _onFirstRender(context, options) {
             await super._onFirstRender(context, options);
 
             const docs = [];
-            for (var docData of this.relatedDocs) {
+            for (const docData of this.relatedDocs) {
                 const doc = await foundry.utils.fromUuid(docData.uuid);
                 docs.push(doc);
             }
@@ -247,6 +247,9 @@ export default function DHApplicationMixin(Base) {
         /*  Context Menu                                */
         /* -------------------------------------------- */
 
+        /**
+         * Create all configured context menus for this application ins tance.
+         */
         _createContextMenus() {
             for (const config of this.options.contextMenus) {
                 const { handler, selector, options } = config;
@@ -257,9 +260,9 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
 
         /**
-         * Get the set of ContextMenu options for DomainCards.
+         * Get the set of ContextMenu options for ActiveEffects.
          * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
-         * @this {CharacterSheet}
+         * @this {DHSheetV2}
          * @protected
          */
         static #getEffectContextOptions() {
@@ -305,8 +308,13 @@ export default function DHApplicationMixin(Base) {
         }
 
         /**
-         * Get the set of ContextMenu options.
-         * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
+         * Get the common ContextMenu options for an element.
+         * @param {Object} options
+         * @param {boolean} [options.usable=false] - Whether to include an option to use the item or apply damage.
+         * @param {boolean} [options.toChat=false] - Whether to include an option to send the item to chat.
+         * @param {boolean} [options.deletable=true] - Whether to include an option to delete the item.
+         *
+         * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]}
          */
         _getContextMenuCommonOptions({ usable = false, toChat = false, deletable = true }) {
             const options = [
