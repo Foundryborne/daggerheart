@@ -101,8 +101,7 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         const item = event.currentTarget.closest('.inventory-item');
 
         if (item) {
-            const adversary = game.actors.find(x => x.type === 'adversary' && x.id === item.dataset.itemId);
-            const adversaryData = { type: 'Actor', uuid: adversary.uuid };
+            const adversaryData = { type: 'Actor', uuid: item.dataset.itemUuid };
             event.dataTransfer.setData('text/plain', JSON.stringify(adversaryData));
             event.dataTransfer.setDragImage(item, 60, 0);
         }
