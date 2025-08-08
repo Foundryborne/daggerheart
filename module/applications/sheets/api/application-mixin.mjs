@@ -336,6 +336,20 @@ export default function DHApplicationMixin(Base) {
                     callback: async (target, event) => {
                         const doc = await getDocFromElement(target),
                             action = doc?.system?.attack ?? doc;
+                        return action && action.use(event, { byPassRoll: true })
+                    }
+                });
+
+                options.unshift({
+                    name: 'DAGGERHEART.APPLICATIONS.ContextMenu.useItem',
+                    icon: 'fa-solid fa-burst',
+                    condition: target => {
+                        const doc = getDocFromElementSync(target);
+                        return doc?.system?.attack?.damage.parts.length || doc?.damage?.parts.length;
+                    },
+                    callback: async (target, event) => {
+                        const doc = await getDocFromElement(target),
+                            action = doc?.system?.attack ?? doc;
                         return action && action.use(event, { byPassRoll: true });
                     }
                 });

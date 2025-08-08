@@ -115,7 +115,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
         if (this.chatDisplay) await this.toChat();
-
         let { byPassRoll } = options,
             config = this.prepareConfig(event, byPassRoll);
         for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
@@ -145,9 +144,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             if (this.rollDamage && this.damage.parts.length) await this.rollDamage(event, config);
             else if (this.trigger) await this.trigger(event, config);
             else if (this.hasSave || this.hasEffect) {
-                const roll = new Roll('');
+                const roll = new CONFIG.Dice.daggerheart.DHRoll('');
                 roll._evaluated = true;
-                if (this.hasTarget) config.targetSelection = config.targets.length > 0;
+                if(config.hasTarget) config.targetSelection = config.targets.length > 0;
                 await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
             }
         }
@@ -180,7 +179,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasHealing: this.damage?.parts?.length && this.type === 'healing',
             hasEffect: !!this.effects?.length,
             hasSave: this.hasSave,
-            hasTarget: true,
             selectedRollMode: game.settings.get('core', 'rollMode'),
             isFastForward: event.shiftKey,
             data: this.getRollData(),
@@ -247,8 +245,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         )
             this.update({ 'uses.value': this.uses.value + 1 });
 
-        if (config.roll?.success || successCost)
-            (config.message ?? config.parent).update({ 'system.successConsumed': true });
+        if(config.roll?.success || successCost) {
+            setTimeout(() => {
+                (config.message ?? config.parent).update({'system.successConsumed': true})
+            }, 50);
+        }
     }
     /* */
 
@@ -367,15 +368,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     async updateChatMessage(message, targetId, changes, chain = true) {
         setTimeout(async () => {
-            const chatMessage = ui.chat.collection.get(message._id),
-                msgTarget =
-                    chatMessage.system.targets.find(mt => mt.id === targetId) ??
-                    chatMessage.system.oldTargets.find(mt => mt.id === targetId);
-            msgTarget.saved = changes;
+            const chatMessage = ui.chat.collection.get(message._id);
+            
             await chatMessage.update({
-                system: {
-                    targets: chatMessage.system.targets,
-                    oldTargets: chatMessage.system.oldTargets
+                flags: {
+                    [game.system.id]: {
+                        "reactionRolls": {
+                            [targetId]: changes
+                        }
+                    }
                 }
             });
         }, 100);

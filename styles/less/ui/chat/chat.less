@@ -11,333 +11,6 @@
         }
     }
 
-    /* &.roll {
-        .dice-flavor {
-            text-align: center;
-            font-weight: bold;
-        }
-        .dice-tooltip {
-            .dice-rolls {
-                &.duality {
-                    display: flex;
-                    gap: 0.25rem;
-
-                    > .roll {
-                        background-image: none;
-
-                        .reroll-button {
-                            border: none;
-                            background: initial;
-                            width: 42px;
-
-                            &:hover {
-                                background: var(--button-background-color);
-                                border: 1px solid var(--button-border-color);
-                            }
-                        }
-                    }
-                }
-
-                &.rerollable {
-                    position: relative;
-                    flex: none;
-
-                    .dice-rerolled {
-                        z-index: 2;
-                        position: absolute;
-                        right: 0;
-                        font-size: 12px;
-                        cursor: help;
-                    }
-
-                    .reroll-button {
-                        border: none;
-                        background: initial;
-
-                        &:hover {
-                            background: var(--button-background-color);
-                            border: 1px solid var(--button-border-color);
-                        }
-                    }
-                }
-
-                // margin: 0;
-                > .roll {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 4px;
-                    margin-bottom: 4px;
-
-                    .dice-container {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 2px;
-                        position: relative;
-
-                        .dice-title {
-                            color: var(--color-light-1);
-                            text-shadow: 0 0 1px black;
-                        }
-
-                        .dice-rerolled {
-                            z-index: 2;
-                            position: absolute;
-                            right: -2px;
-                            font-size: 12px;
-                            cursor: help;
-                        }
-
-                        .dice-inner-container {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            position: relative;
-                            &.hope,
-                            &.fear {
-                                .dice-wrapper {
-                                    clip-path: polygon(
-                                        50% 0%,
-                                        80% 10%,
-                                        100% 35%,
-                                        100% 70%,
-                                        80% 90%,
-                                        50% 100%,
-                                        20% 90%,
-                                        0% 70%,
-                                        0% 35%,
-                                        20% 10%
-                                    );
-                                }
-                            }
-                            .dice-wrapper {
-                                height: 24px;
-                                width: 24px;
-                                position: relative;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-
-                                .dice {
-                                    height: 26px;
-                                    width: 26px;
-                                    max-width: unset;
-                                    position: absolute;
-                                }
-                            }
-
-                            .dice-value {
-                                position: absolute;
-                                font-weight: bold;
-                                font-size: 16px;
-                            }
-
-                            &.hope {
-                                .dice-wrapper {
-                                    background: black;
-
-                                    .dice {
-                                        filter: brightness(0) saturate(100%) invert(79%) sepia(79%) saturate(333%)
-                                            hue-rotate(352deg) brightness(102%) contrast(103%);
-                                    }
-                                }
-
-                                .dice-value {
-                                    color: var(--color-dark-1);
-                                    text-shadow: 0 0 4px white;
-                                }
-                            }
-
-                            &.fear {
-                                .dice-wrapper {
-                                    background: white;
-
-                                    .dice {
-                                        filter: brightness(0) saturate(100%) invert(12%) sepia(88%) saturate(4321%)
-                                            hue-rotate(221deg) brightness(92%) contrast(110%);
-                                    }
-                                }
-
-                                .dice-value {
-                                    color: var(--color-light-1);
-                                    text-shadow: 0 0 4px black;
-                                }
-                            }
-
-                            &.advantage {
-                                .dice-wrapper {
-                                    .dice {
-                                        filter: brightness(0) saturate(100%) invert(18%) sepia(92%) saturate(4133%)
-                                            hue-rotate(96deg) brightness(104%) contrast(107%);
-                                    }
-                                }
-                            }
-
-                            &.disadvantage {
-                                .dice-wrapper {
-                                    .dice {
-                                        filter: brightness(0) saturate(100%) invert(9%) sepia(78%) saturate(6903%)
-                                            hue-rotate(11deg) brightness(93%) contrast(117%);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            .damage-resource {
-                font-weight: 600;
-                margin-top: 5px;
-            }
-        }
-
-        .dice-total {
-            &.duality {
-                &.hope {
-                    border-color: @hope;
-                    border-width: 3px;
-                    background: rgba(@hope, 0.5);
-                }
-                &.fear {
-                    border-color: @fear;
-                    border-width: 3px;
-                    background: rgba(@fear, 0.5);
-                }
-                &.critical {
-                    border-color: @critical;
-                    border-width: 3px;
-                    background: rgba(@critical, 0.5);
-                }
-            }
-
-            .dice-total-value {
-                .hope {
-                    color: @hope;
-                }
-                .fear {
-                    color: @fear;
-                }
-                .critical {
-                    color: @critical;
-                }
-            }
-        }
-
-        .dice-total-label {
-            font-size: 12px;
-            font-weight: bold;
-            font-variant: all-small-caps;
-            margin: -@fullMargin 0;
-        }
-
-        .target-selection {
-            display: flex;
-            justify-content: space-around;
-            input[type='radio'] {
-                display: none;
-                &:checked + label {
-                    text-shadow: 0px 0px 4px #ce5937;
-                }
-                &:not(:checked) + label {
-                    opacity: 0.75;
-                }
-            }
-            label {
-                cursor: pointer;
-                opacity: 0.75;
-                &.target-selected {
-                    text-shadow: 0px 0px 4px #ce5937;
-                    opacity: 1;
-                }
-            }
-        }
-
-        .target-section {
-            margin-top: 5px;
-
-            .target-container {
-                display: flex;
-                transition: all 0.2s ease-in-out;
-
-                &:hover {
-                    filter: drop-shadow(0 0 3px @secondaryShadow);
-                    border-color: gold;
-                }
-
-                &.hidden {
-                    display: none;
-                    border: 0;
-                }
-
-                &.hit {
-                    background: @hit;
-                }
-
-                &.miss {
-                    background: @miss;
-                }
-
-                img,
-                .target-save-container {
-                    width: 22px;
-                    height: 22px;
-                    align-self: center;
-                    border-color: transparent;
-                }
-
-                img {
-                    flex: 0;
-                    margin-left: 8px;
-                }
-
-                .target-save-container {
-                    margin-right: 8px;
-                    justify-content: center;
-                    display: flex;
-                    align-items: center;
-                    min-height: unset;
-                    border: 1px solid black;
-                }
-
-                .target-inner-container {
-                    flex: 1;
-                    display: flex;
-                    justify-content: center;
-                    font-size: var(--font-size-16);
-                }
-
-                &:not(:has(.target-save-container)) .target-inner-container {
-                    margin-right: @hugeMargin;
-                }
-            }
-        }
-
-        .dice-actions {
-            display: flex;
-            gap: 4px;
-
-            button {
-                flex: 1;
-                height: 40px;
-                font-family: @font-body;
-                font-weight: 600;
-            }
-        }
-
-        .dice-result {
-            .roll-damage-button,
-            .damage-button,
-            .duality-action {
-                margin-top: 5px;
-            }
-        }
-
-        &:not(.expanded) .dice-tooltip {
-            grid-template-rows: 0fr;
-        }
-    } */
-
     button {
         &.inner-button {
             --button-size: 1.25rem;
@@ -349,19 +22,6 @@
             }
         }
     }
-
-    [data-use-perm='false'] {
-        pointer-events: none;
-        border-color: transparent;
-    }
-    [data-view-perm='false'] {
-        > * {
-            display: none;
-        }
-        &::after {
-            content: '??';
-        }
-    }
 }
 
 .daggerheart,
@@ -369,6 +29,19 @@
     .chat-message {
         --text-color: light-dark(@dark-blue, @golden);
         --bg-color: light-dark(@dark-blue-40, @golden-40);
+
+        [data-use-perm='false'] {
+            pointer-events: none;
+            border-color: transparent;
+        }
+        [data-view-perm='false'] {
+            &[data-perm-hidden='true'], > * {
+                display: none;
+            }
+            &::after {
+                content: '??';
+            }
+        }
 
         &.duality {
             &.hope {
@@ -412,7 +85,7 @@
                 grid-template-columns: 1fr auto 1fr;
                 align-items: center;
                 color: light-dark(@dark, @beige);
-                margin: 5px 0;
+                margin: 10px 0;
 
                 span {
                     display: flex;
@@ -450,7 +123,6 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 5px;
-                padding: 5px 0;
 
                 .dice-tooltip {
                     width: 100%;
@@ -489,6 +161,7 @@
                     color: var(--text-color);
                     font-weight: 700;
                     font-family: 'Cinzel', sans-serif;
+                    line-height: .75;
 
                     .roll-result-value {
                         font-size: var(--font-size-24);
@@ -502,10 +175,6 @@
                             margin-left: 10px;
                         }
                     }
-                }
-
-                .roll-difficulty {
-                    margin-top: -5px;
                 }
             }
         }
@@ -580,7 +249,7 @@
                 .button-target-selection {
                     flex: 1;
                     text-align: center;
-                    padding: 5px 0;
+                    margin: -5px 0;
                 }
 
                 .button-target-selection:hover,
@@ -600,6 +269,11 @@
             width: 100%;
             gap: 10px;
             align-items: center;
+            border-radius: 3px;
+
+            &:hover {
+                background-color: rgba(255,255,255,.1);
+            }
 
             .target-img {
                 border-radius: 50%;
@@ -640,6 +314,7 @@
             padding: 3px 5px;
             width: fit-content;
             margin: auto;
+            white-space: nowrap;
         }
 
         .roll-difficulty,
@@ -704,6 +379,19 @@
 
         .roll-part + .roll-part {
             margin-top: 0;
+        }
+
+        .damage-section[data-action='expandRoll'] {
+            .on-reduced {
+                .wrapper {
+                    flex-wrap: wrap;
+                    gap: 10px 5px;
+                }
+
+                .roll-formula {
+                    font-size: var(--font-size-16);
+                }
+            }
         }
 
         .target-section {

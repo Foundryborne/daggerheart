@@ -1,21 +1,31 @@
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     async renderHTML() {
-        if (this.system.messageTemplate)
-            this.content = await foundry.applications.handlebars.renderTemplate(this.system.messageTemplate, {
-                ...this.system,
-                _source: this.system._source
-            });
-
         const actor = game.actors.get(this.speaker.actor);
-        const actorData = actor ?? {
+        const actorData = actor && this.isContentVisible ? actor : {
             img: this.author.avatar ? this.author.avatar : 'icons/svg/mystery-man.svg',
             name: ''
         };
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML({ actor: actorData, author: this.author });
-        this.applyPermission(html);
 
-        if (this.type === 'dualityRoll') {
+        this.enrichChatMessage(html);
+        this.addChatListeners(html);
+
+        return html;
+    }
+
+    enrichChatMessage(html) {
+        const elements = html.querySelectorAll('[data-perm-id]');
+        elements.forEach(e => {
+            const uuid = e.dataset.permId,
+                document = fromUuidSync(uuid);
+            if (!document) return;
+
+            e.setAttribute('data-view-perm', document.testUserPermission(game.user, 'OBSERVER'));
+            e.setAttribute('data-use-perm', document.testUserPermission(game.user, 'OWNER'));
+        });
+
+        if (this.isContentVisible && this.type === 'dualityRoll') {
             html.classList.add('duality');
             switch (this.system.roll?.result?.duality) {
                 case 1:
@@ -29,36 +39,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                     break;
             }
         }
-
-        this.enrichChatMessage(html);
-
-        return html;
     }
 
-    applyPermission(html) {
-        const elements = html.querySelectorAll('[data-perm-id]');
-        elements.forEach(e => {
-            const uuid = e.dataset.permId,
-                document = fromUuidSync(uuid);
-            if (!document) return;
-
-            e.setAttribute('data-view-perm', document.testUserPermission(game.user, 'OBSERVER'));
-            e.setAttribute('data-use-perm', document.testUserPermission(game.user, 'OWNER'));
-        });
-    }
-
-    async _preCreate(data, options, user) {
-        options.speaker = ChatMessage.getSpeaker();
-        const rollActorOwner = data.rolls?.[0]?.data?.parent?.owner;
-        if (rollActorOwner) {
-            data.author = rollActorOwner ? rollActorOwner.id : data.author;
-            await this.updateSource({ author: rollActorOwner ?? user });
-        }
-
-        return super._preCreate(data, options, rollActorOwner ?? user);
-    }
-
-    enrichChatMessage(html) {
+    addChatListeners(html) {
         html.querySelectorAll('.damage-button').forEach(element =>
             element.addEventListener('click', this.onDamage.bind(this))
         );
@@ -66,6 +49,16 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         html.querySelectorAll('.duality-action-effect').forEach(element =>
             element.addEventListener('click', this.onApplyEffect.bind(this))
         );
+
+        html.querySelectorAll('.roll-target').forEach(element => {
+            element.addEventListener('mouseenter', this.hoverTarget);
+            element.addEventListener('mouseleave', this.unhoverTarget);
+            element.addEventListener('click', this.clickTarget);
+        });
+        
+        html.querySelectorAll('.button-target-selection').forEach(element => {
+            element.addEventListener('click', this.onTargetSelection.bind(this));
+        });
     }
 
     getTargetList() {
@@ -145,5 +138,31 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             const action = this.system.action;
             if (action) action.consume(this.system, true);
         }
+    }
+
+    hoverTarget(event) {
+        event.stopPropagation();
+        const token = canvas.tokens.get(event.currentTarget.dataset.token);
+        if (!token?.controlled) token._onHoverIn(event, { hoverOutOthers: true });
+    }
+
+    unhoverTarget(event) {
+        const token = canvas.tokens.get(event.currentTarget.dataset.token);
+        if (!token?.controlled) token._onHoverOut(event);
+    }
+
+    clickTarget(event) {
+        event.stopPropagation();
+        const token = canvas.tokens.get(event.currentTarget.dataset.token);
+        if (!token) {
+            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
+            return;
+        }
+        game.canvas.pan(token);
+    }
+
+    onTargetSelection(event) {
+        event.stopPropagation();
+        this.system.targetMode = Boolean(event.target.dataset.targetHit);
     }
 }

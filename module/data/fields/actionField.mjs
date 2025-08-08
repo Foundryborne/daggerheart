@@ -285,6 +285,7 @@ export function ActionMixin(Base) {
                 }
             };
 
+            ChatMessage.applyRollMode(msg, game.settings.get('core', 'rollMode'));
             cls.create(msg);
         }
     }
