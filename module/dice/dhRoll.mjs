@@ -211,8 +211,7 @@ export default class DHRoll extends Roll {
     }
 
     static temporaryModifierBuilder(config) {
-        const mods = new Map();
-        return mods;
+        return {};
     }
 }
 

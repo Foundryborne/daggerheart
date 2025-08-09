@@ -121,14 +121,14 @@ export default class DamageRoll extends DHRoll {
         }
 
         /* To Remove When Reaction System */
-        if(index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id && config.modifiers.rally?.value) {
-            const rallyFaces = config.modifiers.rally.values.find(r => r.value === config.modifiers.rally.value)?.label;
-            part.roll.terms.push(
-                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                ...this.constructor.parse(`1${rallyFaces}`)
-            );
+        if(index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+            for(const mod in config.modifiers) {
+                const modifier = config.modifiers[mod];
+                if(modifier.beforeCrit === true && (modifier.enabled || modifier.value))
+                    modifier.callback(part);
+            }
         }
-        
+
         if (part.extraFormula) {
             part.roll.terms.push(
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
@@ -144,8 +144,11 @@ export default class DamageRoll extends DHRoll {
 
         /* To Remove When Reaction System */
         if(index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            if(config.modifiers.massive?.enabled) config.modifiers.massive.callback(part);
-            if(config.modifiers.powerful?.enabled) config.modifiers.powerful.callback(part);
+            for(const mod in config.modifiers) {
+                const modifier = config.modifiers[mod];
+                if(!modifier.beforeCrit && (modifier.enabled || modifier.value))
+                    modifier.callback(part);
+            }
         }
 
         return (part.roll._formula = this.constructor.getFormula(part.roll.terms));
@@ -154,11 +157,8 @@ export default class DamageRoll extends DHRoll {
     /* To Remove When Reaction System */
     static temporaryModifierBuilder(config) {
         const mods = {};
-
         if(config.data?.parent) {
             if(config.data.parent.appliedEffects) {
-                const effects = config.data.parent.appliedEffects;
-
                 // Bardic Rally
                 mods.rally = {
                     label: "DAGGERHEART.CLASS.Feature.rallyDice",
@@ -168,8 +168,13 @@ export default class DamageRoll extends DHRoll {
                         return a;
                     }, []),
                     value: null,
-                    callback: (...args) => {
-
+                    beforeCrit: true,
+                    callback: (part) => {
+                        const rallyFaces = config.modifiers.rally.values.find(r => r.value === config.modifiers.rally.value)?.label;
+                        part.roll.terms.push(
+                            new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                            ...this.parse(`1${rallyFaces}`)
+                        );
                     }
                 };
             }
@@ -177,9 +182,9 @@ export default class DamageRoll extends DHRoll {
             const item = config.data.parent.items?.get(config.source.item);
             if(item) {
                 // Massive (Weapon Feature)
-                if(item.effects.has("cffkpiwGpEGhjiUC"))
+                if(item.system.itemFeatures.find(f => f.value === "massive"))
                     mods.massive = {
-                        label: item.effects.get("cffkpiwGpEGhjiUC").name,
+                        label: CONFIG.DH.ITEM.weaponFeatures.massive.label,
                         enabled: true,
                         callback: (part) => {
                             part.roll.terms[0].modifiers.push(`kh${part.roll.terms[0].number}`);
@@ -188,20 +193,50 @@ export default class DamageRoll extends DHRoll {
                     };
 
                 // Powerful (Weapon Feature)
-                if(item.effects.has("DCie5eR1dZH2Qvln"))
+                if(item.system.itemFeatures.find(f => f.value === "powerful"))
                     mods.powerful = {
-                        label: item.effects.get("DCie5eR1dZH2Qvln").name,
+                        label: CONFIG.DH.ITEM.weaponFeatures.powerful.label,
                         enabled: true,
                         callback: (part) => {
                             part.roll.terms[0].modifiers.push(`kh${part.roll.terms[0].number}`);
                             part.roll.terms[0].number += 1;
                         }
                     };
+
+                // Brutal (Weapon Feature)
+                if(item.system.itemFeatures.find(f => f.value === "brutal"))
+                    mods.brutal = {
+                        label: CONFIG.DH.ITEM.weaponFeatures.brutal.label,
+                        enabled: true,
+                        beforeCrit: true,
+                        callback: (part) => {
+                            part.roll.terms[0].modifiers.push(`x${part.roll.terms[0].faces}`);
+                        }
+                    };
+                
+                // Serrated (Weapon Feature)
+                if(item.system.itemFeatures.find(f => f.value === "serrated"))
+                    mods.serrated = {
+                        label: CONFIG.DH.ITEM.weaponFeatures.serrated.label,
+                        enabled: true,
+                        callback: (part) => {
+                            part.roll.terms[0].modifiers.push(`sc8`);
+                        }
+                    };
+                
+                // Self-Correcting (Weapon Feature)
+                if(item.system.itemFeatures.find(f => f.value === "selfCorrecting"))
+                    mods.selfCorrecting = {
+                        label: CONFIG.DH.ITEM.weaponFeatures.selfCorrecting.label,
+                        enabled: true,
+                        callback: (part) => {
+                            part.roll.terms[0].modifiers.push(`sc6`);
+                        }
+                    };
             }
         }
 
         config.modifiers = mods;
-        console.log(config)
         return mods;
     }
 }
