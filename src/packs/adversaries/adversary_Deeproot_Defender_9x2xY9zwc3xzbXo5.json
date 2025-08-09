@@ -108,7 +108,8 @@
           }
         ]
       },
-      "img": "icons/magic/nature/root-vines-grow-brown.webp"
+      "img": "icons/magic/nature/root-vines-grow-brown.webp",
+      "type": "attack"
     }
   },
   "flags": {},

@@ -87,7 +87,7 @@
       "img": "icons/creatures/claws/claw-talons-glowing-orange.webp",
       "_id": "W2KpXQNCg6Nnorbz",
       "systemPath": "actions",
-      "type": "",
+      "type": "attack",
       "description": "",
       "chatDisplay": true,
       "actionType": "action",

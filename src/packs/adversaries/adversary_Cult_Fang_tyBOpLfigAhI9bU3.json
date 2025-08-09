@@ -103,7 +103,8 @@
           }
         ]
       },
-      "range": ""
+      "range": "",
+      "type": "attack"
     }
   },
   "flags": {},

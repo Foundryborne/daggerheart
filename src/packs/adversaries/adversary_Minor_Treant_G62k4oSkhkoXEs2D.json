@@ -95,7 +95,8 @@
             "base": false
           }
         ]
-      }
+      },
+      "type": "attack"
     }
   },
   "flags": {},

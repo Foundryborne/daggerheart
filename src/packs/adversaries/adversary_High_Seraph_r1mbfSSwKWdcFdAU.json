@@ -109,7 +109,8 @@
           }
         ]
       },
-      "img": "icons/skills/melee/strike-blade-hooked-orange-blue.webp"
+      "img": "icons/skills/melee/strike-blade-hooked-orange-blue.webp",
+      "type": "attack"
     }
   },
   "flags": {},

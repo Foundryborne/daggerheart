@@ -107,7 +107,8 @@
           }
         ]
       },
-      "img": "icons/creatures/claws/claw-hooked-curved.webp"
+      "img": "icons/creatures/claws/claw-hooked-curved.webp",
+      "type": "attack"
     }
   },
   "flags": {},

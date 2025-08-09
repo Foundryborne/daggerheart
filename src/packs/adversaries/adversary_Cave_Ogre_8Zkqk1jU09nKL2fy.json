@@ -108,7 +108,8 @@
         ]
       },
       "name": "Club",
-      "img": "icons/weapons/clubs/club-banded-barbed-black.webp"
+      "img": "icons/weapons/clubs/club-banded-barbed-black.webp",
+      "type": "attack"
     }
   },
   "flags": {},

@@ -116,7 +116,14 @@
             </div>
             <ul class="items-sidebar-list">
                 {{#if document.system.usedUnarmed}}
-                    {{> 'daggerheart.inventory-item' item=document.system.usedUnarmed type='attack' isSidebar=true}}
+                    {{> 'daggerheart.inventory-item'
+                    item=document.system.usedUnarmed
+                    type='action'
+                    hideTags=true
+                    hideDescription=true
+                    hideResources=true
+                    noExtensible=true
+                    }}
                 {{/if}}
                 {{#each document.items as |item|}}
                 {{#if item.system.equipped}}

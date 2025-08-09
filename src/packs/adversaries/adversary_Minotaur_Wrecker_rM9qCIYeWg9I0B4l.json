@@ -103,7 +103,8 @@
           }
         ]
       },
-      "img": "icons/weapons/axes/axe-double.webp"
+      "img": "icons/weapons/axes/axe-double.webp",
+      "type": "attack"
     }
   },
   "flags": {},

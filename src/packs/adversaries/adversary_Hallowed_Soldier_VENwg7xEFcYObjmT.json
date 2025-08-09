@@ -95,7 +95,8 @@
           }
         ]
       },
-      "img": "icons/skills/melee/sword-shield-stylized-white.webp"
+      "img": "icons/skills/melee/sword-shield-stylized-white.webp",
+      "type": "attack"
     }
   },
   "flags": {},

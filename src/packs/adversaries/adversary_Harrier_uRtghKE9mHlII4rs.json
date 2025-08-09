@@ -108,7 +108,8 @@
           }
         ]
       },
-      "img": "icons/weapons/polearms/spear-hooked-rounded.webp"
+      "img": "icons/weapons/polearms/spear-hooked-rounded.webp",
+      "type": "attack"
     }
   },
   "flags": {},

@@ -107,7 +107,8 @@
           }
         ]
       },
-      "img": "icons/weapons/daggers/dagger-twin-green.webp"
+      "img": "icons/weapons/daggers/dagger-twin-green.webp",
+      "type": "attack"
     }
   },
   "flags": {},

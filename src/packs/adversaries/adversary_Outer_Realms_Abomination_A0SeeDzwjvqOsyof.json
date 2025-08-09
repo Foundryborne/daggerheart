@@ -103,7 +103,8 @@
           }
         ]
       },
-      "img": "icons/creatures/tentacles/tentacle-earth-green.webp"
+      "img": "icons/creatures/tentacles/tentacle-earth-green.webp",
+      "type": "attack"
     }
   },
   "flags": {},

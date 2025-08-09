@@ -112,7 +112,8 @@
           }
         ]
       },
-      "img": "icons/commodities/biological/hand-clawed-blue.webp"
+      "img": "icons/commodities/biological/hand-clawed-blue.webp",
+      "type": "attack"
     }
   },
   "flags": {},

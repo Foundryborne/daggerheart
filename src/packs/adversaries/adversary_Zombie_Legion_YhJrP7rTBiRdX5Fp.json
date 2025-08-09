@@ -103,7 +103,8 @@
         "type": "attack"
       },
       "range": "close",
-      "img": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp"
+      "img": "icons/creatures/tentacles/tentacles-octopus-black-pink.webp",
+      "type": "attack"
     }
   },
   "flags": {},

@@ -107,7 +107,8 @@
           }
         ]
       },
-      "img": "icons/weapons/clubs/club-baton-blue.webp"
+      "img": "icons/weapons/clubs/club-baton-blue.webp",
+      "type": "attack"
     }
   },
   "flags": {},

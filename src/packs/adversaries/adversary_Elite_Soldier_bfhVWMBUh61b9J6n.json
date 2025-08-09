@@ -87,7 +87,7 @@
       "img": "icons/weapons/polearms/spear-flared-steel.webp",
       "_id": "jmrgFi8AUL6LTbtU",
       "systemPath": "actions",
-      "type": "",
+      "type": "attack",
       "description": "",
       "chatDisplay": true,
       "actionType": "action",

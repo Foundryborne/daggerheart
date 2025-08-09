@@ -109,7 +109,8 @@
           }
         ]
       },
-      "img": "icons/weapons/bows/shortbow-recurve-yellow.webp"
+      "img": "icons/weapons/bows/shortbow-recurve-yellow.webp",
+      "type": "attack"
     }
   },
   "flags": {},

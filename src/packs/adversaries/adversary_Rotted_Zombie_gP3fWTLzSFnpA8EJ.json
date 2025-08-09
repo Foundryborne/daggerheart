@@ -87,7 +87,8 @@
           }
         ]
       },
-      "img": "icons/creatures/abilities/mouth-teeth-sharp.webp"
+      "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
+      "type": "attack"
     },
     "resources": {
       "hitPoints": {

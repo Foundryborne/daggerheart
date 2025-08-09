@@ -122,7 +122,7 @@
       },
       "_id": "TCKVaVweyJzhEArX",
       "systemPath": "actions",
-      "type": "",
+      "type": "attack",
       "description": "",
       "img": "icons/creatures/claws/claw-curved-jagged-yellow.webp",
       "chatDisplay": true,

@@ -109,7 +109,8 @@
           }
         ]
       },
-      "range": "far"
+      "range": "far",
+      "type": "attack"
     }
   },
   "flags": {},

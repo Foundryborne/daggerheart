@@ -109,7 +109,8 @@
           }
         ]
       },
-      "img": "icons/magic/symbols/rune-sigil-rough-white-teal.webp"
+      "img": "icons/magic/symbols/rune-sigil-rough-white-teal.webp",
+      "type": "attack"
     }
   },
   "flags": {},

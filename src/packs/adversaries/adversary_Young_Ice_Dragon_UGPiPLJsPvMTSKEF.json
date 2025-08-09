@@ -108,7 +108,8 @@
           }
         ]
       },
-      "img": "icons/creatures/claws/claw-scaled-red.webp"
+      "img": "icons/creatures/claws/claw-scaled-red.webp",
+      "type": "attack"
     }
   },
   "flags": {},

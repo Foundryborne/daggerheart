@@ -86,7 +86,8 @@
           }
         ]
       },
-      "img": "icons/creatures/slimes/slime-movement-dripping-pseudopods-green.webp"
+      "img": "icons/creatures/slimes/slime-movement-dripping-pseudopods-green.webp",
+      "type": "attack"
     },
     "damageThresholds": {
       "major": 4,

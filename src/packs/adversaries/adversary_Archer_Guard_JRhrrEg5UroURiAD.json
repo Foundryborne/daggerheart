@@ -108,7 +108,8 @@
           }
         ]
       },
-      "img": "icons/weapons/bows/longbow-recurve-leather-brown.webp"
+      "img": "icons/weapons/bows/longbow-recurve-leather-brown.webp",
+      "type": "attack"
     }
   },
   "flags": {},

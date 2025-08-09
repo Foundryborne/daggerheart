@@ -95,7 +95,8 @@
         "bonus": 3,
         "type": "attack"
       },
-      "img": "icons/creatures/claws/claw-talons-yellow-red.webp"
+      "img": "icons/creatures/claws/claw-talons-yellow-red.webp",
+      "type": "attack"
     }
   },
   "flags": {},

@@ -103,7 +103,8 @@
           }
         ]
       },
-      "img": "icons/commodities/tech/metal-joint.webp"
+      "img": "icons/commodities/tech/metal-joint.webp",
+      "type": "attack"
     }
   },
   "flags": {},

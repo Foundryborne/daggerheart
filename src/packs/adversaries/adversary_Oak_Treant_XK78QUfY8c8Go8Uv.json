@@ -64,7 +64,45 @@
       }
     },
     "tier": 3,
-    "description": "<p>A sturdy animate old-growth tree.</p>"
+    "description": "<p>A sturdy animate old-growth tree.</p>",
+    "attack": {
+      "name": "Attack",
+      "roll": {
+        "type": "attack",
+        "bonus": 2
+      },
+      "range": "close",
+      "damage": {
+        "parts": [
+          {
+            "value": {
+              "multiplier": "flat",
+              "flatMultiplier": 3,
+              "dice": "d8",
+              "bonus": 2,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "type": ["physical"],
+            "applyTo": "hitPoints",
+            "resultBased": false,
+            "valueAlt": {
+              "multiplier": "prof",
+              "flatMultiplier": 1,
+              "dice": "d6",
+              "bonus": null,
+              "custom": {
+                "enabled": false
+              }
+            },
+            "base": false
+          }
+        ]
+      },
+      "img": "icons/skills/melee/blood-slash-foam-red.webp",
+      "type": "attack"
+    }
   },
   "flags": {},
   "_stats": {

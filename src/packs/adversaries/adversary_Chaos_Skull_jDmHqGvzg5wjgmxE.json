@@ -103,7 +103,8 @@
           }
         ]
       },
-      "img": "icons/magic/light/beam-rays-magenta.webp"
+      "img": "icons/magic/light/beam-rays-magenta.webp",
+      "type": "attack"
     }
   },
   "flags": {},

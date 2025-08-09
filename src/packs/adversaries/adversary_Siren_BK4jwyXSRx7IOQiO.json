@@ -109,7 +109,8 @@
         ]
       },
       "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
-      "range": ""
+      "range": "",
+      "type": "attack"
     }
   },
   "flags": {},

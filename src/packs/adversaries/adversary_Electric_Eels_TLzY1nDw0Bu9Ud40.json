@@ -103,7 +103,8 @@
         "bonus": 0,
         "type": "attack"
       },
-      "range": ""
+      "range": "",
+      "type": "attack"
     }
   },
   "flags": {},

@@ -36,15 +36,6 @@
             </div>
         </div>
         <div class="status-section">
-            <div class="threshold-section">
-                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
-                <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
-                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
-                <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
-                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
-            </div>
-        </div>
-        <div class="status-section">
             <div class="status-number">
                 <div class='status-value armor-slots'>
                     {{#if source.system.difficulty}}
@@ -70,6 +61,15 @@
                 </div>
             </div>
         </div>
+        <div class="status-section">
+            <div class="threshold-section">
+                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.minor"}}</h4>
+                <h4 class="threshold-value">{{document.system.damageThresholds.major}}</h4>
+                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.major"}}</h4>
+                <h4 class="threshold-value">{{document.system.damageThresholds.severe}}</h4>
+                <h4 class="threshold-label">{{localize "DAGGERHEART.GENERAL.DamageThresholds.severe"}}</h4>
+            </div>
+        </div>
     </div>
     <div class="shortcut-items-section">
         <div class="attack-section">
@@ -84,7 +84,6 @@
                 type='action'
                 hideTags=true
                 hideDescription=true
-                hideTooltip=true
                 hideResources=true
                 noExtensible=true
                 noCompendiumEdit=true

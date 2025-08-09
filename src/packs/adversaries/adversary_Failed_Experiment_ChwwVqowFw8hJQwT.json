@@ -109,7 +109,8 @@
         ]
       },
       "img": "icons/creatures/claws/claw-hooked-barbed.webp",
-      "range": ""
+      "range": "",
+      "type": "attack"
     }
   },
   "flags": {},

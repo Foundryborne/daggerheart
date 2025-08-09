@@ -19,7 +19,7 @@ Parameters:
   data-action-id="{{item.id}}" {{/if}} data-item-uuid="{{item.uuid}}" data-type="{{type}}" data-no-compendium-edit="{{noCompendiumEdit}}" draggable="true">
   <div class="inventory-item-header" {{#unless noExtensible}}data-action="toggleExtended" {{/unless}}>
     {{!-- Image --}}
-    <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type 'attack')) "useItem" (ifThen
+    <div class="img-portait" data-action='{{ifThen (or (hasProperty item "use") (eq type "attack")) "useItem" (ifThen
       (hasProperty item "toChat" ) "toChat" "editDoc" ) }}' {{#unless hideTooltip}} {{#if (eq type 'attack' )}}
       data-tooltip="#attack#{{item.actor.uuid}}" {{else}} data-tooltip="#item#{{item.uuid}}" {{/if}} {{/unless}}>
       <img src="{{item.img}}" class="item-img {{#if isActor}}actor-img{{/if}}" />
@@ -32,46 +32,33 @@ Parameters:
       {{!-- Item Name --}}
       <div class="item-name">{{localize item.name}}</div>
 
-      {{!-- Attack Tags Start --}}
-      {{#if (eq type 'attack')}}
+      {{!-- Tags Start --}}
+      {{#with item}}
+      {{#if (not ../hideTags)}}
       <div class="item-tags">
+        {{#each this._getTags as |tag|}}
         <div class="tag">
-          {{localize 'DAGGERHEART.GENERAL.unarmed'}}
+          {{tag}}
         </div>
-        <div class="tag">
-          {{localize 'DAGGERHEART.CONFIG.ActionType.action'}}
-        </div>
+        {{/each}}
       </div>
-      {{!-- Attack Tags End --}}
-      {{else}}
-      {{!-- Other elements Tags Start --}}
-        {{#with item}}
-        {{#if (not ../hideTags)}}
-        <div class="item-tags">
-          {{#each this._getTags as |tag|}}
-          <div class="tag">
-            {{tag}}
-          </div>
+      {{else if (not ../hideLabels)}}
+      <div class="item-labels">
+        <div class="label">
+          {{#each this._getLabels as |label|}}
+          {{ifThen label.value label.value label}}
+          {{#each label.icons as |icon|}}
+          <i class="fa-solid {{icon}}"></i>
+          {{/each}}
+          {{#if (not @last)}}
+          <span>-</span>
+          {{/if}}
           {{/each}}
         </div>
-        {{else if (not ../hideLabels)}}
-        <div class="item-labels">
-          <div class="label">
-            {{#each this._getLabels as |label|}}
-            {{ifThen label.value label.value label}}
-            {{#each label.icons as |icon|}}
-            <i class="fa-solid {{icon}}"></i>
-            {{/each}}
-            {{#if (not @last)}}
-            <span>-</span>
-            {{/if}}
-            {{/each}}
-          </div>
-        </div>
-        {{/if}}
-        {{/with}}
+      </div>
       {{/if}}
-      {{!-- Other elements Tags End --}}
+      {{/with}}
+      {{!--Tags End --}}
     </div>
 
     {{!-- Simple Resource --}}

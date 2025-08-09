@@ -103,7 +103,7 @@ export default class DhCharacter extends BaseDataActor {
             }),
             attack: new ActionField({
                 initial: {
-                    name: 'Attack',
+                    name: 'Unarmed Attack',
                     img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',
@@ -395,19 +395,22 @@ export default class DhCharacter extends BaseDataActor {
         return this.parent.effects.find(x => x.type === 'beastform');
     }
 
+    /**
+     * Gets the unarmed attackwhen no primary or secondary weapon is equipped.
+     * Returns `null` if either weapon is equipped.
+     * If the actor is in beastform, overrides the attack's name and image.
+     *
+     * @returns {DHAttackAction|null}
+     */
     get usedUnarmed() {
-        const primaryWeaponEquipped = this.primaryWeapon?.system?.equipped;
-        const secondaryWeaponEquipped = this.secondaryWeapon?.system?.equipped;
-        return !primaryWeaponEquipped && !secondaryWeaponEquipped
-            ? {
-                  ...this.attack,
-                  uuid: this.attack.uuid,
-                  id: this.attack.id,
-                  name: this.activeBeastform ? 'DAGGERHEART.ITEMS.Beastform.attackName' : this.attack.name,
-                  img: this.activeBeastform ? 'icons/creatures/claws/claw-straight-brown.webp' : this.attack.img,
-                  actor: this.parent
-              }
-            : null;
+        if (this.primaryWeapon?.system?.equipped || this.secondaryWeapon?.system?.equipped) return null;
+
+        const attack = foundry.utils.deepClone(this.attack);
+        if (this.activeBeastform) {
+            attack.name = 'DAGGERHEART.ITEMS.Beastform.attackName';
+            attack.img = 'icons/creatures/claws/claw-straight-brown.webp';
+        }
+        return attack;
     }
 
     get sheetLists() {

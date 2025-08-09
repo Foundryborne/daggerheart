@@ -103,7 +103,8 @@
       "roll": {
         "bonus": 0,
         "type": "attack"
-      }
+      },
+      "type": "attack"
     }
   },
   "flags": {},

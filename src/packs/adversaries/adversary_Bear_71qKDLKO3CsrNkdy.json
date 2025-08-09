@@ -111,7 +111,8 @@
           }
         ]
       },
-      "img": "icons/creatures/claws/claw-straight-brown.webp"
+      "img": "icons/creatures/claws/claw-straight-brown.webp",
+      "type": "attack"
     }
   },
   "flags": {},

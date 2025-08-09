@@ -95,7 +95,8 @@
         "bonus": 3,
         "type": "attack"
       },
-      "img": "icons/weapons/swords/sword-guard.webp"
+      "img": "icons/weapons/swords/sword-guard.webp",
+      "type": "attack"
     }
   },
   "flags": {},

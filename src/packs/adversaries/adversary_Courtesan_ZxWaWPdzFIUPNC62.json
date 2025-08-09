@@ -113,7 +113,8 @@
           }
         ]
       },
-      "img": "icons/weapons/daggers/dagger-straight-cracked.webp"
+      "img": "icons/weapons/daggers/dagger-straight-cracked.webp",
+      "type": "attack"
     }
   },
   "flags": {},
