@@ -644,16 +644,20 @@ export default class DhpActor extends Actor {
                         );
                         break;
                     case 'armor':
-                        updates.armor.resources['system.marks.value'] = Math.max(
-                            Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
-                            0
-                        );
+                        if(this.system.armor?.system?.marks) {
+                            updates.armor.resources['system.marks.value'] = Math.max(
+                                Math.min(this.system.armor.system.marks.value + r.value, this.system.armorScore),
+                                0
+                            );
+                        }
                         break;
                     default:
-                        updates.actor.resources[`system.resources.${r.key}.value`] = Math.max(
-                            Math.min(this.system.resources[r.key].value + r.value, this.system.resources[r.key].max),
-                            0
-                        );
+                        if(this.system.resources?.[r.key]) {
+                            updates.actor.resources[`system.resources.${r.key}.value`] = Math.max(
+                                Math.min(this.system.resources[r.key].value + r.value, this.system.resources[r.key].max),
+                                0
+                            );
+                        }
                         break;
                 }
             }

@@ -146,7 +146,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             else if (this.hasSave || this.hasEffect) {
                 const roll = new CONFIG.Dice.daggerheart.DHRoll('');
                 roll._evaluated = true;
-                if(config.hasTarget) config.targetSelection = config.targets.length > 0;
                 await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
             }
         }
@@ -227,15 +226,18 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                     (!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
                         (successCost && c.consumeOnSuccess)
             )
-            .map(c => {
+            .reduce((a, c) => {
                 const resource = usefulResources[c.key];
-                return {
-                    key: c.key,
-                    value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
-                    target: resource.target,
-                    keyIsID: resource.keyIsID
-                };
-            });
+                if( resource ) {
+                    a.push({
+                        key: c.key,
+                        value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
+                        target: resource.target,
+                        keyIsID: resource.keyIsID
+                    });
+                    return a;
+                }
+            }, []);
 
         await (this.actor.system.partner ?? this.actor).modifyResource(resources);
         if (

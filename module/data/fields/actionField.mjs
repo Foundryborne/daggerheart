@@ -227,9 +227,9 @@ export function ActionMixin(Base) {
             } else {
                 result = await this.item.update({ [path]: updates }, options);
             }
-
+            
             return this.inCollection
-                ? foundry.utils.getProperty(result, basePath).get(this.id)
+                ? foundry.utils.getProperty(result, basePath)?.get(this.id)
                 : foundry.utils.getProperty(result, basePath);
         }
 

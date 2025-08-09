@@ -505,7 +505,8 @@
         },
         "CLASS": {
             "Feature": {
-                "rallyDice": "Bardic Rally Dice"
+                "rallyDice": "Bardic Rally Dice",
+                "short": "Rally"
             }
         },
         "CONFIG": {
