@@ -18,8 +18,6 @@ const targetsField = () =>
     );
 
 export default class DHActorRoll extends foundry.abstract.TypeDataModel {
-    // targetHook = null;
-    // targetList = null;
 
     static defineSchema() {
         return {
