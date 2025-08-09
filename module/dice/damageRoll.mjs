@@ -102,14 +102,14 @@ export default class DamageRoll extends DHRoll {
     }
 
     constructFormula(config) {
-        this.options.roll.forEach(part => {
+        this.options.roll.forEach((part, index) => {
             part.roll = new Roll(Roll.replaceFormulaData(part.formula, config.data));
-            this.constructFormulaPart(config, part);
+            this.constructFormulaPart(config, part, index);
         });
         return this.options.roll;
     }
 
-    constructFormulaPart(config, part) {
+    constructFormulaPart(config, part, index) {
         part.roll.terms = Roll.parse(part.roll.formula, config.data);
 
         if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
@@ -120,6 +120,15 @@ export default class DamageRoll extends DHRoll {
             });
         }
 
+        /* To Remove When Reaction System */
+        if(index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id && config.modifiers.rally?.value) {
+            const rallyFaces = config.modifiers.rally.values.find(r => r.value === config.modifiers.rally.value)?.label;
+            part.roll.terms.push(
+                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                ...this.constructor.parse(`1${rallyFaces}`)
+            );
+        }
+        
         if (part.extraFormula) {
             part.roll.terms.push(
                 new foundry.dice.terms.OperatorTerm({ operator: '+' }),
@@ -132,6 +141,67 @@ export default class DamageRoll extends DHRoll {
                 criticalBonus = tmpRoll.total - this.constructor.calculateTotalModifiers(tmpRoll);
             part.roll.terms.push(...this.formatModifier(criticalBonus));
         }
+
+        /* To Remove When Reaction System */
+        if(index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+            if(config.modifiers.massive?.enabled) config.modifiers.massive.callback(part);
+            if(config.modifiers.powerful?.enabled) config.modifiers.powerful.callback(part);
+        }
+
         return (part.roll._formula = this.constructor.getFormula(part.roll.terms));
+    }
+
+    /* To Remove When Reaction System */
+    static temporaryModifierBuilder(config) {
+        const mods = {};
+
+        if(config.data?.parent) {
+            if(config.data.parent.appliedEffects) {
+                const effects = config.data.parent.appliedEffects;
+
+                // Bardic Rally
+                mods.rally = {
+                    label: "DAGGERHEART.CLASS.Feature.rallyDice",
+                    values: config.data?.parent?.appliedEffects.reduce((a, c) => {
+                        const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
+                        if (change) a.push({ value: c.id, label: change.value });
+                        return a;
+                    }, []),
+                    value: null,
+                    callback: (...args) => {
+
+                    }
+                };
+            }
+            
+            const item = config.data.parent.items?.get(config.source.item);
+            if(item) {
+                // Massive (Weapon Feature)
+                if(item.effects.has("cffkpiwGpEGhjiUC"))
+                    mods.massive = {
+                        label: item.effects.get("cffkpiwGpEGhjiUC").name,
+                        enabled: true,
+                        callback: (part) => {
+                            part.roll.terms[0].modifiers.push(`kh${part.roll.terms[0].number}`);
+                            part.roll.terms[0].number += 1;
+                        }
+                    };
+
+                // Powerful (Weapon Feature)
+                if(item.effects.has("DCie5eR1dZH2Qvln"))
+                    mods.powerful = {
+                        label: item.effects.get("DCie5eR1dZH2Qvln").name,
+                        enabled: true,
+                        callback: (part) => {
+                            part.roll.terms[0].modifiers.push(`kh${part.roll.terms[0].number}`);
+                            part.roll.terms[0].number += 1;
+                        }
+                    };
+            }
+        }
+
+        config.modifiers = mods;
+        console.log(config)
+        return mods;
     }
 }

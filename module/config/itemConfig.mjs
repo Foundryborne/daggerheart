@@ -1041,16 +1041,16 @@ export const weaponFeatures = {
                         mode: 2,
                         value: '-1'
                     },
-                    {
-                        key: 'system.bonuses.damage.primaryWeapon.extraDice',
-                        mode: 2,
-                        value: '1'
-                    },
-                    {
-                        key: 'system.rules.weapon.dropLowestDamageDice',
-                        mode: 5,
-                        value: '1'
-                    }
+                    // {
+                    //     key: 'system.bonuses.damage.primaryWeapon.extraDice',
+                    //     mode: 2,
+                    //     value: '1'
+                    // },
+                    // {
+                    //     key: 'system.rules.weapon.dropLowestDamageDice',
+                    //     mode: 5,
+                    //     value: '1'
+                    // }
                 ]
             }
         ]
@@ -1167,16 +1167,16 @@ export const weaponFeatures = {
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.effects.powerful.description',
                 img: 'icons/magic/control/buff-flight-wings-runes-red-yellow.webp',
                 changes: [
-                    {
-                        key: 'system.bonuses.damage.primaryWeapon.extraDice',
-                        mode: 2,
-                        value: '1'
-                    },
-                    {
-                        key: 'system.rules.weapon.dropLowestDamageDice',
-                        mode: 5,
-                        value: '1'
-                    }
+                    // {
+                    //     key: 'system.bonuses.damage.primaryWeapon.extraDice',
+                    //     mode: 2,
+                    //     value: '1'
+                    // },
+                    // {
+                    //     key: 'system.rules.weapon.dropLowestDamageDice',
+                    //     mode: 5,
+                    //     value: '1'
+                    // }
                 ]
             }
         ]
@@ -1302,11 +1302,11 @@ export const weaponFeatures = {
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.effects.selfCorrecting.description',
                 img: 'icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp',
                 changes: [
-                    {
-                        key: 'system.rules.damage.flipMinDiceValue',
-                        mode: 5,
-                        value: 1
-                    }
+                    // {
+                    //     key: 'system.rules.damage.flipMinDiceValue',
+                    //     mode: 5,
+                    //     value: 1
+                    // }
                 ]
             }
         ]
@@ -1320,11 +1320,11 @@ export const weaponFeatures = {
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.effects.serrated.description',
                 img: 'icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp',
                 changes: [
-                    {
-                        key: 'system.rules.damage.flipMinDiceValue',
-                        mode: 5,
-                        value: 1
-                    }
+                    // {
+                    //     key: 'system.rules.damage.flipMinDiceValue',
+                    //     mode: 5,
+                    //     value: 1
+                    // }
                 ]
             }
         ]

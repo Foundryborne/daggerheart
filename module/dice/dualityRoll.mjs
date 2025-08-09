@@ -149,7 +149,7 @@ export default class DualityRoll extends D20Roll {
         }
         if (this.rallyFaces)
             this.terms.push(
-                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                new foundry.dice.terms.OperatorTerm({ operator: this.hasDisadvantage ? '-' : '+' }),
                 new foundry.dice.terms.Die({ faces: this.rallyFaces })
             );
     }

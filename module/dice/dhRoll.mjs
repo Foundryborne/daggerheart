@@ -36,6 +36,8 @@ export default class DHRoll extends Roll {
 
         this.applyKeybindings(config);
 
+        this.temporaryModifierBuilder(config);
+
         let roll = new this(config.roll.formula, config.data, config);
         if (config.dialog.configure !== false) {
             // Open Roll Dialog
@@ -206,6 +208,11 @@ export default class DHRoll extends Roll {
                 modifierTotal += Number(`${roll.terms[i - 1].operator}${roll.terms[i].total}`);
         }
         return modifierTotal;
+    }
+
+    static temporaryModifierBuilder(config) {
+        const mods = new Map();
+        return mods;
     }
 }
 
