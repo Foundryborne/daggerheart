@@ -20,6 +20,27 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         classes: ['daggerheart']
     };
 
+    _getEntryContextOptions() {
+        return [
+            ...super._getEntryContextOptions(),
+            {
+                name: 'Reroll',
+                icon: '<i class="fa-solid fa-dice"></i>',
+                condition: li => {
+                    const message = game.messages.get(li.dataset.messageId);
+                    const hasRolledDamage = message.system.hasDamage
+                        ? Object.keys(message.system.damage).length > 0
+                        : false;
+                    return (game.user.isGM || message.isAuthor) && hasRolledDamage;
+                },
+                callback: li => {
+                    const message = game.messages.get(li.dataset.messageId);
+                    new game.system.api.applications.dialogs.RerollDialog(message).render({ force: true });
+                }
+            }
+        ];
+    }
+
     addChatListeners = async (app, html, data) => {
         html.querySelectorAll('.duality-action-damage').forEach(element =>
             element.addEventListener('click', event => this.onRollDamage(event, data.message))

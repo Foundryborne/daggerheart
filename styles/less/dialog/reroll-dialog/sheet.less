@@ -1,0 +1,125 @@
+.daggerheart.dialog.dh-style.views.reroll-dialog {
+    .window-content {
+        max-width: 648px;
+    }
+
+    .reroll-outer-container {
+        h2 {
+            margin: 0;
+        }
+
+        .dices-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .dice-outer-container {
+            width: 300px;
+
+            legend {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                i {
+                    margin-right: 4px;
+                }
+            }
+
+            .dice-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+                .result-container {
+                    position: relative;
+                    aspect-ratio: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 22px;
+                    opacity: 0.8;
+
+                    &.selected {
+                        opacity: 1;
+                        border: 1px solid;
+                        border-radius: 6px;
+                        border-color: light-dark(@dark-blue, @golden);
+                        filter: drop-shadow(0 0 3px @golden);
+                    }
+
+                    &:before {
+                        content: ' ';
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        z-index: -1;
+                        mask: var(--svg-die) no-repeat center;
+                        mask-size: contain;
+                        background: linear-gradient(139.01deg, #efe6d8 3.51%, #372e1f 96.49%);
+                    }
+
+                    &.d4:before {
+                        --svg-die: url(../assets/icons/dice/default/d4.svg);
+                    }
+                    &.d6:before {
+                        --svg-die: url(../assets/icons/dice/default/d6.svg);
+                    }
+                    &.d8:before {
+                        --svg-die: url(../assets/icons/dice/default/d8.svg);
+                    }
+                    &.d10:before {
+                        --svg-die: url(../assets/icons/dice/default/d10.svg);
+                    }
+                    &.d12:before {
+                        --svg-die: url('../assets/icons/dice/default/d12.svg');
+                    }
+                    &.d20:before {
+                        --svg-die: url(../assets/icons/dice/default/d20.svg);
+                    }
+
+                    .to-reroll-result {
+                        position: absolute;
+                        bottom: -7px;
+                        gap: 2px;
+                        border: 1px solid;
+                        border-radius: 6px;
+                        background-image: url(../assets/parchments/dh-parchment-dark.png);
+                        display: flex;
+                        align-items: center;
+                        padding: 2px 6px;
+
+                        input {
+                            margin: 0;
+                            height: 12px;
+                            line-height: 0px;
+                            position: relative;
+                            top: 1px;
+
+                            &:before,
+                            &:after {
+                                line-height: 12px;
+                                font-size: 12px;
+                            }
+                        }
+
+                        i {
+                            font-size: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+
+        .controls {
+            display: flex;
+            gap: 8px;
+        }
+    }
+}
