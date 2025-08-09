@@ -7,8 +7,6 @@ const { ItemSheetV2 } = foundry.applications.sheets;
 
 /**
  * A base item sheet extending {@link ItemSheetV2} via {@link DHApplicationMixin}
- * @extends ItemSheetV2
- * @mixes DHSheetV2
  */
 export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /** @inheritDoc */
@@ -108,7 +106,7 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /**
      * Get the set of ContextMenu options for Features.
      * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
-     * @this {DHSheetV2}
+     * @this {DHBaseItemSheet}
      * @protected
      */
     static #getFeatureContextOptions() {

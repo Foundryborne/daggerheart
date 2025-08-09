@@ -15,6 +15,7 @@ export default class TargetField extends fields.SchemaField {
 
     static prepareConfig(config) {
         if (!this.target?.type) return [];
+        config.hasTarget = true;
         let targets;
         if (this.target?.type === CONFIG.DH.GENERAL.targetTypes.self.id)
             targets = [this.actor.token ?? this.actor.prototypeToken];

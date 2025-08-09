@@ -510,7 +510,8 @@
         },
         "CLASS": {
             "Feature": {
-                "rallyDice": "Bardic Rally Dice"
+                "rallyDice": "Bardic Rally Dice",
+                "short": "Rally"
             }
         },
         "CONFIG": {
@@ -2264,11 +2265,6 @@
                     "abilityCheckTitle": "{ability} Check"
                 },
                 "featureTitle": "Class Feature",
-                "foundationCard": {
-                    "ancestryTitle": "Ancestry Card",
-                    "communityTitle": "Community Card",
-                    "subclassFeatureTitle": "Subclass Feature"
-                },
                 "healingRoll": {
                     "title": "Heal - {damage}",
                     "heal": "Heal",

@@ -7,8 +7,6 @@ const { ActorSheetV2 } = foundry.applications.sheets;
 
 /**
  * A base actor sheet extending {@link ActorSheetV2} via {@link DHApplicationMixin}
- * @extends ActorSheetV2
- * @mixes DHSheetV2
  */
 export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /** @inheritDoc */
@@ -106,7 +104,7 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
     /**
      * Get the set of ContextMenu options for Features.
      * @returns {import('@client/applications/ux/context-menu.mjs').ContextMenuEntry[]} - The Array of context options passed to the ContextMenu instance
-     * @this {DHSheetV2}
+     * @this {DHBaseActorSheet}
      * @protected
      */
     static #getFeatureContextOptions() {

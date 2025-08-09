@@ -389,7 +389,7 @@
   "effects": [
     {
       "name": "Healed by Healing Hands",
-      "img": "icons/svg/item-bag.svg",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/splendor.png",
       "origin": "Compendium.daggerheart.domains.Item.WTlhnQMajc1r8i50",
       "transfer": false,
       "_id": "sd5liP4ZcVeTMAoW",
@@ -422,12 +422,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754263407455,
-        "modifiedTime": 1754263727114,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "modifiedTime": 1754670504951,
+        "lastModifiedBy": "49DaecTcBSc5d0DA"
       },
       "_key": "!items.effects!WTlhnQMajc1r8i50.sd5liP4ZcVeTMAoW"
     }

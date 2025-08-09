@@ -23,8 +23,21 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     _getEntryContextOptions() {
         return [
             ...super._getEntryContextOptions(),
+            // {
+            //     name: 'Reroll',
+            //     icon: '<i class="fa-solid fa-dice"></i>',
+            //     condition: li => {
+            //         const message = game.messages.get(li.dataset.messageId);
+
+            //         return (game.user.isGM || message.isAuthor) && message.rolls.length > 0;
+            //     },
+            //     callback: li => {
+            //         const message = game.messages.get(li.dataset.messageId);
+            //         new game.system.api.applications.dialogs.RerollDialog(message).render({ force: true });
+            //     }
+            // },
             {
-                name: 'Reroll',
+                name: 'Reroll Damage',
                 icon: '<i class="fa-solid fa-dice"></i>',
                 condition: li => {
                     const message = game.messages.get(li.dataset.messageId);
@@ -35,7 +48,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                 },
                 callback: li => {
                     const message = game.messages.get(li.dataset.messageId);
-                    new game.system.api.applications.dialogs.RerollDialog(message).render({ force: true });
+                    new game.system.api.applications.dialogs.RerollDamageDialog(message).render({ force: true });
                 }
             }
         ];
@@ -54,14 +67,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.simple-roll-button').forEach(element =>
             element.addEventListener('click', event => this.onRollSimple(event, data.message))
         );
-        html.querySelectorAll('.target-container').forEach(element => {
-            element.addEventListener('mouseenter', this.hoverTarget);
-            element.addEventListener('mouseleave', this.unhoverTarget);
-            element.addEventListener('click', this.clickTarget);
-        });
-        html.querySelectorAll('.button-target-selection').forEach(element => {
-            element.addEventListener('click', event => this.onTargetSelection(event, data.message));
-        });
         html.querySelectorAll('.healing-button').forEach(element =>
             element.addEventListener('click', event => this.onHealing(event, data.message))
         );
@@ -157,33 +162,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
                     .then(result => action.updateSaveMessage(result, message, token.id));
             }
         });
-    }
-
-    onTargetSelection(event, message) {
-        event.stopPropagation();
-        const msg = ui.chat.collection.get(message._id);
-        msg.system.targetMode = Boolean(event.target.dataset.targetHit);
-    }
-
-    hoverTarget(event) {
-        event.stopPropagation();
-        const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (!token?.controlled) token._onHoverIn(event, { hoverOutOthers: true });
-    }
-
-    unhoverTarget(event) {
-        const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (!token?.controlled) token._onHoverOut(event);
-    }
-
-    clickTarget(event) {
-        event.stopPropagation();
-        const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (!token) {
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
-            return;
-        }
-        game.canvas.pan(token);
     }
 
     async onRollSimple(event, message) {

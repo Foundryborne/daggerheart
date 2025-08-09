@@ -14,16 +14,7 @@
         "description": "",
         "chatDisplay": false,
         "actionType": "action",
-        "cost": [
-          {
-            "scalable": false,
-            "key": "hitPoints",
-            "value": 1,
-            "keyIsID": false,
-            "step": null,
-            "consumeOnSuccess": false
-          }
-        ],
+        "cost": [],
         "uses": {
           "value": null,
           "max": "1",
@@ -67,7 +58,7 @@
         {
           "key": "system.bonuses.rally",
           "mode": 2,
-          "value": "1d6",
+          "value": "d6",
           "priority": null
         }
       ],

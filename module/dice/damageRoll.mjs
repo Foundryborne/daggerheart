@@ -15,7 +15,6 @@ export default class DamageRoll extends DHRoll {
         const parts = config.roll.map(r => this.postEvaluate(r));
 
         config.damage = this.unifyDamageRoll(parts);
-        // config.targetSelection = config.targets?.length
     }
 
     static postEvaluate(roll, config = {}) {
@@ -30,16 +29,18 @@ export default class DamageRoll extends DHRoll {
     }
 
     static async buildPost(roll, config, message) {
+        const chatMessage = config.source?.message
+            ? ui.chat.collection.get(config.source.message)
+            : getDocumentClass('ChatMessage').applyRollMode({}, config.rollMode);
         if (game.modules.get('dice-so-nice')?.active) {
             const pool = foundry.dice.terms.PoolTerm.fromRolls(
                     Object.values(config.damage).flatMap(r => r.parts.map(p => p.roll))
                 ),
                 diceRoll = Roll.fromTerms([pool]);
-            await game.dice3d.showForRoll(diceRoll, game.user, true);
+            await game.dice3d.showForRoll(diceRoll, game.user, true, chatMessage.whisper, chatMessage.blind);
         }
         await super.buildPost(roll, config, message);
         if (config.source?.message) {
-            const chatMessage = ui.chat.collection.get(config.source.message);
             chatMessage.update({ 'system.damage': config.damage });
         }
     }
@@ -102,14 +103,14 @@ export default class DamageRoll extends DHRoll {
     }
 
     constructFormula(config) {
-        this.options.roll.forEach(part => {
+        this.options.roll.forEach((part, index) => {
             part.roll = new Roll(Roll.replaceFormulaData(part.formula, config.data));
-            this.constructFormulaPart(config, part);
+            this.constructFormulaPart(config, part, index);
         });
         return this.options.roll;
     }
 
-    constructFormulaPart(config, part) {
+    constructFormulaPart(config, part, index) {
         part.roll.terms = Roll.parse(part.roll.formula, config.data);
 
         if (part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
@@ -118,6 +119,14 @@ export default class DamageRoll extends DHRoll {
             part.modifiers?.forEach(m => {
                 part.roll.terms.push(...this.formatModifier(m.value));
             });
+        }
+
+        /* To Remove When Reaction System */
+        if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+            for (const mod in config.modifiers) {
+                const modifier = config.modifiers[mod];
+                if (modifier.beforeCrit === true && (modifier.enabled || modifier.value)) modifier.callback(part);
+            }
         }
 
         if (part.extraFormula) {
@@ -132,7 +141,104 @@ export default class DamageRoll extends DHRoll {
                 criticalBonus = tmpRoll.total - this.constructor.calculateTotalModifiers(tmpRoll);
             part.roll.terms.push(...this.formatModifier(criticalBonus));
         }
+
+        /* To Remove When Reaction System */
+        if (index === 0 && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
+            for (const mod in config.modifiers) {
+                const modifier = config.modifiers[mod];
+                if (!modifier.beforeCrit && (modifier.enabled || modifier.value)) modifier.callback(part);
+            }
+        }
+
         return (part.roll._formula = this.constructor.getFormula(part.roll.terms));
+    }
+
+    /* To Remove When Reaction System */
+    static temporaryModifierBuilder(config) {
+        const mods = {};
+        if (config.data?.parent) {
+            if (config.data.parent.appliedEffects) {
+                // Bardic Rally
+                mods.rally = {
+                    label: 'DAGGERHEART.CLASS.Feature.rallyDice',
+                    values: config.data?.parent?.appliedEffects.reduce((a, c) => {
+                        const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
+                        if (change) a.push({ value: c.id, label: change.value });
+                        return a;
+                    }, []),
+                    value: null,
+                    beforeCrit: true,
+                    callback: part => {
+                        const rallyFaces = config.modifiers.rally.values.find(
+                            r => r.value === config.modifiers.rally.value
+                        )?.label;
+                        part.roll.terms.push(
+                            new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                            ...this.parse(`1${rallyFaces}`)
+                        );
+                    }
+                };
+            }
+
+            const item = config.data.parent.items?.get(config.source.item);
+            if (item) {
+                // Massive (Weapon Feature)
+                if (item.system.itemFeatures.find(f => f.value === 'massive'))
+                    mods.massive = {
+                        label: CONFIG.DH.ITEM.weaponFeatures.massive.label,
+                        enabled: true,
+                        callback: part => {
+                            part.roll.terms[0].modifiers.push(`kh${part.roll.terms[0].number}`);
+                            part.roll.terms[0].number += 1;
+                        }
+                    };
+
+                // Powerful (Weapon Feature)
+                if (item.system.itemFeatures.find(f => f.value === 'powerful'))
+                    mods.powerful = {
+                        label: CONFIG.DH.ITEM.weaponFeatures.powerful.label,
+                        enabled: true,
+                        callback: part => {
+                            part.roll.terms[0].modifiers.push(`kh${part.roll.terms[0].number}`);
+                            part.roll.terms[0].number += 1;
+                        }
+                    };
+
+                // Brutal (Weapon Feature)
+                if (item.system.itemFeatures.find(f => f.value === 'brutal'))
+                    mods.brutal = {
+                        label: CONFIG.DH.ITEM.weaponFeatures.brutal.label,
+                        enabled: true,
+                        beforeCrit: true,
+                        callback: part => {
+                            part.roll.terms[0].modifiers.push(`x${part.roll.terms[0].faces}`);
+                        }
+                    };
+
+                // Serrated (Weapon Feature)
+                if (item.system.itemFeatures.find(f => f.value === 'serrated'))
+                    mods.serrated = {
+                        label: CONFIG.DH.ITEM.weaponFeatures.serrated.label,
+                        enabled: true,
+                        callback: part => {
+                            part.roll.terms[0].modifiers.push(`sc8`);
+                        }
+                    };
+
+                // Self-Correcting (Weapon Feature)
+                if (item.system.itemFeatures.find(f => f.value === 'selfCorrecting'))
+                    mods.selfCorrecting = {
+                        label: CONFIG.DH.ITEM.weaponFeatures.selfCorrecting.label,
+                        enabled: true,
+                        callback: part => {
+                            part.roll.terms[0].modifiers.push(`sc6`);
+                        }
+                    };
+            }
+        }
+
+        config.modifiers = mods;
+        return mods;
     }
 
     static async reroll(target, message) {

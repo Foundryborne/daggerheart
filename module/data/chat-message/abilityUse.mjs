@@ -3,7 +3,6 @@ export default class DHAbilityUse extends foundry.abstract.TypeDataModel {
         const fields = foundry.data.fields;
 
         return {
-            title: new fields.StringField({}),
             origin: new fields.StringField({}),
             img: new fields.StringField({}),
             name: new fields.StringField({}),

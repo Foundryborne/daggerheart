@@ -1,4 +1,5 @@
 import DhAppearance from '../../data/settings/Appearance.mjs';
+import { getDiceSoNicePreset } from '../../config/generalConfig.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -25,7 +26,8 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
         },
         actions: {
             reset: this.reset,
-            save: this.save
+            save: this.save,
+            preview: this.preview
         },
         form: { handler: this.updateData, submitOnChange: true }
     };
@@ -87,6 +89,22 @@ export default class DHAppearanceSettings extends HandlebarsApplicationMixin(App
 
         await this.settings.updateSource(updatedSettings);
         this.render();
+    }
+
+    static async preview() {
+        const source = this.settings._source.diceSoNice[this.tabGroups.diceSoNice];
+        let faces = 'd12';
+        switch (this.tabGroups.diceSoNice) {
+            case 'advantage':
+            case 'disadvantage':
+                faces = 'd6';
+        }
+        const preset = await getDiceSoNicePreset(source, faces);
+        const diceSoNiceRoll = await new Roll(`1${faces}`).evaluate();
+        diceSoNiceRoll.dice[0].options.appearance = preset.appearance;
+        diceSoNiceRoll.dice[0].options.modelFile = preset.modelFile;
+
+        await game.dice3d.showForRoll(diceSoNiceRoll, game.user, false);
     }
 
     static async reset() {

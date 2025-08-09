@@ -66,7 +66,7 @@
   "effects": [
     {
       "name": "Life Ward",
-      "img": "icons/svg/item-bag.svg",
+      "img": "systems/daggerheart/assets/icons/domains/domain-card/splendor.png",
       "origin": "Compendium.daggerheart.domains.Item.OszbCj0jTqq2ADx9",
       "transfer": false,
       "_id": "E7Ou4OMEy3TeK1Gf",
@@ -99,12 +99,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
         "systemVersion": "0.0.1",
         "createdTime": 1754264687962,
-        "modifiedTime": 1754264717646,
-        "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+        "modifiedTime": 1754670535710,
+        "lastModifiedBy": "49DaecTcBSc5d0DA"
       },
       "_key": "!items.effects!OszbCj0jTqq2ADx9.E7Ou4OMEy3TeK1Gf"
     }

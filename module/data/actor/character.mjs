@@ -287,18 +287,6 @@ export default class DhCharacter extends BaseDataActor {
                         })
                     })
                 }),
-                weapon: new fields.SchemaField({
-                    /*  Unimplemented 
-                        -> Should remove the lowest damage dice from weapon damage 
-                        -> Reflect this in the chat message somehow so players get feedback that their choice is helping them.
-                    */
-                    dropLowestDamageDice: new fields.BooleanField({ initial: false }),
-                    /*  Unimplemented 
-                        -> Should flip any lowest possible dice rolls for weapon damage to highest
-                        -> Reflect this in the chat message somehow so players get feedback that their choice is helping them.
-                    */
-                    flipMinDiceValue: new fields.BooleanField({ intial: false })
-                }),
                 runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({
                     ignore: new fields.BooleanField()

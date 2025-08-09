@@ -17,7 +17,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this.config = CONFIG.DH.ITEMBROWSER.compendiumConfig;
         this.presets = options.presets;
 
-        if(this.presets?.compendium && this.presets?.folder)
+        if (this.presets?.compendium && this.presets?.folder)
             ItemBrowser.selectFolder.call(this, null, null, this.presets.compendium, this.presets.folder);
     }
 
@@ -26,7 +26,6 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         id: 'itemBrowser',
         classes: ['daggerheart', 'dh-style', 'dialog', 'compendium-browser'],
         tag: 'div',
-        // title: 'Item Browser',
         window: {
             frame: true,
             title: 'Compendium Browser',
@@ -41,9 +40,8 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             sortList: this.sortList
         },
         position: {
-            top: 330,
-            left: 120,
-            width: 800,
+            left: 100,
+            width: 850,
             height: 600
         }
     };
@@ -88,16 +86,14 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     /** @inheritDoc */
     async _preFirstRender(context, options) {
-        if(context.presets?.render?.noFolder || context.presets?.render?.lite)
-            options.position.width = 600;
-        
+        if (context.presets?.render?.noFolder || context.presets?.render?.lite) options.position.width = 600;
+
         await super._preFirstRender(context, options);
     }
 
     /** @inheritDoc */
     async _preRender(context, options) {
-
-        if(context.presets?.render?.noFolder || context.presets?.render?.lite)
+        if (context.presets?.render?.noFolder || context.presets?.render?.lite)
             options.parts.splice(options.parts.indexOf('sidebar'), 1);
 
         await super._preRender(context, options);
@@ -110,18 +106,17 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this._createSearchFilter();
         this._createFilterInputs();
         this._createDragProcess();
-        
-        if(context.presets?.render?.lite)
-            this.element.classList.add('lite');
-        
-        if(context.presets?.render?.noFolder)
-            this.element.classList.add('no-folder');
-        
-        if(context.presets?.render?.noFilter)
-            this.element.classList.add('no-filter');
 
-        if(this.presets?.filter) {
-            Object.entries(this.presets.filter).forEach(([k,v]) => this.fieldFilter.find(c => c.name === k).value = v.value);
+        if (context.presets?.render?.lite) this.element.classList.add('lite');
+
+        if (context.presets?.render?.noFolder) this.element.classList.add('no-folder');
+
+        if (context.presets?.render?.noFilter) this.element.classList.add('no-filter');
+
+        if (this.presets?.filter) {
+            Object.entries(this.presets.filter).forEach(
+                ([k, v]) => (this.fieldFilter.find(c => c.name === k).value = v.value)
+            );
             await this._onInputFilterBrowser();
         }
     }
@@ -198,6 +193,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
     formatLabel(item, field) {
         const property = foundry.utils.getProperty(item, field.key);
+        if (Array.isArray(property)) property.join(', ');
         if (typeof field.format !== 'function') return property ?? '-';
         return field.format(property);
     }
@@ -315,19 +311,18 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     async _onInputFilterBrowser(event) {
         this.#filteredItems.browser.input.clear();
 
-        if(event) this.fieldFilter.find(f => f.name === event.target.name).value = event.target.value;
+        if (event) this.fieldFilter.find(f => f.name === event.target.name).value = event.target.value;
 
         for (const li of this.element.querySelectorAll('.item-container')) {
             const itemUUID = li.dataset.itemUuid,
                 item = this.items.find(i => i.uuid === itemUUID);
-            
-            if(!item) continue;
+
+            if (!item) continue;
 
             const matchesMenu =
                 this.fieldFilter.length === 0 ||
-                this.fieldFilter.every(f => (
-                    !f.value && f.value !== false) ||
-                    ItemBrowser.evaluateFilter(item, this.createFilterData(f))
+                this.fieldFilter.every(
+                    f => (!f.value && f.value !== false) || ItemBrowser.evaluateFilter(item, this.createFilterData(f))
                 );
             if (matchesMenu) this.#filteredItems.browser.input.add(item.id);
 
@@ -335,21 +330,21 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             li.hidden = !(search.has(item.id) && matchesMenu);
         }
     }
-    
+
     /**
      * Foundry evaluateFilter doesn't allow you to match if filter values are included into item data
-     * @param {*} obj 
-     * @param {*} filter 
+     * @param {*} obj
+     * @param {*} filter
      */
     static evaluateFilter(obj, filter) {
         let docValue = foundry.utils.getProperty(obj, filter.field);
         let filterValue = filter.value;
         switch (filter.operator) {
-            case "contains2":
+            case 'contains2':
                 filterValue = Array.isArray(filterValue) ? filterValue : [filterValue];
                 docValue = Array.isArray(docValue) ? docValue : [docValue];
                 return docValue.some(dv => filterValue.includes(dv));
-            case "contains3":
+            case 'contains3':
                 return docValue.some(f => f.value === filterValue);
             default:
                 return foundry.applications.ux.SearchFilter.evaluateFilter(obj, filter);
@@ -373,30 +368,33 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this.render({ force: true });
     }
 
-    static getFolderConfig(folder, property = "columns") {
-        if(!folder) return [];
+    static getFolderConfig(folder, property = 'columns') {
+        if (!folder) return [];
         return folder[property] ?? CONFIG.DH.ITEMBROWSER.typeConfig[folder.listType]?.[property] ?? [];
     }
 
     static sortList(_, target) {
         const key = target.dataset.sortKey,
-            type = !target.dataset.sortType || target.dataset.sortType === "DESC" ? "ASC" : "DESC",
-            itemListContainer = target.closest(".compendium-results").querySelector(".item-list"),
-            itemList = itemListContainer.querySelectorAll(".item-container");
+            type = !target.dataset.sortType || target.dataset.sortType === 'DESC' ? 'ASC' : 'DESC',
+            itemListContainer = target.closest('.compendium-results').querySelector('.item-list'),
+            itemList = itemListContainer.querySelectorAll('.item-container');
 
-        target.closest(".item-list-header").querySelectorAll('[data-sort-key]').forEach(b => b.dataset.sortType = "");
+        target
+            .closest('.item-list-header')
+            .querySelectorAll('[data-sort-key]')
+            .forEach(b => (b.dataset.sortType = ''));
         target.dataset.sortType = type;
-        
+
         const newOrder = [...itemList].reverse().sort((a, b) => {
             const aProp = a.querySelector(`[data-item-key="${key}"]`),
-                bProp = b.querySelector(`[data-item-key="${key}"]`)
-            if(type === "DESC") {
+                bProp = b.querySelector(`[data-item-key="${key}"]`);
+            if (type === 'DESC') {
                 return aProp.innerText < bProp.innerText ? 1 : -1;
             } else {
                 return aProp.innerText > bProp.innerText ? 1 : -1;
             }
         });
-        
+
         itemListContainer.replaceChildren(...newOrder);
     }
 

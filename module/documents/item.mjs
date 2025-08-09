@@ -142,19 +142,16 @@ export default class DHItem extends foundry.documents.Item {
         }
     }
 
+    /**
+     * Create a new ChatMessage to display this document’s data
+     * @param {String} origin - uuid of a document. TODO: This needs to be reviewed.
+     */
     async toChat(origin) {
+        /**@type {foundry.documents.ChatMessage} */
         const cls = getDocumentClass('ChatMessage');
         const item = await foundry.utils.fromUuid(origin);
 
         const systemData = {
-            title:
-                this.type === 'ancestry'
-                    ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.ancestryTitle')
-                    : this.type === 'community'
-                      ? game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.communityTitle')
-                      : this.type === 'feature'
-                        ? game.i18n.localize('TYPES.Item.feature')
-                        : game.i18n.localize('DAGGERHEART.UI.Chat.foundationCard.subclassFeatureTitle'),
             origin: origin,
             img: this.img,
             item: {
@@ -170,7 +167,6 @@ export default class DHItem extends foundry.documents.Item {
             type: 'abilityUse',
             user: game.user.id,
             actor: item.parent,
-            author: this.author,
             speaker: cls.getSpeaker(),
             system: systemData,
             title: game.i18n.localize('DAGGERHEART.ACTIONS.Config.displayInChat'),
