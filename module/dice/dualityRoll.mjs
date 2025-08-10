@@ -18,8 +18,9 @@ export default class DualityRoll extends D20Roll {
     static DefaultDialog = D20RollDialog;
 
     get title() {
+        console.log(this)
         return game.i18n.localize(
-            "DAGGERHEART.GENERAL.dualityRoll"
+            `DAGGERHEART.GENERAL.${ this.options?.roll?.type === CONFIG.DH.ITEM.actionTypes.reaction.id ? "reactionRoll": "dualityRoll"}`
         );
     }
 
