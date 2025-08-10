@@ -3,7 +3,7 @@
   "name": "Light-Frame Wheelchair",
   "type": "weapon",
   "_id": "iaGnlUkShBgdeMo0",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/documents/items/LightWheelchair.webp",
   "system": {
     "description": "",
     "actions": {
@@ -143,12 +143,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753836579296,
-    "modifiedTime": 1753836587147,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1754846015528,
+    "lastModifiedBy": "H02dtt2xvVJvYESk"
   },
   "_key": "!items!iaGnlUkShBgdeMo0"
 }

@@ -60,7 +60,7 @@ export default class RegisterHandlebarsHelpers {
 
     static rollParsed(value, actor, item, numerical) {
         const isNumerical = typeof numerical === 'boolean' ? numerical : false;
-        const result = itemAbleRollParse(value, actor.getRollData(), item);
+        const result = itemAbleRollParse(value, actor?.getRollData() ?? {}, item);
         return isNumerical ? (!result ? 0 : Number(result)) : result;
     }
 
@@ -69,7 +69,7 @@ export default class RegisterHandlebarsHelpers {
     }
 
     static empty(object) {
-        if(!(typeof object === 'object')) return true;
+        if (!(typeof object === 'object')) return true;
         return Object.keys(object).length === 0;
     }
 }

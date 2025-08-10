@@ -5,16 +5,16 @@
 >
     <fieldset class="one-column">
         <legend>{{localize "DAGGERHEART.GENERAL.basics"}}</legend>
-        {{formGroup systemFields.attack.fields.img value=document.system.attack.img label="DAGGERHEART.GENERAL.imagePath" name="system.attack.img" localize=true}}
-        {{formGroup systemFields.attack.fields.name value=document.system.attack.name label="DAGGERHEART.ACTIONS.Settings.attackName" name="system.attack.name" localize=true}}
+        {{formGroup systemFields.attack.fields.img value=document._source.system.attack.img label="DAGGERHEART.GENERAL.imagePath" name="system.attack.img" localize=true}}
+        {{formGroup systemFields.attack.fields.name value=document._source.system.attack.name label="DAGGERHEART.ACTIONS.Settings.attackName" name="system.attack.name" localize=true}}
     </fieldset>
     <fieldset class="flex">
         <legend>{{localize "DAGGERHEART.GENERAL.attack"}}</legend>
-            {{formField systemFields.attack.fields.range value=document.system.attack.range label="DAGGERHEART.GENERAL.range" name="system.attack.range" localize=true}}
+            {{formField systemFields.attack.fields.range value=document._source.system.attack.range label="DAGGERHEART.GENERAL.range" name="system.attack.range" localize=true}}
             {{#if systemFields.attack.fields.target.fields}}
-                {{ formField systemFields.attack.fields.target.fields.type value=document.system.attack.target.type label="DAGGERHEART.GENERAL.Target.single" name="system.attack.target.type" localize=true}}
-                {{#if (and document.system.attack.target.type (not (eq document.system.attack.target.type 'self')))}}
-                    {{ formField systemFields.attack.fields.target.fields.amount value=document.system.attack.target.amount label="DAGGERHEART.GENERAL.amount" name="system.attack.target.amount" localize=true}}
+                {{ formField systemFields.attack.fields.target.fields.type value=document._source.system.attack.target.type label="DAGGERHEART.GENERAL.Target.single" name="system.attack.target.type" localize=true}}
+                {{#if (and document._source.system.attack.target.type (not (eq document._source.system.attack.target.type 'self')))}}
+                    {{ formField systemFields.attack.fields.target.fields.amount value=document._source.system.attack.target.amount label="DAGGERHEART.GENERAL.amount" name="system.attack.target.amount" localize=true}}
                 {{/if}}
             {{/if}}
     </fieldset>

@@ -780,7 +780,15 @@ export const weaponFeatures = {
                         mode: 2,
                         value: '1'
                     }
-                ]
+                ],
+                system: {
+                    rangeDependence: {
+                        enabled: true,
+                        range: 'melee',
+                        target: 'hostile',
+                        type: 'withinRange'
+                    }
+                }
             }
         ]
     },
@@ -1079,7 +1087,15 @@ export const weaponFeatures = {
                         mode: 2,
                         value: 'ITEM.@system.tier + 1'
                     }
-                ]
+                ],
+                system: {
+                    rangeDependence: {
+                        enabled: true,
+                        range: 'melee',
+                        target: 'hostile',
+                        type: 'withinRange'
+                    }
+                }
             }
         ]
     },
@@ -1208,7 +1224,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/strike-sword-slashing-red.webp',
                 changes: [
                     {
-                        key: 'system.bonuses.roll.primaryWeapon.attack',
+                        key: 'system.bonuses.roll.primaryWeapon.bonus',
                         mode: 2,
                         value: 1
                     }

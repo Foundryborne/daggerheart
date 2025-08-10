@@ -159,25 +159,28 @@ export default class DamageRoll extends DHRoll {
         if (config.data?.parent) {
             if (config.data.parent.appliedEffects) {
                 // Bardic Rally
-                mods.rally = {
-                    label: 'DAGGERHEART.CLASS.Feature.rallyDice',
-                    values: config.data?.parent?.appliedEffects.reduce((a, c) => {
+                const rallyChoices = config.data?.parent?.appliedEffects.reduce((a, c) => {
                         const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
                         if (change) a.push({ value: c.id, label: change.value });
                         return a;
-                    }, []),
-                    value: null,
-                    beforeCrit: true,
-                    callback: part => {
-                        const rallyFaces = config.modifiers.rally.values.find(
-                            r => r.value === config.modifiers.rally.value
-                        )?.label;
-                        part.roll.terms.push(
-                            new foundry.dice.terms.OperatorTerm({ operator: '+' }),
-                            ...this.parse(`1${rallyFaces}`)
-                        );
-                    }
-                };
+                    }, [])
+                if(rallyChoices.length) {
+                    mods.rally = {
+                        label: 'DAGGERHEART.CLASS.Feature.rallyDice',
+                        values: rallyChoices,
+                        value: null,
+                        beforeCrit: true,
+                        callback: part => {
+                            const rallyFaces = config.modifiers.rally.values.find(
+                                r => r.value === config.modifiers.rally.value
+                            )?.label;
+                            part.roll.terms.push(
+                                new foundry.dice.terms.OperatorTerm({ operator: '+' }),
+                                ...this.parse(`1${rallyFaces}`)
+                            );
+                        }
+                    };
+                }
             }
 
             const item = config.data.parent.items?.get(config.source.item);

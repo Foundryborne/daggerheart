@@ -129,6 +129,7 @@ export default function DHApplicationMixin(Base) {
 
             const docs = [];
             for (const docData of this.relatedDocs) {
+                if (!docData) continue;
                 const doc = await foundry.utils.fromUuid(docData.uuid);
                 docs.push(doc);
             }
@@ -419,7 +420,7 @@ export default function DHApplicationMixin(Base) {
                   : this.document.system.actions?.get(actionId);
             if (!doc) return;
 
-            const description = doc.system?.description ?? doc.description;
+            const description = game.i18n.localize(doc.system?.description ?? doc.description);
             const isAction = !!actionId;
             descriptionElement.innerHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
                 description,

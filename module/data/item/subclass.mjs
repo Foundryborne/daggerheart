@@ -21,7 +21,7 @@ export default class DHSubclass extends BaseDataItem {
                 integer: false,
                 nullable: true,
                 initial: null,
-                label: "DAGGERHEART.ITEMS.Subclass.spellcastingTrait"
+                label: 'DAGGERHEART.ITEMS.Subclass.spellcastingTrait'
             }),
             features: new ItemLinkFields(),
             featureState: new fields.NumberField({ required: true, initial: 1, min: 1 }),
@@ -50,7 +50,8 @@ export default class DHSubclass extends BaseDataItem {
 
     async _preCreate(data, options, user) {
         if (this.actor?.type === 'character') {
-            const dataUuid = data.uuid ?? data._stats?.compendiumSource ?? `Item.${data._id}`;
+            const dataUuid =
+                (data.uuid ?? data.folder) ? `Compendium.daggerheart.subclasses.Item.${data._id}` : `Item.${data._id}`;
             if (this.actor.system.class.subclass) {
                 if (this.actor.system.multiclass.subclass) {
                     ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.subclassesAlreadyPresent'));

@@ -14,8 +14,14 @@
             margin-bottom: 12px;
         }
 
-        .feature-list {
+                .feature-list,
+        .features-dragger {
             display: flex;
+            width: 100%;
+            font-family: @font-body;
+        }
+
+        .feature-list {
             flex-direction: column;
             gap: 10px;
 
@@ -44,6 +50,17 @@
                     }
                 }
             }
+        }
+
+        .features-dragger {
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            height: 40px;
+            margin-top: 10px;
+            border: 1px dashed light-dark(@dark-blue-50, @beige-50);
+            border-radius: 3px;
+            color: light-dark(@dark-blue-50, @beige-50);
         }
     }
 }

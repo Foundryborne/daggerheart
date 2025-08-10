@@ -2,7 +2,7 @@
   "folder": "beilKE5ZPAihKg3O",
   "name": "Legendary Light-Frame Wheelchair",
   "type": "weapon",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/documents/items/LightWheelchair.webp",
   "system": {
     "description": "",
     "actions": {
@@ -141,12 +141,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753836615437,
-    "modifiedTime": 1753836826572,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1754846023338,
+    "lastModifiedBy": "H02dtt2xvVJvYESk"
   },
   "_id": "Xt8tVSn5Fu6ly6LF",
   "sort": 0,

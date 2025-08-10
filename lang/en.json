@@ -272,7 +272,8 @@
                 "combatStarted": "Active",
                 "giveSpotlight": "Give The Spotlight",
                 "requestingSpotlight": "Requesting The Spotlight",
-                "requestSpotlight": "Request The Spotlight"
+                "requestSpotlight": "Request The Spotlight",
+                "openCountdowns": "Countdowns"
             },
             "ContextMenu": {
                 "disableEffect": "Disable Effect",
@@ -823,8 +824,8 @@
                     "name": "Restrained",
                     "description": "When an effect makes a creature Restrained, it means they cannot move until this condition is cleared.\nThey can still take actions from their current position."
                 },
-                "unconcious": {
-                    "name": "Unconcious",
+                "unconscious": {
+                    "name": "Unconscious",
                     "description": "Your character can’t move or act while unconscious, they can’t be targeted by an attack."
                 },
                 "vulnerable": {
@@ -1763,6 +1764,7 @@
                 "weapon": "Range Increase: Weapon"
             },
             "RefreshType": {
+                "scene": "Scene",
                 "session": "Session",
                 "shortrest": "Short Rest",
                 "longrest": "Long Rest"
@@ -1898,6 +1900,7 @@
             "difficulty": "Difficulty",
             "downtime": "Downtime",
             "dropActorsHere": "Drop Actors here",
+            "dropFeaturesHere": "Drop Features here",
             "duality": "Duality",
             "dualityRoll": "Duality Roll",
             "enabled": "Enabled",
