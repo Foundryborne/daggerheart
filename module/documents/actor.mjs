@@ -315,6 +315,7 @@ export default class DhpActor extends Actor {
                             ...multiclassData,
                             system: {
                                 ...multiclassData.system,
+                                features: multiclassData.system.features.filter(x => x.type !== 'hope'),
                                 domains: [multiclass.secondaryData.domain],
                                 isMulticlass: true
                             }
