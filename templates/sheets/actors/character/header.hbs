@@ -105,9 +105,9 @@
     </div>
 
     <div class="character-traits">
-        {{#each this.attributes as |attribute key|}}
-            <div class="trait" data-tooltip="{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.value}}">
-                <div class="trait-name">
+        {{#each this.attributes as |attribute key|}} 
+            <div class="trait" data-tooltip="<b>{{localize (concat 'DAGGERHEART.CONFIG.Traits.' key '.name') }}:</b><br>{{#each attribute.verbs}}{{this}}<br>{{/each}}" data-action="rollAttribute" data-attribute="{{key}}" data-value="{{attribute.value}}">
+                <div class="trait-name"> 
                     <span>{{localize (concat 'DAGGERHEART.CONFIG.Traits.' key '.short')}}</span>
                     {{#if attribute.tierMarked}}
                         <i class='fa-solid fa-circle'></i>
