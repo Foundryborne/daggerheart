@@ -63,7 +63,7 @@
     "attached": [],
     "tier": 4,
     "equipped": false,
-    "baseScore": 0,
+    "baseScore": 6,
     "armorFeatures": [
       {
         "value": "burning",
@@ -77,8 +77,8 @@
       "value": 0
     },
     "baseThresholds": {
-      "major": 0,
-      "severe": 0
+      "major": 13,
+      "severe": 36
     }
   },
   "effects": [],
@@ -92,12 +92,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.0",
     "createdTime": 1753809470138,
-    "modifiedTime": 1753809633344,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1754853048367,
+    "lastModifiedBy": "7zAk0CoP90J7ebn0"
   },
   "_key": "!items!bcQUh4QG3qFX0Vx6"
 }
