@@ -59,13 +59,13 @@
         {
           "key": "system.bonuses.damage.physical.dice",
           "mode": 2,
-          "value": "@system.tierd6",
+          "value": "@tierd6",
           "priority": null
         },
         {
           "key": "system.bonuses.damage.magical.dice",
           "mode": 2,
-          "value": "@system.tierd6",
+          "value": "@tierd6",
           "priority": null
         }
       ],
