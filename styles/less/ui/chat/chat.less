@@ -35,7 +35,8 @@
             border-color: transparent;
         }
         [data-view-perm='false'] {
-            &[data-perm-hidden='true'], > * {
+            &[data-perm-hidden='true'],
+            > * {
                 display: none;
             }
             &::after {
@@ -161,7 +162,7 @@
                     color: var(--text-color);
                     font-weight: 700;
                     font-family: 'Cinzel', sans-serif;
-                    line-height: .75;
+                    line-height: 0.75;
 
                     .roll-result-value {
                         font-size: var(--font-size-24);
@@ -191,9 +192,13 @@
             .roll-die {
                 display: grid;
                 grid-template-areas:
-                    ". a a"
-                    "c b b";
+                    '. a a'
+                    'c b b';
                 gap: 3px;
+
+                .reroll-button:hover {
+                    filter: drop-shadow(0 0 3px @golden);
+                }
 
                 label {
                     text-align: center;
@@ -272,7 +277,7 @@
             border-radius: 3px;
 
             &:hover {
-                background-color: rgba(255,255,255,.1);
+                background-color: rgba(255, 255, 255, 0.1);
             }
 
             .target-img {

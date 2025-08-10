@@ -43,7 +43,7 @@
         "parts": [
           {
             "value": {
-              "dice": "d8",
+              "dice": "d10",
               "bonus": 12,
               "multiplier": "prof",
               "flatMultiplier": 1,

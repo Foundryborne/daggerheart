@@ -24,6 +24,22 @@
             <input type="text" value="{{extraFormula}}" name="roll.{{ @index }}.extraFormula" placeholder="Situational Bonus">
         </div>
     {{/each}}
+    {{#if @root.modifiers}}
+        <fieldset class="modifier-container two-columns">
+            <legend>{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</legend>
+            {{#each @root.modifiers}}
+                <span class="formula-label">{{ localize label }}</span>
+                {{#if (hasProperty this "values")}}
+                    <select name="modifiers.{{@key}}.value">
+                        {{selectOptions values blank="" selected=value}}
+                    </select>
+                {{/if}}
+                {{#if (hasProperty this "enabled")}}
+                    <input type="checkbox" name="modifiers.{{@key}}.enabled" {{ checked enabled }}>
+                {{/if}}
+            {{/each}}
+        </fieldset>
+    {{/if}}
     <div class="damage-section-controls">
         {{#if directDamage}}
             <select class="roll-mode-select" name="selectedRollMode">

@@ -229,7 +229,7 @@ export function ActionMixin(Base) {
             }
 
             return this.inCollection
-                ? foundry.utils.getProperty(result, basePath).get(this.id)
+                ? foundry.utils.getProperty(result, basePath)?.get(this.id)
                 : foundry.utils.getProperty(result, basePath);
         }
 

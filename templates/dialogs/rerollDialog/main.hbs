@@ -1,0 +1,35 @@
+<div class="reroll-outer-container">
+    {{#each damage}}
+        <h2>{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' @key '.name')}}</h2>
+        {{#each this}}
+            <div class="dices-container">
+                {{#each this}}
+                    <fieldset class="dice-outer-container">
+                        <legend>
+                            <input class="to-reroll-input" type="checkbox" data-type="{{@../../key}}" data-part="{{@../key}}" data-dice="{{@key}}" {{checked this.toReroll}} />
+                            <i class="fa-solid fa-dice"></i>
+                            <span>{{this.selectedResults}}/{{this.results.length}} Selected</span>
+                        </legend>
+
+                        <div class="dice-container">
+                            {{#each this.results}}
+                                    <div 
+                                        class="result-container {{../dice}} {{#if this.active}}selected{{/if}}" 
+                                        data-action="selectRoll" data-type="{{@../../../key}}" data-part="{{@../../key}}" data-dice="{{@../key}}" data-result="{{@key}}"
+                                    >
+                                        {{this.result}}
+                                        {{#if this.active}}
+                                        <a class="to-reroll-result" data-action="toggleResult" data-type="{{@../../../key}}" data-part="{{@../../key}}" data-dice="{{@../key}}" data-result="{{@key}}">
+                                            <input class="to-reroll-result-input" type="checkbox" {{checked this.toReroll}} />
+                                            <i class="fa-solid fa-dice"></i>
+                                        </a>
+                                        {{/if}}
+                                    </div>
+                            {{/each}}
+                        </div>
+                    </fieldset>
+                {{/each}}
+            </div>
+        {{/each}}
+    {{/each}}
+</div>

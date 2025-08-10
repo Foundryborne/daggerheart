@@ -1,10 +1,16 @@
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
+    targetHook = null;
+    targetSelection = null;
+
     async renderHTML() {
         const actor = game.actors.get(this.speaker.actor);
-        const actorData = actor && this.isContentVisible ? actor : {
-            img: this.author.avatar ? this.author.avatar : 'icons/svg/mystery-man.svg',
-            name: ''
-        };
+        const actorData =
+            actor && this.isContentVisible
+                ? actor
+                : {
+                      img: this.author.avatar ? this.author.avatar : 'icons/svg/mystery-man.svg',
+                      name: ''
+                  };
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML({ actor: actorData, author: this.author });
 
@@ -12,6 +18,30 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         this.addChatListeners(html);
 
         return html;
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritDoc */
+    prepareData() {
+        if (this.isAuthor && this.targetSelection === null) this.targetSelection = this.system.targets?.length > 0;
+        super.prepareData();
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritDoc */
+    _onCreate(data, options, userId) {
+        super._onCreate(data, options, userId);
+        if (this.system.registerTargetHook) this.system.registerTargetHook();
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritDoc */
+    async _preDelete(options, user) {
+        if (this.targetHook !== null) Hooks.off('targetToken', this.targetHook);
+        return super._preDelete(options, user);
     }
 
     enrichChatMessage(html) {
@@ -55,14 +85,14 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             element.addEventListener('mouseleave', this.unhoverTarget);
             element.addEventListener('click', this.clickTarget);
         });
-        
+
         html.querySelectorAll('.button-target-selection').forEach(element => {
             element.addEventListener('click', this.onTargetSelection.bind(this));
         });
     }
 
     getTargetList() {
-        const targets = this.system.hitTargets;
+        const targets = this.system.hitTargets ?? [];
         return targets.map(target => game.canvas.tokens.documentCollection.find(t => t.actor?.uuid === target.actorId));
     }
 
@@ -134,7 +164,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     }
 
     consumeOnSuccess() {
-        if (!this.system.successConsumed && !this.system.targetSelection) {
+        if (!this.system.successConsumed && !this.targetSelection) {
             const action = this.system.action;
             if (action) action.consume(this.system, true);
         }
@@ -143,12 +173,12 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
     hoverTarget(event) {
         event.stopPropagation();
         const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (!token?.controlled) token._onHoverIn(event, { hoverOutOthers: true });
+        if (token && !token?.controlled) token._onHoverIn(event, { hoverOutOthers: true });
     }
 
     unhoverTarget(event) {
         const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (!token?.controlled) token._onHoverOut(event);
+        if (token && !token?.controlled) token._onHoverOut(event);
     }
 
     clickTarget(event) {
@@ -163,6 +193,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     onTargetSelection(event) {
         event.stopPropagation();
-        this.system.targetMode = Boolean(event.target.dataset.targetHit);
+        if (!event.target.classList.contains('target-selected'))
+            this.system.targetMode = Boolean(event.target.dataset.targetHit);
     }
 }

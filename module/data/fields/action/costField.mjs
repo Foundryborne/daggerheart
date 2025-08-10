@@ -12,7 +12,10 @@ export default class CostField extends fields.ArrayField {
             value: new fields.NumberField({ nullable: true, initial: 1, min: 0 }),
             scalable: new fields.BooleanField({ initial: false }),
             step: new fields.NumberField({ nullable: true, initial: null }),
-            consumeOnSuccess: new fields.BooleanField({ initial: false, label: "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.label" })
+            consumeOnSuccess: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.label'
+            })
         });
         super(element, options, context);
     }
@@ -47,7 +50,7 @@ export default class CostField extends fields.ArrayField {
     static hasCost(costs) {
         const realCosts = CostField.getRealCosts.call(this, costs),
             hasFearCost = realCosts.findIndex(c => c.key === 'fear');
-        
+
         if (hasFearCost > -1) {
             const fearCost = realCosts.splice(hasFearCost, 1)[0];
             if (
@@ -72,7 +75,8 @@ export default class CostField extends fields.ArrayField {
 
     static getResources(costs) {
         const actorResources = foundry.utils.deepClone(this.actor.system.resources);
-        if(this.actor.system.partner) actorResources.hope = foundry.utils.deepClone(this.actor.system.partner.system.resources.hope);
+        if (this.actor.system.partner)
+            actorResources.hope = foundry.utils.deepClone(this.actor.system.partner.system.resources.hope);
         const itemResources = {};
         for (let itemResource of costs) {
             if (itemResource.keyIsID) {
@@ -92,9 +96,9 @@ export default class CostField extends fields.ArrayField {
     static getRealCosts(costs) {
         const realCosts = costs?.length ? costs.filter(c => c.enabled) : [];
         let mergedCosts = [];
-        realCosts.forEach(c =>  {
+        realCosts.forEach(c => {
             const getCost = Object.values(mergedCosts).find(gc => gc.key === c.key);
-            if(getCost) getCost.total += c.total;
+            if (getCost) getCost.total += c.total;
             else mergedCosts.push(c);
         });
         return mergedCosts;

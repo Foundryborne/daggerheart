@@ -49,8 +49,7 @@ export default class DHDamageAction extends DHBaseAction {
             ...systemData,
             roll: formulas,
             dialog: {},
-            data: this.getRollData(),
-            targetSelection: systemData.targets.length > 0
+            data: this.getRollData()
         };
         if (this.hasSave) config.onSave = this.save.damageMod;
         if (data.system) {

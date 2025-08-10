@@ -29,7 +29,13 @@
                                     {{#each results}}
                                         {{#unless discarded}}
                                             <div class="roll-die{{#unless @../first}} has-plus{{/unless}}">
-                                                <div class="dice {{../dice}}">{{result}}</div>
+                                                <div 
+                                                    class="dice reroll-button {{../dice}}" 
+                                                    data-die-index="0" data-type="damage" data-damage-type="{{@../../../key}}" data-part="{{@../../key}}" data-dice="{{@../key}}" data-result="{{@key}}"
+                                                >
+                                                    {{#if hasRerolls}}<i class="fa-solid fa-dice dice-rerolled" data-tooltip="{{localize "Rerolled"}}"></i>{{/if}}
+                                                    {{result}}
+                                                </div>
                                             </div>
                                         {{/unless}}
                                     {{/each}}

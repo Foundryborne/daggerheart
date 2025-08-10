@@ -645,18 +645,17 @@ export default class CharacterSheet extends DHBaseActorSheet {
     }
 
     async consumeResource(costs) {
-        if(!costs?.length) return;
+        if (!costs?.length) return;
         const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
-        const resources = game.system.api.fields.ActionFields.CostField.getRealCosts(costs)
-            .map(c => {
-                const resource = usefulResources[c.key];
-                return {
-                    key: c.key,
-                    value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
-                    target: resource.target,
-                    keyIsID: resource.keyIsID
-                };
-            });
+        const resources = game.system.api.fields.ActionFields.CostField.getRealCosts(costs).map(c => {
+            const resource = usefulResources[c.key];
+            return {
+                key: c.key,
+                value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
+                target: resource.target,
+                keyIsID: resource.keyIsID
+            };
+        });
 
         await this.actor.modifyResource(resources);
     }

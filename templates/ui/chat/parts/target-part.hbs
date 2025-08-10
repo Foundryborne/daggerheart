@@ -18,8 +18,8 @@
                     <div class="target-selector">
                         <div class="roll-part-header"><div></div></div>
                         <div class="target-choice">
-                            <div class="button-target-selection{{#if targetSelection}} target-selected{{/if}}" data-target-hit="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.hitTarget"}}</div>
-                            <div class="button-target-selection{{#unless targetSelection}} target-selected{{/unless}}">{{localize "DAGGERHEART.UI.Chat.damageRoll.currentTarget"}}</div>
+                            <div class="button-target-selection{{#if targetMode}} target-selected{{/if}}" data-target-hit="true">{{localize "DAGGERHEART.UI.Chat.damageRoll.hitTarget"}}</div>
+                            <div class="button-target-selection{{#unless targetMode}} target-selected{{/unless}}">{{localize "DAGGERHEART.UI.Chat.damageRoll.currentTarget"}}</div>
                         </div>
                         <div class="roll-part-header"><div></div></div>
                     </div>
@@ -30,7 +30,7 @@
                         <img class="target-img" src="{{img}}">
                         <div class="target-data">
                             <div class="target-name" data-perm-id="{{actorId}}"><span>{{name}}</span></div>
-                            {{#if (and ../targetSelection ../hasRoll)}}
+                            {{#if (and ../targetMode ../hasRoll)}}
                                 <div class="target-hit-status {{#if hit}}is-hit{{else}}is-miss{{/if}}">
                                     {{#if hit}}
                                         {{localize "DAGGERHEART.GENERAL.hit.single"}}

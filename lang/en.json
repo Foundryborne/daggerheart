@@ -498,6 +498,11 @@
             "ReactionRoll": {
                 "title": "Reaction Roll: {trait}"
             },
+            "RerollDialog": {
+                "title": "Reroll",
+                "deselectDiceNotification": "Deselect one of the selected dice first",
+                "acceptCurrentRolls": "Accept Current Rolls"
+            },
             "ResourceDice": {
                 "title": "{name} Resource",
                 "rerollDice": "Reroll Dice"
@@ -505,7 +510,8 @@
         },
         "CLASS": {
             "Feature": {
-                "rallyDice": "Bardic Rally Dice"
+                "rallyDice": "Bardic Rally Dice",
+                "short": "Rally"
             }
         },
         "CONFIG": {
