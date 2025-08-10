@@ -85,7 +85,12 @@ export const chunkify = (array, chunkSize, mappingFunc) => {
 
 export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}) => {
     const { maxTags } = tagifyOptions;
-    const options = typeof baseOptions === 'object' ? Object.values(baseOptions) : baseOptions;
+    const options = Array.isArray(baseOptions)
+        ? baseOptions
+        : Object.keys(baseOptions).map(optionKey => ({
+              ...baseOptions[optionKey],
+              id: optionKey
+          }));
 
     const tagifyElement = new Tagify(element, {
         tagTextProp: 'name',
@@ -170,6 +175,26 @@ Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false 
     });
     formula = terms.reduce((a, c) => a.replaceAll(`@${c.term}`, data[c.term] ?? c.default), formula);
     return nativeReplaceFormulaData(formula, data, { missing, warn });
+};
+
+foundry.dice.terms.Die.MODIFIERS.sc = 'selfCorrecting';
+
+/**
+ * Return the configured value as result if 1 is rolled
+ * Example: 6d6sc6  Roll 6d6, each result of 1 will be changed into 6
+ * @param {string} modifier     The matched modifier query
+ */
+foundry.dice.terms.Die.prototype.selfCorrecting = function (modifier) {
+    const rgx = /(?:sc)([0-9]+)/i;
+    const match = modifier.match(rgx);
+    if (!match) return false;
+    let [target] = match.slice(1);
+    target = parseInt(target);
+    for (const r of this.results) {
+        if (r.result === 1) {
+            r.result = target;
+        }
+    }
 };
 
 export const getDamageKey = damage => {

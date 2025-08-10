@@ -10,7 +10,7 @@
     <fieldset>
         <legend>{{localize tabs.experiences.label}}</legend>
         <ul class="experience-list">
-            {{#each document.system.experiences as |experience key|}}
+            {{#each document._source.system.experiences as |experience key|}}
                 <li class="experience-item">
                     <div class="experience-inner-item">
                         <input class="name" type="text" name="system.experiences.{{key}}.name" value="{{experience.name}}" />

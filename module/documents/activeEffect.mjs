@@ -124,15 +124,20 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
         return tags;
     }
 
+    /**
+     * Create a new ChatMessage to display this document’s data.
+     * @param {String} origin -  uuid of a document. TODO: This needs to be reviewed.
+     */
     async toChat(origin) {
+        /**@type {foundry.documents.ChatMessage} */
         const cls = getDocumentClass('ChatMessage');
-        const actor = game.actors.get(cls.getSpeaker().actor);
+        const speaker = cls.getSpeaker();
+        const actor = cls.getSpeakerActor(speaker);
         const systemData = {
             action: { img: this.img, name: this.name },
-            actor: { name: actor.name, img: actor.img },
-            author: this.author,
-            speaker: cls.getSpeaker(),
-            origin: origin,
+            actor: { name: actor?.name, img: actor?.img },
+            speaker,
+            origin,
             description: this.description,
             actions: []
         };

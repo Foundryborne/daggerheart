@@ -287,18 +287,6 @@ export default class DhCharacter extends BaseDataActor {
                         })
                     })
                 }),
-                weapon: new fields.SchemaField({
-                    /*  Unimplemented 
-                        -> Should remove the lowest damage dice from weapon damage 
-                        -> Reflect this in the chat message somehow so players get feedback that their choice is helping them.
-                    */
-                    dropLowestDamageDice: new fields.BooleanField({ initial: false }),
-                    /*  Unimplemented 
-                        -> Should flip any lowest possible dice rolls for weapon damage to highest
-                        -> Reflect this in the chat message somehow so players get feedback that their choice is helping them.
-                    */
-                    flipMinDiceValue: new fields.BooleanField({ intial: false })
-                }),
                 runeWard: new fields.BooleanField({ initial: false }),
                 burden: new fields.SchemaField({
                     ignore: new fields.BooleanField()
@@ -361,6 +349,17 @@ export default class DhCharacter extends BaseDataActor {
         const classDomains = this.class.value ? this.class.value.system.domains : [];
         const multiclassDomains = this.multiclass.value ? this.multiclass.value.system.domains : [];
         return [...classDomains, ...multiclassDomains];
+    }
+
+    get domainData() {
+        const allDomainData = CONFIG.DH.DOMAIN.allDomains();
+        return this.domains.map(key => {
+            const domain = allDomainData[key];
+            return {
+                ...domain,
+                label: game.i18n.localize(domain.label)
+            };
+        });
     }
 
     get domainCards() {

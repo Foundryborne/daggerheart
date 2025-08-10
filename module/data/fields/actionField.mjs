@@ -229,7 +229,7 @@ export function ActionMixin(Base) {
             }
 
             return this.inCollection
-                ? foundry.utils.getProperty(result, basePath).get(this.id)
+                ? foundry.utils.getProperty(result, basePath)?.get(this.id)
                 : foundry.utils.getProperty(result, basePath);
         }
 
@@ -285,6 +285,7 @@ export function ActionMixin(Base) {
                 }
             };
 
+            ChatMessage.applyRollMode(msg, game.settings.get('core', 'rollMode'));
             cls.create(msg);
         }
     }

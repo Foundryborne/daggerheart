@@ -2,18 +2,18 @@ import D20RollDialog from '../applications/dialogs/d20RollDialog.mjs';
 
 export default class DHRoll extends Roll {
     baseTerms = [];
-    constructor(formula, data, options) {
+    constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
         if (!this.data || !Object.keys(this.data).length) this.data = options.data;
     }
 
     get title() {
-        return game.i18n.localize(
-            "DAGGERHEART.GENERAL.Roll.basic"
-        );
+        return game.i18n.localize('DAGGERHEART.GENERAL.Roll.basic');
     }
 
     static messageType = 'adversaryRoll';
+
+    static CHAT_TEMPLATE = 'systems/daggerheart/templates/ui/chat/roll.hbs';
 
     static DefaultDialog = D20RollDialog;
 
@@ -33,6 +33,8 @@ export default class DHRoll extends Roll {
         }
 
         this.applyKeybindings(config);
+
+        this.temporaryModifierBuilder(config);
 
         let roll = new this(config.roll.formula, config.data, config);
         if (config.dialog.configure !== false) {
@@ -64,8 +66,7 @@ export default class DHRoll extends Roll {
         }
 
         // Create Chat Message
-        if (!config.source?.message)
-            config.message = await this.toMessage(roll, config);
+        if (!config.source?.message) config.message = await this.toMessage(roll, config);
     }
 
     static postEvaluate(roll, config = {}) {
@@ -92,8 +93,35 @@ export default class DHRoll extends Roll {
                 system: config,
                 rolls: [roll]
             };
-        if(roll._evaluated) return await cls.create(msg, { rollMode: config.selectedRollMode });
+        config.selectedRollMode ??= game.settings.get('core', 'rollMode');
+        if (roll._evaluated) return await cls.create(msg, { rollMode: config.selectedRollMode });
         return msg;
+    }
+
+    /** @inheritDoc */
+    async render({ flavor, template = this.constructor.CHAT_TEMPLATE, isPrivate = false, ...options } = {}) {
+        if (!this._evaluated) return;
+        const chatData = await this._prepareChatRenderContext({ flavor, isPrivate, ...options });
+        return foundry.applications.handlebars.renderTemplate(template, chatData);
+    }
+
+    /** @inheritDoc */
+    async _prepareChatRenderContext({ flavor, isPrivate = false, ...options } = {}) {
+        if (isPrivate) {
+            return {
+                user: game.user.id,
+                flavor: null,
+                title: '???',
+                roll: {
+                    total: '??'
+                },
+                hasRoll: true,
+                isPrivate
+            };
+        } else {
+            options.message.system.user = game.user.id;
+            return options.message.system;
+        }
     }
 
     static applyKeybindings(config) {
@@ -178,11 +206,15 @@ export default class DHRoll extends Roll {
         }
         return modifierTotal;
     }
+
+    static temporaryModifierBuilder(config) {
+        return {};
+    }
 }
 
 export const registerRollDiceHooks = () => {
     Hooks.on(`${CONFIG.DH.id}.postRollDuality`, async (config, message) => {
-        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;    
+        const hopeFearAutomation = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).hopeFear;
         if (
             !config.source?.actor ||
             (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
@@ -206,8 +238,10 @@ export const registerRollDiceHooks = () => {
 
         if (updates.length) {
             const target = actor.system.partner ?? actor;
-            if (!['dead', 'unconcious'].some(x => actor.statuses.has(x))) {
-                target.modifyResource(updates);
+            if (!['dead', 'unconscious'].some(x => actor.statuses.has(x))) {
+                setTimeout(() => {
+                    target.modifyResource(updates);
+                }, 50);
             }
         }
 

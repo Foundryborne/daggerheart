@@ -10,9 +10,7 @@
                 {{#each domainCards as |domainCard id|}}
                     <div class="selections-container domain-card" data-card="{{id}}"> 
                         {{#> "systems/daggerheart/templates/components/card-preview.hbs" domainCard }}
-                            {{#each @root.class.system.domains }}
-                                <div>{{localize (concat "DAGGERHEART.GENERAL.Domain." this ".label")}}</div>
-                            {{/each}}
+                            {{#each @root.classDomains }}<div>{{this}}</div>{{/each}}
                         {{/"systems/daggerheart/templates/components/card-preview.hbs"}}
                     </div>
                 {{/each}}

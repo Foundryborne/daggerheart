@@ -14,14 +14,15 @@
         </div>
         {{#if roll.difficulty}}
             <span class="roll-difficulty{{#unless roll.success}} is-miss{{/unless}}">
-                {{#if canViewSecret}}
+                {{!-- {{#if canViewSecret}} --}}
                     difficulty {{roll.difficulty}}
-                {{else}}
+                {{!-- {{else}}
                     {{localize (ifThen roll.success "DAGGERHEART.GENERAL.success" "DAGGERHEART.GENERAL.failure")}}
-                {{/if}}
+                {{/if}} --}}
             </span>
         {{/if}}
     </div>
+    {{#unless isPrivate}}
     <div class="dice-roll" data-action="expandRoll">
         <div class="roll-part-header"><div><span>{{localize "DAGGERHEART.GENERAL.formula"}}</span></div></div>
         <div class="roll-part-content dice-result">
@@ -56,7 +57,7 @@
                             {{/if}}
                             {{#if roll.rally.dice}}
                                 <div class="roll-die has-plus">
-                                    <label>{{localize "DAGGERHEART.GENERAL.fear"}}</label>
+                                    <label>{{localize "DAGGERHEART.CLASS.Feature.short"}}</label>
                                     <div class="dice {{roll.rally.dice}}">{{roll.rally.value}}</div>
                                 </div>
                             {{/if}}
@@ -87,4 +88,5 @@
             </div>
         </div>
     </div>
+    {{/unless}}
 </div>

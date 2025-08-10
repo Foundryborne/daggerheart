@@ -183,11 +183,11 @@ export const conditions = {
         icon: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
         description: 'DAGGERHEART.CONFIG.Condition.restrained.description'
     },
-    unconcious: {
-        id: 'unconcious',
-        name: 'DAGGERHEART.CONFIG.Condition.unconcious.name',
+    unconscious: {
+        id: 'unconscious',
+        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name',
         icon: 'icons/magic/control/sleep-bubble-purple.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.unconcious.description'
+        description: 'DAGGERHEART.CONFIG.Condition.unconscious.description'
     },
     dead: {
         id: 'dead',
@@ -494,44 +494,49 @@ export const diceSetNumbers = {
     flat: 'Flat'
 };
 
-export const getDiceSoNicePresets = async (hopeFaces, fearFaces, advantageFaces = 'd6', disadvantageFaces = 'd6') => {
-    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-    const getPreset = async (type, faces) => {
-        const system = game.dice3d.DiceFactory.systems.get(type.system).dice.get(faces);
-        if (!system) {
-            ui.notifications.error(
-                game.i18n.format('DAGGERHEART.UI.Notifications.noDiceSystem', {
-                    system: game.dice3d.DiceFactory.systems.get(type.system).name,
-                    faces: faces
-                })
-            );
-            return;
-        }
+export const getDiceSoNicePreset = async (type, faces) => {
+    const system = game.dice3d.DiceFactory.systems.get(type.system).dice.get(faces);
+    if (!system) {
+        ui.notifications.error(
+            game.i18n.format('DAGGERHEART.UI.Notifications.noDiceSystem', {
+                system: game.dice3d.DiceFactory.systems.get(type.system).name,
+                faces: faces
+            })
+        );
+        return;
+    }
 
-        if (system.modelFile && !system.modelLoaded) {
-            await system.loadModel(game.dice3d.DiceFactory.loaderGLTF);
-        } else {
-            await system.loadTextures();
-        }
-
-        return {
-            modelFile: system.modelFile,
-            appearance: {
-                ...system.appearance,
-                ...type
-            }
-        };
-    };
+    if (system.modelFile && !system.modelLoaded) {
+        await system.loadModel(game.dice3d.DiceFactory.loaderGLTF);
+    } else {
+        await system.loadTextures();
+    }
 
     return {
-        hope: await getPreset(diceSoNice.hope, hopeFaces),
-        fear: await getPreset(diceSoNice.fear, fearFaces),
-        advantage: await getPreset(diceSoNice.advantage, advantageFaces),
-        disadvantage: await getPreset(diceSoNice.disadvantage, disadvantageFaces)
+        modelFile: system.modelFile,
+        appearance: {
+            ...system.appearance,
+            ...type
+        }
+    };
+};
+
+export const getDiceSoNicePresets = async (hopeFaces, fearFaces, advantageFaces = 'd6', disadvantageFaces = 'd6') => {
+    const { diceSoNice } = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+
+    return {
+        hope: await getDiceSoNicePreset(diceSoNice.hope, hopeFaces),
+        fear: await getDiceSoNicePreset(diceSoNice.fear, fearFaces),
+        advantage: await getDiceSoNicePreset(diceSoNice.advantage, advantageFaces),
+        disadvantage: await getDiceSoNicePreset(diceSoNice.disadvantage, disadvantageFaces)
     };
 };
 
 export const refreshTypes = {
+    scene: {
+        id: 'session',
+        label: 'DAGGERHEART.GENERAL.RefreshType.scene'
+    },
     session: {
         id: 'session',
         label: 'DAGGERHEART.GENERAL.RefreshType.session'

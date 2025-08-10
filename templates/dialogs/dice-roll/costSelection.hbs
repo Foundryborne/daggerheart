@@ -5,25 +5,29 @@
             <li class="scalable-input">
                 <div class="form-group span-2">
                     <div class="form-fields nest-inputs">
-                        <input name="uses.enabled" type="checkbox"{{#if uses.enabled}} checked{{/if}}>
-                        <label for="uses.enabled">Uses{{#if uses.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}{{/if}}</span></label>
+                        <input id="action-uses" name="uses.enabled" type="checkbox"{{#if uses.enabled}} checked{{/if}}>
+                        <label for="action-uses">Uses{{#if uses.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}{{/if}}</span></label>
                     </div>
                 </div>
-                <label class="modifier-label">1/{{uses.remaining}}</label>
+                <label class="modifier-label" for="action-uses">1/{{uses.remaining}}</label>
             </li>
         {{/if}}
         {{#each costs as | cost index |}}
         <li class="scalable-input">
             <div class="form-group{{#unless (and scalable maxStep)}} span-2{{/unless}}">
                 <div class="form-fields nest-inputs">
-                    <input name="costs.{{index}}.enabled" type="checkbox"{{#if enabled}} checked{{/if}}>
-                    <label>{{label}}{{#if cost.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}</span>{{/if}}</label>
+                    <input id="action-costs-{{index}}" name="costs.{{index}}.enabled" type="checkbox"{{#if enabled}} checked{{/if}}>
+                    <label for="action-costs-{{index}}">
+                        {{label}}
+                        {{#if cost.consumeOnSuccess}}<span class="hint">{{localize "DAGGERHEART.ACTIONS.Settings.consumeOnSuccess.short"}}</span>{{/if}}
+                        {{#if cost.extKey}}<span class="hint">{{name}}</span>{{/if}}
+                    </label>
                 </div>
             </div>
             {{#if (and scalable maxStep)}}
                 <input type="range" value="{{scale}}" min="0" max="{{maxStep}}" step="1" name="costs.{{index}}.scale" data-tooltip="{{localize "DAGGERHEART.ACTIONS.Settings.cost.stepTooltip" step=step}}" data-tooltip-direction="UP">
             {{/if}}
-            <label class="modifier-label">{{total}}/{{max}}</label>
+            <label class="modifier-label" for="action-costs-{{index}}">{{total}}/{{max}}</label>
         </li>
         {{/each}}
     </ul>

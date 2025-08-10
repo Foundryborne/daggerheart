@@ -359,6 +359,11 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 context.community = { ...this.setup.community, compendium: 'communities' };
                 context.class = { ...this.setup.class, compendium: 'classes' };
                 context.subclass = { ...this.setup.subclass, compendium: 'subclasses' };
+
+                const allDomainData = CONFIG.DH.DOMAIN.allDomains();
+                context.classDomains = context.class.uuid
+                    ? context.class.system.domains.map(key => game.i18n.localize(allDomainData[key].label))
+                    : [];
                 context.domainCards = Object.keys(this.setup.domainCards).reduce((acc, x) => {
                     acc[x] = { ...this.setup.domainCards[x], compendium: 'domains' };
                     return acc;

@@ -6,11 +6,11 @@
     <fieldset class="one-column">
         <legend>{{localize 'DAGGERHEART.GENERAL.basics'}}</legend>
         <div class="nest-inputs">
-            {{formGroup systemFields.tier value=document.system.tier localize=true}}
-            {{formGroup systemFields.type value=document.system.type localize=true}}
-            {{formGroup systemFields.difficulty value=document.system.difficulty localize=true}}
+            {{formGroup systemFields.tier value=document._source.system.tier localize=true}}
+            {{formGroup systemFields.type value=document._source.system.type localize=true}}
+            {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
         </div>
-        {{formField systemFields.description value=document.system.description label=(localize "DAGGERHEART.ACTORS.Environment.FIELDS.description.label")}}
-        {{formField systemFields.impulses value=document.system.impulses label=(localize "DAGGERHEART.ACTORS.Environment.FIELDS.impulses.label")}}
+        {{formField systemFields.description value=document._source.system.description label=(localize "DAGGERHEART.ACTORS.Environment.FIELDS.description.label")}}
+        {{formField systemFields.impulses value=document._source.system.impulses label=(localize "DAGGERHEART.ACTORS.Environment.FIELDS.impulses.label")}}
     </fieldset>
 </section>

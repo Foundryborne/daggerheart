@@ -32,6 +32,7 @@
                 .message-header-metadata {
                     flex: none;
                     display: flex;
+                    flex-direction: column;
 
                     .message-metadata {
                         font-family: @font-body;
@@ -73,6 +74,13 @@
 
             .message-content {
                 padding-bottom: 8px;
+                .flavor-text {
+                    font-size: var(--font-size-12);
+                    line-height: 20px;
+                    color: var(--color-dark-4);
+                    text-align: center;
+                    display: block;
+                }
             }
         }
     }

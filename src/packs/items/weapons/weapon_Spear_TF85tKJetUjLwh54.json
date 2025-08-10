@@ -12,15 +12,7 @@
     "equipped": false,
     "secondary": false,
     "burden": "twoHanded",
-    "weaponFeatures": [
-      {
-        "value": "cumbersome",
-        "effectIds": [
-          "Z5MnVI8EOOgzRdXC"
-        ],
-        "actionIds": []
-      }
-    ],
+    "weaponFeatures": [],
     "attack": {
       "name": "Attack",
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
@@ -51,8 +43,8 @@
         "parts": [
           {
             "value": {
-              "dice": "d10",
-              "bonus": 2,
+              "dice": "d8",
+              "bonus": 3,
               "multiplier": "prof",
               "flatMultiplier": 1,
               "custom": {

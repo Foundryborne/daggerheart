@@ -20,6 +20,40 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         classes: ['daggerheart']
     };
 
+    _getEntryContextOptions() {
+        return [
+            ...super._getEntryContextOptions(),
+            // {
+            //     name: 'Reroll',
+            //     icon: '<i class="fa-solid fa-dice"></i>',
+            //     condition: li => {
+            //         const message = game.messages.get(li.dataset.messageId);
+
+            //         return (game.user.isGM || message.isAuthor) && message.rolls.length > 0;
+            //     },
+            //     callback: li => {
+            //         const message = game.messages.get(li.dataset.messageId);
+            //         new game.system.api.applications.dialogs.RerollDialog(message).render({ force: true });
+            //     }
+            // },
+            {
+                name: 'Reroll Damage',
+                icon: '<i class="fa-solid fa-dice"></i>',
+                condition: li => {
+                    const message = game.messages.get(li.dataset.messageId);
+                    const hasRolledDamage = message.system.hasDamage
+                        ? Object.keys(message.system.damage).length > 0
+                        : false;
+                    return (game.user.isGM || message.isAuthor) && hasRolledDamage;
+                },
+                callback: li => {
+                    const message = game.messages.get(li.dataset.messageId);
+                    new game.system.api.applications.dialogs.RerollDamageDialog(message).render({ force: true });
+                }
+            }
+        ];
+    }
+
     addChatListeners = async (app, html, data) => {
         html.querySelectorAll('.duality-action-damage').forEach(element =>
             element.addEventListener('click', event => this.onRollDamage(event, data.message))
@@ -33,14 +67,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         html.querySelectorAll('.simple-roll-button').forEach(element =>
             element.addEventListener('click', event => this.onRollSimple(event, data.message))
         );
-        html.querySelectorAll('.target-container').forEach(element => {
-            element.addEventListener('mouseenter', this.hoverTarget);
-            element.addEventListener('mouseleave', this.unhoverTarget);
-            element.addEventListener('click', this.clickTarget);
-        });
-        html.querySelectorAll('.button-target-selection').forEach(element => {
-            element.addEventListener('click', event => this.onTargetSelection(event, data.message));
-        });
         html.querySelectorAll('.healing-button').forEach(element =>
             element.addEventListener('click', event => this.onHealing(event, data.message))
         );
@@ -138,33 +164,6 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         });
     }
 
-    onTargetSelection(event, message) {
-        event.stopPropagation();
-        const msg = ui.chat.collection.get(message._id);
-        msg.system.targetMode = Boolean(event.target.dataset.targetHit);
-    }
-
-    hoverTarget(event) {
-        event.stopPropagation();
-        const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (!token?.controlled) token._onHoverIn(event, { hoverOutOthers: true });
-    }
-
-    unhoverTarget(event) {
-        const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (!token?.controlled) token._onHoverOut(event);
-    }
-
-    clickTarget(event) {
-        event.stopPropagation();
-        const token = canvas.tokens.get(event.currentTarget.dataset.token);
-        if (!token) {
-            ui.notifications.info(game.i18n.localize('DAGGERHEART.UI.Notifications.attackTargetDoesNotExist'));
-            return;
-        }
-        game.canvas.pan(token);
-    }
-
     async onRollSimple(event, message) {
         const buttonType = event.target.dataset.type ?? 'damage',
             total = message.rolls.reduce((a, c) => a + Roll.fromJSON(c).total, 0),
@@ -228,19 +227,28 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         }
 
         const target = event.target.closest('[data-die-index]');
-        let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
-        const rollClass =
-            game.system.api.dice[
-                message.type === 'dualityRoll' ? 'DualityRoll' : target.dataset.type === 'damage' ? 'DHRoll' : 'D20Roll'
-            ];
 
-        if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
+        if (target.dataset.type === 'damage') {
+            game.system.api.dice.DamageRoll.reroll(target, message);
+        } else {
+            let originalRoll_parsed = message.rolls.map(roll => JSON.parse(roll))[0];
+            const rollClass =
+                game.system.api.dice[
+                    message.type === 'dualityRoll'
+                        ? 'DualityRoll'
+                        : target.dataset.type === 'damage'
+                          ? 'DHRoll'
+                          : 'D20Roll'
+                ];
 
-        const { newRoll, parsedRoll } = await rollClass.reroll(originalRoll_parsed, target, message);
+            if (!game.modules.get('dice-so-nice')?.active) foundry.audio.AudioHelper.play({ src: CONFIG.sounds.dice });
 
-        await game.messages.get(message._id).update({
-            'system.roll': newRoll,
-            'rolls': [parsedRoll]
-        });
+            const { newRoll, parsedRoll } = await rollClass.reroll(originalRoll_parsed, target, message);
+
+            await game.messages.get(message._id).update({
+                'system.roll': newRoll,
+                'rolls': [parsedRoll]
+            });
+        }
     }
 }

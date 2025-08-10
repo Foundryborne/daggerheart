@@ -60,7 +60,7 @@ export default class DHArmor extends AttachableItem {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
-        if (changes.system.armorFeatures) {
+        if (changes.system?.armorFeatures) {
             const removed = this.armorFeatures.filter(x => !changes.system.armorFeatures.includes(x));
             const added = changes.system.armorFeatures.filter(x => !this.armorFeatures.includes(x));
 

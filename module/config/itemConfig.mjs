@@ -780,7 +780,15 @@ export const weaponFeatures = {
                         mode: 2,
                         value: '1'
                     }
-                ]
+                ],
+                system: {
+                    rangeDependence: {
+                        enabled: true,
+                        range: 'melee',
+                        target: 'hostile',
+                        type: 'withinRange'
+                    }
+                }
             }
         ]
     },
@@ -1040,16 +1048,6 @@ export const weaponFeatures = {
                         key: 'system.evasion',
                         mode: 2,
                         value: '-1'
-                    },
-                    {
-                        key: 'system.bonuses.damage.primaryWeapon.extraDice',
-                        mode: 2,
-                        value: '1'
-                    },
-                    {
-                        key: 'system.rules.weapon.dropLowestDamageDice',
-                        mode: 5,
-                        value: '1'
                     }
                 ]
             }
@@ -1089,7 +1087,15 @@ export const weaponFeatures = {
                         mode: 2,
                         value: 'ITEM.@system.tier + 1'
                     }
-                ]
+                ],
+                system: {
+                    rangeDependence: {
+                        enabled: true,
+                        range: 'melee',
+                        target: 'hostile',
+                        type: 'withinRange'
+                    }
+                }
             }
         ]
     },
@@ -1166,18 +1172,7 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.effects.powerful.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.powerful.effects.powerful.description',
                 img: 'icons/magic/control/buff-flight-wings-runes-red-yellow.webp',
-                changes: [
-                    {
-                        key: 'system.bonuses.damage.primaryWeapon.extraDice',
-                        mode: 2,
-                        value: '1'
-                    },
-                    {
-                        key: 'system.rules.weapon.dropLowestDamageDice',
-                        mode: 5,
-                        value: '1'
-                    }
-                ]
+                changes: []
             }
         ]
     },
@@ -1229,7 +1224,7 @@ export const weaponFeatures = {
                 img: 'icons/skills/melee/strike-sword-slashing-red.webp',
                 changes: [
                     {
-                        key: 'system.bonuses.roll.primaryWeapon.attack',
+                        key: 'system.bonuses.roll.primaryWeapon.bonus',
                         mode: 2,
                         value: 1
                     }
@@ -1301,13 +1296,7 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.effects.selfCorrecting.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.selfCorrecting.effects.selfCorrecting.description',
                 img: 'icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp',
-                changes: [
-                    {
-                        key: 'system.rules.damage.flipMinDiceValue',
-                        mode: 5,
-                        value: 1
-                    }
-                ]
+                changes: []
             }
         ]
     },
@@ -1319,13 +1308,7 @@ export const weaponFeatures = {
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.effects.serrated.name',
                 description: 'DAGGERHEART.CONFIG.WeaponFeature.serrated.effects.serrated.description',
                 img: 'icons/weapons/ammunition/arrow-broadhead-glowing-orange.webp',
-                changes: [
-                    {
-                        key: 'system.rules.damage.flipMinDiceValue',
-                        mode: 5,
-                        value: 1
-                    }
-                ]
+                changes: []
             }
         ]
     },

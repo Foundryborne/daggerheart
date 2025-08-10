@@ -6,18 +6,18 @@
     <fieldset class="one-column">
         <legend>{{localize 'DAGGERHEART.GENERAL.basics'}}</legend>
         <div class="nest-inputs">
-            {{formGroup systemFields.evasion value=document.system.evasion localize=true}}
-            {{formGroup systemFields.resources.fields.stress.fields.value value=document.system.resources.stress.value label='DAGGERHEART.ACTORS.Companion.FIELDS.resources.stress.currentStress.label' localize=true}}
-            {{formGroup systemFields.resources.fields.stress.fields.max value=document.system.resources.stress.max label='DAGGERHEART.ACTORS.Companion.FIELDS.resources.stress.maxStress.label' localize=true}}
+            {{formGroup systemFields.evasion value=document._source.system.evasion localize=true}}
+            {{formGroup systemFields.resources.fields.stress.fields.value value=document._source.system.resources.stress.value label='DAGGERHEART.ACTORS.Companion.FIELDS.resources.stress.currentStress.label' localize=true}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=document._source.system.resources.stress.max label='DAGGERHEART.ACTORS.Companion.FIELDS.resources.stress.maxStress.label' localize=true}}
         </div>
         <div class="form-group">
             <div class="form-fields">
                 <label>{{localize "DAGGERHEART.ACTORS.Companion.FIELDS.partner.label"}}</label>
                 <select class="partner-value" name="system.partner">
-                    {{selectOptions playerCharacters selected=document.system.partner.uuid labelAttr="name" valueAttr="key" blank=""}}
+                    {{selectOptions playerCharacters selected=document._source.system.partner.uuid labelAttr="name" valueAttr="key" blank=""}}
                 </select>
             </div>
         </div>
     </fieldset>
-    <button type="button" data-action="levelUp" {{#if (not document.system.levelData.canLevelUp)}}disabled{{/if}}>{{localize "DAGGERHEART.GENERAL.levelUp"}}</button>
+    <button type="button" data-action="levelUp" {{#if (not document._source.system.levelData.canLevelUp)}}disabled{{/if}}>{{localize "DAGGERHEART.GENERAL.levelUp"}}</button>
 </section>

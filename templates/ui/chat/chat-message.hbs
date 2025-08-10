@@ -3,17 +3,19 @@
     <header class="message-header flexrow">
         <div class="message-header-main">
             <img class="actor-img" src="{{actor.img}}" />
-            {{#if (eq message.type 'base')}}
-                <div class="message-sub-header-container">
-                    <h4>{{actor.name}}</h4>
-                    <div>{{author.name}}</div>
-                </div>
-            {{else}}
-                <div class="message-sub-header-container">
-                    <h4>{{ifThen message.title message.title alias}}</h4>
-                    <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
-                </div>
-            {{/if}}
+            <div class="message-sub-header-container">
+                {{#unless actor.name}}
+                    <h4>{{author.name}}</h4>
+                {{else}}
+                    {{#if (eq message.type 'base')}}
+                        <h4>{{actor.name}}</h4>
+                        <div>{{author.name}}</div>
+                    {{else}}
+                        <h4>{{ifThen message.title message.title alias}}</h4>
+                        <div>{{actor.name}} {{#if author.isGM}}(GM){{/if}}</div>
+                    {{/if}}
+                {{/unless}}
+            </div>
         </div>
         <div class="message-header-metadata">
             <span class="message-metadata">
@@ -33,13 +35,12 @@
             {{#if isWhisper}}
             <span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
             {{/if}}
-
-            {{#if message.flavor}}
-            <span class="flavor-text">{{{message.flavor}}}</span>
-            {{/if}}
         </div>
     </header>
     <div class="message-content">
         {{{message.content}}}
+        {{#if message.flavor}}
+            <span class="flavor-text">{{{message.flavor}}}</span>
+        {{/if}}
     </div>
 </li>
