@@ -2368,7 +2368,8 @@
                 "compendiumBrowser": "Compendium Browser",
                 "rulesOn": "Rules On",
                 "rulesOff": "Rules Off",
-                "remainingUses": "Uses refresh on {type}"
+                "remainingUses": "Uses refresh on {type}",
+                "rightClickExtand": "Right-Click to extand"
             }
         }
     }
