@@ -6,33 +6,33 @@
     <fieldset class="one-column">
         <legend>{{localize 'DAGGERHEART.GENERAL.basics'}}</legend>
         <div class="nest-inputs">
-            {{formGroup systemFields.tier value=document.system.tier localize=true}}
-            {{formGroup systemFields.type value=document.system.type localize=true}}
-            {{#if (eq document.system.type 'horde')}}
-                {{formGroup systemFields.hordeHp value=document.system.hordeHp label=(localize "DAGGERHEART.ACTORS.Adversary.horderHp")}}
+            {{formGroup systemFields.tier value=document._source.system.tier localize=true}}
+            {{formGroup systemFields.type value=document._source.system.type localize=true}}
+            {{#if (eq document._source.system.type 'horde')}}
+                {{formGroup systemFields.hordeHp value=document._source.system.hordeHp label=(localize "DAGGERHEART.ACTORS.Adversary.horderHp")}}
             {{/if}}
-            {{formGroup systemFields.difficulty value=document.system.difficulty localize=true}}
+            {{formGroup systemFields.difficulty value=document._source.system.difficulty localize=true}}
         </div>
-        {{formField systemFields.description value=document.system.description label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.description.label")}}
-        {{formField systemFields.motivesAndTactics value=document.system.motivesAndTactics label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label")}}
+        {{formField systemFields.description value=document._source.system.description label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.description.label")}}
+        {{formField systemFields.motivesAndTactics value=document._source.system.motivesAndTactics label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.motivesAndTactics.label")}}
     </fieldset>
 
     <div class="fieldsets-section">
         <fieldset class="flex">
             <legend>{{localize "DAGGERHEART.GENERAL.HitPoints.plural"}}</legend>
-            {{formGroup systemFields.resources.fields.hitPoints.fields.value value=document.system.resources.hitPoints.value label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.hitPoints.value.label")}}
-            {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document.system.resources.hitPoints.max}}
+            {{formGroup systemFields.resources.fields.hitPoints.fields.value value=document._source.system.resources.hitPoints.value label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.hitPoints.value.label")}}
+            {{formGroup systemFields.resources.fields.hitPoints.fields.max value=document._source.system.resources.hitPoints.max}}
         </fieldset>
         <fieldset class="flex">
             <legend>{{localize "DAGGERHEART.GENERAL.stress"}}</legend>
-            {{formGroup systemFields.resources.fields.stress.fields.value value=document.system.resources.stress.value label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.stress.value.label")}}
-            {{formGroup systemFields.resources.fields.stress.fields.max value=document.system.resources.stress.max}}
+            {{formGroup systemFields.resources.fields.stress.fields.value value=document._source.system.resources.stress.value label=(localize "DAGGERHEART.ACTORS.Adversary.FIELDS.resources.stress.value.label")}}
+            {{formGroup systemFields.resources.fields.stress.fields.max value=document._source.system.resources.stress.max}}
         </fieldset>
     </div>
 
     <fieldset class="flex">
         <legend>{{localize "DAGGERHEART.GENERAL.DamageThresholds.title"}}</legend>
-        {{formGroup systemFields.damageThresholds.fields.major value=document.system.damageThresholds.major label=(localize "DAGGERHEART.GENERAL.DamageThresholds.majorThreshold")}}
-        {{formGroup systemFields.damageThresholds.fields.severe value=document.system.damageThresholds.severe label=(localize "DAGGERHEART.GENERAL.DamageThresholds.severeThreshold")}}
+        {{formGroup systemFields.damageThresholds.fields.major value=document._source.system.damageThresholds.major label=(localize "DAGGERHEART.GENERAL.DamageThresholds.majorThreshold")}}
+        {{formGroup systemFields.damageThresholds.fields.severe value=document._source.system.damageThresholds.severe label=(localize "DAGGERHEART.GENERAL.DamageThresholds.severeThreshold")}}
     </fieldset>
 </section>

@@ -3,7 +3,7 @@
   "name": "Heavy-Frame Wheelchair",
   "type": "weapon",
   "_id": "XjPQjhRCH08VUIbr",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/documents/items/HeavyWheelchair.webp",
   "system": {
     "description": "",
     "actions": {},
@@ -152,12 +152,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753836652314,
-    "modifiedTime": 1753836667128,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1754845988869,
+    "lastModifiedBy": "H02dtt2xvVJvYESk"
   },
   "_key": "!items!XjPQjhRCH08VUIbr"
 }

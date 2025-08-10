@@ -3,7 +3,7 @@
   "name": "Arcane-Frame Wheelchair",
   "type": "weapon",
   "_id": "XRChepscgr75Uug7",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/documents/items/ArcaneWheelchair.webp",
   "system": {
     "description": "",
     "actions": {},
@@ -163,8 +163,8 @@
     "systemId": "daggerheart",
     "systemVersion": "1.0.0",
     "createdTime": 1753836689082,
-    "modifiedTime": 1754815278220,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754845945327,
+    "lastModifiedBy": "H02dtt2xvVJvYESk"
   },
   "_key": "!items!XRChepscgr75Uug7"
 }

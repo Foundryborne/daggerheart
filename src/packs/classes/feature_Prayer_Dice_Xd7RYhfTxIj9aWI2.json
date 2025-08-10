@@ -9,7 +9,7 @@
     "resource": {
       "type": "diceValue",
       "value": 0,
-      "max": "2",
+      "max": "@system.traits.strength.value",
       "icon": "",
       "recovery": "session"
     },
@@ -28,12 +28,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.0",
     "createdTime": 1754352649696,
-    "modifiedTime": 1754352712334,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1754845640002,
+    "lastModifiedBy": "H02dtt2xvVJvYESk"
   },
   "_key": "!items!Xd7RYhfTxIj9aWI2"
 }

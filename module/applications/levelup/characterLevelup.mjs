@@ -51,7 +51,7 @@ export default class DhCharacterLevelUp extends LevelUpBase {
                     .filter(exp => exp.data.length > 0)
                     .flatMap(exp =>
                         exp.data.map(data => {
-                            const experience = Object.keys(this.actor.system.experiences).find(x => x === data);
+                            const experience = Object.keys(this.actor.system.experiences)[data];
                             return this.actor.system.experiences[experience].name;
                         })
                     );

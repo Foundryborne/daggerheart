@@ -84,6 +84,8 @@ export default class DhpActor extends Actor {
 
             await this.update({ 'system.levelData.level.changed': Math.min(newLevel, maxLevel) });
         } else {
+            const levelupAuto = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).levelupAuto;
+
             const usedLevel = Math.max(newLevel, 1);
             if (newLevel < 1) {
                 ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.tooLowLevel'));
@@ -95,79 +97,90 @@ export default class DhpActor extends Actor {
                 return acc;
             }, {});
 
-            const features = [];
-            const domainCards = [];
-            const experiences = [];
-            const subclassFeatureState = { class: null, multiclass: null };
-            let multiclass = null;
-            Object.keys(this.system.levelData.levelups)
-                .filter(x => x > usedLevel)
-                .forEach(levelKey => {
-                    const level = this.system.levelData.levelups[levelKey];
-                    const achievementCards = level.achievements.domainCards.map(x => x.itemUuid);
-                    const advancementCards = level.selections.filter(x => x.type === 'domainCard').map(x => x.itemUuid);
-                    domainCards.push(...achievementCards, ...advancementCards);
-                    experiences.push(...Object.keys(level.achievements.experiences));
-                    features.push(...level.selections.flatMap(x => x.features));
+            if (levelupAuto) {
+                const features = [];
+                const domainCards = [];
+                const experiences = [];
+                const subclassFeatureState = { class: null, multiclass: null };
+                let multiclass = null;
+                Object.keys(this.system.levelData.levelups)
+                    .filter(x => x > usedLevel)
+                    .forEach(levelKey => {
+                        const level = this.system.levelData.levelups[levelKey];
+                        const achievementCards = level.achievements.domainCards.map(x => x.itemUuid);
+                        const advancementCards = level.selections
+                            .filter(x => x.type === 'domainCard')
+                            .map(x => x.itemUuid);
+                        domainCards.push(...achievementCards, ...advancementCards);
+                        experiences.push(...Object.keys(level.achievements.experiences));
+                        features.push(...level.selections.flatMap(x => x.features));
 
-                    const subclass = level.selections.find(x => x.type === 'subclass');
-                    if (subclass) {
-                        const path = subclass.secondaryData.isMulticlass === 'true' ? 'multiclass' : 'class';
-                        const subclassState = Number(subclass.secondaryData.featureState) - 1;
-                        subclassFeatureState[path] = subclassFeatureState[path]
-                            ? Math.min(subclassState, subclassFeatureState[path])
-                            : subclassState;
-                    }
+                        const subclass = level.selections.find(x => x.type === 'subclass');
+                        if (subclass) {
+                            const path = subclass.secondaryData.isMulticlass === 'true' ? 'multiclass' : 'class';
+                            const subclassState = Number(subclass.secondaryData.featureState) - 1;
+                            subclassFeatureState[path] = subclassFeatureState[path]
+                                ? Math.min(subclassState, subclassFeatureState[path])
+                                : subclassState;
+                        }
 
-                    multiclass = level.selections.find(x => x.type === 'multiclass');
-                });
+                        multiclass = level.selections.find(x => x.type === 'multiclass');
+                    });
 
-            for (let feature of features) {
-                if (feature.onPartner && !this.system.partner) continue;
+                for (let feature of features) {
+                    if (feature.onPartner && !this.system.partner) continue;
 
-                const document = feature.onPartner ? this.system.partner : this;
-                document.items.get(feature.id)?.delete();
-            }
-
-            if (experiences.length > 0) {
-                const getUpdate = () => ({
-                    'system.experiences': experiences.reduce((acc, key) => {
-                        acc[`-=${key}`] = null;
-                        return acc;
-                    }, {})
-                });
-                this.update(getUpdate());
-                if (this.system.companion) {
-                    this.system.companion.update(getUpdate());
+                    const document = feature.onPartner ? this.system.partner : this;
+                    document.items.get(feature.id)?.delete();
                 }
-            }
 
-            if (subclassFeatureState.class) {
-                this.system.class.subclass.update({ 'system.featureState': subclassFeatureState.class });
-            }
-
-            if (subclassFeatureState.multiclass) {
-                this.system.multiclass.subclass.update({ 'system.featureState': subclassFeatureState.multiclass });
-            }
-
-            if (multiclass) {
-                const multiclassSubclass = this.items.find(x => x.type === 'subclass' && x.system.isMulticlass);
-                const multiclassItem = this.items.find(x => x.uuid === multiclass.itemUuid);
-
-                multiclassSubclass.delete();
-                multiclassItem.delete();
-
-                this.update({
-                    'system.multiclass': {
-                        value: null,
-                        subclass: null
+                if (experiences.length > 0) {
+                    const getUpdate = () => ({
+                        'system.experiences': experiences.reduce((acc, key) => {
+                            acc[`-=${key}`] = null;
+                            return acc;
+                        }, {})
+                    });
+                    this.update(getUpdate());
+                    if (this.system.companion) {
+                        this.system.companion.update(getUpdate());
                     }
-                });
-            }
+                }
 
-            for (let domainCard of domainCards) {
-                const itemCard = this.items.find(x => x.uuid === domainCard);
-                itemCard.delete();
+                if (subclassFeatureState.class) {
+                    this.system.class.subclass.update({ 'system.featureState': subclassFeatureState.class });
+                }
+
+                if (subclassFeatureState.multiclass) {
+                    this.system.multiclass.subclass.update({ 'system.featureState': subclassFeatureState.multiclass });
+                }
+
+                if (multiclass) {
+                    const multiclassItem = this.items.find(x => x.uuid === multiclass.itemUuid);
+                    const multiclassFeatures = this.items.filter(
+                        x => x.system.originItemType === 'class' && x.system.identifier === 'multiclass'
+                    );
+                    const subclassFeatures = this.items.filter(
+                        x => x.system.originItemType === 'subclass' && x.system.identifier === 'multiclass'
+                    );
+
+                    this.deleteEmbeddedDocuments(
+                        'Item',
+                        [multiclassItem, ...multiclassFeatures, ...subclassFeatures].map(x => x.id)
+                    );
+
+                    this.update({
+                        'system.multiclass': {
+                            value: null,
+                            subclass: null
+                        }
+                    });
+                }
+
+                for (let domainCard of domainCards) {
+                    const itemCard = this.items.find(x => x.uuid === domainCard);
+                    itemCard.delete();
+                }
             }
 
             await this.update({
@@ -315,6 +328,7 @@ export default class DhpActor extends Actor {
                             ...multiclassData,
                             system: {
                                 ...multiclassData.system,
+                                features: multiclassData.system.features.filter(x => x.type !== 'hope'),
                                 domains: [multiclass.secondaryData.domain],
                                 isMulticlass: true
                             }

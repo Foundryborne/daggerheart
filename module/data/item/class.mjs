@@ -60,17 +60,6 @@ export default class DHClass extends BaseDataItem {
 
     /* -------------------------------------------- */
 
-    get domainData() {
-        const allDomainData = CONFIG.DH.DOMAIN.allDomains();
-        return this.domains.map(key => {
-            const domain = allDomainData[key];
-            return {
-                ...domain,
-                label: game.i18n.localize(domain.label)
-            };
-        });
-    }
-
     get hopeFeatures() {
         return this.features.filter(x => x.type === CONFIG.DH.ITEM.featureSubTypes.hope).map(x => x.item);
     }

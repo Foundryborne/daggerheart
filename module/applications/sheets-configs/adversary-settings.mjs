@@ -98,11 +98,17 @@ export default class DHAdversarySettings extends DHBaseActorSettings {
 
     async _onDrop(event) {
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-        if (data.fromInternal) return;
-
+        
         const item = await fromUuid(data.uuid);
-        if (item.type === 'feature') {
-            await this.actor.createEmbeddedDocuments('Item', [item]);
+        if (item?.type === 'feature') {
+            if (data.fromInternal && item.parent?.uuid === this.actor.uuid) {
+                return;
+            }
+            
+            const itemData = item.toObject();
+            delete itemData._id;
+            
+            await this.actor.createEmbeddedDocuments('Item', [itemData]);
         }
     }
 }

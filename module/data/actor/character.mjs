@@ -351,6 +351,17 @@ export default class DhCharacter extends BaseDataActor {
         return [...classDomains, ...multiclassDomains];
     }
 
+    get domainData() {
+        const allDomainData = CONFIG.DH.DOMAIN.allDomains();
+        return this.domains.map(key => {
+            const domain = allDomainData[key];
+            return {
+                ...domain,
+                label: game.i18n.localize(domain.label)
+            };
+        });
+    }
+
     get domainCards() {
         const domainCards = this.parent.items.filter(x => x.type === 'domainCard');
         const loadout = domainCards.filter(x => !x.system.inVault);
