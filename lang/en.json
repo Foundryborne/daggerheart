@@ -823,8 +823,8 @@
                     "name": "Restrained",
                     "description": "When an effect makes a creature Restrained, it means they cannot move until this condition is cleared.\nThey can still take actions from their current position."
                 },
-                "unconcious": {
-                    "name": "Unconcious",
+                "unconscious": {
+                    "name": "Unconscious",
                     "description": "Your character can’t move or act while unconscious, they can’t be targeted by an attack."
                 },
                 "vulnerable": {

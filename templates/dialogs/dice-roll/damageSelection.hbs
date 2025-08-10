@@ -24,7 +24,7 @@
             <input type="text" value="{{extraFormula}}" name="roll.{{ @index }}.extraFormula" placeholder="Situational Bonus">
         </div>
     {{/each}}
-    {{#if @root.modifiers}}
+    {{#unless (empty @root.modifiers)}}
         <fieldset class="modifier-container two-columns">
             <legend>{{localize "DAGGERHEART.GENERAL.Modifier.plural"}}</legend>
             {{#each @root.modifiers}}
@@ -39,7 +39,7 @@
                 {{/if}}
             {{/each}}
         </fieldset>
-    {{/if}}
+    {{/unless}}
     <div class="damage-section-controls">
         {{#if directDamage}}
             <select class="roll-mode-select" name="selectedRollMode">
