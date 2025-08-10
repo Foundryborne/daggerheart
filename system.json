@@ -44,6 +44,10 @@
             "url": "https://github.com/joaquinpereyra98",
             "email": "joaquinpereyra98@gmail.com",
             "discord": "joaquinp98"
+        },
+        {
+            "name": "chrisryan10",
+            "discord": "lazjen"
         }
     ],
     "esmodules": ["build/daggerheart.js"],
