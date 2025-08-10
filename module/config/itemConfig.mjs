@@ -1373,7 +1373,7 @@ export const weaponFeatures = {
                 actionType: 'action',
                 chatDisplay: true,
                 name: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.actions.bendTime.name',
-                description: 'DAGGERHEART.CONFIG.WeaponFeature.actions.bendTime.description',
+                description: 'DAGGERHEART.CONFIG.WeaponFeature.timebending.actions.bendTime.description',
                 img: 'icons/magic/time/clock-spinning-gold-pink.webp'
             }
         ]

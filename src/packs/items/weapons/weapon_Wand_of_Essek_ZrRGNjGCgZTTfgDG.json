@@ -12,7 +12,7 @@
         "actionType": "action",
         "chatDisplay": true,
         "name": "Bend Time",
-        "description": "DAGGERHEART.CONFIG.WeaponFeature.actions.bendTime.description",
+        "description": "DAGGERHEART.CONFIG.WeaponFeature.timebending.actions.bendTime.description",
         "img": "icons/magic/time/clock-spinning-gold-pink.webp",
         "_id": "TzNsQcYm4OVNFQyD",
         "effects": [],
