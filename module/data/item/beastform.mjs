@@ -134,6 +134,7 @@ export default class DHBeastform extends BaseDataItem {
             this.parent.effects.filter(x => x.type !== 'beastform').map(x => x.toObject())
         );
 
+        const tokenImages = await this.parent.parent.getTokenImages();
         const beastformEffect = this.parent.effects.find(x => x.type === 'beastform');
         await beastformEffect.updateSource({
             changes: [
@@ -148,7 +149,7 @@ export default class DHBeastform extends BaseDataItem {
             ],
             system: {
                 characterTokenData: {
-                    tokenImg: this.parent.parent.prototypeToken.texture.src,
+                    tokenImg: tokenImages[0],
                     tokenRingImg: this.parent.parent.prototypeToken.ring.subject.texture,
                     tokenSize: {
                         height: this.parent.parent.prototypeToken.height,
