@@ -121,6 +121,16 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         }
     }
 
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement
+            .querySelectorAll('[data-action="selectFolder"]')
+            .forEach(element => element.addEventListener("contextmenu", (event) => {
+                event.target.classList.toggle('expanded');
+            }))
+    }
+
     /* -------------------------------------------- */
     /*  Rendering                                   */
     /* -------------------------------------------- */
@@ -179,7 +189,18 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         }
 
         this.items = ItemBrowser.sortBy(items, 'name');
+
+        if(target) {
+            target.closest('.compendium-sidebar').querySelectorAll('[data-action="selectFolder"]').forEach(element => element.classList.remove("is-selected"))
+            target.classList.add('is-selected');
+        }
+
         this.render({ force: true });
+    }
+
+    _replaceHTML(result, content, options) {
+        if(!options.isFirstRender) delete result.sidebar;
+        super._replaceHTML(result, content, options);
     }
 
     static expandContent(_, target) {

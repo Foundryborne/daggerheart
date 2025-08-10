@@ -7,19 +7,23 @@
             </summary>
             <div class="folder-list">
                 {{#each folders}}
-                    <div class="{{#if selected}} is-selected{{/if}}" data-action="selectFolder" data-folder-id="{{id}}">{{label}}</div>
+                    <div class="{{#if selected}} is-selected{{/if}}" data-action="selectFolder" data-folder-id="{{id}}" {{#if folders.length}}data-tooltip="DAGGERHEART.UI.Tooltip.rightClickExtand" data-tooltip-direction="RIGHT"{{/if}}>{{label}}</div>
                     {{!-- <div data-action="selectFolder" data-folder-id="{{id}}">{{label}}</div> --}}
-                    <div class="subfolder-list">
-                        {{#each folders}}
-                            <div
-                                class="subfolder-item {{#if selected}} is-selected{{/if}}"
-                                data-action="selectFolder"
-                                data-folder-id="{{../id}}.folders.{{id}}"
-                            >
-                                • {{label}}
+                    {{#if folders.length}}
+                        <div class="subfolder-list">
+                            <div class="wrapper">
+                                {{#each folders}}
+                                    <div
+                                        class="subfolder-item {{#if selected}} is-selected{{/if}}"
+                                        data-action="selectFolder"
+                                        data-folder-id="{{../id}}.folders.{{id}}"
+                                    >
+                                        • {{label}}
+                                    </div>
+                                {{/each}}
                             </div>
-                        {{/each}}
-                    </div>
+                        </div>
+                    {{/if}}
                 {{/each}}
             </div>
         <line-div></line-div>

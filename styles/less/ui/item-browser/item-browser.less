@@ -175,12 +175,23 @@
             display: flex;
             flex-direction: column;
             [data-folder-id] {
-                padding: 5px 10px;
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
                 border: 1px solid transparent;
                 font-family: @font-body;
                 transition: all 0.1s ease;
+
+                &.expanded + .subfolder-list {
+                    grid-template-rows: 1fr;
+                }
+
+                &:has(+ .subfolder-list):after {
+                    content: "+";
+                }
             }
 
+            [data-folder-id]:has(+ .subfolder-list .is-selected),
             .is-selected,
             [data-folder-id]:hover {
                 font-weight: bold;
@@ -190,8 +201,14 @@
             }
 
             .subfolder-list {
-                margin: 5px 0;
+                display: grid;
+                grid-template-rows: 0fr;
+                transition: grid-template-rows 0.3s ease-in-out;
                 gap: 0;
+
+                [data-folder-id] {
+                    padding: 5px 10px;
+                }
 
                 .is-selected,
                 [data-folder-id]:hover {
@@ -199,6 +216,10 @@
                     border-radius: 3px;
                     background-color: light-dark(@dark-blue-10, @golden-10);
                     color: light-dark(@dark-blue, @golden);
+                }
+
+                .wrapper {
+                    overflow: hidden;
                 }
             }
         }

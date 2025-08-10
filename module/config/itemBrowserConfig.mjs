@@ -325,7 +325,7 @@ export const compendiumConfig = {
             "equipments": {
                 id: "equipments",
                 keys: ["armors", "weapons", "consumables", "loot"],
-                label: "Equipments",
+                label: "Equipment",
                 type: ["armor", "weapon", "consumable", "loot"],
                 listType: "items"
             },
