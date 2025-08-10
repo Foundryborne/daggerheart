@@ -129,6 +129,7 @@ export default function DHApplicationMixin(Base) {
 
             const docs = [];
             for (const docData of this.relatedDocs) {
+                if (!docData) continue;
                 const doc = await foundry.utils.fromUuid(docData.uuid);
                 docs.push(doc);
             }

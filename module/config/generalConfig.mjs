@@ -533,6 +533,10 @@ export const getDiceSoNicePresets = async (hopeFaces, fearFaces, advantageFaces 
 };
 
 export const refreshTypes = {
+    scene: {
+        id: 'session',
+        label: 'DAGGERHEART.GENERAL.RefreshType.scene'
+    },
     session: {
         id: 'session',
         label: 'DAGGERHEART.GENERAL.RefreshType.session'

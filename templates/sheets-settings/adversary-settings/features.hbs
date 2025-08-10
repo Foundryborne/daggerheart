@@ -10,7 +10,7 @@
         <legend>{{localize tabs.features.label}}</legend>
         <ul class="feature-list">
             {{#each document.system.features as |feature|}}
-                <li class="feature-item" id="{{feature.id}}">
+                <li class="feature-item" id="{{feature.id}}" draggable="true">
                     <img src="{{feature.img}}" alt="">
                     <div class="label">
                         <span>{{feature.name}}</span>
@@ -22,5 +22,8 @@
                 </li>
             {{/each}}
         </ul>
+        <div class="features-dragger">
+            {{localize "DAGGERHEART.GENERAL.dropFeaturesHere"}}
+        </div>
     </fieldset>
 </section>

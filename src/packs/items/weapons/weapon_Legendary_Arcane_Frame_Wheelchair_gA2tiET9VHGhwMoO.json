@@ -2,7 +2,7 @@
   "folder": "beilKE5ZPAihKg3O",
   "name": "Legendary Arcane-Frame Wheelchair",
   "type": "weapon",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/daggerheart/assets/icons/documents/items/ArcaneWheelchair.webp",
   "system": {
     "description": "",
     "actions": {},
@@ -161,8 +161,8 @@
     "systemId": "daggerheart",
     "systemVersion": "1.0.0",
     "createdTime": 1753836717240,
-    "modifiedTime": 1754815308726,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1754845972571,
+    "lastModifiedBy": "H02dtt2xvVJvYESk"
   },
   "_id": "gA2tiET9VHGhwMoO",
   "sort": 0,

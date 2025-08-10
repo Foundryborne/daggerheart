@@ -181,12 +181,18 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static async #deleteFeature(_, element) {
         const target = element.closest('[data-item-uuid]');
         const feature = await getDocFromElement(target);
-        if (!feature) return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.featureIsMissing'));
-        await this.document.update({
-            'system.features': this.document.system.features
-                .filter(x => target.dataset.type !== x.type || x.item.uuid !== feature.uuid)
-                .map(x => ({ ...x, item: x.item.uuid }))
-        });
+        if (!feature) {
+            await this.document.update({
+                'system.features': this.document.system.features
+                    .filter(x => x.item)
+                    .map(x => ({ ...x, item: x.item.uuid }))
+            });
+        } else
+            await this.document.update({
+                'system.features': this.document.system.features
+                    .filter(x => target.dataset.type !== x.type || x.item.uuid !== feature.uuid)
+                    .map(x => ({ ...x, item: x.item.uuid }))
+            });
     }
 
     /**
@@ -259,21 +265,45 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         if (data.fromInternal) return;
 
         const target = event.target.closest('fieldset.drop-section');
-        const item = await fromUuid(data.uuid);
+        let item = await fromUuid(data.uuid);
         if (item?.type === 'feature') {
+            const cls = foundry.documents.Item.implementation;
+
+            if (this.document.parent?.type === 'character') {
+                const itemData = item.toObject();
+                item = await cls.create(
+                    {
+                        ...itemData,
+                        system: {
+                            ...itemData.system,
+                            originItemType: this.document.type,
+                            originId: this.document.id,
+                            identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                        }
+                    },
+                    { parent: this.document.parent }
+                );
+            }
+
             if (target.dataset.type) {
-                await this.document.update({
-                    'system.features': [...this.document.system.features, { type: target.dataset.type, item }].map(
-                        x => ({
-                            ...x,
-                            item: x.item?.uuid
-                        })
-                    )
-                });
+                await this.document.update(
+                    {
+                        'system.features': [...this.document.system.features, { type: target.dataset.type, item }].map(
+                            x => ({
+                                ...x,
+                                item: x.item?.uuid
+                            })
+                        )
+                    },
+                    { parent: this.document.parent?.type === 'character' ? this.document.parent : undefined }
+                );
             } else {
-                await this.document.update({
-                    'system.features': [...this.document.system.features, item].map(x => x.uuid)
-                });
+                await this.document.update(
+                    {
+                        'system.features': [...this.document.system.features, item].map(x => x.uuid)
+                    },
+                    { parent: this.document.parent?.type === 'character' ? this.document.parent : undefined }
+                );
             }
         }
     }
