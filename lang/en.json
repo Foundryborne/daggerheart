@@ -1362,17 +1362,17 @@
                 },
                 "paired": {
                     "name": "Paired",
-                    "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range",
+                    "description": "+2 to primary weapon damage to targets within Melee range",
                     "actions": {
                         "paired": {
                             "name": "Paired",
-                            "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range"
+                            "description": "+2 to primary weapon damage to targets within Melee range"
                         }
                     },
                     "effects": {
                         "paired": {
                             "name": "Paired",
-                            "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range"
+                            "description": "+2 to primary weapon damage to targets within Melee range"
                         }
                     }
                 },

@@ -1077,7 +1077,7 @@ export const weaponFeatures = {
                     {
                         key: 'system.bonuses.damage.primaryWeapon.bonus',
                         mode: 2,
-                        value: 'ITEM.@system.tier + 1'
+                        value: '2'
                     }
                 ]
             }
