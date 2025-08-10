@@ -87,7 +87,7 @@
         </div>
         {{#if document.system.class.value}}
             <div class="domains-section">
-                {{#each document.system.class.value.system.domainData as |data|}}
+                {{#each document.system.domainData as |data|}}
                     <div class="domain">
                         <img src="{{data.src}}" alt="" data-tooltip="{{data.label}}" />
                     </div>
