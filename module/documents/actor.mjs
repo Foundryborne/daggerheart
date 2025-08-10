@@ -151,11 +151,18 @@ export default class DhpActor extends Actor {
             }
 
             if (multiclass) {
-                const multiclassSubclass = this.items.find(x => x.type === 'subclass' && x.system.isMulticlass);
                 const multiclassItem = this.items.find(x => x.uuid === multiclass.itemUuid);
+                const multiclassFeatures = this.items.filter(
+                    x => x.system.originItemType === 'class' && x.system.identifier === 'multiclass'
+                );
+                const subclassFeatures = this.items.filter(
+                    x => x.system.originItemType === 'subclass' && x.system.identifier === 'multiclass'
+                );
 
-                multiclassSubclass.delete();
-                multiclassItem.delete();
+                this.deleteEmbeddedDocuments(
+                    'Item',
+                    [multiclassItem, ...multiclassFeatures, ...subclassFeatures].map(x => x.id)
+                );
 
                 this.update({
                     'system.multiclass': {
