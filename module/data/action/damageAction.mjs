@@ -6,7 +6,8 @@ export default class DHDamageAction extends DHBaseAction {
 
     getFormulaValue(part, data) {
         let formulaValue = part.value;
-        if (data.hasRoll && part.resultBased && data.system.roll.result.duality === -1) return part.valueAlt;
+        
+        if (data.hasRoll && part.resultBased && data.roll.result.duality === -1) return part.valueAlt;
 
         const isAdversary = this.actor.type === 'adversary';
         if (isAdversary && this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
@@ -35,7 +36,7 @@ export default class DHDamageAction extends DHBaseAction {
         const systemData = data.system ?? data;
 
         let formulas = this.damage.parts.map(p => ({
-            formula: this.getFormulaValue(p, data).getFormula(this.actor),
+            formula: this.getFormulaValue(p, systemData).getFormula(this.actor),
             damageTypes: p.applyTo === 'hitPoints' && !p.type.size ? new Set(['physical']) : p.type,
             applyTo: p.applyTo
         }));
