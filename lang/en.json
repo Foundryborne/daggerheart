@@ -1362,17 +1362,17 @@
                 },
                 "paired": {
                     "name": "Paired",
-                    "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range",
+                    "description": "Add this Secondary Weapon's tier + 1 to your primary weapon damage against targets within Melee range",
                     "actions": {
                         "paired": {
                             "name": "Paired",
-                            "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range"
+                            "description": "Add this Secondary Weapon's tier + 1 to your primary weapon against targets within Melee range"
                         }
                     },
                     "effects": {
                         "paired": {
                             "name": "Paired",
-                            "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range"
+                            "description": "Add this Secondary Weapon's tier + 1 to your primary weapon against targets within Melee range"
                         }
                     }
                 },
@@ -1899,7 +1899,7 @@
             "difficulty": "Difficulty",
             "downtime": "Downtime",
             "dropActorsHere": "Drop Actors here",
-        "dropFeaturesHere": "Drop Features here",
+            "dropFeaturesHere": "Drop Features here",
             "duality": "Duality",
             "dualityRoll": "Duality Roll",
             "enabled": "Enabled",
