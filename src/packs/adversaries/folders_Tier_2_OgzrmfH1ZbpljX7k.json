@@ -1,5 +1,5 @@
 {
-  "type": "Item",
+  "type": "Actor",
   "folder": null,
   "name": "Tier 2",
   "color": null,
@@ -14,10 +14,7 @@
     "exportSource": null,
     "coreVersion": "13.346",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
-    "createdTime": 1752684230275,
-    "modifiedTime": 1752684230275,
-    "lastModifiedBy": "k0gmQFlvrPvlTtbh"
+    "systemVersion": "0.0.1"
   },
   "_key": "!folders!OgzrmfH1ZbpljX7k"
 }

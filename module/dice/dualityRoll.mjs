@@ -19,7 +19,7 @@ export default class DualityRoll extends D20Roll {
 
     get title() {
         return game.i18n.localize(
-            "DAGGERHEART.GENERAL.dualityRoll"
+            `DAGGERHEART.GENERAL.${this.options?.roll?.type === CONFIG.DH.ITEM.actionTypes.reaction.id ? 'reactionRoll' : 'dualityRoll'}`
         );
     }
 
@@ -125,10 +125,7 @@ export default class DualityRoll extends D20Roll {
     }
 
     createBaseDice() {
-        if (
-            this.dice[0] instanceof foundry.dice.terms.Die &&
-            this.dice[1] instanceof foundry.dice.terms.Die
-        ) {
+        if (this.dice[0] instanceof foundry.dice.terms.Die && this.dice[1] instanceof foundry.dice.terms.Die) {
             this.terms = [this.terms[0], this.terms[1], this.terms[2]];
             return;
         }
