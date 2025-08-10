@@ -511,6 +511,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 'system.domain': { key: 'system.domain', value: this.setup.class?.system.domains ?? null }
             };
 
+        if (type === 'subclasses') {
+            presets.items = this.setup.class?.system.subclasses ?? null;
+        }
+
         return (this.itemBrowser = await new ItemBrowser({ presets }).render({ force: true }));
     }
 

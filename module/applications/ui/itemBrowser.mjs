@@ -90,7 +90,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
     async _preFirstRender(context, options) {
         if(context.presets?.render?.noFolder || context.presets?.render?.lite)
             options.position.width = 600;
-        
+
         await super._preFirstRender(context, options);
     }
 
@@ -110,13 +110,13 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         this._createSearchFilter();
         this._createFilterInputs();
         this._createDragProcess();
-        
+
         if(context.presets?.render?.lite)
             this.element.classList.add('lite');
-        
+
         if(context.presets?.render?.noFolder)
             this.element.classList.add('no-folder');
-        
+
         if(context.presets?.render?.noFilter)
             this.element.classList.add('no-filter');
 
@@ -181,6 +181,11 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             const comp = game.packs.get(`${compendium}.${key}`);
             if (!comp) return;
             items = items.concat(await comp.getDocuments({ type__in: folderData.type }));
+        }
+
+        if (this.presets.items?.length > 0) {
+            const ids = this.presets.items.map(i => i._id);
+            items = items.filter(i => ids.includes(i._id));
         }
 
         this.items = ItemBrowser.sortBy(items, 'name');
@@ -320,7 +325,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
         for (const li of this.element.querySelectorAll('.item-container')) {
             const itemUUID = li.dataset.itemUuid,
                 item = this.items.find(i => i.uuid === itemUUID);
-            
+
             if(!item) continue;
 
             const matchesMenu =
@@ -335,11 +340,11 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
             li.hidden = !(search.has(item.id) && matchesMenu);
         }
     }
-    
+
     /**
      * Foundry evaluateFilter doesn't allow you to match if filter values are included into item data
-     * @param {*} obj 
-     * @param {*} filter 
+     * @param {*} obj
+     * @param {*} filter
      */
     static evaluateFilter(obj, filter) {
         let docValue = foundry.utils.getProperty(obj, filter.field);
@@ -386,7 +391,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
 
         target.closest(".item-list-header").querySelectorAll('[data-sort-key]').forEach(b => b.dataset.sortType = "");
         target.dataset.sortType = type;
-        
+
         const newOrder = [...itemList].reverse().sort((a, b) => {
             const aProp = a.querySelector(`[data-item-key="${key}"]`),
                 bProp = b.querySelector(`[data-item-key="${key}"]`)
@@ -396,7 +401,7 @@ export class ItemBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
                 return aProp.innerText > bProp.innerText ? 1 : -1;
             }
         });
-        
+
         itemListContainer.replaceChildren(...newOrder);
     }
 
