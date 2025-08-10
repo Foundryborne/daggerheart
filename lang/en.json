@@ -1898,6 +1898,7 @@
             "difficulty": "Difficulty",
             "downtime": "Downtime",
             "dropActorsHere": "Drop Actors here",
+        "dropFeaturesHere": "Drop Features here",
             "duality": "Duality",
             "dualityRoll": "Duality Roll",
             "enabled": "Enabled",
