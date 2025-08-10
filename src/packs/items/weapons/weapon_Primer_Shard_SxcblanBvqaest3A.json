@@ -7,21 +7,22 @@
   "system": {
     "description": "",
     "actions": {
-      "KGJJgz0SMdY0f0em": {
+      "dNN2KOfUxGzQ2yjY": {
         "type": "effect",
         "actionType": "action",
         "chatDisplay": true,
         "name": "Lock On",
         "description": "On a successful attack, your next attack against the same target with your primary weapon automatically succeeds.",
         "img": "icons/skills/targeting/crosshair-arrowhead-blue.webp",
-        "_id": "KGJJgz0SMdY0f0em",
+        "_id": "dNN2KOfUxGzQ2yjY",
         "effects": [],
         "systemPath": "actions",
         "cost": [],
         "uses": {
           "value": null,
           "max": null,
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "target": {
           "type": "any",
@@ -36,10 +37,10 @@
     "burden": "oneHanded",
     "weaponFeatures": [
       {
-        "value": "lockedon",
+        "value": "lockedOn",
         "effectIds": [],
         "actionIds": [
-          "KGJJgz0SMdY0f0em"
+          "dNN2KOfUxGzQ2yjY"
         ]
       }
     ],
@@ -135,12 +136,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.0",
     "createdTime": 1753797317938,
-    "modifiedTime": 1753797376548,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1754814518028,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!SxcblanBvqaest3A"
 }

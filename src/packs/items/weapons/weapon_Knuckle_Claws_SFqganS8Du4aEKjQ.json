@@ -7,63 +7,22 @@
   "system": {
     "description": "",
     "actions": {
-      "fRKcEeShWSLkoExh": {
+      "B0uT1D1WRidiHxyh": {
         "type": "effect",
         "actionType": "action",
         "chatDisplay": true,
         "name": "Double Up",
         "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range.",
         "img": "icons/skills/melee/strike-slashes-orange.webp",
-        "_id": "fRKcEeShWSLkoExh",
+        "_id": "B0uT1D1WRidiHxyh",
         "effects": [],
         "systemPath": "actions",
         "cost": [],
         "uses": {
           "value": null,
           "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      },
-      "lVsEmJwjYgpYL9l4": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Double Up",
-        "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range.",
-        "img": "icons/skills/melee/strike-slashes-orange.webp",
-        "_id": "lVsEmJwjYgpYL9l4",
-        "effects": [],
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
-        },
-        "target": {
-          "type": "any",
-          "amount": null
-        }
-      },
-      "2ndqofzTHsEUMxsm": {
-        "type": "effect",
-        "actionType": "action",
-        "chatDisplay": true,
-        "name": "Double Up",
-        "description": "When you make an attack with your primary weapon, you can deal damage to another target within Melee range.",
-        "img": "icons/skills/melee/strike-slashes-orange.webp",
-        "_id": "2ndqofzTHsEUMxsm",
-        "effects": [],
-        "systemPath": "actions",
-        "cost": [],
-        "uses": {
-          "value": null,
-          "max": null,
-          "recovery": null
+          "recovery": null,
+          "consumeOnSuccess": false
         },
         "target": {
           "type": "any",
@@ -81,7 +40,7 @@
         "value": "doubledUp",
         "effectIds": [],
         "actionIds": [
-          "2ndqofzTHsEUMxsm"
+          "B0uT1D1WRidiHxyh"
         ]
       }
     ],
@@ -177,12 +136,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.0",
     "createdTime": 1753797258168,
-    "modifiedTime": 1753798882899,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1754814600761,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!SFqganS8Du4aEKjQ"
 }

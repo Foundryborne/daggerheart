@@ -14,7 +14,7 @@ This is the community repo for the Foundry VTT system _Foundryborne_ Daggerheart
 
 ## User Install
 
-1. **recommended** Searching for _Daggerheart_ or _Foundryborne_ in the System Instalaltion dialgoe of the FoundryVTT admin settings.
+1. **Recommended** Searching for _Daggerheart_ or _Foundryborne_ in the System Installation dialogue of the FoundryVTT admin settings.
 2. Pasting `https://raw.githubusercontent.com/Foundryborne/daggerheart/refs/heads/main/system.json` into the Install System dialog on the Setup menu of the application.
 3. Downloading one of the .zip archives from the Releases page and extracting it into your foundry Data folder, under Data/systems/daggerheart.
 

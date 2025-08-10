@@ -32,7 +32,7 @@ export default class BeastformEffect extends BaseEffect {
 
         if (this.parent.parent?.type === 'character') {
             this.parent.parent.system.primaryWeapon?.update?.({ 'system.equipped': false });
-            this.parent.parent.system.secondayWeapon?.update?.({ 'system.equipped': false });
+            this.parent.parent.system.secondaryWeapon?.update?.({ 'system.equipped': false });
         }
     }
 

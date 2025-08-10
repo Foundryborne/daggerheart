@@ -87,9 +87,9 @@
         </div>
         {{#if document.system.class.value}}
             <div class="domains-section">
-                {{#each document.system.class.value.system.domains as |domain|}}
+                {{#each document.system.class.value.system.domainData as |data|}}
                     <div class="domain">
-                        <img src="{{concat 'systems/daggerheart/assets/icons/domains/' domain '.svg'}}" alt="" data-tooltip="{{localize (concat 'DAGGERHEART.GENERAL.Domain.' domain '.label')}}" />
+                        <img src="{{data.src}}" alt="" data-tooltip="{{data.label}}" />
                     </div>
                 {{/each}}
             </div>

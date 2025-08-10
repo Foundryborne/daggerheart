@@ -15,7 +15,7 @@
       {
         "value": "reliable",
         "effectIds": [
-          "G561ymlNGmaFAYFB"
+          "VnV5X9MBMabhz47b"
         ],
         "actionIds": []
       }
@@ -108,14 +108,21 @@
       "img": "icons/skills/melee/strike-sword-slashing-red.webp",
       "changes": [
         {
-          "key": "system.bonuses.roll.primaryWeapon.attack",
+          "key": "system.bonuses.roll.primaryWeapon.bonus",
           "mode": 2,
           "value": "1"
         }
       ],
-      "_id": "G561ymlNGmaFAYFB",
+      "_id": "VnV5X9MBMabhz47b",
       "type": "base",
-      "system": {},
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -131,12 +138,14 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "lastModifiedBy": null
+        "systemVersion": "1.0.0",
+        "createdTime": 1754815300372,
+        "modifiedTime": 1754815300372,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
-      "_key": "!items.effects!la3sAWgnvadc4NvP.G561ymlNGmaFAYFB"
+      "_key": "!items.effects!la3sAWgnvadc4NvP.VnV5X9MBMabhz47b"
     }
   ],
   "ownership": {
@@ -148,12 +157,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.0",
     "createdTime": 1753836715885,
-    "modifiedTime": 1753836789197,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1754815300375,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_id": "la3sAWgnvadc4NvP",
   "sort": 0,

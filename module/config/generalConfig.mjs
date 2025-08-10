@@ -183,11 +183,11 @@ export const conditions = {
         icon: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
         description: 'DAGGERHEART.CONFIG.Condition.restrained.description'
     },
-    unconcious: {
-        id: 'unconcious',
-        name: 'DAGGERHEART.CONFIG.Condition.unconcious.name',
+    unconscious: {
+        id: 'unconscious',
+        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name',
         icon: 'icons/magic/control/sleep-bubble-purple.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.unconcious.description'
+        description: 'DAGGERHEART.CONFIG.Condition.unconscious.description'
     },
     dead: {
         id: 'dead',
@@ -533,6 +533,10 @@ export const getDiceSoNicePresets = async (hopeFaces, fearFaces, advantageFaces 
 };
 
 export const refreshTypes = {
+    scene: {
+        id: 'session',
+        label: 'DAGGERHEART.GENERAL.RefreshType.scene'
+    },
     session: {
         id: 'session',
         label: 'DAGGERHEART.GENERAL.RefreshType.session'

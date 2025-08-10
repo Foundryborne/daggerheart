@@ -16,7 +16,7 @@
       {
         "value": "reliable",
         "effectIds": [
-          "xU0DD5ydbwmXMKtF"
+          "228lcQpohdJ3Bbga"
         ],
         "actionIds": []
       }
@@ -109,14 +109,21 @@
       "img": "icons/skills/melee/strike-sword-slashing-red.webp",
       "changes": [
         {
-          "key": "system.bonuses.roll.primaryWeapon.attack",
+          "key": "system.bonuses.roll.primaryWeapon.bonus",
           "mode": 2,
           "value": "1"
         }
       ],
-      "_id": "xU0DD5ydbwmXMKtF",
+      "_id": "228lcQpohdJ3Bbga",
       "type": "base",
-      "system": {},
+      "system": {
+        "rangeDependence": {
+          "enabled": false,
+          "type": "withinRange",
+          "target": "hostile",
+          "range": "melee"
+        }
+      },
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -132,14 +139,14 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1753829126416,
-        "modifiedTime": 1753829126416,
-        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+        "systemVersion": "1.0.0",
+        "createdTime": 1754814935810,
+        "modifiedTime": 1754814935810,
+        "lastModifiedBy": "MQSznptE5yLT7kj8"
       },
-      "_key": "!items.effects!OcKeLJxvmdT81VBc.xU0DD5ydbwmXMKtF"
+      "_key": "!items.effects!OcKeLJxvmdT81VBc.228lcQpohdJ3Bbga"
     }
   ],
   "sort": 0,
@@ -152,12 +159,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.0",
     "createdTime": 1753829098118,
-    "modifiedTime": 1753829367508,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1754814935815,
+    "lastModifiedBy": "MQSznptE5yLT7kj8"
   },
   "_key": "!items!OcKeLJxvmdT81VBc"
 }

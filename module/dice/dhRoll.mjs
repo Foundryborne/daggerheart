@@ -238,7 +238,7 @@ export const registerRollDiceHooks = () => {
 
         if (updates.length) {
             const target = actor.system.partner ?? actor;
-            if (!['dead', 'unconcious'].some(x => actor.statuses.has(x))) {
+            if (!['dead', 'unconscious'].some(x => actor.statuses.has(x))) {
                 setTimeout(() => {
                     target.modifyResource(updates);
                 }, 50);

@@ -85,7 +85,13 @@ export const chunkify = (array, chunkSize, mappingFunc) => {
 
 export const tagifyElement = (element, baseOptions, onChange, tagifyOptions = {}) => {
     const { maxTags } = tagifyOptions;
-    const options = typeof baseOptions === 'object' ? Object.values(baseOptions) : baseOptions;
+    const options =
+        typeof baseOptions === 'object'
+            ? Object.keys(baseOptions).map(optionKey => ({
+                  ...baseOptions[optionKey],
+                  id: optionKey
+              }))
+            : baseOptions;
 
     const tagifyElement = new Tagify(element, {
         tagTextProp: 'name',
