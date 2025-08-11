@@ -212,8 +212,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             v.active = this.tabGroups[v.group]
                 ? this.tabGroups[v.group] === v.id
                 : this.tabGroups.primary !== 'equipment'
-                  ? v.active
-                  : false;
+                    ? v.active
+                    : false;
             v.cssClass = v.active ? 'active' : '';
 
             switch (v.id) {
@@ -324,9 +324,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
                 context.suggestedTraits = this.setup.class.system
                     ? Object.keys(this.setup.class.system.characterGuide.suggestedTraits).map(traitKey => {
-                          const trait = this.setup.class.system.characterGuide.suggestedTraits[traitKey];
-                          return `${game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
-                      })
+                        const trait = this.setup.class.system.characterGuide.suggestedTraits[traitKey];
+                        return `${game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
+                    })
                     : [];
                 context.traits = {
                     values: Object.keys(this.setup.traits).map(traitKey => {
@@ -571,6 +571,15 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     }
 
     static async finish() {
+        const isEquipmentFinished = this._getTabs(this.constructor.TABS).equipment.finished;
+        if (!isEquipmentFinished) {
+            const confirm = await foundry.applications.api.DialogV2.confirm({
+                window: { title: 'Equipment not selected' },
+                content: `<p>You have not selected equipment.</p><p>Are you sure you want to continue?</p></p>`
+            });
+            if (!confirm) return;
+        }
+
         const primaryAncestryFeature = this.setup.primaryAncestry.system.primaryFeature;
         const secondaryAncestryFeature = this.setup.secondaryAncestry?.uuid
             ? this.setup.secondaryAncestry.system.secondaryFeature
