@@ -95,8 +95,9 @@ export default class DhpDowntime extends HandlebarsApplicationMixin(ApplicationV
             if (x.system.actions) {
                 const recoverable = x.system.actions.reduce((acc, action) => {
                     if (
-                        (action.uses.recovery && (action.uses.recovery === 'longRest') === !this.shortrest) ||
-                        action.uses.recovery === 'shortRest'
+                        action.uses.recovery &&
+                        ((action.uses.recovery === 'longRest' && !this.shortrest) ||
+                            action.uses.recovery === 'shortRest')
                     ) {
                         acc.push({
                             title: x.name,
