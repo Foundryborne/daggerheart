@@ -37,12 +37,7 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                 const experienceIncreases = Object.values(advancementChoices.experience ?? {});
                 const experienceIncreaseValues = experienceIncreases
                     .filter(exp => exp.data.length > 0)
-                    .flatMap(exp =>
-                        exp.data.map(data => {
-                            const experience = Object.keys(this.actor.system.experiences)[data];
-                            return this.actor.system.experiences[experience].name;
-                        })
-                    );
+                    .flatMap(exp => exp.data);
                 context.experienceIncreases = {
                     values: experienceIncreaseValues,
                     active: experienceIncreases.length > 0,
