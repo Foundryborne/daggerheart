@@ -13,7 +13,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         this.setup = {
             traits: this.character.system.traits,
-            ancestryName: '',
+            ancestryName: {
+                primary: '',
+                secondary: ''
+            },
             mixedAncestry: false,
             primaryAncestry: this.character.system.ancestry ?? {},
             secondaryAncestry: {},
@@ -240,7 +243,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         };
 
         context.mixedAncestry = Number(this.setup.mixedAncestry);
-        context.ancestryName = this.setup.ancestryName;
+
+        const { primary, secondary, overwrite } = this.setup.ancestryName;
+        context.ancestryName = overwrite ?? (primary && secondary ? `${primary}/${secondary}` : primary);
         context.primaryAncestry = { ...this.setup.primaryAncestry, compendium: 'ancestries' };
         context.secondaryAncestry = { ...this.setup.secondaryAncestry, compendium: 'ancestries' };
         context.community = { ...this.setup.community, compendium: 'communities' };
@@ -498,9 +503,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
             ? this.setup.secondaryAncestry.system.secondaryFeature
             : this.setup.primaryAncestry.system.secondaryFeature;
 
+        const { primary, secondary, overwrite } = this.setup.ancestryName;
         const ancestry = {
             ...this.setup.primaryAncestry,
-            name: this.setup.ancestryName ?? this.setup.primaryAncestry.name,
+            name: overwrite ?? (primary && secondary ? `${primary}/${secondary}` : primary),
             system: {
                 ...this.setup.primaryAncestry.system,
                 features: [
@@ -572,13 +578,14 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         const item = await foundry.utils.fromUuid(data.uuid);
         if (item.type === 'ancestry' && event.target.closest('.primary-ancestry-card')) {
-            this.setup.ancestryName = item.name;
+            this.setup.ancestryName.primary = item.name;
             this.setup.primaryAncestry = {
                 ...item,
                 effects: Array.from(item.effects).map(x => x.toObject()),
                 uuid: item.uuid
             };
         } else if (item.type === 'ancestry' && event.target.closest('.secondary-ancestry-card')) {
+            this.setup.ancestryName.secondary = item.name;
             this.setup.secondaryAncestry = {
                 ...item,
                 effects: Array.from(item.effects).map(x => x.toObject()),

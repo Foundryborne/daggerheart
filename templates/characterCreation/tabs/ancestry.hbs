@@ -8,7 +8,7 @@
             <legend>{{localize "TYPES.Item.ancestry"}}</legend>
 
             <div class="ancestry-name">
-                <input type="text" name="ancestryName" value="{{ancestryName}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.ancestryNamePlaceholder"}}" {{disabled (not primaryAncestry.uuid)}} />
+                <input type="text" name="ancestryName.overwrite" value="{{ancestryName}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.ancestryNamePlaceholder"}}" {{disabled (not primaryAncestry.uuid)}} />
             </div>
 
             <div class="ancestry-mixed-controller {{#if mixedAncestry}}active{{/if}}">
