@@ -3,58 +3,15 @@
 .daggerheart.dh-style.dialog.character-creation {
     .tab-navigation {
         nav {
-            flex: 1;
+            border-bottom: 0;
+            border-top: 0;
 
             a {
-                flex: 1;
-                text-align: center;
-                display: flex;
-                justify-content: center;
-                position: relative;
+                font-family: @font-body;
+                color: light-dark(@dark-blue, @golden);
 
-                &.disabled {
+                &[disabled] {
                     opacity: 0.4;
-                }
-
-                .nav-section-text {
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                }
-
-                .finish-marker {
-                    position: absolute;
-                    align-self: center;
-                    top: -8px;
-                    padding: 4px;
-                    border: 1px solid;
-                    border-radius: 50%;
-                    height: 16px;
-                    width: 16px;
-                    font-size: 12px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background-color: var(--color-cool-4);
-                    content: '';
-
-                    &.active {
-                        background-color: var(--color-warm-2);
-                    }
-                }
-
-                .descriptor {
-                    position: absolute;
-                    bottom: -8px;
-                    font-size: 12px;
-                    border-radius: 8px;
-                    width: 56px;
-                    text-align: center;
-                    line-height: 1;
-                    border: 1px solid light-dark(@dark-blue, @golden);
-                    border-radius: 6px;
-                    color: light-dark(@beige, @dark);
-                    background-image: url(../assets/parchments/dh-parchment-light.png);
                 }
             }
         }

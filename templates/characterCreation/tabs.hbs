@@ -2,7 +2,7 @@
     <line-div></line-div>
     <nav class='feature-tab sheet-tabs tabs' data-group='primary'>
         {{#each tabs as |tab|}}
-            <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}'>
+            <a class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}' {{disabled tab.disabled}}>
                 {{localize tab.label}}
                 <div class="finish-marker {{#if (eq tab.cssClass 'active')}}active{{/if}}">{{#if tab.finished}}<i class="fa-solid fa-check"></i>{{/if}}</div>
                 {{#if tab.optional}}<div class="descriptor">{{localize "DAGGERHEART.GENERAL.Tabs.optional"}}</div>{{/if}}

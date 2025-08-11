@@ -83,131 +83,70 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
     static PARTS = {
         tabs: { template: 'systems/daggerheart/templates/characterCreation/tabs.hbs' },
-        setup: { template: 'systems/daggerheart/templates/characterCreation/tabs/setup.hbs' },
-        ancestry: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/ancestry.hbs' },
-        community: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/community.hbs' },
-        class: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/class.hbs' },
-        traits: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/traits.hbs' },
-        experience: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/experience.hbs' },
-        domainCards: { template: 'systems/daggerheart/templates/characterCreation/setupTabs/domainCards.hbs' },
-        equipment: { template: 'systems/daggerheart/templates/characterCreation/tabs/equipment.hbs' },
-        // story: { template: 'systems/daggerheart/templates/characterCreation/tabs/story.hbs' },
+        ancestry: { template: 'systems/daggerheart/templates/characterCreation/tabs/ancestry.hbs' },
+        community: { template: 'systems/daggerheart/templates/characterCreation/tabs/community.hbs' },
+        class: { template: 'systems/daggerheart/templates/characterCreation/tabs/class.hbs' },
+        traits: { template: 'systems/daggerheart/templates/characterCreation/tabs/traits.hbs' },
+        experience: { template: 'systems/daggerheart/templates/characterCreation/tabs/experience.hbs' },
+        domainCards: { template: 'systems/daggerheart/templates/characterCreation/tabs/domainCards.hbs' },
+        equipment: { template: 'systems/daggerheart/templates/characterCreation/equipment.hbs' },
+        // story: { template: 'systems/daggerheart/templates/characterCreation/story.hbs' },
         footer: { template: 'systems/daggerheart/templates/characterCreation/footer.hbs' }
     };
 
     static TABS = {
-        setup: {
-            active: true,
-            cssClass: '',
-            group: 'primary',
-            id: 'setup',
-            label: 'DAGGERHEART.GENERAL.Tabs.setup'
-        },
-        equipment: {
-            active: false,
-            cssClass: '',
-            group: 'primary',
-            id: 'equipment',
-            label: 'DAGGERHEART.GENERAL.Tabs.equipment',
-            optional: true
-        }
-        // story: {
-        //     active: false,
-        //     cssClass: '',
-        //     group: 'primary',
-        //     id: 'story',
-        //     label: 'DAGGERHEART.GENERAL.Tabs.story',
-        //     optional: true
-        // }
-    };
-
-    static SETUPTABS = {
         ancestry: {
             active: true,
             cssClass: '',
             group: 'setup',
             id: 'ancestry',
-            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.ancestry'
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.ancestry'
         },
         community: {
             active: false,
             cssClass: '',
             group: 'setup',
             id: 'community',
-            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.community'
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.community'
         },
         class: {
             active: false,
             cssClass: '',
             group: 'setup',
             id: 'class',
-            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.class'
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.class'
         },
         traits: {
             active: false,
             cssClass: '',
             group: 'setup',
             id: 'traits',
-            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.traits'
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.traits'
         },
         experience: {
             active: false,
             cssClass: '',
             group: 'setup',
             id: 'experience',
-            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.experience'
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.experience'
         },
         domainCards: {
             active: false,
             cssClass: '',
             group: 'setup',
             id: 'domainCards',
-            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.setupTabs.domainCards'
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.domainCards'
+        },
+        equipment: {
+            active: false,
+            cssClass: '',
+            group: 'setup',
+            id: 'equipment',
+            label: 'DAGGERHEART.APPLICATIONS.CharacterCreation.tabs.equipment'
         }
     };
 
     _getTabs(tabs) {
-        for (const v of Object.values(tabs)) {
-            v.active = this.tabGroups[v.group] ? this.tabGroups[v.group] === v.id : v.active;
-            v.cssClass = v.active ? 'active' : '';
-
-            switch (v.id) {
-                case 'setup':
-                    const ancestryFinished = this.setup.primaryAncestry.uuid;
-                    const communityFinished = this.setup.community.uuid;
-                    const classFinished = this.setup.class.uuid && this.setup.subclass.uuid;
-                    const traitsFinished = Object.values(this.setup.traits).every(x => x.value !== null);
-                    const experiencesFinished = Object.values(this.setup.experiences).every(x => x.name);
-                    const domainCardsFinished = Object.values(this.setup.domainCards).every(x => x.uuid);
-                    v.finished =
-                        ancestryFinished &&
-                        communityFinished &&
-                        classFinished &&
-                        traitsFinished &&
-                        experiencesFinished &&
-                        domainCardsFinished;
-                    break;
-                case 'equipment':
-                    const armorFinished = this.equipment.armor?.uuid;
-                    const primaryFinished = this.equipment.primaryWeapon?.uuid;
-                    const secondaryFinished =
-                        this.equipment.secondaryWeapon?.uuid ||
-                        (primaryFinished && this.equipment.primaryWeapon.system.burden == burden.twoHanded.value);
-                    const choiceAFinished = this.equipment.inventory.choiceA?.uuid;
-                    const choiceBFinished = this.equipment.inventory.choiceB?.uuid;
-
-                    v.finished =
-                        armorFinished && primaryFinished && secondaryFinished && choiceAFinished && choiceBFinished;
-            }
-        }
-
-        tabs.equipment.cssClass = tabs.setup.finished ? tabs.equipment.cssClass : 'disabled';
-        // tabs.story.cssClass = tabs.setup.finished ? tabs.story.cssClass : 'disabled';
-
-        return tabs;
-    }
-
-    _getSetupTabs(tabs) {
         for (const v of Object.values(tabs)) {
             v.active = this.tabGroups[v.group]
                 ? this.tabGroups[v.group] === v.id
@@ -232,35 +171,13 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 case 'domainCards':
                     v.disabled = this.setup.visibility < 6;
                     break;
+                case 'equipment':
+                    v.disabled = this.setup.visibility < 7;
+                    break;
             }
         }
 
         return tabs;
-    }
-
-    changeTab(tab, group, options) {
-        super.changeTab(tab, group, options);
-
-        if (group === 'primary') {
-            for (var listTab of Object.keys(this.constructor.TABS)) {
-                const marker = options.navElement.querySelector(`a[data-action="tab"].${listTab} .finish-marker`);
-                if (listTab === tab) {
-                    marker.classList.add('active');
-                } else {
-                    marker.classList.remove('active');
-                }
-            }
-
-            if (tab === 'equipment') {
-                this.tabGroups.setup = null;
-                this.element.querySelector('section[data-group="setup"].active')?.classList?.remove?.('active');
-            } else {
-                this.tabGroups.setup = 'domainCards';
-                this.element
-                    .querySelector('section[data-group="setup"][data-tab="domainCards"]')
-                    ?.classList?.add?.('active');
-            }
-        }
     }
 
     _attachPartListeners(partId, htmlElement, options) {
@@ -275,13 +192,71 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     }
 
     async _preFirstRender(_context, _options) {
-        this.tabGroups.primary = 'setup';
         this.tabGroups.setup = 'ancestry';
     }
 
     async _prepareContext(_options) {
         const context = await super._prepareContext(_options);
+
         context.tabs = this._getTabs(this.constructor.TABS);
+        const availableTraitModifiers = game.settings
+            .get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
+            .traitArray.map(trait => ({ key: trait, name: trait }));
+        for (let trait of Object.values(this.setup.traits).filter(x => x.value !== null)) {
+            const index = availableTraitModifiers.findIndex(x => x.key === trait.value);
+            if (index !== -1) {
+                availableTraitModifiers.splice(index, 1);
+            }
+        }
+
+        context.suggestedTraits = this.setup.class.system
+            ? Object.keys(this.setup.class.system.characterGuide.suggestedTraits).map(traitKey => {
+                  const trait = this.setup.class.system.characterGuide.suggestedTraits[traitKey];
+                  return `${game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
+              })
+            : [];
+        context.traits = {
+            values: Object.keys(this.setup.traits).map(traitKey => {
+                const trait = this.setup.traits[traitKey];
+                const options = [...availableTraitModifiers];
+                if (trait.value !== null && !options.some(x => x.key === trait.value))
+                    options.push({ key: trait.value, name: trait.value });
+
+                return {
+                    ...trait,
+                    key: traitKey,
+                    name: game.i18n.localize(abilities[traitKey].label),
+                    options: options
+                };
+            })
+        };
+        context.traits.nrTotal = Object.keys(context.traits.values).length;
+        context.traits.nrSelected = this.getNrSelectedTrait();
+
+        context.experience = {
+            values: this.setup.experiences,
+            nrTotal: Object.keys(this.setup.experiences).length,
+            nrSelected: Object.values(this.setup.experiences).reduce((acc, exp) => acc + (exp.name ? 1 : 0), 0)
+        };
+
+        context.mixedAncestry = Number(this.setup.mixedAncestry);
+        context.ancestryName = this.setup.ancestryName;
+        context.primaryAncestry = { ...this.setup.primaryAncestry, compendium: 'ancestries' };
+        context.secondaryAncestry = { ...this.setup.secondaryAncestry, compendium: 'ancestries' };
+        context.community = { ...this.setup.community, compendium: 'communities' };
+        context.class = { ...this.setup.class, compendium: 'classes' };
+        context.subclass = { ...this.setup.subclass, compendium: 'subclasses' };
+
+        const allDomainData = CONFIG.DH.DOMAIN.allDomains();
+        context.classDomains = context.class.uuid
+            ? context.class.system.domains.map(key => game.i18n.localize(allDomainData[key].label))
+            : [];
+        context.domainCards = Object.keys(this.setup.domainCards).reduce((acc, x) => {
+            acc[x] = { ...this.setup.domainCards[x], compendium: 'domains' };
+            return acc;
+        }, {});
+
+        context.visibility = this.setup.visibility;
 
         return context;
     }
@@ -289,7 +264,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
     async _preparePartContext(partId, context) {
         switch (partId) {
             case 'footer':
-                context.isLastTab = this.tabGroups.setup === 'domainCards' || this.tabGroups.primary !== 'setup';
+                context.isLastTab = this.tabGroups.setup === 'equipment';
                 switch (this.tabGroups.setup) {
                     case null:
                     case 'ancestry':
@@ -307,69 +282,11 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                     case 'experience':
                         context.nextDisabled = this.setup.visibility === 5;
                         break;
+                    case 'domainCards':
+                        context.nextDisabled = this.setup.visibility === 6;
+                        break;
                 }
 
-                break;
-            case 'setup':
-                context.setupTabs = this._getSetupTabs(this.constructor.SETUPTABS);
-                const availableTraitModifiers = game.settings
-                    .get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew)
-                    .traitArray.map(trait => ({ key: trait, name: trait }));
-                for (let trait of Object.values(this.setup.traits).filter(x => x.value !== null)) {
-                    const index = availableTraitModifiers.findIndex(x => x.key === trait.value);
-                    if (index !== -1) {
-                        availableTraitModifiers.splice(index, 1);
-                    }
-                }
-
-                context.suggestedTraits = this.setup.class.system
-                    ? Object.keys(this.setup.class.system.characterGuide.suggestedTraits).map(traitKey => {
-                          const trait = this.setup.class.system.characterGuide.suggestedTraits[traitKey];
-                          return `${game.i18n.localize(`DAGGERHEART.CONFIG.Traits.${traitKey}.short`)} ${trait > 0 ? `+${trait}` : trait}`;
-                      })
-                    : [];
-                context.traits = {
-                    values: Object.keys(this.setup.traits).map(traitKey => {
-                        const trait = this.setup.traits[traitKey];
-                        const options = [...availableTraitModifiers];
-                        if (trait.value !== null && !options.some(x => x.key === trait.value))
-                            options.push({ key: trait.value, name: trait.value });
-
-                        return {
-                            ...trait,
-                            key: traitKey,
-                            name: game.i18n.localize(abilities[traitKey].label),
-                            options: options
-                        };
-                    })
-                };
-                context.traits.nrTotal = Object.keys(context.traits.values).length;
-                context.traits.nrSelected = this.getNrSelectedTrait();
-
-                context.experience = {
-                    values: this.setup.experiences,
-                    nrTotal: Object.keys(this.setup.experiences).length,
-                    nrSelected: Object.values(this.setup.experiences).reduce((acc, exp) => acc + (exp.name ? 1 : 0), 0)
-                };
-
-                context.mixedAncestry = Number(this.setup.mixedAncestry);
-                context.ancestryName = this.setup.ancestryName;
-                context.primaryAncestry = { ...this.setup.primaryAncestry, compendium: 'ancestries' };
-                context.secondaryAncestry = { ...this.setup.secondaryAncestry, compendium: 'ancestries' };
-                context.community = { ...this.setup.community, compendium: 'communities' };
-                context.class = { ...this.setup.class, compendium: 'classes' };
-                context.subclass = { ...this.setup.subclass, compendium: 'subclasses' };
-
-                const allDomainData = CONFIG.DH.DOMAIN.allDomains();
-                context.classDomains = context.class.uuid
-                    ? context.class.system.domains.map(key => game.i18n.localize(allDomainData[key].label))
-                    : [];
-                context.domainCards = Object.keys(this.setup.domainCards).reduce((acc, x) => {
-                    acc[x] = { ...this.setup.domainCards[x], compendium: 'domains' };
-                    return acc;
-                }, {});
-
-                context.visibility = this.setup.visibility;
                 break;
             case 'equipment':
                 const suggestions = await this.getEquipmentSuggestions(
@@ -438,8 +355,10 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
     getUpdateVisibility() {
         switch (this.setup.visibility) {
+            case 7:
+                return 7;
             case 6:
-                return 6;
+                return Object.values(this.setup.domainCards).every(x => x.uuid) ? 7 : 6;
             case 5:
                 return Object.values(this.setup.experiences).every(x => x.name) ? 6 : 5;
             case 4:
@@ -505,7 +424,7 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
 
         const presets = {
             compendium: 'daggerheart',
-            folder: equipment.includes(type) ? "equipments" : type,
+            folder: equipment.includes(type) ? 'equipments' : type,
             render: {
                 noFolder: true
             }
@@ -564,6 +483,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
                 break;
             case 6:
                 this.tabGroups.setup = 'domainCards';
+                break;
+            case 7:
+                this.tabGroups.setup = 'equipment';
                 break;
         }
 
