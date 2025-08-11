@@ -44,7 +44,7 @@
                         <div class="dice-option">
                             <img class="dice-icon" src="{{concat 'systems/daggerheart/assets/icons/dice/fear/' @root.roll.dFear.denomination '.svg'}}" alt="">
                             <div class="dice-select">
-                                <span class="label">Fear</span>
+                                <span class="label">{{localize "DAGGERHEART.GENERAL.fear"}}</span>
                                 <select name="roll.dice.dFear">
                                     {{selectOptions diceOptions selected=@root.roll.dFear.denomination}}
                                 </select>
