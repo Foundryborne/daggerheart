@@ -89,7 +89,7 @@ export default class DHDomainCard extends BaseDataItem {
      */
     _getLabels() {
         const labels = [
-            game.i18n.localize(`DAGGERHEART.CONFIG.DomainCardTypes.${this.type}`),
+            ,
             this.domainLabel,
             {
                 value: `${this.recallCost}`, //converts the number to a string
@@ -97,6 +97,14 @@ export default class DHDomainCard extends BaseDataItem {
             }
         ];
 
+        if (this.type) labels.push(game.i18n.localize(`DAGGERHEART.CONFIG.DomainCardTypes.${this.type}`));
+        if (this.domainLabel) labels.push(this.domainLabel);
+        if (this.recallCost) {
+            labels.push({
+                value: `${this.recallCost}`, //converts the number to a string
+                icons: ['fa-bolt']
+            });
+        }
         return labels;
     }
 }

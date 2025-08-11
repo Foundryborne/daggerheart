@@ -144,7 +144,8 @@ export default class DHArmor extends AttachableItem {
      * @returns {(string | { value: string, icons: string[] })[]} An array of localized strings and damage label objects.
      */
     _getLabels() {
-        const labels = [`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`];
+        const labels = [];
+        if(this.baseScore) labels.push(`${game.i18n.localize('DAGGERHEART.ITEMS.Armor.baseScore')}: ${this.baseScore}`)
         return labels;
     }
 
