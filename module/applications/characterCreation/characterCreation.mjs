@@ -194,11 +194,8 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         });
     }
 
-    async _preFirstRender(_context, _options) {
-        this.tabGroups.setup = 'ancestry';
-    }
-
     async _prepareContext(_options) {
+        this.tabGroups.setup = this.tabGroups.setup ?? 'ancestry';
         const context = await super._prepareContext(_options);
 
         context.tabs = this._getTabs(this.constructor.TABS);
