@@ -5,7 +5,7 @@
             <span class="roll-result-desc">
                 {{#if roll.isCritical}}
                     <span>{{localize "DAGGERHEART.GENERAL.criticalShort"}}</span>
-                {{else}}{{log @root}}
+                {{else}}
                     {{#if (and roll.result (not roll.type "reaction"))}}
                         <span>{{localize "DAGGERHEART.GENERAL.withThing" thing=roll.result.label}}</span>
                     {{/if}}
