@@ -51,18 +51,6 @@
     {{/if}}
 
     <div class="encounter-controls {{#if hasCombat}}combat{{/if}}">
-        {{#if hasCombat}}
-            <div class="encounter-fear-controls">
-                <div class="encounter-fear-dice-container">
-                    <div class="encounter-control-fear-container">
-                        <div class="dice d12"></div>
-                        <i class="fas fa-skull encounter-control-fear"></i>
-                    </div>
-                    <div>{{fear}}</div>
-                </div>
-                <a class="encounter-countdowns" data-tooltip="{{localize "DAGGERHEART.APPLICATIONS.Countdown.title" type=(localize "DAGGERHEART.APPLICATIONS.Countdown.types.encounter")}}" data-action="openCountdowns"><i class="fa-solid fa-stopwatch"></i></a>
-            </div>
-        {{/if}}
         {{!-- Combat Status --}}
         <strong class="encounter-title">
             {{#if combats.length}}
