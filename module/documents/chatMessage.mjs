@@ -138,7 +138,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
             this.consumeOnSuccess();
             if (this.system.hasHealing) target.actor.takeHealing(damages);
-            else target.actor.takeDamage(damages);
+            else target.actor.takeDamage(damages, this.system.isDirect);
         }
     }
 

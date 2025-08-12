@@ -3,7 +3,7 @@
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
             {{#each damage as | roll index | }}
-                <div class="roll-formula">{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')}}: {{total}}</div>
+                <div class="roll-formula">{{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll')}}: {{total}}</div>
             {{/each}}
         </div>
     </div>
@@ -12,8 +12,8 @@
             <div class="wrapper">
                 {{#each damage as | roll index | }}
                     <fieldset>
-                        <legend>
-                            {{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.name')}} <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>
+                        <legend>{{log @root}}
+                            {{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll')}} <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if (and (eq index "hitPoints")../isDirect)}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
                         </legend>
                         {{#each roll.parts}}
                             {{#if damageTypes.length}}

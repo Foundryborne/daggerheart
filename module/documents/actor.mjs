@@ -517,7 +517,7 @@ export default class DhpActor extends Actor {
         return canUseArmor || canUseStress;
     }
 
-    async takeDamage(damages) {
+    async takeDamage(damages, isDirect = false) {
         if (Hooks.call(`${CONFIG.DH.id}.preTakeDamage`, this, damages) === false) return null;
 
         if (this.type === 'companion') {
@@ -548,6 +548,7 @@ export default class DhpActor extends Actor {
             hpDamage.value = this.convertDamageToThreshold(hpDamage.value);
             if (
                 this.type === 'character' &&
+                !isDirect &&
                 this.system.armor &&
                 this.#canReduceDamage(hpDamage.value, hpDamage.damageTypes)
             ) {

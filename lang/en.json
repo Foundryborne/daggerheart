@@ -846,6 +846,11 @@
                 "magical": {
                     "name": "Magical",
                     "abbreviation": "Mag"
+                },
+                "direct": {
+                    "name": "Direct Damage",
+                    "short": "Direct",
+                    "abbreviation": "Dir"
                 }
             },
             "DeathMoves": {
@@ -895,23 +900,28 @@
             "HealingType": {
                 "hitPoints": {
                     "name": "Hit Points",
-                    "abbreviation": "HP"
+                    "abbreviation": "HP",
+                    "inChatRoll": "Damage"
                 },
                 "stress": {
                     "name": "Stress",
-                    "abbreviation": "STR"
+                    "abbreviation": "STR",
+                    "inChatRoll": "Stress"
                 },
                 "hope": {
                     "name": "Hope",
-                    "abbreviation": "HO"
+                    "abbreviation": "HO",
+                    "inChatRoll": "Hope"
                 },
                 "armor": {
                     "name": "Armor Slot",
-                    "abbreviation": "AS"
+                    "abbreviation": "AS",
+                    "inChatRoll": "Armor Slot"
                 },
                 "fear": {
                     "name": "Fear",
-                    "abbreviation": "FR"
+                    "abbreviation": "FR",
+                    "inChatRoll": "Fear"
                 }
             },
             "ItemResourceProgression": {

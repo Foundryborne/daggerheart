@@ -8,9 +8,14 @@
         {{/if}}
         {{#unless (eq path 'system.attack.')}}<a><i class="fa-solid fa-plus icon-button" data-action="addDamage"></i></a>{{/unless}}
     </legend>
-    {{#if @root.hasBaseDamage}}
-        {{formField @root.fields.damage.fields.includeBase value=@root.source.damage.includeBase name="damage.includeBase" classes="checkbox" localize=true }}
-    {{/if}}
+    <div class="nest-inputs space-between">
+        {{#if @root.hasBaseDamage}}
+            {{formField @root.fields.damage.fields.includeBase value=@root.source.damage.includeBase name="damage.includeBase" classes="checkbox" localize=true }}
+        {{/if}}
+        {{#unless (eq @root.source.type 'healing')}}
+            {{formField @root.fields.damage.fields.direct value=@root.source.damage.direct name="damage.direct" localize=true classes="checkbox"}}
+        {{/unless}}
+    </div>
     {{#each source.parts as |dmg index|}}
         {{#if (and @root.hasBaseDamage @root.source.damage.includeBase)}}
             {{setVar 'realIndex' (add index -1)}}

@@ -29,6 +29,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             hasEffect: new fields.BooleanField({ initial: false }),
             hasSave: new fields.BooleanField({ initial: false }),
             hasTarget: new fields.BooleanField({ initial: false }),
+            isDirect: new fields.BooleanField({ initial: false }),
             isCritical: new fields.BooleanField({ initial: false }),
             onSave: new fields.StringField(),
             source: new fields.SchemaField({
