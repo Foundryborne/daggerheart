@@ -1,0 +1,7 @@
+<nav class='feature-tab sheet-tabs tabs setup-tabs' data-group='setup'>
+    {{#each tabs as |tab|}}
+        <button class='{{tab.id}} {{tab.cssClass}}' data-action='tab' data-group='{{tab.group}}' data-tab='{{tab.id}}' {{disabled tab.disabled}}>
+            {{localize tab.label}}
+        </button>
+    {{/each}}
+</nav>

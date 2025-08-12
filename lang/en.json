@@ -233,13 +233,14 @@
         },
         "APPLICATIONS": {
             "CharacterCreation": {
-                "setupTabs": {
+                "tabs": {
                     "ancestry": "Ancestry",
                     "community": "Community",
                     "class": "Class",
                     "experience": "Experience",
                     "traits": "Traits",
-                    "domainCards": "Domain Cards"
+                    "domainCards": "Domain Cards",
+                    "equipment": "Equipment"
                 },
                 "ancestryNamePlaceholder": "Your ancestry's name",
                 "buttonTitle": "Character Setup",

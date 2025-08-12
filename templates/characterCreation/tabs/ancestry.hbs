@@ -1,14 +1,14 @@
 <section
-    class='tab {{setupTabs.ancestry.cssClass}} {{setupTabs.ancestry.id}}'
-    data-tab='{{setupTabs.ancestry.id}}'
-    data-group='{{setupTabs.ancestry.group}}'
+    class='tab {{tabs.ancestry.cssClass}} {{tabs.ancestry.id}}'
+    data-tab='{{tabs.ancestry.id}}'
+    data-group='{{tabs.ancestry.group}}'
 >
     <div class="main-selections-container">
         <fieldset class="section-container">
             <legend>{{localize "TYPES.Item.ancestry"}}</legend>
 
             <div class="ancestry-name">
-                <input type="text" name="ancestryName" value="{{ancestryName}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.ancestryNamePlaceholder"}}" {{disabled (not primaryAncestry.uuid)}} />
+                <input type="text" name="ancestryName.overwrite" value="{{ancestryName}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.ancestryNamePlaceholder"}}" {{disabled (not primaryAncestry.uuid)}} />
             </div>
 
             <div class="ancestry-mixed-controller {{#if mixedAncestry}}active{{/if}}">

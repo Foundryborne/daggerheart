@@ -70,9 +70,13 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
             }
         }
         
-        if(!game.user.isGM && !this.isAuthor && !this.speakerActor?.isOwner) {
-            const buttons = html.querySelectorAll(".ability-card-footer > .ability-use-button");
-            buttons.forEach(b => b.remove());
+        if(!game.user.isGM) {
+            const applyButtons = html.querySelector(".apply-buttons");
+            applyButtons.remove();
+            if(!this.isAuthor && !this.speakerActor?.isOwner) {
+                const buttons = html.querySelectorAll(".ability-card-footer > .ability-use-button");
+                buttons.forEach(b => b.remove());
+            }
         }
     }
 
