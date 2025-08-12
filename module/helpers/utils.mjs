@@ -341,7 +341,7 @@ export const itemAbleRollParse = (value, actor, item) => {
     const model = isItemTarget ? item : actor;
 
     try {
-        return Roll.replaceFormulaData(slicedValue, model?.getRollData?.() ?? model);
+        return Roll.replaceFormulaData(slicedValue, isItemTarget || !model?.getRollData ? model : model.getRollData());
     } catch (_) {
         return '';
     }
