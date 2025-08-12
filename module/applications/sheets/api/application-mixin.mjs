@@ -395,6 +395,9 @@ export default function DHApplicationMixin(Base) {
             context.source = this.document;
             context.fields = this.document.schema.fields;
             context.systemFields = this.document.system.schema.fields;
+            context.settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+            // settings.expandedCharacterDescriptions
+            // settings.expandedAdversaryDescriptions
             return context;
         }
 

@@ -77,6 +77,7 @@ export default class DHDomainCard extends BaseDataItem {
         const tags = [
             game.i18n.localize(`DAGGERHEART.CONFIG.DomainCardTypes.${this.type}`),
             this.domainLabel,
+            `${game.i18n.localize('DAGGERHEART.GENERAL.levelShort')}: ${this.level}`,
             `${game.i18n.localize('DAGGERHEART.ITEMS.DomainCard.recallCost')}: ${this.recallCost}`
         ];
 

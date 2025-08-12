@@ -55,6 +55,14 @@ export default class DhAppearance extends foundry.abstract.DataModel {
             showGenericStatusEffects: new fields.BooleanField({
                 initial: true,
                 label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.showGenericStatusEffects.label'
+            }),
+            expandedCharacterDescriptions: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.expandedCharacterDescriptions.label'
+            }),
+            expandedAdversaryDescriptions: new fields.BooleanField({
+                initial: false,
+                label: 'DAGGERHEART.SETTINGS.Appearance.FIELDS.expandedAdversaryDescriptions.label'
             })
         };
     }

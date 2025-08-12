@@ -1934,6 +1934,7 @@
             "itemResource": "Item Resource",
             "label": "Label",
             "level": "Level",
+            "levelShort": "Lv",
             "levelUp": "Level Up",
             "loadout": "Loadout",
             "max": "Max",
@@ -2081,7 +2082,9 @@
                 "FIELDS": {
                     "displayFear": { "label": "Fear Display" },
                     "dualityColorScheme": { "label": "Chat Style" },
-                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
+                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" },
+                    "expandedCharacterDescriptions": { "label": "Auto-expand Descriptions from Characters" },
+                    "expandedAdversaryDescriptions": { "label": "Auto-expand Descriptions from Adversaries" }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
