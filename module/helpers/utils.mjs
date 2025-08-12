@@ -251,13 +251,15 @@ export const adjustRange = (rangeVal, decrease) => {
 };
 
 export const updateActorTokens = async (actor, update) => {
-    await actor.prototypeToken.update(update);
+    await actor.prototypeToken.update({ ...update });
 
     /* Update the tokens in all scenes belonging to Actor */
     for (let token of actor.getDependentTokens()) {
         const tokenActor = token.baseActor ?? token.actor;
         if (tokenActor?.id === actor.id) {
-            await token.update(update);
+            await token.update({
+                ...update
+            });
         }
     }
 };
@@ -370,7 +372,7 @@ export function getScrollTextData(resources, resource, key) {
 
 export function createScrollText(actor, optionsData) {
     if (actor && optionsData?.length) {
-        actor.getDependentTokens().forEach(token => {
+        actor.getActiveTokens().forEach(token => {
             optionsData.forEach(data => {
                 const { text, ...options } = data;
                 canvas.interface.createScrollingText(token.getCenterPoint(), data.text, {
