@@ -24,7 +24,7 @@ export default function ItemAttachmentSheet(Base) {
             ...super.TABS,
             primary: {
                 ...super.TABS?.primary,
-                tabs: [...(super.TABS?.primary?.tabs || []), { id: 'attachments' }],
+                tabs: [...(super.TABS?.primary?.tabs || []) /*{ id: 'attachments' }*/], // Disabled until fixed
                 initial: super.TABS?.primary?.initial || 'description',
                 labelPrefix: super.TABS?.primary?.labelPrefix || 'DAGGERHEART.GENERAL.Tabs'
             }
