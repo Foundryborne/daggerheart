@@ -189,7 +189,11 @@
                     "title": "Multiclass Subclass",
                     "text": "Do you want to add this subclass as your multiclass subclass?"
                 },
-                "cannotRemoveCoreExperience": "You are using Levelup Auto. You cannot remove an experience given to you by the rule progression."
+                "cannotRemoveCoreExperience": "You are using Levelup Auto. You cannot remove an experience given to you by the rule progression.",
+                "companionLevelup": {
+                    "confirmTitle": "Companion Levelup",
+                    "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
+                }
             },
             "Companion": {
                 "FIELDS": {
@@ -2370,7 +2374,8 @@
                 "rulesOn": "Rules On",
                 "rulesOff": "Rules Off",
                 "remainingUses": "Uses refresh on {type}",
-                "rightClickExtand": "Right-Click to extand"
+                "rightClickExtand": "Right-Click to extand",
+                "companionPartnerLevelBlock": "The companion needs an assigned partner to level up."
             }
         }
     }

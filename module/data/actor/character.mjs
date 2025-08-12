@@ -602,7 +602,20 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     prepareDerivedData() {
-        const baseHope = this.resources.hope.value + (this.companion?.system?.resources?.hope ?? 0);
+        let baseHope = this.resources.hope.value;
+        if (this.companion) {
+            for (let levelKey in this.companion.system.levelData.levelups) {
+                const level = this.companion.system.levelData.levelups[levelKey];
+                for (let selection of level.selections) {
+                    switch (selection.type) {
+                        case 'hope':
+                            this.resources.hope.max += selection.value;
+                            break;
+                    }
+                }
+            }
+        }
+
         this.resources.hope.value = Math.min(baseHope, this.resources.hope.max);
         this.attack.roll.trait = this.rules.attack.roll.trait ?? this.attack.roll.trait;
 

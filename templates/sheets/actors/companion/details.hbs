@@ -44,7 +44,7 @@
             <side-line-div></side-line-div>
         </div>
         {{#each source.system.experiences as |experience id|}}
-        <div class="experience-row">
+        <div class="experience-row" data-tooltip-text="{{experience.description}}">
             <div class="experience-value">
                 +{{experience.value}}
             </div>

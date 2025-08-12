@@ -1,6 +1,6 @@
 <section
     class='tab {{tabs.details.cssClass}} {{tabs.details.id}}'
-    data-tab='{{tabs.details.id}}'
+        data-tab='{{tabs.details.id}}'
     data-group='{{tabs.details.group}}'
 >
     <fieldset class="one-column">
@@ -14,7 +14,7 @@
             <div class="form-fields">
                 <label>{{localize "DAGGERHEART.ACTORS.Companion.FIELDS.partner.label"}}</label>
                 <select class="partner-value" name="system.partner">
-                    {{selectOptions playerCharacters selected=document._source.system.partner.uuid labelAttr="name" valueAttr="key" blank=""}}
+                    {{selectOptions playerCharacters selected=document.system.partner.uuid labelAttr="name" valueAttr="key" blank=""}}
                 </select>
             </div>
         </div>

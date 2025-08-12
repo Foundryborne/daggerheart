@@ -404,7 +404,27 @@ export const defaultCompanionTier = {
                 start: 2,
                 end: 10
             },
-            initialAchievements: {},
+            initialAchievements: {
+                experience: {
+                    nr: 1,
+                    modifier: 2
+                }
+            },
+            /* Improved this. Quick solution for companions */
+            extraAchievements: {
+                5: {
+                    experience: {
+                        nr: 1,
+                        modifier: 2
+                    }
+                },
+                8: {
+                    experience: {
+                        nr: 1,
+                        modifier: 2
+                    }
+                }
+            },
             availableOptions: 1,
             domainCardByLevel: 0,
             options: {
