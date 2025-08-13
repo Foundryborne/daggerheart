@@ -30,7 +30,7 @@ Parameters:
     <div class="item-label">
 
       {{!-- Item Name --}}
-      <div class="item-name">{{localize item.name}}</div>
+      <div class="item-name">{{localize item.name}} {{#unless noExtensible}}<span class="expanded-icon"><i class="fa-solid fa-expand"></i></span>{{/unless}}</div>
 
       {{!-- Tags Start --}}
       {{#with item}}

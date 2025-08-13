@@ -638,15 +638,21 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 ability: abilityLabel
             })
         });
-
-        setTimeout(() => {
-            this.consumeResource(result?.costs);
-        }, 50);
+        
+        this.consumeResource(result?.costs);
     }
 
+    // Remove when Action Refactor part #2 done
     async consumeResource(costs) {
         if (!costs?.length) return;
-        const usefulResources = foundry.utils.deepClone(this.actor.system.resources);
+        const usefulResources = {
+            ...foundry.utils.deepClone(this.actor.system.resources),
+            fear: {
+                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
+                reversed: false
+            }
+        };
         const resources = game.system.api.fields.ActionFields.CostField.getRealCosts(costs).map(c => {
             const resource = usefulResources[c.key];
             return {

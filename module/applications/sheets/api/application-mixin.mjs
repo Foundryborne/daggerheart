@@ -2,6 +2,23 @@ const { HandlebarsApplicationMixin } = foundry.applications.api;
 import { getDocFromElement, getDocFromElementSync, tagifyElement } from '../../../helpers/utils.mjs';
 import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
+const typeSettingsMap = {
+    character: 'extendCharacterDescriptions',
+    adversary: 'extendAdversaryDescriptions',
+    environment: 'extendEnvironmentDescriptions',
+    ancestry: 'extendItemDescriptions',
+    community: 'extendItemDescriptions',
+    class: 'extendItemDescriptions',
+    subclass: 'extendItemDescriptions',
+    feature: 'extendItemDescriptions',
+    domainCard: 'extendItemDescriptions',
+    loot: 'extendItemDescriptions',
+    consumable: 'extendItemDescriptions',
+    weapon: 'extendItemDescriptions',
+    armor: 'extendItemDescriptions',
+    beastform: 'extendItemDescriptions'
+};
+
 /**
  * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction
  */
@@ -137,6 +154,8 @@ export default function DHApplicationMixin(Base) {
             docs.filter(doc => doc).forEach(doc => (doc.apps[this.id] = this));
 
             if (!!this.options.contextMenus.length) this._createContextMenus();
+
+            this.#autoExtendDescriptions(context);
         }
 
         /** @inheritDoc */
@@ -149,6 +168,7 @@ export default function DHApplicationMixin(Base) {
         async _onRender(context, options) {
             await super._onRender(context, options);
             this._createTagifyElements(this.options.tagifyConfigs);
+            await this.#prepareInventoryDescription(context);
         }
 
         /* -------------------------------------------- */
@@ -162,13 +182,7 @@ export default function DHApplicationMixin(Base) {
                 const { actionId, itemUuid } = el.parentElement.dataset;
                 const selector = `${actionId ? `[data-action-id="${actionId}"]` : `[data-item-uuid="${itemUuid}"]`} .extensible`;
                 const newExtensible = newElement.querySelector(selector);
-
-                if (!newExtensible) continue;
-                newExtensible.classList.add('extended');
-                const descriptionElement = newExtensible.querySelector('.invetory-description');
-                if (descriptionElement) {
-                    this.#prepareInventoryDescription(newExtensible, descriptionElement);
-                }
+                newExtensible?.classList.add('extended');
             }
         }
 
@@ -395,6 +409,7 @@ export default function DHApplicationMixin(Base) {
             context.source = this.document;
             context.fields = this.document.schema.fields;
             context.systemFields = this.document.system.schema.fields;
+            context.settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
             return context;
         }
 
@@ -404,32 +419,69 @@ export default function DHApplicationMixin(Base) {
 
         /**
          * Prepares and enriches an inventory item or action description for display.
-         * @param {HTMLElement} extensibleElement - The parent element containing the description.
-         * @param {HTMLElement} descriptionElement - The element where the enriched description will be rendered.
          * @returns {Promise<void>}
          */
-        async #prepareInventoryDescription(extensibleElement, descriptionElement) {
-            const parent = extensibleElement.closest('[data-item-uuid], [data-action-id]');
-            const { actionId, itemUuid } = parent?.dataset || {};
-            if (!actionId && !itemUuid) return;
+        async #prepareInventoryDescription(context) {
+            // Get all inventory item elements with a data-item-uuid attribute
+            const inventoryItems = this.element.querySelectorAll('.inventory-item[data-item-uuid]');
+            for (const el of inventoryItems) {
+                // Get the doc uuid from the element
+                const { itemUuid } = el?.dataset || {};
+                if (!itemUuid) continue;
 
-            const doc = itemUuid
-                ? await getDocFromElement(extensibleElement)
-                : this.document.system.attack?.id === actionId
-                  ? this.document.system.attack
-                  : this.document.system.actions?.get(actionId);
-            if (!doc) return;
+                //get doc by uuid
+                const doc = await fromUuid(itemUuid);
 
-            const description = game.i18n.localize(doc.system?.description ?? doc.description);
-            const isAction = !!actionId;
-            descriptionElement.innerHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-                description,
-                {
-                    relativeTo: isAction ? doc.parent : doc,
-                    rollData: doc.getRollData?.(),
-                    secrets: isAction ? doc.parent.isOwner : doc.isOwner
+                //get inventory-item description element
+                const descriptionElement = el.querySelector('.invetory-description');
+                if (!doc || !descriptionElement) continue;
+
+                // localize the description (idk if it's still necessary)
+                const description = game.i18n.localize(doc.system?.description ?? doc.description);
+
+                // Enrich the description and attach it;
+                const isAction = doc.documentName === 'Action';
+                descriptionElement.innerHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+                    description,
+                    {
+                        relativeTo: isAction ? doc.parent : doc,
+                        rollData: doc.getRollData?.(),
+                        secrets: isAction ? doc.parent.isOwner : doc.isOwner
+                    }
+                );
+            }
+        }
+
+        /* -------------------------------------------- */
+        /*  Extend Descriptions by Settings             */
+        /* -------------------------------------------- */
+
+        /**
+         * Extend inventory description when enabled in settings.
+         * @returns {Promise<void>}
+         */
+        async #autoExtendDescriptions(context) {
+            const inventoryItems = this.element.querySelectorAll('.inventory-item[data-item-uuid]');
+            for (const el of inventoryItems) {
+                // Get the doc uuid from the element
+                const { itemUuid } = el?.dataset || {};
+                if (!itemUuid) continue;
+
+                //get doc by uuid
+                const doc = await fromUuid(itemUuid);
+
+                //check the type of the document
+                const actorType =
+                    doc?.type === 'adversary' && context.document?.type === 'environment'
+                        ? typeSettingsMap[doc?.type]
+                        : doc.actor?.type;
+
+                // If the actor type is defined and the setting is enabled, extend the description
+                if (typeSettingsMap[actorType]) {
+                    const settingKey = typeSettingsMap[actorType];
+                    if (context.settings[settingKey]) this.#activeExtended(el);
                 }
-            );
+            }
         }
 
         /* -------------------------------------------- */
@@ -437,8 +489,6 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
 
         static async #addNewItem(event, target) {
-            const { type } = target.dataset;
-
             const createChoice = await foundry.applications.api.DialogV2.wait({
                 classes: ['dh-style', 'two-big-buttons'],
                 buttons: [
@@ -606,10 +656,12 @@ export default function DHApplicationMixin(Base) {
         static async #toggleExtended(_, target) {
             const container = target.closest('.inventory-item');
             const extensible = container?.querySelector('.extensible');
-            const t = extensible?.classList.toggle('extended');
+            extensible?.classList.toggle('extended');
+        }
 
-            const descriptionElement = extensible?.querySelector('.invetory-description');
-            if (t && !!descriptionElement) await this.#prepareInventoryDescription(extensible, descriptionElement);
+        async #activeExtended(element) {
+            const extensible = element?.querySelector('.extensible');
+            extensible?.classList.add('extended');
         }
     }
 

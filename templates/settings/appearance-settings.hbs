@@ -2,8 +2,20 @@
     <header class="dialog-header">
         <h1>{{localize 'DAGGERHEART.SETTINGS.Menu.appearance.name'}}</h1>
     </header>
-    {{formGroup settingFields.schema.fields.displayFear value=settingFields._source.displayFear localize=true}}
-    {{formGroup settingFields.schema.fields.showGenericStatusEffects value=settingFields._source.showGenericStatusEffects localize=true}}
+
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.GENERAL.fear'}}</legend>
+        {{formGroup settingFields.schema.fields.displayFear value=settingFields._source.displayFear localize=true}}
+        {{formGroup settingFields.schema.fields.showGenericStatusEffects value=settingFields._source.showGenericStatusEffects localize=true}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.SETTINGS.Appearance.FIELDS.expandedTitle'}}</legend>
+        {{formGroup settingFields.schema.fields.extendCharacterDescriptions value=settingFields._source.extendCharacterDescriptions localize=true}}
+        {{formGroup settingFields.schema.fields.extendAdversaryDescriptions value=settingFields._source.extendAdversaryDescriptions localize=true}}
+        {{formGroup settingFields.schema.fields.extendEnvironmentDescriptions value=settingFields._source.extendEnvironmentDescriptions localize=true}}
+        {{formGroup settingFields.schema.fields.extendItemDescriptions value=settingFields._source.extendItemDescriptions localize=true}}
+    </fieldset>
 
     {{#if showDiceSoNice}}
         <fieldset>
