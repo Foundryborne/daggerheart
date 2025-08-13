@@ -1,5 +1,4 @@
 import { GMUpdateEvent, socketEvent } from '../../systemRegistration/socket.mjs';
-import DhCompanionlevelUp from '../levelup/companionLevelup.mjs';
 import DHBaseActorSettings from '../sheets/api/actor-setting.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
@@ -11,8 +10,7 @@ export default class DHCompanionSettings extends DHBaseActorSettings {
         position: { width: 455, height: 'auto' },
         actions: {
             addExperience: DHCompanionSettings.#addExperience,
-            removeExperience: DHCompanionSettings.#removeExperience,
-            levelUp: DHCompanionSettings.#levelUp
+            removeExperience: DHCompanionSettings.#removeExperience
         }
     };
 
@@ -120,13 +118,5 @@ export default class DHCompanionSettings extends DHBaseActorSettings {
         if (!confirmed) return;
 
         await this.actor.update({ [`system.experiences.-=${target.dataset.experience}`]: null });
-    }
-
-    /**
-     * Opens the companion level-up dialog for the associated actor.
-     * @type {ApplicationClickAction}
-     */
-    static async #levelUp() {
-        new DhCompanionlevelUp(this.actor).render({ force: true });
     }
 }
