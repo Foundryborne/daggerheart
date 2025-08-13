@@ -65,6 +65,56 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         ];
     }
 
+    getDefeatedId(combatant) {
+        if (!combatant.actor) return CONFIG.specialStatusEffects.DEFEATED;
+
+        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        return settings[`${combatant.actor.type}Default`];
+    }
+
+    /** @inheritdoc */
+    async _onToggleDefeatedStatus(combatant) {
+        const isDefeated = !combatant.isDefeated;
+        await combatant.update({ defeated: isDefeated });
+        await combatant.actor?.toggleStatusEffect(this.getDefeatedId(combatant), { overlay: true, active: isDefeated });
+    }
+
+    async _prepareTurnContext(combat, combatant, index) {
+        const { id, name, isOwner, isDefeated, hidden, initiative, permission } = combatant;
+        const resource = permission >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER ? combatant.resource : null;
+        const hasDecimals = Number.isFinite(initiative) && !Number.isInteger(initiative);
+        const turn = {
+            hasDecimals,
+            hidden,
+            id,
+            isDefeated,
+            initiative,
+            isOwner,
+            name,
+            resource,
+            active: index === combat.turn,
+            canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission('PING_CANVAS'),
+            img: await this._getCombatantThumbnail(combatant)
+        };
+
+        turn.css = [turn.active ? 'active' : null, hidden ? 'hide' : null, isDefeated ? 'defeated' : null].filterJoin(
+            ' '
+        );
+
+        const defeatedId = this.getDefeatedId(combatant);
+        const effects = [];
+        for (const effect of combatant.actor?.temporaryEffects ?? []) {
+            if (effect.statuses.has(defeatedId)) turn.isDefeated = true;
+            else if (effect.img) effects.push({ img: effect.img, name: effect.name });
+        }
+        turn.effects = {
+            icons: effects,
+            tooltip: this._formatEffectsTooltip(effects)
+        };
+
+        return turn;
+    }
+
     async setCombatantSpotlight(combatantId) {
         const update = {
             system: {
