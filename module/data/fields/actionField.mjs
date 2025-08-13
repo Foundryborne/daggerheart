@@ -102,6 +102,7 @@ export class ActionField extends foundry.data.fields.ObjectField {
 
     /** @override */
     initialize(value, model, options = {}) {
+        if(value && !value.type) value.type = 'attack';
         const cls = this.getModel(value);
         if (cls) return new cls(value, { parent: model, ...options });
         return foundry.utils.deepClone(value);
