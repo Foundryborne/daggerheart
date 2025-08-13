@@ -55,13 +55,27 @@
         {{/if}}
     </div>
 
-    <button type="button" class="control-icon" data-action="togglePalette" data-palette="movementActions" data-tooltip="HUD.SelectMovementAction">
-        <i class="{{movementActionsIcon}}" inert></i>
+    <button type="button" class="control-icon" data-action="togglePalette" data-palette="movementActions"
+            aria-label="{{ localize "HUD.SelectMovementAction" }}" data-tooltip>
+        {{#with movementActionsConfig}}
+        {{#if img}}
+        <img src="{{ img }}" alt="{{ localize "HUD.SelectMovementAction" }}">
+        {{else}}
+        <i class="{{ icon }}" inert></i>
+        {{/if}}
+        {{/with}}
     </button>
     <div class="palette movement-actions" data-palette="movementActions">
         {{#each movementActions as |action|}}
         <a class="movement-action-control {{action.cssClass}}" data-action="movementAction" data-movement-action="{{action.id}}">
-            <span>{{#if action.icon}}<i class="{{action.icon}} fa-fw" inert></i>{{/if}} {{action.label}}</span>
+            <span>
+                {{#if action.img}}
+                <img src="{{ action.img }}" alt="{{ action.label }}">
+                {{else}}
+                <i class="{{ action.icon }} fa-fw" inert></i>
+                {{/if}}
+                {{action.label}}
+            </span>
         </a>
         {{/each}}
     </div>
