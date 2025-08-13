@@ -9,13 +9,13 @@
 
     &.xxs {
         height: 1rem;
-        font-size: .5rem;
+        font-size: 0.5rem;
         -webkit-text-stroke: 1px black;
     }
 
     &.xs {
         height: 1.5rem;
-        font-size: .75rem;
+        font-size: 0.75rem;
     }
 
     &.lg {
@@ -29,7 +29,7 @@
     }
 
     &.discarded {
-        opacity: .5;
+        opacity: 0.5;
     }
 
     &:before {
@@ -40,7 +40,7 @@
         z-index: -1;
         mask: var(--svg-die) no-repeat center;
         mask-size: contain;
-        background: linear-gradient(139.01deg, #EFE6D8 3.51%, #372E1F 96.49%);
+        background: linear-gradient(139.01deg, #efe6d8 3.51%, #372e1f 96.49%);
     }
 
     &.d4:before {
@@ -63,18 +63,22 @@
     }
 
     &.color-hope:before {
-        background: linear-gradient(139.01deg, #F3C267 3.51%, #4C3407 96.49%);
+        background: linear-gradient(139.01deg, #f3c267 3.51%, #4c3407 96.49%);
     }
 
     &.color-fear:before {
-        background: linear-gradient(151.21deg, #352AB2 7.21%, #18162E 92.79%);
+        background: linear-gradient(151.21deg, #352ab2 7.21%, #18162e 92.79%);
     }
 
     &.color-adv:before {
-        background: linear-gradient(139.01deg, #40A640 3.51%, #011B01 96.49%);
+        background: linear-gradient(139.01deg, #40a640 3.51%, #011b01 96.49%);
     }
 
     &.color-dis:before {
-        background: linear-gradient(139.01deg, #E54E4E 3.51%, #3C0000 82.19%);
+        background: linear-gradient(139.01deg, #e54e4e 3.51%, #3c0000 82.19%);
+    }
+
+    &.coin:before {
+        border-radius: 50%;
     }
 }
