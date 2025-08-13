@@ -718,4 +718,21 @@ export default class DhpActor extends Actor {
                 value: 1
             });
     }
+
+    async toggleDefeated(defeatedState) {
+        const settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).defeated;
+        const { unconscious, defeated, dead } = CONFIG.DH.GENERAL.conditions;
+        const defeatedConditions = new Set([unconscious.id, defeated.id, dead.id]);
+        if (!defeatedState) {
+            for (let defeatedId of defeatedConditions) {
+                await this.toggleStatusEffect(defeatedId, { overlay: settings.overlay, active: defeatedState });
+            }
+        } else {
+            const noDefeatedConditions = this.statuses.intersection(defeatedConditions).size === 0;
+            if (noDefeatedConditions) {
+                const condition = settings[`${this.type}Default`];
+                await this.toggleStatusEffect(condition, { overlay: settings.overlay, active: defeatedState });
+            }
+        }
+    }
 }

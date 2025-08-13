@@ -1,0 +1,17 @@
+<section
+    class="tab {{tabs.rules.cssClass}} {{tabs.rules.id}}"
+    data-tab="{{tabs.rules.id}}"
+    data-group="{{tabs.rules.group}}"
+>
+    <fieldset>
+        <legend>
+            {{localize "DAGGERHEART.SETTINGS.Automation.defeated.title"}} 
+        </legend>
+        
+        {{formGroup settingFields.schema.fields.defeated.fields.enabled value=settingFields._source.defeated.enabled localize=true}}
+        {{formGroup settingFields.schema.fields.defeated.fields.overlay value=settingFields._source.defeated.overlay localize=true}}
+        {{formGroup settingFields.schema.fields.defeated.fields.characterDefault value=settingFields._source.defeated.characterDefault labelAttr="name" localize=true}}  
+        {{formGroup settingFields.schema.fields.defeated.fields.adversaryDefault value=settingFields._source.defeated.adversaryDefault labelAttr="name" localize=true}}  
+        {{formGroup settingFields.schema.fields.defeated.fields.companionDefault value=settingFields._source.defeated.companionDefault labelAttr="name" localize=true}}  
+    </fieldset>
+</section>

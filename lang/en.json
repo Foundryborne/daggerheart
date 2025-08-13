@@ -821,6 +821,10 @@
                     "name": "Dead",
                     "description": "The character is dead"
                 },
+                "defeated": {
+                    "name": "Defeated",
+                    "description": "This adversary is defeated."
+                },
                 "hidden": {
                     "name": "Hidden",
                     "description": "While Hidden, attacks cannot be made directly targeting them nd any rolls against them are at disadvantage.\nWhen a Hidden creature moves or attacks, they are no longer Hidden. However, if a creature is Hidden when they begin making an attack, the roll has advantage; the Hidden condition isn’t cleared until after the attack is resolved."
@@ -1870,7 +1874,8 @@
                 "tier3": "Tier 3",
                 "tier4": "tier 4",
                 "domains": "Domains",
-                "downtime": "Downtime"
+                "downtime": "Downtime",
+                "rules": "Rules"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -2110,6 +2115,13 @@
                         "label": "Damage Reduction Rules Default",
                         "hint": "Wether using armor and reductions has rules on by default"
                     },
+                    "defeated": {
+                        "enabled": { "label": "Enabled" },
+                        "overlay": { "label": "Overlay Effect" },
+                        "characterDefault": { "label": "Character Default Defeated Status" },
+                        "adversaryDefault": { "label": "Adversary Default Defeated Status" },
+                        "companionDefault": { "label": "Companion Default Defeated Status" }
+                    },
                     "hopeFear": {
                         "label": "Hope & Fear",
                         "gm": { "label": "GM" },
@@ -2141,6 +2153,9 @@
                         "label": "Players Can Manually Edit Character Settings",
                         "hint": "Players are allowed to access the manual Character Settings and change their statistics beyond the rules."
                     }
+                },
+                "defeated": {
+                    "title": "Defeated Handling"
                 }
             },
             "Homebrew": {

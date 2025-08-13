@@ -225,7 +225,8 @@ export const registerRollDiceHooks = () => {
         const actor = await fromUuid(config.source.actor);
         let updates = [];
         if (!actor) return;
-        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ key: 'hope', value: 1, total: -1, enabled: true });
+        if (config.roll.isCritical || config.roll.result.duality === 1)
+            updates.push({ key: 'hope', value: 1, total: -1, enabled: true });
         if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, total: 1, enabled: true });
         if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1, total: -1, enabled: true });
 
@@ -233,16 +234,15 @@ export const registerRollDiceHooks = () => {
             if (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1)
                 updates.push({ key: 'hope', value: -1, total: 1, enabled: true });
             if (config.rerolledRoll.isCritical) updates.push({ key: 'stress', value: 1, total: -1, enabled: true });
-            if (config.rerolledRoll.result.duality === -1) updates.push({ key: 'fear', value: -1, total: 1, enabled: true });
+            if (config.rerolledRoll.result.duality === -1)
+                updates.push({ key: 'fear', value: -1, total: 1, enabled: true });
         }
 
         if (updates.length) {
             const target = actor.system.partner ?? actor;
-            if (!['dead', 'unconscious'].some(x => actor.statuses.has(x))) {
-                if(config.rerolledRoll)
-                    target.modifyResource(updates);
-                else
-                    config.costs = [...(config.costs ?? []), ...updates];
+            if (!['dead', 'defeated', 'unconscious'].some(x => actor.statuses.has(x))) {
+                if (config.rerolledRoll) target.modifyResource(updates);
+                else config.costs = [...(config.costs ?? []), ...updates];
             }
         }
 

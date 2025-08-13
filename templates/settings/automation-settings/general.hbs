@@ -1,7 +1,8 @@
-<div>
-    <header class="dialog-header">
-        <h1>{{localize 'DAGGERHEART.SETTINGS.Menu.automation.name'}}</h1>
-    </header>
+<section
+    class="tab {{tabs.general.cssClass}} {{tabs.general.id}}"
+    data-tab="{{tabs.general.id}}"
+    data-group="{{tabs.general.group}}"
+>
     <div class="form-group">
         <label>{{localize "DAGGERHEART.SETTINGS.Automation.FIELDS.hopeFear.label"}}</label>
         {{formGroup settingFields.schema.fields.hopeFear.fields.gm value=settingFields._source.hopeFear.gm localize=true}}
@@ -15,16 +16,5 @@
     {{formGroup settingFields.schema.fields.playerCanEditSheet value=settingFields._source.playerCanEditSheet localize=true}}
     {{formGroup settingFields.schema.fields.damageReductionRulesDefault value=settingFields._source.damageReductionRulesDefault localize=true}}
     {{formGroup settingFields.schema.fields.resourceScrollTexts value=settingFields._source.resourceScrollTexts localize=true}}
-    
-    <footer class="form-footer">
-        <button data-action="reset">
-            <i class="fa-solid fa-arrow-rotate-left"></i>
-            <span>{{localize "Reset"}}</span>
-        </button>
-        <button data-action="save" >
-            <i class="fa-solid fa-floppy-disk"></i>
-            <span>{{localize "Save Changes"}}</span>
-        </button>
-    </footer>
-</div>
+</section>
   

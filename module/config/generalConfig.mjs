@@ -164,6 +164,27 @@ export const healingTypes = {
     }
 };
 
+export const defeatedConditions = {
+    defeated: {
+        id: 'defeated',
+        name: 'DAGGERHEART.CONFIG.Condition.defeated.name',
+        icon: 'icons/magic/control/fear-fright-mask-orange.webp',
+        description: 'DAGGERHEART.CONFIG.Condition.defeated.description'
+    },
+    unconscious: {
+        id: 'unconscious',
+        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name',
+        icon: 'icons/magic/control/sleep-bubble-purple.webp',
+        description: 'DAGGERHEART.CONFIG.Condition.unconscious.description'
+    },
+    dead: {
+        id: 'dead',
+        name: 'DAGGERHEART.CONFIG.Condition.dead.name',
+        icon: 'icons/magic/death/grave-tombstone-glow-teal.webp',
+        description: 'DAGGERHEART.CONFIG.Condition.dead.description'
+    }
+};
+
 export const conditions = {
     vulnerable: {
         id: 'vulnerable',
@@ -183,18 +204,7 @@ export const conditions = {
         icon: 'icons/magic/control/debuff-chains-shackle-movement-red.webp',
         description: 'DAGGERHEART.CONFIG.Condition.restrained.description'
     },
-    unconscious: {
-        id: 'unconscious',
-        name: 'DAGGERHEART.CONFIG.Condition.unconscious.name',
-        icon: 'icons/magic/control/sleep-bubble-purple.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.unconscious.description'
-    },
-    dead: {
-        id: 'dead',
-        name: 'DAGGERHEART.CONFIG.Condition.dead.name',
-        icon: 'icons/magic/death/grave-tombstone-glow-teal.webp',
-        description: 'DAGGERHEART.CONFIG.Condition.dead.description'
-    }
+    ...defeatedConditions
 };
 
 export const defaultRestOptions = {

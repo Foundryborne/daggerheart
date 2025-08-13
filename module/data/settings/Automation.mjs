@@ -50,6 +50,36 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                 required: true,
                 initial: false,
                 label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.playerCanEditSheet.label'
+            }),
+            defeated: new fields.SchemaField({
+                enabled: new fields.BooleanField({
+                    required: true,
+                    initial: false,
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.enabled.label'
+                }),
+                overlay: new fields.BooleanField({
+                    required: true,
+                    initial: true,
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.overlay.label'
+                }),
+                characterDefault: new fields.StringField({
+                    required: true,
+                    choices: CONFIG.DH.GENERAL.defeatedConditions,
+                    initial: CONFIG.DH.GENERAL.defeatedConditions.unconscious.id,
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.characterDefault.label'
+                }),
+                adversaryDefault: new fields.StringField({
+                    required: true,
+                    choices: CONFIG.DH.GENERAL.defeatedConditions,
+                    initial: CONFIG.DH.GENERAL.defeatedConditions.defeated.id,
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.adversaryDefault.label'
+                }),
+                companionDefault: new fields.StringField({
+                    required: true,
+                    choices: CONFIG.DH.GENERAL.defeatedConditions,
+                    initial: CONFIG.DH.GENERAL.defeatedConditions.defeated.id,
+                    label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.companionDefault.label'
+                })
             })
         };
     }

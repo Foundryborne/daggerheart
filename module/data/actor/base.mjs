@@ -106,6 +106,28 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             }, []);
             options.scrollingTextData = textData;
         }
+
+        if (changes.system?.resources) {
+            const defeatedSettings = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.Automation
+            ).defeated;
+            const typeForDefeated = ['character', 'adversary', 'companion'].find(x => x === this.parent.type);
+            if (defeatedSettings.enabled && typeForDefeated) {
+                const resource = typeForDefeated === 'companion' ? 'stress' : 'hitPoints';
+                if (changes.system.resources[resource]) {
+                    const becameMax = changes.system.resources[resource].value === this.resources[resource].max;
+                    const wasMax =
+                        this.resources[resource].value === this.resources[resource].max &&
+                        this.resources[resource].value !== changes.system.resources[resource].value;
+                    if (becameMax) {
+                        this.parent.toggleDefeated(true);
+                    } else if (wasMax) {
+                        this.parent.toggleDefeated(false);
+                    }
+                }
+            }
+        }
     }
 
     _onUpdate(changes, options, userId) {
