@@ -72,4 +72,8 @@ export default class DHToken extends TokenDocument {
         }
         return attributes;
     }
+    
+    _shouldRecordMovementHistory() {
+        return false;
+    }
 }
