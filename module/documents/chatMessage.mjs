@@ -1,7 +1,7 @@
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     targetHook = null;
 
-    async renderHTML(arg) {
+    async renderHTML() {
         const actor = game.actors.get(this.speaker.actor);
         const actorData =
             actor && this.isContentVisible
