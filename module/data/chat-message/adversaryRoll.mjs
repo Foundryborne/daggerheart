@@ -110,6 +110,8 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
         if (this.hasTarget) {
             this.hasHitTarget = this.targets.filter(t => t.hit === true).length > 0;
             this.currentTargets = this.getTargetList();
+            console.log(this.targetMode, this.parent.targetHook)
+            this.registerTargetHook();
 
             if (this.targetMode === true && this.hasRoll) {
                 this.targetShort = this.targets.reduce(

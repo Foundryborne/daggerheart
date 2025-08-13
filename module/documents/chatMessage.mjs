@@ -1,6 +1,6 @@
 export default class DhpChatMessage extends foundry.documents.ChatMessage {
     targetHook = null;
-    targetSelection = null;
+    // targetSelection = null;
 
     async renderHTML() {
         const actor = game.actors.get(this.speaker.actor);
@@ -24,7 +24,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
 
     /** @inheritDoc */
     prepareData() {
-        if (this.isAuthor && this.targetSelection === null) this.targetSelection = this.system.targets?.length > 0;
+        if (this.isAuthor && this.targetSelection === undefined) this.targetSelection = this.system.targets?.length > 0;
         super.prepareData();
     }
 
