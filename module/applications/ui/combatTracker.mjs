@@ -79,6 +79,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         await combatant.actor?.toggleStatusEffect(this.getDefeatedId(combatant), { overlay: true, active: isDefeated });
     }
 
+    /** @inheritdoc */
     async _prepareTurnContext(combat, combatant, index) {
         const { id, name, isOwner, isDefeated, hidden, initiative, permission } = combatant;
         const resource = permission >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER ? combatant.resource : null;
