@@ -6,7 +6,7 @@ import DHBaseActorSheet from '../api/base-actor.mjs';
 export default class DhCompanionSheet extends DHBaseActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['actor', 'companion'],
-        position: { width: 300 },
+        position: { width: 340 },
         actions: {
             levelManagement: DhCompanionSheet.#levelManagement
         }
