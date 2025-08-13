@@ -2083,8 +2083,11 @@
                     "displayFear": { "label": "Fear Display" },
                     "dualityColorScheme": { "label": "Chat Style" },
                     "showGenericStatusEffects": { "label": "Show Foundry Status Effects" },
-                    "expandedCharacterDescriptions": { "label": "Auto-expand Descriptions from Characters" },
-                    "expandedAdversaryDescriptions": { "label": "Auto-expand Descriptions from Adversaries" }
+                    "expandedTitle": "Auto-expand Descriptions",
+                    "extendCharacterDescriptions": { "label": "Characters" },
+                    "extendAdversaryDescriptions": { "label": "Adversaries" },
+                    "extendEnvironmentDescriptions": { "label": "Environments" },
+                    "extendItemDescriptions": { "label": "Items" }
                 },
                 "fearDisplay": {
                     "token": "Tokens",

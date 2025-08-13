@@ -2,6 +2,23 @@ const { HandlebarsApplicationMixin } = foundry.applications.api;
 import { getDocFromElement, getDocFromElementSync, tagifyElement } from '../../../helpers/utils.mjs';
 import { ItemBrowser } from '../../ui/itemBrowser.mjs';
 
+const typeSettingsMap = {
+    character: 'extendCharacterDescriptions',
+    adversary: 'extendAdversaryDescriptions',
+    environment: 'extendEnvironmentDescriptions',
+    ancestry: 'extendItemDescriptions',
+    community: 'extendItemDescriptions',
+    class: 'extendItemDescriptions',
+    subclass: 'extendItemDescriptions',
+    feature: 'extendItemDescriptions',
+    domainCard: 'extendItemDescriptions',
+    loot: 'extendItemDescriptions',
+    consumable: 'extendItemDescriptions',
+    weapon: 'extendItemDescriptions',
+    armor: 'extendItemDescriptions',
+    beastform: 'extendItemDescriptions'
+};
+
 /**
  * @typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction
  */
@@ -137,6 +154,8 @@ export default function DHApplicationMixin(Base) {
             docs.filter(doc => doc).forEach(doc => (doc.apps[this.id] = this));
 
             if (!!this.options.contextMenus.length) this._createContextMenus();
+
+            this.#autoExtendDescriptions(context);
         }
 
         /** @inheritDoc */
@@ -149,7 +168,7 @@ export default function DHApplicationMixin(Base) {
         async _onRender(context, options) {
             await super._onRender(context, options);
             this._createTagifyElements(this.options.tagifyConfigs);
-            await this.#prepareInventoryDescription();
+            await this.#prepareInventoryDescription(context);
         }
 
         /* -------------------------------------------- */
@@ -391,8 +410,6 @@ export default function DHApplicationMixin(Base) {
             context.fields = this.document.schema.fields;
             context.systemFields = this.document.system.schema.fields;
             context.settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
-            // settings.expandedCharacterDescriptions
-            // settings.expandedAdversaryDescriptions
             return context;
         }
 
@@ -404,7 +421,7 @@ export default function DHApplicationMixin(Base) {
          * Prepares and enriches an inventory item or action description for display.
          * @returns {Promise<void>}
          */
-        async #prepareInventoryDescription() {
+        async #prepareInventoryDescription(context) {
             // Get all inventory item elements with a data-item-uuid attribute
             const inventoryItems = this.element.querySelectorAll('.inventory-item[data-item-uuid]');
             for (const el of inventoryItems) {
@@ -432,6 +449,38 @@ export default function DHApplicationMixin(Base) {
                         secrets: isAction ? doc.parent.isOwner : doc.isOwner
                     }
                 );
+            }
+        }
+
+        /* -------------------------------------------- */
+        /*  Extend Descriptions by Settings             */
+        /* -------------------------------------------- */
+
+        /**
+         * Extend inventory description when enabled in settings.
+         * @returns {Promise<void>}
+         */
+        async #autoExtendDescriptions(context) {
+            const inventoryItems = this.element.querySelectorAll('.inventory-item[data-item-uuid]');
+            for (const el of inventoryItems) {
+                // Get the doc uuid from the element
+                const { itemUuid } = el?.dataset || {};
+                if (!itemUuid) continue;
+
+                //get doc by uuid
+                const doc = await fromUuid(itemUuid);
+
+                //check the type of the document
+                const actorType =
+                    doc?.type === 'adversary' && context.document?.type === 'environment'
+                        ? typeSettingsMap[doc?.type]
+                        : doc.actor?.type;
+
+                // If the actor type is defined and the setting is enabled, extend the description
+                if (typeSettingsMap[actorType]) {
+                    const settingKey = typeSettingsMap[actorType];
+                    if (context.settings[settingKey]) this.#activeExtended(el);
+                }
             }
         }
 
@@ -608,6 +657,11 @@ export default function DHApplicationMixin(Base) {
             const container = target.closest('.inventory-item');
             const extensible = container?.querySelector('.extensible');
             extensible?.classList.toggle('extended');
+        }
+
+        async #activeExtended(element) {
+            const extensible = element?.querySelector('.extensible');
+            extensible?.classList.add('extended');
         }
     }
 
