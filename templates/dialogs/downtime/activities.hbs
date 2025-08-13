@@ -3,7 +3,7 @@
 
     <div class="activities-container">   
         {{#each moves as |move key|}}
-            <a class="activity-container" data-action="selectMove" data-category="{{../category}}" data-move="{{key}}" data-tooltip="{{concat "#" ../category "#" key}}">
+            <a class="activity-container" data-action="selectMove" data-category="{{../category}}" data-move="{{key}}" data-tooltip="{{concat "#" ../category "#" key}}" data-rest-type="{{../category}}">
                 <div class="activity-inner-container">
                     <i class="{{#if move.selected}}fa-solid{{else}}fa-regular{{/if}} fa-circle activity-marker"></i>
                     <div class="activity-select-section">

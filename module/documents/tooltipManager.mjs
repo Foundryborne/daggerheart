@@ -49,11 +49,11 @@ export default class DhTooltipManager extends foundry.helpers.interaction.Toolti
             const longRest = element.dataset.tooltip?.startsWith('#longRest#');
             if (shortRest || longRest) {
                 const key = element.dataset.tooltip.slice(shortRest ? 11 : 10);
-                const downtimeOptions = shortRest
-                    ? CONFIG.DH.GENERAL.defaultRestOptions.shortRest()
-                    : CONFIG.DH.GENERAL.defaultRestOptions.longRest();
 
-                const move = downtimeOptions[key];
+                const moves = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).restMoves[
+                    element.dataset.restType
+                ].moves;
+                const move = moves[key];
                 const description = await TextEditor.enrichHTML(move.description);
                 html = await foundry.applications.handlebars.renderTemplate(
                     `systems/daggerheart/templates/ui/tooltip/downtime.hbs`,
