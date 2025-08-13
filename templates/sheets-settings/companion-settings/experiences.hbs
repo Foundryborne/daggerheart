@@ -12,12 +12,16 @@
         <ul class="experience-list">
             {{#each document._source.system.experiences as |experience key|}}
                 <li class="experience-item">
-                    <div class="experience-inner-item {{#if @root.levelupAuto}}no-controls{{/if}}">
+                    <div class="experience-inner-item">
                         <input class="name" type="text" name="system.experiences.{{key}}.name" value="{{experience.name}}" />
                         <input class="modifier" type="text" name="system.experiences.{{key}}.value" value="{{experience.value}}" data-dtype="Number" />
-                        {{#unless @root.levelupAuto}}<a data-action="removeExperience" data-experience="{{key}}" data-tooltip="{{localize 'CONTROLS.CommonDelete'}}"><i class="fa-solid fa-trash"></i></a>{{/unless}}
-                    </div>
 
+                        <span data-tooltip="{{#if experience.core}}{{localize 'DAGGERHEART.ACTORS.Character.cannotRemoveCoreExperience'}}{{else}}{{localize 'CONTROLS.CommonDelete'}}{{/if}}">
+                            <a data-action="removeExperience" data-experience="{{key}}" class="{{#if experience.core}}disabled{{/if}}">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </span>
+                    </div>
                     <textarea name="system.experiences.{{key}}.description">{{experience.description}}</textarea>
                 </li>
             {{/each}}

@@ -26,6 +26,7 @@ export class DhLevelup extends foundry.abstract.DataModel {
                               return acc;
                           }, {})
                         : {};
+
                     const domainCards = [...Array(tier.domainCardByLevel).keys()].reduce((acc, _) => {
                         const id = foundry.utils.randomID();
                         acc[id] = { uuid: null, itemUuid: null, level: i };
@@ -41,6 +42,20 @@ export class DhLevelup extends foundry.abstract.DataModel {
 
                 belongingLevels.push(i);
             }
+
+            /* Improve. Temporary handling for Companion new experiences */
+            Object.keys(tier.extraAchievements ?? {}).forEach(key => {
+                const level = Number(key);
+                if (level >= startLevel && level <= endLevel) {
+                    const levelExtras = tier.extraAchievements[level];
+                    if (levelExtras.experience) {
+                        levels[level].achievements.experiences[foundry.utils.randomID()] = {
+                            name: '',
+                            modifier: levelExtras.experience.modifier
+                        };
+                    }
+                }
+            });
 
             tiers[key] = {
                 name: tier.name,

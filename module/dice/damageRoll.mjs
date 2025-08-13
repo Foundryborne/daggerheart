@@ -137,9 +137,10 @@ export default class DamageRoll extends DHRoll {
         }
 
         if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            const tmpRoll = Roll.fromTerms(part.roll.terms)._evaluateSync({ maximize: true }),
-                criticalBonus = tmpRoll.total - this.constructor.calculateTotalModifiers(tmpRoll);
-            part.roll.terms.push(...this.formatModifier(criticalBonus));
+            const total = part.roll.dice.reduce((acc, term) => acc + term._faces*term._number, 0);
+            if (total > 0) {
+                part.roll.terms.push(...this.formatModifier(total));
+            }
         }
 
         /* To Remove When Reaction System */

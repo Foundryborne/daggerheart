@@ -67,6 +67,28 @@ export default class DhCompanionLevelUp extends BaseLevelUp {
                 const levelKeys = Object.keys(this.levelup.levels);
                 const actorDamageDice = this.actor.system.attack.damage.parts[0].value.dice;
                 const actorRange = this.actor.system.attack.range;
+
+                let achievementExperiences = [];
+                for (var levelKey of levelKeys) {
+                    const level = this.levelup.levels[levelKey];
+                    if (Number(levelKey) < this.levelup.startLevel) continue;
+
+                    achievementExperiences = level.achievements.experiences
+                        ? Object.values(level.achievements.experiences).reduce((acc, experience) => {
+                              if (experience.name) acc.push(experience);
+                              return acc;
+                          }, [])
+                        : [];
+                }
+                context.achievements = {
+                    experiences: {
+                        values: achievementExperiences,
+                        shown: achievementExperiences.length > 0
+                    }
+                };
+
+                context.achievements = context.achievements.experiences.shown ? context.achievements : undefined;
+
                 const advancement = {};
                 for (var levelKey of levelKeys) {
                     const level = this.levelup.levels[levelKey];

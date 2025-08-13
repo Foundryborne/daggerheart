@@ -185,9 +185,50 @@
                 }
             }
 
-            .level-up-label {
-                font-size: 24px;
-                padding-top: 8px;
+            .level-div {
+                white-space: nowrap;
+                display: flex;
+                justify-content: end;
+
+                .label {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 4px;
+
+                    .input-section {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                }
+
+                input {
+                    width: 40px;
+                    padding: 0;
+                    text-align: center;
+                    border: 0;
+                }
+
+                .level-button {
+                    color: light-dark(@dark, @beige);
+                    font-size: 18px;
+                    line-height: 1;
+                    min-height: unset;
+                    height: min-content;
+                    padding: 4px;
+                    font-family: 'Cinzel', serif;
+                    margin: 0;
+                    font-weight: normal;
+                    border-color: light-dark(@dark-blue, @golden);
+                    background-color: light-dark(transparent, @deep-black);
+
+                    &:hover {
+                        background-image: none;
+                        background-color: var(--color-warm-2);
+                        filter: drop-shadow(0 0 3px lightgray);
+                    }
+                }
             }
         }
 

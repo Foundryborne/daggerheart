@@ -40,12 +40,14 @@ export default class DhCompanion extends BaseDataActor {
             experiences: new fields.TypedObjectField(
                 new fields.SchemaField({
                     name: new fields.StringField({}),
-                    value: new fields.NumberField({ integer: true, initial: 0 })
+                    value: new fields.NumberField({ integer: true, initial: 0 }),
+                    description: new fields.StringField(),
+                    core: new fields.BooleanField({ initial: false })
                 }),
                 {
                     initial: {
-                        experience1: { value: 2 },
-                        experience2: { value: 2 }
+                        experience1: { value: 2, core: true },
+                        experience2: { value: 2, core: true }
                     }
                 }
             ),
@@ -130,6 +132,23 @@ export default class DhCompanion extends BaseDataActor {
                         });
                         break;
                 }
+            }
+        }
+    }
+
+    async _preUpdate(changes, options, userId) {
+        const allowed = await super._preUpdate(changes, options, userId);
+        if (allowed === false) return;
+
+        /* The first two experiences are always marked as core */
+        if (changes.system?.experiences && Object.keys(this.experiences).length < 2) {
+            const experiences = new Set(Object.keys(this.experiences));
+            const changeExperiences = new Set(Object.keys(changes.system.experiences));
+            const newExperiences = Array.from(changeExperiences.difference(experiences));
+
+            for (var i = 0; i < Math.min(newExperiences.length, 2 - experiences.size); i++) {
+                const experience = newExperiences[i];
+                changes.system.experiences[experience].core = true;
             }
         }
     }
