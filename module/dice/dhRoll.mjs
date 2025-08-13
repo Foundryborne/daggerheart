@@ -239,12 +239,10 @@ export const registerRollDiceHooks = () => {
         if (updates.length) {
             const target = actor.system.partner ?? actor;
             if (!['dead', 'unconscious'].some(x => actor.statuses.has(x))) {
-                console.log(config.costs, updates)
-                updates = [...(config.costs ?? []), ...updates];
-                if(config.source.action)
-                    config.costs = updates;
-                else
+                if(config.rerolledRoll)
                     target.modifyResource(updates);
+                else
+                    config.costs = [...(config.costs ?? []), ...updates];
             }
         }
 

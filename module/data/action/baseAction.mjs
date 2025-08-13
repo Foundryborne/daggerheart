@@ -208,7 +208,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     async consume(config, successCost = false) {
-        console.log("Action consume", config)
         const usefulResources = {
             ...foundry.utils.deepClone(this.actor.system.resources),
             fear: {
@@ -247,7 +246,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 }
             }, []);
 
-        console.log(resources)
         await (this.actor.system.partner ?? this.actor).modifyResource(resources);
         if (
             config.uses?.enabled &&
