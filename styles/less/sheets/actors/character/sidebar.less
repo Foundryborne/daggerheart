@@ -11,10 +11,15 @@
         }
     }
 }, {
-    .character-sidebar-sheet {
+    &.sheet.actor.dh-style.character .character-sidebar-sheet {
         background: transparent;
+
         .experience-value {
             background: url('../assets/svg/experience-shield-light.svg') no-repeat;
+        }
+
+        .portrait.death-roll .death-roll-btn {
+            filter: brightness(0) drop-shadow(0 0 3px @dark-blue);
         }
     }
 });
@@ -29,6 +34,26 @@
         border-bottom: 1px solid light-dark(@dark-blue, @golden);
         cursor: pointer;
 
+        &.death-roll {
+            img {
+                filter: grayscale(1);
+            }
+
+            .death-roll-btn {
+                display: flex;
+                position: absolute;
+                top: 30%;
+                right: 30%;
+                font-size: 6rem;
+                color: @beige;
+                filter: grayscale(1) drop-shadow(0 0 3px black);
+
+                &:hover {
+                    text-shadow: 0 0 8px @beige;
+                }
+            }
+        }
+
         img {
             height: 275px;
             width: 275px;
@@ -38,23 +63,6 @@
 
         .death-roll-btn {
             display: none;
-        }
-
-        &.death-roll {
-            filter: grayscale(1);
-
-            .death-roll-btn {
-                display: flex;
-                position: absolute;
-                top: 30%;
-                right: 30%;
-                font-size: 6rem;
-                color: @beige;
-
-                &:hover {
-                    text-shadow: 0 0 8px @beige;
-                }
-            }
         }
 
         .icons-list {
