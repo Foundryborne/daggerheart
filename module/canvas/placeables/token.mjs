@@ -20,12 +20,14 @@ export default class DhTokenPlaceable extends foundry.canvas.placeables.Token {
             for (var status of effect.statuses) {
                 if (!currentStatusActiveEffects.find(x => x.statuses.has(status))) {
                     const statusData = statusMap.get(status);
-                    acc.push({
-                        name: game.i18n.localize(statusData.name),
-                        statuses: [status],
-                        img: statusData.icon,
-                        tint: effect.tint
-                    });
+                    if (statusData) {
+                        acc.push({
+                            name: game.i18n.localize(statusData.name),
+                            statuses: [status],
+                            img: statusData.icon,
+                            tint: effect.tint
+                        });
+                    }
                 }
             }
 

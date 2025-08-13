@@ -118,7 +118,7 @@ export default class DhActiveEffect extends foundry.documents.ActiveEffect {
 
         for (const statusId of this.statuses) {
             const status = CONFIG.statusEffects.find(s => s.id === statusId);
-            tags.push(game.i18n.localize(status.name));
+            if (status) tags.push(game.i18n.localize(status.name));
         }
 
         return tags;
