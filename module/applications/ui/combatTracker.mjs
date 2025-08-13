@@ -43,11 +43,6 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
         });
     }
 
-    async _prepareTurnContext(combat, combatant, index) {
-        const turn = await super._prepareTurnContext(combat, combatant, index);
-        return { ...turn, isNPC: combatant.isNPC, system: combatant.system.toObject() };
-    }
-
     _getCombatContextOptions() {
         return [
             {
@@ -113,7 +108,7 @@ export default class DhCombatTracker extends foundry.applications.sidebar.tabs.C
             tooltip: this._formatEffectsTooltip(effects)
         };
 
-        return turn;
+        return { ...turn, isNPC: combatant.isNPC, system: combatant.system.toObject() };
     }
 
     async setCombatantSpotlight(combatantId) {
