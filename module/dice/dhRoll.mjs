@@ -222,26 +222,29 @@ export const registerRollDiceHooks = () => {
         )
             return;
 
-        const actor = await fromUuid(config.source.actor),
-            updates = [];
+        const actor = await fromUuid(config.source.actor);
+        let updates = [];
         if (!actor) return;
-        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ key: 'hope', value: 1 });
-        if (config.roll.isCritical) updates.push({ key: 'stress', value: -1 });
-        if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1 });
+        if (config.roll.isCritical || config.roll.result.duality === 1) updates.push({ key: 'hope', value: 1, total: -1, enabled: true });
+        if (config.roll.isCritical) updates.push({ key: 'stress', value: -1, total: 1, enabled: true });
+        if (config.roll.result.duality === -1) updates.push({ key: 'fear', value: 1, total: -1, enabled: true });
 
         if (config.rerolledRoll) {
             if (config.rerolledRoll.isCritical || config.rerolledRoll.result.duality === 1)
-                updates.push({ key: 'hope', value: -1 });
-            if (config.rerolledRoll.isCritical) updates.push({ key: 'stress', value: 1 });
-            if (config.rerolledRoll.result.duality === -1) updates.push({ key: 'fear', value: -1 });
+                updates.push({ key: 'hope', value: -1, total: 1, enabled: true });
+            if (config.rerolledRoll.isCritical) updates.push({ key: 'stress', value: 1, total: -1, enabled: true });
+            if (config.rerolledRoll.result.duality === -1) updates.push({ key: 'fear', value: -1, total: 1, enabled: true });
         }
 
         if (updates.length) {
             const target = actor.system.partner ?? actor;
             if (!['dead', 'unconscious'].some(x => actor.statuses.has(x))) {
-                setTimeout(() => {
+                console.log(config.costs, updates)
+                updates = [...(config.costs ?? []), ...updates];
+                if(config.source.action)
+                    config.costs = updates;
+                else
                     target.modifyResource(updates);
-                }, 50);
             }
         }
 
@@ -254,5 +257,7 @@ export const registerRollDiceHooks = () => {
             const currentCombatant = game.combat.combatants.get(game.combat.current?.combatantId);
             if (currentCombatant?.actorId == actor.id) ui.combat.setCombatantSpotlight(currentCombatant.id);
         }
+
+        return;
     });
 };

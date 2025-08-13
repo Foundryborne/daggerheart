@@ -639,9 +639,9 @@ export default class CharacterSheet extends DHBaseActorSheet {
             })
         });
 
-        setTimeout(() => {
-            this.consumeResource(result?.costs);
-        }, 50);
+        // setTimeout(() => {
+        //     this.consumeResource(result?.costs);
+        // }, 50);
     }
 
     async consumeResource(costs) {
