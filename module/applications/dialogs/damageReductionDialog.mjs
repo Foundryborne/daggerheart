@@ -39,7 +39,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
         this.availableStressReductions = Object.keys(actor.system.rules.damageReduction.stressDamageReduction).reduce(
             (acc, key) => {
                 const dr = actor.system.rules.damageReduction.stressDamageReduction[key];
-                if (dr.enabled) {
+                if (dr.cost) {
                     if (acc === null) acc = {};
 
                     const damage = damageKeyToNumber(key);
@@ -260,7 +260,7 @@ export default class DamageReductionDialog extends HandlebarsApplicationMixin(Ap
             const reducedDamage = currentDamage !== this.damage ? getDamageLabel(currentDamage) : null;
             const currentDamageLabel = reducedDamage ?? getDamageLabel(this.damage);
 
-            if (stressReduction.from !== currentDamageLabel) return;
+            if (!stressReduction.any && stressReduction.from !== currentDamageLabel) return;
 
             stressReduction.selected = true;
             this.render();
