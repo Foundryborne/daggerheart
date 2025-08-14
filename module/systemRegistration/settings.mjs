@@ -86,7 +86,7 @@ const registerMenus = () => {
         hint: game.i18n.localize('DAGGERHEART.SETTINGS.Menu.variantRules.hint'),
         icon: CONFIG.DH.SETTINGS.menu.VariantRules.Icon,
         type: DhVariantRuleSettings,
-        restricted: false
+        restricted: true
     });
 };
 
