@@ -29,7 +29,7 @@ export class DHActionDiceData extends foundry.abstract.DataModel {
             bonus: new fields.NumberField({ nullable: true, initial: null, label: 'Bonus' }),
             custom: new fields.SchemaField({
                 enabled: new fields.BooleanField({ label: 'Custom Formula' }),
-                formula: new FormulaField({ label: 'Formula' })
+                formula: new FormulaField({ label: 'Formula', initial: "" })
             })
         };
     }
