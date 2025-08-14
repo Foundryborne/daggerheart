@@ -66,7 +66,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
         context.rollConfig = this.config;
         context.hasRoll = !!this.config.roll;
         context.canRoll = true;
-        context.selectedRollMode = this.config.selectedRollMode;
+        context.selectedRollMode = this.config.selectedRollMode ?? game.settings.get('core', 'rollMode');
         context.rollModes = Object.entries(CONFIG.Dice.rollModes).map(([action, { label, icon }]) => ({
             action,
             label,
