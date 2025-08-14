@@ -20,7 +20,6 @@ const resourceField = (max = 0, initial = 0, label, reverse = false, maxLabel) =
 
 const stressDamageReductionRule = localizationPath =>
     new fields.SchemaField({
-        enabled: new fields.BooleanField({ required: true, initial: false }),
         cost: new fields.NumberField({
             integer: true,
             label: `${localizationPath}.label`,

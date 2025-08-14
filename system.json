@@ -2,7 +2,7 @@
     "id": "daggerheart",
     "title": "Daggerheart",
     "description": "An unofficial implementation of the Daggerheart system",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "compatibility": {
         "minimum": "13",
         "verified": "13.347",
