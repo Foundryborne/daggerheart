@@ -102,26 +102,11 @@ export default class DHClass extends BaseDataItem {
         if (allowed === false) return;
     }
 
-    _onCreate(data, options, userId) {
-        super._onCreate(data, options, userId);
-
-        if (userId !== game.user.id) return;
-
-        if (options.parent?.type === 'character') {
-            const path = `system.${data.system.isMulticlass ? 'multiclass.value' : 'class.value'}`;
-            options.parent.update({ [path]: `${options.parent.uuid}.Item.${data._id}` });
-        }
-    }
-
     _onDelete(options, userId) {
         super._onDelete(options, userId);
 
         if (options.parent?.type === 'character') {
             const path = `system.${this.isMulticlass ? 'multiclass' : 'class'}`;
-            options.parent.update({
-                [`${path}.value`]: null
-            });
-
             foundry.utils.getProperty(options.parent, `${path}.subclass`)?.delete();
         }
     }
