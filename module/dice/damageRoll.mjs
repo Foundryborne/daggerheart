@@ -318,17 +318,19 @@ export default class DamageRoll extends DHRoll {
         });
 
         const updateMessage = game.messages.get(message._id);
+        const damageParts = updateMessage.system.damage[damageType].parts.map((damagePart, index) => {
+            if (index !== Number(part)) return damagePart;
+            return {
+                ...rollPart,
+                total: parsedRoll.total,
+                dice: rerolledDice
+            };
+        });
         await updateMessage.update({
             [`system.damage.${damageType}`]: {
                 ...updateMessage,
                 total: parsedRoll.total,
-                parts: [
-                    {
-                        ...rollPart,
-                        total: parsedRoll.total,
-                        dice: rerolledDice
-                    }
-                ]
+                parts: damageParts
             }
         });
     }
