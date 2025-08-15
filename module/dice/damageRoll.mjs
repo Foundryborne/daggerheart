@@ -137,7 +137,7 @@ export default class DamageRoll extends DHRoll {
         }
 
         if (config.isCritical && part.applyTo === CONFIG.DH.GENERAL.healingTypes.hitPoints.id) {
-            const total = part.roll.dice.reduce((acc, term) => acc + term._faces*term._number, 0);
+            const total = part.roll.dice.reduce((acc, term) => acc + term._faces * term._number, 0);
             if (total > 0) {
                 part.roll.terms.push(...this.formatModifier(total));
             }
@@ -161,11 +161,11 @@ export default class DamageRoll extends DHRoll {
             if (config.data.parent.appliedEffects) {
                 // Bardic Rally
                 const rallyChoices = config.data?.parent?.appliedEffects.reduce((a, c) => {
-                        const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
-                        if (change) a.push({ value: c.id, label: change.value });
-                        return a;
-                    }, [])
-                if(rallyChoices.length) {
+                    const change = c.changes.find(ch => ch.key === 'system.bonuses.rally');
+                    if (change) a.push({ value: c.id, label: change.value });
+                    return a;
+                }, []);
+                if (rallyChoices.length) {
                     mods.rally = {
                         label: 'DAGGERHEART.CLASS.Feature.rallyDice',
                         values: rallyChoices,
@@ -322,11 +322,13 @@ export default class DamageRoll extends DHRoll {
             [`system.damage.${damageType}`]: {
                 ...updateMessage,
                 total: parsedRoll.total,
-                [`parts.${part}`]: {
-                    ...rollPart,
-                    total: parsedRoll.total,
-                    dice: rerolledDice
-                }
+                parts: [
+                    {
+                        ...rollPart,
+                        total: parsedRoll.total,
+                        dice: rerolledDice
+                    }
+                ]
             }
         });
     }
