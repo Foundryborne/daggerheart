@@ -49,8 +49,8 @@
             </div>
             <div class="status-number">
                 <div class='status-value armor-slots'>
-                    {{#if source.system.attack.roll.bonus}}
-                    <p>{{source.system.attack.roll.bonus}}</p>
+                    {{#if source.system.attack.roll.bonus includeZero=true}}
+                    <p>{{numberFormat source.system.attack.roll.bonus sign=true}}</p>
                     {{else}}
                     <p>-</p>
                     {{/if}}
