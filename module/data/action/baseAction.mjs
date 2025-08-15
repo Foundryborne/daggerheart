@@ -208,8 +208,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     async consume(config, successCost = false) {
-        const usefulResources = {
-            ...foundry.utils.deepClone(this.actor.system.resources),
+        const actor= this.actor.system.partner ?? this.actor,
+            usefulResources = {
+            ...foundry.utils.deepClone(actor.system.resources),
             fear: {
                 value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
                 max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
@@ -246,7 +247,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 }
             }, []);
 
-        await (this.actor.system.partner ?? this.actor).modifyResource(resources);
+        await actor.modifyResource(resources);
         if (
             config.uses?.enabled &&
             ((!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success)) ||
