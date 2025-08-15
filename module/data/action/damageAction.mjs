@@ -4,7 +4,7 @@ import DHBaseAction from './baseAction.mjs';
 export default class DHDamageAction extends DHBaseAction {
     static extraSchemas = [...super.extraSchemas, 'damage', 'target', 'effects'];
 
-    getFormulaValue(part, data) {
+    /* getFormulaValue(part, data) {
         let formulaValue = part.value;
         
         if (data.hasRoll && part.resultBased && data.roll.result.duality === -1) return part.valueAlt;
@@ -61,5 +61,5 @@ export default class DHDamageAction extends DHBaseAction {
         }
 
         return CONFIG.Dice.daggerheart.DamageRoll.build(config);
-    }
+    } */
 }

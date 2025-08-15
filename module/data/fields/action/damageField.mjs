@@ -3,6 +3,8 @@ import FormulaField from '../formulaField.mjs';
 const fields = foundry.data.fields;
 
 export default class DamageField extends fields.SchemaField {
+    static order = 50;
+
     constructor(options, context = {}) {
         const damageFields = {
             parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData)),
@@ -13,6 +15,67 @@ export default class DamageField extends fields.SchemaField {
             direct: new fields.BooleanField({ initial: false, label: 'DAGGERHEART.CONFIG.DamageType.direct.name' })
         };
         super(damageFields, options, context);
+    }
+
+    static async execute(data, force = false) {
+        if(this.hasRoll && !force) return;
+        
+        const systemData = data.system ?? data;
+
+        let formulas = this.damage.parts.map(p => ({
+            formula: DamageField.getFormulaValue.call(this, p, systemData).getFormula(this.actor),
+            damageTypes: p.applyTo === 'hitPoints' && !p.type.size ? new Set(['physical']) : p.type,
+            applyTo: p.applyTo
+        }));
+
+        if (!formulas.length) return false;
+
+        formulas = DamageField.formatFormulas.call(this, formulas, systemData);
+
+        delete systemData.evaluate;
+        const config = {
+            ...systemData,
+            roll: formulas,
+            dialog: {},
+            data: this.getRollData()
+        };
+        if (this.hasSave) config.onSave = this.save.damageMod;
+        if (data.system) {
+            config.source.message = data._id;
+            config.directDamage = false;
+        } else {
+            config.directDamage = true;
+        }
+
+        if(!CONFIG.Dice.daggerheart.DamageRoll.build(config)) return false;
+    }
+    
+    static getFormulaValue(part, data) {
+        let formulaValue = part.value;
+        
+        if (data.hasRoll && part.resultBased && data.roll.result.duality === -1) return part.valueAlt;
+
+        const isAdversary = this.actor.type === 'adversary';
+        if (isAdversary && this.actor.system.type === CONFIG.DH.ACTOR.adversaryTypes.horde.id) {
+            const hasHordeDamage = this.actor.effects.find(x => x.type === 'horde');
+            if (hasHordeDamage && !hasHordeDamage.disabled) return part.valueAlt;
+        }
+
+        return formulaValue;
+    }
+
+    static formatFormulas(formulas, systemData) {
+        const formattedFormulas = [];
+        formulas.forEach(formula => {
+            if (isNaN(formula.formula))
+                formula.formula = Roll.replaceFormulaData(formula.formula, this.getRollData(systemData));
+            const same = formattedFormulas.find(
+                f => setsEqual(f.damageTypes, formula.damageTypes) && f.applyTo === formula.applyTo
+            );
+            if (same) same.formula += ` + ${formula.formula}`;
+            else formattedFormulas.push(formula);
+        });
+        return formattedFormulas;
     }
 }
 

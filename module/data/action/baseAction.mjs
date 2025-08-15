@@ -111,6 +111,26 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return actorData;
     }
 
+    prepareWorkflow(workflow) {
+        for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
+            let clsField = this.constructor.getActionField(this.constructor.extraSchemas[i]);
+            if (clsField?.execute) {
+                workflow.push({ order: clsField.order, exec: clsField.execute});
+                // const keep = clsField.prepareConfig.call(this, config);
+                // if (config.isFastForward && !keep) return;
+            }
+        }
+        workflow.sort((a, b) => a.order - b.order);
+    }
+
+    async executeWorkflow(workflow, config) {
+        console.log(workflow)
+        for(const part of workflow) {
+            console.log(part)
+            if(await part.exec.call(this, config) === false) return;
+        }
+    }
+
     async use(event, options = {}) {
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
@@ -133,25 +153,30 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             if (!config) return;
         }
 
-        if (config.hasRoll) {
-            const rollConfig = this.prepareRoll(config);
-            config.roll = rollConfig;
-            config = await this.actor.diceRoll(config);
-            if (!config) return;
-        }
+        const workflow = [];
 
-        if (this.doFollowUp(config)) {
-            if (this.rollDamage && this.damage.parts.length) await this.rollDamage(event, config);
-            else if (this.trigger) await this.trigger(event, config);
-            else if (this.hasSave || this.hasEffect) {
-                const roll = new CONFIG.Dice.daggerheart.DHRoll('');
-                roll._evaluated = true;
-                await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
-            }
-        }
+        this.prepareWorkflow(workflow);
+        await this.executeWorkflow(workflow, config);
+
+        // if (config.hasRoll) {
+            // const rollConfig = this.prepareRoll(config);
+            // config.roll = rollConfig;
+        //     config = await this.actor.diceRoll(config);
+        //     if (!config) return;
+        // }
+
+        // if (this.doFollowUp(config)) {
+        //     if (this.rollDamage && this.damage.parts.length) await this.rollDamage(event, config);
+        //     else if (this.trigger) await this.trigger(event, config);
+        //     else if (this.hasSave || this.hasEffect) {
+        //         const roll = new CONFIG.Dice.daggerheart.DHRoll('');
+        //         roll._evaluated = true;
+        //         await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
+        //     }
+        // }
 
         // Consume resources
-        await this.consume(config);
+        // await this.consume(config);
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
@@ -174,8 +199,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             },
             type: this.type,
             hasRoll: hasRoll,
-            hasDamage: this.damage?.parts?.length && this.type !== 'healing',
-            hasHealing: this.damage?.parts?.length && this.type === 'healing',
+            hasDamage: this.hasDamagePart && this.type !== 'healing',
+            hasHealing: this.hasDamagePart && this.type === 'healing',
             hasEffect: !!this.effects?.length,
             isDirect: !!this.damage?.direct,
             hasSave: this.hasSave,
@@ -190,19 +215,19 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return !config.event.shiftKey && !config.hasRoll && (config.costs?.length || config.uses);
     }
 
-    prepareRoll() {
-        const roll = {
-            baseModifiers: this.roll.getModifier(),
-            label: 'Attack',
-            type: this.actionType,
-            difficulty: this.roll?.difficulty,
-            formula: this.roll.getFormula(),
-            advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
-        };
-        if (this.roll?.type === 'diceSet' || !this.hasRoll) roll.lite = true;
+    // prepareRoll() {
+    //     const roll = {
+    //         baseModifiers: this.roll.getModifier(),
+    //         label: 'Attack',
+    //         type: this.actionType,
+    //         difficulty: this.roll?.difficulty,
+    //         formula: this.roll.getFormula(),
+    //         advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
+    //     };
+    //     if (this.roll?.type === 'diceSet' || !this.hasRoll) roll.lite = true;
 
-        return roll;
-    }
+    //     return roll;
+    // }
 
     doFollowUp(config) {
         return !config.hasRoll;
@@ -270,6 +295,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     get hasRoll() {
         return !!this.roll?.type;
+    }
+
+    get hasDamagePart() {
+        return this.damage?.parts?.length;
     }
 
     get modifiers() {

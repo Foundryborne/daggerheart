@@ -110,7 +110,32 @@ export class DHActionRollData extends foundry.abstract.DataModel {
 }
 
 export default class RollField extends fields.EmbeddedDataField {
+    static order = 10;
+
     constructor(options, context = {}) {
         super(DHActionRollData, options, context);
+    }
+
+    static async execute(config) {
+        if(!config.hasRoll) return;
+        config = await this.actor.diceRoll(config);
+        if(!config) return false;
+    }
+    
+    static prepareConfig(config) {
+        if(!config.hasRoll) return true;
+        
+        const roll = {
+            baseModifiers: this.roll.getModifier(),
+            label: 'Attack',
+            type: this.actionType,
+            difficulty: this.roll?.difficulty,
+            formula: this.roll.getFormula(),
+            advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
+        };
+        if (this.roll.type === 'diceSet' || !this.hasRoll) roll.lite = true;
+
+        config.roll = roll;
+        return true;
     }
 }
