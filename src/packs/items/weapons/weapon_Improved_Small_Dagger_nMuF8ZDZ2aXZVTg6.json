@@ -16,7 +16,7 @@
       {
         "value": "paired",
         "effectIds": [
-          "JHIUGyZH5q83ODvd"
+          "PMXG4l85UkXRf41E"
         ],
         "actionIds": []
       }
@@ -105,7 +105,7 @@
   "effects": [
     {
       "name": "Paired",
-      "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range",
+      "description": "Add this Secondary Weapon's tier + 1 to your primary weapon against targets within Melee range",
       "img": "icons/skills/melee/weapons-crossed-swords-yellow-teal.webp",
       "changes": [
         {
@@ -122,7 +122,7 @@
           "type": "withinRange"
         }
       },
-      "_id": "JHIUGyZH5q83ODvd",
+      "_id": "PMXG4l85UkXRf41E",
       "type": "base",
       "disabled": false,
       "duration": {
@@ -141,12 +141,12 @@
         "exportSource": null,
         "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "1.0.0",
-        "createdTime": 1754814703717,
-        "modifiedTime": 1754814703717,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "systemVersion": "1.0.4",
+        "createdTime": 1755268329305,
+        "modifiedTime": 1755268329305,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
-      "_key": "!items.effects!nMuF8ZDZ2aXZVTg6.JHIUGyZH5q83ODvd"
+      "_key": "!items.effects!nMuF8ZDZ2aXZVTg6.PMXG4l85UkXRf41E"
     }
   ],
   "sort": 0,
@@ -161,10 +161,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.0",
+    "systemVersion": "1.0.4",
     "createdTime": 1753794291887,
-    "modifiedTime": 1754814703719,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755268329308,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!nMuF8ZDZ2aXZVTg6"
 }
