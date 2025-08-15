@@ -563,10 +563,20 @@ export default class DhpActor extends Actor {
                 if (armorSlotResult) {
                     const { modifiedDamage, armorSpent, stressSpent } = armorSlotResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
-                    updates.push(
-                        ...(armorSpent ? [{ value: armorSpent, key: 'armor' }] : []),
-                        ...(stressSpent ? [{ value: stressSpent, key: 'stress' }] : [])
-                    );
+                    if(armorSpent) {
+                        const armorUpdate = updates.find(u => u.key === 'armor');
+                        if(armorUpdate)
+                            armorUpdate.value += armorSpent;
+                        else
+                            updates.push({ value: armorSpent, key: 'armor' });
+                    }
+                    if(stressSpent) {
+                        const stressUpdate = updates.find(u => u.key === 'stress');
+                        if(stressUpdate)
+                            stressUpdate.value += stressSpent;
+                        else
+                            updates.push({ value: stressSpent, key: 'stress' });
+                    }
                 }
             }
         }
