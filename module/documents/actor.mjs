@@ -25,6 +25,14 @@ export default class DhpActor extends Actor {
 
     /* -------------------------------------------- */
 
+    /** @inheritDoc */
+    static migrateData(source) {
+        if(source.system?.attack && !source.system.attack.type) source.system.attack.type = "attack";
+        return super.migrateData(source);
+    }
+
+    /* -------------------------------------------- */
+
     /**@inheritdoc */
     static getDefaultArtwork(actorData) {
         const { type } = actorData;
