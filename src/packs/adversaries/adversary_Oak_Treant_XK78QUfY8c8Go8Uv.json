@@ -103,7 +103,8 @@
         ]
       },
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

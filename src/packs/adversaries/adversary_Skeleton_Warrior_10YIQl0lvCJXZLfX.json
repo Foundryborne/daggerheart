@@ -104,7 +104,8 @@
       },
       "img": "icons/weapons/swords/sword-guard-brass-worn.webp",
       "type": "attack",
-      "range": "melee"
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},

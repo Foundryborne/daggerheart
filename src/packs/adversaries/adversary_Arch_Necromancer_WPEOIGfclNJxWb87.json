@@ -115,7 +115,8 @@
         ]
       },
       "img": "icons/magic/unholy/beam-ringed-impact-purple.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

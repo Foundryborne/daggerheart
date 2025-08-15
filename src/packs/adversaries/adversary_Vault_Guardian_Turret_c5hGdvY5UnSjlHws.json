@@ -104,7 +104,8 @@
         ]
       },
       "img": "icons/commodities/tech/metal-joint.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

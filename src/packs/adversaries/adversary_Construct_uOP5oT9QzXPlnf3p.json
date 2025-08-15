@@ -104,7 +104,8 @@
       "name": "Fist Slam",
       "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
       "type": "attack",
-      "range": "melee"
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},

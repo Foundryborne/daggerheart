@@ -110,7 +110,8 @@
         ]
       },
       "img": "icons/magic/symbols/rune-sigil-rough-white-teal.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

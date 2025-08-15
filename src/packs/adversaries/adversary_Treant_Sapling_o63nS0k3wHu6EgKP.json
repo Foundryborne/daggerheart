@@ -96,7 +96,8 @@
           }
         ]
       },
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

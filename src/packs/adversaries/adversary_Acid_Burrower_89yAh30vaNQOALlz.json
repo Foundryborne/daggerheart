@@ -125,7 +125,7 @@
       "type": "attack",
       "description": "",
       "img": "icons/creatures/claws/claw-curved-jagged-yellow.webp",
-      "chatDisplay": true,
+      "chatDisplay": false,
       "actionType": "action",
       "cost": [],
       "uses": {

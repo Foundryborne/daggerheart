@@ -115,7 +115,8 @@
       },
       "range": "far",
       "img": "icons/weapons/staves/staff-ornate-purple.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

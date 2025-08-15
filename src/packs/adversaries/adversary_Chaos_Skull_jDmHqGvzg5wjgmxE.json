@@ -104,7 +104,8 @@
         ]
       },
       "img": "icons/magic/light/beam-rays-magenta.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

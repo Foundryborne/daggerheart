@@ -104,7 +104,8 @@
         "bonus": 0,
         "type": "attack"
       },
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

@@ -95,7 +95,8 @@
         ]
       },
       "type": "attack",
-      "range": "melee"
+      "range": "melee",
+      "chatDisplay": false
     },
     "resources": {
       "hitPoints": {

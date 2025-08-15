@@ -104,7 +104,8 @@
         ]
       },
       "img": "icons/weapons/bows/shortbow-leather.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

@@ -110,7 +110,8 @@
       },
       "img": "icons/weapons/clubs/club-baton-blue.webp",
       "type": "attack",
-      "range": "melee"
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},

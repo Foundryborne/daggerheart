@@ -110,7 +110,8 @@
       },
       "img": "icons/creatures/claws/claw-straight-brown.webp",
       "type": "attack",
-      "range": "melee"
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},

@@ -97,7 +97,8 @@
         "bonus": 1,
         "type": "attack"
       },
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

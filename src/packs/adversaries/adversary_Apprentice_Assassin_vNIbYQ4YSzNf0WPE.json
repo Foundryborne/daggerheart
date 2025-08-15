@@ -103,7 +103,8 @@
         ]
       },
       "img": "icons/weapons/daggers/dagger-bone-black.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

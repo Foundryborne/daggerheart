@@ -110,7 +110,8 @@
       },
       "img": "icons/weapons/daggers/dagger-curved-purple.webp",
       "range": "melee",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

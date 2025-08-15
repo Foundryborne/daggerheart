@@ -97,7 +97,8 @@
       },
       "img": "icons/creatures/claws/claw-talons-yellow-red.webp",
       "type": "attack",
-      "range": "melee"
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},

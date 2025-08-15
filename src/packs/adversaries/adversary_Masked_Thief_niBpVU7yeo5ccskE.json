@@ -110,7 +110,8 @@
         ]
       },
       "range": "melee",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},

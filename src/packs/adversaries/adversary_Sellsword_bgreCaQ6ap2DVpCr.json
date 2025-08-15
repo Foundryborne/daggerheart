@@ -97,7 +97,8 @@
       },
       "img": "icons/weapons/swords/sword-guard.webp",
       "type": "attack",
-      "range": "melee"
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},

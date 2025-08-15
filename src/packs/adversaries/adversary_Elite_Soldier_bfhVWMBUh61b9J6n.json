@@ -89,7 +89,7 @@
       "systemPath": "actions",
       "type": "attack",
       "description": "",
-      "chatDisplay": true,
+      "chatDisplay": false,
       "actionType": "action",
       "cost": [],
       "uses": {

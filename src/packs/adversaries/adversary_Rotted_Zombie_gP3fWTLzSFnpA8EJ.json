@@ -89,7 +89,8 @@
       },
       "img": "icons/creatures/abilities/mouth-teeth-sharp.webp",
       "type": "attack",
-      "range": "melee"
+      "range": "melee",
+      "chatDisplay": false
     },
     "resources": {
       "hitPoints": {
