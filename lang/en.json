@@ -1434,11 +1434,11 @@
                 },
                 "protective": {
                     "name": "Protective",
-                    "description": "Add your character's Tier to your Armor Score",
+                    "description": "Add the item's Tier to your Armor Score",
                     "effects": {
                         "protective": {
                             "name": "Protective",
-                            "description": "Add your character's Tier to your Armor Score"
+                            "description": "Add the item's Tier to your Armor Score"
                         }
                     }
                 },
