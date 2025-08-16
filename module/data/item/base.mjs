@@ -26,7 +26,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
             hasResource: false,
             isQuantifiable: false,
             isInventoryItem: false,
-            hasActions: false
+            hasActions: false,
+            hasAttribution: true
         };
     }
 
@@ -37,7 +38,13 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
 
     /** @inheritDoc */
     static defineSchema() {
-        const schema = {};
+        const schema = {
+            attribution: new fields.SchemaField({
+                source: new fields.StringField(),
+                page: new fields.NumberField(),
+                artist: new fields.StringField()
+            })
+        };
 
         if (this.metadata.hasDescription) schema.description = new fields.HTMLField({ required: true, nullable: true });
 

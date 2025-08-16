@@ -11,7 +11,14 @@ export default class DhpEnvironment extends DHBaseActorSheet {
             height: 725
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
         },
         actions: {},
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]

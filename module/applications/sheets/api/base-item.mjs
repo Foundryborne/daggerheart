@@ -13,7 +13,16 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         classes: ['item'],
         position: { width: 600 },
-        window: { resizable: true },
+        window: {
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
+        },
         form: {
             submitOnChange: true
         },

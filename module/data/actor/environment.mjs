@@ -12,7 +12,8 @@ export default class DhEnvironment extends BaseDataActor {
             label: 'TYPES.Actor.environment',
             type: 'environment',
             settingSheet: DHEnvironmentSettings,
-            hasResistances: false
+            hasResistances: false,
+            hasAttribution: true
         });
     }
 

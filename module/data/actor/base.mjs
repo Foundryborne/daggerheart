@@ -39,7 +39,8 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
             type: 'base',
             isNPC: true,
             settingSheet: null,
-            hasResistances: true
+            hasResistances: true,
+            hasAttribution: false
         };
     }
 
@@ -53,6 +54,13 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
         const fields = foundry.data.fields;
         const schema = {};
 
+        if (this.metadata.hasAttribution) {
+            schema.attribution = new fields.SchemaField({
+                source: new fields.StringField(),
+                page: new fields.NumberField(),
+                artist: new fields.StringField()
+            });
+        }
         if (this.metadata.isNPC) schema.description = new fields.HTMLField({ required: true, nullable: true });
         if (this.metadata.hasResistances)
             schema.resistance = new fields.SchemaField({

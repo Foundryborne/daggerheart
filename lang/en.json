@@ -236,6 +236,9 @@
             }
         },
         "APPLICATIONS": {
+            "Attribution": {
+                "title": "Attribution"
+            },
             "CharacterCreation": {
                 "tabs": {
                     "ancestry": "Ancestry",
@@ -1905,6 +1908,7 @@
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
+            "artistAttribution": "Artwork By: {artist}",
             "attack": "Attack",
             "basics": "Basics",
             "bonus": "Bonus",
@@ -2005,6 +2009,11 @@
         },
         "ITEMS": {
             "FIELDS": {
+                "attribution": {
+                    "source": { "label": "Source" },
+                    "page": { "label": "Page" },
+                    "artist": { "label": "Artist" }
+                },
                 "resource": {
                     "amount": { "label": "Amount" },
                     "dieFaces": { "label": "Die Faces" },
@@ -2406,7 +2415,8 @@
                 "rulesOff": "Rules Off",
                 "remainingUses": "Uses refresh on {type}",
                 "rightClickExtand": "Right-Click to extand",
-                "companionPartnerLevelBlock": "The companion needs an assigned partner to level up."
+                "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
+                "configureAttribution": "Configure Attribution"
             }
         }
     }
