@@ -1,6 +1,6 @@
 {
   "name": "Perfected Zombie",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "7XHlANCPz18yvl5L",
   "system": {
@@ -16,7 +16,7 @@
         "isReversed": true
       },
       "stress": {
-        "value": 1,
+        "value": 0,
         "max": 4,
         "isReversed": true
       }
@@ -104,7 +104,8 @@
           }
         ]
       },
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -112,12 +113,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1753922784323,
-    "modifiedTime": 1754236374324,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755267137806,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "CP6iRfHdyFWniTHY",
   "sort": 800000,
@@ -133,7 +134,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

@@ -1,6 +1,6 @@
 {
   "name": "War Wizard",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "OgzrmfH1ZbpljX7k",
   "system": {
@@ -115,7 +115,8 @@
           }
         ]
       },
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -123,12 +124,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784373,
-    "modifiedTime": 1754236375356,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755259462894,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "noDdT0tsN6FXSmC8",
   "sort": 3100000,
@@ -144,7 +145,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -595,12 +596,7 @@
       "type": "feature",
       "system": {
         "description": "<p>When the Wizard takes damage from an attack within Close range, deal <strong>2d6</strong> magic damage to the attacker. This reaction can’t be used again until the Wizard refreshes it with their “Refresh Warding Sphere” action.</p>",
-        "resource": {
-          "type": "simple",
-          "value": 1,
-          "max": "1",
-          "icon": "fa-solid fa-hand-sparkles"
-        },
+        "resource": null,
         "actions": {
           "2fHrpaZW9toi6nin": {
             "type": "damage",
@@ -612,7 +608,7 @@
             "cost": [],
             "uses": {
               "value": null,
-              "max": "",
+              "max": "1",
               "recovery": null
             },
             "damage": {
@@ -673,12 +669,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.0.4",
         "createdTime": 1754085493649,
-        "modifiedTime": 1754143416150,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1755265745660,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
       "_key": "!actors.items!noDdT0tsN6FXSmC8.9cPigHRcUfJC9gD8"
     }

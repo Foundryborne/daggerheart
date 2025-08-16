@@ -1,6 +1,6 @@
 {
   "name": "Sylvan Soldier",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
   "system": {
@@ -40,7 +40,8 @@
     "experiences": {
       "3HwCDcCvzVnicJKe": {
         "name": "Tracker",
-        "value": 2
+        "value": 2,
+        "description": ""
       }
     },
     "bonuses": {
@@ -108,7 +109,9 @@
           }
         ]
       },
-      "type": "attack"
+      "type": "attack",
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -116,12 +119,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1753922784356,
-    "modifiedTime": 1754236374783,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755264471444,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "VtFBt9XBE0WrGGxP",
   "sort": 3600000,
@@ -137,7 +140,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -455,14 +458,14 @@
       "_id": "1dmKoSnV82sLc8xZ",
       "img": "icons/magic/nature/root-vine-leaves-green.webp",
       "system": {
-        "description": "<p>When the Soldier makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the Soldier’s next attack or a PC succeeds on an Instinct Roll (14) to fi nd them.</p>",
+        "description": "<p>When the Soldier makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the Soldier’s next attack or a PC succeeds on an Instinct Roll (14) to find them.</p>",
         "resource": null,
         "actions": {
           "l32BjO9J0jFvD0Zy": {
             "type": "effect",
             "_id": "l32BjO9J0jFvD0Zy",
             "systemPath": "actions",
-            "description": "<p>When the Soldier makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the Soldier’s next attack or a PC succeeds on an Instinct Roll (14) to fi nd them.</p>",
+            "description": "<p>When the Soldier makes a successful attack, you can <strong>mark a Stress</strong> to become Hidden until the Soldier’s next attack or a PC succeeds on an Instinct Roll (14) to find them.</p>",
             "chatDisplay": true,
             "actionType": "action",
             "cost": [
@@ -557,12 +560,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.0.4",
         "createdTime": 1754054512042,
-        "modifiedTime": 1754145055093,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1755261654355,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
       "_key": "!actors.items!VtFBt9XBE0WrGGxP.1dmKoSnV82sLc8xZ"
     }

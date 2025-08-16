@@ -1,6 +1,6 @@
 {
   "name": "Electric Eels",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "OgzrmfH1ZbpljX7k",
   "system": {
@@ -103,8 +103,9 @@
         "bonus": 0,
         "type": "attack"
       },
-      "range": "",
-      "type": "attack"
+      "range": "melee",
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -112,12 +113,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1753922784258,
-    "modifiedTime": 1754236374738,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755264962798,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "TLzY1nDw0Bu9Ud40",
   "sort": 1900000,
@@ -133,7 +134,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

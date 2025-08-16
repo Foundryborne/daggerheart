@@ -16,7 +16,7 @@
       {
         "value": "paired",
         "effectIds": [
-          "WSMhQAuJyjWet29Z"
+          "zQMaG3JcUWJR9k2L"
         ],
         "actionIds": []
       }
@@ -105,7 +105,7 @@
   "effects": [
     {
       "name": "Paired",
-      "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range",
+      "description": "Add this Secondary Weapon's tier + 1 to your primary weapon against targets within Melee range",
       "img": "icons/skills/melee/weapons-crossed-swords-yellow-teal.webp",
       "changes": [
         {
@@ -114,9 +114,16 @@
           "value": "ITEM.@system.tier + 1"
         }
       ],
-      "_id": "WSMhQAuJyjWet29Z",
+      "system": {
+        "rangeDependence": {
+          "enabled": true,
+          "range": "melee",
+          "target": "hostile",
+          "type": "withinRange"
+        }
+      },
+      "_id": "zQMaG3JcUWJR9k2L",
       "type": "base",
-      "system": {},
       "disabled": false,
       "duration": {
         "startTime": null,
@@ -132,14 +139,14 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
-        "createdTime": 1753794842150,
-        "modifiedTime": 1753794842150,
-        "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+        "systemVersion": "1.0.4",
+        "createdTime": 1755268343094,
+        "modifiedTime": 1755268343094,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
-      "_key": "!items.effects!p3nz5CaGUoyuGVg0.WSMhQAuJyjWet29Z"
+      "_key": "!items.effects!p3nz5CaGUoyuGVg0.zQMaG3JcUWJR9k2L"
     }
   ],
   "sort": 0,
@@ -152,12 +159,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1753794821174,
-    "modifiedTime": 1753794842154,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755268343096,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!p3nz5CaGUoyuGVg0"
 }

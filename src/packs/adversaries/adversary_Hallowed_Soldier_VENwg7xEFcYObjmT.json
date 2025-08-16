@@ -1,6 +1,6 @@
 {
   "name": "Hallowed Soldier",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "7XHlANCPz18yvl5L",
   "system": {
@@ -96,7 +96,9 @@
         ]
       },
       "img": "icons/skills/melee/sword-shield-stylized-white.webp",
-      "type": "attack"
+      "type": "attack",
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -104,12 +106,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1753922784279,
-    "modifiedTime": 1754236374772,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755266855456,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "VENwg7xEFcYObjmT",
   "sort": 1100000,
@@ -125,7 +127,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

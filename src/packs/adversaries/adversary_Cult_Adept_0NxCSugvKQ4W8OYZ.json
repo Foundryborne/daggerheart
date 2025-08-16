@@ -1,6 +1,6 @@
 {
   "name": "Cult Adept",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "OgzrmfH1ZbpljX7k",
   "system": {
@@ -115,7 +115,8 @@
       },
       "range": "far",
       "img": "icons/weapons/staves/staff-ornate-purple.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -123,12 +124,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784239,
-    "modifiedTime": 1754236373793,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755259462512,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "0NxCSugvKQ4W8OYZ",
   "sort": 100000,
@@ -144,7 +145,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -620,12 +621,7 @@
       "type": "feature",
       "system": {
         "description": "<p> Twice per scene, when a PC rolls a failure with Fear, clear a Stress.</p>",
-        "resource": {
-          "type": "simple",
-          "value": 0,
-          "max": "2",
-          "icon": ""
-        },
+        "resource": null,
         "actions": {
           "3tibqB97ooJesxf0": {
             "type": "healing",
@@ -637,8 +633,8 @@
             "cost": [],
             "uses": {
               "value": null,
-              "max": "",
-              "recovery": null
+              "max": "2",
+              "recovery": "scene"
             },
             "damage": {
               "parts": [
@@ -692,7 +688,7 @@
             },
             "name": "Clear Stress",
             "img": "icons/magic/unholy/silhouette-robe-evil-glow.webp",
-            "range": ""
+            "range": "self"
           }
         },
         "originItemType": null,
@@ -712,12 +708,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.0.4",
         "createdTime": 1754076395683,
-        "modifiedTime": 1754142376642,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1755264866325,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
       "_key": "!actors.items!0NxCSugvKQ4W8OYZ.x6FbcrfOscb3er6P"
     }

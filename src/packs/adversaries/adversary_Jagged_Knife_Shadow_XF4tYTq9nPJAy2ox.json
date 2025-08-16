@@ -1,6 +1,6 @@
 {
   "name": "Jagged Knife Shadow",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
   "system": {
@@ -40,7 +40,8 @@
     "experiences": {
       "ZUMG6p8iB73HY73o": {
         "name": "Intrusion",
-        "value": 3
+        "value": 3,
+        "description": ""
       }
     },
     "bonuses": {
@@ -108,7 +109,9 @@
           }
         ]
       },
-      "type": "attack"
+      "type": "attack",
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -116,12 +119,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1753922784295,
-    "modifiedTime": 1754236374879,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755260040062,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "XF4tYTq9nPJAy2ox",
   "sort": 3700000,
@@ -137,7 +140,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -341,7 +344,36 @@
       "system": {
         "description": "<p>Become <em>Hidden</em> until after the Shadow’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "s0X44RPg5hA8lVax": {
+            "type": "effect",
+            "_id": "s0X44RPg5hA8lVax",
+            "systemPath": "actions",
+            "description": "<p>Become <em>Hidden</em> until after the Shadow’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "",
+              "recovery": null,
+              "consumeOnSuccess": false
+            },
+            "effects": [
+              {
+                "_id": "w5VTwlHmUjl8XCQ4",
+                "onSave": false
+              }
+            ],
+            "target": {
+              "type": "self",
+              "amount": null
+            },
+            "name": "Use",
+            "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+            "range": "self"
+          }
+        },
         "originItemType": null,
         "subType": null,
         "originId": null
@@ -349,9 +381,11 @@
       "effects": [
         {
           "name": "Cloaked",
-          "type": "base",
-          "_id": "9fZkdsHfyTskJk7r",
           "img": "icons/magic/perception/silhouette-stealth-shadow.webp",
+          "origin": "Compendium.daggerheart.adversaries.Actor.XF4tYTq9nPJAy2ox.Item.ILIogeKbYioPutRw",
+          "transfer": false,
+          "_id": "w5VTwlHmUjl8XCQ4",
+          "type": "base",
           "system": {
             "rangeDependence": {
               "enabled": false,
@@ -360,8 +394,15 @@
               "range": "melee"
             }
           },
-          "changes": [],
-          "disabled": true,
+          "changes": [
+            {
+              "key": "system.advantageSources",
+              "mode": 2,
+              "value": "Attacks made while Hidden",
+              "priority": null
+            }
+          ],
+          "disabled": false,
           "duration": {
             "startTime": null,
             "combat": null,
@@ -372,9 +413,7 @@
             "startTurn": null
           },
           "description": "<p>Become <em>Hidden</em> until after the Shadow’s next attack. Attacks made while Hidden from this feature have advantage.</p>",
-          "origin": null,
           "tint": "#ffffff",
-          "transfer": true,
           "statuses": [
             "hidden"
           ],
@@ -384,14 +423,14 @@
             "compendiumSource": null,
             "duplicateSource": null,
             "exportSource": null,
-            "coreVersion": "13.346",
+            "coreVersion": "13.347",
             "systemId": "daggerheart",
-            "systemVersion": "0.0.1",
-            "createdTime": 1754049344935,
-            "modifiedTime": 1754049371699,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "systemVersion": "1.0.4",
+            "createdTime": 1755263044332,
+            "modifiedTime": 1755263071114,
+            "lastModifiedBy": "VZIeX2YDvX338Zvr"
           },
-          "_key": "!actors.items.effects!XF4tYTq9nPJAy2ox.ILIogeKbYioPutRw.9fZkdsHfyTskJk7r"
+          "_key": "!actors.items.effects!XF4tYTq9nPJAy2ox.ILIogeKbYioPutRw.w5VTwlHmUjl8XCQ4"
         }
       ],
       "folder": null,
@@ -405,12 +444,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.0.4",
         "createdTime": 1754049306353,
-        "modifiedTime": 1754049333765,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1755263044345,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
       "_key": "!actors.items!XF4tYTq9nPJAy2ox.ILIogeKbYioPutRw"
     }

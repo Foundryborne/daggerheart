@@ -1,6 +1,6 @@
 {
   "name": "Acid Burrower",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
   "system": {
@@ -125,7 +125,7 @@
       "type": "attack",
       "description": "",
       "img": "icons/creatures/claws/claw-curved-jagged-yellow.webp",
-      "chatDisplay": true,
+      "chatDisplay": false,
       "actionType": "action",
       "cost": [],
       "uses": {
@@ -150,12 +150,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1754010222829,
-    "modifiedTime": 1754010222919,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755259462470,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "ownership": {
     "default": 0,
@@ -170,7 +170,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

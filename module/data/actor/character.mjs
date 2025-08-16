@@ -93,14 +93,6 @@ export default class DhCharacter extends BaseDataActor {
                     faith: new fields.StringField({})
                 })
             }),
-            class: new fields.SchemaField({
-                value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
-                subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })
-            }),
-            multiclass: new fields.SchemaField({
-                value: new ForeignDocumentUUIDField({ type: 'Item', nullable: true }),
-                subclass: new ForeignDocumentUUIDField({ type: 'Item', nullable: true })
-            }),
             attack: new ActionField({
                 initial: {
                     name: 'Unarmed Attack',
@@ -314,6 +306,26 @@ export default class DhCharacter extends BaseDataActor {
         return this.parent.items.find(x => x.type === 'community') ?? null;
     }
 
+    get class() {
+        const value = this.parent.items.find(x => x.type === 'class' && !x.system.isMulticlass);
+        const subclass = this.parent.items.find(x => x.type === 'subclass' && !x.system.isMulticlass);
+
+        return {
+            value,
+            subclass
+        };
+    }
+
+    get multiclass() {
+        const value = this.parent.items.find(x => x.type === 'Class' && x.system.isMulticlass);
+        const subclass = this.parent.items.find(x => x.type === 'subclass' && x.system.isMulticlass);
+
+        return {
+            value,
+            subclass
+        };
+    }
+
     get features() {
         return this.parent.items.filter(x => x.type === 'feature') ?? [];
     }
@@ -323,7 +335,8 @@ export default class DhCharacter extends BaseDataActor {
     }
 
     get needsCharacterSetup() {
-        return !(this.class.value || this.class.subclass || this.ancestry || this.community);
+        const { value: classValue, subclass } = this.class;
+        return !(classValue || subclass || this.ancestry || this.community);
     }
 
     get spellcastModifierTrait() {
@@ -347,7 +360,8 @@ export default class DhCharacter extends BaseDataActor {
 
     get domains() {
         const classDomains = this.class.value ? this.class.value.system.domains : [];
-        const multiclassDomains = this.multiclass.value ? this.multiclass.value.system.domains : [];
+        const multiclass = this.multiclass.value;
+        const multiclassDomains = multiclass ? multiclass.system.domains : [];
         return [...classDomains, ...multiclassDomains];
     }
 

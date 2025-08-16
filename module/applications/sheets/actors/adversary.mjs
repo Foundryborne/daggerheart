@@ -1,3 +1,4 @@
+import { getDocFromElement } from '../../../helpers/utils.mjs';
 import DHBaseActorSheet from '../api/base-actor.mjs';
 
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
@@ -51,6 +52,15 @@ export default class AdversarySheet extends DHBaseActorSheet {
                 break;
         }
         return context;
+    }
+
+    /**@inheritdoc */
+    _attachPartListeners(partId, htmlElement, options) {
+        super._attachPartListeners(partId, htmlElement, options);
+
+        htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
+            element.addEventListener('change', this.updateItemResource.bind(this));
+        });
     }
 
     /**
@@ -120,5 +130,19 @@ export default class AdversarySheet extends DHBaseActorSheet {
         };
 
         this.actor.diceRoll(config);
+    }
+
+    /* -------------------------------------------- */
+    /*  Application Listener Actions                */
+    /* -------------------------------------------- */
+
+    async updateItemResource(event) {
+        const item = await getDocFromElement(event.currentTarget);
+        if (!item) return;
+
+        const max = event.currentTarget.max ? Number(event.currentTarget.max) : null;
+        const value = max ? Math.min(Number(event.currentTarget.value), max) : event.currentTarget.value;
+        await item.update({ 'system.resource.value': value });
+        this.render();
     }
 }

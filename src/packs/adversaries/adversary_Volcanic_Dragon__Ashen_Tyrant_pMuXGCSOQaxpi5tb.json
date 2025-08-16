@@ -3,7 +3,7 @@
   "name": "Volcanic Dragon: Ashen Tyrant",
   "type": "adversary",
   "_id": "pMuXGCSOQaxpi5tb",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "system": {
     "description": "<p><em>No enemy has ever had the insolence to wound the dragon so. As the lava settles, it’s ground to ash like the dragon’s past foes.</em></p>",
     "resistance": {
@@ -21,7 +21,7 @@
     "tier": 4,
     "type": "solo",
     "notes": "",
-    "difficulty": 20,
+    "difficulty": 18,
     "hordeHp": 1,
     "damageThresholds": {
       "major": 29,
@@ -154,7 +154,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -394,12 +394,12 @@
             "compendiumSource": null,
             "duplicateSource": null,
             "exportSource": null,
-            "coreVersion": "13.346",
+            "coreVersion": "13.347",
             "systemId": "daggerheart",
             "systemVersion": "0.0.1",
             "createdTime": 1754139762122,
-            "modifiedTime": 1754139779997,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "modifiedTime": 1755267046098,
+            "lastModifiedBy": "VZIeX2YDvX338Zvr"
           },
           "_key": "!actors.items.effects!pMuXGCSOQaxpi5tb.jOojMjb779Kea1ZV.zCi90lgFAaA7yrJG"
         }
@@ -824,7 +824,7 @@
           "name": "Apocalyptic Thrasing",
           "img": "icons/creatures/abilities/mouth-teeth-fire-orange.webp",
           "origin": "Compendium.daggerheart.adversaries.Actor.pMuXGCSOQaxpi5tb.Item.uWiyaJPXcoW06pOM",
-          "transfer": true,
+          "transfer": false,
           "_id": "YUjdwrEZ4zn7WR9X",
           "type": "base",
           "system": {
@@ -849,7 +849,7 @@
           "description": "<p><em>Restrained</em> by the rubble until you break free with a successful Strength Roll.</p>",
           "tint": "#ffffff",
           "statuses": [
-            "restrain"
+            "restrained"
           ],
           "sort": 0,
           "flags": {},
@@ -857,12 +857,12 @@
             "compendiumSource": null,
             "duplicateSource": null,
             "exportSource": null,
-            "coreVersion": "13.346",
+            "coreVersion": "13.347",
             "systemId": "daggerheart",
             "systemVersion": "0.0.1",
             "createdTime": 1754140152911,
-            "modifiedTime": 1754140181136,
-            "lastModifiedBy": "MQSznptE5yLT7kj8"
+            "modifiedTime": 1755267090918,
+            "lastModifiedBy": "VZIeX2YDvX338Zvr"
           },
           "_key": "!actors.items.effects!pMuXGCSOQaxpi5tb.uWiyaJPXcoW06pOM.YUjdwrEZ4zn7WR9X"
         }
@@ -899,12 +899,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1753929252617,
-    "modifiedTime": 1754219468339,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755267105169,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!pMuXGCSOQaxpi5tb"
 }

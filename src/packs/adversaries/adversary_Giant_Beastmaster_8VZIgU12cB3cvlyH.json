@@ -1,6 +1,6 @@
 {
   "name": "Giant Beastmaster",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "OgzrmfH1ZbpljX7k",
   "system": {
@@ -110,7 +110,8 @@
           }
         ]
       },
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -118,12 +119,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784268,
-    "modifiedTime": 1754236374099,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755259462604,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "8VZIgU12cB3cvlyH",
   "sort": 800000,
@@ -139,7 +140,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -423,7 +424,31 @@
       "system": {
         "description": "<p>Twice per scene, summon a Bear, Dire Wolf, or similar Tier 1 animal adversary under the Beastmaster’s control. The adversary appears at Close range and is immediately spotlighted.</p>",
         "resource": null,
-        "actions": {},
+        "actions": {
+          "eSRUMqpQDPRG9leg": {
+            "type": "effect",
+            "_id": "eSRUMqpQDPRG9leg",
+            "systemPath": "actions",
+            "description": "<p>Twice per scene, summon a @UUID[Compendium.daggerheart.adversaries.Actor.71qKDLKO3CsrNkdy]{Bear}, @UUID[Compendium.daggerheart.adversaries.Actor.wNzeuQLfLUMvgHlQ]{Dire Wolf} or similar Tier 1 animal adversary under the Beastmaster’s control. The adversary appears at Close range and is immediately spotlighted.</p>",
+            "chatDisplay": true,
+            "actionType": "action",
+            "cost": [],
+            "uses": {
+              "value": null,
+              "max": "2",
+              "recovery": "scene",
+              "consumeOnSuccess": false
+            },
+            "effects": [],
+            "target": {
+              "type": "any",
+              "amount": null
+            },
+            "name": "Summon",
+            "img": "icons/creatures/mammals/ox-bull-horned-glowing-orange.webp",
+            "range": "close"
+          }
+        },
         "originItemType": null,
         "originId": null
       },
@@ -441,12 +466,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.0.4",
         "createdTime": 1754078527859,
-        "modifiedTime": 1754078561245,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1755265167372,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
       "_key": "!actors.items!8VZIgU12cB3cvlyH.w1oHm0NoEavQgUzl"
     }
