@@ -1,6 +1,8 @@
 const fields = foundry.data.fields;
 
 export default class SaveField extends fields.SchemaField {
+    static order = 75;
+
     constructor(options = {}, context = {}) {
         const saveFields = {
             trait: new fields.StringField({
@@ -15,5 +17,15 @@ export default class SaveField extends fields.SchemaField {
             })
         };
         super(saveFields, options, context);
+    }
+
+    static async execute(config) {
+        if(!this.hasRoll) {
+            const roll = new CONFIG.Dice.daggerheart.DHRoll('');
+            roll._evaluated = true;
+            await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
+        } else {
+            return;
+        }
     }
 }

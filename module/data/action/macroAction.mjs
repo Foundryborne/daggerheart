@@ -3,7 +3,7 @@ import DHBaseAction from './baseAction.mjs';
 export default class DHMacroAction extends DHBaseAction {
     static extraSchemas = [...super.extraSchemas, 'macro'];
 
-    async trigger(event, ...args) {
+    /* async trigger(event, ...args) {
         const fixUUID = !this.macro.includes('Macro.') ? `Macro.${this.macro}` : this.macro,
             macro = await fromUuid(fixUUID);
         try {
@@ -12,5 +12,5 @@ export default class DHMacroAction extends DHBaseAction {
         } catch (error) {
             ui.notifications.error(error);
         }
-    }
+    } */
 }
