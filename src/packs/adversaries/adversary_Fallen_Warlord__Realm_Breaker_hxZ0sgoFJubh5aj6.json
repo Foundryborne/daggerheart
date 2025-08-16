@@ -155,7 +155,12 @@
         }
       }
     },
-    "motivesAndTactics": "Corrupt, dominate, punish, break the weak"
+    "motivesAndTactics": "Corrupt, dominate, punish, break the weak",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 97,
+      "artist": ""
+    }
   },
   "prototypeToken": {
     "name": "Fallen Warlord: Realm Breaker",
@@ -742,9 +747,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753929378070,
-    "modifiedTime": 1755259462847,
+    "modifiedTime": 1755385644142,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!hxZ0sgoFJubh5aj6"

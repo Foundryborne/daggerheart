@@ -115,6 +115,11 @@
       "img": "icons/commodities/biological/hand-clawed-blue.webp",
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 83,
+      "artist": ""
     }
   },
   "flags": {},
@@ -124,9 +129,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784322,
-    "modifiedTime": 1755259462653,
+    "modifiedTime": 1755384671972,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "EQTOAOUrkIvS2z88",
