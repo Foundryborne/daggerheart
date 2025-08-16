@@ -1,6 +1,6 @@
 {
   "name": "Minor Treant",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
   "system": {
@@ -96,7 +96,9 @@
           }
         ]
       },
-      "type": "attack"
+      "type": "attack",
+      "range": "melee",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -104,12 +106,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1753922784309,
-    "modifiedTime": 1754236374420,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755263168654,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "G62k4oSkhkoXEs2D",
   "sort": 2600000,
@@ -125,7 +127,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

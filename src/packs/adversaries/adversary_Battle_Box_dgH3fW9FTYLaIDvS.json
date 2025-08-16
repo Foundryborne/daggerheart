@@ -1,6 +1,6 @@
 {
   "name": "Battle Box",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "OgzrmfH1ZbpljX7k",
   "system": {
@@ -109,8 +109,9 @@
           }
         ]
       },
-      "range": "",
-      "type": "attack"
+      "range": "melee",
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -118,12 +119,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1753922784224,
-    "modifiedTime": 1754236375071,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755264708230,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "dgH3fW9FTYLaIDvS",
   "sort": 2600000,
@@ -139,7 +140,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -1146,7 +1147,7 @@
             },
             "name": "Mark Stress",
             "img": "icons/creatures/magical/construct-golem-stone-blue.webp",
-            "range": ""
+            "range": "self"
           }
         },
         "originItemType": null,
@@ -1166,12 +1167,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.0.4",
         "createdTime": 1754074647690,
-        "modifiedTime": 1754142206511,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1755264742627,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
       "_key": "!actors.items!dgH3fW9FTYLaIDvS.ITzpRJr2jWK0Ksmp"
     },

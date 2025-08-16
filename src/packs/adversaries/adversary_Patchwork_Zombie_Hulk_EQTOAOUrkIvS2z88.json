@@ -1,6 +1,6 @@
 {
   "name": "Patchwork Zombie Hulk",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
   "system": {
@@ -113,7 +113,8 @@
         ]
       },
       "img": "icons/commodities/biological/hand-clawed-blue.webp",
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -121,12 +122,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784322,
-    "modifiedTime": 1754236374380,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755259462653,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "EQTOAOUrkIvS2z88",
   "sort": 2500000,
@@ -142,7 +143,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -397,7 +398,7 @@
             },
             "name": "Heal",
             "img": "icons/magic/death/skull-trio-badge-purple.webp",
-            "range": ""
+            "range": "self"
           }
         },
         "originItemType": null,
@@ -416,12 +417,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.0.4",
         "createdTime": 1754051528475,
-        "modifiedTime": 1754144642466,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1755263257032,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
       "_key": "!actors.items!EQTOAOUrkIvS2z88.gw1Z2VazlRXYCiCK"
     },

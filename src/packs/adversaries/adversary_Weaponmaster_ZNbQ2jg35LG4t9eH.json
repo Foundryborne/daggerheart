@@ -1,6 +1,6 @@
 {
   "name": "Weaponmaster",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "sxvlEwi25uAoB2C5",
   "system": {
@@ -104,7 +104,8 @@
           }
         ]
       },
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -112,12 +113,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784373,
-    "modifiedTime": 1754236374946,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755259462796,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "ZNbQ2jg35LG4t9eH",
   "sort": 3800000,
@@ -133,7 +134,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -406,7 +407,16 @@
                 "key": "fear",
                 "value": 1,
                 "keyIsID": false,
-                "step": null
+                "step": null,
+                "consumeOnSuccess": false
+              },
+              {
+                "scalable": false,
+                "key": "UsC0vtOBbf9Kut4v",
+                "value": 1,
+                "keyIsID": true,
+                "step": null,
+                "consumeOnSuccess": false
               }
             ],
             "uses": {
@@ -470,7 +480,7 @@
               "includeBase": false
             },
             "target": {
-              "type": "any",
+              "type": "self",
               "amount": null
             },
             "effects": [],
@@ -491,7 +501,7 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/life/cross-beam-green.webp",
-            "range": ""
+            "range": "self"
           }
         },
         "originItemType": null,
@@ -510,12 +520,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.0.4",
         "createdTime": 1754055703816,
-        "modifiedTime": 1754145170728,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1755264604190,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
       "_key": "!actors.items!ZNbQ2jg35LG4t9eH.UsC0vtOBbf9Kut4v"
     },

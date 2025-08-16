@@ -16,7 +16,7 @@
       {
         "value": "paired",
         "effectIds": [
-          "5RpOUFs0kDhzwltM"
+          "djNtNpasgNDRP8Dd"
         ],
         "actionIds": []
       }
@@ -105,13 +105,14 @@
   "effects": [
     {
       "name": "Paired",
-      "description": "Add your character's Tier + 1 to primary weapon damage against targets within Melee range",
+      "description": "<p>Add this Secondary Weapon's tier + 1 to your primary weapon against targets within Melee range</p>",
       "img": "icons/skills/melee/weapons-crossed-swords-yellow-teal.webp",
       "changes": [
         {
           "key": "system.bonuses.damage.primaryWeapon.bonus",
           "mode": 2,
-          "value": "ITEM.@system.tier + 1"
+          "value": "ITEM.@system.tier + 1",
+          "priority": null
         }
       ],
       "system": {
@@ -122,12 +123,17 @@
           "type": "withinRange"
         }
       },
-      "_id": "5RpOUFs0kDhzwltM",
+      "_id": "djNtNpasgNDRP8Dd",
       "type": "base",
       "disabled": false,
       "duration": {
         "startTime": null,
-        "combat": null
+        "combat": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "origin": null,
       "tint": "#ffffff",
@@ -141,12 +147,12 @@
         "exportSource": null,
         "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "1.0.0",
-        "createdTime": 1754814729443,
-        "modifiedTime": 1754814729443,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "systemVersion": "1.0.4",
+        "createdTime": 1755268286534,
+        "modifiedTime": 1755268292662,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
-      "_key": "!items.effects!cjGZpXCoshEqi1FI.5RpOUFs0kDhzwltM"
+      "_key": "!items.effects!cjGZpXCoshEqi1FI.djNtNpasgNDRP8Dd"
     }
   ],
   "sort": 0,
@@ -161,10 +167,10 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.0",
+    "systemVersion": "1.0.4",
     "createdTime": 1753741549716,
-    "modifiedTime": 1754814729447,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755268286538,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!cjGZpXCoshEqi1FI"
 }

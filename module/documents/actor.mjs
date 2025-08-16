@@ -25,6 +25,14 @@ export default class DhpActor extends Actor {
 
     /* -------------------------------------------- */
 
+    /** @inheritDoc */
+    static migrateData(source) {
+        if(source.system?.attack && !source.system.attack.type) source.system.attack.type = "attack";
+        return super.migrateData(source);
+    }
+
+    /* -------------------------------------------- */
+
     /**@inheritdoc */
     static getDefaultArtwork(actorData) {
         const { type } = actorData;
@@ -564,10 +572,20 @@ export default class DhpActor extends Actor {
                 if (armorSlotResult) {
                     const { modifiedDamage, armorSpent, stressSpent } = armorSlotResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
-                    updates.push(
-                        ...(armorSpent ? [{ value: armorSpent, key: 'armor' }] : []),
-                        ...(stressSpent ? [{ value: stressSpent, key: 'stress' }] : [])
-                    );
+                    if(armorSpent) {
+                        const armorUpdate = updates.find(u => u.key === 'armor');
+                        if(armorUpdate)
+                            armorUpdate.value += armorSpent;
+                        else
+                            updates.push({ value: armorSpent, key: 'armor' });
+                    }
+                    if(stressSpent) {
+                        const stressUpdate = updates.find(u => u.key === 'stress');
+                        if(stressUpdate)
+                            stressUpdate.value += stressSpent;
+                        else
+                            updates.push({ value: stressSpent, key: 'stress' });
+                    }
                 }
             }
         }
@@ -632,7 +650,7 @@ export default class DhpActor extends Actor {
     }
 
     async modifyResource(resources) {
-        if (!resources.length) return;
+        if (!resources?.length) return;
 
         if (resources.find(r => r.key === 'stress')) this.convertStressDamageToHP(resources);
         let updates = {

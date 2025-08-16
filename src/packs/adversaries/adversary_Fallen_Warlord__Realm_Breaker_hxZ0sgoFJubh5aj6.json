@@ -3,7 +3,7 @@
   "name": "Fallen Warlord: Realm Breaker",
   "type": "adversary",
   "_id": "hxZ0sgoFJubh5aj6",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "system": {
     "description": "<p><em>A Fallen God, wreathed in rage and resentment, bearing millennia of experience in breaking heroes’ spirits.</em></p>",
     "resistance": {
@@ -164,7 +164,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -740,12 +740,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753929378070,
-    "modifiedTime": 1754219468339,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755259462847,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!hxZ0sgoFJubh5aj6"
 }

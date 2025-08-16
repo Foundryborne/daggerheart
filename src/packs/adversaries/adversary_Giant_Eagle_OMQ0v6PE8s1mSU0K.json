@@ -1,10 +1,10 @@
 {
   "name": "Giant Eagle",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "OgzrmfH1ZbpljX7k",
   "system": {
-    "difficulty": 20,
+    "difficulty": 14,
     "damageThresholds": {
       "major": 8,
       "severe": 19
@@ -89,7 +89,7 @@
       "systemPath": "actions",
       "type": "attack",
       "description": "",
-      "chatDisplay": true,
+      "chatDisplay": false,
       "actionType": "action",
       "cost": [],
       "uses": {
@@ -145,12 +145,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.4",
     "createdTime": 1754090770908,
-    "modifiedTime": 1754236374596,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755265221515,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "ownership": {
     "default": 0,
@@ -165,7 +165,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -308,10 +308,11 @@
             "compendiumSource": null,
             "duplicateSource": null,
             "exportSource": null,
-            "coreVersion": "13.346",
+            "coreVersion": "13.347",
             "systemId": "daggerheart",
             "systemVersion": "0.0.1",
-            "lastModifiedBy": null
+            "lastModifiedBy": "VZIeX2YDvX338Zvr",
+            "modifiedTime": 1755265232810
           },
           "_key": "!actors.items.effects!OMQ0v6PE8s1mSU0K.wdNrstuoh4MFShYG.odAyKY0BSAkcO3Dd"
         }

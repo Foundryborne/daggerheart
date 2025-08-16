@@ -3,7 +3,7 @@
   "name": "Fallen Warlord: Undefeated Champion",
   "type": "adversary",
   "_id": "RXkZTwBRi4dJ3JE5",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "system": {
     "description": "<p><em>That which only the most feared have a chance to fear.</em></p>",
     "resistance": {
@@ -153,7 +153,8 @@
           "bonus": 0,
           "dice": []
         }
-      }
+      },
+      "chatDisplay": false
     },
     "motivesAndTactics": "Dispatch merciless death, punish the defi ant, secure victory at any cost"
   },
@@ -164,7 +165,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -797,12 +798,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753929476879,
-    "modifiedTime": 1754219468339,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755259462720,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!RXkZTwBRi4dJ3JE5"
 }

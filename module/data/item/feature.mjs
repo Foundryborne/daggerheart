@@ -42,11 +42,9 @@ export default class DHFeature extends BaseDataItem {
                 traitValue =
                     this.actor.system.traits[this.actor.items.get(this.originId).system.spellcastingTrait]?.value ?? 0;
             } else {
-                const subclass =
-                    this.actor.system.multiclass.value?.id === this.originId
-                        ? this.actor.system.multiclass.subclass
-                        : this.actor.system.class.subclass;
-                traitValue = this.actor.system.traits[subclass.system.spellcastingTrait]?.value ?? 0;
+                const { value: multiclass, subclass } = this.actor.system.multiclass;
+                const selectedSubclass = multiclass?.id === this.originId ? subclass : this.actor.system.class.subclass;
+                traitValue = this.actor.system.traits[selectedSubclass.system.spellcastingTrait]?.value ?? 0;
             }
         }
 

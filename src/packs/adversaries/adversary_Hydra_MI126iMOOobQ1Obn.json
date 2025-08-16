@@ -1,6 +1,6 @@
 {
   "name": "Hydra",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
   "type": "adversary",
   "folder": "wTI7nZkPhKxl7Wwq",
   "system": {
@@ -104,7 +104,8 @@
           }
         ]
       },
-      "type": "attack"
+      "type": "attack",
+      "chatDisplay": false
     }
   },
   "flags": {},
@@ -112,12 +113,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
     "systemVersion": "0.0.1",
     "createdTime": 1753922784285,
-    "modifiedTime": 1754236374476,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755259462679,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "MI126iMOOobQ1Obn",
   "sort": 3400000,
@@ -133,7 +134,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/dragon-head.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
@@ -372,7 +373,7 @@
             },
             "name": "Spend Fear",
             "img": "icons/magic/life/cross-beam-green.webp",
-            "range": ""
+            "range": "self"
           }
         },
         "originItemType": null,
@@ -392,12 +393,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.346",
+        "coreVersion": "13.347",
         "systemId": "daggerheart",
-        "systemVersion": "0.0.1",
+        "systemVersion": "1.0.4",
         "createdTime": 1754129581504,
-        "modifiedTime": 1754129633128,
-        "lastModifiedBy": "MQSznptE5yLT7kj8"
+        "modifiedTime": 1755266587320,
+        "lastModifiedBy": "VZIeX2YDvX338Zvr"
       },
       "_key": "!actors.items!MI126iMOOobQ1Obn.b2KflqWoOxHMQf97"
     },

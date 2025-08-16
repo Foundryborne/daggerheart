@@ -494,7 +494,9 @@ export default class DhCharacterCreation extends HandlebarsApplicationMixin(Appl
         this.render();
     }
 
-    static async finish() {
+    static async finish(_, button) {
+        button.disabled = true;
+
         const primaryAncestryFeature = this.setup.primaryAncestry.system.primaryFeature;
         const secondaryAncestryFeature = this.setup.secondaryAncestry?.uuid
             ? this.setup.secondaryAncestry.system.secondaryFeature
