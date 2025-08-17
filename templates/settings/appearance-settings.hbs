@@ -17,6 +17,14 @@
         {{formGroup settingFields.schema.fields.extendItemDescriptions value=settingFields._source.extendItemDescriptions localize=true}}
     </fieldset>
 
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.SETTINGS.Appearance.FIELDS.expandRollMessage'}}</legend>
+        {{formGroup settingFields.schema.fields.expandRollMessage.fields.desc value=settingFields.expandRollMessage.desc localize=true}}
+        {{formGroup settingFields.schema.fields.expandRollMessage.fields.roll value=settingFields.expandRollMessage.roll localize=true}}
+        {{formGroup settingFields.schema.fields.expandRollMessage.fields.damage value=settingFields.expandRollMessage.damage localize=true}}
+        {{formGroup settingFields.schema.fields.expandRollMessage.fields.target value=settingFields.expandRollMessage.target localize=true}}
+    </fieldset>
+
     {{#if showDiceSoNice}}
         <fieldset>
             <legend>{{localize "DAGGERHEART.SETTINGS.Menu.appearance.diceSoNice.title"}}</legend>

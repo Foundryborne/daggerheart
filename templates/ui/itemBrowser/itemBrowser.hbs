@@ -56,10 +56,10 @@
                 <div class="item-list-header">
                     <div class="item-list-img"></div>
                     <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">Name</div>
-                    {{#each menu.data.columns}}
-                        <div data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{label}}</div>
-                    {{/each}}
-                </div>
+                        {{#each menu.data.columns}}
+                            <span data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{label}}</span>
+                        {{/each}}
+                    </div>
             {{/if}}
             <div class="item-list">
                 {{#each items}}
@@ -67,14 +67,14 @@
                         <div class="item-header">
                             <div class="item-info" data-action="expandContent">
                                 <img src="{{img}}" data-item-key="img" class="item-list-img">
-                                <div data-item-key="name" class="item-list-name">{{name}}</div>
+                                <span data-item-key="name" class="item-list-name">{{name}}</span>
                                 {{#each ../menu.data.columns}}
-                                    <div data-item-key="{{key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</div>
+                                    <span data-item-key="{{key}}">{{#with (@root.formatLabel ../this this) as | label |}}{{{label}}}{{/with}}</span>
                                 {{/each}}
                             </div>
                         </div>
                         <div class="item-desc extensible">
-                            <div class="wrapper">{{{system.description}}}</div>
+                            <span class="wrapper">{{{system.description}}}</span>
                         </div>
                     </div>
                 {{/each}}

@@ -1,50 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;600&display=swap');
+@import './mixin.less';
 
 @font-title: 'Cinzel Decorative', serif;
 @font-subtitle: 'Cinzel', serif;
 @font-body: 'Montserrat', sans-serif;
 
-.application.sheet.daggerheart.dh-style {
-    h1 {
-        font-family: @font-title;
-        margin: 0;
-        border: none;
-        font-weight: normal;
-    }
+.dh-style {
+    .dh-typography();
+}
 
-    h2,
-    h3 {
-        font-family: @font-subtitle;
-        margin: 0;
-        border: none;
-        font-weight: normal;
-    }
-
-    h4 {
-        font-family: @font-body;
-        font-size: 14px;
-        border: none;
-        font-weight: 700;
-        margin: 0;
-        text-shadow: none;
-        color: #f3c267;
-        font-weight: normal;
-    }
-
-    h5 {
-        font-size: 14px;
-        color: #f3c267;
-        margin: 0;
-        font-weight: normal;
-    }
-
-    p,
-    span {
-        font-family: @font-body;
-    }
-
-    small {
-        font-family: @font-body;
-        opacity: 0.8;
-    }
+.dh-style fieldset {
+    .dh-typography();
 }
