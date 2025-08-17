@@ -19,6 +19,9 @@ const fields = foundry.data.fields;
 
 export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel) {
     static extraSchemas = ['cost', 'uses', 'range'];
+    // static schemaFields = new Map();
+    static schemaFields = [];
+    // static workflow = [];
 
     static defineSchema() {
         const schemaFields = {
@@ -38,8 +41,17 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         this.extraSchemas.forEach(s => {
             let clsField;
-            if ((clsField = this.getActionField(s))) schemaFields[s] = new clsField();
+            if ((clsField = this.getActionField(s))) {
+                // this.schemaFields.set(s, clsField);
+                this.schemaFields.push(clsField);
+                schemaFields[s] = new clsField();
+            }
         });
+
+        this.schemaFields.sort((a, b) => a.order - b.order);
+
+        // this.prepareWorkflow();
+        console.log(this.schemaFields);
 
         return schemaFields;
     }
@@ -111,21 +123,26 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return actorData;
     }
 
-    prepareWorkflow(workflow) {
-        for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
-            let clsField = this.constructor.getActionField(this.constructor.extraSchemas[i]);
+    // static prepareWorkflow() {
+    //     this.schemaFields.forEach( clsField => {
+    //         if (clsField?.execute)
+    //             this.workflow.push({ order: clsField.order, exec: clsField.execute});
+    //     })
+        /* for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
+            // let clsField = this.constructor.getActionField(this.constructor.extraSchemas[i]);
+            let clsField = this.constructor.schemaFields.get(this.constructor.extraSchemas[i]);
             if (clsField?.execute) {
                 workflow.push({ order: clsField.order, exec: clsField.execute});
                 // const keep = clsField.prepareConfig.call(this, config);
                 // if (config.isFastForward && !keep) return;
             }
-        }
-        workflow.sort((a, b) => a.order - b.order);
-    }
+        } */
+    //     this.workflow.sort((a, b) => a.order - b.order);
+    // }
 
-    async executeWorkflow(workflow, config) {
-        console.log(workflow)
-        for(const part of workflow) {
+    async executeWorkflow(config) {
+        console.log(this.constructor.workflow)
+        for(const part of this.constructor.workflow) {
             console.log(part)
             if(await part.exec.call(this, config) === false) return;
         }
@@ -137,13 +154,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (this.chatDisplay) await this.toChat();
         let { byPassRoll } = options,
             config = this.prepareConfig(event, byPassRoll);
-        for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
-            let clsField = this.constructor.getActionField(this.constructor.extraSchemas[i]);
+        // for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
+            // let clsField = this.constructor.getActionField(this.constructor.extraSchemas[i]);
+            // let clsField = this.constructor.schemaFields.get(this.constructor.extraSchemas[i]);
+        this.constructor.schemaFields.forEach( clsField => {
             if (clsField?.prepareConfig) {
                 const keep = clsField.prepareConfig.call(this, config);
                 if (config.isFastForward && !keep) return;
             }
-        }
+        })
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -155,8 +174,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         const workflow = [];
 
-        this.prepareWorkflow(workflow);
-        await this.executeWorkflow(workflow, config);
+        // this.prepareWorkflow(workflow);
+        await this.executeWorkflow(config);
 
         // if (config.hasRoll) {
             // const rollConfig = this.prepareRoll(config);
