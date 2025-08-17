@@ -19,9 +19,13 @@
                     {{#if this.achievements.proficiency.shown}}
                         <div>
                             <div class="increase-container">
-                                {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.proficiencyIncrease" proficiency=this.achievements.proficiency.old }}
+                                <span>
+                                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.proficiencyIncrease" proficiency=this.achievements.proficiency.old }}
+                                </span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
-                                {{this.achievements.proficiency.new}}
+                                <span>
+                                    {{this.achievements.proficiency.new}}
+                                </span>
                             </div>
                         </div>
                     {{/if}}
@@ -29,14 +33,22 @@
                         <div>
                             <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.damageThresholds"}}{{#if this.levelAchievements.damageThresholds.unarmored}}({{localize "DAGGERHEART.GENERAL.unarmored"}}){{/if}}</h5>
                             <div class="increase-container">
-                                {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.damageThresholdMajorIncrease" threshold=this.achievements.damageThresholds.major.old }}
+                                <span>
+                                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.damageThresholdMajorIncrease" threshold=this.achievements.damageThresholds.major.old }}
+                                </span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
-                                {{this.achievements.damageThresholds.major.new}}
+                                <span>
+                                    {{this.achievements.damageThresholds.major.new}}
+                                </span>
                             </div>
                             <div class="increase-container">
-                                {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.damageThresholdSevereIncrease" threshold=this.achievements.damageThresholds.severe.old }}
+                                <span>
+                                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.damageThresholdSevereIncrease" threshold=this.achievements.damageThresholds.severe.old }}
+                                </span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
-                                {{this.achievements.damageThresholds.severe.new}}
+                                <span>
+                                    {{this.achievements.damageThresholds.severe.new}}
+                                </span>
                             </div>
                         </div>
                     {{/if}}
@@ -45,7 +57,7 @@
                             <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCards"}}</h5>
                             <div class="summary-selection-container">
                                 {{#each this.achievements.domainCards.values}}
-                                    <div class="summary-selection">{{this.name}}</div>
+                                    <span class="summary-selection">{{this.name}}</span>
                                 {{/each}}
                             </div>
                         </div>
@@ -55,7 +67,7 @@
                             <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.newExperiences"}}</h5>
                             <div class="summary-selection-container">
                                 {{#each this.achievements.experiences.values}}
-                                    <div class="summary-selection">{{this.name}} {{numberFormat this.modifier sign=true}}</div>
+                                    <span class="summary-selection">{{this.name}} {{numberFormat this.modifier sign=true}}</span>
                                 {{/each}}
                             </div>
                         </div>
@@ -71,32 +83,48 @@
                     <div>
                         {{#if this.advancements.statistics.proficiency.shown}}
                             <div class="increase-container">
-                                {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.proficiencyIncrease" proficiency=this.advancements.statistics.proficiency.old }}
+                                <span>
+                                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.proficiencyIncrease" proficiency=this.advancements.statistics.proficiency.old }}
+                                </span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
-                                {{this.advancements.statistics.proficiency.new}}
+                                <span>
+                                    {{this.advancements.statistics.proficiency.new}}
+                                </span>
                             </div>
                         {{/if}}
 
                         {{#if this.advancements.statistics.hitPoints.shown}}
                             <div class="increase-container">
-                                {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.hpIncrease" hitPoints=this.advancements.statistics.hitPoints.old }}
+                                <span>
+                                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.hpIncrease" hitPoints=this.advancements.statistics.hitPoints.old }}
+                                </span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
-                                {{this.advancements.statistics.hitPoints.new}}
+                                <span>
+                                    {{this.advancements.statistics.hitPoints.new}}
+                                </span>
                             </div>
                         {{/if}}
 
                         {{#if this.advancements.statistics.stress.shown}}
                             <div class="increase-container">
-                                {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.stressIncrease" stress=this.advancements.statistics.stress.old }}
+                                <span>
+                                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.stressIncrease" stress=this.advancements.statistics.stress.old }}
+                                </span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
-                                {{this.advancements.statistics.stress.new}}
+                                <span>
+                                    {{this.advancements.statistics.stress.new}}
+                                </span>
                             </div>
                         {{/if}}
                         {{#if this.advancements.statistics.evasion.shown}}
                             <div class="increase-container">
-                                {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.evasionIncrease" evasion=this.advancements.statistics.evasion.old }}
+                                <span>
+                                    {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.evasionIncrease" evasion=this.advancements.statistics.evasion.old }}
+                                </span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
-                                {{this.advancements.statistics.evasion.new}}
+                                <span>
+                                    {{this.advancements.statistics.evasion.new}}
+                                </span>
                             </div>
                         {{/if}}
                     </div>
@@ -108,9 +136,13 @@
   
                             {{#each this.advancements.traits}}
                                 <div class="increase-container">
-                                    {{this.label}}: {{this.old}}
+                                    <span>
+                                        {{this.label}}: {{this.old}}
+                                    </span>
                                     <i class="fa-solid fa-arrow-right-long"></i>
-                                    {{this.new}}
+                                    <span>
+                                        {{this.new}}
+                                    </span>
                                 </div>
                             {{/each}}
                     </div>
@@ -121,7 +153,7 @@
                         <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.domainCards"}}</h5>
                         <div class="summary-selection-container">
                             {{#each this.advancements.domainCards}}
-                                <div class="summary-selection">{{this.name}}</div>
+                                <span class="summary-selection">{{this.name}}</span>
                             {{/each}}
                         </div>
                     </div>
@@ -132,7 +164,7 @@
                         <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.experienceIncreases"}}</h5>
                         <div class="summary-selection-container">
                             {{#each this.advancements.experiences}}
-                                <div class="summary-selection">{{this.name}} {{numberFormat this.modifier sign=true}}</div>
+                                <span class="summary-selection">{{this.name}} {{numberFormat this.modifier sign=true}}</span>
                             {{/each}}
                         </div>
                     </div>
@@ -143,7 +175,7 @@
                         <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.subclass"}}</h5>
                         <div class="summary-selection-container">
                             {{#each this.advancements.subclass}}
-                                <div class="summary-selection">{{this.name}} - {{this.featureLabel}}</div>
+                                <span class="summary-selection">{{this.name}} - {{this.featureLabel}}</span>
                             {{/each}}
                         </div>
                     </div>
@@ -154,9 +186,9 @@
                         <div>
                             <h5 class="summary-section">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.multiclass"}}</h5>
                             <div class="summary-selection-container">
-                                <div class="summary-selection">{{this.name}}</div>
-                                <div class="summary-selection">{{this.domain}}</div>
-                                <div class="summary-selection">{{this.subclass}}</div>
+                                <span class="summary-selection">{{this.name}}</span>
+                                <span class="summary-selection">{{this.domain}}</span>
+                                <span class="summary-selection">{{this.subclass}}</span>
                             </div>
                         </div>
                     {{/with}}
@@ -164,21 +196,29 @@
 
                 {{#if this.advancements.vicious.damage}}
                      <div class="increase-container">
-                        {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.damageIncreased" damage=this.advancements.vicious.damage.old }}
+                        <span>
+                            {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.damageIncreased" damage=this.advancements.vicious.damage.old }}
+                        </span>
                         <i class="fa-solid fa-arrow-right-long"></i>
-                        {{this.advancements.vicious.damage.new}}
+                        <span>
+                            {{this.advancements.vicious.damage.new}}
+                        </span>
                     </div>     
                 {{/if}}
                 {{#if this.advancements.vicious.range}}
                      <div class="increase-container">
-                        {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.rangeIncreased" range=this.advancements.vicious.range.old }}
+                        <span>
+                            {{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.rangeIncreased" range=this.advancements.vicious.range.old }}
+                        </span>
                         <i class="fa-solid fa-arrow-right-long"></i>
-                        {{this.advancements.vicious.range.new}}
+                        <span>
+                            {{this.advancements.vicious.range.new}}
+                        </span>
                     </div>     
                 {{/if}}
                 {{#each this.advancements.simple}}
                     <div class="summary-selection-container">
-                        <div class="summary-selection">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.simpleFeature" feature=this}}</div>
+                        <span class="summary-selection">{{localize "DAGGERHEART.APPLICATIONS.Levelup.summary.simpleFeature" feature=this}}</span>
                     </div>
                 {{/each}}
             </div>

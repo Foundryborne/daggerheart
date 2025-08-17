@@ -14,14 +14,14 @@
         <div class="refreshables-container {{#if (and shortRestMoves longRestMoves)}}wide{{/if}}">
             {{#each this.refreshables.actionItems as | item |}}
                 <div class="refreshable-container">
-                    <div class="refreshable-title">{{item.title}}</div>
-                    <div class="refreshable-name">{{item.name}}</div>
+                    <span class="refreshable-title">{{item.title}}</span>
+                    <span class="refreshable-name">{{item.name}}</span>
                 </div>
             {{/each}}
             {{#each this.refreshables.resourceItems as | item |}}
                 <div class="refreshable-container">
-                    <div class="refreshable-title">{{item.title}}</div>
-                    <div class="refreshable-name">{{item.name}}</div>
+                    <span class="refreshable-title">{{item.title}}</span>
+                    <span class="refreshable-name">{{item.name}}</span>
                 </div>
             {{/each}}
         </div>

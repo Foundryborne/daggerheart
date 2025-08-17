@@ -5,19 +5,19 @@
     {{#if this.img}}
         <div class="preview-selected-container">
             <img class="preview-image-container" src="{{this.img}}" />
-            <div class="preview-text-container">
+            <span class="preview-text-container">
                 {{#if altPartialBlock}}
                     {{> @partial-block }}
                 {{else}}
                     {{this.name}}
                 {{/if}}
-            </div>
+            </span>
         </div>
     {{else}}
         <div class="preview-empty-container">
             <div class="preview-empty-inner-container">
                 <i class="preview-add-icon fa-solid fa-plus"></i>
-                <div class="preview-empty-subtext">{{> @partial-block }}</div>
+                <span class="preview-empty-subtext">{{> @partial-block }}</span>
             </div>
         </div>
     {{/if}}
