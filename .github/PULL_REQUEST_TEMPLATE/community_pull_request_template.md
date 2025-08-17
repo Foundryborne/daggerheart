@@ -1,12 +1,10 @@
 ---
 name: Pull Request
 about: Create a new pull request
-title: "[PR] <Insert Title here>"
-labels: pr
+title: "[Community PR] <Insert Title here>"
+labels: community pr
 assignees: ''
 ---
-Is this a community PR? Please go to preview tab and click [here](?expand=1&template=community_pull_request_template.md). If not, delete this line.
-
 ## Description
 
 Please include a summary of the change and which issue is fixed (if applicable). Also include relevant context or motivation for the change.
