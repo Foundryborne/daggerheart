@@ -35,7 +35,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Tarantula, Wolf Spider, etc."
+    "examples": "Tarantula, Wolf Spider, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 13,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -125,12 +130,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753576016472,
-    "modifiedTime": 1753576046773,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755395283720,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "A4TVRY0D5r9EiVwA",
   "sort": 0,
