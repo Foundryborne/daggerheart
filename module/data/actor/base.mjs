@@ -86,6 +86,13 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
      */
     static DEFAULT_ICON = null;
 
+    get attributionLabel() {
+        if (!this.attribution) return;
+
+        const { source, page } = this.attribution;
+        return [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+    }
+
     /* -------------------------------------------- */
 
     /**

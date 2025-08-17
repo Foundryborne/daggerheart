@@ -50,9 +50,6 @@ export default class DhpEnvironment extends DHBaseActorSheet {
             case 'header':
                 await this._prepareHeaderContext(context, options);
 
-                const { source, page } = this.document.system.attribution;
-                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
-                context.attributionLabel = attribution;
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);

@@ -8,7 +8,7 @@
         {{formInput systemFields.description value=document.system.description enriched=enrichedDescription toggled=true}}
     </fieldset>
     
-    {{#if document.system.attribution.artist}}
+    {{#if (and showAttribution document.system.attribution.artist)}}
         <label class="artist-attribution">{{localize "DAGGERHEART.GENERAL.artistAttribution" artist=document.system.attribution.artist}}</label>
     {{/if}}
 </section>

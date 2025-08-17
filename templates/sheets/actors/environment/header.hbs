@@ -18,8 +18,8 @@
                         </div>
                     {{/if}}
                 </div>
-                {{#if document.system.attribution.source}}
-                    <label class="attribution-header-label">{{attributionLabel}}</label>
+                {{#if (and showAttribution document.system.attributionLabel)}}
+                    <label class="attribution-header-label">{{document.system.attributionLabel}}</label>
                 {{/if}}
             </div> 
         </div>

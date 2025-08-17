@@ -132,8 +132,12 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
+            const hideAttribution = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).hideAttribution;
             const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
                 const element = `<label class="attribution-header-label">${attribution}</label>`;
@@ -147,8 +151,12 @@ export default function DHApplicationMixin(Base) {
          *  Refresh the custom parts of the application frame
          */
         refreshFrame() {
+            const hideAttribution = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).hideAttribution;
             const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
-            if (this.document.system.metadata.hasAttribution && headerAttribution) {
+            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
 

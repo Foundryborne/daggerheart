@@ -2111,7 +2111,7 @@
                 "FIELDS": {
                     "displayFear": { "label": "Fear Display" },
                     "dualityColorScheme": { "label": "Chat Style" },
-                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" },
+                    "hideAttribution": { "label": "Hide Attribution" },
                     "expandedTitle": "Auto-expand Descriptions",
                     "extendCharacterDescriptions": { "label": "Characters" },
                     "extendAdversaryDescriptions": { "label": "Adversaries" },
@@ -2121,7 +2121,8 @@
                     "expandRollMessageDesc": { "label": "Description" },
                     "expandRollMessageRoll": { "label": "Formula" },
                     "expandRollMessageDamage": { "label": "Damage/Healing" },
-                    "expandRollMessageTarget": { "label": "Target" }
+                    "expandRollMessageTarget": { "label": "Target" },
+                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
