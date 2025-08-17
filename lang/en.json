@@ -193,7 +193,8 @@
                 "companionLevelup": {
                     "confirmTitle": "Companion Levelup",
                     "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
-                }
+                },
+                "viewLevelups": "View Levelups"
             },
             "Companion": {
                 "FIELDS": {
@@ -490,7 +491,8 @@
                     "pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
-                "title": "{actor} Level Up"
+                "title": "{actor} Level Up",
+                "viewModeTitle": "{actor} Level Up (View Mode)"
             },
             "MulticlassChoice": {
                 "title": "Multiclassing - {actor}",
