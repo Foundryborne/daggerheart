@@ -80,6 +80,78 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     initial: CONFIG.DH.GENERAL.defeatedConditions.defeated.id,
                     label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.defeated.companionDefault.label'
                 })
+            }),
+            roll: new fields.SchemaField({
+                roll: new fields.SchemaField({
+                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.roll.label',
+                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.roll.hint',
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                damage: new fields.SchemaField({
+                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.damage.label',
+                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.damage.hint',
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                save: new fields.SchemaField({
+                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.save.label',
+                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.save.hint',
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                damageApply: new fields.SchemaField({
+                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.damageApply.label',
+                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.damageApply.hint',
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                }),
+                effect: new fields.SchemaField({
+                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.effect.label',
+                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.effect.hint',
+                    gm: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.gm'
+                    }),
+                    players: new fields.BooleanField({
+                        required: true,
+                        initial: false,
+                        label: 'DAGGERHEART.GENERAL.player.plurial'
+                    })
+                })
             })
         };
     }

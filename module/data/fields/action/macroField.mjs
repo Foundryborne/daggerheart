@@ -1,7 +1,7 @@
 const fields = foundry.data.fields;
 
 export default class MacroField extends fields.DocumentUUIDField {
-    static order = 200;
+    static order = 70;
 
     constructor(context = {}) {
         super({ type: "Macro" }, context);

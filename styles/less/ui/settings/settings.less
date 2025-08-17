@@ -139,4 +139,45 @@
             text-align: center;
         }
     }
+
+    .tab.with-hint {
+        fieldset {
+            gap: .5rem;
+
+            .form-group {
+                flex-wrap: wrap;
+                gap: .25rem;
+
+                label {
+                    flex: 1;
+                }
+
+                .hint {
+                    flex: 0 0 100%;
+                    margin: 0;
+                    font-size: var(--font-size-14);
+                    color: var(--color-form-hint);
+                }
+
+                &:hover {
+                    .hint {
+                        color: var(--color-form-hint-hover);
+                    }
+                }
+            }
+
+            .form-group.setting-two-values {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+
+                .form-group label {
+                    text-align: right;
+                }
+
+                .hint {
+                    grid-column: 1 / -1;
+                }
+            }
+        }
+    }
 }

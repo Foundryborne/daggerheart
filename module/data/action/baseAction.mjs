@@ -176,7 +176,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         // }
 
         // Consume resources
-        // await this.consume(config);
+        await this.consume(config);
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
@@ -229,9 +229,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     //     return roll;
     // }
 
-    doFollowUp(config) {
-        return !config.hasRoll;
-    }
+    // doFollowUp(config) {
+    //     return !config.hasRoll;
+    // }
 
     async consume(config, successCost = false) {
         const actor= this.actor.system.partner ?? this.actor,
@@ -300,13 +300,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     get hasDamagePart() {
         return this.damage?.parts?.length;
-    }
-
-    get modifiers() {
-        if (!this.actor) return [];
-        const modifiers = [];
-        /** Placeholder for specific bonuses **/
-        return modifiers;
     }
     /* ROLL */
 

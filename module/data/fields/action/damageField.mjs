@@ -3,7 +3,7 @@ import FormulaField from '../formulaField.mjs';
 const fields = foundry.data.fields;
 
 export default class DamageField extends fields.SchemaField {
-    static order = 50;
+    static order = 20;
 
     constructor(options, context = {}) {
         const damageFields = {

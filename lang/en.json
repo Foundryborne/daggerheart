@@ -1885,6 +1885,7 @@
                 "tier4": "tier 4",
                 "domains": "Domains",
                 "downtime": "Downtime",
+                "roll": "Roll",
                 "rules": "Rules"
             },
             "Tiers": {
@@ -1934,6 +1935,7 @@
             "fear": "Fear",
             "features": "Features",
             "formula": "Formula",
+            "gm": "GM",
             "healing": "Healing",
             "healingRoll": "Healing Roll",
             "hit": {
@@ -1968,6 +1970,10 @@
             "none": "None",
             "noTarget": "No current target",
             "partner": "Partner",
+            "player": {
+                "single": "Player",
+                "plurial": "Players"
+            },
             "proficiency": "Proficiency",
             "quantity": "Quantity",
             "range": "Range",
@@ -2162,10 +2168,35 @@
                     "playerCanEditSheet": {
                         "label": "Players Can Manually Edit Character Settings",
                         "hint": "Players are allowed to access the manual Character Settings and change their statistics beyond the rules."
+                    },
+                    "roll": {
+                        "roll": {
+                            "label": "Roll",
+                            "hint": "Roll Hint"
+                        },
+                        "damage": {
+                            "label": "Damage/Healing Roll",
+                            "hint": "Damage/Healing Roll Hint"
+                        },
+                        "save": {
+                            "label": "Reaction Roll",
+                            "hint": "Reaction Roll Hint"
+                        },
+                        "damageApply": {
+                            "label": "Apply Damage/Healing",
+                            "hint": "Apply Damage/Healing Hint"
+                        },
+                        "effect": {
+                            "label": "Apply Effects",
+                            "hint": "Apply Effects Hint"
+                        }
                     }
                 },
                 "defeated": {
                     "title": "Defeated Handling"
+                },
+                "roll": {
+                    "title": "Roll"
                 }
             },
             "Homebrew": {

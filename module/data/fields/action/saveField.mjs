@@ -1,7 +1,7 @@
 const fields = foundry.data.fields;
 
 export default class SaveField extends fields.SchemaField {
-    static order = 75;
+    static order = 50;
 
     constructor(options = {}, context = {}) {
         const saveFields = {
