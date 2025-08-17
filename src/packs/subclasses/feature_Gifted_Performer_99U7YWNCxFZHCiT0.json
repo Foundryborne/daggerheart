@@ -170,7 +170,12 @@
       }
     },
     "originItemType": null,
-    "originId": null
+    "originId": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 9,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -224,12 +229,12 @@
     "compendiumSource": "Compendium.daggerheart.subclasses.Item.6j1RP4fz3BwSfoli",
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1754174646194,
-    "modifiedTime": 1754475491670,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755391572653,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "ownership": {
     "default": 0,

@@ -62,7 +62,12 @@
       "suggestedSecondaryWeapon": null,
       "suggestedArmor": "Compendium.daggerheart.armors.Item.yJFp1bfpecDcStVK"
     },
-    "isMulticlass": false
+    "isMulticlass": false,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 22,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -76,12 +81,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1754349743129,
-    "modifiedTime": 1754350005553,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755391092028,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!DchOzHcWIJE9FKcR"
 }
