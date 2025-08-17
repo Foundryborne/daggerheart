@@ -443,7 +443,7 @@
         margin-bottom: 10px;
 
         .inventory-item {
-            padding: 0 10px;
+            padding-left: 10px;
         }
     }
 
@@ -452,10 +452,11 @@
         padding-top: 10px;
         padding-bottom: 20px;
         mask-image: linear-gradient(0deg, transparent 0%, black 5%);
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
 
         &:hover {
             overflow-y: auto;
-            scrollbar-width: thin;
             scrollbar-color: light-dark(@dark-blue, @golden) transparent;
         }
     }
