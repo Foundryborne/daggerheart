@@ -1,6 +1,6 @@
 {
   "name": "Chaos Realm",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "IKumu5HTLqONLYqb",
   "system": {
@@ -19,19 +19,24 @@
     "tier": 4,
     "description": "<p>An otherworldly space where the laws of reality are unstable and dangerous.</p>",
     "type": "traversal",
-    "impulses": "Annihilate certainty, consume power, defy logic"
+    "impulses": "Annihilate certainty, consume power, defy logic",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 110,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784556,
-    "modifiedTime": 1754219630584,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890266,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "2Z1mKc65LxNk2PqR",
   "sort": 3400000,
@@ -47,7 +52,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,
