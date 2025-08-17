@@ -146,6 +146,11 @@
         "img": "icons/magic/life/cross-beam-green.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 123,
+      "artist": ""
     }
   },
   "flags": {},
@@ -153,12 +158,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784526,
-    "modifiedTime": 1754252518993,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755428380396,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "H6TqCJBaa1eWEQ1z",
   "sort": 3400000,

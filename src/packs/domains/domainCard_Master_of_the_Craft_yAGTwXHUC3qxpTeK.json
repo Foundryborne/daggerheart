@@ -8,19 +8,24 @@
     "domain": "grace",
     "recallCost": 0,
     "level": 9,
-    "type": "ability"
+    "type": "ability",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 127,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784482,
-    "modifiedTime": 1754229084018,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1755429259836,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "yAGTwXHUC3qxpTeK",
   "sort": 3400000,

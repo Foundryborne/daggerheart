@@ -155,6 +155,11 @@
         "img": "icons/magic/perception/third-eye-blue-red.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 124,
+      "artist": ""
     }
   },
   "flags": {},
@@ -162,12 +167,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784421,
-    "modifiedTime": 1754228842497,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755428980637,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "df4iRqQzRntrF6Qw",
   "sort": 3400000,

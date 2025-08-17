@@ -85,6 +85,8 @@ export default function DHApplicationMixin(Base) {
             this._dragDrop = this._createDragDropHandlers();
         }
 
+        #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
+
         /**
          * The default options for the sheet.
          * @type {DHSheetV2Configuration}
@@ -130,7 +132,7 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
-            const headerAttribution = !['environment', 'ancestry', 'community'].includes(this.document.type);
+            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
             if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
@@ -145,7 +147,7 @@ export default function DHApplicationMixin(Base) {
          *  Refresh the custom parts of the application frame
          */
         refreshFrame() {
-            const headerAttribution = !['environment', 'ancestry', 'community'].includes(this.document.type);
+            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
             if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
