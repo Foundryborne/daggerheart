@@ -1,7 +1,7 @@
 <div class="chat-roll">
     <div class="roll-part-header"><span>{{title}}</span></div>
     {{#if hasRoll}}{{> 'systems/daggerheart/templates/ui/chat/parts/roll-part.hbs'}}{{/if}}
-    {{#if (and (not (empty damage)) (or hasDamage hasHealing))}}{{> 'systems/daggerheart/templates/ui/chat/parts/damage-part.hbs'}}{{/if}}
+    {{#if (or hasDamage hasHealing)}}{{> 'systems/daggerheart/templates/ui/chat/parts/damage-part.hbs'}}{{/if}}
     {{#if hasTarget}}{{> 'systems/daggerheart/templates/ui/chat/parts/target-part.hbs'}}{{/if}}
     <div class="roll-part-header"><div></div></div>
 </div>

@@ -2113,7 +2113,12 @@
                     "extendCharacterDescriptions": { "label": "Characters" },
                     "extendAdversaryDescriptions": { "label": "Adversaries" },
                     "extendEnvironmentDescriptions": { "label": "Environments" },
-                    "extendItemDescriptions": { "label": "Items" }
+                    "extendItemDescriptions": { "label": "Items" },
+                    "expandRollMessage": "Auto-expand Message Sections",
+                    "expandRollMessageDesc": { "label": "Description" },
+                    "expandRollMessageRoll": { "label": "Formula" },
+                    "expandRollMessageDamage": { "label": "Damage/Healing" },
+                    "expandRollMessageTarget": { "label": "Target" }
                 },
                 "fearDisplay": {
                     "token": "Tokens",

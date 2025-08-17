@@ -11,7 +11,7 @@
                     <div class="experience-container">
                         <div class="experience-inner-container">
                             <input class="experience-description" type="text" name="{{concat "experiences." id ".name" }}" value="{{experience.name}}" placeholder="{{localize "DAGGERHEART.APPLICATIONS.CharacterCreation.newExperience"}}" />
-                            <div class="experience-value">{{numberFormat this.value sign=true}}</div>
+                            <span class="experience-value">{{numberFormat this.value sign=true}}</span>
                         </div>
 
                         <textarea name="{{concat "experiences." id ".description"}}">{{experience.description}}</textarea>

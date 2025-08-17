@@ -1,4 +1,4 @@
-<div class="roll-part damage-section dice-roll" data-action="expandRoll">
+<div class="roll-part damage-section dice-roll" data-action="expandRoll"{{#if (empty damage)}} hidden{{/if}}>
     <div class="roll-part-header"><div><span>{{localize (ifThen hasHealing "DAGGERHEART.ACTIONS.TYPES.healing.name" "DAGGERHEART.ACTIONS.TYPES.damage.name")}}</span></div></div>
     <div class="roll-part-extra on-reduced">
         <div class="wrapper">
@@ -12,7 +12,7 @@
             <div class="wrapper">
                 {{#each damage as | roll index | }}
                     <fieldset>
-                        <legend>{{log @root}}
+                        <legend>
                             {{localize (concat 'DAGGERHEART.CONFIG.HealingType.' index '.inChatRoll')}} <div class="roll-formula">{{localize "DAGGERHEART.GENERAL.total"}}: {{roll.total}}</div>{{#if (and (eq index "hitPoints")../isDirect)}} <div class="roll-formula">{{localize "DAGGERHEART.CONFIG.DamageType.direct.short"}}</div>{{/if}}
                         </legend>
                         {{#each roll.parts}}
