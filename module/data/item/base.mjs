@@ -207,6 +207,8 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         super._onUpdate(changed, options, userId);
 
         updateLinkedItemApps(options, this.parent.sheet);
-        createScrollText(this.parent?.parent, options.scrollingTextData);
+
+        if (this.parent?.parent && options.scrollingTextData)
+            this.parent.parent.queueScrollText(options.scrollingTextData);
     }
 }

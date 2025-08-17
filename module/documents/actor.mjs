@@ -1,10 +1,13 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { damageKeyToNumber } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 
 export default class DhpActor extends Actor {
+    #scrollTextQueue = [];
+    #scrollTextInterval;
+
     /**
      * Return the first Actor active owner.
      */
@@ -27,7 +30,7 @@ export default class DhpActor extends Actor {
 
     /** @inheritDoc */
     static migrateData(source) {
-        if(source.system?.attack && !source.system.attack.type) source.system.attack.type = "attack";
+        if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
         return super.migrateData(source);
     }
 
@@ -572,19 +575,15 @@ export default class DhpActor extends Actor {
                 if (armorSlotResult) {
                     const { modifiedDamage, armorSpent, stressSpent } = armorSlotResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
-                    if(armorSpent) {
+                    if (armorSpent) {
                         const armorUpdate = updates.find(u => u.key === 'armor');
-                        if(armorUpdate)
-                            armorUpdate.value += armorSpent;
-                        else
-                            updates.push({ value: armorSpent, key: 'armor' });
+                        if (armorUpdate) armorUpdate.value += armorSpent;
+                        else updates.push({ value: armorSpent, key: 'armor' });
                     }
-                    if(stressSpent) {
+                    if (stressSpent) {
                         const stressUpdate = updates.find(u => u.key === 'stress');
-                        if(stressUpdate)
-                            stressUpdate.value += stressSpent;
-                        else
-                            updates.push({ value: stressSpent, key: 'stress' });
+                        if (stressUpdate) stressUpdate.value += stressSpent;
+                        else updates.push({ value: stressSpent, key: 'stress' });
                     }
                 }
             }
@@ -752,6 +751,25 @@ export default class DhpActor extends Actor {
                 const condition = settings[`${this.type}Default`];
                 await this.toggleStatusEffect(condition, { overlay: settings.overlay, active: defeatedState });
             }
+        }
+    }
+
+    queueScrollText(scrollingTextData) {
+        this.#scrollTextQueue.push(...scrollingTextData.map(data => () => createScrollText(this, data)));
+        if (!this.#scrollTextInterval) {
+            const scrollFunc = this.#scrollTextQueue.pop();
+            scrollFunc?.();
+
+            const intervalFunc = () => {
+                const scrollFunc = this.#scrollTextQueue.pop();
+                scrollFunc?.();
+                if (this.#scrollTextQueue.length === 0) {
+                    clearInterval(this.#scrollTextInterval);
+                    this.#scrollTextInterval = null;
+                }
+            };
+
+            this.#scrollTextInterval = setInterval(intervalFunc.bind(this), 600);
         }
     }
 }

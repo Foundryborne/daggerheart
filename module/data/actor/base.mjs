@@ -1,5 +1,5 @@
 import DHBaseActorSettings from '../../applications/sheets/api/actor-setting.mjs';
-import { createScrollText, getScrollTextData } from '../../helpers/utils.mjs';
+import { getScrollTextData } from '../../helpers/utils.mjs';
 
 const resistanceField = (resistanceLabel, immunityLabel, reductionLabel) =>
     new foundry.data.fields.SchemaField({
@@ -133,6 +133,6 @@ export default class BaseDataActor extends foundry.abstract.TypeDataModel {
     _onUpdate(changes, options, userId) {
         super._onUpdate(changes, options, userId);
 
-        createScrollText(this.parent, options.scrollingTextData);
+        if (options.scrollingTextData) this.parent.queueScrollText(options.scrollingTextData);
     }
 }
