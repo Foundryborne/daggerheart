@@ -130,7 +130,7 @@ export default function DHApplicationMixin(Base) {
         async _renderFrame(options) {
             const frame = await super._renderFrame(options);
 
-            const headerAttribution = !['environment'].includes(this.document.type);
+            const headerAttribution = !['environment', 'ancestry', 'community'].includes(this.document.type);
             if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
@@ -145,7 +145,7 @@ export default function DHApplicationMixin(Base) {
          *  Refresh the custom parts of the application frame
          */
         refreshFrame() {
-            const headerAttribution = !['environment'].includes(this.document.type);
+            const headerAttribution = !['environment', 'ancestry', 'community'].includes(this.document.type);
             if (this.document.system.metadata.hasAttribution && headerAttribution) {
                 const { source, page } = this.document.system.attribution;
                 const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');

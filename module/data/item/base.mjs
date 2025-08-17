@@ -117,6 +117,13 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         return [];
     }
 
+    get attributionLabel() {
+        if (!this.attribution) return;
+
+        const { source, page } = this.attribution;
+        return [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+    }
+
     /**
      * Obtain a data object used to evaluate any dice rolls associated with this Item Type
      * @param {object} [options] - Options which modify the getRollData method.

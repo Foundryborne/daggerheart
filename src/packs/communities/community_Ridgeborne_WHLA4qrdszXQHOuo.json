@@ -7,19 +7,24 @@
     "description": "<p>Being part of a ridgeborne community means you’ve called the rocky peaks and sharp cliffs of the mountainside home.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"55b3205f-c5c5-4e9d-a207-d0fbb550cd8f\">Those who’ve lived in the mountains often consider themselves hardier than most because they’ve thrived among the most dangerous terrain many continents have to offer. These groups are adept at adaptation, developing unique technologies and equipment to move both people and products across difficult terrain. As such, ridgeborne grow up scrambling and climbing, making them sturdy and strong-willed. Ridgeborne localities appear in a variety of forms—some cities carve out entire cliff faces, others construct castles of stone, and still more live in small homes on windblown peaks. Outside forces often struggle to attack ridgeborne groups, as the small militias and large military forces of the mountains are adept at utilizing their high-ground advantage.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"4c5ba38a-812d-4231-930c-23c9fc5a24cf\"><em>Ridgeborne are often bold, hardy, indomitable, loyal, reserved, and stubborn.</em></p></p>",
     "features": [
       "Compendium.daggerheart.communities.Item.DYmmr5CknLtHnwuj"
-    ]
+    ],
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 33,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784394,
-    "modifiedTime": 1754010655426,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755394814094,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "WHLA4qrdszXQHOuo",
   "sort": 3400000,
