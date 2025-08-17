@@ -1,3 +1,10 @@
+---
+name: Pull Request
+about: Create a new pull request
+title: "[PR] <Insert Title here>"
+labels: pr
+assignees: ''
+---
 ## Description
 
 Please include a summary of the change and which issue is fixed (if applicable). Also include relevant context or motivation for the change.
