@@ -37,6 +37,11 @@
         "img": "icons/equipment/finger/ring-faceted-gold-teal.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 60,
+      "artist": ""
     }
   },
   "effects": [],
@@ -51,12 +56,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753640632212,
-    "modifiedTime": 1753640958684,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432465536,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!kn71qCQY0DnjmQBJ"
 }

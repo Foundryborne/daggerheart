@@ -29,6 +29,11 @@
         "img": "icons/equipment/finger/ring-shield-silver.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
     }
   },
   "effects": [],
@@ -43,12 +48,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753638222884,
-    "modifiedTime": 1753638266245,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432185583,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!aUqRifqR5JXXa1dN"
 }

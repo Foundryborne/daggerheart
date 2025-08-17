@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>As a downtime move, you can mark a Stress to craft a Vial of Darksmoke.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753637508452,
-    "modifiedTime": 1753637524868,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432114401,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!MhCo8i0cRXzdnXbA"
 }

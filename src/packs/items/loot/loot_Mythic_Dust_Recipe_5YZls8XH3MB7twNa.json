@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>As a downtime move, you can use a handful of fine gold dust to craft Mythic Dust.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 60,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753640163566,
-    "modifiedTime": 1753640190943,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432395196,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!5YZls8XH3MB7twNa"
 }
