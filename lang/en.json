@@ -2314,6 +2314,10 @@
                     "heal": "Heal",
                     "applyHealing": "Apply Healing"
                 },
+                "refreshMessage": {
+                    "title": "Feature Refresh",
+                    "header": "Refreshed"
+                },
                 "reroll": {
                     "confirmTitle": "Reroll Dice",
                     "confirmText": "Are you sure you want to reroll?"
@@ -2384,7 +2388,15 @@
                 "insufficientResources": "You have insufficient resources",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
-                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice"
+                "noDiceSystem": "Your selected dice {system} does not have a {faces} dice",
+                "gmMenuRefresh": "You refreshed all actions and resources {types}"
+            },
+            "Sidebar": {
+                "daggerheartMenu": {
+                    "title": "Daggerheart Menu",
+                    "startSession": "Start Session",
+                    "startScene": "Start Scene"
+                }
             },
             "Tooltip": {
                 "disableEffect": "Disable Effect",

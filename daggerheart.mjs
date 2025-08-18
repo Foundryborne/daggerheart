@@ -134,6 +134,8 @@ Hooks.once('init', () => {
     CONFIG.ui.combat = applications.ui.DhCombatTracker;
     CONFIG.ui.chat = applications.ui.DhChatLog;
     CONFIG.ui.hotbar = applications.ui.DhHotbar;
+    CONFIG.ui.sidebar = applications.sidebar.DhSidebar;
+    CONFIG.ui.daggerheartMenu = applications.sidebar.DaggerheartMenu;
     CONFIG.Token.rulerClass = placeables.DhTokenRuler;
 
     CONFIG.ui.resources = applications.ui.DhFearTracker;
