@@ -4,6 +4,7 @@ import DHBaseActorSheet from '../api/base-actor.mjs';
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
 export default class AdversarySheet extends DHBaseActorSheet {
+    /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ['adversary'],
         position: { width: 660, height: 766 },
@@ -12,7 +13,14 @@ export default class AdversarySheet extends DHBaseActorSheet {
             reactionRoll: AdversarySheet.#reactionRoll
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
         }
     };
 

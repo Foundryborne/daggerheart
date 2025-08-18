@@ -95,7 +95,7 @@ export default class DhCharacter extends BaseDataActor {
             }),
             attack: new ActionField({
                 initial: {
-                    name: 'Unarmed Attack',
+                    name: 'DAGGERHEART.GENERAL.unarmedAttack',
                     img: 'icons/skills/melee/unarmed-punch-fist-yellow-red.webp',
                     _id: foundry.utils.randomID(),
                     systemPath: 'attack',

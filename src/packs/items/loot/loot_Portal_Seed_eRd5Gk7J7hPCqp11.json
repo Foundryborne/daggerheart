@@ -6,7 +6,12 @@
   "system": {
     "description": "<p>You can plant this seed in the ground to grow a portal in that spot. The portal is ready to use in 24 hours. You can use this portal to travel to any other location where you planted a portal seed. A portal can be destroyed by dealing any amount of magic damage to it.</p>",
     "quantity": 1,
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -20,12 +25,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753638512020,
-    "modifiedTime": 1753638586392,
-    "lastModifiedBy": "OFxauskoxcvVTVNA"
+    "modifiedTime": 1755432221837,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!eRd5Gk7J7hPCqp11"
 }

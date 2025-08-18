@@ -87,6 +87,11 @@
         "img": "icons/magic/light/beams-rays-orange-purple-large.webp",
         "range": "far"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 133,
+      "artist": ""
     }
   },
   "flags": {},
@@ -94,12 +99,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784508,
-    "modifiedTime": 1754270031835,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755429792958,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "4uAFGp3LxiC07woC",
   "sort": 3400000,

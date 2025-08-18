@@ -74,7 +74,7 @@
                     <legend>{{localize "DAGGERHEART.GENERAL.experience.plural"}}</legend>
                     {{#each experiences}}
                         {{#if name}}
-                            <div class="experience-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}">
+                            <div class="experience-chip {{#if (includes ../selectedExperiences id)}}selected{{/if}}" data-action="selectExperience" data-key="{{id}}" data-tooltip="{{this.description}}">
                                 {{#if (includes ../selectedExperiences id)}}
                                     <span><i class="fa-solid fa-circle"></i></span>
                                 {{else}}

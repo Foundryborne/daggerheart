@@ -1,6 +1,6 @@
 {
   "name": "Hallowed Temple",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "XMeecO3IRvu5ck6F",
   "system": {
@@ -19,19 +19,24 @@
     "tier": 2,
     "description": "<p>A bustling but well-kept temple that provides healing and hosts regular services, overseen by a priest or seraph.</p>",
     "type": "social",
-    "impulses": "Connect the Mortal Realm with the Hallows Above, display the power of the divine, provide aid and succor to the faithful"
+    "impulses": "Connect the Mortal Realm with the Hallows Above, display the power of the divine, provide aid and succor to the faithful",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 107,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784558,
-    "modifiedTime": 1754216032747,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890251,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "dsA6j69AnaJhUyqH",
   "sort": 3400000,
@@ -47,7 +52,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

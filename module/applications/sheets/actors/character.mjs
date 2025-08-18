@@ -1,7 +1,7 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import DhpDeathMove from '../../dialogs/deathMove.mjs';
 import { abilities } from '../../../config/actorConfig.mjs';
-import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
+import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
@@ -23,6 +23,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             openPack: CharacterSheet.#openPack,
             makeDeathMove: CharacterSheet.#makeDeathMove,
             levelManagement: CharacterSheet.#levelManagement,
+            viewLevelups: CharacterSheet.#viewLevelups,
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
@@ -30,7 +31,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
             tempBrowser: CharacterSheet.#tempBrowser
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-angles-up',
+                    label: 'DAGGERHEART.ACTORS.Character.viewLevelups',
+                    action: 'viewLevelups'
+                }
+            ]
         },
         dragDrop: [
             {
@@ -585,7 +593,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!value || !subclass)
             return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClassOrSubclass'));
 
-        new DhCharacterlevelUp(this.document).render({ force: true });
+        new CharacterLevelup(this.document).render({ force: true });
+    }
+
+    /**
+     * Opens the charater level management window in viewMode.
+     */
+    static #viewLevelups() {
+        new LevelupViewMode(this.document).render({ force: true });
     }
 
     /**
@@ -638,7 +653,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 ability: abilityLabel
             })
         });
-        
+
         this.consumeResource(result?.costs);
     }
 

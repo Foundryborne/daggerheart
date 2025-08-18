@@ -106,6 +106,11 @@
       },
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 91,
+      "artist": ""
     }
   },
   "flags": {},
@@ -115,9 +120,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784219,
-    "modifiedTime": 1755259462665,
+    "modifiedTime": 1755385356620,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "G7jiltRjgvVhZewm",

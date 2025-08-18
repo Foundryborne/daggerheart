@@ -7,19 +7,24 @@
     "description": "<p>Being part of a highborne community means you’re accustomed to a life of elegance, opulence, and prestige within the upper echelons of society.<br><br><p class=\"green Body-Styles_Body\" chunk_id=\"800c54a3-5285-410c-9307-feabfc88540e\">Traditionally, members of a highborne community possess incredible material wealth. While this can take a variety of forms depending on the community—including gold and other minerals, land, or controlling the means of production—this status always comes with power and influence. Highborne place great value on titles and possessions, and there is little social mobility within their ranks. Members of a highborne community often control the political and economic status of the areas in which they live due to their ability to influence people and the economy with their substantial wealth. The health and safety of the less affluent people who live in these locations often hinges on the ability of this highborne ruling class to prioritize the well-being of their subjects over profit.</p>\n<p class=\"green Body-Styles_Body\" chunk_id=\"02c8011b-a6fa-4300-ace4-9c0640cf0a90\"><em>Highborne are often amiable, candid, conniving, enterprising, ostentatious, and unflappable.</em></p></p>",
     "features": [
       "Compendium.daggerheart.communities.Item.C7NR6qRatawZusmg"
-    ]
+    ],
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 32,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784392,
-    "modifiedTime": 1754010352828,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755394637367,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "DVw2mOCHB8i0XeBz",
   "sort": 3400000,

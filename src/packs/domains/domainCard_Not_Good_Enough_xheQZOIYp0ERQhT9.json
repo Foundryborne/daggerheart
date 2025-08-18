@@ -8,19 +8,24 @@
     "domain": "blade",
     "recallCost": 1,
     "level": 1,
-    "type": "ability"
+    "type": "ability",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 121,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784487,
-    "modifiedTime": 1754244517328,
-    "lastModifiedBy": "l5jB3XmcVXOTQpRZ"
+    "modifiedTime": 1755428087961,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "xheQZOIYp0ERQhT9",
   "sort": 3400000,

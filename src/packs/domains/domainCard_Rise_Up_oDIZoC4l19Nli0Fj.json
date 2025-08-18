@@ -77,6 +77,11 @@
         "img": "icons/magic/life/heart-cross-strong-purple-orange.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 134,
+      "artist": ""
     }
   },
   "flags": {},
@@ -84,12 +89,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784504,
-    "modifiedTime": 1754242078238,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755429903155,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "oDIZoC4l19Nli0Fj",
   "sort": 3400000,

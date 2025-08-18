@@ -113,6 +113,11 @@
       "type": "attack",
       "range": "melee",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 82,
+      "artist": ""
     }
   },
   "flags": {},
@@ -122,9 +127,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.4",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784353,
-    "modifiedTime": 1755264447203,
+    "modifiedTime": 1755384873585,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "ldbWEL7uZs84vyrR",

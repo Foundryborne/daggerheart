@@ -168,9 +168,9 @@
             <div class="experience-list">
                 {{#each document.system.experiences as |experience id|}}
                     <div class="experience-row" data-tooltip-text="{{experience.description}}">
-                        <div class="experience-value">
+                        <span class="experience-value">
                             +{{experience.value}}
-                        </div>
+                        </span>
                         <span>{{experience.name}}</span>
                         <div class="controls">
                             <a data-action="sendExpToChat" data-type="experience" data-id="{{id}}">

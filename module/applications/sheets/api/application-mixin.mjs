@@ -85,6 +85,8 @@ export default function DHApplicationMixin(Base) {
             this._dragDrop = this._createDragDropHandlers();
         }
 
+        #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
+
         /**
          * The default options for the sheet.
          * @type {DHSheetV2Configuration}
@@ -101,7 +103,8 @@ export default function DHApplicationMixin(Base) {
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended,
                 addNewItem: DHSheetV2.#addNewItem,
-                browseItem: DHSheetV2.#browseItem
+                browseItem: DHSheetV2.#browseItem,
+                editAttribution: DHSheetV2.#editAttribution
             },
             contextMenus: [
                 {
@@ -124,6 +127,43 @@ export default function DHApplicationMixin(Base) {
             dragDrop: [],
             tagifyConfigs: []
         };
+
+        /**@inheritdoc */
+        async _renderFrame(options) {
+            const frame = await super._renderFrame(options);
+
+            const hideAttribution = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).hideAttribution;
+            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
+            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+                const { source, page } = this.document.system.attribution;
+                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+                const element = `<label class="attribution-header-label">${attribution}</label>`;
+                this.window.controls.insertAdjacentHTML('beforebegin', element);
+            }
+
+            return frame;
+        }
+
+        /**
+         *  Refresh the custom parts of the application frame
+         */
+        refreshFrame() {
+            const hideAttribution = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).hideAttribution;
+            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
+            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+                const { source, page } = this.document.system.attribution;
+                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+
+                const label = this.window.header.querySelector('.attribution-header-label');
+                label.innerHTML = attribution;
+            }
+        }
 
         /**
          * Related documents that should cause a rerender of this application when updated.
@@ -546,6 +586,14 @@ export default function DHApplicationMixin(Base) {
             }
 
             return new ItemBrowser({ presets }).render({ force: true });
+        }
+
+        /**
+         * Open the attribution dialog
+         * @type {ApplicationClickAction}
+         */
+        static async #editAttribution() {
+            new game.system.api.applications.dialogs.AttributionDialog(this.document).render({ force: true });
         }
 
         /**

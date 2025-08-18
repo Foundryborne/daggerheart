@@ -34,6 +34,11 @@
         "img": "icons/equipment/neck/pendant-rough-silver-purple.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 59,
+      "artist": ""
     }
   },
   "effects": [
@@ -88,12 +93,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753638931971,
-    "modifiedTime": 1753989758225,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755432243222,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!PkmTZXRMZL022O75"
 }

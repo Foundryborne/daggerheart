@@ -156,7 +156,12 @@
       },
       "chatDisplay": false
     },
-    "motivesAndTactics": "Dispatch merciless death, punish the defi ant, secure victory at any cost"
+    "motivesAndTactics": "Dispatch merciless death, punish the defi ant, secure victory at any cost",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 98,
+      "artist": ""
+    }
   },
   "prototypeToken": {
     "name": "Fallen Warlord: Undefeated Champion",
@@ -800,9 +805,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753929476879,
-    "modifiedTime": 1755259462720,
+    "modifiedTime": 1755385652290,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!RXkZTwBRi4dJ3JE5"

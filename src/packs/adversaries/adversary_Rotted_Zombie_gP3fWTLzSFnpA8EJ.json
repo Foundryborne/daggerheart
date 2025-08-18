@@ -99,6 +99,11 @@
       "stress": {
         "max": 1
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 83,
+      "artist": ""
     }
   },
   "flags": {},
@@ -108,9 +113,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.4",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784339,
-    "modifiedTime": 1755263398665,
+    "modifiedTime": 1755384730622,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "gP3fWTLzSFnpA8EJ",

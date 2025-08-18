@@ -75,7 +75,12 @@
         "range": ""
       }
     },
-    "consumeOnUse": true
+    "consumeOnUse": true,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 62,
+      "artist": ""
+    }
   },
   "effects": [],
   "folder": null,
@@ -89,12 +94,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753591837472,
-    "modifiedTime": 1754394819077,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755432997515,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!items!XZavUVlHEvE2srEt"
 }

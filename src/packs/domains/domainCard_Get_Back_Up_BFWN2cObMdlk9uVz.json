@@ -9,19 +9,24 @@
     "recallCost": 1,
     "level": 1,
     "type": "ability",
-    "actions": {}
+    "actions": {},
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 121,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784460,
-    "modifiedTime": 1754304045807,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755428082275,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "BFWN2cObMdlk9uVz",
   "sort": 3400000,

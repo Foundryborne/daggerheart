@@ -38,4 +38,13 @@ export default class ForeignDocumentUUIDField extends foundry.data.fields.Docume
     toObject(value) {
         return value?.uuid ?? value;
     }
+
+    /** @override */
+    _cast(value) {
+        if (typeof value === 'string') return value;
+        if (value instanceof foundry.abstract.Document) return value.uuid;
+        throw new Error(
+            `The value provided to a ForeignDocumentUUIDField must be a ${foundry.abstract.Document.name} instance or a UUID string.`
+        );
+    }
 }

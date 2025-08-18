@@ -108,7 +108,7 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
     async onRollDamage(event, message) {
         event.stopPropagation();
         const actor = await this.getActor(message.system.source.actor);
-        if (game.user.character?.id !== actor.id && !game.user.isGM) return true;
+        if(!actor.isOwner) return true;
         if (message.system.source.item && message.system.source.action) {
             const action = this.getAction(actor, message.system.source.item, message.system.source.action);
             if (!action || !action?.rollDamage) return;

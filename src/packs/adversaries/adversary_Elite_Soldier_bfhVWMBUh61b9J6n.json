@@ -138,6 +138,11 @@
         "difficulty": null,
         "damageMod": "none"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 86,
+      "artist": ""
     }
   },
   "flags": {},
@@ -147,9 +152,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1754090776362,
-    "modifiedTime": 1755259462811,
+    "modifiedTime": 1755385106827,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "ownership": {

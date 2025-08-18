@@ -8,10 +8,17 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         classes: ['environment'],
         position: {
             width: 500,
-            height: 725
+            height: 740
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
         },
         actions: {},
         dragDrop: [{ dragSelector: '.action-section .inventory-item', dropSelector: null }]
@@ -42,6 +49,7 @@ export default class DhpEnvironment extends DHBaseActorSheet {
         switch (partId) {
             case 'header':
                 await this._prepareHeaderContext(context, options);
+
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);

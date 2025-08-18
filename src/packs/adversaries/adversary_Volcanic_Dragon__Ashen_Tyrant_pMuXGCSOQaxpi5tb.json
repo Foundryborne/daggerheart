@@ -145,7 +145,12 @@
         }
       }
     },
-    "motivesAndTactics": "Choke, fly, intimidate, kill or be killed"
+    "motivesAndTactics": "Choke, fly, intimidate, kill or be killed",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 101,
+      "artist": ""
+    }
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Ashen Tyrant",
@@ -901,9 +906,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "1.0.4",
+    "systemVersion": "1.0.5",
     "createdTime": 1753929252617,
-    "modifiedTime": 1755267105169,
+    "modifiedTime": 1755385779475,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!pMuXGCSOQaxpi5tb"

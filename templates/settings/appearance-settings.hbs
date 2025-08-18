@@ -3,6 +3,8 @@
         <h1>{{localize 'DAGGERHEART.SETTINGS.Menu.appearance.name'}}</h1>
     </header>
 
+    {{formGroup settingFields.schema.fields.hideAttribution value=settingFields._source.hideAttribution localize=true}}
+
     <fieldset>
         <legend>{{localize 'DAGGERHEART.GENERAL.fear'}}</legend>
         {{formGroup settingFields.schema.fields.displayFear value=settingFields._source.displayFear localize=true}}
@@ -15,6 +17,14 @@
         {{formGroup settingFields.schema.fields.extendAdversaryDescriptions value=settingFields._source.extendAdversaryDescriptions localize=true}}
         {{formGroup settingFields.schema.fields.extendEnvironmentDescriptions value=settingFields._source.extendEnvironmentDescriptions localize=true}}
         {{formGroup settingFields.schema.fields.extendItemDescriptions value=settingFields._source.extendItemDescriptions localize=true}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize 'DAGGERHEART.SETTINGS.Appearance.FIELDS.expandRollMessage'}}</legend>
+        {{formGroup settingFields.schema.fields.expandRollMessage.fields.desc value=settingFields.expandRollMessage.desc localize=true}}
+        {{formGroup settingFields.schema.fields.expandRollMessage.fields.roll value=settingFields.expandRollMessage.roll localize=true}}
+        {{formGroup settingFields.schema.fields.expandRollMessage.fields.damage value=settingFields.expandRollMessage.damage localize=true}}
+        {{formGroup settingFields.schema.fields.expandRollMessage.fields.target value=settingFields.expandRollMessage.target localize=true}}
     </fieldset>
 
     {{#if showDiceSoNice}}

@@ -13,7 +13,16 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         classes: ['item'],
         position: { width: 600 },
-        window: { resizable: true },
+        window: {
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
+        },
         form: {
             submitOnChange: true
         },
@@ -54,6 +63,15 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /* -------------------------------------------- */
     /*  Prepare Context                             */
     /* -------------------------------------------- */
+
+    /**@inheritdoc */
+    async _prepareContext(options) {
+        const context = super._prepareContext(options);
+        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
+            .hideAttribution;
+
+        return context;
+    }
 
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {

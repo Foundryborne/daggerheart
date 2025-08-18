@@ -177,7 +177,7 @@ Roll.replaceFormulaData = function (formula, data = {}, { missing, warn = false 
     return nativeReplaceFormulaData(formula, data, { missing, warn });
 };
 
-foundry.dice.terms.Die.MODIFIERS.sc = 'selfCorrecting';
+foundry.utils.setProperty(foundry, 'dice.terms.Die.MODIFIERS.sc', 'selfCorrecting');
 
 /**
  * Return the configured value as result if 1 is rolled
@@ -371,17 +371,15 @@ export function getScrollTextData(resources, resource, key) {
     return { text, stroke, fill, direction };
 }
 
-export function createScrollText(actor, optionsData) {
-    if (actor && optionsData?.length) {
+export function createScrollText(actor, data) {
+    if (actor) {
         actor.getActiveTokens().forEach(token => {
-            optionsData.forEach(data => {
-                const { text, ...options } = data;
-                canvas.interface.createScrollingText(token.getCenterPoint(), data.text, {
-                    duration: 2000,
-                    distance: token.h,
-                    jitter: 0,
-                    ...options
-                });
+            const { text, ...options } = data;
+            canvas.interface.createScrollingText(token.getCenterPoint(), data.text, {
+                duration: 2000,
+                distance: token.h,
+                jitter: 0,
+                ...options
             });
         });
     }

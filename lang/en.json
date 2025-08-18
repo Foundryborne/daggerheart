@@ -193,7 +193,8 @@
                 "companionLevelup": {
                     "confirmTitle": "Companion Levelup",
                     "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
-                }
+                },
+                "viewLevelups": "View Levelups"
             },
             "Companion": {
                 "FIELDS": {
@@ -236,6 +237,9 @@
             }
         },
         "APPLICATIONS": {
+            "Attribution": {
+                "title": "Attribution"
+            },
             "CharacterCreation": {
                 "tabs": {
                     "ancestry": "Ancestry",
@@ -490,7 +494,8 @@
                     "pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
-                "title": "{actor} Level Up"
+                "title": "{actor} Level Up",
+                "viewModeTitle": "{actor} Level Up (View Mode)"
             },
             "MulticlassChoice": {
                 "title": "Multiclassing - {actor}",
@@ -1905,6 +1910,7 @@
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
+            "artistAttribution": "Artwork By: {artist}",
             "attack": "Attack",
             "basics": "Basics",
             "bonus": "Bonus",
@@ -1995,7 +2001,7 @@
             "true": "True",
             "type": "Type",
             "unarmed": "Unarmed",
-            "unarmedStrike": "Unarmed Strike",
+            "unarmedAttack": "Unarmed Attack",
             "unarmored": "Unarmored",
             "use": "Use",
             "used": "Used",
@@ -2005,6 +2011,11 @@
         },
         "ITEMS": {
             "FIELDS": {
+                "attribution": {
+                    "source": { "label": "Source" },
+                    "page": { "label": "Page" },
+                    "artist": { "label": "Artist" }
+                },
                 "resource": {
                     "amount": { "label": "Amount" },
                     "dieFaces": { "label": "Die Faces" },
@@ -2102,12 +2113,18 @@
                 "FIELDS": {
                     "displayFear": { "label": "Fear Display" },
                     "dualityColorScheme": { "label": "Chat Style" },
-                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" },
+                    "hideAttribution": { "label": "Hide Attribution" },
                     "expandedTitle": "Auto-expand Descriptions",
                     "extendCharacterDescriptions": { "label": "Characters" },
                     "extendAdversaryDescriptions": { "label": "Adversaries" },
                     "extendEnvironmentDescriptions": { "label": "Environments" },
-                    "extendItemDescriptions": { "label": "Items" }
+                    "extendItemDescriptions": { "label": "Items" },
+                    "expandRollMessage": "Auto-expand Message Sections",
+                    "expandRollMessageDesc": { "label": "Description" },
+                    "expandRollMessageRoll": { "label": "Formula" },
+                    "expandRollMessageDamage": { "label": "Damage/Healing" },
+                    "expandRollMessageTarget": { "label": "Target" },
+                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
@@ -2406,7 +2423,8 @@
                 "rulesOff": "Rules Off",
                 "remainingUses": "Uses refresh on {type}",
                 "rightClickExtand": "Right-Click to extand",
-                "companionPartnerLevelBlock": "The companion needs an assigned partner to level up."
+                "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
+                "configureAttribution": "Configure Attribution"
             }
         }
     }

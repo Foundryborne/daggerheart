@@ -44,3 +44,73 @@
     gap: @gap;
     align-items: center;
 }
+
+/**
+ * Apply default typography styles.
+ */
+.dh-typography() {
+    h1 {
+        font-family: @font-title;
+        margin: 0;
+        border: none;
+        font-weight: normal;
+    }
+
+    h1 input[type='text'] {
+        font-family: @font-title;
+    }
+
+    h2,
+    h3 {
+        font-family: @font-subtitle;
+        margin: 0;
+        border: none;
+        font-weight: normal;
+    }
+
+    h4 {
+        font-family: @font-body;
+        font-size: 14px;
+        border: none;
+        font-weight: 700;
+        margin: 0;
+        text-shadow: none;
+        font-weight: normal;
+    }
+
+    h5 {
+        font-family: @font-body;
+        font-size: 14px;
+        margin: 0;
+        font-weight: normal;
+    }
+
+    p,
+    span,
+    textarea,
+    label,
+    select,
+    multi-select .tags .tag,
+    table,
+    fieldset legend,
+    input[type='text'],
+    input[type='number'],
+    input[type='search'],
+    .tagify__dropdown,
+    li {
+        font-family: @font-body;
+    }
+
+    button span {
+        font-weight: bold;
+    }
+
+    small {
+        font-family: @font-body;
+        opacity: 0.8;
+    }
+
+    nav a {
+        font-family: @font-body;
+    }
+}

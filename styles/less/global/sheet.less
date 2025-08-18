@@ -4,11 +4,19 @@
 
 // Theme handling
 .appTheme({
-    background: @dark-blue-60;
-    backdrop-filter: blur(10px);
+    background: @dark-blue-90;
+    backdrop-filter: blur(8px);
 }, {
     background: url('../assets/parchments/dh-parchment-light.png') no-repeat center;
 });
+
+body.game:is(.performance-low, .noblur) {
+    .themed.theme-dark .application.daggerheart.sheet.dh-style,
+    .themed.theme-dark.application.daggerheart.sheet.dh-style,
+    &.theme-dark .application.daggerheart {
+        background: @dark-blue;
+    };
+}
 
 .application.sheet.dh-style {
     border-radius: 10px;

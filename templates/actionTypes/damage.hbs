@@ -13,7 +13,7 @@
             {{formField @root.fields.damage.fields.includeBase value=@root.source.damage.includeBase name="damage.includeBase" classes="checkbox" localize=true }}
         {{/if}}
         {{#unless (eq @root.source.type 'healing')}}
-            {{formField @root.fields.damage.fields.direct value=@root.source.damage.direct name="damage.direct" localize=true classes="checkbox"}}
+            {{formField directField value=source.direct name=(concat path "damage.direct") localize=true classes="checkbox"}}
         {{/unless}}
     </div>
     {{#each source.parts as |dmg index|}}
