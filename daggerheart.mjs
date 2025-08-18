@@ -8,7 +8,7 @@ import RegisterHandlebarsHelpers from './module/helpers/handlebarsHelper.mjs';
 import { enricherConfig, enricherRenderSetup } from './module/enrichers/_module.mjs';
 import { getCommandTarget, rollCommandToJSON } from './module/helpers/utils.mjs';
 import { NarrativeCountdowns } from './module/applications/ui/countdowns.mjs';
-import { DHRoll, DualityRoll, D20Roll, DamageRoll } from './module/dice/_module.mjs';
+import { BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll } from './module/dice/_module.mjs';
 import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs';
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
@@ -49,9 +49,7 @@ Hooks.once('init', () => {
         DamageRoll: DamageRoll
     };
 
-    CONFIG.Dice.rolls = [...CONFIG.Dice.rolls, DHRoll, DualityRoll, D20Roll, DamageRoll];
-    Roll.CHAT_TEMPLATE = 'systems/daggerheart/templates/ui/chat/foundryRoll.hbs';
-    Roll.TOOLTIP_TEMPLATE = 'systems/daggerheart/templates/ui/chat/foundryRollTooltip.hbs';
+    CONFIG.Dice.rolls = [BaseRoll, DHRoll, DualityRoll, D20Roll, DamageRoll];
     CONFIG.MeasuredTemplate.objectClass = placeables.DhMeasuredTemplate;
 
     const { DocumentSheetConfig } = foundry.applications.apps;
