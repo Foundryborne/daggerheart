@@ -48,9 +48,9 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         super._onUpdate(changes, options, userId);
 
         const lastMessage = Array.from(game.messages).sort((a, b) => b.timestamp - a.timestamp)[0];
-        if (lastMessage.id === this.id) {
+        if (lastMessage.id === this.id && ui.chat.isAtBottom) {
             setTimeout(() => {
-                document.querySelector('.chat-scroll').scrollTop = 0x7fffffbf;
+                ui.chat.scrollBottom();
             }, 5);
         }
     }
