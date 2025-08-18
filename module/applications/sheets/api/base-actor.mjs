@@ -195,6 +195,8 @@ export default class DHBaseActorSheet extends DHApplicationMixin(ActorSheetV2) {
             };
             event.dataTransfer.setData('text/plain', JSON.stringify(attackData));
             event.dataTransfer.setDragImage(attackItem.querySelector('img'), 60, 0);
+        } else if (this.document.type !== 'environment') {
+            super._onDragStart(event);
         }
     }
 }

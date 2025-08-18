@@ -121,7 +121,7 @@ export default function DHApplicationMixin(Base) {
                     }
                 }
             ],
-            dragDrop: [],
+            dragDrop: [{ dragSelector: '.inventory-item[data-type="effect"]', dropSelector: null }],
             tagifyConfigs: []
         };
 
@@ -249,14 +249,37 @@ export default function DHApplicationMixin(Base) {
          * @param {DragEvent} event
          * @protected
          */
-        _onDragStart(event) {}
+        async _onDragStart(event) {
+            const inventoryItem = event.currentTarget.closest('.inventory-item');
+            if (inventoryItem) {
+                const { type, itemUuid } = inventoryItem.dataset;
+                if (type === 'effect') {
+                    const effect = await foundry.utils.fromUuid(itemUuid);
+                    const effectData = {
+                        type: 'ActiveEffect',
+                        data: { ...effect.toObject(), _id: null },
+                        fromInternal: this.document.uuid
+                    };
+                    event.dataTransfer.setData('text/plain', JSON.stringify(effectData));
+                    event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
+                }
+            }
+        }
 
         /**
          * Handle drop event.
          * @param {DragEvent} event
          * @protected
          */
-        _onDrop(event) {}
+        _onDrop(event) {
+            event.stopPropagation();
+            const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+            if (data.fromInternal === this.document.uuid) return;
+
+            if (data.type === 'ActiveEffect') {
+                this.document.createEmbeddedDocuments('ActiveEffect', [data.data]);
+            }
+        }
 
         /* -------------------------------------------- */
         /*  Context Menu                                */

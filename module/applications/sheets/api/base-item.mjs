@@ -252,6 +252,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                 };
                 event.dataTransfer.setData('text/plain', JSON.stringify(actionData));
                 event.dataTransfer.setDragImage(actionItem.querySelector('img'), 60, 0);
+            } else {
+                super._onDragStart(event);
             }
         }
     }
@@ -261,6 +263,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * @param {DragEvent} event - The drag event
      */
     async _onDrop(event) {
+        super._onDrop(event);
+
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         if (data.fromInternal) return;
 
