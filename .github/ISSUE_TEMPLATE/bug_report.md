@@ -1,10 +1,10 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: "[BUG] - "
+about: Create a bug report to help us identify issues and resolve them
+title: "[Bug] <Insert Title here> "
 labels: bug
+type: bug
 assignees: ''
-
 ---
 
 **Describe the bug**
@@ -24,10 +24,10 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Setup Information:**
- - OS: [e.g. iOS]
+ - OS: [e.g. iOS, Windows]
  - Browser [e.g. chrome, safari]
  - Foundry Version [e.g. v13 b342]
-- System Version [e.g. main-3593f44]
+- System Version [e.g. v.1.0, v.1.0.1]
 
 
 **Additional context**
