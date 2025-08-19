@@ -26,6 +26,14 @@
     "CONTROLS": {
         "inFront": "In Front"
     },
+    "SCENE": {
+        "TABS": {
+            "SHEET": {
+                "dh": "Daggerheart"
+            }
+        }
+    },
+
     "DAGGERHEART": {
         "ACTIONS": {
             "TYPES": {
@@ -2427,5 +2435,5 @@
                 "configureAttribution": "Configure Attribution"
             }
         }
-    }
+    }    
 }
