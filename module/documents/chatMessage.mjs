@@ -43,6 +43,18 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         return super._preDelete(options, user);
     }
 
+    /** @inheritDoc */
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+
+        const lastMessage = Array.from(game.messages).sort((a, b) => b.timestamp - a.timestamp)[0];
+        if (lastMessage.id === this.id && ui.chat.isAtBottom) {
+            setTimeout(() => {
+                ui.chat.scrollBottom();
+            }, 5);
+        }
+    }
+
     enrichChatMessage(html) {
         const elements = html.querySelectorAll('[data-perm-id]');
         elements.forEach(e => {
@@ -55,7 +67,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         });
 
         if (this.isContentVisible) {
-            if(this.type === 'dualityRoll') {
+            if (this.type === 'dualityRoll') {
                 html.classList.add('duality');
                 switch (this.system.roll?.result?.duality) {
                     case 1:
@@ -70,27 +82,28 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 }
             }
 
-            const autoExpandRoll = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).expandRollMessage,
-                rollSections = html.querySelectorAll(".roll-part"),
-                itemDesc = html.querySelector(".domain-card-move");
+            const autoExpandRoll = game.settings.get(
+                    CONFIG.DH.id,
+                    CONFIG.DH.SETTINGS.gameSettings.appearance
+                ).expandRollMessage,
+                rollSections = html.querySelectorAll('.roll-part'),
+                itemDesc = html.querySelector('.domain-card-move');
             rollSections.forEach(s => {
-                if(s.classList.contains("roll-section")) {
+                if (s.classList.contains('roll-section')) {
                     const toExpand = s.querySelector('[data-action="expandRoll"]');
-                    toExpand.classList.toggle("expanded", autoExpandRoll.roll);
-                } else if(s.classList.contains("damage-section"))
-                    s.classList.toggle("expanded", autoExpandRoll.damage);
-                else if(s.classList.contains("target-section"))
-                    s.classList.toggle("expanded", autoExpandRoll.target);
+                    toExpand.classList.toggle('expanded', autoExpandRoll.roll);
+                } else if (s.classList.contains('damage-section'))
+                    s.classList.toggle('expanded', autoExpandRoll.damage);
+                else if (s.classList.contains('target-section')) s.classList.toggle('expanded', autoExpandRoll.target);
             });
-            if(itemDesc && autoExpandRoll.desc)
-                itemDesc.setAttribute("open", "");
+            if (itemDesc && autoExpandRoll.desc) itemDesc.setAttribute('open', '');
         }
-        
-        if(!game.user.isGM) {
-            const applyButtons = html.querySelector(".apply-buttons");
+
+        if (!game.user.isGM) {
+            const applyButtons = html.querySelector('.apply-buttons');
             applyButtons?.remove();
-            if(!this.isAuthor && !this.speakerActor?.isOwner) {
-                const buttons = html.querySelectorAll(".ability-card-footer > .ability-use-button");
+            if (!this.isAuthor && !this.speakerActor?.isOwner) {
+                const buttons = html.querySelectorAll('.ability-card-footer > .ability-use-button');
                 buttons.forEach(b => b.remove());
             }
         }
