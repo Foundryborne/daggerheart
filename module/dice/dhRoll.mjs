@@ -45,10 +45,7 @@ export default class DHRoll extends Roll {
         }
 
         for (const hook of config.hooks) {
-            if (
-                Hooks.call(`${CONFIG.DH.id}.post${hook.capitalize()}RollConfiguration`, roll, config, message) === false
-            )
-                return [];
+            if (Hooks.call(`${CONFIG.DH.id}.post${hook.capitalize()}RollConfiguration`, roll, config, message) === false) return [];
         }
         return roll;
     }

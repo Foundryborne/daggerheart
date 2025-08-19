@@ -41,10 +41,8 @@ export default class DamageRoll extends DHRoll {
             await game.dice3d.showForRoll(diceRoll, game.user, true, chatMessage.whisper, chatMessage.blind);
         }
         await super.buildPost(roll, config, message);
-        // console.log(config, config.source?.message)
-        if (config.source?.message) {
+        if (config.source?.message)
             chatMessage.update({ 'system.damage': config.damage });
-        }
     }
 
     static unifyDamageRoll(rolls) {

@@ -18,7 +18,7 @@ export default class DamageField extends fields.SchemaField {
     }
 
     async execute(data, force = false) {
-        if((this.hasRoll && DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.never.id) && !force) return false;
+        if((this.hasRoll && DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.never.id) && !force) return;
         
         const systemData = data.system ?? data;
 
@@ -52,7 +52,38 @@ export default class DamageField extends fields.SchemaField {
         if(config.source?.message && game.modules.get('dice-so-nice')?.active)
             await game.dice3d.waitFor3DAnimationByMessageID(config.source.message);
 
-        if(!CONFIG.Dice.daggerheart.DamageRoll.build(config)) return false;
+        if(!(await CONFIG.Dice.daggerheart.DamageRoll.build(config))) return false;
+
+        if(DamageField.getAutomation()) {
+
+        }
+    }
+
+    async applyDamage(config, targets) {
+        console.log(config, this)
+        targets ??= config.targets;
+        if(!config.damage || !targets?.length || !DamageField.getApplyAutomation()) return;
+        for (let target of targets) {
+            const actor = fromUuidSync(target.actorId);
+            if (
+                !this.hasHealing &&
+                this.onSave &&
+                this.system.hitTargets.find(t => t.id === target.id)?.saved?.success === true
+            ) {
+                const mod = CONFIG.DH.ACTIONS.damageOnSave[this.onSave]?.mod ?? 1;
+                Object.entries(config.damage).forEach(([k, v]) => {
+                    v.total = 0;
+                    v.parts.forEach(part => {
+                        part.total = Math.ceil(part.total * mod);
+                        v.total += part.total;
+                    });
+                });
+            }
+
+            // this.consumeOnSuccess();
+            if (this.hasHealing) actor.takeHealing(config.damage);
+            else actor.takeDamage(config.damage, this.isDirect);
+        }
     }
     
     static getFormulaValue(part, data) {
@@ -85,6 +116,10 @@ export default class DamageField extends fields.SchemaField {
 
     static getAutomation() {
         return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.players)
+    }
+
+    static getApplyAutomation() {
+        return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.players)
     }
 }
 

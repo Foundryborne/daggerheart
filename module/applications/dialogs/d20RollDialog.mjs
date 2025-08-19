@@ -20,7 +20,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
 
     static DEFAULT_OPTIONS = {
         tag: 'form',
-        id: 'roll-selection',
+        // id: 'roll-selection',
         classes: ['daggerheart', 'dialog', 'dh-style', 'views', 'roll-selection'],
         position: {
             width: 'auto'
@@ -42,7 +42,7 @@ export default class D20RollDialog extends HandlebarsApplicationMixin(Applicatio
     };
 
     get title() {
-        return this.config.title;
+        return `${this.config.title}${this.actor ? `: ${this.actor.name}` : ''}`;
     }
 
     get actor() {

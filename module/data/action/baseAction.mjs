@@ -1,7 +1,6 @@
 import DhpActor from '../../documents/actor.mjs';
 import D20RollDialog from '../../applications/dialogs/d20RollDialog.mjs';
 import { ActionMixin } from '../fields/actionField.mjs';
-import { abilities } from '../../config/actorConfig.mjs';
 
 const fields = foundry.data.fields;
 
@@ -50,6 +49,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         Object.values(this.schema.fields).forEach(s => {
             if(s.execute) workflow.push( { order: s.order, execute: s.execute } );
         });
+        if(this.schema.fields.damage) workflow.push( { order: 75, execute: this.schema.fields.damage.applyDamage } );
         workflow.sort((a, b) => a.order - b.order);
         return workflow.map(s => s.execute);
     }
@@ -383,16 +383,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     //     });
     // }
 
-    updateSaveMessage(result, message, targetId) {
-        if (!result) return;
-        const updateMsg = this.updateChatMessage.bind(this, message, targetId, {
-            result: result.roll.total,
-            success: result.roll.success
-        });
-        if (game.modules.get('dice-so-nice')?.active)
-            game.dice3d.waitFor3DAnimationByMessageID(result.message.id ?? result.message._id).then(() => updateMsg());
-        else updateMsg();
-    }
+    // updateSaveMessage(result, message, targetId) {
+    //     if (!result) return;
+    //     const updateMsg = this.updateChatMessage.bind(this, message, targetId, {
+    //         result: result.roll.total,
+    //         success: result.roll.success
+    //     });
+    //     if (game.modules.get('dice-so-nice')?.active)
+    //         game.dice3d.waitFor3DAnimationByMessageID(result.message.id ?? result.message._id).then(() => updateMsg());
+    //     else updateMsg();
+    // }
 
     // static rollSaveQuery({ actionId, actorId, event, message }) {
     //     return new Promise(async (resolve, reject) => {
@@ -404,28 +404,20 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     // }
     /* SAVE */
 
-    async updateChatMessage(message, targetId, changes, chain = true) {
+    async updateChatMessage(message, targetId, changes/* , chain = true */) {
         setTimeout(async () => {
             const chatMessage = ui.chat.collection.get(message._id);
 
-            await chatMessage.update({
-                flags: {
-                    [game.system.id]: {
-                        reactionRolls: {
-                            [targetId]: changes
-                        }
-                    }
-                }
-            });
+            await chatMessage.update(changes);
         }, 100);
-        if (chain) {
-            if (message.system.source.message)
-                this.updateChatMessage(ui.chat.collection.get(message.system.source.message), targetId, changes, false);
-            const relatedChatMessages = ui.chat.collection.filter(c => c.system.source?.message === message._id);
-            relatedChatMessages.forEach(c => {
-                this.updateChatMessage(c, targetId, changes, false);
-            });
-        }
+        // if (chain) {
+        //     if (message.system.source.message)
+        //         this.updateChatMessage(ui.chat.collection.get(message.system.source.message), targetId, changes, false);
+        //     const relatedChatMessages = ui.chat.collection.filter(c => c.system.source?.message === message._id);
+        //     relatedChatMessages.forEach(c => {
+        //         this.updateChatMessage(c, targetId, changes, false);
+        //     });
+        // }
     }
 
     /**

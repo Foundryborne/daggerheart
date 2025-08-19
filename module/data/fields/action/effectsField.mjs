@@ -1,7 +1,7 @@
 const fields = foundry.data.fields;
 
 export default class EffectsField extends fields.ArrayField {
-    order = 60;
+    order = 100;
 
     constructor(options = {}, context = {}) {
         const element = new fields.SchemaField({
@@ -12,19 +12,20 @@ export default class EffectsField extends fields.ArrayField {
     }
 
     async execute(config) {
-        if(!this.hasRoll) {
+        if(!this.hasEffect) return;
+        if(!config.message) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
-            await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
-        } else {
-            return;
+            config.message = await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
+        }
+        if(EffectsField.getAutomation()) {
+            EffectsField.applyEffects.call(this, config.targets);
         }
     }
 
-    async applyEffects(data, targets) {
-        targets ??= data.system.targets;
+    static async applyEffects(targets) {
         const force = true; /* Where should this come from? */
-        if (!this.effects?.length || !targets.length) return;
+        if (!this.effects?.length || !targets?.length) return;
         let effects = this.effects;
         targets.forEach(async token => {
             if (!token.hit && !force) return;
@@ -36,12 +37,12 @@ export default class EffectsField extends fields.ArrayField {
                 const actor = canvas.tokens.get(token.id)?.actor,
                     effect = this.item.effects.get(e._id);
                 if (!actor || !effect) return;
-                await this.applyEffect(effect, actor);
+                await EffectsField.applyEffect(effect, actor);
             });
         });
     }
 
-    async applyEffect(effect, actor) {
+    static async applyEffect(effect, actor) {
         const existingEffect = actor.effects.find(e => e.origin === effect.uuid);
         if (existingEffect) {
             return effect.update(
@@ -60,5 +61,9 @@ export default class EffectsField extends fields.ArrayField {
             origin: effect.uuid
         });
         await ActiveEffect.implementation.create(effectData, { parent: actor });
+    }
+
+    static getAutomation() {
+        return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.effect.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.effect.players)
     }
 }

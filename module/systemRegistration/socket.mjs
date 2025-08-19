@@ -1,5 +1,4 @@
 import DamageReductionDialog from '../applications/dialogs/damageReductionDialog.mjs';
-import SaveField from '../data/fields/action/saveField.mjs';
 
 export function handleSocketEvent({ action = null, data = {} } = {}) {
     switch (action) {
@@ -79,7 +78,7 @@ export const registerSocketHooks = () => {
 
 export const registerUserQueries = () => {
     CONFIG.queries.armorSlot = DamageReductionDialog.armorSlotQuery;
-    CONFIG.queries.reactionRoll = SaveField.rollSaveQuery;
+    CONFIG.queries.reactionRoll = game.system.api.fields.ActionFields.SaveField.rollSaveQuery;
 };
 
 export const emitAsGM = async (eventName, callback, update, uuid = null) => {
