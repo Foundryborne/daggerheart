@@ -28,3 +28,22 @@ export const gameSettings = {
     LevelTiers: 'LevelTiers',
     Countdowns: 'Countdowns'
 };
+
+export const actionAutomationChoices = {
+    never: { 
+        id: "never",
+        label: "Never"
+    },
+    showDialog: {
+        id: "showDialog",
+        label: "Show Dialog only"
+    },
+    // npcOnly: {
+        // id: "npcOnly",
+        // label: "Always for non-characters"
+    // },
+    always: {
+        id: "always",
+        label: "Always"
+    }
+}

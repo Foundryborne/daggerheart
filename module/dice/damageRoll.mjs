@@ -4,6 +4,7 @@ import DHRoll from './dhRoll.mjs';
 export default class DamageRoll extends DHRoll {
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
+        if(options.dialog.configure === false) this.constructFormula(options);
     }
 
     static DefaultDialog = DamageDialog;
@@ -40,6 +41,7 @@ export default class DamageRoll extends DHRoll {
             await game.dice3d.showForRoll(diceRoll, game.user, true, chatMessage.whisper, chatMessage.blind);
         }
         await super.buildPost(roll, config, message);
+        // console.log(config, config.source?.message)
         if (config.source?.message) {
             chatMessage.update({ 'system.damage': config.damage });
         }

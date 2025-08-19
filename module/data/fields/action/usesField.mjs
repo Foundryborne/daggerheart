@@ -20,7 +20,7 @@ export default class UsesField extends fields.SchemaField {
         super(usesFields, options, context);
     }
 
-    static prepareConfig(config) {
+    prepareConfig(config) {
         const uses = this.uses?.max ? foundry.utils.deepClone(this.uses) : null;
         if (uses && !uses.value) uses.value = 0;
         config.uses = uses;

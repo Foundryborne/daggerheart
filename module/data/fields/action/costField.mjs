@@ -20,7 +20,7 @@ export default class CostField extends fields.ArrayField {
         super(element, options, context);
     }
 
-    static prepareConfig(config) {
+    prepareConfig(config) {
         const costs = this.cost?.length ? foundry.utils.deepClone(this.cost) : [];
         config.costs = CostField.calcCosts.call(this, costs);
         const hasCost = CostField.hasCost.call(this, config.costs);

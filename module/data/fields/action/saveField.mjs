@@ -1,7 +1,7 @@
 const fields = foundry.data.fields;
 
 export default class SaveField extends fields.SchemaField {
-    static order = 50;
+    order = 50;
 
     constructor(options = {}, context = {}) {
         const saveFields = {
@@ -19,13 +19,45 @@ export default class SaveField extends fields.SchemaField {
         super(saveFields, options, context);
     }
 
-    static async execute(config) {
+    async execute(config) {
         if(!this.hasRoll) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;
             await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
-        } else {
-            return;
         }
+        if(true) {
+            
+        }
+
+    }
+
+    async rollSave(actor, event, message) {
+        if (!actor) return;
+        const title = actor.isNPC
+            ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
+            : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+                    ability: game.i18n.localize(abilities[this.save.trait]?.label)
+                });
+        return actor.diceRoll({
+            event,
+            title,
+            roll: {
+                trait: this.save.trait,
+                difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
+                type: 'reaction'
+            },
+            type: 'trait',
+            hasRoll: true,
+            data: actor.getRollData()
+        });
+    }
+
+    static rollSaveQuery({ actionId, actorId, event, message }) {
+        return new Promise(async (resolve, reject) => {
+            const actor = await fromUuid(actorId),
+                action = await fromUuid(actionId);
+            if (!actor || !actor?.isOwner) reject();
+            action.rollSave(actor, event, message).then(result => resolve(result));
+        });
     }
 }

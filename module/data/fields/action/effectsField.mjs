@@ -1,7 +1,7 @@
 const fields = foundry.data.fields;
 
 export default class EffectsField extends fields.ArrayField {
-    static order = 60;
+    order = 60;
 
     constructor(options = {}, context = {}) {
         const element = new fields.SchemaField({
@@ -11,7 +11,7 @@ export default class EffectsField extends fields.ArrayField {
         super(element, options, context);
     }
 
-    static async execute(config) {
+    async execute(config) {
         if(!this.hasRoll) {
             const roll = new CONFIG.Dice.daggerheart.DHRoll('');
             roll._evaluated = true;

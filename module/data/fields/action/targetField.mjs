@@ -13,8 +13,8 @@ export default class TargetField extends fields.SchemaField {
         super(targetFields, options, context);
     }
 
-    static prepareConfig(config) {
-        if (!this.target?.type) return [];
+    prepareConfig(config) {
+        if (!this.target?.type) return config.targets = [];
         config.hasTarget = true;
         let targets;
         if (this.target?.type === CONFIG.DH.GENERAL.targetTypes.self.id)

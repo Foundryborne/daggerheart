@@ -7,7 +7,6 @@
         <legend>
             {{localize "DAGGERHEART.SETTINGS.Automation.roll.title"}} 
         </legend>
-        {{log @root}}
         {{#each settingFields.schema.fields.roll.fields as | field |}}
             {{!-- {{formGroup field value=(lookup @root.settingFields.roll field.name) localize=true rootId="automation-roll"}} --}}
             <div class="form-group setting-two-values">

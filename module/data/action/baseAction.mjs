@@ -19,9 +19,6 @@ const fields = foundry.data.fields;
 
 export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel) {
     static extraSchemas = ['cost', 'uses', 'range'];
-    // static schemaFields = new Map();
-    static schemaFields = [];
-    // static workflow = [];
 
     static defineSchema() {
         const schemaFields = {
@@ -41,24 +38,36 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         this.extraSchemas.forEach(s => {
             let clsField;
-            if ((clsField = this.getActionField(s))) {
-                // this.schemaFields.set(s, clsField);
-                this.schemaFields.push(clsField);
+            if ((clsField = this.getActionField(s)))
                 schemaFields[s] = new clsField();
-            }
         });
 
-        this.schemaFields.sort((a, b) => a.order - b.order);
-
-        // this.prepareWorkflow();
-        console.log(this.schemaFields);
-
         return schemaFields;
+    }
+
+    static defineWorkflow() {
+        const workflow = [];
+        Object.values(this.schema.fields).forEach(s => {
+            if(s.execute) workflow.push( { order: s.order, execute: s.execute } );
+        });
+        workflow.sort((a, b) => a.order - b.order);
+        return workflow.map(s => s.execute);
+    }
+
+    static get workflow() {
+        if ( this.hasOwnProperty("_workflow") ) return this._workflow;
+        const workflow = Object.freeze(this.defineWorkflow());
+        Object.defineProperty(this, "_workflow", {value: workflow, writable: false});
+        return workflow;
     }
 
     static getActionField(name) {
         const field = game.system.api.fields.ActionFields[`${name.capitalize()}Field`];
         return fields.DataField.isPrototypeOf(field) && field;
+    }
+
+    get workflow() {
+        return this.constructor.workflow;
     }
 
     prepareData() {
@@ -123,28 +132,9 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return actorData;
     }
 
-    // static prepareWorkflow() {
-    //     this.schemaFields.forEach( clsField => {
-    //         if (clsField?.execute)
-    //             this.workflow.push({ order: clsField.order, exec: clsField.execute});
-    //     })
-        /* for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
-            // let clsField = this.constructor.getActionField(this.constructor.extraSchemas[i]);
-            let clsField = this.constructor.schemaFields.get(this.constructor.extraSchemas[i]);
-            if (clsField?.execute) {
-                workflow.push({ order: clsField.order, exec: clsField.execute});
-                // const keep = clsField.prepareConfig.call(this, config);
-                // if (config.isFastForward && !keep) return;
-            }
-        } */
-    //     this.workflow.sort((a, b) => a.order - b.order);
-    // }
-
     async executeWorkflow(config) {
-        console.log(this.constructor.workflow)
-        for(const part of this.constructor.workflow) {
-            console.log(part)
-            if(await part.exec.call(this, config) === false) return;
+        for(const part of this.workflow) {
+            if(await part.call(this, config) === false) return;
         }
     }
 
@@ -152,12 +142,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
         if (this.chatDisplay) await this.toChat();
+
         let { byPassRoll } = options,
             config = this.prepareConfig(event, byPassRoll);
-        // for (let i = 0; i < this.constructor.extraSchemas.length; i++) {
-            // let clsField = this.constructor.getActionField(this.constructor.extraSchemas[i]);
-            // let clsField = this.constructor.schemaFields.get(this.constructor.extraSchemas[i]);
-        this.constructor.schemaFields.forEach( clsField => {
+
+        Object.values(this.schema.fields).forEach( clsField => {
             if (clsField?.prepareConfig) {
                 const keep = clsField.prepareConfig.call(this, config);
                 if (config.isFastForward && !keep) return;
@@ -171,10 +160,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             config = await D20RollDialog.configure(null, config);
             if (!config) return;
         }
-
-        const workflow = [];
-
-        // this.prepareWorkflow(workflow);
+        
         await this.executeWorkflow(config);
 
         // if (config.hasRoll) {
@@ -376,26 +362,26 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     /* EFFECTS */
 
     /* SAVE */
-    async rollSave(actor, event, message) {
-        if (!actor) return;
-        const title = actor.isNPC
-            ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
-            : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-                  ability: game.i18n.localize(abilities[this.save.trait]?.label)
-              });
-        return actor.diceRoll({
-            event,
-            title,
-            roll: {
-                trait: this.save.trait,
-                difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
-                type: 'reaction'
-            },
-            type: 'trait',
-            hasRoll: true,
-            data: actor.getRollData()
-        });
-    }
+    // async rollSave(actor, event, message) {
+    //     if (!actor) return;
+    //     const title = actor.isNPC
+    //         ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
+    //         : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
+    //               ability: game.i18n.localize(abilities[this.save.trait]?.label)
+    //           });
+    //     return actor.diceRoll({
+    //         event,
+    //         title,
+    //         roll: {
+    //             trait: this.save.trait,
+    //             difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
+    //             type: 'reaction'
+    //         },
+    //         type: 'trait',
+    //         hasRoll: true,
+    //         data: actor.getRollData()
+    //     });
+    // }
 
     updateSaveMessage(result, message, targetId) {
         if (!result) return;
@@ -408,14 +394,14 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         else updateMsg();
     }
 
-    static rollSaveQuery({ actionId, actorId, event, message }) {
-        return new Promise(async (resolve, reject) => {
-            const actor = await fromUuid(actorId),
-                action = await fromUuid(actionId);
-            if (!actor || !actor?.isOwner) reject();
-            action.rollSave(actor, event, message).then(result => resolve(result));
-        });
-    }
+    // static rollSaveQuery({ actionId, actorId, event, message }) {
+    //     return new Promise(async (resolve, reject) => {
+    //         const actor = await fromUuid(actorId),
+    //             action = await fromUuid(actionId);
+    //         if (!actor || !actor?.isOwner) reject();
+    //         action.rollSave(actor, event, message).then(result => resolve(result));
+    //     });
+    // }
     /* SAVE */
 
     async updateChatMessage(message, targetId, changes, chain = true) {

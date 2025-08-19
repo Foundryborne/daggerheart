@@ -3,7 +3,7 @@ import FormulaField from '../formulaField.mjs';
 const fields = foundry.data.fields;
 
 export default class DamageField extends fields.SchemaField {
-    static order = 20;
+    order = 20;
 
     constructor(options, context = {}) {
         const damageFields = {
@@ -17,8 +17,8 @@ export default class DamageField extends fields.SchemaField {
         super(damageFields, options, context);
     }
 
-    static async execute(data, force = false) {
-        if(this.hasRoll && !force) return;
+    async execute(data, force = false) {
+        if((this.hasRoll && DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.never.id) && !force) return false;
         
         const systemData = data.system ?? data;
 
@@ -39,13 +39,18 @@ export default class DamageField extends fields.SchemaField {
             dialog: {},
             data: this.getRollData()
         };
+        if(DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.always.id) config.dialog.configure = false;
         if (this.hasSave) config.onSave = this.save.damageMod;
-        if (data.system) {
-            config.source.message = data._id;
+        
+        if (data.message || data.system) {
+            config.source.message = data.message?._id ?? data._id;
             config.directDamage = false;
         } else {
             config.directDamage = true;
         }
+
+        if(config.source?.message && game.modules.get('dice-so-nice')?.active)
+            await game.dice3d.waitFor3DAnimationByMessageID(config.source.message);
 
         if(!CONFIG.Dice.daggerheart.DamageRoll.build(config)) return false;
     }
@@ -76,6 +81,10 @@ export default class DamageField extends fields.SchemaField {
             else formattedFormulas.push(formula);
         });
         return formattedFormulas;
+    }
+
+    static getAutomation() {
+        return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.players)
     }
 }
 

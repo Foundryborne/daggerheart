@@ -110,20 +110,22 @@ export class DHActionRollData extends foundry.abstract.DataModel {
 }
 
 export default class RollField extends fields.EmbeddedDataField {
-    static order = 10;
+    order = 10;
 
     constructor(options, context = {}) {
         super(DHActionRollData, options, context);
     }
 
-    static async execute(config) {
+    async execute(config) {
         if(!config.hasRoll) return;
         config = await this.actor.diceRoll(config);
         if(!config) return false;
     }
     
-    static prepareConfig(config) {
+    prepareConfig(config) {
         if(!config.hasRoll) return true;
+
+        config.dialog.configure = !RollField.getAutomation();
         
         const roll = {
             baseModifiers: this.roll.getModifier(),
@@ -137,5 +139,9 @@ export default class RollField extends fields.EmbeddedDataField {
 
         config.roll = roll;
         return true;
+    }
+
+    static getAutomation() {
+        return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.players)
     }
 }

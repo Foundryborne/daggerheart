@@ -83,8 +83,6 @@ export default class DhAutomation extends foundry.abstract.DataModel {
             }),
             roll: new fields.SchemaField({
                 roll: new fields.SchemaField({
-                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.roll.label',
-                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.roll.hint',
                     gm: new fields.BooleanField({
                         required: true,
                         initial: false,
@@ -97,36 +95,34 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     })
                 }),
                 damage: new fields.SchemaField({
-                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.damage.label',
-                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.damage.hint',
-                    gm: new fields.BooleanField({
+                    gm: new fields.StringField({
                         required: true,
-                        initial: false,
+                        initial: "never",
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
                         label: 'DAGGERHEART.GENERAL.gm'
                     }),
-                    players: new fields.BooleanField({
+                    players: new fields.StringField({
                         required: true,
-                        initial: false,
+                        initial: "never",
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
                         label: 'DAGGERHEART.GENERAL.player.plurial'
                     })
                 }),
                 save: new fields.SchemaField({
-                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.save.label',
-                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.save.hint',
-                    gm: new fields.BooleanField({
+                    gm: new fields.StringField({
                         required: true,
-                        initial: false,
+                        initial: "never",
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
                         label: 'DAGGERHEART.GENERAL.gm'
                     }),
-                    players: new fields.BooleanField({
+                    players: new fields.StringField({
                         required: true,
-                        initial: false,
+                        initial: "never",
+                        choices: CONFIG.DH.SETTINGS.actionAutomationChoices,
                         label: 'DAGGERHEART.GENERAL.player.plurial'
                     })
                 }),
                 damageApply: new fields.SchemaField({
-                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.damageApply.label',
-                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.damageApply.hint',
                     gm: new fields.BooleanField({
                         required: true,
                         initial: false,
@@ -139,8 +135,6 @@ export default class DhAutomation extends foundry.abstract.DataModel {
                     })
                 }),
                 effect: new fields.SchemaField({
-                    // label: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.effect.label',
-                    // hint: 'DAGGERHEART.SETTINGS.Automation.FIELDS.roll.effect.hint',
                     gm: new fields.BooleanField({
                         required: true,
                         initial: false,

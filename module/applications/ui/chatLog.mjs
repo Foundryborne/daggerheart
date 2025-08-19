@@ -112,7 +112,8 @@ export default class DhpChatLog extends foundry.applications.sidebar.tabs.ChatLo
         if (message.system.source.item && message.system.source.action) {
             const action = this.getAction(actor, message.system.source.item, message.system.source.action);
             if (!action || !action?.hasDamagePart) return;
-            await game.system.api.fields.ActionFields.DamageField.execute.call(action, message, true);
+            // await game.system.api.fields.ActionFields.DamageField.execute.call(action, message, true);
+            action.schema.fields.damage.execute.call(action, message, true);
         }
     }
 
