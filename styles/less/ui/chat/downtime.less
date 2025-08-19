@@ -2,6 +2,35 @@
 @import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
+.theme-light {
+    .daggerheart.chat.downtime {
+        .downtime-moves-list .downtime-move {
+            &:hover {
+                background: @dark-blue-10;
+            }
+
+            .downtime-label {
+                border-bottom: 1px solid @dark-blue;
+
+                .header-label .title {
+                    color: @dark-blue;
+                }
+                .header-label .label {
+                    color: @dark;
+                }
+            }
+
+            .fa-chevron-down {
+                color: @dark-blue;
+            }
+        }
+
+        .description {
+            color: @dark;
+        }
+    }
+}
+
 .daggerheart.chat {
     &.downtime {
         display: flex;

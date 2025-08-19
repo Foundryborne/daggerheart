@@ -2,6 +2,38 @@
 @import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
+.theme-light {
+    .daggerheart.chat.domain-card {
+        .domain-card-move .domain-card-header {
+            border-bottom: 1px solid @dark-blue;
+
+            &:hover {
+                background: @dark-blue-10;
+            }
+
+            .domain-label {
+                .title {
+                    color: @dark-blue;
+                }
+
+                .tags .tag {
+                    background: @dark-15;
+                    border: 1px solid @dark;
+                    color: @dark;
+                }
+            }
+
+            .fa-chevron-down {
+                color: @dark-blue;
+            }
+        }
+
+        .description {
+            color: @dark;
+        }
+    }
+}
+
 .daggerheart.chat {
     &.domain-card {
         display: flex;
@@ -41,7 +73,7 @@
                 border-bottom: 1px solid @golden;
 
                 &:hover {
-                    background: light-dark(@dark-blue-10, @golden-10);
+                    background: @golden-10;
                     cursor: pointer;
                     transition: all 0.3s ease;
                 }
@@ -73,9 +105,9 @@
                             padding: 3px 5px;
                             font-size: 12px;
 
-                            background: light-dark(@dark-15, @beige-15);
-                            border: 1px solid light-dark(@dark, @beige);
-                            color: light-dark(@dark, @beige);
+                            background: @beige-15;
+                            border: 1px solid @beige;
+                            color: @beige;
                             border-radius: 3px;
                         }
                     }
