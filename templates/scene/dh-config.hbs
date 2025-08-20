@@ -2,9 +2,12 @@
     <div class="form-group">
         <div class="form-fields">
             <label>
-                {{!-- {{formInput fields.rangeMeasurementSettingsOverrideField value=false}} --}}
-                Override Global Range Measurement Settings
-                <input type="checkbox" name="rangeMeasurementSettingsOverride"></input>
+                <div class="form-group">
+                    <div class="form-fields">
+                        <label>{{localize "Override Global Range Measurement Settings"}}</label>
+                        <input type="checkbox" name="flags.daggerheart.rangeMeasurementOverride" {{checked document.flags.daggerheart.rangeMeasurementOverride}} />
+                    </div>
+                </div>
             </label>
         </div>
     </div>

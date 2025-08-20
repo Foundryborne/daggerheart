@@ -145,14 +145,10 @@ Hooks.once('init', () => {
     // Make Compendium Dialog resizable
     foundry.applications.sidebar.apps.Compendium.DEFAULT_OPTIONS.window.resizable = true;
 
-    // applications.scene.DhSceneConfigSettings.PARTS.dh = {template: "systems/daggerheart/templates/scene/dh-config.hbs"};
-    // applications.scene.DhSceneConfigSettings.TABS.sheet.tabs.push({id: "dh", icon: "fa-solid"});
-
-    DocumentSheetConfig.registerSheet(foundry.documents.Scene, SYSTEM.id, applications.scene.DhSceneConfigSettings , {
-        makeDefault: true, 
-        label: "Daggerheart"
+    DocumentSheetConfig.registerSheet(foundry.documents.Scene, SYSTEM.id, applications.scene.DhSceneConfigSettings, {
+        makeDefault: true,
+        label: 'Daggerheart'
     });
-
 
     settingsRegistration.registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
