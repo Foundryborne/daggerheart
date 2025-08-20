@@ -7,6 +7,15 @@
     #chat-notifications .chat-log {
         .chat-message {
             background-image: url('../assets/parchments/dh-parchment-light.png');
+
+            .message-header .message-header-metadata .message-metadata,
+            .message-header .message-header-main .message-sub-header-container {
+                color: @dark;
+            }
+
+            .message-header .message-header-main .message-sub-header-container h4 {
+                color: @dark-blue;
+            }
         }
     }
 }
@@ -36,7 +45,7 @@
 
                     .message-metadata {
                         font-family: @font-body;
-                        color: light-dark(@dark, @beige);
+                        color: @beige;
                     }
                 }
 
@@ -59,14 +68,14 @@
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
-                        color: light-dark(@dark, @beige);
+                        color: @beige;
 
                         h4 {
                             font-size: 16px;
                             font-weight: bold;
                             margin-bottom: 0;
                             font-family: @font-subtitle;
-                            color: light-dark(@dark-blue, @golden);
+                            color: @golden;
                         }
                     }
                 }
