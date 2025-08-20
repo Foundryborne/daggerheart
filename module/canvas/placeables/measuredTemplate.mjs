@@ -11,14 +11,16 @@ export default class DhMeasuredTemplate extends foundry.canvas.placeables.Measur
             if (splitRulerText.length > 0) {
                 const rulerValue = Number(splitRulerText[0]);
                 const result = this.constructor.getRangeLabels(rulerValue, rangeMeasurementSettings);
-                this.ruler.text = result.distance + result.units ? (' ' + result.units) : '' ;
+                this.ruler.text = result.distance + result.units ? (' ' + result.units) : '';
             }
         }
     }
 
     static getRangeLabels(distance, settings) {
-        let result = { distance : '', units: null }
-        if (canvas.scene?.rangeMeasurementSettingsOverride === true) {
+        let result = { distance: '', units: null }
+        const rangeMeasurementOverride = canvas.scene.flags.daggerheart?.rangeMeasurementOverride;
+
+        if (rangeMeasurementOverride === true) {
             result.distance = distance;
             result.units = canvas.scene?.grid?.units;
             return result

@@ -1,14 +1,9 @@
 <div class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
     <div class="form-group">
         <div class="form-fields">
-            <label>
-                <div class="form-group">
-                    <div class="form-fields">
-                        <label>{{localize "Override Global Range Measurement Settings"}}</label>
-                        <input type="checkbox" name="flags.daggerheart.rangeMeasurementOverride" {{checked document.flags.daggerheart.rangeMeasurementOverride}} />
-                    </div>
-                </div>
-            </label>
+            <label>{{localize "Override Global Range Measurement Settings"}}</label>
+            <input type="checkbox" name="flags.daggerheart.rangeMeasurementOverride" {{checked
+                document.flags.daggerheart.rangeMeasurementOverride}} />
         </div>
     </div>
 </div>

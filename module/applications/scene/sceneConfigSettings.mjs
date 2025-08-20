@@ -3,8 +3,6 @@ import DhSceneConfig from '../../data/scene/SceneConfig.mjs';
 export default class DhSceneConfigSettings extends foundry.applications.sheets.SceneConfig {
   constructor(options, ...args) {
     super(options, ...args);
-    // this.settings = new DhSceneConfig();
-    // this.rangeMeasurementSettingsOverrideField = this.settings.initial;
   }
 
   /** @override */
@@ -40,21 +38,5 @@ export default class DhSceneConfigSettings extends foundry.applications.sheets.S
       labelPrefix: "SCENE.TABS.AMBIENCE"
     }
   };
-
-  /** @inheritDoc */
-  async _preparePartContext(partId, context, options) {
-    console.log("_preparePartContext", partId, context, options);
-    context = await super._preparePartContext(partId, context, options);
-    switch (partId) {
-      case "dh":
-        // context.settings = this.settings;
-        // context.rangeMeasurementSettingsOverrideField = this.rangeMeasurementSettingsOverrideField;
-        break;
-      default:
-        context = await super._preparePartContext(partId, context, options);
-    }
-    if (partId in context.tabs) context.tab = context.tabs[partId];
-    return context;
-  }
 
 }
