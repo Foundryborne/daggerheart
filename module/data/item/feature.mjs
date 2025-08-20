@@ -12,6 +12,20 @@ export default class DHFeature extends BaseDataItem {
         });
     }
 
+    // /** @inheritDoc */
+    // _initializeSource(data, options={}) {
+    //     const { originItemType, isMulticlass } = data;
+    //     const base = (originItemType && this.parent?.parent?.type === 'character') ? this.parent.parent.items._source.find(x => x.type === originItemType && Boolean(isMulticlass) === x.system.isMulticlass) : null;
+    //     if(base) {
+    //         const feature = base.system.features.find(x => x.item && x.item === this.parent.uuid);
+    //         if(feature && data.identifier !== 'multiclass') {
+    //             data.identifier = feature.type;
+    //         }
+    //     }
+
+    //     return super._initializeSource(data, options);
+    // }
+
     /* -------------------------------------------- */
 
     /**@override */
