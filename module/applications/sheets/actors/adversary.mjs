@@ -25,11 +25,22 @@ export default class AdversarySheet extends DHBaseActorSheet {
     };
 
     static PARTS = {
-        sidebar: { template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs' },
+        sidebar: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs',
+            scrollable: ['.shortcut-items-section']
+        },
         header: { template: 'systems/daggerheart/templates/sheets/actors/adversary/header.hbs' },
-        features: { template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs' },
-        notes: { template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs' },
-        effects: { template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs' }
+        features: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs',
+            scrollable: ['.feature-section']
+        },
+        notes: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs'
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs',
+            scrollable: ['.effects-sections']
+        }
     };
 
     /** @inheritdoc */

@@ -84,7 +84,7 @@ export default class DHRoll extends Roll {
 
     static async toMessage(roll, config) {
         const cls = getDocumentClass('ChatMessage'),
-            msg = {
+            msgData = {
                 type: this.messageType,
                 user: game.user.id,
                 title: roll.title,
@@ -94,8 +94,16 @@ export default class DHRoll extends Roll {
                 rolls: [roll]
             };
         config.selectedRollMode ??= game.settings.get('core', 'rollMode');
-        if (roll._evaluated) return await cls.create(msg, { rollMode: config.selectedRollMode });
-        return msg;
+
+        if (roll._evaluated) {
+            const message = await cls.create(msgData, { rollMode: config.selectedRollMode });
+
+            if (game.modules.get('dice-so-nice')?.active) {
+                await game.dice3d.waitFor3DAnimationByMessageID(message.id);
+            }
+
+            return message;
+        } else return msgData;
     }
 
     /** @inheritDoc */

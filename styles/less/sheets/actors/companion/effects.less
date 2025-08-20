@@ -1,0 +1,17 @@
+@import '../../../utils/colors.less';
+
+.application.sheet.daggerheart.actor.dh-style.companion {
+    .tab.effects {
+        .effects-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+            mask-image: linear-gradient(0deg, transparent 0%, black 5%);
+            padding-bottom: 20px;
+
+            scrollbar-width: thin;
+            scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+        }
+    }
+}

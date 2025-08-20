@@ -27,9 +27,13 @@ export default class DhpEnvironment extends DHBaseActorSheet {
     /**@override */
     static PARTS = {
         header: { template: 'systems/daggerheart/templates/sheets/actors/environment/header.hbs' },
-        features: { template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs' },
+        features: {
+            template: 'systems/daggerheart/templates/sheets/actors/environment/features.hbs',
+            scrollable: ['feature-section']
+        },
         potentialAdversaries: {
-            template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs'
+            template: 'systems/daggerheart/templates/sheets/actors/environment/potentialAdversaries.hbs',
+            scrollable: ['items-sections']
         },
         notes: { template: 'systems/daggerheart/templates/sheets/actors/environment/notes.hbs' }
     };

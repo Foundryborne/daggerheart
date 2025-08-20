@@ -78,6 +78,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static PARTS = {
         sidebar: {
             id: 'sidebar',
+            scrollable: ['.shortcut-items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/sidebar.hbs'
         },
         header: {
@@ -86,22 +87,27 @@ export default class CharacterSheet extends DHBaseActorSheet {
         },
         features: {
             id: 'features',
+            scrollable: ['.features-sections'],
             template: 'systems/daggerheart/templates/sheets/actors/character/features.hbs'
         },
         loadout: {
             id: 'loadout',
+            scrollable: ['.items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/loadout.hbs'
         },
         inventory: {
             id: 'inventory',
+            scrollable: ['.items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/inventory.hbs'
         },
         biography: {
             id: 'biography',
+            scrollable: ['.items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/biography.hbs'
         },
         effects: {
             id: 'effects',
+            scrollable: ['.effects-sections'],
             template: 'systems/daggerheart/templates/sheets/actors/character/effects.hbs'
         }
     };
