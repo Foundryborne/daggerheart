@@ -1,5 +1,3 @@
-import DhSceneConfig from '../../data/scene/SceneConfig.mjs';
-
 export default class DhSceneConfigSettings extends foundry.applications.sheets.SceneConfig {
   constructor(options, ...args) {
     super(options, ...args);
