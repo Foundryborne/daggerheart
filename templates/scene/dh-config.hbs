@@ -1,7 +1,11 @@
 <div class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
     <div class="form-group">
         <div class="form-fields">
-            {{formInput fields.rangeMeasurementSettingsOverride value=source.rangeMeasurementSettingsOverride}}
+            <label>
+                {{!-- {{formInput fields.rangeMeasurementSettingsOverrideField value=false}} --}}
+                Override Global Range Measurement Settings
+                <input type="checkbox" name="rangeMeasurementSettingsOverride"></input>
+            </label>
         </div>
     </div>
 </div>
