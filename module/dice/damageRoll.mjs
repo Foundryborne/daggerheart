@@ -41,7 +41,7 @@ export default class DamageRoll extends DHRoll {
                 diceRoll,
                 game.user,
                 true,
-                chatMessage.whisper?.length > 0 ? chatMessage.whipser : null,
+                chatMessage.whisper?.length > 0 ? chatMessage.whisper : null,
                 chatMessage.blind
             );
         }
