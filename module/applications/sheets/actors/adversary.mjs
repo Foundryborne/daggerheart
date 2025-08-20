@@ -68,6 +68,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
 
         htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
             element.addEventListener('change', this.updateItemResource.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
         });
     }
 

@@ -122,6 +122,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
             element.addEventListener('change', this.updateItemResource.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
         });
         htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
             element.addEventListener('change', this.updateItemQuantity.bind(this));

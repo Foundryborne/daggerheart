@@ -163,7 +163,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         const hasRoll = this.getUseHasRoll(byPass);
         return {
             event,
-            title: `${this.item.name}: ${this.name}`,
+            title: `${this.item.name}: ${game.i18n.localize(this.name)}`,
             source: {
                 item: this.item._id,
                 action: this._id,
@@ -209,15 +209,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     async consume(config, successCost = false) {
-        const actor= this.actor.system.partner ?? this.actor,
+        const actor = this.actor.system.partner ?? this.actor,
             usefulResources = {
-            ...foundry.utils.deepClone(actor.system.resources),
-            fear: {
-                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                reversed: false
-            }
-        };
+                ...foundry.utils.deepClone(actor.system.resources),
+                fear: {
+                    value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+                    max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
+                    reversed: false
+                }
+            };
 
         for (var cost of config.costs) {
             if (cost.keyIsID) {

@@ -115,16 +115,17 @@ export default class ClassSheet extends DHBaseItemSheet {
     async _onDrop(event) {
         event.stopPropagation();
         const data = TextEditor.getDragEventData(event);
-        const item = await fromUuid(data.uuid);
+        const item = data.data ?? (await fromUuid(data.uuid));
+        const itemType = data.data ? data.type : item.type;
         const target = event.target.closest('fieldset.drop-section');
-        if (item.type === 'subclass') {
+        if (itemType === 'subclass') {
             await this.document.update({
                 'system.subclasses': [...this.document.system.subclasses.map(x => x.uuid), item.uuid]
             });
-        } else if (item.type === 'feature') {
+        } else if (['feature', 'ActiveEffect'].includes(itemType)) {
             super._onDrop(event);
         } else if (this.document.parent?.type !== 'character') {
-            if (item.type === 'weapon') {
+            if (itemType === 'weapon') {
                 if (target.classList.contains('primary-weapon-section')) {
                     if (!item.system.secondary)
                         await this.document.update({
@@ -136,21 +137,21 @@ export default class ClassSheet extends DHBaseItemSheet {
                             'system.characterGuide.suggestedSecondaryWeapon': item.uuid
                         });
                 }
-            } else if (item.type === 'armor') {
+            } else if (itemType === 'armor') {
                 if (target.classList.contains('armor-section')) {
                     await this.document.update({
                         'system.characterGuide.suggestedArmor': item.uuid
                     });
                 }
             } else if (target.classList.contains('choice-a-section')) {
-                if (item.type === 'loot' || item.type === 'consumable') {
+                if (itemType === 'loot' || itemType === 'consumable') {
                     const filteredChoiceA = this.document.system.inventory.choiceA;
                     if (filteredChoiceA.length < 2)
                         await this.document.update({
                             'system.inventory.choiceA': [...filteredChoiceA.map(x => x.uuid), item.uuid]
                         });
                 }
-            } else if (item.type === 'loot') {
+            } else if (itemType === 'loot') {
                 if (target.classList.contains('take-section')) {
                     const filteredTake = this.document.system.inventory.take.filter(x => x);
                     if (filteredTake.length < 3)
