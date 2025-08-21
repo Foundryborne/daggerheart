@@ -16,6 +16,12 @@
             }
         }
 
+        &.six-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 2px;
+        }
+
         &.start-align {
             align-self: flex-start;
         }
@@ -103,28 +109,14 @@
         gap: 4px;
     }
 
-    .trait-array-container {
-        display: flex;
-        justify-content: space-evenly;
-        gap: 8px;
-        margin-bottom: 16px;
+    .trait-item {
 
-        .trait-array-item {
-            position: relative;
-            display: flex;
-            justify-content: center;
+        span {
+            font-variant: petite-caps;
+        }
 
-            label {
-                position: absolute;
-                top: -7px;
-                font-size: 12px;
-                font-variant: petite-caps;
-                z-index: 2;
-            }
-
-            input {
-                text-align: center;
-            }
+        input {
+            text-align: center;
         }
     }
 

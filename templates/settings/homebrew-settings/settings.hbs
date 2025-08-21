@@ -12,15 +12,18 @@
         {{formGroup settingFields.schema.fields.maxLoadout value=settingFields._source.maxLoadout localize=true}}
         <div class="settings-hint"><label>{{localize "DAGGERHEART.SETTINGS.Homebrew.FIELDS.maxLoadout.hint"}}</label></div>
 
-        <h4>{{localize "DAGGERHEART.SETTINGS.Homebrew.FIELDS.traitArray.label"}}</h4>
-        <div class="trait-array-container">
+        <fieldset class="six-columns">
+            <legend>
+                {{localize "DAGGERHEART.SETTINGS.Homebrew.FIELDS.traitArray.label"}}
+            </legend>
+
             {{#each settingFields._source.traitArray as |trait index|}}
-                <div class="trait-array-item">
-                    <label>{{localize "DAGGERHEART.GENERAL.Modifier.single"}} {{add index 1}}</label>
-                    <input type="text" data-dtype="Number" name="{{concat "traitArray." index}}" value="{{this}}" />
-                </div>
+            <div class="input trait-item">
+                <span>{{localize "DAGGERHEART.GENERAL.Modifier.single"}} {{add index 1}}</span>
+                <input type="text" data-dtype="Number" name="{{concat "traitArray." index}}" value="{{this}}" />
+            </div>
             {{/each}}
-        </div>   
+        </fieldset>
 
         <fieldset>
             <legend>
