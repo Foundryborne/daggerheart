@@ -1,3 +1,5 @@
+import { versionCompare } from '../helpers/utils.mjs';
+
 export async function runMigrations() {
     let lastMigrationVersion = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion);
     if (!lastMigrationVersion) lastMigrationVersion = '1.0.6';
@@ -37,14 +39,3 @@ export async function runMigrations() {
 
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);
 }
-
-const versionCompare = (current, target) => {
-    const currentSplit = current.split('.').map(x => Number.parseInt(x));
-    const targetSplit = target.split('.').map(x => Number.parseInt(x));
-    for (var i = 0; i < currentSplit.length; i++) {
-        if (currentSplit[i] < targetSplit[i]) return true;
-        if (currentSplit[i] > targetSplit[i]) return false;
-    }
-
-    return false;
-};
