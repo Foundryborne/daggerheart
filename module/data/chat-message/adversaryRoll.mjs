@@ -112,7 +112,7 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
             this.currentTargets = this.getTargetList();
             // this.registerTargetHook();
 
-            if (this.targetMode === true && this.hasRoll) {
+            if (this.hasRoll) {
                 this.targetShort = this.targets.reduce(
                     (a, c) => {
                         if (c.hit) a.hit += 1;
@@ -131,9 +131,9 @@ export default class DHActorRoll extends foundry.abstract.TypeDataModel {
 
     getTargetList() {
         const targets =
-                this.targetMode && this.parent.isAuthor
-                    ? this.targets
-                    : (this.parent.getFlag(game.system.id, 'targets') ?? this.targets),
+            this.targetMode && this.parent.isAuthor
+                ? this.targets
+                : (this.parent.getFlag(game.system.id, 'targets') ?? this.targets),
             reactionRolls = this.parent.getFlag(game.system.id, 'reactionRolls');
 
         if (reactionRolls) {
