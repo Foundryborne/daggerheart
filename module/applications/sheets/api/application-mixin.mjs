@@ -591,7 +591,6 @@ export default function DHApplicationMixin(Base) {
             if (featureOnCharacter) {
                 systemData = {
                     originItemType: this.document.type,
-                    originId: this.document.id,
                     identifier: this.document.system.isMulticlass ? 'multiclass' : null
                 };
             }

@@ -193,7 +193,9 @@
                 "companionLevelup": {
                     "confirmTitle": "Companion Levelup",
                     "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
-                }
+                },
+                "InvalidOldCharacterImportTitle": "Old Character Import",
+                "InvalidOldCharacterImportText": "Character data exported prior to system version 1.1 will not generate a complete character. Do you wish to continue?"
             },
             "Companion": {
                 "FIELDS": {

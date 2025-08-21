@@ -1,7 +1,7 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { damageKeyToNumber } from '../helpers/utils.mjs';
+import { damageKeyToNumber, versionCompare } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 
 export default class DhpActor extends Actor {
@@ -27,7 +27,7 @@ export default class DhpActor extends Actor {
 
     /** @inheritDoc */
     static migrateData(source) {
-        if(source.system?.attack && !source.system.attack.type) source.system.attack.type = "attack";
+        if (source.system?.attack && !source.system.attack.type) source.system.attack.type = 'attack';
         return super.migrateData(source);
     }
 
@@ -571,19 +571,15 @@ export default class DhpActor extends Actor {
                 if (armorSlotResult) {
                     const { modifiedDamage, armorSpent, stressSpent } = armorSlotResult;
                     updates.find(u => u.key === 'hitPoints').value = modifiedDamage;
-                    if(armorSpent) {
+                    if (armorSpent) {
                         const armorUpdate = updates.find(u => u.key === 'armor');
-                        if(armorUpdate)
-                            armorUpdate.value += armorSpent;
-                        else
-                            updates.push({ value: armorSpent, key: 'armor' });
+                        if (armorUpdate) armorUpdate.value += armorSpent;
+                        else updates.push({ value: armorSpent, key: 'armor' });
                     }
-                    if(stressSpent) {
+                    if (stressSpent) {
                         const stressUpdate = updates.find(u => u.key === 'stress');
-                        if(stressUpdate)
-                            stressUpdate.value += stressSpent;
-                        else
-                            updates.push({ value: stressSpent, key: 'stress' });
+                        if (stressUpdate) stressUpdate.value += stressSpent;
+                        else updates.push({ value: stressSpent, key: 'stress' });
                     }
                 }
             }
@@ -752,5 +748,27 @@ export default class DhpActor extends Actor {
                 await this.toggleStatusEffect(condition, { overlay: settings.overlay, active: defeatedState });
             }
         }
+    }
+
+    /** @inheritdoc */
+    async importFromJSON(json) {
+        if (!this.type === 'character') return await super.importFromJSON(json);
+
+        if (!CONST.WORLD_DOCUMENT_TYPES.includes(this.documentName)) {
+            throw new Error('Only world Documents may be imported');
+        }
+
+        const parsedJSON = JSON.parse(json);
+        if (versionCompare(parsedJSON._stats.systemVersion, '1.1.0')) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.ACTORS.Character.InvalidOldCharacterImportTitle')
+                },
+                content: game.i18n.localize('DAGGERHEART.ACTORS.Character.InvalidOldCharacterImportText')
+            });
+            if (!confirmed) return;
+        }
+
+        return await super.importFromJSON(json);
     }
 }
