@@ -205,10 +205,16 @@ export default function DHApplicationMixin(Base) {
         }
 
         /**@inheritdoc */
+        async _renderHTML(context, options) {
+            const rendered = await super._renderHTML(context, options);
+            await Promise.all(Object.values(rendered).map(part => this.#prepareInventoryDescription(part)));
+            return rendered;
+        }
+
+        /**@inheritdoc */
         async _onRender(context, options) {
             await super._onRender(context, options);
             this._createTagifyElements(this.options.tagifyConfigs);
-            await this.#prepareInventoryDescription(context);
         }
 
         /* -------------------------------------------- */
@@ -216,11 +222,11 @@ export default function DHApplicationMixin(Base) {
         /* -------------------------------------------- */
 
         /**@inheritdoc */
-        _syncPartState(partId, newElement, priorElement, state) {
-            super._syncPartState(partId, newElement, priorElement, state);
+        _preSyncPartState(partId, newElement, priorElement, state) {
+            super._preSyncPartState(partId, newElement, priorElement, state);
             for (const el of priorElement.querySelectorAll('.extensible.extended')) {
-                const { actionId, itemUuid } = el.parentElement.dataset;
-                const selector = `${actionId ? `[data-action-id="${actionId}"]` : `[data-item-uuid="${itemUuid}"]`} .extensible`;
+                const { itemUuid } = el.parentElement.dataset;
+                const selector = `[data-item-uuid="${itemUuid}"] .extensible`;
                 const newExtensible = newElement.querySelector(selector);
                 newExtensible?.classList.add('extended');
             }
@@ -482,11 +488,11 @@ export default function DHApplicationMixin(Base) {
 
         /**
          * Prepares and enriches an inventory item or action description for display.
+         * @argument {HTMLElement} part -  The rendered HTML element for the part.
          * @returns {Promise<void>}
          */
-        async #prepareInventoryDescription(context) {
-            // Get all inventory item elements with a data-item-uuid attribute
-            const inventoryItems = this.element.querySelectorAll('.inventory-item[data-item-uuid]');
+        async #prepareInventoryDescription(part) {
+            const inventoryItems = part.querySelectorAll('.inventory-item[data-item-uuid]');
             for (const el of inventoryItems) {
                 // Get the doc uuid from the element
                 const { itemUuid } = el?.dataset || {};
