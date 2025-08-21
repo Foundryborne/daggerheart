@@ -6,6 +6,5 @@ export { default as EffectsField } from './effectsField.mjs';
 export { default as SaveField } from './saveField.mjs';
 export { default as BeastformField } from './beastformField.mjs';
 export { default as DamageField } from './damageField.mjs';
-export { default as HealingField } from './healingField.mjs';
 export { default as RollField } from './rollField.mjs';
 export { default as MacroField } from './macroField.mjs';

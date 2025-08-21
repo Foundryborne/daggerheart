@@ -2358,6 +2358,7 @@
                 "beastformInapplicable": "A beastform can only be applied to a Character.",
                 "beastformAlreadyApplied": "The character already has a beastform applied!",
                 "noTargetsSelected": "No targets are selected.",
+                "noTargetsSelectedOrPerm": "No targets are selected or with the update permission.",
                 "attackTargetDoesNotExist": "The target token no longer exists",
                 "insufficentAdvancements": "You don't have enough advancements left.",
                 "noAssignedPlayerCharacter": "You have no assigned character.",

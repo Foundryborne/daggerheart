@@ -3,6 +3,8 @@ import FormulaField from '../formulaField.mjs';
 const fields = foundry.data.fields;
 
 export default class UsesField extends fields.SchemaField {
+    
+    /** @inheritDoc */
     constructor(options = {}, context = {}) {
         const usesFields = {
             value: new fields.NumberField({ nullable: true, initial: null }),
@@ -20,6 +22,11 @@ export default class UsesField extends fields.SchemaField {
         super(usesFields, options, context);
     }
 
+    /**
+     * Update Action Workflow config object.
+     * Must be called within Action context.
+     * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     */
     prepareConfig(config) {
         const uses = this.uses?.max ? foundry.utils.deepClone(this.uses) : null;
         if (uses && !uses.value) uses.value = 0;
@@ -29,6 +36,12 @@ export default class UsesField extends fields.SchemaField {
         return hasUses;
     }
 
+    /**
+     * 
+     * Must be called within Action context.
+     * @param {*} uses 
+     * @returns {object}
+     */
     static calcUses(uses) {
         if (!uses) return null;
         return {
@@ -38,6 +51,12 @@ export default class UsesField extends fields.SchemaField {
         };
     }
 
+    /**
+     * Check if the Action still get atleast one unspent uses.
+     * Must be called within Action context.
+     * @param {*} uses 
+     * @returns {boolean}
+     */
     static hasUses(uses) {
         if (!uses) return true;
         let max = uses.max ?? 0;
@@ -46,5 +65,20 @@ export default class UsesField extends fields.SchemaField {
             max = roll.total;
         }
         return (uses.hasOwnProperty('enabled') && !uses.enabled) || uses.value + 1 <= max;
+    }
+
+    /**
+     * Increment Action spent uses by 1.
+     * Must be called within Action context.
+     * @param {object} config                   Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {boolean} [successCost=false]     Consume only resources configured as "On Success only" if not already consumed.
+     */
+    static async consume(config, successCost = false) {
+        if (
+            config.uses?.enabled &&
+            ((!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success)) ||
+                (successCost && config.uses?.consumeOnSuccess))
+        )
+            this.update({ 'uses.value': this.uses.value + 1 });
     }
 }

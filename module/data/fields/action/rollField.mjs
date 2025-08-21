@@ -112,20 +112,31 @@ export class DHActionRollData extends foundry.abstract.DataModel {
 export default class RollField extends fields.EmbeddedDataField {
     order = 10;
 
+    /** @inheritDoc */
     constructor(options, context = {}) {
         super(DHActionRollData, options, context);
     }
 
+    /**
+     * Roll Action Workflow part.
+     * Must be called within Action context.
+     * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     */
     async execute(config) {
         if(!config.hasRoll) return;
         config = await this.actor.diceRoll(config);
         if(!config) return false;
     }
     
+    /**
+     * Update Action Workflow config object.
+     * Must be called within Action context.
+     * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     */
     prepareConfig(config) {
-        if(!config.hasRoll) return true;
+        if(!config.hasRoll) return;
 
-        config.dialog.configure = !RollField.getAutomation();
+        config.dialog.configure = RollField.getAutomation() ? !config.dialog.configure : config.dialog.configure;
         
         const roll = {
             baseModifiers: this.roll.getModifier(),
@@ -138,9 +149,12 @@ export default class RollField extends fields.EmbeddedDataField {
         if (this.roll.type === 'diceSet' || !this.hasRoll) roll.lite = true;
 
         config.roll = roll;
-        return true;
     }
 
+    /**
+     * Return the automation setting for execute method for current user role
+     * @returns {boolean} If execute should be triggered automatically
+     */
     static getAutomation() {
         return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.roll.players)
     }

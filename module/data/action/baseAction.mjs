@@ -44,17 +44,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return schemaFields;
     }
 
-    static defineWorkflow() {
-        const workflow = [];
-        Object.values(this.schema.fields).forEach(s => {
-            if(s.execute) workflow.push( { order: s.order, execute: s.execute } );
+    defineWorkflow() {
+        const workflow = new Map();
+        Object.entries(this.schema.fields).forEach(([k,s]) => {
+            if(s.execute) workflow.set(k, { order: s.order, execute: s.execute.bind(this) } );
         });
-        if(this.schema.fields.damage) workflow.push( { order: 75, execute: this.schema.fields.damage.applyDamage } );
-        workflow.sort((a, b) => a.order - b.order);
-        return workflow.map(s => s.execute);
+        if(this.schema.fields.damage) workflow.set("applyDamage", { order: 75, execute: game.system.api.fields.ActionFields.DamageField.applyDamage.bind(this) } );
+        return new Map([...workflow.entries()].sort(([aKey, aValue], [bKey, bValue]) => aValue.order - bValue.order));
     }
 
-    static get workflow() {
+    get workflow() {
         if ( this.hasOwnProperty("_workflow") ) return this._workflow;
         const workflow = Object.freeze(this.defineWorkflow());
         Object.defineProperty(this, "_workflow", {value: workflow, writable: false});
@@ -64,10 +63,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     static getActionField(name) {
         const field = game.system.api.fields.ActionFields[`${name.capitalize()}Field`];
         return fields.DataField.isPrototypeOf(field) && field;
-    }
-
-    get workflow() {
-        return this.constructor.workflow;
     }
 
     prepareData() {
@@ -133,8 +128,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     async executeWorkflow(config) {
-        for(const part of this.workflow) {
-            if(await part.call(this, config) === false) return;
+        for(const [key, part] of this.workflow) {
+            if (Hooks.call(`${CONFIG.DH.id}.pre${key.capitalize()}Action`, this, config) === false) return;
+            if(await part.execute(config) === false) return;
+            if (Hooks.call(`${CONFIG.DH.id}.post${key.capitalize()}Action`, this, config) === false) return;
         }
     }
 
@@ -143,15 +140,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
         if (this.chatDisplay) await this.toChat();
 
-        let { byPassRoll } = options,
-            config = this.prepareConfig(event, byPassRoll);
+        let config = this.prepareConfig(event);
 
-        Object.values(this.schema.fields).forEach( clsField => {
+        /* Object.values(this.schema.fields).forEach( clsField => {
             if (clsField?.prepareConfig) {
-                const keep = clsField.prepareConfig.call(this, config);
-                if (config.isFastForward && !keep) return;
+                // const keep = clsField.prepareConfig.call(this, config);
+                // if (config.isFastForward && !keep) return;
+                if(clsField.prepareConfig.call(this, config) === false) return;
             }
-        })
+        }) */
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -161,24 +158,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             if (!config) return;
         }
         
+        // Execute the Action Worflow in order based of schema fields
         await this.executeWorkflow(config);
-
-        // if (config.hasRoll) {
-            // const rollConfig = this.prepareRoll(config);
-            // config.roll = rollConfig;
-        //     config = await this.actor.diceRoll(config);
-        //     if (!config) return;
-        // }
-
-        // if (this.doFollowUp(config)) {
-        //     if (this.rollDamage && this.damage.parts.length) await this.rollDamage(event, config);
-        //     else if (this.trigger) await this.trigger(event, config);
-        //     else if (this.hasSave || this.hasEffect) {
-        //         const roll = new CONFIG.Dice.daggerheart.DHRoll('');
-        //         roll._evaluated = true;
-        //         await CONFIG.Dice.daggerheart.DHRoll.toMessage(roll, config);
-        //     }
-        // }
 
         // Consume resources
         await this.consume(config);
@@ -189,9 +170,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     /* */
-    prepareConfig(event, byPass = false) {
-        const hasRoll = this.getUseHasRoll(byPass);
-        return {
+    prepareBaseConfig(event) {
+        const config = {
             event,
             title: `${this.item.name}: ${this.name}`,
             source: {
@@ -200,104 +180,59 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 actor: this.actor.uuid
             },
             dialog: {
-                configure: hasRoll
+                // configure: this.hasRoll
             },
             type: this.type,
-            hasRoll: hasRoll,
+            hasRoll: this.hasRoll,
             hasDamage: this.hasDamagePart && this.type !== 'healing',
             hasHealing: this.hasDamagePart && this.type === 'healing',
             hasEffect: !!this.effects?.length,
-            isDirect: !!this.damage?.direct,
             hasSave: this.hasSave,
+            isDirect: !!this.damage?.direct,
             selectedRollMode: game.settings.get('core', 'rollMode'),
-            isFastForward: event.shiftKey,
+            // isFastForward: event.shiftKey,
             data: this.getRollData(),
-            evaluate: hasRoll
+            evaluate: this.hasRoll
         };
+        DHBaseAction.applyKeybindings(config);
+        return config;
+    }
+
+    prepareConfig(event) {
+        const config = this.prepareBaseConfig(event);
+        Object.values(this.schema.fields).forEach( clsField => {
+            if (clsField?.prepareConfig) {
+                // const keep = clsField.prepareConfig.call(this, config);
+                // if (config.isFastForward && !keep) return;
+                if(clsField.prepareConfig.call(this, config) === false) return;
+            }
+        })
+        return config;
     }
 
     requireConfigurationDialog(config) {
         return !config.event.shiftKey && !config.hasRoll && (config.costs?.length || config.uses);
     }
 
-    // prepareRoll() {
-    //     const roll = {
-    //         baseModifiers: this.roll.getModifier(),
-    //         label: 'Attack',
-    //         type: this.actionType,
-    //         difficulty: this.roll?.difficulty,
-    //         formula: this.roll.getFormula(),
-    //         advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
-    //     };
-    //     if (this.roll?.type === 'diceSet' || !this.hasRoll) roll.lite = true;
-
-    //     return roll;
-    // }
-
-    // doFollowUp(config) {
-    //     return !config.hasRoll;
-    // }
-
     async consume(config, successCost = false) {
-        const actor= this.actor.system.partner ?? this.actor,
-            usefulResources = {
-            ...foundry.utils.deepClone(actor.system.resources),
-            fear: {
-                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                reversed: false
-            }
-        };
+        await game.system.api.fields.ActionFields.CostField.consume.call(this, config, successCost);
+        await game.system.api.fields.ActionFields.UsesField.consume.call(this, config, successCost);
 
-        for (var cost of config.costs) {
-            if (cost.keyIsID) {
-                usefulResources[cost.key] = {
-                    value: cost.value,
-                    target: this.parent.parent,
-                    keyIsID: true
-                };
-            }
-        }
-
-        const resources = game.system.api.fields.ActionFields.CostField.getRealCosts(config.costs)
-            .filter(
-                c =>
-                    (!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
-                    (successCost && c.consumeOnSuccess)
-            )
-            .reduce((a, c) => {
-                const resource = usefulResources[c.key];
-                if (resource) {
-                    a.push({
-                        key: c.key,
-                        value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
-                        target: resource.target,
-                        keyIsID: resource.keyIsID
-                    });
-                    return a;
-                }
-            }, []);
-
-        await actor.modifyResource(resources);
-        if (
-            config.uses?.enabled &&
-            ((!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success)) ||
-                (successCost && config.uses?.consumeOnSuccess))
-        )
-            this.update({ 'uses.value': this.uses.value + 1 });
-
-        if (config.roll?.success || successCost) {
+        if (config.roll && !config.roll.success && successCost) {
             setTimeout(() => {
                 (config.message ?? config.parent).update({ 'system.successConsumed': true });
             }, 50);
         }
     }
-    /* */
 
-    /* ROLL */
-    getUseHasRoll(byPass = false) {
-        return this.hasRoll && !byPass;
+    static applyKeybindings(config) {
+        config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
     }
+
+    /**
+     * Getters to know which parts the action of composed of. A field can exist but configured to not be used.
+     * @returns {boolean} Does that part in the action.
+     */
 
     get hasRoll() {
         return !!this.roll?.type;
@@ -306,118 +241,13 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     get hasDamagePart() {
         return this.damage?.parts?.length;
     }
-    /* ROLL */
-
-    /* SAVE */
+    
     get hasSave() {
         return !!this.save?.trait;
     }
-    /* SAVE */
 
-    /* EFFECTS */
     get hasEffect() {
         return this.effects?.length > 0;
-    }
-
-    async applyEffects(event, data, targets) {
-        targets ??= data.system.targets;
-        const force = true; /* Where should this come from? */
-        if (!this.effects?.length || !targets.length) return;
-        let effects = this.effects;
-        targets.forEach(async token => {
-            if (!token.hit && !force) return;
-            if (this.hasSave && token.saved.success === true) {
-                effects = this.effects.filter(e => e.onSave === true);
-            }
-            if (!effects.length) return;
-            effects.forEach(async e => {
-                const actor = canvas.tokens.get(token.id)?.actor,
-                    effect = this.item.effects.get(e._id);
-                if (!actor || !effect) return;
-                await this.applyEffect(effect, actor);
-            });
-        });
-    }
-
-    async applyEffect(effect, actor) {
-        const existingEffect = actor.effects.find(e => e.origin === effect.uuid);
-        if (existingEffect) {
-            return effect.update(
-                foundry.utils.mergeObject({
-                    ...effect.constructor.getInitialDuration(),
-                    disabled: false
-                })
-            );
-        }
-
-        // Otherwise, create a new effect on the target
-        const effectData = foundry.utils.mergeObject({
-            ...effect.toObject(),
-            disabled: false,
-            transfer: false,
-            origin: effect.uuid
-        });
-        await ActiveEffect.implementation.create(effectData, { parent: actor });
-    }
-    /* EFFECTS */
-
-    /* SAVE */
-    // async rollSave(actor, event, message) {
-    //     if (!actor) return;
-    //     const title = actor.isNPC
-    //         ? game.i18n.localize('DAGGERHEART.GENERAL.reactionRoll')
-    //         : game.i18n.format('DAGGERHEART.UI.Chat.dualityRoll.abilityCheckTitle', {
-    //               ability: game.i18n.localize(abilities[this.save.trait]?.label)
-    //           });
-    //     return actor.diceRoll({
-    //         event,
-    //         title,
-    //         roll: {
-    //             trait: this.save.trait,
-    //             difficulty: this.save.difficulty ?? this.actor?.baseSaveDifficulty,
-    //             type: 'reaction'
-    //         },
-    //         type: 'trait',
-    //         hasRoll: true,
-    //         data: actor.getRollData()
-    //     });
-    // }
-
-    // updateSaveMessage(result, message, targetId) {
-    //     if (!result) return;
-    //     const updateMsg = this.updateChatMessage.bind(this, message, targetId, {
-    //         result: result.roll.total,
-    //         success: result.roll.success
-    //     });
-    //     if (game.modules.get('dice-so-nice')?.active)
-    //         game.dice3d.waitFor3DAnimationByMessageID(result.message.id ?? result.message._id).then(() => updateMsg());
-    //     else updateMsg();
-    // }
-
-    // static rollSaveQuery({ actionId, actorId, event, message }) {
-    //     return new Promise(async (resolve, reject) => {
-    //         const actor = await fromUuid(actorId),
-    //             action = await fromUuid(actionId);
-    //         if (!actor || !actor?.isOwner) reject();
-    //         action.rollSave(actor, event, message).then(result => resolve(result));
-    //     });
-    // }
-    /* SAVE */
-
-    async updateChatMessage(message, targetId, changes/* , chain = true */) {
-        setTimeout(async () => {
-            const chatMessage = ui.chat.collection.get(message._id);
-
-            await chatMessage.update(changes);
-        }, 100);
-        // if (chain) {
-        //     if (message.system.source.message)
-        //         this.updateChatMessage(ui.chat.collection.get(message.system.source.message), targetId, changes, false);
-        //     const relatedChatMessages = ui.chat.collection.filter(c => c.system.source?.message === message._id);
-        //     relatedChatMessages.forEach(c => {
-        //         this.updateChatMessage(c, targetId, changes, false);
-        //     });
-        // }
     }
 
     /**

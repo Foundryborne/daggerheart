@@ -1,10 +1,15 @@
 import FormulaField from '../formulaField.mjs';
+import { setsEqual } from '../../../helpers/utils.mjs';
 
 const fields = foundry.data.fields;
 
 export default class DamageField extends fields.SchemaField {
+    /**
+     * Action Workflow order
+     */
     order = 20;
 
+    /** @inheritDoc */
     constructor(options, context = {}) {
         const damageFields = {
             parts: new fields.ArrayField(new fields.EmbeddedDataField(DHDamageData)),
@@ -17,60 +22,66 @@ export default class DamageField extends fields.SchemaField {
         super(damageFields, options, context);
     }
 
-    async execute(data, force = false) {
+    /**
+     * Roll Damage/Healing Action Workflow part.
+     * Must be called within Action context.
+     * @param {object} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {string} [messageId=null]     ChatMessage Id where the clicked button belong.
+     * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
+     */
+    async execute(config, messageId = null, force = false) {
         if((this.hasRoll && DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.never.id) && !force) return;
-        
-        const systemData = data.system ?? data;
 
         let formulas = this.damage.parts.map(p => ({
-            formula: DamageField.getFormulaValue.call(this, p, systemData).getFormula(this.actor),
+            formula: DamageField.getFormulaValue.call(this, p, config).getFormula(this.actor),
             damageTypes: p.applyTo === 'hitPoints' && !p.type.size ? new Set(['physical']) : p.type,
             applyTo: p.applyTo
         }));
 
         if (!formulas.length) return false;
 
-        formulas = DamageField.formatFormulas.call(this, formulas, systemData);
+        formulas = DamageField.formatFormulas.call(this, formulas, config);
 
-        delete systemData.evaluate;
-        const config = {
-            ...systemData,
+        const damageConfig = {
+            ...config,
             roll: formulas,
             dialog: {},
             data: this.getRollData()
         };
-        if(DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.always.id) config.dialog.configure = false;
-        if (this.hasSave) config.onSave = this.save.damageMod;
+        delete damageConfig.evaluate;
+
+        if(DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.always.id) damageConfig.dialog.configure = false;
+        if (config.hasSave) config.onSave = damageConfig.onSave = this.save.damageMod;
         
-        if (data.message || data.system) {
-            config.source.message = data.message?._id ?? data._id;
-            config.directDamage = false;
-        } else {
-            config.directDamage = true;
-        }
+        damageConfig.source.message = config.message?._id ?? messageId;
+        damageConfig.directDamage = !!damageConfig.source?.message;
 
-        if(config.source?.message && game.modules.get('dice-so-nice')?.active)
-            await game.dice3d.waitFor3DAnimationByMessageID(config.source.message);
+        if(damageConfig.source?.message && game.modules.get('dice-so-nice')?.active)
+            await game.dice3d.waitFor3DAnimationByMessageID(damageConfig.source.message);
 
-        if(!(await CONFIG.Dice.daggerheart.DamageRoll.build(config))) return false;
-
-        if(DamageField.getAutomation()) {
-
-        }
+        const damageResult = await CONFIG.Dice.daggerheart.DamageRoll.build(damageConfig);
+        if(!damageResult) return false;
+        config.damage = damageResult.damage;
     }
 
-    async applyDamage(config, targets) {
-        console.log(config, this)
+    /**
+     * Apply Damage/Healing Action Worflow part.
+     * @param {object} config        Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {*[]} targets     Arrays of targets to bypass pre-selected ones.
+     * @param {boolean} force   If the method should be executed outside of Action workflow, for ChatMessage button for example. 
+     */
+    static async applyDamage(config, targets = null, force = false) {
         targets ??= config.targets;
-        if(!config.damage || !targets?.length || !DamageField.getApplyAutomation()) return;
+        if(!config.damage || !targets?.length || (!DamageField.getApplyAutomation() && !force)) return;
         for (let target of targets) {
             const actor = fromUuidSync(target.actorId);
+            if(!actor) continue;
             if (
-                !this.hasHealing &&
-                this.onSave &&
-                this.system.hitTargets.find(t => t.id === target.id)?.saved?.success === true
+                !config.hasHealing &&
+                config.onSave &&
+                target.saved?.success === true
             ) {
-                const mod = CONFIG.DH.ACTIONS.damageOnSave[this.onSave]?.mod ?? 1;
+                const mod = CONFIG.DH.ACTIONS.damageOnSave[config.onSave]?.mod ?? 1;
                 Object.entries(config.damage).forEach(([k, v]) => {
                     v.total = 0;
                     v.parts.forEach(part => {
@@ -80,12 +91,18 @@ export default class DamageField extends fields.SchemaField {
                 });
             }
 
-            // this.consumeOnSuccess();
-            if (this.hasHealing) actor.takeHealing(config.damage);
-            else actor.takeDamage(config.damage, this.isDirect);
+            if (config.hasHealing) actor.takeHealing(config.damage);
+            else actor.takeDamage(config.damage, config.isDirect);
         }
     }
     
+    /**
+     * 
+     * Must be called within Action context.
+     * @param {*} part 
+     * @param {*} data 
+     * @returns 
+     */
     static getFormulaValue(part, data) {
         let formulaValue = part.value;
         
@@ -100,11 +117,18 @@ export default class DamageField extends fields.SchemaField {
         return formulaValue;
     }
 
-    static formatFormulas(formulas, systemData) {
+    /**
+     * 
+     * Must be called within Action context.
+     * @param {*} formulas 
+     * @param {*} systemData 
+     * @returns 
+     */
+    static formatFormulas(formulas, data) {
         const formattedFormulas = [];
         formulas.forEach(formula => {
             if (isNaN(formula.formula))
-                formula.formula = Roll.replaceFormulaData(formula.formula, this.getRollData(systemData));
+                formula.formula = Roll.replaceFormulaData(formula.formula, this.getRollData(data));
             const same = formattedFormulas.find(
                 f => setsEqual(f.damageTypes, formula.damageTypes) && f.applyTo === formula.applyTo
             );
@@ -114,10 +138,19 @@ export default class DamageField extends fields.SchemaField {
         return formattedFormulas;
     }
 
+    /**
+     * Return the automation setting for execute method for current user role
+     * @returns {string} Id from settingsConfig.mjs actionAutomationChoices
+     */
     static getAutomation() {
         return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damage.players)
     }
 
+
+    /**
+     * Return the automation setting for applyDamage method for current user role
+     * @returns {boolean} If applyDamage should be triggered automatically
+     */
     static getApplyAutomation() {
         return (game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.gm) || (!game.user.isGM && game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Automation).roll.damageApply.players)
     }

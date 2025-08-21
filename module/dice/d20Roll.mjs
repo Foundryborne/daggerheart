@@ -147,6 +147,7 @@ export default class D20Roll extends DHRoll {
             });
             data.success = config.targets.some(target => target.hit);
         } else if (config.roll.difficulty) data.success = roll.isCritical || roll.total >= config.roll.difficulty;
+        config.successConsumed = data.success;
 
         data.advantage = {
             type: config.roll.advantage,
