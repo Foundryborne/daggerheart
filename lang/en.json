@@ -2352,6 +2352,42 @@
                     "playerMessage": "{user} rerolled their {name}"
                 }
             },
+            "ItemBrowser": {
+                "title": "Daggerheart Compendium Browser",
+                "hint": "Select a Folder in sidebar to start browsing through the compendium",
+                "searchPlaceholder": "Search...",
+                "columnName": "Name",
+                "tooltipFilters": "Filters",
+                "tooltipErase": "Erase",
+                "difficultyMin": "Difficulty (Min)",
+                "difficultyMax": "Difficulty (Max)",
+                "hitPointsMin": "Hit Points (Min)",
+                "hitPointsMax": "Hit Points (Max)",
+                "stressMin": "Stress (Min)",
+                "stressMax": "Stress (Max)",
+                "armorScoreMin": "Armor Score (Min)",
+                "armorScoreMax": "Armor Score (Max)",
+                "levelMin": "Level (Min)",
+                "levelMax": "Level (Max)",
+                "recallCostMin": "Recall Cost (Min)",
+                "recallCostMax": "Recall Cost (Max)",
+                "evasionMin": "Evasion (Min)",
+                "evasionMax": "Evasion (Max)",
+                "subtype": "Subtype",
+                "folders": {
+                    "adversaries": "Adversaries",
+                    "ancestries": "Ancestries", 
+                    "equipment": "Equipment",
+                    "classes": "Classes",
+                    "subclasses": "Subclasses",
+                    "domainCards": "Domain Cards",
+                    "communities": "Communities",
+                    "environments": "Environments",
+                    "beastforms": "Beastforms",
+                    "features": "Features",
+                    "items": "Items"
+                }
+            },
             "Notifications": {
                 "adversaryMissing": "The linked adversary doesn't exist in the world.",
                 "beastformInapplicable": "A beastform can only be applied to a Character.",
@@ -2411,7 +2447,8 @@
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
                 "loadoutMaxReached": "You've reached maximum loadout. Move atleast one domain card to the vault, or increase the limit in homebrew settings if desired.",
                 "domainMaxReached": "You've reached the maximum domains for the class. Increase the limit in homebrew settings if desired.",
-                "insufficientResources": "You have insufficient resources",
+                "insufficientResources": "You don't have enough resources to use that action.",
+                "actionNoUsesRemaining": "That action doesn't have remaining uses.",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice"
