@@ -108,6 +108,13 @@ export default class DhHomebrew extends foundry.abstract.DataModel {
                     }),
                     description: new fields.HTMLField()
                 })
+            ),
+            adversaryTypes: new fields.TypedObjectField(
+                new fields.SchemaField({
+                    id: new fields.StringField({ required: true }),
+                    label: new fields.StringField({ required: true, label: 'DAGGERHEART.GENERAL.label' }),
+                    description: new fields.StringField()
+                })
             )
         };
     }

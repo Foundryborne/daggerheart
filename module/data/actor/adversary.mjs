@@ -27,7 +27,7 @@ export default class DhpAdversary extends BaseDataActor {
             }),
             type: new fields.StringField({
                 required: true,
-                choices: CONFIG.DH.ACTOR.adversaryTypes,
+                choices: CONFIG.DH.ACTOR.allAdversaryTypes,
                 initial: CONFIG.DH.ACTOR.adversaryTypes.standard.id
             }),
             motivesAndTactics: new fields.StringField(),
