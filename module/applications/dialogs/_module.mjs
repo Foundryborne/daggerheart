@@ -1,3 +1,4 @@
+export { default as AttributionDialog } from './attributionDialog.mjs';
 export { default as BeastformDialog } from './beastformDialog.mjs';
 export { default as d20RollDialog } from './d20RollDialog.mjs';
 export { default as DamageDialog } from './damageDialog.mjs';

@@ -115,6 +115,11 @@
       "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 83,
+      "artist": ""
     }
   },
   "flags": {},
@@ -124,9 +129,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784231,
-    "modifiedTime": 1755259462487,
+    "modifiedTime": 1755384340788,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "2UeZ0tEe7AzgSJNd",

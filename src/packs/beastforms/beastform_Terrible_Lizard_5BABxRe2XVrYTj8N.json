@@ -38,7 +38,12 @@
       "advantages": 2,
       "features": 2
     },
-    "examples": "Brachiosaurus, Tyrannosaurus, etc."
+    "examples": "Brachiosaurus, Tyrannosaurus, etc.",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 14,
+      "artist": ""
+    }
   },
   "effects": [
     {
@@ -128,12 +133,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753628213224,
-    "modifiedTime": 1753628382733,
-    "lastModifiedBy": "FecEtPuoQh6MpjQ0"
+    "modifiedTime": 1755395476212,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "5BABxRe2XVrYTj8N",
   "sort": 300000,

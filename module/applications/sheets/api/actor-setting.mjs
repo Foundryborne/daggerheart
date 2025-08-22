@@ -44,9 +44,8 @@ export default class DHBaseActorSettings extends DHApplicationMixin(DocumentShee
         const context = await super._prepareContext(options);
         context.isNPC = this.actor.isNPC;
 
-        if (context.systemFields.attack) {
+        if (context.systemFields.attack)
             context.systemFields.attack.fields = this.actor.system.attack.schema.fields;
-        }
 
         return context;
     }

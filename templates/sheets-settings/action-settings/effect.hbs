@@ -5,7 +5,7 @@
 >
     {{#if fields.roll}}{{> 'systems/daggerheart/templates/actionTypes/roll.hbs' fields=fields.roll.fields source=source.roll}}{{/if}}
     {{#if fields.save}}{{> 'systems/daggerheart/templates/actionTypes/save.hbs' fields=fields.save.fields source=source.save}}{{/if}}
-    {{#if fields.damage}}{{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=fields.damage.fields.parts.element.fields source=source.damage}}{{/if}}
+    {{#if fields.damage}}{{> 'systems/daggerheart/templates/actionTypes/damage.hbs' fields=fields.damage.fields.parts.element.fields source=source.damage directField=fields.damage.fields.direct }}{{/if}}
     {{#if fields.resource}}{{> 'systems/daggerheart/templates/actionTypes/resource.hbs' fields=fields.resource.fields source=source.resource}}{{/if}}
     {{#if fields.macro}}{{> 'systems/daggerheart/templates/actionTypes/macro.hbs' fields=fields.macro source=source.macro}}{{/if}}
     {{#if fields.effects}}{{> 'systems/daggerheart/templates/actionTypes/effect.hbs' fields=fields.effects.element.fields source=source.effects}}{{/if}}

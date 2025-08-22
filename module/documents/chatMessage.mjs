@@ -15,6 +15,10 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         /* We can change to fully implementing the renderHTML function if needed, instead of augmenting it. */
         const html = await super.renderHTML({ actor: actorData, author: this.author });
 
+        if (this.flags.core?.RollTable) {
+            html.querySelector('.roll-buttons.apply-buttons').remove();
+        }
+
         this.enrichChatMessage(html);
         this.addChatListeners(html);
 
@@ -45,6 +49,18 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         return super._preDelete(options, user);
     }
 
+    /** @inheritDoc */
+    _onUpdate(changes, options, userId) {
+        super._onUpdate(changes, options, userId);
+
+        const lastMessage = Array.from(game.messages).sort((a, b) => b.timestamp - a.timestamp)[0];
+        if (lastMessage.id === this.id && ui.chat.isAtBottom) {
+            setTimeout(() => {
+                ui.chat.scrollBottom();
+            }, 5);
+        }
+    }
+
     enrichChatMessage(html) {
         const elements = html.querySelectorAll('[data-perm-id]');
         elements.forEach(e => {
@@ -57,7 +73,7 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
         });
 
         if (this.isContentVisible) {
-            if(this.type === 'dualityRoll') {
+            if (this.type === 'dualityRoll') {
                 html.classList.add('duality');
                 switch (this.system.roll?.result?.duality) {
                     case 1:
@@ -72,20 +88,21 @@ export default class DhpChatMessage extends foundry.documents.ChatMessage {
                 }
             }
 
-            const autoExpandRoll = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance).expandRollMessage,
-                rollSections = html.querySelectorAll(".roll-part"),
-                itemDesc = html.querySelector(".domain-card-move");
+            const autoExpandRoll = game.settings.get(
+                    CONFIG.DH.id,
+                    CONFIG.DH.SETTINGS.gameSettings.appearance
+                ).expandRollMessage,
+                rollSections = html.querySelectorAll('.roll-part'),
+                itemDesc = html.querySelector('.domain-card-move');
             rollSections.forEach(s => {
-                if(s.classList.contains("roll-section")) {
+                if (s.classList.contains('roll-section')) {
                     const toExpand = s.querySelector('[data-action="expandRoll"]');
-                    toExpand.classList.toggle("expanded", autoExpandRoll.roll);
-                } else if(s.classList.contains("damage-section"))
-                    s.classList.toggle("expanded", autoExpandRoll.damage);
-                else if(s.classList.contains("target-section"))
-                    s.classList.toggle("expanded", autoExpandRoll.target);
+                    toExpand.classList.toggle('expanded', autoExpandRoll.roll);
+                } else if (s.classList.contains('damage-section'))
+                    s.classList.toggle('expanded', autoExpandRoll.damage);
+                else if (s.classList.contains('target-section')) s.classList.toggle('expanded', autoExpandRoll.target);
             });
-            if(itemDesc && autoExpandRoll.desc)
-                itemDesc.setAttribute("open", "");
+            if (itemDesc && autoExpandRoll.desc) itemDesc.setAttribute('open', '');
         }
         
         if(!this.isAuthor && !this.speakerActor?.isOwner) {

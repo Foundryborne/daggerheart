@@ -4,6 +4,7 @@ import DHBaseActorSheet from '../api/base-actor.mjs';
 /**@typedef {import('@client/applications/_types.mjs').ApplicationClickAction} ApplicationClickAction */
 
 export default class AdversarySheet extends DHBaseActorSheet {
+    /** @inheritDoc */
     static DEFAULT_OPTIONS = {
         classes: ['adversary'],
         position: { width: 660, height: 766 },
@@ -12,16 +13,34 @@ export default class AdversarySheet extends DHBaseActorSheet {
             reactionRoll: AdversarySheet.#reactionRoll
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
         }
     };
 
     static PARTS = {
-        sidebar: { template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs' },
+        sidebar: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/sidebar.hbs',
+            scrollable: ['.shortcut-items-section']
+        },
         header: { template: 'systems/daggerheart/templates/sheets/actors/adversary/header.hbs' },
-        features: { template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs' },
-        notes: { template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs' },
-        effects: { template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs' }
+        features: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/features.hbs',
+            scrollable: ['.feature-section']
+        },
+        notes: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/notes.hbs'
+        },
+        effects: {
+            template: 'systems/daggerheart/templates/sheets/actors/adversary/effects.hbs',
+            scrollable: ['.effects-sections']
+        }
     };
 
     /** @inheritdoc */
@@ -60,6 +79,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
 
         htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
             element.addEventListener('change', this.updateItemResource.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
         });
     }
 

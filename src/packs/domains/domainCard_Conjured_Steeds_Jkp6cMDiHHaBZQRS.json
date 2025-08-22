@@ -45,6 +45,11 @@
         "img": "icons/creatures/mammals/deer-movement-leap-green.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 131,
+      "artist": ""
     }
   },
   "flags": {},
@@ -52,12 +57,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784438,
-    "modifiedTime": 1754339195316,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755429572061,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "Jkp6cMDiHHaBZQRS",
   "sort": 3400000,

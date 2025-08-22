@@ -1,7 +1,7 @@
 import DHBaseActorSheet from '../api/base-actor.mjs';
 import DhpDeathMove from '../../dialogs/deathMove.mjs';
 import { abilities } from '../../../config/actorConfig.mjs';
-import DhCharacterlevelUp from '../../levelup/characterLevelup.mjs';
+import { CharacterLevelup, LevelupViewMode } from '../../levelup/_module.mjs';
 import DhCharacterCreation from '../../characterCreation/characterCreation.mjs';
 import FilterMenu from '../../ux/filter-menu.mjs';
 import { getDocFromElement, getDocFromElementSync } from '../../../helpers/utils.mjs';
@@ -23,6 +23,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             openPack: CharacterSheet.#openPack,
             makeDeathMove: CharacterSheet.#makeDeathMove,
             levelManagement: CharacterSheet.#levelManagement,
+            viewLevelups: CharacterSheet.#viewLevelups,
             toggleEquipItem: CharacterSheet.#toggleEquipItem,
             toggleResourceDice: CharacterSheet.#toggleResourceDice,
             handleResourceDice: CharacterSheet.#handleResourceDice,
@@ -30,7 +31,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
             tempBrowser: CharacterSheet.#tempBrowser
         },
         window: {
-            resizable: true
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-angles-up',
+                    label: 'DAGGERHEART.ACTORS.Character.viewLevelups',
+                    action: 'viewLevelups'
+                }
+            ]
         },
         dragDrop: [
             {
@@ -70,6 +78,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
     static PARTS = {
         sidebar: {
             id: 'sidebar',
+            scrollable: ['.shortcut-items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/sidebar.hbs'
         },
         header: {
@@ -78,22 +87,27 @@ export default class CharacterSheet extends DHBaseActorSheet {
         },
         features: {
             id: 'features',
+            scrollable: ['.features-sections'],
             template: 'systems/daggerheart/templates/sheets/actors/character/features.hbs'
         },
         loadout: {
             id: 'loadout',
+            scrollable: ['.items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/loadout.hbs'
         },
         inventory: {
             id: 'inventory',
+            scrollable: ['.items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/inventory.hbs'
         },
         biography: {
             id: 'biography',
+            scrollable: ['.items-section'],
             template: 'systems/daggerheart/templates/sheets/actors/character/biography.hbs'
         },
         effects: {
             id: 'effects',
+            scrollable: ['.effects-sections'],
             template: 'systems/daggerheart/templates/sheets/actors/character/effects.hbs'
         }
     };
@@ -114,6 +128,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
 
         htmlElement.querySelectorAll('.inventory-item-resource').forEach(element => {
             element.addEventListener('change', this.updateItemResource.bind(this));
+            element.addEventListener('click', e => e.stopPropagation());
         });
         htmlElement.querySelectorAll('.inventory-item-quantity').forEach(element => {
             element.addEventListener('change', this.updateItemQuantity.bind(this));
@@ -585,7 +600,14 @@ export default class CharacterSheet extends DHBaseActorSheet {
         if (!value || !subclass)
             return ui.notifications.error(game.i18n.localize('DAGGERHEART.UI.Notifications.missingClassOrSubclass'));
 
-        new DhCharacterlevelUp(this.document).render({ force: true });
+        new CharacterLevelup(this.document).render({ force: true });
+    }
+
+    /**
+     * Opens the charater level management window in viewMode.
+     */
+    static #viewLevelups() {
+        new LevelupViewMode(this.document).render({ force: true });
     }
 
     /**
@@ -638,7 +660,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
                 ability: abilityLabel
             })
         });
-        
+
         this.consumeResource(result?.costs);
     }
 

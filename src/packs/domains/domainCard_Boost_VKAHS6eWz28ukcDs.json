@@ -42,6 +42,11 @@
         "img": "icons/skills/movement/arrow-upward-yellow.webp",
         "range": "far"
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 123,
+      "artist": ""
     }
   },
   "flags": {},
@@ -49,12 +54,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784430,
-    "modifiedTime": 1754252472924,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755428287690,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "VKAHS6eWz28ukcDs",
   "sort": 3400000,

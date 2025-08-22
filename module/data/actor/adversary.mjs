@@ -10,7 +10,8 @@ export default class DhpAdversary extends BaseDataActor {
         return foundry.utils.mergeObject(super.metadata, {
             label: 'TYPES.Actor.adversary',
             type: 'adversary',
-            settingSheet: DHAdversarySettings
+            settingSheet: DHAdversarySettings,
+            hasAttribution: true
         });
     }
 

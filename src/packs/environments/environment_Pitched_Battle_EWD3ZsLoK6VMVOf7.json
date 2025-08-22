@@ -1,6 +1,6 @@
 {
   "name": "Pitched Battle",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "MfrIkJK12PAEfbPL",
   "system": {
@@ -29,19 +29,24 @@
     "tier": 3,
     "description": "<p>A massive combat between two large groups of armed combatants.</p>",
     "type": "event",
-    "impulses": "Seize people, land, and wealth, spill blood for greed and glory"
+    "impulses": "Seize people, land, and wealth, spill blood for greed and glory",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 109,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784565,
-    "modifiedTime": 1754219040722,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890264,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "EWD3ZsLoK6VMVOf7",
   "sort": 3400000,
@@ -57,7 +62,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

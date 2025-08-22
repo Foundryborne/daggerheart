@@ -1,6 +1,6 @@
 {
   "name": "Cliffside Ascent",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "GQ0VnOLrKBIHR6Us",
   "system": {
@@ -20,19 +20,24 @@
     "tier": 1,
     "description": "<p>A steep, rocky cliffside tall enough to make traversal dangerous.</p>",
     "type": "traversal",
-    "impulses": "Cast the unready down to a rocky doom, draw people in with promise of what lies at the top"
+    "impulses": "Cast the unready down to a rocky doom, draw people in with promise of what lies at the top",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 104,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784557,
-    "modifiedTime": 1754212638870,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890238,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "LPpfdlNKqiZIl04w",
   "sort": 3400000,
@@ -48,7 +53,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

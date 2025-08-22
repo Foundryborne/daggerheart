@@ -26,6 +26,14 @@
     "CONTROLS": {
         "inFront": "In Front"
     },
+    "SCENE": {
+        "TABS": {
+            "SHEET": {
+                "dh": "Daggerheart"
+            }
+        }
+    },
+
     "DAGGERHEART": {
         "ACTIONS": {
             "TYPES": {
@@ -193,7 +201,10 @@
                 "companionLevelup": {
                     "confirmTitle": "Companion Levelup",
                     "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
-                }
+                },
+                "viewLevelups": "View Levelups",
+                "InvalidOldCharacterImportTitle": "Old Character Import",
+                "InvalidOldCharacterImportText": "Character data exported prior to system version 1.1 will not generate a complete character. Do you wish to continue?"
             },
             "Companion": {
                 "FIELDS": {
@@ -236,6 +247,9 @@
             }
         },
         "APPLICATIONS": {
+            "Attribution": {
+                "title": "Attribution"
+            },
             "CharacterCreation": {
                 "tabs": {
                     "ancestry": "Ancestry",
@@ -490,7 +504,8 @@
                     "pretext": "When you level up, record it on your character sheet, then choose two from the list below or any unmarked from the previous tier.",
                     "posttext": "Take an additional domain card of your level or lower from a domain you have access to."
                 },
-                "title": "{actor} Level Up"
+                "title": "{actor} Level Up",
+                "viewModeTitle": "{actor} Level Up (View Mode)"
             },
             "MulticlassChoice": {
                 "title": "Multiclassing - {actor}",
@@ -1906,6 +1921,7 @@
             "armorScore": "Armor Score",
             "activeEffects": "Active Effects",
             "armorSlots": "Armor Slots",
+            "artistAttribution": "Artwork By: {artist}",
             "attack": "Attack",
             "basics": "Basics",
             "bonus": "Bonus",
@@ -2001,7 +2017,7 @@
             "true": "True",
             "type": "Type",
             "unarmed": "Unarmed",
-            "unarmedStrike": "Unarmed Strike",
+            "unarmedAttack": "Unarmed Attack",
             "unarmored": "Unarmored",
             "use": "Use",
             "used": "Used",
@@ -2011,6 +2027,11 @@
         },
         "ITEMS": {
             "FIELDS": {
+                "attribution": {
+                    "source": { "label": "Source" },
+                    "page": { "label": "Page" },
+                    "artist": { "label": "Artist" }
+                },
                 "resource": {
                     "amount": { "label": "Amount" },
                     "dieFaces": { "label": "Die Faces" },
@@ -2108,7 +2129,7 @@
                 "FIELDS": {
                     "displayFear": { "label": "Fear Display" },
                     "dualityColorScheme": { "label": "Chat Style" },
-                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" },
+                    "hideAttribution": { "label": "Hide Attribution" },
                     "expandedTitle": "Auto-expand Descriptions",
                     "extendCharacterDescriptions": { "label": "Characters" },
                     "extendAdversaryDescriptions": { "label": "Adversaries" },
@@ -2118,7 +2139,8 @@
                     "expandRollMessageDesc": { "label": "Description" },
                     "expandRollMessageRoll": { "label": "Formula" },
                     "expandRollMessageDamage": { "label": "Damage/Healing" },
-                    "expandRollMessageTarget": { "label": "Target" }
+                    "expandRollMessageTarget": { "label": "Target" },
+                    "showGenericStatusEffects": { "label": "Show Foundry Status Effects" }
                 },
                 "fearDisplay": {
                     "token": "Tokens",
@@ -2302,6 +2324,9 @@
             "ResetSettings": {
                 "resetConfirmationTitle": "Reset Settings",
                 "resetConfirmationText": "Are you sure you want to reset the {settings}?"
+            },
+            "Scene": {
+                "rangeMeasurementOverride": "Override Global Range Measurement Settings"
             }
         },
         "UI": {
@@ -2351,6 +2376,42 @@
                 },
                 "resourceRoll": {
                     "playerMessage": "{user} rerolled their {name}"
+                }
+            },
+            "ItemBrowser": {
+                "title": "Daggerheart Compendium Browser",
+                "hint": "Select a Folder in sidebar to start browsing through the compendium",
+                "searchPlaceholder": "Search...",
+                "columnName": "Name",
+                "tooltipFilters": "Filters",
+                "tooltipErase": "Erase",
+                "difficultyMin": "Difficulty (Min)",
+                "difficultyMax": "Difficulty (Max)",
+                "hitPointsMin": "Hit Points (Min)",
+                "hitPointsMax": "Hit Points (Max)",
+                "stressMin": "Stress (Min)",
+                "stressMax": "Stress (Max)",
+                "armorScoreMin": "Armor Score (Min)",
+                "armorScoreMax": "Armor Score (Max)",
+                "levelMin": "Level (Min)",
+                "levelMax": "Level (Max)",
+                "recallCostMin": "Recall Cost (Min)",
+                "recallCostMax": "Recall Cost (Max)",
+                "evasionMin": "Evasion (Min)",
+                "evasionMax": "Evasion (Max)",
+                "subtype": "Subtype",
+                "folders": {
+                    "adversaries": "Adversaries",
+                    "ancestries": "Ancestries", 
+                    "equipment": "Equipment",
+                    "classes": "Classes",
+                    "subclasses": "Subclasses",
+                    "domainCards": "Domain Cards",
+                    "communities": "Communities",
+                    "environments": "Environments",
+                    "beastforms": "Beastforms",
+                    "features": "Features",
+                    "items": "Items"
                 }
             },
             "Notifications": {
@@ -2413,7 +2474,8 @@
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
                 "loadoutMaxReached": "You've reached maximum loadout. Move atleast one domain card to the vault, or increase the limit in homebrew settings if desired.",
                 "domainMaxReached": "You've reached the maximum domains for the class. Increase the limit in homebrew settings if desired.",
-                "insufficientResources": "You have insufficient resources",
+                "insufficientResources": "You don't have enough resources to use that action.",
+                "actionNoUsesRemaining": "That action doesn't have remaining uses.",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice"
@@ -2443,7 +2505,8 @@
                 "rulesOff": "Rules Off",
                 "remainingUses": "Uses refresh on {type}",
                 "rightClickExtand": "Right-Click to extand",
-                "companionPartnerLevelBlock": "The companion needs an assigned partner to level up."
+                "companionPartnerLevelBlock": "The companion needs an assigned partner to level up.",
+                "configureAttribution": "Configure Attribution"
             }
         }
     }

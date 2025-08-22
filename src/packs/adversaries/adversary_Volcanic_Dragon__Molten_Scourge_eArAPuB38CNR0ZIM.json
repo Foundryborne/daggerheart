@@ -145,7 +145,12 @@
         }
       }
     },
-    "motivesAndTactics": "Douse with lava, incinerate, repel Invaders, reposition"
+    "motivesAndTactics": "Douse with lava, incinerate, repel Invaders, reposition",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 100,
+      "artist": ""
+    }
   },
   "prototypeToken": {
     "name": "Volcanic Dragon: Molten Scourge",
@@ -901,9 +906,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753929160832,
-    "modifiedTime": 1755259462833,
+    "modifiedTime": 1755385761296,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_key": "!actors!eArAPuB38CNR0ZIM"

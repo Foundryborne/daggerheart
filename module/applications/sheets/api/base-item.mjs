@@ -13,7 +13,16 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         classes: ['item'],
         position: { width: 600 },
-        window: { resizable: true },
+        window: {
+            resizable: true,
+            controls: [
+                {
+                    icon: 'fa-solid fa-signature',
+                    label: 'DAGGERHEART.UI.Tooltip.configureAttribution',
+                    action: 'editAttribution'
+                }
+            ]
+        },
         form: {
             submitOnChange: true
         },
@@ -54,6 +63,15 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
     /* -------------------------------------------- */
     /*  Prepare Context                             */
     /* -------------------------------------------- */
+
+    /**@inheritdoc */
+    async _prepareContext(options) {
+        const context = super._prepareContext(options);
+        context.showAttribution = !game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance)
+            .hideAttribution;
+
+        return context;
+    }
 
     /**@inheritdoc */
     async _preparePartContext(partId, context, options) {
@@ -149,12 +167,12 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
         const { type } = target.dataset;
         const cls = foundry.documents.Item.implementation;
 
+        const multiclass = this.document.system.isMulticlass ? 'multiclass' : null;
         let systemData = {};
         if (this.document.parent?.type === 'character') {
             systemData = {
                 originItemType: this.document.type,
-                originId: this.document.id,
-                identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                identifier: multiclass ?? type
             };
         }
 
@@ -252,6 +270,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
                 };
                 event.dataTransfer.setData('text/plain', JSON.stringify(actionData));
                 event.dataTransfer.setDragImage(actionItem.querySelector('img'), 60, 0);
+            } else {
+                super._onDragStart(event);
             }
         }
     }
@@ -261,6 +281,8 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
      * @param {DragEvent} event - The drag event
      */
     async _onDrop(event) {
+        super._onDrop(event);
+
         const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
         if (data.fromInternal) return;
 
@@ -271,14 +293,15 @@ export default class DHBaseItemSheet extends DHApplicationMixin(ItemSheetV2) {
 
             if (this.document.parent?.type === 'character') {
                 const itemData = item.toObject();
+                const multiclass = this.document.system.isMulticlass ? 'multiclass' : null;
                 item = await cls.create(
                     {
                         ...itemData,
+                        _stats: { compendiumSource: this.document.uuid },
                         system: {
                             ...itemData.system,
                             originItemType: this.document.type,
-                            originId: this.document.id,
-                            identifier: this.document.system.isMulticlass ? 'multiclass' : null
+                            identifier: multiclass ?? target.dataset.type
                         }
                     },
                     { parent: this.document.parent }

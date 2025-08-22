@@ -105,6 +105,11 @@
       "img": "icons/skills/melee/blood-slash-foam-red.webp",
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 95,
+      "artist": ""
     }
   },
   "flags": {},
@@ -114,9 +119,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784314,
-    "modifiedTime": 1755259462770,
+    "modifiedTime": 1755385515496,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "XK78QUfY8c8Go8Uv",

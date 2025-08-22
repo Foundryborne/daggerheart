@@ -26,7 +26,8 @@ export const gameSettings = {
         Fear: 'ResourcesFear'
     },
     LevelTiers: 'LevelTiers',
-    Countdowns: 'Countdowns'
+    Countdowns: 'Countdowns',
+    LastMigrationVersion: 'LastMigrationVersion'
 };
 
 export const actionAutomationChoices = {

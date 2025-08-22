@@ -42,6 +42,11 @@
         "img": "icons/magic/control/buff-flight-wings-runes-purple-orange.webp",
         "range": ""
       }
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 121,
+      "artist": ""
     }
   },
   "flags": {},
@@ -49,12 +54,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784545,
-    "modifiedTime": 1754304354572,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755428093764,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "anO0arioUy7I5zBg",
   "sort": 3400000,

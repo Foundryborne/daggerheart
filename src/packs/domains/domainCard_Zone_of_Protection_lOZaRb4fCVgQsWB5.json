@@ -58,19 +58,24 @@
         "range": "far"
       }
     },
-    "resource": null
+    "resource": null,
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 133,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784549,
-    "modifiedTime": 1754498786877,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755429748542,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "lOZaRb4fCVgQsWB5",
   "sort": 3400000,

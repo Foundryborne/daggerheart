@@ -85,6 +85,8 @@ export default function DHApplicationMixin(Base) {
             this._dragDrop = this._createDragDropHandlers();
         }
 
+        #nonHeaderAttribution = ['environment', 'ancestry', 'community', 'domainCard'];
+
         /**
          * The default options for the sheet.
          * @type {DHSheetV2Configuration}
@@ -101,7 +103,8 @@ export default function DHApplicationMixin(Base) {
                 toggleEffect: DHSheetV2.#toggleEffect,
                 toggleExtended: DHSheetV2.#toggleExtended,
                 addNewItem: DHSheetV2.#addNewItem,
-                browseItem: DHSheetV2.#browseItem
+                browseItem: DHSheetV2.#browseItem,
+                editAttribution: DHSheetV2.#editAttribution
             },
             contextMenus: [
                 {
@@ -121,9 +124,46 @@ export default function DHApplicationMixin(Base) {
                     }
                 }
             ],
-            dragDrop: [],
+            dragDrop: [{ dragSelector: '.inventory-item[data-type="effect"]', dropSelector: null }],
             tagifyConfigs: []
         };
+
+        /**@inheritdoc */
+        async _renderFrame(options) {
+            const frame = await super._renderFrame(options);
+
+            const hideAttribution = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).hideAttribution;
+            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
+            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+                const { source, page } = this.document.system.attribution;
+                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+                const element = `<label class="attribution-header-label">${attribution}</label>`;
+                this.window.controls.insertAdjacentHTML('beforebegin', element);
+            }
+
+            return frame;
+        }
+
+        /**
+         *  Refresh the custom parts of the application frame
+         */
+        refreshFrame() {
+            const hideAttribution = game.settings.get(
+                CONFIG.DH.id,
+                CONFIG.DH.SETTINGS.gameSettings.appearance
+            ).hideAttribution;
+            const headerAttribution = !this.#nonHeaderAttribution.includes(this.document.type);
+            if (!hideAttribution && this.document.system.metadata.hasAttribution && headerAttribution) {
+                const { source, page } = this.document.system.attribution;
+                const attribution = [source, page ? `pg ${page}.` : null].filter(x => x).join('. ');
+
+                const label = this.window.header.querySelector('.attribution-header-label');
+                label.innerHTML = attribution;
+            }
+        }
 
         /**
          * Related documents that should cause a rerender of this application when updated.
@@ -249,14 +289,37 @@ export default function DHApplicationMixin(Base) {
          * @param {DragEvent} event
          * @protected
          */
-        _onDragStart(event) {}
+        async _onDragStart(event) {
+            const inventoryItem = event.currentTarget.closest('.inventory-item');
+            if (inventoryItem) {
+                const { type, itemUuid } = inventoryItem.dataset;
+                if (type === 'effect') {
+                    const effect = await foundry.utils.fromUuid(itemUuid);
+                    const effectData = {
+                        type: 'ActiveEffect',
+                        data: { ...effect.toObject(), _id: null },
+                        fromInternal: this.document.uuid
+                    };
+                    event.dataTransfer.setData('text/plain', JSON.stringify(effectData));
+                    event.dataTransfer.setDragImage(inventoryItem.querySelector('img'), 60, 0);
+                }
+            }
+        }
 
         /**
          * Handle drop event.
          * @param {DragEvent} event
          * @protected
          */
-        _onDrop(event) {}
+        _onDrop(event) {
+            event.stopPropagation();
+            const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+            if (data.fromInternal === this.document.uuid) return;
+
+            if (data.type === 'ActiveEffect') {
+                this.document.createEmbeddedDocuments('ActiveEffect', [data.data]);
+            }
+        }
 
         /* -------------------------------------------- */
         /*  Context Menu                                */
@@ -551,6 +614,14 @@ export default function DHApplicationMixin(Base) {
         }
 
         /**
+         * Open the attribution dialog
+         * @type {ApplicationClickAction}
+         */
+        static async #editAttribution() {
+            new game.system.api.applications.dialogs.AttributionDialog(this.document).render({ force: true });
+        }
+
+        /**
          * Create an embedded document.
          * @type {ApplicationClickAction}
          */
@@ -570,7 +641,6 @@ export default function DHApplicationMixin(Base) {
             if (featureOnCharacter) {
                 systemData = {
                     originItemType: this.document.type,
-                    originId: this.document.id,
                     identifier: this.document.system.isMulticlass ? 'multiclass' : null
                 };
             }

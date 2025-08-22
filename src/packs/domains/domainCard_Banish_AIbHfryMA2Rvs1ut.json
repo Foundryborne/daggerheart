@@ -63,6 +63,11 @@
       "max": "1",
       "icon": "fa-solid fa-hand-sparkles",
       "recovery": "shortRest"
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 125,
+      "artist": ""
     }
   },
   "flags": {},
@@ -70,12 +75,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784411,
-    "modifiedTime": 1754240991601,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755429055116,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "AIbHfryMA2Rvs1ut",
   "sort": 3400000,

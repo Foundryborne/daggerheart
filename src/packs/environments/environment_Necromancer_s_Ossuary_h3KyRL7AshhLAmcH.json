@@ -1,6 +1,6 @@
 {
   "name": "Necromancer’s Ossuary",
-  "img": "icons/svg/mystery-man.svg",
+  "img": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
   "type": "environment",
   "folder": "IKumu5HTLqONLYqb",
   "system": {
@@ -18,19 +18,24 @@
     "tier": 4,
     "description": "<p>A dusty crypt with a library, twisting corridors, and abundant sarcophagi, spattered with the blood of ill-fated invaders.</p>",
     "type": "exploration",
-    "impulses": "Confound intruders, delve into secrets best left buried, manifest unlife, unleash a tide of undead"
+    "impulses": "Confound intruders, delve into secrets best left buried, manifest unlife, unleash a tide of undead",
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 111,
+      "artist": ""
+    }
   },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784563,
-    "modifiedTime": 1754221404218,
-    "lastModifiedBy": "MQSznptE5yLT7kj8"
+    "modifiedTime": 1755389890275,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "h3KyRL7AshhLAmcH",
   "sort": 3400000,
@@ -46,7 +51,7 @@
     "width": 1,
     "height": 1,
     "texture": {
-      "src": "icons/svg/mystery-man.svg",
+      "src": "systems/daggerheart/assets/icons/documents/actors/forest.svg",
       "anchorX": 0.5,
       "anchorY": 0.5,
       "offsetX": 0,

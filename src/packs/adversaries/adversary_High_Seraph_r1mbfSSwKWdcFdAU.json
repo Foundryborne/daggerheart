@@ -112,6 +112,11 @@
       "img": "icons/skills/melee/strike-blade-hooked-orange-blue.webp",
       "type": "attack",
       "chatDisplay": false
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 98,
+      "artist": ""
     }
   },
   "flags": {},
@@ -121,9 +126,9 @@
     "exportSource": null,
     "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784283,
-    "modifiedTime": 1755259462909,
+    "modifiedTime": 1755385681541,
     "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "r1mbfSSwKWdcFdAU",

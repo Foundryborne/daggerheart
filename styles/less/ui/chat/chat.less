@@ -2,6 +2,49 @@
 @import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
+.theme-light {
+    .daggerheart,
+    #chat-notifications {
+        --text-color: @dark-blue;
+        --bg-color: @dark-blue-40;
+
+        .message-content .chat-roll {
+            .roll-part-header {
+                span,
+                span:before,
+                span:after {
+                    color: @dark-blue;
+                }
+                &:before {
+                    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, @dark-blue 100%);
+                    color: @dark-blue;
+                }
+
+                &:after {
+                    background: linear-gradient(90deg, @dark-blue 0%, rgba(0, 0, 0, 0) 100%);
+                    color: @dark-blue;
+                }
+            }
+            .roll-section {
+                .roll-part-content {
+                    .roll-result-value {
+                        color: @dark-blue;
+                    }
+
+                    .dice-tooltip .wrapper .roll-die {
+                        color: @beige;
+                    }
+                }
+            }
+        }
+
+        .chat-message .roll-formula {
+            background: @dark-15;
+            color: @dark;
+        }
+    }
+}
+
 .daggerheart.chat {
     &.resource-roll {
         .reroll-message {
@@ -27,8 +70,8 @@
 .daggerheart,
 #chat-notifications {
     .chat-message {
-        --text-color: light-dark(@dark-blue, @golden);
-        --bg-color: light-dark(@dark-blue-40, @golden-40);
+        --text-color: @golden;
+        --bg-color: @golden-40;
 
         [data-use-perm='false'] {
             pointer-events: none;
@@ -85,7 +128,7 @@
                 display: grid;
                 grid-template-columns: 1fr auto 1fr;
                 align-items: center;
-                color: light-dark(@dark, @beige);
+                color: @beige;
                 margin: 10px 0;
 
                 span {
@@ -427,6 +470,7 @@
             gap: 5px;
             margin-top: 8px;
             button {
+                height: 32px;
                 flex: 1;
             }
         }

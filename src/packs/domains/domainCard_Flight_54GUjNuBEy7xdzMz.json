@@ -100,6 +100,11 @@
       "value": 0,
       "max": "",
       "icon": ""
+    },
+    "attribution": {
+      "source": "Daggerheart SRD",
+      "page": 119,
+      "artist": ""
     }
   },
   "flags": {},
@@ -107,12 +112,12 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.346",
+    "coreVersion": "13.347",
     "systemId": "daggerheart",
-    "systemVersion": "0.0.1",
+    "systemVersion": "1.0.5",
     "createdTime": 1753922784454,
-    "modifiedTime": 1754253557569,
-    "lastModifiedBy": "Q9NoTaEarn3VMS6Z"
+    "modifiedTime": 1755427958620,
+    "lastModifiedBy": "VZIeX2YDvX338Zvr"
   },
   "_id": "54GUjNuBEy7xdzMz",
   "sort": 3400000,
