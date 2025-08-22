@@ -13,6 +13,9 @@ export default class DHTokenHUD extends foundry.applications.hud.TokenHUD {
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
+        const nonCombatTypes = ['environment', 'companion'];
+
+        context.canToggleCombat = nonCombatTypes.includes(this.actor.type) ? false : context.canToggleCombat;
         context.systemStatusEffects = Object.keys(context.statusEffects).reduce((acc, key) => {
             const effect = context.statusEffects[key];
             if (effect.systemEffect) acc[key] = effect;
