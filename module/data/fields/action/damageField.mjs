@@ -25,7 +25,7 @@ export default class DamageField extends fields.SchemaField {
     /**
      * Roll Damage/Healing Action Workflow part.
      * Must be called within Action context.
-     * @param {object} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {object} config               Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {string} [messageId=null]     ChatMessage Id where the clicked button belong.
      * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */

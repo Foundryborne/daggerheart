@@ -1,6 +1,10 @@
 const fields = foundry.data.fields;
 
 export default class CostField extends fields.ArrayField {
+    /**
+     * Action Workflow order
+     */
+    order = 150;
     
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
@@ -23,17 +27,69 @@ export default class CostField extends fields.ArrayField {
     }
 
     /**
+     * Cost Consumption Action Workflow part.
+     * Consume configured action resources.
+     * Must be called within Action context.
+     * @param {object} config                   Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {boolean} [successCost=false]     Consume only resources configured as "On Success only" if not already consumed.
+     */
+    async execute(config, successCost = false) {
+        const actor= this.actor.system.partner ?? this.actor,
+            usefulResources = {
+            ...foundry.utils.deepClone(actor.system.resources),
+            fear: {
+                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
+                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
+                reversed: false
+            }
+        };
+
+        for (var cost of config.costs) {
+            if (cost.keyIsID) {
+                usefulResources[cost.key] = {
+                    value: cost.value,
+                    target: this.parent.parent,
+                    keyIsID: true
+                };
+            }
+        }
+
+        const resources = CostField.getRealCosts(config.costs)
+            .filter(
+                c =>
+                    (!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
+                    (successCost && c.consumeOnSuccess)
+            )
+            .reduce((a, c) => {
+                const resource = usefulResources[c.key];
+                if (resource) {
+                    a.push({
+                        key: c.key,
+                        value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
+                        target: resource.target,
+                        keyIsID: resource.keyIsID
+                    });
+                    return a;
+                }
+            }, []);
+            
+        await actor.modifyResource(resources);
+    }
+
+    /**
      * Update Action Workflow config object.
      * Must be called within Action context.
      * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @returns {boolean}       Return false if fast-forwarded and no more uses.
      */
     prepareConfig(config) {
         const costs = this.cost?.length ? foundry.utils.deepClone(this.cost) : [];
         config.costs = CostField.calcCosts.call(this, costs);
         const hasCost = CostField.hasCost.call(this, config.costs);
-        if (config.isFastForward && !hasCost)
-            return ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
-        return hasCost;
+        if (config.dialog.configure === false && !hasCost) {
+            ui.notifications.warn(game.i18n.localize('DAGGERHEART.UI.Notifications.insufficientResources'));
+            return hasCost;
+        }
     }
 
     /**
@@ -147,54 +203,5 @@ export default class CostField extends fields.ArrayField {
             max = roll.total;
         }
         return Number(max);
-    }
-
-    /**
-     * Consume configured action resources.
-     * Must be called within Action context.
-     * @param {object} config                        Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
-     * @param {boolean} [successCost=false]     Consume only resources configured as "On Success only" if not already consumed.
-     */
-    static async consume(config, successCost = false) {
-        const actor= this.actor.system.partner ?? this.actor,
-            usefulResources = {
-            ...foundry.utils.deepClone(actor.system.resources),
-            fear: {
-                value: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Resources.Fear),
-                max: game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.Homebrew).maxFear,
-                reversed: false
-            }
-        };
-
-        for (var cost of config.costs) {
-            if (cost.keyIsID) {
-                usefulResources[cost.key] = {
-                    value: cost.value,
-                    target: this.parent.parent,
-                    keyIsID: true
-                };
-            }
-        }
-
-        const resources = CostField.getRealCosts(config.costs)
-            .filter(
-                c =>
-                    (!successCost && (!c.consumeOnSuccess || config.roll?.success)) ||
-                    (successCost && c.consumeOnSuccess)
-            )
-            .reduce((a, c) => {
-                const resource = usefulResources[c.key];
-                if (resource) {
-                    a.push({
-                        key: c.key,
-                        value: (c.total ?? c.value) * (resource.isReversed ? 1 : -1),
-                        target: resource.target,
-                        keyIsID: resource.keyIsID
-                    });
-                    return a;
-                }
-            }, []);
-
-        await actor.modifyResource(resources);
     }
 }

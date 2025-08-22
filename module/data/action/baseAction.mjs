@@ -141,14 +141,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         if (this.chatDisplay) await this.toChat();
 
         let config = this.prepareConfig(event);
-
-        /* Object.values(this.schema.fields).forEach( clsField => {
-            if (clsField?.prepareConfig) {
-                // const keep = clsField.prepareConfig.call(this, config);
-                // if (config.isFastForward && !keep) return;
-                if(clsField.prepareConfig.call(this, config) === false) return;
-            }
-        }) */
+        if(!config) return;
 
         if (Hooks.call(`${CONFIG.DH.id}.preUseAction`, this, config) === false) return;
 
@@ -160,9 +153,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         
         // Execute the Action Worflow in order based of schema fields
         await this.executeWorkflow(config);
-
-        // Consume resources
-        await this.consume(config);
 
         if (Hooks.call(`${CONFIG.DH.id}.postUseAction`, this, config) === false) return;
 
@@ -179,18 +169,15 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 action: this._id,
                 actor: this.actor.uuid
             },
-            dialog: {
-                // configure: this.hasRoll
-            },
+            dialog: {},
             type: this.type,
             hasRoll: this.hasRoll,
-            hasDamage: this.hasDamagePart && this.type !== 'healing',
-            hasHealing: this.hasDamagePart && this.type === 'healing',
+            hasDamage: this.hasDamage,
+            hasHealing: this.hasHealing,
             hasEffect: !!this.effects?.length,
             hasSave: this.hasSave,
             isDirect: !!this.damage?.direct,
             selectedRollMode: game.settings.get('core', 'rollMode'),
-            // isFastForward: event.shiftKey,
             data: this.getRollData(),
             evaluate: this.hasRoll
         };
@@ -200,13 +187,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     prepareConfig(event) {
         const config = this.prepareBaseConfig(event);
-        Object.values(this.schema.fields).forEach( clsField => {
-            if (clsField?.prepareConfig) {
-                // const keep = clsField.prepareConfig.call(this, config);
-                // if (config.isFastForward && !keep) return;
-                if(clsField.prepareConfig.call(this, config) === false) return;
-            }
-        })
+        for(const clsField of Object.values(this.schema.fields)) {
+            if (clsField?.prepareConfig)
+                if(clsField.prepareConfig.call(this, config) === false) return false;
+        }
         return config;
     }
 
@@ -215,8 +199,8 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
     }
 
     async consume(config, successCost = false) {
-        await game.system.api.fields.ActionFields.CostField.consume.call(this, config, successCost);
-        await game.system.api.fields.ActionFields.UsesField.consume.call(this, config, successCost);
+        await this.workflow.get("cost")?.execute(config, successCost);
+        await this.workflow.get("uses")?.execute(config, successCost);
 
         if (config.roll && !config.roll.success && successCost) {
             setTimeout(() => {
@@ -231,11 +215,19 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     /**
      * Getters to know which parts the action of composed of. A field can exist but configured to not be used.
-     * @returns {boolean} Does that part in the action.
+     * @returns {boolean} If that part is in the action.
      */
 
     get hasRoll() {
         return !!this.roll?.type;
+    }
+
+    get hasDamage() {
+        return this.damage?.parts?.length && this.type !== 'healing'
+    }
+
+    get hasHealing() {
+        return this.damage?.parts?.length && this.type === 'healing'
     }
 
     get hasDamagePart() {

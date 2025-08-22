@@ -36,9 +36,10 @@ export default class TargetField extends fields.SchemaField {
         }
         config.targets = targets.map(t => TargetField.formatTarget.call(this, t));
         const hasTargets = TargetField.checkTargets.call(this, this.target.amount, config.targets);
-        if (config.isFastForward && !hasTargets)
-            return ui.notifications.warn('Too many targets selected for that actions.');
-        return hasTargets;
+        if (config.dialog.configure === false && !hasTargets) {
+            ui.notifications.warn('Too many targets selected for that actions.');
+            return hasTargets;
+        }
     }
 
     /**
