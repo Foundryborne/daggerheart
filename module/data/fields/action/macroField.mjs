@@ -1,7 +1,10 @@
 const fields = foundry.data.fields;
 
 export default class MacroField extends fields.DocumentUUIDField {
-    order = 70;
+    /**
+     * Action Workflow order
+     */
+    static order = 70;
 
     /** @inheritDoc */
     constructor(context = {}) {
@@ -10,9 +13,10 @@ export default class MacroField extends fields.DocumentUUIDField {
 
     /**
      * Macro Action Workflow part.
+     * Must be called within Action context or similar or similar.
      * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods. Currently not used.
      */
-    async execute(config) {
+    static async execute(config) {
         const fixUUID = !this.macro.includes('Macro.') ? `Macro.${this.macro}` : this.macro,
             macro = await fromUuid(fixUUID);
         try {

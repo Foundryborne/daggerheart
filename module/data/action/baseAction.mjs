@@ -5,10 +5,6 @@ import { ActionMixin } from '../fields/actionField.mjs';
 const fields = foundry.data.fields;
 
 /*
-    !!! I'm currently refactoring the whole Action thing, it's a WIP !!!
-*/
-
-/*
     ToDo
     - Target Check / Target Picker
     - Range Check
@@ -19,6 +15,7 @@ const fields = foundry.data.fields;
 export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel) {
     static extraSchemas = ['cost', 'uses', 'range'];
 
+    /** @inheritDoc */
     static defineSchema() {
         const schemaFields = {
             _id: new fields.DocumentIdField({ initial: () => foundry.utils.randomID() }),
@@ -36,23 +33,33 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         };
 
         this.extraSchemas.forEach(s => {
-            let clsField;
-            if ((clsField = this.getActionField(s)))
+            let clsField = this.getActionField(s);
+            if (clsField)
                 schemaFields[s] = new clsField();
         });
 
         return schemaFields;
     }
 
+    /**
+     * Create a Map containing each Action step based on fields define in schema. Ordered by Fields order property.
+     * @returns {Map}
+     */
     defineWorkflow() {
         const workflow = new Map();
-        Object.entries(this.schema.fields).forEach(([k,s]) => {
-            if(s.execute) workflow.set(k, { order: s.order, execute: s.execute.bind(this) } );
+        this.constructor.extraSchemas.forEach(s => {
+            let clsField = this.constructor.getActionField(s);
+            if (clsField?.execute) {
+                workflow.set(s, { order: clsField.order, execute: clsField.execute.bind(this) } );
+                if( s === "damage" ) workflow.set("applyDamage", { order: 75, execute: clsField.applyDamage.bind(this) } );
+            }
         });
-        if(this.schema.fields.damage) workflow.set("applyDamage", { order: 75, execute: game.system.api.fields.ActionFields.DamageField.applyDamage.bind(this) } );
         return new Map([...workflow.entries()].sort(([aKey, aValue], [bKey, bValue]) => aValue.order - bValue.order));
     }
 
+    /**
+     * Getter returning the workflow property or creating it the first time the property is called
+     */
     get workflow() {
         if ( this.hasOwnProperty("_workflow") ) return this._workflow;
         const workflow = Object.freeze(this.defineWorkflow());
@@ -60,24 +67,39 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return workflow;
     }
 
+    /**
+     * Get the Field class from ActionFields global config
+     * @param {string} name Field short name, equal to Action property
+     * @returns Action Field
+     */
     static getActionField(name) {
         const field = game.system.api.fields.ActionFields[`${name.capitalize()}Field`];
         return fields.DataField.isPrototypeOf(field) && field;
     }
 
+    /** @inheritDoc */
     prepareData() {
         this.name = this.name || game.i18n.localize(CONFIG.DH.ACTIONS.actionTypes[this.type].name);
         this.img = this.img ?? this.parent?.parent?.img;
     }
 
+    /**
+     * Get Action ID
+     */
     get id() {
         return this._id;
     }
 
+    /**
+     * Return Item the action is attached too.
+     */
     get item() {
         return this.parent.parent;
     }
 
+    /**
+     * Return the first Actor parent found.
+     */
     get actor() {
         return this.item instanceof DhpActor
             ? this.item
@@ -90,6 +112,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return 'trait';
     }
 
+    /**
+     * Prepare base data based on Action Type & Parent Type
+     * @param {object} parent 
+     * @returns {object}
+     */
     static getSourceConfig(parent) {
         const updateSource = {};
         if (parent?.parent?.type === 'weapon' && this === game.system.api.models.actions.actionsTypes.attack) {
@@ -112,6 +139,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return updateSource;
     }
 
+    /**
+     * Obtain a data object used to evaluate any dice rolls associated with this particular Action
+     * @param {object} [data ={}]   Optional data object from previous configuration/rolls
+     * @returns {object}
+     */
     getRollData(data = {}) {
         if (!this.actor) return null;
         const actorData = this.actor.getRollData(false);
@@ -127,6 +159,10 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return actorData;
     }
 
+    /**
+     * Execute each part of the Action workflow in order, calling a specific event before and after each part.
+     * @param {object} config Config object usually created from prepareConfig method
+     */
     async executeWorkflow(config) {
         for(const [key, part] of this.workflow) {
             if (Hooks.call(`${CONFIG.DH.id}.pre${key.capitalize()}Action`, this, config) === false) return;
@@ -135,7 +171,12 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         }
     }
 
-    async use(event, options = {}) {
+    /**
+     * Main method to use the Action
+     * @param {Event} event Event from the button used to trigger the Action
+     * @returns {object}
+     */
+    async use(event) {
         if (!this.actor) throw new Error("An Action can't be used outside of an Actor context.");
 
         if (this.chatDisplay) await this.toChat();
@@ -159,7 +200,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return config;
     }
 
-    /* */
+    /**
+     * Create the basic config common to every action type
+     * @param {Event} event Event from the button used to trigger the Action
+     * @returns {object}    
+     */
     prepareBaseConfig(event) {
         const config = {
             event,
@@ -174,7 +219,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
             hasRoll: this.hasRoll,
             hasDamage: this.hasDamage,
             hasHealing: this.hasHealing,
-            hasEffect: !!this.effects?.length,
+            hasEffect: this.hasEffect,
             hasSave: this.hasSave,
             isDirect: !!this.damage?.direct,
             selectedRollMode: game.settings.get('core', 'rollMode'),
@@ -185,6 +230,11 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return config;
     }
 
+    /**
+     * Create the config for that action used for its workflow
+     * @param {Event} event Event from the button used to trigger the Action
+     * @returns {object}    
+     */
     prepareConfig(event) {
         const config = this.prepareBaseConfig(event);
         for(const clsField of Object.values(this.schema.fields)) {
@@ -194,10 +244,20 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         return config;
     }
 
+    /**
+     * Method used to know if a configuration dialog must be shown or not when there is no roll.
+     * @param {*} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @returns {boolean}
+     */
     requireConfigurationDialog(config) {
         return !config.event.shiftKey && !config.hasRoll && (config.costs?.length || config.uses);
     }
 
+    /**
+     * 
+     * @param {object} config                Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     * @param {boolean} successCost        
+     */
     async consume(config, successCost = false) {
         await this.workflow.get("cost")?.execute(config, successCost);
         await this.workflow.get("uses")?.execute(config, successCost);
@@ -209,12 +269,16 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
         }
     }
 
+    /**
+     * Set if a configuration dialog must be shown or not if a special keyboard key is pressed.
+     * @param {object} config Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
+     */
     static applyKeybindings(config) {
         config.dialog.configure ??= !(config.event.shiftKey || config.event.altKey || config.event.ctrlKey);
     }
 
     /**
-     * Getters to know which parts the action of composed of. A field can exist but configured to not be used.
+     * Getters to know which parts the action is composed of. A field can exist but configured to not be used.
      * @returns {boolean} If that part is in the action.
      */
 
@@ -228,10 +292,6 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
 
     get hasHealing() {
         return this.damage?.parts?.length && this.type === 'healing'
-    }
-
-    get hasDamagePart() {
-        return this.damage?.parts?.length;
     }
     
     get hasSave() {

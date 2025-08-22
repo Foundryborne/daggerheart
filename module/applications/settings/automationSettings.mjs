@@ -42,7 +42,7 @@ export default class DhAutomationSettings extends HandlebarsApplicationMixin(App
     /** @inheritdoc */
     static TABS = {
         main: {
-            tabs: [{ id: 'general' }, { id: 'rules' }, { id: 'roll', cssClass: "with-hint" }],
+            tabs: [{ id: 'general' }, { id: 'rules' }, { id: 'roll' }],
             initial: 'general',
             labelPrefix: 'DAGGERHEART.GENERAL.Tabs'
         }

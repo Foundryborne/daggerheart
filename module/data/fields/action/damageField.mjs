@@ -7,7 +7,7 @@ export default class DamageField extends fields.SchemaField {
     /**
      * Action Workflow order
      */
-    order = 20;
+    static order = 20;
 
     /** @inheritDoc */
     constructor(options, context = {}) {
@@ -24,12 +24,12 @@ export default class DamageField extends fields.SchemaField {
 
     /**
      * Roll Damage/Healing Action Workflow part.
-     * Must be called within Action context.
+     * Must be called within Action context or similar.
      * @param {object} config               Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {string} [messageId=null]     ChatMessage Id where the clicked button belong.
      * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */
-    async execute(config, messageId = null, force = false) {
+    static async execute(config, messageId = null, force = false) {
         if((this.hasRoll && DamageField.getAutomation() === CONFIG.DH.SETTINGS.actionAutomationChoices.never.id) && !force) return;
 
         let formulas = this.damage.parts.map(p => ({
@@ -97,11 +97,11 @@ export default class DamageField extends fields.SchemaField {
     }
     
     /**
-     * 
-     * Must be called within Action context.
-     * @param {*} part 
-     * @param {*} data 
-     * @returns 
+     * Return value or valueAlt from damage part
+     * Must be called within Action context or similar.
+     * @param {object} part Damage Part 
+     * @param {object} data Action getRollData
+     * @returns Formula value object
      */
     static getFormulaValue(part, data) {
         let formulaValue = part.value;
@@ -118,10 +118,10 @@ export default class DamageField extends fields.SchemaField {
     }
 
     /**
-     * 
-     * Must be called within Action context.
-     * @param {*} formulas 
-     * @param {*} systemData 
+     * Prepare formulas for Damage Roll
+     * Must be called within Action context or similar.
+     * @param {object[]} formulas   Array of formatted formulas object
+     * @param {object} data         Action getRollData 
      * @returns 
      */
     static formatFormulas(formulas, data) {

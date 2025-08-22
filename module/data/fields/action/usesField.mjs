@@ -6,7 +6,7 @@ export default class UsesField extends fields.SchemaField {
     /**
      * Action Workflow order
      */
-    order = 160;
+    static order = 160;
     
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
@@ -29,11 +29,11 @@ export default class UsesField extends fields.SchemaField {
     /**
      * Uses Consumption Action Workflow part.
      * Increment Action spent uses by 1.
-     * Must be called within Action context.
+     * Must be called within Action context or similar or similar.
      * @param {object} config                   Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {boolean} [successCost=false]     Consume only resources configured as "On Success only" if not already consumed.
      */
-    async execute(config, successCost = false) {
+    static async execute(config, successCost = false) {
         if (
             config.uses?.enabled &&
             ((!successCost && (!config.uses?.consumeOnSuccess || config.roll?.success)) ||
@@ -60,9 +60,9 @@ export default class UsesField extends fields.SchemaField {
     }
 
     /**
-     * 
+     * Prepare Uses object for Action Workflow
      * Must be called within Action context.
-     * @param {*} uses 
+     * @param {object} uses 
      * @returns {object}
      */
     static calcUses(uses) {

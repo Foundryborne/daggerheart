@@ -4,7 +4,7 @@ export default class EffectsField extends fields.ArrayField {
     /**
      * Action Workflow order
      */
-    order = 100;
+    static order = 100;
 
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
@@ -17,12 +17,12 @@ export default class EffectsField extends fields.ArrayField {
 
     /**
      * Apply Effects Action Workflow part.
-     * Must be called within Action context.
+     * Must be called within Action context or similar.
      * @param {object} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {object[]} [targets=null]     Array of targets to override pre-selected ones.
      * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */
-    async execute(config, targets = null, force = false) {
+    static async execute(config, targets = null, force = false) {
         if(!config.hasEffect) return;
         let message = config.message ?? ui.chat.collection.get(config.parent?._id);
         if(!message) {
@@ -37,10 +37,9 @@ export default class EffectsField extends fields.ArrayField {
     }
 
     /**
-     * 
-     * Must be called within Action context.
-     * @param {*} targets 
-     * @returns 
+     * Apply Action Effects to a list of Targets
+     * Must be called within Action context or similar.
+     * @param {object[]} targets Array of formatted targets
      */
     static async applyEffects(targets) {
         if (!this.effects?.length || !targets?.length) return;
@@ -59,10 +58,9 @@ export default class EffectsField extends fields.ArrayField {
     }
 
     /**
-     * 
-     * @param {*} effect 
-     * @param {*} actor 
-     * @returns 
+     * Apply an Effect to a target or enable it if already on it
+     * @param {object} effect   Effect object containing ActiveEffect UUID
+     * @param {object} actor    Actor Document
      */
     static async applyEffect(effect, actor) {
         const existingEffect = actor.effects.find(e => e.origin === effect.uuid);

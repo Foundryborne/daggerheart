@@ -302,7 +302,8 @@
                 "toLoadout": "Send to Loadout",
                 "toVault": "Send to Vault",
                 "unequip": "Unequip",
-                "useItem": "Use Item"
+                "useItem": "Use Item",
+                "cancelBeastform": "Cancel Beastform"
             },
             "Countdown": {
                 "addCountdown": "Add Countdown",
@@ -2199,23 +2200,23 @@
                     "roll": {
                         "roll": {
                             "label": "Roll",
-                            "hint": "Roll Hint"
+                            "hint": "Auto behavior for rolls like Attack, Spellcast, etc."
                         },
                         "damage": {
                             "label": "Damage/Healing Roll",
-                            "hint": "Damage/Healing Roll Hint"
+                            "hint": "Auto behavior for Damage & Healing rolls after the Attack/Spellcast."
                         },
                         "save": {
                             "label": "Reaction Roll",
-                            "hint": "Reaction Roll Hint"
+                            "hint": "Auto behavior if a Reaction Roll is needed. Targets must be selected before the action is made"
                         },
                         "damageApply": {
                             "label": "Apply Damage/Healing",
-                            "hint": "Apply Damage/Healing Hint"
+                            "hint": "Automatically apply damages & healings. Targets must be selected before the action is made. Bypass users permissions."
                         },
                         "effect": {
                             "label": "Apply Effects",
-                            "hint": "Apply Effects Hint"
+                            "hint": "Automatically apply effects. Targets must be selected before the action is made. Bypass users permissions."
                         }
                     }
                 },
@@ -2223,7 +2224,7 @@
                     "title": "Defeated Handling"
                 },
                 "roll": {
-                    "title": "Roll"
+                    "title": "Actions"
                 }
             },
             "Homebrew": {

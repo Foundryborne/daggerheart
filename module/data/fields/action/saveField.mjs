@@ -6,7 +6,7 @@ export default class SaveField extends fields.SchemaField {
     /**
      * Action Workflow order
      */
-    order = 50;
+    static order = 50;
 
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
@@ -27,12 +27,12 @@ export default class SaveField extends fields.SchemaField {
 
     /**
      * Reaction Roll Action Workflow part.
-     * Must be called within Action context.
+     * Must be called within Action context or similar.
      * @param {object} config                    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {object[]} [targets=null]     Array of targets to override pre-selected ones.
      * @param {boolean} [force=false]       If the method should be executed outside of Action workflow, for ChatMessage button for example.
      */
-    async execute(config, targets = null, force = false) {
+    static async execute(config, targets = null, force = false) {
         if(!config.hasSave) return;
         let message = config.message ?? ui.chat.collection.get(config.parent?._id);
         if(!message) {

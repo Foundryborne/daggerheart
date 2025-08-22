@@ -4,7 +4,7 @@ export default class CostField extends fields.ArrayField {
     /**
      * Action Workflow order
      */
-    order = 150;
+    static order = 150;
     
     /** @inheritDoc */
     constructor(options = {}, context = {}) {
@@ -29,11 +29,11 @@ export default class CostField extends fields.ArrayField {
     /**
      * Cost Consumption Action Workflow part.
      * Consume configured action resources.
-     * Must be called within Action context.
+     * Must be called within Action context or similar.
      * @param {object} config                   Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @param {boolean} [successCost=false]     Consume only resources configured as "On Success only" if not already consumed.
      */
-    async execute(config, successCost = false) {
+    static async execute(config, successCost = false) {
         const actor= this.actor.system.partner ?? this.actor,
             usefulResources = {
             ...foundry.utils.deepClone(actor.system.resources),
@@ -44,13 +44,15 @@ export default class CostField extends fields.ArrayField {
             }
         };
 
-        for (var cost of config.costs) {
-            if (cost.keyIsID) {
-                usefulResources[cost.key] = {
-                    value: cost.value,
-                    target: this.parent.parent,
-                    keyIsID: true
-                };
+        if(this.parent?.parent) {
+            for (var cost of config.costs) {
+                if (cost.keyIsID) {
+                    usefulResources[cost.key] = {
+                        value: cost.value,
+                        target: this.parent.parent,
+                        keyIsID: true
+                    };
+                }
             }
         }
 
@@ -78,7 +80,7 @@ export default class CostField extends fields.ArrayField {
 
     /**
      * Update Action Workflow config object.
-     * Must be called within Action context.
+     * Must be called within Action context or similar.
      * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      * @returns {boolean}       Return false if fast-forwarded and no more uses.
      */

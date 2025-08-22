@@ -110,7 +110,10 @@ export class DHActionRollData extends foundry.abstract.DataModel {
 }
 
 export default class RollField extends fields.EmbeddedDataField {
-    order = 10;
+    /**
+     * Action Workflow order
+     */
+    static order = 10;
 
     /** @inheritDoc */
     constructor(options, context = {}) {
@@ -119,10 +122,10 @@ export default class RollField extends fields.EmbeddedDataField {
 
     /**
      * Roll Action Workflow part.
-     * Must be called within Action context.
+     * Must be called within Action context or similar.
      * @param {object} config    Object that contains workflow datas. Usually made from Action Fields prepareConfig methods.
      */
-    async execute(config) {
+    static async execute(config) {
         if(!config.hasRoll) return;
         config = await this.actor.diceRoll(config);
         if(!config) return false;
