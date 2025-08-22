@@ -603,15 +603,44 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: .25rem .5rem;
+        flex-wrap: wrap;
 
         label {
-            font-size: 16px;
+            font-size: var(--font-size-14);
+            font-weight: normal;
         }
 
         .form-fields {
             display: flex;
             gap: 4px;
             align-items: center;
+        }
+
+        .hint {
+            flex: 0 0 100%;
+            margin: 0;
+            color: var(--color-form-hint);
+        }
+
+        &:hover {
+            .hint {
+                color: var(--color-form-hint-hover);
+            }
+        }
+
+        &.setting-two-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: .25rem .5rem;
+
+            .form-group {
+                justify-content: end;
+            }
+
+            .hint {
+                grid-column: 1 / -1;
+            }
         }
     }
 }
