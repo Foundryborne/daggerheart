@@ -199,8 +199,8 @@ export default class DHWeapon extends AttachableItem {
         ];
 
         for (const { value, type } of attack.damage.parts) {
-            const parts = [value.dice];
-            if (value.bonus) parts.push(value.bonus.signedString());
+            const parts = value.custom.enabled ? [game.i18n.localize("DAGGERHEART.GENERAL.custom")] : [value.dice];
+            if (!value.custom.enabled && value.bonus) parts.push(value.bonus.signedString());
 
             if (type.size > 0) {
                 const typeTags = Array.from(type)

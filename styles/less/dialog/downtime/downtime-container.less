@@ -35,7 +35,7 @@
                     gap: 4px;
 
                     .activity-marker {
-                        font-size: 8px;
+                        font-size: .5rem;
                         flex: none;
                         color: light-dark(@dark-blue, @golden);
                         margin-right: 4px;
@@ -54,7 +54,7 @@
                 }
 
                 .activity-selected-marker {
-                    font-size: 14px;
+                    font-size: var(--font-size-14);
                     border: 1px solid light-dark(@dark-blue, @golden);
                     border-radius: 6px;
                     color: light-dark(@dark, @beige);
@@ -71,7 +71,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 4px;
-        font-size: 12px;
+        font-size: var(--font-size-12);
 
         &.wide {
             grid-template-columns: 1fr 1fr 1fr 1fr;
