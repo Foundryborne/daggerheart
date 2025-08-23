@@ -1,0 +1,28 @@
+@import '../../../utils/colors.less';
+@import '../../../utils/fonts.less';
+@import '../../../utils/mixin.less';
+
+.appTheme({
+    &.party {
+        background-image: url('../assets/parchments/dh-parchment-dark.png');
+    }
+}, {
+    &.party {
+        background: url('../assets/parchments/dh-parchment-light.png');
+    }
+});
+
+.application.sheet.daggerheart.actor.dh-style.party {
+    .tab {
+        max-height: 300px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: light-dark(@dark-blue, @golden) transparent;
+
+        &.active {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

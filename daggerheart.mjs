@@ -93,6 +93,10 @@ Hooks.once('init', () => {
         types: ['environment'],
         makeDefault: true
     });
+    Actors.registerSheet(SYSTEM.id, applications.sheets.actors.Party, {
+        types: ['party'],
+        makeDefault: true
+    });
 
     CONFIG.ActiveEffect.documentClass = documents.DhActiveEffect;
     CONFIG.ActiveEffect.dataModels = models.activeEffects.config;

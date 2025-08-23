@@ -473,6 +473,7 @@ export default function DHApplicationMixin(Base) {
             context.fields = this.document.schema.fields;
             context.systemFields = this.document.system.schema.fields;
             context.settings = game.settings.get(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.appearance);
+            console.log(context);
             return context;
         }
 

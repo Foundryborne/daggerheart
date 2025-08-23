@@ -20,7 +20,8 @@
             "character": "Character",
             "companion": "Companion",
             "adversary": "Adversary",
-            "environment": "Environment"
+            "environment": "Environment",
+            "party": "Party"
         }
     },
     "CONTROLS": {
@@ -1890,7 +1891,8 @@
                 "tier4": "tier 4",
                 "domains": "Domains",
                 "downtime": "Downtime",
-                "rules": "Rules"
+                "rules": "Rules",
+                "partyMembers": "Party Members"
             },
             "Tiers": {
                 "singular": "Tier",

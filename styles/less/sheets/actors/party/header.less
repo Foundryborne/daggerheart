@@ -1,0 +1,42 @@
+@import '../../../utils/colors.less';
+@import '../../../utils/fonts.less';
+
+.party-header-sheet {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+
+    .profile {
+        height: 235px;
+        mask-image: linear-gradient(0deg, transparent 0%, black 10%);
+        cursor: pointer;
+    }
+
+    .item-container {
+        .item-name {
+            padding: 0 20px;
+            input[type='text'] {
+                font-size: 32px;
+                height: 42px;
+                text-align: center;
+                transition: all 0.3s ease;
+                outline: 2px solid transparent;
+                border: 1px solid transparent;
+
+                &:hover[type='text'],
+                &:focus[type='text'] {
+                    box-shadow: none;
+                    outline: 2px solid light-dark(@dark-blue, @golden);
+                }
+            }
+        }
+
+        .label {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+    }
+}
