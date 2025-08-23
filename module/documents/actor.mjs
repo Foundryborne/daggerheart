@@ -1,7 +1,7 @@
 import { emitAsGM, GMUpdateEvent } from '../systemRegistration/socket.mjs';
 import { LevelOptionType } from '../data/levelTier.mjs';
 import DHFeature from '../data/item/feature.mjs';
-import { createScrollText, damageKeyToNumber } from '../helpers/utils.mjs';
+import { createScrollText, damageKeyToNumber, versionCompare } from '../helpers/utils.mjs';
 import DhCompanionLevelUp from '../applications/levelup/companionLevelup.mjs';
 
 export default class DhpActor extends Actor {
@@ -771,5 +771,27 @@ export default class DhpActor extends Actor {
 
             this.#scrollTextInterval = setInterval(intervalFunc.bind(this), 600);
         }
+    }
+
+    /** @inheritdoc */
+    async importFromJSON(json) {
+        if (!this.type === 'character') return await super.importFromJSON(json);
+
+        if (!CONST.WORLD_DOCUMENT_TYPES.includes(this.documentName)) {
+            throw new Error('Only world Documents may be imported');
+        }
+
+        const parsedJSON = JSON.parse(json);
+        if (versionCompare(parsedJSON._stats.systemVersion, '1.1.0')) {
+            const confirmed = await foundry.applications.api.DialogV2.confirm({
+                window: {
+                    title: game.i18n.localize('DAGGERHEART.ACTORS.Character.InvalidOldCharacterImportTitle')
+                },
+                content: game.i18n.localize('DAGGERHEART.ACTORS.Character.InvalidOldCharacterImportText')
+            });
+            if (!confirmed) return;
+        }
+
+        return await super.importFromJSON(json);
     }
 }

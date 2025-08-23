@@ -26,6 +26,14 @@
     "CONTROLS": {
         "inFront": "In Front"
     },
+    "SCENE": {
+        "TABS": {
+            "SHEET": {
+                "dh": "Daggerheart"
+            }
+        }
+    },
+
     "DAGGERHEART": {
         "ACTIONS": {
             "TYPES": {
@@ -194,7 +202,9 @@
                     "confirmTitle": "Companion Levelup",
                     "confirmText": "Would you like to level up your companion {name} by {levelChange} levels at this time? (You can do it manually later)"
                 },
-                "viewLevelups": "View Levelups"
+                "viewLevelups": "View Levelups",
+                "InvalidOldCharacterImportTitle": "Old Character Import",
+                "InvalidOldCharacterImportText": "Character data exported prior to system version 1.1 will not generate a complete character. Do you wish to continue?"
             },
             "Companion": {
                 "FIELDS": {
@@ -1890,7 +1900,8 @@
                 "tier4": "tier 4",
                 "domains": "Domains",
                 "downtime": "Downtime",
-                "rules": "Rules"
+                "rules": "Rules",
+                "types": "Types"
             },
             "Tiers": {
                 "singular": "Tier",
@@ -2220,6 +2231,10 @@
                     "deleteDomain": "Delete Domain",
                     "deleteDomainText": "Are you sure you want to delete the {name} domain? It will be immediately removed from all Actors in this world where it's currently used. Compendiums are not cleared.",
                     "duplicateDomain": "There is already a domain with this identification."
+                },
+                "adversaryType": {
+                    "title": "Custom Adversary Types",
+                    "newType": "Adversary Type"
                 }
             },
             "Menu": {
@@ -2283,6 +2298,9 @@
             "ResetSettings": {
                 "resetConfirmationTitle": "Reset Settings",
                 "resetConfirmationText": "Are you sure you want to reset the {settings}?"
+            },
+            "Scene": {
+                "rangeMeasurementOverride": "Override Global Range Measurement Settings"
             }
         },
         "UI": {
@@ -2332,6 +2350,42 @@
                 },
                 "resourceRoll": {
                     "playerMessage": "{user} rerolled their {name}"
+                }
+            },
+            "ItemBrowser": {
+                "title": "Daggerheart Compendium Browser",
+                "hint": "Select a Folder in sidebar to start browsing through the compendium",
+                "searchPlaceholder": "Search...",
+                "columnName": "Name",
+                "tooltipFilters": "Filters",
+                "tooltipErase": "Erase",
+                "difficultyMin": "Difficulty (Min)",
+                "difficultyMax": "Difficulty (Max)",
+                "hitPointsMin": "Hit Points (Min)",
+                "hitPointsMax": "Hit Points (Max)",
+                "stressMin": "Stress (Min)",
+                "stressMax": "Stress (Max)",
+                "armorScoreMin": "Armor Score (Min)",
+                "armorScoreMax": "Armor Score (Max)",
+                "levelMin": "Level (Min)",
+                "levelMax": "Level (Max)",
+                "recallCostMin": "Recall Cost (Min)",
+                "recallCostMax": "Recall Cost (Max)",
+                "evasionMin": "Evasion (Min)",
+                "evasionMax": "Evasion (Max)",
+                "subtype": "Subtype",
+                "folders": {
+                    "adversaries": "Adversaries",
+                    "ancestries": "Ancestries", 
+                    "equipment": "Equipment",
+                    "classes": "Classes",
+                    "subclasses": "Subclasses",
+                    "domainCards": "Domain Cards",
+                    "communities": "Communities",
+                    "environments": "Environments",
+                    "beastforms": "Beastforms",
+                    "features": "Features",
+                    "items": "Items"
                 }
             },
             "Notifications": {
@@ -2393,7 +2447,8 @@
                 "beastformEquipWeapon": "You cannot use weapons while in a Beastform.",
                 "loadoutMaxReached": "You've reached maximum loadout. Move atleast one domain card to the vault, or increase the limit in homebrew settings if desired.",
                 "domainMaxReached": "You've reached the maximum domains for the class. Increase the limit in homebrew settings if desired.",
-                "insufficientResources": "You have insufficient resources",
+                "insufficientResources": "You don't have enough resources to use that action.",
+                "actionNoUsesRemaining": "That action doesn't have remaining uses.",
                 "multiclassAlreadyPresent": "You already have a class and multiclass",
                 "subclassesAlreadyPresent": "You already have a class and multiclass subclass",
                 "noDiceSystem": "Your selected dice {system} does not have a {faces} dice"

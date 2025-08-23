@@ -13,7 +13,8 @@ export default class RegisterHandlebarsHelpers {
             hasProperty: foundry.utils.hasProperty,
             getProperty: foundry.utils.getProperty,
             setVar: this.setVar,
-            empty: this.empty
+            empty: this.empty,
+            pluralize: this.pluralize
         });
     }
     static add(a, b) {
@@ -64,12 +65,28 @@ export default class RegisterHandlebarsHelpers {
         return isNumerical ? (!result ? 0 : Number(result)) : result;
     }
 
-    static setVar(name, value, context) {
+    static setVar(name, value) {
         this[name] = value;
     }
 
     static empty(object) {
         if (!(typeof object === 'object')) return true;
         return Object.keys(object).length === 0;
+    }
+
+    /**
+     * Pluralize helper that returns the appropriate localized string based on count
+     * @param {number} count - The number to check for plurality 
+     * @param {string} baseKey - The base localization key (e.g., "DAGGERHEART.GENERAL.Target")
+     * @returns {string} The localized singular or plural string
+     * 
+     * Usage: {{pluralize currentTargets.length "DAGGERHEART.GENERAL.Target"}}
+     * Returns: "Target" if count is exactly 1, "Targets" if count is 0, 2+, or invalid
+     */
+    static pluralize(count, baseKey) {
+        const numericCount = Number(count);
+        const isSingular = !isNaN(numericCount) && numericCount === 1;
+        const key = isSingular ? `${baseKey}.single` : `${baseKey}.plural`;
+        return game.i18n.localize(key);
     }
 }

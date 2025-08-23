@@ -3,63 +3,63 @@ export const typeConfig = {
         columns: [
             {
                 key: "system.tier",
-                label: "Tier"
+                label: "DAGGERHEART.GENERAL.Tiers.singular"
             },
             {
                 key: "system.type",
-                label: "Type"
+                label: "DAGGERHEART.GENERAL.type"
             }
         ],
         filters: [
             {
                 key: "system.tier",
-                label: "Tier",
+                label: "DAGGERHEART.GENERAL.Tiers.singular",
                 field: 'system.api.models.actors.DhAdversary.schema.fields.tier'
             },
             {
                 key: "system.type",
-                label: "Type",
+                label: "DAGGERHEART.GENERAL.type",
                 field: 'system.api.models.actors.DhAdversary.schema.fields.type'
             },
             {
                 key: "system.difficulty",
                 name: "difficulty.min",
-                label: "Difficulty (Min)",
+                label: "DAGGERHEART.UI.ItemBrowser.difficultyMin",
                 field: 'system.api.models.actors.DhAdversary.schema.fields.difficulty',
                 operator: "gte"
             },
             {
                 key: "system.difficulty",
                 name: "difficulty.max",
-                label: "Difficulty (Max)",
+                label: "DAGGERHEART.UI.ItemBrowser.difficultyMax",
                 field: 'system.api.models.actors.DhAdversary.schema.fields.difficulty',
                 operator: "lte"
             },
             {
                 key: "system.resources.hitPoints.max",
                 name: "hp.min",
-                label: "Hit Points (Min)",
+                label: "DAGGERHEART.UI.ItemBrowser.hitPointsMin",
                 field: 'system.api.models.actors.DhAdversary.schema.fields.resources.fields.hitPoints.fields.max',
                 operator: "gte"
             },
             {
                 key: "system.resources.hitPoints.max",
                 name: "hp.max",
-                label: "Hit Points (Max)",
+                label: "DAGGERHEART.UI.ItemBrowser.hitPointsMax",
                 field: 'system.api.models.actors.DhAdversary.schema.fields.resources.fields.hitPoints.fields.max',
                 operator: "lte"
             },
             {
                 key: "system.resources.stress.max",
                 name: "stress.min",
-                label: "Stress (Min)",
+                label: "DAGGERHEART.UI.ItemBrowser.stressMin",
                 field: 'system.api.models.actors.DhAdversary.schema.fields.resources.fields.stress.fields.max',
                 operator: "gte"
             },
             {
                 key: "system.resources.stress.max",
                 name: "stress.max",
-                label: "Stress (Max)",
+                label: "DAGGERHEART.UI.ItemBrowser.stressMax",
                 field: 'system.api.models.actors.DhAdversary.schema.fields.resources.fields.stress.fields.max',
                 operator: "lte"
             },
@@ -69,70 +69,70 @@ export const typeConfig = {
         columns: [
             {
                 key: "type",
-                label: "Type"
+                label: "DAGGERHEART.GENERAL.type"
             },
             {
                 key: "system.secondary",
-                label: "Subtype",
+                label: "DAGGERHEART.UI.ItemBrowser.subtype",
                 format: (isSecondary) => isSecondary ? "secondary" : (isSecondary === false ? "primary" : '-')
             },
             {
                 key: "system.tier",
-                label: "Tier"
+                label: "DAGGERHEART.GENERAL.Tiers.singular"
             }
         ],
         filters: [
             {
                 key: "type",
-                label: "Type",
+                label: "DAGGERHEART.GENERAL.type",
                 choices: () => CONFIG.Item.documentClass.TYPES.filter(t => ["armor", "weapon", "consumable", "loot"].includes(t)).map(t => ({ value: t, label: t }))
             },
             {
                 key: "system.secondary",
-                label: "Subtype",
+                label: "DAGGERHEART.UI.ItemBrowser.subtype",
                 choices: [
-                    { value: false, label: "Primary Weapon"},
-                    { value: true, label: "Secondary Weapon"}
+                    { value: false, label: "DAGGERHEART.ITEMS.Weapon.primaryWeapon" },
+                    { value: true, label: "DAGGERHEART.ITEMS.Weapon.secondaryWeapon" }
                 ]
             },
             {
                 key: "system.tier",
-                label: "Tier",
-                choices: [{ value: "1", label: "1"}, { value: "2", label: "2"}, { value: "3", label: "3"}, { value: "4", label: "4"}]
+                label: "DAGGERHEART.GENERAL.Tiers.singular",
+                choices: [{ value: "1", label: "1" }, { value: "2", label: "2" }, { value: "3", label: "3" }, { value: "4", label: "4" }]
             },
             {
                 key: "system.burden",
-                label: "Burden",
+                label: "DAGGERHEART.GENERAL.burden",
                 field: 'system.api.models.items.DHWeapon.schema.fields.burden'
             },
             {
                 key: "system.attack.roll.trait",
-                label: "Trait",
+                label: "DAGGERHEART.GENERAL.Trait.single",
                 field: 'system.api.models.actions.actionsTypes.attack.schema.fields.roll.fields.trait'
             },
             {
                 key: "system.attack.range",
-                label: "Range",
+                label: "DAGGERHEART.GENERAL.range",
                 field: 'system.api.models.actions.actionsTypes.attack.schema.fields.range'
             },
             {
                 key: "system.baseScore",
                 name: "armor.min",
-                label: "Armor Score (Min)",
+                label: "DAGGERHEART.UI.ItemBrowser.armorScoreMin",
                 field: 'system.api.models.items.DHArmor.schema.fields.baseScore',
                 operator: "gte"
             },
             {
                 key: "system.baseScore",
                 name: "armor.max",
-                label: "Armor Score (Max)",
+                label: "DAGGERHEART.UI.ItemBrowser.armorScoreMax",
                 field: 'system.api.models.items.DHArmor.schema.fields.baseScore',
                 operator: "lte"
             },
             {
                 key: "system.itemFeatures",
-                label: "Features",
-                choices: () => [...Object.entries(CONFIG.DH.ITEM.weaponFeatures), ...Object.entries(CONFIG.DH.ITEM.armorFeatures)].map(([k,v]) => ({ value: k, label: v.label})),
+                label: "DAGGERHEART.GENERAL.features",
+                choices: () => [...Object.entries(CONFIG.DH.ITEM.weaponFeatures), ...Object.entries(CONFIG.DH.ITEM.armorFeatures)].map(([k, v]) => ({ value: k, label: v.label })),
                 operator: "contains3"
             }
         ]
@@ -149,54 +149,54 @@ export const typeConfig = {
         columns: [
             {
                 key: "system.type",
-                label: "Type"
+                label: "DAGGERHEART.GENERAL.type"
             },
             {
                 key: "system.domain",
-                label: "Domain"
+                label: "DAGGERHEART.GENERAL.Domain.single"
             },
             {
                 key: "system.level",
-                label: "Level"
+                label: "DAGGERHEART.GENERAL.level"
             }
         ],
         filters: [
             {
                 key: "system.type",
-                label: "Type",
+                label: "DAGGERHEART.GENERAL.type",
                 field: 'system.api.models.items.DHDomainCard.schema.fields.type'
             },
             {
                 key: "system.domain",
-                label: "Domain",
+                label: "DAGGERHEART.GENERAL.Domain.single",
                 field: 'system.api.models.items.DHDomainCard.schema.fields.domain',
                 operator: "contains2"
             },
             {
                 key: "system.level",
                 name: "level.min",
-                label: "Level (Min)",
+                label: "DAGGERHEART.UI.ItemBrowser.levelMin",
                 field: 'system.api.models.items.DHDomainCard.schema.fields.level',
                 operator: "gte"
             },
             {
                 key: "system.level",
                 name: "level.max",
-                label: "Level (Max)",
+                label: "DAGGERHEART.UI.ItemBrowser.levelMax",
                 field: 'system.api.models.items.DHDomainCard.schema.fields.level',
                 operator: "lte"
             },
             {
                 key: "system.recallCost",
                 name: "recall.min",
-                label: "Recall Cost (Min)",
+                label: "DAGGERHEART.UI.ItemBrowser.recallCostMin",
                 field: 'system.api.models.items.DHDomainCard.schema.fields.recallCost',
                 operator: "gte"
             },
             {
                 key: "system.recallCost",
                 name: "recall.max",
-                label: "Recall Cost (Max)",
+                label: "DAGGERHEART.UI.ItemBrowser.recallCostMax",
                 field: 'system.api.models.items.DHDomainCard.schema.fields.recallCost',
                 operator: "lte"
             }
@@ -206,50 +206,50 @@ export const typeConfig = {
         columns: [
             {
                 key: "system.evasion",
-                label: "Evasion"
+                label: "DAGGERHEART.GENERAL.evasion"
             },
             {
                 key: "system.hitPoints",
-                label: "Hit Points"
+                label: "DAGGERHEART.GENERAL.HitPoints.plural"
             },
             {
                 key: "system.domains",
-                label: "Domains"
+                label: "DAGGERHEART.GENERAL.Domain.plural"
             }
         ],
         filters: [
             {
                 key: "system.evasion",
                 name: "evasion.min",
-                label: "Evasion (Min)",
+                label: "DAGGERHEART.UI.ItemBrowser.evasionMin",
                 field: 'system.api.models.items.DHClass.schema.fields.evasion',
                 operator: "gte"
             },
             {
                 key: "system.evasion",
                 name: "evasion.max",
-                label: "Evasion (Max)",
+                label: "DAGGERHEART.UI.ItemBrowser.evasionMax",
                 field: 'system.api.models.items.DHClass.schema.fields.evasion',
                 operator: "lte"
             },
             {
                 key: "system.hitPoints",
                 name: "hp.min",
-                label: "Hit Points (Min)",
+                label: "DAGGERHEART.UI.ItemBrowser.hitPointsMin",
                 field: 'system.api.models.items.DHClass.schema.fields.hitPoints',
                 operator: "gte"
             },
             {
                 key: "system.hitPoints",
                 name: "hp.max",
-                label: "Hit Points (Max)",
+                label: "DAGGERHEART.UI.ItemBrowser.hitPointsMax",
                 field: 'system.api.models.items.DHClass.schema.fields.hitPoints',
                 operator: "lte"
             },
             {
                 key: "system.domains",
-                label: "Domains",
-                choices: () => Object.values(CONFIG.DH.DOMAIN.domains).map(d => ({ value: d.id, label: d.label})),
+                label: "DAGGERHEART.GENERAL.Domain.plural",
+                choices: () => Object.values(CONFIG.DH.DOMAIN.domains).map(d => ({ value: d.id, label: d.label })),
                 operator: "contains2"
             }
         ]
@@ -258,14 +258,14 @@ export const typeConfig = {
         columns: [
             {
                 key: "id",
-                label: "Class",
+                label: "TYPES.Item.class",
                 format: (id) => {
                     return "";
                 }
             },
             {
                 key: "system.spellcastingTrait",
-                label: "Spellcasting Trait"
+                label: "DAGGERHEART.ITEMS.Subclass.spellcastingTrait"
             }
         ],
         filters: []
@@ -274,22 +274,22 @@ export const typeConfig = {
         columns: [
             {
                 key: "system.tier",
-                label: "Tier"
+                label: "DAGGERHEART.GENERAL.Tiers.singular"
             },
             {
                 key: "system.mainTrait",
-                label: "Main Trait"
+                label: "DAGGERHEART.GENERAL.Trait.single"
             }
         ],
         filters: [
             {
                 key: "system.tier",
-                label: "Tier",
+                label: "DAGGERHEART.GENERAL.Tiers.singular",
                 field: 'system.api.models.items.DHBeastform.schema.fields.tier'
             },
             {
                 key: "system.mainTrait",
-                label: "Main Trait",
+                label: "DAGGERHEART.GENERAL.Trait.single",
                 field: 'system.api.models.items.DHBeastform.schema.fields.mainTrait'
             }
         ]
@@ -304,20 +304,20 @@ export const compendiumConfig = {
             "adversaries": {
                 id: "adversaries",
                 keys: ["adversaries"],
-                label: "Adversaries",
+                label: "DAGGERHEART.UI.ItemBrowser.folders.adversaries",
                 type: ["adversary"],
                 listType: "adversaries"
             },
             "ancestries": {
                 id: "ancestries",
                 keys: ["ancestries"],
-                label: "Ancestries",
+                label: "DAGGERHEART.UI.ItemBrowser.folders.ancestries",
                 type: ["ancestry"],
                 folders: {
                     "features": {
                         id: "features",
                         keys: ["ancestries"],
-                        label: "Features",
+                        label: "DAGGERHEART.UI.ItemBrowser.folders.features",
                         type: ["feature"]
                     }
                 }
@@ -325,26 +325,26 @@ export const compendiumConfig = {
             "equipments": {
                 id: "equipments",
                 keys: ["armors", "weapons", "consumables", "loot"],
-                label: "Equipment",
+                label: "DAGGERHEART.UI.ItemBrowser.folders.equipment",
                 type: ["armor", "weapon", "consumable", "loot"],
                 listType: "items"
             },
             "classes": {
                 id: "classes",
                 keys: ["classes"],
-                label: "Classes",
+                label: "DAGGERHEART.UI.ItemBrowser.folders.classes",
                 type: ["class"],
                 folders: {
                     "features": {
                         id: "features",
                         keys: ["classes"],
-                        label: "Features",
+                        label: "DAGGERHEART.UI.ItemBrowser.folders.features",
                         type: ["feature"]
                     },
                     "items": {
                         id: "items",
                         keys: ["classes"],
-                        label: "Items",
+                        label: "DAGGERHEART.UI.ItemBrowser.folders.items",
                         type: ["armor", "weapon", "consumable", "loot"],
                         listType: "items"
                     }
@@ -354,27 +354,27 @@ export const compendiumConfig = {
             "subclasses": {
                 id: "subclasses",
                 keys: ["subclasses"],
-                label: "Subclasses",
+                label: "DAGGERHEART.UI.ItemBrowser.folders.subclasses",
                 type: ["subclass"],
                 listType: "subclasses"
             },
             "domains": {
                 id: "domains",
                 keys: ["domains"],
-                label: "Domain Cards",
+                label: "DAGGERHEART.UI.ItemBrowser.folders.domainCards",
                 type: ["domainCard"],
                 listType: "cards"
             },
             "communities": {
                 id: "communities",
                 keys: ["communities"],
-                label: "Communities",
+                label: "DAGGERHEART.UI.ItemBrowser.folders.communities",
                 type: ["community"],
                 folders: {
                     "features": {
                         id: "features",
                         keys: ["communities"],
-                        label: "Features",
+                        label: "DAGGERHEART.UI.ItemBrowser.folders.features",
                         type: ["feature"]
                     }
                 }
@@ -382,20 +382,20 @@ export const compendiumConfig = {
             "environments": {
                 id: "environments",
                 keys: ["environments"],
-                label: "Environments",
+                label: "DAGGERHEART.UI.ItemBrowser.folders.environments",
                 type: ["environment"]
             },
             "beastforms": {
                 id: "beastforms",
                 keys: ["beastforms"],
-                label: "Beastforms",
+                label: "DAGGERHEART.UI.ItemBrowser.folders.beastforms",
                 type: ["beastform"],
                 listType: "beastforms",
                 folders: {
                     "features": {
                         id: "features",
                         keys: ["beastforms"],
-                        label: "Features",
+                        label: "DAGGERHEART.UI.ItemBrowser.folders.features",
                         type: ["feature"]
                     }
                 }

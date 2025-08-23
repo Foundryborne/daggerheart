@@ -158,48 +158,28 @@ export default class BaseDataItem extends foundry.abstract.TypeDataModel {
         }
 
         if (this.actor && this.actor.type === 'character' && this.features) {
-            const featureUpdates = {};
+            const features = [];
             for (let f of this.features) {
                 const fBase = f.item ?? f;
                 const feature = fBase.system ? fBase : await foundry.utils.fromUuid(fBase.uuid);
-                const createData = foundry.utils.mergeObject(
-                    feature.toObject(),
-                    {
-                        system: {
-                            originItemType: this.parent.type,
-                            originId: data._id,
-                            identifier: this.isMulticlass ? 'multiclass' : null
-                        }
-                    },
-                    { inplace: false }
+                const multiclass = this.isMulticlass ? 'multiclass' : null;
+                features.push(
+                    foundry.utils.mergeObject(
+                        feature.toObject(),
+                        {
+                            _stats: { compendiumSource: fBase.uuid },
+                            system: {
+                                originItemType: this.parent.type,
+                                identifier: multiclass ?? (f.item ? f.type : null)
+                            }
+                        },
+                        { inplace: false }
+                    )
                 );
-                const [doc] = await this.actor.createEmbeddedDocuments('Item', [createData]);
-
-                if (!featureUpdates.features)
-                    featureUpdates.features = this.features.map(x => (x.item ? { ...x, item: x.item.uuid } : x.uuid));
-
-                if (f.item) {
-                    const existingFeature = featureUpdates.features.find(x => x.item === f.item.uuid);
-                    existingFeature.item = doc.uuid;
-                } else {
-                    const replaceIndex = featureUpdates.features.findIndex(x => x === f.uuid);
-                    featureUpdates.features.splice(replaceIndex, 1, doc.uuid);
-                }
             }
 
-            await this.updateSource(featureUpdates);
+            await this.actor.createEmbeddedDocuments('Item', features);
         }
-    }
-
-    async _preDelete() {
-        if (!this.actor || this.actor.type !== 'character') return;
-
-        const items = this.actor.items.filter(item => item.system.originId === this.parent.id);
-        if (items.length > 0)
-            await this.actor.deleteEmbeddedDocuments(
-                'Item',
-                items.map(x => x.id)
-            );
     }
 
     async _preUpdate(changed, options, userId) {

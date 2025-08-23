@@ -17,12 +17,12 @@
                     <div class="icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <input type="search" name="search" class="search-input" placeholder="Search...">
+                    <input type="search" name="search" class="search-input" placeholder="{{localize 'DAGGERHEART.UI.ItemBrowser.searchPlaceholder'}}">
                 </div>
                 {{#if fieldFilter.length}}
-                    <a data-tooltip="Filters" data-action="expandContent"><i class="fa-solid fa-filter"></i></a>
+                    <a data-tooltip="{{localize 'DAGGERHEART.UI.ItemBrowser.tooltipFilters'}}" data-action="expandContent"><i class="fa-solid fa-filter"></i></a>
                 {{/if}}
-                <a data-tooltip="Erase" data-action="resetFilters"><i class="fa-solid fa-eraser"></i></a>
+                <a data-tooltip="{{localize 'DAGGERHEART.UI.ItemBrowser.tooltipErase'}}" data-action="resetFilters"><i class="fa-solid fa-eraser"></i></a>
             </div>
             <div class="filter-content extensible">
                 <div class="wrapper">
@@ -55,9 +55,9 @@
             {{#if menu.data.columns.length}}
                 <div class="item-list-header">
                     <div class="item-list-img"></div>
-                    <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">Name</div>
+                    <div class="item-list-name" data-sort-key="name" data-sort-type="ASC" data-action="sortList">{{localize 'DAGGERHEART.UI.ItemBrowser.columnName'}}</div>
                         {{#each menu.data.columns}}
-                            <span data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{label}}</span>
+                            <span data-sort-key="{{key}}" data-sort-type="" data-action="sortList">{{localize label}}</span>
                         {{/each}}
                     </div>
             {{/if}}
@@ -82,8 +82,8 @@
         {{!-- </div> --}}
     {{else}}
         <div class="welcome-message">
-            <h2 class="title">Daggerheart Compendium Browser</h2>
-            <span class="hint"><i>Select a Folder in sidebar to start browsing trought the compendium</i></span>
+            <h2 class="title">{{localize "DAGGERHEART.UI.ItemBrowser.title"}}</h2>
+            <span class="hint"><i>{{localize "DAGGERHEART.UI.ItemBrowser.hint"}}</i></span>
         </div>
     {{/if}}
 </div>

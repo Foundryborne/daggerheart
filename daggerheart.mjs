@@ -13,6 +13,7 @@ import { enrichedDualityRoll } from './module/enrichers/DualityRollEnricher.mjs'
 import { registerCountdownHooks } from './module/data/countdowns.mjs';
 import {
     handlebarsRegistration,
+    runMigrations,
     settingsRegistration,
     socketRegistration
 } from './module/systemRegistration/_module.mjs';
@@ -145,6 +146,11 @@ Hooks.once('init', () => {
     // Make Compendium Dialog resizable
     foundry.applications.sidebar.apps.Compendium.DEFAULT_OPTIONS.window.resizable = true;
 
+    DocumentSheetConfig.registerSheet(foundry.documents.Scene, SYSTEM.id, applications.scene.DhSceneConfigSettings, {
+        makeDefault: true,
+        label: 'Daggerheart'
+    });
+
     settingsRegistration.registerDHSettings();
     RegisterHandlebarsHelpers.registerHelpers();
 
@@ -168,6 +174,8 @@ Hooks.on('ready', async () => {
             game.user.setFlag(CONFIG.DH.id, CONFIG.DH.FLAGS.userFlags.welcomeMessage, true);
         }
     }
+
+    runMigrations();
 });
 
 Hooks.once('dicesoniceready', () => {});

@@ -56,6 +56,7 @@ export default class AdversarySheet extends DHBaseActorSheet {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.systemFields.attack.fields = this.document.system.attack.schema.fields;
+
         return context;
     }
 
@@ -65,6 +66,9 @@ export default class AdversarySheet extends DHBaseActorSheet {
         switch (partId) {
             case 'header':
                 await this._prepareHeaderContext(context, options);
+
+                const adversaryTypes = CONFIG.DH.ACTOR.allAdversaryTypes();
+                context.adversaryType = game.i18n.localize(adversaryTypes[this.document.system.type].label);
                 break;
             case 'notes':
                 await this._prepareNotesContext(context, options);
