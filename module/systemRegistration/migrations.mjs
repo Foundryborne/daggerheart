@@ -37,5 +37,23 @@ export async function runMigrations() {
         lastMigrationVersion = '1.1.0';
     }
 
+    if (versionCompare(lastMigrationVersion, '1.1.1')) {
+        const compendiumClasses = [];
+        for (let pack of game.packs) {
+            const documents = await pack.getDocuments();
+            compendiumClasses.push(...documents.filter(x => x.type === 'class'));
+        }
+
+        for (let classVal of [...compendiumClasses, ...game.items]) {
+            if (classVal.type !== 'class') continue;
+
+            for (let subclass of classVal.system.subclasses) {
+                await subclass.update({ 'system.linkedClass': classVal.uuid });
+            }
+        }
+
+        lastMigrationVersion = '1.1.1';
+    }
+
     await game.settings.set(CONFIG.DH.id, CONFIG.DH.SETTINGS.gameSettings.LastMigrationVersion, lastMigrationVersion);
 }
