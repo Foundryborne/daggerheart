@@ -215,7 +215,7 @@ export default class DHBaseAction extends ActionMixin(foundry.abstract.DataModel
                 actor: this.actor.uuid
             },
             dialog: {},
-            type: this.type,
+            actionType: this.actionType,
             hasRoll: this.hasRoll,
             hasDamage: this.hasDamage,
             hasHealing: this.hasHealing,

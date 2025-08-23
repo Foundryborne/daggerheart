@@ -661,7 +661,7 @@ export default class CharacterSheet extends DHBaseActorSheet {
             })
         });
 
-        game.system.api.fields.ActionFields.CostField.execute.call(this, result);
+        if(result) game.system.api.fields.ActionFields.CostField.execute.call(this, result);
     }
 
     //TODO: redo toggleEquipItem method

@@ -223,7 +223,7 @@ export const registerRollDiceHooks = () => {
         if (
             !config.source?.actor ||
             (game.user.isGM ? !hopeFearAutomation.gm : !hopeFearAutomation.players) ||
-            config.roll.type === 'reaction'
+            config.actionType === 'reaction'
         )
             return;
 

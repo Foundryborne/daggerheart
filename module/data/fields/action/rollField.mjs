@@ -144,7 +144,7 @@ export default class RollField extends fields.EmbeddedDataField {
         const roll = {
             baseModifiers: this.roll.getModifier(),
             label: 'Attack',
-            type: this.actionType,
+            type: this.roll?.type,
             difficulty: this.roll?.difficulty,
             formula: this.roll.getFormula(),
             advantage: CONFIG.DH.ACTIONS.advantageState[this.roll.advState].value
