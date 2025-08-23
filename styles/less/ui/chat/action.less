@@ -2,7 +2,7 @@
 @import '../../utils/fonts.less';
 @import '../../utils/spacing.less';
 
-.theme-light {
+body.theme-light {
     .daggerheart.chat.action {
         .action-move .action-section {
             border-bottom: 1px solid @dark-blue;
@@ -31,93 +31,96 @@
     }
 }
 
-.daggerheart.chat {
-    &.action {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+body.theme-dark {
+    .daggerheart.chat {
+        &.action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-        details[open] {
-            .fa-chevron-down {
-                transform: rotate(180deg);
-                transition: all 0.3s ease;
-            }
-        }
-
-        .action-move {
-            width: 100%;
-
-            .fa-chevron-down {
-                transition: all 0.3s ease;
-                margin-left: auto;
-            }
-
-            .action-section {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                margin: 8px 8px 0;
-                padding-bottom: 5px;
-                width: -webkit-fill-available;
-                gap: 5px;
-                border-bottom: 1px solid @golden;
-
-                &:hover {
-                    background: @golden-10;
-                    cursor: pointer;
+            details[open] {
+                .fa-chevron-down {
+                    transform: rotate(180deg);
                     transition: all 0.3s ease;
                 }
+            }
 
-                .action-img {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 3px;
-                    object-fit: cover;
+            .action-move {
+                width: 100%;
+
+                .fa-chevron-down {
+                    transition: all 0.3s ease;
+                    margin-left: auto;
                 }
 
-                .action-header {
+                .action-section {
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
+                    align-items: center;
+                    margin: 8px 8px 0;
+                    padding-bottom: 5px;
+                    width: -webkit-fill-available;
                     gap: 5px;
+                    border-bottom: 1px solid @golden;
 
-                    .title {
-                        font-size: 20px;
-                        color: @golden;
-                        font-weight: 700;
+                    &:hover {
+                        background: @golden-10;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
                     }
 
-                    .label {
-                        font-size: 12px;
+                    .action-img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 3px;
+                        object-fit: cover;
+                    }
+
+                    .action-header {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
                         color: @beige;
-                        margin: 0;
+
+                        .title {
+                            font-size: 20px;
+                            color: @golden;
+                            font-weight: 700;
+                        }
+
+                        .label {
+                            font-size: 12px;
+                            color: @beige;
+                            margin: 0;
+                        }
                     }
                 }
             }
-        }
 
-        .description {
-            padding: 8px;
-        }
-
-        .ability-card-footer {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            width: 100%;
-            padding: 0 8px;
-
-            button {
-                height: 40px;
-                flex: 1 1 calc(50% - 5px);
-
-                &:nth-last-child(1):nth-child(odd) {
-                    flex-basis: 100%;
-                }
+            .description {
+                padding: 8px;
             }
 
-            .ability-card-action-cost {
-                margin: auto;
-                font-size: 1.5em;
+            .ability-card-footer {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                width: 100%;
+                padding: 0 8px;
+
+                button {
+                    height: 40px;
+                    flex: 1 1 calc(50% - 5px);
+
+                    &:nth-last-child(1):nth-child(odd) {
+                        flex-basis: 100%;
+                    }
+                }
+
+                .ability-card-action-cost {
+                    margin: auto;
+                    font-size: 1.5em;
+                }
             }
         }
     }

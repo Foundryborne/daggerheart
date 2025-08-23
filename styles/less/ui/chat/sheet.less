@@ -1,7 +1,7 @@
 @import '../../utils/colors.less';
 @import '../../utils/fonts.less';
 
-.theme-light {
+body.theme-light {
     .chat-message:not(.duality) .message-content {
         color: @dark;
 
@@ -67,141 +67,143 @@
     }
 }
 
-.chat-message.dh-chat-message {
-    .message-content {
-        padding: 0;
-    }
-}
-
-.chat-message {
-    .duality-modifiers,
-    .duality-result,
-    .dice-title {
-        display: none;
+body.theme-dark {
+    .chat-message.dh-chat-message {
+        .message-content {
+            padding: 0;
+        }
     }
 
-    .message-content {
-        padding: 0 8px;
-        font-family: @font-body;
-        color: @beige;
-
-        blockquote {
-            border-left: 5px solid light-dark(@dark-blue-40, @golden-40);
+    .chat-message {
+        .duality-modifiers,
+        .duality-result,
+        .dice-title {
+            display: none;
         }
 
-        a[href] {
-            color: light-dark(@dark-blue, @golden);
-        }
+        .message-content {
+            padding: 0 8px;
+            font-family: @font-body;
+            color: @beige;
 
-        a[href]:hover,
-        a[href].active {
-            font-weight: bold;
-            text-shadow: 0 0 8px light-dark(@dark-blue, @golden);
-        }
-
-        button {
-            background: @golden;
-            border: 1px solid @dark-blue;
-            color: @dark-blue;
-            outline: none;
-            box-shadow: none;
-
-            &:hover {
-                background: @dark-blue;
-                color: @golden;
+            blockquote {
+                border-left: 5px solid light-dark(@dark-blue-40, @golden-40);
             }
 
-            &.glow {
-                animation: glow 0.75s infinite alternate;
+            a[href] {
+                color: light-dark(@dark-blue, @golden);
             }
 
-            &:disabled {
+            a[href]:hover,
+            a[href].active {
+                font-weight: bold;
+                text-shadow: 0 0 8px light-dark(@dark-blue, @golden);
+            }
+
+            button {
                 background: @golden;
+                border: 1px solid @dark-blue;
                 color: @dark-blue;
-                opacity: 0.6;
-                cursor: not-allowed;
+                outline: none;
+                box-shadow: none;
 
                 &:hover {
+                    background: @dark-blue;
+                    color: @golden;
+                }
+
+                &.glow {
+                    animation: glow 0.75s infinite alternate;
+                }
+
+                &:disabled {
                     background: @golden;
                     color: @dark-blue;
+                    opacity: 0.6;
+                    cursor: not-allowed;
+
+                    &:hover {
+                        background: @golden;
+                        color: @dark-blue;
+                    }
+                }
+
+                &.reverted {
+                    background: @golden-10;
+                    color: @golden;
+                    border: 1px solid transparent;
+                    &:hover {
+                        background: @golden;
+                        color: @dark-blue;
+                    }
+                    img {
+                        border-radius: 3px;
+                    }
                 }
             }
 
-            &.reverted {
+            .enriched-effect {
+                display: flex;
+                align-items: center;
+                border: 1px solid black;
+                width: fit-content;
+                padding: 0 2px 0 0;
+                border-radius: 6px;
+                color: @dark;
+                background-image: url(../assets/parchments/dh-parchment-light.png);
+
+                &:hover {
+                    text-shadow: none;
+                }
+
+                span {
+                    white-space: nowrap;
+                }
+            }
+
+            .dice-roll .dice-formula,
+            .dice-roll .dice-total {
+                box-shadow: none;
+                border: none;
                 background: @golden-10;
                 color: @golden;
-                border: 1px solid transparent;
-                &:hover {
-                    background: @golden;
-                    color: @dark-blue;
-                }
-                img {
-                    border-radius: 3px;
-                }
+                font-weight: 600;
+                align-content: center;
+            }
+
+            .dice-roll .dice-formula {
+                height: 27px;
+            }
+
+            .dice-roll .dice-total {
+                height: 34px;
             }
         }
+    }
 
-        .enriched-effect {
+    fieldset.daggerheart.chat {
+        padding: 0;
+        border-left-width: 0;
+        border-right-width: 0;
+        border-bottom-width: 0;
+        legend {
             display: flex;
             align-items: center;
-            border: 1px solid black;
-            width: fit-content;
-            padding: 0 2px 0 0;
-            border-radius: 6px;
-            color: @dark;
-            background-image: url(../assets/parchments/dh-parchment-light.png);
-
-            &:hover {
-                text-shadow: none;
-            }
-
-            span {
-                white-space: nowrap;
+            gap: 5px;
+            &:before,
+            &:after {
+                content: '\f0d8';
+                font-family: 'Font Awesome 6 Pro';
             }
         }
-
-        .dice-roll .dice-formula,
-        .dice-roll .dice-total {
-            box-shadow: none;
-            border: none;
-            background: @golden-10;
-            color: @golden;
-            font-weight: 600;
-            align-content: center;
+        &.expanded {
+            legend:before,
+            legend:after {
+                content: '\f0d7';
+            }
         }
-
-        .dice-roll .dice-formula {
-            height: 27px;
+        .daggerheart.chat {
+            margin-top: 5px;
         }
-
-        .dice-roll .dice-total {
-            height: 34px;
-        }
-    }
-}
-
-fieldset.daggerheart.chat {
-    padding: 0;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 0;
-    legend {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        &:before,
-        &:after {
-            content: '\f0d8';
-            font-family: 'Font Awesome 6 Pro';
-        }
-    }
-    &.expanded {
-        legend:before,
-        legend:after {
-            content: '\f0d7';
-        }
-    }
-    .daggerheart.chat {
-        margin-top: 5px;
     }
 }
